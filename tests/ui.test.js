@@ -26,3 +26,18 @@ test('starting simulation respects subject chooser and has a45min deadline',()=>
 test('storage failure preserves progress in memory and warns honestly',()=>{const {api,ctx,get}=runtime();ctx.localStorage.setItem=()=>{throw Error('blocked')};api.write('sample',{value:7});assert.equal(api.read('sample').value,7);assert.equal(get('#notice').hidden,false);assert.match(get('#notice').textContent,/se perderá al cerrar/);});
 test('malformed stored JSON safely starts a new practice and stays writable',()=>{const {api,storage,get}=runtime();storage.set('bitacora-ciber:v1:practice:11:1','{bad');const p=api.getPractice(11,1);assert.equal(Object.keys(p.answers).length,0);assert.match(get('#notice').textContent,/datos guardados no válidos/);p.answers[p.ids[0]]='a';api.savePractice(p);assert.equal(api.getPractice(11,1).answers[p.ids[0]],'a');});
 test('checking then editing resets feedback without advancing by default',()=>{const {api,ctx,events,get}=runtime();ctx.location.hash='#/practica/11/1';const target={name:'practice-answer',value:'a'};events.change[0]({target});let p=api.getPractice(11,1);assert.equal(p.index,0);assert.equal(p.answers[p.ids[0]],'a');const button={dataset:{action:'practice-check'},disabled:false};const click={target:{closest:s=>s==='[data-action]'?button:null},preventDefault(){},stopImmediatePropagation(){}};for(const callback of events.click)callback(click);assert.match(get('#main').innerHTML,/Por qué es correcta/);target.value='b';events.change[0]({target});p=api.getPractice(11,1);assert.equal(p.index,0);assert.equal(p.checked.length,0);assert.doesNotMatch(get('#main').innerHTML,/Por qué es correcta/);});
+test('keyboard-activated skip link focuses content without changing the current route',()=>{
+ const {api,ctx,events,get}=runtime();
+ for(const route of ['#/temas','#/practica/11/1']){
+  ctx.location.hash=route;api.render(false);
+  const before=get('#main').innerHTML;let focused=false,prevented=false;
+  get('#main').focus=()=>{focused=true;};
+  const link={};
+  const click={detail:0,target:{closest:selector=>selector==='.skip'?link:null},preventDefault(){prevented=true;},stopImmediatePropagation(){}};
+  for(const callback of events.click)callback(click);
+  assert.equal(prevented,true);
+  assert.equal(focused,true);
+  assert.equal(ctx.location.hash,route);
+  assert.equal(get('#main').innerHTML,before);
+ }
+});
