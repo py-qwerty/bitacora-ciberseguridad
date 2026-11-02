@@ -14,6 +14,7 @@ const courses = [
   { id: 'ciberdelitos', shortTitle: 'Ciberdelitos y regulación', title: 'Ciberdelitos y Regulación de la Ciberseguridad' }
 ];
 const glossary = await load('content/glossary.json');
+const materials = await load('content/materials.json');
 const topics = [], questions = [];
 const norm = s => String(s).normalize('NFKC').replace(/\s+/g, ' ').trim();
 const signature = q => JSON.stringify([norm(q.question).toLocaleLowerCase('es'), q.options.map(norm)]);
@@ -26,6 +27,10 @@ for (const [courseIndex, course] of courses.entries()) {
     const added = additions.topics.find(t => t.number === number);
     if (!added) throw Error(`${course.id}: falta tema ${number}`);
     const topic = { id: courseIndex * 10 + number, course: course.id, number, title: norm(before?.title || added.title) };
+    const material = materials.find(m => m.course === course.id && m.number === number);
+    if (!material || !/^materials\/[a-z-]+\/tema-\d{2}(?:-[a-z0-9]+)*\.pdf$/.test(material.url)) throw Error(`Falta el PDF de ${course.id}/${number}`);
+    topic.title = norm(material.title);
+    topic.material = { url: material.url, format: 'pdf', pages: material.pages, bytes: material.bytes, title: `Tema ${number}. ${topic.title}` };
     topics.push(topic);
     const rows = [...added.questions, ...(before?.questions || [])];
     if (rows.length !== 30) throw Error(`${course.id}/${number}: ${rows.length} preguntas, se esperan 30`);
@@ -53,7 +58,7 @@ for (const [courseIndex, course] of courses.entries()) {
     });
   }
 }
-const bank = { version: '2026-11-02.1', title: 'Bitácora Ciber', context: 'Práctica personal a partir del material docente. Solo la categoría campus-confirmed incorpora corrección observada en el campus; las demás claves están razonadas para estudiar. Los simulacros no reproducen reglas oficiales. Las referencias de versiones y normativa pertenecen al material citado.', courses, topics, questions };
+const bank = { version: '2026-11-02.2', title: 'Bitácora Ciber', context: 'Práctica personal a partir del material docente. Solo la categoría campus-confirmed incorpora corrección observada en el campus; las demás claves están razonadas para estudiar. Los simulacros no reproducen reglas oficiales. Las referencias de versiones y normativa pertenecen al material citado.', courses, topics, questions };
 validateBank(bank);
 if (questions.length !== 1500) throw Error('Cobertura incompleta');
 if (questions.filter(q => q.source.kind === 'campus-confirmed').some(q => q.course !== 'sistemas' || q.topic !== 1)) throw Error('Confirmación campus fuera de su alcance');

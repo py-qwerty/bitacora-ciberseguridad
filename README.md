@@ -10,6 +10,10 @@ Asignatura → tema → tres tests de 10 preguntas o test completo de 30. Una pr
 
 Simulacros personales de 30 preguntas de una asignatura o mezcladas, con 45 minutos orientativos y sin penalización. No reproducen reglas oficiales de UNIR ni asignan notas al campus. Las soluciones se ocultan durante el intento. Solo se guarda el resultado final; recargar o cerrar pierde el simulacro activo.
 
+## Leer y descargar el temario
+
+Los 50 temas aparecen por asignatura y en orden numérico, con el nombre explícito «Tema 1. …» hasta «Tema 10. …». En cada tema, «Material del tema» muestra el documento en formato de documento portátil (PDF), su número de páginas y su tamaño. «Abrir tema» lo abre en otra pestaña y «Descargar PDF» permite guardarlo con el número y nombre descriptivo del tema. Durante la práctica también hay un enlace discreto para consultar el tema sin abandonar el progreso. Los PDF están en `dist/materials/`, con enlaces relativos compatibles con el subdirectorio de GitHub Pages. El banco de preguntas y sus explicaciones conserva su propia procedencia.
+
 ## Ejecutar
 
 Sin dependencias de producción ni compilación:
@@ -30,7 +34,7 @@ El ejecutor de pruebas de Node.js comprueba la integridad del banco, generación
 
 El banco diferencia preguntas confirmadas en campus, test del temario y práctica añadida. Cada pregunta incluye explicación, dificultad y fuente. Las opciones conservan su orden, importante para expresiones como «A y B». Consultar `dist/bank.json` y la pantalla «Cómo estudiar y fuentes» para la procedencia concreta. No son exámenes oficiales; las cuestiones jurídicas describen el material docente citado y requieren comprobar fuentes vigentes cuando se utilicen fuera del estudio.
 
-Este repositorio no incluye los PDF originales, credenciales, nombre del estudiante ni su historial de campus. El progreso personal se guarda solo en `localStorage` de este navegador, con un prefijo separado de PER, sin servidor, analítica o sincronización. Si el almacenamiento falla, la app lo avisa y permite seguir en memoria. Borrar los datos del navegador borra el progreso.
+Por petición del usuario, se incluyen los **50 PDF del temario** de la Universidad Internacional de La Rioja (UNIR). No se incluyen credenciales, nombre del estudiante ni su historial de campus. El progreso personal se guarda solo en `localStorage` de este navegador, con un prefijo separado de PER, sin servidor, analítica o sincronización. Si el almacenamiento falla, la app lo avisa y permite seguir en memoria. Borrar los datos del navegador borra el progreso.
 
 Repositorio público: [py-qwerty/bitacora-ciberseguridad](https://github.com/py-qwerty/bitacora-ciberseguridad). GitHub Actions comprueba el proyecto y publica `dist/` en GitHub Pages cuando se actualiza `main`; las propuestas de cambios solo ejecutan las pruebas. La web se puede abrir sin el servidor local. El manifiesto permite añadir un acceso como app en navegadores compatibles; no incorpora una caché sin conexión. Fuentes Manrope y Barlow Condensed servidas localmente; licencias en FONT-LICENSES/ y assets/font-licenses/.
 

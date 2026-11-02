@@ -6,6 +6,10 @@ User request, 2 November 2026: locate the PER study app and reuse its engine for
 
 Five subjects and ten topics per subject, thirty questions per topic: 1,500 questions. Data arrives in dist/bank.json, with stable IDs, a global numeric topic ID, subject ID, four options in source order, one answer, explanation, difficulty and source page. A question's provenance is one of campus-confirmed, temario-test or practice. Only evidence-backed imported corrections can claim campus confirmation. Practice is educational material, not an official examination or legal advice.
 
+## Topic materials
+
+User follow-up, 2 November 2026: include all fifty original topic PDFs in the public GitHub Pages application. Each topic has optional material metadata: a relative materials/...pdf URL, format, page count, byte size and title. The source is the UNIR teaching material; PDFs are included by the user’s request, independently from the question bank and its correction/provenance. No student account data or campus grade history is added. Open and download actions use bundled relative links; study progress remains in the app’s own browser storage.
+
 ## Inherited and changed behavior
 
 Reuse Bitácora PER's 480px mobile UI, browser-local persistence, native accessible modal, four-option question renderer, swipe thresholds, two-phase animation and scroll retention. Each topic offers three ten-question blocks and a full thirty-question test, saved independently. Automatic progression is optional and defaults off. Check reveals the answer and explanation; changing a selection clears the previous check. Completed-test review includes an errors/blank filter.

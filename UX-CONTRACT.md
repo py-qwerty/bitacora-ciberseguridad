@@ -10,6 +10,7 @@
 | Scrollbar | dist/styles.css global baseline | DESIGN.md | natural document scroll | token test and browser |
 | Toast | #notice role=status | PRODUCT.md | persistent storage warning | storage failure test |
 | Dialog | native dialog and ask() | PRODUCT.md | finish/reset/replace | Escape and focus |
+| Material | app.js topicMaterial/materialBlock/practiceMaterial | PRODUCT.md | bundled relative PDF open/download | material UI tests and browser |
 | Feedback | explanation(q) and sourceLabel | bank.json | practice and final review | test feedback |
 | Local data | read/write/getPractice | PRODUCT.md | block10/full30/final simulations | reload and malformed-state tests |
 
@@ -17,7 +18,7 @@ No date picker, table selection, backend CRUD, login or sharing editor.
 
 ## Flows
 
-Subjects → subject topics → three blocks of ten and full test of thirty. Every question offers native radios, explicit check, previous/next, swipe and a collapsed number selector. The explanatory feedback includes correct/incorrect text, rationale, source category and source page. Changing an answer removes its checked state. Default automatic progression is off; enabling it persists the preference. The final question never submits automatically.
+Subjects → subject topics → three blocks of ten and full test of thirty. Topic pages also show «Material del tema» for the bundled UNIR PDF. «Abrir tema» opens a separate tab with noopener; «Descargar PDF» requests a download. During practice the discreet PDF link also opens separately, so question state is retained. Links remain relative under the GitHub Pages subpath and load no document until followed. Missing or invalid material metadata omits the controls rather than showing broken links. Pages and size are shown only when valid. Topics are sorted by their numeric number and labeled explicitly «Tema n. Descripción». PDF titles follow the same label; downloads have a sanitized descriptive filename. User-facing titles are escaped; only bundled materials/...pdf paths are accepted. Every question offers native radios, explicit check, previous/next, swipe and a collapsed number selector. The explanatory feedback includes correct/incorrect text, rationale, source category and source page. Changing an answer removes its checked state. Default automatic progression is off; enabling it persists the preference. The final question never submits automatically.
 
 Answers and position persist per topic/block, including checked explanations. Full30 is block0 and has its own progress. Finish uses an app-owned dialog with blank count; cancel and Escape keep all answers. Finish is idempotent. Completed tests show result and all/error-only review. Repeat confirms resetting that test only. Review stays read-only and never changes stored answers.
 

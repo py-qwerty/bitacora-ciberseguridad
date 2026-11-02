@@ -41,3 +41,38 @@ test('keyboard-activated skip link focuses content without changing the current 
   assert.equal(get('#main').innerHTML,before);
  }
 });
+
+test('topic material offers relative open/download links with a descriptive filename',()=>{
+ const {api}=runtime();const data=fixture();data.topics[0].material={url:'materials/sistemas/tema-01-seguridad-en-windows-server.pdf',format:'pdf',pages:41,bytes:123456,title:'Seguridad en Windows Server'};api.seed(data);
+ const html=api.topicPage(11);
+ assert.match(html,/Material del tema/);
+ assert.match(html,/Tema 1\. Seguridad en Windows Server/);
+ assert.match(html,/41 páginas · 124 kB/);
+ assert.equal((html.match(/href="materials\/sistemas\/tema-01-seguridad-en-windows-server\.pdf"/g)||[]).length,2);
+ assert.match(html,/target="_blank" rel="noopener"/);
+ assert.match(html,/download="Tema 1\. Seguridad en Windows Server\.pdf"/);
+ assert.doesNotMatch(html,/href="\/materials\//);
+});
+test('missing material or unsafe URL omits document controls rather than creating a broken link',()=>{
+ const {api}=runtime();assert.doesNotMatch(api.topicPage(11),/Material del tema|href="materials/);
+ for(const url of ['javascript:alert(1)','https://example.com/tema.pdf','/materials/a.pdf','materials/../a.pdf','materials/a/%2e%2e/a.pdf','materials/a.pdf" onclick="bad','materials/a.pdf?redirect=other']){
+  const data=fixture();data.topics[0].material={url,format:'pdf',title:'Nombre'};api.seed(data);assert.doesNotMatch(api.topicPage(11),/Material del tema|Descargar PDF/);
+ }
+});
+test('document labels escape content and download filename removes control and filename characters',()=>{
+ const {api}=runtime();const data=fixture();data.topics[0].material={url:'materials/sistemas/tema-01.pdf',format:'pdf',title:'Tema 1. Redes <seguras> / "caso"',pages:0,bytes:NaN};api.seed(data);const html=api.topicPage(11);
+ assert.match(html,/Tema 1\. Redes &lt;seguras&gt; \/ &quot;caso&quot;/);
+ assert.match(html,/download="Tema 1\. Redes -seguras- - -caso-\.pdf"/);
+ assert.doesNotMatch(html,/<seguras>|NaN|0 páginas/);
+});
+test('practice PDF access preserves saved answers and position and opens separately',()=>{
+ const {api}=runtime();const data=fixture();data.topics[0].material={url:'materials/sistemas/tema-01.pdf',format:'pdf',title:'Windows Server'};api.seed(data);const p=api.getPractice(11,1);p.index=4;p.answers[p.ids[0]]='b';api.savePractice(p);const html=api.practicePage(11,1);
+ assert.match(html,/Consultar tema en PDF/);assert.match(html,/target="_blank" rel="noopener"/);assert.match(html,/mantienes tu avance/);
+ const saved=api.getPractice(11,1);assert.equal(saved.index,4);assert.equal(saved.answers[p.ids[0]],'b');
+});
+test('subject topics stay numerically ordered and have explicit unduplicated topic names',()=>{
+ const {api}=runtime();const data=fixture();data.topics.reverse();data.topics.find(t=>t.id===11).title='Tema 1. Windows Server';api.seed(data);const html=api.coursePage('sistemas');
+ assert.ok(html.indexOf('Tema 1. Windows Server')<html.indexOf('Tema 2. Linux'));
+ assert.doesNotMatch(html,/Tema 1\. Tema 1/);
+ assert.match(api.topicPage(11),/<h1>Tema 1\. Windows Server<\/h1>/);
+});

@@ -1,6 +1,6 @@
 # Banco de preguntas
 
-Cinco asignaturas, diez temas por asignatura y treinta preguntas por tema: **1.500 preguntas**. `coverage.json` registra la distribución calculada, y `source-index.json` el número de páginas de los cincuenta materiales docentes. Ninguno incluye los PDF originales ni rutas del ordenador.
+Cinco asignaturas, diez temas por asignatura y treinta preguntas por tema: **1.500 preguntas**. `coverage.json` registra la distribución calculada, y `source-index.json` el número de páginas de los cincuenta materiales docentes. Los índices no incluyen rutas del ordenador. Los 50 PDF originales se publican en `dist/materials/`; `materials.json` registra el título de la portada, la asignatura, el número de tema, el enlace, las páginas, el tamaño y la huella de integridad SHA-256 (Secure Hash Algorithm de 256 bits).
 
 `base/` conserva las 860 preguntas de práctica ya preparadas a partir del temario. `additions/` completa la cobertura con preguntas del test de cada tema y nuevos casos. El tema 1 de Sistemas incorpora las diez soluciones observadas en el campus el 2 de noviembre de 2026; esta confirmación no se extiende a los demás temas.
 

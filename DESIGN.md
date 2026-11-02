@@ -58,11 +58,11 @@ Locally hosted Manrope owns reading, questions, options and navigation. Barlow C
 
 ## Layout
 
-A single column of at most 480px at all sizes, sticky 61px header, native document scrolling and fixed bottom navigation with safe-area padding. Hierarchy: subjects → topics → three blocks of ten or the full thirty-question test → one question. Natural-height explanation below the options. No horizontally scrolling subject grid. Simulation hides bottom tabs and keeps answer navigation in a disclosure.
+A single column of at most 480px at all sizes, sticky 61px header, native document scrolling and fixed bottom navigation with safe-area padding. Hierarchy: subjects → topics → three blocks of ten or the full thirty-question test → one question. Natural-height explanation below the options. No horizontally scrolling subject grid. A quiet «Material del tema» section precedes the test list, with one primary open action, a secondary download action, page count and file size. Titles use «Tema n. Descripción» in numeric order, with the small row badge repeating only the number as a scanning aid. PDFs open separately; no inline PDF viewer or nested document scroller is added. Simulation hides bottom tabs and keeps answer navigation in a disclosure.
 
 ## Elevation & Depth
 
-One-pixel panel borders; only the modal casts a shadow. Feedback is a restrained tinted panel. Native select popup geometry is accepted for the simulation subject chooser; the app styles only its closed trigger.
+One-pixel panel borders; only the modal casts a shadow. Feedback is a restrained tinted panel. The material panel uses the existing background, border and panel-radius tokens, with actions that wrap on narrow screens. Native select popup geometry is accepted for the simulation subject chooser; the app styles only its closed trigger.
 
 ## Shapes
 
@@ -78,4 +78,4 @@ Inherited question motion uses 180ms exit and 240ms entrance; routes cancel anim
 
 ## Do's and Don'ts
 
-Keep imported questions/options in source order: references such as «A y B» must remain valid. Show explanations and source page when checking or reviewing; never while a simulation is active. Use the same labels across all subjects. Never present a training score as a campus grade or these simulations as an official exam. Browser-local saving is explicit; no cloud-sync claims. No user name, login, grade history from campus, or original textbook PDFs in this repository.
+Keep imported questions/options in source order: references such as «A y B» must remain valid. Show explanations and source page when checking or reviewing; never while a simulation is active. Use the same labels across all subjects. Never present a training score as a campus grade or these simulations as an official exam. Browser-local saving is explicit; no cloud-sync claims. No user name, login or grade history from campus in this repository. The user-authorized topic PDFs are included as teaching material.
