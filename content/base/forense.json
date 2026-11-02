@@ -1,0 +1,2665 @@
+{
+  "course": "Informática forense y Respuesta ante incidentes",
+  "topics": [
+    {
+      "number": 1,
+      "title": "Introducción a la Respuesta a Incidentes y Análisis Forense",
+      "questions": [
+        {
+          "question": "Una caída accidental deja sin servicio el portal de clientes. ¿Qué dimensión de seguridad resulta afectada de forma directa?",
+          "options": [
+            "La integridad de los documentos aunque no se hayan modificado",
+            "La confidencialidad de los datos por el hecho de estar inaccesibles",
+            "La autenticidad de los usuarios por no poder iniciar sesión",
+            "La disponibilidad del servicio"
+          ],
+          "correct": 3,
+          "explanation": "La disponibilidad es poder utilizar la información y los servicios cuando se necesitan. Un incidente no tiene que ser un ataque deliberado.",
+          "source_page": 5,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué origen de incidente obliga a considerar también errores de empleados bienintencionados?",
+          "options": [
+            "El error humano",
+            "La explotación remota de una vulnerabilidad",
+            "La interceptación de tráfico por terceros",
+            "El ataque interno malicioso"
+          ],
+          "correct": 0,
+          "explanation": "El tema incluye errores humanos entre las causas de incidentes. La preparación debe contemplar fallos no maliciosos.",
+          "source_page": 6,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué parte de la recuperación ante desastres tiene un enfoque principalmente tecnológico?",
+          "options": [
+            "Identificar judicialmente a la persona que provocó el incidente",
+            "Mantener cualquier proceso comercial durante una interrupción, incluidos los no tecnológicos",
+            "Establecer exclusivamente qué datos pueden perderse entre copias",
+            "Restablecer infraestructura y servicios informáticos"
+          ],
+          "correct": 3,
+          "explanation": "La recuperación ante desastres restablece la infraestructura tecnológica. Debe estar alineada con la continuidad de los procesos del negocio.",
+          "source_page": 8,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué expresa el tiempo de recuperación objetivo, RTO (Recovery Time Objective)?",
+          "options": [
+            "El plazo previsto para recuperar el funcionamiento del sistema",
+            "El tiempo que se ha acordado observar al atacante",
+            "La antigüedad máxima admisible de los datos recuperados",
+            "El período máximo de conservación de registros"
+          ],
+          "correct": 0,
+          "explanation": "El tiempo de recuperación objetivo expresa cuándo se espera que el sistema vuelva a funcionar. Ayuda a definir medidas de recuperación adecuadas.",
+          "source_page": 9,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué persigue el análisis forense digital al investigar información de un equipo?",
+          "options": [
+            "Restaurar prioritariamente el servicio para volver a operar",
+            "Obtener y analizar evidencias que ayuden a esclarecer hechos",
+            "Comprobar únicamente si el antivirus estaba actualizado",
+            "Enumerar riesgos futuros sin investigar hechos ya ocurridos"
+          ],
+          "correct": 1,
+          "explanation": "El análisis forense digital investiga evidencias digitales. Su utilidad incluye aportar pruebas comprensibles sobre lo sucedido.",
+          "source_page": 17,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Para qué sirve principalmente documentar la cadena de custodia?",
+          "options": [
+            "Dar trazabilidad a la evidencia desde su recogida hasta su presentación",
+            "Acreditar únicamente que el archivo tiene el mismo nombre",
+            "Determinar qué dispositivo contenía la evidencia sin registrar sus traspasos",
+            "Identificar al autor material solo por el custodio que lo entrega"
+          ],
+          "correct": 0,
+          "explanation": "La cadena de custodia permite justificar que la evidencia presentada corresponde a la recogida y que ha sido tratada de manera controlada.",
+          "source_page": 22,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué diferencia mejor la continuidad de negocio de la mera restauración de servidores?",
+          "options": [
+            "La continuidad sustituye los procedimientos alternativos por análisis de evidencias",
+            "La continuidad se limita a recuperar los servidores críticos",
+            "La continuidad contempla mantener procesos y niveles mínimos de servicio durante la interrupción",
+            "La continuidad fija solo la frecuencia de las copias"
+          ],
+          "correct": 2,
+          "explanation": "La continuidad de negocio considera operación alternativa, interrupciones e impacto económico. Su alcance supera la recuperación puramente tecnológica.",
+          "source_page": 7,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué expresa el punto de recuperación objetivo, RPO (Recovery Point Objective), en una estrategia de recuperación?",
+          "options": [
+            "Cuánto durará la fase de análisis de las evidencias",
+            "Cuánto tiempo se conservará el informe del incidente",
+            "Cuánto se espera tardar en restablecer el servicio",
+            "Hasta qué estado anterior al desastre se pretende recuperar la información"
+          ],
+          "correct": 3,
+          "explanation": "El punto de recuperación objetivo señala el estado de los datos al que se quiere volver. Es distinto del plazo de recuperación del servicio.",
+          "source_page": 9,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué combinación describe una respuesta organizada frente a incidentes?",
+          "options": [
+            "Elegir responsables cuando ya se hayan restablecido los sistemas",
+            "Definir acciones sin relacionarlas con escenarios concretos",
+            "Detección temprana y procedimientos con acciones y responsables definidos",
+            "Recoger alertas sin establecer cómo se evalúan ni responden"
+          ],
+          "correct": 2,
+          "explanation": "La detección facilita conocer pronto el problema y los procedimientos evitan improvisaciones. La respuesta requiere acciones y responsabilidades establecidas.",
+          "source_page": 10,
+          "difficulty": "media"
+        },
+        {
+          "question": "Un CSIRT (Computer Security Incident Response Team, equipo de respuesta a incidentes de seguridad informática) publica avisos preventivos. ¿Qué clase de servicio presta?",
+          "options": [
+            "Un servicio reactivo porque cualquier actividad del equipo requiere un incidente previo",
+            "Un servicio proactivo",
+            "Un servicio de custodia porque el aviso preserva los datos originales",
+            "Un servicio de recuperación porque los avisos restauran infraestructura"
+          ],
+          "correct": 1,
+          "explanation": "Los servicios proactivos buscan reducir incidentes mediante divulgación, vigilancia y otras actuaciones preventivas. Son complementarios a la atención de incidentes.",
+          "source_page": 12,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué aporta un SLA (Service Level Agreement, acuerdo de nivel de servicio) con un proveedor de nube?",
+          "options": [
+            "Un compromiso que demuestra por sí solo ausencia de brechas",
+            "Requisitos pactados que la empresa puede exigir y comprobar al proveedor",
+            "Una autorización para adquirir todos los sistemas del proveedor",
+            "Un documento que hace innecesario evaluar controles corporativos"
+          ],
+          "correct": 1,
+          "explanation": "Los acuerdos de nivel de servicio ayudan a fijar requisitos mínimos exigibles y verificar su cumplimiento. No sustituyen el análisis de riesgos ni los controles de la empresa.",
+          "source_page": 14,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué límite de atribución debe reconocer un análisis forense digital?",
+          "options": [
+            "La dirección de red elimina la necesidad de contrastar otras pruebas",
+            "El equipo origen demuestra por sí solo quién utilizó su teclado",
+            "Identificar una cuenta o equipo no identifica por sí solo a la persona física que actuó",
+            "La titularidad de una cuenta equivale a autoría material de sus acciones"
+          ],
+          "correct": 2,
+          "explanation": "El análisis puede asociar acciones a usuarios o equipos. Para identificar a una persona pueden necesitarse técnicas de investigación adicionales.",
+          "source_page": 19,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Por qué se trabaja normalmente con copias de las evidencias?",
+          "options": [
+            "Para que la herramienta pueda cambiar datos sin que sea necesario registrarlo",
+            "Para poder prescindir de conservar el original durante el procedimiento",
+            "Para reducir la modificación de originales y permitir verificaciones posteriores",
+            "Para convertir automáticamente todos los datos copiados en prueba suficiente"
+          ],
+          "correct": 2,
+          "explanation": "La recolección y preservación buscan evitar alteraciones. Las copias permiten analizar manteniendo control sobre la evidencia original.",
+          "source_page": 20,
+          "difficulty": "media"
+        },
+        {
+          "question": "Una organización exige servicio recuperado en cuatro horas y datos recuperados hasta una hora antes de la caída. ¿Cómo se expresan ambos objetivos?",
+          "options": [
+            "Ambos objetivos describen la antigüedad admisible de una hora",
+            "Tiempo de recuperación objetivo de cuatro horas y punto de recuperación objetivo de una hora",
+            "Tiempo de recuperación objetivo de una hora y punto de recuperación objetivo de cuatro horas",
+            "Ambos objetivos describen el plazo de recuperación de cuatro horas"
+          ],
+          "correct": 1,
+          "explanation": "El plazo para recuperar el servicio corresponde al tiempo de recuperación objetivo. El estado anterior admisible de los datos corresponde al punto de recuperación objetivo.",
+          "source_page": 9,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Una fábrica pierde su sistema central. ¿Qué medida pertenece a la continuidad de negocio durante la recuperación?",
+          "options": [
+            "Definir únicamente la fecha de la próxima copia de seguridad",
+            "Esperar al análisis completo del ataque antes de activar cualquier alternativa",
+            "Restaurar el servidor sin decidir cómo operará la fábrica mientras tanto",
+            "Aplicar un procedimiento alternativo que mantenga el servicio mínimo aceptable"
+          ],
+          "correct": 3,
+          "explanation": "La continuidad contempla cómo gestionar las interrupciones y mantener niveles mínimos de servicio. Esa previsión reduce el impacto durante la recuperación.",
+          "source_page": 7,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Los empleados usan teléfonos propios para acceder a información corporativa. ¿Qué reto plantea BYOD (Bring Your Own Device, uso del dispositivo personal en el trabajo)?",
+          "options": [
+            "Hace suficiente proteger el acceso remoto sin atender al estado del terminal",
+            "Combina uso personal y profesional y reduce el control corporativo del terminal",
+            "Transfiere por sí solo al empleador el control de todo el contenido personal",
+            "Permite aplicar exactamente el mismo control que en un terminal íntegramente administrado"
+          ],
+          "correct": 1,
+          "explanation": "El uso de dispositivos propios añade riesgos de acceso remoto y de control del terminal. La propiedad y el uso mixto deben considerarse al diseñar la seguridad.",
+          "source_page": 15,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Un disco pasa de una investigadora a un custodio. ¿Qué información debe añadirse para mantener trazabilidad?",
+          "options": [
+            "Solo el nombre del nuevo custodio, sin fecha ni actividad realizada",
+            "Solo el hash del disco, sin registrar personas ni transferencias",
+            "Solo el inventario inicial, sin anotar las operaciones posteriores",
+            "Personas intervinientes, operación y fechas de inicio y fin"
+          ],
+          "correct": 3,
+          "explanation": "La documentación de custodia registra personas y operaciones, con sus fechas. La comprobación de integridad complementa esa documentación.",
+          "source_page": 23,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Se encuentra un acceso desde la cuenta de un empleado. ¿Qué conclusión es más rigurosa sin otras pruebas?",
+          "options": [
+            "La empresa ya puede descartar cualquier uso indebido de credenciales",
+            "La cuenta compartió necesariamente su contraseña con el atacante",
+            "La actividad se asocia a la cuenta y requiere investigación adicional para atribuirla a una persona",
+            "El titular de la cuenta realizó personalmente el acceso"
+          ],
+          "correct": 2,
+          "explanation": "El tema distingue identificación técnica de cuentas o equipos e identificación de personas. No se debe dar ese salto sin pruebas adicionales.",
+          "source_page": 19,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Al investigar una modificación no autorizada, ¿qué plan de preguntas orienta mejor el análisis?",
+          "options": [
+            "Qué cambió, cómo se realizó y qué usuario o equipo intervino",
+            "Qué explicación prefiere el cliente para justificar el incidente",
+            "Qué servicio debe restaurarse antes de analizar lo ocurrido",
+            "Qué vulnerabilidades podrían aparecer en el futuro aunque no intervinieran"
+          ],
+          "correct": 0,
+          "explanation": "El análisis busca esclarecer alteración, mecanismo y atribución técnica. Las conclusiones deben apoyarse en evidencias recogidas.",
+          "source_page": 18,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Un perito ha terminado el examen técnico. ¿Qué debe hacer para que los resultados sean aprovechables por otras personas?",
+          "options": [
+            "Redactar el procedimiento, los resultados y las conclusiones fundamentadas",
+            "Entregar solo las conclusiones y conservar el método en notas privadas",
+            "Presentar solo un inventario de evidencias sin explicar sus resultados",
+            "Adjuntar únicamente las salidas de herramientas sin interpretarlas"
+          ],
+          "correct": 0,
+          "explanation": "El informe pericial recoge análisis realizados, resultados y conclusiones. Debe permitir comprender el trabajo que sustenta esas conclusiones.",
+          "source_page": 21,
+          "difficulty": "aplicación"
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "title": "La evidencia digital",
+      "questions": [
+        {
+          "question": "En un disco que contiene un documento relevante, ¿qué es la evidencia digital?",
+          "options": [
+            "El embalaje que protege el soporte durante su traslado",
+            "El cable que permitió conectar el contenedor",
+            "El disco como objeto físico con independencia de sus datos",
+            "La información del documento que puede ayudar a probar el hecho"
+          ],
+          "correct": 3,
+          "explanation": "La evidencia es la información almacenada o transmitida digitalmente. El disco es su contenedor, y no conviene confundir ambos conceptos.",
+          "source_page": 7,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué característica exige que la información tenga relación con el hecho investigado?",
+          "options": [
+            "La conservación de su integridad",
+            "La relevancia",
+            "La suficiencia de su alcance",
+            "La autenticidad de su origen"
+          ],
+          "correct": 1,
+          "explanation": "La relevancia implica que la evidencia sirva para esclarecer el asunto. No toda información digital disponible tiene interés para una investigación concreta.",
+          "source_page": 8,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué característica exige poder contrastar origen y ausencia de alteración?",
+          "options": [
+            "La relevancia para las preguntas del caso",
+            "La volatilidad del soporte utilizado",
+            "La confianza en la evidencia",
+            "La suficiencia de la cantidad de datos recogidos"
+          ],
+          "correct": 2,
+          "explanation": "La confianza requiere autenticidad y vinculación adecuada con el incidente. El origen y la integridad deben poder justificarse.",
+          "source_page": 9,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué permite analizar una copia digital sin consumir necesariamente el original?",
+          "options": [
+            "La posibilidad de reproducir exactamente la información",
+            "La obligación de modificar el original para observarlo",
+            "La reconstrucción aproximada de datos desde su nombre",
+            "La necesidad de destruir información al examinarla"
+          ],
+          "correct": 0,
+          "explanation": "Una propiedad importante de las evidencias digitales es que pueden duplicarse. Esto permite trabajar sobre copias sin destruir la fuente.",
+          "source_page": 15,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué sucede normalmente con la memoria RAM (Random Access Memory, memoria de acceso aleatorio) al interrumpir la corriente?",
+          "options": [
+            "Se mantiene intacto porque todas las memorias son no volátiles",
+            "Se conserva siempre como registro completo en el sistema operativo",
+            "Se pierde su contenido volátil",
+            "Se almacena íntegramente en la caché del disco por defecto"
+          ],
+          "correct": 2,
+          "explanation": "La memoria de acceso aleatorio es volátil y pierde su contenido al apagar el equipo. Por eso su adquisición requiere especial prioridad.",
+          "source_page": 16,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué fuente puede ayudar a conocer cuándo se encendió o apagó un equipo?",
+          "options": [
+            "Solo el historial de páginas visitadas",
+            "Los registros del sistema operativo",
+            "Solo la información del fabricante de la placa",
+            "Solo las fechas de modificación de documentos"
+          ],
+          "correct": 1,
+          "explanation": "Los registros del sistema contienen información de actividad y cambios relevantes. Su análisis ayuda a reconstruir lo ocurrido en un equipo.",
+          "source_page": 12,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Cuál es el criterio de suficiencia de una evidencia?",
+          "options": [
+            "Que se haya documentado la custodia aunque falten datos esenciales",
+            "Que aporte la información necesaria para constatar el hecho investigado",
+            "Que proceda de un origen auténtico aunque no alcance para responder",
+            "Que se recoja todo el almacenamiento aunque no guarde relación"
+          ],
+          "correct": 1,
+          "explanation": "La suficiencia depende de lo que se pretende probar. Recoger muchos datos no equivale necesariamente a recoger los datos adecuados.",
+          "source_page": 9,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Por qué una evidencia técnicamente interesante puede tener problemas como prueba?",
+          "options": [
+            "Porque un archivo sin firma electrónica carece siempre de valor",
+            "Porque la información ocupa demasiado poco espacio para tener valor",
+            "Porque las copias exactas nunca pueden presentarse como evidencia",
+            "Porque también importa que se haya obtenido mediante procedimientos legales"
+          ],
+          "correct": 3,
+          "explanation": "El tema destaca la importancia de la forma de obtención. El interés técnico de unos datos no elimina la necesidad de una adquisición legal.",
+          "source_page": 6,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué implica la libre valoración de la prueba descrita en el tema?",
+          "options": [
+            "El juez valora si la prueba presentada basta para demostrar un hecho",
+            "La herramienta asigna a cada prueba un valor judicial definitivo",
+            "La admisión de un dato obliga a aceptar cualquier interpretación de él",
+            "El perito determina obligatoriamente la decisión del tribunal"
+          ],
+          "correct": 0,
+          "explanation": "La prueba debe ser consistente y argumentada, pero su valoración corresponde al juez. El perito ayuda a comprenderla técnicamente.",
+          "source_page": 7,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué diferencia hay entre un documento y un registro de aplicación como evidencias?",
+          "options": [
+            "Ambos prueban siempre el mismo hecho con independencia del contexto",
+            "Solo el documento puede ser prueba porque el registro es automático",
+            "Solo el registro es fiable porque los documentos son modificables",
+            "Pueden aportar información distinta y ambos ser relevantes según el hecho investigado"
+          ],
+          "correct": 3,
+          "explanation": "Los documentos pueden contener hechos o comunicaciones y los registros pueden mostrar actividad. Su utilidad depende del objetivo de la investigación.",
+          "source_page": 11,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué conjunto de fuentes resulta apropiado para estudiar navegación web?",
+          "options": [
+            "Solo el estado de bloques libres del disco",
+            "Solo los dispositivos externos conectados",
+            "Solo los registros de apagado del sistema",
+            "Historial del navegador y cookies relacionadas"
+          ],
+          "correct": 3,
+          "explanation": "El navegador y sus datos locales pueden aportar información sobre sitios visitados e interacción. No deben interpretarse como prueba automática de identidad personal.",
+          "source_page": 12,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Cómo orienta la volatilidad el orden de adquisición?",
+          "options": [
+            "Adquiere primero lo que pueda desconectarse más fácilmente",
+            "Prioriza lo que cambia o desaparece más rápidamente",
+            "Adquiere primero lo que más espacio ocupe",
+            "Adquiere primero los datos no volátiles y deja la memoria para el final"
+          ],
+          "correct": 1,
+          "explanation": "El orden de adquisición debe ir de mayor a menor volatilidad. Así se reduce la posibilidad de perder datos antes de capturarlos.",
+          "source_page": 18,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Por qué los datos de disco se clasifican como no volátiles aunque el equipo esté encendido?",
+          "options": [
+            "Porque normalmente permanecen tras apagarlo, aunque puedan modificarse durante su uso",
+            "Porque nunca necesitan protección frente a escrituras",
+            "Porque no pueden cambiar mientras el equipo siga encendido",
+            "Porque todo dato del disco se copia de forma automática al apagar"
+          ],
+          "correct": 0,
+          "explanation": "No volátil no significa inmutable. El disco conserva datos sin corriente, pero las escrituras durante el funcionamiento pueden alterarlos.",
+          "source_page": 19,
+          "difficulty": "media"
+        },
+        {
+          "question": "Se pide determinar la fecha de creación de un archivo. ¿Qué evidencia adicional ayuda a evaluar una posible manipulación del reloj?",
+          "options": [
+            "Una fotografía de la etiqueta del equipo y su número de serie",
+            "Una copia del archivo sin ninguna fuente de contexto",
+            "Registros de cambios de fecha y hora del sistema",
+            "Una captura de la hora actual sin comprobar su historial"
+          ],
+          "correct": 2,
+          "explanation": "La fecha del archivo depende del reloj del sistema. Los registros de cambios del reloj pueden aportar contexto que una copia aislada del archivo no ofrece.",
+          "source_page": 10,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Un equipo está ejecutando una videoconferencia y puede perder corriente. ¿Qué dato merece prioridad si es relevante para el caso?",
+          "options": [
+            "El inventario de soportes ya sellados en el laboratorio",
+            "La copia del manual de ayuda que permanece en un disco desconectado",
+            "La configuración física de una unidad externa sin alimentación",
+            "El contenido volátil de la memoria en ese momento"
+          ],
+          "correct": 3,
+          "explanation": "La información en memoria cambia rápidamente y se pierde sin corriente. Debe capturarse antes que soportes estables si es relevante y viable.",
+          "source_page": 16,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Se investiga la filtración de un contrato. ¿Cómo decides si una fotografía personal es relevante?",
+          "options": [
+            "Por ocupar más espacio que el contrato",
+            "Por haber sido creada después de comprar el equipo",
+            "Por su relación concreta con el hecho investigado",
+            "Por el mero hecho de estar en el mismo dispositivo"
+          ],
+          "correct": 2,
+          "explanation": "La evidencia debe ayudar a probar el hecho concreto. La mera presencia de un archivo en el equipo no demuestra que tenga utilidad para ese caso.",
+          "source_page": 13,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Un correo se presenta sin poder explicar de qué cuenta procede ni cómo se obtuvo. ¿Qué requisito queda principalmente en duda?",
+          "options": [
+            "La volatilidad de la memoria donde se abrió el mensaje",
+            "La capacidad del soporte donde se almacena la copia",
+            "La confianza en su autenticidad y origen",
+            "La relevancia del correo aunque el contenido ya esté vinculado al caso"
+          ],
+          "correct": 2,
+          "explanation": "La confianza exige poder contrastar origen y ausencia de alteración. Sin esos elementos la autenticidad del correo resulta más difícil de justificar.",
+          "source_page": 9,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Se sospecha una conexión a un servidor ajeno realizada fuera del navegador. ¿Qué fuente ayuda más directamente?",
+          "options": [
+            "Los registros de tráfico de red del equipo",
+            "Solo el historial del navegador, aunque la aplicación no lo utilice",
+            "Solo los eventos de encendido del sistema",
+            "Solo las cookies de sesión del navegador"
+          ],
+          "correct": 0,
+          "explanation": "Las comunicaciones pueden producirse mediante aplicaciones distintas del navegador. Los registros de tráfico permiten examinar conexiones con otros equipos.",
+          "source_page": 12,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Dos analistas deben estudiar los mismos datos sin consumir la evidencia. ¿Qué estrategia lo permite?",
+          "options": [
+            "Trabajar sucesivamente sobre el original permitiendo cambios sin registrarlos",
+            "Preparar copias exactas y controlar su integridad",
+            "Copiar solo los nombres para evitar acceder al contenido",
+            "Generar capturas de pantalla y descartar los archivos originales"
+          ],
+          "correct": 1,
+          "explanation": "La reproducción exacta permite análisis sobre copias. Esa posibilidad debe combinarse con preservación y comprobaciones de integridad.",
+          "source_page": 15,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Una analista quiere comenzar por el disco externo desconectado y dejar la memoria de un equipo encendido para mañana. ¿Qué criterio debe reconsiderar?",
+          "options": [
+            "El orden de volatilidad porque la memoria puede cambiar o desaparecer antes",
+            "La comodidad del transporte porque permite terminar primero el disco",
+            "El orden de las carpetas porque establece automáticamente qué datos cambian antes",
+            "El tamaño del soporte porque los datos más grandes siempre se pierden antes"
+          ],
+          "correct": 0,
+          "explanation": "Los datos volátiles deben priorizarse frente a soportes estables si son relevantes. Posponerlos puede hacer que desaparezcan antes de la adquisición.",
+          "source_page": 17,
+          "difficulty": "aplicación"
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "title": "Adquisición de evidencias digitales",
+      "questions": [
+        {
+          "question": "¿Qué se hace al acotar una escena para una adquisición digital?",
+          "options": [
+            "Identificar qué dispositivos y datos están relacionados con el caso",
+            "Copiar exclusivamente el equipo señalado sin considerar sistemas relacionados",
+            "Adquirir primero todos los soportes encontrados y justificar después su alcance",
+            "Seleccionar solo dispositivos físicamente presentes aunque los datos estén en remoto"
+          ],
+          "correct": 0,
+          "explanation": "Acotar la escena permite decidir sobre qué equipos o dispositivos actuar. Evita recoger información sin relación con el objetivo.",
+          "source_page": 5,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué produce una función hash aplicada a unos datos?",
+          "options": [
+            "Una copia comprimida a partir de la cual se recupera el original",
+            "Un identificador personal de quien creó los datos",
+            "Un resumen de longitud fija para el algoritmo utilizado",
+            "Un cifrado reversible de todos los datos de entrada"
+          ],
+          "correct": 2,
+          "explanation": "Un hash resume datos de tamaño variable en un valor de tamaño fijo. No es una copia ni un mecanismo para reconstruir el original.",
+          "source_page": 8,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué finalidad tiene un bloqueador de escritura al conectar un disco original?",
+          "options": [
+            "Evitar que el original pueda leerse durante la copia",
+            "Impedir que la imagen de salida pueda guardarse",
+            "Borrar los datos anteriores del disco de destino",
+            "Impedir escrituras que puedan modificar la fuente"
+          ],
+          "correct": 3,
+          "explanation": "El bloqueador evita que el sistema o una operación accidental escriban sobre la evidencia original. Es una medida de protección durante la adquisición.",
+          "source_page": 12,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Sobre qué soporte se aplica borrado seguro antes de reutilizarlo como destino de un clonado?",
+          "options": [
+            "Sobre el soporte de destino preparado para recibir la copia",
+            "Sobre el soporte original para evitar información residual",
+            "Solo sobre la imagen final después de calcular su hash",
+            "Sobre ambos soportes antes de comprobar la copia"
+          ],
+          "correct": 0,
+          "explanation": "El destino debe estar limpio para evitar confundir datos preexistentes con los del caso. No debe borrarse el original que se necesita preservar.",
+          "source_page": 14,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué diferencia el formato de una imagen forense del de un clonado?",
+          "options": [
+            "La imagen exige un disco físico exclusivo para cada copia",
+            "La imagen se guarda en un archivo y el clonado reproduce el dispositivo en otro soporte",
+            "La imagen contiene solo archivos visibles y el clonado solo archivos borrados",
+            "El clonado es únicamente un archivo comprimido con metadatos"
+          ],
+          "correct": 1,
+          "explanation": "Ambos pueden representar una copia exacta del contenido, pero su almacenamiento es distinto. La imagen es un archivo y el clonado se realiza sobre otro dispositivo.",
+          "source_page": 17,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué caracteriza una adquisición en caliente?",
+          "options": [
+            "Se realiza solo sobre almacenamiento extraíble desconectado",
+            "Es cualquier copia que se guarda en un soporte nuevo",
+            "Se realiza después de apagar el sistema para preservar memoria",
+            "Se realiza mientras el dispositivo está encendido"
+          ],
+          "correct": 3,
+          "explanation": "La adquisición en caliente se efectúa con el dispositivo en funcionamiento. Es necesaria para obtener datos volátiles.",
+          "source_page": 18,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué propiedad hace útil repetir un hash sobre los mismos datos sin cambios?",
+          "options": [
+            "Que pueda invertirse para recuperar el original",
+            "Que identifique directamente a la persona que escribió los datos",
+            "El carácter determinista del algoritmo",
+            "Que produzca un valor diferente cada vez aunque la entrada no cambie"
+          ],
+          "correct": 2,
+          "explanation": "Una misma entrada produce la misma salida con el mismo algoritmo. Esto permite comparar resúmenes en diferentes momentos.",
+          "source_page": 9,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué diferencia una adquisición física de una adquisición lógica según el tema?",
+          "options": [
+            "La física copia el dispositivo completo y la lógica selecciona un volumen o conjunto de datos",
+            "La física solo copia archivos visibles y la lógica todos los sectores",
+            "La lógica es siempre una copia bit a bit del dispositivo completo",
+            "La física se hace siempre en frío y la lógica siempre en caliente"
+          ],
+          "correct": 0,
+          "explanation": "La distinción se refiere al alcance de lo copiado. No debe confundirse con el estado encendido o apagado del dispositivo.",
+          "source_page": 19,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué distingue la recolección de la adquisición?",
+          "options": [
+            "La recolección reúne contenedores físicos y la adquisición obtiene la información que contienen",
+            "La adquisición se refiere únicamente al embalaje de soportes",
+            "La recolección copia datos y la adquisición transporta dispositivos",
+            "Ambas fases exigen que el equipo sea apagado previamente"
+          ],
+          "correct": 0,
+          "explanation": "Se puede recolectar un dispositivo y adquirir sus datos posteriormente. También es posible adquirir información en su ubicación original.",
+          "source_page": 22,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Por qué un bloqueo de escritura por software requiere un entorno especialmente controlado?",
+          "options": [
+            "Porque el software garantiza protección absoluta en cualquier entorno",
+            "Porque el software impide cualquier lectura del dispositivo",
+            "Porque el software realiza siempre un borrado previo del original",
+            "Porque no ofrece necesariamente protección frente a todas las escrituras de bajo nivel"
+          ],
+          "correct": 3,
+          "explanation": "El tema advierte limitaciones del bloqueo por software. Hay que conocer qué se ejecuta y qué operaciones de escritura pueden seguir siendo posibles.",
+          "source_page": 13,
+          "difficulty": "media"
+        },
+        {
+          "question": "En una adquisición en frío, ¿qué comparación apoya la integridad de origen y copia?",
+          "options": [
+            "Solo el hash de la copia sin ninguna referencia de origen",
+            "Solo la coincidencia de nombres y extensiones",
+            "Hash del origen antes, hash del origen después y hash de los datos copiados",
+            "Solo el número de archivos que muestra el explorador"
+          ],
+          "correct": 2,
+          "explanation": "Si se usa el mismo algoritmo y alcance, la coincidencia de los resúmenes aporta una comprobación de que los datos se han preservado. Se complementa con documentación de la adquisición.",
+          "source_page": 30,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué permite comprobar el hash del resultado de una adquisición de memoria en caliente?",
+          "options": [
+            "Que el archivo identifica por sí mismo a la persona que usaba el equipo",
+            "Que el archivo adquirido no cambió posteriormente respecto de ese resumen",
+            "Que el origen y el resultado fueron idénticos en todos los instantes",
+            "Que la memoria original no cambió durante la captura"
+          ],
+          "correct": 1,
+          "explanation": "La memoria puede variar durante la adquisición. Su hash de referencia sirve para verificar la preservación del resultado obtenido.",
+          "source_page": 31,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿En qué circunstancia puede ser razonable una adquisición parcial?",
+          "options": [
+            "Cuando se pretende sustituir la documentación por una selección informal",
+            "Cuando se da por irrelevante todo lo que no tiene una extensión conocida",
+            "Cuando solo una parte es relevante o el alcance está limitado legalmente",
+            "Cuando el analista quiere omitir datos contrarios a su hipótesis"
+          ],
+          "correct": 2,
+          "explanation": "El tema recoge dispositivos muy grandes, sistemas críticos y límites de relevancia o de alcance. La selección debe estar justificada.",
+          "source_page": 33,
+          "difficulty": "media"
+        },
+        {
+          "question": "Una infección llegó por correo a un equipo. ¿Qué otro sistema puede contener información relacionada aunque no esté infectado?",
+          "options": [
+            "Una impresora ajena al circuito de recepción del mensaje",
+            "Un soporte que nunca se conectó a la red ni al equipo afectado",
+            "El servidor de correo que intervino en la entrega",
+            "Un equipo elegido únicamente por tener el mismo fabricante"
+          ],
+          "correct": 2,
+          "explanation": "Acotar la escena incluye sistemas directamente afectados y otros relacionados. Los servidores de correo o controles de seguridad pueden aportar rastros de la entrada del ataque.",
+          "source_page": 7,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Debes conservar varias adquisiciones en un único disco del laboratorio. ¿Qué formato facilita este objetivo?",
+          "options": [
+            "Conservar solo capturas de las carpetas principales",
+            "Guardar únicamente una lista de archivos de cada dispositivo",
+            "Clonar cada origen en el mismo disco sin separar los destinos físicos",
+            "Imágenes forenses almacenadas como archivos diferenciados"
+          ],
+          "correct": 3,
+          "explanation": "Los archivos de imagen permiten guardar varias adquisiciones en un soporte con espacio suficiente. Un clonado necesita su propio destino físico adecuado.",
+          "source_page": 17,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Se recoge un portátil apagado. ¿Qué actuación reduce el riesgo de alterar su estado accidentalmente?",
+          "options": [
+            "Conectarlo a la red para obtener actualizaciones antes de recogerlo",
+            "Desconectar alimentación y documentar conexiones y dispositivos relacionados",
+            "Arrancarlo para revisar rápidamente la última sesión",
+            "Cambiar su configuración para facilitar al usuario el próximo acceso"
+          ],
+          "correct": 1,
+          "explanation": "La recolección en frío busca mantener el estado apagado. Fotografiar, etiquetar y documentar ayuda a preservar trazabilidad y configuración.",
+          "source_page": 24,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Un ordenador encendido contiene procesos relevantes en memoria. ¿Qué debe evaluarse antes de interrumpir la corriente?",
+          "options": [
+            "Solo la disponibilidad de discos para clonar después del apagado",
+            "La adquisición de esos datos volátiles y el riesgo sobre los datos en curso",
+            "El número de archivos visibles, ignorando la memoria activa",
+            "Solo el sistema de ficheros del soporte externo de destino"
+          ],
+          "correct": 1,
+          "explanation": "Los datos volátiles pueden perderse al apagar el equipo. Además, se debe valorar si una interrupción puede comprometer información no consolidada.",
+          "source_page": 25,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Un volumen cifrado está accesible en un equipo encendido. ¿Por qué no conviene apagarlo sin evaluar la adquisición en vivo?",
+          "options": [
+            "Porque después puede perderse el acceso a la información descifrada",
+            "Porque el apagado convierte automáticamente el cifrado en texto claro",
+            "Porque los datos del disco dejan de ser relevantes si hubo cifrado",
+            "Porque un volumen cifrado siempre se borra por completo al apagar"
+          ],
+          "correct": 0,
+          "explanation": "El acceso actual puede depender del estado del equipo y de datos en memoria. El apagado puede hacer que la adquisición posterior sea más difícil o inviable.",
+          "source_page": 28,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Necesitas capturar datos de un sistema sospechoso. ¿Qué criterio favorece escoger una herramienta portátil aportada por el analista?",
+          "options": [
+            "Evitar calcular un hash de referencia del resultado",
+            "Hacer innecesario registrar qué herramienta y versión se usaron",
+            "Garantizar que la adquisición en vivo no modifica ningún dato",
+            "Reducir el impacto y evitar confiar en software potencialmente comprometido del equipo"
+          ],
+          "correct": 3,
+          "explanation": "El tema recomienda software forense conocido y ejecutable sin instalación cuando sea posible. Así se limita el impacto y la dependencia del sistema investigado.",
+          "source_page": 29,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Solo se autoriza adquirir los correos de una cuenta, en un servidor crítico que no puede apagarse. ¿Qué actuación encaja mejor?",
+          "options": [
+            "Apagar el servidor para que el procedimiento deje de ser parcial",
+            "Una adquisición lógica limitada a la información autorizada, documentando el procedimiento",
+            "Copiar únicamente nombres de mensajes sin obtener el contenido autorizado",
+            "Clonar todos los discos y cuentas antes de comprobar la autorización"
+          ],
+          "correct": 1,
+          "explanation": "La adquisición parcial está prevista para sistemas críticos y límites legales o de relevancia. El alcance y las decisiones deben quedar documentados.",
+          "source_page": 33,
+          "difficulty": "aplicación"
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "title": "Sistemas de ficheros",
+      "questions": [
+        {
+          "question": "¿Por qué leer los bytes de un disco sin interpretar sus estructuras no equivale a ver sus carpetas?",
+          "options": [
+            "Porque particiones, volúmenes y sistemas de ficheros dan organización lógica a esos datos",
+            "Porque los archivos no tienen ninguna representación binaria",
+            "Porque las carpetas están siempre almacenadas en un disco distinto",
+            "Porque todos los bytes se convierten automáticamente en nombres al conectarlo"
+          ],
+          "correct": 0,
+          "explanation": "El almacenamiento contiene una larga secuencia de datos binarios. Las estructuras lógicas permiten interpretar esa información como archivos y carpetas.",
+          "source_page": 5,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué diferencia una partición de un volumen en el caso habitual del tema?",
+          "options": [
+            "La partición es una división lógica y el volumen incorpora un sistema de ficheros",
+            "Cada volumen corresponde necesariamente a un disco físico completo",
+            "El volumen solo puede usar una parte de un único sector",
+            "La partición incluye siempre un sistema de ficheros y el volumen nunca"
+          ],
+          "correct": 0,
+          "explanation": "Una partición divide lógicamente el almacenamiento. Cuando se prepara con un sistema de ficheros constituye habitualmente un volumen.",
+          "source_page": 10,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué hace un sistema de ficheros para una aplicación que solicita abrir un documento?",
+          "options": [
+            "Relaciona la ruta lógica del archivo con su almacenamiento físico",
+            "Reconstruye automáticamente todo archivo sobrescrito",
+            "Asigna valor probatorio a cada documento almacenado",
+            "Determina quién es propietario físico del ordenador"
+          ],
+          "correct": 0,
+          "explanation": "El sistema de ficheros permite utilizar rutas y archivos sin conocer los sectores concretos. Traduce la organización lógica al almacenamiento de los datos.",
+          "source_page": 13,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué configuración RAID (Redundant Array of Independent Disks, conjunto redundante de discos independientes) crea un espejo de datos?",
+          "options": [
+            "RAID 1",
+            "RAID 0",
+            "Una partición extendida",
+            "Un volumen sin formato"
+          ],
+          "correct": 0,
+          "explanation": "El nivel 1 mantiene copias de los mismos datos en varios discos. Debe distinguirse del nivel 0, que reparte datos para obtener rendimiento.",
+          "source_page": 12,
+          "difficulty": "básica"
+        },
+        {
+          "question": "En FAT (File Allocation Table, tabla de asignación de archivos), ¿para qué existe FAT2?",
+          "options": [
+            "Para sustituir a la tabla de particiones del dispositivo",
+            "Para mantener una copia de FAT1 que ayude ante corrupción",
+            "Para alojar todos los archivos eliminados sin reutilizar espacio",
+            "Para guardar datos exclusivos de usuarios distintos a FAT1"
+          ],
+          "correct": 1,
+          "explanation": "El tema describe dos tablas de asignación, una copia de la otra. Esto aporta una vía de recuperación ante deterioro de una tabla.",
+          "source_page": 16,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿A qué ecosistema corresponde APFS (Apple File System, sistema de ficheros de Apple)?",
+          "options": [
+            "A volúmenes nativos de Windows exclusivamente",
+            "A los sistemas y dispositivos de Apple descritos en el tema",
+            "A particiones de Linux exclusivamente",
+            "A tarjetas de operador móvil exclusivamente"
+          ],
+          "correct": 1,
+          "explanation": "El sistema de ficheros de Apple se utiliza en sus plataformas modernas. El tema lo presenta como sustituto de su sistema anterior.",
+          "source_page": 22,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué limitación del esquema MBR (Master Boot Record, registro de arranque maestro) destaca el tema?",
+          "options": [
+            "La incapacidad para almacenar código de arranque",
+            "La obligación de utilizar exclusivamente memoria flash",
+            "Un máximo direccionable típico de aproximadamente dos terabytes",
+            "Un máximo de una partición por disco sin excepciones"
+          ],
+          "correct": 2,
+          "explanation": "El tema destaca la limitación de capacidad del esquema clásico. Es uno de los motivos de evolución hacia formatos de particionado más modernos.",
+          "source_page": 8,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Cómo permite una partición extendida superar las cuatro entradas primarias del esquema clásico?",
+          "options": [
+            "Convirtiendo cada archivo en una entrada primaria independiente",
+            "Sustituyendo el sistema de ficheros por una memoria volátil",
+            "Conteniendo particiones lógicas dentro de ella",
+            "Guardando una copia completa de cada partición primaria"
+          ],
+          "correct": 2,
+          "explanation": "La partición extendida actúa como contenedor de particiones lógicas. Es una organización del particionado, no un sistema de ficheros por sí sola.",
+          "source_page": 9,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Por qué el espacio sin particionar puede ser relevante en una investigación?",
+          "options": [
+            "Siempre está vacío porque no lo muestra el sistema operativo",
+            "Puede contener información de particiones utilizadas anteriormente",
+            "Solo tiene interés si aparece como carpeta en el explorador",
+            "Solo almacena información nueva creada después de la adquisición"
+          ],
+          "correct": 1,
+          "explanation": "Que el sistema operativo no muestre un área no implica que no tenga información. Puede haber restos de usos anteriores.",
+          "source_page": 14,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué registra el archivo $Bitmap en NTFS (New Technology File System, sistema de ficheros de nueva tecnología)?",
+          "options": [
+            "El nombre y los atributos de cada archivo",
+            "Solo los clústeres dañados del volumen",
+            "Los eventos de autenticación de las cuentas",
+            "Qué clústeres están libres y cuáles ocupados"
+          ],
+          "correct": 3,
+          "explanation": "El mapa de bits ayuda a gestionar el estado de los clústeres. Es distinto del registro que describe cada archivo.",
+          "source_page": 17,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué contiene la $MFT (Master File Table, tabla maestra de archivos)?",
+          "options": [
+            "Solo un mapa de clústeres libres y ocupados",
+            "Únicamente los primeros sectores de arranque del disco",
+            "Entradas con información de archivos y sus atributos",
+            "Una copia completa de cada sector del dispositivo"
+          ],
+          "correct": 2,
+          "explanation": "La tabla maestra incluye atributos como tamaño, fechas y permisos. Forma parte de la estructura del sistema de ficheros.",
+          "source_page": 18,
+          "difficulty": "media"
+        },
+        {
+          "question": "En Ext4 (cuarta versión de Extended File System), ¿qué relación tiene un inodo con un archivo?",
+          "options": [
+            "Es una entrada de la tabla de particiones del dispositivo",
+            "Es el contenido completo del archivo sin ningún atributo",
+            "Es una copia espejo de todos los directorios del volumen",
+            "Contiene información del archivo y referencias a los bloques de sus datos"
+          ],
+          "correct": 3,
+          "explanation": "La tabla de inodos organiza información de los archivos y sus ubicaciones. Las entradas de directorio permiten localizar el inodo correspondiente.",
+          "source_page": 20,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué ventaja ofrece el clonado de archivos en APFS (Apple File System, sistema de ficheros de Apple)?",
+          "options": [
+            "Eliminar cualquier referencia al archivo de origen",
+            "Duplicar siempre todos los bloques desde el primer instante",
+            "Crear un disco físico adicional por cada copia de archivo",
+            "Compartir contenido y almacenar aparte los cambios entre original y copia"
+          ],
+          "correct": 3,
+          "explanation": "El tema explica que los clones ahorran espacio al compartir datos y guardar diferencias. No deben confundirse con un clonado forense de un dispositivo completo.",
+          "source_page": 22,
+          "difficulty": "media"
+        },
+        {
+          "question": "Un servidor reparte las partes de un archivo entre varios discos con RAID 0 (conjunto de discos independientes, nivel cero). ¿Qué precaución ayuda al análisis?",
+          "options": [
+            "Analizar cada disco como un volumen independiente sin reconstruir el reparto",
+            "Interpretar la configuración como un espejo de nivel uno",
+            "Considerar el conjunto y cómo se distribuyen sus datos",
+            "Suponer que un único disco contiene siempre el archivo completo"
+          ],
+          "correct": 2,
+          "explanation": "En el nivel cero los datos se reparten entre discos. Un dispositivo aislado no representa necesariamente el contenido lógico completo del volumen.",
+          "source_page": 12,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Dos discos guardan el mismo contenido con RAID 1 (conjunto redundante de discos independientes, nivel uno). ¿Qué propiedad explica esa configuración?",
+          "options": [
+            "El uso exclusivo de un único disco para todos los datos",
+            "La creación de una partición extendida en cada directorio",
+            "La división de datos en bandas sin copias redundantes",
+            "La duplicación en espejo para aportar redundancia"
+          ],
+          "correct": 3,
+          "explanation": "El nivel uno mantiene una copia equivalente en varios discos. El objetivo es distinto del reparto de datos del nivel cero.",
+          "source_page": 12,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Se elimina un archivo de un volumen FAT (File Allocation Table, tabla de asignación de archivos). ¿Qué cambio describe el tema?",
+          "options": [
+            "Se elimina la tabla de particiones del disco entero",
+            "Su entrada de directorio se marca como disponible",
+            "Su contenido se mueve obligatoriamente a otro dispositivo",
+            "Se sobrescriben inmediatamente todos sus bytes"
+          ],
+          "correct": 1,
+          "explanation": "El borrado lógico libera referencias y espacio para reutilización. No equivale por sí solo a destruir inmediatamente todos los datos del archivo.",
+          "source_page": 16,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Un analista supone que $MFTMirr replica íntegramente la $MFT (Master File Table, tabla maestra de archivos). ¿Qué corrección corresponde?",
+          "options": [
+            "La copia espejo es un registro de conexiones de red",
+            "La copia espejo incluye siempre todos los registros y contenidos",
+            "La copia espejo contiene solo los archivos personales borrados",
+            "La copia espejo descrita conserva solo los primeros cuatro registros esenciales"
+          ],
+          "correct": 3,
+          "explanation": "El tema indica que el espejo conserva registros críticos, no la tabla completa. Conviene conocer ese alcance antes de confiar en él para recuperar información.",
+          "source_page": 18,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Buscas un archivo en un volumen Ext4 (cuarta versión de Extended File System). ¿Qué recorrido lógico describe su organización?",
+          "options": [
+            "Localizar la entrada de directorio, su inodo y los bloques de datos asociados",
+            "Localizar primero la cuenta en el Registro de Windows",
+            "Reconstruir el archivo únicamente por su extensión",
+            "Leer solo la tabla de particiones sin interpretar inodos"
+          ],
+          "correct": 0,
+          "explanation": "Las entradas de directorio enlazan con inodos que describen el archivo. Sus referencias permiten acceder a los bloques de contenido.",
+          "source_page": 20,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "En un volumen de Apple quieres conocer qué bloques están disponibles. ¿Qué estructura del tema cumple esa función?",
+          "options": [
+            "El registro de aplicaciones ejecutadas",
+            "El mapa de bits o bitmap",
+            "La tabla de usuarios activos",
+            "El catálogo de jerarquía de archivos"
+          ],
+          "correct": 1,
+          "explanation": "El mapa de bits mantiene la relación de bloques utilizados y disponibles. El catálogo atiende a la jerarquía de archivos y carpetas.",
+          "source_page": 23,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Un archivo está fragmentado en ubicaciones no consecutivas. ¿Por qué puede abrirlo el sistema de ficheros?",
+          "options": [
+            "Porque la tabla de particiones contiene por sí sola las direcciones de cada fragmento",
+            "Porque cada entrada de directorio conserva una copia íntegra del contenido",
+            "Porque mantiene información que permite localizar sus partes",
+            "Porque los fragmentos se localizan deduciendo sus posiciones únicamente de la extensión"
+          ],
+          "correct": 2,
+          "explanation": "La estructura del sistema de ficheros enlaza o referencia los bloques necesarios. La ubicación no consecutiva no impide por sí misma recuperar el contenido.",
+          "source_page": 15,
+          "difficulty": "aplicación"
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "title": "Recuperación de archivos",
+      "questions": [
+        {
+          "question": "¿Qué describe la firma o número mágico de un archivo?",
+          "options": [
+            "Bytes característicos que ayudan a identificar su formato",
+            "La marca temporal de su última apertura",
+            "La extensión elegida al guardar el nombre del archivo",
+            "El identificador de su propietario en el sistema"
+          ],
+          "correct": 0,
+          "explanation": "La firma de archivo se encuentra normalmente al inicio y caracteriza su tipo. No debe confundirse con una firma electrónica ni con su extensión.",
+          "source_page": 5,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué ocurre con el contenido de una imagen si solo se cambia su extensión?",
+          "options": [
+            "Se convierte automáticamente al formato de la nueva extensión",
+            "Se sobrescribe todo el contenido con un archivo vacío",
+            "Permanece igual aunque cambie su nombre visible",
+            "Su cabecera se reescribe para coincidir con el nuevo nombre"
+          ],
+          "correct": 2,
+          "explanation": "Cambiar la extensión no convierte los bytes a otro formato. Las herramientas forenses pueden contrastar el contenido con la firma.",
+          "source_page": 6,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué son los metadatos de un archivo?",
+          "options": [
+            "Únicamente las referencias de bloques libres del volumen",
+            "Datos que describen su contenido o características",
+            "Solo los bytes que muestra la aplicación al imprimir",
+            "Solo el nombre y la ruta mantenidos por el sistema de ficheros"
+          ],
+          "correct": 1,
+          "explanation": "Los metadatos aportan información sobre otros datos. Pueden incluir autor, fechas, descripción u otras propiedades según el formato.",
+          "source_page": 8,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué suele hacer un borrado lógico normal de un archivo en un disco magnético?",
+          "options": [
+            "Sobrescribir inmediatamente todos sus bytes con ceros",
+            "Crear una copia íntegra de respaldo en otra partición",
+            "Marcar referencias o espacio como disponibles sin sobrescribir necesariamente sus datos",
+            "Mantener una copia obligatoria en la papelera en todos los casos"
+          ],
+          "correct": 2,
+          "explanation": "El borrado lógico permite reutilizar el espacio. La información puede persistir hasta su sobrescritura, aunque la recuperación no está garantizada.",
+          "source_page": 12,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué caracteriza la recuperación en bruto o file carving?",
+          "options": [
+            "Recuperar todos los atributos originales únicamente a partir del nombre",
+            "Buscar patrones de archivos en los datos sin depender de un enlace intacto del sistema de ficheros",
+            "Descifrar contenido sin requerir claves ni estructuras legibles",
+            "Reconstruir archivos solo cuando su referencia de directorio siga intacta"
+          ],
+          "correct": 1,
+          "explanation": "La recuperación en bruto busca firmas en el almacenamiento. Puede funcionar cuando se han perdido las referencias normales a los archivos.",
+          "source_page": 16,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué tecnología de almacenamiento utiliza una SSD (Solid State Drive, unidad de estado sólido)?",
+          "options": [
+            "Platos magnéticos giratorios",
+            "Cinta magnética de acceso secuencial",
+            "Memoria de acceso aleatorio que pierde los datos al apagar",
+            "Memoria flash"
+          ],
+          "correct": 3,
+          "explanation": "Una unidad de estado sólido almacena información en memoria flash. Sus mecanismos internos cambian las posibilidades de recuperación forense.",
+          "source_page": 21,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué dato se asocia normalmente al sistema de ficheros y no necesariamente al contenido interno de una foto?",
+          "options": [
+            "La marca de cámara guardada dentro de la foto",
+            "El título descrito por el programa fotográfico",
+            "Las coordenadas incorporadas a la imagen",
+            "El nombre del archivo y su ruta en el volumen"
+          ],
+          "correct": 3,
+          "explanation": "El sistema de ficheros conserva nombres, ubicaciones y atributos propios. Esos datos deben distinguirse de los metadatos incrustados en el archivo.",
+          "source_page": 9,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Para qué sirve el comando file en Linux o macOS dentro del contexto del tema?",
+          "options": [
+            "Reconstruir las zonas sobrescritas del archivo",
+            "Mostrar únicamente el nombre de su extensión",
+            "Examinar características del contenido para indicar su tipo",
+            "Validar automáticamente la autoría personal de un documento"
+          ],
+          "correct": 2,
+          "explanation": "El tema lo presenta como herramienta para identificar el formato por su contenido. Es una comprobación distinta de leer la extensión.",
+          "source_page": 7,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué efecto tiene sobrescribir parte del espacio de un archivo eliminado?",
+          "options": [
+            "Afecta solo al nombre y deja intacto todo el contenido",
+            "Puede volverlo parcial o totalmente irrecuperable",
+            "Solo afecta a las fechas sin modificar los bytes",
+            "Siempre permite recuperar íntegramente los datos previos"
+          ],
+          "correct": 1,
+          "explanation": "Las nuevas escrituras pueden reemplazar bytes que pertenecían al archivo. El daño depende de las partes afectadas y del formato.",
+          "source_page": 13,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Por qué algunos archivos cifrados o comprimidos toleran mal una recuperación parcial?",
+          "options": [
+            "Porque la extensión impide que se recuperen fragmentos",
+            "La pérdida de estructuras necesarias puede hacer ilegible el conjunto",
+            "Porque cada archivo guarda una copia completa de sí mismo en la cabecera",
+            "Porque la recuperación parcial conserva siempre todas las estructuras esenciales"
+          ],
+          "correct": 1,
+          "explanation": "Aunque se recupere gran parte del contenido, ciertos formatos requieren estructuras esenciales intactas. Por eso una pérdida pequeña puede tener consecuencias grandes.",
+          "source_page": 14,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué limitación tiene la recuperación en bruto respecto de una recuperación con referencias de sistema de ficheros intactas?",
+          "options": [
+            "Evita por definición los falsos positivos",
+            "Recupera siempre nombres, rutas y propietarios originales",
+            "Puede recuperar contenido sin conservar nombres y atributos originales del sistema de ficheros",
+            "Solo permite obtener archivos todavía visibles en el explorador"
+          ],
+          "correct": 2,
+          "explanation": "La búsqueda por firmas puede recuperar contenido, pero no necesariamente sus atributos externos. También puede producir resultados dañados o falsos positivos.",
+          "source_page": 16,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué pretende la nivelación del desgaste en una unidad de estado sólido?",
+          "options": [
+            "Distribuir el uso de los bloques de memoria para evitar desgaste desigual",
+            "Reconstruir copias borradas a partir del nombre del archivo",
+            "Asegurar que todos los bloques quedan físicamente contiguos",
+            "Conservar cada archivo permanentemente en el mismo bloque"
+          ],
+          "correct": 0,
+          "explanation": "La nivelación reparte operaciones entre bloques. Esto favorece la duración del soporte, pero complica algunas técnicas de recuperación.",
+          "source_page": 21,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué función realiza TRIM, comando de notificación de bloques descartados, en la recuperación descrita?",
+          "options": [
+            "Asignar el propietario original a cada archivo recuperado",
+            "Desactivar todo proceso interno de eliminación del soporte",
+            "Mantener una copia de seguridad íntegra de cada bloque borrado",
+            "Comunica qué bloques ya no están en uso para facilitar su eliminación interna"
+          ],
+          "correct": 3,
+          "explanation": "La notificación de bloques descartados permite al dispositivo gestionar su borrado. Su tratamiento interno puede reducir o impedir la recuperación posterior.",
+          "source_page": 23,
+          "difficulty": "media"
+        },
+        {
+          "question": "Un usuario renombra una fotografía como notas.txt. ¿Qué comprobación evita aceptar sin más la extensión?",
+          "options": [
+            "Comparar la firma y el contenido real del archivo",
+            "Modificar la extensión y dar por comprobado el formato",
+            "Buscar únicamente por la extensión original de la fotografía",
+            "Aceptar que es texto porque su nombre termina en txt"
+          ],
+          "correct": 0,
+          "explanation": "La extensión puede modificarse sin alterar el contenido. El formato debe verificarse con características internas del archivo.",
+          "source_page": 6,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Quieres saber si una foto guarda el lugar de captura. ¿Qué fuente debes examinar?",
+          "options": [
+            "La fecha del sistema de ficheros como única fuente de coordenadas",
+            "Los metadatos internos de ubicación de la fotografía si existen",
+            "El tamaño del archivo como indicador geográfico suficiente",
+            "El nombre de la carpeta como prueba concluyente del lugar"
+          ],
+          "correct": 1,
+          "explanation": "Una fotografía puede incorporar coordenadas en sus metadatos. Su existencia y fiabilidad deben comprobarse en el archivo concreto.",
+          "source_page": 9,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Se ha perdido el enlace a un documento, pero puede persistir su contenido. ¿Qué técnica puede ayudar?",
+          "options": [
+            "Una comparación de nombres sin examinar bloques de datos",
+            "Una recuperación básica que dependa exclusivamente de un enlace intacto",
+            "Una búsqueda limitada a archivos visibles del directorio",
+            "Una recuperación en bruto basada en firmas"
+          ],
+          "correct": 3,
+          "explanation": "La recuperación en bruto no depende de conservar el enlace normal al archivo. Buscará patrones en los datos restantes del almacenamiento.",
+          "source_page": 15,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Una herramienta identifica un supuesto documento recuperado, pero no se abre y sus bytes son incoherentes. ¿Qué posibilidad debes considerar?",
+          "options": [
+            "Un falso positivo o un archivo parcialmente sobrescrito",
+            "Que cualquier resultado del programa corresponde necesariamente a un archivo válido",
+            "Que el nombre generado por la herramienta prueba una recuperación íntegra",
+            "Que la imposibilidad de abrirlo demuestra que nunca existió ese tipo de archivo"
+          ],
+          "correct": 0,
+          "explanation": "El tema advierte que la recuperación en bruto puede producir falsos positivos y archivos dañados. Los resultados deben verificarse antes de interpretarlos.",
+          "source_page": 16,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Un archivo ocupa 9000 bytes y cada clúster tiene 4096 bytes. Si su asignación ocupa clústeres completos, ¿cuántos necesita?",
+          "options": [
+            "Tres clústeres",
+            "Dos clústeres",
+            "Cuatro clústeres",
+            "Un clúster"
+          ],
+          "correct": 0,
+          "explanation": "Dos clústeres solo almacenan 8192 bytes, por lo que hace falta un tercero. El cálculo de unidades ocupadas se redondea hacia arriba.",
+          "source_page": 20,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "En una unidad de estado sólido los bloques del archivo se han distribuido por nivelación del desgaste. ¿Qué consecuencia forense destaca el tema?",
+          "options": [
+            "Garantiza que todos los fragmentos estén contiguos",
+            "Mantiene cada archivo siempre en los mismos bloques",
+            "Puede dificultar reconstruir el archivo mediante recuperación en bruto",
+            "Hace innecesaria cualquier reconstrucción de fragmentos"
+          ],
+          "correct": 2,
+          "explanation": "La distribución interna puede incrementar la fragmentación considerada por el tema. La recuperación basada en localizar y unir fragmentos se complica.",
+          "source_page": 22,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Una unidad de estado sólido ha eliminado internamente bloques descartados antes de la adquisición. ¿Qué límite debe explicarse al cliente?",
+          "options": [
+            "Una nueva copia de la imagen reconstruirá automáticamente esos bloques",
+            "Cambiar el algoritmo hash hará reaparecer los datos borrados",
+            "La protección actual garantiza recuperar todos los datos eliminados anteriormente",
+            "Bloquear el dispositivo ahora no reconstruye los datos ya borrados físicamente"
+          ],
+          "correct": 3,
+          "explanation": "Las herramientas pueden limitar procesos posteriores en ciertos escenarios. No restauran información que ya fue eliminada internamente antes de adquirir el soporte.",
+          "source_page": 23,
+          "difficulty": "aplicación"
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "title": "Esquema general de análisis",
+      "questions": [
+        {
+          "question": "¿Qué se busca principalmente en la fase de preanálisis?",
+          "options": [
+            "Preparar la información para un estudio posterior más exhaustivo",
+            "Formular conclusiones definitivas sin examinar artefactos concretos",
+            "Restaurar el dispositivo original a su configuración de fábrica",
+            "Descartar todos los archivos que no se abren con doble clic"
+          ],
+          "correct": 0,
+          "explanation": "El preanálisis incluye operaciones preparatorias como recuperación, extracción y verificación. El análisis posterior responde a las preguntas concretas del caso.",
+          "source_page": 6,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Cuál de estas tareas encaja en el preanálisis descrito?",
+          "options": [
+            "Dictaminar la autoría personal de los hechos",
+            "Descomprimir archivos y extraer contenido empaquetado",
+            "Priorizar la recuperación del servicio antes de preservar datos",
+            "Responder definitivamente a todas las preguntas del caso"
+          ],
+          "correct": 1,
+          "explanation": "La descompresión prepara datos que de otra forma podrían quedar fuera de búsquedas o filtros. Es una operación previa a su interpretación.",
+          "source_page": 6,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué debe hacerse si no es posible descifrar una parte relevante de la evidencia?",
+          "options": [
+            "Dar por hecho que la información cifrada no guarda relación con el caso",
+            "Presentar como examinada una parte a la que no se pudo acceder",
+            "Suponer que todo archivo cifrado es una prueba de actividad ilícita",
+            "Documentar esa limitación"
+          ],
+          "correct": 3,
+          "explanation": "Un cifrado o contraseña robustos pueden impedir el acceso. La imposibilidad debe reflejarse para que se conozca el alcance real del examen.",
+          "source_page": 10,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Para qué se calculan hashes de archivos durante el preanálisis?",
+          "options": [
+            "Para obtener el texto original invirtiendo el resumen",
+            "Para compararlos con referencias y ayudar a filtrar datos conocidos",
+            "Para recuperar cualquier contenido ya sobrescrito",
+            "Para reconstruir automáticamente la identidad del autor"
+          ],
+          "correct": 1,
+          "explanation": "Los resúmenes hash permiten comparar archivos con bases de datos de contenido conocido. Así se reduce o se orienta el material que requiere estudio detallado.",
+          "source_page": 12,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué es una expresión regular?",
+          "options": [
+            "Una estructura del sistema de ficheros que enlaza clústeres",
+            "Un patrón de caracteres para localizar coincidencias",
+            "Una lista de nombres conocidos que solo admite coincidencias literales",
+            "Un resumen hash que garantiza igualdad de contenido"
+          ],
+          "correct": 1,
+          "explanation": "Las expresiones regulares describen patrones de búsqueda. Son útiles para localizar datos con estructuras conocidas, como direcciones de correo.",
+          "source_page": 17,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué parte del análisis estudia cuentas, privilegios y programas instalados?",
+          "options": [
+            "La inspección del contenido de documentos únicamente",
+            "El análisis de las conexiones externas exclusivamente",
+            "La recuperación en bruto de firmas únicamente",
+            "El análisis del sistema operativo"
+          ],
+          "correct": 3,
+          "explanation": "El sistema operativo registra información sobre usuarios, software y actividad. Su análisis ayuda a entender qué podía hacerse y qué rastros quedaron.",
+          "source_page": 20,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué limitación debe considerarse si un archivo fue recuperado en bruto?",
+          "options": [
+            "Garantiza que el contenido recuperado es suficiente para atribuir autoría",
+            "Suprime los metadatos internos que todavía contuviera el archivo",
+            "Siempre mantiene todas las rutas y propietarios originales",
+            "Pueden faltar atributos externos como su propietario o fechas del sistema de ficheros"
+          ],
+          "correct": 3,
+          "explanation": "La recuperación en bruto puede obtener contenido sin conservar su contexto de sistema de ficheros. Los metadatos internos pueden aportar información complementaria.",
+          "source_page": 9,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Por qué se extraen elementos embebidos de documentos antes de buscarlos?",
+          "options": [
+            "Porque las imágenes externas son siempre menos relevantes",
+            "Porque todos los elementos embebidos son pruebas de ocultación",
+            "Porque un documento con imágenes no conserva ningún contenido textual",
+            "Porque una imagen dentro de un documento puede no detectarse con una búsqueda que ignore su interior"
+          ],
+          "correct": 3,
+          "explanation": "La extracción permite aplicar búsquedas y filtros a contenido encapsulado. Sin ella puede quedar material relevante sin localizar.",
+          "source_page": 11,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué indicio ayuda a localizar máquinas virtuales dentro de la evidencia?",
+          "options": [
+            "Solo las cuentas de usuario locales",
+            "Solo el historial de apagados del equipo",
+            "Archivos de disco virtual y registros del software de virtualización",
+            "Solo las reglas del cortafuegos"
+          ],
+          "correct": 2,
+          "explanation": "El tema propone revisar aplicaciones de virtualización, sus registros y sus discos virtuales. Son posibles fuentes adicionales de datos y actividad.",
+          "source_page": 12,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué requisito debe respetarse al comparar hashes de archivos con una base de referencia?",
+          "options": [
+            "Usar el mismo algoritmo para que los valores sean comparables",
+            "Comparar únicamente los nombres de los archivos aunque hayan cambiado",
+            "Comparar resúmenes de distintos algoritmos porque todos tienen el mismo significado",
+            "Exigir que los archivos estén en la misma ruta para comparar su contenido"
+          ],
+          "correct": 0,
+          "explanation": "Los valores de algoritmos diferentes no se comparan directamente para determinar coincidencia. Es necesario alinear el método de cálculo.",
+          "source_page": 13,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué finalidad tiene el hash borroso o fuzzy hashing?",
+          "options": [
+            "Recuperar por sí solo la versión original antes de la modificación",
+            "Demostrar igualdad exacta de todos los bytes aunque existan cambios",
+            "Estimar similitud entre archivos que pueden haber cambiado",
+            "Descifrar automáticamente cualquier muestra cifrada"
+          ],
+          "correct": 2,
+          "explanation": "El hash borroso busca semejanzas, frente al hash convencional usado para coincidencia de contenido. Resulta útil con versiones relacionadas o muestras similares.",
+          "source_page": 14,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué puede revelar una discrepancia entre extensión y firma de un archivo?",
+          "options": [
+            "Que la extensión describe siempre mejor el formato que los bytes",
+            "Que conviene investigar si su formato real está oculto o mal identificado",
+            "Que el contenido original fue destruido de forma segura",
+            "Que el usuario cometió necesariamente un delito"
+          ],
+          "correct": 1,
+          "explanation": "El tema presenta la comprobación de firma y extensión como un paso para detectar incongruencias. La discrepancia debe analizarse en su contexto.",
+          "source_page": 15,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué permite agrupar reglas por fechas, tamaños y rutas?",
+          "options": [
+            "Seleccionar archivos de interés de forma más precisa y reproducible",
+            "Limitarse a buscar únicamente nombres completos conocidos",
+            "Probar automáticamente que todos los seleccionados son relevantes",
+            "Eliminar la necesidad de revisar el contenido de los seleccionados"
+          ],
+          "correct": 0,
+          "explanation": "Los filtros permiten acotar archivos según criterios explícitos. Sus resultados siguen requiriendo valoración respecto del objeto de investigación.",
+          "source_page": 19,
+          "difficulty": "media"
+        },
+        {
+          "question": "Buscas un logotipo insertado en informes ofimáticos y no aparece como archivo independiente. ¿Qué paso puede mejorar la búsqueda?",
+          "options": [
+            "Repetir la búsqueda de la misma forma sin examinar el interior de documentos",
+            "Buscar solo nombres externos de fotografías",
+            "Extraer los elementos embebidos de esos documentos",
+            "Descartar los documentos porque su extensión no es de imagen"
+          ],
+          "correct": 2,
+          "explanation": "La imagen puede estar encapsulada en otro documento. Extraer contenido permite analizarla como un elemento independiente.",
+          "source_page": 11,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Un documento robado se copió sin cambios de contenido pero con otro nombre. ¿Qué técnica ayuda a localizarlo?",
+          "options": [
+            "Concluir que un cambio de nombre impide toda comparación",
+            "Comparar solo la carpeta de origen sin atender al contenido",
+            "Comparar su hash con el de los archivos adquiridos usando el mismo algoritmo",
+            "Buscar únicamente por el nombre original y descartar los demás"
+          ],
+          "correct": 2,
+          "explanation": "El resumen de contenido no depende del nombre externo del archivo. Puede ayudar a localizar copias con nombres diferentes si sus bytes no cambiaron.",
+          "source_page": 13,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Un documento robado fue editado ligeramente y ya no coincide su hash convencional. ¿Qué técnica puede orientar la búsqueda de versiones relacionadas?",
+          "options": [
+            "Descartar toda relación por no coincidir el primer resumen",
+            "Comparar únicamente nombres aunque ambas versiones se hayan renombrado",
+            "Comparación de similitud mediante hash borroso",
+            "Exigir igualdad del hash convencional pese al cambio de bytes"
+          ],
+          "correct": 2,
+          "explanation": "El hash convencional cambia al variar el contenido. Las técnicas de similitud pueden orientar la búsqueda de archivos relacionados, que después deben examinarse.",
+          "source_page": 14,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Una empresa investiga una filtración por correo. ¿Cómo conviene orientar el análisis específico?",
+          "options": [
+            "Limitar el análisis a fotografías y omitir las comunicaciones",
+            "Priorizar aplicaciones de correo, sus datos y los archivos transmitidos relevantes",
+            "Examinar exclusivamente el listado de impresoras aunque no esté relacionado",
+            "Aplicar los mismos filtros de otro caso sin adaptarlos"
+          ],
+          "correct": 1,
+          "explanation": "El análisis se adapta a las preguntas del caso. En una filtración por correo interesan especialmente comunicaciones y documentos vinculados.",
+          "source_page": 17,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Necesitas localizar muchas direcciones de correo desconocidas dentro de documentos. ¿Qué recurso es más adecuado?",
+          "options": [
+            "Una expresión regular que describa su estructura",
+            "Una búsqueda de una única dirección literal ya conocida",
+            "Un filtro basado únicamente en tamaño de archivo",
+            "Una regla que compare solo las fechas de creación"
+          ],
+          "correct": 0,
+          "explanation": "Un patrón permite buscar múltiples cadenas con estructura de dirección de correo. No requiere conocer cada dirección de antemano.",
+          "source_page": 18,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Se sospecha que un archivo salió mediante sincronización de nube. ¿Qué evidencia conviene incluir?",
+          "options": [
+            "Datos y configuración de la aplicación de sincronización utilizada",
+            "Solo el listado de programas instalados sin revisar sus datos",
+            "Solo los eventos de apagado del sistema",
+            "Solo las cookies del navegador aunque la sincronización sea de otra aplicación"
+          ],
+          "correct": 0,
+          "explanation": "El análisis de comunicaciones incluye herramientas de sincronización de archivos. Estas pueden aportar información relevante sobre transferencias y acceso.",
+          "source_page": 24,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Se localizan hojas contables relevantes, pero su interpretación requiere conocimientos económicos especializados. ¿Qué reparto encaja con el tema?",
+          "options": [
+            "Atribuir significado contable al contenido sin conocimientos suficientes",
+            "Asumir que la suite forense valida automáticamente cualquier conclusión económica",
+            "Omitir las hojas porque no son registros del sistema",
+            "El analista digital localiza y recupera datos y un especialista contable los interpreta"
+          ],
+          "correct": 3,
+          "explanation": "La investigación puede requerir peritos de varias disciplinas. Obtener y preservar archivos no equivale a dominar la interpretación de su contenido especializado.",
+          "source_page": 26,
+          "difficulty": "aplicación"
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "title": "Análisis forense",
+      "questions": [
+        {
+          "question": "¿Por qué se documentan fecha y hora del equipo al comenzar una adquisición en vivo?",
+          "options": [
+            "Para asumir que todos los sistemas usan siempre la misma zona horaria",
+            "Para contextualizar los eventos y construir una cronología fiable",
+            "Para corregir automáticamente el reloj original antes de preservarlo",
+            "Para atribuir identidad personal a partir de una fecha aislada"
+          ],
+          "correct": 1,
+          "explanation": "La hora del sistema puede ser incorrecta o estar manipulada. Conocer su estado ayuda a interpretar las marcas temporales.",
+          "source_page": 6,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué tipo de información reúne el Registro de Windows?",
+          "options": [
+            "Configuración de usuarios, aplicaciones y dispositivos",
+            "Una imagen completa de todos los discos conectados",
+            "Solo los datos de la papelera de reciclaje",
+            "Únicamente los sucesos de seguridad almacenados en archivos de eventos"
+          ],
+          "correct": 0,
+          "explanation": "El Registro es una base de datos jerárquica de configuración. Puede contener artefactos relevantes sobre el sistema y su uso.",
+          "source_page": 15,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué contienen los registros de eventos de Windows?",
+          "options": [
+            "Una copia automática de todos los documentos abiertos",
+            "Solo la configuración jerárquica de claves y valores",
+            "Eventos del sistema como sesiones, cambios y actividad registrada",
+            "Solo la memoria actual de los procesos en ejecución"
+          ],
+          "correct": 2,
+          "explanation": "Los eventos aportan rastros de acciones y cambios. Su valor depende de qué estaba registrado y de la conservación de esos registros.",
+          "source_page": 20,
+          "difficulty": "básica"
+        },
+        {
+          "question": "En Linux, ¿qué archivo puede conservar comandos de una sesión anterior de bash?",
+          "options": [
+            ".bash_logout del usuario como historial completo de órdenes previas",
+            "La tabla de particiones del disco",
+            "El mapa de bloques libres del sistema de ficheros",
+            ".bash_history del usuario correspondiente"
+          ],
+          "correct": 3,
+          "explanation": "El historial de bash puede almacenar comandos utilizados por ese usuario. Debe interpretarse con sus límites y junto con otras fuentes.",
+          "source_page": 32,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Dónde se almacenan muchos registros de actividad en Linux según el tema?",
+          "options": [
+            "Siempre en la raíz del directorio de descargas del usuario",
+            "En /var/log/",
+            "Exclusivamente en el directorio de configuración de cron",
+            "Solo en el historial de la consola de cada usuario"
+          ],
+          "correct": 1,
+          "explanation": "El tema identifica /var/log/ como ubicación habitual de registros. Puede haber fuentes adicionales específicas de aplicaciones.",
+          "source_page": 39,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Cómo organizan información los archivos plist (Property List, lista de propiedades) de macOS?",
+          "options": [
+            "Como una tabla que solo incluye procesos activos",
+            "Como una copia completa del historial de todos los navegadores",
+            "Como una imagen sector a sector de todo el dispositivo",
+            "Mediante pares clave y valor"
+          ],
+          "correct": 3,
+          "explanation": "Las listas de propiedades guardan configuración y otros datos en formato de texto estructurado o binario. Son artefactos de interés del ecosistema Apple.",
+          "source_page": 51,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué relación ayuda a estudiar una herramienta que muestra conexiones por proceso?",
+          "options": [
+            "Qué programa está comunicándose con qué destinos",
+            "Qué conexión es maliciosa solo por existir",
+            "Qué persona física escribió necesariamente cada comunicación",
+            "Qué datos había en la memoria antes de encender el sistema"
+          ],
+          "correct": 0,
+          "explanation": "Relacionar conexiones y procesos permite investigar comunicaciones sospechosas. Esa información necesita contextualización y no atribuye por sí sola identidad personal.",
+          "source_page": 11,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué diferencia Process Monitor de una mera lista estática de procesos?",
+          "options": [
+            "Se limita a enumerar nombres de procesos sin mostrar operaciones",
+            "Impide automáticamente cualquier acción del proceso supervisado",
+            "Reconstruye toda actividad pasada aunque no existan registros",
+            "Permite observar actividad en tiempo real y filtrar por procesos"
+          ],
+          "correct": 3,
+          "explanation": "Process Monitor supervisa operaciones del sistema de archivos, Registro, red y procesos. Los filtros permiten concentrarse en la actividad que interesa.",
+          "source_page": 13,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué fuente corresponde al Registro de la cuenta de usuario en Windows?",
+          "options": [
+            "El archivo NTUSER.DAT del perfil",
+            "El archivo de registro de seguridad de eventos",
+            "El archivo general SYSTEM sin datos de perfiles",
+            "El mapa de bloques libres del volumen"
+          ],
+          "correct": 0,
+          "explanation": "El tema sitúa la configuración de usuario en NTUSER.DAT. Se distingue de los archivos generales de configuración del sistema.",
+          "source_page": 17,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué puede aportar analizar dispositivos externos registrados por Windows?",
+          "options": [
+            "Una relación completa garantizada de todos los archivos copiados a cada soporte",
+            "La recuperación automática de su contenido aunque ya se haya sobrescrito",
+            "La identidad de la persona que sostuvo físicamente el dispositivo",
+            "Indicios sobre dispositivos que fueron conectados al equipo"
+          ],
+          "correct": 3,
+          "explanation": "Las claves y registros asociados pueden ayudar a reconstruir conexiones de dispositivos. Su presencia no prueba por sí sola todas las operaciones realizadas.",
+          "source_page": 18,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué significan las listas MRU (Most Recently Used, elementos usados más recientemente) en el análisis de actividad?",
+          "options": [
+            "Listas de elementos o acciones recientes conservadas por el sistema",
+            "Una copia completa de todos los documentos usados alguna vez",
+            "Una lista de procesos exclusivamente activos en ese instante",
+            "Una garantía de que el titular de la cuenta ejecutó personalmente cada acción"
+          ],
+          "correct": 0,
+          "explanation": "Las listas recientes pueden referirse a documentos, herramientas o rutas. Son una fuente de actividad que debe relacionarse con otras evidencias.",
+          "source_page": 24,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué diferencia los archivos $I y $R de la papelera moderna de Windows?",
+          "options": [
+            "$I conserva solo el hash y nunca el nombre original",
+            "Ambos contienen una copia completa del archivo original",
+            "$I guarda información del elemento eliminado y $R contiene sus datos",
+            "$I contiene el contenido y $R los datos descriptivos"
+          ],
+          "correct": 2,
+          "explanation": "El archivo de información conserva datos como nombre original, ruta y fecha de eliminación. El otro elemento corresponde al contenido enviado a la papelera.",
+          "source_page": 27,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué distingue un LaunchAgent de un daemon en macOS según el tema?",
+          "options": [
+            "El agente se inicia siempre antes que el sistema y el demonio requiere sesión",
+            "Ambos son simples accesos directos sin capacidad de ejecución",
+            "El agente depende de una sesión de usuario y el demonio puede iniciarse con el sistema",
+            "La distinción prueba que el agente es malicioso y el demonio legítimo"
+          ],
+          "correct": 2,
+          "explanation": "La diferencia describe el contexto de ejecución, no una clasificación automática de seguridad. Ambos mecanismos pueden merecer examen en una investigación.",
+          "source_page": 52,
+          "difficulty": "media"
+        },
+        {
+          "question": "Quieres estudiar accesos de cuentas en un Windows adquirido. ¿Qué fuente prioriza el tema?",
+          "options": [
+            "Solo el mapa de clústeres ocupados del volumen",
+            "Solo los archivos de impresión de documentos",
+            "El registro de seguridad y sus eventos de inicio y cierre de sesión",
+            "Solo la lista de dispositivos de audio instalados"
+          ],
+          "correct": 2,
+          "explanation": "El registro de seguridad puede contener eventos relacionados con sesiones. Conviene interpretar los eventos junto con la configuración y la cronología.",
+          "source_page": 21,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Se encuentra un archivo $R con nombre aleatorio en la papelera. ¿Qué pieza complementaria ayuda a recuperar su ruta original?",
+          "options": [
+            "El registro de aplicaciones del sistema de otro usuario",
+            "El archivo $I con el mismo componente aleatorio",
+            "El nombre aleatorio por sí solo como codificación de la ruta original",
+            "El archivo de paginación sin relacionarlo con el par de papelera"
+          ],
+          "correct": 1,
+          "explanation": "El par de archivos de la papelera separa contenido e información descriptiva. Su relación permite contextualizar el archivo eliminado.",
+          "source_page": 27,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Antes de cerrar una sesión Linux comprometida, observas que .bash_logout contiene comandos de borrado. ¿Qué riesgo debes valorar?",
+          "options": [
+            "Que al cerrar sesión se ejecuten acciones que eliminen rastros",
+            "Que el cierre no puede modificar información relevante",
+            "Que el historial se guarde siempre completo antes de ejecutar cualquier borrado",
+            "Que el archivo se ejecute únicamente al arrancar y nunca al cerrar"
+          ],
+          "correct": 0,
+          "explanation": "El archivo de cierre de sesión puede ejecutar comandos. Conviene considerar sus efectos antes de provocar un cierre que altere evidencias.",
+          "source_page": 32,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "En Linux quieres conocer los parámetros con que se inició un proceso. ¿Qué artefacto resulta pertinente?",
+          "options": [
+            "Solo el nombre del ejecutable sin sus parámetros",
+            "El archivo cmdline bajo el directorio de ese proceso en /proc",
+            "Solo el archivo de autenticación sin datos del proceso",
+            "Solo la tabla de particiones del disco"
+          ],
+          "correct": 1,
+          "explanation": "El sistema de archivos virtual /proc expone información de procesos en ejecución. El archivo cmdline corresponde a su línea de lanzamiento.",
+          "source_page": 37,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Hay sospecha de intentos repetidos de autenticación en Linux. ¿Qué registro del tema puede ayudar a investigarlos?",
+          "options": [
+            "Solo el listado de bloques ocupados del disco",
+            "Solo la programación de tareas de mantenimiento",
+            "Solo el historial del navegador",
+            "auth.log cuando exista y esté configurado en ese sistema"
+          ],
+          "correct": 3,
+          "explanation": "El tema destaca el registro de autenticación para estudiar fallos e intentos de acceso. La disponibilidad y ubicación concreta dependen del sistema y su configuración.",
+          "source_page": 40,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Un archivo de cron contiene la programación «10 * * * *». ¿Con qué frecuencia temporal se ejecuta la tarea?",
+          "options": [
+            "Una única vez en el décimo día del mes",
+            "Cada hora en el minuto diez",
+            "Todos los días a las diez de la mañana",
+            "Cada diez minutos desde el arranque"
+          ],
+          "correct": 1,
+          "explanation": "El primer campo corresponde al minuto y el resto de asteriscos admite los demás valores. El ejemplo del tema ilustra ejecución horaria en ese minuto.",
+          "source_page": 42,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Una cronología de macOS presenta fechas incoherentes. ¿Qué precaución corresponde?",
+          "options": [
+            "Descartar todas las fuentes que no coincidan con la primera hipótesis",
+            "Dar por exacta cualquier marca temporal porque la genera el sistema",
+            "Contrastar marcas temporales porque pueden haber sido alteradas",
+            "Modificar las fechas del original para que la secuencia parezca coherente"
+          ],
+          "correct": 2,
+          "explanation": "El tema recuerda que las fechas pueden manipularse. Las incoherencias deben investigarse, no borrarse del análisis ni corregirse sin trazabilidad.",
+          "source_page": 49,
+          "difficulty": "aplicación"
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "title": "Análisis forense de dispositivos móviles",
+      "questions": [
+        {
+          "question": "¿Qué limitación diferencia la adquisición de un móvil de la copia ordinaria de un disco extraído?",
+          "options": [
+            "La garantía de que la copia de seguridad incluye siempre todos los datos eliminados",
+            "La disponibilidad universal de acceso físico completo sin privilegios",
+            "Las restricciones de acceso pueden impedir adquirir toda su memoria",
+            "La posibilidad de proteger toda memoria interna con el mismo bloqueador externo de un disco"
+          ],
+          "correct": 2,
+          "explanation": "La seguridad, el bloqueo y las restricciones de privilegios condicionan el alcance. El tema explica que la adquisición del terminal puede alterar su contenido.",
+          "source_page": 5,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué componente puede contener contactos y datos de la línea, pero no suele almacenar fotografías?",
+          "options": [
+            "La tarjeta SIM (Subscriber Identity Module, módulo de identificación del abonado)",
+            "La tarjeta de memoria destinada a fotografías y vídeos",
+            "La copia de seguridad de todas las aplicaciones",
+            "La partición de datos del usuario completa"
+          ],
+          "correct": 0,
+          "explanation": "La tarjeta del operador contiene información de abonado y puede guardar datos limitados. No debe confundirse con la memoria multimedia del teléfono.",
+          "source_page": 7,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Cómo se aborda la tarjeta de memoria extraíble de un móvil?",
+          "options": [
+            "Como si su contenido fuese siempre idéntico al de la tarjeta del operador",
+            "Como si no requiriera controles de integridad por ser extraíble",
+            "Como un soporte de almacenamiento que puede adquirirse con protección contra escritura",
+            "Como si solo pudiera copiarse mediante la agenda del teléfono"
+          ],
+          "correct": 2,
+          "explanation": "Las tarjetas de memoria pueden albergar multimedia, descargas y otros datos. Su adquisición se parece a la de otros soportes externos.",
+          "source_page": 11,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué vía sencilla permite adquirir información básica del terminal cuando es compatible?",
+          "options": [
+            "El acceso directo garantizado a todos los chips sin herramientas",
+            "La sustitución automática de la partición de recuperación",
+            "La copia manual exclusiva de lo que muestra la agenda",
+            "La herramienta de copia de seguridad del fabricante"
+          ],
+          "correct": 3,
+          "explanation": "Las copias de seguridad pueden incluir contactos, llamadas, multimedia y otros datos. Su alcance depende del dispositivo y de la herramienta.",
+          "source_page": 13,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué aporta una sandbox o entorno aislado a las aplicaciones de iOS?",
+          "options": [
+            "Elimina el cifrado de las particiones para facilitar copias",
+            "Limita el acceso a datos y aplicaciones para los que no tienen permiso",
+            "Permite que las aplicaciones compartan todos sus datos sin restricciones",
+            "Garantiza que una copia lógica incluya todo el almacenamiento"
+          ],
+          "correct": 1,
+          "explanation": "El aislamiento es una de las medidas que limita el acceso entre aplicaciones. También condiciona las posibilidades de adquisición forense.",
+          "source_page": 30,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué tipo de artefacto aparece con frecuencia en aplicaciones móviles tanto de Android como de iOS?",
+          "options": [
+            "Bases de datos SQLite",
+            "Solo imágenes de disco completas de cada aplicación",
+            "Exclusivamente bases guardadas en la tarjeta del operador",
+            "Únicamente archivos del Registro de Windows"
+          ],
+          "correct": 0,
+          "explanation": "Las bases SQLite son comunes para organizar información de aplicaciones. Su análisis puede aportar datos del dispositivo y de su uso.",
+          "source_page": 32,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué diferencia ICCID (Integrated Circuit Card Identifier, identificador de tarjeta de circuito integrado) de IMSI (International Mobile Subscriber Identity, identidad internacional del abonado móvil)?",
+          "options": [
+            "Ambos son nombres diferentes del número de teléfono elegido por el usuario",
+            "El primero identifica el modelo del teléfono y el segundo su batería",
+            "El primero identifica la tarjeta y el segundo al abonado móvil",
+            "El primero es el patrón de desbloqueo y el segundo la contraseña del usuario"
+          ],
+          "correct": 2,
+          "explanation": "El tema distingue identificación de tarjeta y de abonado. No son equivalentes a una contraseña de acceso al terminal.",
+          "source_page": 9,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Por qué no se aplica sin más el bloqueo de escritura del ordenador a una adquisición lógica del teléfono por copia de seguridad?",
+          "options": [
+            "Porque el bloqueo convierte automáticamente el respaldo en adquisición física",
+            "Porque ese procedimiento necesita comunicarse con el terminal y puede modificarlo",
+            "Porque el teléfono no precisa preservar integridad de resultados",
+            "Porque los cambios nunca deben documentarse en análisis de móviles"
+          ],
+          "correct": 1,
+          "explanation": "La adquisición móvil no garantiza ausencia absoluta de cambios. Debe usarse un procedimiento adecuado y documentar las actuaciones y limitaciones.",
+          "source_page": 14,
+          "difficulty": "media"
+        },
+        {
+          "question": "En el procedimiento del tema con Magnet ACQUIRE, ¿qué influye en la posibilidad de obtener una adquisición completa de Android?",
+          "options": [
+            "La ubicación del archivo de copia en el ordenador",
+            "La cantidad de contactos del usuario",
+            "Disponer de privilegios de superusuario en el dispositivo",
+            "La extensión que se elija para nombrar la copia"
+          ],
+          "correct": 2,
+          "explanation": "El tema diferencia las opciones según los privilegios disponibles. No debe suponerse que una adquisición rápida equivale a acceso completo al terminal.",
+          "source_page": 15,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué describe ADB (Android Debug Bridge, puente de depuración de Android)?",
+          "options": [
+            "Un método que garantiza acceso sin configurar depuración ni privilegios",
+            "Un formato de respaldo exclusivo de iPhone",
+            "Una base de datos de contactos de la tarjeta del operador",
+            "Una interfaz de comunicación y depuración utilizada para interactuar con Android"
+          ],
+          "correct": 3,
+          "explanation": "El tema lo usa para interactuar con el dispositivo y realizar adquisiciones con los requisitos oportunos. El acceso depende de configuración y privilegios.",
+          "source_page": 17,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué cambia un procedimiento de Custom Recovery o recuperación personalizada?",
+          "options": [
+            "La tarjeta del operador sin modificar el terminal",
+            "Solo el archivo de copia guardado en el laboratorio",
+            "La cabecera de todos los documentos recuperados",
+            "La partición de recuperación del terminal"
+          ],
+          "correct": 3,
+          "explanation": "Instalar un entorno de recuperación personalizado modifica el terminal. El tema exige valorar compatibilidad, riesgos y autorización antes de usarlo.",
+          "source_page": 19,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué distingue la técnica Chip Off o extracción del chip?",
+          "options": [
+            "Extrae físicamente el chip de memoria para su lectura",
+            "Accede a la memoria exclusivamente por la agenda del terminal",
+            "Usa solo la copia de seguridad del fabricante sin intervenir hardware",
+            "Copia únicamente las preferencias de las aplicaciones"
+          ],
+          "correct": 0,
+          "explanation": "La extracción física es una técnica invasiva que requiere destreza y puede destruir evidencia. Se diferencia de la adquisición lógica ordinaria.",
+          "source_page": 23,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué limitación debe tenerse en cuenta al analizar una adquisición lógica de un móvil?",
+          "options": [
+            "Las bases de datos solo son relevantes en adquisiciones físicas",
+            "La ausencia en la copia demuestra que el dato nunca existió",
+            "Una copia lógica incluye siempre el espacio libre y todas las particiones",
+            "Algunas bases de datos o partes del dispositivo pueden no haberse adquirido"
+          ],
+          "correct": 3,
+          "explanation": "El tema advierte que una adquisición lógica puede no incluir ciertas bases. La ausencia en la copia debe interpretarse según su alcance real.",
+          "source_page": 29,
+          "difficulty": "media"
+        },
+        {
+          "question": "Se prepara una copia de seguridad forense de un teléfono desbloqueado. ¿Por qué se contempla aislarlo de comunicaciones?",
+          "options": [
+            "Para convertir una copia lógica en una adquisición física completa",
+            "Para eliminar el patrón de desbloqueo sin otra intervención",
+            "Para reducir interacciones externas durante la intervención",
+            "Para garantizar que el cifrado del terminal desaparezca"
+          ],
+          "correct": 2,
+          "explanation": "El procedimiento del tema contempla modo avión si no se dispone de otros mecanismos de aislamiento. Las comunicaciones pueden producir cambios mientras se interviene.",
+          "source_page": 14,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Una adquisición móvil genera hashes y registros de operaciones. ¿Cómo ayudan estos resultados?",
+          "options": [
+            "A verificar los datos adquiridos y documentar el proceso realizado",
+            "Demuestran que el original no cambió en ningún momento de la captura",
+            "Garantizan que todas las bases de datos del terminal fueron adquiridas",
+            "Sustituyen la necesidad de explicar el alcance de la copia"
+          ],
+          "correct": 0,
+          "explanation": "Los resúmenes ayudan a controlar la integridad del resultado y los registros aportan trazabilidad. No convierten el procedimiento en una operación sin cambios.",
+          "source_page": 15,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "En el comando de copia dd, un analista confunde la entrada con la salida. ¿Qué distinción debe comprobar antes de ejecutarlo?",
+          "options": [
+            "if designa el origen y of el destino de la copia",
+            "of selecciona el bloque de origen e if la cantidad de memoria",
+            "if designa el destino y of el origen",
+            "Ambos designan únicamente el nombre del fichero final"
+          ],
+          "correct": 0,
+          "explanation": "El ejemplo del tema copia desde un bloque del dispositivo a un archivo de salida. Revisar origen y destino es esencial para evitar una operación equivocada.",
+          "source_page": 19,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Se propone un método avanzado invasivo que puede inutilizar el móvil. ¿Qué debe incluir la decisión previa en el contexto judicial del tema?",
+          "options": [
+            "Solo el nombre comercial de la herramienta, sin valorar sus efectos",
+            "La técnica prevista, sus riesgos y la autorización correspondiente",
+            "La garantía de recuperación completa como sustituto de autorización",
+            "La decisión de omitir la intervención del informe si produce cambios"
+          ],
+          "correct": 1,
+          "explanation": "El tema pide considerar expresamente que la técnica puede provocar pérdida de información. La intervención debe estar justificada y autorizada según su contexto.",
+          "source_page": 22,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Se añade a Autopsy una adquisición de Android realizada con Magnet ACQUIRE. ¿Qué complemento resulta especialmente pertinente según el tema?",
+          "options": [
+            "Solo un visor hexadecimal sin interpretación de artefactos",
+            "Android Analyzer",
+            "Un módulo de análisis de registros exclusivos de Windows",
+            "Una extensión de navegador de uso cotidiano"
+          ],
+          "correct": 1,
+          "explanation": "El complemento de análisis Android interpreta artefactos del dispositivo. La información del agente de adquisición también debe incluirse cuando corresponda.",
+          "source_page": 26,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Quieres conocer qué redes inalámbricas recuerda el terminal de la adquisición del ejemplo. ¿Qué base de datos del agente es pertinente?",
+          "options": [
+            "agent_accounts.db",
+            "downloads.db",
+            "contactsX.db",
+            "wifi.db"
+          ],
+          "correct": 3,
+          "explanation": "La base wifi.db recoge redes recordadas en el ejemplo. Las otras fuentes se centran en descargas, contactos o cuentas.",
+          "source_page": 27,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Un archivo plist (Property List, lista de propiedades) está en formato binario y no se entiende al abrirlo como texto. ¿Qué actuación corresponde?",
+          "options": [
+            "Excluirlo del análisis porque las preferencias no pueden ser relevantes",
+            "Usar un visor compatible con listas de propiedades binarias",
+            "Cambiar su extensión y asumir que se ha convertido a texto",
+            "Concluir que cualquier lista binaria está necesariamente cifrada"
+          ],
+          "correct": 1,
+          "explanation": "Las listas de propiedades pueden ser binarias o de texto estructurado. Hay herramientas específicas que permiten interpretar esos datos sin confundir formato y cifrado.",
+          "source_page": 33,
+          "difficulty": "aplicación"
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "title": "Respuesta a incidentes",
+      "questions": [
+        {
+          "question": "¿Qué persigue una respuesta estructurada a incidentes?",
+          "options": [
+            "Restablecer servicio ignorando la confirmación y el alcance del incidente",
+            "Recoger datos indefinidamente sin coordinar contención ni recuperación",
+            "Gestionar el incidente desde su detección hasta su resolución y reducir su impacto",
+            "Cerrar el incidente cuando desaparece la primera alerta sin verificar el resultado"
+          ],
+          "correct": 2,
+          "explanation": "La respuesta integra detección, confirmación, coordinación, contención y recuperación. Debe atender también al impacto en el negocio.",
+          "source_page": 5,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Por qué es necesario un inventario de activos antes de un incidente?",
+          "options": [
+            "Porque no puede protegerse ni localizarse adecuadamente un recurso que se desconoce",
+            "Porque equivale por sí solo a un plan completo de contingencia",
+            "Porque sustituye la necesidad de registros de actividad",
+            "Porque permite prescindir del seguimiento de cambios"
+          ],
+          "correct": 0,
+          "explanation": "El catálogo de activos permite saber qué existe y dónde actuar. Es una base para proteger, gestionar y responder.",
+          "source_page": 11,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué aporta segmentar una red ante un incidente?",
+          "options": [
+            "Que cualquier incidente quede automáticamente erradicado",
+            "Delimitar ámbitos y facilitar la contención",
+            "Que el inventario de activos deje de ser necesario",
+            "Que no hagan falta controles de acceso entre segmentos"
+          ],
+          "correct": 1,
+          "explanation": "La segmentación limita la propagación y permite aplicar medidas sobre partes concretas. Debe combinarse con otros controles.",
+          "source_page": 12,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué documento recoge la estrategia prevista para actuar ante el incidente?",
+          "options": [
+            "La lista de productos de seguridad contratados sin procedimientos",
+            "El historial de incidentes sin acciones previstas",
+            "El plan de contingencia",
+            "El informe pericial final, aún no elaborado"
+          ],
+          "correct": 2,
+          "explanation": "El plan de contingencia contiene acciones acordadas previamente. Su finalidad es reducir la improvisación cuando hay que responder.",
+          "source_page": 14,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué se entiende por triage o clasificación inicial en forense corporativo?",
+          "options": [
+            "Priorizar rápidamente recursos y profundidad de análisis según indicios e importancia",
+            "Realizar siempre un examen exhaustivo idéntico de todos los datos",
+            "Analizar directamente los originales sin adquirir evidencia",
+            "Eliminar los recursos de baja prioridad aunque puedan ser pertinentes"
+          ],
+          "correct": 0,
+          "explanation": "La clasificación inicial orienta dónde concentrar recursos. Se apoya en criterios y adquisición adecuada de datos para su examen.",
+          "source_page": 23,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué significa forensic by design o preparación forense desde el diseño?",
+          "options": [
+            "Confiar únicamente en la compra de herramientas sin procedimientos",
+            "Conservar cualquier dato para siempre sin política de borrado",
+            "Diseñar sistemas que faciliten conservar y analizar información ante incidentes",
+            "Comenzar a registrar datos solo cuando el incidente ya ha terminado"
+          ],
+          "correct": 2,
+          "explanation": "El diseño y el mantenimiento deben prever inventario, registros, copias y responsabilidades. La preparación forense comienza antes de que ocurra el incidente.",
+          "source_page": 26,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Por qué la severidad de un incidente depende del negocio?",
+          "options": [
+            "Porque el mismo tipo de pérdida puede tener impactos distintos según los procesos y datos afectados",
+            "Porque la severidad depende solo del precio de los equipos",
+            "Porque cualquier pérdida afecta por igual a todo tipo de organización",
+            "Porque el número de alertas determina siempre el impacto económico"
+          ],
+          "correct": 0,
+          "explanation": "El contexto determina la importancia del activo y el daño de su interrupción o pérdida. Por eso las prioridades deben acordarse con el negocio.",
+          "source_page": 7,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué función corresponde al responsable de recuperación?",
+          "options": [
+            "Asumir únicamente la comunicación pública del incidente",
+            "Coordinar las actuaciones técnicas para restablecer los sistemas",
+            "Decidir que la recuperación elimina cualquier necesidad de investigación",
+            "Determinar en exclusiva las consecuencias jurídicas"
+          ],
+          "correct": 1,
+          "explanation": "El tema propone un perfil técnico solvente que coordine la recuperación. Es una labor distinta, aunque relacionada, con la investigación.",
+          "source_page": 9,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Por qué debe colaborar el equipo investigador con el área legal?",
+          "options": [
+            "Para que cualquier investigación quede automáticamente autorizada",
+            "Para excluir todas las evidencias desfavorables a la empresa",
+            "Para transferir el análisis técnico a personal sin conocimientos del sistema",
+            "Para establecer límites de investigación y requisitos de cumplimiento"
+          ],
+          "correct": 3,
+          "explanation": "La investigación corporativa también tiene límites y obligaciones. Coordinarse con el área legal ayuda a definir alcance y forma de intervención.",
+          "source_page": 10,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué caracteriza a los anillos de seguridad del tema?",
+          "options": [
+            "Grupos de copias de discos sin relación con controles de acceso",
+            "Agrupar recursos relacionados para delimitar y contener riesgos",
+            "Conjuntos de usuarios con una misma contraseña compartida",
+            "Segmentos en los que cualquier recurso accede libremente al resto"
+          ],
+          "correct": 1,
+          "explanation": "Los anillos facilitan establecer límites de acceso entre conjuntos de recursos. Así se puede contener una parte de la infraestructura con mayor rapidez.",
+          "source_page": 13,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué tensión debe gestionarse entre recuperación e investigación forense?",
+          "options": [
+            "Decidir entre conocer activos o asignar responsables",
+            "Elegir entre tener procedimientos escritos o cumplir la legalidad",
+            "Elegir entre ejecutar un antivirus o mantener un inventario",
+            "Recuperar pronto los servicios y preservar datos relevantes para entender el incidente"
+          ],
+          "correct": 3,
+          "explanation": "La recuperación puede modificar información que interesa investigar. La coordinación busca reducir el impacto del incidente y conservar evidencia útil.",
+          "source_page": 18,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué propone el análisis forense por capas?",
+          "options": [
+            "Estudiar solo la superficie sin atender a la importancia del activo",
+            "Aplicar diferente profundidad según importancia y riesgo de los recursos",
+            "Seleccionar siempre el mismo número de archivos por dispositivo",
+            "Aplicar el mismo análisis completo a todo recurso sin priorizar"
+          ],
+          "correct": 1,
+          "explanation": "Los niveles permiten ajustar el esfuerzo a recursos y riesgos. Es una forma de priorizar dentro de una respuesta corporativa.",
+          "source_page": 20,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué aportan las superlíneas de tiempo?",
+          "options": [
+            "Una visión agregada de eventos de varios equipos para relacionarlos",
+            "Una garantía de que los relojes de origen estaban sincronizados",
+            "Una sustitución de los registros por una secuencia hipotética",
+            "Una identificación personal automática a partir de cualquier marca temporal"
+          ],
+          "correct": 0,
+          "explanation": "La agregación temporal ayuda a relacionar eventos distribuidos. Sigue siendo necesario interpretar las fuentes y su contexto temporal.",
+          "source_page": 24,
+          "difficulty": "media"
+        },
+        {
+          "question": "Una investigación necesita observar todavía algunas acciones del atacante y se ha autorizado contener solo ciertos componentes. ¿Qué estrategia describe el tema?",
+          "options": [
+            "Una acción combinada que contiene una parte y demora otras medidas",
+            "Una erradicación inmediata de todos los equipos, aunque impida observar la actividad autorizada",
+            "Una demora total de todas las medidas, incluidas las que sí pueden aplicarse",
+            "Una fase de documentación final sin ninguna acción de respuesta"
+          ],
+          "correct": 0,
+          "explanation": "El tema plantea respuestas inmediatas, demoradas o combinadas según objetivos. La elección debe acordarse y contemplar impacto y necesidades de investigación.",
+          "source_page": 16,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Se restablece el servicio tras un incidente. ¿Qué paso ayuda a evitar repetirlo?",
+          "options": [
+            "Eliminar las evidencias para evitar repetir investigaciones",
+            "Volver exactamente a la misma configuración vulnerable y darlo por cerrado",
+            "Asumir que la desaparición de la alerta demuestra la erradicación completa",
+            "Implantar mejoras y documentar lecciones aprendidas"
+          ],
+          "correct": 3,
+          "explanation": "La fase posterior debe incluir recomendaciones y mejora. Recuperar la situación anterior puede no resolver las causas que facilitaron el incidente.",
+          "source_page": 17,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Varias personas trabajan en el mismo incidente y se pierde coordinación. ¿Qué instrumento facilita una situación común de referencia?",
+          "options": [
+            "Una conclusión única que no se actualiza al aparecer hallazgos",
+            "Un listado de archivos sin fecha ni relación con los sistemas",
+            "Un intercambio informal sin identificar tareas ni responsables",
+            "Un informe actualizado de evidencias, sistemas afectados, hallazgos y tareas"
+          ],
+          "correct": 3,
+          "explanation": "El informe de situación reúne el estado de la investigación y su contexto. Facilita coordinar actividad, hallazgos y trabajo pendiente.",
+          "source_page": 21,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Se detecta actividad inusual en una cuenta privilegiada. ¿Cómo debe tratarse como IOC (Indicator of Compromise, indicador de compromiso)?",
+          "options": [
+            "Como demostración de que la contención ya se ha completado",
+            "Como garantía de que no existen otros recursos afectados",
+            "Como un indicio que orienta la investigación y la priorización",
+            "Como prueba concluyente de quién actuó físicamente"
+          ],
+          "correct": 2,
+          "explanation": "Un indicador señala una posible brecha o actividad que merece revisión. Ayuda a orientar recursos, pero debe interpretarse y corroborarse.",
+          "source_page": 22,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "La evidencia está en un proveedor de nube. ¿Qué factores condicionan la adquisición según el tema?",
+          "options": [
+            "Únicamente el número de usuarios del ordenador del analista",
+            "Ubicación y modelo del servicio, además de la colaboración y acceso disponibles",
+            "Solo el tamaño del archivo que se quiere adquirir",
+            "Solo la herramienta local sin atender al proveedor ni al acceso disponible"
+          ],
+          "correct": 1,
+          "explanation": "La ubicación puede tener implicaciones legales y el modelo de nube determina qué datos y capas son accesibles. Es necesario coordinarse con quienes administran el servicio.",
+          "source_page": 24,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "La empresa permite teléfonos propios para trabajar. ¿Qué debe resolverse antes de adquirir su información?",
+          "options": [
+            "Excluir siempre cualquier terminal propio aunque haya evidencia pertinente",
+            "Adquirir primero todo el teléfono y decidir luego si el alcance era adecuado",
+            "Suponer que la finalidad laboral permite adquirir sin límite los datos personales",
+            "El alcance y las implicaciones del uso y los datos personales del dispositivo"
+          ],
+          "correct": 3,
+          "explanation": "El uso mixto de dispositivos plantea cuestiones de propiedad y privacidad. La adquisición debe delimitarse de manera adecuada antes de intervenir.",
+          "source_page": 25,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Una empresa quiere mejorar su preparación forense sin esperar al próximo ataque. ¿Qué combinación corresponde?",
+          "options": [
+            "Registrar cuentas compartidas sin atribuir responsabilidades",
+            "Desactivar los registros para reducir el trabajo futuro",
+            "Inventario actualizado, registros centralizados, copias y procedimientos documentados",
+            "Conservar solo una lista de herramientas sin procedimientos"
+          ],
+          "correct": 2,
+          "explanation": "La preparación desde el diseño incluye fuentes de datos mantenidas y responsabilidades claras. Facilita adquirir y analizar información cuando llegue un incidente.",
+          "source_page": 26,
+          "difficulty": "aplicación"
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "title": "Redacción del informe pericial",
+      "questions": [
+        {
+          "question": "¿A quién debe ayudar a comprender el trabajo un informe pericial informático?",
+          "options": [
+            "Solo al personal que ya domina todas las herramientas citadas",
+            "A quienes intervienen en el procedimiento, incluidos lectores sin conocimientos técnicos",
+            "Solo al solicitante, aunque el tribunal no pueda interpretarlo",
+            "Exclusivamente a quien elaboró la copia del soporte"
+          ],
+          "correct": 1,
+          "explanation": "El informe sirve a jueces, abogados y otros interesados. Debe ser comprensible sin perder rigor técnico.",
+          "source_page": 5,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué criterio de redacción recomienda el tema?",
+          "options": [
+            "Simplificar tanto que desaparezca el fundamento técnico de las conclusiones",
+            "Usar términos técnicos sin explicarlos para demostrar especialización",
+            "Repetir datos y argumentos aunque no aporten información nueva",
+            "Explicar términos complejos y escribir de manera clara y rigurosa"
+          ],
+          "correct": 3,
+          "explanation": "La claridad facilita comprender la prueba. Debe combinarse con precisión y una extensión ajustada a lo necesario.",
+          "source_page": 6,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Para qué se asigna un código único al informe?",
+          "options": [
+            "Para sustituir la identificación del perito que firma",
+            "Para hacer innecesario numerar o relacionar las páginas",
+            "Para convertir cualquier anexo en un informe independiente",
+            "Para identificar inequívocamente el trabajo y sus páginas"
+          ],
+          "correct": 3,
+          "explanation": "La identificación del documento facilita trazabilidad y consulta. El tema recomienda reflejar el código en sus páginas.",
+          "source_page": 9,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué debe explicar el objeto del encargo?",
+          "options": [
+            "Para qué se pidió el informe y qué cuestiones debe responder",
+            "Todos los antecedentes personales del cliente aunque no estén relacionados",
+            "Solo la relación de herramientas disponibles en el laboratorio",
+            "Las conclusiones definitivas antes de analizar las evidencias"
+          ],
+          "correct": 0,
+          "explanation": "El objeto delimita las preguntas y finalidad de la peritación. Permite valorar después si el trabajo responde a lo solicitado.",
+          "source_page": 13,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué contenido suele reservarse para anexos?",
+          "options": [
+            "Conclusiones distintas que no se justifican en el cuerpo principal",
+            "Información complementaria que apoya el informe sin cargar el texto principal",
+            "Datos de otros casos usados para completar resultados ausentes",
+            "Material sin relación con el encargo por el hecho de estar disponible"
+          ],
+          "correct": 1,
+          "explanation": "Los anexos permiten adjuntar material de apoyo. Deben ser pertinentes y estar relacionados con el trabajo descrito.",
+          "source_page": 17,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué recurso ayuda a mostrar la secuencia de hechos examinados?",
+          "options": [
+            "Una tabla o línea de tiempo",
+            "Una tabla de capacidades de los soportes sin sucesos",
+            "Una relación de herramientas ordenada por fabricante",
+            "Un listado de artefactos sin ninguna fecha"
+          ],
+          "correct": 0,
+          "explanation": "La cronología facilita representar cuándo sucedieron acciones. Ayuda al lector a relacionar hechos y pruebas temporales.",
+          "source_page": 21,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué papel tiene la norma UNE 197010:2015, de criterios para informes periciales sobre tecnologías de la información y las comunicaciones, en el tema?",
+          "options": [
+            "Garantizar que el tribunal acepte las conclusiones",
+            "Servir de guía para organizar contenidos y mejorar la calidad del informe",
+            "Imponer un número fijo de páginas para cualquier caso",
+            "Sustituir el examen técnico por una estructura formal"
+          ],
+          "correct": 1,
+          "explanation": "El tema la usa como estructura de referencia. La estructura ayuda a que el trabajo sea ordenado y fácilmente consultable.",
+          "source_page": 8,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué es una contrapericial en el contexto explicado?",
+          "options": [
+            "Una decisión judicial sobre la validez del informe",
+            "El examen crítico del trabajo pericial presentado por otra parte",
+            "Una copia adicional de la evidencia sin examen del trabajo previo",
+            "La repetición literal de las conclusiones del primer perito"
+          ],
+          "correct": 1,
+          "explanation": "La contrapericial revisa un trabajo previo. Sus observaciones deben apoyarse en análisis y fundamentos, igual que cualquier informe.",
+          "source_page": 10,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué implica la declaración de imparcialidad del perito?",
+          "options": [
+            "Considerar lo que favorece y lo que perjudica a cualquiera de las partes",
+            "Excluir los hallazgos que no apoyen la hipótesis del cliente",
+            "Asegurar que todas las conclusiones coincidan con las de otra parte",
+            "Defender la posición de quien contrata aunque existan datos contrarios"
+          ],
+          "correct": 0,
+          "explanation": "La imparcialidad exige atender a las evidencias sin seleccionar solo lo conveniente para una parte. El informe debe expresar esa responsabilidad.",
+          "source_page": 12,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Para qué sirve el apartado de procedimiento y fundamentación?",
+          "options": [
+            "Explicar los pasos elegidos y por qué son técnicamente adecuados",
+            "Describir únicamente el coste del encargo sin métodos",
+            "Exponer conclusiones antes de identificar qué se examinó",
+            "Recoger solo nombres de herramientas sin explicar su utilización"
+          ],
+          "correct": 0,
+          "explanation": "La fundamentación hace comprensible cómo se ha realizado el análisis. Debe relacionar los métodos con el objetivo de la peritación.",
+          "source_page": 14,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué distinción conviene mantener entre resultados y conclusiones?",
+          "options": [
+            "Las conclusiones pueden introducir hechos no examinados si parecen probables",
+            "Los resultados deben incluir solo aquello que confirme al cliente",
+            "Ambos deben consistir en una lista de herramientas sin interpretación",
+            "Los resultados recogen hallazgos y las conclusiones interpretan qué responden a las preguntas planteadas"
+          ],
+          "correct": 3,
+          "explanation": "El informe describe lo observado y después formula conclusiones fundamentadas. La interpretación debe poder seguirse desde los resultados.",
+          "source_page": 15,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué límite del papel del perito subraya el tema?",
+          "options": [
+            "Ajustar el dictamen al objetivo procesal del cliente",
+            "Formular consecuencias jurídicas como si fueran hallazgos técnicos",
+            "Responder al hecho tecnológico sin sustituir a quienes realizan la valoración jurídica",
+            "Determinar por sí mismo culpabilidad y sanción"
+          ],
+          "correct": 2,
+          "explanation": "La pericia aporta conocimiento técnico al procedimiento. Las consecuencias jurídicas corresponden a los profesionales y órganos competentes.",
+          "source_page": 17,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué datos puede incluir una ficha de análisis de artefacto?",
+          "options": [
+            "Solo el nombre de la herramienta sin datos del artefacto",
+            "Solo el nombre del propietario sin resultados observados",
+            "Nombre, ubicación, herramienta, procedimiento y resultados",
+            "Solo la conclusión general sin ubicación ni pasos"
+          ],
+          "correct": 2,
+          "explanation": "La ficha permite presentar de manera ordenada el examen de cada artefacto. Es un recurso para facilitar comprensión y trazabilidad del análisis.",
+          "source_page": 22,
+          "difficulty": "media"
+        },
+        {
+          "question": "El destinatario no sabe qué significa un hash. ¿Cómo debe redactarse el informe?",
+          "options": [
+            "Usar el término sin explicar su función porque todo lector debería conocerlo",
+            "Reemplazar su cálculo por una afirmación de confianza sin evidencia",
+            "Explicando que es un resumen calculado de datos y para qué se utiliza en el caso",
+            "Omitir los controles de integridad para evitar lenguaje especializado"
+          ],
+          "correct": 2,
+          "explanation": "La claridad requiere explicar conceptos cuando son necesarios para entender el análisis. Simplificar el lenguaje no implica eliminar el fundamento técnico.",
+          "source_page": 6,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Te piden saber si determinados archivos se copiaron a un dispositivo externo. ¿Cómo delimitar el trabajo?",
+          "options": [
+            "Asumir que encontrar el dispositivo conectado demuestra por sí solo la copia",
+            "Sustituir la pregunta técnica por una valoración personal del empleado",
+            "Ampliar el análisis a cualquier dato personal aunque no se relacione con la pregunta",
+            "Plantear esa cuestión en el objeto y centrar métodos y conclusiones en responderla"
+          ],
+          "correct": 3,
+          "explanation": "El objeto del encargo fija lo que debe investigarse. El análisis y las conclusiones deben corresponder a esas cuestiones.",
+          "source_page": 13,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Una herramienta encuentra un dato relevante. ¿Qué ayuda a que otro profesional entienda cómo se obtuvo?",
+          "options": [
+            "Describir entorno, herramienta, pasos realizados y resultado correspondiente",
+            "Añadir una captura aislada sin identificar el artefacto ni el paso realizado",
+            "Citar el nombre comercial de la herramienta como explicación suficiente",
+            "Entregar solo la conclusión automática que muestra el programa"
+          ],
+          "correct": 0,
+          "explanation": "El desarrollo del análisis debe explicar la actuación sobre cada evidencia. La herramienta no sustituye la descripción del procedimiento.",
+          "source_page": 15,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Una evidencia importante no pudo adquirirse. ¿Cómo debe reflejarse al concluir?",
+          "options": [
+            "Afirmar lo que probablemente contendría aunque no se haya examinado",
+            "Omitir la carencia para presentar una respuesta más contundente",
+            "Completar la información con datos de otro caso parecido",
+            "Indicando la limitación y cómo afecta a lo que puede afirmarse"
+          ],
+          "correct": 3,
+          "explanation": "Las conclusiones deben señalar si la evidencia era suficiente y qué impedimentos existieron. Reconocer límites mantiene las afirmaciones ajustadas al trabajo real.",
+          "source_page": 16,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "El cliente pide eliminar del informe un hallazgo que debilita su posición. ¿Qué debe guiar la respuesta del perito?",
+          "options": [
+            "Suprimir el hallazgo porque quien contrata define qué resultados son válidos",
+            "Seleccionar una herramienta que no lo muestre para evitar explicarlo",
+            "La imparcialidad y las conclusiones apoyadas en todas las evidencias pertinentes",
+            "Conservarlo solo en notas privadas sin reflejar su efecto en las conclusiones"
+          ],
+          "correct": 2,
+          "explanation": "El trabajo técnico debe atender a la verdad y a las evidencias. La relación con una parte no justifica seleccionar solo hallazgos convenientes.",
+          "source_page": 17,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Se quiere evitar que una página suelta se confunda con la de otro informe. ¿Qué identificación ayuda?",
+          "options": [
+            "Solo una portada identificada y páginas interiores anónimas",
+            "Código del informe y numeración de página, preferiblemente con el total",
+            "Solo la fecha sin código ni numeración de páginas",
+            "Solo el nombre del programa que creó el archivo"
+          ],
+          "correct": 1,
+          "explanation": "La identificación y numeración facilitan reconocer la pertenencia de las páginas. El tema recomienda añadir el total y el código del trabajo.",
+          "source_page": 20,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Hay hechos en varios equipos y el lector no entiende el orden de lo ocurrido. ¿Qué mejora de presentación resulta útil?",
+          "options": [
+            "Presentar los eventos sin tiempo ni relación para evitar discrepancias",
+            "Eliminar las fuentes que no coinciden con la primera cronología",
+            "Una cronología que relacione los hechos con sus tiempos y fuentes explicadas",
+            "Ordenar los hechos por nombre de equipo sin mostrar su secuencia temporal"
+          ],
+          "correct": 2,
+          "explanation": "Las tablas y líneas de tiempo ayudan a sintetizar secuencias. Deben apoyarse en datos del análisis y mantener el contexto necesario para interpretarlos.",
+          "source_page": 21,
+          "difficulty": "aplicación"
+        }
+      ]
+    }
+  ]
+}

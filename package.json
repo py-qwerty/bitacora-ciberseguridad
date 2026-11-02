@@ -1,0 +1,13 @@
+{
+  "name": "bitacora-ciberseguridad",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Estudio del máster de ciberseguridad, con preguntas por tema y retroalimentación",
+  "scripts": {
+    "dev": "python3 -m http.server 4174 --bind 127.0.0.1 --directory dist",
+    "test": "node --test tests/*.test.js",
+    "check": "node --check dist/app.js && node --check dist/core.js && node --test tests/*.test.js",
+    "bank": "node scripts/build-bank.mjs"
+  }
+}

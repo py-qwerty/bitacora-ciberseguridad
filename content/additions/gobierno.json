@@ -1,0 +1,1581 @@
+{
+  "course": "Gobierno de la ciberseguridad y Análisis de riesgos",
+  "topics": [
+    {
+      "number": 1,
+      "title": "La seguridad de la informacion en las organizaciones",
+      "questions": [
+        {
+          "question": "Indica cuál de las siguientes afirmaciones es correcta respecto a la seguridad de la información:",
+          "options": [
+            "Los procedimientos detallan a alto nivel los pasos que deben seguirse para implementar las políticas.",
+            "Las directrices establecen normas de obligado cumplimiento sobre la configuración de distintos elementos del sistema.",
+            "Una línea base puede servir para complementar un estándar con información adicional.",
+            "Las políticas detallan los elementos software que la organización debería utilizar para cubrir objetivos de control de seguridad de la información."
+          ],
+          "source_page": 47,
+          "source_question": 1,
+          "correct": 2,
+          "explanation": "La línea base concreta una configuración uniforme y puede complementar un estándar. Las directrices son recomendaciones; los procedimientos detallan pasos concretos y las políticas fijan orientación general.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "Indica cuál de las siguientes afirmaciones es correcta respecto a la seguridad de la información:",
+          "options": [
+            "El custodio protege la información teniendo en cuenta el esquema de clasificación asignado por el propietario.",
+            "El propietario implementa el esquema de clasificación por órdenes del responsable.",
+            "El responsable define la clasificación y los usuarios la implementan valorando el tipo de información que manejan.",
+            "No hay ningún caso posible en el que los roles de elaborador, custodio, propietario y usuario recaigan todos en la misma persona."
+          ],
+          "source_page": 47,
+          "source_question": 2,
+          "correct": 0,
+          "explanation": "El propietario asigna la clasificación y el custodio aplica la protección correspondiente. Son responsabilidades distintas aunque en una organización pequeña puedan recaer en una persona.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "Indica cuál de las siguientes afirmaciones es verdadera:",
+          "options": [
+            "Las intrusiones en los sistemas informáticos afectan a la confidencialidad de la información exclusivamente.",
+            "Las prácticas de ingeniería social tratan de explotar el factor humano para obtener datos confidenciales.",
+            "La privacidad de los datos personales sensibles es el objetivo de mantener la confidencialidad.",
+            "La clasificación de la información tiene como objeto establecer niveles de disponibilidad de la información."
+          ],
+          "source_page": 48,
+          "source_question": 3,
+          "correct": 1,
+          "explanation": "La ingeniería social utiliza la confianza, la urgencia u otros factores humanos para obtener información o inducir acciones. Una intrusión puede afectar a varias dimensiones de seguridad, no solo a confidencialidad.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "Una organización contrata una póliza que cubre parte de las pérdidas económicas de un incidente. ¿Qué opción de tratamiento está utilizando?",
+          "options": [
+            "Eliminar por completo la amenaza",
+            "Compartir o transferir determinadas consecuencias económicas",
+            "Evitar toda la actividad que origina el riesgo",
+            "Aceptar que ya no necesita controles"
+          ],
+          "source_page": 35,
+          "source_question": 4,
+          "correct": 1,
+          "explanation": "Contratar un seguro comparte o transfiere determinadas consecuencias económicas del riesgo. No elimina la amenaza ni traslada automáticamente todas las responsabilidades de la organización.",
+          "difficulty": "media",
+          "kind": "practice",
+          "original_issue": "En el original las cuatro opciones son vías reconocibles de tratamiento y no existe una respuesta ninguna."
+        },
+        {
+          "question": "Indica cuál de las siguientes afirmaciones es cierta:",
+          "options": [
+            "El costo de ruptura hace referencia al costo que la empresa asume cuando se produce una intrusión.",
+            "En general, nunca se debe emplear en los recursos destinados a la protección de un activo, más dinero que el costo que la pérdida de este supondría a la organización.",
+            "Los costos que asumen las empresas ante un incidente de seguridad de la información incluyen únicamente los costos de reparación de vulnerabilidades en el software.",
+            "Ninguna de las anteriores."
+          ],
+          "source_page": 49,
+          "source_question": 5,
+          "correct": 1,
+          "explanation": "El principio económico del tema relaciona el gasto de protección con las pérdidas que se pretenden evitar. La valoración debe incluir impactos indirectos y obligaciones; no se limita al precio de compra del equipo.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "¿Cuál de estas medidas aplica seguridad física para proteger un centro de datos?",
+          "options": [
+            "Controlar el acceso de personas mediante tornos",
+            "Permitir el acceso a cualquier persona con conexión a internet",
+            "Sustituir los controles ambientales por contraseñas",
+            "Considerar que una fuga de agua no afecta a la disponibilidad"
+          ],
+          "source_page": 40,
+          "source_question": 6,
+          "correct": 0,
+          "explanation": "Los tornos controlan físicamente el acceso al centro de datos. Una fuga de agua también puede afectar a la disponibilidad, por lo que seguridad física y lógica deben coordinarse.",
+          "difficulty": "media",
+          "kind": "practice",
+          "original_issue": "La opción C del original está incompleta; se reconstruye el mismo concepto mediante alternativas legibles."
+        },
+        {
+          "question": "Indica cuáles de los siguientes son ejemplos de controles de seguridad:",
+          "options": [
+            "Facilitar el trabajo de los empleados permitiendo el uso de sus dispositivos móviles personales.",
+            "Obligar a que las contraseñas sean robustas.",
+            "Analizar el uso de los ficheros en disco de los usuarios para buscar contenido ilegal.",
+            "Ninguna de las anteriores."
+          ],
+          "source_page": 49,
+          "source_question": 7,
+          "correct": 1,
+          "explanation": "Exigir contraseñas robustas es una medida de control de acceso. Permitir dispositivos personales no constituye por sí solo una protección sin condiciones de seguridad adecuadas.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "Indica cuál de las siguientes afirmaciones es cierta:",
+          "options": [
+            "La identificación de los usuarios es la autentificación de estos en el sistema.",
+            "La criptografía permite establecer el almacenamiento seguro, pero no la transferencia de datos segura.",
+            "El desarrollo de software seguro es más barato para los fabricantes de paquetes de software, dado que reduce el impacto económico de su responsabilidad legal.",
+            "Ninguna de las anteriores"
+          ],
+          "source_page": 50,
+          "source_question": 8,
+          "correct": 3,
+          "explanation": "Identificar no equivale a autenticar y la criptografía protege tanto almacenamiento como comunicaciones. Tampoco hay una garantía general de que desarrollar de forma segura reduzca automáticamente la responsabilidad económica del fabricante.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "Indica cuál de las siguientes afirmaciones es cierta:",
+          "options": [
+            "La clasificación de la información tiene como objetivo cumplir con los requisitos legales de su difusión.",
+            "Una información clasificada como confidencial no puede ser reclasificada posteriormente.",
+            "La clasificación de los recursos de información puede tener excepciones.",
+            "Ninguna de las anteriores."
+          ],
+          "source_page": 50,
+          "source_question": 9,
+          "correct": 2,
+          "explanation": "La clasificación admite excepciones justificadas y revisiones cuando cambia el valor o contexto de la información. Debe gobernarse con criterios y responsabilidades, no tratarse como una etiqueta irreversible.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "Indica cuál de las siguientes afirmaciones es cierta:",
+          "options": [
+            "Siempre es más importante reducir la probabilidad que el posible impacto al gestionar riesgos.",
+            "La probabilidad de un ataque únicamente depende de la motivación económica de los atacantes.",
+            "El coste de implantar una medida de protección no estará justificado desde el punto de vista de seguridad, si dicha medida no está vinculada a reducir un riesgo asociado.",
+            "Ninguna de las anteriores."
+          ],
+          "source_page": 50,
+          "source_question": 10,
+          "correct": 2,
+          "explanation": "Una medida de seguridad debe relacionarse con un riesgo que reduzca. El tratamiento puede actuar sobre probabilidad, consecuencias o ambas, según objetivos y contexto.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "title": "Gobierno de la seguridad de la informacion",
+      "questions": [
+        {
+          "question": "Indica cuál de las siguientes opciones no es un objetivo del gobierno de la seguridad:",
+          "options": [
+            "Alinear los objetivos de seguridad con los objetivos estratégicos.",
+            "Lograr siempre el mínimo coste en el proceso de seguridad.",
+            "Gestionar de forma adecuada los riesgos de la seguridad de la información.",
+            "Manejar de la mejor forma posible los recursos disponibles para alcanzar los objetivos fijados."
+          ],
+          "source_page": 22,
+          "source_question": 1,
+          "correct": 1,
+          "explanation": "El gobierno de seguridad busca alineación estratégica, gestión de riesgos y uso adecuado de recursos. Minimizar siempre el coste puede impedir cumplir necesidades de negocio o seguridad.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "Indica qué fase de las siguientes opciones nunca f ormará parte de un Plan Director de Seguridad:",
+          "options": [
+            "Diagnóstico del estado de la seguridad de la información actualmente en una entidad.",
+            "Cumplir todos y cada uno de los controles definidos en el estándar ISO/IEC 27001.",
+            "Identificación de la diferencia de madurez en seguridad de la información de la entidad en la actualidad respecto al estado deseado.",
+            "Revisión de los objetivos y la estrategia corporativa."
+          ],
+          "source_page": 22,
+          "source_question": 2,
+          "correct": 1,
+          "explanation": "Un Plan Director de Seguridad no consiste en aplicar sin selección todos los controles. Los controles se eligen y justifican según alcance, riesgos y requisitos aplicables. Siglas: ISO: International Organization for Standardization, Organización Internacional de Normalización; IEC: International Electrotechnical Commission, Comisión Electrotécnica Internacional.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "Indica qué roles están involucrados en la seguridad de la información de una empresa:",
+          "options": [
+            "El encargado de la limpieza en las oficinas.",
+            "El responsable del cumplimiento normativo de la entidad.",
+            "El CEO de la empresa.",
+            "Todos estos roles tienen implicación en la seguridad de la información de una empresa."
+          ],
+          "source_page": 22,
+          "source_question": 3,
+          "correct": 3,
+          "explanation": "La seguridad implica a dirección, áreas de cumplimiento y personal operativo. Por ejemplo, quienes limpian pueden acceder físicamente a zonas o información y necesitan pautas adecuadas. Siglas: CEO: Chief Executive Officer, director ejecutivo.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "Indica cuál de las siguientes opciones no es cierta dentro de una estrategia de seguridad:",
+          "options": [
+            "La estrategia de seguridad debe revisarse periódicamente.",
+            "Debe ser independiente de la estrategia de negocio de la organización para mantener la visión de los objetivos TIC.",
+            "Debe tener en cuenta los valores de riesgo para buscar la reducción de estos.",
+            "Debe tener en cuenta todos los aspectos de mejor a de las medidas de seguridad existentes en la organización."
+          ],
+          "source_page": 23,
+          "source_question": 4,
+          "correct": 1,
+          "explanation": "La estrategia de seguridad debe apoyar a la de negocio y revisarse cuando cambien los objetivos o riesgos. Aislarla de la organización dificulta que aporte valor. Siglas: TIC: tecnologías de la información y las comunicaciones.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "Una empresa dispone de presupuesto limitado para su Plan Director de Seguridad. ¿Qué información debe guiar primero la priorización de proyectos?",
+          "options": [
+            "El orden alfabético del catálogo de productos",
+            "La preferencia personal del proveedor",
+            "Solo el número de empleados de cada departamento",
+            "Los riesgos evaluados, el estado actual y los objetivos de negocio"
+          ],
+          "source_page": 8,
+          "source_question": 5,
+          "correct": 3,
+          "explanation": "Los riesgos y la situación de partida permiten priorizar actuaciones del Plan Director. La selección no se resuelve copiando automáticamente el índice de una norma.",
+          "difficulty": "media",
+          "kind": "practice",
+          "original_issue": "El original enumera varios aspectos que pueden ser relevantes sin una opción conjunta ni criterio que seleccione uno solo."
+        },
+        {
+          "question": "Indica cuál de los siguientes aspectos no debe tenerse en cuenta en la fase de definición del plan de acción del Plan Director de Seguridad:",
+          "options": [
+            "Definir el alcance de cada uno de los proyectos de seguridad que formarán parte del plan de acción.",
+            "Estimación y dedicación de recursos humanos y económicos al Plan de acción.",
+            "Priorizar y planificar los proyectos de seguridad.",
+            "Implementación de controles para mitigar los riesgos de mayor nivel."
+          ],
+          "source_page": 23,
+          "source_question": 6,
+          "correct": 3,
+          "explanation": "Definir alcance, recursos y prioridades pertenece a planificar. Implantar controles corresponde a ejecutar los proyectos, aunque esa ejecución se programe durante el diseño del plan.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "Indica cuáles de las siguientes afirmaciones no son ciertas:",
+          "options": [
+            "La definición de SLAs es uno de los elementos básicos en un servicio de TI.",
+            "Cualquier compañía que provea servicios relacionados con las TI puede obtener una certificación ITIL.",
+            "Un servicio relacionado con las TI no tiene por qué conllevar la entrega de un producto TIC.",
+            "Todas las anteriores."
+          ],
+          "source_page": 24,
+          "source_question": 7,
+          "correct": 1,
+          "explanation": "ITIL, Information Technology Infrastructure Library, es un marco de buenas prácticas; no una certificación organizativa que cualquier proveedor obtenga por seguirlo. Existen otras certificaciones específicas y certificaciones de personas. Siglas: TI: tecnologías de la información; TIC: tecnologías de la información y las comunicaciones.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "Indica cuáles de las siguientes afirmaciones son ciertas:",
+          "options": [
+            "Los servicios de TI se definen mediante SLA, que determinan el nivel de calidad de los servicios en diferentes dimensiones.",
+            "El proceso de gestión de la seguridad de ITIL prescribe los requisitos de un SGSI si quiere ser compatible con ITIL.",
+            "ITIL solo es compatible con la última versión de la ISO 27001, pero no lo fue con las anteriores.",
+            "Ninguna de las anteriores."
+          ],
+          "source_page": 24,
+          "source_question": 8,
+          "correct": 0,
+          "explanation": "Un SLA, Service Level Agreement o acuerdo de nivel de servicio, explicita niveles de calidad y compromisos. TI significa tecnologías de la información; el servicio integra personas, procesos y tecnología. Siglas: ISO: International Organization for Standardization, Organización Internacional de Normalización; ITIL: Information Technology Infrastructure Library, marco de buenas prácticas de gestión de servicios; SGSI: sistema de gestión de la seguridad de la información.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "Indica cuáles de las siguientes opciones son ventajas de los SLA:",
+          "options": [
+            "Identifican claramente las responsabilidades, en el marco del servicio, del departamento TIC y de los usuarios finales.",
+            "Tienen en cuenta recursos no sólo TIC, sino de otra naturaleza: personal, datos, procedimientos, etc.",
+            "Pueden utilizarse en contratos de outsourcing.",
+            "Todas las anteriores."
+          ],
+          "source_page": 24,
+          "source_question": 9,
+          "correct": 3,
+          "explanation": "Los acuerdos de nivel de servicio aclaran responsabilidades y pueden incorporarse a contratos de externalización. Deben contemplar los recursos y condiciones que permiten prestar el servicio. Siglas: TIC: tecnologías de la información y las comunicaciones; SLA: Service Level Agreement, acuerdo de nivel de servicio.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "Indica cuáles de las siguientes opciones son características de las buenas prácticas de ITIL:",
+          "options": [
+            "Son reactivas en lugar de predictivas.",
+            "Permiten la optimización y mejora continua.",
+            "Son siempre las mejores prácticas posibles para cada aspecto de la gestión de servicios TIC.",
+            "Todas las anteriores."
+          ],
+          "source_page": 25,
+          "source_question": 10,
+          "correct": 1,
+          "explanation": "ITIL promueve optimización y mejora continua. Sus prácticas deben adaptarse al contexto y no son una receta siempre superior para cualquier organización. Siglas: TIC: tecnologías de la información y las comunicaciones; ITIL: Information Technology Infrastructure Library, marco de buenas prácticas de gestión de servicios.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "title": "Estándares de Gestión de la Seguridad y Niveles de Madurez",
+      "questions": [
+        {
+          "question": "Indica cuáles de los siguientes enunciados son dominios de la ISO 27001:2013:",
+          "options": [
+            "Seguridad física y ambiental.",
+            "Análisis y gestión de riesgos.",
+            "Evaluación del desempeño.",
+            "Todos los anteriores."
+          ],
+          "source_page": 28,
+          "source_question": 1,
+          "correct": 0,
+          "explanation": "La pregunta se refiere expresamente a ISO/IEC 27001:2013: seguridad física y ambiental era un dominio de su anexo de controles. No se está describiendo la estructura de ediciones posteriores. Contexto: se estudia la edición 2013 y los modelos citados por este material, sin afirmar que sean la versión normativa vigente. Siglas: ISO: International Organization for Standardization, Organización Internacional de Normalización.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "Indica cuáles de las siguientes opciones son capítulos de la ISO 27001:2013:",
+          "options": [
+            "Alcance.",
+            "Planificación.",
+            "Mejora.",
+            "Todos los anteriores."
+          ],
+          "source_page": 28,
+          "source_question": 2,
+          "correct": 3,
+          "explanation": "En ISO/IEC 27001:2013 aparecen alcance, planificación y mejora entre sus capítulos. Los capítulos de requisitos no deben confundirse con los dominios de controles del anexo. Contexto: se estudia la edición 2013 y los modelos citados por este material, sin afirmar que sean la versión normativa vigente. Siglas: ISO: International Organization for Standardization, Organización Internacional de Normalización.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "Indica cuáles de las afirmaciones siguientes son ciertas sobre el estándar 27001:",
+          "options": [
+            "ISO 27001 define en detalle el proceso de gestión del riesgo de un Sistema de Gestión de la Seguridad de la Información.",
+            "ISO 27001 define la base y los conceptos para la auditoría y certificación de los Sistemas de Gestión de la Continuidad del Negocio.",
+            "ISO 27001 considera como uno de los elementos fundamentales el compromiso de la dirección, requisito para el establecimiento de un Sistema de Gestión de la Seguridad de la Información.",
+            "Ninguna de las anteriores."
+          ],
+          "source_page": 28,
+          "source_question": 3,
+          "correct": 2,
+          "explanation": "El compromiso de la dirección es fundamental para establecer un SGSI, sistema de gestión de la seguridad de la información. La norma no es una guía detallada exclusiva de metodología de riesgos ni de continuidad del negocio. Siglas: ISO: International Organization for Standardization, Organización Internacional de Normalización.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "Indica cuál de los siguientes aspectos está contemplado por la ISO 27001:",
+          "options": [
+            "La definición de los objetivos de negocio de la compañía.",
+            "El nombramiento de un comité específico y único para la continuidad del negocio.",
+            "La implantación de un modelo organizativo corporativo que unifique las áreas de seguridad física y seguridad lógica en una sola.",
+            "La ubicación adecuada de las copias de respaldo."
+          ],
+          "source_page": 29,
+          "source_question": 4,
+          "correct": 3,
+          "explanation": "La protección y ubicación de copias se relacionan con los controles de respaldo. La norma no obliga a implantar un único modelo organizativo corporativo ni un comité exclusivo de continuidad. Contexto: se estudia la edición 2013 y los modelos citados por este material, sin afirmar que sean la versión normativa vigente. Siglas: ISO: International Organization for Standardization, Organización Internacional de Normalización.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "Una auditoría busca evidencia de que la dirección gobierna el SGSI. ¿Qué registro aporta evidencia directa de decisiones y recursos asignados?",
+          "options": [
+            "Un folleto comercial del antivirus",
+            "Un listado de contraseñas personales",
+            "Actas de comité con participación de dirección y seguimiento de acuerdos",
+            "Una captura de la pantalla de inicio de un equipo"
+          ],
+          "source_page": 12,
+          "source_question": 5,
+          "correct": 2,
+          "explanation": "La participación documentada de la dirección en decisiones y asignación de recursos permite evidenciar compromiso. Publicar un documento sin implicación real no demuestra por sí solo que se gobierne el sistema. Siglas: SGSI: sistema de gestión de la seguridad de la información.",
+          "difficulty": "media",
+          "kind": "practice",
+          "original_issue": "En el original presupuesto, participación directiva y política comunicada son evidencias válidas, sin opción todas."
+        },
+        {
+          "question": "Indica cuál de las siguientes afirmaciones es cierta:",
+          "options": [
+            "La última versión de la ISO 27001 se basa en un modelo PDCA de mejora continua.",
+            "Según ISO 27001, la adopción de un Sistema de Gestión de la Seguridad de la Información debe estar motivada por decisiones tácticas referentes a la mejora de los costes asociados con la seguridad.",
+            "Según ISO 27001, el Sistema de Gestión de la Seguridad de la Información debe comprender a toda la organización, para garantizar que no existe ninguna posibilidad de intrusión en ninguno de sus niveles.",
+            "Ninguna de las anteriores."
+          ],
+          "source_page": 29,
+          "source_question": 6,
+          "correct": 0,
+          "explanation": "La mejora continua se explica con PDCA, Plan-Do-Check-Act: planificar, hacer, verificar y actuar. La adopción de un SGSI es estratégica y su alcance no tiene que abarcar automáticamente toda la organización. Siglas: ISO: International Organization for Standardization, Organización Internacional de Normalización.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "Indica cuáles de las siguientes afirmaciones son ciertas:",
+          "options": [
+            "Según ISO 27001, los registros no son evidencia objetiva sobre el cumplimiento de los requisitos del Sistema de Gestión de la Seguridad de la Información.",
+            "Según ISO 27001, el apoyo explícito y formal de la dirección solo será necesario si la organización no cuenta con la suficiente madurez en seguridad de la información.",
+            "La política de seguridad de la información es el documento que debe comunicarse a toda la empresa y a partir del cual se deriva el resto de los requisitos del sistema.",
+            "Ninguna de las anteriores."
+          ],
+          "source_page": 30,
+          "source_question": 7,
+          "correct": 2,
+          "explanation": "La política de seguridad expresa el marco de orientación y debe comunicarse. Los registros sí pueden ser evidencia objetiva y el apoyo de la dirección no es opcional por tener alta madurez. Siglas: ISO: International Organization for Standardization, Organización Internacional de Normalización.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "Indica cuál de las siguientes afirmaciones es cierta:",
+          "options": [
+            "El modelo CMMI define 5 niveles de madurez inicia les, pero pueden ser configurables según las necesidades de la compañía.",
+            "Según CMMI, en un nivel de madurez definido la organización está trabajando con datos cuantitativos para determinar procesos predecibles que se alinean con las necesidades de las partes interesadas.",
+            "Según CMMI, en un nivel de madurez optimizado se hace uso intensivo de las métricas, se gestiona el proceso de innovación y la organización completa está volcada en la mejora continua de los procesos.",
+            "Ninguna de las anteriores."
+          ],
+          "source_page": 30,
+          "source_question": 8,
+          "correct": 2,
+          "explanation": "CMMI, Capability Maturity Model Integration, describe en el nivel optimizado una organización centrada en mejora e innovación apoyadas por datos. La gestión cuantitativa caracteriza el nivel anterior.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "Indica cuál de las siguientes afirmaciones es cierta:",
+          "options": [
+            "El modelo CMMI permite medir el nivel global de madurez de los controles técnicos de una organización.",
+            "El modelo CMMI permite medir el nivel de capacidad de un área de proceso en una organización.",
+            "Según CMMI, en un nivel de madurez inicial el proceso está bien definido, pero aún no está gestionado.",
+            "Ninguna de las anteriores."
+          ],
+          "source_page": 31,
+          "source_question": 9,
+          "correct": 1,
+          "explanation": "CMMI permite evaluar la capacidad de áreas de proceso. No se limita a medir la madurez de controles técnicos; distingue capacidad de procesos y madurez organizativa. Siglas: CMMI: Capability Maturity Model Integration, modelo integrado de madurez de capacidades.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "Indica cuáles de los siguientes son elementos fundamentales para la definición del nivel de madurez de una organización de acuerdo con O-ISM3:",
+          "options": [
+            "Gestión de riesgos.",
+            "Controles de seguridad.",
+            "Gestión de la seguridad.",
+            "Todos los anteriores."
+          ],
+          "source_page": 31,
+          "source_question": 10,
+          "correct": 3,
+          "explanation": "O-ISM3, Open Information Security Management Maturity Model, considera gestión de riesgos, controles y gestión de la seguridad. La madurez no depende solo de instalar herramientas.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "title": "Programas procesos y politicas de seguridad de la informacion",
+      "questions": [
+        {
+          "question": "Indica cuál de las siguientes afirmaciones es correcta:",
+          "options": [
+            "Los programas de gestión de la seguridad incluye n siempre cursos de capacitación técnica en hacking ético.",
+            "La gestión del riesgo no incluye el desarrollo de programas de gestión de la seguridad que cubran las diferentes necesidades.",
+            "Los programas de gestión de la seguridad se debe n evaluar periódicamente para analizar su efectividad.",
+            "Ninguna de las anteriores."
+          ],
+          "source_page": 21,
+          "source_question": 1,
+          "correct": 2,
+          "explanation": "Los programas deben evaluarse periódicamente para comprobar su eficacia. No todos requieren cursos de hacking y no se consideran terminados por el mero hecho de implantarlos.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "Indica cuál de las siguientes afirmaciones es correcta:",
+          "options": [
+            "En la gestión de riesgos de seguridad se debe considerar como prioritarias aquellas vulnerabilidades que puedan tener un impacto mayor en términos económicos.",
+            "Todos los riesgos deben llevar a la implantación de controles para su mitigación.",
+            "El origen de la amenaza en la gestión de riesgos es cada una de las vulnerabilidades.",
+            "Ninguna de las anteriores."
+          ],
+          "source_page": 21,
+          "source_question": 2,
+          "correct": 3,
+          "explanation": "El riesgo se prioriza considerando probabilidad, consecuencias, contexto y criterios, no exclusivamente el daño económico. Las amenazas y vulnerabilidades son conceptos distintos, y no todo riesgo exige mitigación.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "Indica cuál de las siguientes afirmaciones es correcta:",
+          "options": [
+            "Las contramedidas se implementan sin tener en cuenta los riesgos identificados.",
+            "La gestión del riesgo se basa en el análisis de los indicadores relativos al número de intrusiones que se han detectado en cada periodo.",
+            "La gestión de riesgos se basa siempre en una escala cuantitativa.",
+            "Ninguna de las anteriores."
+          ],
+          "source_page": 21,
+          "source_question": 3,
+          "correct": 3,
+          "explanation": "Las contramedidas responden a riesgos identificados. La gestión admite escalas cualitativas, cuantitativas o mixtas y no se reduce al recuento de intrusiones detectadas.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "Indica cuál de las siguientes afirmaciones es correcta sobre el factor de exposición:",
+          "options": [
+            "Depende del valor del recurso en sí.",
+            "Depende del impacto de la pérdida en el recurso.",
+            "Depende de la probabilidad de la amenaza.",
+            "Ninguna de las anteriores."
+          ],
+          "source_page": 22,
+          "source_question": 4,
+          "correct": 1,
+          "explanation": "El factor de exposición representa la proporción o grado de pérdida del recurso cuando ocurre un escenario. Es diferente de la frecuencia con que se espera que ocurra.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "El cumplimiento de lo definido en un documento cate gorizado como directriz en una entidad:",
+          "options": [
+            "Es obligatorio en función de quién apruebe el documento.",
+            "Depende del alcance de aplicación.",
+            "Es opcional, pero debe ser tenido en cuenta.",
+            "Ninguna de las anteriores."
+          ],
+          "source_page": 22,
+          "source_question": 5,
+          "correct": 2,
+          "explanation": "Una directriz orienta y recomienda sin tener el carácter obligatorio de un estándar o una política. Aunque no sea prescriptiva, debe considerarse al decidir cómo actuar.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "Indica cuál de las siguientes afirmaciones es correcta sobre la tasa de ocurrencia:",
+          "options": [
+            "Determina el impacto final dado que representa la probabilidad de ocurrencia.",
+            "En caso de que haya información, puede estimarse mediante frecuencias registradas en el pasado.",
+            "Siempre se presenta en forma de tasa anual.",
+            "Ninguna de las anteriores."
+          ],
+          "source_page": 22,
+          "source_question": 6,
+          "correct": 1,
+          "explanation": "Las frecuencias históricas pueden servir para estimar ocurrencia cuando los datos son relevantes. Se deben justificar el periodo y la incertidumbre, sin asumir que siempre será una tasa anual.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "Indica cuál de las siguientes afirmaciones es correcta sobre el factor de exposición:",
+          "options": [
+            "El valor de los recursos en el análisis de riesgo se debe hacer a partir de su valor de mercado, y es solo aplicable a los que lo tienen.",
+            "El valor de los recursos nunca puede estimarse por el lado de los costes de pérdida, en caso de que sean medibles.",
+            "Algunos recursos tienen un valor estratégico para el mantenimiento del negocio, que son superiores a los costes invertidos en obtenerlos.",
+            "Ninguna de las anteriores."
+          ],
+          "source_page": 23,
+          "source_question": 7,
+          "correct": 2,
+          "explanation": "El valor de un activo puede incluir importancia estratégica y costes de pérdida, no solo su precio de mercado. Información o reputación pueden ser críticas sin tener precio directo de compraventa.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "Indica cuál de las siguientes afirmaciones es correcta con relación en las políticas de seguridad:",
+          "options": [
+            "Indican los objetivos de la seguridad, pero no la manera concreta de obtenerlos.",
+            "Pueden ser específicas de una aplicación o servicio, como puede ser el uso del correo electrónico.",
+            "Pueden utilizarse para resolver conflictos de responsabilidad ante incidentes de seguridad.",
+            "Todas las anteriores."
+          ],
+          "source_page": 23,
+          "source_question": 8,
+          "correct": 3,
+          "explanation": "Las políticas fijan objetivos, pueden concretarse por servicio y ayudan a asignar responsabilidades. Los pasos técnicos detallados se desarrollan en otros documentos.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "Indica cuál de las siguientes afirmaciones es correcta:",
+          "options": [
+            "Las políticas de seguridad deben definir los responsables de su cumplimiento, en términos de roles.",
+            "Las políticas de seguridad deben definir el software que se debe utilizar en cada ámbito de aplicación.",
+            "Las políticas de seguridad no deben basarse en estándares externos.",
+            "Ninguna de las anteriores."
+          ],
+          "source_page": 23,
+          "source_question": 9,
+          "correct": 0,
+          "explanation": "Una política debe indicar quién es responsable mediante roles. No tiene que convertirse en un catálogo cerrado de productos ni excluir la consideración de estándares externos.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "Indica cuál de las siguientes afirmaciones es cierta:",
+          "options": [
+            "Las políticas de seguridad deben ser independientes de las políticas globales corporativas.",
+            "Las políticas son uno de los elementos que se pueden analizar dentro de una auditoría de seguridad de la información.",
+            "Las políticas deben describirse para aquellos procesos o tareas dentro de la empresa en la que se tiene contacto con el exterior y, por tanto, hay una posibilidad de intrusión o pérdida de confidencialidad.",
+            "Ninguna de las anteriores."
+          ],
+          "source_page": 24,
+          "source_question": 10,
+          "correct": 1,
+          "explanation": "Las políticas son evidencia que puede examinarse en una auditoría. Deben alinearse con la organización y abarcar los procesos pertinentes, no únicamente la relación con el exterior.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "title": "El profesional de la seguridad de la informacion",
+      "questions": [
+        {
+          "question": "Indica cuáles de las siguientes afirmaciones respecto a los hackers éticos son ciertas:",
+          "options": [
+            "No forman parte activa de la comunidad de la seguridad de la información.",
+            "Pueden actuar al margen de la ley siempre que su fin no sea malicioso.",
+            "Todos los hackers utilizan técnicas similares, pero los así denomina dos se basan en un código ético.",
+            "Ninguna de las anteriores."
+          ],
+          "source_page": 33,
+          "source_question": 1,
+          "correct": 2,
+          "explanation": "La práctica ética combina capacidad técnica, autorización, límites acordados y un código de conducta. La ausencia de intención maliciosa no autoriza actuar al margen de la ley.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "¿Cuál de estas tareas contribuye directamente a la resiliencia de las aplicaciones de negocio?",
+          "options": [
+            "Eliminar las pruebas de restauración para ahorrar tiempo",
+            "Diseñar y comprobar una estrategia de recuperación tras interrupciones",
+            "Centralizar las alertas sin establecer responsables",
+            "Sustituir la clasificación de activos por una lista de fabricantes"
+          ],
+          "source_page": 19,
+          "source_question": 2,
+          "correct": 1,
+          "explanation": "La resiliencia incluye preparar la restauración y la continuidad de servicios. Analizar cómo recuperar aplicaciones críticas ayuda a mantener la actividad tras una interrupción.",
+          "difficulty": "media",
+          "kind": "practice",
+          "original_issue": "Las actividades del original se relacionan con continuidad o resiliencia y la exclusión no resulta inequívoca sin un contexto adicional de roles."
+        },
+        {
+          "question": "Una organización quiere coordinar sus riesgos físicos y lógicos conservando especialistas en cada área. ¿Qué propuesta favorece la seguridad integral?",
+          "options": [
+            "Separar ambos riesgos para que nunca compartan información",
+            "Eliminar las especializaciones y asignar toda tarea al mismo empleado",
+            "Un marco corporativo común con responsabilidades coordinadas",
+            "Tratar cada incidente sin comunicarlo al resto de áreas implicadas"
+          ],
+          "source_page": 20,
+          "source_question": 3,
+          "correct": 2,
+          "explanation": "La seguridad integral coordina riesgos físicos y lógicos conservando las competencias especializadas. Un marco común facilita decisiones y respuesta convergentes sin borrar responsabilidades técnicas.",
+          "difficulty": "media",
+          "kind": "practice",
+          "original_issue": "El original contiene varias propuestas razonables sin precisar el criterio de elección."
+        },
+        {
+          "question": "¿Cuál podría ser el objetivo de realizar un test de intrusión sobre la infraestructura tecnológica de una central nuclear?",
+          "options": [
+            "Evaluar la eficacia de las medidas de seguridad que el operador adoptó para proteger la central de acuerdo con la legislación vigente respecto a la protección de infraestructura críticas.",
+            "Certificar la correcta implantación de un Sistema de Gestión de la Seguridad de la Información en la entidad.",
+            "Definir los responsables de seguridad de un sistema de control industrial.",
+            "Analizar la capacidad de resiliencia con la que cuenta la planta nuclear."
+          ],
+          "source_page": 34,
+          "source_question": 4,
+          "correct": 0,
+          "explanation": "Un test de intrusión autorizado puede evaluar la eficacia de medidas técnicas bajo un alcance y condiciones acordados. No equivale por sí solo a certificar un sistema de gestión.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "En relación con el área de cumplimiento, ¿qué tipo de tareas podría llevar a cabo el profesional de la seguridad de la información?",
+          "options": [
+            "Revisar si la empresa subcontratada para limpiar las salas y despachos de la entidad ha firmado un acuerdo de confidencialidad.",
+            "Identificar todas las normativas y regulaciones vigentes con aplicación en la organización.",
+            "Asegurar la coherencia de todo el cuerpo normativo de seguridad en la entidad, identificando posibles inconsistencias.",
+            "Todas las anteriores."
+          ],
+          "source_page": 34,
+          "source_question": 5,
+          "correct": 3,
+          "explanation": "El cumplimiento incluye revisar compromisos de confidencialidad, identificar requisitos aplicables y mantener un cuerpo normativo coherente. No es solo una actividad del departamento jurídico.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "¿Qué aspectos de los siguientes son una muestra del reconocimiento de la seguridad de la información como profesión?",
+          "options": [
+            "La existencia de estándares de seguridad relacionados con el sector.",
+            "El número cada vez más elevado de ataques contra empresas y entidades a lo largo de todo el mundo.",
+            "La gran cantidad de títulos, certificaciones y programas específicos en seguridad de la información disponibles en el mercado.",
+            "Ninguna de las anteriores."
+          ],
+          "source_page": 34,
+          "source_question": 6,
+          "correct": 2,
+          "explanation": "La formación especializada, las certificaciones y la comunidad profesional apoyan el reconocimiento de una profesión. El aumento de ataques, por sí solo, no constituye una acreditación profesional.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "Indica cuáles de las siguientes afirmaciones son ciertas:",
+          "options": [
+            "Las certificaciones como el CISSP determinan el acceso al ejercicio de la profesión dentro del área de la seguridad de la información.",
+            "La profesión de la seguridad de la información cuenta con cuerpos de conocimiento definidos y una cultura profesional como otras profesiones diferenciadas.",
+            "El código ético del profesional de la información es el definido en las normas de auditoría ISO 27001.",
+            "Ninguna de las anteriores."
+          ],
+          "source_page": 34,
+          "source_question": 7,
+          "correct": 1,
+          "explanation": "El área dispone de cuerpos de conocimiento y cultura profesional. CISSP, Certified Information Systems Security Professional, acredita conocimientos y experiencia, pero no es una licencia universal para ejercer toda actividad de seguridad. Siglas: ISO: International Organization for Standardization, Organización Internacional de Normalización.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "Indica cuáles de las siguientes afirmaciones son correctas:",
+          "options": [
+            "Las revistas académicas del área de la seguridad de la información son el principal medio de formación básica para los profesionales de la seguridad de la información.",
+            "Se llama hacker ético a cualquier profesional de la seguridad de la información.",
+            "Un hacker ético puede realizar acciones de penetration testing contra una empresa siempre que no perciba beneficios económicos por ello.",
+            "Ninguna de las anteriores."
+          ],
+          "source_page": 35,
+          "source_question": 8,
+          "correct": 3,
+          "explanation": "Un hacker ético necesita autorización y condiciones acordadas para una prueba de intrusión. No cobrar no convierte una intervención no autorizada en ética ni legal.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "Indica cuáles de las áreas o conocimientos están incluidas de forma explícita en la certificación CISSP:",
+          "options": [
+            "La seguridad física de los sistemas.",
+            "La regulación sobre la protección de datos.",
+            "El desarrollo de software seguro.",
+            "Todas las anteriores."
+          ],
+          "source_page": 35,
+          "source_question": 9,
+          "correct": 3,
+          "explanation": "El temario presenta CISSP, Certified Information Systems Security Professional, como una certificación amplia con seguridad física, requisitos de protección de datos y desarrollo seguro, entre otras áreas.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "Indica cuáles de las siguientes afirmaciones son ciertas sobre las certificaciones de seguridad de la información:",
+          "options": [
+            "La certificación CAP tiene un contenido técnico equivalente a la certificación CISSP.",
+            "Las certificaciones son títulos como las titulaci ones que se obtienen y no necesitan renovarse.",
+            "La certificación CISSP solo puede obtenerse cuando se tiene experiencia profesional en el área.",
+            "Ninguna de las anteriores."
+          ],
+          "source_page": 35,
+          "source_question": 10,
+          "correct": 2,
+          "explanation": "En el esquema de certificación descrito por el material se requiere experiencia para obtener CISSP, además del examen. Las certificaciones pueden exigir mantenimiento; los nombres y requisitos concretos del tema son históricos y deben comprobarse antes de una inscripción real. Siglas: CISSP: Certified Information Systems Security Professional, certificación profesional de seguridad de sistemas de información; CAP: Certified Authorization Professional, denominación de certificación utilizada en el material.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "title": "Seguridad de la informacion y gestion de riesgos",
+      "questions": [
+        {
+          "question": "Las dimensiones de la seguridad son:",
+          "options": [
+            "Confidencialidad, integridad, disponibilidad, no repudio y privacidad.",
+            "Confidencialidad, integridad, disponibilidad, protección y trazabilidad",
+            "Confidencialidad, integridad, disponibilidad, autenticidad y trazabilidad.",
+            "Confidencialidad, privacidad, disponibilidad, autenticidad y cumplimiento."
+          ],
+          "source_page": 18,
+          "source_question": 1,
+          "correct": 2,
+          "explanation": "El tema enumera confidencialidad, integridad, disponibilidad, autenticidad y trazabilidad. Son dimensiones distintas: proteger una no garantiza automáticamente las demás.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "¿Cuándo se debe proteger la información?",
+          "options": [
+            "Desde el momento en el que el dato entra en el sistema, hasta el momento en que deja de ser útil.",
+            "Desde el momento en el que el dato entra en el sistema hasta que se procesa.",
+            "Durante la transmisión y utilización de la información.",
+            "Durante el proceso, transmisión y utilización."
+          ],
+          "source_page": 18,
+          "source_question": 2,
+          "correct": 0,
+          "explanation": "La protección debe cubrir todo el ciclo de vida mientras el dato tenga valor o requisitos de conservación. Incluye creación, almacenamiento, uso, transmisión y eliminación adecuada.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "¿Qué aporta analizar y gestionar los riesgos de seguridad a la organización?",
+          "options": [
+            "Identificar obstáculos a sus objetivos y fundamentar decisiones de tratamiento",
+            "Garantizar que no volverá a producirse ningún incidente",
+            "Sustituir todas las decisiones de negocio por cálculos automáticos",
+            "Limitar el estudio a los equipos que ya sufrieron ataques"
+          ],
+          "source_page": 9,
+          "source_question": 3,
+          "correct": 0,
+          "explanation": "Analizar riesgos ayuda a reconocer qué puede impedir alcanzar los objetivos y a decidir cómo tratarlo. No garantiza que desaparezcan los incidentes ni reemplaza las decisiones de negocio por resultados automáticos.",
+          "difficulty": "media",
+          "kind": "practice",
+          "original_issue": "El original repite literalmente las opciones A y B; se reconstruye el mismo concepto con alternativas distintas."
+        },
+        {
+          "question": "¿Cómo debe protegerse la información?",
+          "options": [
+            "Por medio de la implantación de salvaguardas.",
+            "Estableciendo procedimientos que permitan una recuperación rápida de los daños sufridos.",
+            "Minimizando la probabilidad de la materialización de una amenaza.",
+            "Disminuyendo el impacto en la organización."
+          ],
+          "source_page": 19,
+          "source_question": 4,
+          "correct": 0,
+          "explanation": "Las salvaguardas son el instrumento general de protección. Pueden reducir probabilidad, limitar consecuencias o facilitar recuperación; esas son formas de actuación de los controles.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "Una política de seguridad debe:",
+          "options": [
+            "Establecerse en términos de negocio.",
+            "Identificar las características de la organización.",
+            "Reflejar las obligaciones contractuales y legales.",
+            "Todas son ciertas."
+          ],
+          "source_page": 19,
+          "source_question": 5,
+          "correct": 3,
+          "explanation": "La política debe estar expresada en términos comprensibles para el negocio y reflejar características y obligaciones de la entidad. Una lista técnica aislada no basta.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "La gestión de riesgos no tiene como objetivo:",
+          "options": [
+            "Formar parte de la toma de decisiones.",
+            "Integrar factores humanos y culturales.",
+            "Tratar explícitamente la certidumbre.",
+            "Ser adaptable."
+          ],
+          "source_page": 19,
+          "source_question": 6,
+          "correct": 2,
+          "explanation": "La gestión del riesgo trata explícitamente la incertidumbre, no la certidumbre. Debe integrarse en decisiones, adaptarse al contexto y considerar factores humanos y culturales.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "Por acceso, se entiende:",
+          "options": [
+            "La garantía de la identidad del usuario que accede a una información.",
+            "La garantía de que en todo momento se podrá determinar quién hizo qué y en qué momento lo hizo.",
+            "la garantía de que la información es accesible en el momento en el que los usuarios autorizados (personas, organizaciones o procesos) tienen necesidad de acceder a ella.",
+            "La capacidad de poder utilizar los recursos del os sistemas de información y comunicaciones que nos permiten acceder a la información."
+          ],
+          "source_page": 20,
+          "source_question": 7,
+          "correct": 3,
+          "explanation": "Acceso es la capacidad de utilizar recursos para llegar a la información. Autenticidad, trazabilidad y disponibilidad son garantías relacionadas pero distintas.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "La gestión de riesgos tiene como objetivo gestionar o tratar el riesgo hasta:",
+          "options": [
+            "Alcanzar el nivel de riesgo aceptable por las partes interesadas.",
+            "Disminuir el riesgo inherente a los niveles asumibles por la dirección",
+            "Disminuir el riesgo residual a los niveles asumibles por la dirección.",
+            "Alcanzar los objetivos de negocio."
+          ],
+          "source_page": 20,
+          "source_question": 8,
+          "correct": 2,
+          "explanation": "El riesgo residual es el que permanece tras aplicar los controles. La dirección debe conocerlo y decidir si está dentro de los niveles que la organización acepta.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "Es la garantía de que la información no es conocida por personas, organizaciones o procesos que no disponen de la autorización necesaria:",
+          "options": [
+            "Acceso",
+            "Disponibilidad.",
+            "Confidencialidad",
+            "Privacidad."
+          ],
+          "source_page": 20,
+          "source_question": 9,
+          "correct": 2,
+          "explanation": "La confidencialidad evita que la información se divulgue a entidades no autorizadas. No equivale a disponibilidad ni se limita a los datos personales.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "Es la garantía de que la información es accesible en el momento en el que los usuarios autorizados (personas, organizaciones o procesos) tienen necesidad de acceder a ella.",
+          "options": [
+            "Acceso.",
+            "Disponibilidad.",
+            "Confidencialidad.",
+            "Privacidad."
+          ],
+          "source_page": 21,
+          "source_question": 10,
+          "correct": 1,
+          "explanation": "La disponibilidad busca que las entidades autorizadas dispongan de la información cuando la necesitan. Una información íntegra pero inaccesible puede incumplir esta dimensión.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "title": "UNE-ISO 31000. 2018 Gestion del Riesgo. Directrices",
+      "questions": [
+        {
+          "question": "La gestión de riesgos:",
+          "options": [
+            "Crea y protege el valor.",
+            "Contribuye de manera intangible al logro de los objetivos.",
+            "Es una actividad independiente.",
+            "Es una responsabilidad exclusiva de la dirección."
+          ],
+          "source_page": 62,
+          "source_question": 1,
+          "correct": 0,
+          "explanation": "ISO 31000 plantea que gestionar riesgos crea y protege valor al apoyar los objetivos. Es una actividad integrada en la organización, no una función aislada exclusiva de la dirección.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "¿Cuál de las siguientes no forma parte del contexto externo de una organización?",
+          "options": [
+            "La inestabilidad política.",
+            "Una situación de sequía permanente.",
+            "Un conflicto laboral sectorial.",
+            "Un cambio organizativo."
+          ],
+          "source_page": 62,
+          "source_question": 2,
+          "correct": 3,
+          "explanation": "Un cambio organizativo pertenece al contexto interno. La situación política, ambiental y sectorial forman parte de condiciones externas que pueden afectar a la entidad.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "¿Cuál de las siguientes no forma parte del contexto interno de una organización?",
+          "options": [
+            "El CRM del que dispone la organización.",
+            "La relación con los clientes.",
+            "Un conflicto laboral con el comité de empresa.",
+            "Un cambio legislativo."
+          ],
+          "source_page": 62,
+          "source_question": 3,
+          "correct": 3,
+          "explanation": "Un cambio legislativo procede del entorno externo. El CRM, Customer Relationship Management o sistema de gestión de relaciones con clientes, y la organización del trabajo son elementos internos.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "Un proceso de gestión de riesgos implantado según los principios y directrices de la UNE-ISO 31000 es una herramienta que ayuda a una organización a:",
+          "options": [
+            "Garantizar la eficacia y la eficiencia operacional.",
+            "Conseguir una gestión reactiva.",
+            "Ser consciente de la necesidad de identificar y tratar el riesgo en toda la organización.",
+            "Eliminar la incertidumbre."
+          ],
+          "source_page": 62,
+          "source_question": 4,
+          "correct": 2,
+          "explanation": "La gestión sistemática ayuda a identificar y tratar riesgos en toda la entidad. No garantiza éxito operativo ni elimina por completo la incertidumbre. Siglas: ISO: International Organization for Standardization, Organización Internacional de Normalización; UNE: Una Norma Española, designación de normalización española.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "De acuerdo con la UNE-ISO 31000, ¿cuál de las siguientes actividades no se realiza en la fase de Diseño del Marco de Referencia de la Gestión de Riesgo?:",
+          "options": [
+            "Asignación de roles",
+            "Asignación de recursos.",
+            "Establecimiento de los criterios de riesgo",
+            "Establecimiento de la comunicación y consulta."
+          ],
+          "source_page": 63,
+          "source_question": 5,
+          "correct": 2,
+          "explanation": "Los criterios de riesgo se establecen en el contexto del proceso. Roles, recursos y comunicación se asignan al diseñar el marco que facilita integrar ese proceso en la organización. Siglas: ISO: International Organization for Standardization, Organización Internacional de Normalización; UNE: Una Norma Española, designación de normalización española.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "La gestión de riesgos debe:",
+          "options": [
+            "Formar parte de la toma de decisiones.",
+            "No trata explícitamente la incertidumbre.",
+            "Ser sistemática, irrepetible, ortodoxa y oportuna.",
+            "Ser independiente de factores humanos y culturales."
+          ],
+          "source_page": 63,
+          "source_question": 6,
+          "correct": 0,
+          "explanation": "La gestión del riesgo debe formar parte de la toma de decisiones. Tiene en cuenta incertidumbre, factores humanos y culturales y debe ser sistemática y adaptable.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "La finalidad de la valoración del riesgo es:",
+          "options": [
+            "Ayudar a la toma de decisiones.",
+            "Determinar los criterios de riesgos a tratar.",
+            "Implantar las acciones de tratamiento del riesgo.",
+            "Todas las anteriores."
+          ],
+          "source_page": 63,
+          "source_question": 7,
+          "correct": 0,
+          "explanation": "Valorar compara el riesgo analizado con criterios para apoyar decisiones sobre su tratamiento. No equivale a ejecutar los controles ni a fijar criterios arbitrariamente después del análisis.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "Las opciones de tratamiento del riesgo:",
+          "options": [
+            "Se excluyen necesariamente unas a otras.",
+            "Son apropiadas en todas las circunstancias.",
+            "Incluyen la modificación de la probabilidad y las consecuencias.",
+            "No contemplan retener el riesgo."
+          ],
+          "source_page": 63,
+          "source_question": 8,
+          "correct": 2,
+          "explanation": "El tratamiento puede modificar probabilidad o consecuencias y combinar varias opciones. Retener de manera informada un riesgo también es una posibilidad, según criterios y responsabilidades.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "En ISO 31000 la evaluación del riesgo comprende:",
+          "options": [
+            "El establecimiento del contexto, la identificación, el análisis y la valoración del riesgo.",
+            "La identificación, el análisis y la valoración del riesgo.",
+            "La identificación, el análisis, la valoración y el tratamiento del riesgo.",
+            "El establecimiento del contexto, el análisis y el tratamiento del riesgo."
+          ],
+          "source_page": 64,
+          "source_question": 9,
+          "correct": 1,
+          "explanation": "La evaluación comprende identificación, análisis y valoración. El establecimiento de contexto la prepara y el tratamiento utiliza sus resultados; no son la misma fase. Siglas: ISO: International Organization for Standardization, Organización Internacional de Normalización.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "¿La actividad de seguimiento y la revisión durante el proceso de gestión de riesgos según la norma UNE-ISO 31000:",
+          "options": [
+            "Deberían realizarse durante la etapa de evaluación del riesgo.",
+            "Deberían realizarse durante la etapa de comunicación y consulta del proceso.",
+            "Deberían realizarse durante la etapa de definición del proceso.",
+            "Deberían realizarse en todas etapas del proceso."
+          ],
+          "source_page": 64,
+          "source_question": 10,
+          "correct": 3,
+          "explanation": "Seguimiento y revisión acompañan todo el proceso para detectar cambios, aprender y comprobar eficacia. No deben reservarse a una sola fase. Siglas: ISO: International Organization for Standardization, Organización Internacional de Normalización; UNE: Una Norma Española, designación de normalización española.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "title": "Metodologias de analisis de riesgos",
+      "questions": [
+        {
+          "question": "Magerit es una metodología:",
+          "options": [
+            "Centrada en el activo.",
+            "Centrada en el riesgo.",
+            "Centrada en la vulnerabilidad.",
+            "Centrada en la amenaza."
+          ],
+          "source_page": 47,
+          "source_question": 1,
+          "correct": 0,
+          "explanation": "Magerit parte de los activos, su valor y sus dependencias para analizar amenazas, impactos y salvaguardas. No consiste en enumerar ataques sin relacionarlos con el negocio.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "Según la metodología Magerit las decisiones respecto al riesgo no están condicionadas por:",
+          "options": [
+            "El nivel de riesgo.",
+            "El origen de amenaza.",
+            "Las obligaciones contractuales.",
+            "La gravedad del impacto."
+          ],
+          "source_page": 47,
+          "source_question": 2,
+          "correct": 1,
+          "explanation": "En la formulación del tema, las decisiones se fundamentan en riesgo, impacto y obligaciones. El origen de una amenaza no sustituye esos criterios para decidir el tratamiento.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "De acuerdo con la ISO 27005, ¿cuál de las siguientes opciones no es una característica de la apreciación de riesgos de alto nivel.",
+          "options": [
+            "Permite contemplar una lista más limitada de amenazas.",
+            "No es la más apropiada para proporcionar controles organizativos.",
+            "Proporciona una visión más global de la organización.",
+            "Puede centrarse en escenarios de riesgo."
+          ],
+          "source_page": 47,
+          "source_question": 3,
+          "correct": 1,
+          "explanation": "La apreciación de alto nivel de ISO/IEC 27005:2018 facilita visión global y medidas organizativas. Por tanto, afirmar que no es apropiada para controles organizativos contradice el enfoque descrito. La referencia es la edición o revisión citada por el temario. Siglas: ISO: International Organization for Standardization, Organización Internacional de Normalización.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "De acuerdo con la ISO 27005, la probabilidad de que se materialice una amenaza específica no depende de:",
+          "options": [
+            "El atractivo del bien o el posible impacto.",
+            "La facilidad de obtención de beneficios por parte del atacante.",
+            "El número de activos.",
+            "La facilidad de explotación de la vulnerabilidad."
+          ],
+          "source_page": 47,
+          "source_question": 4,
+          "correct": 2,
+          "explanation": "El número bruto de activos no determina por sí mismo la probabilidad de un ataque específico. Importan atractivo, capacidades e incentivos del atacante y facilidad de explotación de las debilidades. La referencia es la edición o revisión citada por el temario. Siglas: ISO: International Organization for Standardization, Organización Internacional de Normalización.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "Según la metodología Magerit, ¿cuál de las siguientes no es una técnica especifica?",
+          "options": [
+            "Análisis algorítmico.",
+            "Análisis mediante tablas.",
+            "Valoración Delphi.",
+            "Arboles de ataque."
+          ],
+          "source_page": 48,
+          "source_question": 5,
+          "correct": 2,
+          "explanation": "La valoración Delphi es una técnica general basada en consultas estructuradas a expertos. El catálogo de Magerit distingue esas técnicas generales de análisis algorítmico, mediante tablas y árboles de ataque.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "Según el enfoque detallado de ISO/IEC 27005:2018 estudiado en el tema, ¿qué debe examinarse en profundidad para evaluar los riesgos?",
+          "options": [
+            "Activos, amenazas y vulnerabilidades, relacionando sus consecuencias",
+            "Solo el inventario de marcas comerciales",
+            "Únicamente las incidencias ya publicadas en prensa",
+            "Solo la ubicación del servidor sin analizar su función"
+          ],
+          "source_page": 25,
+          "source_question": 6,
+          "correct": 0,
+          "explanation": "La apreciación detallada estudia activos, amenazas y vulnerabilidades en profundidad. Se elige para comprender escenarios concretos, asumiendo un coste y esfuerzo mayor que una visión de alto nivel. La referencia es la edición o revisión citada por el temario. Siglas: ISO: International Organization for Standardization, Organización Internacional de Normalización; IEC: International Electrotechnical Commission, Comisión Electrotécnica Internacional.",
+          "difficulty": "media",
+          "kind": "practice",
+          "original_issue": "El original enumera varias actividades o subconjuntos compatibles del análisis detallado; se explicita su conjunto para que exista una única respuesta."
+        },
+        {
+          "question": "Según la norma NIST 800-30 Rev. 1, los procesos de gestión de riesgos incluyen:",
+          "options": [
+            "El marco de referencia del riesgo, la evaluación , la respuesta y el seguimiento de los riesgos.",
+            "El marco de referencia del riesgo, la valoración , la respuesta y el seguimiento de los riesgos.",
+            "El marco de referencia del riesgo, la valoración , el tratamiento y el seguimiento de los riesgos.",
+            "El marco de referencia del riesgo, la evaluación , el tratamiento y el seguimiento de los riesgos."
+          ],
+          "source_page": 48,
+          "source_question": 7,
+          "correct": 0,
+          "explanation": "El enfoque NIST, National Institute of Standards and Technology, sitúa marco, evaluación, respuesta y seguimiento dentro de la gestión del riesgo. La evaluación no es toda la gestión. La referencia es la edición o revisión citada por el temario.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "Según la norma NIST 800-30 Rev. 1, el proceso de evaluación de riesgos se compone de las siguientes fases:",
+          "options": [
+            "Preparación, ejecución, revisión y comunicación de resultados.",
+            "Preparación, valoración, comunicación de resultados y mantenimiento.",
+            "Preparación, ejecución, comunicación de resultados y mantenimiento.",
+            "Preparación, valoración, revisión y comunicación de resultados."
+          ],
+          "source_page": 49,
+          "source_question": 8,
+          "correct": 2,
+          "explanation": "NIST SP 800-30 Rev. 1 organiza la evaluación en preparación, ejecución, comunicación de resultados y mantenimiento. Comunicar y actualizar no son pasos accesorios que se omiten tras calcular valores. La referencia es la edición o revisión citada por el temario. Siglas: NIST: National Institute of Standards and Technology, Instituto Nacional de Estándares y Tecnología de Estados Unidos.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "Según la norma NIST 800-30 Rev. 1, para estimar la probabilidad de ocurrencia de una materialización de una amenaza no hay que considerar:",
+          "options": [
+            "Los orígenes de la amenaza.",
+            "La facilidad de obtención de beneficio por parte del atacante.",
+            "Las vulnerabilidades y condiciones preexistentes.",
+            "Los controles o medidas de seguridad existentes."
+          ],
+          "source_page": 49,
+          "source_question": 9,
+          "correct": 1,
+          "explanation": "La relación explícita de factores del tema incluye fuentes de amenaza, vulnerabilidades, condiciones preexistentes y controles. Los incentivos del atacante pueden analizarse en su contexto, pero no sustituyen esos factores. La referencia es la edición o revisión citada por el temario. Siglas: NIST: National Institute of Standards and Technology, Instituto Nacional de Estándares y Tecnología de Estados Unidos.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "Según la norma NIST 800-30 Rev. 1, las aproximaciones al análisis de riesgos pueden estar orientadas a:",
+          "options": [
+            "Las amenazas, al impacto en el activo o a probabilidad.",
+            "Las amenazas, al activo o a la vulnerabilidad.",
+            "Las amenazas, al riesgo o al impacto en el activo.",
+            "Las amenazas, al impacto en el activo o a la vulnerabilidad."
+          ],
+          "source_page": 49,
+          "source_question": 10,
+          "correct": 3,
+          "explanation": "El tema describe aproximaciones centradas en amenazas, impactos sobre activos o vulnerabilidades. Cambia el punto de partida; conviene contrastarlas para reducir sesgos y omisiones. La referencia es la edición o revisión citada por el temario. Siglas: NIST: National Institute of Standards and Technology, Instituto Nacional de Estándares y Tecnología de Estados Unidos.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "title": "Evaluacion de riesgos de Tecnologias de la Informacion",
+      "questions": [
+        {
+          "question": "¿Cuál de las siguientes afirmaciones es correcta?:",
+          "options": [
+            "El riesgo potencial es el riesgo al que se está expuesto teniendo en cuenta la eficacia y madurez de los controles implantados.",
+            "El riesgo real es el riesgo al que se está expuesto sin tener en cuenta los controles implantados.",
+            "El riesgo inherente es el riesgo al que se está expuesto teniendo en cuenta la eficacia y madurez de los controles implantados.",
+            "El riesgo real es el riesgo al que se está expuesto teniendo en cuenta la eficacia y madurez de los controles implantados."
+          ],
+          "source_page": 25,
+          "source_question": 1,
+          "correct": 3,
+          "explanation": "El riesgo real considera las medidas existentes y su eficacia y madurez. El inherente o potencial describe la exposición antes de valorar ese efecto de los controles, según la terminología del tema.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "¿Cuál de las siguientes afirmaciones es correcta?",
+          "options": [
+            "Para realizar un análisis semicuantitativo es necesario estimar valores reales para las consecuencias y sus probabilidades.",
+            "Para realizar un análisis cuantitativo no es necesario estimar valores para las consecuencias y sus probabilidades.",
+            "Para realizar un análisis cualitativo es necesario estimar valores reales para las consecuencias y sus probabilidades.",
+            "Para realizar un análisis cuantitativo es necesario estimar valores reales para las consecuencias y sus probabilidades."
+          ],
+          "source_page": 25,
+          "source_question": 2,
+          "correct": 3,
+          "explanation": "El análisis cuantitativo estima consecuencias y probabilidades con valores numéricos fundamentados. Asignar números a categorías ordinales no convierte automáticamente un análisis en cuantitativo.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "A la hora de identificar los riesgos, ¿cuál de las siguientes no es una técnica valida?",
+          "options": [
+            "Análisis de escenarios.",
+            "Tormenta de ideas.",
+            "Análisis de Markov.",
+            "Análisis de fiabilidad humana."
+          ],
+          "source_page": 25,
+          "source_question": 3,
+          "correct": 2,
+          "explanation": "En la clasificación del tema Markov se incorpora al análisis de riesgos, mientras escenarios, tormenta de ideas y fiabilidad humana aparecen entre las técnicas de identificación.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "Respecto al tratamiento del riesgo, ¿cuál de las siguientes afirmaciones es correcta?",
+          "options": [
+            "Hay dos formas básicas de compartir riesgo: financiando y transfiriendo.",
+            "Para mitigar el riesgo existen tres opciones.",
+            "La eliminación de la fuente de riesgo es una opción frente a un riesgo que no es aceptable.",
+            "Solo se comparte el riesgo cualitativo."
+          ],
+          "source_page": 26,
+          "source_question": 4,
+          "correct": 2,
+          "explanation": "Eliminar una fuente es una opción de tratamiento cuando un riesgo no es aceptable. Compartir riesgos no se limita a los evaluados cualitativamente.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "A la hora de analizar los riesgos, cuál de las siguientes no es una técnica válida:",
+          "options": [
+            "Tormenta de ideas.",
+            "Análisis de Markov.",
+            "Análisis de escenarios.",
+            "Análisis del árbol de fallos."
+          ],
+          "source_page": 26,
+          "source_question": 5,
+          "correct": 0,
+          "explanation": "El material presenta tormenta de ideas como técnica de apoyo a la identificación. Markov, escenarios y árboles de fallos se incluyen en su relación de técnicas de análisis; la clasificación no significa que esté prohibido combinarlas.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "Una organización refuerza la autenticación para disminuir las intrusiones antes de que sucedan. ¿Cómo actúa esa salvaguarda?",
+          "options": [
+            "Únicamente como evidencia de una auditoría pasada",
+            "Preventivamente, reduciendo la probabilidad de materialización",
+            "Restaurando por sí sola los datos ya destruidos",
+            "Transfiriendo todas las responsabilidades al usuario"
+          ],
+          "source_page": 13,
+          "source_question": 6,
+          "correct": 1,
+          "explanation": "Una salvaguarda que reduce la probabilidad actúa preventivamente. Una copia y un procedimiento de restauración limitan consecuencias y apoyan recuperación, sin impedir por sí solos el suceso inicial.",
+          "difficulty": "media",
+          "kind": "practice",
+          "original_issue": "El original enfrenta etiquetas generales solapadas para clasificar controles; se sustituye por un caso de actuación concreta."
+        },
+        {
+          "question": "Cuál de las siguientes afirmaciones es incorrecta:",
+          "options": [
+            "El valor del impacto se debe cuantificar y se puede expresar de forma cualitativa o cuantitativa.",
+            "El riesgo aumenta cuando la probabilidad de materialización de la amenaza aumenta.",
+            "El impacto puede incrementarse por acumulación de eventos.",
+            "El impacto es independiente del número de eventos."
+          ],
+          "source_page": 26,
+          "source_question": 7,
+          "correct": 3,
+          "explanation": "Los eventos repetidos o acumulados pueden aumentar las consecuencias. No es correcto suponer que el impacto es independiente de su número o persistencia.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "Según el esquema de tres categorías de conocimiento del riesgo presentado en el tema, ¿cuál NO figura en esa clasificación?",
+          "options": [
+            "Conocido-Conocido",
+            "Conocido-Desconocido",
+            "Desconocido-Desconocido",
+            "Desconocido-Conocido"
+          ],
+          "source_page": 9,
+          "source_question": 8,
+          "correct": 3,
+          "explanation": "La clasificación didáctica incluye conocido-conocido, conocido-desconocido y desconocido-desconocido. Desconocido-conocido no es una categoría del esquema concreto presentado.",
+          "difficulty": "media",
+          "kind": "practice",
+          "original_issue": "Se acota la clasificación al esquema docente para no afirmar que otros modelos de conocimiento del riesgo sean inválidos."
+        },
+        {
+          "question": "Cuando en función del grado de conocimiento de la existencia de un posible riesgo este se clasifica como Conocido – Desconocido, significa que:",
+          "options": [
+            "El riesgo es perfectamente conocido.",
+            "El riesgo se desconoce, pero se sabe que podría existir.",
+            "Se desconoce todo incluso la posible existencia del riesgo.",
+            "El riesgo se conoce, pero nunca ha ocurrido."
+          ],
+          "source_page": 27,
+          "source_question": 9,
+          "correct": 1,
+          "explanation": "Conocido-desconocido significa reconocer que puede existir un riesgo cuyos detalles todavía se desconocen. No equivale a afirmar que se conoce perfectamente o que nunca ha ocurrido.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "Un grupo analiza «¿qué ocurriría si falla la alimentación del centro de datos?» y documenta causas y consecuencias. ¿Qué enfoque está aplicando?",
+          "options": [
+            "Exploración estructurada de escenarios de riesgo",
+            "Cálculo exclusivo de hashes de archivos",
+            "Certificación automática de todos los proveedores",
+            "Eliminación de la incertidumbre mediante una única predicción"
+          ],
+          "source_page": 11,
+          "source_question": 10,
+          "correct": 0,
+          "explanation": "Las preguntas «¿qué ocurriría si...?» permiten explorar escenarios y sus consecuencias. Es necesario registrar hipótesis, participantes y resultados para que la identificación sea trazable.",
+          "difficulty": "media",
+          "kind": "practice",
+          "original_issue": "Todas las técnicas propuestas en el original aparecen entre las aceptadas en el propio cuerpo del tema; faltaba una respuesta válida a la negación."
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "title": "Respuesta y monitorizacion",
+      "questions": [
+        {
+          "question": "Según la lista SMART del tema, ¿qué condición debe cumplir un indicador para comprobar si alcanza un umbral?",
+          "options": [
+            "Ser medible",
+            "Cambiar de definición en cada periodo",
+            "Carecer de plazo de observación",
+            "Evitar asociarse a objetivos concretos"
+          ],
+          "source_page": 17,
+          "source_question": 1,
+          "correct": 0,
+          "explanation": "La lista del tema sigue SMART: específico, medible, alcanzable, realista y a tiempo. Objetivo no sustituye ninguno de esos cinco términos en esa enumeración concreta; esto no implica que la objetividad sea indeseable.",
+          "difficulty": "media",
+          "kind": "practice",
+          "original_issue": "El original puede inducir a pensar que la objetividad es indeseable; se pregunta directamente por una característica de la lista docente."
+        },
+        {
+          "question": "¿Cuál de las siguientes afirmaciones es correcta?",
+          "options": [
+            "Una métrica es una estimación del grado en que un sistema, componente o proceso posee un atributo dado.",
+            "Una métrica es una medida cualitativa o cuantitativa del grado en que un sistema, componente o proceso posee un atributo dado.",
+            "Una métrica es una medida cuantitativa del grado en que un sistema, componente o proceso posee un atributo dado.",
+            "Una métrica es una medida cualitativa del grado en que un sistema, componente o proceso posee un atributo dado."
+          ],
+          "source_page": 31,
+          "source_question": 2,
+          "correct": 2,
+          "explanation": "El material define métrica como medida cuantitativa del grado en que un sistema o proceso posee un atributo. Distingue esa cuantificación de la interpretación orientada a decisiones que aporta un indicador.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "Los indicadores como elemento clave que da soporte a la toma de decisiones, nos permite:",
+          "options": [
+            "Medir la evolución de amenazas actuales y emergentes.",
+            "Medir la efectividad de las salvaguardas implantadas.",
+            "Medir la capacidad o habilidad de la organización en las tareas de seguridad",
+            "Todas son ciertas."
+          ],
+          "source_page": 31,
+          "source_question": 3,
+          "correct": 3,
+          "explanation": "Los indicadores apoyan decisiones al mostrar evolución de amenazas, eficacia de controles y capacidad de la organización. Un número sin contexto ni criterio de decisión es insuficiente.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "¿Qué efecto caracteriza a una salvaguarda preventiva frente a una amenaza?",
+          "options": [
+            "Reduce exclusivamente los costes de restauración después del incidente",
+            "Reduce la probabilidad de que la amenaza se materialice",
+            "Restaura por sí sola los archivos que ya se han destruido",
+            "Documenta únicamente los daños después de ocurridos"
+          ],
+          "source_page": 12,
+          "source_question": 4,
+          "correct": 1,
+          "explanation": "Las medidas preventivas actúan antes del suceso reduciendo la probabilidad de materialización de amenazas. Las medidas que reducen consecuencias realizan otra función de tratamiento.",
+          "difficulty": "media",
+          "kind": "practice",
+          "original_issue": "Las opciones B y D del original emplean formulaciones cercanas y solapadas; se separan prevención, recuperación y documentación."
+        },
+        {
+          "question": "Para poder determinar la eficacia de una salvaguarda:",
+          "options": [
+            "Es necesario conocer su grado de implantación.",
+            "No es necesario conocer su grado de implantación.",
+            "Es necesario analizar la probabilidad de materialización de una amenaza.",
+            "Es necesario analizar el impacto."
+          ],
+          "source_page": 32,
+          "source_question": 5,
+          "correct": 0,
+          "explanation": "El grado de implantación debe conocerse para valorar la eficacia real. Un control previsto en un documento no produce necesariamente los mismos efectos que uno operativo y verificado.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "Se quiere medir si mejora la gestión de riesgos. ¿Qué definición permite obtener datos comparables?",
+          "options": [
+            "Especificar entidad, atributo, método de medición, escala y criterio de interpretación",
+            "Recoger cualquier número disponible y decidir después qué significa",
+            "Cambiar el método cada semana sin registrar el cambio",
+            "Usar únicamente una impresión verbal sin periodo de referencia"
+          ],
+          "source_page": 18,
+          "source_question": 6,
+          "correct": 0,
+          "explanation": "El diseño comienza por entidades, atributos, conceptos medibles, métodos y escalas. Una medida aislada sin definición ni contexto puede no ser comparable ni útil para decidir.",
+          "difficulty": "media",
+          "kind": "practice",
+          "original_issue": "El original diferencia medidas y métricas de forma terminológica pese a que ambas se necesitan en el diseño; se reconstruye un caso inequívoco."
+        },
+        {
+          "question": "Una empresa compara cada mes la eficacia de los controles y la evolución de sus amenazas. ¿Para qué utiliza estas mediciones?",
+          "options": [
+            "Para sustituir las decisiones de negocio por el número de productos comprados",
+            "Para mejorar el conocimiento del riesgo y las decisiones de respuesta",
+            "Para garantizar que desaparece cualquier incertidumbre futura",
+            "Para evitar revisar el plan de tratamiento aunque cambie el contexto"
+          ],
+          "source_page": 19,
+          "source_question": 7,
+          "correct": 1,
+          "explanation": "Las mediciones ayudan a conocer amenazas y eficacia de salvaguardas para mejorar la respuesta al riesgo. Su finalidad no es maximizar la cantidad de herramientas ni prometer una certidumbre imposible.",
+          "difficulty": "media",
+          "kind": "practice",
+          "original_issue": "El original admite varios fines compatibles bajo una redacción general; se formula un caso con una respuesta inequívoca."
+        },
+        {
+          "question": "A la hora de elaboran las métricas es necesario definir:",
+          "options": [
+            "Los métodos de análisis, la escala y los indicadores.",
+            "Los métodos de medición, la escala y los indicadores.",
+            "Los métodos de medición, las métricas y los indicadores.",
+            "Los métodos de análisis, las métricas y los indicadores."
+          ],
+          "source_page": 33,
+          "source_question": 8,
+          "correct": 1,
+          "explanation": "Se deben definir método de medición, escala e indicadores. La comparación exige que los valores tengan significado y se obtengan de forma reproducible.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "Según su dependencia de otras mediciones, ¿cómo se denomina una métrica calculada combinando métricas de otros atributos?",
+          "options": [
+            "Directa, porque siempre se recoge sin cálculo",
+            "Indirecta, porque se deriva mediante una función de medición",
+            "Cualitativa exclusivamente, aunque el resultado sea un porcentaje",
+            "No es una métrica por utilizar otras mediciones"
+          ],
+          "source_page": 20,
+          "source_question": 9,
+          "correct": 1,
+          "explanation": "Una métrica indirecta se deriva de una o varias métricas de otros atributos mediante un algoritmo. El criterio de esta clasificación es la dependencia de otras mediciones, no si la presentación es un número o una etiqueta.",
+          "difficulty": "media",
+          "kind": "practice",
+          "original_issue": "Las opciones generales del original permiten clasificaciones solapadas; se explicita el criterio de dependencia usado por el material."
+        },
+        {
+          "question": "Cuando hablamos de indicadores, ¿a qué nos referimos con una meta?",
+          "options": [
+            "Los resultados deseados en la implantación de un o o varios objetivos de control/técnicas que son medidos por la métrica.",
+            "Las acciones que se requieren para alcanzar las medidas fijadas.",
+            "Los resultados obtenidos en la implantación de u no o varios objetivos de control/técnicas que son medidos por la métrica.",
+            "Las acciones que se requieren para alcanzar un riesgo aceptable por la Dirección."
+          ],
+          "source_page": 33,
+          "source_question": 10,
+          "correct": 0,
+          "explanation": "La meta expresa el resultado deseado; los objetivos concretan acciones para alcanzarla. Los resultados ya observados se comparan con esa meta para decidir si hay desviaciones.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        }
+      ]
+    }
+  ]
+}

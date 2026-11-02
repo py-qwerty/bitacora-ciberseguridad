@@ -1,0 +1,1760 @@
+{
+  "course": "Seguridad en redes y Análisis Inteligente de Amenazas",
+  "topics": [
+    {
+      "number": 1,
+      "title": "Introducción a la seguridad en redes",
+      "questions": [
+        {
+          "question": "Un datagrama UDP se encapsula:",
+          "options": [
+            "En la parte de datos de un segmento TCP.",
+            "En la parte de datos de un paquete IP.",
+            "En la cabecera de una trama Ethernet.",
+            "En la parte de datos de una trama SMTP."
+          ],
+          "source_page": 28,
+          "correct": 1,
+          "explanation": "UDP, User Datagram Protocol o protocolo de datagramas de usuario, funciona en transporte. Su datagrama se encapsula como datos de un paquete IP, Internet Protocol o protocolo de Internet.",
+          "difficulty": "media",
+          "kind": "temario-test",
+          "glossary": {
+            "UDP": "User Datagram Protocol: protocolo de datagramas de usuario.",
+            "TCP": "Transmission Control Protocol: protocolo de control de transmisión.",
+            "IP": "Internet Protocol: protocolo de Internet.",
+            "SMTP": "Simple Mail Transfer Protocol: protocolo simple de transferencia de correo."
+          }
+        },
+        {
+          "question": "Una firma digital permite comprobar origen e integridad de un mensaje. ¿Qué relación ilustra?",
+          "options": [
+            "Un mecanismo de seguridad puede apoyar varios servicios.",
+            "Todo mecanismo impide todos los ataques.",
+            "Los servicios solo se implementan con medidas físicas.",
+            "La integridad implica ocultar el contenido."
+          ],
+          "source_page": 21,
+          "correct": 0,
+          "explanation": "Una firma digital puede apoyar autenticidad, integridad y no repudio. Un mecanismo puede servir a varios objetivos, pero eso no significa que todos proporcionen necesariamente varios servicios.",
+          "difficulty": "media",
+          "kind": "practice",
+          "source_question": "Los mecanismos de seguridad:",
+          "original_issue": "El original afirma que cada mecanismo proporciona varios servicios, generalización que no siempre se cumple."
+        },
+        {
+          "question": "En un ataque pasivo:",
+          "options": [
+            "El atacante modifica el contenido de los mensajes cifrados.",
+            "Se bloquean las máquinas víctimas mediante un ataque de denegación de servicio.",
+            "El atacante observa una comunicación y obtiene los datos transmitidos.",
+            "Ninguna de las anteriores."
+          ],
+          "source_page": 28,
+          "correct": 2,
+          "explanation": "Un ataque pasivo observa o captura información sin modificar la comunicación. El cifrado protege el contenido; bloquear o alterar mensajes pertenece a los ataques activos.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "El servicio de autentificación:",
+          "options": [
+            "No puede ser empleado cuando el usuario se encuentra alejado del sistema de información.",
+            "Permite que solo los usuarios adecuados puedan leer la información confidencial.",
+            "Es el paso previo al servicio de control de acceso.",
+            "Las respuestas A y B son correctas."
+          ],
+          "source_page": 28,
+          "correct": 2,
+          "explanation": "La autenticación verifica quién solicita acceso. Después, el control de acceso decide qué operaciones puede realizar esa identidad; conocerla no implica concederle todos los permisos.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "El servicio de integridad de los datos:",
+          "options": [
+            "Permite detectar cambios en la integridad de los datos.",
+            "Permite evitar cambios en la integridad de los datos.",
+            "Permite evitar y detectar cambios en la integridad de los datos.",
+            "Ninguna de las anteriores."
+          ],
+          "source_page": 29,
+          "correct": 0,
+          "explanation": "El servicio de integridad permite detectar modificaciones. No garantiza que nadie intente cambiar los datos ni evita físicamente todas las alteraciones; permite descubrirlas y reaccionar.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "El servicio de no repudio en origen:",
+          "options": [
+            "Permite que pueda asegurarse que un usuario ha enviado de un mensaje.",
+            "Permite que pueda asegurarse que un usuario ha recibido un mensaje.",
+            "Las respuestas A y B son correctas.",
+            "Ninguna de las anteriores."
+          ],
+          "source_page": 29,
+          "correct": 0,
+          "explanation": "El no repudio en origen aporta evidencia de que un emisor envió el mensaje. La evidencia de recepción corresponde al no repudio en destino.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "Una organización introduce tráfico de cobertura para dificultar que un observador deduzca cuándo hay comunicaciones reales. ¿Qué mecanismo utiliza?",
+          "options": [
+            "Relleno de tráfico.",
+            "Firma de cada mensaje como única medida.",
+            "Eliminación de todas las rutas de red.",
+            "Publicación de los patrones de comunicación."
+          ],
+          "source_page": 21,
+          "correct": 0,
+          "explanation": "El relleno de tráfico añade comunicaciones de cobertura para ocultar patrones de actividad. El cifrado protege el contenido, pero por sí solo no oculta necesariamente cuándo, cuánto o con quién se comunica alguien.",
+          "difficulty": "media",
+          "kind": "practice",
+          "source_question": "El rellenado de tráfico:",
+          "original_issue": "El original no incluye una definición inequívoca del relleno de tráfico. Se pregunta por su finalidad expresamente descrita."
+        },
+        {
+          "question": "Un ataque de suplantación de identidad:",
+          "options": [
+            "Es un ataque pasivo.",
+            "Es un ataque activo.",
+            "Es un ataque que puede prevenirse usando un servicio de confidencialidad.",
+            "Ninguna de las anteriores."
+          ],
+          "source_page": 29,
+          "correct": 1,
+          "explanation": "La suplantación es activa porque el atacante se presenta como otra entidad para provocar acciones o comunicaciones. La confidencialidad por sí sola no demuestra la identidad del interlocutor.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "Los ataques de denegación de servicio:",
+          "options": [
+            "Suponen una amenaza para la confidencialidad del sistema.",
+            "Suponen una amenaza para la integridad del sistema.",
+            "Las respuestas A y B son correctas.",
+            "Ninguna de las anteriores."
+          ],
+          "source_page": 30,
+          "correct": 3,
+          "explanation": "La denegación de servicio ataca principalmente la disponibilidad: impide a los usuarios autorizados utilizar el sistema. Confidencialidad e integridad representan propiedades distintas.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "Para protegerse frente un ataque pasivo de obtención de contenido de mensaje:",
+          "options": [
+            "Es necesario un servicio de autenticación que podría proveerse a través de un mecanismo de firma digital.",
+            "Es necesario un servicio de integridad que podría proveerse a través de un mecanismo de firma digital.",
+            "Es necesario un servicio de confidencialidad que podría proveerse a través de un mecanismo de firma digital.",
+            "Es necesario un servicio de confidencialidad que podría proveerse a través de un mecanismo de cifrado."
+          ],
+          "source_page": 30,
+          "correct": 3,
+          "explanation": "El cifrado protege la confidencialidad del contenido frente a quien solo observa. Una firma digital puede probar origen e integridad, pero no oculta el mensaje por sí sola.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "title": "Seguridad perimetral",
+      "questions": [
+        {
+          "question": "El uso del cortafuegos permite:",
+          "options": [
+            "Bloquear la totalidad de las comunicaciones de un sistema de información.",
+            "Establecer condiciones de interconexión para redes con distintas políticas de red.",
+            "Las respuestas A y B son correctas.",
+            "Ninguna de las anteriores."
+          ],
+          "source_page": 25,
+          "correct": 2,
+          "explanation": "El cortafuegos puede bloquear todas las comunicaciones si así se configura y puede permitir solo interconexiones autorizadas. Debe aplicar la política elegida entre redes o zonas con necesidades distintas.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "Entre las funciones de un cortafuegos se encuentran:",
+          "options": [
+            "El control de tráfico desde la red local a internet.",
+            "El control de tráfico desde internet a la red local.",
+            "Las respuestas A y B son correctas.",
+            "Ninguna de las anteriores."
+          ],
+          "source_page": 25,
+          "correct": 2,
+          "explanation": "El filtrado puede controlar tanto tráfico entrante como saliente. Revisar únicamente las entradas no impide que una máquina comprometida establezca conexiones de salida no autorizadas.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "Dependiendo de la capa donde se establezcan los controles del cortafuegos:",
+          "options": [
+            "La seguridad de la red interna podrá ser mejor o peor.",
+            "Podrán establecerse distintos controles de seguridad.",
+            "Las respuestas A y B son correctas.",
+            "Ninguna de las anteriores."
+          ],
+          "source_page": 25,
+          "correct": 2,
+          "explanation": "La capa analizada determina qué información entiende el filtro y qué decisiones puede tomar. Un control de aplicación puede distinguir operaciones que un filtro de direcciones y puertos no interpreta.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "Las pasarelas a nivel de aplicación:",
+          "options": [
+            "Tienen el inconveniente de necesitar gran cantidad de recursos para su operación.",
+            "No permiten realizar controles en función de informaciones pertenecientes al nivel de red (IP).",
+            "Las respuestas A y B son correctas.",
+            "Ninguna de las anteriores."
+          ],
+          "source_page": 25,
+          "correct": 0,
+          "explanation": "Una pasarela de aplicación debe interpretar el protocolo, lo que consume recursos. Puede combinar esa información con datos de red; no pierde necesariamente la capacidad de considerar direcciones IP.",
+          "difficulty": "media",
+          "kind": "temario-test",
+          "glossary": {
+            "IP": "Internet Protocol: protocolo de Internet."
+          }
+        },
+        {
+          "question": "Un dispositivo cortafuegos basado en filtrado de paquetes:",
+          "options": [
+            "Permite determinar los usuarios que pueden tener acceso a una web.",
+            "Permite determinar los contenidos a los que se puede tener acceso en una web.",
+            "Las respuestas A y B son correctas.",
+            "Ninguna de las anteriores."
+          ],
+          "source_page": 26,
+          "correct": 3,
+          "explanation": "El filtrado básico de paquetes usa direcciones, protocolos y puertos. Identificar usuarios web o filtrar contenidos requiere controles adicionales en niveles superiores.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "Una política de cortafuegos restrictiva:",
+          "options": [
+            "Impide que cualquier comunicación pueda atravesar el cortafuegos.",
+            "No permite el acceso a más de un servicio de red.",
+            "Las respuestas A y B son correctas.",
+            "Ninguna de las anteriores."
+          ],
+          "source_page": 26,
+          "correct": 3,
+          "explanation": "Una política restrictiva deniega lo no autorizado y permite las excepciones necesarias. No implica bloquear todo ni permitir un único servicio.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "Los ataques de IP spoofing:",
+          "options": [
+            "Pueden ser utilizados para evadir un filtrado a nivel de red.",
+            "No pueden ser controlados mediante la utilización de pasarelas a nivel de aplicación.",
+            "Las respuestas A y B son correctas.",
+            "Ninguna de las anteriores."
+          ],
+          "source_page": 26,
+          "correct": 0,
+          "explanation": "IP spoofing es la falsificación de la dirección de origen del protocolo de Internet. Puede engañar reglas basadas solo en esa dirección; se necesitan validaciones de origen y controles adicionales.",
+          "difficulty": "media",
+          "kind": "temario-test",
+          "glossary": {
+            "IP": "Internet Protocol: protocolo de Internet."
+          }
+        },
+        {
+          "question": "Un NGFW es:",
+          "options": [
+            "Un cortafuegos de estado actual.",
+            "Un modelo específico de cortafuegos comercial.",
+            "Un cortafuegos tradicional integrado junto a otras funcionalidades de seguridad en redes.",
+            "Ninguna de las anteriores."
+          ],
+          "source_page": 26,
+          "correct": 2,
+          "explanation": "NGFW significa Next-Generation Firewall, cortafuegos de nueva generación. Integra filtrado tradicional con funciones como inspección de aplicaciones y prevención de intrusiones.",
+          "difficulty": "media",
+          "kind": "temario-test",
+          "glossary": {
+            "NGFW": "Next-Generation Firewall: cortafuegos de nueva generación."
+          }
+        },
+        {
+          "question": "En una cadena de filtrado de iptables, un paquete coincide primero con una regla ACCEPT y después con una DROP. ¿Qué sucede en ese recorrido de la cadena?",
+          "options": [
+            "Se evalúa DROP antes por ser más restrictiva.",
+            "Se elige al azar una de las reglas.",
+            "ACCEPT termina ese recorrido y no se evalúa la DROP posterior.",
+            "El orden de las reglas no influye."
+          ],
+          "source_page": 18,
+          "correct": 2,
+          "explanation": "En iptables una regla con una acción terminante, como aceptar o descartar, finaliza ese recorrido de la cadena. El orden importa: una coincidencia anterior puede impedir evaluar reglas posteriores.",
+          "difficulty": "media",
+          "kind": "practice",
+          "source_question": "En una cadena de iptables:",
+          "original_issue": "El original generaliza el fin de evaluación a cualquier acción; acciones no terminantes como LOG pueden continuar."
+        },
+        {
+          "question": "Un cortafuegos Linux enruta tráfico de Internet hacia un servidor web en otro equipo de su red. ¿Qué cadena de filtrado procesa esos paquetes al atravesar el cortafuegos?",
+          "options": [
+            "OUTPUT.",
+            "FORWARD.",
+            "INPUT.",
+            "PREROUTING."
+          ],
+          "source_page": 18,
+          "correct": 1,
+          "explanation": "En el escenario de un cortafuegos que enruta hacia un servidor interno, FORWARD procesa paquetes que atraviesan el equipo. INPUT se reserva para tráfico destinado al propio cortafuegos.",
+          "difficulty": "media",
+          "kind": "practice",
+          "source_question": "Para permitir los paquetes con destino el servidor web de mi red, debo añadir una regla en la cadena:",
+          "original_issue": "El original no distingue si el servidor está en el propio cortafuegos o detrás; se precisa el escenario de tránsito."
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "title": "Arquitecturas de seguridad en redes",
+      "questions": [
+        {
+          "question": "Una DMZ:",
+          "options": [
+            "Recibe conexiones desde la Intranet.",
+            "Recibe conexiones desde Internet.",
+            "Las respuestas A y B son correctas.",
+            "Ninguna de las anteriores."
+          ],
+          "source_page": 18,
+          "correct": 2,
+          "explanation": "DMZ significa zona desmilitarizada: aloja servicios accesibles según reglas desde el exterior y, cuando procede, desde la red interna. Estar en esa zona no equivale a permitir cualquier conexión.",
+          "difficulty": "media",
+          "kind": "temario-test",
+          "glossary": {
+            "DMZ": "Demilitarized Zone: zona desmilitarizada o red perimetral separada."
+          }
+        },
+        {
+          "question": "La zona de gestión:",
+          "options": [
+            "Es transversal al resto de zonas de la red.",
+            "Se utiliza para desplegar aplicaciones del departamento de recursos humanos.",
+            "No se debe contemplar nunca la existencia de una zona de este tipo en una arquitectura de red segura.",
+            "Ninguna de las anteriores."
+          ],
+          "source_page": 18,
+          "correct": 0,
+          "explanation": "La zona de gestión permite administrar componentes de distintas zonas. Debe restringirse a identidades y equipos autorizados, manteniendo separación respecto al tráfico habitual.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "La DMZ interna:",
+          "options": [
+            "Es la zona en la que se alojan servicios que gestionan el acceso a los datos de la zona restringida.",
+            "Permite el acceso desde el exterior.",
+            "Las respuestas A y B son correctas.",
+            "Ninguna de las anteriores."
+          ],
+          "source_page": 18,
+          "correct": 0,
+          "explanation": "La zona desmilitarizada interna sitúa servicios que median hacia datos más restringidos. No debe ofrecer acceso directo e indiscriminado desde Internet a esa información.",
+          "difficulty": "media",
+          "kind": "temario-test",
+          "glossary": {
+            "DMZ": "Demilitarized Zone: zona desmilitarizada o red perimetral separada."
+          }
+        },
+        {
+          "question": "Un equipo bastión:",
+          "options": [
+            "Es un equipo que debe estar bien protegido, ya que es un punto crítico de la infraestructura.",
+            "Es un equipo que únicamente monitoriza el tráfico, pero no lo restringe.",
+            "Es un equipo que no debe estar bien protegido para atraer a los atacantes.",
+            "Ninguna de las anteriores."
+          ],
+          "source_page": 18,
+          "correct": 0,
+          "explanation": "Un bastión está expuesto o ocupa un punto crítico, por lo que necesita endurecimiento, servicios mínimos y control estricto. No debe confundirse con un señuelo deliberadamente vulnerable.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "Cuando tenemos una arquitectura protegida por dos firewalls, en el ENS se determina que:",
+          "options": [
+            "Siempre deben ser de diferentes fabricantes.",
+            "Siempre deben ser del mismo fabricante.",
+            "No se deben utilizar dos firewalls para proteger nuestra infraestructura.",
+            "Ninguna de las anteriores."
+          ],
+          "source_page": 19,
+          "correct": 3,
+          "explanation": "El tema diferencia arquitecturas: en algunas se exige diversidad de fabricantes y en otras se elimina esa exigencia por su aislamiento adicional. Por eso no existe una regla universal de «siempre».",
+          "difficulty": "media",
+          "kind": "temario-test",
+          "glossary": {
+            "ENS": "Esquema Nacional de Seguridad."
+          }
+        },
+        {
+          "question": "En una arquitectura protegida por un único firewall:",
+          "options": [
+            "Si este se ve comprometido, el atacante no tiene acceso a nuestra infraestructura.",
+            "No se permiten en el ENS bajo ningún concepto arquitecturas con un único firewall.",
+            "Las respuestas A y B son correctas.",
+            "Ninguna de las anteriores."
+          ],
+          "source_page": 19,
+          "correct": 3,
+          "explanation": "Un único cortafuegos puede ser un punto de fallo o compromiso. El tema contempla arquitecturas con uno; no implica que una intrusión nunca pueda dar acceso al interior.",
+          "difficulty": "media",
+          "kind": "temario-test",
+          "glossary": {
+            "ENS": "Esquema Nacional de Seguridad."
+          }
+        },
+        {
+          "question": "El ENS establece que:",
+          "options": [
+            "Es requisito utilizar un proxy y un firewall siempre.",
+            "No se puede combinar la utilización de un proxy y un firewall.",
+            "Requiere la utilización de la protección mediante diodos.",
+            "Ninguna de las anteriores."
+          ],
+          "source_page": 19,
+          "correct": 3,
+          "explanation": "El Esquema Nacional de Seguridad, ENS, no exige de manera universal una combinación fija de proxy, cortafuegos y diodo. El diseño debe responder al riesgo y a los requisitos de protección aplicables.",
+          "difficulty": "media",
+          "kind": "temario-test",
+          "glossary": {
+            "ENS": "Esquema Nacional de Seguridad."
+          }
+        },
+        {
+          "question": "En la arquitectura APP-4 del tema, ¿por dónde debe pasar el tráfico entre la red interna y la externa?",
+          "options": [
+            "Directamente, evitando el intermediario.",
+            "Solo por la red de gestión.",
+            "Por el proxy, con un tramo interior–proxy y otro proxy–exterior.",
+            "Por cualquier ruta disponible sin filtrado."
+          ],
+          "source_page": 10,
+          "correct": 2,
+          "explanation": "En la arquitectura APP-4, arquitectura de protección de perímetro de tipo 4, el intercambio pasa por un intermediario. Se permite interior–proxy y proxy–exterior, evitando conexiones directas entre ambos extremos.",
+          "difficulty": "media",
+          "kind": "practice",
+          "source_question": "El tráfico permitido en la Arquitectura de Protección de Perímetro de Tipo 4 (App- 4):",
+          "original_issue": "La extracción añade párrafos explicativos después de la cuarta opción; se plantea la misma arquitectura sin contaminar las opciones."
+        },
+        {
+          "question": "Una pasarela de intercambio seguro:",
+          "options": [
+            "Están orientadas a la interconexión de redes que manejan información con diferentes políticas de seguridad.",
+            "Es obligado su uso en el ENS.",
+            "Las respuestas A y B son correctas.",
+            "Ninguna de las anteriores."
+          ],
+          "source_page": 20,
+          "correct": 0,
+          "explanation": "Una pasarela de intercambio seguro interconecta dominios con políticas distintas y controla lo que se transfiere. El tema no establece que toda organización deba instalar una.",
+          "difficulty": "media",
+          "kind": "temario-test",
+          "glossary": {
+            "ENS": "Esquema Nacional de Seguridad."
+          }
+        },
+        {
+          "question": "Una Diodo:",
+          "options": [
+            "Es un dispositivo que garantiza el flujo unidireccional de la información mediante hardware, al no existir un canal de retorno físico.",
+            "Permite evitar fugas de información.",
+            "Las respuestas A y B son correctas.",
+            "Ninguna de las anteriores."
+          ],
+          "source_page": 21,
+          "correct": 2,
+          "explanation": "Un diodo permite transmisión en un único sentido mediante una restricción física. Instalado en el sentido adecuado, impide el canal inverso por el que podría filtrarse información protegida.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "title": "Herramientas de seguridad: detección, prevención y sistemas trampa",
+      "questions": [
+        {
+          "question": "Los IDS y los IPS:",
+          "options": [
+            "Se parecen en las técnicas que emplean para la recopilación de la información.",
+            "Se diferencian en las acciones que pueden llevar a cabo.",
+            "Las respuestas A y B son correctas.",
+            "Ninguna de las anteriores."
+          ],
+          "source_page": 28,
+          "correct": 2,
+          "explanation": "IDS significa Intrusion Detection System, sistema de detección de intrusiones; IPS, Intrusion Prevention System, sistema de prevención. Pueden compartir técnicas de análisis, pero el IPS puede intervenir y bloquear.",
+          "difficulty": "media",
+          "kind": "temario-test",
+          "glossary": {
+            "IDS": "Intrusion Detection System: sistema de detección de intrusiones.",
+            "IPS": "Intrusion Prevention System: sistema de prevención de intrusiones."
+          }
+        },
+        {
+          "question": "Un switch a nivel de aplicación:",
+          "options": [
+            "Se emplean para poder manejar grandes volúmenes de información.",
+            "Se emplean para poder realizar tareas de balanceo de carga.",
+            "Las respuestas A y B son correctas.",
+            "Ninguna de las anteriores."
+          ],
+          "source_page": 28,
+          "correct": 2,
+          "explanation": "Los conmutadores de aplicación pueden procesar grandes volúmenes y distribuir solicitudes entre servidores. Entender el nivel de aplicación permite balancear con más contexto que una simple dirección de red.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "Los sistemas NIDS:",
+          "options": [
+            "Impiden que un atacante pueda penetrar en un sistema de información.",
+            "Solamente analizan el tráfico que tiene como destino el equipo en el que están desplegados.",
+            "Bloquean conexiones que sean sospechosas de formar parte de un ataque.",
+            "Ninguna de las anteriores."
+          ],
+          "source_page": 28,
+          "correct": 3,
+          "explanation": "NIDS significa Network Intrusion Detection System, sistema de detección de intrusiones en red. Analiza tráfico de un segmento y alerta; no equivale por sí solo a un dispositivo que bloquea conexiones.",
+          "difficulty": "media",
+          "kind": "temario-test",
+          "glossary": {
+            "NIDS": "Network Intrusion Detection System: sistema de detección de intrusiones en red."
+          }
+        },
+        {
+          "question": "IDS de aplicación:",
+          "options": [
+            "No pueden operar en base a informaciones del nivel de red.",
+            "Solo pueden operar con base en información de aplicación (nivel 7).",
+            "Las respuestas A y B son correctas.",
+            "Ninguna de las anteriores."
+          ],
+          "source_page": 28,
+          "correct": 3,
+          "explanation": "Un detector de aplicación dispone de información del nivel de aplicación y puede correlacionarla con datos de niveles inferiores. No queda necesariamente limitado a un único tipo de información.",
+          "difficulty": "media",
+          "kind": "temario-test",
+          "glossary": {
+            "IDS": "Intrusion Detection System: sistema de detección de intrusiones."
+          }
+        },
+        {
+          "question": "Un conmutador híbrido combina inspección de aplicación y políticas de seguridad. ¿Qué facilita su configuración según el tema?",
+          "options": [
+            "Eliminar todo conocimiento del servidor protegido.",
+            "Importar resultados de un escáner de vulnerabilidades.",
+            "Permitir automáticamente cualquier conexión cifrada.",
+            "Desactivar las reglas para reducir latencia."
+          ],
+          "source_page": 10,
+          "correct": 1,
+          "explanation": "El conmutador híbrido combina conocimiento de la aplicación con políticas de seguridad y puede aprovechar resultados de escáneres. El tema lo presenta como una forma de simplificar la configuración de controles.",
+          "difficulty": "media",
+          "kind": "practice",
+          "source_question": "Los conmutadores híbridos:",
+          "original_issue": "El test alude a políticas de alto nivel sin definirlas claramente; se evalúa una capacidad expresamente descrita en el cuerpo."
+        },
+        {
+          "question": "Los sistemas trampa:",
+          "options": [
+            "Deben emplearse para la identificación de amenazas de seguridad no recogidas en los sistemas de detección de vulnerabilidades.",
+            "Deben utilizarse solo si no se aplican periódicamente herramientas de detección de vulnerabilidades.",
+            "Las respuestas A y B son correctas.",
+            "Ninguna de las anteriores."
+          ],
+          "source_page": 29,
+          "correct": 0,
+          "explanation": "Los señuelos permiten observar técnicas y amenazas que no aparecen en una simple búsqueda de vulnerabilidades. Complementan el resto de controles; no justifican dejar de analizar los sistemas reales.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "Un sistema trampa que se implemente en un equipo físico con un sistema operativo y servicios reales es:",
+          "options": [
+            "Los sistemas trampa siempre deben ser simulados para evitar riesgos en un posible ataque que los comprometa.",
+            "Un sistema trampa basado en host.",
+            "Un sistema trampa de alta interacción.",
+            "Ninguna de las anteriores."
+          ],
+          "source_page": 29,
+          "correct": 2,
+          "explanation": "Un señuelo de alta interacción expone sistemas operativos y servicios reales para observar al atacante con más detalle. Requiere aislamiento estricto, porque también aumenta el riesgo de compromiso.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "Un sistema padded cell:",
+          "options": [
+            "Sirve rechazar ataques de red.",
+            "Sirve para proteger las comunicaciones web.",
+            "Las respuestas A y B son correctas.",
+            "Ninguna de las anteriores."
+          ],
+          "source_page": 29,
+          "correct": 3,
+          "explanation": "Una padded cell o célula de aislamiento recibe tráfico malicioso redirigido a un entorno simulado. Su finalidad es contener y estudiar al atacante, no simplemente rechazar paquetes ni proteger una comunicación web.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "Un detector identifica tráfico malicioso y lo desvía a una padded cell. ¿Cuál es la finalidad de esa acción?",
+          "options": [
+            "Reenviarlo al servidor real sin inspección.",
+            "Publicar el sistema real para aumentar su exposición.",
+            "Aislar al atacante en un entorno controlado y estudiar su actividad.",
+            "Garantizar que el atacante no detectará nunca el señuelo."
+          ],
+          "source_page": 15,
+          "correct": 2,
+          "explanation": "La célula de aislamiento trabaja junto al detector: al reconocer tráfico malicioso lo desvía a un entorno controlado. La acción preventiva consiste en separarlo del servicio real.",
+          "difficulty": "media",
+          "kind": "practice",
+          "source_question": "Los sistemas del tipo padded cell:",
+          "original_issue": "El original mezcla IDS e IPS sin una alternativa inequívoca; el cuerpo describe detección y redirección a un entorno aislado."
+        },
+        {
+          "question": "Snort:",
+          "options": [
+            "Es un sistema de detección de intrusos.",
+            "Es un sistema de prevención de intrusos.",
+            "Puede utilizarse para construir un padded cell.",
+            "Todas las anteriores son correctas."
+          ],
+          "source_page": 30,
+          "correct": 3,
+          "explanation": "Snort puede utilizarse para detectar intrusiones, prevenirlas en una configuración en línea e integrarse en soluciones de redirección a señuelos. La función concreta depende del despliegue y las reglas.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "title": "Herramientas proactivas: prevención de fugas, proxy y gestión de eventos",
+      "questions": [
+        {
+          "question": "Entre las funciones de un DLP se encuentran:",
+          "options": [
+            "El control de tráfico desde la red local a Internet.",
+            "Revisar la información que se está transmitiendo y comprobar si cumple la política de seguridad.",
+            "Las respuestas A y B son correctas.",
+            "Ninguna de las anteriores."
+          ],
+          "source_page": 31,
+          "correct": 2,
+          "explanation": "DLP significa Data Loss Prevention, prevención de pérdida o fuga de datos. Un despliegue de red revisa información saliente y puede bloquear envíos que incumplan la política.",
+          "difficulty": "media",
+          "kind": "temario-test",
+          "glossary": {
+            "DLP": "Data Loss Prevention: prevención de pérdida o fuga de datos."
+          }
+        },
+        {
+          "question": "¿Cuál de los siguientes mecanismos de detección de un DLP se basa en el uso de expresiones regulares?",
+          "options": [
+            "Indexed Document Matching.",
+            "Described Content Matching.",
+            "Vector Machine Learning.",
+            "Ninguna de las anteriores."
+          ],
+          "source_page": 31,
+          "correct": 1,
+          "explanation": "DCM, Described Content Matching o coincidencia de contenido descrito, reconoce palabras, expresiones regulares y patrones. La comparación con documentos indexados utiliza otra técnica.",
+          "difficulty": "media",
+          "kind": "temario-test",
+          "glossary": {
+            "DLP": "Data Loss Prevention: prevención de pérdida o fuga de datos."
+          }
+        },
+        {
+          "question": "¿Qué servidor proxy es el más indicado para realizar un balance de carga?",
+          "options": [
+            "Proxy de aplicación.",
+            "Proxy web cache.",
+            "Proxy transparente.",
+            "Ninguna de las anteriores."
+          ],
+          "source_page": 31,
+          "correct": 3,
+          "explanation": "El tema identifica el proxy inverso como opción habitual para balancear peticiones entre servidores. Esa denominación no aparece en las otras opciones, por lo que corresponde «ninguna».",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "Un proxy:",
+          "options": [
+            "Restringir que los usuarios entren a ciertas zonas de la red.",
+            "Evitar los ataques a nivel de protocolo o aplicación desde el exterior.",
+            "Las respuestas A y B son correctas.",
+            "Ninguna de las anteriores."
+          ],
+          "source_page": 31,
+          "correct": 2,
+          "explanation": "Un proxy media las comunicaciones y puede aplicar restricciones de acceso y comprobar el protocolo o contenido. Su protección depende del tipo de proxy y de las políticas configuradas.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "Una SIEM:",
+          "options": [
+            "Analiza el tráfico que entra a una red para restringir los permisos únicamente a ciertos protocolos.",
+            "Evita que se produzcan fugas de información.",
+            "Recibe logs de diferentes fuentes, los correlaciona y presenta los resultados de su análisis al usuario.",
+            "Ninguna de las anteriores."
+          ],
+          "source_page": 32,
+          "correct": 2,
+          "explanation": "SIEM significa Security Information and Event Management, gestión de información y eventos de seguridad. Centraliza registros, correlaciona sucesos y presenta alertas para investigar actividades relacionadas.",
+          "difficulty": "media",
+          "kind": "temario-test",
+          "glossary": {
+            "SIEM": "Security Information and Event Management: gestión de información y eventos de seguridad."
+          }
+        },
+        {
+          "question": "La correlación de eventos:",
+          "options": [
+            "Consiste en analizar logs de diferentes fuentes para encontrar relaciones entre ellos.",
+            "Consiste en realizar un filtrado de logs antes de ser almacenados en el SIEM, eliminando aquellos que se hayan recibido por duplicado desde una misma fuente.",
+            "Las respuestas A y B son correctas.",
+            "Ninguna de las anteriores."
+          ],
+          "source_page": 32,
+          "correct": 0,
+          "explanation": "Correlacionar relaciona sucesos de distintas fuentes, tiempos o identidades. Quitar duplicados puede formar parte de preparar registros, pero no define por sí mismo la correlación.",
+          "difficulty": "media",
+          "kind": "temario-test",
+          "glossary": {
+            "SIEM": "Security Information and Event Management: gestión de información y eventos de seguridad."
+          }
+        },
+        {
+          "question": "La herramienta Squid nos permite configurar:",
+          "options": [
+            "Un IDS.",
+            "Un proxy web.",
+            "Un firewall.",
+            "Un NIDS."
+          ],
+          "source_page": 32,
+          "correct": 1,
+          "explanation": "Squid es un servidor proxy web con funciones de caché y control de acceso. No es por ello un sistema de detección de intrusiones ni un cortafuegos de red completo.",
+          "difficulty": "media",
+          "kind": "temario-test",
+          "glossary": {
+            "IDS": "Intrusion Detection System: sistema de detección de intrusiones.",
+            "NIDS": "Network Intrusion Detection System: sistema de detección de intrusiones en red."
+          }
+        },
+        {
+          "question": "Squid nos permite:",
+          "options": [
+            "Implementa políticas de control de acceso.",
+            "Se integra con el Directorio Activo de Microsoft.",
+            "Soporta conexiones SSL/TLS.",
+            "Todas las anteriores son correctas."
+          ],
+          "source_page": 33,
+          "correct": 3,
+          "explanation": "Squid ofrece control de acceso, integración con identidades de Active Directory y soporte de conexiones cifradas. SSL significa Secure Sockets Layer y TLS, Transport Layer Security; TLS es el protocolo que debe emplearse en despliegues modernos.",
+          "difficulty": "media",
+          "kind": "temario-test",
+          "glossary": {
+            "SSL": "Secure Sockets Layer: antecedente histórico de TLS.",
+            "TLS": "Transport Layer Security: seguridad de la capa de transporte."
+          }
+        },
+        {
+          "question": "¿Qué directiva de configuración de Squid establece el puerto de escucha del proxy?",
+          "options": [
+            "http_port",
+            "cache_dir",
+            "http_access",
+            "acl"
+          ],
+          "source_page": 25,
+          "correct": 0,
+          "explanation": "La directiva real es http_port, con guion bajo, y establece el puerto de escucha del proxy. cache_dir controla la caché, http_access las reglas de acceso y acl define listas de control de acceso.",
+          "difficulty": "media",
+          "kind": "practice",
+          "source_question": "En Squid el comando con el que se especifica el puerto por el que se comunica el proxy es:",
+          "original_issue": "Las opciones originales pierden guiones bajos: httpport no es el nombre de la directiva real."
+        },
+        {
+          "question": "La herramienta SARG:",
+          "options": [
+            "Es un cortafuegos de nivel de red que se integra con Squid.",
+            "Muestra los logs de Squid permitiendo generar un informe de la actividad que se va registrando.",
+            "Las respuestas A y B son correctas.",
+            "Ninguna de las anteriores."
+          ],
+          "source_page": 33,
+          "correct": 1,
+          "explanation": "SARG significa Squid Analysis Report Generator, generador de informes de análisis de Squid. Convierte registros del proxy en informes de actividad; no actúa como un cortafuegos.",
+          "difficulty": "media",
+          "kind": "temario-test",
+          "glossary": {
+            "SARG": "Squid Analysis Report Generator: generador de informes a partir de registros de Squid."
+          }
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "title": "Criptografía aplicada a la seguridad en redes",
+      "questions": [
+        {
+          "question": "La diferencia entre sistemas de cifra simétrica y cifra asimétrica es que:",
+          "options": [
+            "La simétrica usa una clave para cifrar y otra distinta para descifrar.",
+            "La asimétrica usa una clave para cifrar y otra distinta para descifrar.",
+            "La simétrica cifra en bloques y la asimétrica lo hace en flujo.",
+            "La simétrica cifra en flujo y la asimétrica lo hace en bloques."
+          ],
+          "source_page": 31,
+          "correct": 1,
+          "explanation": "El cifrado asimétrico utiliza un par de claves relacionadas, pública y privada. El simétrico comparte una clave secreta; bloque o flujo es una clasificación distinta.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "El algoritmo AES:",
+          "options": [
+            "Es el sustituto de Rijndael como estándar de cifrado simétrico.",
+            "Es el sustituto de IDEA como estándar de cifrado simétrico.",
+            "Es el sustituto de RC4 como estándar de cifrado simétrico.",
+            "Es el sustituto de DES como estándar de cifrado simétrico."
+          ],
+          "source_page": 31,
+          "correct": 3,
+          "explanation": "AES significa Advanced Encryption Standard, estándar de cifrado avanzado. Se seleccionó a partir de Rijndael para sustituir a DES, Data Encryption Standard.",
+          "difficulty": "media",
+          "kind": "temario-test",
+          "glossary": {
+            "AES": "Advanced Encryption Standard: estándar de cifrado avanzado.",
+            "DES": "Data Encryption Standard: antiguo estándar de cifrado de datos.",
+            "IDEA": "International Data Encryption Algorithm: algoritmo internacional de cifrado de datos.",
+            "RC4": "Rivest Cipher 4: cifrado de flujo de Rivest, hoy considerado inseguro."
+          }
+        },
+        {
+          "question": "En el algoritmo AES, el tamaño estándar de la clave de cifra es:",
+          "options": [
+            "64, 128 y 256 bits.",
+            "128, 206 y 256 bits.",
+            "128, 192 y 256 bits.",
+            "128, 256 y 512 bits."
+          ],
+          "source_page": 31,
+          "correct": 2,
+          "explanation": "AES admite claves de 128, 192 y 256 bits. Esos tamaños de clave no deben confundirse con el bloque de datos, que en AES es de 128 bits.",
+          "difficulty": "media",
+          "kind": "temario-test",
+          "glossary": {
+            "AES": "Advanced Encryption Standard: estándar de cifrado avanzado."
+          }
+        },
+        {
+          "question": "Con un algoritmo asimétrico se suele:",
+          "options": [
+            "Cifrar mensajes de pocos bits.",
+            "Cifrar mensajes del tamaño que sea requerido.",
+            "Cifrar más rápido (en tasa de bits) que con los algoritmos de cifra simétrica.",
+            "Los algoritmos asimétricos no permiten cifrar datos."
+          ],
+          "source_page": 31,
+          "correct": 0,
+          "explanation": "Las operaciones asimétricas son más costosas y suelen proteger claves o cantidades pequeñas. Los sistemas híbridos cifran el contenido con una clave simétrica y protegen esa clave mediante criptografía asimétrica.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "¿Cuál es un uso de una función hash dentro de un esquema de firma digital?",
+          "options": [
+            "Ocultar por sí sola todo el contenido del documento.",
+            "Obtener un resumen del documento sobre el que opera la firma.",
+            "Enviar la clave privada dentro del documento.",
+            "Conceder automáticamente permisos de escritura al receptor."
+          ],
+          "source_page": 24,
+          "correct": 1,
+          "explanation": "La función hash obtiene un resumen del documento. El algoritmo de firma usa la clave privada para proteger ese resumen; al verificar se calcula de nuevo y se comprueba su correspondencia. El hash por sí solo no firma ni autentica al emisor.",
+          "difficulty": "media",
+          "kind": "practice",
+          "source_question": "Las funciones hash permiten:",
+          "original_issue": "El original confunde funciones hash con protocolos completos de autenticación y firma. Se concreta el papel del resumen."
+        },
+        {
+          "question": "El hash MD5 realiza en cada bloque:",
+          "options": [
+            "64 vueltas.",
+            "16 vueltas.",
+            "80 vueltas.",
+            "128 vueltas."
+          ],
+          "source_page": 32,
+          "correct": 0,
+          "explanation": "MD5, Message Digest 5, procesa cada bloque con 64 pasos organizados en cuatro rondas. Es un algoritmo histórico con colisiones conocidas y no debe elegirse para nuevas firmas o integridad frente a atacantes.",
+          "difficulty": "media",
+          "kind": "temario-test",
+          "glossary": {
+            "MD5": "Message Digest 5: función resumen histórica de 128 bits."
+          }
+        },
+        {
+          "question": "Indica cuál de estas afirmaciones es válida sobre el tamaño del hash:",
+          "options": [
+            "MD5 124 bits y SHA-1 160 bits.",
+            "MD5 128 bits y SHA-1 164 bits.",
+            "MD5 128 bits y SHA-1 160 bits.",
+            "MD5 128 bits y SHA-1 168 bits."
+          ],
+          "source_page": 32,
+          "correct": 2,
+          "explanation": "MD5 produce 128 bits y SHA-1, Secure Hash Algorithm 1, produce 160 bits. Ambos presentan debilidades criptográficas; conocer su tamaño no significa que sean opciones actuales recomendables.",
+          "difficulty": "media",
+          "kind": "temario-test",
+          "glossary": {
+            "MD5": "Message Digest 5: función resumen histórica de 128 bits.",
+            "SHA-1": "Secure Hash Algorithm 1: algoritmo de resumen seguro de 160 bits, con colisiones conocidas."
+          }
+        },
+        {
+          "question": "Supuesto el sistema RSA con e = 5 y n = 35, el resultado de cifrar el número 3 será:",
+          "options": [
+            "5 ^ 35 mod 3.",
+            "3 ^ 35 mod 5.",
+            "5 ^ 3 mod 35.",
+            "3 ^ 5 mod 35."
+          ],
+          "source_page": 32,
+          "correct": 3,
+          "explanation": "En RSA el cifrado del valor m es m elevado al exponente público e, módulo n. Con m=3, e=5 y n=35 se obtiene 3^5 mod 35 = 33; es un ejemplo didáctico, no parámetros seguros.",
+          "difficulty": "media",
+          "kind": "temario-test",
+          "glossary": {
+            "RSA": "Rivest–Shamir–Adleman: sistema de criptografía de clave pública."
+          }
+        },
+        {
+          "question": "La seguridad de RSA se basa en:",
+          "options": [
+            "La dificultad de factorización de números grandes compuestos por la multiplicación de 2 primos.",
+            "La dificultad de encontrar el logaritmo discreto en primos grandes.",
+            "La dificultad de factorización de números grandes primos.",
+            "Ninguna de las anteriores."
+          ],
+          "source_page": 33,
+          "correct": 0,
+          "explanation": "La dificultad de factorizar un módulo grande compuesto por dos primos es la base matemática explicada para RSA, llamado así por Rivest, Shamir y Adleman. Los números pequeños del ejemplo no ofrecen seguridad real.",
+          "difficulty": "media",
+          "kind": "temario-test",
+          "glossary": {
+            "RSA": "Rivest–Shamir–Adleman: sistema de criptografía de clave pública."
+          }
+        },
+        {
+          "question": "¿Qué afirmación distingue correctamente RSA de Diffie-Hellman?",
+          "options": [
+            "Ambos son cifrados simétricos de flujo.",
+            "RSA puede cifrar o firmar y Diffie-Hellman acuerda un secreto compartido.",
+            "Diffie-Hellman transmite la clave privada entre los participantes.",
+            "RSA no utiliza una clave pública."
+          ],
+          "source_page": 19,
+          "correct": 1,
+          "explanation": "Ambos pertenecen a la criptografía de clave pública. RSA puede cifrar y firmar; Diffie-Hellman acuerda un secreto compartido y no es por sí mismo un algoritmo para cifrar mensajes.",
+          "difficulty": "media",
+          "kind": "practice",
+          "source_question": "Los algoritmos de Diffie-Hellman y RSA:",
+          "original_issue": "El original llama cifrado asimétrico a Diffie-Hellman, que es un acuerdo de claves; se evita enseñar esa equivalencia incorrecta.",
+          "glossary": {
+            "RSA": "Rivest–Shamir–Adleman: sistema de criptografía de clave pública."
+          }
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "title": "Seguridad en redes inalámbricas",
+      "questions": [
+        {
+          "question": "WEP:",
+          "options": [
+            "No utiliza management frames.",
+            "Utiliza management frames y viajan cifrados.",
+            "Utiliza management frames y sin cifrar.",
+            "Ninguna es correcta."
+          ],
+          "source_page": 31,
+          "correct": 2,
+          "explanation": "WEP significa Wired Equivalent Privacy, privacidad equivalente a una red cableada. Sus tramas de gestión no están protegidas; esa limitación permite ataques como desautenticaciones falsificadas.",
+          "difficulty": "media",
+          "kind": "temario-test",
+          "glossary": {
+            "WEP": "Wired Equivalent Privacy: privacidad equivalente a una red cableada, protocolo Wi-Fi obsoleto."
+          }
+        },
+        {
+          "question": "En WEP:",
+          "options": [
+            "El cliente se autentica usando SKA y enviando al AP la clave compartida para demostrar que la conoce.",
+            "La integridad se consigue utilizando un hash del mensaje.",
+            "El cifrado se realiza mediante un cifrado simétrico en bloque.",
+            "Ninguna de las anteriores es correcta."
+          ],
+          "source_page": 31,
+          "correct": 3,
+          "explanation": "WEP usa RC4, Rivest Cipher 4, que es cifrado de flujo, y CRC-32, una comprobación de redundancia cíclica, no un hash criptográfico. Su autenticación de clave compartida no transmite la clave directamente.",
+          "difficulty": "media",
+          "kind": "temario-test",
+          "glossary": {
+            "WEP": "Wired Equivalent Privacy: privacidad equivalente a una red cableada, protocolo Wi-Fi obsoleto.",
+            "SKA": "Shared Key Authentication: autenticación mediante clave compartida.",
+            "AP": "Access Point: punto de acceso inalámbrico."
+          }
+        },
+        {
+          "question": "El protocolo WPA:",
+          "options": [
+            "Utiliza el algoritmo de cifrado RC4 para proteger la confidencialidad de las comunicaciones.",
+            "Utiliza el algoritmo de cifrado AES para proteger la confidencialidad de las comunicaciones.",
+            "Utiliza el algoritmo de cifrado Michael para proteger la confidencialidad de las comunicaciones.",
+            "Ninguna de las anteriores."
+          ],
+          "source_page": 31,
+          "correct": 0,
+          "explanation": "WPA, Wi-Fi Protected Access o acceso protegido Wi-Fi, utiliza RC4 dentro de TKIP, Temporal Key Integrity Protocol. Michael se usa para integridad, no como algoritmo de cifrado de contenido.",
+          "difficulty": "media",
+          "kind": "temario-test",
+          "glossary": {
+            "AES": "Advanced Encryption Standard: estándar de cifrado avanzado.",
+            "RC4": "Rivest Cipher 4: cifrado de flujo de Rivest, hoy considerado inseguro.",
+            "WPA": "Wi-Fi Protected Access: acceso protegido Wi-Fi."
+          }
+        },
+        {
+          "question": "WPA Enterprise:",
+          "options": [
+            "Utiliza 802.1x para llevar a cabo la autenticación.",
+            "WPA no tiene modo Enterprise ni Personal, esto se añade a partir de WPA2.",
+            "Es resistente al ataque KRACK.",
+            "Ofrece la misma seguridad que WPA Personal."
+          ],
+          "source_page": 31,
+          "correct": 0,
+          "explanation": "WPA Enterprise utiliza IEEE 802.1X para autenticación individual mediante una infraestructura de autenticación. No debe confundirse con el modo personal, basado en una contraseña de red compartida.",
+          "difficulty": "media",
+          "kind": "temario-test",
+          "glossary": {
+            "WPA": "Wi-Fi Protected Access: acceso protegido Wi-Fi.",
+            "WPA2": "Wi-Fi Protected Access 2: segunda versión del acceso protegido Wi-Fi.",
+            "KRACK": "Key Reinstallation Attack: ataque de reinstalación de claves."
+          }
+        },
+        {
+          "question": "WPA2:",
+          "options": [
+            "Utiliza el algoritmo de cifrado RC4 para proteger la confidencialidad de las comunicaciones.",
+            "Utiliza el algoritmo de cifrado AES para proteger la confidencialidad de las comunicaciones.",
+            "Utiliza el algoritmo de cifrado Michael para proteger la confidencialidad de las comunicaciones.",
+            "Ninguna de las anteriores."
+          ],
+          "source_page": 32,
+          "correct": 1,
+          "explanation": "WPA2 utiliza AES, Advanced Encryption Standard o estándar de cifrado avanzado, con el mecanismo CCMP. Sustituye la combinación heredada de RC4 y TKIP de WPA.",
+          "difficulty": "media",
+          "kind": "temario-test",
+          "glossary": {
+            "AES": "Advanced Encryption Standard: estándar de cifrado avanzado.",
+            "RC4": "Rivest Cipher 4: cifrado de flujo de Rivest, hoy considerado inseguro.",
+            "WPA2": "Wi-Fi Protected Access 2: segunda versión del acceso protegido Wi-Fi."
+          }
+        },
+        {
+          "question": "La integridad en WPA2:",
+          "options": [
+            "Se consigue gracias al uso de AES-CCMP.",
+            "Se consigue utilizando TKIP y MICHAEL.",
+            "No es una prioridad, ya que debe ser compatible con los dispositivos WEP.",
+            "Igual que en WEP utilizando un CRC-32."
+          ],
+          "source_page": 32,
+          "correct": 0,
+          "explanation": "CCMP, Counter Mode with Cipher Block Chaining Message Authentication Code Protocol, combina cifrado AES con autenticación de mensajes. Así protege tanto confidencialidad como integridad.",
+          "difficulty": "media",
+          "kind": "temario-test",
+          "glossary": {
+            "AES": "Advanced Encryption Standard: estándar de cifrado avanzado.",
+            "WEP": "Wired Equivalent Privacy: privacidad equivalente a una red cableada, protocolo Wi-Fi obsoleto.",
+            "WPA2": "Wi-Fi Protected Access 2: segunda versión del acceso protegido Wi-Fi.",
+            "TKIP": "Temporal Key Integrity Protocol: protocolo de integridad de claves temporales.",
+            "CRC-32": "Cyclic Redundancy Check de 32 bits: comprobación de redundancia cíclica no criptográfica."
+          }
+        },
+        {
+          "question": "¿Qué aporta WPA3 mediante las tramas de gestión protegidas?",
+          "options": [
+            "No realiza ningún cambio en relación con el algoritmo de cifrado.",
+            "Dificulta ataques de desautorización gracias a los PMF.",
+            "El uso de PMF permite la autenticación entre iguales al conocer la clave compartida.",
+            "Cifra siempre todas las tramas que envía."
+          ],
+          "source_page": 32,
+          "correct": 1,
+          "explanation": "PMF significa Protected Management Frames, tramas de gestión protegidas. Ayuda a impedir la falsificación de ciertas tramas de desautenticación; no significa que toda trama transmitida quede cifrada.",
+          "difficulty": "media",
+          "kind": "practice",
+          "glossary": {
+            "WPA3": "Wi-Fi Protected Access 3: tercera versión del acceso protegido Wi-Fi.",
+            "PMF": "Protected Management Frames: tramas de gestión protegidas."
+          },
+          "source_question": "WPA3:",
+          "original_issue": "El test repite un enunciado muy breve con distintas opciones; se explicita el aspecto evaluado y se conserva el original."
+        },
+        {
+          "question": "Según la comparación del tema, ¿qué tamaños asocia a WPA3 Personal y al perfil Enterprise de 192 bits?",
+          "options": [
+            "64 bits en ambos perfiles.",
+            "128 bits en Personal y 192 bits en el perfil Enterprise descrito.",
+            "192 bits en Personal y 64 bits en Enterprise.",
+            "Solo cifrado RC4 en los dos casos."
+          ],
+          "source_page": 23,
+          "correct": 1,
+          "explanation": "El tema compara Personal de 128 bits con un perfil Enterprise de 192 bits. Es una comparación del perfil descrito: no implica que cualquier red Enterprise utilice obligatoriamente esa configuración.",
+          "difficulty": "media",
+          "kind": "practice",
+          "source_question": "WPA3 enterprise y personal:",
+          "original_issue": "El original admite tanto diferencias de autenticación como de tamaño de clave. Se pregunta por el perfil concreto descrito, sin afirmar que todo Enterprise use siempre 192 bits.",
+          "glossary": {
+            "RC4": "Rivest Cipher 4: cifrado de flujo de Rivest, hoy considerado inseguro.",
+            "WPA3": "Wi-Fi Protected Access 3: tercera versión del acceso protegido Wi-Fi."
+          }
+        },
+        {
+          "question": "WPA3 SAE:",
+          "options": [
+            "Sustituye el 4-way handshake que se usaba en WPA y WPA2.",
+            "Se basa en el intercambio de Diffie-Hellman, añadiendo autenticación al proceso.",
+            "No puede utilizar criptografía de curva elíptica.",
+            "Protege frente a ataques de diccionario online."
+          ],
+          "source_page": 33,
+          "correct": 1,
+          "explanation": "SAE significa Simultaneous Authentication of Equals, autenticación simultánea entre iguales. Utiliza un intercambio de claves autenticado basado en contraseña y principios de Diffie-Hellman para resistir ataques de diccionario sin conexión.",
+          "difficulty": "media",
+          "kind": "temario-test",
+          "glossary": {
+            "WPA": "Wi-Fi Protected Access: acceso protegido Wi-Fi.",
+            "WPA2": "Wi-Fi Protected Access 2: segunda versión del acceso protegido Wi-Fi.",
+            "WPA3": "Wi-Fi Protected Access 3: tercera versión del acceso protegido Wi-Fi.",
+            "SAE": "Simultaneous Authentication of Equals: autenticación simultánea entre iguales."
+          }
+        },
+        {
+          "question": "¿Cómo facilita WPA3 la incorporación de dispositivos a la red?",
+          "options": [
+            "Facilita la conexión de dispositivos de IoT gracias Wi-Fi Easy Connnect.",
+            "Sigue utilizando WPS para facilitar la conexión a la red.",
+            "Elimina la posibilidad de conectarse a la red de forma simplificada (similar a WPS) por sus implicaciones en cuestiones de seguridad.",
+            "Utiliza PMF para facilitar la conexión de dispositivos con tecnología NFC."
+          ],
+          "source_page": 33,
+          "correct": 0,
+          "explanation": "Wi-Fi Easy Connect facilita el alta de dispositivos, incluidos los de IoT, Internet of Things o Internet de las cosas. No necesita mantener el mecanismo WPS, Wi-Fi Protected Setup, de generaciones anteriores.",
+          "difficulty": "media",
+          "kind": "practice",
+          "glossary": {
+            "WPA3": "Wi-Fi Protected Access 3: tercera versión del acceso protegido Wi-Fi.",
+            "PMF": "Protected Management Frames: tramas de gestión protegidas.",
+            "WPS": "Wi-Fi Protected Setup: mecanismo simplificado de configuración de redes Wi-Fi.",
+            "IoT": "Internet of Things: Internet de las cosas.",
+            "NFC": "Near-Field Communication: comunicación de campo cercano."
+          },
+          "source_question": "WPA3:",
+          "original_issue": "El test repite un enunciado muy breve con distintas opciones; se explicita el aspecto evaluado y se conserva el original."
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "title": "Protocolos de seguridad",
+      "questions": [
+        {
+          "question": "El uso de la arquitectura IPSEC:",
+          "options": [
+            "Siempre asegura la confidencialidad de los datos.",
+            "Asegura la disponibilidad de los datos.",
+            "Las respuestas A y B son correctas.",
+            "Ninguna de las anteriores."
+          ],
+          "source_page": 32,
+          "correct": 3,
+          "explanation": "IPsec, Internet Protocol Security o seguridad del protocolo de Internet, ofrece diferentes servicios según la configuración. No garantiza disponibilidad y puede emplearse autenticación sin cifrar el contenido.",
+          "difficulty": "media",
+          "kind": "temario-test",
+          "glossary": {
+            "IPSEC": "Internet Protocol Security: arquitectura de seguridad del protocolo de Internet."
+          }
+        },
+        {
+          "question": "La cabecera de autenticación (AH):",
+          "options": [
+            "Solo puede ser empleada cuando los equipos que intervienen en la comunicación implementan IPv6.",
+            "Proporciona los tres principales servicios de seguridad (confidencialidad, integridad y disponibilidad).",
+            "Proporciona los tres principales servicios de seguridad (autenticación, disponibilidad e integridad).",
+            "Ninguna de las anteriores."
+          ],
+          "source_page": 32,
+          "correct": 3,
+          "explanation": "AH significa Authentication Header, cabecera de autenticación. Aporta autenticidad e integridad en IPv4 o IPv6, pero no cifra el contenido ni garantiza disponibilidad.",
+          "difficulty": "media",
+          "kind": "temario-test",
+          "glossary": {
+            "IPv6": "Internet Protocol version 6: versión 6 del protocolo de Internet.",
+            "AH": "Authentication Header: cabecera de autenticación de IPsec."
+          }
+        },
+        {
+          "question": "ESP puede proteger una comunicación IPsec. ¿Qué combinación de servicios puede proporcionar?",
+          "options": [
+            "Confidencialidad junto con autenticación e integridad.",
+            "Disponibilidad garantizada del enlace.",
+            "Únicamente ocultación de direcciones de red.",
+            "No repudio jurídico de cada paquete."
+          ],
+          "source_page": 8,
+          "correct": 0,
+          "explanation": "ESP significa Encapsulating Security Payload, carga de seguridad encapsulada. Puede proporcionar cifrado y también autenticación e integridad; decir que ofrece solamente confidencialidad omite esas posibilidades.",
+          "difficulty": "media",
+          "kind": "practice",
+          "source_question": "El protocolo ESP:",
+          "original_issue": "El original mezcla las configuraciones opcionales de solo cifrado con una afirmación absoluta de «solo confidencialidad».",
+          "glossary": {
+            "IPsec": "Internet Protocol Security: arquitectura de seguridad del protocolo de Internet.",
+            "ESP": "Encapsulating Security Payload: carga de seguridad encapsulada."
+          }
+        },
+        {
+          "question": "En las dos fases de IKEv1 descritas, ¿qué afirmación sobre el cifrado de mensajes es correcta?",
+          "options": [
+            "Posee dos fases que están completamente cifradas para la negociación de parámetros de seguridad.",
+            "Todos los mensajes de la segunda fase están cifrados.",
+            "Las respuestas A y B son correctas.",
+            "Ninguna de las anteriores."
+          ],
+          "source_page": 32,
+          "correct": 1,
+          "explanation": "En el IKEv1 descrito, Internet Key Exchange o intercambio de claves de Internet, la segunda fase queda protegida por las claves acordadas en la primera. Los primeros mensajes de la fase inicial no están todos cifrados.",
+          "difficulty": "media",
+          "kind": "practice",
+          "glossary": {
+            "IKE": "Internet Key Exchange: intercambio de claves de Internet."
+          },
+          "source_question": "El protocolo IKE:",
+          "original_issue": "El test repite un enunciado muy breve con distintas opciones; se explicita el aspecto evaluado y se conserva el original."
+        },
+        {
+          "question": "¿Qué parámetros protege la primera fase de IKEv1 antes de negociar las asociaciones IPsec?",
+          "options": [
+            "Durante la fase 1 se establecen los parámetros de protección del protocolo ESP.",
+            "Durante la fase 1 se establecen los parámetros de protección del protocolo AH.",
+            "Durante la fase 1 se establecen los parámetros de protección de la siguiente fase IKE.",
+            "Ninguna de las anteriores."
+          ],
+          "source_page": 33,
+          "correct": 2,
+          "explanation": "La primera fase de IKEv1 establece un canal protegido para la negociación posterior. Las asociaciones y claves para AH o ESP se negocian en la segunda fase.",
+          "difficulty": "media",
+          "kind": "practice",
+          "glossary": {
+            "AH": "Authentication Header: cabecera de autenticación de IPsec.",
+            "ESP": "Encapsulating Security Payload: carga de seguridad encapsulada.",
+            "IKE": "Internet Key Exchange: intercambio de claves de Internet."
+          },
+          "source_question": "El protocolo IKE:",
+          "original_issue": "El test repite un enunciado muy breve con distintas opciones; se explicita el aspecto evaluado y se conserva el original."
+        },
+        {
+          "question": "En el IKEv1 de dos fases descrito en el tema, ¿qué se negocia en la segunda fase?",
+          "options": [
+            "La velocidad física de la tarjeta de red.",
+            "El certificado de cada página web visitada.",
+            "El contenido de los archivos transferidos.",
+            "Las asociaciones de seguridad IPsec protegidas por el canal de la primera fase."
+          ],
+          "source_page": 12,
+          "correct": 3,
+          "explanation": "En el esquema IKEv1 del tema, primero se protege la negociación y después se negocian las asociaciones IPsec. Una primera fase completada no establece por sí sola las asociaciones que transportarán los datos.",
+          "difficulty": "media",
+          "kind": "practice",
+          "source_question": "La negociación de claves de la fase 2 del protocolo IKE:",
+          "original_issue": "El original pregunta si una fase puede no ser necesaria sin precisar el servicio buscado. Se evalúa directamente su función.",
+          "glossary": {
+            "IPsec": "Internet Protocol Security: arquitectura de seguridad del protocolo de Internet.",
+            "IKEv1": "Internet Key Exchange version 1: primera versión del intercambio de claves de Internet."
+          }
+        },
+        {
+          "question": "¿Qué servicios proporciona el protocolo SSL estudiado en el tema?",
+          "options": [
+            "Proporciona autenticación e integridad.",
+            "Proporciona no repudio.",
+            "Proporciona solo confidencialidad.",
+            "Ninguna de las anteriores."
+          ],
+          "source_page": 33,
+          "correct": 0,
+          "explanation": "SSL, Secure Sockets Layer, es el antecedente histórico de TLS, Transport Layer Security. El protocolo estudia confidencialidad, autenticación e integridad, pero no ofrece por sí solo no repudio.",
+          "difficulty": "media",
+          "kind": "practice",
+          "glossary": {
+            "SSL": "Secure Sockets Layer: antecedente histórico de TLS."
+          },
+          "source_question": "El protocolo SSL:",
+          "original_issue": "El test repite un enunciado muy breve con distintas opciones; se explicita el aspecto evaluado y se conserva el original."
+        },
+        {
+          "question": "En el intercambio RSA del protocolo SSL explicado, ¿quién genera el secreto premaestro?",
+          "options": [
+            "El secreto premaestro se compone de información que ha sido generada parte en el cliente y parte en el servidor.",
+            "El secreto premaestro es generado por el cliente.",
+            "El secreto premaestro es generado por el servidor.",
+            "Ninguna de las anteriores."
+          ],
+          "source_page": 33,
+          "correct": 1,
+          "explanation": "En el intercambio RSA de SSL descrito, el cliente genera el secreto premaestro y lo envía cifrado con la clave pública del servidor. Esta descripción no debe extrapolarse a todos los intercambios de TLS modernos.",
+          "difficulty": "media",
+          "kind": "practice",
+          "glossary": {
+            "SSL": "Secure Sockets Layer: antecedente histórico de TLS."
+          },
+          "source_question": "El protocolo SSL:",
+          "original_issue": "El test repite un enunciado muy breve con distintas opciones; se explicita el aspecto evaluado y se conserva el original."
+        },
+        {
+          "question": "En el modo histórico de SSL anónimo descrito en el tema, ¿qué ocurre con la autenticación del servidor mediante certificado?",
+          "options": [
+            "Se garantiza mediante la dirección IP del destino.",
+            "Puede omitirse, por lo que no se verifica su identidad mediante certificado.",
+            "Se convierte automáticamente en una firma con no repudio.",
+            "Se reemplaza siempre por autenticación biométrica."
+          ],
+          "source_page": 23,
+          "correct": 1,
+          "explanation": "El tema permite omitir el certificado en el antiguo modo anónimo de SSL. Sin autenticación del servidor no se verifica su identidad y existe riesgo de intermediario; se estudia como posibilidad histórica, no como recomendación.",
+          "difficulty": "media",
+          "kind": "practice",
+          "source_question": "En el protocolo handshake de SSL:",
+          "original_issue": "El original admite escenarios distintos de negociación completa, reanudación y modo anónimo. Se concreta el modo descrito en el cuerpo.",
+          "glossary": {
+            "IP": "Internet Protocol: protocolo de Internet.",
+            "SSL": "Secure Sockets Layer: antecedente histórico de TLS."
+          }
+        },
+        {
+          "question": "Los mensajes de Change cipher Spec de SSL:",
+          "options": [
+            "Se emplean para enviar la clave de sesión generada en el protocolo handshake al otro extremo.",
+            "Son mensajes opcionales.",
+            "Las respuestas A y B son correctas.",
+            "Ninguna de las anteriores."
+          ],
+          "source_page": 34,
+          "correct": 3,
+          "explanation": "ChangeCipherSpec indica el cambio al conjunto de algoritmos y claves ya negociados. No transporta la clave de sesión al otro extremo: ambos participantes la derivan del material compartido.",
+          "difficulty": "media",
+          "kind": "temario-test",
+          "glossary": {
+            "SSL": "Secure Sockets Layer: antecedente histórico de TLS."
+          }
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "title": "Redes privadas virtuales y comunicaciones anónimas",
+      "questions": [
+        {
+          "question": "Para establecer una arquitectura VPN:",
+          "options": [
+            "Es necesario utilizar al menos un concentrador VPN.",
+            "Se han de cumplir bien las especificaciones del NIST o bien las del ENS.",
+            "Se debe configurar un enlace privado acordándolo con el ISP local.",
+            "Ninguna de las anteriores es correcta."
+          ],
+          "source_page": 30,
+          "correct": 3,
+          "explanation": "VPN significa Virtual Private Network, red privada virtual. Puede unir equipos directamente o conectar redes mediante pasarelas; no exige siempre un concentrador dedicado ni contratar un enlace privado.",
+          "difficulty": "media",
+          "kind": "temario-test",
+          "glossary": {
+            "NIST": "National Institute of Standards and Technology: Instituto Nacional de Estándares y Tecnología de Estados Unidos.",
+            "ENS": "Esquema Nacional de Seguridad.",
+            "VPN": "Virtual Private Network: red privada virtual.",
+            "ISP": "Internet Service Provider: proveedor de acceso a Internet."
+          }
+        },
+        {
+          "question": "Una organización posee tres sedes en distintas localizaciones geográficas y quiere trabajar como si todas ellas formaran parte de la misma red local:",
+          "options": [
+            "La arquitectura VPN ideal para esta situación es una VPN de sitio a sitio.",
+            "Debería utilizar Freenet o I2P para esto, nunca Tor.",
+            "La arquitectura ideal en esta situación sería una VPN de acceso remoto.",
+            "El protocolo más seguro para desplegar la VPN debería ser SSH."
+          ],
+          "source_page": 30,
+          "correct": 0,
+          "explanation": "Una VPN de sitio a sitio enlaza las redes de varias sedes. Una VPN de acceso remoto conecta un usuario o dispositivo externo con la organización.",
+          "difficulty": "media",
+          "kind": "temario-test",
+          "glossary": {
+            "VPN": "Virtual Private Network: red privada virtual.",
+            "SSH": "Secure Shell: protocolo de acceso remoto y túneles cifrados.",
+            "I2P": "Invisible Internet Project: proyecto de Internet invisible."
+          }
+        },
+        {
+          "question": "¿Qué protocolo presenta el tema como combinación de características de PPTP y L2F para túneles de capa dos?",
+          "options": [
+            "SSH.",
+            "HTTP.",
+            "SMTP.",
+            "L2TP."
+          ],
+          "source_page": 13,
+          "correct": 3,
+          "explanation": "L2TP significa Layer 2 Tunneling Protocol, protocolo de túneles de capa dos. El tema lo presenta como combinación de características de PPTP y L2F; para proteger el contenido suele combinarse con IPsec.",
+          "difficulty": "media",
+          "kind": "practice",
+          "source_question": "Se quiere desplegar una VPN de nivel de enlace, el protocolo a utilizar debería ser:",
+          "original_issue": "El original enumera varios protocolos que operan con túneles de enlace y no precisa criterio de elección.",
+          "glossary": {
+            "HTTP": "HyperText Transfer Protocol: protocolo de transferencia de hipertexto.",
+            "SMTP": "Simple Mail Transfer Protocol: protocolo simple de transferencia de correo.",
+            "PPTP": "Point-to-Point Tunneling Protocol: protocolo de túneles punto a punto.",
+            "L2F": "Layer 2 Forwarding: reenvío de capa dos.",
+            "L2TP": "Layer 2 Tunneling Protocol: protocolo de túneles de capa dos.",
+            "SSH": "Secure Shell: protocolo de acceso remoto y túneles cifrados."
+          }
+        },
+        {
+          "question": "¿Qué protocolo se podría utilizar para desplegar una VPN de equipo a equipo?",
+          "options": [
+            "IPsec.",
+            "SSH.",
+            "SSL/TLS.",
+            "Todas las anteriores son correctas."
+          ],
+          "source_page": 30,
+          "correct": 3,
+          "explanation": "Una conexión segura de equipo a equipo puede construirse con distintas tecnologías según la capa y los servicios requeridos. IPsec, SSH y TLS son alternativas con arquitecturas y alcances diferentes.",
+          "difficulty": "media",
+          "kind": "temario-test",
+          "glossary": {
+            "IPsec": "Internet Protocol Security: arquitectura de seguridad del protocolo de Internet.",
+            "SSL": "Secure Sockets Layer: antecedente histórico de TLS.",
+            "TLS": "Transport Layer Security: seguridad de la capa de transporte.",
+            "VPN": "Virtual Private Network: red privada virtual.",
+            "SSH": "Secure Shell: protocolo de acceso remoto y túneles cifrados."
+          }
+        },
+        {
+          "question": "El protocolo más común para implementar redes VPN de nivel de aplicación es:",
+          "options": [
+            "IPsec.",
+            "SSH.",
+            "SSL/TLS.",
+            "L2TP."
+          ],
+          "source_page": 31,
+          "correct": 1,
+          "explanation": "SSH significa Secure Shell, intérprete seguro de órdenes. El tema lo sitúa como mecanismo de túneles de aplicación; SSL/TLS se describe en la capa de transporte e IPsec en la de red.",
+          "difficulty": "media",
+          "kind": "temario-test",
+          "glossary": {
+            "IPsec": "Internet Protocol Security: arquitectura de seguridad del protocolo de Internet.",
+            "SSL": "Secure Sockets Layer: antecedente histórico de TLS.",
+            "TLS": "Transport Layer Security: seguridad de la capa de transporte.",
+            "VPN": "Virtual Private Network: red privada virtual.",
+            "L2TP": "Layer 2 Tunneling Protocol: protocolo de túneles de capa dos.",
+            "SSH": "Secure Shell: protocolo de acceso remoto y túneles cifrados."
+          }
+        },
+        {
+          "question": "Una persona usa Tor para visitar una red social y después inicia sesión con su cuenta personal. ¿Qué debe comprender?",
+          "options": [
+            "Tor impide que la red social reconozca la cuenta.",
+            "La sesión personal deja de revelar cualquier dato identificativo.",
+            "Ocultar la dirección de origen no elimina la identidad revelada por la cuenta o el contenido.",
+            "Freenet convierte automáticamente la cuenta en anónima."
+          ],
+          "source_page": 24,
+          "correct": 2,
+          "explanation": "Tor, The Onion Router, encamina el tráfico mediante varios nodos y puede ayudar a ocultar la dirección de origen al destino. No garantiza anonimato si la persona se identifica con su cuenta o revela datos personales.",
+          "difficulty": "media",
+          "kind": "practice",
+          "source_question": "Una persona teme que sus comentarios en redes sociales puedan ser utilizados en su contra por el gobierno totalitario en el que se encuentra. Para estar segura, ¿qué debería utilizar al publicar en redes?",
+          "original_issue": "El original promete estar segura en un escenario de represión y confunde acceso a redes sociales con publicación en redes distintas. Se evita una falsa garantía de anonimato."
+        },
+        {
+          "question": "Para encontrar un recurso en Freenet:",
+          "options": [
+            "Se consulta un directorio centralizado en el que se almacenan.",
+            "Se envía un mensaje de búsqueda a la red hasta que se encuentra el nodo que lo tiene almacenado en su disco.",
+            "Basta con hacer una consulta local, ya que se almacena en nuestro disco.",
+            "Ninguna respuesta es correcta."
+          ],
+          "source_page": 31,
+          "correct": 1,
+          "explanation": "Freenet distribuye peticiones de búsqueda entre nodos vecinos hasta localizar el contenido solicitado. No depende de un directorio central con todos los archivos ni exige tenerlos ya en el disco local.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "Para comunicarnos con un nodo de la red I2P:",
+          "options": [
+            "Solicitamos su información a un directorio centralizado.",
+            "Enviamos una consulta a una tabla de hash distribuidos DHT.",
+            "Basta con conocer su IP.",
+            "Debemos conocer sus túneles de salida para enviar a ellos la petición."
+          ],
+          "source_page": 31,
+          "correct": 1,
+          "explanation": "I2P significa Invisible Internet Project, proyecto de Internet invisible. Su base de datos de red distribuida permite localizar información de los destinos y sus túneles; no basta con conocer una dirección IP.",
+          "difficulty": "media",
+          "kind": "temario-test",
+          "glossary": {
+            "IP": "Internet Protocol: protocolo de Internet.",
+            "I2P": "Invisible Internet Project: proyecto de Internet invisible.",
+            "DHT": "Distributed Hash Table: tabla hash distribuida."
+          }
+        },
+        {
+          "question": "Para conectarnos con la red TOR:",
+          "options": [
+            "Solicitamos la información necesaria a un directorio centralizado.",
+            "Enviamos una consulta a una tabla de hash distribuidos DHT para descubrir los tres routers con los que nos debemos comunicar.",
+            "Enviamos un mensaje a nuestros vecinos para descubrir los routers intermedios.",
+            "Ninguna respuesta es correcta."
+          ],
+          "source_page": 32,
+          "correct": 0,
+          "explanation": "El modelo de Tor del tema consulta información de directorio para conocer nodos y claves. Los datos de los repetidores permiten construir el circuito sin enviar una búsqueda a todos los vecinos.",
+          "difficulty": "media",
+          "kind": "temario-test",
+          "glossary": {
+            "TOR": "The Onion Router: red de encaminamiento por capas.",
+            "DHT": "Distributed Hash Table: tabla hash distribuida."
+          }
+        },
+        {
+          "question": "En el circuito Tor descrito, ¿con qué claves se cifran sucesivamente las capas de los datos enviados?",
+          "options": [
+            "Exclusivamente con una misma clave pública compartida por todos los nodos.",
+            "Con una clave simétrica acordada con cada repetidor del circuito.",
+            "Con la contraseña de la cuenta del usuario en el destino.",
+            "Con la dirección IP del servidor final usada como clave."
+          ],
+          "source_page": 24,
+          "correct": 1,
+          "explanation": "El cliente acuerda una clave simétrica con cada repetidor y construye capas de cifrado. Las claves públicas ayudan a establecer esos secretos, pero no son las claves empleadas para cifrar cada capa de todos los datos.",
+          "difficulty": "media",
+          "kind": "practice",
+          "source_question": "En Onion Routing:",
+          "original_issue": "El original admite tanto acuerdo de claves como selección del circuito; se concreta el mecanismo de cifrado por capas.",
+          "glossary": {
+            "IP": "Internet Protocol: protocolo de Internet."
+          }
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "title": "Seguridad en Cloud",
+      "questions": [
+        {
+          "question": "¿Con qué formato se indican los recursos a los que aplica una directiva de IAM?",
+          "options": [
+            "JSON.",
+            "ARN.",
+            "La opción A y B son posibles.",
+            "Ninguna de las anteriores."
+          ],
+          "source_page": 19,
+          "correct": 1,
+          "explanation": "ARN significa Amazon Resource Name, nombre de recurso de Amazon. Identifica los recursos sobre los que opera una política; JSON es el formato del documento que contiene esa política.",
+          "difficulty": "media",
+          "kind": "temario-test",
+          "glossary": {
+            "JSON": "JavaScript Object Notation: notación de objetos de JavaScript.",
+            "IAM": "Identity and Access Management: gestión de identidades y acceso.",
+            "ARN": "Amazon Resource Name: identificador de un recurso de Amazon."
+          }
+        },
+        {
+          "question": "¿Qué permisos por defecto recibe un usuario al que no se le aplica ninguna directiva de IAM?",
+          "options": [
+            "Ninguno.",
+            "De impersonación.",
+            "Solo de lectura sobre todos los recursos de la cuenta.",
+            "Todos los permisos están habilitados, a menos que los restrinja una política explícitamente."
+          ],
+          "source_page": 19,
+          "correct": 0,
+          "explanation": "IAM significa Identity and Access Management, gestión de identidades y acceso. Sin una concesión de permisos aplicable, la evaluación parte de la denegación implícita; no se otorga lectura general por defecto.",
+          "difficulty": "media",
+          "kind": "temario-test",
+          "glossary": {
+            "IAM": "Identity and Access Management: gestión de identidades y acceso."
+          }
+        },
+        {
+          "question": "¿Qué valor debe tener el campo effect para permitir una acción?",
+          "options": [
+            "Allow.",
+            "Deny.",
+            "Read.",
+            "Enabled."
+          ],
+          "source_page": 19,
+          "correct": 0,
+          "explanation": "El campo Effect debe contener Allow para conceder las acciones de esa declaración. Una denegación explícita aplicable puede seguir prevaleciendo sobre dicha concesión.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "¿Qué elemento me permite reducir el número de permisos que debo especificar para acceder a un recurso?",
+          "options": [
+            "ARN.",
+            "Roles.",
+            "Comodines.",
+            "Ninguna de las anteriores."
+          ],
+          "source_page": 19,
+          "correct": 2,
+          "explanation": "Los comodines pueden abreviar patrones de acciones o recursos. También amplían el alcance y deben revisarse para no conceder más permisos de los necesarios.",
+          "difficulty": "media",
+          "kind": "temario-test",
+          "glossary": {
+            "ARN": "Amazon Resource Name: identificador de un recurso de Amazon."
+          }
+        },
+        {
+          "question": "¿Cuál de los siguientes elementos es parte de las redes virtuales?",
+          "options": [
+            "Espacio de direcciones.",
+            "Subredes.",
+            "Regiones.",
+            "Todas las opciones son correctas."
+          ],
+          "source_page": 20,
+          "correct": 3,
+          "explanation": "El tema enumera espacio de direcciones, subredes y región al describir redes virtuales. La región ubica la red; las subredes dividen su espacio de direcciones.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "¿Con qué formato se indican las directivas de IAM?",
+          "options": [
+            "JSON.",
+            "ARN.",
+            "La opción A y B son posibles.",
+            "Ninguna de las anteriores."
+          ],
+          "source_page": 20,
+          "correct": 0,
+          "explanation": "Las políticas se expresan en JSON, JavaScript Object Notation o notación de objetos de JavaScript. Dentro del documento se especifican efectos, acciones, recursos y, cuando procede, condiciones.",
+          "difficulty": "media",
+          "kind": "temario-test",
+          "glossary": {
+            "JSON": "JavaScript Object Notation: notación de objetos de JavaScript.",
+            "IAM": "Identity and Access Management: gestión de identidades y acceso.",
+            "ARN": "Amazon Resource Name: identificador de un recurso de Amazon."
+          }
+        },
+        {
+          "question": "¿Qué es Secaas?",
+          "options": [
+            "Ofrecer un servicio de seguridad desde un entorno en la nube.",
+            "Prohibición de desplegar servicios en entornos en la nube.",
+            "Ofrecer servicios de seguridad de forma local, estando prohibida su interconexión con Internet.",
+            "Ninguna de las anteriores."
+          ],
+          "source_page": 20,
+          "correct": 0,
+          "explanation": "SECaaS significa Security as a Service, seguridad como servicio. Consiste en recibir funciones de seguridad desde servicios en la nube, con responsabilidades y condiciones que deben definirse.",
+          "difficulty": "media",
+          "kind": "temario-test"
+        },
+        {
+          "question": "¿Qué ventajas puede ofrecer un servicio de seguridad desde la nube, según el tema y dependiendo de su diseño y acuerdos?",
+          "options": [
+            "Gestión simplificada.",
+            "Escalabilidad.",
+            "Mayor continuidad mediante una arquitectura y un acuerdo de servicio adecuados.",
+            "Todas las opciones anteriores."
+          ],
+          "source_page": 13,
+          "correct": 3,
+          "explanation": "La oferta de seguridad desde la nube puede facilitar gestión, escalabilidad y disponibilidad. La continuidad real depende del diseño y de los acuerdos del servicio; no constituye una garantía absoluta.",
+          "difficulty": "media",
+          "kind": "practice",
+          "source_question": "¿Cuál de las siguientes características nos ofrecen los servicios de seguridad dados desde la nube?",
+          "original_issue": "El original presenta disponibilidad constante como propiedad garantizada. Se formula como beneficio condicionado, no como promesa absoluta."
+        },
+        {
+          "question": "Los roles en AWS:",
+          "options": [
+            "Se pueden aplicar únicamente a usuarios de dentro de la organización.",
+            "Se pueden aplicar únicamente a usuarios de fuera de la organización.",
+            "Se pueden aplicar a usuarios de dentro y de fuera de la organización.",
+            "No se pueden definir roles en AWS."
+          ],
+          "source_page": 21,
+          "correct": 2,
+          "explanation": "AWS significa Amazon Web Services, servicios web de Amazon. Un rol puede ser asumido por identidades internas o externas autorizadas mediante su política de confianza; conocer su nombre no basta para asumirlo.",
+          "difficulty": "media",
+          "kind": "temario-test",
+          "glossary": {
+            "AWS": "Amazon Web Services: servicios web de Amazon."
+          }
+        },
+        {
+          "question": "¿Cómo se gestiona en AWS el acceso a las API?",
+          "options": [
+            "Únicamente con usuario y contraseña.",
+            "Con una clave y un secreto adicionales.",
+            "Únicamente con certificados digitales.",
+            "Ninguna de las opciones anteriores es correcta."
+          ],
+          "source_page": 21,
+          "correct": 1,
+          "explanation": "Para las solicitudes programáticas descritas se utiliza un identificador de clave de acceso y una clave secreta para firmar. En despliegues reales deben preferirse roles y credenciales temporales cuando sea posible; API significa interfaz de programación de aplicaciones.",
+          "difficulty": "media",
+          "kind": "temario-test",
+          "glossary": {
+            "API": "Application Programming Interface: interfaz de programación de aplicaciones.",
+            "AWS": "Amazon Web Services: servicios web de Amazon."
+          }
+        }
+      ]
+    }
+  ]
+}

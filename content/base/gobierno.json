@@ -1,0 +1,2665 @@
+{
+  "course": "Gobierno de la ciberseguridad y Análisis de riesgos",
+  "topics": [
+    {
+      "number": 1,
+      "title": "La seguridad de la informacion en las organizaciones",
+      "questions": [
+        {
+          "question": "Un empleado envía una lista de clientes a un competidor. ¿Qué propiedad se vulnera directamente?",
+          "options": [
+            "Integridad",
+            "Confidencialidad",
+            "Disponibilidad",
+            "Autenticidad"
+          ],
+          "correct": 1,
+          "explanation": "La confidencialidad impide revelar información a destinatarios no autorizados.",
+          "source_page": 13,
+          "difficulty": "básica"
+        },
+        {
+          "question": "Se altera sin autorización el saldo de una cuenta. ¿Qué propiedad resulta afectada?",
+          "options": [
+            "Confidencialidad",
+            "Autenticidad",
+            "Integridad",
+            "Disponibilidad"
+          ],
+          "correct": 2,
+          "explanation": "La integridad protege frente a modificaciones no autorizadas de los datos.",
+          "source_page": 15,
+          "difficulty": "básica"
+        },
+        {
+          "question": "La web deja de atender pedidos por saturación. ¿Qué propiedad falla principalmente?",
+          "options": [
+            "Confidencialidad",
+            "Autenticidad",
+            "Integridad",
+            "Disponibilidad"
+          ],
+          "correct": 3,
+          "explanation": "La disponibilidad permite utilizar información y servicios cuando se necesitan.",
+          "source_page": 17,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Por qué comprar una herramienta de seguridad no termina el trabajo de protección?",
+          "options": [
+            "Porque la seguridad requiere un proceso continuo",
+            "Porque el mantenimiento queda resuelto con la auditoría inicial",
+            "Porque instalarla equivale a completar la clasificación de los datos",
+            "Porque la protección se limita después a renovar la licencia"
+          ],
+          "correct": 0,
+          "explanation": "Los controles deben revisarse y adaptarse a nuevos riesgos y cambios de la organización.",
+          "source_page": 25,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Quién establece la criticidad de un activo conforme a la política de clasificación?",
+          "options": [
+            "El administrador del soporte, por el hecho de alojarlo",
+            "El propietario del activo",
+            "El auditor externo, sin consultar al negocio",
+            "El proveedor técnico, por el hecho de suministrarlo"
+          ],
+          "correct": 1,
+          "explanation": "El propietario clasifica la información; puede delegar tareas rutinarias de protección.",
+          "source_page": 31,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué diferencia al custodio del propietario de un activo?",
+          "options": [
+            "El custodio ejecuta protección rutinaria delegada",
+            "El custodio determina la sensibilidad sin instrucciones del propietario",
+            "El propietario debe ejecutar personalmente toda protección diaria",
+            "La delegación de custodia transfiere automáticamente la propiedad"
+          ],
+          "correct": 0,
+          "explanation": "El propietario establece criticidad y delega funciones operativas de protección.",
+          "source_page": 31,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué diferencia un estándar interno de una directriz?",
+          "options": [
+            "El estándar recomienda y la directriz impone",
+            "El estándar solo regula productos y la directriz solo personas",
+            "El estándar es obligatorio y la directriz recomienda",
+            "Ambos tienen idéntico carácter obligatorio por publicarse internamente"
+          ],
+          "correct": 2,
+          "explanation": "Son herramientas diferentes para desarrollar las políticas de seguridad.",
+          "source_page": 27,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Por qué conviene clasificar la información antes de elegir controles?",
+          "options": [
+            "Porque la clasificación se decide solo por el formato del archivo",
+            "Porque se puede sustituir la valoración por la marca del producto adquirido",
+            "Porque el nivel asignado deja de necesitar revisión cuando cambia el contexto",
+            "Porque su valor y sensibilidad condicionan la protección"
+          ],
+          "correct": 3,
+          "explanation": "No toda información tiene el mismo valor ni provoca el mismo perjuicio al divulgarse.",
+          "source_page": 29,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué relación económica debe examinarse al invertir en seguridad?",
+          "options": [
+            "Coste de protección e impacto de riesgos probables",
+            "Solo el precio del control, sin valorar consecuencias evitadas",
+            "Solo la frecuencia de ataques, sin estimar sus daños",
+            "Únicamente el precio de compra del activo, excluyendo pérdidas indirectas"
+          ],
+          "correct": 0,
+          "explanation": "La seguridad plantea un equilibrio entre sus costes y los daños que ayuda a evitar.",
+          "source_page": 19,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué caracteriza a un procedimiento de seguridad?",
+          "options": [
+            "Fija los principios generales sin detallar su ejecución",
+            "Describe cómo realizar una tarea concreta",
+            "Define solo la visión estratégica",
+            "Recomienda alternativas sin establecer una secuencia de trabajo"
+          ],
+          "correct": 1,
+          "explanation": "Los procedimientos concretan actividades para implantar políticas y estándares.",
+          "source_page": 27,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Para qué sirve un control de seguridad en relación con un riesgo?",
+          "options": [
+            "Para convertir una aceptación de riesgo en una transferencia",
+            "Para justificar la seguridad únicamente por su presencia en el inventario",
+            "Para reducir su probabilidad o su impacto",
+            "Para trasladar automáticamente al proveedor la responsabilidad del riesgo"
+          ],
+          "correct": 2,
+          "explanation": "Los controles pueden disminuir la ocurrencia o las consecuencias de una amenaza.",
+          "source_page": 33,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Por qué una contraseña robusta no basta contra toda intrusión?",
+          "options": [
+            "Porque la robustez solo regula el tiempo que tarda una cuenta en bloquearse",
+            "Porque también puede obtenerse mediante engaño",
+            "Porque una vez compleja ya no necesita confidencialidad",
+            "Porque cualquier contraseña robusta equivale a autenticar al solicitante"
+          ],
+          "correct": 1,
+          "explanation": "La ingeniería social puede lograr que el propio usuario revele la clave.",
+          "source_page": 34,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué implica que un control reduzca el impacto?",
+          "options": [
+            "Que transfiere necesariamente las pérdidas a un asegurador",
+            "Que cambia la frecuencia de la amenaza pero no sus consecuencias",
+            "Que limita las consecuencias si ocurre el incidente",
+            "Que necesariamente elimina su probabilidad"
+          ],
+          "correct": 2,
+          "explanation": "Los controles pueden actuar sobre consecuencias además de ocurrencia.",
+          "source_page": 33,
+          "difficulty": "media"
+        },
+        {
+          "question": "Hay controles técnicos potentes, pero se pide por teléfono una contraseña fingiendo ser soporte. ¿Qué dimensión del sistema debe reforzarse?",
+          "options": [
+            "La capacidad de almacenamiento para retener contraseñas más largas",
+            "La política de actualización del navegador exclusivamente",
+            "El cifrado del enlace sin comprobar quién solicita la credencial",
+            "Personas y procedimientos de verificación"
+          ],
+          "correct": 3,
+          "explanation": "La ingeniería social explota el factor humano y puede eludir defensas técnicas.",
+          "source_page": 41,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Una sala con servidores protegidos por contraseñas se inunda. ¿Qué enfoque estaba incompleto?",
+          "options": [
+            "La combinación de seguridad física y lógica",
+            "La segmentación lógica como sustituto de todos los controles ambientales",
+            "La política de contraseñas como único control de disponibilidad",
+            "La clasificación de datos como sustituto de la protección de instalaciones"
+          ],
+          "correct": 0,
+          "explanation": "La protección abarca condiciones físicas del entorno además de controles informáticos.",
+          "source_page": 37,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Se propone proteger igual una fórmula industrial y un folleto público. ¿Qué revisión es prioritaria?",
+          "options": [
+            "Elegir una misma medida antes de identificar su sensibilidad",
+            "Clasificarlos según su valor y consecuencias de exposición",
+            "Clasificarlos exclusivamente por el tamaño de sus archivos",
+            "Asignar el máximo nivel a todo sin analizar necesidades de difusión"
+          ],
+          "correct": 1,
+          "explanation": "La clasificación permite adaptar la protección a la importancia del activo.",
+          "source_page": 29,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Un control evita muchas intrusiones, pero aún cabe engañar al usuario. ¿Qué conclusión es adecuada?",
+          "options": [
+            "Un control se considera inválido por no eliminar todos los ataques",
+            "La cobertura de un ataque frecuente permite ignorar los restantes",
+            "Queda riesgo que debe evaluarse",
+            "El riesgo restante queda transferido automáticamente al fabricante"
+          ],
+          "correct": 2,
+          "explanation": "Las medidas reducen riesgos, pero no los eliminan necesariamente.",
+          "source_page": 34,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Después de incorporar una nueva aplicación, se mantienen sin revisión las antiguas políticas. ¿Qué acción corresponde?",
+          "options": [
+            "Revisar solo las licencias sin estudiar cambios en los datos tratados",
+            "Mantener las reglas anteriores porque ya se aprobaron una vez",
+            "Limitar la revisión al manual de usuario de la nueva aplicación",
+            "Reevaluar riesgos y adecuar políticas y controles"
+          ],
+          "correct": 3,
+          "explanation": "El proceso continuo de seguridad debe adaptarse a cambios en los recursos de información.",
+          "source_page": 10,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Un documento pasa de confidencial a público. ¿Qué conviene definir previamente?",
+          "options": [
+            "Un cambio de etiqueta decidido por el usuario sin autorización",
+            "Una excepción indefinida que omita al propietario del documento",
+            "Un criterio basado únicamente en la antigüedad del archivo",
+            "Un procedimiento de desclasificación"
+          ],
+          "correct": 3,
+          "explanation": "La clasificación requiere procedimientos para terminar o cambiar la protección.",
+          "source_page": 32,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "La inversión se decide solo por la frecuencia de ataques, ignorando pérdidas. ¿Qué falta considerar?",
+          "options": [
+            "El impacto económico probable",
+            "La marca de las herramientas que usan los atacantes",
+            "El número de controles, sin conocer sus efectos",
+            "El presupuesto histórico, sin relacionarlo con las consecuencias"
+          ],
+          "correct": 0,
+          "explanation": "El equilibrio de seguridad considera costes de protección y consecuencias del riesgo.",
+          "source_page": 19,
+          "difficulty": "aplicación"
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "title": "Gobierno de la seguridad de la informacion",
+      "questions": [
+        {
+          "question": "¿Qué tarea pertenece al gobierno de la seguridad?",
+          "options": [
+            "Ejecutar diariamente las copias como función exclusiva de la dirección",
+            "Administrar solo las alertas del antivirus",
+            "Dar dirección estratégica y supervisar riesgos",
+            "Resolver cada incidencia técnica sin definir prioridades estratégicas"
+          ],
+          "correct": 2,
+          "explanation": "El gobierno articula responsabilidades directivas, objetivos, riesgos y uso responsable de recursos.",
+          "source_page": 5,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Cómo debe relacionarse la misión de seguridad con la empresa?",
+          "options": [
+            "Debe fijarse después de comprar todos los controles",
+            "Debe centrarse en los productos que ya posee la entidad",
+            "Debe permanecer independiente de los objetivos comerciales y operativos",
+            "Debe apoyar sus metas de negocio"
+          ],
+          "correct": 3,
+          "explanation": "La misión explica de qué forma la seguridad aporta valor a la entidad.",
+          "source_page": 6,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué integra un servicio de Tecnologías de la Información?",
+          "options": [
+            "Personas, procesos y tecnología",
+            "Únicamente infraestructura y aplicaciones, sin intervención humana",
+            "Solo el contrato y su facturación, al margen de la operación",
+            "Los equipos del proveedor, excluyendo los procesos del cliente"
+          ],
+          "correct": 0,
+          "explanation": "La visión de servicio supera la consideración puramente técnica de los recursos.",
+          "source_page": 9,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué documenta un acuerdo de nivel de servicio?",
+          "options": [
+            "El precio como sustituto de los niveles de servicio",
+            "Compromisos y responsabilidades de la prestación",
+            "Solo las tareas internas del proveedor sin compromisos con el cliente",
+            "Preferencias de tecnología sin responsabilidades de prestación"
+          ],
+          "correct": 1,
+          "explanation": "El acuerdo de nivel de servicio formaliza los requisitos y responsabilidades del servicio.",
+          "source_page": 10,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Para qué sirve un Plan Director de Seguridad?",
+          "options": [
+            "Para reemplazar el análisis de riesgos por un inventario",
+            "Para ejecutar proyectos sin definir prioridades",
+            "Para ordenar iniciativas conforme a objetivos y riesgos",
+            "Para considerar concluida la seguridad tras adquirir los controles"
+          ],
+          "correct": 2,
+          "explanation": "Es una herramienta de planificación de la estrategia de seguridad.",
+          "source_page": 7,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué vincula la estrategia de seguridad con su aportación al negocio?",
+          "options": [
+            "El catálogo de productos con independencia del uso previsto",
+            "La misión y los objetivos de seguridad",
+            "Solo el número de controles desplegados",
+            "El volumen de incidencias sin vincularlo a objetivos"
+          ],
+          "correct": 1,
+          "explanation": "La estrategia debe cooperar en las metas de la organización.",
+          "source_page": 6,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué significa que ITIL, Biblioteca de Infraestructura de Tecnologías de la Información, no sea prescriptivo?",
+          "options": [
+            "Impone la misma herramienta de gestión a todas las entidades",
+            "Define obligaciones penales para cada proveedor",
+            "Exige aplicar todas las prácticas sin adaptación al contexto",
+            "Propone prácticas sin imponer una tecnología concreta"
+          ],
+          "correct": 3,
+          "explanation": "El temario presenta prácticas genéricas adaptables, sin obligatoriedad de técnicas concretas.",
+          "source_page": 13,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué distingue una práctica predictiva de una puramente reactiva?",
+          "options": [
+            "Anticipa necesidades mediante patrones de uso",
+            "Solo interviene después de un incumplimiento confirmado",
+            "Fija recursos sin observar tendencias de utilización",
+            "Ajusta capacidad únicamente según la antigüedad de los equipos"
+          ],
+          "correct": 0,
+          "explanation": "El enfoque predictivo estudia el uso de los clientes para anticiparse.",
+          "source_page": 14,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Por qué un indicador debe ser medible?",
+          "options": [
+            "Para limitar la evaluación a impresiones personales de cada responsable",
+            "Para evaluar de forma consistente el desempeño",
+            "Para convertir cualquier valor numérico en garantía de ausencia de incidentes",
+            "Para prescindir de objetivos al comparar servicios"
+          ],
+          "correct": 1,
+          "explanation": "Las buenas prácticas deben permitir evaluar servicios y optimizarlos.",
+          "source_page": 14,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué información ayuda a gestionar la capacidad de un servicio?",
+          "options": [
+            "El inventario de equipos sin datos de utilización",
+            "Solo las incidencias de seguridad ajenas al consumo del servicio",
+            "Previsiones de demanda y recursos no utilizados",
+            "El coste de compra como única estimación de la demanda futura"
+          ],
+          "correct": 2,
+          "explanation": "La capacidad se gestiona anticipando demanda y midiendo el uso eficiente de recursos.",
+          "source_page": 15,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Dónde debe reflejarse la calidad de seguridad comprometida de un servicio?",
+          "options": [
+            "Solo en las ofertas comerciales sin métricas verificables",
+            "En las instrucciones técnicas internas sin conocimiento del cliente",
+            "Únicamente en el precio contratado, sin niveles de prestación",
+            "En la sección de seguridad de su acuerdo de nivel de servicio"
+          ],
+          "correct": 3,
+          "explanation": "Los requisitos de seguridad del servicio deben convertirse en compromisos verificables.",
+          "source_page": 16,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué condición permite mejorar un servicio con el tiempo?",
+          "options": [
+            "Que no se modifiquen las mediciones aunque cambien las necesidades",
+            "Que los resultados dependan exclusivamente de un responsable experto",
+            "Que sus prácticas sean adaptables y medibles",
+            "Que se mantenga el diseño inicial sin revisar el desempeño"
+          ],
+          "correct": 2,
+          "explanation": "El tema destaca consistencia, medición y adaptación de buenas prácticas.",
+          "source_page": 14,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Por qué un servicio no se describe adecuadamente solo enumerando máquinas?",
+          "options": [
+            "Porque el inventario ya describe por sí solo la experiencia del cliente",
+            "Porque el servicio se define por su coste y no por su finalidad",
+            "Porque la responsabilidad del servicio acaba al entregar el hardware",
+            "Porque incluye personas y procesos que apoyan al cliente"
+          ],
+          "correct": 3,
+          "explanation": "La gestión del servicio integra factores humanos, sociales y tecnológicos.",
+          "source_page": 9,
+          "difficulty": "media"
+        },
+        {
+          "question": "Una empresa compra controles antes de definir qué necesita proteger. ¿Qué orden recomienda el tema?",
+          "options": [
+            "Fijar objetivos y luego elegir medidas",
+            "Comprar primero las medidas habituales y fijar después sus objetivos",
+            "Copiar controles de otra entidad sin comprobar su contexto",
+            "Priorizar exclusivamente por descuentos de los fabricantes"
+          ],
+          "correct": 0,
+          "explanation": "El modelo de seguridad parte de objetivos, necesidades del negocio y gestión de riesgos.",
+          "source_page": 8,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Un proveedor promete alta disponibilidad sin definir cómo medirla. ¿Qué falta concretar?",
+          "options": [
+            "El nombre comercial con que se vende el servicio",
+            "La medición y condiciones del acuerdo de nivel de servicio",
+            "La aprobación del logotipo que figurará en el contrato",
+            "La ubicación de las firmas como sustituto de los niveles medibles"
+          ],
+          "correct": 1,
+          "explanation": "Un compromiso útil debe especificar magnitudes y condiciones de evaluación.",
+          "source_page": 10,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Las incidencias de capacidad aumentan cada mes. ¿Qué indicador resulta directamente pertinente?",
+          "options": [
+            "Número de cambios documentales sin relación con el consumo",
+            "Número total de incidencias sin distinguir sus causas",
+            "Número de incumplimientos por capacidad",
+            "Volumen de correos del soporte sin clasificar su relación con capacidad"
+          ],
+          "correct": 2,
+          "explanation": "El tema propone medir incidentes o violaciones del acuerdo debidos a capacidad.",
+          "source_page": 15,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "El equipo recopila cifras de disponibilidad sin revisarlas. ¿Qué uso aportaría valor?",
+          "options": [
+            "Archivarlas sin contrastarlas con los niveles pactados",
+            "Publicar el mejor mes como garantía de todos los periodos",
+            "Sustituir la revisión de necesidades por una cifra agregada",
+            "Relacionarlas con compromisos y mejoras del servicio"
+          ],
+          "correct": 3,
+          "explanation": "Las métricas sirven para comprobar desempeño y mejorar prácticas de servicio.",
+          "source_page": 14,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "La dirección delega toda seguridad y nunca supervisa objetivos ni recursos. ¿Qué debilidad muestra?",
+          "options": [
+            "Ausencia de ejercicio del gobierno de seguridad",
+            "Un problema exclusivamente de configuración del antivirus",
+            "Una delegación que prueba por sí sola el cumplimiento de objetivos",
+            "Una carencia que se resuelve solo contratando más herramientas"
+          ],
+          "correct": 0,
+          "explanation": "El gobierno exige responsabilidad directiva y comprobación del logro de objetivos.",
+          "source_page": 5,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "El consumo crece de forma previsible cada trimestre. ¿Qué actuación responde a gestión de capacidad?",
+          "options": [
+            "Prever demanda y ajustar recursos",
+            "Esperar a la saturación antes de revisar la capacidad",
+            "Ampliar infraestructura solo según las promociones del proveedor",
+            "Reducir el nivel de servicio sin revisar necesidades ni compromisos"
+          ],
+          "correct": 0,
+          "explanation": "La capacidad combina previsiones y uso eficiente para cumplir necesidades.",
+          "source_page": 15,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Se aplica el mismo control a negocios con objetivos incompatibles. ¿Qué debe revisarse?",
+          "options": [
+            "Solo la duración del contrato aunque las necesidades sean diferentes",
+            "Su alineamiento con necesidades y estrategia de cada entidad",
+            "La versión del producto como único criterio de adecuación",
+            "El número de controles instalados sin relacionarlos con su finalidad"
+          ],
+          "correct": 1,
+          "explanation": "El modelo de seguridad debe responder a objetivos corporativos y riesgos.",
+          "source_page": 8,
+          "difficulty": "aplicación"
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "title": "Estándares de Gestión de la Seguridad y Niveles de Madurez",
+      "questions": [
+        {
+          "question": "¿Qué establece principalmente la norma ISO 27001 de la Organización Internacional de Normalización?",
+          "options": [
+            "Una guía detallada con una única metodología obligatoria de análisis de riesgos",
+            "Un catálogo de controles técnicos que sustituye los requisitos de gestión",
+            "Una arquitectura obligatoria de red para cualquier organización",
+            "Requisitos de un sistema de gestión de seguridad de la información"
+          ],
+          "correct": 3,
+          "explanation": "La norma proporciona requisitos para gestionar, auditar y certificar la seguridad de la información.",
+          "source_page": 7,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué debe definirse al iniciar un sistema de gestión de seguridad de la información?",
+          "options": [
+            "Su alcance y límites",
+            "El producto concreto que utilizará cada departamento antes de estudiar riesgos",
+            "Un alcance implícito que se deduce del proveedor contratado",
+            "La lista de controles sin definir actividades ni límites organizativos"
+          ],
+          "correct": 0,
+          "explanation": "El alcance identifica qué parte de la organización se incluye y en qué condiciones.",
+          "source_page": 10,
+          "difficulty": "básica"
+        },
+        {
+          "question": "En el ciclo Planear, Hacer, Comprobar y Actuar, ¿dónde se seleccionan los controles?",
+          "options": [
+            "Únicamente después de obtener la certificación",
+            "En la planificación",
+            "Solo al cerrar el primer incidente, sin planificación previa",
+            "En la fase de actuación antes de evaluar necesidades y riesgos"
+          ],
+          "correct": 1,
+          "explanation": "La planificación parte del alcance, política y evaluación de riesgos.",
+          "source_page": 8,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Quién debe aprobar y comunicar la política de seguridad?",
+          "options": [
+            "Solo el auditor externo, por ser quien certifica",
+            "El proveedor de la herramienta de gestión, sin decisión interna",
+            "La dirección",
+            "Cada administrador por separado, sin aprobación directiva"
+          ],
+          "correct": 2,
+          "explanation": "El compromiso directivo incluye aprobar, publicar y comunicar la política.",
+          "source_page": 11,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Para qué se usa un modelo de madurez?",
+          "options": [
+            "Para certificar la ausencia de vulnerabilidades de todos los equipos",
+            "Para ordenar organizaciones solo por su antigüedad",
+            "Para sustituir la evaluación de riesgos por una puntuación",
+            "Para evaluar y mejorar el desarrollo de la gestión"
+          ],
+          "correct": 3,
+          "explanation": "La madurez describe una gestión progresivamente sistemática, predecible y optimizable.",
+          "source_page": 20,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué exige un sistema de gestión respecto a responsabilidades?",
+          "options": [
+            "Reservarlas al auditor externo durante las revisiones",
+            "Asignarlas de forma verbal sin mantener criterios comunes",
+            "Definirlas y comunicarlas",
+            "Mantenerlas implícitas porque cada técnico conoce sus tareas"
+          ],
+          "correct": 2,
+          "explanation": "La dirección debe asegurar autoridades y responsabilidades claramente comunicadas.",
+          "source_page": 13,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué corresponde a la fase de Comprobar del ciclo de mejora?",
+          "options": [
+            "Revisar riesgos y auditar el sistema de gestión",
+            "Seleccionar inicialmente el alcance sin revisar los resultados",
+            "Aprobar compras como único mecanismo de verificación",
+            "Implantar controles sin contrastar su desempeño"
+          ],
+          "correct": 0,
+          "explanation": "El seguimiento y revisión evalúa la marcha del sistema y sus riesgos.",
+          "source_page": 9,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué corresponde a Actuar tras evaluar resultados?",
+          "options": [
+            "Archivar desviaciones sin decidir su tratamiento",
+            "Implantar mejoras y acciones correctivas",
+            "Dar por estabilizado el sistema sin nuevas revisiones",
+            "Repetir el plan anterior aunque las evidencias muestren fallos"
+          ],
+          "correct": 1,
+          "explanation": "Los resultados de revisión alimentan la mejora y una nueva planificación.",
+          "source_page": 9,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Por qué deben controlarse los documentos del sistema de gestión?",
+          "options": [
+            "Para sustituir la revisión de riesgos por el número de documentos",
+            "Para transferir al redactor todas las responsabilidades de la dirección",
+            "Para aprobarlos, revisarlos y mantenerlos actualizados",
+            "Para que cualquier borrador distribuido se considere automáticamente aprobado"
+          ],
+          "correct": 2,
+          "explanation": "La documentación debe aprobarse antes de distribuirse y actualizarse según necesidades.",
+          "source_page": 11,
+          "difficulty": "media"
+        },
+        {
+          "question": "Según la versión 2022 explicada, ¿cómo se reorganizan los controles del anexo?",
+          "options": [
+            "En catorce dominios idénticos a los de 2013, sin reorganización",
+            "En capítulos de requisitos usados como única clasificación del anexo",
+            "En preventivos, detectivos y correctivos como única agrupación del anexo",
+            "En organizacionales, personas, físicos y tecnológicos"
+          ],
+          "correct": 3,
+          "explanation": "El temario presenta cuatro grupos en la versión 2022.",
+          "source_page": 17,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué necesidad destaca la versión 2022 respecto a los roles?",
+          "options": [
+            "Comunicarlos en toda la organización",
+            "Comunicarlos solo al auditor durante la certificación",
+            "Limitar su conocimiento al administrador de cada herramienta",
+            "Suponer que se deducen automáticamente del organigrama sin comunicación"
+          ],
+          "correct": 0,
+          "explanation": "El tema enfatiza que los roles relevantes de seguridad sean conocidos.",
+          "source_page": 16,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué diferencia ISO 27001 y un modelo de madurez?",
+          "options": [
+            "Ambos certifican exclusivamente la configuración técnica de los equipos",
+            "El modelo de madurez exige una única marca para cada control",
+            "La norma determina únicamente una puntuación de madurez, sin requisitos",
+            "La primera define requisitos; el segundo orienta grado y mejora de gestión"
+          ],
+          "correct": 3,
+          "explanation": "Los requisitos del sistema y la evaluación de madurez son enfoques complementarios.",
+          "source_page": 20,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Por qué una auditoría interna aporta valor al seguimiento?",
+          "options": [
+            "Porque permite revisar funcionamiento y desviaciones",
+            "Porque garantiza que todas las debilidades quedan detectadas",
+            "Porque transfiere las decisiones de riesgo al equipo auditor",
+            "Porque permite conservar objetivos sin revisión permanente"
+          ],
+          "correct": 0,
+          "explanation": "La fase de seguimiento puede incluir auditorías según la madurez del sistema.",
+          "source_page": 9,
+          "difficulty": "media"
+        },
+        {
+          "question": "Una empresa certifica solo su comercio electrónico. ¿Qué debe comprobarse antes de atribuir la certificación a toda ella?",
+          "options": [
+            "Solo el número de empleados de la empresa",
+            "El alcance concreto del sistema certificado",
+            "La categoría comercial del certificado sin examinar sus límites",
+            "El conjunto de productos utilizado por la tienda"
+          ],
+          "correct": 1,
+          "explanation": "Un sistema de gestión puede tener un alcance parcial en una organización grande.",
+          "source_page": 10,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Un control de transporte de soportes se incluye sin existir ese proceso. ¿Qué revisión es razonable?",
+          "options": [
+            "Excluir toda la seguridad física por no utilizar ese control",
+            "Considerar que la norma deja de ser aplicable por esa ausencia",
+            "Analizar su pertinencia según el contexto y riesgos",
+            "Aplicarlo sin analizar si existe el proceso al que responde"
+          ],
+          "correct": 2,
+          "explanation": "El temario explica que los controles deben diseñarse cuando existe el supuesto que protegen.",
+          "source_page": 6,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "La dirección firma una política, pero no facilita recursos ni revisa resultados. ¿Qué falta?",
+          "options": [
+            "Otra firma con la misma fecha como única evidencia",
+            "Difundir de nuevo el documento sin intervenir en su ejecución",
+            "Un inventario de herramientas sin asignación ni seguimiento de recursos",
+            "Evidencias de compromiso efectivo"
+          ],
+          "correct": 3,
+          "explanation": "El compromiso comprende recursos, comunicación, objetivos y revisión del desempeño.",
+          "source_page": 12,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Se amplía el servicio y se introducen controles sin planificar el cambio. ¿Qué aspecto de 2022 debe reforzarse?",
+          "options": [
+            "La planificación de cambios del sistema de gestión",
+            "La revisión del proveedor como sustituto del análisis del cambio",
+            "La transferencia automática de la responsabilidad al nuevo proveedor",
+            "Mantener congelada la documentación para conservar la comparación"
+          ],
+          "correct": 0,
+          "explanation": "La actualización explicada exige planificar los cambios y vigilar los objetivos.",
+          "source_page": 16,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Una organización conoce prácticas, pero no prioriza mejoras. ¿Qué aportaría la Integración de Modelos de Madurez de Capacidades?",
+          "options": [
+            "Una secuencia única obligatoria para programar todas las aplicaciones",
+            "Guía para evaluar procesos y establecer prioridades",
+            "Una herramienta que prioriza automáticamente sin conocer objetivos",
+            "Una certificación que sustituye el análisis de los riesgos propios"
+          ],
+          "correct": 1,
+          "explanation": "El modelo orienta la mejora de procesos y proporciona referencias para evaluar los actuales.",
+          "source_page": 21,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Una política actualizada se distribuye sin aprobación. ¿Qué control documental falta?",
+          "options": [
+            "Una publicación externa anterior a la revisión interna",
+            "Aprobación previa a distribución",
+            "Un cambio de título que no afecte a su contenido",
+            "Una copia impresa como sustituto del proceso de aprobación"
+          ],
+          "correct": 1,
+          "explanation": "El tema exige aprobar documentos y mantenerlos revisados.",
+          "source_page": 11,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Se mide seguridad sin relacionarla con objetivos aprobados. ¿Qué mejora exige el enfoque explicado de 2022?",
+          "options": [
+            "Medir únicamente el número de controles adquiridos",
+            "Revisar el inventario sin identificar qué resultado se pretende alcanzar",
+            "Monitorizar objetivos de seguridad explícitamente",
+            "Mantener métricas históricas aunque ya no respondan a objetivos"
+          ],
+          "correct": 2,
+          "explanation": "La revisión de 2022 destaca seguimiento de los objetivos.",
+          "source_page": 16,
+          "difficulty": "aplicación"
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "title": "Programas procesos y politicas de seguridad de la informacion",
+      "questions": [
+        {
+          "question": "¿Qué es un programa de gestión de seguridad?",
+          "options": [
+            "Un conjunto de actividades planificadas de protección",
+            "Un control técnico aislado sin actividades asociadas",
+            "Una auditoría puntual que sustituye toda actuación posterior",
+            "Un inventario de compras sin planificación de su aplicación"
+          ],
+          "correct": 0,
+          "explanation": "El programa reúne actividades para garantizar confidencialidad, integridad y disponibilidad.",
+          "source_page": 5,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué caracteriza a una vulnerabilidad?",
+          "options": [
+            "Un objetivo comercial",
+            "Una debilidad de un recurso",
+            "Un daño ya cuantificado",
+            "Un seguro contratado"
+          ],
+          "correct": 1,
+          "explanation": "Una debilidad puede permitir que una amenaza cause daño.",
+          "source_page": 9,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué decisión consiste en asumir el riesgo tal como está?",
+          "options": [
+            "Transferencia",
+            "Identificación",
+            "Aceptación",
+            "Mitigación"
+          ],
+          "correct": 2,
+          "explanation": "El tema distingue asumir, mitigar y transferir el riesgo.",
+          "source_page": 7,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué busca el análisis cuantitativo?",
+          "options": [
+            "Usar números únicamente como etiquetas ordinales sin magnitud asociada",
+            "Garantizar valores exactos aunque no existan datos suficientes",
+            "Estimar solo el coste de controles sin valorar las consecuencias",
+            "Asignar valores numéricos con significado a los elementos del riesgo"
+          ],
+          "correct": 3,
+          "explanation": "El análisis cuantitativo permite expresar elementos como el valor del activo en unidades monetarias.",
+          "source_page": 10,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué describe normalmente una política de seguridad?",
+          "options": [
+            "Requisitos generales de protección",
+            "La secuencia exacta de configuración de una herramienta concreta",
+            "Únicamente las operaciones rutinarias de un administrador",
+            "Las condiciones comerciales del proveedor que sustituirán los objetivos"
+          ],
+          "correct": 0,
+          "explanation": "Las políticas se diferencian de instrucciones específicas de implantación.",
+          "source_page": 14,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué pregunta básica identifica una amenaza en el análisis?",
+          "options": [
+            "Cuánto cuesta la solución que ya se ha seleccionado",
+            "Qué control se comprará antes de describir el escenario",
+            "Qué nivel de riesgo se aceptará sin identificar sucesos",
+            "Qué podría suceder"
+          ],
+          "correct": 3,
+          "explanation": "La identificación estudia eventos indeseados posibles.",
+          "source_page": 8,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué pregunta añade una valoración realista del análisis de riesgos?",
+          "options": [
+            "Cuántos controles se han adquirido sin conocer su efecto",
+            "Cuánta incertidumbre existe en las estimaciones",
+            "Qué método ofrece más decimales, con independencia de los datos",
+            "Qué clasificación permitirá usar siempre los mismos valores"
+          ],
+          "correct": 1,
+          "explanation": "Además de amenaza, impacto y frecuencia se debe reconocer la incertidumbre.",
+          "source_page": 8,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Por qué son necesarios programas de concienciación?",
+          "options": [
+            "Para transferir a los empleados toda responsabilidad directiva",
+            "Para prescindir de los controles técnicos cuando se imparta un curso",
+            "Para hacer efectivas políticas, estándares y procedimientos",
+            "Para considerar aprobadas las políticas sin comunicarlas"
+          ],
+          "correct": 2,
+          "explanation": "La implantación de seguridad depende también de la comprensión y conducta de las personas.",
+          "source_page": 6,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué describe el agente de una amenaza?",
+          "options": [
+            "El coste de la salvaguarda seleccionada",
+            "La pérdida económica después de que ocurre el incidente",
+            "La debilidad del activo sin identificar quién o qué puede aprovecharla",
+            "Algo o alguien capaz de materializarla"
+          ],
+          "correct": 3,
+          "explanation": "El agente aporta la capacidad potencial para causar la amenaza.",
+          "source_page": 9,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué permite la valoración económica de activos?",
+          "options": [
+            "Comparar costes de mitigación y beneficios esperados",
+            "Evaluar las medidas únicamente por su precio de adquisición",
+            "Considerar solo los activos con precio directo de mercado",
+            "Aplicar la mayor inversión disponible sin compararla con la reducción esperada"
+          ],
+          "correct": 0,
+          "explanation": "El análisis coste-beneficio se apoya en valoraciones y estimaciones anualizadas.",
+          "source_page": 12,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Por qué conviene distinguir política e implementación?",
+          "options": [
+            "Para convertir las decisiones técnicas del proveedor en política corporativa",
+            "Para no vincular requisitos generales a una solución concreta innecesariamente",
+            "Para que la política deje de aplicarse cuando cambie una herramienta",
+            "Para considerar opcional cualquier requisito que requiera desarrollo técnico"
+          ],
+          "correct": 1,
+          "explanation": "La política debe expresar objetivos generales que después desarrollan procedimientos y estándares.",
+          "source_page": 14,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Por qué el valor de un activo puede superar su coste de compra?",
+          "options": [
+            "Porque aporta valor de negocio o ventaja competitiva",
+            "Porque todos los activos se valoran por el mayor precio de su categoría",
+            "Porque el coste histórico debe multiplicarse por la antigüedad",
+            "Porque el valor de compra incluye por definición cualquier daño reputacional"
+          ],
+          "correct": 0,
+          "explanation": "La valoración contempla contribución al negocio y posibles valores de mercado.",
+          "source_page": 11,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué relación debe existir entre programa de seguridad y comunicación interna?",
+          "options": [
+            "Comunicar el programa equivale por sí solo a implantar todas sus actividades",
+            "El personal debe conocer sus actividades y requisitos",
+            "Solo el proveedor necesita conocer los requisitos internos",
+            "La comunicación se realiza una única vez, aunque cambien las actividades"
+          ],
+          "correct": 1,
+          "explanation": "Los programas deben comunicarse para hacerse efectivos en la organización.",
+          "source_page": 5,
+          "difficulty": "media"
+        },
+        {
+          "question": "Una compañía contrata una póliza para cubrir ciertas pérdidas. ¿Qué tratamiento ejemplifica?",
+          "options": [
+            "Aceptar las consecuencias sin aplicar ninguna medida",
+            "Mitigar necesariamente la probabilidad del incidente",
+            "Transferir parte del riesgo",
+            "Eliminar la fuente de amenaza al firmar el contrato"
+          ],
+          "correct": 2,
+          "explanation": "La transferencia distribuye consecuencias; no equivale a impedir el incidente.",
+          "source_page": 7,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Se compra un cortafuegos y también se forma al personal. ¿Cómo se clasifican esas medidas?",
+          "options": [
+            "Ambas técnicas, porque afectan a la misma organización",
+            "Ambas administrativas, porque requieren aprobación",
+            "Correctiva y financiera, respectivamente, sin componente preventivo",
+            "Técnica y administrativa respectivamente"
+          ],
+          "correct": 3,
+          "explanation": "Los mecanismos de mitigación pueden ser técnicos o no técnicos.",
+          "source_page": 9,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Un informe promete una frecuencia exacta sin datos suficientes. ¿Qué corrección debe hacerse?",
+          "options": [
+            "Mostrar las hipótesis y la incertidumbre",
+            "Mantener el valor exacto para que todos los informes coincidan",
+            "Eliminar la frecuencia de la valoración porque no es segura",
+            "Sustituir la información ausente por el dato más favorable"
+          ],
+          "correct": 0,
+          "explanation": "La gestión exige conocer cuán seguras son las estimaciones realizadas.",
+          "source_page": 8,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Una política enumera pasos de un producto que acaba de retirarse. ¿Qué diseño resulta más duradero?",
+          "options": [
+            "Conservar los pasos antiguos como requisito general permanente",
+            "Separar el requisito general del procedimiento concreto",
+            "Sustituir los objetivos por las opciones del nuevo fabricante",
+            "Bloquear la revisión documental mientras exista un procedimiento aprobado"
+          ],
+          "correct": 1,
+          "explanation": "Las políticas generales se implementan mediante herramientas documentales más específicas.",
+          "source_page": 14,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Tras un incidente se modifica un control, pero nunca se revisa la política. ¿Qué falta?",
+          "options": [
+            "Un cambio de herramienta sin evaluar su adecuación",
+            "Una aceptación automática de cualquier nuevo riesgo",
+            "Un mecanismo de evaluación y revisión continua",
+            "Una revisión limitada a los precios del control modificado"
+          ],
+          "correct": 2,
+          "explanation": "Las políticas deben mantenerse dentro del ciclo continuo de gestión.",
+          "source_page": 16,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Un riesgo poco costoso se acepta tras analizarlo. ¿Qué distingue esto de ignorarlo?",
+          "options": [
+            "Se ha transferido la responsabilidad al autor del análisis",
+            "El contexto ya no puede alterar esa decisión",
+            "Existe una decisión fundamentada de asumirlo",
+            "Se ha eliminado la fuente que producía el riesgo"
+          ],
+          "correct": 2,
+          "explanation": "La aceptación es una respuesta consciente a un riesgo analizado.",
+          "source_page": 7,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "La política pide protección de datos y el procedimiento define pasos concretos. ¿Qué muestra este caso?",
+          "options": [
+            "Que la política y el procedimiento deben contener idéntico detalle técnico",
+            "Que todo requisito general exige una única tecnología obligatoria",
+            "Que un procedimiento aprobado sustituye la necesidad de política",
+            "Una relación coherente entre requisito e implementación"
+          ],
+          "correct": 3,
+          "explanation": "Los procedimientos y estándares desarrollan las políticas generales.",
+          "source_page": 14,
+          "difficulty": "aplicación"
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "title": "El profesional de la seguridad de la informacion",
+      "questions": [
+        {
+          "question": "¿Qué actividad investiga las causas de un incidente?",
+          "options": [
+            "Análisis preventivo de vulnerabilidades antes de un incidente",
+            "Análisis forense",
+            "Gestión del inventario de activos y licencias",
+            "Análisis de impacto de negocio para fijar prioridades de recuperación"
+          ],
+          "correct": 1,
+          "explanation": "El análisis forense estudia cómo ocurrió un incidente y sus evidencias.",
+          "source_page": 17,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué busca el análisis de vulnerabilidades?",
+          "options": [
+            "Demostrar por sí solo que un sistema cumple toda su normativa",
+            "Atribuir automáticamente a una persona cada debilidad encontrada",
+            "Identificar puntos débiles de sistemas, redes o aplicaciones",
+            "Determinar únicamente las pérdidas económicas tras un incidente"
+          ],
+          "correct": 2,
+          "explanation": "Es una función diferenciada del profesional de seguridad.",
+          "source_page": 17,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué actividad comprueba puntos no conformes con normativa?",
+          "options": [
+            "Prueba de intrusión centrada en explotar debilidades técnicas",
+            "Monitorización de disponibilidad sin criterios normativos",
+            "Análisis de código limitado a errores de programación",
+            "Auditoría"
+          ],
+          "correct": 3,
+          "explanation": "La auditoría compara la situación con requisitos regulatorios o internos.",
+          "source_page": 18,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Para qué sirve un plan de continuidad de negocio?",
+          "options": [
+            "Para sostener procesos críticos tras un desastre",
+            "Para recuperar únicamente un servidor sin atender a los procesos que soporta",
+            "Para sustituir la respuesta a cualquier incidente por una copia de datos",
+            "Para asegurar que todos los servicios se restauran al mismo tiempo"
+          ],
+          "correct": 0,
+          "explanation": "Busca continuidad de procesos en un tiempo asumible por la organización.",
+          "source_page": 19,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué rasgo contribuye a configurar una profesión de seguridad?",
+          "options": [
+            "La posesión de herramientas sin competencias compartidas",
+            "Un código de ética",
+            "La experiencia técnica sin compromisos de conducta",
+            "Un puesto laboral sin cuerpo de conocimientos ni comunidad"
+          ],
+          "correct": 1,
+          "explanation": "El temario incluye conocimientos, reconocimiento, ética y cultura profesional.",
+          "source_page": 6,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué analiza la revisión de código desde seguridad?",
+          "options": [
+            "La robustez de la aplicación y sus debilidades",
+            "Solo el cumplimiento del plazo de entrega del desarrollo",
+            "La documentación comercial de la aplicación sin examinar su comportamiento",
+            "Únicamente los requisitos de contratación del equipo de desarrollo"
+          ],
+          "correct": 0,
+          "explanation": "Es una función profesional que permite identificar problemas del software.",
+          "source_page": 17,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué debe seguir a la detección inicial de un posible incidente?",
+          "options": [
+            "Iniciar la erradicación sin comprobar el alcance ni la naturaleza del aviso",
+            "Considerarlo confirmado por el mero hecho de generar una alerta",
+            "Validarlo y asignar criticidad",
+            "Comunicar una atribución pública antes de contrastar los indicios"
+          ],
+          "correct": 2,
+          "explanation": "La detección requiere análisis para confirmar el incidente y su magnitud.",
+          "source_page": 11,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué trabajo corresponde tras controlar un incidente?",
+          "options": [
+            "Cerrar el expediente en cuanto vuelva a funcionar el servicio",
+            "Aplicar el mismo control a todos los sistemas sin analizar la causa",
+            "Archivar los registros para no utilizarlos en revisiones posteriores",
+            "Investigar causas y seguir acciones de mejora"
+          ],
+          "correct": 3,
+          "explanation": "Las lecciones posteriores deben convertirse en acciones correctivas y seguimiento.",
+          "source_page": 12,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué riesgo aparece al adoptar servicios en la nube?",
+          "options": [
+            "Pérdida de control directo sobre la gestión de seguridad",
+            "Que los requisitos internos dejan de ser aplicables por externalizar",
+            "Que el proveedor asume automáticamente todos los riesgos de negocio",
+            "Que no pueden acordarse responsabilidades específicas con el proveedor"
+          ],
+          "correct": 0,
+          "explanation": "La dependencia del proveedor exige verificar requisitos y evidencias de seguridad.",
+          "source_page": 13,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Cómo se relaciona un plan de recuperación con el de continuidad?",
+          "options": [
+            "La recuperación técnica determina por sí sola toda la continuidad de negocio",
+            "La recuperación tecnológica forma parte de la continuidad",
+            "La continuidad se limita a restaurar equipos y excluye procesos",
+            "Ambos planes tienen siempre el mismo alcance y responsables"
+          ],
+          "correct": 1,
+          "explanation": "La recuperación atiende componentes tecnológicos necesarios para los procesos.",
+          "source_page": 19,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Por qué una certificación profesional exige formación continua?",
+          "options": [
+            "Porque la aprobación inicial autoriza cualquier técnica en cualquier contexto",
+            "Porque la certificación elimina la necesidad de actualizar experiencia",
+            "Porque conocimientos y amenazas evolucionan",
+            "Porque renovar el documento sustituye mantener los conocimientos"
+          ],
+          "correct": 2,
+          "explanation": "El tema describe educación continua como parte del mantenimiento de certificaciones.",
+          "source_page": 26,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué diferencia auditoría y análisis de vulnerabilidades?",
+          "options": [
+            "El análisis técnico declara conformidad sin utilizar criterios",
+            "La auditoría examina conformidad y el análisis busca debilidades",
+            "Ambos procesos tienen siempre el mismo alcance, evidencias y objetivo",
+            "La auditoría se limita a explotar vulnerabilidades sin revisar requisitos"
+          ],
+          "correct": 1,
+          "explanation": "Ambas protegen la información con objetivos específicos diferentes.",
+          "source_page": 18,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Por qué conviene verificar tecnologías y cláusulas al contratar nube?",
+          "options": [
+            "Porque el catálogo del proveedor demuestra por sí solo la eficacia",
+            "Porque una cláusula contractual evita materializar cualquier amenaza",
+            "Para que la prestación se ajuste a riesgos y requisitos",
+            "Porque la contratación permite aceptar riesgos sin que la entidad los evalúe"
+          ],
+          "correct": 2,
+          "explanation": "El tema propone especificar continuidad, datos, incidentes y controles pertinentes.",
+          "source_page": 14,
+          "difficulty": "media"
+        },
+        {
+          "question": "Un proveedor de nube afirma cumplir normas sin ofrecer pruebas. ¿Qué debe pedir el responsable?",
+          "options": [
+            "Solo una declaración comercial sin evidencias de su alcance",
+            "Únicamente una reducción de precio como compensación del riesgo",
+            "Aceptar la afirmación por conocer la marca, sin revisar compromisos",
+            "Evidencias y compromisos contractuales de seguridad"
+          ],
+          "correct": 3,
+          "explanation": "La gestión de proveedores requiere revisar alineamiento normativo y acuerdos pertinentes.",
+          "source_page": 14,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Se autoriza acceder a información corporativa desde cualquier móvil sin gestión. ¿Qué recomienda el tema?",
+          "options": [
+            "Dispositivos controlados con configuraciones de seguridad",
+            "Exigir únicamente que el dispositivo sea reciente",
+            "Autorizarlo si el empleado se responsabiliza verbalmente",
+            "Aplicar solo la contraseña personal sin criterios corporativos"
+          ],
+          "correct": 0,
+          "explanation": "Los dispositivos móviles precisan gestión y condiciones de seguridad verificables.",
+          "source_page": 15,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Un proyecto nuevo se diseña sin valorar seguridad. ¿Qué tarea debe iniciarse cuanto antes?",
+          "options": [
+            "Aceptar el diseño inicial sin estudiar su exposición",
+            "Identificar riesgos y definir requisitos de seguridad",
+            "Posponer los requisitos hasta la auditoría posterior al despliegue",
+            "Encargar al proveedor que elija sin conocer el contexto de negocio"
+          ],
+          "correct": 1,
+          "explanation": "Las nuevas iniciativas deben incorporar requisitos derivados de riesgos.",
+          "source_page": 18,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Una interrupción amenaza procesos esenciales. ¿Qué área profesional es central?",
+          "options": [
+            "Auditoría de licencias como única respuesta operativa",
+            "Pruebas de intrusión como sustituto de la restauración",
+            "Resiliencia y continuidad",
+            "Desarrollo de una política general sin atender a la contingencia"
+          ],
+          "correct": 2,
+          "explanation": "La resiliencia reúne actividades para mantener disponibilidad ante contingencias graves.",
+          "source_page": 19,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Se restaura un servicio afectado y se archiva la incidencia sin más. ¿Qué queda pendiente?",
+          "options": [
+            "Restaurar de nuevo los mismos componentes sin revisar la causa",
+            "Transferir al usuario la validación del cierre sin criterios",
+            "Considerar que recuperar disponibilidad demuestra ausencia de compromiso",
+            "Investigar causas y comprobar medidas de mejora"
+          ],
+          "correct": 3,
+          "explanation": "La fase posterior produce un informe y seguimiento de acciones correctivas.",
+          "source_page": 12,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Un técnico nuevo asume responsabilidad general sin experiencia en seguridad. ¿Qué reto señala el tema?",
+          "options": [
+            "La experiencia informática demuestra por sí sola competencia de gobierno",
+            "Cambiar la denominación del puesto sin formación ni apoyo",
+            "Limitar su preparación a operar una única herramienta",
+            "Necesita competencias de seguridad además de experiencia informática"
+          ],
+          "correct": 3,
+          "explanation": "El responsable puede tener trayectoria técnica y aun así afrontar carencias específicas.",
+          "source_page": 22,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Tras confirmar un incidente grave, el equipo demora comunicarlo a responsables. ¿Qué debe reforzarse?",
+          "options": [
+            "Escalado rápido conforme a criticidad",
+            "Esperar al informe final para asignar criticidad",
+            "Enviar todos los registros sin indicar alcance ni destinatarios",
+            "Tramitar el aviso como una incidencia rutinaria pese a su criticidad"
+          ],
+          "correct": 0,
+          "explanation": "La detección y análisis deben asignar criticidad y escalar cuando sea necesario.",
+          "source_page": 11,
+          "difficulty": "aplicación"
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "title": "Seguridad de la informacion y gestion de riesgos",
+      "questions": [
+        {
+          "question": "¿Durante qué intervalo debe protegerse la información?",
+          "options": [
+            "Solo mientras se transmite por una red externa",
+            "Desde su creación hasta guardarla por primera vez",
+            "Durante todo su ciclo de vida",
+            "Únicamente durante el tiempo en que la utiliza una aplicación"
+          ],
+          "correct": 2,
+          "explanation": "La protección abarca entrada, procesamiento, almacenamiento y destrucción final.",
+          "source_page": 9,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué garantiza la trazabilidad de la información?",
+          "options": [
+            "Que la información no se modifica sin autorización",
+            "Que los datos están accesibles cuando los necesita el usuario autorizado",
+            "Que el mensaje procede de la identidad que declara ser su origen",
+            "Poder relacionar actuaciones con sus responsables"
+          ],
+          "correct": 3,
+          "explanation": "La trazabilidad permite atribuir acciones realizadas sobre información o sistemas.",
+          "source_page": 7,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué busca la gestión de riesgos si la eliminación total es imposible?",
+          "options": [
+            "Reducir el riesgo residual a niveles asumibles",
+            "Declarar cerrado el análisis al implantar cualquier control",
+            "Trasladar a los técnicos toda decisión sobre el nivel aceptable",
+            "Priorizar exclusivamente el riesgo de mayor frecuencia sin considerar impacto"
+          ],
+          "correct": 0,
+          "explanation": "El nivel residual debe ser aceptable para la dirección.",
+          "source_page": 10,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué contiene una política de seguridad de la información?",
+          "options": [
+            "Los pasos exactos para configurar todos los productos",
+            "Principios, directrices, objetivos y responsabilidades de alto nivel",
+            "El inventario de equipos como único contenido normativo",
+            "Las reglas del fabricante como sustituto de objetivos corporativos"
+          ],
+          "correct": 1,
+          "explanation": "La política orienta la actuación de los participantes en la gestión.",
+          "source_page": 11,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué propiedad protege frente a modificación no autorizada durante el transporte?",
+          "options": [
+            "Confidencialidad",
+            "Disponibilidad",
+            "Integridad",
+            "Autenticidad"
+          ],
+          "correct": 2,
+          "explanation": "La integridad debe preservarse al procesar, transportar y almacenar información.",
+          "source_page": 7,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué dimensión facilita reconocer la procedencia de información?",
+          "options": [
+            "Confidencialidad",
+            "Autenticidad",
+            "Disponibilidad",
+            "Trazabilidad"
+          ],
+          "correct": 1,
+          "explanation": "La autenticidad se relaciona con identidad y origen confiables.",
+          "source_page": 7,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Dónde deben considerarse controles de seguridad?",
+          "options": [
+            "Solo en los sistemas conectados directamente a internet",
+            "Únicamente en los archivos que se consultan de forma diaria",
+            "Exclusivamente en el centro de datos, excluyendo personas y soportes",
+            "Donde se almacena, procesa y transmite información"
+          ],
+          "correct": 3,
+          "explanation": "La seguridad se aplica a los sistemas y comunicaciones que tratan información.",
+          "source_page": 8,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Cómo deben evolucionar las salvaguardas después de incidentes?",
+          "options": [
+            "Ajustarse según la experiencia adquirida",
+            "Conservar la configuración original por estar aprobada",
+            "Sustituirlas todas sin analizar qué falló",
+            "Modificarlas únicamente cuando cambia el precio de la solución"
+          ],
+          "correct": 0,
+          "explanation": "La experiencia debe alimentar cambios y mejora de mecanismos de protección.",
+          "source_page": 9,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Por qué la gestión de riesgos debe integrarse en procesos de negocio?",
+          "options": [
+            "Porque los responsables técnicos pueden fijar por sí solos la tolerancia al riesgo",
+            "Porque sus efectos condicionan decisiones y objetivos",
+            "Porque se puede evaluar una vez al año al margen de los cambios operativos",
+            "Porque cada proceso debe transferir todos sus riesgos al proveedor"
+          ],
+          "correct": 1,
+          "explanation": "La gestión de riesgos crea y protege valor como parte de decisiones y procesos.",
+          "source_page": 10,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué implica proteger la disponibilidad?",
+          "options": [
+            "Que el contenido conserve su origen sin verificar acceso",
+            "Que únicamente el propietario conozca los datos",
+            "Que la información sea accesible cuando se necesita",
+            "Que se permita el mismo acceso a todas las identidades"
+          ],
+          "correct": 2,
+          "explanation": "La disponibilidad debe combinarse con las demás dimensiones de seguridad.",
+          "source_page": 7,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué aporta la autenticidad en información y comunicaciones?",
+          "options": [
+            "La conservación exacta de los datos frente a cambios",
+            "La posibilidad de conocer quién realizó cada acción",
+            "La continuidad del servicio frente a una interrupción",
+            "Confianza en la identidad o procedencia"
+          ],
+          "correct": 3,
+          "explanation": "La autenticidad ayuda a confiar en quién actúa o en el origen de información.",
+          "source_page": 7,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué distingue garantizar acceso de hacer públicos todos los datos?",
+          "options": [
+            "La protección exige hacer inaccesibles los recursos incluso a usuarios autorizados",
+            "Basta con que el recurso exista aunque no pueda utilizarse",
+            "El acceso debe permitir uso de recursos conforme a protección",
+            "Todo recurso accesible debe permitir el mismo uso a cualquier identidad"
+          ],
+          "correct": 2,
+          "explanation": "El acceso es capacidad de utilizar recursos, compatible con otras dimensiones de seguridad.",
+          "source_page": 8,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Por qué la política no debe limitarse a instrucciones de un producto?",
+          "options": [
+            "Porque una política debe elegir una única tecnología para todos los procesos",
+            "Porque los procedimientos no requieren derivarse de requisitos generales",
+            "Porque los requisitos dejan de aplicarse cuando se retira el producto",
+            "Porque dirige objetivos y responsabilidades de alto nivel"
+          ],
+          "correct": 3,
+          "explanation": "La política contiene principios generales que orientan la actividad de seguridad.",
+          "source_page": 11,
+          "difficulty": "media"
+        },
+        {
+          "question": "Una empresa cifra datos guardados, pero los envía sin protección. ¿Qué tramo ha omitido?",
+          "options": [
+            "La transmisión dentro del ciclo de vida",
+            "Solo la conservación de las claves tras eliminar los datos",
+            "La revisión de los precios de los mecanismos de cifrado",
+            "Únicamente el inventario de soportes físicos"
+          ],
+          "correct": 0,
+          "explanation": "La protección debe alcanzar también los sistemas de comunicación.",
+          "source_page": 8,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Se desechan soportes con datos aún recuperables. ¿Qué debe revisarse?",
+          "options": [
+            "Solo la autorización inicial de uso del soporte",
+            "La protección durante la destrucción final",
+            "Únicamente el cifrado de las comunicaciones durante su uso",
+            "Solo el registro de altas en el inventario, sin tratamiento de la baja"
+          ],
+          "correct": 1,
+          "explanation": "El ciclo de vida incluye el momento en que la información deja de ser útil.",
+          "source_page": 9,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "La dirección exige eliminar todo riesgo con presupuesto limitado. ¿Qué objetivo sería realista?",
+          "options": [
+            "Aceptar sin análisis los riesgos que no han causado daños",
+            "Considerar aceptable todo riesgo cuya medida sea costosa",
+            "Gestionar riesgo residual conforme a niveles aceptables",
+            "Usar la compra del control como prueba de eliminación de exposición"
+          ],
+          "correct": 2,
+          "explanation": "El tema señala que la mitigación total es imposible.",
+          "source_page": 10,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Cada área asigna responsabilidades contradictorias de seguridad. ¿Qué documento debería aclararlas?",
+          "options": [
+            "El inventario técnico sin asignación de funciones",
+            "El manual de una herramienta como único marco de gobierno",
+            "Las condiciones comerciales de un proveedor sin decisión organizativa",
+            "La política de seguridad de la información"
+          ],
+          "correct": 3,
+          "explanation": "La política recoge responsabilidades y objetivos de los participantes.",
+          "source_page": 11,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Tras incidentes repetidos, se mantienen salvaguardas sin revisión. ¿Qué mecanismo conviene activar?",
+          "options": [
+            "Aprendizaje y modificación de controles",
+            "Renovar la licencia sin estudiar las causas de los incidentes",
+            "Reclasificar los incidentes para excluirlos del seguimiento",
+            "Esperar al siguiente cambio de equipo para evaluar la eficacia"
+          ],
+          "correct": 0,
+          "explanation": "Las experiencias anteriores deben servir para adaptar la protección.",
+          "source_page": 9,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Se conserva información en un archivo olvidado. ¿Sigue necesitando protección?",
+          "options": [
+            "Sí, mientras forme parte de su ciclo de vida",
+            "No, si deja de utilizarse en las operaciones diarias",
+            "Solo si recibe datos nuevos durante el año",
+            "Solo cuando se recupera para una auditoría externa"
+          ],
+          "correct": 0,
+          "explanation": "La protección abarca almacenamiento y conservación, no únicamente uso activo.",
+          "source_page": 9,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "La gestión del riesgo se limita a una reunión técnica anual. ¿Qué debe ampliarse?",
+          "options": [
+            "La frecuencia de reuniones sin cambiar su relación con el negocio",
+            "Su integración en decisiones y procesos de negocio",
+            "El número de informes generados como único objetivo",
+            "La contratación de una herramienta sin responsables de decisión"
+          ],
+          "correct": 1,
+          "explanation": "La gestión debe crear y proteger valor de modo integrado.",
+          "source_page": 10,
+          "difficulty": "aplicación"
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "title": "UNE-ISO 31000. 2018 Gestion del Riesgo. Directrices",
+      "questions": [
+        {
+          "question": "Según ISO 31000:2018, ¿qué expresa el riesgo?",
+          "options": [
+            "Exclusivamente la pérdida económica tras producirse un evento",
+            "La probabilidad del evento sin considerar sus consecuencias",
+            "Un incumplimiento confirmado, sin relación con incertidumbre",
+            "El efecto de la incertidumbre sobre los objetivos"
+          ],
+          "correct": 3,
+          "explanation": "El enfoque de la norma relaciona incertidumbre y logro de objetivos.",
+          "source_page": 5,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué persigue principalmente la gestión de riesgos según sus principios?",
+          "options": [
+            "Crear y proteger valor",
+            "Sustituir los objetivos por un catálogo de controles",
+            "Reducir exclusivamente el gasto inmediato de seguridad",
+            "Obtener la misma evaluación para cualquier organización"
+          ],
+          "correct": 0,
+          "explanation": "La gestión mejora el desempeño y apoya la consecución de objetivos.",
+          "source_page": 9,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué significa que la gestión del riesgo sea integrada?",
+          "options": [
+            "Que todos los procesos utilicen una única plantilla sin adaptación",
+            "Que forme parte de actividades y decisiones organizativas",
+            "Que el análisis sea responsabilidad aislada de informática",
+            "Que solo se consulte cuando ocurre una interrupción importante"
+          ],
+          "correct": 1,
+          "explanation": "Debe incorporarse a la gobernanza y los procesos de la organización.",
+          "source_page": 10,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Por qué debe ser dinámica la gestión de riesgos?",
+          "options": [
+            "Porque el inventario aprobado no necesita nuevas evidencias",
+            "Porque basta con mantener constante la lista de amenazas",
+            "Porque los riesgos cambian con el contexto",
+            "Porque una evaluación válida solo cambia en auditorías de certificación"
+          ],
+          "correct": 2,
+          "explanation": "Los riesgos pueden aparecer, variar o desaparecer según cambios externos e internos.",
+          "source_page": 11,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué papel tiene la alta dirección en el marco de gestión?",
+          "options": [
+            "Delegar decisiones de aceptación sin definir límites ni supervisión",
+            "Considerar que el juicio técnico sustituye siempre a los objetivos",
+            "Aportar recursos solo después de que se materialicen los riesgos",
+            "Demostrar liderazgo y asignar recursos"
+          ],
+          "correct": 3,
+          "explanation": "El liderazgo articula compromiso, recursos y responsabilidades.",
+          "source_page": 14,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué implica un enfoque inclusivo de gestión del riesgo?",
+          "options": [
+            "Consultar únicamente a quienes suministran herramientas",
+            "Recoger opiniones después de decidir, sin posibilidad de influir",
+            "Participación oportuna de partes interesadas pertinentes",
+            "Exigir unanimidad de todos los participantes antes de cualquier acción"
+          ],
+          "correct": 2,
+          "explanation": "El principio favorece integrar conocimientos y percepciones relevantes.",
+          "source_page": 10,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Cuál es la función de la comunicación y consulta?",
+          "options": [
+            "Ayudar a comprender riesgos y fundamentos de decisiones",
+            "Sustituir la evaluación por la preferencia de la mayoría",
+            "Garantizar que no existan diferencias de percepción",
+            "Divulgar toda la información del riesgo a cualquier destinatario"
+          ],
+          "correct": 0,
+          "explanation": "La consulta recoge perspectivas pertinentes y la comunicación facilita comprensión.",
+          "source_page": 36,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué incluye el contexto interno?",
+          "options": [
+            "Las variaciones legislativas y económicas del mercado",
+            "Cultura, estructura, procedimientos y estrategia",
+            "Las tendencias competitivas y la situación internacional",
+            "Las condiciones ambientales externas a la organización"
+          ],
+          "correct": 1,
+          "explanation": "La gestión debe alinearse con el entorno interno de la organización.",
+          "source_page": 23,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿En qué consiste identificar riesgos?",
+          "options": [
+            "Seleccionar el control que se considera habitual para el sector",
+            "Comparar valores ya calculados con niveles de tolerancia",
+            "Encontrar y describir sucesos que afectan objetivos",
+            "Ejecutar el tratamiento antes de describir los escenarios"
+          ],
+          "correct": 2,
+          "explanation": "La identificación contempla fuentes, causas y consecuencias posibles.",
+          "source_page": 44,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué aporta valorar riesgos después de analizarlos?",
+          "options": [
+            "Repetir el inventario sin utilizar las conclusiones del análisis",
+            "Determinar únicamente las causas sin aplicar criterios de decisión",
+            "Garantizar una estimación exacta antes de cualquier tratamiento",
+            "Decidir según criterios si requieren tratamiento"
+          ],
+          "correct": 3,
+          "explanation": "La valoración orienta decisiones y puede concluir que bastan los controles existentes.",
+          "source_page": 50,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Por qué la selección de tratamientos no debe atender solo al coste inmediato?",
+          "options": [
+            "Porque también cuentan obligaciones y consecuencias severas",
+            "Porque debe elegirse siempre la opción con menor coste de adquisición",
+            "Porque las consecuencias indirectas no forman parte de la decisión",
+            "Porque los requisitos contractuales se valoran solo tras un incidente"
+          ],
+          "correct": 0,
+          "explanation": "El tema considera responsabilidades y riesgos raros pero de gran impacto.",
+          "source_page": 51,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué diferencia el marco de referencia del proceso?",
+          "options": [
+            "El marco ejecuta por sí solo cada medida técnica",
+            "El proceso define únicamente la estructura directiva de la entidad",
+            "Ambos son documentos alternativos que no se necesitan mutuamente",
+            "El marco facilita integración y el proceso organiza actividades de gestión"
+          ],
+          "correct": 3,
+          "explanation": "Son elementos relacionados con funciones complementarias en la norma.",
+          "source_page": 13,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué debe considerar una decisión sobre riesgo además de datos históricos?",
+          "options": [
+            "Cambios de contexto y limitaciones de información",
+            "Solo las frecuencias del periodo con menos incidentes",
+            "Únicamente el gasto de tratamiento ejecutado el año anterior",
+            "La opinión del proveedor como sustituto del contexto propio"
+          ],
+          "correct": 0,
+          "explanation": "La gestión utiliza información disponible reconociendo incertidumbre y cambios.",
+          "source_page": 11,
+          "difficulty": "media"
+        },
+        {
+          "question": "Una empresa copia un marco de otra con actividad muy distinta. ¿Qué ajuste necesita?",
+          "options": [
+            "Aplicar los mismos umbrales porque usan la misma tecnología",
+            "Adaptarlo a su contexto y necesidades",
+            "Conservar las responsabilidades de la otra entidad aunque no existan aquí",
+            "Limitar el cambio al nombre de la organización en el documento"
+          ],
+          "correct": 1,
+          "explanation": "El marco de referencia debe adaptarse a la organización.",
+          "source_page": 14,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Aparece un cambio regulatorio relevante. ¿Qué enfoque exige el principio dinámico?",
+          "options": [
+            "Esperar a que el cambio origine un incidente",
+            "Mantener el análisis hasta agotar el presupuesto del plan anterior",
+            "Revisar riesgos y respuestas oportunamente",
+            "Revisarlo solo si cambia también el proveedor tecnológico"
+          ],
+          "correct": 2,
+          "explanation": "La gestión anticipa y responde a cambios del contexto.",
+          "source_page": 11,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Un análisis usa datos escasos y promete certeza absoluta. ¿Qué debe reconocer?",
+          "options": [
+            "Únicamente el número de participantes en la evaluación",
+            "Que los controles compensan automáticamente la falta de datos",
+            "Que la repetición del mismo cálculo elimina toda incertidumbre",
+            "Limitaciones de información e incertidumbre"
+          ],
+          "correct": 3,
+          "explanation": "La mejor información disponible incluye atender limitaciones y incertidumbre.",
+          "source_page": 11,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Usuarios y responsables técnicos perciben distinto un riesgo. ¿Qué actividad facilita una decisión fundamentada?",
+          "options": [
+            "Comunicación y consulta de perspectivas",
+            "Excluir las percepciones no técnicas por carecer de métricas",
+            "Elegir la visión más optimista para facilitar la aceptación",
+            "Promediar opiniones sin examinar qué supuestos explican las diferencias"
+          ],
+          "correct": 0,
+          "explanation": "Las percepciones varían según valores y necesidades y deben considerarse.",
+          "source_page": 38,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Tras aplicar un tratamiento, se detecta que aparecen nuevos riesgos. ¿Cómo proceder?",
+          "options": [
+            "Atribuir las nuevas exposiciones exclusivamente al proveedor",
+            "Seguir, revisar y adaptar la gestión",
+            "Cerrar el análisis porque ya se ejecutó el tratamiento previsto",
+            "Mantener el resultado anterior para conservar su comparabilidad"
+          ],
+          "correct": 1,
+          "explanation": "El proceso es iterativo y el marco debe mejorar con el aprendizaje.",
+          "source_page": 33,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Una actividad afecta también a otras áreas. ¿Qué debe incluir el contexto de su análisis?",
+          "options": [
+            "Reducir el análisis al equipo que inicia la actividad",
+            "Relaciones con proyectos y procesos vinculados",
+            "Solo el presupuesto de la unidad que lo solicita",
+            "Únicamente los activos físicamente situados en esa área"
+          ],
+          "correct": 1,
+          "explanation": "El contexto recoge relaciones pertinentes de la actividad considerada.",
+          "source_page": 41,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Los informes se generan, pero nunca se mide el desempeño del marco. ¿Qué falta?",
+          "options": [
+            "Repetir los informes sin criterios de eficacia",
+            "Renovar el documento del marco sin observar su funcionamiento",
+            "Métricas y valoración periódica de eficacia",
+            "Cambiar responsables sin evaluar qué resultados producen"
+          ],
+          "correct": 2,
+          "explanation": "El marco necesita mecanismos para comprobar desempeño y adecuación a su propósito.",
+          "source_page": 32,
+          "difficulty": "aplicación"
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "title": "Metodologias de analisis de riesgos",
+      "questions": [
+        {
+          "question": "¿Qué carácter tiene Magerit, Metodología de Análisis y Gestión de Riesgos de los Sistemas de Información?",
+          "options": [
+            "Público y orientado a decisiones basadas en riesgos",
+            "Una herramienta comercial que sustituye cualquier metodología",
+            "Un catálogo de vulnerabilidades de productos sin valoración de activos",
+            "Un marco centrado exclusivamente en requisitos penales"
+          ],
+          "correct": 0,
+          "explanation": "El tema presenta una metodología pública para orientar decisiones de gobierno.",
+          "source_page": 6,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué se determina primero al fijar el contexto del análisis?",
+          "options": [
+            "La herramienta que generará el informe antes de delimitar su alcance",
+            "Alcance y condicionantes internos y externos",
+            "El control a implantar antes de conocer el contexto",
+            "La escala final sin identificar necesidades ni restricciones"
+          ],
+          "correct": 1,
+          "explanation": "El contexto incluye obligaciones y relaciones relevantes para los criterios de riesgo.",
+          "source_page": 8,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué representa el impacto en Magerit?",
+          "options": [
+            "La suma de precios de las salvaguardas previstas",
+            "La frecuencia esperada de una amenaza sin sus consecuencias",
+            "Daño sobre un activo al materializarse una amenaza",
+            "El número de vulnerabilidades detectadas sin valorar daños"
+          ],
+          "correct": 2,
+          "explanation": "El impacto y la ocurrencia se combinan para estimar el riesgo.",
+          "source_page": 13,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué busca la caracterización de activos?",
+          "options": [
+            "Adquirir recursos antes de conocer los servicios que sostienen",
+            "Obtener exclusivamente el precio de compra de los equipos",
+            "Catalogar amenazas sin describir los activos afectados",
+            "Identificar activos, relaciones, dimensiones y valor"
+          ],
+          "correct": 3,
+          "explanation": "La actividad produce un modelo de valor del sistema analizado.",
+          "source_page": 15,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué aporta ISO 27005 en el temario?",
+          "options": [
+            "Directrices para gestionar riesgos de seguridad de información",
+            "Una norma de requisitos para certificar separadamente cualquier organización",
+            "Una relación exhaustiva de controles obligatorios para todos los riesgos",
+            "Un algoritmo de cálculo único que impide adaptar las escalas"
+          ],
+          "correct": 0,
+          "explanation": "La norma orienta fases de análisis y tratamiento y el tema señala que no es certificable.",
+          "source_page": 20,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué distingue riesgo de impacto en Magerit?",
+          "options": [
+            "El riesgo y el impacto se diferencian únicamente por la unidad monetaria",
+            "El impacto incorpora siempre la frecuencia de ocurrencia",
+            "El riesgo describe solo la vulnerabilidad, sin las consecuencias",
+            "El riesgo pondera el daño con la ocurrencia de la amenaza"
+          ],
+          "correct": 3,
+          "explanation": "El daño por materialización y su expectativa cumplen funciones distintas.",
+          "source_page": 13,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué diferencia apreciación de alto nivel y detallada?",
+          "options": [
+            "Ambas requieren empezar por el mismo grado de detalle de cada equipo",
+            "La detallada profundiza en activos, amenazas y vulnerabilidades",
+            "La de alto nivel exige analizar exhaustivamente cada configuración",
+            "La detallada sustituye la identificación de amenazas por la de activos"
+          ],
+          "correct": 1,
+          "explanation": "La apreciación de alto nivel orienta prioridades de negocio; la detallada examina componentes en profundidad.",
+          "source_page": 25,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué considera Magerit al evaluar salvaguardas?",
+          "options": [
+            "Únicamente cuántos controles aparecen en el inventario",
+            "Solo el grado de novedad de la tecnología elegida",
+            "Su pertinencia y eficacia frente a riesgos",
+            "La inversión acumulada como prueba suficiente de reducción del riesgo"
+          ],
+          "correct": 2,
+          "explanation": "La caracterización de salvaguardas permite detectar insuficiencias del sistema de protección.",
+          "source_page": 16,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué debe preceder a ejecutar una evaluación según la guía 800-30 del Instituto Nacional de Estándares y Tecnología?",
+          "options": [
+            "Distribuir conclusiones antes de definir el objetivo y el alcance",
+            "Implantar medidas sin describir la evaluación que se pretende hacer",
+            "Seleccionar automáticamente el escenario con menor pérdida",
+            "Preparar y establecer el contexto"
+          ],
+          "correct": 3,
+          "explanation": "La preparación determina las condiciones de la evaluación.",
+          "source_page": 36,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué significa una evaluación semicuantitativa?",
+          "options": [
+            "Usar escalas numéricas con rangos definidos",
+            "Expresar pérdidas monetarias con estimaciones calibradas de frecuencia",
+            "Utilizar descripciones libres sin una regla de clasificación común",
+            "Asignar números sin definir qué representa cada nivel"
+          ],
+          "correct": 0,
+          "explanation": "Los números representan agrupaciones o escalas sin conservar necesariamente significado proporcional.",
+          "source_page": 33,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué etapa comunica resultados al personal clave?",
+          "options": [
+            "Ejecución del análisis sin entregar conclusiones a responsables",
+            "Comunicación de resultados",
+            "Mantenimiento entendido solo como actualización de equipos",
+            "Preparación limitada a seleccionar la herramienta de cálculo"
+          ],
+          "correct": 1,
+          "explanation": "El proceso contempla informar resultados y mantener la evaluación en el tiempo.",
+          "source_page": 31,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué aporta la valoración frente a un análisis puramente técnico?",
+          "options": [
+            "Traducir consecuencias a decisiones de negocio",
+            "Sustituir las hipótesis por un resultado numérico exacto",
+            "Seleccionar controles según su popularidad en el sector",
+            "Limitar la decisión al resultado técnico sin considerar objetivos"
+          ],
+          "correct": 0,
+          "explanation": "La valoración incorpora percepción, política y estrategia organizativa.",
+          "source_page": 10,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Por qué no debe asumirse que una evaluación numérica siempre es cuantitativa?",
+          "options": [
+            "Porque los rangos numéricos se interpretan sin criterios comunes",
+            "Porque puede usar solo escalas semicuantitativas",
+            "Porque cualquier escala numérica representa por definición importes monetarios",
+            "Porque un análisis cualitativo no puede presentar categorías ordenadas"
+          ],
+          "correct": 1,
+          "explanation": "Las escalas numéricas pueden representar agrupaciones sin significado proporcional.",
+          "source_page": 33,
+          "difficulty": "media"
+        },
+        {
+          "question": "No hay presupuesto para examinar todo en detalle. ¿Qué aproximación puede ordenar prioridades?",
+          "options": [
+            "Asignar valores mínimos a los sistemas no examinados",
+            "Seleccionar controles comunes antes de determinar qué riesgos importan",
+            "Una apreciación de alto nivel seguida de detalle donde proceda",
+            "Realizar el mismo detalle en todos los activos aunque falten recursos"
+          ],
+          "correct": 2,
+          "explanation": "La apreciación de alto nivel permite definir prioridades y cronología de acciones.",
+          "source_page": 22,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Un análisis orientado solo a amenazas omite otros escenarios. ¿Qué refuerzo propone el tema?",
+          "options": [
+            "Reutilizar la misma lista sin variar el punto de partida",
+            "Considerar inexistente cualquier escenario que no se haya identificado",
+            "Eliminar los activos de la evaluación para reducir el número de casos",
+            "Añadir una segunda aproximación"
+          ],
+          "correct": 3,
+          "explanation": "Distintos puntos de partida ayudan a reducir sesgos y mejorar rigor.",
+          "source_page": 35,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Un riesgo residual es asumible, pero existe obligación legal adicional. ¿Qué debe incluir la decisión?",
+          "options": [
+            "Obligaciones legales y contractuales además del nivel de riesgo",
+            "Solo la reducción de pérdidas estimadas a corto plazo",
+            "La preferencia individual de quien opera la herramienta",
+            "Únicamente la solución que resulte más barata de adquirir"
+          ],
+          "correct": 0,
+          "explanation": "La toma de decisiones considera riesgos, impacto y obligaciones.",
+          "source_page": 17,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Se analiza un servidor sin estudiar qué servicios dependen de él. ¿Qué tarea falta?",
+          "options": [
+            "Completar la ficha únicamente con su identificación de inventario",
+            "Identificar dependencias entre activos",
+            "Actualizar su ubicación física sin estudiar sus relaciones funcionales",
+            "Valorar exclusivamente el coste de reemplazar el hardware"
+          ],
+          "correct": 1,
+          "explanation": "Las interrelaciones condicionan el valor y las consecuencias de degradación.",
+          "source_page": 15,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Tras implantar controles, nadie comprueba que funcionen. ¿Qué actividad corresponde?",
+          "options": [
+            "Suponer eficacia plena por haber terminado la instalación",
+            "Mantener sin cambios los niveles previos al tratamiento",
+            "Monitorizar respuestas y mantener la evaluación",
+            "Cerrar el estudio al generar el primer informe de riesgos"
+          ],
+          "correct": 2,
+          "explanation": "El mantenimiento verifica eficacia, cambios y cumplimiento.",
+          "source_page": 39,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Se ignora la pérdida de reputación al decidir un tratamiento. ¿Qué debe añadirse?",
+          "options": [
+            "Solo el formato con que se representan los niveles",
+            "La antigüedad de los activos como sustituto de consecuencias",
+            "Consecuencias intangibles para relaciones e imagen",
+            "Únicamente la suma de los costes de sustitución técnica"
+          ],
+          "correct": 2,
+          "explanation": "Las decisiones consideran la capacidad de asumir impactos intangibles.",
+          "source_page": 17,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "El proveedor no conoce los requisitos de seguridad esperados. ¿Qué actividad corresponde?",
+          "options": [
+            "Considerar que el contrato comercial implica cualquier requisito interno",
+            "Esperar a comprobar un incumplimiento antes de comunicarlo",
+            "Mantener criterios implícitos para no limitar al proveedor",
+            "Comunicar instrucciones y niveles requeridos"
+          ],
+          "correct": 3,
+          "explanation": "La comunicación debe permitir exigir niveles de servicio y gestión de incidentes.",
+          "source_page": 11,
+          "difficulty": "aplicación"
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "title": "Evaluacion de riesgos de Tecnologias de la Informacion",
+      "questions": [
+        {
+          "question": "¿Qué tres procesos componen la evaluación del riesgo?",
+          "options": [
+            "Contexto, tratamiento y seguimiento",
+            "Identificación, análisis y valoración",
+            "Identificación, tratamiento y aceptación",
+            "Inventario, implantación y certificación"
+          ],
+          "correct": 1,
+          "explanation": "El tema sigue la estructura de evaluación presentada en ISO 31000.",
+          "source_page": 7,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué es el riesgo inherente?",
+          "options": [
+            "Únicamente el riesgo cuya aceptación ha firmado la dirección",
+            "El nivel obtenido tras verificar las salvaguardas",
+            "El estimado sin considerar controles implantados",
+            "La exposición calculada solo para los incidentes ya confirmados"
+          ],
+          "correct": 2,
+          "explanation": "Comparar riesgos antes y después de salvaguardas permite comprender su efecto.",
+          "source_page": 13,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué es el riesgo residual?",
+          "options": [
+            "El precio total de implantar las medidas",
+            "La exposición previa a considerar las salvaguardas",
+            "La frecuencia de ataques, sin sus consecuencias",
+            "El que queda considerando la eficacia de los controles"
+          ],
+          "correct": 3,
+          "explanation": "La eficacia y madurez reales de las salvaguardas condicionan el riesgo residual.",
+          "source_page": 13,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué representa el impacto?",
+          "options": [
+            "Consecuencias de un evento sobre información y objetivos",
+            "La frecuencia de intentos registrados en un periodo",
+            "El coste del estudio que describe un escenario",
+            "La debilidad técnica sin valorar efectos sobre los objetivos"
+          ],
+          "correct": 0,
+          "explanation": "El impacto puede afectar confidencialidad, integridad o disponibilidad y objetivos organizativos.",
+          "source_page": 10,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Por qué debe actualizarse la evaluación del riesgo?",
+          "options": [
+            "Porque el informe inicial pierde validez en un plazo fijo común",
+            "Porque cambian amenazas, contexto y controles",
+            "Porque solo se deben utilizar los datos del incidente más reciente",
+            "Porque un control implantado obliga a aceptar automáticamente el riesgo"
+          ],
+          "correct": 1,
+          "explanation": "La gestión requiere seguimiento y revisión dentro de mejora continua.",
+          "source_page": 5,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué combina la estimación del riesgo descrita en el tema?",
+          "options": [
+            "Probabilidad y consecuencias del evento",
+            "Solo el número de activos incluidos en el inventario",
+            "El coste de adquisición de los recursos técnicos",
+            "El gasto de tratamiento realizado hasta la fecha"
+          ],
+          "correct": 0,
+          "explanation": "El riesgo se relaciona con ocurrencia e impacto sobre objetivos.",
+          "source_page": 9,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué caracteriza un riesgo conocido-desconocido?",
+          "options": [
+            "Es un riesgo cuya probabilidad ya se ha medido con precisión",
+            "Es una pérdida ocurrida cuyos efectos se han cuantificado",
+            "Se desconoce concretamente, pero se sabe que podría existir",
+            "Es un escenario cuya existencia no se contempla ni siquiera como posibilidad"
+          ],
+          "correct": 2,
+          "explanation": "La clasificación ayuda a considerar también riesgos no identificados con precisión.",
+          "source_page": 9,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué cualidades conviene exigir a una metodología?",
+          "options": [
+            "Dependencia de un experto sin documentación del método",
+            "Rapidez de ejecución aunque no se puedan reproducir resultados",
+            "La misma puntuación final para cualquier sistema examinado",
+            "Objetividad, fiabilidad, medición y replicabilidad"
+          ],
+          "correct": 3,
+          "explanation": "Estas cualidades permiten repetir y confiar razonablemente en la evaluación.",
+          "source_page": 5,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿De qué depende el detalle apropiado del análisis?",
+          "options": [
+            "Del caso, datos fiables y necesidades de decisión",
+            "Solo del tamaño que tenga el inventario de equipos",
+            "Únicamente del presupuesto reservado para redactar el informe",
+            "De utilizar siempre la máxima precisión aunque los datos no la permitan"
+          ],
+          "correct": 0,
+          "explanation": "La profundidad debe responder al contexto y a la información disponible.",
+          "source_page": 14,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Por qué los niveles calculados de riesgo no deben presentarse como certezas?",
+          "options": [
+            "Porque el cálculo sustituye la necesidad de evidencias",
+            "Porque son estimaciones sujetas a hipótesis",
+            "Porque las estimaciones dejan de ser útiles al incluir incertidumbre",
+            "Porque todos los escenarios tienen necesariamente la misma probabilidad"
+          ],
+          "correct": 1,
+          "explanation": "Incluso el análisis cuantitativo produce estimaciones.",
+          "source_page": 17,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué mejora la recopilación de datos para identificar riesgos?",
+          "options": [
+            "Usar únicamente los sucesos que figuran en un único registro",
+            "Limitarse a los riesgos técnicos y excluir el conocimiento del negocio",
+            "Utilizar diversas fuentes y conocimiento experto",
+            "Adoptar la opinión más frecuente sin documentar las fuentes"
+          ],
+          "correct": 2,
+          "explanation": "El temario recomienda combinar literatura, reguladores, negocio, supervisión y expertos.",
+          "source_page": 11,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué permite comparar riesgo inherente y residual?",
+          "options": [
+            "Determinar la eficacia solo por el coste de las medidas",
+            "Evaluar cómo actúan las salvaguardas",
+            "Demostrar que ningún control puede fallar tras su implantación",
+            "Sustituir la valoración de consecuencias por la diferencia entre dos cifras"
+          ],
+          "correct": 1,
+          "explanation": "La diferencia refleja la contribución de controles implantados.",
+          "source_page": 13,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Por qué conviene declarar unidades al iniciar un análisis cuantitativo?",
+          "options": [
+            "Para convertir automáticamente categorías ordinales en importes",
+            "Porque cualquier consecuencia se expresa exclusivamente en tiempo",
+            "Para interpretar correctamente niveles y consecuencias",
+            "Para evitar comparar periodos de observación distintos"
+          ],
+          "correct": 2,
+          "explanation": "Las unidades específicas dan significado a los valores económicos o de otra naturaleza.",
+          "source_page": 16,
+          "difficulty": "media"
+        },
+        {
+          "question": "Se calcula riesgo residual suponiendo que todo control funciona perfectamente. ¿Qué debe añadirse?",
+          "options": [
+            "Aumentar el número de decimales del mismo cálculo",
+            "Utilizar la declaración comercial del fabricante como única prueba",
+            "Cambiar de escala hasta obtener un resultado aceptable",
+            "Evaluación de eficacia y madurez real"
+          ],
+          "correct": 3,
+          "explanation": "Los controles existentes deben valorarse por su estado efectivo.",
+          "source_page": 13,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Un riesgo no aparece en el catálogo del año anterior. ¿Cómo tratarlo?",
+          "options": [
+            "Considerar riesgos desconocidos y nuevos escenarios",
+            "Excluirlo del alcance por no existir una frecuencia histórica",
+            "Asignarle el menor nivel de riesgo posible sin más datos",
+            "Sustituirlo por un escenario conocido aunque tenga causas distintas"
+          ],
+          "correct": 0,
+          "explanation": "La identificación debe contemplar incertidumbres y riesgos no reconocidos previamente.",
+          "source_page": 9,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Dos analistas interpretan alto y bajo de forma distinta. ¿Qué es prioritario?",
+          "options": [
+            "Eliminar las categorías sin acordar otra regla de valoración",
+            "Definir términos y criterios comunes",
+            "Promediar las etiquetas sin aclarar qué representa cada una",
+            "Aplicar el criterio más favorable para reducir diferencias"
+          ],
+          "correct": 1,
+          "explanation": "La claridad de términos facilita consistencia y comunicación del análisis.",
+          "source_page": 17,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Se dispone de datos fiables de consecuencias y probabilidades económicas. ¿Qué enfoque permite expresarlos en unidades monetarias?",
+          "options": [
+            "Una matriz cualitativa cuyas categorías no representan importes",
+            "Una escala ordinal que asigna números solo a niveles de severidad",
+            "Análisis cuantitativo",
+            "Una descripción narrativa sin estimaciones numéricas de pérdidas"
+          ],
+          "correct": 2,
+          "explanation": "El análisis cuantitativo usa valores reales estimados y unidades específicas.",
+          "source_page": 16,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "El inventario cambia y se mantiene el informe de riesgo antiguo. ¿Qué paso corresponde?",
+          "options": [
+            "Actualizar únicamente la lista de equipos adjunta al informe",
+            "Mantener valores por haberse aprobado el análisis anterior",
+            "Posponer toda revisión hasta que se materialice el riesgo",
+            "Revisar y actualizar la evaluación"
+          ],
+          "correct": 3,
+          "explanation": "La revisión continua permite reflejar cambios en los riesgos.",
+          "source_page": 5,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Un informe combina costes reales y etiquetas sin explicar escalas. ¿Qué debe corregirse?",
+          "options": [
+            "Solo el diseño visual con que se diferencian los niveles",
+            "La cantidad de tablas, sin definir el significado de sus valores",
+            "La denominación de las categorías, sin explicar su relación",
+            "La definición de términos y criterios de valoración"
+          ],
+          "correct": 3,
+          "explanation": "La coherencia de criterios evita comparaciones y cálculos sin significado.",
+          "source_page": 17,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Se modifica un proceso crítico, pero solo se actualiza el inventario. ¿Qué falta comprobar?",
+          "options": [
+            "Cómo cambia su riesgo y consecuencias",
+            "Únicamente si cambia el precio de los equipos",
+            "Solo si el inventario contiene todos los números de serie",
+            "Que la evaluación anterior siga siendo aceptable por haber sido aprobada"
+          ],
+          "correct": 0,
+          "explanation": "La evaluación debe mantenerse conforme evoluciona el contexto organizativo.",
+          "source_page": 5,
+          "difficulty": "aplicación"
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "title": "Respuesta y monitorizacion",
+      "questions": [
+        {
+          "question": "¿Qué significa evitar un riesgo?",
+          "options": [
+            "Aceptar la exposición sin modificar la actividad",
+            "Mantener la actividad y reducir su probabilidad mediante un control",
+            "No iniciar o dejar la actividad que lo causa",
+            "Transferir únicamente consecuencias económicas mediante una póliza"
+          ],
+          "correct": 2,
+          "explanation": "Evitar es una de las opciones de tratamiento del riesgo.",
+          "source_page": 6,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué busca una salvaguarda preventiva?",
+          "options": [
+            "Reducir exclusivamente las pérdidas después del suceso",
+            "Recuperar el servicio tras detectar su interrupción",
+            "Compensar económicamente el daño una vez producido",
+            "Reducir la probabilidad de materialización"
+          ],
+          "correct": 3,
+          "explanation": "Las medidas preventivas disminuyen oportunidades de la amenaza.",
+          "source_page": 12,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué busca una salvaguarda reactiva?",
+          "options": [
+            "Limitar consecuencias de un incidente",
+            "Disminuir únicamente la probabilidad antes del suceso",
+            "Transferir automáticamente todas las responsabilidades al proveedor",
+            "Sustituir la recuperación por la aceptación del daño"
+          ],
+          "correct": 0,
+          "explanation": "Las medidas reactivas actúan sobre los efectos tras materializarse la amenaza.",
+          "source_page": 13,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿De qué depende la eficacia real de una salvaguarda?",
+          "options": [
+            "Del reconocimiento de la marca como criterio suficiente",
+            "De su implantación y configuración efectivas",
+            "De su inclusión en la política aunque no esté operativa",
+            "Del importe pagado, sin comprobar su funcionamiento"
+          ],
+          "correct": 1,
+          "explanation": "La eficacia exige conocer cómo está implementada en la práctica.",
+          "source_page": 13,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Para qué sirven los indicadores de riesgo?",
+          "options": [
+            "Para sustituir las decisiones de tratamiento por un valor agregado",
+            "Para acreditar eficacia únicamente mediante gasto ejecutado",
+            "Para conocer evolución de riesgos y efectividad de controles",
+            "Para eliminar la necesidad de revisar hipótesis y contexto"
+          ],
+          "correct": 2,
+          "explanation": "Relacionan métricas con amenazas y salvaguardas.",
+          "source_page": 17,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Puede una respuesta combinar distintas opciones de tratamiento?",
+          "options": [
+            "Solo si todas las opciones pertenecen al mismo tipo de control",
+            "Sí, según contexto y objetivos",
+            "No, cada riesgo debe tratarse con una única opción excluyente",
+            "Solo después de que se produzca un incidente confirmado"
+          ],
+          "correct": 1,
+          "explanation": "Las opciones de tratamiento no son necesariamente excluyentes.",
+          "source_page": 6,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Por qué el tratamiento necesita revisión posterior?",
+          "options": [
+            "Porque la aceptación implica necesariamente que los controles no funcionan",
+            "Para mantener los valores iniciales aunque cambie el contexto",
+            "Porque cualquier efecto observado transfiere el riesgo al proveedor",
+            "Para comprobar su efecto y los riesgos restantes"
+          ],
+          "correct": 3,
+          "explanation": "El tratamiento es un proceso que debe verificar eficacia y riesgo residual.",
+          "source_page": 5,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué conviene especificar para cada indicador?",
+          "options": [
+            "Responsable, frecuencia, umbrales y valor objetivo",
+            "Solo la denominación del indicador y la herramienta que lo muestra",
+            "Únicamente el valor actual, sin criterios de evaluación",
+            "Solo el coste de obtenerlo, sin definir cómo se interpretará"
+          ],
+          "correct": 0,
+          "explanation": "Estas condiciones hacen operable la monitorización.",
+          "source_page": 20,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué describe la fórmula de una métrica?",
+          "options": [
+            "La periodicidad con que se ejecuta la toma de datos",
+            "El cálculo que produce su valor",
+            "El nivel objetivo que se considera aceptable",
+            "La identidad de quien aprueba la política de medición"
+          ],
+          "correct": 1,
+          "explanation": "La definición de métricas incluye fórmula y fuentes de datos.",
+          "source_page": 22,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué expresa la frecuencia de una métrica?",
+          "options": [
+            "El tiempo que se desea tardar en recuperarse de un incidente",
+            "El número mínimo de controles que debe contener el tratamiento",
+            "Cada cuánto se recogen datos",
+            "La duración total del contrato de la herramienta"
+          ],
+          "correct": 2,
+          "explanation": "Permite medir cambios conforme a periodos definidos.",
+          "source_page": 22,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué significa identificar la entidad a medir?",
+          "options": [
+            "Seleccionar la aplicación que recogerá datos antes de fijar su finalidad",
+            "Adoptar el indicador utilizado por otra entidad sin adaptar su objeto",
+            "Obtener cualquier dato disponible y decidir después qué representa",
+            "Precisar el objeto y atributos de la medición"
+          ],
+          "correct": 3,
+          "explanation": "La entidad puede ser tangible o intangible, como un riesgo o una salvaguarda.",
+          "source_page": 18,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué distingue una métrica de un indicador de riesgo?",
+          "options": [
+            "El indicador registra únicamente el dato bruto sin criterio de interpretación",
+            "La métrica incorpora necesariamente una decisión de aceptación del riesgo",
+            "El indicador interpreta una métrica o combinación respecto al riesgo",
+            "Ambos son idénticos y no requieren distinguir valor e interpretación"
+          ],
+          "correct": 2,
+          "explanation": "Los indicadores permiten conocer comportamiento y evolución de riesgos y controles.",
+          "source_page": 17,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Por qué deben identificarse fuentes de datos de una métrica?",
+          "options": [
+            "Para sustituir el método de cálculo por una referencia comercial",
+            "Para que una medición no pueda repetirse con la misma información",
+            "Para asumir que todos los valores disponibles tienen igual calidad",
+            "Para saber de dónde proceden los valores calculados"
+          ],
+          "correct": 3,
+          "explanation": "La definición incluye bases de datos, herramientas y ubicaciones de datos.",
+          "source_page": 22,
+          "difficulty": "media"
+        },
+        {
+          "question": "Un control está adquirido, pero no configurado. ¿Cómo debe valorarse?",
+          "options": [
+            "Por su implantación real, sin asumir eficacia plena",
+            "Como plenamente eficaz desde que se recibe la factura",
+            "Como implantado si figura en el catálogo, aunque no se haya desplegado",
+            "Como concluido mientras exista un contrato de mantenimiento"
+          ],
+          "correct": 0,
+          "explanation": "La eficacia no deriva solo de disponer del producto.",
+          "source_page": 13,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Se instala una alarma y también un mecanismo de recuperación. ¿Qué distinción debe analizarse?",
+          "options": [
+            "Únicamente el coste de licencia de ambos mecanismos",
+            "Cómo previenen o limitan consecuencias",
+            "Solo si pertenecen al mismo fabricante y versión",
+            "El número de activos inventariados sin examinar la función de cada medida"
+          ],
+          "correct": 1,
+          "explanation": "Los controles actúan sobre probabilidad o impacto y pueden combinarse.",
+          "source_page": 12,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Un indicador aumenta, pero no tiene umbral ni responsable. ¿Qué mejora es prioritaria?",
+          "options": [
+            "Sustituir el análisis por la publicación del valor aislado",
+            "Elegir un valor objetivo después de observar cada resultado",
+            "Definir límites, objetivos y responsable de análisis",
+            "Cambiar la escala para que el aumento deje de ser visible"
+          ],
+          "correct": 2,
+          "explanation": "La monitorización requiere criterios y responsabilidades definidos.",
+          "source_page": 20,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Se informa del riesgo con datos recogidos hace varios años. ¿Qué problema debe abordarse?",
+          "options": [
+            "Únicamente el formato de entrega de las estadísticas",
+            "Que la antigüedad de los datos permite prescindir de nuevas mediciones",
+            "Que un dato histórico prueba por sí solo la inexistencia de controles",
+            "La pérdida de correspondencia con la situación actual"
+          ],
+          "correct": 3,
+          "explanation": "Estimaciones y valores pueden alejarse de la realidad con el tiempo.",
+          "source_page": 16,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "La organización quiere comparar mediciones mensuales hechas con criterios distintos. ¿Qué necesita?",
+          "options": [
+            "Definiciones y métodos comparables y reproducibles",
+            "Sumar directamente los valores aunque representen atributos distintos",
+            "Mantener las escalas diferentes y comparar solo sus números",
+            "Cambiar únicamente la presentación visual de los resultados"
+          ],
+          "correct": 0,
+          "explanation": "Las métricas deben permitir resultados consistentes para comparar evolución.",
+          "source_page": 20,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "El riesgo residual continúa sobre el límite tras aplicar una medida. ¿Qué corresponde?",
+          "options": [
+            "Revisar y mejorar tratamiento y salvaguardas",
+            "Aceptar automáticamente la exposición porque ya hubo una inversión",
+            "Reclasificar el escenario sin revisar su probabilidad ni consecuencias",
+            "Mantener el valor de riesgo anterior para no modificar los objetivos"
+          ],
+          "correct": 0,
+          "explanation": "El tratamiento debe comprobar resultados y ajustar medidas cuando proceda.",
+          "source_page": 5,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Se comparan valores de escalas incompatibles como si fueran importes. ¿Qué debe revisarse?",
+          "options": [
+            "La herramienta con que se exportaron los gráficos, sin examinar las unidades",
+            "Propiedades de las escalas y operaciones admisibles",
+            "Solo los colores utilizados para distinguir resultados",
+            "Únicamente el orden de presentación de las tablas"
+          ],
+          "correct": 1,
+          "explanation": "El tipo de escala determina transformaciones y operaciones válidas.",
+          "source_page": 21,
+          "difficulty": "aplicación"
+        }
+      ]
+    }
+  ]
+}

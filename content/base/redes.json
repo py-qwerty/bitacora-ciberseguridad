@@ -1,0 +1,2665 @@
+{
+  "course": "Seguridad en redes y Análisis Inteligente de Amenazas",
+  "topics": [
+    {
+      "number": 1,
+      "title": "Introducción a la seguridad en redes",
+      "questions": [
+        {
+          "question": "¿Qué describe una vulnerabilidad de una red?",
+          "options": [
+            "Una acción que explota una debilidad",
+            "Un evento potencialmente dañino",
+            "Un control que impide accesos",
+            "Una debilidad explotable del sistema"
+          ],
+          "correct": 3,
+          "explanation": "Una vulnerabilidad es un fallo de diseño, implementación u operación que puede explotarse.",
+          "source_page": 11,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué caracteriza la escucha no autorizada sin cambiar mensajes?",
+          "options": [
+            "Un ataque de modificación de datos",
+            "Un ataque de repetición de mensajes",
+            "Es un ataque pasivo",
+            "Un ataque de suplantación de identidad"
+          ],
+          "correct": 2,
+          "explanation": "La escucha observa tráfico sin alterar los recursos o la comunicación.",
+          "source_page": 12,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué servicio permite detectar modificaciones de un mensaje?",
+          "options": [
+            "Confidencialidad del contenido",
+            "Integridad de los datos",
+            "Disponibilidad del servicio",
+            "No repudio de recepción"
+          ],
+          "correct": 1,
+          "explanation": "La integridad permite comprobar si los datos se han alterado durante la comunicación.",
+          "source_page": 19,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué comprueba el servicio de autenticación?",
+          "options": [
+            "Que la identidad declarada es verdadera",
+            "Que el mensaje no haya cambiado",
+            "Que el recurso esté accesible",
+            "Que el usuario tenga permiso sobre cualquier recurso"
+          ],
+          "correct": 0,
+          "explanation": "La autenticación verifica la identidad de entidades o el origen de datos.",
+          "source_page": 17,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué propiedad necesita un usuario autorizado para utilizar un recurso cuando lo requiere?",
+          "options": [
+            "Integridad de los mensajes",
+            "Confidencialidad del contenido",
+            "No repudio en origen",
+            "Disponibilidad"
+          ],
+          "correct": 3,
+          "explanation": "La disponibilidad exige que el recurso esté accesible y utilizable con el rendimiento previsto.",
+          "source_page": 20,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué protege directamente la confidencialidad?",
+          "options": [
+            "Que se detecte la alteración de datos",
+            "Que se pruebe la recepción",
+            "Que los datos no se revelen a entidades no autorizadas",
+            "Que los recursos estén accesibles"
+          ],
+          "correct": 2,
+          "explanation": "La confidencialidad protege frente a revelación accidental o deliberada.",
+          "source_page": 18,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Por qué retransmitir una orden bancaria capturada es un ataque de repetición?",
+          "options": [
+            "Modifica el contenido de cada mensaje capturado",
+            "Se limita a examinar patrones sin enviar datos",
+            "Reutiliza un mensaje para producir un efecto no deseado",
+            "Satura el recurso con solicitudes nuevas"
+          ],
+          "correct": 2,
+          "explanation": "La repetición captura mensajes y los vuelve a transmitir para provocar nuevas acciones.",
+          "source_page": 14,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Por qué cifrar el contenido no elimina todo análisis de tráfico?",
+          "options": [
+            "El cifrado también impide ver tiempos de envío",
+            "Pueden observarse patrones como frecuencia y longitud",
+            "La confidencialidad y el anonimato son equivalentes",
+            "Los paquetes cifrados dejan de tener metadatos"
+          ],
+          "correct": 1,
+          "explanation": "Aunque no se lea el mensaje, sus patrones pueden revelar información sobre la comunicación.",
+          "source_page": 13,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué diferencia no repudio en origen de autenticación básica?",
+          "options": [
+            "Aporta una prueba para impedir que el emisor niegue el envío",
+            "Sustituye la comprobación de permisos",
+            "Garantiza secreto del contenido",
+            "Recupera el recurso tras una interrupción"
+          ],
+          "correct": 0,
+          "explanation": "El no repudio en origen proporciona al receptor prueba del origen de los datos.",
+          "source_page": 19,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué relación existe entre servicio y mecanismo de seguridad?",
+          "options": [
+            "El servicio es el algoritmo concreto de cifrado",
+            "El mecanismo expresa únicamente el objetivo de protección",
+            "Un mecanismo solo puede servir a un único servicio",
+            "El mecanismo implementa o refuerza un servicio"
+          ],
+          "correct": 3,
+          "explanation": "Por ejemplo, el cifrado es un mecanismo que proporciona confidencialidad.",
+          "source_page": 21,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué tarea corresponde a la capa de red en el modelo del tema?",
+          "options": [
+            "Entregar datos entre procesos de los extremos",
+            "Interpretar mensajes de una aplicación concreta",
+            "Encaminar paquetes entre redes",
+            "Transmitir bits por el medio físico"
+          ],
+          "correct": 2,
+          "explanation": "La capa de red maneja el movimiento y encaminamiento de paquetes.",
+          "source_page": 7,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué aporta la notarización en los mecanismos de seguridad?",
+          "options": [
+            "Cifrado del contenido con clave compartida",
+            "Un registro avalado por una tercera parte de confianza",
+            "Verificación de integridad mediante una huella",
+            "Decisión de permisos del recurso solicitado"
+          ],
+          "correct": 1,
+          "explanation": "La tercera parte da fe de la veracidad de datos registrados.",
+          "source_page": 22,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué diferencia general existe entre capa de red y de transporte?",
+          "options": [
+            "La red encamina paquetes y el transporte comunica extremos",
+            "La red identifica aplicaciones y el transporte enruta",
+            "La red transmite bits y el transporte crea cuentas",
+            "La red mantiene sesiones y el transporte presenta datos"
+          ],
+          "correct": 0,
+          "explanation": "Las capas reparten responsabilidades diferentes en la comunicación.",
+          "source_page": 7,
+          "difficulty": "media"
+        },
+        {
+          "question": "Una empresa quiere dificultar que un observador deduzca actividad por tamaños y ritmos. ¿Qué mecanismo del tema complementa el cifrado?",
+          "options": [
+            "Firma digital de cada mensaje",
+            "Relleno de tráfico",
+            "Control de acceso sobre las aplicaciones",
+            "Comprobación de integridad de los paquetes"
+          ],
+          "correct": 1,
+          "explanation": "El relleno añade tráfico para dificultar la deducción de patrones.",
+          "source_page": 13,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Un empleado se identifica correctamente, pero intenta abrir nóminas ajenas. ¿Qué servicio debe decidir si puede hacerlo?",
+          "options": [
+            "Control de acceso",
+            "Autenticación de la identidad declarada",
+            "Comprobación de integridad del documento",
+            "No repudio del envío de la solicitud"
+          ],
+          "correct": 0,
+          "explanation": "Identificarse no concede acceso a todos los recursos; el control de acceso aplica sus derechos particulares.",
+          "source_page": 18,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Un servicio deja de responder por saturación provocada. ¿Qué objetivo de seguridad resulta directamente afectado?",
+          "options": [
+            "Integridad del contenido",
+            "Confidencialidad del contenido",
+            "No repudio de recepción",
+            "Disponibilidad"
+          ],
+          "correct": 3,
+          "explanation": "La denegación de servicio vuelve el recurso inaccesible para los usuarios legítimos.",
+          "source_page": 15,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Se necesita verificar identidad del emisor e integridad del mensaje. ¿Qué mecanismo descrito sirve para ambas?",
+          "options": [
+            "Cifrado con una clave compartida sin firma",
+            "Huella del mensaje sin autenticación del origen",
+            "Firma digital",
+            "Relleno de tráfico para ocultar patrones"
+          ],
+          "correct": 2,
+          "explanation": "La firma digital vincula la identidad del emisor al mensaje y permite verificar su integridad.",
+          "source_page": 21,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Un intruso se hace pasar por un servidor autorizado. ¿Cómo se clasifica esta acción?",
+          "options": [
+            "Un ataque pasivo de análisis de tráfico",
+            "Suplantación de identidad, un ataque activo",
+            "Un ataque de repetición sin cambio de identidad",
+            "Un ataque de modificación del contenido"
+          ],
+          "correct": 1,
+          "explanation": "La suplantación pretende que una entidad sea aceptada como otra y constituye un ataque activo.",
+          "source_page": 14,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Un atacante cambia el importe de una orden en tránsito. ¿Qué servicio permite detectar esa alteración?",
+          "options": [
+            "Disponibilidad del servicio",
+            "Confidencialidad del contenido",
+            "No repudio del envío",
+            "Integridad"
+          ],
+          "correct": 3,
+          "explanation": "La modificación del contenido afecta a integridad, aunque el canal siga disponible.",
+          "source_page": 15,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Una entidad necesita prueba de que el destinatario recibió un mensaje. ¿Qué servicio estudia esa necesidad?",
+          "options": [
+            "No repudio en origen",
+            "Autenticación del origen de datos",
+            "No repudio en destino",
+            "Confidencialidad de la conexión"
+          ],
+          "correct": 2,
+          "explanation": "El no repudio en destino ofrece al emisor prueba de recepción.",
+          "source_page": 19,
+          "difficulty": "aplicación"
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "title": "Seguridad perimetral",
+      "questions": [
+        {
+          "question": "¿Qué protege un cortafuegos de host?",
+          "options": [
+            "Todo el tráfico de una subred al atravesar una pasarela",
+            "Solo las conexiones dirigidas al perímetro externo",
+            "El tráfico entrante y saliente de un equipo concreto",
+            "Únicamente los paquetes reenviados entre redes"
+          ],
+          "correct": 2,
+          "explanation": "El cortafuegos de host actúa sobre las comunicaciones de un equipo individual.",
+          "source_page": 6,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué hace una política restrictiva con tráfico no permitido explícitamente?",
+          "options": [
+            "Lo admite si no coincide con una regla de bloqueo",
+            "Lo descarta",
+            "Lo admite si pertenece a un servicio conocido",
+            "Lo mantiene permitido hasta revisar el registro"
+          ],
+          "correct": 1,
+          "explanation": "La política restrictiva admite solo lo autorizado mediante reglas.",
+          "source_page": 10,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿En qué se basa principalmente el filtrado de paquetes tradicional?",
+          "options": [
+            "Campos de cabecera como direcciones y puertos",
+            "El contenido específico de cada aplicación",
+            "La identidad autenticada del usuario únicamente",
+            "Los patrones de comportamiento de toda la sesión"
+          ],
+          "correct": 0,
+          "explanation": "Este filtrado examina datos de las cabeceras de red y transporte.",
+          "source_page": 8,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué añade un cortafuegos de próxima generación, NGFW (Next Generation Firewall)?",
+          "options": [
+            "Únicamente seguimiento de conexiones por dirección y puerto",
+            "Solo traducción entre direcciones públicas y privadas",
+            "Exclusivamente filtrado estático de cabeceras",
+            "Inspección más profunda y capacidades de aplicación"
+          ],
+          "correct": 3,
+          "explanation": "Combina capacidades tradicionales con análisis a nivel de aplicación y otras funciones de seguridad.",
+          "source_page": 13,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué tabla de iptables se usa principalmente para aceptar o descartar paquetes?",
+          "options": [
+            "nat",
+            "mangle",
+            "filter",
+            "raw"
+          ],
+          "correct": 2,
+          "explanation": "La tabla filter implementa las decisiones de filtrado.",
+          "source_page": 17,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué hace una política permisiva con un paquete no prohibido explícitamente?",
+          "options": [
+            "Lo descarta si no existe autorización explícita",
+            "Lo acepta",
+            "Lo acepta solo si está en una lista permitida",
+            "Lo deja pendiente de una regla de autorización"
+          ],
+          "correct": 1,
+          "explanation": "La política permisiva autoriza lo que no está expresamente bloqueado.",
+          "source_page": 10,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué cadena de iptables corresponde a tráfico que atraviesa el equipo hacia otro destino?",
+          "options": [
+            "INPUT",
+            "FORWARD",
+            "OUTPUT",
+            "PREROUTING como sustituto de FORWARD"
+          ],
+          "correct": 1,
+          "explanation": "FORWARD trata paquetes reenviados, cuyo origen y destino no son el cortafuegos.",
+          "source_page": 18,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué diferencia REJECT de DROP en iptables?",
+          "options": [
+            "REJECT notifica el rechazo; DROP descarta sin esa notificación",
+            "DROP notifica y REJECT descarta sin avisar",
+            "REJECT registra y DROP únicamente acepta",
+            "Ambos descartan con la misma respuesta de rechazo"
+          ],
+          "correct": 0,
+          "explanation": "Ambas acciones descartan, pero REJECT responde al extremo de la comunicación.",
+          "source_page": 19,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué reduce la carga de una pasarela de circuito después de autenticar?",
+          "options": [
+            "Inspeccionar todo el contenido de aplicación",
+            "Reconstruir cada documento transmitido",
+            "Aplicar análisis profundo del contenido a cada paquete",
+            "Redirigir tráfico sin analizar su contenido de aplicación"
+          ],
+          "correct": 3,
+          "explanation": "La pasarela de circuito no examina el contenido a nivel de aplicación después del establecimiento.",
+          "source_page": 12,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Para qué se utiliza la tabla nat de iptables?",
+          "options": [
+            "Decidir aceptación o descarte en la tabla de filtrado",
+            "Excluir paquetes del seguimiento de conexiones",
+            "Modificar direcciones de origen o destino",
+            "Modificar campos generales de cabecera como el tiempo de vida"
+          ],
+          "correct": 2,
+          "explanation": "NAT significa traducción de direcciones de red (Network Address Translation).",
+          "source_page": 17,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Por qué un cortafuegos perimetral no basta frente a un portátil comprometido fuera de la empresa?",
+          "options": [
+            "El perímetro inspecciona también todas las acciones locales",
+            "Puede entrar en la red interna eludiendo el filtrado del perímetro",
+            "Las conexiones internas heredan automáticamente confianza",
+            "El filtrado externo valida la integridad del software del portátil"
+          ],
+          "correct": 1,
+          "explanation": "Los equipos comprometidos fuera y conectados después dentro constituyen una limitación del perímetro.",
+          "source_page": 7,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué aporta una tabla de estado a un cortafuegos?",
+          "options": [
+            "Seguimiento de conexiones abiertas",
+            "Un análisis semántico de documentos web",
+            "Una base de firmas de malware en archivos",
+            "Una lista de usuarios autenticados del proxy"
+          ],
+          "correct": 0,
+          "explanation": "El contexto de conexión mejora decisiones respecto al filtrado sin estado.",
+          "source_page": 8,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué diferencia listar reglas de vaciar una cadena en iptables?",
+          "options": [
+            "-L elimina reglas y -F las enumera",
+            "-L cambia la política y -F añade reglas",
+            "-L añade reglas y -F cambia la política",
+            "-L muestra reglas y -F las borra"
+          ],
+          "correct": 3,
+          "explanation": "Las opciones permiten consultar o eliminar las reglas de una cadena.",
+          "source_page": 20,
+          "difficulty": "media"
+        },
+        {
+          "question": "Un servidor recibe conexiones destinadas a él mismo. ¿En qué cadena debe plantearse el filtrado?",
+          "options": [
+            "INPUT",
+            "FORWARD",
+            "OUTPUT",
+            "POSTROUTING exclusivamente"
+          ],
+          "correct": 0,
+          "explanation": "INPUT examina paquetes cuyo destino es el propio equipo.",
+          "source_page": 18,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Un proceso local del cortafuegos inicia una conexión. ¿Qué cadena interviene para su filtrado local?",
+          "options": [
+            "INPUT",
+            "FORWARD",
+            "PREROUTING exclusivamente",
+            "OUTPUT"
+          ],
+          "correct": 3,
+          "explanation": "OUTPUT trata los paquetes generados por procesos del equipo.",
+          "source_page": 18,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Una cadena admite varias excepciones; se quiere bloquear lo que no coincida con ellas. ¿Qué establece iptables -P?",
+          "options": [
+            "La acción de una regla añadida al final",
+            "El orden de evaluación de las excepciones",
+            "La política por defecto de la cadena",
+            "La tabla en que se almacenan las conexiones"
+          ],
+          "correct": 2,
+          "explanation": "La opción -P define la acción para paquetes que no coinciden con las reglas de la cadena.",
+          "source_page": 21,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Una defensa puede fallar por una vulnerabilidad. ¿Qué diseño reduce que ese fallo deje todo expuesto?",
+          "options": [
+            "Concentrar toda la inspección en una sola barrera",
+            "Defensas adicionales en varios niveles",
+            "Dar por confiable el tráfico que superó el perímetro",
+            "Priorizar únicamente reglas del dispositivo externo"
+          ],
+          "correct": 1,
+          "explanation": "La defensa en profundidad añade barreras que pueden frenar o mitigar un ataque que supera otra defensa.",
+          "source_page": 14,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Un proxy de aplicación se satura bajo alta demanda. ¿Qué explicación es coherente con el tema?",
+          "options": [
+            "El procesamiento adicional por conexión puede sobrecargarlo",
+            "El proxy solo necesita leer direcciones de cabecera",
+            "El coste depende solo del ancho de banda físico",
+            "El análisis de aplicación no influye en la carga"
+          ],
+          "correct": 0,
+          "explanation": "La inspección a nivel de aplicación introduce carga y puede afectar a disponibilidad.",
+          "source_page": 11,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Se instala un servicio nuevo que no está autorizado en reglas y la política es restrictiva. ¿Qué ocurre con ese tráfico?",
+          "options": [
+            "Se acepta por usar un servicio reconocido",
+            "Se admite si tiene destino dentro de la red",
+            "Se descarta mientras no se permita explícitamente",
+            "Se acepta salvo que exista una denegación explícita"
+          ],
+          "correct": 2,
+          "explanation": "La política restrictiva exige una autorización explícita.",
+          "source_page": 10,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Un administrador necesita cambiar el tiempo de vida de paquetes. ¿Qué tabla del tema se asocia a modificación de cabeceras?",
+          "options": [
+            "filter",
+            "mangle",
+            "nat",
+            "raw"
+          ],
+          "correct": 1,
+          "explanation": "La tabla mangle permite alterar campos de cabeceras, incluido el tiempo de vida.",
+          "source_page": 17,
+          "difficulty": "aplicación"
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "title": "Arquitecturas de seguridad en redes",
+      "questions": [
+        {
+          "question": "¿Dónde se ubican habitualmente servicios accesibles desde Internet?",
+          "options": [
+            "En la intranet junto a los puestos internos",
+            "En una zona desmilitarizada, DMZ (Demilitarized Zone)",
+            "En la zona restringida de datos críticos",
+            "En la zona de administración de infraestructura"
+          ],
+          "correct": 1,
+          "explanation": "La zona desmilitarizada separa los servicios expuestos de la red interior.",
+          "source_page": 5,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué zona alberga información sensible y sistemas críticos?",
+          "options": [
+            "Zona restringida",
+            "Zona de gestión de dispositivos",
+            "Zona desmilitarizada de servicios públicos",
+            "Zona de tránsito hacia Internet"
+          ],
+          "correct": 0,
+          "explanation": "La zona restringida contiene, por ejemplo, bases de datos de usuarios o recursos humanos.",
+          "source_page": 6,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué finalidad tiene la zona de gestión?",
+          "options": [
+            "Alojar servicios expuestos al público",
+            "Alojar datos sensibles de negocio",
+            "Interconectar proveedores externos sin administración",
+            "Alojar servicios de administración y monitorización"
+          ],
+          "correct": 3,
+          "explanation": "La zona de gestión concentra sistemas de registros, seguridad y rendimiento.",
+          "source_page": 6,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué representa el bastión de interfaz dual en una arquitectura simple?",
+          "options": [
+            "Un servidor de aplicación publicado sin papel de pasarela",
+            "Un detector conectado a una copia del tráfico",
+            "El intermediario crítico entre red interna y exterior",
+            "Un servidor interno al que no atraviesa el tráfico"
+          ],
+          "correct": 2,
+          "explanation": "El bastión comunica ambas redes y es un punto crítico de la defensa.",
+          "source_page": 7,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué garantiza físicamente un diodo de datos?",
+          "options": [
+            "Controlar por software permisos en ambos sentidos",
+            "Flujo de información unidireccional",
+            "Cifrar información transmitida en ambas direcciones",
+            "Filtrar contenido manteniendo canal físico de retorno"
+          ],
+          "correct": 1,
+          "explanation": "Al carecer de canal de retorno físico, el diodo permite solo una dirección de transferencia.",
+          "source_page": 13,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Cómo se define la intranet en la zonificación general del tema?",
+          "options": [
+            "Red interna de la compañía",
+            "Zona de servicios que se publican hacia Internet",
+            "Red pública que conecta organizaciones",
+            "Subred dedicada exclusivamente a visitantes externos"
+          ],
+          "correct": 0,
+          "explanation": "La intranet se distingue de Internet y de las zonas expuestas.",
+          "source_page": 5,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué ventaja aporta separar una zona desmilitarizada de la red interior?",
+          "options": [
+            "Una intrusión en la zona expuesta no tiene por qué dar acceso libre al interior",
+            "La zona expuesta se considera tan confiable como la interna",
+            "El filtrado se limita al tráfico saliente de la empresa",
+            "Los servidores públicos necesitan acceso libre al interior"
+          ],
+          "correct": 0,
+          "explanation": "La separación y el filtrado entre zonas limitan el alcance de un compromiso.",
+          "source_page": 8,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué debilidad comparten las arquitecturas de protección tipo 1 y tipo 2 del tema?",
+          "options": [
+            "Dependen de que fallen dos controles independientes",
+            "Exigen comprometer una pasarela física unidireccional",
+            "Eliminan el riesgo del dispositivo expuesto mediante redundancia",
+            "Un control directamente expuesto puede comprometer toda la infraestructura si falla"
+          ],
+          "correct": 3,
+          "explanation": "La tipo 1 usa un cortafuegos y la tipo 2 un proxy; ambas dependen del control expuesto.",
+          "source_page": 9,
+          "difficulty": "media"
+        },
+        {
+          "question": "En la arquitectura de protección tipo 4, ¿qué comunicación debe evitarse?",
+          "options": [
+            "Intranet al proxy cuando está autorizada",
+            "Proxy a Internet cuando está autorizada",
+            "Internet a intranet directamente sin atravesar el proxy",
+            "Respuesta del proxy al cliente interno autorizado"
+          ],
+          "correct": 2,
+          "explanation": "El esquema obliga a que la información pase por el proxy.",
+          "source_page": 10,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Por qué el esquema de protección tipo 5 plantea cortafuegos de fabricantes diferentes?",
+          "options": [
+            "Para repartir el tráfico sin reglas internas",
+            "Para reducir que una misma vulnerabilidad atraviese ambos",
+            "Para evitar configurar el proxy entre zonas",
+            "Para sustituir segmentación por redundancia"
+          ],
+          "correct": 1,
+          "explanation": "La diversidad reduce la exposición conjunta a una vulnerabilidad común del producto.",
+          "source_page": 11,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué particularidad del tipo 6 justifica retirar el requisito de fabricantes distintos?",
+          "options": [
+            "El proxy queda interpuesto entre cortafuegos externo e interno",
+            "Solo hay un proxy directamente expuesto",
+            "El proxy queda detrás de ambos cortafuegos",
+            "El tráfico interno evita pasar por el intermediario"
+          ],
+          "correct": 0,
+          "explanation": "El proxy entre ambos impide que una vulnerabilidad del exterior suponga acceso directo al interior.",
+          "source_page": 12,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Por qué un equipo bastión recibe protección reforzada?",
+          "options": [
+            "Porque concentra exclusivamente copias sin servicio de red",
+            "Porque todos sus clientes son internos de confianza",
+            "Porque no interviene en los flujos entre redes",
+            "Por su posición expuesta y su papel de intermediario"
+          ],
+          "correct": 3,
+          "explanation": "Su ubicación entre redes aumenta la necesidad de protegerlo.",
+          "source_page": 4,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué aporta el proxy en las arquitecturas perimetrales?",
+          "options": [
+            "Traducir direcciones sin examinar intercambios de aplicación",
+            "Encaminar paquetes sin aplicar políticas de contenido",
+            "Controlar y registrar la información intercambiada",
+            "Cifrar enlaces sin registrar solicitudes"
+          ],
+          "correct": 2,
+          "explanation": "La intermediación permite aplicar reglas y supervisar el intercambio.",
+          "source_page": 10,
+          "difficulty": "media"
+        },
+        {
+          "question": "Hay que publicar una web sin ubicarla junto a las nóminas. ¿Qué opción encaja mejor?",
+          "options": [
+            "Web y nóminas en la misma zona pública",
+            "Web y nóminas en intranet con acceso directo desde Internet",
+            "Web en gestión y nóminas junto a servicios públicos",
+            "Web en zona expuesta y nóminas en zona restringida"
+          ],
+          "correct": 3,
+          "explanation": "Separar servicios públicos y datos sensibles permite aplicar reglas específicas entre zonas.",
+          "source_page": 5,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Los administradores poseen permisos elevados. ¿Qué tratamiento de sus sistemas recomienda la zonificación?",
+          "options": [
+            "Situarlos junto a servicios públicos para centralizar",
+            "Compartir la misma zona de confianza con visitantes",
+            "Situarlos en una zona de gestión protegida",
+            "Administrarlos desde cualquier segmento sin control adicional"
+          ],
+          "correct": 2,
+          "explanation": "Los sistemas de gestión son objetivos importantes por los privilegios que concentran.",
+          "source_page": 6,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Se quiere una zona desmilitarizada entre dos barreras de filtrado y paso obligatorio por proxy. ¿Qué esquema descrito cumple esto?",
+          "options": [
+            "Tipo 1 con un único cortafuegos",
+            "Arquitectura de protección de perímetro tipo 5",
+            "Tipo 2 con un proxy directamente expuesto",
+            "Una arquitectura simple de bastión dual sin red intermedia"
+          ],
+          "correct": 1,
+          "explanation": "El tipo 5 coloca la zona desmilitarizada entre dos cortafuegos y controla las conexiones mediante proxy.",
+          "source_page": 11,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Dos redes manejan información con políticas diferentes. ¿Qué dispositivo del tipo 7 analiza el intercambio para evitar fugas?",
+          "options": [
+            "Pasarela de intercambio seguro",
+            "Cortafuegos de filtrado de cabeceras",
+            "Pasarela de circuito sin inspección de contenido",
+            "Conmutador de enlace con segmentación lógica"
+          ],
+          "correct": 0,
+          "explanation": "La pasarela segura interconecta redes con políticas distintas y analiza el contenido intercambiado.",
+          "source_page": 13,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Un laboratorio debe exportar datos pero no recibir comandos por el mismo enlace. ¿Qué dispositivo satisface esa condición física?",
+          "options": [
+            "Proxy bidireccional de aplicación",
+            "Cortafuegos con regla de salida y canal físico bidireccional",
+            "Conmutador con separación lógica de redes",
+            "Diodo de datos"
+          ],
+          "correct": 3,
+          "explanation": "El diodo no dispone de canal físico de retorno, por lo que impide la comunicación inversa.",
+          "source_page": 13,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Un atacante controla un servidor público y trata de pasar a la red interior. ¿Qué diseño limita ese movimiento?",
+          "options": [
+            "Servidor público y recursos internos en una red de confianza común",
+            "Zona expuesta separada con filtrado hacia el interior",
+            "Solo filtrado en la conexión con Internet",
+            "Acceso libre desde los servidores públicos a la intranet"
+          ],
+          "correct": 1,
+          "explanation": "La defensa en profundidad no presupone que un servidor público sea siempre seguro.",
+          "source_page": 8,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Una red necesita intercambio con niveles de clasificación distintos. ¿Qué arquitectura del tema contempla mecanismos especiales para ello?",
+          "options": [
+            "Protección de perímetro tipo 7",
+            "Tipo 1 con cortafuegos directamente expuesto",
+            "Tipo 2 con proxy directamente expuesto",
+            "Arquitectura simple de bastión con interfaz dual"
+          ],
+          "correct": 0,
+          "explanation": "El tipo 7 contempla pasarelas de intercambio seguro y diodos.",
+          "source_page": 12,
+          "difficulty": "aplicación"
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "title": "Herramientas de seguridad: detección, prevención y sistemas trampa",
+      "questions": [
+        {
+          "question": "¿Qué fuente utiliza un detector de intrusiones basado en equipo, HIDS (Host Intrusion Detection System)?",
+          "options": [
+            "Información del equipo donde se instala",
+            "Capturas de tráfico obtenidas en un enlace de red",
+            "Eventos correlacionados de varias redes como única fuente",
+            "Solicitudes de aplicación vistas por un proxy externo"
+          ],
+          "correct": 0,
+          "explanation": "Un detector basado en equipo observa modificaciones y actividad en ese sistema.",
+          "source_page": 7,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué analiza un detector de intrusiones basado en red, NIDS (Network Intrusion Detection System)?",
+          "options": [
+            "Cambios de archivos locales de un equipo exclusivamente",
+            "Llamadas de una aplicación instrumentada internamente",
+            "El historial de autenticación de un único servidor sin tráfico",
+            "Tráfico de red capturado"
+          ],
+          "correct": 3,
+          "explanation": "El detector de red utiliza un analizador de paquetes para identificar actividad sospechosa.",
+          "source_page": 7,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Con qué compara la actividad un detector basado en anomalías?",
+          "options": [
+            "Con firmas de ataques ya conocidos",
+            "Con una lista fija de direcciones bloqueadas",
+            "Con un patrón de comportamiento normal",
+            "Con reglas de permiso por puerto sin línea base"
+          ],
+          "correct": 2,
+          "explanation": "La línea base define el comportamiento esperado y permite identificar desviaciones.",
+          "source_page": 8,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué añade la prevención de intrusiones a la detección?",
+          "options": [
+            "Clasificación de eventos sin intervenir en su paso",
+            "Capacidad de bloquear tráfico detectado como malicioso",
+            "Conservación de evidencias sin filtrar conexiones",
+            "Observación pasiva mediante copias de paquetes"
+          ],
+          "correct": 1,
+          "explanation": "Un sistema de prevención puede filtrar tráfico además de detectarlo.",
+          "source_page": 9,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Cuál es la finalidad de un honeypot o sistema trampa?",
+          "options": [
+            "Atraer interacción del atacante para estudiarla",
+            "Validar permisos de usuarios en servicios productivos",
+            "Filtrar todo el tráfico autorizado del perímetro",
+            "Inventariar vulnerabilidades de servidores reales"
+          ],
+          "correct": 0,
+          "explanation": "El sistema trampa distrae y permite conocer métodos y patrones de ataque.",
+          "source_page": 11,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué hace Snort en modo de registro de paquetes?",
+          "options": [
+            "Aplica reglas de detección a cada paquete",
+            "Muestra la captura sin almacenarla",
+            "Filtra en línea el tráfico capturado",
+            "Guarda paquetes capturados para análisis posterior"
+          ],
+          "correct": 3,
+          "explanation": "El modo de registro almacena en disco en lugar de limitarse a mostrar capturas.",
+          "source_page": 17,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué limitación presenta la detección basada en firmas?",
+          "options": [
+            "Depende de un patrón de comportamiento normal aprendido",
+            "Necesita únicamente analizar archivos de cada equipo",
+            "Detecta desviaciones sin patrones de ataque conocidos",
+            "Depende de patrones de ataques conocidos y su actualización"
+          ],
+          "correct": 3,
+          "explanation": "Las firmas reconocen patrones conocidos; mantenerlas actualizadas es necesario.",
+          "source_page": 8,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué distingue un sistema trampa de alta interacción?",
+          "options": [
+            "Emula servicios sin ejecutar sistemas reales",
+            "Solo recibe registros reenviados de producción",
+            "Usa servicios y sistemas reales con datos ficticios",
+            "Bloquea tráfico del perímetro mediante reglas estáticas"
+          ],
+          "correct": 2,
+          "explanation": "La alta interacción proporciona más información, pero necesita protección para limitar riesgos.",
+          "source_page": 12,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué intercambio caracteriza a un sistema trampa de baja interacción?",
+          "options": [
+            "Mayor realismo a cambio de mayor riesgo operativo",
+            "Menor riesgo y recursos, pero información limitada",
+            "Visibilidad completa del comportamiento de un sistema real",
+            "Análisis de todos los servicios mediante instalación productiva"
+          ],
+          "correct": 1,
+          "explanation": "La emulación simplifica el despliegue, aunque limita el aprendizaje y puede ser reconocida.",
+          "source_page": 12,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Cómo actúa una célula de aislamiento o padded cell?",
+          "options": [
+            "Recibe tráfico malicioso redirigido por un detector",
+            "Bloquea en línea la conexión sin conducirla a otro entorno",
+            "Solo registra paquetes en una captura pasiva",
+            "Analiza únicamente archivos del equipo comprometido"
+          ],
+          "correct": 0,
+          "explanation": "El entorno simulado recibe al atacante detectado para observarlo de forma controlada.",
+          "source_page": 15,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué función tiene el preprocesador en la arquitectura de Snort?",
+          "options": [
+            "Capturar directamente los paquetes de la interfaz",
+            "Decidir la acción final según las reglas",
+            "Escribir las alertas en el destino de salida",
+            "Preparar los paquetes para el motor de detección"
+          ],
+          "correct": 3,
+          "explanation": "Formatea la información capturada antes de aplicar las reglas.",
+          "source_page": 18,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué elementos generales forman la cabecera de una regla Snort?",
+          "options": [
+            "Mensaje, identificador y revisión de la regla",
+            "Firma, prioridad y descripción de la alerta",
+            "Acción, protocolo, extremos y dirección del flujo",
+            "Configuración de archivos y destino de registros"
+          ],
+          "correct": 2,
+          "explanation": "La cabecera delimita el tráfico al que se aplica la regla.",
+          "source_page": 21,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué diferencia log de drop en las acciones de Snort?",
+          "options": [
+            "Ambas registran sin bloquear tráfico",
+            "log registra; drop bloquea y registra",
+            "log bloquea sin guardar y drop solo registra",
+            "Ambas bloquean sin guardar el paquete"
+          ],
+          "correct": 1,
+          "explanation": "Registrar una coincidencia no implica que el paquete se bloquee.",
+          "source_page": 22,
+          "difficulty": "media"
+        },
+        {
+          "question": "Se necesita cortar inmediatamente conexiones maliciosas. ¿Qué despliegue descrito permite controlar el paso del tráfico?",
+          "options": [
+            "Detector pasivo conectado a una copia del tráfico",
+            "Analizador de registros que informa después del evento",
+            "Prevención de intrusiones en línea",
+            "Sistema trampa sin intervención en el trayecto"
+          ],
+          "correct": 2,
+          "explanation": "En línea, el sistema se sitúa como puente y puede bloquear las comunicaciones que lo atraviesan.",
+          "source_page": 9,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Un sistema trampa recibe conexiones aunque no presta servicios productivos. ¿Qué interpretación es razonable?",
+          "options": [
+            "Tratarla como tráfico normal de un servicio productivo",
+            "Es actividad sospechosa que merece análisis",
+            "Asumir que prueba compromiso de todos los equipos",
+            "Descartarla por no existir datos productivos"
+          ],
+          "correct": 1,
+          "explanation": "Al no esperar tráfico legítimo de producción, sus interacciones resultan especialmente informativas.",
+          "source_page": 11,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Un atacante controla un sistema trampa. ¿Qué riesgo obliga a protegerlo?",
+          "options": [
+            "Que lo use para alcanzar otros sistemas de la red",
+            "Que impida actualizar las firmas del resto de equipos",
+            "Que autentique a los usuarios legítimos de la intranet",
+            "Que sustituya sin autorización las reglas del perímetro"
+          ],
+          "correct": 0,
+          "explanation": "Si no se controla, el sistema comprometido puede servir de punto de acceso a otros recursos.",
+          "source_page": 13,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Una regla de Snort debe bloquear y guardar el paquete, sin la respuesta adicional de rechazo. ¿Qué acción corresponde?",
+          "options": [
+            "pass",
+            "log",
+            "sdrop",
+            "drop"
+          ],
+          "correct": 3,
+          "explanation": "drop bloquea y guarda; sdrop bloquea sin guardar, mientras log solo registra.",
+          "source_page": 22,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Se quiere iniciar Snort aplicando las reglas de un fichero de configuración. ¿Qué opción del ejemplo lo indica?",
+          "options": [
+            "-l con directorio de registro",
+            "-r con una captura almacenada",
+            "-c con la ruta del fichero",
+            "-v para mostrar tráfico por consola"
+          ],
+          "correct": 2,
+          "explanation": "La opción -c indica la configuración que utiliza el modo de detección.",
+          "source_page": 20,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Se despliega detección por anomalías sin un patrón representativo de uso. ¿Qué elemento debe establecerse?",
+          "options": [
+            "Una línea base de comportamiento normal",
+            "Un conjunto de firmas de ataques conocidos",
+            "Una lista de puertos permitidos por el cortafuegos",
+            "Una tabla de traducción de direcciones"
+          ],
+          "correct": 0,
+          "explanation": "La comparación depende de conocer actividad normal del sistema observado.",
+          "source_page": 8,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Se quiere actualizar una regla propia conservando su identificador. ¿Qué campo refleja su revisión?",
+          "options": [
+            "sid, identificador único de regla",
+            "msg, texto de la alerta",
+            "El campo de protocolo de la cabecera",
+            "rev"
+          ],
+          "correct": 3,
+          "explanation": "rev identifica los cambios o revisiones de la regla.",
+          "source_page": 22,
+          "difficulty": "aplicación"
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "title": "Herramientas proactivas: prevención de fugas, proxy y gestión de eventos",
+      "questions": [
+        {
+          "question": "¿Qué protege un sistema de prevención de pérdida de datos, DLP (Data Loss Prevention)?",
+          "options": [
+            "Disponibilidad de servidores frente a saturación",
+            "Identidad de usuarios durante el inicio de sesión",
+            "Integridad de paquetes frente a errores de transmisión",
+            "Información sensible frente a transferencias no autorizadas"
+          ],
+          "correct": 3,
+          "explanation": "Analiza información para evitar fugas y pérdida de control sobre datos sensibles.",
+          "source_page": 5,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué estados de los datos contempla la prevención de fugas?",
+          "options": [
+            "Solo datos almacenados en servidores",
+            "Solo datos que atraviesan el perímetro",
+            "En uso, en movimiento y en reposo",
+            "Solo datos usados por aplicaciones de escritorio"
+          ],
+          "correct": 2,
+          "explanation": "Los controles pueden cubrir datos utilizados, transmitidos o almacenados.",
+          "source_page": 5,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué tipo de proxy reparte solicitudes entre varios servidores web?",
+          "options": [
+            "Proxy de salida de clientes",
+            "Proxy inverso",
+            "Proxy de circuito sin balanceo",
+            "Proxy transparente orientado a navegación de usuarios"
+          ],
+          "correct": 1,
+          "explanation": "El proxy inverso ofrece un punto de acceso y distribuye llamadas según carga y disponibilidad.",
+          "source_page": 8,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué hace un gestor de información y eventos de seguridad, SIEM (Security Information and Event Management)?",
+          "options": [
+            "Reúne y correlaciona eventos para generar alertas",
+            "Filtrar conexiones solo por dirección y puerto",
+            "Clasificar documentos sensibles en el puesto",
+            "Intermediar solicitudes web mediante caché"
+          ],
+          "correct": 0,
+          "explanation": "Integra registros de distintas fuentes y ayuda a detectar situaciones de seguridad.",
+          "source_page": 9,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué ventaja aporta la caché de Squid ante una petición repetida?",
+          "options": [
+            "Permite omitir la política de acceso al objeto",
+            "Garantiza que toda copia esté siempre actualizada",
+            "Sustituye la autenticación de los clientes",
+            "Puede responder con un objeto ya almacenado"
+          ],
+          "correct": 3,
+          "explanation": "La caché reutiliza objetos almacenados y reduce peticiones externas.",
+          "source_page": 11,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Dónde se sitúa típicamente un control de fugas de red?",
+          "options": [
+            "En los puestos para observar operaciones locales",
+            "En el almacenamiento para clasificar archivos en reposo",
+            "Cerca del perímetro para analizar transferencias",
+            "En un servidor de identidad para validar credenciales"
+          ],
+          "correct": 2,
+          "explanation": "La posición permite observar información sensible que atraviesa el perímetro.",
+          "source_page": 5,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué técnica busca similitud con huellas de documentos sensibles indexados?",
+          "options": [
+            "Coincidencia exacta de valores sensibles previamente registrados",
+            "Patrones de contenido descritos con expresiones regulares",
+            "IDM, Indexed Document Matching, comparación de documentos indexados",
+            "Aprendizaje estadístico de contenido sin huella documental"
+          ],
+          "correct": 2,
+          "explanation": "El método crea huellas e índices y define un porcentaje de similitud para considerar coincidencia.",
+          "source_page": 6,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué diferencia un proxy transparente desde el punto de vista del cliente?",
+          "options": [
+            "Se configura explícitamente en cada navegador",
+            "Encamina conexiones sin intervención del cliente",
+            "Solo publica servidores ante clientes externos",
+            "Requiere autenticación del destino en cada cliente"
+          ],
+          "correct": 1,
+          "explanation": "El proxy transparente dirige las conexiones a través de él sin configuración manual del cliente.",
+          "source_page": 8,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Por qué correlacionar no equivale a mirar cada registro aisladamente?",
+          "options": [
+            "Relaciona eventos de distintas fuentes para interpretar un posible ataque",
+            "Elimina duplicados sin interpretar relaciones",
+            "Ordena cada fuente por separado sin vincular eventos",
+            "Filtra eventos únicamente por su formato de fecha"
+          ],
+          "correct": 0,
+          "explanation": "La correlación busca relaciones que pueden revelar un ataque en conjunto.",
+          "source_page": 9,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué expresa proxy_auth REQUIRED en la regla de acceso de Squid del ejemplo?",
+          "options": [
+            "Que el acceso se decide solo por dirección de origen",
+            "Que el destino solicita autenticación al servidor final",
+            "Que cualquier usuario local está autenticado en el proxy",
+            "Que se requiere autenticación del usuario en el proxy"
+          ],
+          "correct": 3,
+          "explanation": "La condición exige que el usuario se autentique antes de permitir la conexión.",
+          "source_page": 13,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Para qué sirve SARG (Squid Analysis Report Generator), generador de informes de Squid?",
+          "options": [
+            "Configurar y aplicar las reglas de filtrado de Squid",
+            "Actuar como proxy que recibe las conexiones web",
+            "Analizar los registros de Squid y producir informes de actividad",
+            "Correlacionar alertas de todos los sistemas corporativos"
+          ],
+          "correct": 2,
+          "explanation": "SARG utiliza registros del proxy para mostrar la actividad de equipos y usuarios.",
+          "source_page": 26,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué componente de gestión de eventos se despliega en las fuentes de registros?",
+          "options": [
+            "Servidor de correlación",
+            "Agente",
+            "Base de datos de eventos",
+            "Interfaz de operación y configuración"
+          ],
+          "correct": 1,
+          "explanation": "El agente integra los registros de los sistemas que se quieren supervisar.",
+          "source_page": 9,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué relación existe entre almacenar registros y correlacionarlos?",
+          "options": [
+            "Guardar conserva datos; correlacionar busca relaciones entre eventos",
+            "Guardar ya determina que existe un ataque",
+            "Correlacionar solo cambia el formato de los registros",
+            "Almacenar elimina la necesidad de buscar relaciones"
+          ],
+          "correct": 0,
+          "explanation": "La correlación da contexto a información que puede estar distribuida.",
+          "source_page": 9,
+          "difficulty": "media"
+        },
+        {
+          "question": "Se quiere impedir que un empleado copie documentos sensibles en su propio equipo. ¿Dónde conviene desplegar el control de fugas?",
+          "options": [
+            "Solo en el enlace de salida a Internet",
+            "En la estación de trabajo",
+            "Solo en un proxy inverso de servidores públicos",
+            "Solo en una sonda de tráfico de una red distinta"
+          ],
+          "correct": 1,
+          "explanation": "Los controles del puesto pueden observar el uso local de información, no solo el tránsito por el perímetro.",
+          "source_page": 5,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Un intento de acceso aparece en el servidor web y después en el registro de autenticación. ¿Qué herramienta facilita ver el conjunto?",
+          "options": [
+            "Gestor de información y eventos de seguridad",
+            "Proxy caché de navegación",
+            "Cortafuegos de filtrado por puerto",
+            "Detector de fugas centrado en documentos"
+          ],
+          "correct": 0,
+          "explanation": "Reunir y correlacionar los eventos ayuda a reconstruir la secuencia.",
+          "source_page": 9,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Una política de Squid quiere bloquear determinados dominios. ¿Qué selector del ejemplo corresponde?",
+          "options": [
+            "url_regex",
+            "time",
+            "proxy_auth",
+            "dstdomain"
+          ],
+          "correct": 3,
+          "explanation": "dstdomain compara el dominio de destino con la lista configurada.",
+          "source_page": 17,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Solo se permite navegar en días laborables dentro de una franja. ¿Qué condición de Squid recoge ese requisito?",
+          "options": [
+            "Lista de control de acceso por dominio destino",
+            "Lista de control de acceso por dirección de origen",
+            "Una lista de control de acceso de tipo time",
+            "Lista de control de acceso por extensión de archivo"
+          ],
+          "correct": 2,
+          "explanation": "La condición time expresa días y horas permitidos.",
+          "source_page": 22,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Se edita squid.conf y se quiere aplicar su configuración. ¿Qué acción muestra el tema?",
+          "options": [
+            "Cambiar solo la configuración del navegador",
+            "Recargar el servicio Squid",
+            "Regenerar únicamente el informe de actividad",
+            "Modificar solo el archivo de usuarios"
+          ],
+          "correct": 1,
+          "explanation": "El ejemplo aplica la configuración con service squid reload.",
+          "source_page": 23,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Una granja web necesita un punto público que reparta peticiones según disponibilidad. ¿Qué componente corresponde?",
+          "options": [
+            "Proxy de salida de empleados",
+            "Servidor caché orientado a clientes internos",
+            "Pasarela de circuito sin balanceo",
+            "Proxy inverso"
+          ],
+          "correct": 3,
+          "explanation": "El proxy inverso puede distribuir carga entre varios servidores web.",
+          "source_page": 8,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Se cambia el puerto de escucha del proxy Squid. ¿Qué parámetro del tema expresa ese ajuste?",
+          "options": [
+            "cache_dir",
+            "error_directory",
+            "http_port",
+            "access_log"
+          ],
+          "correct": 2,
+          "explanation": "http_port configura el puerto por el que el proxy acepta conexiones.",
+          "source_page": 25,
+          "difficulty": "aplicación"
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "title": "Criptografía aplicada a la seguridad en redes",
+      "questions": [
+        {
+          "question": "¿Qué caracteriza al cifrado simétrico en bloque?",
+          "options": [
+            "Procesa cada bit sin agruparlo en bloques",
+            "Usa dos claves distintas para cifrar y descifrar",
+            "Procesa grupos de bits de tamaño definido",
+            "Genera solo una huella irreversible de longitud fija"
+          ],
+          "correct": 2,
+          "explanation": "Agrupa la entrada en bloques y aplica operaciones de cifrado.",
+          "source_page": 7,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué diferencia una función resumen o hash del cifrado?",
+          "options": [
+            "Permite recuperar el mensaje mediante una clave",
+            "Produce una huella de tamaño fijo y no es un cifrado con clave",
+            "Su longitud depende siempre del tamaño del archivo",
+            "Necesita siempre un par de claves pública y privada"
+          ],
+          "correct": 1,
+          "explanation": "El hash resume datos y carece de la operación de descifrado propia del cifrado.",
+          "source_page": 14,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué dos partes distinguen un esquema de clave pública?",
+          "options": [
+            "Clave pública y clave privada",
+            "Dos claves secretas compartidas con todos",
+            "Dos claves públicas independientes",
+            "Una única clave que se publica para cifrar y descifrar"
+          ],
+          "correct": 0,
+          "explanation": "La clave pública puede difundirse; la privada queda bajo control de su propietario.",
+          "source_page": 19,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué tamaño de bloque utiliza AES (Advanced Encryption Standard), estándar de cifrado avanzado?",
+          "options": [
+            "256 bits",
+            "192 bits",
+            "Depende de la longitud de la clave",
+            "128 bits"
+          ],
+          "correct": 3,
+          "explanation": "AES procesa bloques de 128 bits; la longitud de la clave es una característica distinta.",
+          "source_page": 11,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué consigue el intercambio de Diffie-Hellman?",
+          "options": [
+            "Cifrado simétrico directo de todo el documento",
+            "Firma digital del mensaje por ambos participantes",
+            "Acordar un secreto compartido a través del intercambio de valores",
+            "Verificación automática de la identidad de los extremos"
+          ],
+          "correct": 2,
+          "explanation": "Los extremos calculan un mismo secreto a partir de sus valores y el intercambio público.",
+          "source_page": 20,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué longitudes de clave estándar admite AES (Advanced Encryption Standard), estándar de cifrado avanzado?",
+          "options": [
+            "128 bits únicamente",
+            "128, 192 y 256 bits",
+            "64, 128 y 192 bits",
+            "128, 256 y 512 bits"
+          ],
+          "correct": 1,
+          "explanation": "Las claves admitidas no deben confundirse con el bloque fijo de 128 bits.",
+          "source_page": 11,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué significa el efecto de avalancha?",
+          "options": [
+            "Un cambio de entrada solo altera el mismo bit de salida",
+            "Un pequeño cambio de entrada altera muchos bits de salida",
+            "Cada bloque de salida depende solo de su posición",
+            "Las rondas conservan visibles los patrones del texto"
+          ],
+          "correct": 1,
+          "explanation": "Busca que un cambio de un bit afecte aproximadamente a la mitad de la salida.",
+          "source_page": 8,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué problema presenta ECB (Electronic Codebook), libro electrónico de códigos?",
+          "options": [
+            "Cifra bloques de manera independiente y puede revelar patrones",
+            "Encadena cada bloque con el criptograma anterior",
+            "Usa un contador distinto para cada bloque",
+            "Elimina la igualdad entre bloques de entrada idénticos"
+          ],
+          "correct": 0,
+          "explanation": "La independencia de los bloques permite reconocer regularidades del mensaje.",
+          "source_page": 9,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Por qué se resume un documento antes de firmarlo digitalmente?",
+          "options": [
+            "La huella sustituye la identidad del firmante",
+            "El resumen permite recuperar el original sin clave",
+            "La longitud fija garantiza ausencia de colisiones",
+            "La huella compacta adapta el documento a la operación de firma"
+          ],
+          "correct": 3,
+          "explanation": "La función resumen representa el documento mediante un valor reducido que puede firmarse.",
+          "source_page": 14,
+          "difficulty": "media"
+        },
+        {
+          "question": "Para enviar un valor confidencial a Bernardo mediante su par de claves, ¿qué clave se usa al cifrar?",
+          "options": [
+            "La clave privada de Alicia",
+            "La clave pública de Alicia",
+            "La clave pública de Bernardo",
+            "Una clave pública de un tercero confiable"
+          ],
+          "correct": 2,
+          "explanation": "Solo Bernardo dispone de la clave privada necesaria para descifrar lo dirigido a su clave pública.",
+          "source_page": 23,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Con qué clave de Alicia se verifica una firma generada con su clave privada?",
+          "options": [
+            "Con la clave privada de Bernardo",
+            "Con la clave pública de Alicia",
+            "Con la clave pública de Bernardo",
+            "Con la misma clave privada que debe recibir Bernardo"
+          ],
+          "correct": 1,
+          "explanation": "La verificación utiliza la parte pública del par del firmante.",
+          "source_page": 24,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué rasgo tiene XOR, operación lógica de o exclusivo, usado en el cifrado en flujo del tema?",
+          "options": [
+            "Aplicarlo dos veces con la misma secuencia recupera el dato",
+            "Aplicarlo dos veces produce siempre cero",
+            "No permite recuperar el dato original con la misma secuencia",
+            "Necesita una operación inversa diferente al descifrar"
+          ],
+          "correct": 0,
+          "explanation": "El carácter involutivo permite cifrar y descifrar con la misma operación.",
+          "source_page": 6,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Por qué no puede usarse un hash como copia recuperable del archivo?",
+          "options": [
+            "Su salida permite reconstruir cada byte de entrada",
+            "El resumen conserva el archivo de manera comprimida",
+            "El resumen se descifra con una clave simétrica",
+            "Resume información y no proporciona un descifrado del original"
+          ],
+          "correct": 3,
+          "explanation": "Una huella sirve para comparación e integridad, no para restaurar todo el contenido.",
+          "source_page": 14,
+          "difficulty": "media"
+        },
+        {
+          "question": "Se debe proteger un archivo muy grande. ¿Qué combinación del tema resulta apropiada?",
+          "options": [
+            "Cifrado simétrico para el contenido y mecanismos asimétricos para material reducido",
+            "Cifrado asimétrico para todo el archivo y sin clave de sesión",
+            "Guardar solo un hash y recuperarlo al descifrarlo",
+            "Usar la firma del archivo como cifrado de su contenido"
+          ],
+          "correct": 0,
+          "explanation": "El cifrado simétrico tiene mayor velocidad; el asimétrico se emplea en claves o firmas de valores pequeños.",
+          "source_page": 25,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Dos ficheros de tamaños distintos se procesan con la misma función resumen. ¿Qué se espera de la longitud de sus salidas?",
+          "options": [
+            "Longitudes proporcionales al tamaño de entrada",
+            "Longitudes iguales al bloque interno del algoritmo",
+            "Longitudes dependientes del número de bloques procesados",
+            "La misma longitud fijada por el algoritmo"
+          ],
+          "correct": 3,
+          "explanation": "La longitud de un hash no depende del tamaño del archivo.",
+          "source_page": 14,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Al verificar una firma, el resumen recalculado difiere del resumen firmado. ¿Qué decisión describe el tema?",
+          "options": [
+            "Aceptar si el nombre del archivo coincide",
+            "Aceptar si la clave pública sigue siendo válida",
+            "Rechazar la firma",
+            "Aceptar si el documento conserva igual tamaño"
+          ],
+          "correct": 2,
+          "explanation": "La coincidencia de los resúmenes es necesaria para aceptar la verificación.",
+          "source_page": 25,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Una aplicación usa AES con clave de 256 bits. ¿Cuánto mide cada bloque de contenido?",
+          "options": [
+            "256 bits",
+            "128 bits",
+            "192 bits",
+            "El tamaño elegido para la clave"
+          ],
+          "correct": 1,
+          "explanation": "AES admite distintas longitudes de clave y mantiene bloques de 128 bits.",
+          "source_page": 11,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Se propone MD5 (Message Digest 5) para una nueva garantía criptográfica de integridad. ¿Qué advertencia aporta el tema?",
+          "options": [
+            "Está obsoleto y presenta fallos de diseño",
+            "Se recomienda por garantizar resistencia a colisiones",
+            "Es un cifrador de bloque con clave de 128 bits",
+            "Produce una firma que identifica al remitente"
+          ],
+          "correct": 0,
+          "explanation": "El material identifica MD5 como obsoleto tras conocerse graves fallos.",
+          "source_page": 15,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Alicia envía un secreto a Bernardo usando por error su propia clave pública. ¿Qué requisito del destinatario no cumple?",
+          "options": [
+            "Usar la clave privada de Alicia para confidencialidad del receptor",
+            "Usar la clave pública de Alicia como sustituto de la de Bernardo",
+            "Usar la clave pública de Bernardo para que su privada permita descifrar",
+            "Compartir la clave privada de Bernardo entre los extremos"
+          ],
+          "correct": 2,
+          "explanation": "La clave pública para confidencialidad debe corresponder al receptor previsto.",
+          "source_page": 23,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Un documento firmado cambia después de firmarse. ¿Qué ocurrirá al compararlo correctamente con su firma original?",
+          "options": [
+            "La firma seguirá válida si conserva el mismo tamaño",
+            "La verificación de integridad no coincidirá",
+            "La firma seguirá válida si el nombre no cambia",
+            "La verificación comprobará solo la identidad e ignorará el contenido"
+          ],
+          "correct": 1,
+          "explanation": "La firma vincula la huella del contenido que existía al firmar.",
+          "source_page": 24,
+          "difficulty": "aplicación"
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "title": "Seguridad en redes inalámbricas",
+      "questions": [
+        {
+          "question": "¿Qué demuestra la autenticación con clave compartida del antiguo WEP (Wired Equivalent Privacy)?",
+          "options": [
+            "La identidad individual de cada usuario de la red",
+            "Que el cliente conoce la clave compartida",
+            "La autenticidad del punto de acceso ante el cliente",
+            "La integridad de todos los mensajes futuros"
+          ],
+          "correct": 1,
+          "explanation": "La prueba de posesión de la clave no distingue por sí misma a todos los usuarios.",
+          "source_page": 7,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué rasgo de WEP favorece problemas de seguridad?",
+          "options": [
+            "Una clave estática compartida por usuarios",
+            "Claves temporales diferentes por usuario",
+            "Autenticación mutua obligatoria por certificados",
+            "Verificación criptográfica robusta del origen de cada trama"
+          ],
+          "correct": 0,
+          "explanation": "El tema destaca la clave única y estática como debilidad de diseño.",
+          "source_page": 10,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué distingue el modo Personal del modo Enterprise de acceso inalámbrico?",
+          "options": [
+            "Personal usa certificado y Enterprise una clave para todos",
+            "Personal autentica usuarios y Enterprise solo equipos por dirección",
+            "Personal y Enterprise identifican mediante una clave única común",
+            "Personal usa clave compartida; Enterprise permite autenticación individual"
+          ],
+          "correct": 3,
+          "explanation": "Los modos empresariales permiten validar credenciales o certificados de cada usuario.",
+          "source_page": 12,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué algoritmo de cifrado incorpora WPA2 (Wi-Fi Protected Access 2)?",
+          "options": [
+            "RC4, Rivest Cipher 4, cifrador de flujo de Rivest",
+            "DES, Data Encryption Standard, estándar de cifrado de datos",
+            "AES, Advanced Encryption Standard, estándar de cifrado avanzado",
+            "CRC-32, comprobación de redundancia cíclica de 32 bits"
+          ],
+          "correct": 2,
+          "explanation": "WPA2 adopta AES para la protección de datos frente al esquema previo.",
+          "source_page": 17,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué mejora de autenticación incorpora WPA3 (Wi-Fi Protected Access 3) en el modo Personal?",
+          "options": [
+            "Una clave WEP estática compartida",
+            "SAE, Simultaneous Authentication of Equals, autenticación simultánea de iguales",
+            "Solo filtrado por dirección del dispositivo",
+            "Autenticación únicamente mediante el nombre de la red"
+          ],
+          "correct": 1,
+          "explanation": "SAE cambia la forma de autenticar y acordar claves en el modo Personal.",
+          "source_page": 20,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué función cumple RADIUS (Remote Authentication Dial-In User Service), servicio de autenticación remota?",
+          "options": [
+            "Validar identidad de usuarios en el esquema empresarial",
+            "Cifrar el contenido de todas las sesiones",
+            "Distribuir direcciones privadas a los clientes",
+            "Detectar alteraciones de las tramas por su longitud"
+          ],
+          "correct": 0,
+          "explanation": "El servidor comprueba credenciales o certificados en la arquitectura de autenticación.",
+          "source_page": 13,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué riesgo permite que el cliente no autentique al punto de acceso?",
+          "options": [
+            "Un punto de acceso falso puede hacerse pasar por el legítimo",
+            "Que cada cliente pueda comprobar la identidad del punto de acceso",
+            "Que toda conexión utilice autenticación mutua",
+            "Que un servidor externo valide siempre cada conexión"
+          ],
+          "correct": 0,
+          "explanation": "La falta de autenticación del punto de acceso permite su suplantación.",
+          "source_page": 8,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Para qué se usan valores aleatorios de un solo uso, nonce, al derivar claves?",
+          "options": [
+            "Para reutilizar exactamente el mismo material por sesión",
+            "Para sustituir la clave maestra por un valor público",
+            "Para permitir autenticación solo con dirección de dispositivo",
+            "Para que las claves de sesión difieran"
+          ],
+          "correct": 3,
+          "explanation": "Los valores de un solo uso intervienen en la derivación de material diferente por sesión.",
+          "source_page": 14,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Por qué una comprobación lineal CRC-32 no equivale a integridad criptográfica sólida?",
+          "options": [
+            "Impide toda alteración si se conoce el algoritmo",
+            "Equivale a un código autenticado con clave secreta",
+            "Puede permitirse modificar datos y ajustar la comprobación",
+            "Demuestra de forma inequívoca la identidad del emisor"
+          ],
+          "correct": 2,
+          "explanation": "CRC significa comprobación de redundancia cíclica; detectar errores accidentales no garantiza resistencia a un atacante.",
+          "source_page": 15,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué pretende el secreto hacia adelante descrito para SAE?",
+          "options": [
+            "Que una clave permita derivar las sesiones anteriores",
+            "Que descubrir una clave no revele las claves de otras sesiones",
+            "Que todos los clientes compartan claves temporales",
+            "Que la recuperación de contraseña restaure cualquier sesión previa"
+          ],
+          "correct": 1,
+          "explanation": "La independencia entre sesiones limita el alcance del compromiso de una clave.",
+          "source_page": 21,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué limitación mantiene OWE (Opportunistic Wireless Encryption), cifrado inalámbrico oportunista?",
+          "options": [
+            "No autentica al punto de acceso frente a suplantaciones",
+            "No aporta claves individuales de sesión",
+            "Exige una contraseña compartida de todos los clientes",
+            "Verifica la identidad del punto de acceso mediante certificado"
+          ],
+          "correct": 0,
+          "explanation": "OWE cifra enlaces abiertos, pero no acredita por sí mismo la identidad del punto de acceso.",
+          "source_page": 24,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Por qué un vector de inicialización de solo 24 bits resulta problemático en redes muy concurridas?",
+          "options": [
+            "Garantiza valores diferentes durante toda la vida de la red",
+            "Solo afecta a la velocidad del cifrado",
+            "Elimina la necesidad de renovar claves",
+            "Favorece repetir valores y producir colisiones"
+          ],
+          "correct": 3,
+          "explanation": "Un espacio pequeño de valores se agota o repite con más facilidad.",
+          "source_page": 10,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué aspecto de autenticación comparten WPA y WPA2 según el tema?",
+          "options": [
+            "Solo el modo Personal con una contraseña común",
+            "Solo el uso de cifrado con clave estática compartida",
+            "La posibilidad de modos Personal y Enterprise",
+            "La autenticación basada únicamente en dirección de dispositivo"
+          ],
+          "correct": 2,
+          "explanation": "Ambos contemplan clave compartida y autenticación empresarial.",
+          "source_page": 17,
+          "difficulty": "media"
+        },
+        {
+          "question": "Una empresa quiere retirar el acceso de un solo empleado sin cambiar una clave compartida para todos. ¿Qué enfoque encaja?",
+          "options": [
+            "Autenticación Personal con una clave común",
+            "Autenticación de WEP con reto compartido",
+            "Filtrado por dirección del dispositivo como única identidad",
+            "Autenticación empresarial con credenciales individuales"
+          ],
+          "correct": 3,
+          "explanation": "La autenticación por usuario permite gestionar cada identidad de forma individual.",
+          "source_page": 13,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Un router admite WEP y protocolos posteriores. ¿Qué elección de estudio corresponde al material?",
+          "options": [
+            "Mantener WEP si se aumenta la longitud del nombre de red",
+            "Cambiar a WPA original aunque todos admitan WPA2",
+            "Sustituir WEP por WPA3 o, si no es posible, WPA2",
+            "Confiar solo en ocultar el nombre de la red"
+          ],
+          "correct": 2,
+          "explanation": "El tema considera WEP inseguro y orienta la migración a protocolos posteriores.",
+          "source_page": 11,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Una pregunta compara el acuerdo de autenticación del modo Personal de WPA3 con el de WPA2. ¿Qué elemento marca la mejora estudiada?",
+          "options": [
+            "Un aumento del vector de inicialización de WEP",
+            "El protocolo SAE",
+            "La sustitución del nombre público de la red",
+            "El filtrado de direcciones de los clientes"
+          ],
+          "correct": 1,
+          "explanation": "SAE sustituye el mecanismo previo de autenticación y derivación en el modo Personal.",
+          "source_page": 20,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Un café cifra una red abierta con OWE. ¿Qué afirmación debe evitarse?",
+          "options": [
+            "Que ese cifrado prueba la autenticidad del punto de acceso",
+            "Que cada enlace pueda disponer de clave de sesión",
+            "Que mejore la confidencialidad frente a otros clientes",
+            "Que se acuerden claves mediante intercambio criptográfico"
+          ],
+          "correct": 0,
+          "explanation": "OWE aporta cifrado, pero no elimina la posibilidad de un punto de acceso falso.",
+          "source_page": 24,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Una red usa un protocolo moderno, pero aparece una nueva vulnerabilidad. ¿Qué conclusión es coherente?",
+          "options": [
+            "Suponer que basta la selección inicial del protocolo",
+            "Cambiar únicamente la contraseña sin evaluar la vulnerabilidad",
+            "Confiar en que el cifrado compensa cualquier fallo de implementación",
+            "Hay que mantener vigilancia y aplicar correcciones"
+          ],
+          "correct": 3,
+          "explanation": "El tema cita ataques también contra mecanismos recientes; la elección del protocolo no elimina el mantenimiento.",
+          "source_page": 25,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Un empleado necesita acceso inalámbrico mediante certificado personal. ¿Qué enfoque estudiado lo contempla?",
+          "options": [
+            "La autenticación basada en clave compartida es obligatoria",
+            "Autenticación empresarial con validación de certificados",
+            "El cifrado debe seguir usando WEP para compatibilidad",
+            "Las identidades individuales no pueden gestionarse"
+          ],
+          "correct": 1,
+          "explanation": "La arquitectura empresarial permite métodos basados en certificados del usuario.",
+          "source_page": 13,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Dos sesiones parten de material maestro compartido pero deben obtener claves distintas. ¿Qué elementos aportan variación?",
+          "options": [
+            "Valores aleatorios de un solo uso de los extremos",
+            "El mismo nombre público de la red",
+            "Solo la clave maestra sin valores adicionales",
+            "La contraseña compartida copiada directamente a cada sesión"
+          ],
+          "correct": 0,
+          "explanation": "Los valores de un solo uso participan en la derivación del material de sesión.",
+          "source_page": 14,
+          "difficulty": "aplicación"
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "title": "Protocolos de seguridad",
+      "questions": [
+        {
+          "question": "¿Qué añade ESP (Encapsulating Security Payload), carga de seguridad encapsulada, cuando se configura cifrado?",
+          "options": [
+            "Confidencialidad mediante cifrado de datos",
+            "Solo detección de cambios sin cifrar contenido",
+            "Solo identificación de la asociación de seguridad",
+            "Solo control del orden de los paquetes"
+          ],
+          "correct": 0,
+          "explanation": "La encapsulación de seguridad permite proteger confidencialidad además de autenticación e integridad.",
+          "source_page": 8,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué finalidad tiene el número de secuencia de seguridad de un paquete?",
+          "options": [
+            "Seleccionar el algoritmo de cifrado de la asociación",
+            "Indicar la longitud del contenido cifrado",
+            "Identificar al propietario del certificado",
+            "Ayudar a prevenir ataques de repetición"
+          ],
+          "correct": 3,
+          "explanation": "El número de secuencia permite reconocer paquetes repetidos.",
+          "source_page": 7,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Para qué sirve IKE (Internet Key Exchange), intercambio de claves de Internet?",
+          "options": [
+            "Transportar directamente todo el tráfico de aplicación",
+            "Comprobar únicamente la longitud de los paquetes",
+            "Negociar y gestionar parámetros de seguridad",
+            "Traducir direcciones privadas de la conexión"
+          ],
+          "correct": 2,
+          "explanation": "IKE gestiona parámetros y asociaciones necesarias para la comunicación protegida.",
+          "source_page": 10,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué rasgo identifica el modo túnel de IPsec (Internet Protocol Security), seguridad del protocolo de Internet?",
+          "options": [
+            "Conserva una sola cabecera de red y protege transporte",
+            "El paquete protegido incorpora cabecera interna y externa",
+            "Cifra solo el contenido de aplicación sin encapsular",
+            "Suprime la cabecera interna antes de transmitir"
+          ],
+          "correct": 1,
+          "explanation": "La cabecera externa permite transportar el paquete interno protegido.",
+          "source_page": 14,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Sobre qué transporte opera DTLS (Datagram Transport Layer Security), seguridad de transporte de datagramas?",
+          "options": [
+            "UDP, User Datagram Protocol, protocolo de datagramas de usuario",
+            "TCP, Transmission Control Protocol, protocolo de control de transmisión",
+            "IPsec, Internet Protocol Security, seguridad del protocolo de Internet",
+            "TLS sobre un flujo fiable de bytes"
+          ],
+          "correct": 0,
+          "explanation": "DTLS adapta servicios de seguridad a comunicaciones basadas en datagramas.",
+          "source_page": 27,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué es el índice de parámetros de seguridad de una asociación?",
+          "options": [
+            "La clave secreta utilizada para cifrar cada paquete",
+            "El número que detecta repeticiones de paquetes",
+            "El código de integridad calculado sobre los datos",
+            "Un identificador para seleccionar parámetros de una comunicación protegida"
+          ],
+          "correct": 3,
+          "explanation": "El índice ayuda a localizar la asociación de seguridad aplicable al paquete.",
+          "source_page": 7,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué identifica una asociación de seguridad de AH (Authentication Header), cabecera de autenticación?",
+          "options": [
+            "Solo el nombre del usuario autenticado",
+            "Solo el puerto de aplicación del destino",
+            "Solo el algoritmo de cifrado utilizado",
+            "Índice de parámetros, dirección de destino y protocolo de seguridad"
+          ],
+          "correct": 3,
+          "explanation": "La combinación permite seleccionar la asociación correcta para verificar el datagrama.",
+          "source_page": 7,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Por qué autenticar un paquete no equivale a mantener secreto su contenido?",
+          "options": [
+            "La autenticación incluye siempre cifrado del mensaje",
+            "La integridad requiere ocultar necesariamente el contenido",
+            "La autenticación e integridad son servicios distintos de la confidencialidad",
+            "La confidencialidad equivale a verificar la identidad"
+          ],
+          "correct": 2,
+          "explanation": "La confidencialidad requiere protección del contenido, como el cifrado que puede aplicar ESP.",
+          "source_page": 8,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué tarea realiza la negociación inicial o handshake descrita?",
+          "options": [
+            "Transmitir datos de aplicación antes de acordar protección",
+            "Autenticar y acordar algoritmos y claves de protección",
+            "Comprobar solo el orden de paquetes recibidos",
+            "Renovar únicamente la dirección de origen"
+          ],
+          "correct": 1,
+          "explanation": "La negociación prepara el material que después protege la transferencia de datos.",
+          "source_page": 20,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Por qué debe validarse el certificado presentado por un servidor?",
+          "options": [
+            "Para comprobar la identidad en que se apoyará la conexión",
+            "Para verificar exclusivamente la integridad del contenido",
+            "Para obtener la clave privada del servidor",
+            "Para sustituir la autorización de los recursos"
+          ],
+          "correct": 0,
+          "explanation": "Aceptar una clave sin validar su vinculación al servidor debilita la autenticación.",
+          "source_page": 17,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué finalidad tiene el protocolo de registros de la arquitectura clásica descrita?",
+          "options": [
+            "Acordar los algoritmos y claves entre los extremos",
+            "Validar la cadena de confianza del certificado",
+            "Gestionar únicamente los mensajes de error de sesión",
+            "Proteger y transportar los fragmentos de datos de aplicación"
+          ],
+          "correct": 3,
+          "explanation": "El protocolo aplica los parámetros negociados para proteger los datos transmitidos.",
+          "source_page": 19,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué representa una asociación de seguridad en el contexto estudiado?",
+          "options": [
+            "Un conjunto de puertos de aplicación abiertos",
+            "Una identidad de usuario válida para todos los recursos",
+            "Parámetros acordados que rigen una comunicación protegida",
+            "Una captura almacenada de paquetes cifrados"
+          ],
+          "correct": 2,
+          "explanation": "Los extremos acuerdan algoritmos, claves y otras condiciones de protección.",
+          "source_page": 13,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Es obligatoria la autenticación del cliente con certificado en todo uso del protocolo de transporte seguro descrito?",
+          "options": [
+            "Sí, ambas partes siempre deben presentar certificado",
+            "No, el material la presenta como opcional",
+            "Solo se admite autenticación del cliente, no del servidor",
+            "El protocolo no admite certificados de cliente"
+          ],
+          "correct": 1,
+          "explanation": "La autenticación del cliente puede añadirse cuando el servidor y el caso de uso lo requieran.",
+          "source_page": 17,
+          "difficulty": "media"
+        },
+        {
+          "question": "Dos pasarelas deben transportar paquetes internos protegidos sobre Internet. ¿Qué modo encaja?",
+          "options": [
+            "Modo transporte sin encapsulación del paquete interno",
+            "Solo cabecera de autenticación sin protección de contenido",
+            "Modo túnel de IPsec",
+            "Solo firma de la petición de aplicación"
+          ],
+          "correct": 2,
+          "explanation": "El modo túnel encapsula el paquete interno y añade una cabecera externa para la ruta.",
+          "source_page": 14,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Un intruso reenvía datagramas válidos capturados. ¿Qué campo contribuye a detectar ese abuso?",
+          "options": [
+            "Índice de parámetros de la asociación",
+            "Número de secuencia",
+            "Longitud del contenido cifrado",
+            "Tipo de cabecera siguiente"
+          ],
+          "correct": 1,
+          "explanation": "El control de secuencia ayuda a prevenir ataques de repetición.",
+          "source_page": 7,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Un navegador recibe un certificado que no puede validar. ¿Qué objetivo pierde respaldo si se ignora el problema?",
+          "options": [
+            "Autenticidad del servidor",
+            "Integridad del contenido por sí sola",
+            "Disponibilidad del enlace por sí sola",
+            "Autorización de cada operación por sí sola"
+          ],
+          "correct": 0,
+          "explanation": "La validación del certificado respalda que se está comunicando con el servidor esperado.",
+          "source_page": 17,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Una aplicación utiliza datagramas y necesita seguridad de transporte. ¿Qué variante del tema estudia ese escenario?",
+          "options": [
+            "Seguridad de transporte sobre flujo fiable de bytes",
+            "Cabecera de autenticación de paquetes sin cifrado",
+            "Cifrado local del archivo antes de almacenarlo",
+            "DTLS"
+          ],
+          "correct": 3,
+          "explanation": "DTLS adapta confidencialidad, integridad y autenticación al transporte por datagramas.",
+          "source_page": 27,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Una administración quiere evitar distribuir manualmente todas las claves para sus canales protegidos. ¿Qué mecanismo descrito ayuda?",
+          "options": [
+            "Distribución manual de claves estáticas",
+            "Identificación de paquetes solo por su tamaño",
+            "Negociación y gestión de asociaciones mediante IKE",
+            "Cifrado sin acuerdo previo de parámetros"
+          ],
+          "correct": 2,
+          "explanation": "La negociación de claves y parámetros ofrece una alternativa a su configuración manual.",
+          "source_page": 10,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Se necesita confidencialidad a nivel de red y no solo autenticación de paquetes. ¿Qué capacidad debe configurarse?",
+          "options": [
+            "Cifrado mediante encapsulación de seguridad",
+            "Solo autenticación de origen sin cifrado",
+            "Solo números de secuencia para detectar repeticiones",
+            "Solo verificación de integridad sin ocultar contenido"
+          ],
+          "correct": 0,
+          "explanation": "La confidencialidad del contenido requiere un mecanismo de cifrado.",
+          "source_page": 8,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Antes de enviar datos protegidos, dos extremos deben acordar algoritmos y claves. ¿Qué fase atiende esa necesidad?",
+          "options": [
+            "Protocolo de registros una vez acordadas las claves",
+            "Control antirrepetición de cada paquete recibido",
+            "Encapsulación de los datos de aplicación en el túnel",
+            "Negociación inicial o handshake"
+          ],
+          "correct": 3,
+          "explanation": "La negociación prepara la autenticación y el material que protege la comunicación.",
+          "source_page": 20,
+          "difficulty": "aplicación"
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "title": "Redes privadas virtuales y comunicaciones anónimas",
+      "questions": [
+        {
+          "question": "¿Qué es una VPN (Virtual Private Network), red privada virtual?",
+          "options": [
+            "Un mecanismo que garantiza anonimato por definición",
+            "Una red física dedicada entre todos los participantes",
+            "Un sistema de control de archivos locales",
+            "Una red virtual que protege comunicaciones sobre una infraestructura existente"
+          ],
+          "correct": 3,
+          "explanation": "La red privada virtual protege comunicaciones entre redes o equipos usando una red existente.",
+          "source_page": 6,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué conecta una red privada virtual de sitio a sitio?",
+          "options": [
+            "Dos equipos finales mediante clientes individuales",
+            "Un equipo de casa directamente con un servidor final",
+            "Pasarelas de dos sedes",
+            "Una aplicación web con un proxy de contenido"
+          ],
+          "correct": 2,
+          "explanation": "Los concentradores unen las sedes y el enrutamiento dirige por ellos el tráfico correspondiente.",
+          "source_page": 7,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué arquitectura se usa habitualmente para teletrabajo?",
+          "options": [
+            "Red privada virtual de sitio a sitio",
+            "Red privada virtual de acceso remoto",
+            "Red privada virtual de equipo a equipo exclusivamente",
+            "Enlace de aplicación sin concentrador organizativo"
+          ],
+          "correct": 1,
+          "explanation": "El equipo remoto establece conexión con el concentrador de la organización.",
+          "source_page": 8,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué finalidad principal del tema persigue Freenet?",
+          "options": [
+            "Publicación y recuperación de información con anonimato",
+            "Interconectar dos sedes corporativas como una intranet",
+            "Autenticar usuarios de un directorio empresarial",
+            "Inspeccionar todo el tráfico perimetral de una empresa"
+          ],
+          "correct": 0,
+          "explanation": "Freenet se basa en una red distribuida orientada a proteger lectores y autores.",
+          "source_page": 18,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué extensión identifica servicios de la red Tor (The Onion Router)?",
+          "options": [
+            ".vpn",
+            ".i2p",
+            ".local",
+            ".onion"
+          ],
+          "correct": 3,
+          "explanation": "Los servicios con extensión .onion se consultan mediante la red Tor.",
+          "source_page": 23,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué alcance tiene una red privada virtual implementada a nivel de enlace?",
+          "options": [
+            "Protege automáticamente todo el recorrido de Internet",
+            "Solo protege la aplicación que inicia el navegador",
+            "Protege el enlace donde se despliega, sin implicar todo el recorrido",
+            "Implica autenticación de cada recurso final del recorrido"
+          ],
+          "correct": 2,
+          "explanation": "La cobertura depende de los puntos entre los que se establece el enlace protegido.",
+          "source_page": 11,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué hace el túnel dividido o split tunnel?",
+          "options": [
+            "Envía obligatoriamente todo el tráfico por la organización",
+            "Separa sesiones según la contraseña del usuario",
+            "Separa tráfico destinado a la organización del que sale por Internet local",
+            "Duplica el tráfico por el túnel y por Internet local"
+          ],
+          "correct": 2,
+          "explanation": "La separación decide qué tráfico atraviesa el túnel y cuál utiliza la conexión local.",
+          "source_page": 8,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué límite tiene una conexión de acceso remoto que termina en el concentrador?",
+          "options": [
+            "El túnel protege automáticamente cualquier servidor interno",
+            "El tramo posterior al concentrador puede quedar fuera de esa protección",
+            "El concentrador extiende su cifrado a toda la red local",
+            "Los permisos del túnel sustituyen la seguridad del tramo interno"
+          ],
+          "correct": 1,
+          "explanation": "La protección del túnel no implica que todo el camino hasta cualquier servidor esté cubierto.",
+          "source_page": 9,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Por qué la arquitectura de equipo a equipo sí puede cubrir extremo a extremo?",
+          "options": [
+            "El túnel llega desde el equipo origen hasta el equipo destino",
+            "Las pasarelas de sedes actúan como extremos reales",
+            "El cifrado termina siempre en el perímetro",
+            "El servidor se protege solo por pertenecer a la intranet"
+          ],
+          "correct": 0,
+          "explanation": "Los extremos del túnel coinciden con los equipos que intercambian los datos.",
+          "source_page": 10,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué aporta combinar L2TP (Layer 2 Tunneling Protocol), túnel de capa 2, con IPsec?",
+          "options": [
+            "Autenticación individual mediante certificados como única función",
+            "Ocultación de la identidad del usuario frente a cualquier destino",
+            "Protección de datos locales del cliente en reposo",
+            "Cifrado robusto para la comunicación del túnel"
+          ],
+          "correct": 3,
+          "explanation": "El protocolo de túnel puede apoyarse en la seguridad de IPsec para confidencialidad.",
+          "source_page": 13,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué idea sostiene el encaminamiento por capas de Tor?",
+          "options": [
+            "Cada nodo descifra el mensaje completo",
+            "El último nodo conoce necesariamente todo el circuito",
+            "Cada salto retira una capa y solo conoce los vecinos necesarios",
+            "Todos los saltos comparten una única clave de extremo"
+          ],
+          "correct": 2,
+          "explanation": "Las capas de cifrado y conocimiento limitado de los saltos ayudan al anonimato.",
+          "source_page": 24,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué finalidad de anonimato atribuye el tema a I2P (Invisible Internet Project), proyecto de Internet invisible?",
+          "options": [
+            "Identificar a todos los clientes ante un servidor central",
+            "Evitar identificar directamente a clientes y servidores entre sí",
+            "Interconectar sedes con las mismas direcciones internas",
+            "Autenticar equipos de la intranet mediante certificados"
+          ],
+          "correct": 1,
+          "explanation": "El sistema busca anonimato para ambos extremos y usa una red de túneles.",
+          "source_page": 21,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué significa que Freenet se base en una red P2P (Peer-to-Peer), entre pares?",
+          "options": [
+            "Los participantes contribuyen a almacenar y recuperar información",
+            "Todos los datos residen en un servidor central obligatorio",
+            "Los clientes solo descargan sin contribuir al almacenamiento",
+            "Solo el autor conserva los datos y atiende cada petición"
+          ],
+          "correct": 0,
+          "explanation": "El diseño distribuido participa en replicación y recuperación de contenidos.",
+          "source_page": 18,
+          "difficulty": "media"
+        },
+        {
+          "question": "Dos oficinas quieren comunicarse sin instalar clientes en todos los puestos. ¿Qué despliegue conviene?",
+          "options": [
+            "Túneles independientes desde cada puesto al servidor remoto",
+            "Red privada virtual entre pasarelas de las sedes",
+            "Túneles de equipo a equipo para cada pareja de usuarios",
+            "Un proxy de navegación sin canal entre las sedes"
+          ],
+          "correct": 1,
+          "explanation": "La arquitectura sitio a sitio puede resultar transparente para los equipos de las redes.",
+          "source_page": 7,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Se quiere que un servicio de administración solo pueda alcanzarse después de establecer el canal protegido con el servidor. ¿Qué arquitectura encaja?",
+          "options": [
+            "Red privada virtual de equipo a equipo",
+            "Túnel entre sedes que termina en sus pasarelas",
+            "Acceso remoto que termina antes del servidor final",
+            "Proxy web de salida que solo intermedia navegación"
+          ],
+          "correct": 0,
+          "explanation": "El servidor termina el canal y puede limitar el acceso administrativo a clientes conectados.",
+          "source_page": 9,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Un equipo propone PPTP (Point-to-Point Tunneling Protocol), túnel punto a punto, por facilidad. ¿Qué limitación debe recordar?",
+          "options": [
+            "Su seguridad depende solo de escoger contraseñas largas",
+            "Sus vulnerabilidades se eliminan al usar direcciones privadas",
+            "Sus problemas conocidos se limitan al rendimiento",
+            "El tema lo considera inseguro por vulnerabilidades conocidas"
+          ],
+          "correct": 3,
+          "explanation": "La facilidad de configuración no compensa sus problemas conocidos de autenticación y cifrado.",
+          "source_page": 12,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Un administrador quiere transportar una conexión por SSH (Secure Shell), intérprete seguro. ¿Qué función descrita puede usar?",
+          "options": [
+            "Concesión de tiques para servicios del dominio",
+            "Asignación de direcciones privadas de los clientes",
+            "Redirección local de puertos",
+            "Traducción de direcciones en la pasarela"
+          ],
+          "correct": 2,
+          "explanation": "SSH permite crear un túnel para redirigir conexiones hacia un equipo remoto.",
+          "source_page": 17,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Al estudiar Tor, ¿qué afirmación describe correctamente el papel de un salto intermedio?",
+          "options": [
+            "Debe conocer necesariamente origen y destino finales",
+            "No necesita conocer todo el recorrido para reenviar al siguiente salto",
+            "Descifra todas las capas antes de reenviar",
+            "Necesita la clave privada del cliente para reenviar"
+          ],
+          "correct": 1,
+          "explanation": "El encaminamiento por capas limita la información que cada nodo necesita conocer.",
+          "source_page": 24,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Un teletrabajador utiliza túnel dividido. ¿Qué tráfico puede salir directamente por su proveedor local?",
+          "options": [
+            "Todo el tráfico, incluido el corporativo, evita el túnel",
+            "Todo el tráfico debe salir por la organización",
+            "Solo el tráfico cifrado puede usar el proveedor local",
+            "El que la política no enruta hacia la organización"
+          ],
+          "correct": 3,
+          "explanation": "El túnel dividido diferencia rutas según el destino o la política de la organización.",
+          "source_page": 8,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Se necesita proteger también el tramo dentro de la red hasta un servidor final. ¿Qué arquitectura del tema cubre ese recorrido completo?",
+          "options": [
+            "Túnel únicamente entre pasarelas de dos sedes",
+            "Túnel de acceso remoto que termina en el perímetro",
+            "Túnel de equipo a equipo",
+            "Enlace protegido que termina antes del servidor final"
+          ],
+          "correct": 2,
+          "explanation": "Al terminar en el servidor final, la protección puede abarcar los dos extremos reales.",
+          "source_page": 10,
+          "difficulty": "aplicación"
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "title": "Seguridad en Cloud",
+      "questions": [
+        {
+          "question": "¿Para qué sirve una subred en una red virtual de nube?",
+          "options": [
+            "Publicar recursos automáticamente en Internet",
+            "Administrar identidades de usuarios y grupos",
+            "Segmentar parte del espacio de direcciones",
+            "Distribuir claves de cifrado a aplicaciones"
+          ],
+          "correct": 2,
+          "explanation": "Las subredes permiten distribuir recursos por segmentos dentro de una red virtual.",
+          "source_page": 5,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué gestiona IAM (Identity and Access Management), gestión de identidades y accesos?",
+          "options": [
+            "Solo el encaminamiento de redes virtuales",
+            "Quién accede y qué acciones puede ejecutar",
+            "Solo el inventario de máquinas virtuales",
+            "Solo el cifrado de datos almacenados"
+          ],
+          "correct": 1,
+          "explanation": "La gestión de identidades y accesos cubre autenticación y autorización.",
+          "source_page": 7,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué identifica un ARN (Amazon Resource Name), nombre de recurso de Amazon?",
+          "options": [
+            "Un recurso de Amazon Web Services",
+            "La credencial secreta usada para llamar al servicio",
+            "La dirección de red pública de cualquier recurso",
+            "La política de permisos asociada al usuario"
+          ],
+          "correct": 0,
+          "explanation": "El identificador permite referenciar recursos en las políticas.",
+          "source_page": 7,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué combina un permiso de acceso del ejemplo de nube?",
+          "options": [
+            "Una identidad y su contraseña",
+            "Un algoritmo y su clave de cifrado",
+            "Una dirección y una ruta de red",
+            "Una acción y los recursos sobre los que puede realizarse"
+          ],
+          "correct": 3,
+          "explanation": "La autorización comprueba si la acción solicitada está permitida sobre el recurso concreto.",
+          "source_page": 8,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué significa seguridad como servicio, SECaaS (Security as a Service)?",
+          "options": [
+            "Solo instalar localmente software de seguridad del proveedor",
+            "Solo contratar infraestructura para alojar una aplicación",
+            "Servicios de seguridad ofrecidos desde la nube",
+            "Solo cifrar los datos del cliente antes de almacenarlos"
+          ],
+          "correct": 2,
+          "explanation": "Puede ofrecer gestión de identidades, filtrado, monitorización u otros servicios desde la nube.",
+          "source_page": 13,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué se define al crear el espacio de una red virtual?",
+          "options": [
+            "Las direcciones públicas obligatorias para todas las máquinas",
+            "Un rango de direcciones privadas para sus recursos",
+            "Los permisos de cada identidad sobre los recursos",
+            "Las rutas hacia todas las redes externas"
+          ],
+          "correct": 1,
+          "explanation": "El espacio se divide después en subredes para organizar recursos.",
+          "source_page": 5,
+          "difficulty": "básica"
+        },
+        {
+          "question": "¿Qué necesita un recurso para aceptar acceso desde Internet según el escenario descrito?",
+          "options": [
+            "Una dirección privada basta sin ruta pública",
+            "Exposición pública adecuada y tráfico permitido por los controles de red",
+            "Una dirección pública basta aunque el control de red deniegue",
+            "Pertenecer a una subred permite acceso externo por sí solo"
+          ],
+          "correct": 1,
+          "explanation": "La dirección pública o balanceador no basta si el grupo de seguridad bloquea ese acceso.",
+          "source_page": 6,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué expresan Action y Resource en una política del ejemplo?",
+          "options": [
+            "Operaciones permitidas o denegadas y recursos afectados",
+            "Identidad del usuario y contraseña del servicio",
+            "Región del despliegue y rango de direcciones",
+            "Nombre del rol y grupo del usuario"
+          ],
+          "correct": 0,
+          "explanation": "Ambos campos delimitan la autorización de forma concreta.",
+          "source_page": 9,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué implica un comodín como ec2:* en la acción?",
+          "options": [
+            "Permitir solo reinicio de una instancia específica",
+            "Permitir únicamente lectura del inventario",
+            "Identificar una única instancia por su nombre",
+            "Abarcar todas las acciones del servicio indicado"
+          ],
+          "correct": 3,
+          "explanation": "El comodín amplía mucho la autorización frente a enumerar acciones específicas.",
+          "source_page": 9,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué función tiene un grupo de usuarios en la gestión de accesos?",
+          "options": [
+            "Servir de clave temporal compartida entre aplicaciones",
+            "Definir rutas de comunicación entre subredes",
+            "Aplicar permisos comunes a un conjunto de usuarios",
+            "Sustituir la verificación de identidad de cada miembro"
+          ],
+          "correct": 2,
+          "explanation": "La agrupación facilita administrar directivas para usuarios con necesidades similares.",
+          "source_page": 10,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué ventaja de los roles destaca el tema para aplicaciones en instancias?",
+          "options": [
+            "Credenciales permanentes insertadas en cada aplicación",
+            "Permisos con credenciales gestionadas y rotadas sin incrustarlas manualmente",
+            "Acceso público a los recursos desde cualquier instancia",
+            "Permisos completos a cualquier aplicación de la instancia"
+          ],
+          "correct": 1,
+          "explanation": "Los roles permiten asociar permisos al servicio y gestionar credenciales temporales.",
+          "source_page": 11,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué permite el emparejamiento de redes virtuales?",
+          "options": [
+            "Comunicar recursos situados en redes virtuales diferentes",
+            "Asignar automáticamente permisos sobre recursos de ambas redes",
+            "Convertir en públicas todas las direcciones privadas",
+            "Sustituir la segmentación por grupos de identidades"
+          ],
+          "correct": 0,
+          "explanation": "El emparejamiento es una opción de interconexión entre redes de nube.",
+          "source_page": 6,
+          "difficulty": "media"
+        },
+        {
+          "question": "¿Qué diferencia autenticación de autorización en el acceso a nube?",
+          "options": [
+            "Autenticación decide permisos y autorización verifica identidad",
+            "Ambas verifican únicamente la contraseña",
+            "La autenticación concede acceso a cualquier acción",
+            "Autenticación verifica identidad y autorización decide acciones permitidas"
+          ],
+          "correct": 3,
+          "explanation": "La gestión de accesos separa quién es el solicitante de lo que puede hacer.",
+          "source_page": 7,
+          "difficulty": "media"
+        },
+        {
+          "question": "Se desea separar servidores públicos y bases de datos dentro de una red virtual. ¿Qué recurso permite organizar esa separación?",
+          "options": [
+            "Subredes",
+            "Grupos de usuarios con un rol común",
+            "Roles de acceso asignados a aplicaciones",
+            "Un único segmento con distintas etiquetas de recursos"
+          ],
+          "correct": 0,
+          "explanation": "La segmentación mediante subredes proporciona una base para aplicar controles entre zonas.",
+          "source_page": 5,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "La oficina necesita conexión protegida con recursos de nube. ¿Qué solución de interconexión contempla el tema?",
+          "options": [
+            "Solo una política de permisos sin conectividad de red",
+            "Solo una dirección pública en cada base de datos",
+            "Solo emparejar redes internas del proveedor sin conexión local",
+            "Una red privada virtual"
+          ],
+          "correct": 3,
+          "explanation": "Una conexión virtual protegida puede comunicar recursos locales y redes de nube.",
+          "source_page": 6,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Un operador solo debe reiniciar determinados servidores. ¿Cómo debe reflejarse su autorización?",
+          "options": [
+            "Permitir todas las acciones del servicio sobre toda la cuenta",
+            "Otorgar lectura global sin permiso de reinicio",
+            "Especificando esa acción y los recursos correspondientes",
+            "Dar permisos de red en vez de operación sobre servidores"
+          ],
+          "correct": 2,
+          "explanation": "La política separa la identidad de las operaciones y limita el alcance de los permisos.",
+          "source_page": 8,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Una aplicación necesita acceder a recursos de nube desde una instancia. ¿Qué opción evita mantener claves estáticas en su código?",
+          "options": [
+            "Una clave de acceso permanente guardada en el repositorio",
+            "Asignar un rol con los permisos necesarios",
+            "Una contraseña humana incluida en variables del programa",
+            "Una copia manual de credenciales en cada instancia"
+          ],
+          "correct": 1,
+          "explanation": "El rol proporciona permisos y credenciales gestionadas para el servicio.",
+          "source_page": 11,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Una empresa contrata seguridad como servicio. ¿Qué debe concretar al delegar esas funciones?",
+          "options": [
+            "Acuerdos y condiciones del servicio con el tercero",
+            "Suponer que la delegación elimina la gestión de accesos",
+            "Considerar que los controles del proveedor cubren toda la configuración",
+            "Definir solo capacidad técnica sin condiciones de servicio"
+          ],
+          "correct": 0,
+          "explanation": "El tema destaca beneficios de disponibilidad y gestión, pero exige delimitar la delegación con acuerdos.",
+          "source_page": 13,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Un permiso usa un comodín de todas las acciones cuando solo se necesita reiniciar. ¿Qué mejora reduce exceso?",
+          "options": [
+            "Permitir todas las acciones porque el operador ya se autenticó",
+            "Aplicar un comodín sobre todos los recursos de la cuenta",
+            "Restringir acciones y recursos a los necesarios",
+            "Sustituir el permiso específico por administración completa"
+          ],
+          "correct": 2,
+          "explanation": "Una política específica limita privilegios y el alcance de posibles errores.",
+          "source_page": 9,
+          "difficulty": "aplicación"
+        },
+        {
+          "question": "Una empresa necesita ampliar capacidad de filtrado con demanda variable. ¿Qué ventaja de seguridad como servicio describe el tema?",
+          "options": [
+            "Capacidad fija sin cambios ante la demanda",
+            "Escalabilidad del servicio",
+            "Administración necesariamente local de cada dispositivo",
+            "Sustitución de los acuerdos por permisos predeterminados"
+          ],
+          "correct": 1,
+          "explanation": "La oferta desde nube puede facilitar adaptar capacidad, manteniendo acuerdos claros con el proveedor.",
+          "source_page": 13,
+          "difficulty": "aplicación"
+        }
+      ]
+    }
+  ]
+}

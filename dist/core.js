@@ -1,0 +1,63 @@
+// Adapted from Bitácora PER. shuffle, signature, time helpers and swipeDirection
+// retain the original engine; exam quotas are replaced by a configurable study pool.
+export const DURATION = 45 * 60 * 1000;
+export const EXAM_SIZE = 30;
+export function shuffle(items, random = Math.random) {
+  const a = [...items];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+export const signature = q => JSON.stringify([q.text.trim().toLowerCase(), q.options.map(o => o.text.trim()), q.correct, q.image]);
+export function generateExam(questions, course = '', random = Math.random) {
+  const pool=questions.filter(q=>!course||q.course===course);
+  const unique=[...new Map(pool.map(q=>[signature(q),q])).values()];
+  if(unique.length<EXAM_SIZE)throw Error('No hay suficientes preguntas distintas para este simulacro.');
+  return shuffle(unique,random).slice(0,EXAM_SIZE);
+}
+export function gradeExam(questions, answers) {
+  const byTopic=[...new Set(questions.map(q=>q.topic))].map(topic=>({topic,total:0,correct:0,wrong:0,blank:0,errors:0}));
+  const rows=new Map(byTopic.map(t=>[t.topic,t]));
+  questions.forEach(q=>{
+    const row=rows.get(q.topic);row.total++;
+    if(answers[q.id]===q.correct)row.correct++;
+    else {row.errors++;Object.hasOwn(answers,q.id)?row.wrong++:row.blank++;}
+  });
+  const correct=byTopic.reduce((n,t)=>n+t.correct,0);
+  const blank=byTopic.reduce((n,t)=>n+t.blank,0);
+  const errors=questions.length-correct;
+  return {correct,blank,errors,wrong:errors-blank,total:questions.length,score:questions.length?10*correct/questions.length:0,byTopic};
+}
+export function remaining(deadline, now = Date.now()) { return Math.max(0, deadline - now); }
+export function formatTime(ms) {
+  const total = Math.max(0, Math.ceil(ms / 1000));
+  return `${Math.floor(total / 60).toString().padStart(2, '0')}:${(total % 60).toString().padStart(2, '0')}`;
+}
+const validTime = value => Number.isFinite(value) && Math.abs(value)<=8640000000000000;
+function validAnswers(answers,ids,map){return answers&&typeof answers==='object'&&!Array.isArray(answers)&&Object.entries(answers).every(([id,a])=>ids.includes(id)&&map.get(id)?.options.some(o=>o.key===a));}
+export function isValidSession(s,map) {
+  return !!(s&&typeof s.id==='string'&&Array.isArray(s.ids)&&s.ids.length===EXAM_SIZE&&new Set(s.ids).size===EXAM_SIZE&&s.ids.every(id=>map.has(id))&&validTime(s.deadline)&&validTime(s.startedAt)&&s.deadline>=s.startedAt&&Array.isArray(s.flags)&&s.flags.every(id=>s.ids.includes(id))&&Number.isInteger(s.index)&&s.index>=0&&s.index<s.ids.length&&validAnswers(s.answers,s.ids,map)&&(!s.finishedAt||(validTime(s.finishedAt)&&s.finishedAt>=s.startedAt&&s.finishedAt<=s.deadline)));
+}
+export function topicQuestions(questions,topic){return questions.filter(q=>q.topic===topic).sort((a,b)=>a.test.localeCompare(b.test,'es',{numeric:true})||a.order-b.order||a.id.localeCompare(b.id));}
+export function practiceBlocks(questions,topic){
+  const list=topicQuestions(questions,topic);const blocks=[];
+  for(let i=0;i<list.length;i+=10){const block=list.slice(i,i+10);if(block.length!==10)throw Error('El tema debe contener bloques completos de diez preguntas.');blocks.push(block);}
+  return blocks;
+}
+export function validPractice(p,ids,map){
+  return !!(p&&Array.isArray(p.ids)&&p.ids.join(',')===ids.join(',')&&Number.isInteger(p.index)&&p.index>=0&&p.index<ids.length&&validAnswers(p.answers,ids,map)&&Array.isArray(p.checked)&&p.checked.every(id=>ids.includes(id))&&(!p.finishedAt||Number.isFinite(p.finishedAt)));
+}
+export function swipeDirection(dx,dy) {return Math.abs(dx)>=44&&Math.abs(dx)>Math.abs(dy)*1.25?(dx<0?1:-1):0;}
+export function validateBank(data){
+  if(!data||!Array.isArray(data.courses)||!data.courses.length||!Array.isArray(data.topics)||!data.topics.length||!Array.isArray(data.questions))throw Error('Banco incompleto');
+  const courses=new Set(data.courses.map(c=>c.id));const topics=new Map(data.topics.map(t=>[t.id,t]));const ids=new Set();
+  if(courses.size!==data.courses.length||topics.size!==data.topics.length||data.topics.some(t=>!Number.isInteger(t.id)||!courses.has(t.course)||typeof t.title!=='string'))throw Error('Asignaturas o temas no válidos');
+  for(const q of data.questions){
+    if(!q||typeof q.id!=='string'||ids.has(q.id)||!topics.has(q.topic)||topics.get(q.topic).course!==q.course||typeof q.text!=='string'||!q.text.trim()||!Array.isArray(q.options)||q.options.length!==4||q.options.some((o,i)=>o?.key!=='abcd'[i]||typeof o.text!=='string'||!o.text.trim())||!q.options.some(o=>o.key===q.correct)||typeof q.explanation!=='string'||!q.explanation.trim()||!q.source||!['practice','temario-test','campus-confirmed'].includes(q.source.kind)||typeof q.source.title!=='string'||!q.source.title.trim()||typeof q.test!=='string'||!Number.isFinite(q.order))throw Error('Pregunta no válida');
+    ids.add(q.id);
+  }
+  for(const t of data.topics)if(data.questions.filter(q=>q.topic===t.id).length!==30)throw Error('Cada tema debe contener treinta preguntas.');
+  return true;
+}
