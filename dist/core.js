@@ -61,8 +61,9 @@ export function validateBank(data){
   for(const t of data.topics)if(data.questions.filter(q=>q.topic===t.id).length!==30)throw Error('Cada tema debe contener treinta preguntas.');
   return true;
 }
-export const TEMA_BLOCKS = ['p','analogy','term','list','steps','table','example','exam','key'];
-const text = v => typeof v === 'string' && v.trim().length > 0 && !/<\/?[a-z][^>]*>/i.test(v);
+export const TEMA_BLOCKS = ['p','analogy','term','list','steps','table','example','exam','key','code'];
+// Text is always escaped when rendered, so code samples such as <script> are allowed.
+const text = v => typeof v === 'string' && v.trim().length > 0;
 const texts = v => Array.isArray(v) && v.length > 0 && v.every(text);
 export function validateTema(tema, bank) {
   const fail = message => { throw Error(`Tema digital no válido: ${message}`); };

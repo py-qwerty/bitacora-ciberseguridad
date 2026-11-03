@@ -1,0 +1,1049 @@
+{
+  "course": "sistemas",
+  "number": 8,
+  "title": "Seguridad en fase de producción de las aplicaciones web",
+  "minutes": 40,
+  "intro": {
+    "why": "Una aplicación web no está a salvo por haber pasado las pruebas: el día que se publica empieza a recibir visitas de clientes… y de atacantes. Una tienda online que cae durante el Black Friday por una avalancha de peticiones falsas pierde dinero cada minuto, y un fallo no parcheado en una librería puede dar paso a un robo de datos meses después del despliegue. Este tema explica qué hay que hacer mientras la aplicación está en marcha: poner escudos delante (WAF) y dentro (RASP), vigilar, responder a incidentes y tener copias que de verdad se puedan restaurar.",
+    "before": [
+      "Una **aplicación web** es un programa al que se accede con el navegador; el navegador (cliente) envía **peticiones HTTP** y el servidor devuelve **respuestas**. HTTP (HyperText Transfer Protocol) es el idioma en que se hablan.",
+      "La **fase de producción** es cuando la aplicación ya está publicada y la usan personas reales, a diferencia de las fases de desarrollo y pruebas.",
+      "Un **cortafuegos** (firewall) es un filtro que decide qué tráfico de red pasa y cuál no, normalmente mirando direcciones y puertos.",
+      "Una **vulnerabilidad** es un fallo que un atacante puede aprovechar; por ejemplo, la **inyección SQL (SQLi)**, que cuela órdenes de base de datos dentro de un formulario."
+    ],
+    "goals": [
+      "Al terminar sabrás enumerar las operaciones de seguridad que se hacen con la aplicación ya en producción.",
+      "Sabrás explicar cómo funcionan los ataques de denegación de servicio (DoS y DDoS), incluidos Slowloris y Slow HTTP POST, y qué defensas los frenan.",
+      "Sabrás qué es un WAF, cómo filtra (listas blancas y negras con expresiones regulares), cómo se diseña y cuáles son sus modos de instalación.",
+      "Sabrás describir ModSecurity como ejemplo de WAF de código abierto.",
+      "Sabrás qué es RASP, en qué se diferencia de un WAF, sus modos de operación y cómo se evalúa y adopta.",
+      "Sabrás ordenar las fases de gestión de un incidente, qué debe incluir una copia de seguridad y cómo se combinan las defensas en profundidad y diversidad."
+    ]
+  },
+  "sections": [
+    {
+      "id": "operaciones-produccion",
+      "title": "La aplicación ya está en la calle: operaciones de seguridad",
+      "pages": [4, 7],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Construir un edificio seguro no basta: cuando ya vive gente dentro hace falta un vigilante en la puerta, cámaras, revisiones del ascensor, un plan de evacuación y que los vecinos no dejen el portal abierto. Con una aplicación web pasa igual: tras el desarrollo llega la vida diaria, y ahí la seguridad se **opera** todos los días."
+        },
+        {
+          "type": "term",
+          "term": "SSDLC (Secure Software Development Life Cycle)",
+          "text": "Ciclo de vida de desarrollo seguro del software: las fases por las que pasa una aplicación (análisis, diseño, programación, pruebas, producción) con tareas de seguridad en cada una. La última fase, la de producción, también tiene las suyas."
+        },
+        {
+          "type": "term",
+          "term": "Operaciones de seguridad",
+          "text": "Nombre que reciben las actividades de seguridad que se hacen con la aplicación ya desplegada en producción. No terminan nunca: son continuas."
+        },
+        {
+          "type": "list",
+          "title": "Operaciones de seguridad en producción",
+          "items": [
+            "Aplicar y supervisar **medidas de protección**: balanceo de carga, WAF (cortafuegos de aplicaciones web) y RASP (autoprotección de la aplicación en ejecución).",
+            "**Auditoría y monitorización continua**.",
+            "Gestión de **copias de seguridad (backup) y recuperación**, incluido un centro de respaldo.",
+            "**Gestión de incidentes** de seguridad.",
+            "**Formación continua** del personal técnico.",
+            "**Concienciación** de los usuarios.",
+            "**Seguridad física**, del personal y de la documentación."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "El tema insiste en tres ideas de fondo. Primera: cuando una amenaza se materializa hay que **detectarla** y actuar para que el daño sea mínimo; el **impacto es proporcional al coste económico**, así que conviene tener un procedimiento de respuesta diseñado y ensayado. Segunda: de nada sirve comprar cortafuegos o IDS (Intrusion Detection System, sistema de detección de intrusos) si se configuran mal o si un empleado regala información por descuido. Tercera: la **concienciación** funciona cuando cada persona entiende por qué una medida importa para los objetivos de la organización, no cuando se impone sin explicar."
+        },
+        {
+          "type": "p",
+          "text": "Además, la seguridad de los navegadores, de los servidores web, de la aplicación y de las conexiones entre ellos se diseña y se revisa con **guías de configuración segura** de estándares, y se supervisa periódicamente. Todo ello (incluida la seguridad física de despachos y del centro de proceso de datos) debe constar en la **política de seguridad** de la organización."
+        },
+        {
+          "type": "exam",
+          "text": "Si preguntan qué actividad sigue viva durante la producción, la respuesta es la **auditoría y monitorización continua**. Las trampas usan la palabra «solo» con tareas de otras fases: «solo pruebas antes del primer despliegue», «solo revisión de requisitos», «solo inventario al acabar el desarrollo». Todo eso es anterior a producción."
+        },
+        {
+          "type": "key",
+          "text": "Desplegar no es terminar: en producción la seguridad se opera de forma continua con protección, vigilancia, copias, respuesta a incidentes y personas formadas."
+        }
+      ]
+    },
+    {
+      "id": "dos-ddos",
+      "title": "Denegación de servicio: tumbar la web a base de peticiones",
+      "pages": [7, 9],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Imagina una pizzería con diez teléfonos. Un bromista llama a los diez a la vez y se queda en silencio sin colgar. Las pizzas siguen saliendo del horno, pero ningún cliente real consigue hacer su pedido. Nadie ha robado nada: simplemente han **agotado los recursos** del negocio."
+        },
+        {
+          "type": "term",
+          "term": "DoS (Denial of Service, denegación de servicio)",
+          "text": "Ataque cuyo objetivo es que un servicio deje de estar disponible para los usuarios legítimos, normalmente inundándolo de peticiones o aprovechando debilidades de los protocolos o vulnerabilidades (como una SQLi que provoque consultas pesadísimas)."
+        },
+        {
+          "type": "term",
+          "term": "DDoS (Distributed Denial of Service, denegación de servicio distribuida)",
+          "text": "La misma idea, pero lanzada desde **muchas máquinas a la vez y de forma coordinada** contra un mismo objetivo. El atacante controla un sistema distribuido con máquinas **master** (dan las órdenes), **slaves** (esclavas, lanzan el ataque) y **reflectors** (reflectores, terceros que rebotan y amplifican el tráfico)."
+        },
+        {
+          "type": "steps",
+          "title": "El saludo TCP en tres pasos (three-way handshake) y la conexión «a medio hacer»",
+          "items": [
+            "El cliente envía un paquete **SYN** («quiero hablar contigo»).",
+            "El servidor reserva memoria para la conexión y contesta **SYN-ACK** («de acuerdo, te escucho»).",
+            "El cliente debería responder **ACK** («perfecto, empezamos»). En el ataque volumétrico este tercer paso **nunca llega**: el servidor se queda con miles de conexiones medio abiertas (half-open) ocupando memoria."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "TCP (Transmission Control Protocol) es el protocolo que garantiza que los datos llegan completos y en orden; antes de hablar, cliente y servidor se saludan en tres pasos. Los ataques de inundación TCP/IP abusan justamente de ese saludo. Pero también hay ataques DoS pensados específicamente para aplicaciones web, que van por HTTP:"
+        },
+        {
+          "type": "table",
+          "title": "Ataques DoS lentos contra aplicaciones web",
+          "head": ["Ataque", "Qué hace", "Por qué funciona"],
+          "rows": [
+            ["Slowloris", "Envía las **cabeceras** de la petición HTTP muy despacio, sin terminar nunca.", "Mientras no llegan todas las cabeceras, el servidor no da la sesión por establecida, pero la mantiene ocupada; se llega al máximo de conexiones (en Apache, la variable MaxClients)."],
+            ["Slow HTTP POST", "Envía todas las cabeceras, incluida **Content-Length** (el tamaño del cuerpo que va a mandar), y luego envía el **cuerpo** byte a byte, lentísimo.", "El servidor espera pacientemente todos los bytes anunciados y reserva una sesión y recursos por cada POST. Ejemplo de herramienta: SwitchBlade de OWASP."]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Herramientas que se usan para lanzar (o para probar en laboratorio) este tipo de ataques: **SlowhttpTest**, **GoldenEye** o **Hping3**. OWASP (Open Worldwide Application Security Project) es una comunidad abierta que publica guías y herramientas de seguridad web."
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico",
+          "text": "Una web de venta de entradas abre la venta de un concierto. Un atacante, con 2.000 ordenadores infectados, abre conexiones y envía las cabeceras a cuentagotas. El servidor no ha recibido ni una petición «completa», pero tiene todas sus conexiones ocupadas: los fans ven «el servidor no responde». Es un DDoS de tipo Slowloris."
+        },
+        {
+          "type": "exam",
+          "text": "Si el enunciado describe «conexiones incompletas que ocupan recursos», la familia es **agotamiento de recursos / denegación de servicio**, no robo de credenciales, ni modificación de consultas (eso es SQLi), ni acceso sin permiso (eso es un fallo de autorización). Y si preguntan qué caracteriza un DDoS, la clave es **varias máquinas coordinadas** contra un objetivo, no un único cliente insistente."
+        },
+        {
+          "type": "key",
+          "text": "Un DoS ataca la disponibilidad agotando recursos; el DDoS lo hace desde muchas máquinas coordinadas. Slowloris retrasa las cabeceras; Slow HTTP POST retrasa el cuerpo."
+        }
+      ]
+    },
+    {
+      "id": "defensas-ddos",
+      "title": "Cómo se resiste una denegación de servicio",
+      "pages": [9, 10],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Las defensas se reparten en dos capas: el **sistema operativo** del servidor (que maneja las conexiones TCP) y la **arquitectura** de la aplicación web (cómo se reparten y limitan las peticiones)."
+        },
+        {
+          "type": "term",
+          "term": "TCB (Transmission Control Block, bloque de control de la transmisión)",
+          "text": "La ficha que el sistema operativo crea en memoria para cada conexión TCP. Crear un TCB completo por cada SYN falso es lo que agota la memoria."
+        },
+        {
+          "type": "table",
+          "title": "Defensas en el sistema operativo",
+          "head": ["Medida", "Idea"],
+          "rows": [
+            ["SYN cache", "Guardar **menos información** al recibir el SYN, en vez del TCB completo, para aguantar más conexiones half-open."],
+            ["SYN cookies", "**No crear el TCB** hasta que el saludo de tres pasos haya terminado."],
+            ["No responder ICMP destination unreachable (UDP)", "Evitar que el servidor gaste recursos contestando a paquetes UDP dirigidos a puertos cerrados. ICMP es el protocolo de mensajes de control de la red."],
+            ["Reducir el tiempo SYN received", "Liberar antes las conexiones que no completan el saludo."],
+            ["Sobrescribir conexiones half-open", "Permitir que las conexiones nuevas reemplacen a las medio abiertas."]
+          ]
+        },
+        {
+          "type": "list",
+          "title": "Defensas en la arquitectura de la aplicación web",
+          "items": [
+            "**Balanceadores de carga en modo delayed binding** (enlace diferido): el balanceador no entrega la petición al servidor web hasta haber recibido la cabecera completa. Así frena **Slowloris**, pero **no Slow HTTP POST**, porque este sí envía la cabecera bien y ataca con el cuerpo.",
+            "**Clustering** (agrupación) de servidores de aplicaciones: varios servidores trabajando juntos reparten la carga.",
+            "**Aumentar** el número máximo de conexiones admitidas.",
+            "**Limitar el tiempo de vida** de las conexiones a un valor razonable.",
+            "**Limitar el tamaño** de las cabeceras y del cuerpo de los mensajes a un valor razonable.",
+            "**Denegar** peticiones con métodos HTTP que la aplicación no usa.",
+            "**No habilitar conexiones persistentes** (las que se quedan abiertas para reutilizarse).",
+            "Tener un **servicio auxiliar** que siga respondiendo aunque los servidores caigan, para mostrar un mensaje de «servicio no disponible».",
+            "**Estadísticas y registro en tiempo real**, útiles para detectar anomalías en el ritmo de visitas."
+          ]
+        },
+        {
+          "type": "term",
+          "term": "Balanceador de carga",
+          "text": "Equipo que recibe todas las peticiones y las reparte entre varios servidores, como el recepcionista que manda a cada cliente a la ventanilla más libre."
+        },
+        {
+          "type": "p",
+          "text": "El **WAF** también contribuye: por ejemplo, ModSecurity admite el módulo **Evasive**, pensado para la protección frente a denegación de servicio (lo verás más adelante). Y en el esquema global de defensa se añaden servicios anti-DDoS específicos."
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico",
+          "text": "Un servidor acepta cuerpos de petición de cualquier tamaño. Un atacante envía formularios de 2 GB que el servidor intenta leer enteros. Comprar más memoria solo retrasa el problema; la medida específica es **limitar el tamaño** de cabeceras y cuerpo a lo que la función necesita (un formulario de contacto no necesita más de unos pocos KB)."
+        },
+        {
+          "type": "exam",
+          "text": "Si preguntan qué defensas sirven frente a DoS y las opciones son balanceadores, clúster de servidores y WAF, la respuesta es **todas**: cada una ayuda, aunque ninguna basta por sí sola. Ante el caso de «cuerpos enormes sin límite», la respuesta es **limitar tamaños a valores razonables**; las trampas proponen ampliar memoria o alargar tiempos de espera sin controlar recursos, que empeoran la situación."
+        },
+        {
+          "type": "key",
+          "text": "Contra la denegación de servicio se combina el sistema operativo (SYN cache, SYN cookies, tiempos cortos) con la arquitectura (balanceadores, clúster, límites de tamaño y de tiempo, WAF)."
+        }
+      ]
+    },
+    {
+      "id": "waf",
+      "title": "El WAF: un portero que lee las peticiones",
+      "pages": [12, 13],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Un cortafuegos de red es como el guardia de la entrada de un polígono: mira la matrícula (dirección IP) y a qué nave va (puerto), pero no abre la furgoneta. Un **WAF** es el inspector que abre la caja y lee el contenido: si dentro de un formulario viene una orden de base de datos maliciosa, la detiene aunque la furgoneta tenga permiso para entrar."
+        },
+        {
+          "type": "p",
+          "text": "Siguiendo los principios de **profundidad** (varias capas) y **diversidad** (capas de distinto tipo) en la defensa, además de los cortafuegos de red y de proteger el sistema operativo, la aplicación se puede reforzar con dos herramientas: los **WAF** y las **RASP**."
+        },
+        {
+          "type": "term",
+          "term": "WAF (Web Application Firewall, cortafuegos de aplicaciones web)",
+          "text": "Equipo o programa que se interpone entre el cliente web y el servidor web y analiza los mensajes de la **capa de aplicación** (las peticiones y respuestas HTTP) para detectar ataques y violaciones de la política de seguridad, pudiendo además restringir el acceso a ciertos puertos o servicios."
+        },
+        {
+          "type": "p",
+          "text": "Un WAF examina peticiones y respuestas encapsuladas en **HTTP**, **SOAP** (protocolo de mensajes XML para servicios web), **XML-RPC** (llamadas remotas en XML) y otras capas de servicios web. Para decidir usa **expresiones regulares**, es decir, patrones de texto, del tipo **whitelist**, **blacklist** o una combinación de ambos. Puede aplicar distintas políticas de filtrado y algunos **aprenden del tráfico pasado**."
+        },
+        {
+          "type": "term",
+          "term": "Expresión regular",
+          "text": "Un patrón que describe un conjunto de textos. Por ejemplo, «solo dígitos, entre 1 y 6» describe un código válido; «contiene ' OR 1=1» describe un intento de inyección SQL."
+        },
+        {
+          "type": "table",
+          "title": "Lista negra frente a lista blanca",
+          "head": ["Aspecto", "Blacklist (lista negra)", "Whitelist (lista blanca)"],
+          "rows": [
+            ["Qué guarda", "Una base de datos de **firmas de ataques** conocidos.", "Un **modelo del tráfico aceptado** entre cliente y aplicación."],
+            ["Qué deja pasar", "Todo lo que no coincida con un ataque conocido.", "Solo lo que encaja con lo permitido."],
+            ["Punto fuerte", "Fácil de poner en marcha.", "Más segura; el tema la considera **siempre deseable**."],
+            ["Punto débil", "No reconoce ataques nuevos.", "Exige más estudio y mantenimiento si la aplicación cambia mucho."]
+          ]
+        },
+        {
+          "type": "term",
+          "term": "Falso positivo y falso negativo",
+          "text": "Falso positivo: bloquear algo legítimo (un cliente que no puede comprar). Falso negativo: dejar pasar un ataque. Afinar las políticas para minimizar ambos es difícil y exige pruebas que comprueben que no se rompe la funcionalidad ni el rendimiento."
+        },
+        {
+          "type": "list",
+          "title": "Otros detalles de funcionamiento",
+          "items": [
+            "**Tráfico cifrado (TLS)**: para inspeccionar HTTPS, el WAF necesita una **copia de la clave privada** del servidor; descifra, analiza y reenvía cifrado o en claro. TLS (Transport Layer Security) es el protocolo que cifra la conexión web.",
+            "**Cuando detecta un ataque**: no reenvía la petición al servidor, o corta la conexión directamente o pidiendo a otro equipo (router o cortafuegos de red) que la bloquee."
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Formas de diseño de un WAF",
+          "head": ["Diseño", "Qué significa"],
+          "rows": [
+            ["Hardware específico", "Software WAF instalado en un equipo diseñado para esa solución concreta."],
+            ["Embebido en el hardware", "La función WAF implementada directamente en el propio hardware."],
+            ["Servidor de propósito general", "Software WAF instalado en un servidor normal."]
+          ]
+        },
+        {
+          "type": "exam",
+          "text": "«¿Con qué detecta y bloquea un WAF?» → **expresiones regulares** (listas blancas/negras). «¿Qué protege?» → **peticiones y respuestas de la aplicación web**, no solo cabeceras de red y puertos (eso es un cortafuegos de red) ni identidades del dominio. «¿Cuál es una forma de diseño?» → **todas**: hardware específico, embebido en hardware y servidor de propósito general."
+        },
+        {
+          "type": "key",
+          "text": "El WAF se pone entre cliente y servidor, lee el contenido HTTP y filtra con patrones de lista blanca o negra; puede ser hardware dedicado, hardware embebido o software en un servidor."
+        }
+      ]
+    },
+    {
+      "id": "waf-modos",
+      "title": "Dónde se coloca el WAF: modos de instalación",
+      "pages": [13, 16],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Piensa en un control de seguridad de aeropuerto. Puede ser un **mostrador** por el que todos pasan y donde te pueden parar (proxy inverso); una **cámara** que graba copias de lo que pasa pero no puede detener a nadie (pasivo); un **arco invisible** integrado en el pasillo sin cambiar el camino (bridge); o un **guardia dentro de la sala de embarque** (embebido)."
+        },
+        {
+          "type": "table",
+          "title": "Los cuatro modos de instalación",
+          "head": ["Modo", "Cómo se conecta", "¿Bloquea?", "Lo que hay que recordar"],
+          "rows": [
+            ["Proxy inverso (reverse proxy)", "Recibe todas las peticiones en lugar del servidor; las inspecciona y las reenvía o las bloquea.", "Sí", "El **más habitual** y el preferido. Registra los ataques. Se configura publicando la interfaz externa para redirigir el tráfico al servidor. Se ponen **dos** para redundancia."],
+            ["Pasivo (fuera de línea)", "Recibe un **duplicado** del tráfico mediante un **network tap** (derivador de red).", "**No**", "Solo detecta y alerta: no está en el camino del tráfico real."],
+            ["Bridge (transparente)", "Se comporta como un **switch de nivel 2 sin dirección IP**.", "Sí", "**No obliga a cambiar la configuración IP** de la red. Con una tarjeta de red dual con bypass, si falla deja pasar el tráfico, pero entonces no filtra nada."],
+            ["Embebido", "Se instala en el propio servidor web como **plugin** (complemento).", "Sí", "Hay que estudiar el **impacto en el rendimiento** del servidor."]
+          ]
+        },
+        {
+          "type": "term",
+          "term": "Proxy inverso",
+          "text": "Un intermediario que se hace pasar por el servidor: el cliente cree hablar con la web, pero habla con el proxy, que decide si reenvía la petición al servidor real. Por eso puede inspeccionar y cortar cualquier petición antes de que llegue."
+        },
+        {
+          "type": "term",
+          "term": "Switch de nivel 2 y LAN",
+          "text": "Una LAN (Local Area Network) es la red local de la organización. Un switch de nivel 2 conecta equipos usando las direcciones físicas de las tarjetas, sin dirección IP propia. Un WAF en modo bridge se mete en el cable así, de forma invisible, y por eso no hay que renumerar nada."
+        },
+        {
+          "type": "list",
+          "title": "Recomendaciones del tema para desplegar un WAF",
+          "items": [
+            "Analizar el mercado y elegir el equipo que mejor encaje con los requisitos de seguridad y disponibilidad.",
+            "Instalarlo en **alta disponibilidad** con **dos dispositivos**.",
+            "Estudiar el **impacto en el rendimiento**.",
+            "**Probar las reglas de filtrado** antes de pasar a producción, para que sean eficaces sin romper la aplicación; preferir **lista blanca**.",
+            "Definir el formato y nivel de detalle del **registro** de detecciones y bloqueos.",
+            "Administrar el WAF con **protocolos de conexión seguros**."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Para profundizar, el proyecto **WAF Evaluation Criteria** del WASC (Web Application Security Consortium) detalla los requisitos que debe cumplir un WAF. El tema cita también estudios que usan **aprendizaje automático** (machine learning): uno en capas (primero DDoS, luego XSS/SQLi) con alta precisión, y otro que muestra clasificadores mucho más rápidos que los motores de reglas tradicionales."
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico",
+          "text": "Un hospital quiere un WAF pero no puede tocar el direccionamiento IP de su red sin parar servicios críticos: elige el modo **bridge**. Una tienda online que quiere bloquear ataques y ocultar sus servidores pone **dos WAF en proxy inverso**. Un equipo de seguridad que solo quiere observar qué ataques recibe antes de decidir, monta uno **pasivo** con un network tap."
+        },
+        {
+          "type": "exam",
+          "text": "Asociaciones fijas: «solo detecta, no bloquea» → **pasivo**; «el más recomendable/deseable» → **proxy inverso**; «no cambia la configuración IP de la LAN» → **bridge**; «se puede instalar como proxy inverso, transparente o pasivo» → **todas**. En la pregunta de variantes (proxy inverso deseable, redundancia con dos WAF, definición de blacklist/whitelist) la respuesta es **todas las demás son correctas**. Trampa: «instrumenta el código dentro de la aplicación» describe RASP, no un proxy inverso."
+        },
+        {
+          "type": "key",
+          "text": "Proxy inverso: inspecciona y bloquea, es el preferido y se duplica. Pasivo: solo mira una copia. Bridge: invisible y sin cambiar IP. Embebido: plugin en el servidor, ojo al rendimiento."
+        }
+      ]
+    },
+    {
+      "id": "modsecurity",
+      "title": "ModSecurity: un WAF de código abierto",
+      "pages": [16, 18],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "**ModSecurity** es el ejemplo de WAF de código abierto (open source) que usa el tema, basado en la guía CCN-STIC 661 del CCN (Centro Criptológico Nacional). Funciona como módulo del servidor web **Apache** (mod_security), es decir, en modo **embebido**, y analiza las peticiones antes de pasárselas a Apache."
+        },
+        {
+          "type": "steps",
+          "title": "Sus cinco fases de procesamiento",
+          "items": [
+            "Cabeceras de la petición (request headers).",
+            "Cuerpo de la petición (request body).",
+            "Cabeceras de la respuesta (response headers).",
+            "Cuerpo de la respuesta (response body).",
+            "Registro en bitácora (logging)."
+          ]
+        },
+        {
+          "type": "term",
+          "term": "Técnica de evasión",
+          "text": "Truco para disfrazar un ataque y que el filtro no lo reconozca: escribir «//» en vez de «/», meter «./», codificar caracteres en la URL (%2F) o añadir un byte nulo (%00). ModSecurity **normaliza** rutas y parámetros antes de analizarlos para deshacer esos disfraces."
+        },
+        {
+          "type": "list",
+          "title": "Capacidades principales",
+          "items": [
+            "**Filtrado de peticiones** con reglas y expresiones regulares.",
+            "**Antievasión**: elimina barras múltiples (//) y referencias a sí mismo (./), trata igual \\ y / en Windows, decodifica la URL y cambia bytes nulos (%00) por espacios.",
+            "**Comprensión del protocolo HTTP**, para filtrar de forma fina.",
+            "**Análisis del contenido POST** (los datos de los formularios).",
+            "**Log de auditoría** para análisis forense posterior.",
+            "**Filtrado HTTPS**: como está embebido, ve los datos ya descifrados.",
+            "**Verificación de rango de bytes** para detectar shellcodes (código malicioso inyectado).",
+            "Puntuación de anomalías y correlación básica de eventos, soporte XML, bloqueo de IP, integración con antivirus, seguimiento de datos sensibles, detección de troyanos y **ocultación de errores** para no revelar rutas o direcciones."
+          ]
+        },
+        {
+          "type": "term",
+          "term": "CRS (Core Rule Set)",
+          "text": "El conjunto de reglas de referencia de ModSecurity, mantenido dentro del proyecto OWASP. Además, ModSecurity puede usar el módulo **Evasive** para protegerse de la denegación de servicio."
+        },
+        {
+          "type": "exam",
+          "text": "Pueden preguntar por las cinco fases (cabeceras y cuerpo de petición, cabeceras y cuerpo de respuesta, y logging) o por qué puede filtrar HTTPS: porque, al ir embebido en el servidor, recibe los datos **después** de descifrarlos."
+        },
+        {
+          "type": "key",
+          "text": "ModSecurity es un WAF libre embebido en Apache que analiza en cinco fases, normaliza para evitar evasiones y usa las reglas CRS de OWASP."
+        }
+      ]
+    },
+    {
+      "id": "rasp",
+      "title": "RASP: la aplicación que se defiende desde dentro",
+      "pages": [19, 20],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "El WAF es el guardia de la puerta: ve quién entra y qué trae, pero no sabe qué pasa dentro de la casa. **RASP** es un sistema de alarma instalado en cada habitación: sabe que alguien ha abierto la caja fuerte aunque haya entrado con la llave del guardia."
+        },
+        {
+          "type": "term",
+          "term": "RASP (Runtime Application Self-Protection, autoprotección de la aplicación en tiempo de ejecución)",
+          "text": "Tecnología que se **integra dentro de la propia aplicación mientras se ejecuta** para detectar, prevenir o mitigar ataques. Se basa en instrumentación en tiempo real y vigila el flujo de datos, los eventos internos y las llamadas al sistema; puede actuar automáticamente para detener ataques que se han saltado las defensas externas. El temario la llama a veces «Real Analysis Self Protection» o «Real Application Self-Protection»: es lo mismo."
+        },
+        {
+          "type": "term",
+          "term": "Instrumentación (hooks)",
+          "text": "Pequeños «ganchos» que se insertan en el código, las librerías o el entorno de ejecución (Java, .NET, Node.js…) para avisar cada vez que ocurre algo sensible, como una consulta a la base de datos o la apertura de un fichero."
+        },
+        {
+          "type": "table",
+          "title": "WAF frente a RASP",
+          "head": ["Aspecto", "WAF", "RASP"],
+          "rows": [
+            ["Dónde está", "Fuera, entre cliente y servidor.", "Dentro de la aplicación en ejecución."],
+            ["Qué ve", "El tráfico HTTP: patrones externos.", "El contexto interno: código, estado, variables, flujo de datos."],
+            ["Cómo decide", "Reglas y expresiones regulares sobre el tráfico.", "Reglas, heurísticas y modelos de comportamiento sobre lo que hace la aplicación."],
+            ["Qué puede hacer", "Bloquear la petición.", "Bloquear la solicitud, cerrar la sesión, deshabilitar una función, cortar la conexión."]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Modos de operación de RASP",
+          "head": ["Modo", "Qué hace", "Para qué se usa"],
+          "rows": [
+            ["Monitorización", "Observa, detecta y **reporta**, pero **no bloquea**.", "Pruebas, ajuste fino (tuning) y análisis de riesgos."],
+            ["Protección", "Además de reportar, **bloquea o mitiga** (abandona la sesión, deshabilita funciones, corta la conexión).", "Defensa activa en producción."]
+          ]
+        },
+        {
+          "type": "list",
+          "title": "Elementos comunes de una herramienta RASP",
+          "items": [
+            "**Instrumentación/hooks** en código, librerías y entorno de ejecución.",
+            "**Sensores** que capturan eventos: llamadas a funciones sensibles, consultas a bases de datos, validación de entradas, deserialización, acceso a archivos.",
+            "Un **motor de decisión**: reglas, heurísticas, modelos de comportamiento o análisis de flujos de datos.",
+            "**Políticas de mitigación automáticas** cuando detecta una anomalía o un exploit.",
+            "**Registro y alertas**, integrados con un SIEM o con la cadena DevSecOps."
+          ]
+        },
+        {
+          "type": "term",
+          "term": "IAST (Interactive Application Security Testing)",
+          "text": "Pruebas interactivas de seguridad de aplicaciones: también instrumentan la aplicación por dentro, pero para **encontrar vulnerabilidades durante las pruebas**, no para defenderla en producción. RASP comparte esa instrumentación y añade la capacidad de **bloquear**, así que puede hacer de cortafuegos de aplicación dentro del propio programa. El tema muestra su arquitectura con una figura titulada «Arquitectura IAST»."
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico",
+          "text": "Un atacante cuela una inyección SQL tan bien disfrazada que el WAF no la reconoce. Cuando la aplicación va a ejecutar la consulta, el sensor RASP ve que el texto del usuario ha cambiado la estructura de la consulta. En modo protección, la bloquea y cierra la sesión; en modo monitorización, solo lo anota y avisa."
+        },
+        {
+          "type": "exam",
+          "text": "La descripción correcta de RASP siempre incluye «**dentro de la aplicación**» y «**en tiempo de ejecución**». Trampas: «analiza el código fuente antes de ejecutarse» (eso es análisis estático, SAST), «inspecciona solo el tráfico externo» o «se instala en el cortafuegos perimetral» (eso es un WAF o un cortafuegos de red), «solo genera documentación» o «impide siempre cualquier ataque sin configuración» (ninguna herramienta lo hace). Y si preguntan por el modo monitorización: **detecta y reporta sin bloquear**."
+        },
+        {
+          "type": "key",
+          "text": "RASP vive dentro de la aplicación en ejecución, ve su contexto interno y puede bloquear desde dentro; en modo monitorización solo observa y avisa."
+        }
+      ]
+    },
+    {
+      "id": "rasp-evaluacion",
+      "title": "Evaluar y adoptar RASP sin romper nada",
+      "pages": [21, 24],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Evaluar una RASP es medir dos cosas a la vez: su **eficacia** (¿qué ataques detecta o para?) y su **coste** (¿cuánto ralentiza la aplicación? ¿cuántas alarmas falsas da?). Una herramienta que lo detecta todo pero hace la web insoportablemente lenta no sirve."
+        },
+        {
+          "type": "list",
+          "title": "Métricas habituales",
+          "items": [
+            "**Tasa de detección** (verdaderos positivos).",
+            "**Tasa de falsos positivos y falsos negativos**.",
+            "**Tiempo de reacción** tras la detección.",
+            "**Overhead** (sobrecarga) de rendimiento: CPU, memoria, tiempo de respuesta y **throughput** (peticiones atendidas por segundo).",
+            "**Cobertura** de vectores de ataque: XSS, SQLi, deserialización, path traversal…",
+            "**Estabilidad**: compatibilidad e interferencias con funciones legítimas."
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Ventajas e inconvenientes",
+          "head": ["Ventajas", "Inconvenientes"],
+          "rows": [
+            ["Protección en tiempo real desde dentro, incluso ante ataques que eluden las defensas externas.", "Posible sobrecarga: latencia, CPU, memoria, menos throughput."],
+            ["Visibilidad del contexto interno, que mejora la precisión.", "Falsos positivos si las reglas son muy estrictas; falsos negativos si no cubren todos los caminos."],
+            ["**Virtual patching**: mitiga vulnerabilidades conocidas mientras se corrige el código.", "Integración compleja con versiones, frameworks y componentes de terceros."],
+            ["Complementa el análisis estático, las pruebas y los cortafuegos externos.", "Puede burlarse si el atacante controla el entorno (rooting, depuración, hooking nativo)."],
+            ["Capa extra útil en entornos móviles o distribuidos.", "Depende de un buen diseño y de mantener reglas y pruebas al día."]
+          ]
+        },
+        {
+          "type": "term",
+          "term": "Virtual patching (parcheo virtual)",
+          "text": "Bloquear desde fuera del código el aprovechamiento de una vulnerabilidad conocida mientras se prepara el parche real. Es una **tirita**, no una cura: el fallo sigue en el código y una variante del ataque podría esquivar la regla."
+        },
+        {
+          "type": "steps",
+          "title": "Cómo adoptar RASP, según la literatura",
+          "items": [
+            "**Empezar en modo monitorización/alerta**: ver qué alertas salen, contar falsos positivos y ajustar políticas antes de activar el bloqueo automático.",
+            "Hacer **pruebas de compatibilidad** con todos los entornos, frameworks, librerías y módulos nativos.",
+            "**Evaluar el rendimiento** bajo carga con tráfico real y asegurar una degradación aceptable.",
+            "Comprobar que cubre los **vectores de ataque** más probables o dañinos para la aplicación.",
+            "Mantener y **actualizar reglas y políticas** de forma continua.",
+            "Proteger el **propio agente** RASP para que el atacante no pueda desactivarlo (verificación de integridad).",
+            "**Integrarlo en DevSecOps** (desarrollo, seguridad y operaciones unidos en un proceso continuo) y garantizar que las **alertas** llegan al equipo adecuado, con paneles para analizarlas."
+          ]
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico",
+          "text": "Un banco instala RASP en su web de clientes. La primera semana lo deja en modo monitorización y descubre que una regla marcaría como ataque las transferencias con apóstrofo en el concepto («Regalo d'Ana»). Ajusta la regla y, solo entonces, activa el bloqueo. Además mide que la RASP añade 8 ms por petición, algo aceptable para su servicio."
+        },
+        {
+          "type": "exam",
+          "text": "Tres preguntas tipo. «¿Qué se mide al evaluar?» → **detección, falsos positivos y coste de rendimiento**, juntos (las trampas dicen «solo» una cosa). «Detecta bien pero añade latencia inaceptable» → la evaluación debe reflejar el **compromiso entre eficacia y coste operativo**. «¿Qué secuencia propone para activar una protección que puede bloquear usuarios legítimos?» → **monitorizar, ajustar y después bloquear**. Y si preguntan por qué una protección temporal no sustituye corregir el código: **mitiga mientras se remedia, pero la causa sigue presente**."
+        },
+        {
+          "type": "key",
+          "text": "Una RASP se juzga por lo que detecta y por lo que cuesta; se adopta empezando en monitorización, y su parcheo virtual es temporal: el código hay que arreglarlo igualmente."
+        }
+      ]
+    },
+    {
+      "id": "monitorizacion",
+      "title": "Auditoría y monitorización continua",
+      "pages": [25, 26],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Un comercio con cámaras que nadie mira y que además graban en negro tiene la misma seguridad que uno sin cámaras. Los **registros** (logs) son las cámaras de la aplicación: hay que grabar lo que importa y alguien tiene que mirarlas siempre, no solo cuando falta dinero en caja."
+        },
+        {
+          "type": "p",
+          "text": "El **registro y monitorización insuficientes** es una de las categorías de vulnerabilidad más frecuentes según OWASP: aumenta el riesgo y **retrasa la detección y la gestión de incidentes**, porque sin evidencias no se sabe qué pasó ni cuándo."
+        },
+        {
+          "type": "list",
+          "title": "Lo que pide el tema",
+          "items": [
+            "**Diseñar el logging** ya en las fases de análisis y diseño del SSDLC, para que los logs de todas las capas recojan lo necesario para detectar ataques, sin información superficial que no aporta nada.",
+            "**Monitorizar de forma continua**, no solo cuando se sospecha algo: así se detecta pronto y uno se anticipa a los daños. La monitorización forma parte del procedimiento de gestión de incidentes.",
+            "**Analizar periódicamente** el código fuente y las **librerías de terceros** en busca de CVE, y parchear lo antes posible.",
+            "**Auditar periódicamente las configuraciones** de todas las capas: clientes, servidor de aplicaciones, aplicación, gestor de base de datos y base de datos.",
+            "Mantener el **principio de mínimo privilegio**: cada usuario, rol o permiso solo con lo que necesita conocer."
+          ]
+        },
+        {
+          "type": "term",
+          "term": "CVE (Common Vulnerabilities and Exposures)",
+          "text": "Catálogo público de vulnerabilidades y exposiciones comunes; cada fallo conocido recibe un identificador como CVE-2021-44228 (el famoso Log4Shell, en la librería Log4j)."
+        },
+        {
+          "type": "term",
+          "term": "OWASP Dependency Check",
+          "text": "Herramienta que revisa automáticamente las librerías que usa tu proyecto y avisa si alguna tiene CVE conocidos."
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico",
+          "text": "En noviembre de 2021 una empresa pasó todas sus pruebas de seguridad con la librería Log4j. En diciembre se publicó Log4Shell: la misma versión, ya desplegada, se volvió crítica de la noche a la mañana. Quien revisaba sus dependencias periódicamente lo detectó en horas; quien confiaba en la revisión inicial tardó semanas."
+        },
+        {
+          "type": "exam",
+          "text": "«¿Qué problema causa un registro insuficiente?» → **retrasa detectar e investigar incidentes**. «¿Por qué se revisan periódicamente las librerías en producción?» → porque **se descubren vulnerabilidades nuevas en componentes ya desplegados**. Trampas: «la revisión inicial cubre también las vulnerabilidades futuras», «el riesgo de una versión no cambia», «el proveedor lo detecta todo automáticamente»."
+        },
+        {
+          "type": "key",
+          "text": "Registrar bien y vigilar siempre; revisar periódicamente código, librerías (CVE) y configuraciones, porque el riesgo de lo ya desplegado cambia con el tiempo."
+        }
+      ]
+    },
+    {
+      "id": "incidentes",
+      "title": "Gestión de incidentes: qué hacer cuando pasa",
+      "pages": [26, 27],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Un incendio en una cocina: tener extintor a mano (preparación), ver el humo y saber qué arde (identificación), cerrar la puerta para que no pase al salón (contención), apagarlo y tirar lo quemado (erradicación) y, al día siguiente, revisar qué falló y explicarlo a todos (recapitulación)."
+        },
+        {
+          "type": "p",
+          "text": "Para gestionar un incidente el tema sigue la guía **CCN-STIC 817** (Gestión de ciberincidentes) del Centro Criptológico Nacional, con estas fases:"
+        },
+        {
+          "type": "table",
+          "title": "Fases de la gestión de incidentes",
+          "head": ["Fase", "Objetivo", "Ejemplos"],
+          "rows": [
+            ["Preparación", "Tener listas las herramientas antes de que ocurra nada.", "Antimalware, comprobadores de integridad, escáneres de vulnerabilidades, análisis de logs, sistemas de backup, análisis forense."],
+            ["Identificación", "Detectar el incidente, determinar su alcance y plantear una solución.", "Implica a negocio, operaciones y comunicación; contacto con soporte, CERT, peritos forenses, policía o asesores legales."],
+            ["Contención", "**Impedir que se extienda** a otros recursos y así **limitar su impacto**.", "Separar equipos de la red, deshabilitar cuentas comprometidas, cambiar contraseñas."],
+            ["Erradicación", "Eliminar lo comprometido, antes de recuperar.", "Reinstalar los sistemas afectados o restaurar backup."],
+            ["Recapitulación", "Documentar y aprender.", "Archivar datos, debatir lecciones aprendidas, informar y formar a los empleados."]
+          ]
+        },
+        {
+          "type": "term",
+          "term": "CERT (Computer Emergency Response Team)",
+          "text": "Equipo de respuesta ante emergencias informáticas, al que se puede acudir durante la identificación de un incidente."
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico",
+          "text": "Un servidor web comprometido empieza a escanear otros equipos de la red interna. El administrador lo desconecta de la red. Eso no elimina el malware (eso será la erradicación) ni recupera datos (eso es la restauración): su objetivo es **contener la propagación**."
+        },
+        {
+          "type": "exam",
+          "text": "No confundas contener con erradicar. **Contención** = que no se extienda y limitar el impacto. **Erradicación** = eliminar la causa. Restaurar servicios y analizar lecciones son pasos posteriores. Si el enunciado habla de aislar o desconectar un equipo, la respuesta es **contención**."
+        },
+        {
+          "type": "key",
+          "text": "Preparación, identificación, contención, erradicación y recapitulación: aislar un equipo es contener, no erradicar."
+        }
+      ]
+    },
+    {
+      "id": "backup",
+      "title": "Copias de seguridad que de verdad se puedan restaurar",
+      "pages": [27, 28],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Tener la rueda de repuesto en el maletero no sirve de nada si está pinchada o si nunca has cambiado una rueda y no sabes dónde va el gato. Una copia de seguridad que nunca se ha probado a restaurar es una rueda de repuesto sin comprobar."
+        },
+        {
+          "type": "p",
+          "text": "Tras un incidente hay que devolver la aplicación a un estado correcto. Para ello el tema exige un procedimiento de **backup y recuperación** **diseñado, probado y entrenado** por los administradores. Ya en la introducción insiste en que los procedimientos de backup y recuperación hay que **disponerlos y entrenarlos**."
+        },
+        {
+          "type": "list",
+          "title": "Qué debe incluir la copia",
+          "items": [
+            "Todos los **archivos del proyecto** de la aplicación web.",
+            "Todos los **sistemas de ficheros del servidor de aplicaciones** donde vive la aplicación (incluida su configuración).",
+            "Copia **lógica** de la **base de datos**: tablas, vistas, procedimientos almacenados…",
+            "Copia **física** de los discos donde están los ficheros de la aplicación, del servidor de aplicaciones, del gestor de base de datos (archivos de control, tablespaces de sistema, logs…) y de la base de datos."
+          ]
+        },
+        {
+          "type": "term",
+          "term": "Copia lógica y copia física",
+          "text": "La lógica guarda el contenido entendible de la base de datos (las tablas y sus filas, como si fueran instrucciones para reconstruirla). La física copia tal cual los ficheros del disco donde la base de datos guarda la información."
+        },
+        {
+          "type": "exam",
+          "text": "Dos patrones. «¿Qué debe incluir la estrategia de copias?» → **datos y todos los elementos necesarios para restaurar el servicio**; las trampas dicen «solo datos sin configuración», «solo ejecutables» o «solo la última copia sin procedimiento». «Hay copias pero nunca se ha probado restaurarlas» → falta **entrenar y comprobar los procedimientos de recuperación**; que la copia exista o termine bien no demuestra que se pueda restaurar."
+        },
+        {
+          "type": "key",
+          "text": "La copia debe cubrir todo lo necesario para levantar el servicio (archivos, servidor, base de datos lógica y física) y la restauración se prueba y se ensaya."
+        }
+      ]
+    },
+    {
+      "id": "defensa-profundidad",
+      "title": "El esquema completo: defensa en profundidad y diversidad",
+      "pages": [28, 30],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Un castillo medieval no confiaba solo en la muralla: tenía foso, muralla, torres con vigías, una segunda muralla y guardia en la torre del homenaje. Varias capas (**profundidad**) y de tipos distintos (**diversidad**): si el enemigo cruza el foso, todavía le queda la muralla."
+        },
+        {
+          "type": "term",
+          "term": "Defensa en profundidad y diversidad",
+          "text": "Principio que combina **varias capas** de protección (si una falla, actúa la siguiente) y que además sean de **tecnologías distintas** (un mismo fallo no tumba todas). Es el enfoque que el tema propone para proteger las aplicaciones web."
+        },
+        {
+          "type": "table",
+          "title": "Las piezas del esquema de protección",
+          "head": ["Pieza", "Papel"],
+          "rows": [
+            ["Protección anti-DDoS", "Dispositivos que separan el tráfico legítimo del ilegítimo. Lo ideal es un enfoque **híbrido**: equipo en casa del cliente más servicio del operador de Internet."],
+            ["Cortafuegos de red en alta disponibilidad", "Primer nivel en el perímetro. **No bastan**: no filtran el contenido de los puertos donde están las aplicaciones web."],
+            ["SIEM", "Reúne los logs de todos los dispositivos y **correlaciona** los eventos de seguridad."],
+            ["Balanceadores de carga", "Reparten las peticiones entre los servidores de aplicaciones en clúster."],
+            ["IDS", "Detecta ataques en general en la red de la organización."],
+            ["WAF en alta disponibilidad", "La **protección principal online** de las aplicaciones web; antes de producción se prueban su eficacia y rendimiento."]
+          ]
+        },
+        {
+          "type": "term",
+          "term": "SIEM (Security Information and Event Management)",
+          "text": "Sistema de gestión de información y eventos de seguridad: junta los registros de cortafuegos, WAF, IDS, servidores… y relaciona sucesos que por separado parecen inofensivos. Debe vigilar todas las subredes donde hay aplicaciones web."
+        },
+        {
+          "type": "table",
+          "title": "El servicio anti-DDoS híbrido",
+          "head": ["Ventajas", "Inconvenientes"],
+          "rows": [
+            ["Mejor control de la inversión: no hace falta contratar todo al operador.", "Inversión inicial en equipos para el centro de proceso de datos del cliente."],
+            ["Menos costes de operador: el cliente mitiga por sí mismo hasta su ancho de banda disponible.", "Gestión local de los equipos, y desconectar y reconectar enlaces no protegidos cuando un ataque volumétrico satura las líneas."]
+          ]
+        },
+        {
+          "type": "exam",
+          "text": "Si una empresa combina cortafuegos de red, protección web y correlación de registros, aplica **defensa en profundidad y diversidad**. Trampas: «un único mecanismo para todos los riesgos», «solo prevención sin datos de detección» o «solo recuperación sin barreras previas». Recuerda también que el cortafuegos de red **no basta** porque no mira el contenido HTTP."
+        },
+        {
+          "type": "key",
+          "text": "Ninguna pieza protege sola: anti-DDoS, cortafuegos de red, IDS, balanceadores, WAF y SIEM forman capas distintas que se cubren unas a otras."
+        }
+      ]
+    }
+  ],
+  "summary": [
+    "En producción la seguridad se opera de forma continua: protección (balanceo, WAF, RASP), monitorización, backup, incidentes, formación, concienciación y seguridad física.",
+    "Un DoS agota recursos; un DDoS lo hace desde muchas máquinas coordinadas. Slowloris envía cabeceras lentas y Slow HTTP POST envía el cuerpo lento.",
+    "Contra DoS: SYN cache, SYN cookies y tiempos cortos en el sistema operativo; balanceadores (delayed binding), clúster, límites de tamaño y tiempo, y WAF en la arquitectura.",
+    "El WAF analiza el contenido HTTP entre cliente y servidor con expresiones regulares de lista blanca o negra; puede ser hardware específico, embebido en hardware o software en un servidor.",
+    "Modos del WAF: proxy inverso (el preferido, con dos equipos), pasivo (solo detecta), bridge (sin cambiar IP) y embebido (plugin, ojo al rendimiento).",
+    "ModSecurity es un WAF libre para Apache con cinco fases, antievasión y reglas CRS de OWASP.",
+    "RASP protege desde dentro de la aplicación en ejecución, con contexto interno; tiene modo monitorización (no bloquea) y modo protección.",
+    "Una RASP se evalúa por detección, falsos positivos y coste de rendimiento, y se adopta empezando en monitorización; el parcheo virtual no sustituye corregir el código.",
+    "Registrar y monitorizar de forma continua; revisar periódicamente librerías (CVE) y configuraciones.",
+    "Incidentes: preparación, identificación, contención (que no se extienda), erradicación y recapitulación. Las copias deben cubrir todo lo necesario y probarse."
+  ],
+  "glossary": [
+    { "term": "Balanceador de carga", "text": "Equipo que reparte las peticiones entre varios servidores." },
+    { "term": "Blacklist / whitelist", "text": "Lista negra de firmas de ataques conocidos frente a lista blanca con el modelo de tráfico permitido." },
+    { "term": "CCN-STIC 661 y 817", "text": "Guías del Centro Criptológico Nacional sobre firewalls de aplicación (661) y gestión de ciberincidentes (817)." },
+    { "term": "CERT (Computer Emergency Response Team)", "text": "Equipo de respuesta ante emergencias informáticas." },
+    { "term": "CRS (Core Rule Set)", "text": "Conjunto de reglas de ModSecurity mantenido por OWASP." },
+    { "term": "CVE (Common Vulnerabilities and Exposures)", "text": "Catálogo público con un identificador para cada vulnerabilidad conocida." },
+    { "term": "DoS / DDoS", "text": "Denegación de servicio; la distribuida se lanza desde muchas máquinas coordinadas." },
+    { "term": "Delayed binding", "text": "Modo de un balanceador que no entrega la petición al servidor hasta recibir la cabecera completa." },
+    { "term": "DevSecOps", "text": "Forma de trabajo que une desarrollo, seguridad y operaciones en un proceso continuo." },
+    { "term": "Falso positivo / falso negativo", "text": "Bloquear algo legítimo / dejar pasar un ataque." },
+    { "term": "HTTP (HyperText Transfer Protocol)", "text": "Protocolo con el que navegador y servidor web intercambian peticiones y respuestas." },
+    { "term": "IAST (Interactive Application Security Testing)", "text": "Pruebas de seguridad que instrumentan la aplicación por dentro para encontrar vulnerabilidades." },
+    { "term": "IDS (Intrusion Detection System)", "text": "Sistema de detección de intrusos en la red." },
+    { "term": "Instrumentación (hooks)", "text": "Ganchos insertados en el código o el entorno de ejecución para observar lo que pasa dentro." },
+    { "term": "LAN (Local Area Network)", "text": "Red de área local de la organización." },
+    { "term": "ModSecurity", "text": "WAF de código abierto que funciona como módulo de Apache." },
+    { "term": "Network tap", "text": "Dispositivo que saca una copia del tráfico de un enlace para analizarla." },
+    { "term": "OWASP (Open Worldwide Application Security Project)", "text": "Comunidad abierta que publica guías y herramientas de seguridad web." },
+    { "term": "Proxy inverso", "text": "Intermediario que recibe las peticiones en lugar del servidor y decide si reenviarlas." },
+    { "term": "RASP (Runtime Application Self-Protection)", "text": "Autoprotección de la aplicación en tiempo de ejecución, desde dentro." },
+    { "term": "SIEM (Security Information and Event Management)", "text": "Sistema que centraliza y correlaciona los registros de seguridad." },
+    { "term": "Slowloris / Slow HTTP POST", "text": "Ataques DoS que envían muy despacio las cabeceras o el cuerpo de la petición." },
+    { "term": "SSDLC (Secure Software Development Life Cycle)", "text": "Ciclo de vida de desarrollo seguro del software." },
+    { "term": "SYN cache / SYN cookies", "text": "Defensas del sistema operativo que ahorran memoria ante conexiones TCP medio abiertas." },
+    { "term": "TCB (Transmission Control Block)", "text": "Ficha en memoria que el sistema crea para cada conexión TCP." },
+    { "term": "TCP (Transmission Control Protocol)", "text": "Protocolo que garantiza la entrega ordenada de datos; empieza con un saludo de tres pasos." },
+    { "term": "Virtual patching", "text": "Bloqueo temporal del aprovechamiento de una vulnerabilidad mientras se corrige el código." },
+    { "term": "WAF (Web Application Firewall)", "text": "Cortafuegos de aplicaciones web: analiza peticiones y respuestas HTTP." }
+  ],
+  "questions": {
+    "sistemas-t08-01": {
+      "section": "waf",
+      "reasoning": "Un WAF tiene que reconocer en el texto de las peticiones qué es un ataque y qué es tráfico normal. Para eso compara las peticiones con patrones de texto, es decir, expresiones regulares, organizadas como lista blanca, lista negra o una combinación. Si coincide con un patrón de ataque (o no encaja con lo permitido), bloquea.",
+      "options": {
+        "a": "Correcta. El tema dice que los WAF validan mediante expresiones regulares de tipo whitelist, blacklist o ambas.",
+        "b": "Incorrecta. El temario no describe el análisis semántico como el mecanismo del WAF; su herramienta son los patrones de expresiones regulares.",
+        "c": "Incorrecta. Un WAF sí bloquea: no reenvía la petición o corta la conexión cuando detecta un ataque (salvo en modo pasivo).",
+        "d": "Incorrecta. La opción a es la correcta."
+      }
+    },
+    "sistemas-t08-02": {
+      "section": "waf-modos",
+      "reasoning": "Para bloquear, el WAF tiene que estar en el camino del tráfico. En modo pasivo (fuera de línea) recibe solo un duplicado del tráfico mediante un network tap: puede analizarlo y detectar ataques, pero la petición original ya ha llegado al servidor, así que no puede bloquearla.",
+      "options": {
+        "a": "Incorrecta. En modo bridge el WAF está en el cable, en línea con el tráfico, y puede filtrar.",
+        "b": "Incorrecta. El proxy inverso recibe todas las peticiones y bloquea las que son ataques.",
+        "c": "Correcta. El modo pasivo analiza una copia del tráfico y detecta, pero no tiene posibilidad de bloquear.",
+        "d": "Incorrecta. La opción c es la correcta."
+      }
+    },
+    "sistemas-t08-03": {
+      "section": "waf-modos",
+      "reasoning": "El modo más recomendable es el que permite inspeccionar todo y bloquear con garantías. El proxy inverso recibe todas las peticiones en lugar del servidor, las examina, las reenvía o las bloquea y registra los ataques; además se puede duplicar para tener redundancia. El tema lo presenta como el modo más habitual, y el propio temario, en su test, lo califica como la configuración más deseable.",
+      "options": {
+        "a": "Incorrecta. El bridge es útil para no tocar la configuración IP, pero si se usa bypass ante un fallo se pierde todo el filtrado.",
+        "b": "Correcta. El proxy inverso es el modo habitual y preferido: ve todo el tráfico, bloquea y admite redundancia con dos equipos.",
+        "c": "Incorrecta. El pasivo solo detecta, no bloquea, así que no es el más recomendable para proteger.",
+        "d": "Incorrecta. La opción b es la correcta."
+      }
+    },
+    "sistemas-t08-04": {
+      "section": "waf-modos",
+      "reasoning": "Cambiar la configuración IP de la red significa renumerar equipos o redirigir direcciones. El WAF en modo bridge se comporta como un switch de nivel 2 sin dirección IP: se mete en el cable de forma transparente y los equipos siguen con las mismas direcciones. El proxy inverso, en cambio, obliga a publicar la dirección del dispositivo para redirigir el tráfico al servidor.",
+      "options": {
+        "a": "Correcta. El bridge funciona como un switch de nivel 2 sin IP y se inserta sin tocar el direccionamiento de la LAN.",
+        "b": "Incorrecta. El proxy inverso exige que el tráfico se dirija a su dirección, lo que cambia la configuración de red.",
+        "c": "Incorrecta. El modo pasivo no se inserta en el camino del tráfico: no es un modo de filtrado en línea y no puede proteger; la característica que el tema atribuye expresamente a la instalación sin IP es la del bridge.",
+        "d": "Incorrecta. La opción a es la correcta."
+      }
+    },
+    "sistemas-t08-05": {
+      "section": "waf",
+      "reasoning": "El tema clasifica los WAF según su diseño en tres tipos: instalado en un hardware específico pensado para esa solución, implementado directamente en el hardware (embebido) e instalado en un servidor de propósito general. Las tres opciones aparecen, así que son todas ciertas.",
+      "options": {
+        "a": "Incorrecta. Es cierta, pero no es la única: por eso la respuesta es la d.",
+        "b": "Incorrecta. Es cierta, pero también lo son las otras dos.",
+        "c": "Incorrecta. Es cierta, pero no es la única forma de diseño.",
+        "d": "Correcta. Hardware específico, embebido en hardware y servidor de propósito general son las tres formas de diseño que recoge el tema."
+      }
+    },
+    "sistemas-t08-06": {
+      "section": "defensas-ddos",
+      "reasoning": "Entre las defensas de arquitectura frente a DoS el tema cita los balanceadores de carga (en modo delayed binding) y el clustering de servidores. El WAF también contribuye: ModSecurity incorpora el módulo Evasive contra denegación de servicio y el WAF forma parte del esquema de defensa. Como las tres ayudan, la respuesta es todas.",
+      "options": {
+        "a": "Incorrecta. Los balanceadores son una defensa, pero no la única.",
+        "b": "Incorrecta. El clúster de servidores es una defensa, pero no la única.",
+        "c": "Incorrecta. El WAF ayuda (por ejemplo, con el módulo Evasive), pero no es la única.",
+        "d": "Correcta. Balanceadores, clúster y WAF contribuyen a resistir una denegación de servicio."
+      }
+    },
+    "sistemas-t08-07": {
+      "section": "rasp",
+      "reasoning": "RASP se integra dentro de la aplicación mientras se ejecuta. Gracias a la instrumentación ve lo que pasa por dentro (consultas, llamadas sensibles) y, en modo protección, puede bloquear la solicitud o cortar la sesión. Por tanto, detecta y bloquea acciones maliciosas en tiempo de ejecución.",
+      "options": {
+        "a": "Incorrecta. RASP no es una herramienta de documentación: vigila y protege la aplicación en ejecución.",
+        "b": "Correcta. RASP detecta y puede bloquear ataques en tiempo de ejecución, desde dentro de la aplicación.",
+        "c": "Incorrecta. Funcionar antes de compilar es propio del análisis estático; RASP actúa en ejecución.",
+        "d": "Incorrecta. Ninguna herramienta lo impide todo siempre; RASP necesita ajuste, puede tener falsos negativos y hay que mantener sus reglas."
+      }
+    },
+    "sistemas-t08-08": {
+      "section": "waf-modos",
+      "reasoning": "El tema enumera los modos de instalación de un WAF: proxy inverso (reverse proxy), pasivo (fuera de línea), bridge (transparente) y embebido. Las tres opciones a, b y c son modos válidos.",
+      "options": {
+        "a": "Incorrecta. El proxy inverso es un modo válido, pero no el único.",
+        "b": "Incorrecta. El modo transparente (bridge) es válido, pero no el único.",
+        "c": "Incorrecta. El modo pasivo es válido, pero no el único.",
+        "d": "Correcta. Proxy inverso, transparente y pasivo son todos modos de instalación de un WAF."
+      }
+    },
+    "sistemas-t08-09": {
+      "section": "waf-modos",
+      "reasoning": "Revisa cada afirmación. El proxy inverso es el modo habitual y preferido. El tema recomienda alta disponibilidad con dos dispositivos. Una lista negra guarda firmas de ataques conocidos y una lista blanca describe el tráfico aceptado. Las tres son ciertas, así que la respuesta es la que las agrupa.",
+      "options": {
+        "a": "Incorrecta. Es cierta, pero las otras también lo son.",
+        "b": "Incorrecta. Es cierta (redundancia con dos WAF), pero no es la única.",
+        "c": "Incorrecta. Es cierta: define bien blacklist y whitelist, pero no es la única.",
+        "d": "Correcta. Las afirmaciones a, b y c son correctas."
+      }
+    },
+    "sistemas-t08-10": {
+      "section": "rasp",
+      "reasoning": "Las dos palabras clave de RASP son «dentro» y «en ejecución». Se integra en la aplicación mientras corre, monitoriza su comportamiento interno y responde a las amenazas. Analizar código antes de ejecutarlo es análisis estático, y mirar solo el tráfico externo o actuar en el perímetro es lo que hacen un WAF o un cortafuegos de red.",
+      "options": {
+        "a": "Incorrecta. Analizar el código fuente antes de ejecutarlo es análisis estático, no RASP.",
+        "b": "Incorrecta. Inspeccionar solo el tráfico externo es lo propio de un WAF; RASP mira por dentro.",
+        "c": "Correcta. RASP se integra en la aplicación en tiempo de ejecución y detecta y responde desde el interior.",
+        "d": "Incorrecta. RASP no se instala en el cortafuegos perimetral ni trabaja a nivel de red."
+      }
+    },
+    "sistemas-t08-11": {
+      "section": "operaciones-produccion",
+      "reasoning": "Las operaciones de seguridad son las actividades de la fase de producción. Entre ellas está la auditoría y monitorización continua, que, como su nombre indica, no se detiene mientras la aplicación esté en marcha. Las demás opciones describen tareas de fases anteriores y además usan «solo».",
+      "options": {
+        "a": "Correcta. La auditoría y monitorización continua es una de las operaciones de seguridad de producción.",
+        "b": "Incorrecta. Las pruebas previas al despliegue pertenecen a la fase de pruebas, no a la de producción.",
+        "c": "Incorrecta. La revisión de requisitos de diseño es de las primeras fases del SSDLC.",
+        "d": "Incorrecta. Hacer inventario una vez al terminar el desarrollo no es una actividad continua de producción."
+      }
+    },
+    "sistemas-t08-12": {
+      "section": "waf",
+      "reasoning": "La diferencia entre un WAF y un cortafuegos de red es la capa en la que trabaja. El WAF analiza mensajes de la capa de aplicación: las peticiones y respuestas HTTP (y SOAP, XML-RPC…). Por eso protege a nivel de aplicación web.",
+      "options": {
+        "a": "Incorrecta. Mirar solo cabeceras de red y puertos es lo que hace un cortafuegos de red, que no ve el contenido.",
+        "b": "Incorrecta. El WAF analiza tráfico en vivo, no ficheros de la aplicación parada.",
+        "c": "Incorrecta. Las identidades de los usuarios del dominio no son el objeto de un WAF.",
+        "d": "Correcta. El WAF examina peticiones y respuestas a nivel de aplicación web."
+      }
+    },
+    "sistemas-t08-13": {
+      "section": "rasp",
+      "reasoning": "Lo que distingue a RASP de un WAF es su visibilidad interna: está instrumentada dentro de la aplicación y conoce el contexto del código, el estado y el flujo de datos en tiempo real.",
+      "options": {
+        "a": "Incorrecta. Inspeccionar desde fuera sin contexto interno describe a un WAF, justo lo contrario de RASP.",
+        "b": "Incorrecta. Analizar código sin ejecutarlo es análisis estático.",
+        "c": "Correcta. RASP integra controles dentro de la aplicación con visibilidad de su funcionamiento interno.",
+        "d": "Incorrecta. Revisar dependencias y licencias es otra tarea (por ejemplo, OWASP Dependency Check para CVE), no lo que define a RASP."
+      }
+    },
+    "sistemas-t08-14": {
+      "section": "dos-ddos",
+      "reasoning": "La palabra «distribuida» es la clave: el ataque DDoS se lanza desde varias máquinas a la vez, de forma coordinada y bajo las órdenes del atacante (masters, slaves y reflectors), contra un mismo objetivo.",
+      "options": {
+        "a": "Incorrecta. Un único cliente que repite una contraseña es un intento de fuerza bruta, no un ataque distribuido.",
+        "b": "Correcta. Un DDoS consiste en varias máquinas coordinadas que atacan un mismo objetivo.",
+        "c": "Incorrecta. Alterar una respuesta es un ataque a la integridad, no una denegación de servicio.",
+        "d": "Incorrecta. Acceder sin autorización a un objeto es un fallo de control de acceso."
+      }
+    },
+    "sistemas-t08-15": {
+      "section": "incidentes",
+      "reasoning": "En el ciclo de la guía CCN-STIC 817, la contención es la fase en la que se impide que el incidente se extienda a otros recursos, con lo que se minimiza su impacto (aislar equipos, deshabilitar cuentas, cambiar contraseñas). Eliminar la causa llega después, en la erradicación.",
+      "options": {
+        "a": "Correcta. Contener es impedir que el incidente se extienda y así limitar su impacto.",
+        "b": "Incorrecta. Eliminar definitivamente la causa es la erradicación.",
+        "c": "Incorrecta. Restaurar los servicios es la recuperación, posterior a la erradicación.",
+        "d": "Incorrecta. Analizar las lecciones aprendidas pertenece a la recapitulación final."
+      }
+    },
+    "sistemas-t08-16": {
+      "section": "backup",
+      "reasoning": "El objetivo de la copia es poder devolver la aplicación a un estado correcto. Para eso el tema pide copiar los archivos del proyecto, los sistemas de ficheros del servidor de aplicaciones, la base de datos (lógica) y los discos (física). Es decir, datos y todo lo necesario para restaurar el servicio.",
+      "options": {
+        "a": "Incorrecta. Sin la configuración del servidor y de la aplicación no se puede levantar el servicio.",
+        "b": "Incorrecta. Sin la base de datos se perderían los datos de la aplicación.",
+        "c": "Incorrecta. El tema exige un procedimiento de recuperación diseñado, probado y entrenado, no solo una copia.",
+        "d": "Correcta. La estrategia debe incluir los datos y todos los elementos necesarios para restaurar el servicio."
+      }
+    },
+    "sistemas-t08-17": {
+      "section": "waf-modos",
+      "reasoning": "Un proxy inverso se coloca delante del servidor y recibe las peticiones en su lugar. Las examina y decide: si son legítimas, las reenvía al servidor; si son un ataque, las bloquea y lo registra.",
+      "options": {
+        "a": "Incorrecta. Observar solo una copia sin intervenir es el modo pasivo.",
+        "b": "Incorrecta. Filtrar solo direcciones de red es lo que hace un cortafuegos de red, no un WAF.",
+        "c": "Correcta. El proxy inverso recibe e inspecciona las solicitudes antes de reenviarlas o bloquearlas.",
+        "d": "Incorrecta. Instrumentar el código dentro del proceso de la aplicación es lo que hace RASP."
+      }
+    },
+    "sistemas-t08-18": {
+      "section": "waf-modos",
+      "reasoning": "El WAF pasivo recibe un duplicado del tráfico por un network tap. Puede analizar el contenido y detectar ataques, pero como no está en el camino real del tráfico no puede cortar la petición original.",
+      "options": {
+        "a": "Incorrecta. Sí puede analizar el contenido: recibe una copia completa del tráfico.",
+        "b": "Correcta. Observa el tráfico pero no corta directamente su paso.",
+        "c": "Incorrecta. Es justo al revés: no puede bloquear directamente.",
+        "d": "Incorrecta. Detectar sin bloquear hace que las evidencias y registros sean todavía más importantes."
+      }
+    },
+    "sistemas-t08-19": {
+      "section": "rasp",
+      "reasoning": "RASP tiene dos modos. En monitorización observa, detecta y reporta, pero no bloquea; sirve para pruebas y ajuste. En protección, además, bloquea o mitiga. Lo que distingue al primero es que no detiene nada automáticamente.",
+      "options": {
+        "a": "Correcta. El modo monitorización detecta y reporta sin detener automáticamente.",
+        "b": "Incorrecta. Bloquear cada evento que coincide con una regla es el modo protección.",
+        "c": "Incorrecta. Ningún modo de RASP reescribe el código vulnerable; eso lo hacen los desarrolladores.",
+        "d": "Incorrecta. Rechazar sesiones es una acción de bloqueo, no de monitorización."
+      }
+    },
+    "sistemas-t08-20": {
+      "section": "rasp-evaluacion",
+      "reasoning": "Evaluar una RASP exige medir su eficacia (tasa de detección), sus errores (falsos positivos y negativos) y su coste (sobrecarga de CPU, memoria y latencia). Fijarse en una sola de esas dimensiones da una imagen engañosa.",
+      "options": {
+        "a": "Incorrecta. Contar alertas sin validarlas no distingue aciertos de falsas alarmas.",
+        "b": "Incorrecta. El rendimiento sin la detección no dice si la herramienta protege.",
+        "c": "Incorrecta. La detección sin ver si interrumpe usos legítimos ignora los falsos positivos.",
+        "d": "Correcta. Hay que medir detección, falsos positivos y coste de rendimiento a la vez."
+      }
+    },
+    "sistemas-t08-21": {
+      "section": "rasp-evaluacion",
+      "reasoning": "El parcheo virtual bloquea el aprovechamiento de una vulnerabilidad conocida mientras se corrige el código. Es una mitigación temporal: el fallo sigue en el programa y una variante del ataque podría esquivar la regla. Por eso complementa, pero no sustituye, la corrección.",
+      "options": {
+        "a": "Incorrecta. Bloquear una petición no reescribe el código; la vulnerabilidad sigue ahí.",
+        "b": "Incorrecta. Una regla puede no cubrir todas las variantes: es la razón de los falsos negativos.",
+        "c": "Correcta. Mitiga mientras se remedia, pero la causa puede seguir presente.",
+        "d": "Incorrecta. Las dependencias hay que seguir actualizándolas; la protección temporal no lo evita."
+      }
+    },
+    "sistemas-t08-22": {
+      "section": "monitorizacion",
+      "reasoning": "Según OWASP, el registro y monitorización insuficientes aumentan el riesgo y retrasan la gestión de los incidentes: sin logs útiles no se ve qué está pasando ni se puede investigar después.",
+      "options": {
+        "a": "Incorrecta. Registrar menos no mejora la prevención, y perder evidencias es un problema, no una ventaja.",
+        "b": "Correcta. Un registro insuficiente retrasa detectar e investigar los incidentes.",
+        "c": "Incorrecta. Con menos eventos registrados se detecta menos, no más.",
+        "d": "Incorrecta. Afecta directamente a la respuesta a incidentes, no solo a los informes."
+      }
+    },
+    "sistemas-t08-23": {
+      "section": "monitorizacion",
+      "reasoning": "Una librería que hoy no tiene fallos conocidos puede tenerlos mañana, cuando alguien descubra y publique un CVE. Por eso el tema pide revisar periódicamente el código y las librerías de terceros (por ejemplo, con OWASP Dependency Check) y parchear cuanto antes.",
+      "options": {
+        "a": "Correcta. Se pueden descubrir vulnerabilidades nuevas en componentes ya desplegados.",
+        "b": "Incorrecta. El riesgo de una versión cambia cuando se descubren fallos nuevos en ella.",
+        "c": "Incorrecta. Una revisión inicial no puede prever vulnerabilidades que aún no se conocen.",
+        "d": "Incorrecta. El proveedor no detecta todos los usos vulnerables de su librería en cada aplicación; la revisión es responsabilidad propia."
+      }
+    },
+    "sistemas-t08-24": {
+      "section": "dos-ddos",
+      "reasoning": "Mantener conexiones incompletas (como las conexiones TCP a medio hacer o las cabeceras eternas de Slowloris) no roba ni modifica nada: ocupa los recursos del servidor para que los usuarios legítimos no puedan entrar. Eso es agotamiento de recursos, la base de la denegación de servicio.",
+      "options": {
+        "a": "Incorrecta. El robo de credenciales con un formulario falso es phishing.",
+        "b": "Incorrecta. Modificar una consulta de base de datos es una inyección SQL.",
+        "c": "Incorrecta. Acceder a un objeto sin permiso es un fallo de autorización.",
+        "d": "Correcta. Ocupar recursos con conexiones incompletas es agotamiento de recursos y denegación de servicio."
+      }
+    },
+    "sistemas-t08-25": {
+      "section": "defensas-ddos",
+      "reasoning": "Si el servidor acepta cuerpos de cualquier tamaño, un atacante puede agotar su memoria con peticiones enormes. Entre las defensas de arquitectura el tema propone limitar el tamaño de las cabeceras y del cuerpo de los mensajes a un valor razonable.",
+      "options": {
+        "a": "Incorrecta. Ampliar la memoria sin poner límites solo retrasa el agotamiento.",
+        "b": "Incorrecta. Alargar los tiempos de espera favorece los ataques lentos; el tema recomienda limitar el tiempo de vida de las conexiones.",
+        "c": "Correcta. Limitar los tamaños a valores razonables evita el consumo excesivo de recursos.",
+        "d": "Incorrecta. Tener sesión no impide enviar un cuerpo gigante; no controla el tamaño."
+      }
+    },
+    "sistemas-t08-26": {
+      "section": "rasp-evaluacion",
+      "reasoning": "La primera recomendación para adoptar RASP es empezar en modo monitorización: ver qué alertas salen, cuantificar los falsos positivos y ajustar las políticas. Solo después se activa el bloqueo automático, para no dejar fuera a usuarios legítimos.",
+      "options": {
+        "a": "Incorrecta. Bloquear sin observar antes es justo lo que provoca falsos positivos con usuarios reales.",
+        "b": "Correcta. La secuencia es monitorizar, ajustar y después activar el bloqueo.",
+        "c": "Incorrecta. Las reglas hay que ajustarlas y mantenerlas; las de fábrica no se adaptan a la aplicación.",
+        "d": "Incorrecta. El tema pide también pruebas de compatibilidad para no interferir con funciones legítimas."
+      }
+    },
+    "sistemas-t08-27": {
+      "section": "rasp-evaluacion",
+      "reasoning": "Evaluar es medir eficacia y coste a la vez. Si la herramienta detecta bien pero añade una latencia inaceptable, la evaluación tiene que reflejar ese compromiso: protege, pero degrada la operación más de lo admisible.",
+      "options": {
+        "a": "Correcta. La evaluación debe reflejar el compromiso entre eficacia y coste operativo.",
+        "b": "Incorrecta. Contar solo los ataques detectados ignora el problema de la latencia.",
+        "c": "Incorrecta. Medir recursos sin comparar la latencia ignora justo el problema planteado.",
+        "d": "Incorrecta. Medir la velocidad sin usuarios no refleja el uso real; el tema pide probar bajo carga con tráfico real."
+      }
+    },
+    "sistemas-t08-28": {
+      "section": "incidentes",
+      "reasoning": "Si el servidor comprometido intenta alcanzar otros equipos, el peligro es que el incidente se extienda. Separarlo de la red es el ejemplo típico de la fase de contención: impedir la propagación y limitar el impacto. Eliminar la causa y recuperar datos son fases posteriores.",
+      "options": {
+        "a": "Incorrecta. Aislar no elimina la causa; eso es la erradicación.",
+        "b": "Incorrecta. Aislar no recupera datos; eso se hace después con las copias.",
+        "c": "Incorrecta. Aislar no cierra el análisis; hay que comprobar si otros sistemas están afectados.",
+        "d": "Correcta. Aislar el servidor busca contener la propagación."
+      }
+    },
+    "sistemas-t08-29": {
+      "section": "backup",
+      "reasoning": "El tema pide un procedimiento de backup y recuperación diseñado, probado y entrenado. Que existan copias no garantiza que se puedan restaurar: si nunca se ha probado, falta precisamente entrenar y comprobar la recuperación.",
+      "options": {
+        "a": "Incorrecta. Que los archivos existan no demuestra que la restauración funcione.",
+        "b": "Incorrecta. El tamaño de la copia no dice nada sobre si se puede restaurar.",
+        "c": "Correcta. Falta entrenar y comprobar los procedimientos de recuperación.",
+        "d": "Incorrecta. Que la copia termine sin errores no garantiza una recuperación válida."
+      }
+    },
+    "sistemas-t08-30": {
+      "section": "defensa-profundidad",
+      "reasoning": "Combinar cortafuegos de red (perímetro), protección web (WAF) y correlación de registros (SIEM) es apilar capas distintas que se cubren entre sí: varias capas (profundidad) y de distinta tecnología (diversidad).",
+      "options": {
+        "a": "Incorrecta. Es justo lo contrario: varios mecanismos, no uno solo.",
+        "b": "Correcta. Es la defensa en profundidad y diversidad que propone el tema.",
+        "c": "Incorrecta. La correlación de registros es precisamente detección.",
+        "d": "Incorrecta. Los cortafuegos y el WAF son barreras previas, no solo recuperación."
+      }
+    }
+  }
+}

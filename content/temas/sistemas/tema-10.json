@@ -1,0 +1,1042 @@
+{
+  "course": "sistemas",
+  "number": 10,
+  "title": "Seguridad en big data",
+  "minutes": 40,
+  "intro": {
+    "why": "Un banco, una red social o un hospital guardan hoy miles de millones de registros repartidos entre cientos de ordenadores que trabajan juntos. Esa forma de trabajar, el big data, permite descubrir fraudes o tendencias en minutos, pero también multiplica las puertas por las que puede colarse un atacante: cada ordenador, cada conexión y cada herramienta conectada es una puerta más. Una sola herramienta de carga de datos mal configurada basta para filtrar millones de historiales. Este tema explica cómo se piensa la seguridad en estas plataformas, con el modelo del NIST como mapa y Hadoop como ejemplo práctico.",
+    "before": [
+      "Un **servidor** es un ordenador que presta servicios a otros; cuando muchos servidores trabajan juntos como si fueran uno solo forman un **clúster**, y cada servidor del clúster se llama **nodo**.",
+      "Un sistema **distribuido** reparte los datos y el trabajo entre varios nodos que se comunican por la red, en lugar de hacerlo todo en una sola máquina.",
+      "La seguridad clásica se resume en tres propiedades: **confidencialidad** (solo lo ve quien debe), **integridad** (nadie lo altera sin permiso) y **disponibilidad** (está accesible cuando hace falta).",
+      "**Autenticar** es comprobar quién eres; **autorizar** es decidir qué puedes hacer una vez se sabe quién eres. Son pasos distintos y el test los separa a menudo.",
+      "**Cifrar** es transformar los datos con una **clave** para que solo quien tenga la clave adecuada pueda leerlos."
+    ],
+    "goals": [
+      "Al terminar sabrás explicar qué es el big data y por qué sus cinco V (volumen, variedad, velocidad, veracidad y valor) complican la seguridad.",
+      "Sabrás describir el modelo de referencia del NIST (NBDRA): sus roles, como el proveedor de la plataforma, y su tejido transversal de seguridad y privacidad.",
+      "Sabrás enumerar las amenazas típicas de un ecosistema big data y por qué su superficie de ataque es tan amplia.",
+      "Sabrás distinguir los controles básicos: autenticación mutua, autorización granular (RBAC, ABAC), cifrado en tránsito y en reposo, gestión de claves, auditoría y linaje.",
+      "Sabrás situar en Hadoop cada pieza: HDFS almacena, YARN reparte recursos, Kerberos autentica, Ranger autoriza y audita, Knox hace de puerta de entrada y KMS gestiona las claves de las zonas de cifrado."
+    ]
+  },
+  "sections": [
+    {
+      "id": "que-es-big-data",
+      "title": "Qué es el big data y por qué su seguridad es distinta",
+      "pages": [4, 5],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Imagina la diferencia entre la despensa de tu casa y el almacén logístico de una gran cadena de supermercados. En tu despensa basta con una puerta con llave. En el almacén entran camiones de cien proveedores, trabajan cientos de operarios en turnos, hay cintas transportadoras, robots y oficinas, y la mercancía sale hacia miles de tiendas. Una sola llave ya no sirve: hace falta controlar quién descarga, qué zonas puede pisar cada operario, qué cajas van precintadas y dejar registro de todo. El big data es ese almacén."
+        },
+        {
+          "type": "term",
+          "term": "Big data (grandes datos)",
+          "text": "Conjuntos de datos tan grandes, variados y rápidos que no caben ni se procesan bien en un único ordenador con herramientas tradicionales. Se manejan repartiéndolos entre muchos nodos de un clúster."
+        },
+        {
+          "type": "p",
+          "text": "El tema parte de una idea: en big data la seguridad no es distinta en sus objetivos, pero sí en su escala. Hay **muchísimos datos**, de **tipos muy diferentes** (tablas, textos, imágenes, registros), que llegan y se consumen **a gran velocidad**, y todo ello dentro de un **ecosistema heterogéneo**: muchas fuentes, muchas plataformas y muchos consumidores. Por eso no basta con aplicar los controles de siempre: hay que **adaptarlos y extenderlos** a un entorno distribuido."
+        },
+        {
+          "type": "term",
+          "term": "NIST (National Institute of Standards and Technology)",
+          "text": "Instituto Nacional de Estándares y Tecnología de Estados Unidos. Publica marcos y guías técnicas que se usan en todo el mundo como referencia, también en ciberseguridad."
+        },
+        {
+          "type": "term",
+          "term": "NIST Big Data Interoperability Framework",
+          "text": "Colección de volúmenes del NIST (serie SP 1500) sobre big data. El tema usa sobre todo dos: el **volumen 6**, de arquitectura de referencia, y el **volumen 4**, de seguridad y privacidad."
+        },
+        {
+          "type": "list",
+          "title": "Lo que el tema se propone",
+          "items": [
+            "Analizar los componentes principales de una arquitectura big data.",
+            "Ver un ejemplo real de arquitectura, como Azure HDInsight.",
+            "Conocer las amenazas y vulnerabilidades típicas.",
+            "Repasar las medidas de seguridad y privacidad que deben implantarse: autenticación, autorización, criptografía, auditoría, privacidad y gobernanza."
+          ]
+        },
+        {
+          "type": "key",
+          "text": "El big data no cambia qué hay que proteger, sino cuánto, cuán rápido y en cuántos sitios: por eso los controles tradicionales deben adaptarse a un entorno distribuido y heterogéneo."
+        }
+      ]
+    },
+    {
+      "id": "cinco-v",
+      "title": "Las cinco V y lo que cada una complica",
+      "pages": [9],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Para describir el big data se habla de las **5 V**: volumen, variedad, velocidad, veracidad y valor. Cada una es una característica de los datos y, a la vez, un problema concreto para la seguridad."
+        },
+        {
+          "type": "table",
+          "title": "Las 5 V y su efecto en la seguridad",
+          "head": ["V", "Qué significa", "Qué complica"],
+          "rows": [
+            ["Volumen", "Cantidades enormes de datos.", "No se pueden revisar a mano; el control fino y el análisis forense se vuelven muy costosos."],
+            ["Variedad", "Datos estructurados (tablas), semiestructurados (JSON, XML) y no estructurados (texto, imágenes, vídeo, logs).", "Hacen falta controles que funcionen con muchos formatos: lo que protege una tabla no protege un vídeo."],
+            ["Velocidad", "Datos que llegan y se procesan en flujo continuo, en tiempo real (streaming).", "El cifrado, la autenticación y la autorización deben añadir muy poco retraso (baja latencia)."],
+            ["Veracidad", "Confianza en que los datos son correctos.", "Hay que preservar su calidad e integridad frente a manipulaciones."],
+            ["Valor", "Los datos son valiosos y a menudo personales o sensibles.", "Los controles de privacidad se vuelven críticos."]
+          ]
+        },
+        {
+          "type": "term",
+          "term": "Datos estructurados, semiestructurados y no estructurados",
+          "text": "Estructurados: encajan en filas y columnas, como una hoja de cálculo. Semiestructurados: tienen etiquetas pero no un esquema fijo, como un fichero JSON (JavaScript Object Notation). No estructurados: no tienen forma predefinida, como un correo, una foto o un vídeo."
+        },
+        {
+          "type": "example",
+          "title": "La variedad en la práctica",
+          "text": "Una aseguradora guarda pólizas en tablas, partes de accidente escaneados en PDF, fotos de los coches y grabaciones de llamadas. Un permiso por columnas protege las tablas, pero no dice nada de las fotos ni de las grabaciones. Cada formato necesita su control apropiado."
+        },
+        {
+          "type": "p",
+          "text": "Además, el ecosistema está formado por **muchos sistemas distintos**: bases de datos, motores de análisis, canalizaciones (pipelines) de ingesta, API (Application Programming Interface, interfaces para que los programas se hablen entre sí) e interfaces de usuario. Cada uno es un posible vector de ataque, así que proteger el recorrido **de extremo a extremo** (end-to-end) es más difícil que en un sistema tradicional."
+        },
+        {
+          "type": "exam",
+          "text": "Dos trampas habituales. Primera: en la lista de las 5 V se cuelan palabras que suenan bien pero no están: **validación**, disponibilidad, consistencia, integridad, privacidad, latencia o escalabilidad. Las cinco son solo volumen, variedad, velocidad, veracidad y valor. Segunda: sobre la variedad, la respuesta correcta es que conviven formatos y fuentes que requieren controles apropiados; son falsas las opciones de «un único control sin adaptar» o «convertirlo todo en texto reduce los riesgos»."
+        },
+        {
+          "type": "key",
+          "text": "Volumen, variedad, velocidad, veracidad y valor: cinco características del dato que se traducen en cinco retos de seguridad (revisión, formatos, latencia, integridad y privacidad)."
+        }
+      ]
+    },
+    {
+      "id": "modelo-nist",
+      "title": "El mapa del NIST: roles, funciones y tejidos",
+      "pages": [5, 8],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Piensa en el plano de un edificio. Las habitaciones son las funciones (cocina, salón, dormitorios) y las personas que lo usan tienen papeles (propietario, inquilino, visita). Pero hay instalaciones que recorren todas las habitaciones: la red eléctrica, las tuberías, la alarma. Nadie instala la alarma solo en la cocina. En el modelo del NIST, la seguridad es una de esas instalaciones que atraviesan todo el edificio: un **tejido**."
+        },
+        {
+          "type": "term",
+          "term": "NBDRA (NIST Big Data Reference Architecture)",
+          "text": "Arquitectura de referencia del NIST para big data. Es un modelo conceptual, no un programa: ofrece una **base común**, un lenguaje compartido, para diseñar y analizar arquitecturas big data, incluida su seguridad. Identifica **roles**, **funciones** y **tejidos** (fabrics)."
+        },
+        {
+          "type": "table",
+          "title": "Los roles del NBDRA",
+          "head": ["Rol", "Qué hace", "Ejemplo"],
+          "rows": [
+            ["Data provider (proveedor de datos)", "Aporta los datos que entran al sistema.", "Los sensores de una fábrica o un organismo que comparte estadísticas."],
+            ["Big data framework provider (proveedor de la plataforma)", "Aporta la **infraestructura tecnológica subyacente** y los servicios básicos de almacenamiento y procesamiento.", "Un clúster Hadoop o un servicio en la nube como Azure HDInsight."],
+            ["Application provider (proveedor de aplicaciones)", "Ejecuta las aplicaciones que transforman y analizan los datos sobre esa plataforma.", "El programa que calcula el riesgo de fraude."],
+            ["Data consumer (consumidor de datos)", "Usa los resultados.", "El analista que mira un cuadro de mando."],
+            ["System orchestrator (orquestador del sistema)", "Define requisitos y coordina el conjunto.", "El equipo que decide qué se analiza y con qué políticas."]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "En la **vista de funciones**, el NBDRA se descompone en piezas funcionales: ingesta, almacenamiento, procesamiento, análisis, metadatos, presentación… Sobre todas ellas actúan dos tejidos transversales:"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Security and privacy fabric** (tejido de seguridad y privacidad): integra seguridad y privacidad en todas las funciones, desde la ingesta hasta la presentación.",
+            "**Management fabric** (tejido de gestión): coordina la gestión, la gobernanza, la monitorización y la orquestación."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "La idea central es que la seguridad **no es un añadido al final** ni una capa separada: debe **permear cada capa y cada función**. El volumen 4 del NIST concreta este tejido con una taxonomía de casos de uso, amenazas y controles, y clasifica las amenazas según afecten a la confidencialidad, la integridad, la disponibilidad o la privacidad. Un caso de uso típico: un proveedor quiere compartir datos con consumidores, pero solo bajo ciertas políticas, con control de acceso y con registro histórico de quién accedió."
+        },
+        {
+          "type": "list",
+          "title": "Qué cubre el tejido de seguridad y privacidad",
+          "items": [
+            "Autenticación y autorización distribuidas.",
+            "Control de acceso en varios niveles: datos, metadatos, API, rol o servicio.",
+            "Cifrado en tránsito y en reposo, y gestión segura de claves.",
+            "Auditoría y registro (logging).",
+            "Privacidad: anonimización y desidentificación de datos personales.",
+            "Trazabilidad o linaje de los datos (data lineage) y forense de datos.",
+            "Gestión de riesgos y cumplimiento normativo."
+          ]
+        },
+        {
+          "type": "exam",
+          "text": "Si preguntan para qué sirve el modelo del NIST, la respuesta es **dar una base común para desarrollar arquitecturas big data seguras**. Las trampas lo confunden con una herramienta: «ejecutar consultas SQL», «gestionar clústeres en la nube» o «visualizar datos». Si preguntan qué rol es la infraestructura subyacente: **la plataforma de big data** (framework provider); «sistema de big data» no es un rol del modelo. Y si preguntan dónde se integra la seguridad: **de forma transversal en todas las funciones**, nunca «solo en el almacenamiento», «solo en el perímetro» o «solo en las consultas»."
+        },
+        {
+          "type": "key",
+          "text": "El NBDRA es un mapa común con roles (proveedor de datos, plataforma, aplicación, consumidor, orquestador) y un tejido de seguridad y privacidad que atraviesa todas las funciones."
+        }
+      ]
+    },
+    {
+      "id": "amenazas",
+      "title": "Amenazas: muchas puertas, muchos riesgos",
+      "pages": [9, 11],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Un piso tiene una puerta; un centro comercial tiene decenas de accesos, muelles de carga, salidas de emergencia y conductos. Aunque cada puerta sea igual de buena, el centro comercial tiene muchas más oportunidades de que una quede mal cerrada. Esa cantidad de puertas es la **superficie de ataque**, y en big data es enorme porque el sistema está repartido entre muchos nodos y servicios."
+        },
+        {
+          "type": "term",
+          "term": "Superficie de ataque",
+          "text": "Conjunto de puntos por los que un atacante podría intentar entrar o causar daño: interfaces, identidades, conexiones de red, servicios expuestos. Al distribuir el sistema, crece."
+        },
+        {
+          "type": "table",
+          "title": "Amenazas típicas en un ecosistema big data",
+          "head": ["Amenaza", "En qué consiste"],
+          "rows": [
+            ["Acceso no autorizado", "Usuarios o servicios que leen o modifican lo que no deben."],
+            ["Suplantación (spoofing)", "Un nodo, servicio o componente falso se hace pasar por uno legítimo."],
+            ["Intercepción (man in the middle)", "Alguien se coloca en medio de una comunicación y lee o altera los datos en tránsito."],
+            ["Manipulación de datos", "Alteración de los datos mientras viajan o mientras están almacenados."],
+            ["Exposición de metadatos", "Nombres de tablas, esquemas o columnas que revelan información y facilitan ataques de inferencia."],
+            ["Código malicioso en el procesamiento", "Trabajos MapReduce o funciones UDF con código dañino que se ejecutan dentro del clúster."],
+            ["Nodos corruptos o insiders", "Nodos comprometidos o personas de dentro que actúan contra el sistema."],
+            ["Fallos de configuración", "Permisos excesivos y roles mal separados."],
+            ["Amenazas internas", "Administradores maliciosos o simplemente negligentes."],
+            ["Incumplimiento normativo", "Tratar datos personales sin respetar la ley de protección de datos."],
+            ["Denegación de servicio", "Saturar recursos para que el sistema deje de responder."]
+          ]
+        },
+        {
+          "type": "term",
+          "term": "Metadatos",
+          "text": "Datos sobre los datos: el nombre de una tabla, sus columnas, quién la creó, cuándo se modificó. Parecen inofensivos, pero una columna llamada «diagnostico_vih» ya revela mucho."
+        },
+        {
+          "type": "term",
+          "term": "Ataque de inferencia",
+          "text": "Deducir información protegida combinando datos que sí son accesibles. Por ejemplo, adivinar a quién corresponde un registro anónimo cruzándolo con su código postal y su fecha de nacimiento."
+        },
+        {
+          "type": "term",
+          "term": "UDF (User Defined Function)",
+          "text": "Función definida por el usuario: código propio que se añade a un motor de consultas para ampliar lo que puede hacer. Si nadie lo revisa, puede contener código malicioso."
+        },
+        {
+          "type": "p",
+          "text": "La literatura que cita el tema coincide en un diagnóstico: muchas soluciones protegen **partes aisladas** del ecosistema y falta un enfoque **global de extremo a extremo**. También propone agrupar los controles en niveles (aplicación, red, clasificación de datos, análisis) y cubrirlos todos, y estudia cómo mantener la privacidad cuando varias organizaciones analizan datos juntas."
+        },
+        {
+          "type": "exam",
+          "text": "Ante «¿cuál es un riesgo común en big data?», la correcta es la **superficie de ataque amplia por la distribución del sistema**. Las distractoras son inventos que suenan técnicos: «limitación de conectividad entre nodos», «inexistencia de datos estructurados» o «escalabilidad excesiva». La escalabilidad es una ventaja, no un riesgo."
+        },
+        {
+          "type": "key",
+          "text": "Distribuir datos y trabajo entre muchos nodos y servicios multiplica las identidades, interfaces y comunicaciones que proteger: la superficie de ataque es el gran riesgo del big data."
+        }
+      ]
+    },
+    {
+      "id": "autenticacion",
+      "title": "Autenticación: saber quién es cada usuario y cada nodo",
+      "pages": [12, 13],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "En una reunión discreta no basta con que el portero compruebe tu DNI: tú también quieres saber que el portero es de verdad del edificio y no alguien que se ha puesto un chaleco. Cuando los dos se identifican mutuamente, nadie puede colarse haciéndose pasar por el otro. Eso es la **autenticación mutua**."
+        },
+        {
+          "type": "p",
+          "text": "El primer control del tejido de seguridad es saber **quién** está al otro lado, tanto si es una persona como si es un servicio o un nodo del clúster. El tema recomienda combinar el **inicio de sesión único** con **TLS mutuo**."
+        },
+        {
+          "type": "term",
+          "term": "SSO (Single Sign-On, inicio de sesión único)",
+          "text": "Te identificas una vez y accedes a varios servicios sin volver a introducir la contraseña en cada uno. (El PDF lo escribe «single sing on», una errata.)"
+        },
+        {
+          "type": "term",
+          "term": "TLS (Transport Layer Security) y TLS mutuo (mTLS)",
+          "text": "TLS es el protocolo que cifra las conexiones (el candado del navegador) y que sucedió a SSL (Secure Sockets Layer). En el TLS normal solo el servidor presenta un certificado; en el **TLS mutuo** ambos extremos presentan certificado y se verifican el uno al otro."
+        },
+        {
+          "type": "term",
+          "term": "Kerberos",
+          "text": "Protocolo de autenticación para redes que funciona con **tiques** (tickets): un servidor central de confianza te entrega un tique tras identificarte, y ese tique sirve para demostrar tu identidad ante otros servicios sin enviar la contraseña a cada uno. Es el que usa Hadoop en modo seguro."
+        },
+        {
+          "type": "term",
+          "term": "OAuth y OpenID Connect",
+          "text": "OAuth es un estándar para delegar permisos mediante tokens (por ejemplo, permitir a una app leer tu calendario sin darle tu contraseña). OpenID Connect añade sobre OAuth una capa de identificación del usuario. Son muy usados en la web y en servicios en la nube."
+        },
+        {
+          "type": "list",
+          "title": "Controles de autenticación recomendados",
+          "items": [
+            "Mecanismos robustos: Kerberos, OAuth, OpenID Connect o certificados con TLS mutuo.",
+            "**Autenticación mutua entre nodos** y servicios internos, para evitar nodos suplantados.",
+            "**Autenticación federada** cuando participan varias organizaciones: cada una confía en la identidad que valida la otra.",
+            "**Tokens con vida limitada**, que se renuevan y se pueden revocar (anular) si se roban.",
+            "Integración con directorios corporativos, como LDAP (Lightweight Directory Access Protocol, protocolo para consultar directorios de usuarios) o Active Directory, para gestionar las identidades en un único sitio."
+          ]
+        },
+        {
+          "type": "example",
+          "title": "El nodo intruso",
+          "text": "Un atacante conecta a la red interna una máquina que dice llamarse «worker-17» y se ofrece a procesar datos y devolver resultados. Si el clúster solo mira que la petición venga de una dirección IP privada, o que hable el mismo formato de mensajes, o se fía del nombre que declara, la aceptará y el intruso podrá robar o falsear resultados. Con autenticación mutua, el nodo tendría que demostrar su identidad con un certificado o un tique válido antes de que nadie confíe en él."
+        },
+        {
+          "type": "exam",
+          "text": "Preguntas tipo: «¿qué reduce la autenticación mutua entre nodos?» → la **suplantación de servicios internos**; no protege por sí sola de la alteración de ficheros, del agotamiento de recursos ni de la exposición de copias. «Un nodo nuevo quiere unirse, ¿qué verifica su legitimidad?» → la **autenticación mutua de servicios**. Las trampas son comprobaciones superficiales: dirección privada, nombre declarado o formato de mensajes."
+        },
+        {
+          "type": "key",
+          "text": "En un clúster no solo se autentican las personas: cada nodo y cada servicio debe demostrar quién es, y la autenticación mutua impide que un nodo falso se haga pasar por uno legítimo."
+        }
+      ]
+    },
+    {
+      "id": "autorizacion",
+      "title": "Autorización: qué puede hacer cada uno, con detalle",
+      "pages": [13],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "En un hospital, todo el personal entra por la misma puerta con su tarjeta (autenticación). Pero la enfermera ve la medicación de sus pacientes, el administrativo ve las citas y no los diagnósticos, y el investigador ve estadísticas sin nombres. La tarjeta dice quién eres; la autorización decide **qué parte de la información** puedes ver."
+        },
+        {
+          "type": "table",
+          "title": "Tres modelos de control de acceso",
+          "head": ["Modelo", "Decide según…", "Ejemplo"],
+          "rows": [
+            ["RBAC (Role-Based Access Control)", "El **rol** o función del usuario.", "Todos los «analistas de ventas» pueden leer la tabla de ventas."],
+            ["ABAC (Attribute-Based Access Control)", "**Atributos** del usuario, del dato y del contexto.", "Solo personal del departamento médico, en horario laboral y desde la red interna."],
+            ["PBAC (Policy-Based Access Control)", "**Políticas** centralizadas que combinan reglas.", "Una política que dice qué columnas se enmascaran para cada grupo."]
+          ]
+        },
+        {
+          "type": "term",
+          "term": "Control de acceso granular",
+          "text": "Autorizar con mucho detalle, no solo a la plataforma entera: por **tabla**, por **columna**, por **fila** (row-level filtering, filtrado por filas) e incluso por **celda** (cell-level). También se aplica a los metadatos."
+        },
+        {
+          "type": "list",
+          "title": "Lo que debe ofrecer la autorización en big data",
+          "items": [
+            "Autorización sobre datos y metadatos con granularidad de tabla, columna, fila y celda.",
+            "**Políticas centralizadas** que se apliquen igual en varios motores: almacenamiento, consulta y streaming.",
+            "**Separación de funciones** (segregation of duties): que un mismo rol no pueda autorizar y a la vez ejecutar una acción crítica.",
+            "**Acceso condicional**: reglas según la ubicación, la hora o el dispositivo.",
+            "**Políticas dinámicas** que se ajustan en tiempo real según el contexto o el riesgo."
+          ]
+        },
+        {
+          "type": "term",
+          "term": "IAM (Identity and Access Management)",
+          "text": "Gestión de identidades y accesos: el conjunto de procesos y herramientas que administran quién es cada usuario y qué puede hacer. Es un término general, no un modelo concreto de control de acceso como RBAC o ABAC."
+        },
+        {
+          "type": "example",
+          "title": "Ventas sin datos personales",
+          "text": "Un analista debe estudiar las ventas por provincia, pero la tabla también contiene nombre, DNI y teléfono de cada cliente. Darle la tabla entera porque «ya está autenticado» viola el mínimo privilegio. Cifrar el disco no ayuda, porque al leer el dato se descifra igualmente. Ocultar las columnas solo en la pantalla tampoco: con una consulta directa las vería. Lo correcto es una **autorización granular** que le permita leer importes y provincias y le niegue las columnas personales en el propio motor de datos."
+        },
+        {
+          "type": "exam",
+          "text": "Si la pregunta habla de limitar permisos **según funciones**, la respuesta es **RBAC** (funciones = roles). ABAC usa atributos y condiciones; «IAM dinámico» y «biometría» no son modelos de autorización (la biometría es una forma de autenticar). Si habla de limitar tablas, filas o columnas, la respuesta es el **control de acceso granular**; desconfía de las opciones que dicen «solo autenticación», «solo separar redes» o «acceso completo a quien puede consultar una tabla»."
+        },
+        {
+          "type": "key",
+          "text": "Autenticar no basta: la autorización granular (RBAC por roles, ABAC por atributos, políticas centralizadas) decide qué tablas, filas y columnas ve cada uno, y debe aplicarse en el motor de datos, no en la pantalla."
+        }
+      ]
+    },
+    {
+      "id": "cifrado-y-claves",
+      "title": "Cifrado en tránsito, en reposo y gestión de claves",
+      "pages": [14, 18],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Piensa en dinero. Cuando está **guardado** en la caja fuerte del banco, lo protege la caja fuerte. Cuando **viaja** de una sucursal a otra, lo protege el furgón blindado. Son protecciones distintas para momentos distintos: la caja fuerte no sirve de nada si el furgón va con las puertas abiertas. Y en ambos casos, lo decisivo es **quién tiene las llaves**."
+        },
+        {
+          "type": "table",
+          "title": "Los dos momentos del cifrado",
+          "head": ["Tipo", "Qué protege", "Cómo se hace"],
+          "rows": [
+            ["Cifrado en tránsito", "Los datos **mientras se mueven por la red** entre nodos, clientes y API.", "TLS/SSL en todas las comunicaciones, también en RPC y HTTP/REST; protección frente a man in the middle, downgrade y cifrados débiles."],
+            ["Cifrado en reposo", "Los datos **almacenados**: archivos, tablas, discos.", "Cifrado de disco, de columna o por zonas de cifrado, siempre con una buena gestión de claves."]
+          ]
+        },
+        {
+          "type": "term",
+          "term": "RPC y REST",
+          "text": "RPC (Remote Procedure Call, llamada a procedimiento remoto): un programa pide a otro, en otra máquina, que ejecute una función. REST (Representational State Transfer): estilo de API web que usa HTTP. Los nodos de un clúster se comunican constantemente por estas vías, y todas deben ir cifradas."
+        },
+        {
+          "type": "term",
+          "term": "Ataque de downgrade (degradación)",
+          "text": "El atacante fuerza a los dos extremos a negociar una versión antigua o un cifrado débil del protocolo para poder romperlo. Se evita configurando TLS para que no acepte versiones ni algoritmos inseguros."
+        },
+        {
+          "type": "term",
+          "term": "Zonas de cifrado (encryption zones)",
+          "text": "Carpetas o conjuntos de datos concretos cuyo contenido se cifra al escribir y se descifra al leer de forma **transparente**: la aplicación no tiene que cambiar nada. Usan claves guardadas en un gestor de claves."
+        },
+        {
+          "type": "list",
+          "title": "Técnicas avanzadas de cifrado en reposo que menciona el tema",
+          "items": [
+            "**Cifrado de columna**: solo se cifran las columnas sensibles.",
+            "**Cifrado homomórfico parcial**: permite hacer algunas operaciones (por ejemplo, sumar) sobre datos cifrados sin descifrarlos.",
+            "**ABE (Attribute-Based Encryption, cifrado basado en atributos)**: solo descifra quien tiene ciertos atributos, como pertenecer a un departamento.",
+            "**Cifrado híbrido**: combina cifrado simétrico (una sola clave, rápido) y asimétrico (pareja de claves pública y privada, cómodo para repartir claves) para escalar mejor.",
+            "Comparativas de algoritmos como DES (antiguo e inseguro), AES (el estándar actual) y RSA (asimétrico) muestran que siempre hay un equilibrio entre seguridad y rendimiento."
+          ]
+        },
+        {
+          "type": "term",
+          "term": "KMS (Key Management Server, servidor de gestión de claves)",
+          "text": "Servicio que guarda y administra las claves de cifrado: las crea, lleva sus **versiones**, las rota y decide **quién puede usar cada clave**. No autentica usuarios ni da permisos sobre tablas: su objeto son las claves."
+        },
+        {
+          "type": "list",
+          "title": "Gestión segura de claves",
+          "items": [
+            "Guardar las claves **separadas** de los datos que protegen.",
+            "**Rotarlas** periódicamente (sustituirlas por otras nuevas).",
+            "**Acceso controlado**: pocas personas y servicios pueden usarlas, con **separación de funciones** (quien administra las claves no es quien lee los datos).",
+            "**Auditar** cada uso de una clave y mantener copias de respaldo seguras."
+          ]
+        },
+        {
+          "type": "example",
+          "title": "Dos fallos frecuentes",
+          "text": "Primero: una empresa cifra todos los discos del clúster y se queda tranquila, pero los nodos se envían los datos entre sí en claro. Cualquiera que escuche la red los lee: falta **cifrado en tránsito**. Segundo: otra empresa cifra los datos con AES de 256 bits, pero medio departamento puede usar la clave sin control. El algoritmo es excelente; el problema es la **gestión de claves** (permisos y separación de funciones). Hacer la clave más larga no arregla nada."
+        },
+        {
+          "type": "exam",
+          "text": "«Datos que se mueven por la red» → **en tránsito**; «datos almacenados» → **en reposo**. «Cifrado simétrico» describe el tipo de algoritmo, no el momento, y «cifrado de respaldo» no es una categoría. Cuando la pregunta describe claves mal controladas, la respuesta es reforzar **permisos y separación de funciones en la gestión de claves**, no la longitud del algoritmo, la compresión ni el número de copias."
+        },
+        {
+          "type": "key",
+          "text": "El cifrado en reposo y el cifrado en tránsito protegen momentos distintos y hacen falta los dos; y ningún cifrado es fuerte si las claves no se gestionan con control de acceso, rotación, separación de funciones y auditoría."
+        }
+      ]
+    },
+    {
+      "id": "auditoria-privacidad-gobernanza",
+      "title": "Auditoría, linaje, privacidad y gobernanza",
+      "pages": [15, 16],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "En una cadena de alimentación, cada lote de carne lleva una etiqueta que permite saber de qué granja salió, en qué matadero se procesó y en qué camión viajó. Si aparece un problema, se sigue la etiqueta hacia atrás. El **linaje de datos** es esa etiqueta para la información: cuenta de dónde viene cada dato y qué le han hecho."
+        },
+        {
+          "type": "p",
+          "text": "Para una auditoría correcta hay que **registrar los accesos a los datos** y que esos registros solo los pueda consultar el **auditor** del sistema. Lo que debe quedar registrado:"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Eventos de acceso, tanto **exitosos como fallidos**, cambios en políticas, modificaciones de datos y accesos de administradores.",
+            "**Accesos denegados**, porque pueden revelar intentos de intrusión.",
+            "El **linaje** de los datos: cómo se transformaron, qué operaciones se aplicaron, quién lo hizo y cuándo.",
+            "**Anomalías**: uso excesivo de recursos o patrones de acceso inusuales.",
+            "Elementos para el **forense**: capturar evidencias, conservar los logs mucho tiempo y garantizar que nadie los altere."
+          ]
+        },
+        {
+          "type": "term",
+          "term": "Linaje de datos (data lineage)",
+          "text": "Trazabilidad del origen de un dato y de todas las transformaciones que ha sufrido hasta llegar a un resultado. No es un inventario de tamaños, ni una lista de permisos, ni un calendario de copias."
+        },
+        {
+          "type": "term",
+          "term": "Forense de datos (big data forensics)",
+          "text": "Investigación posterior a un incidente: reconstruir qué pasó a partir de evidencias digitales conservadas de forma íntegra."
+        },
+        {
+          "type": "example",
+          "title": "Un informe con cifras raras",
+          "text": "El informe mensual de ventas muestra que una tienda pequeña ha vendido diez veces más que la central. ¿Error o manipulación? El inventario de servidores, la política de contraseñas o el último inicio de sesión no lo aclaran. El **linaje y los registros de transformaciones** sí: muestran de qué fuentes salió la cifra, qué procesos la calcularon, quién los lanzó y cuándo, hasta encontrar el paso donde se torció."
+        },
+        {
+          "type": "example",
+          "title": "Por qué mirar también los rechazos",
+          "text": "Una cuenta de un becario recibe 300 «acceso denegado» en una noche al intentar abrir tablas de nóminas. Si solo se registraran los accesos exitosos, ese intento pasaría inadvertido. Ojo: una denegación aislada no demuestra un ataque (puede ser un error), y registrarlas no sustituye a la comprobación de permisos ni exime de revisar los accesos exitosos."
+        },
+        {
+          "type": "p",
+          "text": "**Privacidad.** Según el tipo de dato se aplican distintas técnicas: **anonimización** y **desidentificación** (quitar o transformar lo que identifica a una persona), **generalización** (edad 37 → «30-40»), **supresión** (borrar el campo), **perturbación** (añadir ruido) y **privacidad diferencial** en consultas agregadas. Se completan con etiquetas de sensibilidad (data labeling), evaluación del riesgo de reidentificación y el principio de **privacidad desde el diseño** (privacy by design). Cuando colaboran varias organizaciones, se usan protocolos de compartición segura y cifrado funcional o basado en atributos."
+        },
+        {
+          "type": "term",
+          "term": "Privacidad diferencial (differential privacy)",
+          "text": "Técnica matemática que añade un ruido controlado a los resultados de consultas estadísticas para que no se pueda saber si una persona concreta estaba o no en los datos, sin estropear las conclusiones generales."
+        },
+        {
+          "type": "p",
+          "text": "**Gobernanza y cumplimiento.** La arquitectura debe integrarse en un **SGSI** (sistema de gestión de seguridad de la información): identificar y clasificar los activos de datos y su riesgo, aplicar marcos de control como **NIST RMF** (Risk Management Framework), **ISO/IEC 27001** (norma internacional de SGSI) o **COBIT** (marco de gobierno de TI), fijar políticas de retención y borrado, revisar auditorías, gestionar incidentes, preparar planes de recuperación y formar al personal."
+        },
+        {
+          "type": "term",
+          "term": "GDPR / RGPD",
+          "text": "General Data Protection Regulation, en español RGPD (Reglamento General de Protección de Datos). Es un **reglamento** de la Unión Europea: a diferencia de una directiva, se aplica directamente en todos los Estados miembros sin necesidad de transponerlo a una ley nacional. Obliga, entre otras cosas, a respetar el derecho de acceso, el derecho al olvido y la portabilidad de los datos personales."
+        },
+        {
+          "type": "exam",
+          "text": "«Linaje» = **trazabilidad del origen y las transformaciones**. «¿Por qué registrar accesos denegados?» → porque **pueden revelar intentos de acceso indebido**. Las trampas exageran: «demuestra por sí solo que toda denegación es un ataque», «sustituye la comprobación de permisos», «evita analizar los accesos exitosos». Ante un resultado extraño, la evidencia útil es **linaje y registros de transformaciones**."
+        },
+        {
+          "type": "key",
+          "text": "Registrar éxitos y fracasos, conservar el linaje y proteger la privacidad con anonimización y privacidad diferencial permite detectar, investigar y cumplir la ley; todo ello dentro de un marco de gobernanza como ISO 27001."
+        }
+      ]
+    },
+    {
+      "id": "nist-en-la-practica",
+      "title": "Del modelo a la práctica: controles por fase, retos y buenas prácticas",
+      "pages": [17, 21],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Una ventaja del modelo del NIST es que cada recomendación del tejido de seguridad se puede **mapear** a controles concretos en cada fase del recorrido de los datos."
+        },
+        {
+          "type": "table",
+          "title": "Controles en cada fase del flujo de datos",
+          "head": ["Fase", "Controles que exige el tejido de seguridad"],
+          "rows": [
+            ["Ingesta (entrada)", "Autenticar al proveedor de datos, validar el origen, filtrar, cifrar el tránsito y aplicar un control de acceso inicial."],
+            ["Almacenamiento", "Cifrado de disco o por zonas, control de acceso granular, cifrado de columnas y auditoría de lecturas y escrituras."],
+            ["Procesamiento y análisis", "Políticas de acceso en los motores (Spark, Flink, Hive), comprobar que los trabajos no ejecuten código malicioso, límites de recursos y aislamiento en contenedores."],
+            ["Presentación", "Mostrar solo lo que permiten las políticas, filtrar datos sensibles y anonimizar si hace falta."],
+            ["Todo el flujo", "Auditoría, trazabilidad, monitorización, gestión de claves y políticas dinámicas."]
+          ]
+        },
+        {
+          "type": "term",
+          "term": "Ingesta",
+          "text": "La fase en la que los datos entran en la plataforma desde sus fuentes. Es la primera puerta: si entra basura o datos falsos, todo lo que se calcule después estará contaminado."
+        },
+        {
+          "type": "example",
+          "title": "Datos de un proveedor externo",
+          "text": "Una empresa empieza a recibir cada noche ficheros de un proveedor de datos meteorológicos. Fiarse porque el fichero tiene el formato esperado no prueba nada: un atacante puede imitar el formato. Cifrarlos al guardarlos tampoco comprueba si son buenos. Y validarlos solo al final, cuando el consumidor ya los ve, llega tarde. Desde la **ingesta** hay que **autenticar el origen y validar los datos recibidos**."
+        },
+        {
+          "type": "list",
+          "title": "Desafíos que reconoce el tema",
+          "items": [
+            "**Rendimiento y escalabilidad**: cifrar, autorizar con detalle y auditar mucho consume CPU, añade latencia (retraso), usa red y almacena metadatos. En streaming en tiempo real ese retraso puede no ser tolerable: hay que **equilibrar** seguridad y rendimiento sin suprimir los controles necesarios.",
+            "**Complejidad operativa**: gestionar claves, políticas, permisos, auditorías y actualizaciones en muchos componentes exige un mantenimiento sofisticado.",
+            "**Ecosistemas heterogéneos**: API externas, microservicios, contenedores, servicios de IA y nube. Cualquier componente externo mal asegurado puede comprometer toda la plataforma.",
+            "**Amenazas sofisticadas**: nodos maliciosos que colaboran, análisis de metadatos, inferencia, aprendizaje automático adversarial y ataques de canal lateral (side-channel, deducir secretos por tiempos, consumo u otros efectos físicos).",
+            "**Gobernanza y ética**: integrar el RGPD y decidir quién decide, quién accede y cómo se rastrean las decisiones de los algoritmos."
+          ]
+        },
+        {
+          "type": "list",
+          "title": "Buenas prácticas recomendadas",
+          "items": [
+            "**Security and privacy by design**: seguridad desde el diseño, no añadida después.",
+            "Visión **de extremo a extremo**, con controles en cada punto del flujo.",
+            "**Mínimo privilegio** (least privilege): cada usuario, rol o servicio con los permisos justos.",
+            "**Segregación de roles**: administradores de plataforma, operadores y analistas separados.",
+            "Autenticación robusta y federada, con renovación y revocación de credenciales.",
+            "Cifrado fuerte en tránsito y en reposo, con gestión de claves segura.",
+            "Acceso granular (RBAC, ABAC, políticas dinámicas) integrado en motores y API.",
+            "Auditoría extensa y linaje, con detección de anomalías y soporte forense.",
+            "Privacidad mediante anonimización, privacidad diferencial y control de datos sensibles.",
+            "Gobernanza, retención y borrado, cumplimiento y evaluación de riesgos.",
+            "Monitorización continua, actualizaciones, pruebas de penetración (pentesting) y **pruebas de escalabilidad** para que los controles no creen cuellos de botella."
+          ]
+        },
+        {
+          "type": "exam",
+          "text": "Sobre tiempo real, la respuesta correcta reconoce un **compromiso**: los controles robustos añaden latencia y coste de recursos. Son falsas las opciones que dicen que la velocidad sustituye a los controles, que la auditoría no influye en el rendimiento o que el cifrado elimina la necesidad de evaluar la latencia. Sobre ingesta: **autenticar el origen y validar los datos** desde la entrada."
+        },
+        {
+          "type": "key",
+          "text": "Cada fase del flujo (ingesta, almacenamiento, procesamiento, presentación) tiene sus controles, y la seguridad cuesta rendimiento: hay que equilibrarla, nunca eliminarla."
+        }
+      ]
+    },
+    {
+      "id": "arquitectura-hadoop",
+      "title": "Hadoop por dentro: HDFS, YARN, MapReduce y compañía",
+      "pages": [22, 24],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Imagina una biblioteca gigantesca repartida en cien edificios. Un **bibliotecario jefe** no guarda libros: lleva el catálogo y sabe en qué edificio y estantería está cada página (y de cada página hay tres fotocopias en edificios distintos, por si uno se incendia). Los **edificios** guardan las páginas. Y una **oficina de turnos** decide qué voluntarios trabajan en cada tarea y con cuántas mesas. Hadoop funciona igual."
+        },
+        {
+          "type": "term",
+          "term": "Hadoop (Apache Hadoop)",
+          "text": "Plataforma de código abierto muy extendida para almacenar, procesar y analizar grandes volúmenes de datos repartidos en un clúster. Aporta escalabilidad, tolerancia a fallos y procesamiento en paralelo."
+        },
+        {
+          "type": "table",
+          "title": "Piezas principales del ecosistema Hadoop",
+          "head": ["Componente", "Qué hace", "En la analogía"],
+          "rows": [
+            ["HDFS (Hadoop Distributed File System)", "**Almacenamiento distribuido**: trocea los archivos en bloques, los reparte entre nodos y los replica.", "Los edificios y sus fotocopias."],
+            ["NameNode", "Nodo maestro de HDFS: guarda los metadatos, es decir, qué bloques forman cada archivo y dónde están.", "El bibliotecario jefe con el catálogo."],
+            ["DataNode", "Nodos que guardan físicamente los bloques de datos.", "Cada edificio con sus estanterías."],
+            ["YARN (Yet Another Resource Negotiator)", "**Gestión de recursos**: reparte CPU y memoria del clúster entre las aplicaciones y coordina su ejecución. Su servicio principal es el ResourceManager.", "La oficina de turnos."],
+            ["MapReduce", "**Modelo de programación** para procesar datos en paralelo: «map» trocea y procesa en cada nodo, «reduce» junta los resultados.", "Cada voluntario resume su parte y luego se suman los resúmenes."],
+            ["Hive", "Permite consultar los datos con un lenguaje parecido a SQL (Structured Query Language).", "Un mostrador donde pides datos con preguntas sencillas."],
+            ["Pig", "Lenguaje de scripts para describir transformaciones de datos.", "Unas instrucciones paso a paso para los voluntarios."],
+            ["Otros", "HBase (base de datos), Spark (procesamiento en memoria), Kafka (flujos de eventos), ZooKeeper (coordinación), Oozie (planificación de trabajos).", "Servicios auxiliares de la biblioteca."]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Esa misma arquitectura que lo hace potente lo expone: es **distribuido**, sus nodos son **heterogéneos**, ofrece **muchos servicios y API** y por dentro circulan datos sensibles, metadatos y flujos internos."
+        },
+        {
+          "type": "list",
+          "title": "Amenazas frecuentes en Hadoop",
+          "items": [
+            "Credenciales robadas o suplantadas; ataques de **replay** (reenviar un mensaje de autenticación capturado) o de diccionario contra Kerberos.",
+            "Acceso no autorizado a datos sensibles y filtración de metadatos.",
+            "Nodos maliciosos, solos o en connivencia (collusive workers), que alteran resultados o roban datos.",
+            "Ejecución de código arbitrario: usuarios que suben ficheros JAR (programas Java) para MapReduce, Pig o UDF de Hive con código malicioso.",
+            "Falta de cifrado, o cifrado débil, en reposo o en tránsito.",
+            "Configuraciones inseguras, permisos excesivos y falta de segregación.",
+            "Amenazas internas, errores humanos e incumplimiento del RGPD."
+          ]
+        },
+        {
+          "type": "exam",
+          "text": "Las dos preguntas más repetidas: **HDFS almacena** y **YARN gestiona recursos**. Las trampas cruzan los papeles: MapReduce es el modelo de procesamiento, Hive la capa de consultas tipo SQL y Pig un lenguaje de scripts; ninguno de ellos almacena ni reparte recursos."
+        },
+        {
+          "type": "key",
+          "text": "HDFS (con NameNode y DataNodes) guarda los datos, YARN reparte los recursos y MapReduce, Hive o Pig procesan; tantas piezas distribuidas son también tantas puertas que proteger."
+        }
+      ]
+    },
+    {
+      "id": "seguridad-hadoop",
+      "title": "Seguridad en Hadoop: Kerberos, Ranger, Knox y zonas de cifrado",
+      "pages": [24, 37],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Siguiendo con la biblioteca: **Kerberos** es la oficina que expide los pases de identificación; **Ranger** es el reglamento central que dice quién puede consultar qué sala y que apunta cada visita; **Knox** es la única puerta de entrada al recinto, con su vigilante; y el **KMS** es la caja de seguridad donde se guardan las llaves de las salas acorazadas (las zonas de cifrado)."
+        },
+        {
+          "type": "p",
+          "text": "**Autenticación.** El **modo seguro de Hadoop requiere Kerberos** para autenticar tanto a los clientes (usuarios) como a los servicios (NameNode, DataNode, ResourceManager…). Los servicios usan **keytabs**, ficheros que contienen sus claves para obtener tiques sin intervención humana. Así los nodos del clúster se autentican mutuamente. La investigación propone mejoras para evitar sus puntos débiles: el **punto único de fallo** (si cae el servidor de Kerberos, nadie entra), los ataques de replay y la dependencia de que los relojes estén sincronizados; por ejemplo, con firmas digitales y criptosistemas de umbral."
+        },
+        {
+          "type": "p",
+          "text": "**Autorización.** HDFS trae permisos nativos de tipo **POSIX** (los de Unix/Linux: propietario, grupo y otros) y **ACL** (Access Control List, listas de control de acceso) extendidas para más detalle. Por encima se usan herramientas de **políticas centralizadas** como **Apache Ranger** o Apache Sentry, que deciden quién accede a qué datasets y columnas. Algunos estudios advierten que motores como Spark necesitan controles extra para que un usuario con pocos permisos no esquive las políticas a través de la API."
+        },
+        {
+          "type": "table",
+          "title": "Herramientas de seguridad del ecosistema Hadoop",
+          "head": ["Herramienta", "Para qué sirve"],
+          "rows": [
+            ["Kerberos", "Autenticar usuarios y servicios con tiques y keytabs."],
+            ["Apache Ranger", "Marco **centralizado de políticas de seguridad y control de acceso** (tablas, columnas, filas) para Hive, HBase y otros, con **auditoría** centralizada."],
+            ["Apache Sentry", "Alternativa a Ranger para autorización por políticas."],
+            ["Apache Knox", "Pasarela (gateway) API REST: **punto único de entrada** seguro para todas las interacciones REST con el clúster, con autenticación, autorización y auditoría."],
+            ["Apache Atlas", "Gobierno de metadatos y **linaje**: quién hizo qué y de dónde viene cada dato."],
+            ["KMS", "Gestión de claves de las zonas de cifrado: versiones de claves y permisos sobre quién puede usarlas."],
+            ["Proyecto Rhino", "Iniciativa que añade a Hadoop cifrado y gestión de claves, un marco común de autorización, sesión única con tokens, ACL más finas en HBase y mejor auditoría."]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "**Cifrado en reposo.** HDFS ofrece **cifrado transparente** mediante **zonas de cifrado**: directorios especiales cuyo contenido se cifra al escribir y se descifra al leer automáticamente, **sin cambiar la aplicación cliente**, usando claves gestionadas por el **KMS**. **Cifrado en tránsito**: TLS/SSL en RPC, HttpFS y API REST, bien configurado para evitar downgrade y algoritmos débiles."
+        },
+        {
+          "type": "p",
+          "text": "**Auditoría y monitorización.** Registrar lecturas, escrituras, borrados y accesos denegados; usar Ranger y Atlas para auditoría centralizada y linaje; vigilar nodos que consumen recursos de más o patrones de acceso raros; y evaluar el cumplimiento del RGPD y de las políticas de retención."
+        },
+        {
+          "type": "table",
+          "title": "Implementaciones reales que cita el tema",
+          "head": ["Producto", "Qué aporta en seguridad"],
+          "rows": [
+            ["Hadoop 3.4.2", "Cifrado transparente en HDFS, zonas de cifrado y KMS con versiones de claves."],
+            ["Amazon EMR (Elastic MapReduce)", "Servicio de AWS que monta clústeres Hadoop con un nodo maestro; cifrado en reposo y en tránsito con zonas cifradas y KMS. Limitación: mover archivos entre zonas cifradas y no cifradas."],
+            ["Oracle Big Data Appliance", "Cifrado transparente y KMS sobre clústeres con Kerberos; separa física o lógicamente el servicio de claves (key trustee)."],
+            ["Azure HDInsight", "Servicio de Microsoft totalmente administrado en la nube para ejecutar Hadoop, Spark, Hive, LLAP o Kafka; usa HDFS, YARN y MapReduce."]
+          ]
+        },
+        {
+          "type": "list",
+          "title": "Retos abiertos",
+          "items": [
+            "**Sobrecoste**: cifrar, autenticar, auditar y aplicar políticas finas consume CPU, latencia y ancho de banda.",
+            "**Complejidad**: configurar Kerberos, KMS, roles, TLS, certificados y la sincronización de relojes es fácil de hacer mal.",
+            "**Ecosistema completo**: Hadoop no funciona solo (Hive, HBase, Spark, YARN, herramientas de ingesta, API REST, interfaces web); **un eslabón débil compromete toda la plataforma**.",
+            "**Granularidad frente a gestión**: las reglas muy finas protegen más pero son más difíciles de mantener.",
+            "**Claves**: protegerlas, rotarlas y evitar que la clave maestra quede comprometida."
+          ]
+        },
+        {
+          "type": "example",
+          "title": "El eslabón débil",
+          "text": "Un equipo activa Kerberos, Ranger y zonas de cifrado en su clúster. Pero conecta una herramienta de ingesta con una cuenta de servicio que tiene permiso de escritura y lectura sobre todo HDFS «para que no dé problemas». Si alguien compromete esa herramienta, hereda esos permisos y todo el blindaje anterior sirve de poco. Conclusión: la seguridad debe cubrir **el ecosistema completo**, también los componentes conectados, aplicando mínimo privilegio."
+        },
+        {
+          "type": "exam",
+          "text": "«¿Qué autentica en Hadoop seguro?» → **Kerberos**. JWT, OAuth 2.0 y SAML (Security Assertion Markup Language) son estándares de identidad web reales, pero no son el mecanismo del modo seguro de Hadoop. «¿Para qué sirve Ranger?» → **administrar políticas de seguridad y control de acceso** (no analiza datos, no gestiona metadatos como Atlas, no almacena como HDFS). «¿Qué son las zonas de cifrado?» → **directorios cuyo contenido se cifra con claves gestionadas** por el KMS. «¿Para qué sirve el KMS?» → **gestionar claves, versiones y permisos de uso**; no asigna permisos sobre tablas (eso es Ranger), no registra linaje (Atlas) ni emite tiques (Kerberos)."
+        },
+        {
+          "type": "key",
+          "text": "En Hadoop: Kerberos autentica, permisos POSIX/ACL y Ranger autorizan y auditan, Knox es la puerta única, las zonas de cifrado con KMS protegen el reposo y TLS el tránsito; y todo el ecosistema conectado debe protegerse por igual."
+        }
+      ]
+    }
+  ],
+  "summary": [
+    "El big data repite los objetivos clásicos de seguridad, pero a una escala, velocidad y dispersión que obligan a adaptar los controles.",
+    "Las 5 V son volumen, variedad, velocidad, veracidad y valor; cada una complica la seguridad de una forma (revisión, formatos, latencia, integridad, privacidad).",
+    "El modelo NBDRA del NIST da una base común con roles (proveedor de datos, plataforma, aplicación, consumidor, orquestador) y un tejido de seguridad y privacidad transversal a todas las funciones.",
+    "Distribuir el sistema amplía la superficie de ataque: suplantación de nodos, intercepción, código malicioso, insiders y permisos excesivos.",
+    "La autenticación mutua entre nodos evita servicios suplantados; la autorización granular (RBAC, ABAC, políticas) limita tablas, filas y columnas.",
+    "El cifrado en tránsito protege lo que viaja por la red y el cifrado en reposo lo almacenado; ambos dependen de una gestión de claves con permisos, rotación y separación de funciones.",
+    "Registrar accesos exitosos y denegados, y conservar el linaje, permite detectar intrusiones e investigar resultados extraños.",
+    "Los controles empiezan en la ingesta (autenticar origen y validar datos) y cuestan rendimiento: hay que equilibrar, no suprimir.",
+    "En Hadoop, HDFS almacena, YARN gestiona recursos, Kerberos autentica, Ranger aplica políticas, Knox es la puerta única y KMS gestiona las claves de las zonas de cifrado.",
+    "Un componente débil conectado al clúster puede comprometer toda la plataforma: la seguridad debe cubrir el ecosistema completo."
+  ],
+  "glossary": [
+    { "term": "ABAC (Attribute-Based Access Control)", "text": "Control de acceso basado en atributos del usuario, del dato y del contexto." },
+    { "term": "ACL (Access Control List)", "text": "Lista de control de acceso: indica qué usuarios o grupos pueden hacer qué sobre un recurso." },
+    { "term": "Apache Atlas", "text": "Herramienta de gobierno de metadatos y linaje en el ecosistema Hadoop." },
+    { "term": "Apache Knox", "text": "Pasarela REST que actúa como punto único de entrada seguro a un clúster Hadoop." },
+    { "term": "Apache Ranger", "text": "Marco centralizado de políticas de control de acceso y auditoría para servicios de Hadoop." },
+    { "term": "Autenticación mutua", "text": "Los dos extremos de una comunicación verifican la identidad del otro." },
+    { "term": "Big data", "text": "Datos tan grandes, variados y rápidos que se tratan repartidos en clústeres." },
+    { "term": "Cifrado en reposo", "text": "Protección de los datos almacenados en discos, archivos o tablas." },
+    { "term": "Cifrado en tránsito", "text": "Protección de los datos mientras viajan por la red, normalmente con TLS." },
+    { "term": "Clúster y nodo", "text": "Un clúster es un conjunto de ordenadores que trabajan como uno; cada uno de ellos es un nodo." },
+    { "term": "HDFS (Hadoop Distributed File System)", "text": "Sistema de archivos distribuido de Hadoop: almacena y replica los datos entre nodos." },
+    { "term": "Ingesta", "text": "Fase en la que los datos entran en la plataforma desde sus fuentes." },
+    { "term": "Kerberos", "text": "Protocolo de autenticación con tiques; es el que exige el modo seguro de Hadoop." },
+    { "term": "KMS (Key Management Server)", "text": "Servidor que gestiona claves de cifrado, sus versiones y quién puede usarlas." },
+    { "term": "Linaje de datos (data lineage)", "text": "Trazabilidad del origen de un dato y de sus transformaciones." },
+    { "term": "MapReduce", "text": "Modelo de programación de Hadoop para procesar datos en paralelo." },
+    { "term": "NBDRA", "text": "NIST Big Data Reference Architecture: arquitectura de referencia del NIST para big data." },
+    { "term": "NIST", "text": "National Institute of Standards and Technology, Instituto Nacional de Estándares y Tecnología de EE. UU." },
+    { "term": "Privacidad diferencial", "text": "Técnica que añade ruido controlado a resultados agregados para no revelar a individuos." },
+    { "term": "RBAC (Role-Based Access Control)", "text": "Control de acceso basado en roles o funciones." },
+    { "term": "RGPD / GDPR", "text": "Reglamento General de Protección de Datos de la UE, de aplicación directa en los Estados miembros." },
+    { "term": "Separación de funciones", "text": "Repartir tareas críticas para que una sola persona o rol no pueda autorizar y ejecutar a la vez." },
+    { "term": "Superficie de ataque", "text": "Conjunto de puntos por los que un sistema puede ser atacado." },
+    { "term": "Tejido de seguridad y privacidad", "text": "En el NIST, la capa transversal que lleva la seguridad a todas las funciones." },
+    { "term": "TLS (Transport Layer Security)", "text": "Protocolo que cifra las comunicaciones; en su modo mutuo, ambos extremos presentan certificado." },
+    { "term": "YARN (Yet Another Resource Negotiator)", "text": "Gestor de recursos y aplicaciones del clúster Hadoop." },
+    { "term": "Zona de cifrado (encryption zone)", "text": "Directorio de HDFS cuyo contenido se cifra y descifra de forma transparente con claves del KMS." }
+  ],
+  "questions": {
+    "sistemas-t10-01": {
+      "section": "modelo-nist",
+      "reasoning": "El NBDRA del NIST no es un programa ni un servicio, sino un modelo conceptual: identifica roles, funciones y tejidos para que cualquiera que diseñe una arquitectura big data hable el mismo idioma y sepa dónde insertar la seguridad. Su propósito es, por tanto, ofrecer una base común para desarrollar arquitecturas big data seguras.",
+      "options": {
+        "a": "Incorrecta. Ejecutar consultas SQL es tarea de motores como Hive; un modelo de referencia no ejecuta nada.",
+        "b": "Correcta. El modelo proporciona un marco común para diseñar y analizar arquitecturas big data, con la seguridad integrada mediante su tejido transversal.",
+        "c": "Incorrecta. Gestionar clústeres en la nube es lo que hacen servicios como Amazon EMR o Azure HDInsight, no un modelo conceptual.",
+        "d": "Incorrecta. La visualización es una función más dentro de la arquitectura; el modelo no aporta herramientas gráficas."
+      }
+    },
+    "sistemas-t10-02": {
+      "section": "cinco-v",
+      "reasoning": "Las 5 V del big data son volumen, variedad, velocidad, veracidad y valor. Basta con repasar la lista: volumen, velocidad y veracidad están en ella; validación no. La pregunta pide la que no es característica, así que es validación.",
+      "options": {
+        "a": "Incorrecta. El volumen es una de las 5 V: la gran cantidad de datos.",
+        "b": "Incorrecta. La velocidad es una de las 5 V: datos que llegan y se procesan en flujo continuo.",
+        "c": "Incorrecta. La veracidad es una de las 5 V: la confianza en la calidad e integridad del dato.",
+        "d": "Correcta. La validación es una actividad útil, pero no figura entre las 5 V; por eso es la que no es característica."
+      }
+    },
+    "sistemas-t10-03": {
+      "section": "modelo-nist",
+      "reasoning": "Entre los roles del NBDRA, el proveedor de datos aporta los datos, el consumidor usa los resultados y el proveedor del framework o plataforma de big data aporta la infraestructura y los servicios básicos de almacenamiento y procesamiento. La infraestructura tecnológica subyacente es, por tanto, la plataforma de big data.",
+      "options": {
+        "a": "Incorrecta. El proveedor de datos suministra la información que entra en el sistema, no la infraestructura.",
+        "b": "Correcta. La plataforma (big data framework provider) aporta la infraestructura tecnológica sobre la que se almacena y procesa.",
+        "c": "Incorrecta. «Sistema de big data» describe el conjunto, pero no es uno de los roles del modelo NIST.",
+        "d": "Incorrecta. El consumidor de datos es quien utiliza los resultados al final de la cadena."
+      }
+    },
+    "sistemas-t10-04": {
+      "section": "seguridad-hadoop",
+      "reasoning": "El tema dice que el modo seguro de Hadoop requiere Kerberos para autenticar usuarios y servicios (NameNode, DataNode, ResourceManager) mediante tiques y keytabs. Los otros estándares existen, pero no son el mecanismo de autenticación de Hadoop seguro.",
+      "options": {
+        "a": "Incorrecta. JWT es un formato de token firmado muy usado en la web, pero no es el mecanismo que exige el modo seguro de Hadoop.",
+        "b": "Incorrecta. OAuth 2.0 sirve para delegar permisos con tokens en servicios web; el tema lo cita como mecanismo robusto en general, no como el de Hadoop.",
+        "c": "Correcta. Kerberos autentica de forma mutua a usuarios y servicios del clúster mediante tiques, sin reenviar contraseñas a cada nodo.",
+        "d": "Incorrecta. SAML es un estándar de federación de identidades web, no el protocolo de autenticación interno de Hadoop."
+      }
+    },
+    "sistemas-t10-05": {
+      "section": "arquitectura-hadoop",
+      "reasoning": "En Hadoop cada pieza tiene un papel. El almacenamiento distribuido lo da HDFS, el sistema de archivos que trocea los archivos en bloques, los reparte entre DataNodes y los replica. YARN gestiona recursos, MapReduce procesa y Hive consulta.",
+      "options": {
+        "a": "Incorrecta. YARN reparte CPU y memoria entre aplicaciones; no guarda datos.",
+        "b": "Incorrecta. MapReduce es el modelo de procesamiento en paralelo, no el almacenamiento.",
+        "c": "Correcta. HDFS (Hadoop Distributed File System) es el sistema de archivos distribuido que almacena y replica los datos.",
+        "d": "Incorrecta. Hive es una capa de consulta tipo SQL que lee datos guardados en HDFS, pero no los almacena."
+      }
+    },
+    "sistemas-t10-06": {
+      "section": "seguridad-hadoop",
+      "reasoning": "Apache Ranger aparece en el tema como herramienta de autorización con políticas centralizadas: decide quién accede a qué datasets, tablas, columnas o filas y además centraliza la auditoría. Su propósito es, por tanto, administrar políticas de seguridad y control de acceso.",
+      "options": {
+        "a": "Incorrecta. Los procesos de análisis los ejecutan motores como MapReduce, Spark o Hive.",
+        "b": "Incorrecta. La gestión de metadatos y linaje es más propia de Apache Atlas.",
+        "c": "Correcta. Ranger ofrece un marco centralizado para definir y aplicar políticas de control de acceso y auditar su uso.",
+        "d": "Incorrecta. Almacenar archivos grandes en el clúster es tarea de HDFS."
+      }
+    },
+    "sistemas-t10-07": {
+      "section": "cifrado-y-claves",
+      "reasoning": "El cifrado se clasifica según el momento de los datos: en reposo cuando están guardados y en tránsito cuando viajan por la red. Si los datos se están moviendo por la red, el que los protege es el cifrado en tránsito, típicamente con TLS.",
+      "options": {
+        "a": "Incorrecta. El cifrado en reposo protege los datos almacenados, no los que circulan.",
+        "b": "Correcta. El cifrado en tránsito protege los datos mientras se transmiten entre nodos, clientes y API.",
+        "c": "Incorrecta. «Simétrico» describe el tipo de algoritmo (una sola clave), no el momento en que se protegen los datos.",
+        "d": "Incorrecta. «Cifrado de respaldo» no es una de las categorías del tema; las copias almacenadas entrarían en el cifrado en reposo."
+      }
+    },
+    "sistemas-t10-08": {
+      "section": "amenazas",
+      "reasoning": "En big data los datos y el trabajo se reparten entre muchos nodos y servicios. Cada nodo, conexión, API e identidad es un punto más que proteger, así que la superficie de ataque crece. Las demás opciones no son riesgos reales o son ventajas.",
+      "options": {
+        "a": "Incorrecta. Los nodos de un clúster están muy conectados; la limitación de conectividad no es el riesgo típico.",
+        "b": "Incorrecta. En big data conviven datos estructurados y no estructurados; no faltan los estructurados.",
+        "c": "Correcta. La distribución del sistema multiplica interfaces, identidades y comunicaciones: la superficie de ataque es amplia.",
+        "d": "Incorrecta. La escalabilidad es una ventaja de estas plataformas, no un riesgo de seguridad."
+      }
+    },
+    "sistemas-t10-09": {
+      "section": "autorizacion",
+      "reasoning": "El tejido de seguridad recoge varios modelos de control de acceso: RBAC por roles, ABAC por atributos y PBAC por políticas. Limitar permisos según funciones equivale a limitarlos según el rol que desempeña cada usuario, que es exactamente RBAC.",
+      "options": {
+        "a": "Incorrecta. ABAC decide según atributos y contexto (departamento, hora, dispositivo), no según la función o rol.",
+        "b": "Incorrecta. IAM es el ámbito general de gestión de identidades y accesos; «IAM dinámico» no es un modelo de autorización por funciones.",
+        "c": "Correcta. RBAC (Role-Based Access Control) agrupa los permisos según el rol o función de cada usuario.",
+        "d": "Incorrecta. La biometría es una forma de autenticar (demostrar quién eres), no de limitar permisos."
+      }
+    },
+    "sistemas-t10-10": {
+      "section": "arquitectura-hadoop",
+      "reasoning": "En Hadoop, HDFS almacena y YARN (Yet Another Resource Negotiator), como indica su nombre, negocia y reparte los recursos de CPU y memoria del clúster entre las aplicaciones. La gestión de recursos es, por tanto, de YARN.",
+      "options": {
+        "a": "Incorrecta. HDFS se ocupa del almacenamiento distribuido.",
+        "b": "Incorrecta. Hive es una capa de consulta tipo SQL.",
+        "c": "Correcta. YARN coordina los recursos del clúster y la ejecución de las aplicaciones.",
+        "d": "Incorrecta. Pig es un lenguaje de scripts para transformar datos."
+      }
+    },
+    "sistemas-t10-11": {
+      "section": "cinco-v",
+      "reasoning": "Las 5 V que recoge el tema son volumen, variedad, velocidad, veracidad y valor. Hay que buscar la opción que contenga exactamente esas cinco y descartar las que cuelan términos ajenos.",
+      "options": {
+        "a": "Incorrecta. Disponibilidad y consistencia no son de las 5 V; faltan veracidad y valor.",
+        "b": "Incorrecta. Integridad y privacidad son objetivos de seguridad, no V del big data; faltan velocidad y veracidad.",
+        "c": "Correcta. Volumen, variedad, velocidad, veracidad y valor son las cinco características del tema.",
+        "d": "Incorrecta. Latencia y escalabilidad no forman parte de las 5 V; faltan variedad y velocidad."
+      }
+    },
+    "sistemas-t10-12": {
+      "section": "modelo-nist",
+      "reasoning": "El modelo del NIST define un tejido de seguridad y privacidad que atraviesa todas las funciones: ingesta, almacenamiento, procesamiento, análisis y presentación. La seguridad no es un añadido al final ni algo de una sola capa, sino un elemento transversal.",
+      "options": {
+        "a": "Incorrecta. Proteger solo el almacenamiento dejaría sin control la ingesta, el procesamiento y la presentación.",
+        "b": "Correcta. La seguridad debe integrarse de forma transversal en todas las funciones de la arquitectura.",
+        "c": "Incorrecta. Un perímetro en la ingesta no protege lo que ocurre dentro del clúster ni a los consumidores.",
+        "d": "Incorrecta. Limitarse a las consultas finales deja expuestas las fases anteriores."
+      }
+    },
+    "sistemas-t10-13": {
+      "section": "auditoria-privacidad-gobernanza",
+      "reasoning": "Igual que la etiqueta de trazabilidad de un alimento, el linaje de datos permite saber de dónde viene un dato, qué operaciones se le aplicaron, quién las hizo y cuándo. Es trazabilidad del origen y las transformaciones.",
+      "options": {
+        "a": "Correcta. El linaje es la trazabilidad del origen de los datos y de sus transformaciones.",
+        "b": "Incorrecta. Un inventario de tamaños y formatos describe el conjunto, pero no su historia.",
+        "c": "Incorrecta. Clasificar permisos es tarea de la autorización, no del linaje.",
+        "d": "Incorrecta. El calendario de retención pertenece a la gobernanza de copias, no al linaje."
+      }
+    },
+    "sistemas-t10-14": {
+      "section": "cifrado-y-claves",
+      "reasoning": "«En reposo» significa quieto, guardado. El cifrado en reposo protege los datos almacenados en archivos, tablas o discos, para que quien los obtenga sin la clave no pueda leerlos.",
+      "options": {
+        "a": "Incorrecta. Los datos que viajan entre componentes los protege el cifrado en tránsito.",
+        "b": "Incorrecta. Verificar la identidad de los servicios es tarea de la autenticación (por ejemplo, Kerberos o TLS mutuo).",
+        "c": "Incorrecta. Los permisos sobre columnas son cosa de la autorización granular.",
+        "d": "Correcta. El cifrado en reposo protege los datos almacenados."
+      }
+    },
+    "sistemas-t10-15": {
+      "section": "cifrado-y-claves",
+      "reasoning": "«En tránsito» significa en movimiento. Este cifrado, normalmente TLS, protege los datos durante las comunicaciones entre nodos, clientes y API, frente a intercepción o manipulación.",
+      "options": {
+        "a": "Incorrecta. Los datos guardados los protege el cifrado en reposo.",
+        "b": "Incorrecta. Las credenciales escritas en el código son un mal hábito que se resuelve con gestión de secretos, no con cifrado del canal.",
+        "c": "Correcta. El cifrado en tránsito protege los datos durante las comunicaciones entre componentes.",
+        "d": "Incorrecta. Los roles de los consumidores pertenecen al control de acceso."
+      }
+    },
+    "sistemas-t10-16": {
+      "section": "cifrado-y-claves",
+      "reasoning": "El KMS es el servidor de gestión de claves: crea y guarda las claves de cifrado, lleva sus versiones y controla quién puede usarlas. Su objeto son las claves, no los usuarios ni las tablas.",
+      "options": {
+        "a": "Incorrecta. Asignar permisos sobre tablas y columnas es función de herramientas de autorización como Ranger.",
+        "b": "Correcta. El KMS gestiona las claves, sus versiones y los permisos sobre quién puede usarlas.",
+        "c": "Incorrecta. El linaje lo registran herramientas de gobierno como Apache Atlas.",
+        "d": "Incorrecta. Verificar identidades con tiques es lo que hace Kerberos."
+      }
+    },
+    "sistemas-t10-17": {
+      "section": "cinco-v",
+      "reasoning": "La variedad significa que conviven datos estructurados, semiestructurados y no estructurados procedentes de muchas fuentes. Un control pensado para una tabla no sirve para un vídeo o un log, así que hace falta adaptar los controles a cada formato.",
+      "options": {
+        "a": "Correcta. Conviven formatos y fuentes distintos que necesitan controles apropiados para cada uno.",
+        "b": "Incorrecta. Es justo lo contrario: la variedad impide aplicar un único control sin adaptarlo.",
+        "c": "Incorrecta. Convertir los datos en texto no elimina los riesgos; puede incluso exponer información sensible.",
+        "d": "Incorrecta. La variedad obliga a proteger mucho más que las bases de datos estructuradas."
+      }
+    },
+    "sistemas-t10-18": {
+      "section": "autorizacion",
+      "reasoning": "El control de acceso granular decide con detalle sobre los datos: no solo si entras en la plataforma, sino qué tablas, filas, columnas o incluso celdas puedes ver según tus permisos.",
+      "options": {
+        "a": "Incorrecta. Dar acceso completo a quien consulta una tabla es lo opuesto a la granularidad.",
+        "b": "Incorrecta. La autenticación sola no limita qué datos concretos se ven.",
+        "c": "Incorrecta. Separar redes es segmentación, no autorización sobre columnas.",
+        "d": "Correcta. El acceso granular limita tablas, filas o columnas según los permisos de cada usuario."
+      }
+    },
+    "sistemas-t10-19": {
+      "section": "autenticacion",
+      "reasoning": "En la autenticación mutua ambos extremos demuestran su identidad. Así, un nodo o servicio falso no puede hacerse pasar por uno legítimo. Lo que reduce es la suplantación (spoofing) de servicios internos.",
+      "options": {
+        "a": "Incorrecta. La alteración de archivos almacenados se combate con integridad y cifrado en reposo, no con autenticación entre nodos.",
+        "b": "Incorrecta. El agotamiento de recursos se controla con límites de recursos y monitorización.",
+        "c": "Correcta. Al verificar los dos extremos, se dificulta que un nodo falso suplante a un servicio interno.",
+        "d": "Incorrecta. La exposición de copias de respaldo se trata con cifrado y control de acceso a esas copias."
+      }
+    },
+    "sistemas-t10-20": {
+      "section": "auditoria-privacidad-gobernanza",
+      "reasoning": "El tema pide auditar también los accesos denegados para detectar intentos de intrusión. Una serie de rechazos puede ser la huella de alguien probando a entrar donde no debe. No sustituye otros controles ni prueba por sí sola un ataque.",
+      "options": {
+        "a": "Incorrecta. Registrar no sustituye la comprobación de permisos: la autorización sigue siendo necesaria en cada petición.",
+        "b": "Correcta. Los accesos denegados pueden revelar intentos de acceso indebido y aportan contexto para la detección.",
+        "c": "Incorrecta. Una denegación puede ser un simple error; no demuestra por sí sola un ataque.",
+        "d": "Incorrecta. Los accesos exitosos también deben analizarse; un intruso con credenciales robadas tendrá éxito."
+      }
+    },
+    "sistemas-t10-21": {
+      "section": "nist-en-la-practica",
+      "reasoning": "Cifrar, autorizar con detalle y auditar consume CPU, añade latencia y usa red y almacenamiento. En streaming en tiempo real ese retraso puede ser crítico. El compromiso es equilibrar protección y rendimiento sin suprimir controles necesarios.",
+      "options": {
+        "a": "Correcta. Los controles robustos pueden añadir latencia y coste de recursos, y hay que equilibrarlos.",
+        "b": "Incorrecta. La velocidad no sustituye a ningún control; es un requisito más que hay que conciliar con la seguridad.",
+        "c": "Incorrecta. La auditoría extensa sí consume almacenamiento y rendimiento.",
+        "d": "Incorrecta. El cifrado añade latencia; es uno de los motivos para evaluarla, no para olvidarla."
+      }
+    },
+    "sistemas-t10-22": {
+      "section": "seguridad-hadoop",
+      "reasoning": "El tema afirma que el modo seguro de Hadoop requiere Kerberos para autenticar tanto a clientes como a servicios. Las demás opciones describen controles parciales que, además, no identifican a nadie.",
+      "options": {
+        "a": "Incorrecta. Los permisos de directorio son autorización y, sin autenticación, no se sabe a quién aplicarlos.",
+        "b": "Incorrecta. Las claves de cifrado protegen datos en reposo, no autentican usuarios ni servicios.",
+        "c": "Incorrecta. Los controles de red no verifican la identidad de cada servicio.",
+        "d": "Correcta. Kerberos aporta una identidad verificable a usuarios y servicios mediante tiques y keytabs."
+      }
+    },
+    "sistemas-t10-23": {
+      "section": "seguridad-hadoop",
+      "reasoning": "Las zonas de cifrado de HDFS son directorios especiales: lo que se escribe dentro se cifra y lo que se lee se descifra automáticamente, sin cambiar la aplicación, usando claves que gestiona el KMS.",
+      "options": {
+        "a": "Incorrecta. No son subredes ni sustituyen el cifrado: son el propio mecanismo de cifrado de archivos.",
+        "b": "Incorrecta. No son grupos de usuarios ni otorgan permisos.",
+        "c": "Correcta. Son directorios cuyo contenido se cifra de forma transparente con claves gestionadas por el KMS.",
+        "d": "Incorrecta. No son copias comprimidas y precisamente dependen de la gestión de claves."
+      }
+    },
+    "sistemas-t10-24": {
+      "section": "autorizacion",
+      "reasoning": "El analista debe ver ventas agregadas pero no columnas personales. Hace falta un control que actúe sobre columnas y datos concretos en el propio motor, es decir, una autorización granular, aplicando el mínimo privilegio.",
+      "options": {
+        "a": "Incorrecta. Autenticarlo y darle el conjunto completo le permitiría ver las columnas personales.",
+        "b": "Correcta. La autorización granular limita qué columnas y datos puede ver el analista.",
+        "c": "Incorrecta. El cifrado de disco no limita lo que ve un usuario autorizado, y los permisos globales lo dejan todo abierto.",
+        "d": "Incorrecta. Ocultar columnas solo en la interfaz no impide consultarlas por otra vía."
+      }
+    },
+    "sistemas-t10-25": {
+      "section": "autenticacion",
+      "reasoning": "Antes de confiar en un nodo que quiere unirse y entregar resultados, hay que verificar su identidad. Las comprobaciones superficiales (dirección, nombre, formato) se falsifican fácilmente; la autenticación mutua exige que demuestre quién es con credenciales válidas.",
+      "options": {
+        "a": "Correcta. La autenticación mutua de servicios verifica la legitimidad del nodo antes de aceptarlo.",
+        "b": "Incorrecta. Una dirección privada solo dice que está en la red interna, donde también puede haber un intruso.",
+        "c": "Incorrecta. Aceptar el nombre declarado sin validarlo facilita la suplantación.",
+        "d": "Incorrecta. Cualquier atacante puede imitar el formato de los mensajes."
+      }
+    },
+    "sistemas-t10-26": {
+      "section": "auditoria-privacidad-gobernanza",
+      "reasoning": "Para saber cómo se generó un resultado extraño hay que seguir su historia: de qué fuentes salió y qué transformaciones se le aplicaron. Eso es exactamente lo que guardan el linaje y los registros de transformaciones.",
+      "options": {
+        "a": "Incorrecta. El inventario de servidores no dice qué operaciones produjeron el dato.",
+        "b": "Incorrecta. La política de contraseñas no aporta información sobre el cálculo.",
+        "c": "Incorrecta. El último inicio de sesión es un dato aislado que no reconstruye las transformaciones.",
+        "d": "Correcta. El linaje y los registros de transformaciones permiten rastrear las fuentes y operaciones que produjeron el resultado."
+      }
+    },
+    "sistemas-t10-27": {
+      "section": "cifrado-y-claves",
+      "reasoning": "El cifrado de disco protege los datos en reposo, pero no lo que viaja por la red. Si los nodos se envían datos sin protección, falta el otro momento del cifrado: el cifrado en tránsito.",
+      "options": {
+        "a": "Incorrecta. Otra copia cifrada de los discos sigue sin proteger las comunicaciones.",
+        "b": "Incorrecta. Dar más permisos empeora la seguridad y no protege la red.",
+        "c": "Correcta. Falta cifrar las comunicaciones en tránsito entre nodos.",
+        "d": "Incorrecta. Un inventario de claves de almacenamiento no cifra el tráfico."
+      }
+    },
+    "sistemas-t10-28": {
+      "section": "cifrado-y-claves",
+      "reasoning": "Un cifrado solo es tan fuerte como el control sobre sus claves. Si muchos usuarios pueden usarlas sin control, el fallo está en la gestión de claves: hay que restringir permisos y separar funciones, como exige el tema para el KMS.",
+      "options": {
+        "a": "Incorrecta. Alargar la clave no sirve si cualquiera puede usarla.",
+        "b": "Correcta. Hay que reforzar los permisos y la separación de funciones en la gestión de claves.",
+        "c": "Incorrecta. La compresión no tiene relación con quién usa las claves.",
+        "d": "Incorrecta. Más copias no limitan el uso de las claves y aumentan la exposición."
+      }
+    },
+    "sistemas-t10-29": {
+      "section": "seguridad-hadoop",
+      "reasoning": "Hadoop no funciona solo: lo rodean herramientas de ingesta, Hive, Spark, API e interfaces. El tema advierte que un eslabón débil en cualquiera de ellos puede comprometer toda la plataforma, de modo que la seguridad debe abarcar el ecosistema completo.",
+      "options": {
+        "a": "Correcta. La seguridad debe cubrir todo el ecosistema, también los componentes conectados.",
+        "b": "Incorrecta. Proteger solo el almacenamiento deja expuestos los demás componentes, como la herramienta de ingesta.",
+        "c": "Incorrecta. Las identidades de los componentes conectados también deben verificarse y limitarse.",
+        "d": "Incorrecta. Permisos excesivos en la ingesta permiten alterar o leer datos que usa el resto de la plataforma."
+      }
+    },
+    "sistemas-t10-30": {
+      "section": "nist-en-la-practica",
+      "reasoning": "El mapeo del NIST asigna a la fase de ingesta la autenticación del proveedor, la validación del origen, el filtrado y el cifrado del tránsito. Los controles deben empezar en la entrada, no en fases posteriores.",
+      "options": {
+        "a": "Incorrecta. Validar solo al presentar los datos llega tarde: ya se habrán procesado y contaminado otros resultados.",
+        "b": "Incorrecta. Un formato correcto no demuestra que el origen sea legítimo ni que los datos sean fiables.",
+        "c": "Incorrecta. Cifrar en reposo protege el almacenamiento, pero no comprueba qué ha entrado.",
+        "d": "Correcta. En la ingesta hay que autenticar el origen y validar los datos recibidos."
+      }
+    }
+  }
+}

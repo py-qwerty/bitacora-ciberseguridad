@@ -12,7 +12,7 @@ main{overflow-x:clip}.question-panel,.study-question{backface-visibility:hidden}
 main{overflow-anchor:none}
 
 /* Master's study variants consume the inherited PER design tokens. */
-.answer-explanation{margin:15px 0;padding:16px;border:1px solid var(--color-border);border-radius:var(--radius-control);background:var(--color-tint);font-size:13px;line-height:1.8;overflow-wrap:anywhere}.answer-explanation h3{font-size:13px;margin-bottom:7px}.answer-explanation .source-note{font-size:10px;color:var(--color-muted);margin-top:12px}.course-sim{margin-top:24px}.field-label{display:block;font-size:12px;font-weight:700;margin-bottom:8px}#simulation-course{width:100%;min-height:48px;padding:10px;border:1px solid var(--color-border);border-radius:var(--radius-control);background:var(--color-surface);font-size:13px}#simulation-course:hover{border-color:var(--color-secondary)}#simulation-course:focus-visible{outline:3px solid var(--color-focus);outline-offset:3px}.simulation-result{margin-bottom:24px}.history-row>div{min-width:0}.history-row h2{overflow-wrap:anywhere}.practice-heading .eyebrow{max-width:300px;font-size:9px}.practice-feedback{overflow-wrap:anywhere}.practice-result .btn+.btn{margin-top:10px}
+.answer-explanation{margin:15px 0;padding:16px;border:1px solid var(--color-border);border-radius:var(--radius-control);background:var(--color-tint);font-size:13px;line-height:1.8;overflow-wrap:anywhere}.answer-explanation h3{font-size:13px;margin-bottom:7px}.answer-explanation .source-note{font-size:10px;color:var(--color-muted);margin-top:12px}.course-sim{display:flex;margin-top:24px}.field-label{display:block;font-size:12px;font-weight:700;margin-bottom:8px}#simulation-course{width:100%;min-height:48px;padding:10px;border:1px solid var(--color-border);border-radius:var(--radius-control);background:var(--color-surface);font-size:13px}#simulation-course:hover{border-color:var(--color-secondary)}#simulation-course:focus-visible{outline:3px solid var(--color-focus);outline-offset:3px}.simulation-result{margin-bottom:24px}.history-row>div{min-width:0}.history-row h2{overflow-wrap:anywhere}.practice-heading .eyebrow{max-width:300px;font-size:9px}.practice-feedback{overflow-wrap:anywhere}.practice-result .btn+.btn{margin-top:10px}
 
 #simulation-settings .exam-numbers{grid-template-columns:repeat(2,1fr)}
 
@@ -150,3 +150,8 @@ a.page-ref:hover{color:var(--color-primary)}
   .tema-layout{grid-template-columns:minmax(0,1fr)}
   .tema-index{position:static;max-height:none}
 }
+.tb-code{margin:14px 0 0}
+.tb-code figcaption{font-size:11px;font-weight:700;color:var(--color-muted);margin-bottom:4px}
+.tb-code pre{margin:0;padding:12px 14px;border-radius:var(--radius-control);background:#0f2b35;color:#e6f2f0;overflow-x:auto;font:12px/1.6 var(--font-mono);white-space:pre}
+.tema-index a[aria-current]{background:var(--color-tint);color:var(--color-primary);font-weight:600;box-shadow:inset 3px 0 0 var(--color-secondary)}
+.tema-index a[aria-current] small{color:var(--color-secondary)}

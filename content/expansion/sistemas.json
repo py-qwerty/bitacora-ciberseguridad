@@ -1,0 +1,1565 @@
+{
+  "course": "Seguridad en sistemas, aplicaciones y el big data",
+  "topics": [
+    {
+      "number": 1,
+      "title": "Seguridad en Windows Server",
+      "questions": [
+        {
+          "question": "Un administrador quiere proteger las claves que permiten comprobar el arranque de un servidor. ¿Qué componente descrito aporta almacenamiento protegido y mediciones del arranque?",
+          "options": [
+            "El archivo de intercambio sin cifrar",
+            "El módulo TPM 2.0 integrado en la raíz de confianza",
+            "La lista de excepciones del cortafuegos",
+            "La caché de resolución de nombres"
+          ],
+          "correct": 1,
+          "explanation": "TPM significa Trusted Platform Module, módulo de plataforma de confianza. Ayuda a custodiar secretos y medir componentes del arranque; una regla de red no protege por sí misma esas claves.",
+          "source_page": 7,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "1.2. Raíz de confianza y TPM"
+        },
+        {
+          "question": "Un servidor compatible debe recibir correcciones reduciendo interrupciones. ¿Qué mejora de Windows Server 2025 estudia el tema para ciertos entornos conectados a Azure Arc?",
+          "options": [
+            "Desactivar el servicio de actualización durante la carga alta",
+            "Mantener todas las sesiones abiertas indefinidamente",
+            "Aplicar actualizaciones compatibles mediante hotpatching, comprobando requisitos y limitaciones",
+            "Sustituir las correcciones por un análisis mensual de puertos"
+          ],
+          "correct": 2,
+          "explanation": "Hotpatching permite aplicar determinadas actualizaciones sin reiniciar. Deben comprobarse compatibilidad, alcance y condiciones: no significa que cualquier cambio del sistema pueda instalarse sin interrupciones.",
+          "source_page": 8,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "1.2. Hotpatching y mantenimiento"
+        },
+        {
+          "question": "Una empresa quiere detectar manipulación de mensajes al compartir archivos. ¿Qué propiedad aporta exigir firma SMB en ese intercambio?",
+          "options": [
+            "Confidencialidad completa de los archivos almacenados en todos los discos",
+            "Disponibilidad frente a cualquier saturación de red",
+            "Autorización automática para todos los miembros del dominio",
+            "Integridad y autenticidad de los mensajes del protocolo"
+          ],
+          "correct": 3,
+          "explanation": "SMB significa Server Message Block, protocolo para compartir archivos. La firma protege los mensajes frente a alteración y suplantación; debe distinguirse del cifrado y de los permisos sobre cada archivo.",
+          "source_page": 9,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "1.2. Firma de SMB"
+        },
+        {
+          "question": "Dos colectivos del mismo dominio requieren políticas de contraseña distintas. ¿Qué función del tema permite aplicar requisitos diferenciados sin confundirlos con permisos de archivos?",
+          "options": [
+            "Las directivas de contraseña granulares, FGPP",
+            "Los perfiles público y privado del cortafuegos",
+            "Los permisos de lectura del registro de aplicaciones",
+            "La tabla de rutas del servidor"
+          ],
+          "correct": 0,
+          "explanation": "FGPP significa Fine-Grained Password Policies, directivas de contraseña granulares. Permiten concretar requisitos para colectivos específicos; los perfiles de red y los permisos de archivos resuelven necesidades diferentes.",
+          "source_page": 17,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "1.3. Directivas granulares de contraseña"
+        },
+        {
+          "question": "La auditoría deja de conservar sucesos relevantes porque un registro es demasiado pequeño. ¿Qué ajuste debe revisarse además de decidir qué eventos auditar?",
+          "options": [
+            "La versión mínima del protocolo de compartición de archivos",
+            "Tamaño, retención y política de almacenamiento del registro",
+            "La complejidad de contraseña de los usuarios invitados",
+            "El número de subredes que tiene el dominio"
+          ],
+          "correct": 1,
+          "explanation": "Activar auditoría genera eventos, pero la capacidad y conservación del registro determinan cuánto historial permanece disponible. La configuración debe responder al volumen y al tiempo de investigación requerido.",
+          "source_page": 20,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "1.3. Propiedades del registro de eventos"
+        },
+        {
+          "question": "Un usuario anónimo logra traducir un identificador de seguridad conocido al nombre de una cuenta administrativa. ¿Qué opción del tema debe examinarse?",
+          "options": [
+            "La duración del tique de servicio de cualquier usuario",
+            "El tamaño máximo de los mensajes del registro de aplicaciones",
+            "La traducción anónima SID/nombre en las opciones de acceso de red",
+            "La política de firma de documentos de Office"
+          ],
+          "correct": 2,
+          "explanation": "SID significa Security Identifier, identificador de seguridad. Permitir su traducción anónima puede revelar nombres de cuentas y facilitar ataques dirigidos; es una cuestión de exposición de identidad, no de tamaño de registros.",
+          "source_page": 20,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "1.3. Traducción anónima de identificadores"
+        },
+        {
+          "question": "Una cuenta necesaria para un servicio no debe abrir sesiones interactivas de escritorio remoto. ¿Qué configuración corresponde revisar?",
+          "options": [
+            "La caducidad de todos los certificados de la organización",
+            "El nombre de la unidad organizativa como único control",
+            "La caché de las credenciales del navegador del administrador",
+            "Los derechos que permiten o deniegan ese tipo de inicio de sesión"
+          ],
+          "correct": 3,
+          "explanation": "Las asignaciones de derechos de usuario distinguen formas de acceso, como red, sesión local o escritorio remoto. Que una cuenta ejecute un servicio no implica que deba iniciar sesiones interactivas.",
+          "source_page": 23,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "1.3. Asignación de derechos de usuario"
+        },
+        {
+          "question": "Una carpeta de configuración del servidor solo necesita ser modificada por administradores. ¿Qué medida limita su alteración por usuarios ordinarios?",
+          "options": [
+            "Asignar permisos de escritura solo a las identidades que los necesitan",
+            "Ocultar la carpeta manteniendo escritura para todos",
+            "Cambiar su extensión sin modificar sus permisos",
+            "Permitir escritura a usuarios autenticados para facilitar soporte"
+          ],
+          "correct": 0,
+          "explanation": "La protección del sistema de archivos debe reflejar las operaciones necesarias. Ocultar o renombrar una carpeta no elimina un permiso de escritura ya concedido.",
+          "source_page": 24,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "1.3. Protección del sistema de archivos"
+        },
+        {
+          "question": "Dos conjuntos de directivas contienen valores contradictorios y el equipo necesita documentar las diferencias. ¿Qué uso de Policy Analyzer encaja?",
+          "options": [
+            "Sustituir los conjuntos por reglas aleatorias hasta que no haya avisos",
+            "Comparar los conjuntos, localizar incoherencias y exportar el resultado",
+            "Cambiar únicamente los nombres de los objetos de directiva",
+            "Exportar las cuentas del dominio sin revisar sus configuraciones"
+          ],
+          "correct": 1,
+          "explanation": "Policy Analyzer analiza colecciones de objetos de directiva de grupo y puede resaltar redundancias o conflictos. Exportar la comparación facilita revisar la configuración antes de aplicarla.",
+          "source_page": 29,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "1.4. Detección de conflictos entre políticas"
+        },
+        {
+          "question": "Una organización necesita evaluar la configuración técnica de equipos Windows y Linux frente a las plantillas del tema. ¿Qué herramienta debe estudiar?",
+          "options": [
+            "Únicamente el visor de imágenes del sistema",
+            "Un analizador de tráfico usado sin las plantillas de cumplimiento",
+            "CLARA y su variante de evaluación para Linux",
+            "El editor de directivas de un único equipo Windows como sustituto de toda evaluación"
+          ],
+          "correct": 2,
+          "explanation": "CLARA es la herramienta del Centro Criptológico Nacional para evaluar medidas técnicas de seguridad. El tema contempla variantes para Windows y Linux; el resultado debe interpretarse con el perfil y las adaptaciones del entorno.",
+          "source_page": 30,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "1.5. Evaluación de cumplimiento con CLARA"
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "title": "Seguridad en aplicaciones web. Introducción",
+      "questions": [
+        {
+          "question": "Una búsqueda actualiza resultados mientras el usuario sigue escribiendo, sin esperar una recarga completa. ¿Qué comportamiento de comunicación se está aprovechando?",
+          "options": [
+            "Una nueva descarga completa del documento en cada pulsación",
+            "Procesamiento obligatorio de todas las búsquedas en el servidor DNS",
+            "Peticiones asíncronas y actualización parcial de la interfaz",
+            "Una conexión sin ninguna respuesta del servidor"
+          ],
+          "correct": 2,
+          "explanation": "AJAX significa Asynchronous JavaScript and XML, JavaScript y XML asíncronos. Permite intercambiar datos y actualizar partes de la página sin bloquear toda la interacción ni recargar el documento completo.",
+          "source_page": 13,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "2.2. AJAX y comunicación asíncrona"
+        },
+        {
+          "question": "Una aplicación progresiva necesita declarar nombre, iconos y forma de apertura al instalarse. ¿Dónde se describe esa información?",
+          "options": [
+            "En la tabla de permisos del servidor de base de datos",
+            "En una cookie de sesión de cada visitante",
+            "En el certificado del proveedor de acceso a Internet",
+            "En el manifiesto de la aplicación web"
+          ],
+          "correct": 3,
+          "explanation": "PWA significa Progressive Web Application, aplicación web progresiva. Su manifiesto describe aspectos de presentación e instalación; no sustituye la lógica, la caché ni los controles de acceso.",
+          "source_page": 17,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "2.2. Manifiesto de una PWA"
+        },
+        {
+          "question": "Una aplicación debe recuperar recursos ya guardados cuando falla la conexión. ¿Qué componente de una PWA puede interceptar peticiones y servir una copia de caché?",
+          "options": [
+            "El service worker registrado por la aplicación",
+            "El registro de auditoría del sistema operativo remoto",
+            "La hoja de estilo por sí sola",
+            "El administrador de usuarios de la base de datos"
+          ],
+          "correct": 0,
+          "explanation": "Un service worker es un proceso del navegador que puede gestionar peticiones y caché bajo sus condiciones de seguridad. La interfaz debe distinguir los datos disponibles de las operaciones que todavía requieren conexión.",
+          "source_page": 16,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "2.2. Service workers y trabajo desconectado"
+        },
+        {
+          "question": "En una interfaz MVVM, el equipo quiere cambiar la presentación sin mezclar cada evento visual con reglas de negocio. ¿Qué pieza expone estado y operaciones a la vista?",
+          "options": [
+            "El proveedor de resolución de nombres",
+            "El ViewModel",
+            "El servidor de correo del dominio",
+            "La tabla física de copias de seguridad"
+          ],
+          "correct": 1,
+          "explanation": "MVVM significa Model–View–ViewModel: modelo, vista y modelo de vista. El ViewModel media entre el estado y la presentación, facilitando separar responsabilidades y probar la interacción.",
+          "source_page": 21,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "2.2. Responsabilidades MVVM"
+        },
+        {
+          "question": "El modelo de vista solicita al servidor los pedidos de un cliente. ¿Qué responsabilidad debe mantener el servidor aunque la interfaz ya haya ocultado opciones no permitidas?",
+          "options": [
+            "Confiar en que solo el ViewModel legítimo enviará la petición",
+            "Autorizar según el texto visible del botón pulsado",
+            "Verificar identidad y autorización antes de devolver los pedidos",
+            "Aceptar cualquier identidad incluida por la vista sin comprobarla"
+          ],
+          "correct": 2,
+          "explanation": "API significa Application Programming Interface, interfaz de programación de aplicaciones. Una petición puede fabricarse fuera de la interfaz; las reglas de acceso deben aplicarse donde se sirven los datos.",
+          "source_page": 23,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "2.2. ViewModel y API"
+        },
+        {
+          "question": "Tras dividir un sistema en muchos servicios, aparecen más despliegues, configuraciones y comunicaciones que supervisar. ¿Qué coste arquitectónico ilustra?",
+          "options": [
+            "Eliminación de la necesidad de monitorización central",
+            "Reducción automática del número de identidades de servicio",
+            "Ausencia de dependencias entre componentes por estar separados",
+            "Mayor complejidad operacional del sistema distribuido"
+          ],
+          "correct": 3,
+          "explanation": "Los microservicios permiten desplegar componentes por separado, pero añaden comunicación, orquestación y observabilidad. La independencia de despliegue no elimina la coordinación del sistema completo.",
+          "source_page": 20,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "2.2. Coste operativo de microservicios"
+        },
+        {
+          "question": "Antes de integrar un cliente, se quiere consultar qué métodos anuncia un recurso. ¿Qué método del protocolo web está previsto para esa consulta?",
+          "options": [
+            "OPTIONS",
+            "DELETE",
+            "CONNECT",
+            "HEAD"
+          ],
+          "correct": 0,
+          "explanation": "HTTP significa HyperText Transfer Protocol, protocolo de transferencia de hipertexto. OPTIONS consulta capacidades; HEAD obtiene cabeceras de una representación y CONNECT establece un túnel a través de un intermediario.",
+          "source_page": 27,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "2.3. Método OPTIONS"
+        },
+        {
+          "question": "Una aplicación solo utiliza lectura y envío de formularios, pero el servidor habilita métodos adicionales innecesarios. ¿Qué revisión reduce su superficie de ataque?",
+          "options": [
+            "Conservarlos todos porque no aparecen en los botones de la interfaz",
+            "Deshabilitar los métodos que no necesita y verificar los que se mantienen",
+            "Confiar en que cambiar el nombre del recurso impide utilizarlos",
+            "Autorizar cualquier método si la petición incluye una cookie"
+          ],
+          "correct": 1,
+          "explanation": "HTTP es el protocolo de transferencia de hipertexto. Las capacidades publicadas por el servidor deben ajustarse a la aplicación real; ocultarlas en la interfaz no evita peticiones construidas por terceros.",
+          "source_page": 26,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "2.3. Superficie de métodos HTTP"
+        },
+        {
+          "question": "Un formulario envía una contraseña en el cuerpo de una petición POST. ¿Qué debe comprobarse para protegerla durante el transporte?",
+          "options": [
+            "Que POST cifra automáticamente su cuerpo sin necesidad de TLS",
+            "Que el nombre del campo no contenga la palabra contraseña",
+            "Que la comunicación esté protegida mediante HTTPS correctamente validado",
+            "Que el navegador elimine todas las cabeceras de la respuesta"
+          ],
+          "correct": 2,
+          "explanation": "POST sitúa normalmente los campos en el cuerpo, pero no los cifra. HTTPS es HTTP protegido con TLS, seguridad de la capa de transporte; deben validarse también el destino y su certificado.",
+          "source_page": 29,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "2.3. POST y confidencialidad"
+        },
+        {
+          "question": "Una aplicación no cambia de código propio, pero su entorno y dependencias siguen evolucionando. ¿Qué conclusión justifica mantener el seguimiento de seguridad?",
+          "options": [
+            "Una versión aprobada queda protegida permanentemente contra nuevas amenazas",
+            "Solo se necesitan revisiones si cambia el diseño visual",
+            "Las pruebas iniciales sustituyen la respuesta a incidentes posterior",
+            "Pueden aparecer riesgos nuevos aunque no se modifique el código de la aplicación"
+          ],
+          "correct": 3,
+          "explanation": "La seguridad depende también de bibliotecas, plataforma, configuración y amenazas. El mantenimiento incluye vigilancia y correcciones, no únicamente nuevas funciones del código propio.",
+          "source_page": 35,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "2.4. Mantenimiento y evolución de riesgos"
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "title": "Vulnerabilidades en aplicaciones web",
+      "questions": [
+        {
+          "question": "Un script toma texto del fragmento de la dirección y lo inserta como contenido ejecutable, sin enviarlo al servidor. ¿Dónde debe investigarse la causa principal?",
+          "options": [
+            "Exclusivamente en el constructor de consultas de la base de datos",
+            "En el descifrado de archivos del servidor de almacenamiento",
+            "En el intercambio de tiques del dominio",
+            "En el tratamiento inseguro del DOM del navegador"
+          ],
+          "correct": 3,
+          "explanation": "DOM significa Document Object Model, modelo de objetos del documento. Un XSS, Cross-Site Scripting, puede producirse íntegramente en el cliente si datos no fiables llegan a una función que interpreta código.",
+          "source_page": 10,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "3.2. XSS basado en DOM"
+        },
+        {
+          "question": "Un parámetro no muestra resultados de consulta, pero cambia de forma reproducible una respuesta según una condición introducida. ¿Qué permite concluir sobre la ausencia de errores visibles?",
+          "options": [
+            "No descarta una inyección SQL ciega",
+            "Demuestra que la aplicación usa consultas parametrizadas",
+            "Garantiza que la base de datos no recibe ese parámetro",
+            "Prueba que el problema es necesariamente una cookie caducada"
+          ],
+          "correct": 0,
+          "explanation": "SQL es Structured Query Language, lenguaje de consulta estructurado. Una inyección ciega puede inferirse por cambios de comportamiento aunque la aplicación no muestre consultas ni mensajes de error.",
+          "source_page": 7,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "3.2. Inyección SQL ciega"
+        },
+        {
+          "question": "Una función vulnerable ejecuta una orden, pero no devuelve su salida al cliente. ¿Qué afirmación es correcta al valorar el riesgo?",
+          "options": [
+            "La orden deja de ejecutarse si no se imprime su resultado",
+            "La falta de salida visible no impide ejecutar acciones en el servidor",
+            "Solo pueden existir fallos de presentación en ese escenario",
+            "La ejecución necesita siempre una ventana de terminal visible para la víctima"
+          ],
+          "correct": 1,
+          "explanation": "Una inyección de comandos puede ser ciega: los efectos ocurren aunque no aparezcan en la respuesta. Debe eliminarse la interpretación de entrada como órdenes, no limitarse a ocultar su salida.",
+          "source_page": 13,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "3.2. Inyección de comandos ciega"
+        },
+        {
+          "question": "Una respuesta manipulada queda almacenada por un intermediario y se entrega a usuarios que no enviaron la petición maliciosa. ¿Qué amplifica el impacto?",
+          "options": [
+            "La regeneración segura de la sesión de cada usuario",
+            "La verificación correcta del certificado del intermediario",
+            "El almacenamiento y reutilización de la respuesta contaminada",
+            "La eliminación de las respuestas de la caché antes de reutilizarlas"
+          ],
+          "correct": 2,
+          "explanation": "El envenenamiento de caché distribuye una respuesta falsa mediante una copia compartida. Corregir la construcción de respuestas y controlar qué se almacena evita que una petición afecte a visitas posteriores.",
+          "source_page": 16,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "3.2. Envenenamiento de caché"
+        },
+        {
+          "question": "Un atacante consigue que la aplicación incluya un archivo local con contenido interpretable. ¿Por qué el impacto puede superar la simple lectura de archivos?",
+          "options": [
+            "Porque cualquier lectura local borra automáticamente las copias de seguridad",
+            "Porque un archivo local cambia la clave privada del navegador",
+            "Porque la inclusión impide al servidor ejecutar cualquier otro proceso",
+            "Porque el mecanismo de inclusión puede interpretar ese contenido como código"
+          ],
+          "correct": 3,
+          "explanation": "LFI significa Local File Inclusion, inclusión local de archivos. El riesgo depende de cómo se utiliza el archivo: incluirlo en un intérprete puede ejecutar contenido, mientras una descarga solo entrega bytes.",
+          "source_page": 18,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "3.2. Inclusión local y ejecución"
+        },
+        {
+          "question": "Un módulo permite indicar una dirección remota que después interpreta como parte de la aplicación. ¿Qué cambio ataca directamente ese diseño inseguro?",
+          "options": [
+            "Eliminar la selección remota y mapear opciones permitidas a recursos de confianza",
+            "Añadir más memoria al intérprete manteniendo cualquier dirección admitida",
+            "Ocultar la dirección elegida en la interfaz sin validarla en el servidor",
+            "Cambiar el agente de usuario de la conexión remota"
+          ],
+          "correct": 0,
+          "explanation": "RFI significa Remote File Inclusion, inclusión remota de archivos. Una lista cerrada de recursos evita convertir una dirección controlada por terceros en código de la aplicación.",
+          "source_page": 20,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "3.2. Inclusión remota y configuración"
+        },
+        {
+          "question": "Un importador de imágenes acepta destinos internos y alcanza el servicio de metadatos de la máquina. ¿Qué riesgo adicional debe investigarse?",
+          "options": [
+            "Únicamente pérdida de calidad visual de las imágenes",
+            "Exposición de información o credenciales disponibles para esa instancia",
+            "Cambio obligatorio del algoritmo de firma del certificado público",
+            "Desactivación automática de las reglas del navegador del administrador"
+          ],
+          "correct": 1,
+          "explanation": "SSRF significa Server-Side Request Forgery: el servidor realiza una petición inducida. Alcanzar metadatos puede revelar información sensible del entorno; limitar solo el formato de la imagen no controla el destino.",
+          "source_page": 25,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "3.2. SSRF y metadatos de nube"
+        },
+        {
+          "question": "Se prueban pares de usuario y contraseña filtrados en otro servicio y algunas cuentas permiten entrar. ¿Qué problema muestran las credenciales reutilizadas?",
+          "options": [
+            "Un certificado válido garantiza que la contraseña no ha sido filtrada",
+            "La ausencia de errores de aplicación demuestra que no hay ataque",
+            "Un secreto comprometido en un sitio puede servir en otro que comparta la contraseña",
+            "Una contraseña reutilizada equivale a un segundo factor independiente"
+          ],
+          "correct": 2,
+          "explanation": "La reutilización amplía el alcance de una filtración. Contraseñas únicas, autenticación multifactor y controles contra intentos automatizados se complementan para reducir ese riesgo.",
+          "source_page": 26,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "3.2. Contraseñas reutilizadas y autenticación"
+        },
+        {
+          "question": "Una interfaz bloquea cambios de rol, pero la función del servidor acepta la misma operación al llamarla directamente. ¿Qué defecto debe corregirse?",
+          "options": [
+            "La falta de una animación que confirme el cambio",
+            "La longitud del nombre mostrado al usuario",
+            "El tamaño del archivo de estilos de la página",
+            "La ausencia de autorización en la función que ejecuta el cambio"
+          ],
+          "correct": 3,
+          "explanation": "Los controles de acceso deben comprobarse en el servidor y en la operación concreta. La interfaz puede orientar al usuario, pero no constituye una barrera para peticiones construidas directamente.",
+          "source_page": 28,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "3.2. Autorización de funciones"
+        },
+        {
+          "question": "Un informe mezcla el identificador de una vulnerabilidad publicada con el tipo de error de programación que la origina. ¿Qué distinción organiza mejor ambos datos?",
+          "options": [
+            "CVE identifica un caso divulgado y CWE clasifica una debilidad",
+            "CWE identifica exclusivamente una dirección de red y CVE un usuario",
+            "CVE es siempre una prueba de explotación y CWE una medida de disponibilidad",
+            "Ambos identificadores expresan necesariamente la puntuación de gravedad"
+          ],
+          "correct": 0,
+          "explanation": "CVE significa Common Vulnerabilities and Exposures, catálogo de vulnerabilidades divulgadas; CWE, Common Weakness Enumeration, catálogo de debilidades. Distinguir instancia y categoría ayuda a relacionar hallazgos sin confundir su gravedad.",
+          "source_page": 30,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "3.2. Diferencia entre CVE y CWE"
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "title": "Autenticación en las aplicaciones web",
+      "questions": [
+        {
+          "question": "Un recurso protegido devuelve un estado 401 y la cabecera WWW-Authenticate. ¿Qué está solicitando al cliente en ese flujo?",
+          "options": [
+            "Que aporte credenciales mediante el esquema anunciado",
+            "Que modifique el contenido del recurso antes de autenticarse",
+            "Que trate el recurso como autorizado aunque no envíe credenciales",
+            "Que cambie la dirección del servidor de resolución de nombres"
+          ],
+          "correct": 0,
+          "explanation": "En HTTP, protocolo de transferencia de hipertexto, el servidor anuncia un desafío de autenticación. El código 401 no concede acceso; el cliente debe responder con credenciales adecuadas y proteger su transporte.",
+          "source_page": 8,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "4.2. Desafío de autenticación Basic"
+        },
+        {
+          "question": "Un servidor Digest reutiliza indefinidamente el mismo desafío. ¿Qué propiedad del desafío debería gestionar para dificultar reutilizar respuestas capturadas?",
+          "options": [
+            "La longitud del nombre de la página de acceso",
+            "Su renovación y validez limitada",
+            "El color del indicador de sesión iniciada",
+            "La posición de la contraseña dentro del formulario"
+          ],
+          "correct": 1,
+          "explanation": "Digest calcula respuestas vinculadas a un nonce, valor de desafío. Si se admite el mismo contexto indefinidamente, aumenta la posibilidad de reutilizar respuestas; generar un hash no sustituye el control de validez.",
+          "source_page": 11,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "4.2. Desafíos Digest y repetición"
+        },
+        {
+          "question": "Un adversario reenvía un intercambio de autenticación válido a otro servicio en tiempo real. ¿Qué distingue esa retransmisión de adivinar una contraseña?",
+          "options": [
+            "Exige probar sistemáticamente todas las contraseñas posibles",
+            "Solo puede ocurrir si el usuario publica su contraseña en una página",
+            "Aprovecha el intercambio de la víctima sin necesitar conocer su contraseña en claro",
+            "Consiste en descifrar necesariamente la base de cuentas completa"
+          ],
+          "correct": 2,
+          "explanation": "NTLM significa NT LAN Manager. Una retransmisión puede abusar de un intercambio auténtico en otro contexto; por eso deben estudiarse las protecciones de vinculación y del protocolo, no solo la complejidad del secreto.",
+          "source_page": 17,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "4.3. Retransmisión de NTLM"
+        },
+        {
+          "question": "Una investigación descubre compromiso de la clave de la cuenta de concesión de tiques del dominio. ¿Por qué debe considerarse un alcance especialmente grave?",
+          "options": [
+            "Solo afecta a la presentación del formulario de una aplicación aislada",
+            "Impide necesariamente usar todos los servicios y revela siempre el ataque al instante",
+            "Únicamente permite leer el nombre público del dominio",
+            "Puede permitir falsificar tiques de autenticación de amplio alcance"
+          ],
+          "correct": 3,
+          "explanation": "El ataque golden ticket falsifica tiques de Kerberos utilizando el secreto de la cuenta correspondiente. El compromiso de esa raíz de confianza requiere una respuesta más amplia que restablecer una cuenta de usuario corriente.",
+          "source_page": 21,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "4.3. Golden ticket"
+        },
+        {
+          "question": "Se falsifica un tique para un servicio mediante el secreto de su cuenta, sin comprometer el secreto central de concesión. ¿Qué alcance distingue el ataque del golden ticket?",
+          "options": [
+            "Se orienta al servicio cuya clave ha sido comprometida",
+            "Permite necesariamente firmar cualquier certificado público de Internet",
+            "Se limita a cambiar la contraseña del navegador del atacante",
+            "Solo consiste en observar tamaños de paquetes cifrados"
+          ],
+          "correct": 0,
+          "explanation": "Silver ticket designa una falsificación dirigida a un servicio concreto. La clave comprometida delimita el contexto del abuso; no equivale al compromiso de toda la infraestructura central de Kerberos.",
+          "source_page": 22,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "4.3. Silver ticket"
+        },
+        {
+          "question": "Una aplicación incluye un dato confidencial en el cuerpo de un token firmado y lo entrega al navegador. ¿Qué suposición debe evitar?",
+          "options": [
+            "Que el receptor pueda comprobar la firma con la clave correspondiente",
+            "Que firmar o codificar en Base64 vuelve secreto el contenido",
+            "Que el token tenga una estructura definida",
+            "Que la alteración del cuerpo pueda invalidar una firma bien verificada"
+          ],
+          "correct": 1,
+          "explanation": "JWT significa JSON Web Token, token web JSON. Un token firmado ordinario protege integridad, pero sus partes codificadas pueden leerse; los secretos no deben incluirse confiando en esa codificación.",
+          "source_page": 25,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "4.4. Lectura del contenido de JWT"
+        },
+        {
+          "question": "Un token está firmado correctamente, pero su campo nbf indica una hora futura. ¿Qué decisión respeta esa restricción temporal?",
+          "options": [
+            "Aceptarlo porque la firma anula cualquier condición temporal",
+            "Sustituir nbf por la hora elegida por el cliente",
+            "No aceptarlo antes de la fecha de inicio de validez permitida",
+            "Usar iat como permiso para ignorar el resto de campos"
+          ],
+          "correct": 2,
+          "explanation": "En un JWT, JSON Web Token, nbf significa not before, no antes de. La firma no elimina las restricciones del contenido; debe comprobarse la ventana temporal con una política de reloj razonable.",
+          "source_page": 26,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "4.4. Validez temporal nbf"
+        },
+        {
+          "question": "Una aplicación exige certificado de cliente, pero acepta certificados emitidos por cualquier autoridad sin política de confianza. ¿Qué aspecto queda sin resolver?",
+          "options": [
+            "Si el cliente logra establecer una conexión de red física",
+            "Si el documento de ayuda incluye el nombre del protocolo",
+            "Si la respuesta contiene un tipo de letra compatible",
+            "Qué identidades y emisores son realmente de confianza para acceder"
+          ],
+          "correct": 3,
+          "explanation": "mTLS significa mutual Transport Layer Security, seguridad de transporte mutua. Comprobar un certificado requiere una cadena y política de confianza; presentar cualquier certificado no demuestra pertenecer al conjunto autorizado.",
+          "source_page": 35,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "4.4. Confianza en mTLS"
+        },
+        {
+          "question": "El formulario responde usuario inexistente para un nombre y contraseña incorrecta para otro. ¿Qué información facilita a un atacante?",
+          "options": [
+            "Distinguir qué cuentas existen para concentrar intentos posteriores",
+            "Descifrar directamente todas las contraseñas de la base de datos",
+            "Obtener automáticamente un segundo factor de cada usuario",
+            "Modificar el reloj del servidor de autenticación"
+          ],
+          "correct": 0,
+          "explanation": "Mensajes distintos pueden revelar existencia de cuentas aunque no permitan entrar. Una respuesta externa adecuada debe evitar ese detalle y conservar información útil en los registros internos protegidos.",
+          "source_page": 39,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "4.4. Enumeración de cuentas"
+        },
+        {
+          "question": "Un equipo recibe un token de acceso OAuth 2.0 y pretende usarlo sin más como prueba de identidad para iniciar sesión. ¿Qué capa del tema cubre específicamente autenticación sobre OAuth?",
+          "options": [
+            "Una consulta del tamaño del token en bytes",
+            "OpenID Connect y su validación de identidad",
+            "La conversión del token a un nombre de archivo",
+            "El reenvío del código de autorización a cualquier servicio externo"
+          ],
+          "correct": 1,
+          "explanation": "OAuth 2.0 organiza autorización delegada. OpenID Connect añade autenticación y datos de identidad; el consumidor debe validar el tipo de token, emisor, audiencia y condiciones del flujo que utiliza.",
+          "source_page": 45,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "4.5. Autenticación y autorización federadas"
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "title": "Gestión de sesiones y autorización en aplicaciones web",
+      "questions": [
+        {
+          "question": "Una aplicación quiere reducir el envío de la cookie en peticiones iniciadas desde otros sitios. ¿Qué atributo ayuda a expresar esa política?",
+          "options": [
+            "Expires usado como sustituto de todas las verificaciones de origen",
+            "SameSite con un valor adecuado al flujo de la aplicación",
+            "El nombre de la cookie como único control",
+            "Un identificador de sesión más corto para reducir el tráfico"
+          ],
+          "correct": 1,
+          "explanation": "SameSite limita determinados envíos de cookies entre sitios. Debe elegirse según el flujo y combinarse con controles contra falsificación de solicitudes; no reemplaza la validación de tokens para acciones sensibles.",
+          "source_page": 19,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "5.2. SameSite y cookies"
+        },
+        {
+          "question": "Tras cerrar sesión se borra la cookie del navegador, pero el servidor sigue aceptando su valor anterior. ¿Qué operación falta?",
+          "options": [
+            "Cambiar únicamente la etiqueta visual del botón de salida",
+            "Guardar la cookie eliminada en una variable del cliente",
+            "Invalidar el estado o credencial de sesión en el servidor",
+            "Mantener la sesión hasta que el usuario cambie de navegador"
+          ],
+          "correct": 2,
+          "explanation": "Eliminar una copia local no revoca otras copias capturadas. El cierre debe impedir que el identificador anterior siga autorizando peticiones en el servidor.",
+          "source_page": 20,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "5.2. Cierre de sesión y estado servidor"
+        },
+        {
+          "question": "Una sesión sigue recibiendo actividad automática aunque el usuario no interactúa. ¿Qué límite evita prolongarla indefinidamente aun cuando se renueva la inactividad?",
+          "options": [
+            "Un nombre de cookie distinto en cada página visitada",
+            "Una comprobación exclusiva del tamaño del identificador",
+            "Un plazo de caché para los archivos de estilos",
+            "Un tiempo máximo absoluto desde el inicio de la sesión"
+          ],
+          "correct": 3,
+          "explanation": "El tiempo absoluto limita la duración total y no debe renovarse por actividad. Se diferencia del tiempo de inactividad, que puede actualizarse con nuevas peticiones según la política.",
+          "source_page": 24,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "5.2. Dos límites temporales coordinados"
+        },
+        {
+          "question": "El tema separa el proceso que interpreta contenido web y lo ejecuta con privilegios reducidos. ¿Qué ventaja aporta esa separación si se compromete ese proceso?",
+          "options": [
+            "Limitar los recursos del sistema a los que puede acceder",
+            "Conceder al contenido los permisos completos del administrador",
+            "Eliminar la necesidad de comprobar permisos en el servidor",
+            "Permitir que cualquier página lea las sesiones de otras páginas"
+          ],
+          "correct": 0,
+          "explanation": "Una sandbox o entorno aislado reduce el alcance del proceso comprometido. Es una barrera adicional del cliente; los controles de autorización del servidor siguen siendo necesarios.",
+          "source_page": 29,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "5.3. Aislamiento del navegador"
+        },
+        {
+          "question": "Una operación verifica permiso sobre un archivo y después otro proceso cambia su destino antes de abrirlo. ¿Qué diseño reduce esa carrera?",
+          "options": [
+            "Repetir solo el nombre del usuario en la interfaz",
+            "Unir comprobación y uso mediante una operación atómica o bloqueo apropiado",
+            "Añadir una pausa entre comprobación y apertura",
+            "Hacer la comprobación únicamente al arrancar el servidor"
+          ],
+          "correct": 1,
+          "explanation": "TOCTOU significa Time Of Check To Time Of Use, intervalo entre comprobar y usar. La condición comprobada debe seguir siendo válida al actuar sobre el mismo recurso.",
+          "source_page": 33,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "5.3. Carrera entre comprobación y uso"
+        },
+        {
+          "question": "El propietario de un recurso puede conceder permisos sobre él a otros usuarios dentro de la política del sistema. ¿Qué modelo del tema describe esa delegación?",
+          "options": [
+            "Un identificador de sesión sin estado",
+            "Un token de prevención de solicitudes entre sitios",
+            "Control de acceso discrecional, DAC",
+            "Una directiva de expiración de caché"
+          ],
+          "correct": 2,
+          "explanation": "DAC significa Discretionary Access Control, control de acceso discrecional. La capacidad del propietario para conceder acceso lo distingue de agrupar todos los permisos exclusivamente en roles fijos.",
+          "source_page": 34,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "5.3. Control de acceso discrecional"
+        },
+        {
+          "question": "Un servidor intercambia códigos de autorización y tokens a través de una conexión sin cifrar. ¿Qué riesgo debe corregirse en ese tramo?",
+          "options": [
+            "Únicamente la pérdida de colores de la página de consentimiento",
+            "La imposibilidad matemática de emitir tokens nuevos",
+            "El cambio automático de todos los roles de usuario",
+            "Intercepción y reutilización del material de acceso por un observador"
+          ],
+          "correct": 3,
+          "explanation": "Los intercambios OAuth deben protegerse con TLS, seguridad de la capa de transporte. Un token capturado puede conceder acceso a quien lo presente aunque el inicio de sesión original fuera correcto.",
+          "source_page": 37,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "5.3. Intercambio seguro de tokens OAuth"
+        },
+        {
+          "question": "Un flujo de autorización acepta redirigir el código a cualquier dirección indicada por la petición. ¿Qué verificación limita la entrega a un destino del atacante?",
+          "options": [
+            "Comprobar la dirección de redirección contra las registradas y autorizadas",
+            "Aceptar cualquier destino que contenga el nombre de la empresa como texto",
+            "Autorizar toda dirección que responda con estado 200",
+            "Confiar en el origen del logotipo mostrado al usuario"
+          ],
+          "correct": 0,
+          "explanation": "URI significa Uniform Resource Identifier, identificador uniforme de recurso. Una dirección no autorizada puede recibir el código; comprobar el destino evita trasladar la confianza a un sitio controlado por terceros.",
+          "source_page": 38,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "5.3. Restricción de URI de redirección"
+        },
+        {
+          "question": "El servidor detecta que un mismo código de autorización se presenta varias veces para obtener tokens. ¿Qué respuesta de seguridad recoge el tema?",
+          "options": [
+            "Emitir otro token en cada intento porque el código ya se verificó una vez",
+            "Rechazar su reutilización y revisar o revocar los tokens asociados conforme al flujo",
+            "Ampliar automáticamente la duración del código",
+            "Cambiar solo la página de bienvenida del cliente"
+          ],
+          "correct": 1,
+          "explanation": "Un código debe tener duración limitada y un solo uso. La repetición puede indicar interceptación; el tema contempla revocar el acceso concedido a partir de un código comprometido.",
+          "source_page": 38,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "5.3. Reutilización de códigos de autorización"
+        },
+        {
+          "question": "Una aplicación solo necesita consultar agenda, pero solicita permiso para modificar todas las cuentas. ¿Qué parámetro del diseño debe reducirse?",
+          "options": [
+            "La longitud del nombre comercial de la aplicación",
+            "El tamaño de la ventana de autorización",
+            "El ámbito de acceso concedido al token",
+            "La codificación del icono que representa la sesión"
+          ],
+          "correct": 2,
+          "explanation": "El ámbito o scope expresa qué acceso se delega. Ajustarlo a la necesidad reduce el impacto de un token filtrado y evita convertir una consulta limitada en administración general.",
+          "source_page": 37,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "5.3. Ámbito de autorización delegada"
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "title": "Seguridad en el desarrollo de las aplicaciones web",
+      "questions": [
+        {
+          "question": "Una aplicación valida formularios, pero considera segura cualquier cadena recuperada de una tabla donde antes escribieron usuarios. ¿Qué principio está incumpliendo?",
+          "options": [
+            "Cifrar obligatoriamente todos los nombres de tablas",
+            "Mantener una sesión distinta para cada columna de datos",
+            "Clasificar y validar también datos almacenados que proceden de fuentes no fiables",
+            "Validar solo el tamaño del paquete de red que contiene la respuesta"
+          ],
+          "correct": 2,
+          "explanation": "Que un dato esté en una base de datos no lo vuelve fiable. Puede conservar contenido introducido por un atacante y llegar después a un contexto sensible de la aplicación.",
+          "source_page": 8,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "6.2. Fuentes internas no fiables"
+        },
+        {
+          "question": "Un filtro analiza la cadena codificada y otro componente la decodifica después, cambiando su significado. ¿Qué secuencia ayuda a evitar interpretaciones diferentes?",
+          "options": [
+            "Validar una representación y ejecutar otra sin compararlas",
+            "Añadir nuevas codificaciones hasta que el filtro no encuentre patrones",
+            "Eliminar todas las comprobaciones sobre caracteres extendidos",
+            "Normalizar y decodificar de forma controlada antes de validar la representación usada"
+          ],
+          "correct": 3,
+          "explanation": "Los componentes deben compartir una interpretación coherente. La validación debe operar sobre la forma que se va a utilizar, evitando que una decodificación posterior revele caracteres peligrosos no evaluados.",
+          "source_page": 8,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "6.2. Decodificación antes de validar"
+        },
+        {
+          "question": "Una aplicación acepta texto libre para comentarios y un número positivo para una cantidad. ¿Qué diseño de validación resulta apropiado?",
+          "options": [
+            "Reglas específicas de tipo, longitud y rango para cada dato",
+            "Una única expresión que permita cualquier carácter en todos los campos",
+            "Comprobar solo que ambos campos no estén vacíos",
+            "Aceptar la cantidad como texto y confiar siempre en su conversión posterior"
+          ],
+          "correct": 0,
+          "explanation": "La validación debe reflejar el significado del campo. Reutilizar una función central no significa aplicar la misma regla a datos con tipos y límites diferentes.",
+          "source_page": 9,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "6.2. Validación por contexto"
+        },
+        {
+          "question": "Un módulo no logra inicializar el cifrado y la aplicación propone continuar guardando secretos en claro. ¿Qué comportamiento respeta el fallo seguro?",
+          "options": [
+            "Desactivar el registro de errores y completar el guardado en claro",
+            "Impedir esa operación y gestionar el error sin exponer el secreto",
+            "Sustituir el cifrado por la codificación Base64 sin informar",
+            "Reintentar indefinidamente mientras mantiene el secreto en una respuesta pública"
+          ],
+          "correct": 1,
+          "explanation": "Un fallo de protección no debe convertirse en autorización para omitirla. Base64 es codificación reversible y no sustituye el cifrado; debe preservarse la confidencialidad durante la gestión del error.",
+          "source_page": 10,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "6.2. Fallo seguro criptográfico"
+        },
+        {
+          "question": "Un desarrollador genera valores de recuperación de acceso con un generador destinado a simulaciones. ¿Qué requisito debe revisar?",
+          "options": [
+            "Elegir siempre números consecutivos para evitar colisiones",
+            "Derivar el valor únicamente de la hora visible al cliente",
+            "Usar un generador criptográficamente seguro para valores que deban ser impredecibles",
+            "Acortar el token para que sea más fácil comprobarlo manualmente"
+          ],
+          "correct": 2,
+          "explanation": "La ausencia de repeticiones no basta: un atacante no debe poder predecir el valor siguiente. Los usos de seguridad necesitan una fuente de aleatoriedad apropiada al módulo criptográfico.",
+          "source_page": 10,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "6.2. Aleatoriedad de seguridad"
+        },
+        {
+          "question": "Una operación abre archivos y reserva memoria, pero una excepción evita ejecutar su limpieza habitual. ¿Qué debe asegurar el diseño?",
+          "options": [
+            "Liberarlos únicamente si el usuario cierra la ventana",
+            "Reiniciar el reloj de sesión en lugar de cerrar los archivos",
+            "Ocultar la excepción manteniendo todos los recursos hasta el siguiente despliegue",
+            "Liberar los recursos también cuando la operación falla"
+          ],
+          "correct": 3,
+          "explanation": "Las rutas de error también deben liberar memoria y descriptores. Un fallo repetido puede agotar recursos si la limpieza depende únicamente del camino de éxito.",
+          "source_page": 11,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "6.2. Recursos en rutas de error"
+        },
+        {
+          "question": "Un visor administrativo interpreta como HTML los mensajes de registro que contienen nombres proporcionados por usuarios. ¿Qué defensa necesita esa salida?",
+          "options": [
+            "Codificar los datos para que el visor los muestre como texto y no como código",
+            "Confiar en que el mensaje ya es seguro por estar en un registro interno",
+            "Permitir etiquetas únicamente cuando la sesión del administrador sea válida",
+            "Eliminar la marca de tiempo de los mensajes potencialmente peligrosos"
+          ],
+          "correct": 0,
+          "explanation": "HTML es HyperText Markup Language, lenguaje de marcado de hipertexto. Registrar una entrada no la sanea; mostrarla como código puede trasladar el ataque al navegador del administrador.",
+          "source_page": 11,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "6.2. Visualización segura de registros"
+        },
+        {
+          "question": "Una investigación necesita saber quién alteró los controles de acceso, pero solo se registraban los inicios de sesión. ¿Qué evento faltaba registrar?",
+          "options": [
+            "Cada píxel dibujado por la pantalla de acceso",
+            "Los cambios administrativos de configuración de seguridad",
+            "Únicamente las consultas exitosas de nombres de dominio",
+            "El tiempo de carga de los iconos de la página"
+          ],
+          "correct": 1,
+          "explanation": "Un inicio de sesión no describe todas las acciones posteriores. Registrar cambios administrativos con actor y contexto permite reconstruir modificaciones de permisos y políticas.",
+          "source_page": 12,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "6.2. Registro de operaciones administrativas"
+        },
+        {
+          "question": "Un servicio de documentos permite subir archivos a un directorio con permiso de ejecución para el servidor web. ¿Qué medida limita que una subida se convierta en programa ejecutado?",
+          "options": [
+            "Conservar la ejecución si el usuario cambia la extensión manualmente",
+            "Publicar todos los archivos bajo la misma ruta del código del servidor",
+            "Desactivar ejecución en el directorio y separar los archivos de la aplicación",
+            "Conceder escritura al directorio de bibliotecas para simplificar la carga"
+          ],
+          "correct": 2,
+          "explanation": "El permiso de subir no debe implicar permiso de ejecutar. Separar datos y código, limitar tipos y retirar ejecución reduce la posibilidad de que una carga termine controlando el servidor.",
+          "source_page": 13,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "6.2. Separación de carga y ejecución"
+        },
+        {
+          "question": "Una cuenta usada para atender peticiones puede modificar los archivos de la propia aplicación, aunque no necesita hacerlo. ¿Qué ajuste reduce persistencia tras una intrusión?",
+          "options": [
+            "Dar escritura al código y retirar únicamente el permiso de listado",
+            "Cambiar los nombres de archivo conservando los mismos permisos",
+            "Permitir modificaciones si la petición llega por una conexión cifrada",
+            "Mantener esos archivos de solo lectura para la cuenta de ejecución"
+          ],
+          "correct": 3,
+          "explanation": "La cuenta que ejecuta la aplicación debe poseer solo los permisos necesarios. Impedir que reescriba el código limita que una vulnerabilidad deje cambios persistentes en el despliegue.",
+          "source_page": 13,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "6.2. Integridad del código desplegado"
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "title": "Análisis de seguridad de las aplicaciones web",
+      "questions": [
+        {
+          "question": "Un componente no tiene vulnerabilidades conocidas, pero su licencia impone condiciones incompatibles con el producto. ¿Qué revisión de SCA puede advertirlo?",
+          "options": [
+            "La prueba de latencia del cortafuegos de red",
+            "La comprobación de tamaño de las cookies",
+            "La renovación de los certificados personales de todos los desarrolladores",
+            "El inventario y análisis de licencias de componentes"
+          ],
+          "correct": 3,
+          "explanation": "SCA significa Software Composition Analysis, análisis de composición de software. Además de vulnerabilidades, puede revisar licencias; ausencia de avisos de seguridad no elimina restricciones de uso.",
+          "source_page": 15,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "7.3. Licencias de dependencias"
+        },
+        {
+          "question": "Una biblioteca carece de fallos publicados, pero ya no recibe mantenimiento. ¿Qué riesgo adicional debe considerar el equipo?",
+          "options": [
+            "Que futuros problemas no dispongan de correcciones o soporte",
+            "Que su código sea necesariamente más rápido por no cambiar",
+            "Que una licencia abierta garantice actualizaciones perpetuas",
+            "Que el estado de mantenimiento sustituya todas las pruebas de la aplicación"
+          ],
+          "correct": 0,
+          "explanation": "El análisis de componentes incluye obsolescencia y mantenimiento. Un inventario sin vulnerabilidades conocidas es una fotografía temporal, no una garantía de continuidad del soporte.",
+          "source_page": 16,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "7.3. Componentes sin mantenimiento"
+        },
+        {
+          "question": "El analizador solo examina el fichero principal de dependencias y omite módulos cargados por otro mecanismo. ¿Cómo debe comunicarse un resultado sin alertas?",
+          "options": [
+            "Como certificación de ausencia de vulnerabilidades en todo el producto",
+            "Como resultado limitado al inventario realmente analizado",
+            "Como autorización para retirar los controles de producción",
+            "Como prueba de que los módulos omitidos no contienen código de terceros"
+          ],
+          "correct": 1,
+          "explanation": "SCA, análisis de composición de software, depende de identificar correctamente los componentes. Lo que no está inventariado queda fuera del análisis y debe declararse como limitación.",
+          "source_page": 18,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "7.3. Cobertura incompleta del inventario"
+        },
+        {
+          "question": "Una entrada atraviesa varias funciones antes de llegar a una operación sensible. ¿Qué análisis ayuda a seguir ese recorrido y las comprobaciones intermedias?",
+          "options": [
+            "Una búsqueda exclusiva de comentarios con la palabra seguridad",
+            "Una medición del tamaño final del ejecutable",
+            "Análisis interprocedural del flujo de datos",
+            "Una prueba de resolución del nombre del servidor"
+          ],
+          "correct": 2,
+          "explanation": "El análisis interprocedural conecta llamadas y transferencias de datos entre funciones. Ayuda a detectar si una entrada llega a un punto peligroso sin validación o transformación adecuada.",
+          "source_page": 22,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "7.4. Flujo de datos no fiable"
+        },
+        {
+          "question": "Solo se dispone de un ejecutable admitido por una herramienta estática. ¿Qué dificultad particular señala el tema?",
+          "options": [
+            "Que todo ejecutable quede fuera de cualquier análisis estático por definición",
+            "Que la herramienta deba conceder privilegios de administrador al usuario final",
+            "Que el análisis estático sustituya la necesidad de conocer el formato del ejecutable",
+            "Reconstruir una representación analizable del código mediante una etapa previa"
+          ],
+          "correct": 3,
+          "explanation": "Algunas herramientas trabajan con binarios o código intermedio. La recuperación de una representación analizable añade limitaciones; no equivale a disponer del código fuente original completo.",
+          "source_page": 24,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "7.4. Análisis de ejecutables"
+        },
+        {
+          "question": "Un flujo de compra permite aplicar dos veces una misma devolución aunque no haya una inyección técnica. ¿Qué revisión debe incluir ese comportamiento?",
+          "options": [
+            "Pruebas de los requisitos y reglas funcionales del negocio",
+            "Solo comprobar que existen cabeceras de seguridad",
+            "Únicamente revisar la longitud de la contraseña de los compradores",
+            "Limitarse a consultar vulnerabilidades publicadas de las bibliotecas"
+          ],
+          "correct": 0,
+          "explanation": "La seguridad incluye reglas del negocio, como unicidad y límites de operaciones. Un escáner técnico puede no comprender el significado de repetir una devolución válida sintácticamente.",
+          "source_page": 27,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "7.5. Lógica funcional de seguridad"
+        },
+        {
+          "question": "Durante una observación pasiva se revisan solo los mensajes que realmente circularon. ¿Qué limitación debe anotarse sobre una función que nadie utilizó?",
+          "options": [
+            "Que su ausencia demuestra que no existe en el servidor",
+            "Que su comportamiento no quedó cubierto por ese tráfico observado",
+            "Que el análisis pasivo ejecutó automáticamente todos sus casos de uso",
+            "Que la función es segura porque no produjo mensajes de error"
+          ],
+          "correct": 1,
+          "explanation": "Una revisión pasiva no inventa las peticiones que faltan. La cobertura depende de los flujos observados y debe complementarse si quedan operaciones relevantes sin ejercicio.",
+          "source_page": 33,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "7.6. Alcance de análisis pasivo"
+        },
+        {
+          "question": "Hay muchos avisos y una vulnerabilidad expuesta afecta a un activo crítico. ¿Qué criterio evita tratarlos únicamente por orden de llegada?",
+          "options": [
+            "Corregir siempre primero el aviso con el nombre más corto",
+            "Posponer todos los avisos repetidos sin comprobar su causa",
+            "Priorizar según riesgo, exposición e impacto del activo",
+            "Asignar la misma urgencia por compartir un identificador de categoría"
+          ],
+          "correct": 2,
+          "explanation": "La gestión debe convertir hallazgos en prioridades operativas. Gravedad técnica, exposición, criticidad y contexto ayudan a dirigir el esfuerzo hacia los riesgos más relevantes.",
+          "source_page": 42,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "7.9. Priorización de hallazgos"
+        },
+        {
+          "question": "Un desarrollador declara corregido un fallo, pero no hay evidencia de volver a comprobarlo. ¿Qué paso sostiene un cierre verificable?",
+          "options": [
+            "Cerrar el aviso únicamente por cambiar su estado en la herramienta",
+            "Borrar el informe inicial para evitar confusiones",
+            "Concluir que cambiar cualquier dependencia elimina el fallo",
+            "Repetir la comprobación pertinente y conservar evidencia del resultado"
+          ],
+          "correct": 3,
+          "explanation": "El cierre necesita comprobar que la corrección afecta al problema original y no solo al mensaje del escáner. La evidencia permite revisar por qué se considera resuelto.",
+          "source_page": 44,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "7.9. Cierre con verificación"
+        },
+        {
+          "question": "Una organización quiere medir cuánto tarda en resolver vulnerabilidades, no solo cuántas detecta. ¿Qué indicador del tema se ajusta?",
+          "options": [
+            "El tiempo medio de remediación, MTTR",
+            "El número de iconos del panel de resultados",
+            "La longitud media de los identificadores de vulnerabilidad",
+            "El número de líneas del informe exportado"
+          ],
+          "correct": 0,
+          "explanation": "MTTR significa Mean Time To Remediate en este contexto, tiempo medio de remediación. Completa el recuento de hallazgos con información sobre la capacidad real de resolverlos.",
+          "source_page": 44,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "7.9. Indicadores de remediación"
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "title": "Seguridad en fase de producción de las aplicaciones web",
+      "questions": [
+        {
+          "question": "Un servidor agota memoria conservando conexiones TCP aún no completadas. ¿Qué medida del tema pospone la reserva del estado completo hasta completar el inicio?",
+          "options": [
+            "SYN cookies",
+            "Ampliar indefinidamente la duración de conexiones incompletas",
+            "Duplicar cada respuesta hacia el mismo origen",
+            "Desactivar todos los límites de conexión por dirección"
+          ],
+          "correct": 0,
+          "explanation": "TCP significa Transmission Control Protocol, protocolo de control de transmisión. SYN cookies permite reducir estado reservado antes de completar la conexión; no sustituye todas las defensas frente a saturación.",
+          "source_page": 9,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "8.2. SYN cookies"
+        },
+        {
+          "question": "Un balanceador espera a recibir las cabeceras completas, pero el atacante envía después un cuerpo POST extremadamente lento. ¿Qué limitación debe reconocerse?",
+          "options": [
+            "El cuerpo deja de consumir recursos si sus cabeceras son válidas",
+            "Esperar solo las cabeceras no detiene por sí mismo ese ataque al cuerpo",
+            "Una cabecera completa garantiza que el cliente enviará el cuerpo rápidamente",
+            "El balanceador convierte automáticamente la petición en una respuesta de caché"
+          ],
+          "correct": 1,
+          "explanation": "Delayed binding retrasa la entrega hasta completar las cabeceras. El tema distingue Slow HTTP POST, cuyo cuerpo puede seguir llegando lentamente y requiere controles adecuados de tiempo y recursos.",
+          "source_page": 9,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "8.2. Límites del delayed binding"
+        },
+        {
+          "question": "Un cortafuegos web solo recibe contenido cifrado y no dispone de un punto autorizado de terminación TLS. ¿Qué limitación afecta a sus reglas de contenido?",
+          "options": [
+            "Puede deducir siempre cualquier campo solo con el tamaño del paquete",
+            "La firma del certificado revela automáticamente todo el cuerpo",
+            "No puede interpretar directamente el contenido cifrado de las peticiones",
+            "El contenido deja de necesitar autorización por estar cifrado"
+          ],
+          "correct": 2,
+          "explanation": "TLS significa Transport Layer Security, seguridad de la capa de transporte. La inspección de contenido requiere acceder al texto en un punto protegido y autorizado; no se obtiene descifrando únicamente con información pública.",
+          "source_page": 13,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "8.3. Inspección del tráfico cifrado"
+        },
+        {
+          "question": "Se plantea un puente de filtrado cuyo bypass mantiene la comunicación si falla el dispositivo. ¿Qué compromiso debe documentarse?",
+          "options": [
+            "El bypass mantiene todas las reglas aunque el dispositivo no procese tráfico",
+            "La existencia del bypass garantiza que no habrá ataques durante la avería",
+            "El fallo convierte el puente en un segundo factor de autenticación",
+            "Puede mantenerse conectividad perdiendo el filtrado mientras actúa el bypass"
+          ],
+          "correct": 3,
+          "explanation": "Un bypass puede priorizar continuidad física del enlace. Esa continuidad no conserva automáticamente la inspección: la decisión debe corresponder al riesgo y al diseño de disponibilidad.",
+          "source_page": 14,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "8.3. Puente con bypass"
+        },
+        {
+          "question": "Un filtro busca patrones en texto sin decodificar y la aplicación interpreta después caracteres codificados de otra forma. ¿Qué necesidad de análisis muestra?",
+          "options": [
+            "Normalizar de manera coherente con la aplicación antes de evaluar las reglas",
+            "Eliminar todas las reglas que examinen parámetros",
+            "Aumentar la longitud de la dirección del servidor",
+            "Confiar únicamente en la extensión del recurso solicitado"
+          ],
+          "correct": 0,
+          "explanation": "Si filtro y aplicación entienden representaciones diferentes, una entrada puede parecer inocua antes de decodificarse. La normalización debe hacer comparables ambas interpretaciones sin crear nuevas inconsistencias.",
+          "source_page": 17,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "8.3. Normalización antes de inspeccionar"
+        },
+        {
+          "question": "Tras activar reglas nuevas, varios clientes pierden una función legítima y no se registra qué regla actuó. ¿Qué capacidad falta para ajustar la protección?",
+          "options": [
+            "Un panel que solo muestre el total de usuarios registrados",
+            "Registros que vinculen la decisión, la regla y el contexto de la petición",
+            "Una copia del logotipo de la página de error",
+            "Un recuento de certificados sin relación con la petición"
+          ],
+          "correct": 1,
+          "explanation": "La trazabilidad permite distinguir un ataque de un falso positivo y localizar la regla responsable. Debe recopilar contexto útil sin registrar innecesariamente contraseñas o datos sensibles.",
+          "source_page": 16,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "8.3. Trazabilidad de bloqueos"
+        },
+        {
+          "question": "Una evaluación solo cuenta los ataques que el sistema bloqueó, sin registrar cuántos ataques conocidos se probaron. ¿Qué impide medir correctamente?",
+          "options": [
+            "El número de conexiones físicas disponibles",
+            "El nombre del fabricante del servidor",
+            "La proporción de ataques que escaparon a la detección o bloqueo",
+            "El tamaño del archivo de configuración del navegador"
+          ],
+          "correct": 2,
+          "explanation": "Un falso negativo es un ataque que no se detecta. Para valorar la eficacia se necesita un conjunto de pruebas conocido y sus resultados, además del recuento aislado de bloqueos.",
+          "source_page": 21,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "8.3. Medición de falsos negativos"
+        },
+        {
+          "question": "Un servidor ya está aislado y el equipo elimina persistencia y corrige la causa del compromiso. ¿Qué fase está realizando principalmente?",
+          "options": [
+            "Notificación de una alerta sin intervención",
+            "Restauración de servicio sin eliminar la causa",
+            "Medición inicial de disponibilidad antes del incidente",
+            "Erradicación"
+          ],
+          "correct": 3,
+          "explanation": "Contener limita el daño; erradicar elimina la causa y los elementos del atacante. Recuperar devuelve el servicio de forma controlada después de comprobar las condiciones necesarias.",
+          "source_page": 27,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "8.4. Erradicación frente a recuperación"
+        },
+        {
+          "question": "Una aplicación necesita restaurar base de datos, configuración y componentes del servidor, pero solo se copiaban tablas. ¿Qué debe ampliarse?",
+          "options": [
+            "El alcance de las copias para incluir los elementos necesarios para reconstruir el servicio",
+            "Únicamente el número de filas que se muestra en el panel",
+            "El tiempo de sesión de los usuarios que hacen copias",
+            "El nombre del archivo que contiene la copia de las tablas"
+          ],
+          "correct": 0,
+          "explanation": "Recuperar un servicio requiere más que sus datos si depende de configuración, código y componentes concretos. Las copias deben cubrir esos elementos y verificarse mediante restauraciones.",
+          "source_page": 28,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "8.4. Contenido de copias recuperables"
+        },
+        {
+          "question": "Un único cortafuegos de red se convierte en punto de fallo de toda la aplicación. ¿Qué diseño del tema busca conservar esa función ante una avería?",
+          "options": [
+            "Un cambio del nombre público sin otro dispositivo",
+            "Alta disponibilidad con una configuración redundante adecuada",
+            "Retirar el filtrado durante todo el horario de trabajo",
+            "Mantener una copia de la página de inicio como única medida"
+          ],
+          "correct": 1,
+          "explanation": "La alta disponibilidad permite sostener el servicio del control frente a fallos de componentes. Requiere configurar y probar la redundancia; no basta con tener una copia de sus archivos.",
+          "source_page": 29,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "8.4. Continuidad de los controles perimetrales"
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "title": "Seguridad en la nube",
+      "questions": [
+        {
+          "question": "Una empresa alquila máquinas virtuales y sigue administrando su sistema operativo. ¿Qué confusión debe evitar respecto al proveedor de nube?",
+          "options": [
+            "Reconocer que el proveedor administra parte de la infraestructura física",
+            "Suponer que alquilar infraestructura transfiere automáticamente toda la seguridad del sistema invitado",
+            "Separar las tareas del proveedor y las del cliente",
+            "Documentar quién aplica las correcciones del sistema invitado"
+          ],
+          "correct": 1,
+          "explanation": "En infraestructura como servicio se conservan responsabilidades del cliente sobre los sistemas que administra. El modelo contratado determina la distribución de tareas; nube no significa delegación total.",
+          "source_page": 4,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "9.1. Modelos de servicio y responsabilidad"
+        },
+        {
+          "question": "Una organización mantiene sistemas propios y utiliza servicios de nube conectados para ciertas cargas. ¿Qué modelo de implantación describe esa combinación?",
+          "options": [
+            "Un único equipo local sin servicios externos",
+            "Un servicio necesariamente desconectado de la red corporativa",
+            "Un entorno híbrido",
+            "Un sustituto automático de todas las identidades locales"
+          ],
+          "correct": 2,
+          "explanation": "El enfoque híbrido combina recursos locales y de nube. Exige coordinar identidades, comunicaciones y responsabilidades entre ambos entornos, en lugar de tratarlos como ámbitos sin relación.",
+          "source_page": 4,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "9.1. Implantación híbrida"
+        },
+        {
+          "question": "Un equipo supone que Microsoft Entra ID es un controlador de dominio local idéntico a Active Directory. ¿Qué revisión conceptual necesita?",
+          "options": [
+            "Cambiar únicamente el nombre del controlador local",
+            "Suponer que cualquier protocolo local funciona sin cambios en la nube",
+            "Eliminar la documentación de las identidades híbridas porque comparten fabricante",
+            "Distinguir el servicio de identidad de nube y sus protocolos del directorio de dominio tradicional"
+          ],
+          "correct": 3,
+          "explanation": "El tema advierte que Azure AD, hoy Microsoft Entra ID, no es simplemente otro controlador del dominio local. Integrar identidades no implica que ambos servicios tengan las mismas funciones o protocolos.",
+          "source_page": 14,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "9.3. Directorio local frente a identidad de nube"
+        },
+        {
+          "question": "Se incorpora un colaborador externo al directorio para un proyecto. ¿Qué decisión evita confundir su registro con una autorización general?",
+          "options": [
+            "Asignarle únicamente el acceso necesario en los ámbitos del proyecto",
+            "Concederle acceso a todos los recursos por existir ya en el directorio",
+            "Heredar automáticamente todos los roles del administrador que lo invitó",
+            "Usar su correo electrónico como permiso universal sobre las suscripciones"
+          ],
+          "correct": 0,
+          "explanation": "La identidad permite reconocer al colaborador; los permisos determinan qué puede hacer. Un usuario externo requiere asignaciones adecuadas y revisión del acceso cuando termina su colaboración.",
+          "source_page": 18,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "9.4. Usuarios externos"
+        },
+        {
+          "question": "Un técnico administra ciertas identidades del directorio y concluye que eso le concede automáticamente control total de todas las máquinas virtuales. ¿Qué debe distinguir?",
+          "options": [
+            "La resolución de pantalla de las dos consolas",
+            "Los permisos de administración del directorio y las asignaciones sobre recursos",
+            "El nombre comercial de la suscripción y el de su navegador",
+            "La posición de los grupos en la lista visual del portal"
+          ],
+          "correct": 1,
+          "explanation": "Los ámbitos de administración son diferentes. Un rol sobre el directorio no debe confundirse con una asignación que autoriza operaciones sobre todos los recursos de una suscripción.",
+          "source_page": 21,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "9.4. Roles de directorio y de recursos"
+        },
+        {
+          "question": "Un rol excluye una operación mediante NotActions, pero otro rol asignado la permite. ¿Qué conclusión evita una falsa expectativa de denegación?",
+          "options": [
+            "NotActions elimina siempre los permisos concedidos por cualquier otro rol",
+            "El usuario pierde automáticamente todas sus asignaciones",
+            "La exclusión del primer rol no actúa como una denegación absoluta frente al segundo",
+            "La operación queda prohibida solo por aparecer antes en la lista de roles"
+          ],
+          "correct": 2,
+          "explanation": "NotActions resta operaciones dentro de una definición. Los permisos de otras asignaciones pueden seguir concediéndolas; debe revisarse el acceso efectivo completo.",
+          "source_page": 24,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "9.4. Exclusiones y suma de roles"
+        },
+        {
+          "question": "Un operador puede consultar la configuración de una cuenta de almacenamiento, pero no debe leer el contenido de sus objetos. ¿Qué separación de permisos debe respetarse?",
+          "options": [
+            "El nombre corto y largo del grupo de recursos",
+            "La dirección del portal y el idioma del navegador",
+            "El tamaño del certificado y la fecha del archivo",
+            "Operaciones de administración y operaciones sobre datos"
+          ],
+          "correct": 3,
+          "explanation": "Actions describe administración y DataActions operaciones sobre datos, según el proveedor. Ver una configuración no debe convertirse sin revisión en permiso para leer todos sus contenidos.",
+          "source_page": 25,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "9.4. Plano de datos"
+        },
+        {
+          "question": "Una investigación necesita determinar qué identidad accedió a un secreto centralizado. ¿Qué capacidad de Key Vault debe incorporarse al diseño?",
+          "options": [
+            "Registro y revisión de accesos junto con permisos acotados",
+            "Una copia del secreto en cada informe de auditoría",
+            "Publicación de la clave privada para comparar las peticiones",
+            "Uso de una sola identidad compartida sin atribución de acciones"
+          ],
+          "correct": 0,
+          "explanation": "El almacén central ayuda si se controla quién lo usa y se registran los accesos. Centralizar secretos sin trazabilidad puede dejar sin respuesta quién los utilizó.",
+          "source_page": 31,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "9.5. Auditoría del almacén de secretos"
+        },
+        {
+          "question": "Después de renovar una clave quedan datos antiguos protegidos con su versión anterior. ¿Qué aspecto del ciclo de vida debe planificarse?",
+          "options": [
+            "Borrar inmediatamente todas las versiones previas sin comprobar dependencias",
+            "Conservar acceso controlado a las versiones necesarias para las operaciones antiguas",
+            "Renombrar la clave nueva como si fuera criptográficamente igual a la antigua",
+            "Suponer que cualquier clave nueva descifra automáticamente cualquier dato anterior"
+          ],
+          "correct": 1,
+          "explanation": "Las versiones representan material criptográfico distinto. La rotación necesita coordinar nuevas operaciones, acceso a datos previos y retirada segura de las versiones que ya no hagan falta.",
+          "source_page": 32,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "9.5. Versiones de claves"
+        },
+        {
+          "question": "Un equipo concede administración del almacén a todas las aplicaciones que solo necesitan usar un secreto. ¿Qué ajuste reduce privilegios innecesarios?",
+          "options": [
+            "Dar a cada aplicación permiso para cambiar cualquier política del almacén",
+            "Sustituir los registros por una contraseña compartida de administrador",
+            "Separar el uso autorizado del secreto de su administración",
+            "Exportar todos los secretos a la configuración pública de las aplicaciones"
+          ],
+          "correct": 2,
+          "explanation": "Gestionar el almacén y consumir un secreto son operaciones distintas. Deben asignarse a las identidades mínimas necesarias, evitando que una aplicación pueda reconfigurar toda la custodia.",
+          "source_page": 31,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "9.5. Separación de gestión de secretos"
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "title": "Seguridad en big data",
+      "questions": [
+        {
+          "question": "Un analista no puede leer filas personales, pero ve nombres de tablas y columnas que revelan categorías médicas. ¿Qué superficie de exposición debe revisarse?",
+          "options": [
+            "Solo el tamaño de bloque del disco de respaldo",
+            "La resolución de las pantallas del centro de datos",
+            "Los permisos y la divulgación de metadatos",
+            "El nombre de las tareas de mantenimiento del navegador"
+          ],
+          "correct": 2,
+          "explanation": "Los metadatos también pueden revelar información sensible o facilitar inferencias. El control de acceso no debe limitarse al contenido de las filas si el esquema aporta contexto confidencial.",
+          "source_page": 10,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "10.2. Metadatos sensibles"
+        },
+        {
+          "question": "Una plataforma acepta trabajos de análisis aportados por terceros. ¿Por qué debe controlar ese código además de autenticar al remitente?",
+          "options": [
+            "La autenticación convierte cualquier programa en seguro",
+            "Los trabajos distribuidos no se ejecutan con permisos de ningún servicio",
+            "Un fichero de entrada válido garantiza que todo su procesamiento será inocuo",
+            "Un usuario identificado puede enviar un trabajo que abuse de recursos o acceda a datos no autorizados"
+          ],
+          "correct": 3,
+          "explanation": "Autenticar identifica al remitente, pero no demuestra que su código sea legítimo o correcto. Deben limitarse permisos, ejecución y consumo de los trabajos de procesamiento.",
+          "source_page": 10,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "10.2. Código de procesamiento no fiable"
+        },
+        {
+          "question": "Una organización publica estadísticas agregadas y quiere reducir lo que una consulta permite inferir sobre una persona. ¿Qué familia de técnicas cita el tema para ese objetivo?",
+          "options": [
+            "Privacidad diferencial con mecanismos de perturbación apropiados",
+            "Publicar los identificadores individuales junto al agregado",
+            "Convertir todos los valores a texto sin cambiar su contenido",
+            "Compartir la clave de descifrado de la base con cada lector"
+          ],
+          "correct": 0,
+          "explanation": "La privacidad diferencial busca limitar la influencia y lo que puede aprenderse sobre una participación individual. No equivale a quitar una columna visible ni a publicar datos personales con otro formato.",
+          "source_page": 15,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "10.2. Privacidad diferencial"
+        },
+        {
+          "question": "Se eliminan nombres de un conjunto, pero combinaciones de edad, ubicación y hábitos permiten reconocer personas. ¿Qué revisión de privacidad sigue siendo necesaria?",
+          "options": [
+            "Concluir que quitar el nombre garantiza anonimato en todos los usos",
+            "Valorar el riesgo de reidentificación por combinación de atributos",
+            "Restaurar los nombres para comprobar solo el formato del archivo",
+            "Proteger únicamente el nombre de las tablas de la aplicación"
+          ],
+          "correct": 1,
+          "explanation": "La desidentificación de un campo no elimina necesariamente los vínculos con personas. Debe valorarse el contexto de uso, los atributos disponibles y las fuentes con las que pueden combinarse.",
+          "source_page": 15,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "10.2. Desidentificación y combinaciones de datos"
+        },
+        {
+          "question": "Un lago de datos conserva indefinidamente copias que ya no cumplen una finalidad prevista. ¿Qué componente de gobernanza debe aplicarse?",
+          "options": [
+            "Ampliar permisos de todos los analistas para que decidan caso por caso sin política",
+            "Confiar en que el cifrado elimina cualquier obligación de conservación",
+            "Políticas de conservación y eliminación según finalidad y requisitos aplicables",
+            "Cambiar los nombres de los directorios sin retirar los datos"
+          ],
+          "correct": 2,
+          "explanation": "La seguridad del dato incluye su ciclo de vida. Cifrar protege su almacenamiento, pero no justifica conservarlo sin límite ni sustituye una política documentada de eliminación.",
+          "source_page": 16,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "10.2. Retención y eliminación"
+        },
+        {
+          "question": "Una misma identidad administra la plataforma, consulta todos los datos y puede alterar la auditoría. ¿Qué principio ayuda a reducir abuso interno?",
+          "options": [
+            "Reunir todos los permisos en una sola cuenta para simplificar atribución",
+            "Desactivar auditoría porque el administrador ya tiene acceso a los datos",
+            "Dar únicamente nombres distintos a sesiones que comparten la misma cuenta",
+            "Separar funciones y permisos entre administración, análisis y supervisión"
+          ],
+          "correct": 3,
+          "explanation": "La segregación limita que una sola identidad ejecute y oculte una acción sin otros controles. Debe complementarse con registros protegidos y revisión de privilegios.",
+          "source_page": 20,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "10.2. Separación de funciones"
+        },
+        {
+          "question": "Un nodo realiza muchas más consultas y consume recursos muy por encima de su patrón habitual. ¿Qué uso de monitorización corresponde?",
+          "options": [
+            "Investigar la anomalía correlacionando actividad, identidad y contexto del trabajo",
+            "Considerar automáticamente delictiva cualquier carga elevada",
+            "Ignorarla si la identidad se autenticó una vez correctamente",
+            "Eliminar todos los registros antes de reiniciar el nodo"
+          ],
+          "correct": 0,
+          "explanation": "Una desviación puede ser legítima o indicar abuso. La monitorización permite priorizar su revisión, pero se necesita contexto antes de atribuir causa o responsabilidad.",
+          "source_page": 15,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "10.2. Anomalías de consumo"
+        },
+        {
+          "question": "Un conjunto de entrada ha sido manipulado y produce predicciones coherentes con esos datos falsos. ¿Qué dimensión de las cinco V debe protegerse además del rendimiento?",
+          "options": [
+            "Únicamente volumen de almacenamiento disponible",
+            "Veracidad y confianza en la calidad e integridad del dato",
+            "Solo velocidad de salida del panel",
+            "El número de formatos de imagen que admite la interfaz"
+          ],
+          "correct": 1,
+          "explanation": "La veracidad afecta a la fiabilidad de los datos y, por extensión, a los resultados. Un procesamiento rápido y sin errores de ejecución puede seguir produciendo decisiones equivocadas si la entrada está manipulada.",
+          "source_page": 9,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "10.2. Veracidad y decisiones"
+        },
+        {
+          "question": "Una política granular funciona con pocos usuarios, pero sus comprobaciones se convierten en cuello de botella al ampliar la plataforma. ¿Qué validación pide el tema?",
+          "options": [
+            "Desactivar toda autorización al superar cierto volumen",
+            "Mantener solo permisos de la interfaz del analista",
+            "Probar escalabilidad y rendimiento de los controles sin retirar sus garantías",
+            "Sustituir los controles por nombres de usuarios difíciles de adivinar"
+          ],
+          "correct": 2,
+          "explanation": "Los controles consumen recursos y deben diseñarse para la carga real. Medir su comportamiento permite optimizar implementación y arquitectura conservando las restricciones de acceso.",
+          "source_page": 19,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "10.2. Escalabilidad de controles"
+        },
+        {
+          "question": "Varias herramientas mantienen historiales separados y no se puede reconstruir quién transformó un conjunto. ¿Qué integración del ecosistema menciona el tema?",
+          "options": [
+            "Una copia de la pantalla final sin referencias a los datos de origen",
+            "La eliminación de las versiones anteriores para reducir el historial",
+            "Una contraseña común para todos los servicios de procesamiento",
+            "Auditoría centralizada y gestión de metadatos o linaje con herramientas como Ranger y Atlas"
+          ],
+          "correct": 3,
+          "explanation": "Ranger y Atlas apoyan funciones de gobierno y trazabilidad en el ecosistema descrito. Relacionar identidad, operación y procedencia permite reconstruir transformaciones entre componentes.",
+          "source_page": 27,
+          "difficulty": "aplicación",
+          "kind": "practice",
+          "coverage_focus": "10.3. Auditoría central y linaje"
+        }
+      ]
+    }
+  ]
+}

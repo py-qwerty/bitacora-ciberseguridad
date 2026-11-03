@@ -1,0 +1,1408 @@
+{
+  "course": "sistemas",
+  "number": 7,
+  "title": "Análisis de seguridad de las aplicaciones web",
+  "minutes": 45,
+  "intro": {
+    "why": "Casi todo lo que hacemos pasa por aplicaciones web: el banco, la sanidad, las compras. Un solo fallo en una de ellas puede filtrar millones de datos; en 2021, la vulnerabilidad Log4Shell, escondida en una librería de registro que muchas empresas ni sabían que usaban, obligó a revisar miles de aplicaciones en todo el mundo. Este tema explica cómo se buscan esos fallos de forma ordenada, con herramientas que leen el código, atacan la aplicación en marcha, la vigilan por dentro o revisan sus piezas de terceros, y cómo se juntan todos los resultados.",
+    "before": [
+      "Una **aplicación web** funciona con peticiones y respuestas: el navegador pide algo (una página, enviar un formulario) y el servidor contesta. Lo que el usuario escribe viaja en **parámetros** de esas peticiones.",
+      "El **código fuente** es el programa tal como lo escribe el programador; el **código ejecutable** es lo que resulta de compilarlo y lo que de verdad ejecuta el ordenador.",
+      "Una **librería** o dependencia es código hecho por otros que reutilizas en tu programa para no reinventar la rueda.",
+      "Una **inyección** (por ejemplo, inyección SQL) es un ataque en el que el usuario mete en un campo de texto algo que la aplicación acaba ejecutando como si fuera una orden."
+    ],
+    "goals": [
+      "Al terminar sabrás explicar por qué un análisis de seguridad combina varias técnicas dentro de un ciclo de desarrollo seguro (SSDLC).",
+      "Sabrás distinguir SAST, DAST, IAST, RASP, SCA y las herramientas híbridas: qué miran, si ejecutan la aplicación y en qué fase se usan.",
+      "Sabrás qué son los falsos positivos y los falsos negativos y por qué siempre hace falta una auditoría manual.",
+      "Sabrás describir los niveles del análisis estático (léxico, intraprocedural e interprocedural) y las fases de un análisis dinámico (crawling, escaneo pasivo y activo, auditoría).",
+      "Sabrás plantear pruebas funcionales de requisitos de seguridad, como el control de acceso.",
+      "Sabrás para qué sirve correlacionar, deduplicar y priorizar los hallazgos de varias herramientas."
+    ]
+  },
+  "sections": [
+    {
+      "id": "por-que-analizar",
+      "title": "Por qué hay que analizar una aplicación web (y cuanto antes)",
+      "pages": [
+        4,
+        6
+      ],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Piensa en la construcción de una casa. Si el arquitecto detecta en el plano que falta una viga, borrar una línea cuesta cinco minutos. Si lo descubre cuando la casa ya está habitada, hay que desalojar, apuntalar y levantar el techo. Con el software pasa igual: un fallo de seguridad cuesta muy poco de arreglar en el diseño y muchísimo cuando la aplicación ya está en servicio."
+        },
+        {
+          "type": "term",
+          "term": "Aplicación web",
+          "text": "Programa al que se accede con el navegador (una tienda online, la banca por internet, el campus virtual). Recibe peticiones por internet, así que cualquiera puede intentar atacarla."
+        },
+        {
+          "type": "term",
+          "term": "Vulnerabilidad",
+          "text": "Un fallo del código o de la configuración que un atacante puede aprovechar (explotar) para hacer algo que no debería: leer datos ajenos, entrar sin contraseña, ejecutar órdenes en el servidor…"
+        },
+        {
+          "type": "term",
+          "term": "Superficie de ataque",
+          "text": "El conjunto de puntos por los que se puede atacar la aplicación: cada página, cada formulario, cada parámetro, cada rol de usuario. Cuanto mayor es, más difícil es revisarla entera."
+        },
+        {
+          "type": "p",
+          "text": "Una opción sería contratar a un experto que intente «hackear» la aplicación ya terminada (un **hackeo ético** o prueba de penetración manual). El problema: necesita personal muy especializado y muchísimo tiempo para cubrir toda la superficie de ataque. Por eso el tema propone apoyarse en un proceso ordenado y en **herramientas semiautomáticas**."
+        },
+        {
+          "type": "term",
+          "term": "SDLC y SSDLC",
+          "text": "SDLC (Software Development Life Cycle, ciclo de vida del desarrollo de software) son las fases por las que pasa un programa: análisis de requisitos, diseño, desarrollo (programación), pruebas, despliegue y producción. SSDLC (Secure SDLC, ciclo de vida de desarrollo **seguro**) es el mismo ciclo, pero metiendo actividades de seguridad en cada fase."
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Prevenir**: lo ideal es que los programadores no cometan errores. Para ello necesitan formación en programación segura y en configuraciones seguras.",
+            "**Detectar**: aun así, siempre quedan vulnerabilidades. Cuando existe una primera versión (o partes), se buscan con varios tipos de análisis combinados: estáticos, dinámicos y otros.",
+            "**Corregir (parchear)**: lo encontrado se arregla. Esto también cuesta tiempo y dinero, pero siempre es más barato durante el desarrollo que en producción."
+          ],
+          "title": "Las tres ideas de la introducción"
+        },
+        {
+          "type": "p",
+          "text": "El tema ilustra el coste con una gráfica (Figura 1, en imagen): arreglar una vulnerabilidad con la aplicación **ya en servicio** cuesta unas **sesenta veces** más que arreglarla en la fase de diseño."
+        },
+        {
+          "type": "exam",
+          "text": "Si una pregunta plantea cuándo conviene corregir, la respuesta va siempre hacia lo **temprano** (diseño, desarrollo). Desconfía de opciones que sugieren que basta con un pentest final manual: el tema dice que es caro, lento y no cubre toda la superficie."
+        },
+        {
+          "type": "key",
+          "text": "Prevenir no basta: hay que detectar con varios análisis automáticos dentro de un SSDLC, y corregir cuanto antes, porque en producción arreglar cuesta hasta 60 veces más."
+        }
+      ]
+    },
+    {
+      "id": "tipos-de-analisis",
+      "title": "El mapa: SAST, DAST, IAST, SCA y correlación",
+      "pages": [
+        7,
+        11
+      ],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Imagina que quieres saber si un coche es seguro. Puedes leer los planos del motor sin arrancarlo (eso es SAST), sacarlo a la pista y darle golpes desde fuera sin abrir el capó (DAST), conducirlo con sensores colocados dentro del motor que te dicen qué pieza falla en cada maniobra (IAST), o revisar la lista de piezas compradas a otros fabricantes por si alguna tiene una llamada a revisión (SCA). Al final juntas todos los informes en uno solo (correlación)."
+        },
+        {
+          "type": "p",
+          "text": "Todas estas herramientas se agrupan como **AST** (Application Security Testing, pruebas de seguridad de aplicaciones). Ninguna detecta el 100 % de las vulnerabilidades: el tema lo deja claro con una figura titulada precisamente «¿Es posible detectar el 100 % de vulnerabilidades?». Por eso se combinan y, además, se añaden comprobaciones manuales."
+        },
+        {
+          "type": "term",
+          "term": "Caja blanca, caja negra y caja gris",
+          "text": "En **caja blanca** el analista ve el interior (el código fuente). En **caja negra** solo ve lo de fuera: envía entradas y mira las salidas, como un usuario o un atacante. En **caja gris** tiene algo de información interna (por ejemplo, credenciales o la estructura de la aplicación) pero ataca desde fuera."
+        },
+        {
+          "type": "table",
+          "head": [
+            "Tipo",
+            "Siglas en inglés",
+            "Qué mira",
+            "¿Ejecuta la aplicación?",
+            "Caja"
+          ],
+          "rows": [
+            [
+              "SAST",
+              "Static Application Security Testing (pruebas estáticas)",
+              "Código fuente, binarios o bytecode",
+              "No",
+              "Blanca"
+            ],
+            [
+              "DAST",
+              "Dynamic Application Security Testing (pruebas dinámicas)",
+              "Peticiones y respuestas de la aplicación en marcha, simulando ataques externos",
+              "Sí",
+              "Negra (o gris)"
+            ],
+            [
+              "IAST",
+              "Interactive Application Security Testing (pruebas interactivas)",
+              "El interior de la aplicación mientras se ejecuta, mediante un agente o sensor",
+              "Sí",
+              "Blanca"
+            ],
+            [
+              "SCA",
+              "Software Composition Analysis (análisis de composición de software)",
+              "Componentes de terceros: librerías, dependencias, paquetes y sus licencias",
+              "No hace falta",
+              "Inventario"
+            ],
+            [
+              "Correlación",
+              "Gestión y correlación de vulnerabilidades",
+              "Los resultados de todas las anteriores, unificados en un informe",
+              "No aplica",
+              "—"
+            ]
+          ],
+          "title": "Los tipos de análisis en una tabla"
+        },
+        {
+          "type": "term",
+          "term": "Bytecode",
+          "text": "Código intermedio entre el fuente y el código máquina, como el que genera Java (.class). Se puede analizar sin ejecutarlo."
+        },
+        {
+          "type": "term",
+          "term": "CVE (Common Vulnerabilities and Exposures)",
+          "text": "Catálogo público de vulnerabilidades conocidas. Cada una tiene un identificador del tipo CVE-2021-44228 (la famosa Log4Shell de la librería Log4j)."
+        },
+        {
+          "type": "list",
+          "items": [
+            "Comprobaciones manuales para **auditar** lo que dice cada herramienta y **descartar falsos positivos** (avisos que en realidad no son fallos).",
+            "Pruebas manuales específicas de la funcionalidad de seguridad, usando utilidades que traen las herramientas DAST: fuerza bruta con diccionario, **fuzzers** (programas que mandan miles de entradas raras o aleatorias para ver si algo se rompe), inyectores de SQL, decodificadores…",
+            "Como guía para todo ello: la **Guía de pruebas de seguridad de OWASP** (OWASP es la Open Worldwide Application Security Project, comunidad abierta de referencia en seguridad web)."
+          ],
+          "title": "Lo que se añade a las herramientas automáticas"
+        },
+        {
+          "type": "exam",
+          "text": "El test suele dar una definición y pedir la sigla, o al revés. Asocia: **sin ejecutar = SAST**; **atacar desde fuera la aplicación en marcha = DAST**; **agente dentro de la aplicación en ejecución = IAST**; **librerías y dependencias de terceros = SCA**. Trampa: «comparar solo versiones de bibliotecas con avisos conocidos» describe SCA, no SAST."
+        },
+        {
+          "type": "key",
+          "text": "Cuatro miradas distintas (código quieto, ataque externo, sensor interno, piezas de terceros) más una quinta que lo junta todo. Ninguna sola llega al 100 %."
+        }
+      ]
+    },
+    {
+      "id": "ssdlc-fases",
+      "title": "Qué análisis toca en cada fase del ciclo de vida",
+      "pages": [
+        7,
+        9
+      ],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Es como el control de calidad de una fábrica de pasteles: en la receta se comprueba que no falte ningún ingrediente obligatorio; mientras se amasa se revisa la masa y la etiqueta de la harina comprada; con el pastel ya horneado se prueba y se intenta romper; y en la tienda hay un vigilante que impide que alguien lo manipule."
+        },
+        {
+          "type": "p",
+          "text": "La idea principal del apartado 7.2 es que, para analizar con garantías, hay que adoptar un **SSDLC**, y ese ciclo obliga a un análisis **híbrido combinado**. Cada fase tiene sus análisis:"
+        },
+        {
+          "type": "table",
+          "head": [
+            "Fase",
+            "Qué análisis se hace",
+            "Por qué ahí"
+          ],
+          "rows": [
+            [
+              "Análisis y diseño",
+              "Análisis de **completitud de los requisitos de seguridad** (¿están todos los requisitos necesarios?)",
+              "Aún no hay código: solo se puede revisar lo que se va a construir."
+            ],
+            [
+              "Desarrollo",
+              "**SAST** sobre el código fuente y **SCA** para ver las CVE de las dependencias",
+              "Ya hay código y librerías, aunque la aplicación quizá ni arranque."
+            ],
+            [
+              "Pruebas (o despliegue)",
+              "**Análisis funcional** de los requisitos de seguridad; después, prueba de penetración con **DAST** (caja negra) junto con **IAST** (caja blanca)",
+              "Ya hay una aplicación ejecutable a la que mandar peticiones."
+            ],
+            [
+              "Producción",
+              "Protección en tiempo de ejecución con **RASP** (lo verás en el apartado de IAST)",
+              "La aplicación está publicada y recibe ataques reales."
+            ],
+            [
+              "Al final",
+              "**Correlación** de los resultados de todos los análisis",
+              "Para tener una vista única y sin duplicados."
+            ]
+          ],
+          "title": "Fases del SSDLC y análisis asociados"
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico",
+          "text": "Un equipo tiene el código de un portal de citas médicas, pero el servidor de base de datos aún no está montado y la aplicación no arranca. ¿Qué pueden hacer ya? SAST (lee el código sin ejecutarlo) y SCA (revisa las librerías declaradas). DAST e IAST tendrán que esperar: ambos necesitan que la aplicación responda."
+        },
+        {
+          "type": "exam",
+          "text": "Preguntas típicas: «el análisis estático se realiza en la fase de…» → **desarrollo**. «La prueba funcional de seguridad se realiza en…» → **pruebas o despliegue** (aunque sus casos salgan de los requisitos definidos en análisis). «RASP se usa en…» → **producción**. La trampa es confundir dónde se **definen** los requisitos (análisis) con dónde se **prueban** (pruebas)."
+        },
+        {
+          "type": "key",
+          "text": "Requisitos en análisis/diseño; SAST y SCA en desarrollo; funcional, DAST e IAST en pruebas; RASP en producción; correlación al final."
+        }
+      ]
+    },
+    {
+      "id": "combinar",
+      "title": "Por qué combinar los análisis",
+      "pages": [
+        12,
+        14
+      ],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Un médico no diagnostica solo con un análisis de sangre: pide también una radiografía y una exploración. Cada prueba ve cosas que las otras no ven, y si dos coinciden, el diagnóstico es más fiable. Pero ni con todas las pruebas juntas puede garantizar que no se le escape nada."
+        },
+        {
+          "type": "p",
+          "text": "Cada técnica cubre un **espacio de riesgo distinto** y tiene **puntos fuertes y débiles** propios. Combinadas aportan:"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Una **lista de requisitos de seguridad** a implementar o ya implementados (durante el SSDLC, lo ideal, o en una auditoría encargada al terminar).",
+            "**Detección temprana** con SAST y SCA, para corregir antes de llegar a producción.",
+            "Detección de errores que **solo aparecen en ejecución real** con DAST e IAST: fallos de configuración, dependencias mal usadas, lógica de negocio…",
+            "**Menos falsos positivos** gracias al contexto de ejecución (IAST) o a validar ataques concretos (DAST).",
+            "**Visibilidad de la cadena de suministro de software** con SCA, crítica ante fallos en dependencias externas.",
+            "**Cumplimiento normativo**: muchos estándares exigen analizar componentes y código.",
+            "**Sinergias**: los resultados de un análisis alimentan al siguiente. DAST e IAST pueden ir a la vez: el agente IAST aprovecha las peticiones del crawling (recorrido) del DAST.",
+            "Varias herramientas **del mismo tipo** también suman: al tener diseños distintos encuentran vulnerabilidades distintas."
+          ],
+          "title": "Ventajas de combinar"
+        },
+        {
+          "type": "p",
+          "text": "El tema incluye una «metodología sugerida para un análisis combinado» (Tabla 1), pero está en imagen y no se puede leer en el texto; su idea es organizar por fases lo que acabas de ver en el apartado anterior."
+        },
+        {
+          "type": "exam",
+          "text": "La opción correcta habla de **complementariedad**: cada técnica cubre riesgos distintos y tiene limitaciones distintas. Trampas: «la combinación **garantiza** encontrar todos los defectos» (falso, nunca hay 100 %), «todas tienen la misma cobertura» (entonces no tendría sentido combinarlas) y «si coinciden ya no hace falta validar» (siempre hay que auditar)."
+        },
+        {
+          "type": "key",
+          "text": "Se combinan porque se complementan, no porque juntas sean infalibles."
+        }
+      ]
+    },
+    {
+      "id": "sca",
+      "title": "SCA: revisar las piezas que no has fabricado tú",
+      "pages": [
+        15,
+        18
+      ],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Al montar un mueble de cocina no fabricas los tornillos ni las bisagras: los compras. Si el fabricante de bisagras anuncia que un lote es defectuoso, tienes que saber si tus muebles llevan bisagras de ese lote, incluso las que venían ya montadas dentro de un cajón que compraste hecho. SCA hace ese inventario y ese cruce con las alertas."
+        },
+        {
+          "type": "p",
+          "text": "Las aplicaciones modernas se construyen en gran parte con **componentes de terceros**, sobre todo de **código abierto** (open source). Al conjunto se le llama software compuesto. Las herramientas **SCA** (el temario las llama software composite analysis; el nombre habitual es Software Composition Analysis) identifican esos componentes y detectan **vulnerabilidades CVE, problemas de licencias y riesgos operativos**."
+        },
+        {
+          "type": "term",
+          "term": "Dependencia",
+          "text": "Una librería que tu aplicación necesita para funcionar. Es **directa** si la declaras tú y **transitiva** si la trae otra librería que usas (la dependencia de tu dependencia)."
+        },
+        {
+          "type": "term",
+          "term": "Licencia de software",
+          "text": "Las condiciones legales de uso de un componente. MIT o Apache son permisivas; **GPL** es restrictiva (puede obligarte a publicar tu propio código si la incluyes)."
+        },
+        {
+          "type": "table",
+          "head": [
+            "Qué analiza",
+            "Detalle"
+          ],
+          "rows": [
+            [
+              "Dependencias",
+              "Librerías usadas directa o indirectamente, **incluidas las transitivas**"
+            ],
+            [
+              "Licencias",
+              "Tipo (MIT, GPL, Apache…) y compatibilidad con la política legal de la empresa"
+            ],
+            [
+              "Vulnerabilidades conocidas",
+              "Consulta bases como CVE, NVD (National Vulnerability Database, la base de vulnerabilidades del NIST estadounidense) u OSS Index, y relaciona cada versión con sus fallos"
+            ],
+            [
+              "Obsolescencia",
+              "Componentes que ya nadie mantiene y versiones desactualizadas"
+            ]
+          ],
+          "title": "Qué revisa una herramienta SCA"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Lee los ficheros de proyecto que declaran dependencias: package.json (JavaScript), pom.xml (Java/Maven), requirements.txt (Python), Gemfile (Ruby)…",
+            "Revisa binarios y contenedores que puedan llevar librerías incrustadas.",
+            "Reconstruye la composición completa (escaneo profundo o deep dependency scanning).",
+            "Compara cada versión con las vulnerabilidades conocidas y verifica las licencias.",
+            "Recomienda actualizaciones seguras o cambios."
+          ],
+          "title": "Cómo funciona"
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico",
+          "text": "Tu aplicación Java usa un framework de registro de eventos que, sin que tú lo sepas, incluye Log4j 2.14. Tú nunca escribiste «Log4j» en tu proyecto: es una dependencia **transitiva**. En diciembre de 2021 se publicó la CVE-2021-44228 (Log4Shell), que permitía ejecutar código a distancia. Una SCA con escaneo profundo te habría avisado; mirar solo tus dependencias directas, no."
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Seguridad proactiva**: detecta antes de producción.",
+            "**Cumplimiento legal**: control de licencias restrictivas como GPL.",
+            "**Gestión de riesgos**: sabes qué dependencia es peligrosa y cómo mitigarlo.",
+            "**Automatización DevSecOps**: se integra en los pipelines CI/CD (integración y despliegue continuos, la cadena automática que compila, prueba y publica el código) y alerta en tiempo real. DevSecOps es la práctica de integrar la seguridad en el trabajo conjunto de desarrollo y operaciones.",
+            "**Gobernanza**: alinea el uso de código abierto con la política de la empresa."
+          ],
+          "title": "Beneficios"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Falsos positivos**: no todo hallazgo es un riesgo real; por ejemplo, la función vulnerable de la librería puede no usarse nunca en tu aplicación. Hace falta revisión manual.",
+            "**Cobertura variable**: unas herramientas son mejores en ciertos lenguajes o ecosistemas que otras."
+          ],
+          "title": "Limitaciones"
+        },
+        {
+          "type": "p",
+          "text": "El tema trae una tabla de herramientas SCA (Tabla 2) en imagen. En el apartado de correlación se citan como ejemplos **Snyk, WhiteSource y OWASP Dependency-Check**."
+        },
+        {
+          "type": "exam",
+          "text": "Si la pregunta habla de «bibliotecas de terceros», «versiones vulnerables», «dependencias» o «licencias», la respuesta es **SCA**. Dos trampas: pensar que solo importa la versión declarada directamente (las transitivas también introducen riesgo) y pensar que un aviso de SCA demuestra explotación (hay que ver el **contexto**: si se usa la parte vulnerable y cómo)."
+        },
+        {
+          "type": "key",
+          "text": "SCA hace inventario de lo ajeno (incluidas las dependencias de las dependencias) y lo cruza con CVE y licencias; sus avisos siempre se valoran en el contexto de tu aplicación."
+        }
+      ]
+    },
+    {
+      "id": "sast",
+      "title": "SAST: leer el código sin ejecutarlo",
+      "pages": [
+        19,
+        24
+      ],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Un corrector ortográfico revisa todo tu documento, página a página, sin cansarse ni saltarse las partes aburridas, y te subraya los errores antes de imprimir. SAST hace lo mismo con el código, pero buscando patrones peligrosos en lugar de faltas de ortografía."
+        },
+        {
+          "type": "p",
+          "text": "Las herramientas **SAST** son de **caja blanca**: analizan el código fuente (o el ejecutable) **sin ejecutar** la aplicación. Por eso se usan en la **fase de desarrollo**, incluso cuando el programa aún no arranca."
+        },
+        {
+          "type": "term",
+          "term": "Desensamblado",
+          "text": "Paso previo que hacen las SAST que analizan ejecutables: convierten el código máquina en algo parecido al código fuente (construyendo un diagrama de flujo de control y de llamadas) y a partir de ahí lo analizan como si fuera fuente. Es decir, **SAST sí puede analizar código ejecutable**."
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Toma el código fuente como entrada.",
+            "Lo transforma, como hace un compilador, en representaciones intermedias (por ejemplo, el **árbol de análisis sintáctico**, que descompone cada instrucción en sus partes) y construye un **modelo** del código.",
+            "Compara ese modelo con un conjunto de **reglas** que describen vulnerabilidades.",
+            "Genera un informe con los posibles errores. El usuario puede añadir sus propias reglas; por ejemplo, con **PQL** (Program Query Language) para Java."
+          ],
+          "title": "Cómo funciona una herramienta SAST"
+        },
+        {
+          "type": "table",
+          "head": [
+            "Nivel de análisis",
+            "Qué hace",
+            "Ejemplo"
+          ],
+          "rows": [
+            [
+              "Léxico, sintáctico y semántico",
+              "Como un compilador: reconoce las palabras del lenguaje, la estructura de las frases y su significado (tipos, variables)",
+              "Detectar una llamada a una función peligrosa como eval()"
+            ],
+            [
+              "Intraprocedural (local)",
+              "Flujo de control y de datos **dentro de cada función**",
+              "Dentro de login(), un dato del usuario llega sin filtrar a una consulta SQL"
+            ],
+            [
+              "Interprocedural (global)",
+              "Llamadas **entre funciones**, clases o módulos y el flujo de datos entre ellas",
+              "El dato entra en leerFormulario(), pasa por guardar() y acaba en ejecutarSQL() de otro módulo"
+            ]
+          ],
+          "title": "Los tres niveles de análisis"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Context-sensitive**: tiene en cuenta desde dónde y con qué valores se llama a cada función.",
+            "**Path-sensitive**: explora los caminos según la información del flujo de control.",
+            "**Path-insensitive**: explora todos los caminos; es muy costoso.",
+            "**Function summaries**: usa resúmenes del comportamiento de cada función; más flexible, pero puede ser más impreciso.",
+            "Algoritmos: métodos formales, interpretación abstracta, satisfacción booleana (SAT solvers), demostradores de teoremas (theorem provers) y model checking (comprobación sistemática de todos los estados posibles de un modelo)."
+          ],
+          "title": "Variantes del análisis global (interprocedural)"
+        },
+        {
+          "type": "table",
+          "head": [
+            "Ventajas",
+            "Inconvenientes"
+          ],
+          "rows": [
+            [
+              "Detecta errores **muy pronto**, antes de la primera ejecución",
+              "Puede generar **muchos falsos positivos**: necesita auditoría manual"
+            ],
+            [
+              "Revisa **todo el código**, a fondo y sin preferencias personales",
+              "No ve lo que solo ocurre en ejecución"
+            ],
+            [
+              "Señala la **causa de origen** del fallo, no solo un síntoma",
+              "No detecta problemas de entorno o configuración en tiempo de ejecución (runtime)"
+            ],
+            [
+              "Enseña al programador: sus avisos transmiten conocimiento",
+              "También tiene **falsos negativos**"
+            ]
+          ],
+          "title": "Ventajas e inconvenientes"
+        },
+        {
+          "type": "p",
+          "text": "Ejemplos citados: Fortify SCA (ojo, aquí «SCA» es el nombre comercial de Fortify Static Code Analyzer, no el análisis de composición), Black Duck SAST, HCL SAST, FindSecurityBugs, Xanitizer, Klocwork, SonarQube, Semgrep, Checkmarx, Veracode, PVS-Studio y CodeQL."
+        },
+        {
+          "type": "exam",
+          "text": "Pregunta clásica: «¿qué análisis comprueba las interacciones **entre** funciones?» → **interprocedural** (inter = entre). Intraprocedural es **dentro** de una función. Y si preguntan qué hace el análisis estático de caja blanca entre «local», «interprocedural» y «léxico/sintáctico/semántico», la respuesta es **todas las anteriores**. Otra trampa: «SAST no cubre todo el código» y «SAST no puede analizar ejecutables» son falsas; lo cierto es que **tiene falsos positivos y falsos negativos**."
+        },
+        {
+          "type": "key",
+          "text": "SAST = caja blanca, sin ejecutar, en desarrollo; analiza todo el código en niveles léxico, local (intra) y global (inter), y siempre necesita una auditoría posterior."
+        }
+      ]
+    },
+    {
+      "id": "falsos-positivos",
+      "title": "Falsos positivos y falsos negativos",
+      "pages": [
+        19,
+        22
+      ],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Piensa en la alarma de humo de tu cocina. Si suena cada vez que tuestas pan, es un **falso positivo**: molesta y te hace perder tiempo. Si hay un incendio de verdad y no suena, es un **falso negativo**: es muchísimo peor, porque además duermes tranquilo creyendo que estás protegido."
+        },
+        {
+          "type": "term",
+          "term": "Falso positivo",
+          "text": "La herramienta informa de un problema que **en realidad no existe**. Su coste es el tiempo que pierdes revisándolo."
+        },
+        {
+          "type": "term",
+          "term": "Falso negativo",
+          "text": "Existe una vulnerabilidad real y la herramienta **no la informa**. Su coste es doble: la vulnerabilidad sigue ahí y además tienes una **falsa sensación de seguridad**."
+        },
+        {
+          "type": "table",
+          "head": [
+            "¿Avisa la herramienta?",
+            "Hay vulnerabilidad",
+            "No hay vulnerabilidad"
+          ],
+          "rows": [
+            [
+              "La herramienta avisa",
+              "Verdadero positivo (acierto)",
+              "**Falso positivo**"
+            ],
+            [
+              "La herramienta no avisa",
+              "**Falso negativo**",
+              "Verdadero negativo (acierto)"
+            ]
+          ],
+          "title": "La tabla de los cuatro casos"
+        },
+        {
+          "type": "p",
+          "text": "¿Por qué una herramienta automática no es perfecta? Porque decidir con total seguridad qué hará un programa es, en general, un **problema indecidible**: está demostrado matemáticamente que no puede existir un algoritmo que lo resuelva siempre. Así que toda herramienta de análisis estático produce falsos positivos, falsos negativos o, casi siempre, ambos."
+        },
+        {
+          "type": "p",
+          "text": "Cada herramienta elige su equilibrio. Unas intentan dar **pocos falsos positivos** aunque se les escapen cosas; otras, como la penitencia de pasar por alto una vulnerabilidad es alta, prefieren **minimizar los falsos negativos** a costa de más falsos positivos, que luego se descartan en la auditoría."
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Revisar cada aviso siguiendo la **traza** (el recorrido del dato desde que entra hasta el punto peligroso) que da la herramienta.",
+            "Comprobar el **contexto**: ¿se filtra el dato antes? ¿la función se usa de verdad?",
+            "Usar la **clasificación por criticidad** para empezar por lo grave.",
+            "Eliminar los falsos positivos y, lo más difícil, buscar los falsos negativos. Para esto hace falta formación en los defectos típicos del lenguaje."
+          ],
+          "title": "La auditoría posterior"
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico",
+          "text": "La SAST avisa de una inyección SQL en la línea 120 de buscar.php. Antes de darlo por bueno, el auditor sigue la traza: el parámetro «q» llega del formulario… y en la línea 95 se pasa por una consulta preparada (que separa datos y órdenes). El aviso es un falso positivo y se marca como tal. Lo que **no** debe hacer: aceptarlo como explotación demostrada, descartarlo solo porque otra herramienta no lo vio, o cambiar líneas cercanas sin entender el flujo."
+        },
+        {
+          "type": "exam",
+          "text": "Definiciones directas: falso positivo = «hallazgo informado que no es una vulnerabilidad real»; falso negativo = «vulnerabilidad real que la herramienta no informa». Trampa: confundirlas con «defecto validado» (verdadero positivo) o «defecto corregido que ya no aparece». Recuerda también que **la ausencia de alertas no prueba la ausencia de vulnerabilidades**."
+        },
+        {
+          "type": "key",
+          "text": "Falso positivo = alarma sin fuego (cuesta tiempo); falso negativo = fuego sin alarma (cuesta seguridad). Todos los resultados se auditan revisando la traza y el contexto."
+        }
+      ]
+    },
+    {
+      "id": "funcional",
+      "title": "Análisis funcional de requisitos de seguridad",
+      "pages": [
+        25,
+        27
+      ],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Cuando entregan un piso nuevo, no basta con que el contrato diga «puerta blindada»: vas, empujas la puerta, pruebas que la llave antigua ya no abre y que el cerrojo cierra de verdad. El análisis funcional hace eso con cada requisito de seguridad de la aplicación."
+        },
+        {
+          "type": "p",
+          "text": "**Objetivo**: verificar que los controles de seguridad implementados **cumplen los requisitos definidos**. Se hace en la **fase de pruebas** (o despliegue), con la aplicación funcionando, y parte de los requisitos fijados antes en la fase de análisis, por ejemplo con **OWASP ASVS** (Application Security Verification Standard, un catálogo de requisitos de seguridad verificables). Como guía práctica se usa la **OWASP WSTG** (Web Security Testing Guide)."
+        },
+        {
+          "type": "term",
+          "term": "Control de acceso horizontal y vertical",
+          "text": "**Horizontal**: un usuario no debe ver los datos de otro del mismo nivel (yo no puedo abrir tu factura cambiando el número en la URL). **Vertical**: un usuario normal no debe poder hacer acciones de un nivel superior (como un administrador)."
+        },
+        {
+          "type": "table",
+          "head": [
+            "Dimensión",
+            "Qué se comprueba"
+          ],
+          "rows": [
+            [
+              "Autenticación",
+              "MFA (Multi-Factor Authentication, autenticación con más de un factor: contraseña más código del móvil) y políticas de contraseña"
+            ],
+            [
+              "Gestión de sesiones",
+              "Que la sesión caduque (timeout) y se invalide al cerrar sesión"
+            ],
+            [
+              "Autorización",
+              "Control de acceso horizontal y vertical; roles y privilegios bien aplicados"
+            ],
+            [
+              "Gestión de errores",
+              "No mostrar detalles internos (como el stack trace, la lista de funciones que llevaron al error) y dar mensajes genéricos"
+            ],
+            [
+              "Validación de entrada",
+              "Rechazar datos maliciosos, escapar caracteres especiales y usar listas blancas (solo se admite lo permitido)"
+            ],
+            [
+              "Protección de datos",
+              "Cifrado en tránsito y en reposo; cookies con los atributos Secure (solo por HTTPS), HttpOnly (no accesibles desde scripts) y SameSite (no se envían desde otros sitios)"
+            ],
+            [
+              "Cabeceras de seguridad",
+              "HSTS (obliga a usar HTTPS), CSP (Content Security Policy, qué scripts se pueden cargar), X-Frame-Options (impide meter la web en un marco ajeno), X-Content-Type-Options, X-XSS-Protection y CORS (qué otros dominios pueden llamar a la aplicación)"
+            ],
+            [
+              "Registro y monitorización",
+              "Registro de eventos críticos, integración con un SIEM (sistema que centraliza y correlaciona registros de seguridad), alertas de comportamiento anómalo, gestión de incidentes, copias de seguridad y recuperación"
+            ]
+          ],
+          "title": "Qué requisitos se prueban"
+        },
+        {
+          "type": "p",
+          "text": "**Enfoque**: manual y automatizado, con cualquier herramienta que ayude: proxy interceptador (se pone entre el navegador y el servidor para ver y modificar las peticiones), sniffer (captura el tráfico de red), fuerza bruta con diccionario, footprinting (recopilar información del objetivo)…"
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico",
+          "text": "Requisito: «los usuarios normales no pueden borrar cuentas». Una prueba incompleta sería comprobar solo que el botón «Borrar» no aparece en su pantalla: un atacante puede enviar la petición de borrado directamente con un proxy interceptador. La prueba correcta es **negativa**: iniciar sesión como usuario sin ese permiso e **intentar la operación** (por ejemplo, enviando la petición DELETE a mano) y comprobar que el servidor la rechaza. Probar que el administrador sí puede borrar está bien, pero no comprueba el requisito."
+        },
+        {
+          "type": "exam",
+          "text": "Si preguntan qué comprueba el análisis funcional: «que los controles cumplen los requisitos definidos». Las trampas usan «solo»: solo dependencias (eso es SCA), solo cobertura de líneas, solo disponibilidad ante carga. En los casos prácticos, la prueba buena es la que **intenta lo prohibido** con el usuario que no debería poder hacerlo."
+        },
+        {
+          "type": "key",
+          "text": "El análisis funcional verifica, en la fase de pruebas, que cada requisito de seguridad funciona de verdad; la prueba clave es la negativa: intentar lo que debería estar prohibido."
+        }
+      ]
+    },
+    {
+      "id": "dast",
+      "title": "DAST: atacar la aplicación en marcha desde fuera",
+      "pages": [
+        28,
+        34
+      ],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "DAST es como un ladrón contratado para probar tu casa: no tiene los planos, solo da vueltas alrededor, apunta todas las puertas y ventanas, y luego intenta forzarlas una a una. Si solo ha rodeado la fachada principal, no sabe nada del patio trasero."
+        },
+        {
+          "type": "p",
+          "text": "Las herramientas **DAST** son de **caja negra o gris**: ejecutan una prueba de penetración contra la aplicación **en ejecución**, intentando cubrir toda la superficie de ataque (todas las entradas posibles). Ejemplos: **OWASP ZAP**, **Burp Suite**, **WebInspect**, Acunetix, AppScan."
+        },
+        {
+          "type": "term",
+          "term": "Proxy",
+          "text": "Intermediario que se coloca entre el navegador y la aplicación. Ve y puede modificar todas las peticiones y respuestas. Las DAST suelen trabajar en **modo proxy**."
+        },
+        {
+          "type": "term",
+          "term": "Crawling",
+          "text": "Recorrer automáticamente la web siguiendo enlaces y formularios para descubrir todas sus páginas, directorios y parámetros, como hace la araña de un buscador."
+        },
+        {
+          "type": "term",
+          "term": "Payload",
+          "text": "La cadena maliciosa que se inyecta en un campo para provocar el fallo, por ejemplo ' OR '1'='1 en un formulario de acceso."
+        },
+        {
+          "type": "steps",
+          "items": [
+            "**Reconocimiento** de las capas de la aplicación: tecnologías, sistema operativo, servidor de aplicaciones, SGBD (sistema gestor de bases de datos), puertos, lenguajes…",
+            "**Crawling**: primero **manual** con la herramienta en modo proxy, y después **automático**, configurando el contexto: usuario administrador, método de autenticación, gestión de sesiones, tecnologías.",
+            "**Escaneo pasivo**: la herramienta **observa** las peticiones y respuestas (GET, POST) que ya circulan y revisa si faltan cabeceras o atributos de seguridad, como HttpOnly. No envía ataques; se hace a la vez que el crawling automático.",
+            "**Escaneo activo**: **inyecta payloads** en los campos de entrada (parámetros GET y POST, cabeceras, XML, JSON) según una política de test y analiza las respuestas.",
+            "**Auditoría de resultados**: **manual**. El analista repite cada ataque para confirmar la vulnerabilidad y descartar falsos positivos, y revisa los puntos 4.3 a 4.10 de la guía de pruebas de OWASP."
+          ],
+          "title": "Las fases de un análisis DAST"
+        },
+        {
+          "type": "table",
+          "head": [
+            "Aspecto",
+            "Escaneo pasivo",
+            "Escaneo activo"
+          ],
+          "rows": [
+            [
+              "Qué hace",
+              "Examina el tráfico observado",
+              "Introduce pruebas o cargas maliciosas"
+            ],
+            [
+              "Modifica algo",
+              "No",
+              "Sí, envía peticiones nuevas"
+            ],
+            [
+              "Ejemplo de hallazgo",
+              "La cookie de sesión no lleva HttpOnly",
+              "El campo «buscar» es vulnerable a inyección SQL"
+            ]
+          ],
+          "title": "Pasivo frente a activo"
+        },
+        {
+          "type": "p",
+          "text": "DAST hace un **análisis sintáctico** de peticiones y respuestas: busca patrones en el texto que recibe (por ejemplo, un mensaje de error de SQL). Por eso **no entiende la semántica** (el significado conjunto) de varios parámetros y le cuesta detectar fallos de diseño de autenticación, autorización o lógica de negocio."
+        },
+        {
+          "type": "table",
+          "head": [
+            "Detecta bien (OWASP Top Ten y similares)",
+            "Le cuesta"
+          ],
+          "rows": [
+            [
+              "XSS (Cross-Site Scripting, inyectar código JavaScript en la página que ven otros), SQLi (inyección SQL), path traversal (salir de la carpeta permitida con ../), command injection (inyección de órdenes del sistema), RFI (Remote File Inclusion), XPath injection, HTTP response splitting",
+              "Fallos de diseño en autenticación y autorización"
+            ],
+            [
+              "Ausencia de cabeceras de seguridad, ausencia de token anti-CSRF (Cross-Site Request Forgery, peticiones falsificadas desde otra web), redirecciones no validadas",
+              "Lógica de negocio que depende del significado de varios parámetros a la vez"
+            ]
+          ],
+          "title": "Qué detecta y qué no"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Identificar un subconjunto aceptable de vulnerabilidades web.",
+            "Soportar entradas HTML, XML y JSON.",
+            "Soportar los métodos de autenticación habituales y funcionar como proxy interceptador.",
+            "Dar un informe por vulnerabilidad con la acción que la evidencia.",
+            "Tener ratios aceptables de verdaderos y falsos positivos."
+          ],
+          "title": "Características deseables de una DAST"
+        },
+        {
+          "type": "p",
+          "text": "**Cobertura**: la eficacia de una DAST depende de cuánta superficie alcance. Hay que probar todas las entradas, **con todos los roles de usuario**, cada parámetro y cada respuesta. Para reducir falsos positivos, una buena táctica es **correlacionar** con los resultados del SAST o usar los hallazgos estáticos para generar casos de prueba del escáner."
+        },
+        {
+          "type": "p",
+          "text": "Según el estudio de Amankwah (2020), que comparó ocho escáneres (Acunetix, WebInspect, AppScan, ZAP, Skipfish, Arachni, Vega e IronWASP) sobre las aplicaciones vulnerables WebGoat y DVWA, los comerciales son eficaces, pero algunos libres como **ZAP y Skipfish** también lo son."
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico",
+          "text": "Un escáner se lanza sin credenciales y solo recorre la portada, el catálogo y el formulario de contacto. El informe sale limpio. Lo honesto es documentar que **no se han cubierto las rutas ni los roles autenticados** (área de cliente, panel de administración): ahí puede haber fallos distintos que el escáner nunca vio. Que no haya alertas no significa que no haya vulnerabilidades."
+        },
+        {
+          "type": "exam",
+          "text": "«¿Qué tipo de análisis hace DAST?» → **sintáctico** (no semántico, ni intra- ni interprocedural, que son propios del análisis de código). En pasivo/activo, la trampa es intercambiarlos: el **activo inyecta**, el **pasivo observa**. Y la auditoría de resultados **no es automática**."
+        },
+        {
+          "type": "key",
+          "text": "DAST ataca desde fuera la aplicación en marcha: reconocimiento, crawling, escaneo pasivo, escaneo activo y auditoría manual. Analiza la sintaxis, no el significado, y solo cubre lo que consigue recorrer."
+        }
+      ]
+    },
+    {
+      "id": "iast-rasp",
+      "title": "IAST y RASP: un sensor dentro de la aplicación",
+      "pages": [
+        35,
+        39
+      ],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Si DAST es el ladrón que prueba desde fuera, IAST es un ingeniero con sensores dentro de las paredes: cuando alguien empuja una ventana, sabe exactamente qué bisagra ha cedido. RASP va un paso más allá: es un guardia de seguridad que vive dentro de la casa y, cuando ve a alguien forzando la ventana, se lo impide en ese momento."
+        },
+        {
+          "type": "p",
+          "text": "Las herramientas **IAST** son de **caja blanca**, pero, a diferencia de SAST, analizan el código **en tiempo de ejecución** (runtime). Funcionan con un **agente** instalado en el servidor junto a la aplicación."
+        },
+        {
+          "type": "term",
+          "term": "Instrumentar",
+          "text": "Insertar pequeñas sondas en el **código ejecutable** para observar qué pasa por dentro mientras funciona: qué funciones se llaman, qué valores tienen las variables, por dónde viaja cada dato."
+        },
+        {
+          "type": "list",
+          "items": [
+            "Puede tener acceso al **código fuente**.",
+            "Puede **instrumentar el código ejecutable**.",
+            "Observa el entorno de ejecución de los procesos, las **variables en memoria** y el estado del proceso.",
+            "Analiza también las **peticiones y respuestas** de la aplicación web."
+          ],
+          "title": "Qué puede hacer el agente IAST"
+        },
+        {
+          "type": "p",
+          "text": "Gracias a esa visión interna, IAST localiza la vulnerabilidad de forma muy concreta: ve el recorrido real de una petición por dentro de la aplicación. Se lleva muy bien con DAST: **el agente IAST aprovecha las peticiones que lanza el crawling del DAST**."
+        },
+        {
+          "type": "list",
+          "items": [
+            "Se ejecuta en el servidor y obtiene resultados del comportamiento que genera el usuario sobre la aplicación publicada.",
+            "Puede **sanear las entradas** (limpiar lo que llega del cliente) eliminando inyecciones.",
+            "Emite **alertas** a desarrolladores y administradores.",
+            "Su correlación con SAST es más precisa, porque ambas son de caja blanca.",
+            "Genera **menos falsos positivos**.",
+            "Inconveniente: **puede disminuir el rendimiento** de la aplicación, sobre todo si bloquea o sanea, porque añade tiempo de cómputo y alarga el tiempo de respuesta."
+          ],
+          "title": "Características según el tema"
+        },
+        {
+          "type": "term",
+          "term": "RASP",
+          "text": "El temario lo llama Real Analysis Self Protection, pero el nombre habitual en el sector es **Runtime Application Self-Protection** (autoprotección de la aplicación en tiempo de ejecución). Es la variante de esta familia que, en vez de solo informar, **actúa**: bloquea o sanea. Por eso se usa con la aplicación en **producción**, protegiéndola de ataques reales, y funciona como una especie de **cortafuegos de aplicaciones web (WAF, Web Application Firewall) de tipo software** integrado en la propia aplicación."
+        },
+        {
+          "type": "table",
+          "head": [
+            "Acción al detectar",
+            "Tipo",
+            "Ejemplos citados"
+          ],
+          "rows": [
+            [
+              "**Informar** (generar un informe y nada más)",
+              "IAST",
+              "Fortify SecurityScope, Acunetix + AcuSensor, Seeker, Contrast Assess"
+            ],
+            [
+              "**Bloquear** el intento de ataque",
+              "RASP",
+              "Fortify Application Defender, Contrast Protect (RASP)"
+            ],
+            [
+              "**Sanear** la petición, corrigiendo los valores de entrada",
+              "RASP",
+              "Saner (prototipo académico de Balzarotti et al., 2008)"
+            ]
+          ],
+          "title": "IAST frente a RASP"
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico",
+          "text": "Una tienda online tiene IAST (Contrast Community) en el entorno de pruebas. Mientras ZAP recorre la web, el agente ve que el parámetro «id» del carrito llega sin filtrar hasta la consulta SQL de la función obtenerPedido() y genera un informe con la línea exacta. En producción, la misma empresa activa RASP: cuando un atacante real envía ' OR 1=1 en ese parámetro, el agente corta la petición antes de que llegue a la base de datos."
+        },
+        {
+          "type": "p",
+          "text": "La lista de herramientas IAST del tema (Tabla 3) está en imagen y no se puede leer en el texto."
+        },
+        {
+          "type": "exam",
+          "text": "«IAST puede instrumentar el…» → **código ejecutable** (acceder al fuente y analizar peticiones y respuestas también lo hace, pero instrumentar es sobre el ejecutable). «Señala la falsa»: es falso que IAST **no tenga impacto en el rendimiento**; lo cierto es que tiene pocos falsos positivos, que da informes y que RASP puede usarse como WAF software. «RASP…» → **bloquea** peticiones maliciosas (no solo detecta, y no destaca por tener muchos falsos positivos). «RASP se usa en…» → **producción**."
+        },
+        {
+          "type": "key",
+          "text": "IAST = agente que observa por dentro la aplicación en ejecución e informa; RASP = la misma idea, pero bloquea o sanea en producción. Ambas pueden penalizar el rendimiento."
+        }
+      ]
+    },
+    {
+      "id": "hast",
+      "title": "Herramientas híbridas (HAST)",
+      "pages": [
+        40,
+        41
+      ],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Una navaja multiusos reúne cuchillo, tijeras y destornillador en una sola herramienta. Además, en una herramienta híbrida de seguridad las piezas «se hablan»: lo que encuentra una ayuda a la otra a trabajar mejor."
+        },
+        {
+          "type": "p",
+          "text": "Las herramientas **híbridas** (HAST, Hybrid Application Security Testing) combinan **varias modalidades de análisis** en una sola: SAST + DAST, SAST + IAST o SAST + DAST + IAST. Han evolucionado a medida que lo hacían por separado las demás y permiten **correlacionar** los resultados."
+        },
+        {
+          "type": "example",
+          "title": "Ejemplo del tema",
+          "text": "**Acunetix + AcuSensor**: Acunetix hace un análisis dinámico (DAST) y AcuSensor, un agente instalado en el servidor, hace un análisis en tiempo real desde dentro (IAST). Se pasan los resultados entre sí: el escáner descubre rutas que el sensor vigila, y el sensor confirma o descarta lo que el escáner sospecha. Resultado: más detecciones y mejor rendimiento."
+        },
+        {
+          "type": "list",
+          "items": [
+            "Acunetix + AcuSensor",
+            "DerScanner",
+            "Enlightn",
+            "Fluid Attacks Scanner",
+            "PT Application Inspector"
+          ],
+          "title": "Ejemplos de herramientas HAST"
+        },
+        {
+          "type": "exam",
+          "text": "La respuesta correcta es «combinar varias modalidades de análisis». Trampas: «un único análisis estático repetido con más reglas» (eso sigue siendo solo SAST), «solo pruebas externas» (solo DAST) o «solo inventario de componentes» (solo SCA)."
+        },
+        {
+          "type": "key",
+          "text": "Híbrida = varias técnicas en una sola herramienta que comparten resultados."
+        }
+      ]
+    },
+    {
+      "id": "correlacion",
+      "title": "Gestión y correlación de vulnerabilidades",
+      "pages": [
+        42,
+        44
+      ],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Imagina que tres vecinos llaman a la comunidad para avisar de la misma gotera. El administrador no abre tres expedientes ni ignora las llamadas por repetidas: abre **un** expediente, apunta quién avisó y con qué fotos, decide si es urgente, se lo asigna al fontanero y hace seguimiento hasta que esté arreglada."
+        },
+        {
+          "type": "p",
+          "text": "Las herramientas de correlación **consolidan** los hallazgos de muchas fuentes (SAST, DAST, IAST, SCA, pentesting, infraestructura…), los **correlacionan**, **eliminan duplicados** y ofrecen una **vista unificada y priorizada**. Además automatizan el ciclo de vida de las vulnerabilidades, mejoran la comunicación entre seguridad, desarrollo y operaciones y dan trazabilidad para auditorías."
+        },
+        {
+          "type": "table",
+          "head": [
+            "Fuente",
+            "Ejemplos que se integran"
+          ],
+          "rows": [
+            [
+              "SAST",
+              "SonarQube, Fortify, Checkmarx, CodeQL"
+            ],
+            [
+              "DAST",
+              "OWASP ZAP, Burp Suite, Netsparker"
+            ],
+            [
+              "SCA",
+              "Snyk, WhiteSource, Dependency-Check"
+            ],
+            [
+              "IAST",
+              "Contrast, Seeker"
+            ],
+            [
+              "Infraestructura y red",
+              "Nessus, Qualys, OpenVAS"
+            ],
+            [
+              "Contenedores y nube",
+              "Trivy, Kube-hunter, Scout Suite"
+            ]
+          ],
+          "title": "De dónde llegan los hallazgos (por API, ficheros, plugins o CI/CD)"
+        },
+        {
+          "type": "term",
+          "term": "CWE (Common Weakness Enumeration)",
+          "text": "Catálogo de **tipos** de debilidades (por ejemplo, CWE-89 es inyección SQL). CVE identifica un fallo concreto de un producto; CWE, la categoría del fallo."
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Correlación**: agrupa hallazgos iguales o parecidos por identificadores (CVE, CWE, URI), hashes de la vulnerabilidad, comparación de texto o patrones, o porque varias herramientas detectan lo mismo (por ejemplo, Snyk y Trivy).",
+            "**Priorización por riesgo**: con modelos como **CVSS** (Common Vulnerability Scoring System, puntuación de gravedad de 0 a 10), **EPSS** (Exploit Prediction Scoring System, probabilidad de que se explote) o **VPR** (Vulnerability Priority Rating), más inteligencia de amenazas, contexto de negocio y etiquetado de activos críticos.",
+            "**Ciclo de vida**: estados **activo, mitigado, falso positivo y aceptado**; asignación a equipos; seguimiento; integración con JIRA, GitHub Issues, GitLab o ServiceNow.",
+            "**Automatización DevSecOps**: importación en pipelines CI/CD, **umbrales de calidad** que bloquean el despliegue si se superan, alertas por Slack, Teams o correo y API.",
+            "**Informes y cumplimiento**: paneles, exportación (PDF, Excel, JSON), indicadores como **MTTR** (Mean Time To Remediate, tiempo medio de corrección), vulnerabilidades abiertas por severidad y SLA (acuerdos de nivel de servicio), y evidencias para auditorías ISO 27001, PCI-DSS o SOC 2."
+          ],
+          "title": "Qué hacen estas herramientas"
+        },
+        {
+          "type": "p",
+          "text": "La tabla de herramientas de correlación del tema (Tabla 4) está en imagen y no se puede leer en el texto."
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico",
+          "text": "SonarQube (SAST), ZAP (DAST) y Contrast (IAST) avisan de la misma inyección SQL en /api/pedidos. La plataforma de correlación los agrupa por CWE-89 y URI en **un único defecto**, con las tres evidencias adjuntas, le da prioridad alta (tres técnicas distintas lo confirman y afecta a datos de clientes), lo asigna al equipo de pedidos en JIRA y lo sigue hasta que pase a «mitigado»."
+        },
+        {
+          "type": "exam",
+          "text": "La finalidad es **unificar, deduplicar y priorizar**. Trampas: registrar tres defectos distintos, descartarlos todos «por duplicados», cerrar avisos sin vincularlos, o priorizar **solo** por cuántas herramientas lo repiten (la prioridad se basa en el riesgo: gravedad, explotabilidad, activo afectado)."
+        },
+        {
+          "type": "key",
+          "text": "Correlacionar es convertir muchos avisos dispersos en una lista única, sin duplicados, priorizada por riesgo y con seguimiento hasta su corrección."
+        }
+      ]
+    }
+  ],
+  "summary": [
+    "Ningún análisis detecta el 100 % de las vulnerabilidades: se combinan varios dentro de un SSDLC y se auditan manualmente.",
+    "Corregir en producción cuesta unas 60 veces más que en diseño: cuanto antes, mejor.",
+    "SAST: caja blanca, sin ejecutar, en desarrollo; análisis léxico/sintáctico/semántico, intraprocedural (dentro de una función) e interprocedural (entre funciones).",
+    "SCA: inventario de componentes de terceros, incluidas dependencias transitivas, cruzado con CVE y licencias.",
+    "Falso positivo: aviso sin fallo real. Falso negativo: fallo real sin aviso, el más peligroso.",
+    "Análisis funcional: en pruebas, verifica que cada control cumple su requisito; la prueba clave es intentar lo prohibido.",
+    "DAST: caja negra, aplicación en marcha; reconocimiento, crawling, escaneo pasivo (observa) y activo (inyecta), auditoría manual; análisis sintáctico.",
+    "IAST: agente que instrumenta el ejecutable en tiempo de ejecución, pocos falsos positivos pero impacto en rendimiento. RASP: bloquea o sanea en producción.",
+    "Híbridas (HAST): varias modalidades en una herramienta que comparten resultados.",
+    "Correlación: unificar, deduplicar, priorizar por riesgo y hacer seguimiento."
+  ],
+  "glossary": [
+    {
+      "term": "AST (Application Security Testing)",
+      "text": "Nombre genérico de las pruebas y herramientas de seguridad de aplicaciones."
+    },
+    {
+      "term": "SSDLC (Secure Software Development Life Cycle)",
+      "text": "Ciclo de vida de desarrollo de software con actividades de seguridad en cada fase."
+    },
+    {
+      "term": "SAST (Static Application Security Testing)",
+      "text": "Análisis estático de caja blanca: revisa código fuente o ejecutable sin ejecutar la aplicación."
+    },
+    {
+      "term": "DAST (Dynamic Application Security Testing)",
+      "text": "Análisis dinámico de caja negra: ataca desde fuera la aplicación en ejecución."
+    },
+    {
+      "term": "IAST (Interactive Application Security Testing)",
+      "text": "Análisis interactivo de caja blanca: un agente observa por dentro la aplicación mientras se ejecuta."
+    },
+    {
+      "term": "RASP (Runtime Application Self-Protection)",
+      "text": "Protección en tiempo de ejecución que bloquea o sanea ataques en producción. El temario lo llama Real Analysis Self Protection."
+    },
+    {
+      "term": "SCA (Software Composition Analysis)",
+      "text": "Análisis de los componentes de terceros de una aplicación: dependencias, CVE, licencias y obsolescencia."
+    },
+    {
+      "term": "HAST",
+      "text": "Herramientas híbridas que combinan varias modalidades (SAST, DAST, IAST)."
+    },
+    {
+      "term": "Falso positivo",
+      "text": "Hallazgo informado que no es una vulnerabilidad real."
+    },
+    {
+      "term": "Falso negativo",
+      "text": "Vulnerabilidad real que la herramienta no informa."
+    },
+    {
+      "term": "Intraprocedural",
+      "text": "Análisis dentro de una sola función."
+    },
+    {
+      "term": "Interprocedural",
+      "text": "Análisis de las llamadas y del flujo de datos entre funciones, clases o módulos."
+    },
+    {
+      "term": "Crawling",
+      "text": "Recorrido automático de una web para descubrir páginas, formularios y parámetros."
+    },
+    {
+      "term": "Escaneo pasivo / activo",
+      "text": "El pasivo observa el tráfico; el activo inyecta payloads en las entradas."
+    },
+    {
+      "term": "Payload",
+      "text": "Cadena maliciosa que se inyecta para provocar una vulnerabilidad."
+    },
+    {
+      "term": "CVE",
+      "text": "Identificador público de una vulnerabilidad concreta de un producto."
+    },
+    {
+      "term": "CWE",
+      "text": "Catálogo de tipos de debilidades del software."
+    },
+    {
+      "term": "CVSS / EPSS",
+      "text": "Modelos para puntuar la gravedad (CVSS) y la probabilidad de explotación (EPSS) de una vulnerabilidad."
+    },
+    {
+      "term": "OWASP",
+      "text": "Comunidad abierta de seguridad de aplicaciones; publica la WSTG (guía de pruebas), el ASVS (requisitos verificables) y el Top Ten."
+    },
+    {
+      "term": "Dependencia transitiva",
+      "text": "Librería que no declaras tú, sino que trae otra librería que usas."
+    },
+    {
+      "term": "WAF (Web Application Firewall)",
+      "text": "Cortafuegos que filtra las peticiones maliciosas dirigidas a una aplicación web."
+    }
+  ],
+  "questions": {
+    "sistemas-t07-01": {
+      "section": "sast",
+      "reasoning": "Las «interacciones entre distintas funciones» son llamadas de una función a otra y el paso de datos entre ellas. El prefijo inter- significa «entre» e intra- significa «dentro». El análisis que sigue llamadas y datos entre funciones es el interprocedural o global.",
+      "options": {
+        "a": "Incorrecta. El intraprocedural es local: mira el flujo dentro de cada función, no entre funciones.",
+        "b": "Correcta. El análisis interprocedural estudia las llamadas entre funciones y el flujo de datos de unas a otras.",
+        "c": "Incorrecta. El análisis semántico (como el de un compilador) revisa el significado de las instrucciones, pero no es el que se centra en las interacciones entre funciones.",
+        "d": "Incorrecta. No todas sirven para eso: solo el interprocedural trata las interacciones entre funciones."
+      }
+    },
+    "sistemas-t07-02": {
+      "section": "dast",
+      "reasoning": "DAST no ve el código: solo envía peticiones y lee las respuestas buscando patrones de texto (por ejemplo, un error de SQL). El tema dice que hace un análisis sintáctico de peticiones y respuestas y que por eso no comprende la semántica de varios parámetros en conjunto. Intra- e interprocedural son análisis de código, propios de SAST.",
+      "options": {
+        "a": "Incorrecta. Precisamente el tema dice que DAST no puede comprender la semántica de los parámetros; por eso le cuestan los fallos de diseño.",
+        "b": "Correcta. DAST analiza sintácticamente las peticiones y respuestas que envía y recibe.",
+        "c": "Incorrecta. El análisis interprocedural recorre el código entre funciones; DAST no tiene acceso al código.",
+        "d": "Incorrecta. El intraprocedural también es un análisis del código (dentro de una función), propio de SAST."
+      }
+    },
+    "sistemas-t07-03": {
+      "section": "iast-rasp",
+      "reasoning": "Instrumentar es insertar sondas en el programa que se está ejecutando para observarlo por dentro. El tema dice que el agente IAST puede acceder al código fuente, pero lo que instrumenta es el código ejecutable; además analiza peticiones y respuestas, que se observan, no se instrumentan.",
+      "options": {
+        "a": "Incorrecta. El agente IAST puede tener acceso al código fuente, pero el tema reserva «instrumentar» para el código ejecutable.",
+        "b": "Incorrecta. IAST analiza las peticiones y respuestas, pero no las instrumenta: la instrumentación se hace en el programa.",
+        "c": "Correcta. Las herramientas IAST instrumentan el código ejecutable para observar variables, procesos y flujos en tiempo de ejecución.",
+        "d": "Incorrecta. La opción c es correcta, así que esta no puede serlo."
+      }
+    },
+    "sistemas-t07-04": {
+      "section": "ssdlc-fases",
+      "reasoning": "La prueba funcional comprueba que los controles de seguridad funcionan de verdad (que la sesión caduca, que un usuario no accede a lo ajeno). Para eso hace falta la aplicación funcionando. El tema la sitúa en la fase de pruebas, junto a DAST e IAST, aunque los requisitos que verifica se definieron antes, en análisis.",
+      "options": {
+        "a": "Incorrecta. En la fase de análisis se definen los requisitos y se revisa su completitud, pero todavía no se prueban.",
+        "b": "Incorrecta. En diseño aún no hay una aplicación ejecutable con la que probar los controles.",
+        "c": "Incorrecta. En desarrollo tocan SAST y SCA, que no necesitan ejecutar la aplicación.",
+        "d": "Correcta. La prueba funcional de los requisitos de seguridad se hace en la fase de pruebas o despliegue."
+      }
+    },
+    "sistemas-t07-05": {
+      "section": "ssdlc-fases",
+      "reasoning": "El análisis estático lee el código sin ejecutarlo. Necesita que exista código, pero no que la aplicación funcione. Por eso el tema lo coloca en la fase de desarrollo, donde detecta errores pronto y barato.",
+      "options": {
+        "a": "Incorrecta. En análisis todavía no hay código fuente que revisar; se trabaja con requisitos.",
+        "b": "Incorrecta. En diseño tampoco hay código; se revisan requisitos y arquitectura.",
+        "c": "Correcta. SAST se integra en el desarrollo para corregir los defectos en cuanto se escriben.",
+        "d": "Incorrecta. Podría repetirse más tarde, pero su lugar en el SSDLC es el desarrollo; en pruebas tocan el análisis funcional, DAST e IAST."
+      }
+    },
+    "sistemas-t07-06": {
+      "section": "sast",
+      "reasoning": "El tema enumera lo que puede hacer una herramienta estática: análisis léxico, sintáctico y semántico como un compilador; análisis intraprocedural o local dentro de cada función; y análisis global o interprocedural entre funciones. Las tres primeras opciones son ciertas a la vez.",
+      "options": {
+        "a": "Incorrecta como respuesta única. Es cierta (análisis intraprocedural), pero no es la única que lo es.",
+        "b": "Incorrecta como respuesta única. Es cierta (análisis interprocedural o global), pero hay más.",
+        "c": "Incorrecta como respuesta única. Es cierta (análisis léxico, sintáctico y semántico), pero también lo son a y b.",
+        "d": "Correcta. El análisis estático de caja blanca puede hacer los tres tipos de análisis."
+      }
+    },
+    "sistemas-t07-07": {
+      "section": "iast-rasp",
+      "reasoning": "Se busca la afirmación falsa. El tema dice que IAST genera un número menor de falsos positivos, que emite informes y alertas, y que la familia RASP bloquea ataques (como un cortafuegos web dentro de la aplicación). Pero también advierte que estas herramientas pueden disminuir el rendimiento porque añaden tiempo de cómputo. Decir que «normalmente no tienen impacto» contradice esa advertencia.",
+      "options": {
+        "a": "Incorrecta (es verdadera). El tema destaca que IAST genera menos falsos positivos gracias al contexto de ejecución.",
+        "b": "Incorrecta (es verdadera). RASP bloquea peticiones maliciosas desde dentro de la aplicación, lo que en la práctica es un cortafuegos de aplicaciones web de tipo software.",
+        "c": "Correcta (es la falsa). El tema advierte que IAST puede disminuir el rendimiento y aumentar el tiempo de respuesta, sobre todo si bloquea o sanea.",
+        "d": "Incorrecta (es verdadera). La acción típica de IAST al detectar una vulnerabilidad es generar un informe."
+      }
+    },
+    "sistemas-t07-08": {
+      "section": "iast-rasp",
+      "reasoning": "El tema distingue tres acciones al detectar una vulnerabilidad: informar (IAST), bloquear (RASP) y sanear (RASP). Lo que define a RASP frente a IAST es que actúa: bloquea los intentos de ataque.",
+      "options": {
+        "a": "Correcta. RASP bloquea las peticiones maliciosas que intentan explotar una vulnerabilidad.",
+        "b": "Incorrecta. Detectar e informar sin bloquear es lo propio de IAST, no de RASP.",
+        "c": "Incorrecta. Al trabajar desde dentro de la aplicación, con contexto de ejecución, esta familia se caracteriza por tener pocos falsos positivos, no muchos.",
+        "d": "Incorrecta. b y c son falsas, así que no pueden ser ciertas todas."
+      }
+    },
+    "sistemas-t07-09": {
+      "section": "iast-rasp",
+      "reasoning": "RASP protege la aplicación bloqueando o saneando ataques reales en el momento en que llegan. Los ataques reales llegan cuando la aplicación está publicada y en servicio, es decir, en producción.",
+      "options": {
+        "a": "Incorrecta. En la fase de análisis no hay aplicación que proteger; se definen requisitos.",
+        "b": "Incorrecta. En diseño tampoco hay una aplicación en ejecución.",
+        "c": "Incorrecta. En desarrollo se usan SAST y SCA; RASP necesita la aplicación funcionando y recibiendo peticiones reales.",
+        "d": "Correcta. RASP se usa en producción para autoprotegerse frente a ataques reales."
+      }
+    },
+    "sistemas-t07-10": {
+      "section": "falsos-positivos",
+      "reasoning": "Hay que revisar cada afirmación. El tema dice que SAST revisa todo el código (cobertura completa), que puede analizar ejecutables tras desensamblarlos y que todas las herramientas estáticas producen falsos positivos o negativos, y la mayoría ambos. Solo la b es cierta.",
+      "options": {
+        "a": "Incorrecta. Una de las ventajas de SAST es precisamente la cobertura del código completo.",
+        "b": "Correcta. Las herramientas SAST tienen falsos positivos y falsos negativos; por eso se audita su informe.",
+        "c": "Incorrecta. Las SAST de ejecutables hacen primero un desensamblado y luego lo analizan como código fuente.",
+        "d": "Incorrecta. La b es verdadera, así que no son todas falsas."
+      }
+    },
+    "sistemas-t07-11": {
+      "section": "tipos-de-analisis",
+      "reasoning": "«Estático» significa que el programa no se mueve: no se ejecuta. SAST revisa código fuente, binarios o bytecode sin arrancar la aplicación.",
+      "options": {
+        "a": "Incorrecta. Enviar peticiones a la aplicación en ejecución es DAST.",
+        "b": "Correcta. SAST analiza el código sin ejecutar la aplicación.",
+        "c": "Incorrecta. Instrumentar la aplicación durante las pruebas es IAST.",
+        "d": "Incorrecta. Comparar versiones de bibliotecas con vulnerabilidades conocidas es SCA."
+      }
+    },
+    "sistemas-t07-12": {
+      "section": "tipos-de-analisis",
+      "reasoning": "«Dinámico» significa en movimiento: la aplicación tiene que estar ejecutándose. DAST la ataca desde fuera mientras funciona, simulando ataques externos.",
+      "options": {
+        "a": "Correcta. DAST prueba la aplicación durante su ejecución.",
+        "b": "Incorrecta. Analizar el código sin ejecutarlo es SAST.",
+        "c": "Incorrecta. Revisar dependencias es SCA.",
+        "d": "Incorrecta. Revisar requisitos documentados corresponde al análisis de completitud de requisitos, en la fase de análisis."
+      }
+    },
+    "sistemas-t07-13": {
+      "section": "sca",
+      "reasoning": "SCA significa análisis de composición de software: estudia de qué piezas está compuesta la aplicación, sobre todo librerías y paquetes de terceros, y busca en ellas CVE, problemas de licencia y obsolescencia.",
+      "options": {
+        "a": "Incorrecta. Revisar los flujos del código propio sin ejecutarlo es SAST.",
+        "b": "Incorrecta. Observar peticiones y respuestas desde fuera es DAST.",
+        "c": "Incorrecta. Seguir rutas internas con instrumentación en ejecución es IAST.",
+        "d": "Correcta. SCA revisa los componentes y dependencias de terceros."
+      }
+    },
+    "sistemas-t07-14": {
+      "section": "iast-rasp",
+      "reasoning": "«Interactivo» porque observa la aplicación mientras interactúa con peticiones. IAST pone un agente dentro del servidor que instrumenta la aplicación y la vigila en tiempo de ejecución.",
+      "options": {
+        "a": "Incorrecta. Revisar código sin ejecutar es SAST.",
+        "b": "Incorrecta. Las pruebas externas sin visibilidad interna son DAST.",
+        "c": "Correcta. IAST instrumenta la aplicación y la observa desde dentro mientras se ejecuta.",
+        "d": "Incorrecta. Examinar el inventario de dependencias es SCA."
+      }
+    },
+    "sistemas-t07-15": {
+      "section": "falsos-positivos",
+      "reasoning": "Positivo = la herramienta avisa. Falso = el aviso no se corresponde con la realidad. Por tanto, un falso positivo es un hallazgo informado que no resulta ser una vulnerabilidad real, como una alarma de humo que suena al tostar pan.",
+      "options": {
+        "a": "Incorrecta. Una vulnerabilidad real que no se detecta es un falso negativo.",
+        "b": "Correcta. Es un aviso de la herramienta que, revisado, no corresponde a una vulnerabilidad real.",
+        "c": "Incorrecta. Un defecto validado y reproducido es un verdadero positivo.",
+        "d": "Incorrecta. Un defecto corregido que ya no se reproduce es una vulnerabilidad mitigada, no un falso positivo."
+      }
+    },
+    "sistemas-t07-16": {
+      "section": "funcional",
+      "reasoning": "El tema define el objetivo del análisis funcional: verificar que los controles de seguridad implementados cumplen los requisitos definidos (autenticación, sesiones, autorización, errores, validación, cabeceras, registros…).",
+      "options": {
+        "a": "Correcta. Comprueba que los controles de seguridad cumplen los requisitos definidos.",
+        "b": "Incorrecta. Comprobar versiones vulnerables de dependencias es tarea de SCA.",
+        "c": "Incorrecta. La cobertura de líneas ejecutadas es una métrica de pruebas de software, no el objetivo del análisis funcional de seguridad.",
+        "d": "Incorrecta. La disponibilidad ante carga es una prueba de rendimiento; además, el «solo» deja fuera todos los demás requisitos."
+      }
+    },
+    "sistemas-t07-17": {
+      "section": "combinar",
+      "reasoning": "El tema explica que cada técnica cubre distintos espacios de riesgo y tiene puntos fuertes y débiles propios. Combinarlas da más cobertura y menos falsos positivos, pero ni siquiera juntas permiten detectar el 100 %.",
+      "options": {
+        "a": "Incorrecta. Ninguna combinación garantiza encontrar todos los defectos; el tema insiste en que el 100 % es prácticamente imposible.",
+        "b": "Incorrecta. Si tuvieran la misma cobertura, combinarlas no aportaría nada.",
+        "c": "Incorrecta. Aunque varias coincidan, los hallazgos se siguen auditando y validando.",
+        "d": "Correcta. Se combinan porque cada una cubre riesgos distintos y tiene limitaciones diferentes."
+      }
+    },
+    "sistemas-t07-18": {
+      "section": "sca",
+      "reasoning": "Una dependencia transitiva es la librería que trae otra librería que usas. Aunque no la declares tú, su código se ejecuta dentro de tu aplicación, así que sus vulnerabilidades también son tuyas (caso Log4Shell). Por eso las herramientas SCA incluyen las dependencias transitivas.",
+      "options": {
+        "a": "Incorrecta. Las dependencias indirectas forman parte del programa y sí afectan a su comportamiento.",
+        "b": "Incorrecta. Mirar solo la versión declarada directamente deja fuera las transitivas.",
+        "c": "Correcta. Un componente indirecto también puede introducir una vulnerabilidad en la aplicación.",
+        "d": "Incorrecta. Nada garantiza que la librería principal tenga sus propias dependencias libres de fallos."
+      }
+    },
+    "sistemas-t07-19": {
+      "section": "sca",
+      "reasoning": "Entre las limitaciones de SCA el tema cita los falsos positivos: no todos los hallazgos son riesgos reales y se necesita revisión manual. Que una librería tenga una CVE no significa que tu aplicación use la parte vulnerable ni que sea explotable en tu caso.",
+      "options": {
+        "a": "Incorrecta. Un aviso indica que la versión tiene una vulnerabilidad conocida, no que se haya explotado en tu producción.",
+        "b": "Correcta. No todos los avisos son un riesgo real en el uso concreto; hay que valorar el contexto.",
+        "c": "Incorrecta. Una versión vulnerable no implica siempre una ruta explotable: puede que la función afectada no se use.",
+        "d": "Incorrecta. La popularidad de un componente no descarta el riesgo; Log4j era popularísima."
+      }
+    },
+    "sistemas-t07-20": {
+      "section": "falsos-positivos",
+      "reasoning": "Negativo = la herramienta no avisa. Falso = esa ausencia de aviso no se corresponde con la realidad, porque el fallo sí existe. Es el caso más peligroso porque además da una falsa sensación de seguridad.",
+      "options": {
+        "a": "Correcta. Es una vulnerabilidad real que la herramienta no informa.",
+        "b": "Incorrecta. Una alerta sobre algo que no es vulnerable es un falso positivo.",
+        "c": "Incorrecta. Un hallazgo validado con evidencias es un verdadero positivo.",
+        "d": "Incorrecta. Un defecto corregido que ya no aparece es una vulnerabilidad mitigada."
+      }
+    },
+    "sistemas-t07-21": {
+      "section": "dast",
+      "reasoning": "En DAST, el escaneo pasivo examina las peticiones y respuestas que ya circulan (por ejemplo, si falta HttpOnly) sin atacar; el escaneo activo inyecta payloads en los campos de entrada y analiza las respuestas.",
+      "options": {
+        "a": "Incorrecta. Está al revés: es el activo el que introduce cargas y el pasivo el que observa.",
+        "b": "Incorrecta. Ambos escaneos son dinámicos: trabajan con la aplicación en ejecución, no con el código.",
+        "c": "Incorrecta. Ninguno se define así; el pasivo no modifica respuestas.",
+        "d": "Correcta. El activo introduce pruebas o cargas maliciosas; el pasivo examina el tráfico observado."
+      }
+    },
+    "sistemas-t07-22": {
+      "section": "hast",
+      "reasoning": "Las herramientas híbridas reúnen varias modalidades de funcionamiento en una sola (SAST + DAST, SAST + IAST o las tres) y comparten resultados entre ellas, como Acunetix + AcuSensor.",
+      "options": {
+        "a": "Incorrecta. Repetir un análisis estático con más reglas sigue siendo solo SAST.",
+        "b": "Incorrecta. Solo pruebas externas sobre la aplicación en ejecución es DAST.",
+        "c": "Correcta. Una herramienta híbrida combina varias modalidades de análisis.",
+        "d": "Incorrecta. Comprobar solo el inventario de componentes es SCA."
+      }
+    },
+    "sistemas-t07-23": {
+      "section": "correlacion",
+      "reasoning": "Cuando varias herramientas analizan la misma aplicación, muchos hallazgos se repiten. Las herramientas de correlación los consolidan, eliminan duplicados y ofrecen una vista unificada y priorizada por riesgo.",
+      "options": {
+        "a": "Incorrecta. Tratar cada detección como un defecto distinto multiplica el trabajo y es justo lo que la correlación evita.",
+        "b": "Correcta. Se correlaciona para unificar, deduplicar y priorizar los problemas.",
+        "c": "Incorrecta. La priorización se basa en el riesgo (CVSS, EPSS, criticidad del activo, contexto de negocio), no solo en cuántas herramientas lo repiten.",
+        "d": "Incorrecta. Un hallazgo que solo detecta una herramienta puede ser real; no se cierra automáticamente."
+      }
+    },
+    "sistemas-t07-24": {
+      "section": "ssdlc-fases",
+      "reasoning": "Si la aplicación no arranca, no hay nada que atacar ni que observar en ejecución. Lo único que se puede usar es una técnica que trabaje con el código quieto: el análisis estático (SAST).",
+      "options": {
+        "a": "Correcta. Las pruebas estáticas analizan el código sin necesidad de ejecutar la aplicación.",
+        "b": "Incorrecta. DAST necesita que el servicio responda a sus peticiones.",
+        "c": "Incorrecta. IAST necesita la aplicación en ejecución para instrumentarla.",
+        "d": "Incorrecta. No hay peticiones productivas que monitorizar si la aplicación ni siquiera arranca."
+      }
+    },
+    "sistemas-t07-25": {
+      "section": "sca",
+      "reasoning": "La pregunta habla de bibliotecas de terceros y versiones vulnerables. Esa es exactamente la tarea de SCA: inventariar componentes y cruzar sus versiones con bases de vulnerabilidades como CVE o NVD.",
+      "options": {
+        "a": "Incorrecta. Las pruebas dinámicas de la interfaz atacan desde fuera, sin inventariar las librerías ni sus versiones.",
+        "b": "Incorrecta. La caducidad de sesión es un requisito que se verifica con el análisis funcional, no tiene que ver con las bibliotecas.",
+        "c": "Incorrecta. Instrumentar una operación (IAST) muestra su recorrido interno, pero no revisa versiones de dependencias.",
+        "d": "Correcta. El análisis de composición de software (SCA) identifica las dependencias y sus vulnerabilidades conocidas."
+      }
+    },
+    "sistemas-t07-26": {
+      "section": "funcional",
+      "reasoning": "El requisito es de autorización vertical: un usuario normal no debe poder hacer una acción de administrador. Para verificarlo hay que hacer una prueba negativa: intentar la acción con un usuario sin permiso y comprobar que el servidor la rechaza. Ocultar el botón no basta, porque la petición se puede enviar a mano.",
+      "options": {
+        "a": "Incorrecta. Que el administrador pueda borrar es otra cosa; no demuestra que el usuario normal no pueda.",
+        "b": "Incorrecta. Que el botón no aparezca es solo la interfaz; un atacante puede enviar la petición directamente con un proxy.",
+        "c": "Correcta. Hay que intentar la operación con un usuario sin ese permiso y comprobar que se bloquea.",
+        "d": "Incorrecta. La longitud de la contraseña es un requisito de autenticación, no de autorización para borrar cuentas."
+      }
+    },
+    "sistemas-t07-27": {
+      "section": "dast",
+      "reasoning": "La eficacia de una DAST depende de la superficie que cubra: todas las entradas, con todos los roles de usuario. Si solo ha recorrido las páginas públicas, no ha probado las zonas que requieren iniciar sesión, y eso debe dejarse por escrito.",
+      "options": {
+        "a": "Incorrecta. Sin autenticarse no puede haber cubierto los roles privados.",
+        "b": "Correcta. Hay que documentar que no se han cubierto necesariamente las rutas y roles autenticados.",
+        "c": "Incorrecta. El acceso público no representa los estados de sesión de los usuarios autenticados.",
+        "d": "Incorrecta. Las rutas autenticadas suelen tener fallos propios (de autorización, por ejemplo)."
+      }
+    },
+    "sistemas-t07-28": {
+      "section": "falsos-positivos",
+      "reasoning": "Toda herramienta da falsos positivos, así que un aviso de inyección hay que confirmarlo en una auditoría: seguir la traza del dato, ver si se filtra antes y comprobar el contexto. Solo así se distingue un fallo real de una falsa alarma.",
+      "options": {
+        "a": "Correcta. Auditar el flujo y comprobar el contexto permite descartar el falso positivo.",
+        "b": "Incorrecta. Un aviso no es una explotación demostrada; puede ser un falso positivo.",
+        "c": "Incorrecta. Que otra herramienta no lo vea no prueba nada: puede ser un falso negativo de esa otra herramienta.",
+        "d": "Incorrecta. Cambiar líneas sin entender el flujo no confirma ni corrige el problema y puede introducir otros."
+      }
+    },
+    "sistemas-t07-29": {
+      "section": "iast-rasp",
+      "reasoning": "Para ver el recorrido interno de una petición hace falta estar dentro de la aplicación mientras se ejecuta. Eso es lo que hace el agente IAST: instrumenta el ejecutable y sigue la petición por funciones y variables.",
+      "options": {
+        "a": "Incorrecta. El análisis estático no ejecuta la aplicación, así que no ve peticiones reales.",
+        "b": "Incorrecta. Un análisis solo externo y sin agente (DAST) no ve el interior.",
+        "c": "Incorrecta. El inventario de dependencias (SCA) no sigue peticiones.",
+        "d": "Correcta. El análisis interactivo (IAST) instrumenta la aplicación y observa el recorrido interno de la petición."
+      }
+    },
+    "sistemas-t07-30": {
+      "section": "correlacion",
+      "reasoning": "Si tres herramientas avisan del mismo defecto, hay un único problema con tres evidencias. La gestión correcta es correlacionar: unificarlo en un defecto, conservar las evidencias y seguir su corrección.",
+      "options": {
+        "a": "Incorrecta. Registrar tres defectos distintos genera duplicados y confusión.",
+        "b": "Incorrecta. Que esté repetido no lo convierte en falso; al contrario, refuerza que es real.",
+        "c": "Correcta. Se unifica en un defecto y se hace seguimiento de su corrección con las evidencias de las tres herramientas.",
+        "d": "Incorrecta. Cerrar avisos sin vincularlos pierde trazabilidad y evidencias."
+      }
+    }
+  }
+}

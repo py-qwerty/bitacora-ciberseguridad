@@ -1,0 +1,1036 @@
+{
+  "course": "sistemas",
+  "number": 6,
+  "title": "Seguridad en el desarrollo de las aplicaciones web",
+  "minutes": 50,
+  "intro": {
+    "why": "Casi todo lo que haces en internet (pagar, pedir cita médica, escribir en una red social) pasa por una aplicación web que alguien programó. Un solo descuido en ese código, como pegar lo que escribe el usuario directamente en una consulta a la base de datos, basta para que un atacante se lleve los datos de millones de clientes: así ocurrieron muchas de las grandes filtraciones de la última década. Este tema enseña a reconocer los errores de programación más peligrosos y cómo se corrigen, con ejemplos en Java.",
+    "before": [
+      "Una **aplicación web** funciona en dos partes: el **cliente** (tu navegador, que muestra la página) y el **servidor** (el ordenador de la empresa que recibe tus peticiones, consulta la base de datos y responde).",
+      "El navegador y el servidor hablan con **HTTP** (HyperText Transfer Protocol, protocolo de transferencia de hipertexto). Cada petición lleva una dirección (URL), unos **parámetros** (los datos que envías, como `?id=5`) y unos **encabezados** o cabeceras (metadatos como las cookies).",
+      "Una **cookie de sesión** es una pequeña ficha que el servidor te da al iniciar sesión; tu navegador la enseña en cada petición para que el servidor sepa que eres tú sin pedirte la contraseña otra vez.",
+      "Un **Servlet** es un programa Java que vive en el servidor y responde a peticiones HTTP: recibe los parámetros, hace su trabajo y devuelve una página o un dato. Todos los ejemplos del tema son Servlets.",
+      "La regla de oro de todo el tema: **todo lo que llega del usuario es sospechoso** hasta que se demuestre lo contrario."
+    ],
+    "goals": [
+      "Al terminar sabrás explicar qué es el desarrollo seguro, por qué la revisión de código es tan importante y qué es el catálogo CWE.",
+      "Sabrás aplicar las recomendaciones de codificación segura: validación de entrada, codificación de salida, criptografía, gestión de errores, registros y archivos.",
+      "Sabrás reconocer, explotar sobre el papel y corregir las vulnerabilidades del tema: SQLi, XSS, CSRF, path traversal, inyección de comandos, falta de autorización, subida de archivos peligrosos, XXE, SSRF, credenciales incrustadas, consumo de recursos y HTTP response splitting.",
+      "Sabrás asociar cada número CWE con su vulnerabilidad, su riesgo principal y su defensa principal, que es exactamente lo que pregunta el test."
+    ]
+  },
+  "sections": [
+    {
+      "id": "desarrollo-seguro",
+      "title": "Desarrollo seguro: la seguridad se construye desde los cimientos",
+      "pages": [4, 7],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Construir una casa y, cuando ya está terminada, darte cuenta de que olvidaste los cimientos antisísmicos sale carísimo: hay que levantar suelos y reforzar paredes. Ponerlos en el plano cuesta casi nada. Con el software pasa igual: un fallo de seguridad detectado mientras se diseña o se programa es barato de arreglar; el mismo fallo descubierto con la aplicación ya en uso obliga a parches de urgencia, cuesta mucho más y daña la reputación de la empresa."
+        },
+        {
+          "type": "term",
+          "term": "Security by Design (seguridad desde el diseño)",
+          "text": "Forma de trabajar que mete la seguridad en **todas** las etapas de la creación del software (diseño, programación, pruebas y despliegue), en lugar de añadirla al final como un extra."
+        },
+        {
+          "type": "term",
+          "term": "SDLC (Software Development Life Cycle, ciclo de vida del desarrollo de software)",
+          "text": "Las fases por las que pasa una aplicación desde que se piensa hasta que se usa y se mantiene. Un **SDLC seguro** añade a cada fase actividades de seguridad. (El PDF desarrolla la sigla como «systems development life cycle»; en este contexto se refiere al ciclo de vida del software.)"
+        },
+        {
+          "type": "term",
+          "term": "Revisión estática de código",
+          "text": "Leer y analizar el código fuente **sin ejecutarlo**, a mano o con herramientas automáticas, para encontrar fallos. Según Gary McGraw (libro «Software security: building security in», 2006), es la más importante de las siete actividades de su modelo de ciclo de vida seguro y es la práctica principal de la fase de implementación (cuando se escribe el código)."
+        },
+        {
+          "type": "p",
+          "text": "El tema insiste en una idea económica: **encontrar los bugs pronto reduce el coste en varios órdenes de magnitud** respecto a descubrirlos en fases posteriores. Por eso las organizaciones deben integrar la revisión de código en sus procesos habituales de desarrollo."
+        },
+        {
+          "type": "term",
+          "term": "CWE (Common Weakness Enumeration, enumeración de debilidades comunes)",
+          "text": "Catálogo público que da un número a cada tipo de error de programación que puede provocar una vulnerabilidad. Por ejemplo, CWE-89 es la inyección SQL y CWE-79 es el XSS. El **CWE Top 25** es la lista de las 25 debilidades más peligrosas y frecuentes; el objetivo del tema es aprender a programar sin cometerlas."
+        },
+        {
+          "type": "term",
+          "term": "OWASP (Open Worldwide Application Security Project)",
+          "text": "Comunidad abierta que publica guías, listas de comprobación («cheat sheets») y librerías gratuitas para hacer aplicaciones web seguras. En el tema aparecen sus Secure Coding Practices, OWASP Java Encoder, OWASP CSRFGuard y OWASP ESAPI."
+        },
+        {
+          "type": "term",
+          "term": "J2EE / Java EE / Jakarta EE",
+          "text": "La versión de Java para aplicaciones empresariales en servidor: define los Servlets, las páginas JSP (Java Server Pages, plantillas HTML con código Java) y su configuración. Los ejemplos del tema siguen esta especificación."
+        },
+        {
+          "type": "list",
+          "title": "Las seis familias de recomendaciones de codificación segura (Graff y Van Wyk, Chess y OWASP)",
+          "items": [
+            "Validación de entrada.",
+            "Codificación de salida.",
+            "Prácticas criptográficas.",
+            "Gestión de errores.",
+            "Registro (logs).",
+            "Gestión de archivos."
+          ]
+        },
+        {
+          "type": "exam",
+          "text": "Si te preguntan qué práctica es la más importante en la fase de implementación según McGraw, la respuesta es la **revisión estática de código**. Y si te preguntan cuándo es más barato corregir un fallo: lo antes posible, nunca «en producción»."
+        },
+        {
+          "type": "key",
+          "text": "La seguridad se diseña y se programa desde el principio; revisar el código pronto ahorra muchísimo dinero, y el catálogo CWE pone nombre y número a los errores que hay que evitar."
+        }
+      ]
+    },
+    {
+      "id": "validacion-entrada",
+      "title": "Validación de entrada: el portero que no se fía de nadie",
+      "pages": [7, 9],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Imagina el control de acceso de un concierto. Puedes poner un cartel en la calle que diga «solo con entrada», pero quien de verdad decide es el portero de la puerta. El cartel (la comprobación en el navegador) ayuda a los honrados; el portero (la comprobación en el servidor) es lo que para a los tramposos. Benjamin Franklin lo resumía así: la desconfianza y la precaución son los padres de la seguridad."
+        },
+        {
+          "type": "p",
+          "text": "**Validar** una entrada es comprobar que el dato que llega es exactamente lo que esperas (tipo, longitud, rango, formato) antes de usarlo. La regla número uno es hacerlo **en un sistema de confianza: el servidor**, no el cliente. El código del navegador (por ejemplo, el JavaScript del formulario) lo controla el usuario: puede desactivarlo, modificarlo o saltárselo enviando la petición con otra herramienta."
+        },
+        {
+          "type": "list",
+          "title": "Recomendaciones clave de validación",
+          "items": [
+            "Identificar todas las fuentes de datos y clasificarlas en **confiables** y **no confiables**; validar todo lo que venga de las no confiables (también bases de datos o ficheros externos).",
+            "Usar una **rutina de validación centralizada** para toda la aplicación, en vez de que cada programador invente la suya.",
+            "Fijar un juego de caracteres (por ejemplo, **UTF-8**, la codificación estándar de texto en la web) y convertir la entrada a él antes de validar.",
+            "Si falla la validación, **rechazar** la entrada (no intentar «arreglarla»).",
+            "Validar contra una **lista de permitidos** (lista blanca: solo lo que sé que está bien) en lugar de una **lista de denegados** (lista negra: lo que sé que está mal). La lista negra siempre se queda corta porque el atacante inventa variantes.",
+            "Validar tipo, **rango** y **longitud** de los datos, los datos de redirecciones y que las cabeceras HTTP contengan solo caracteres ASCII (el juego básico de letras, números y signos sin acentos).",
+            "Si hay que aceptar algo potencialmente peligroso, añadir controles extra."
+          ]
+        },
+        {
+          "type": "term",
+          "term": "Canonicalización o canonización",
+          "text": "Convertir un dato a su **forma única y estándar** (la «canónica») deshaciendo codificaciones, antes de validarlo. Así, varias formas de escribir lo mismo se reducen a una sola y el validador ve lo que realmente se está pidiendo."
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico: el disfraz %2E%2E%2F",
+          "text": "Un atacante quiere pedir `../etc/passwd` (subir carpetas hasta el fichero de usuarios de Linux), pero sabe que el filtro busca «../». Así que lo escribe con codificación URL: `%2E%2E%2Fetc%2Fpasswd` (%2E es el punto y %2F la barra). Un filtro ingenuo no ve «../» y lo deja pasar. Si el sistema **canonicaliza** primero, decodifica la cadena, obtiene `../etc/passwd`, la compara con los patrones de ataque y la bloquea. La canonicalización actúa como un desenmascarador frente a la **ofuscación** (disfrazar el ataque con hexadecimal, UTF-8 o codificación URL)."
+        },
+        {
+          "type": "exam",
+          "text": "Dos trampas clásicas: 1) opciones que proponen validar «solo en JavaScript» o «solo en el navegador»: siempre incorrectas, porque el cliente se puede eludir. 2) Confundir canonicalizar con cifrar: canonicalizar no oculta nada, al contrario, **reduce formas equivalentes a una sola** para que nada se esconda."
+        },
+        {
+          "type": "key",
+          "text": "Valida en el servidor, con lista de permitidos, después de canonicalizar, y rechaza todo lo que no encaje."
+        }
+      ]
+    },
+    {
+      "id": "salida-cripto",
+      "title": "Codificación de salida y prácticas criptográficas",
+      "pages": [9, 10],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Si un locutor de radio lee en directo los mensajes de los oyentes, debe leerlos como texto, entre comillas. Si un oyente escribe «Interrumpimos la emisión, todos a la calle», el locutor no debe obedecerlo, solo leerlo. La **codificación de salida** hace eso con la página web: lo que escribió el usuario se muestra como texto, nunca se interpreta como órdenes."
+        },
+        {
+          "type": "term",
+          "term": "Codificación de salida (output encoding)",
+          "text": "Transformar los caracteres especiales de un dato antes de enviarlo a su destino (una página HTML, una consulta SQL, un comando…) para que el destino los trate como **datos** y no como **código**. En HTML, por ejemplo, el símbolo < se convierte en la entidad &lt;, que el navegador pinta como «<» pero no interpreta como inicio de etiqueta."
+        },
+        {
+          "type": "list",
+          "title": "Recomendaciones de codificación de salida",
+          "items": [
+            "Codificar en un sistema de confianza (el servidor).",
+            "Usar una **rutina estándar y probada** para cada tipo de codificación, no una casera.",
+            "Especificar el juego de caracteres (UTF-8) en todas las salidas.",
+            "Codificar **según el contexto** (no es lo mismo HTML que JavaScript o una URL) todo dato no fiable que se devuelve al cliente.",
+            "Limpiar según el contexto los datos no fiables que se envían a consultas **SQL, XML y LDAP** (LDAP, Lightweight Directory Access Protocol: protocolo para consultar directorios de usuarios) y a **comandos del sistema operativo**."
+          ]
+        },
+        {
+          "type": "list",
+          "title": "Prácticas criptográficas",
+          "items": [
+            "Implementar las funciones criptográficas que protegen secretos del usuario en un sistema de confianza y proteger esos secretos de accesos no autorizados.",
+            "Los módulos criptográficos deben **fallar de forma segura** (si algo va mal, no dejan los datos expuestos).",
+            "Números, nombres de fichero, GUID (identificadores únicos globales) y cadenas aleatorias deben salir del **generador aleatorio aprobado** del módulo criptográfico, no de un generador predecible.",
+            "Los módulos deben cumplir **FIPS 140-2** (norma del gobierno de EE. UU. que certifica módulos criptográficos) o equivalente.",
+            "Tener una política y un proceso de **gestión de claves**."
+          ]
+        },
+        {
+          "type": "exam",
+          "text": "No confundas codificar con cifrar. Codificar la salida no esconde el dato a nadie (el servidor lo sigue leyendo); solo hace que se muestre como texto en vez de ejecutarse. Si una opción dice «cifrar el dato para que el servidor no lo lea», es falsa."
+        },
+        {
+          "type": "key",
+          "text": "La entrada se valida al llegar; la salida se codifica según su destino al salir. Y la criptografía se hace con módulos aprobados y aleatoriedad de verdad."
+        }
+      ]
+    },
+    {
+      "id": "errores-registros",
+      "title": "Errores, registros y gestión de archivos",
+      "pages": [11, 13],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Si llamas a un banco y la operadora te dice «no puedo darle ese dato porque el servidor ORACLE-03 de la planta 2 con la contraseña admin123 está caído», te ha contado demasiado. Debería decir «ahora no es posible, inténtelo más tarde» y apuntar el detalle técnico en un cuaderno interno al que solo acceden los técnicos."
+        },
+        {
+          "type": "list",
+          "title": "Gestión de errores",
+          "items": [
+            "No revelar información confidencial en los mensajes de error: detalles del sistema, identificadores de sesión, datos de cuentas.",
+            "No mostrar información de **depuración** (debug) ni la **traza de la pila** (stack trace: la lista de funciones que se estaban ejecutando cuando falló, que revela nombres de clases, rutas y versiones).",
+            "Usar **mensajes genéricos** y páginas de error personalizadas.",
+            "La aplicación gestiona sus errores por sí misma, sin depender de la configuración del servidor, y libera la memoria reservada cuando ocurre un error.",
+            "Los errores de los controles de seguridad deben **denegar el acceso por defecto**."
+          ]
+        },
+        {
+          "type": "term",
+          "term": "Registro o log",
+          "text": "Fichero donde la aplicación anota lo que va pasando (quién entra, qué falla, qué se cambia), para poder investigar después un incidente."
+        },
+        {
+          "type": "table",
+          "title": "Qué registrar y qué no",
+          "head": ["Sí se registra", "No se registra"],
+          "rows": [
+            ["Errores de validación de entrada", "Contraseñas"],
+            ["Intentos de autenticación, sobre todo los fallidos", "Identificadores o tokens de sesión utilizables"],
+            ["Fallos de control de acceso y manipulaciones aparentes", "Detalles innecesarios del sistema"],
+            ["Conexiones con tokens de sesión no válidos o caducados", "Cualquier información confidencial que no haga falta"],
+            ["Excepciones del sistema, funciones administrativas y cambios de configuración de seguridad", "—"],
+            ["Fallos de conexión TLS del backend y del módulo criptográfico", "—"]
+          ]
+        },
+        {
+          "type": "list",
+          "title": "Otras reglas del registro",
+          "items": [
+            "Implementarlo en un sistema de confianza, con una rutina central.",
+            "Registrar éxitos y fracasos de los eventos de seguridad, con datos útiles.",
+            "Restringir el acceso a los logs a personas autorizadas y tener un mecanismo para analizarlos.",
+            "Evitar que datos no fiables escritos en el log se ejecuten como código en el visor de logs.",
+            "Usar una **función hash** criptográfica (una «huella» matemática del contenido) para comprobar que nadie ha alterado las entradas."
+          ]
+        },
+        {
+          "type": "list",
+          "title": "Gestión de archivos",
+          "items": [
+            "No pasar datos del usuario directamente a funciones de inclusión dinámica ni a redirecciones dinámicas.",
+            "Exigir autenticación antes de permitir subir archivos y limitar los tipos a los necesarios para el negocio.",
+            "Comprobar que el archivo es del tipo esperado mirando sus **encabezados internos**, no la extensión del nombre.",
+            "No guardar las subidas en el mismo contexto web que la aplicación; quitar permisos de ejecución en esos directorios e impedir subir lo que el servidor web pueda interpretar.",
+            "No pasar rutas de archivos desde el usuario: usar **índices** que apunten a una lista predefinida de rutas; nunca enviar al cliente la ruta absoluta.",
+            "Archivos de la aplicación en solo lectura y análisis antivirus de lo que suben los usuarios."
+          ]
+        },
+        {
+          "type": "exam",
+          "text": "En «qué debe evitarse en un error enviado al usuario», lo correcto son los **detalles de depuración y secretos internos**; un mensaje genérico, un código de error controlado o un identificador de soporte no sensible son precisamente buenas prácticas. En «qué no se guarda en los logs», la respuesta son **contraseñas e identificadores de sesión**; la fecha de un fallo o el resultado de una comprobación de autorización sí deben registrarse."
+        },
+        {
+          "type": "key",
+          "text": "Al usuario, mensajes genéricos; al log, lo útil para investigar pero nunca secretos; y los archivos, validados por su contenido y guardados lejos de donde el servidor los ejecutaría."
+        }
+      ]
+    },
+    {
+      "id": "inyeccion-sql",
+      "title": "Inyección SQL (CWE-89): cuando el dato se convierte en orden",
+      "pages": [14, 16],
+      "blocks": [
+        {
+          "type": "term",
+          "term": "SQL (Structured Query Language, lenguaje de consulta estructurado)",
+          "text": "El lenguaje con el que las aplicaciones piden datos a una base de datos. Ejemplo: `SELECT * FROM users WHERE id = '5'` significa «dame todas las columnas de la tabla users donde el id valga 5»."
+        },
+        {
+          "type": "analogy",
+          "text": "Rellenas un formulario en papel: «Entregue al portador el sobre del cliente ____». Si en el hueco alguien escribe «5, y también todos los demás sobres», y el empleado lee la frase entera como una orden, entregará todo. La inyección SQL es exactamente eso: el hueco reservado para un dato se usa para colar más instrucciones."
+        },
+        {
+          "type": "p",
+          "text": "Un Servlet es vulnerable a **SQLi** (SQL injection) cuando construye la consulta **concatenando** (pegando como texto) lo que escribe el usuario, sin validarlo ni separarlo del código."
+        },
+        {
+          "type": "example",
+          "title": "Explotación: ' OR '1'='1",
+          "text": "El Servlet toma el parámetro user_id y monta: `SELECT * FROM users WHERE id = '` + user_id + `'`. El atacante escribe como user_id: `' OR '1'='1`. La consulta final queda `SELECT * FROM users WHERE id = '' OR '1'='1'`. Como '1'='1' siempre es verdad, la condición se cumple para todas las filas y el atacante obtiene los datos de **todos** los usuarios. La variante «OR 1=1» es la forma más conocida de explotar SQLi."
+        },
+        {
+          "type": "term",
+          "term": "PreparedStatement (sentencia preparada)",
+          "text": "Clase de Java que envía primero a la base de datos la **estructura** de la consulta con huecos marcados con `?` (por ejemplo, `SELECT * FROM users WHERE id = ?`) y después, por separado, los **valores**. La base de datos ya tiene la consulta precompilada, así que trata lo que llega en el hueco siempre como un dato, nunca como parte del comando."
+        },
+        {
+          "type": "p",
+          "text": "Con PreparedStatement, si el atacante envía `' OR '1'='1`, la base de datos buscará literalmente un usuario cuyo id sea ese texto raro, no encontrará ninguno y no pasará nada. Es la solución **principal, más robusta y estándar** en Java contra SQLi (también es la recomendación de la OWASP SQL Injection Prevention Cheat Sheet)."
+        },
+        {
+          "type": "exam",
+          "text": "Trampas típicas ante «el desarrollador concatena la entrada en la consulta, ¿qué cambia?»: pasar el formulario de GET a POST (solo cambia cómo viajan los datos, no cómo se usan), validar solo en JavaScript (se elude) o escapar el texto de error (no toca la consulta). La respuesta es **sentencia preparada con parámetros**, que separa la estructura de la consulta de sus valores. Y no confundas SQLi con inyectar comandos Bash (eso es CWE-78) ni con manipular cabeceras (CWE-113)."
+        },
+        {
+          "type": "key",
+          "text": "SQLi = el dato del usuario se pega en la consulta y se ejecuta como código; se explota con trucos como OR 1=1 y se corrige con PreparedStatement, que separa estructura y valores."
+        }
+      ]
+    },
+    {
+      "id": "xss",
+      "title": "Cross-site scripting (CWE-79): el script del atacante en tu navegador",
+      "pages": [16, 20],
+      "blocks": [
+        {
+          "type": "term",
+          "term": "XSS (Cross-Site Scripting)",
+          "text": "Vulnerabilidad por la que una página web incluye contenido controlado por el atacante sin codificarlo, de modo que el **navegador de la víctima** ejecuta el código JavaScript del atacante como si fuera de la propia web. Se abrevia XSS para no confundirlo con CSS (las hojas de estilo)."
+        },
+        {
+          "type": "term",
+          "term": "XSS reflejado",
+          "text": "La variante del ejemplo: el código malicioso viaja en la propia petición (por ejemplo, en un enlace) y el servidor lo «refleja» de vuelta en la respuesta al momento."
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico: el ErrorServlet",
+          "text": "Un ErrorServlet muestra el texto del parámetro mensaje dentro de la página tal cual. El atacante fabrica un enlace como `http://ejemplo.com/ErrorServlet?mensaje=` seguido de una etiqueta script que contiene `alert('XSS_Robo_de_Cookies')`, y se lo envía a la víctima. Al hacer clic, el servidor devuelve una página que contiene esa etiqueta script, y el navegador la ejecuta con los permisos de ejemplo.com. Un script real podría robar la **cookie de sesión**, registrar las pulsaciones de teclas o redirigir a una web de phishing (página falsa que imita a la real para robar datos)."
+        },
+        {
+          "type": "p",
+          "text": "La defensa fundamental es la **codificación de salida**: convertir los caracteres especiales de HTML (<, >, \", ', &) en sus **entidades HTML** (&lt;, &gt;, etc.). El navegador muestra entonces el payload (la carga útil del ataque) como texto inofensivo en la pantalla, en lugar de ejecutarlo."
+        },
+        {
+          "type": "term",
+          "term": "OWASP Java Encoder",
+          "text": "Librería gratuita de codificadores contextuales probados. Se añade como dependencia (con Maven, la herramienta que descarga las librerías de un proyecto Java) y se usa, por ejemplo, `Encode.forHtml(mensaje)` antes de escribir el mensaje en el HTML. Tiene métodos distintos para cada contexto (HTML, atributos, JavaScript, URL)."
+        },
+        {
+          "type": "list",
+          "title": "Defensas adicionales (en capas)",
+          "items": [
+            "**Validación estricta de entrada**: si el dato solo puede ser un número o texto simple, rechaza cualquier carácter especial.",
+            "**CSP (Content Security Policy, política de seguridad de contenido)**: una cabecera HTTP que le dice al navegador de qué orígenes puede cargar scripts y estilos. Es una red de seguridad si la codificación falla."
+          ]
+        },
+        {
+          "type": "exam",
+          "text": "El impacto principal del XSS es la **ejecución de scripts maliciosos en el navegador de la víctima**, no el acceso directo a la base de datos (eso es SQLi) ni nada con certificados SSL. Ante «un mensaje de error refleja texto del usuario», el control es la **codificación de salida adecuada al contexto**; parametrizar consultas, cifrar el transporte (HTTPS) o comprobar que el usuario está autenticado no impiden que el navegador interprete las etiquetas."
+        },
+        {
+          "type": "key",
+          "text": "XSS = el navegador de la víctima ejecuta el script del atacante; se corrige codificando la salida según el contexto (OWASP Java Encoder) y se refuerza con validación y CSP."
+        }
+      ]
+    },
+    {
+      "id": "csrf",
+      "title": "Cross-site request forgery (CWE-352): peticiones en tu nombre",
+      "pages": [20, 25],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Tienes una tarjeta de socio que abre la puerta del gimnasio. Alguien te pide que le lleves un paquete dentro sin decirte qué hay. Como la puerta solo comprueba la tarjeta, deja pasar el paquete. En CSRF, tu navegador es quien lleva la tarjeta (la cookie de sesión) y el atacante consigue que haga una petición que tú no querías."
+        },
+        {
+          "type": "term",
+          "term": "CSRF (Cross-Site Request Forgery, falsificación de petición en sitios cruzados)",
+          "text": "Vulnerabilidad en la que un Servlet realiza una acción sensible (borrar una cuenta, transferir dinero) confiando **solo en la cookie de sesión**, sin comprobar que la petición sale de la propia aplicación. Un sitio malicioso hace que el navegador de la víctima envíe esa petición, y el navegador adjunta automáticamente la cookie válida."
+        },
+        {
+          "type": "steps",
+          "title": "Cómo se explota (Alice y Bob)",
+          "items": [
+            "**Víctima autenticada**: Alice inicia sesión en https://banco.com y su navegador guarda la cookie de sesión. Este es el requisito imprescindible del ataque.",
+            "**Página maliciosa**: Bob crea https://sitio-malicioso.com con un formulario invisible o JavaScript que hace un POST automático a la URL vulnerable (o una etiqueta de imagen, img, que dispara la petición al cargarse).",
+            "**Ejecución**: Bob engaña a Alice para que visite su página mientras su sesión del banco sigue abierta.",
+            "**Resultado**: el navegador de Alice envía la petición al EliminarCuentaServlet con la cookie válida; el Servlet ve una sesión correcta y borra la cuenta sin el consentimiento de Alice."
+          ]
+        },
+        {
+          "type": "term",
+          "term": "Token anti-CSRF (token sincronizado)",
+          "text": "Valor **secreto, aleatorio y único** ligado a la sesión del usuario que se incluye en cada petición que cambia algo."
+        },
+        {
+          "type": "steps",
+          "title": "La solución en tres pasos",
+          "items": [
+            "Generar el token cuando se muestra el formulario (doGet) y guardarlo en la sesión.",
+            "Incluirlo en el formulario de la página JSP como campo oculto.",
+            "Al procesar la acción (doPost), comprobar que el token recibido coincide con el de la sesión; si no, rechazar."
+          ]
+        },
+        {
+          "type": "term",
+          "term": "Política de mismo origen (same-origin policy)",
+          "text": "Regla del navegador que impide que una página de un sitio lea el contenido de otro sitio. Por eso Bob no puede leer el token de la página del banco de Alice, no puede ponerlo en su formulario falso y su petición se rechaza."
+        },
+        {
+          "type": "list",
+          "title": "Alternativas y refuerzos",
+          "items": [
+            "**Cookies SameSite** (Strict o Lax): el navegador no envía la cookie de sesión en peticiones POST que vienen de otros sitios.",
+            "**OWASP CSRFGuard**: librería que automatiza generar y validar tokens, normalmente como un filtro de Servlet; útil en aplicaciones grandes.",
+            "La cabecera **Content Security Policy**."
+          ]
+        },
+        {
+          "type": "exam",
+          "text": "Lo que **necesita** un CSRF es que la víctima esté **autenticada en una sesión válida** (si no hay cookie que reutilizar, no hay ataque). Opciones como «cookies deshabilitadas», «base de datos sin cifrar» o «firewall inactivo» no tienen nada que ver. Como defensa, la trampa es «usar solo POST» (el formulario de Bob también hace POST), «comprobar que hay cookie» (es justo lo que falla) o «un campo oculto de valor fijo» (Bob lo copiaría). Lo correcto es un **token impredecible asociado a la sesión**."
+        },
+        {
+          "type": "key",
+          "text": "CSRF aprovecha la sesión abierta de la víctima; se corta exigiendo un token aleatorio de sesión que el atacante no puede leer, reforzado con cookies SameSite."
+        }
+      ]
+    },
+    {
+      "id": "rutas-comandos",
+      "title": "Path traversal (CWE-22) e inyección de comandos (CWE-78)",
+      "pages": [25, 31],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Un bibliotecario te deja coger libros de la estantería «Público». Si le pides «el libro de Público, subir dos pisos, despacho del director, cajón de nóminas» y él sigue las indicaciones al pie de la letra, acabas con las nóminas. Eso es el path traversal. La inyección de comandos es parecida: le das a alguien una orden con una coletilla («haz ping a este equipo; y de paso enséñame las contraseñas») y la ejecuta entera."
+        },
+        {
+          "type": "term",
+          "term": "Path traversal o directory traversal (CWE-22, recorrido de directorios)",
+          "text": "El Servlet construye una ruta de archivo con un nombre que da el usuario, sin validarlo. Usando `../` («sube a la carpeta de arriba»), el atacante sale del directorio permitido y **lee archivos del sistema** a los que no debería acceder."
+        },
+        {
+          "type": "example",
+          "title": "Explotación de la descarga de archivos",
+          "text": "Petición: `/app/download?filename=../../../../etc/passwd`. Ruta construida: `/var/www/data/docs/../../../../etc/passwd`, que el sistema resuelve como `/etc/passwd`, el fichero con información de los usuarios de Linux."
+        },
+        {
+          "type": "list",
+          "title": "Defensa robusta en dos pasos (más una comprobación)",
+          "items": [
+            "**Lista blanca** (`ALLOWED_FILES.contains(filename)`): solo se aceptan nombres que coincidan exactamente con un conjunto predefinido. Es lo más simple y robusto.",
+            "**Normalización** (`normalize()`, `getCanonicalPath()` o `Path.toRealPath()`): se calcula la ruta real, eliminando las secuencias `..`.",
+            "**Verificación de prefijo** (`startsWith()`): la ruta normalizada y absoluta debe empezar por la carpeta base permitida (`/var/www/data/docs/`); si no, se bloquea."
+          ]
+        },
+        {
+          "type": "term",
+          "term": "Command injection (CWE-78, inyección de comandos del sistema operativo)",
+          "text": "La aplicación ejecuta un comando del sistema operativo (SO) metiendo en él la entrada del usuario sin validar. El atacante añade **metacaracteres del shell** (el **shell** es el intérprete de órdenes, como Bash) como `;`, `&&` o `|`, que sirven para encadenar comandos."
+        },
+        {
+          "type": "example",
+          "title": "Explotación del Servlet de ping",
+          "text": "El Servlet ejecuta `ping -c 4` + host. El atacante envía como host `127.0.0.1; cat /etc/passwd`. El comando final es `ping -c 4 127.0.0.1; cat /etc/passwd`: el servidor hace el ping y, a continuación, muestra el fichero de usuarios (si el proceso tiene permiso de lectura)."
+        },
+        {
+          "type": "list",
+          "title": "Solución",
+          "items": [
+            "Lo mejor: **no ejecutar comandos del SO** si se puede evitar (usar una función de la propia librería).",
+            "Si es imprescindible, **evitar el shell** (defensa principal): usar `ProcessBuilder` o `Runtime.exec(String[])` pasando cada argumento por separado en un array. El ejecutable se lanza directamente, sin intérprete, y la entrada del atacante llega como un único argumento literal: `ping -c 4 \"127.0.0.1; cat /etc/passwd\"`. Ping no entiende ese «host» y falla, pero no se ejecuta nada más.",
+            "**Lista blanca** (defensa secundaria, `SAFE_HOST_PATTERN`): solo letras, números, puntos y guiones; rechazar `&`, `|`, `;`, `$`, etc. antes de ejecutar."
+          ]
+        },
+        {
+          "type": "exam",
+          "text": "CWE-22: riesgo principal = **acceso no autorizado a archivos del sistema** (no inyección en el navegador, que es XSS). Su defensa es normalizar la ruta y comprobar que queda dentro de la base; validar solo la extensión o la longitud, o confiar en que la ruta no empiece por «/», no sirve. CWE-78: lo que hace vulnerable es **ejecutar comandos del sistema con entradas no validadas**. Separar argumentos sin shell evita que los metacaracteres se conviertan en órdenes extra, pero **no** elimina la necesidad de validar, no impide cualquier abuso del programa y no rebaja permisos por sí solo."
+        },
+        {
+          "type": "key",
+          "text": "Rutas: lista blanca + normalizar + comprobar que sigues dentro de la carpeta. Comandos: evita el shell, pasa los argumentos en array y valida con lista blanca."
+        }
+      ]
+    },
+    {
+      "id": "autorizacion-subidas",
+      "title": "Falta de autorización (CWE-862) y subida de archivos peligrosos (CWE-434)",
+      "pages": [31, 36],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "En un hotel, la tarjeta de tu habitación demuestra que eres huésped (**autenticación**), pero no debería abrir la sala de máquinas (**autorización**). Si la cerradura solo comprueba «¿es una tarjeta del hotel?», cualquier huésped entra. Eso es CWE-862."
+        },
+        {
+          "type": "table",
+          "title": "Dos conceptos que no hay que mezclar",
+          "head": ["Concepto", "Pregunta que responde", "Ejemplo"],
+          "rows": [
+            ["Autenticación", "¿Quién eres?", "Usuario y contraseña correctos: tienes sesión."],
+            ["Autorización", "¿Qué puedes hacer?", "Tu rol es ADMIN, así que puedes borrar usuarios."]
+          ]
+        },
+        {
+          "type": "term",
+          "term": "Missing authorization (CWE-862, falta de autorización)",
+          "text": "Un componente no comprueba (o comprueba mal) si el usuario, **ya autenticado**, tiene permiso para el recurso o la acción. Resultado: se accede a funciones sin verificar los permisos del usuario."
+        },
+        {
+          "type": "example",
+          "title": "Explotación: el borrado administrativo",
+          "text": "Un Servlet de borrado de cuentas comprueba que hay sesión, pero nunca mira si el usuario es administrador. Un usuario normal inicia sesión y envía directamente `POST /app/admin/deleteUser?id=12345`. El Servlet ve una sesión válida y borra la cuenta: un usuario corriente ha hecho una acción de administrador. Esconder el botón en el menú no sirve, porque la petición se puede escribir a mano."
+        },
+        {
+          "type": "steps",
+          "title": "Denegar por defecto (fail-safe defaults)",
+          "items": [
+            "**Autenticación**: comprobar que el usuario está identificado.",
+            "**Autorización**: comprobar en el servidor su rol o permiso (`userRole` en la sesión) contra una lista blanca (`REQUIRED_ROLE`).",
+            "**Acceso**: solo se concede si la comprobación tiene éxito; si falla, se devuelve **403 Forbidden** (código HTTP de «prohibido»)."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "En Java EE/Jakarta EE esta comprobación suele hacerse de forma global en el fichero de configuración `web.xml` o con anotaciones como `@RolesAllowed` o `@ServletSecurity`, que sacan la lógica de autorización del código del Servlet."
+        },
+        {
+          "type": "term",
+          "term": "Unrestricted upload of file with dangerous type (CWE-434, subida sin restricciones de archivos peligrosos)",
+          "text": "La aplicación deja subir archivos de cualquier tipo sin validar contenido ni extensión y luego el servidor web los sirve o **ejecuta**."
+        },
+        {
+          "type": "term",
+          "term": "Webshell",
+          "text": "Pequeño programa que se ejecuta en el servidor web y permite al atacante lanzar comandos del sistema desde su navegador: un mando a distancia del servidor."
+        },
+        {
+          "type": "example",
+          "title": "Explotación: shell.jsp",
+          "text": "El atacante sube shell.jsp (un webshell en Java). El Servlet vulnerable lo guarda en `/var/www/html/uploads/shell.jsp`, dentro de la carpeta pública. El atacante abre `http://servidor.com/uploads/shell.jsp`; el servidor (por ejemplo, Tomcat) procesa el .jsp, ejecuta el código y le da control remoto del servidor."
+        },
+        {
+          "type": "list",
+          "title": "Defensa por capas",
+          "items": [
+            "**Lista blanca de extensiones** (defensa principal): solo .jpg, .pdf, etc.; prohibir todo lo que el servidor pueda ejecutar (.jsp, .php, .exe).",
+            "**Validar el contenido real**: el tipo MIME (Multipurpose Internet Mail Extensions, la etiqueta que dice qué clase de archivo es, como image/jpeg) y, mejor aún, los **magic bytes** (los primeros bytes del archivo, que identifican su formato real). Así se detecta un shell.jsp renombrado a shell.jpg. En imágenes, se puede reprocesar la imagen para eliminar metadatos o código incrustado.",
+            "**Guardar fuera de la raíz web** (por ejemplo, `/opt/appdata/` en lugar de `/var/www/html/`): aunque se cuele un ejecutable, no se puede pedir por URL y el servidor no lo procesará.",
+            "**Renombrar** el archivo con un UUID (identificador único aleatorio) o una marca de tiempo para evitar nombres trucados."
+          ]
+        },
+        {
+          "type": "exam",
+          "text": "CWE-862 = **acceso a funciones sin verificar permisos**; la defensa es **verificar rol o permiso en el servidor** (no ocultar la opción en la interfaz, no cambiar la URL, no «basta con que haya sesión»). Denegar por defecto = permitir **solo** cuando la comprobación tiene éxito, no «permitir salvo regla de rechazo». CWE-434 = **ejecución de archivos maliciosos subidos**. La extensión no basta porque **el contenido real puede no coincidir con el nombre**. Guardar fuera de la raíz pública **reduce** que el servidor lo ejecute o sirva, pero no sustituye la validación ni garantiza por sí solo que el archivo sea inocuo."
+        },
+        {
+          "type": "key",
+          "text": "Estar dentro no significa poder hacerlo todo: autoriza cada acción en el servidor y deniega por defecto. Y trata cada archivo subido como un posible programa: lista blanca, contenido real y fuera de la raíz web."
+        }
+      ]
+    },
+    {
+      "id": "xxe-ssrf",
+      "title": "XXE (CWE-611) y SSRF (CWE-918): el servidor como cómplice",
+      "pages": [37, 41],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Imagina un secretario muy obediente. Si le entregas una carta que dice «adjunte aquí el contenido del archivador confidencial» (XXE) o «llame a la extensión interna del director y dígame qué le contesta» (SSRF), lo hace sin pensar, porque él sí tiene acceso. En ambos casos el atacante usa al servidor para llegar a donde él solo no llega."
+        },
+        {
+          "type": "term",
+          "term": "XML (Extensible Markup Language, lenguaje de marcado extensible)",
+          "text": "Formato de texto con etiquetas, como una etiqueta username que encierra el texto «ana», que usan muchas aplicaciones para intercambiar datos. Un **parser** o analizador XML es el programa que lo lee."
+        },
+        {
+          "type": "term",
+          "term": "DTD (Document Type Definition) y entidad externa",
+          "text": "La DTD es una cabecera opcional del XML (la declaración DOCTYPE) que puede definir **entidades**: atajos que se sustituyen por un contenido. Una **entidad externa** dice «sustitúyeme por el contenido de este archivo o URL»."
+        },
+        {
+          "type": "term",
+          "term": "XXE (XML External Entity injection, CWE-611)",
+          "text": "Un parser XML que resuelve entidades externas definidas por el usuario. El atacante puede hacer que el servidor **divulgue archivos locales**, haga **peticiones de red internas (SSRF)** o sufra una **denegación de servicio (DoS)**."
+        },
+        {
+          "type": "example",
+          "title": "Explotación de XXE",
+          "text": "El Servlet usa la librería estándar de Java (DocumentBuilderFactory), que por defecto procesa entidades externas. El atacante envía un XML que define la entidad &xxe; apuntando a `/etc/passwd` y la coloca dentro de la etiqueta username. El parser lee el archivo y lo inserta; la respuesta muestra algo como «Procesado XML para usuario: root:x:0:0:root:/root:/bin/bash…»."
+        },
+        {
+          "type": "list",
+          "title": "Solución XXE: configurar el parser con denegar por defecto",
+          "items": [
+            "**Deshabilitar las DTD** (la declaración DOCTYPE). La opción más fuerte es `http://apache.org/xml/features/disallow-doctype-decl`, que bloquea el ataque en la raíz.",
+            "**Deshabilitar las entidades externas** generales y de parámetros.",
+            "Hacerlo en el DocumentBuilderFactory **antes** de crear el parser (recomendación de la OWASP XXE Prevention Cheat Sheet)."
+          ]
+        },
+        {
+          "type": "term",
+          "term": "SSRF (Server-Side Request Forgery, CWE-918, falsificación de peticiones del lado del servidor)",
+          "text": "La aplicación recibe una URL del usuario y hace una petición de red (HTTP, FTP…) a esa URL sin validarla. El atacante la usa para que el servidor acceda a **recursos internos** (intranet, servicios en la nube, localhost) que desde fuera no se ven."
+        },
+        {
+          "type": "example",
+          "title": "Explotación de SSRF",
+          "text": "Panel de administración local: `http://servidor.com/getdata?url=http://127.0.0.1/admin` (127.0.0.1 o localhost es el propio servidor). Metadatos de la nube: `?url=http://169.254.169.254/latest/meta-data/`, la dirección interna donde AWS o Azure guardan datos de la máquina, a veces incluso credenciales."
+        },
+        {
+          "type": "p",
+          "text": "Solución SSRF: **lista blanca estricta** de URL, **protocolos** y **hosts** permitidos y, a la vez, **bloquear direcciones internas** (localhost, IP privadas)."
+        },
+        {
+          "type": "exam",
+          "text": "Para CWE-611 la mitigación es **desactivar la carga de entidades externas (y las declaraciones DOCTYPE) en el analizador XML**; usar expresiones regulares, validar solo el tamaño, aceptar entidades porque el archivo termine en .xml o confiar porque el documento venga de un usuario autenticado no resuelve nada. Para CWE-918 el riesgo típico es **acceder a redes internas a través del servidor vulnerable** (no capturar teclas ni interceptar tráfico entre usuarios), y la defensa es **restringir protocolos y destinos con lista permitida**; comprobar solo que la URL empieza por http no basta."
+        },
+        {
+          "type": "key",
+          "text": "XXE: el parser no debe resolver DTD ni entidades externas. SSRF: el servidor solo se conecta a destinos de una lista blanca y nunca a direcciones internas."
+        }
+      ]
+    },
+    {
+      "id": "credenciales-recursos",
+      "title": "Credenciales incrustadas (CWE-798) y consumo incontrolado de recursos (CWE-400)",
+      "pages": [42, 46],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Escribir la contraseña de la base de datos dentro del código es como dejar la llave de casa pegada con celo en la puerta: cualquiera que vea la puerta (el código) tiene la llave. Y aceptar sin límite lo que pide un cliente es como un restaurante que acepta un pedido de dos mil millones de croquetas: la cocina se colapsa y nadie más come."
+        },
+        {
+          "type": "term",
+          "term": "Hard-coded credentials (CWE-798, credenciales incrustadas en el código)",
+          "text": "Contraseñas, claves API (API: Application Programming Interface, la «puerta» con la que un programa usa otro servicio) o secretos criptográficos escritos directamente en el código fuente."
+        },
+        {
+          "type": "p",
+          "text": "El riesgo es grave porque cualquiera que acceda al código (un **repositorio público** como GitHub, una fuga o **descompilando** el bytecode de Java, es decir, reconstruyendo el código desde el programa compilado) obtiene las credenciales y puede entrar en los sistemas con los privilegios de esa cuenta, a menudo de administrador."
+        },
+        {
+          "type": "list",
+          "title": "Solución: externalizar los secretos",
+          "items": [
+            "Cargar las credenciales **en tiempo de ejecución** desde una fuente protegida: **variables de entorno** (valores que el sistema operativo da al programa al arrancar, como DB_USER o DB_PASSWORD) o un fichero de propiedades fuera del código.",
+            "En el servidor se configuran esas variables (en Linux, con `export DB_PASSWORD=...`).",
+            "El código ya no contiene secretos; su gestión pasa al entorno de despliegue, más controlado."
+          ]
+        },
+        {
+          "type": "term",
+          "term": "Uncontrolled resource consumption (CWE-400, consumo incontrolado de recursos)",
+          "text": "La aplicación no limita la cantidad o el tamaño de los recursos que reserva (memoria, CPU, conexiones). El atacante pide cantidades enormes y provoca una **DoS (Denial of Service, denegación de servicio)**: el servicio deja de responder."
+        },
+        {
+          "type": "example",
+          "title": "Explotación y solución",
+          "text": "Un Servlet recibe el parámetro length y crea una lista de ese tamaño. Con `https://sitioweb/process?length=2000000000` el servidor intenta reservar gigabytes y cae con un OutOfMemoryError (error de memoria agotada) o se queda sin CPU. La solución principal es **comprobar el tamaño de la entrada antes de reservar** y rechazar cualquier valor que supere el máximo permitido."
+        },
+        {
+          "type": "exam",
+          "text": "CWE-798: la consecuencia es que **el atacante puede obtener acceso privilegiado fácilmente**. Las trampas de solución son disfrazar el secreto: codificarlo en Base64 (se decodifica en un segundo), partirlo en varias constantes o renombrar la variable. Sigue estando en el código. Lo correcto es **cargarlo desde una fuente protegida en tiempo de ejecución**. CWE-400: la causa es **aceptar tamaños sin límite**, y la defensa **rechazar lo que supere el límite antes de reservar**. Reservar primero «para ver si cabe», aplicar el límite después de construir el arreglo o añadir más memoria sin limitar son justo el error."
+        },
+        {
+          "type": "key",
+          "text": "Los secretos viven fuera del código, en el entorno. Y todo tamaño que llegue del usuario se compara con un máximo antes de gastar un solo byte."
+        }
+      ]
+    },
+    {
+      "id": "response-splitting",
+      "title": "HTTP response splitting (CWE-113) y herramientas para profundizar",
+      "pages": [47, 56],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Una respuesta HTTP es como una carta con un sobre (las cabeceras) y un contenido (el cuerpo), separados por líneas en blanco. Si el atacante consigue meter un «salto de línea» dentro de un dato del sobre, puede escribir sus propias líneas de sobre e incluso empezar una carta nueva que el navegador creerá auténtica."
+        },
+        {
+          "type": "term",
+          "term": "CR y LF (retorno de carro y salto de línea)",
+          "text": "Los dos caracteres invisibles que marcan el final de una línea en HTTP: CR (Carriage Return, `\\r`, codificado en URL como `%0d`) y LF (Line Feed, `\\n`, `%0a`)."
+        },
+        {
+          "type": "term",
+          "term": "HTTP response splitting (CWE-113, división de la respuesta HTTP)",
+          "text": "La aplicación mete entrada del usuario sin sanear en una **cabecera** de la respuesta (en el ejemplo, el valor de una cookie a partir del parámetro user_setting). Si esa entrada contiene `%0d%0a`, el atacante corta la cabecera, inyecta **cabeceras adicionales** o incluso un **cuerpo de respuesta nuevo**, lo que permite XSS o **envenenamiento de caché** (cache poisoning: que un servidor intermedio guarde la respuesta falsa y se la sirva a otros usuarios)."
+        },
+        {
+          "type": "list",
+          "title": "Prevención",
+          "items": [
+            "**Eliminar o reemplazar** los caracteres CR y LF de cualquier entrada que vaya a una cabecera de respuesta.",
+            "Usar librerías de codificación de salida probadas, como **OWASP Java Encoder**."
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Recursos del apartado «A fondo»",
+          "head": ["Recurso", "Para qué sirve"],
+          "rows": [
+            ["Fortify (vulncat)", "Catálogo web de debilidades del código fuente con ejemplos."],
+            ["Find Security Bugs", "Herramienta de análisis estático para código Java y su catálogo de fallos (por ejemplo, generadores aleatorios predecibles)."],
+            ["Spring Security", "Documentación de seguridad del framework Spring y sus librerías de validación."],
+            ["OWASP ESAPI (Enterprise Security API)", "Librería gratuita y abierta de controles de seguridad para escribir aplicaciones de bajo riesgo o adaptar las existentes."],
+            ["OWASP Java Encoder", "Codificadores contextuales de alto rendimiento para prevenir XSS y otras inyecciones en la salida."]
+          ]
+        },
+        {
+          "type": "exam",
+          "text": "Si aparece «manipular cabeceras HTTP» o «inyectar %0d%0a», piensa en CWE-113, no en SQLi. Su defensa es quitar CR/LF de lo que va a las cabeceras."
+        },
+        {
+          "type": "key",
+          "text": "Nunca dejes que un salto de línea del usuario llegue a una cabecera HTTP: elimínalo o codifícalo."
+        }
+      ]
+    }
+  ],
+  "summary": [
+    "El desarrollo seguro mete la seguridad en todo el ciclo de vida; la revisión estática de código es la práctica clave de la implementación y corregir pronto es mucho más barato.",
+    "CWE es el catálogo numerado de debilidades; el CWE Top 25 recoge las más peligrosas.",
+    "La validación de entrada se hace en el servidor, con lista de permitidos y tras canonicalizar; la codificación de salida hace que los datos se muestren como texto según su contexto.",
+    "Los errores muestran mensajes genéricos; los logs guardan lo útil para investigar, nunca contraseñas ni tokens de sesión.",
+    "CWE-89 (SQLi): se explota con OR 1=1 y se corrige con PreparedStatement.",
+    "CWE-79 (XSS): script en el navegador de la víctima; se corrige con codificación de salida (OWASP Java Encoder) y se refuerza con CSP.",
+    "CWE-352 (CSRF): necesita una sesión válida de la víctima; se corrige con un token aleatorio ligado a la sesión y cookies SameSite.",
+    "CWE-22 (path traversal): lectura de archivos fuera de la carpeta; lista blanca, normalización y comprobación de prefijo.",
+    "CWE-78 (inyección de comandos): evitar el shell pasando argumentos en array y validar con lista blanca.",
+    "CWE-862 (falta de autorización): verificar el rol en el servidor y denegar por defecto (403).",
+    "CWE-434 (subida peligrosa): lista blanca de extensiones, contenido real (magic bytes) y almacenamiento fuera de la raíz web.",
+    "CWE-611 (XXE): desactivar DTD y entidades externas en el parser; CWE-918 (SSRF): lista blanca de destinos y bloqueo de direcciones internas.",
+    "CWE-798: secretos fuera del código; CWE-400: limitar tamaños antes de reservar; CWE-113: quitar CR/LF de las cabeceras."
+  ],
+  "glossary": [
+    { "term": "Autenticación", "text": "Comprobar quién es el usuario." },
+    { "term": "Autorización", "text": "Comprobar qué puede hacer un usuario ya identificado." },
+    { "term": "Canonicalización", "text": "Reducir un dato a su forma estándar deshaciendo codificaciones antes de validarlo." },
+    { "term": "Codificación de salida", "text": "Transformar caracteres especiales para que el destino los trate como datos y no como código." },
+    { "term": "CSP (Content Security Policy)", "text": "Cabecera HTTP que indica al navegador de qué orígenes puede cargar scripts y estilos." },
+    { "term": "CSRF (Cross-Site Request Forgery)", "text": "Falsificación de peticiones en sitios cruzados: se aprovecha la sesión abierta de la víctima. CWE-352." },
+    { "term": "CWE (Common Weakness Enumeration)", "text": "Catálogo numerado de debilidades de software." },
+    { "term": "Denegar por defecto", "text": "Principio por el que solo se permite el acceso si una comprobación lo autoriza expresamente." },
+    { "term": "DoS (Denial of Service)", "text": "Ataque que deja un servicio sin capacidad de responder." },
+    { "term": "Lista blanca (de permitidos)", "text": "Relación cerrada de valores aceptados; todo lo demás se rechaza." },
+    { "term": "Magic bytes", "text": "Primeros bytes de un archivo que identifican su formato real." },
+    { "term": "OWASP", "text": "Comunidad abierta que publica guías y librerías de seguridad de aplicaciones web." },
+    { "term": "Path traversal", "text": "Uso de ../ para salir del directorio permitido y leer archivos del sistema. CWE-22." },
+    { "term": "PreparedStatement", "text": "Sentencia SQL precompilada de Java con parámetros que separa la estructura de la consulta de sus valores." },
+    { "term": "SDLC (Software Development Life Cycle)", "text": "Ciclo de vida del desarrollo de software." },
+    { "term": "Servlet", "text": "Programa Java en el servidor que atiende peticiones HTTP." },
+    { "term": "Shell", "text": "Intérprete de órdenes del sistema operativo, como Bash." },
+    { "term": "SQLi (SQL injection)", "text": "Inyección de código SQL a través de datos del usuario. CWE-89." },
+    { "term": "SSRF (Server-Side Request Forgery)", "text": "Hacer que el servidor realice peticiones a destinos internos elegidos por el atacante. CWE-918." },
+    { "term": "Token anti-CSRF", "text": "Valor secreto, aleatorio y ligado a la sesión que se exige en cada petición que cambia datos." },
+    { "term": "Webshell", "text": "Programa subido al servidor web que permite ejecutar comandos a distancia." },
+    { "term": "XSS (Cross-Site Scripting)", "text": "Ejecución de scripts del atacante en el navegador de la víctima. CWE-79." },
+    { "term": "XXE (XML External Entity)", "text": "Abuso de entidades externas en un parser XML para leer archivos o hacer peticiones internas. CWE-611." }
+  ],
+  "questions": {
+    "sistemas-t06-01": {
+      "section": "rutas-comandos",
+      "reasoning": "CWE-22 es el path traversal: el usuario da un nombre de archivo con secuencias ../ y el servidor construye una ruta que sale del directorio permitido. En el ejemplo, la descarga acaba leyendo /etc/passwd. Por tanto, el riesgo principal es acceder sin autorización a archivos del sistema.",
+      "options": {
+        "a": "Incorrecta. Inyectar código que se ejecuta en el navegador es el XSS (CWE-79), no el path traversal.",
+        "b": "Correcta. Con ../ el atacante sale de la carpeta autorizada y lee archivos del sistema, como /etc/passwd.",
+        "c": "Incorrecta. Guardar o mostrar contraseñas en claro es otro tipo de fallo; el path traversal trata de rutas de archivo.",
+        "d": "Incorrecta. El acceso concurrente a memoria compartida es un problema de programación concurrente que no aparece en el tema."
+      }
+    },
+    "sistemas-t06-02": {
+      "section": "xss",
+      "reasoning": "En XSS la aplicación incluye en la página, sin codificar, un texto controlado por el atacante (por ejemplo, una etiqueta script). Quien interpreta esa página es el navegador de la víctima, que ejecuta el script con los permisos del sitio. De ahí que el impacto principal sea la ejecución de scripts maliciosos en el navegador de la víctima (robo de cookies, keylogging, redirección a phishing).",
+      "options": {
+        "a": "Incorrecta. Acceder directamente a la base de datos es propio de la inyección SQL (CWE-89).",
+        "b": "Incorrecta. El XSS actúa en el navegador, no suplanta el sistema operativo.",
+        "c": "Correcta. El script inyectado se ejecuta en el navegador de quien visita la página vulnerable.",
+        "d": "Incorrecta. Falsificar certificados SSL/TLS es un ataque a la infraestructura de cifrado, no a la salida de la aplicación."
+      }
+    },
+    "sistemas-t06-03": {
+      "section": "inyeccion-sql",
+      "reasoning": "La SQLi aparece cuando la entrada se concatena dentro de la consulta. Si el atacante escribe ' OR '1'='1 (la familia «OR 1=1»), añade una condición siempre verdadera y la cláusula WHERE devuelve todas las filas. Es el ejemplo del tema y la forma más común de explotarla.",
+      "options": {
+        "a": "Incorrecta. Inyectar comandos Bash es la inyección de comandos del sistema operativo (CWE-78).",
+        "b": "Correcta. Añadir OR 1=1 hace la condición siempre verdadera y devuelve todos los registros.",
+        "c": "Incorrecta. Manipular cabeceras HTTP se relaciona con HTTP response splitting (CWE-113).",
+        "d": "Incorrecta. Forzar peticiones a API internas describe el SSRF (CWE-918)."
+      }
+    },
+    "sistemas-t06-04": {
+      "section": "csrf",
+      "reasoning": "En CSRF el atacante no roba la sesión: la reutiliza. Su página hace que el navegador de la víctima envíe una petición al sitio legítimo, y el navegador adjunta sola la cookie de sesión. Si la víctima no estuviera autenticada, no habría cookie válida y el servidor rechazaría la petición. Por eso el requisito es una sesión válida.",
+      "options": {
+        "a": "Correcta. El ataque se apoya en la cookie de una sesión activa de la víctima, como Alice con su banco.",
+        "b": "Incorrecta. El cifrado de la base de datos no influye: la petición falsa usa la aplicación como lo haría el usuario legítimo.",
+        "c": "Incorrecta. Es al revés: con las cookies deshabilitadas no se enviaría la cookie de sesión y el ataque fallaría.",
+        "d": "Incorrecta. La petición es tráfico web normal hacia un puerto permitido; el firewall no es la condición del ataque."
+      }
+    },
+    "sistemas-t06-05": {
+      "section": "rutas-comandos",
+      "reasoning": "La inyección de comandos aparece cuando la aplicación lanza un comando del sistema y mete en él texto del usuario sin validar. Los metacaracteres del shell (; && |) permiten encadenar órdenes, como en «127.0.0.1; cat /etc/passwd». Lo que hace vulnerable es, por tanto, ejecutar comandos del sistema con entradas no validadas.",
+      "options": {
+        "a": "Incorrecta. Las librerías JSON (JavaScript Object Notation, formato de intercambio de datos) inseguras no tienen relación con lanzar comandos del sistema.",
+        "b": "Correcta. Es la definición de CWE-78: entrada sin validar dentro de un comando del sistema operativo.",
+        "c": "Incorrecta. Las cookies persistentes afectan a la gestión de sesiones, no a la ejecución de comandos.",
+        "d": "Incorrecta. Cargar JavaScript externo es un asunto del navegador (relacionado con XSS y CSP), no del shell del servidor."
+      }
+    },
+    "sistemas-t06-06": {
+      "section": "autorizacion-subidas",
+      "reasoning": "CWE-862 es la falta de autorización: el Servlet comprueba que hay sesión (autenticación) pero no mira si el usuario tiene el rol necesario. En el ejemplo, un usuario normal borra cuentas llamando a la URL de administración. Implica acceder a funciones sin verificar los permisos del usuario.",
+      "options": {
+        "a": "Incorrecta. No cifrar contraseñas es un fallo criptográfico, no de autorización.",
+        "b": "Incorrecta. Exponer rutas internas se relaciona con la gestión de errores y de archivos, no con CWE-862.",
+        "c": "Correcta. El usuario autenticado ejecuta funciones para las que nadie ha comprobado si tiene permiso.",
+        "d": "Incorrecta. Usar librerías desactualizadas es otro tipo de riesgo (componentes vulnerables)."
+      }
+    },
+    "sistemas-t06-07": {
+      "section": "autorizacion-subidas",
+      "reasoning": "CWE-434 es la subida sin restricciones de archivos peligrosos. Si se acepta un shell.jsp y se guarda en la carpeta pública, el atacante lo abre por URL y el servidor lo ejecuta, dándole control remoto. El problema es la ejecución de archivos maliciosos subidos por el usuario.",
+      "options": {
+        "a": "Incorrecta. La sobrecarga del servidor por falta de límites corresponde a CWE-400.",
+        "b": "Correcta. El archivo subido (por ejemplo, un webshell) acaba ejecutándose en el servidor.",
+        "c": "Incorrecta. La fuga de tokens de sesión se asocia a XSS o a malos registros, no a la subida de archivos.",
+        "d": "Incorrecta. El intercambio inseguro de claves es un problema criptográfico ajeno a CWE-434."
+      }
+    },
+    "sistemas-t06-08": {
+      "section": "xxe-ssrf",
+      "reasoning": "CWE-611 (XXE) se produce porque el parser XML resuelve entidades externas que apuntan a archivos o URL. La solución del tema es configurar el parser con denegar por defecto: deshabilitar las DTD y el procesamiento de entidades externas. Esa es la técnica de mitigación.",
+      "options": {
+        "a": "Incorrecta. Las expresiones regulares no impiden que el parser resuelva entidades; el problema está en su configuración.",
+        "b": "Correcta. Si el analizador no carga entidades externas, el atacante no puede leer archivos ni lanzar peticiones internas.",
+        "c": "Incorrecta. Cambiar contraseñas no tiene relación con el procesamiento de XML.",
+        "d": "Incorrecta. Las cookies seguras protegen la sesión, no el parser XML."
+      }
+    },
+    "sistemas-t06-09": {
+      "section": "xxe-ssrf",
+      "reasoning": "En SSRF el servidor hace peticiones a una URL elegida por el atacante. Como el servidor está dentro de la red, puede llegar a 127.0.0.1/admin, a la intranet o a los metadatos de la nube (169.254.169.254). El riesgo típico es usar el servidor vulnerable como puente hacia la red interna.",
+      "options": {
+        "a": "Incorrecta. Capturar pulsaciones de teclas es un posible efecto de un XSS en el navegador, no del SSRF.",
+        "b": "Correcta. El atacante accede a redes y servicios internos a través del servidor vulnerable.",
+        "c": "Incorrecta. Interceptar tráfico entre usuarios es un ataque de intermediario en la red, no el SSRF.",
+        "d": "Incorrecta. La inyección SQL es CWE-89; el SSRF trata de peticiones de red del servidor."
+      }
+    },
+    "sistemas-t06-10": {
+      "section": "credenciales-recursos",
+      "reasoning": "CWE-798 son credenciales escritas en el código. Quien consiga el código (repositorio público, fuga o descompilación) obtiene usuario y contraseña de, por ejemplo, la base de datos de producción, y entra con esos privilegios sin tener que romper nada. La consecuencia es un acceso privilegiado fácil.",
+      "options": {
+        "a": "Incorrecta. Cifrar mal los datos es un fallo criptográfico distinto.",
+        "b": "Incorrecta. Permitir varias sesiones activas es una cuestión de gestión de sesiones.",
+        "c": "Correcta. Las credenciales extraídas del código dan al atacante acceso con los privilegios de esa cuenta.",
+        "d": "Incorrecta. Los reinicios inesperados se asocian más a fallos de disponibilidad, como CWE-400."
+      }
+    },
+    "sistemas-t06-11": {
+      "section": "validacion-entrada",
+      "reasoning": "La primera recomendación de validación es hacerla en un sistema de confianza, del lado del servidor. Lo que corre en el cliente (JavaScript del formulario, navegador) lo controla el usuario y puede desactivarlo o saltárselo enviando la petición directamente. Validar en el cliente mejora la experiencia, pero la decisión de seguridad debe tomarse en el servidor.",
+      "options": {
+        "a": "Incorrecta. El JavaScript del formulario se puede modificar o desactivar; no es un sistema de confianza.",
+        "b": "Incorrecta. Validar solo en el navegador se elude enviando la petición con otra herramienta.",
+        "c": "Correcta. El servidor es el sistema de confianza que el usuario no controla.",
+        "d": "Incorrecta. Confiar en que el control del cliente no se eluda es exactamente el error que el tema advierte."
+      }
+    },
+    "sistemas-t06-12": {
+      "section": "salida-cripto",
+      "reasoning": "La codificación de salida convierte caracteres especiales (por ejemplo, < en &lt;) para que el destino los muestre como texto y no los interprete como código. No oculta el dato ni valida identidades: neutraliza su significado ejecutable según el contexto.",
+      "options": {
+        "a": "Incorrecta. Codificar no es cifrar; el servidor sigue leyendo el dato sin problema.",
+        "b": "Correcta. El dato se muestra como texto en lugar de ejecutarse como código.",
+        "c": "Incorrecta. Verificar la identidad es la autenticación, otro control distinto.",
+        "d": "Incorrecta. La codificación de salida depende precisamente del contexto de salida; comprobar el formato de entrada es validación."
+      }
+    },
+    "sistemas-t06-13": {
+      "section": "inyeccion-sql",
+      "reasoning": "PreparedStatement define primero la consulta con huecos «?» y la precompila; después recibe los valores por separado. La base de datos trata esos valores siempre como datos. Lo que separa, por tanto, es la estructura de la consulta de sus valores de entrada.",
+      "options": {
+        "a": "Correcta. La estructura SQL queda fija y los valores del usuario van aparte como parámetros.",
+        "b": "Incorrecta. La validación y la presentación del formulario no tienen que ver con PreparedStatement.",
+        "c": "Incorrecta. Separar autenticación y autorización es un asunto de control de acceso, no de consultas SQL.",
+        "d": "Incorrecta. PreparedStatement no cifra nada ni maneja claves de sesión."
+      }
+    },
+    "sistemas-t06-14": {
+      "section": "errores-registros",
+      "reasoning": "Las prácticas de gestión de errores dicen que no se revele información confidencial ni de depuración (trazas de pila, detalles del sistema, identificadores de sesión) y que se usen mensajes genéricos. Un mensaje genérico, un código controlado o un identificador de soporte no sensible son correctos; lo que hay que evitar son los detalles internos.",
+      "options": {
+        "a": "Incorrecta. Un mensaje genérico es justo lo que recomienda el tema.",
+        "b": "Incorrecta. Un código de error controlado no revela nada útil al atacante y es aceptable.",
+        "c": "Incorrecta. Un identificador de soporte no sensible ayuda al usuario sin exponer el sistema.",
+        "d": "Correcta. Los detalles de depuración y los secretos internos dan pistas al atacante y no deben mostrarse."
+      }
+    },
+    "sistemas-t06-15": {
+      "section": "errores-registros",
+      "reasoning": "Los registros deben servir para auditar (fechas, tipo de evento, resultado de las comprobaciones), pero el tema prohíbe guardar información confidencial: contraseñas, identificadores de sesión o detalles innecesarios. Un log con tokens utilizables sería un almacén de credenciales para quien lo lea.",
+      "options": {
+        "a": "Incorrecta. La fecha de un fallo de acceso es información de auditoría útil y se debe registrar.",
+        "b": "Incorrecta. La categoría del evento ayuda a analizar los registros.",
+        "c": "Correcta. Contraseñas e identificadores de sesión utilizables no deben aparecer en los registros.",
+        "d": "Incorrecta. El tema pide registrar los fallos de control de acceso, así que el resultado de la autorización sí se guarda."
+      }
+    },
+    "sistemas-t06-16": {
+      "section": "credenciales-recursos",
+      "reasoning": "Para CWE-798 el tema propone externalizar las credenciales: cargarlas en tiempo de ejecución desde variables de entorno o un fichero de propiedades fuera del código. Cualquier truco que deje el secreto dentro del código (codificarlo, partirlo, renombrarlo) sigue exponiéndolo a quien lea o descompile el programa.",
+      "options": {
+        "a": "Incorrecta. Base64 es una codificación reversible al instante, no una protección; el secreto sigue en el código.",
+        "b": "Correcta. Cargar el secreto desde una fuente protegida al ejecutar saca la credencial del código.",
+        "c": "Incorrecta. Repartir el secreto en varias constantes solo lo hace un poco más incómodo de reconstruir.",
+        "d": "Incorrecta. Cambiar el nombre de la variable no cambia que el valor esté escrito en el código."
+      }
+    },
+    "sistemas-t06-17": {
+      "section": "validacion-entrada",
+      "reasoning": "Un atacante puede escribir lo mismo de muchas formas (%2E%2E%2F en lugar de ../) para que el filtro no lo reconozca. La canonicalización deshace esas codificaciones y reduce todas las formas equivalentes a una sola; así la validación ve el contenido real. Por eso se hace antes de validar.",
+      "options": {
+        "a": "Correcta. Reduce las formas equivalentes que podrían esconder una entrada peligrosa.",
+        "b": "Incorrecta. Canonicalizar no cifra; al contrario, hace visible el contenido real.",
+        "c": "Incorrecta. La longitud se valida aparte; la canonicalización afecta a la representación del dato.",
+        "d": "Incorrecta. Comprobar permisos es la autorización, que no tiene que ver con la forma del dato."
+      }
+    },
+    "sistemas-t06-18": {
+      "section": "autorizacion-subidas",
+      "reasoning": "La extensión es solo parte del nombre y la elige quien sube el archivo: un shell.jsp se puede renombrar a shell.jpg. Por eso el tema pide comprobar los encabezados del archivo, el tipo MIME y los magic bytes. No basta con la extensión porque el contenido real puede no coincidir con el nombre.",
+      "options": {
+        "a": "Incorrecta. La extensión no certifica nada: se cambia con solo renombrar el archivo.",
+        "b": "Incorrecta. El formato real se determina por el contenido, no por el nombre.",
+        "c": "Incorrecta. El navegador no valida el contenido y, además, el cliente nunca es un sistema de confianza.",
+        "d": "Correcta. El contenido puede ser un programa aunque el nombre diga .jpg."
+      }
+    },
+    "sistemas-t06-19": {
+      "section": "rutas-comandos",
+      "reasoning": "Con ProcessBuilder o Runtime.exec(String[]) cada argumento va por separado y el ejecutable se lanza sin shell. Sin intérprete, el «;» o el «|» del atacante no tienen significado especial: todo llega como un único argumento literal. Eso elimina la vía de encadenar órdenes, pero el tema mantiene la lista blanca como defensa adicional.",
+      "options": {
+        "a": "Incorrecta. El tema sigue recomendando validar con lista blanca como segunda capa.",
+        "b": "Incorrecta. El programa invocado aún podría abusarse con argumentos legítimos pero dañinos; solo se evita la inyección de órdenes nuevas.",
+        "c": "Correcta. Sin shell, los metacaracteres no se convierten en órdenes adicionales.",
+        "d": "Incorrecta. Separar argumentos no cambia los permisos con los que se ejecuta el proceso."
+      }
+    },
+    "sistemas-t06-20": {
+      "section": "autorizacion-subidas",
+      "reasoning": "Denegar por defecto (fail-safe defaults) significa que la situación inicial es «no»: solo se concede el acceso cuando la comprobación de rol o permiso tiene éxito; si falla, 403 Forbidden. Las opciones que parten de «permitir» y luego buscan motivos para negar son lo contrario.",
+      "options": {
+        "a": "Incorrecta. Tener sesión es autenticarse, no estar autorizado; es el fallo de CWE-862.",
+        "b": "Correcta. Se permite únicamente cuando la comprobación de permiso resulta positiva.",
+        "c": "Incorrecta. «Permitir salvo regla de rechazo» es permitir por defecto, justo lo contrario.",
+        "d": "Incorrecta. Ocultar opciones en el menú no impide llamar a la función directamente; la decisión debe tomarse en el servidor."
+      }
+    },
+    "sistemas-t06-21": {
+      "section": "autorizacion-subidas",
+      "reasoning": "Si las subidas se guardan fuera de la raíz web (/opt/appdata en lugar de /var/www/html), no se pueden pedir por URL y el servidor web no las procesará aunque sean ejecutables. Es una capa más de la defensa: complementa la lista blanca y la validación de contenido, pero no las sustituye.",
+      "options": {
+        "a": "Correcta. Reduce la posibilidad de que el servidor ejecute o sirva directamente el archivo como código.",
+        "b": "Incorrecta. El tema plantea defensa por capas: la validación de tipo sigue siendo necesaria.",
+        "c": "Incorrecta. Un archivo malicioso puede seguir siéndolo; solo se reduce su exposición directa.",
+        "d": "Incorrecta. La ubicación de almacenamiento no concede permisos a nadie."
+      }
+    },
+    "sistemas-t06-22": {
+      "section": "xxe-ssrf",
+      "reasoning": "El XXE funciona porque el parser procesa la declaración DOCTYPE y resuelve entidades externas. La configuración segura desactiva las DTD (disallow-doctype-decl) y las entidades externas generales y de parámetros. Ninguna comprobación sobre la extensión, el tamaño o la autenticación del remitente impide que el parser lea el archivo.",
+      "options": {
+        "a": "Incorrecta. La extensión .xml no dice nada sobre si el contenido es malicioso.",
+        "b": "Incorrecta. Un usuario autenticado también puede enviar un XML con entidades maliciosas.",
+        "c": "Incorrecta. Un documento pequeño puede contener la entidad que lee /etc/passwd.",
+        "d": "Correcta. Deshabilitar entidades externas y la declaración DOCTYPE bloquea el ataque en su raíz."
+      }
+    },
+    "sistemas-t06-23": {
+      "section": "credenciales-recursos",
+      "reasoning": "En el ejemplo de CWE-400, el Servlet crea una lista del tamaño que indique el parámetro length sin ningún límite. Con length=2000000000 se agota la memoria. La causa es aceptar tamaños de trabajo o memoria sin límite; las demás opciones describen justamente las defensas.",
+      "options": {
+        "a": "Incorrecta. Aplicar un límite antes de reservar es la solución, no la causa.",
+        "b": "Incorrecta. Rechazar lo que supera el máximo es la defensa del tema.",
+        "c": "Correcta. Aceptar cualquier tamaño permite agotar la memoria o la CPU.",
+        "d": "Incorrecta. Cancelar operaciones que superan el tiempo máximo protege frente al agotamiento, no lo causa."
+      }
+    },
+    "sistemas-t06-24": {
+      "section": "inyeccion-sql",
+      "reasoning": "Concatenar la entrada en la consulta es la causa de la SQLi. La solución principal del tema es PreparedStatement: consulta con parámetros «?» donde el valor del usuario se trata siempre como dato. Cambiar el método HTTP, validar en el cliente o escapar los errores no evita que la entrada se ejecute como SQL.",
+      "options": {
+        "a": "Incorrecta. Escapar el texto de error no toca la consulta vulnerable.",
+        "b": "Correcta. La sentencia preparada con parámetros separa el código SQL de los datos.",
+        "c": "Incorrecta. GET y POST solo cambian cómo viajan los datos; el servidor los seguiría concatenando.",
+        "d": "Incorrecta. La validación en JavaScript se elude desde el cliente."
+      }
+    },
+    "sistemas-t06-25": {
+      "section": "xss",
+      "reasoning": "Es el caso del ErrorServlet: un texto del usuario se refleja en la página. Para que el navegador no lo interprete como etiquetas, hay que aplicar codificación de salida adecuada al contexto (Encode.forHtml), que convierte < y > en entidades. Que el usuario esté autenticado o que el transporte vaya cifrado no cambia lo que el navegador ejecuta.",
+      "options": {
+        "a": "Correcta. La codificación de salida contextual hace que el navegador muestre el texto sin ejecutarlo.",
+        "b": "Incorrecta. Un usuario autenticado también puede enviar o hacer llegar un payload; la autenticación no neutraliza etiquetas.",
+        "c": "Incorrecta. Parametrizar consultas protege la base de datos (SQLi), no la página HTML.",
+        "d": "Incorrecta. El cifrado del transporte (HTTPS) protege el viaje del dato, pero el navegador lo recibe igual y lo ejecutaría."
+      }
+    },
+    "sistemas-t06-26": {
+      "section": "csrf",
+      "reasoning": "El Servlet acepta cualquier petición con cookie válida, que es exactamente lo que aprovecha el CSRF. La solución del ejemplo es un token anti-CSRF: secreto, aleatorio, guardado en la sesión e incluido en el formulario. El atacante no puede leerlo por la política de mismo origen, así que su petición no lo lleva y se rechaza.",
+      "options": {
+        "a": "Incorrecta. El formulario oculto del atacante también puede enviar un POST.",
+        "b": "Incorrecta. Comprobar solo la cookie es el fallo; el navegador la envía automáticamente.",
+        "c": "Incorrecta. Un valor fijo lo puede conocer y copiar el atacante; el token debe ser impredecible.",
+        "d": "Correcta. Un token impredecible ligado a la sesión demuestra que la petición sale del formulario legítimo."
+      }
+    },
+    "sistemas-t06-27": {
+      "section": "rutas-comandos",
+      "reasoning": "El atacante usa ../ para salir de la carpeta. La defensa del tema trabaja sobre la ruta resultante: normalizarla (normalize, getCanonicalPath o toRealPath) para eliminar los .. y comprobar con startsWith que sigue dentro de la ruta base permitida, junto con la lista blanca de nombres.",
+      "options": {
+        "a": "Incorrecta. «../../etc/passwd» no tiene extensión sospechosa y una extensión válida puede acompañar a una ruta maliciosa.",
+        "b": "Incorrecta. Una ruta corta puede ser maliciosa; la longitud no dice adónde apunta.",
+        "c": "Correcta. Normalizar y verificar que la ruta final pertenece a la base permitida impide salir del directorio.",
+        "d": "Incorrecta. Las rutas relativas con ../ son precisamente el vector del ataque."
+      }
+    },
+    "sistemas-t06-28": {
+      "section": "autorizacion-subidas",
+      "reasoning": "Es el ejemplo de CWE-862: un usuario normal envía la petición POST /app/admin/deleteUser. La sesión prueba quién es, pero no que pueda hacerlo. Hay que comprobar en el servidor su rol (por ejemplo, ADMIN) y denegar con 403 si no lo tiene. Ocultar o camuflar la función no sirve porque se puede llamar directamente.",
+      "options": {
+        "a": "Incorrecta. Ocultar la función en la interfaz no impide llamarla escribiendo la petición a mano.",
+        "b": "Correcta. La verificación de rol o permiso en el servidor bloquea la acción del usuario sin privilegios.",
+        "c": "Incorrecta. Comprobar solo la sesión es justo el fallo del ejemplo.",
+        "d": "Incorrecta. Una URL difícil de adivinar es seguridad por oscuridad; si se descubre, nada la protege."
+      }
+    },
+    "sistemas-t06-29": {
+      "section": "xxe-ssrf",
+      "reasoning": "Es un SSRF: el servidor descarga lo que indica una URL del usuario. La solución del tema es una lista blanca estricta de protocolos, URL y hosts permitidos, y bloquear direcciones internas. Comprobar solo que empieza por http, fiarse de la extensión o no revisar redirecciones posteriores deja abiertos 127.0.0.1 o 169.254.169.254.",
+      "options": {
+        "a": "Correcta. Restringir protocolos y destinos a una lista permitida evita conexiones a recursos internos.",
+        "b": "Incorrecta. http://127.0.0.1/admin también empieza por http.",
+        "c": "Incorrecta. Una URL interna puede terminar en .jpg; la extensión no limita el destino.",
+        "d": "Incorrecta. Si el destino cambia (por ejemplo, con una redirección) hacia una dirección interna sin volver a verificarlo, el control se elude."
+      }
+    },
+    "sistemas-t06-30": {
+      "section": "credenciales-recursos",
+      "reasoning": "La solución de CWE-400 es comprobar el tamaño solicitado y no permitir los que excedan el máximo. Para que proteja, la comprobación tiene que hacerse antes de reservar memoria: si primero se construye el arreglo, el daño ya está hecho.",
+      "options": {
+        "a": "Incorrecta. Reservar primero la memoria es precisamente lo que provoca el agotamiento.",
+        "b": "Incorrecta. Añadir memoria sin limitar solo retrasa el problema; el atacante puede pedir más.",
+        "c": "Incorrecta. Si el límite se aplica después de construir el arreglo, la memoria ya se ha consumido.",
+        "d": "Correcta. Rechazar los tamaños que superan el límite antes de asignar protege los recursos."
+      }
+    }
+  }
+}

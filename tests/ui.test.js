@@ -79,7 +79,7 @@ test('subject topics stay numerically ordered and have explicit unduplicated top
 
 function temaFixture(){
  const questions=Object.fromEntries(Array.from({length:30},(_,i)=>[`sistemas-1-${i}`,{section:i<20?'dominio':'gpo',reasoning:'Razona **paso a paso** <b>sin HTML</b>.',options:{a:'Motivo A',b:'Motivo B',c:'Motivo C',d:'Motivo D'},...(i===3?{doubt:'Clave discutible'}:{})}]));
- return {course:'sistemas',number:1,title:'Windows Server',minutes:30,intro:{why:'Porque **importa**.',before:['Saber qué es un PC'],goals:['Explicar un dominio']},sections:[{id:'dominio',title:'El dominio',pages:[5,7],blocks:[{type:'p',text:'Un **dominio** agrupa equipos.'},{type:'analogy',text:'Como una oficina.'},{type:'table',head:['Nivel','Aplica'],rows:[['Dominio','Comunes']]},{type:'exam',text:'Trampa típica.'}]},{id:'gpo',title:'Directivas',blocks:[{type:'key',text:'Idea clave.'}]}],summary:['Resumen 1'],glossary:[{term:'GPO',text:'Objeto de directiva'}],questions};
+ return {course:'sistemas',number:1,title:'Windows Server',minutes:30,intro:{why:'Porque **importa**.',before:['Saber qué es un PC'],goals:['Explicar un dominio']},sections:[{id:'dominio',title:'El dominio',pages:[5,7],blocks:[{type:'p',text:'Un **dominio** agrupa equipos.'},{type:'analogy',text:'Como una oficina.'},{type:'table',head:['Nivel','Aplica'],rows:[['Dominio','Comunes']]},{type:'exam',text:'Trampa típica.'},{type:'code',title:'XSS',text:'<script>alert(1)</script>'}]},{id:'gpo',title:'Directivas',blocks:[{type:'key',text:'Idea clave.'}]}],summary:['Resumen 1'],glossary:[{term:'GPO',text:'Objeto de directiva'}],questions};
 }
 test('digital topic renders sections, grouped argued questions, page links and escaped rich text',()=>{
  const {api}=runtime();const data=fixture();data.topics[0].material={url:'materials/sistemas/tema-01.pdf',format:'pdf',title:'Windows Server'};api.seed(data);api.seedTema(11,temaFixture());
@@ -87,6 +87,7 @@ test('digital topic renders sections, grouped argued questions, page links and e
  assert.match(html,/TEMA DIGITAL/);assert.match(html,/Un <strong>dominio<\/strong> agrupa equipos/);
  assert.match(html,/href="materials\/sistemas\/tema-01\.pdf#page=5"/);assert.match(html,/Páginas 5–7 del PDF/);
  assert.match(html,/Pon a prueba este apartado <span>20<\/span>/);assert.match(html,/Pon a prueba este apartado <span>10<\/span>/);
+ assert.match(html,/<pre><code>&lt;script&gt;alert\(1\)&lt;\/script&gt;<\/code><\/pre>/);assert.doesNotMatch(html,/<script>/);
  assert.match(html,/&lt;b&gt;sin HTML&lt;\/b&gt;/);assert.doesNotMatch(html,/<b>sin HTML/);
  assert.match(html,/Para revisar:<\/b> Clave discutible/);assert.match(html,/#\/tema\/11\/estudio\?apartado=gpo/);assert.match(html,/Glosario/);
  assert.match(api.topicPage(11),/Estudiar el tema →/);assert.match(api.coursePage('sistemas'),/Tema digital/);assert.doesNotMatch(api.topicPage(12),/Estudiar el tema/);

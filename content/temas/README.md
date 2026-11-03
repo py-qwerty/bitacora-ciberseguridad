@@ -42,6 +42,7 @@ El objetivo es que, después de leer el tema, cualquiera de sus 30 preguntas de 
         { "type": "table", "title": "Opcional", "head": ["Nivel", "Qué aplica"], "rows": [["Dominio", "…"]] },
         { "type": "example", "title": "Caso práctico", "text": "…" },
         { "type": "exam", "text": "Cómo lo pregunta el test y la trampa típica." },
+        { "type": "code", "title": "Opcional", "text": "SELECT * FROM usuarios WHERE nombre = '' OR '1'='1';" },
         { "type": "key", "text": "La idea que debes llevarte de este apartado." }
       ]
     }
@@ -70,6 +71,6 @@ Reglas que comprueba `npm run temas`:
 - Los `id` de apartado son únicos, en minúsculas, con letras, números y guiones.
 - Cada bloque usa uno de los tipos anteriores, con texto no vacío. Las tablas tienen filas del mismo ancho que la cabecera.
 - `questions` contiene exactamente las 30 preguntas del tema. Cada una apunta a un apartado existente y argumenta las cuatro opciones.
-- El texto no contiene HTML. Solo se interpreta `**negrita**`; todo lo demás se muestra tal cual.
+- Todo el texto se muestra tal cual (escapado). Solo se interpreta `**negrita**`. Los ejemplos de código, comandos, cabeceras o cargas de ataque van en bloques `code`, y pueden contener `<script>` u otros caracteres especiales.
 
 La explicación de la opción correcta debe coincidir con la clave de `bank.json`. Si el temario contradice la clave, se argumenta igualmente la clave del banco y la discrepancia se explica en `doubt`, para revisarla.

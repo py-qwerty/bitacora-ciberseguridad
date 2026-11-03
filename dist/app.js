@@ -1,4 +1,4 @@
-import { DURATION, EXAM_SIZE, generateExam, gradeExam, remaining, formatTime, isValidSession, practiceBlocks, topicQuestions, validPractice, swipeDirection, validateBank, validateTema } from './core.js?v=3';
+import { DURATION, EXAM_SIZE, generateExam, gradeExam, remaining, formatTime, isValidSession, practiceBlocks, topicQuestions, validPractice, swipeDirection, validateBank, validateTema } from './core.js?v=5';
 const $ = s => document.querySelector(s);
 const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const number = n => n.toLocaleString('es-ES');
@@ -104,6 +104,7 @@ function temaBlock(b){
     case 'table':return `<div class="tb-table">${title}<div class="table-wrap"><table><thead><tr>${b.head.map(h=>`<th scope="col">${rich(h)}</th>`).join('')}</tr></thead><tbody>${b.rows.map(r=>`<tr>${r.map((c,i)=>i===0?`<th scope="row">${rich(c)}</th>`:`<td>${rich(c)}</td>`).join('')}</tr>`).join('')}</tbody></table></div></div>`;
     case 'example':return `<aside class="tb tb-example"><span class="tb-label">Ejemplo</span>${title}<p>${rich(b.text)}</p></aside>`;
     case 'exam':return `<aside class="tb tb-exam"><span class="tb-label">Así cae en el test</span>${title}<p>${rich(b.text)}</p></aside>`;
+    case 'code':return `<figure class="tb-code">${b.title?`<figcaption>${rich(b.title)}</figcaption>`:''}<pre><code>${esc(b.text)}</code></pre></figure>`;
     case 'key':return `<aside class="tb tb-key"><span class="tb-label">Idea clave</span><p>${rich(b.text)}</p></aside>`;
     default:return '';
   }
@@ -280,7 +281,21 @@ function render(focus=true) {
   document.title=(main.querySelector('h1')?.innerText.replace(/\s+/g,' ')||'Estudiar')+' · Bitácora Ciber';
   if(focus){main.style?.removeProperty('min-height');window.scrollTo(0,0);main.focus({preventScroll:true});}
   const target=params.get('apartado');if(wide&&target)scrollToSection(target,false);
+  markCurrentSection();
 }
+function markCurrentSection(){
+  const index=document.querySelector?.('.tema-index');if(!index)return;
+  const sections=[...document.querySelectorAll('.tema-section[id^="apartado-"]')];if(!sections.length)return;
+  const line=innerHeight*.3;let current=sections[0];
+  for(const s of sections){if(s.getBoundingClientRect().top<=line)current=s;else break;}
+  if(innerHeight+scrollY>=document.documentElement.scrollHeight-2)current=sections[sections.length-1];
+  const id=current.id.slice(9);const link=index.querySelector(`a[data-section="${CSS.escape(id)}"]`);
+  if(!link||link.getAttribute('aria-current'))return;
+  index.querySelectorAll('a[aria-current]').forEach(a=>a.removeAttribute('aria-current'));link.setAttribute('aria-current','location');
+  if(index.scrollHeight>index.clientHeight){const top=link.offsetTop-index.offsetTop,bottom=top+link.offsetHeight;if(top<index.scrollTop+40||bottom>index.scrollTop+index.clientHeight-40)index.scrollTo({top:top-index.clientHeight/3});}
+}
+let sectionFrame=0;
+window.addEventListener('scroll',()=>{if(!sectionFrame)sectionFrame=requestAnimationFrame(()=>{sectionFrame=0;markCurrentSection();});},{passive:true});
 function scrollToSection(id,smooth=true){
   const el=document.getElementById?.('apartado-'+id);if(!el)return;
   el.scrollIntoView({behavior:smooth&&!matchMedia('(prefers-reduced-motion: reduce)').matches?'smooth':'auto',block:'start'});

