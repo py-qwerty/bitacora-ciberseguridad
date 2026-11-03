@@ -13,7 +13,7 @@ function runtime(){
  const window={addEventListener(){},scrollX:0,scrollY:0,scrollTo(){},innerHeight:700};
  const sandbox={...core,document,window,localStorage:{getItem:k=>storage.get(k)||null,setItem:(k,v)=>storage.set(k,v),key:i=>[...storage.keys()][i],get length(){return storage.size}},location:{hash:'#/temas'},setInterval:()=>1,clearInterval(){},setTimeout,clearTimeout,URLSearchParams,Map,Set,Date,Math,JSON,Number,String,Object,Array,performance:{now:()=>0},crypto:{randomUUID:()=> 'simulation-1'},matchMedia:()=>({matches:true}),innerWidth:390};
  ctx=vm.createContext(sandbox);const script=readFileSync(new URL('../dist/app.js',import.meta.url),'utf8').replace(/^import .*?;\n/,'').replace(/init\(\);\s*$/,'');
- vm.runInContext(script+`\nglobalThis.api={seed(data){bank=data;questionMap=new Map(bank.questions.map(q=>[q.id,q]));practiceMap=new Map(bank.topics.map(t=>[t.id,practiceBlocks(bank.questions,t.id)]));},home,coursePage,topicPage,practicePage,setup,resultsPage,historyPage,explanation,read,write,getPractice,savePractice,autoAdvanceEnabled,navigationContext,render,startExam,session:()=>session};`,ctx);
+ vm.runInContext(script+`\nglobalThis.api={seed(data){bank=data;questionMap=new Map(bank.questions.map(q=>[q.id,q]));practiceMap=new Map(bank.topics.map(t=>[t.id,practiceBlocks(bank.questions,t.id)]));},home,coursePage,topicPage,practicePage,setup,resultsPage,historyPage,explanation,read,write,getPractice,savePractice,autoAdvanceEnabled,navigationContext,render,startExam,session:()=>session,temaPage,seedTema(n,data){temaIndex.set(n,{topic:n,sections:data.sections.length,minutes:data.minutes});temaCache.set(n,{status:'ready',data});}};`,ctx);
  ctx.api.seed(fixture());return {api:ctx.api,ctx,elements,get,events,storage};
 }
 test('subject hierarchy and all30 entry render without simulation state',()=>{const {api}=runtime();assert.match(api.home(),/Asignaturas/);assert.match(api.coursePage('sistemas'),/Windows Server/);assert.match(api.topicPage(11),/Test completo/);assert.match(api.topicPage(11),/#\/practica\/11\/0/);assert.match(api.setup(),/45 minutos es orientativa/);});
@@ -76,3 +76,24 @@ test('subject topics stay numerically ordered and have explicit unduplicated top
  assert.doesNotMatch(html,/Tema 1\. Tema 1/);
  assert.match(api.topicPage(11),/<h1>Tema 1\. Windows Server<\/h1>/);
 });
+
+function temaFixture(){
+ const questions=Object.fromEntries(Array.from({length:30},(_,i)=>[`sistemas-1-${i}`,{section:i<20?'dominio':'gpo',reasoning:'Razona **paso a paso** <b>sin HTML</b>.',options:{a:'Motivo A',b:'Motivo B',c:'Motivo C',d:'Motivo D'},...(i===3?{doubt:'Clave discutible'}:{})}]));
+ return {course:'sistemas',number:1,title:'Windows Server',minutes:30,intro:{why:'Porque **importa**.',before:['Saber qué es un PC'],goals:['Explicar un dominio']},sections:[{id:'dominio',title:'El dominio',pages:[5,7],blocks:[{type:'p',text:'Un **dominio** agrupa equipos.'},{type:'analogy',text:'Como una oficina.'},{type:'table',head:['Nivel','Aplica'],rows:[['Dominio','Comunes']]},{type:'exam',text:'Trampa típica.'}]},{id:'gpo',title:'Directivas',blocks:[{type:'key',text:'Idea clave.'}]}],summary:['Resumen 1'],glossary:[{term:'GPO',text:'Objeto de directiva'}],questions};
+}
+test('digital topic renders sections, grouped argued questions, page links and escaped rich text',()=>{
+ const {api}=runtime();const data=fixture();data.topics[0].material={url:'materials/sistemas/tema-01.pdf',format:'pdf',title:'Windows Server'};api.seed(data);api.seedTema(11,temaFixture());
+ const html=api.temaPage(11);
+ assert.match(html,/TEMA DIGITAL/);assert.match(html,/Un <strong>dominio<\/strong> agrupa equipos/);
+ assert.match(html,/href="materials\/sistemas\/tema-01\.pdf#page=5"/);assert.match(html,/Páginas 5–7 del PDF/);
+ assert.match(html,/Pon a prueba este apartado <span>20<\/span>/);assert.match(html,/Pon a prueba este apartado <span>10<\/span>/);
+ assert.match(html,/&lt;b&gt;sin HTML&lt;\/b&gt;/);assert.doesNotMatch(html,/<b>sin HTML/);
+ assert.match(html,/Para revisar:<\/b> Clave discutible/);assert.match(html,/#\/tema\/11\/estudio\?apartado=gpo/);assert.match(html,/Glosario/);
+ assert.match(api.topicPage(11),/Estudiar el tema →/);assert.match(api.coursePage('sistemas'),/Tema digital/);assert.doesNotMatch(api.topicPage(12),/Estudiar el tema/);
+});
+test('checked practice feedback links to the digital topic section and argues every option',()=>{
+ const {api,ctx}=runtime();api.seedTema(11,temaFixture());ctx.location.hash='#/practica/11/1';const p=api.getPractice(11,1);p.answers[p.ids[0]]='b';p.checked=[p.ids[0]];api.savePractice(p);
+ const html=api.practicePage(11,1);
+ assert.match(html,/Argumentación opción por opción/);assert.match(html,/Motivo D/);assert.match(html,/Repasar en el tema digital: El dominio/);assert.match(html,/✕ Incorrecta · Tu respuesta/);
+});
+test('topic without digital content has no digital route',()=>{const {api}=runtime();assert.match(api.temaPage(11),/No encontramos esa página/);});

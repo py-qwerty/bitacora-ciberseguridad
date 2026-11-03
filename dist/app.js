@@ -1,4 +1,4 @@
-import { DURATION, EXAM_SIZE, generateExam, gradeExam, remaining, formatTime, isValidSession, practiceBlocks, topicQuestions, validPractice, swipeDirection, validateBank } from './core.js?v=1';
+import { DURATION, EXAM_SIZE, generateExam, gradeExam, remaining, formatTime, isValidSession, practiceBlocks, topicQuestions, validPractice, swipeDirection, validateBank, validateTema } from './core.js?v=3';
 const $ = s => document.querySelector(s);
 const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const number = n => n.toLocaleString('es-ES');
@@ -28,7 +28,7 @@ function write(key, value) {
   try { localStorage.setItem(PREFIX + key, JSON.stringify(value)); }
   catch { warnStorage(); }
 }
-let bank, questionMap, practiceMap, timer, session = null, reviewFilter = 'errors', reviewPage = 0;
+let bank, questionMap, practiceMap, temaIndex = new Map(), temaCache = new Map(), timer, session = null, reviewFilter = 'errors', reviewPage = 0;
 const main = $('#main');
 const seenIds = () => { const ids = read('seen', []); return new Set(Array.isArray(ids) ? ids.filter(id => typeof id === 'string') : []); };
 const currentRoute = () => {
@@ -74,6 +74,73 @@ function practiceMaterial(topic){
   const m=topicMaterial(topic);if(!m)return '';
   return `<p class="practice-material"><a href="${esc(m.url)}" target="_blank" rel="noopener">Consultar tema en PDF <span aria-hidden="true">↗</span><span class="sr-only"> (se abre en otra pestaña)</span></a><span>Se abre aparte; mantienes tu avance en el test.</span></p>`;
 }
+const rich = value => esc(value).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+function loadTema(n){
+  if(!temaIndex.has(n))return null;
+  const cached=temaCache.get(n);if(cached)return cached;
+  const entry={status:'loading',data:null};temaCache.set(n,entry);
+  fetch(`temas/${n}.json?v=${encodeURIComponent(bank.version)}`,{signal:AbortSignal.timeout(15000)})
+    .then(r=>{if(!r.ok)throw Error('HTTP '+r.status);return r.json();})
+    .then(data=>{validateTema(data,bank);entry.status='ready';entry.data=data;})
+    .catch(()=>{entry.status='error';})
+    .finally(()=>{const {path}=currentRoute();if(path.startsWith(`/tema/${n}`)||path.startsWith(`/practica/${n}/`))render(false);});
+  return entry;
+}
+const temaReady = n => { const e=loadTema(n); return e?.status==='ready'?e.data:null; };
+const sectionHref = (n,id) => `#/tema/${n}/estudio?apartado=${encodeURIComponent(id)}`;
+function pageLinks(topic,pages){
+  const m=topicMaterial(topic);if(!Array.isArray(pages)||!pages.length)return '';
+  const label=pages.length>1&&pages[pages.length-1]!==pages[0]?`Páginas ${pages[0]}–${pages[pages.length-1]}`:`Página ${pages[0]}`;
+  return m?`<a class="page-ref" href="${esc(m.url)}#page=${pages[0]}" target="_blank" rel="noopener">${label} del PDF <span aria-hidden="true">↗</span></a>`:`<span class="page-ref">${label} del PDF</span>`;
+}
+function temaBlock(b){
+  const title=b.title?`<h4>${rich(b.title)}</h4>`:'';
+  switch(b.type){
+    case 'p':return `<p>${rich(b.text)}</p>`;
+    case 'analogy':return `<aside class="tb tb-analogy"><span class="tb-label">Imagínalo así</span>${title}<p>${rich(b.text)}</p></aside>`;
+    case 'term':return `<dl class="tb tb-term"><dt>${rich(b.term)}</dt><dd>${rich(b.text)}</dd></dl>`;
+    case 'list':return `<div class="tb-list">${title}<ul>${b.items.map(i=>`<li>${rich(i)}</li>`).join('')}</ul></div>`;
+    case 'steps':return `<div class="tb-list">${title}<ol class="tb-steps">${b.items.map(i=>`<li>${rich(i)}</li>`).join('')}</ol></div>`;
+    case 'table':return `<div class="tb-table">${title}<div class="table-wrap"><table><thead><tr>${b.head.map(h=>`<th scope="col">${rich(h)}</th>`).join('')}</tr></thead><tbody>${b.rows.map(r=>`<tr>${r.map((c,i)=>i===0?`<th scope="row">${rich(c)}</th>`:`<td>${rich(c)}</td>`).join('')}</tr>`).join('')}</tbody></table></div></div>`;
+    case 'example':return `<aside class="tb tb-example"><span class="tb-label">Ejemplo</span>${title}<p>${rich(b.text)}</p></aside>`;
+    case 'exam':return `<aside class="tb tb-exam"><span class="tb-label">Así cae en el test</span>${title}<p>${rich(b.text)}</p></aside>`;
+    case 'key':return `<aside class="tb tb-key"><span class="tb-label">Idea clave</span><p>${rich(b.text)}</p></aside>`;
+    default:return '';
+  }
+}
+function arguedOptions(q,arg,selected){
+  return `<ol class="argued-options">${q.options.map(o=>{const ok=o.key===q.correct;return `<li class="${ok?'is-correct':'is-wrong'}${selected===o.key?' is-selected':''}"><span class="option-letter">${o.key.toUpperCase()}</span><div><p class="argued-option-text">${esc(o.text)} <strong class="answer-label">${ok?'✓ Correcta':'✕ Incorrecta'}${selected===o.key?' · Tu respuesta':''}</strong></p><p>${rich(arg.options[o.key])}</p></div></li>`;}).join('')}</ol>`;
+}
+function temaQuestion(q,arg){
+  const kind=q.source?.kind==='campus-confirmed'?'<span class="tq-badge">Confirmada en el campus</span>':'';
+  return `<details class="tq" id="pregunta-${esc(q.id)}"><summary><span class="tq-number">${q.order}</span><span class="tq-text">${esc(q.text)}</span></summary><div class="tq-body">${kind}<ol class="tq-options">${q.options.map(o=>`<li><span class="option-letter">${o.key.toUpperCase()}</span><span>${esc(o.text)}</span></li>`).join('')}</ol><details class="tq-answer"><summary>Ver respuesta argumentada</summary><p class="tq-solution">Respuesta correcta: <b>${q.correct.toUpperCase()}</b></p><p class="tq-reasoning">${rich(arg.reasoning)}</p>${arguedOptions(q,arg)}${arg.doubt?`<p class="tq-doubt"><b>Para revisar:</b> ${rich(arg.doubt)}</p>`:''}</details></div></details>`;
+}
+function temaPage(n){
+  const topic=topicInfo(n);if(!topic||!temaIndex.has(n))return notFound();
+  const entry=loadTema(n);const back=`<a class="back-link" href="#/tema/${n}">← ${esc(topicTitle(n))}</a>`;
+  if(entry.status==='loading')return `${back}<div class="loading"><span class="spinner" aria-hidden="true"></span><p>Cargando el tema digital…</p></div>`;
+  if(entry.status==='error')return `${back}${heading('No se ha podido cargar el tema digital.','Comprueba tu conexión y vuelve a intentarlo.')}<button class="btn" data-action="tema-retry" data-topic="${n}">Volver a intentarlo</button>`;
+  const t=entry.data;const qs=topicQuestions(bank.questions,n);
+  const bySection=new Map(t.sections.map(s=>[s.id,[]]));qs.forEach(q=>bySection.get(t.questions[q.id].section)?.push(q));
+  const intro=t.intro;
+  return `${back}<header class="tema-hero"><div class="tema-hero-main"><p class="eyebrow">${esc(courseTitle(topic.course))} · TEMA ${topic.number} · TEMA DIGITAL</p><h1>${esc(topicTitle(n))}</h1><p class="tema-meta">${t.sections.length} apartados${t.minutes?` · ${t.minutes} min de lectura`:''} · ${qs.length} preguntas argumentadas</p><p class="lead tema-why">${rich(intro.why)}</p></div>${intro.before||intro.goals?`<div class="tema-intro-grid">${intro.before?`<section class="tema-intro-card"><h2>Antes de empezar</h2><ul>${intro.before.map(i=>`<li>${rich(i)}</li>`).join('')}</ul></section>`:''}${intro.goals?`<section class="tema-intro-card"><h2>Al terminar sabrás</h2><ul>${intro.goals.map(i=>`<li>${rich(i)}</li>`).join('')}</ul></section>`:''}</div>`:''}</header>
+<div class="tema-layout"><nav class="tema-index" aria-label="Apartados del tema"><details open><summary>Apartados</summary><ol>${t.sections.map((s,i)=>`<li><a href="${sectionHref(n,s.id)}" data-section="${esc(s.id)}"><span class="tema-index-number">${i+1}</span><span>${esc(s.title)}</span>${bySection.get(s.id).length?`<small>${bySection.get(s.id).length} preg.</small>`:''}</a></li>`).join('')}${t.summary?`<li><a href="${sectionHref(n,'resumen')}" data-section="resumen"><span class="tema-index-number">✓</span><span>Resumen</span></a></li>`:''}${t.glossary?`<li><a href="${sectionHref(n,'glosario')}" data-section="glosario"><span class="tema-index-number">Aa</span><span>Glosario</span></a></li>`:''}</ol></details><a class="btn secondary full" href="#/practica/${n}/0">Test completo de 30 →</a></nav>
+<article class="tema-body">${t.sections.map((s,i)=>{const list=bySection.get(s.id);return `<section class="tema-section" id="apartado-${esc(s.id)}" aria-labelledby="titulo-${esc(s.id)}"><div class="tema-section-content"><p class="tema-section-number">Apartado ${i+1}</p><h2 id="titulo-${esc(s.id)}">${esc(s.title)}</h2>${pageLinks(topic,s.pages)}${s.blocks.map(temaBlock).join('')}</div>${list.length?`<aside class="tema-section-questions" aria-label="Preguntas del apartado ${i+1}"><h3>Pon a prueba este apartado <span>${list.length}</span></h3><p class="small">Intenta responder antes de abrir la argumentación.</p>${list.map(q=>temaQuestion(q,t.questions[q.id])).join('')}</aside>`:''}</section>`;}).join('')}
+${t.summary?`<section class="tema-section tema-summary" id="apartado-resumen"><div class="tema-section-content"><h2>Resumen: lo que tienes que saber</h2><ol>${t.summary.map(i=>`<li>${rich(i)}</li>`).join('')}</ol></div></section>`:''}
+${t.glossary?`<section class="tema-section" id="apartado-glosario"><div class="tema-section-content"><h2>Glosario</h2><dl class="tema-glossary">${t.glossary.map(g=>`<div><dt>${rich(g.term)}</dt><dd>${rich(g.text)}</dd></div>`).join('')}</dl></div></section>`:''}
+<p class="local-note">Explicación propia elaborada a partir del temario de la UNIR para estudiar desde cero. Ante cualquier duda manda el PDF original.</p></article></div>`;
+}
+function temaCard(topic){
+  if(!temaIndex.has(topic.id))return '';
+  const info=temaIndex.get(topic.id);
+  return `<section class="tema-card" aria-labelledby="tema-card-title"><p class="eyebrow">NUEVO · DESDE CERO</p><h2 id="tema-card-title">Tema digital</h2><p>Explicado paso a paso, con ejemplos, y con las ${topicQuestions(bank.questions,topic.id).length} preguntas del test respondidas y argumentadas opción por opción.</p><p class="material-meta">${info.sections} apartados${info.minutes?` · ${info.minutes} min de lectura`:''}</p><a class="btn" href="#/tema/${topic.id}/estudio">Estudiar el tema →</a></section>`;
+}
+function temaFeedback(q,selected){
+  if(!temaIndex.has(q.topic))return '';
+  const t=temaReady(q.topic);if(!t)return `<p class="tema-feedback-loading small">Cargando la argumentación del tema digital…</p>`;
+  const arg=t.questions[q.id];const section=t.sections.find(s=>s.id===arg.section);
+  return `<details class="tema-feedback"><summary>Argumentación opción por opción</summary><p class="tq-reasoning">${rich(arg.reasoning)}</p>${arguedOptions(q,arg,selected)}${arg.doubt?`<p class="tq-doubt"><b>Para revisar:</b> ${rich(arg.doubt)}</p>`:''}</details><a class="tema-feedback-link" href="${sectionHref(q.topic,arg.section)}">Repasar en el tema digital: ${esc(section.title)} →</a>`;
+}
 function practiceIds(p){const params=currentRoute().params;return p.finishedAt&&params.get('repaso')==='1'&&params.get('filtro')==='errores'?p.ids.filter(id=>p.answers[id]!==questionMap.get(id).correct):p.ids;}
 function blockLabel(b){return b===0?'Test completo':'Test '+b;}
 function eyebrow(text) { return `<p class="eyebrow">${text}</p>`; }
@@ -112,7 +179,7 @@ function practicePage(topic,block) {
   if(p.finishedAt&&!reviewing)return `<a class="back-link" href="#/tema/${topic}">← Tests del tema</a>${heading('Test terminado',`${esc(topicTitle(topic))} · ${blockLabel(block)}`)}<section class="practice-result"><span class="practice-score">${score}<small>/${p.ids.length}</small></span><h2>${score===p.ids.length?'Todo correcto':'Sigue aprendiendo'}</h2><p>${p.ids.length-count} en blanco · ${count-score} incorrectas</p><button class="btn full" data-action="practice-review" data-topic="${topic}" data-block="${block}">Repasar respuestas</button>${score<p.ids.length?`<button class="btn secondary full" data-action="practice-errors" data-topic="${topic}" data-block="${block}">Repasar errores y blancos (${p.ids.length-score})</button>`:''}<button class="btn secondary full" data-action="practice-reset" data-topic="${topic}" data-block="${block}">Repetir test</button><a class="btn text full" href="#/tema/${topic}">Volver a los tests</a></section>`;
   if(!ids.length)return `${heading('No hay errores que repasar','Todas las respuestas de este test son correctas.')}<a class="btn" href="#/practica/${topic}/${block}">Ver resultado</a>`;
   const q=questionMap.get(ids[p.index]);const checked=reviewing||p.checked.includes(q.id);const selected=p.answers[q.id];
-  return `<a class="back-link" href="#/tema/${topic}">← Tests del tema</a><div class="practice-heading"><div><p class="eyebrow">${esc(courseTitle(q.course))} · TEMA ${topicInfo(topic).number} · ${blockLabel(block).toUpperCase()}</p><h1>Pregunta ${p.index+1}<span> / ${ids.length}</span></h1></div><span class="saved-label">${storageFailed?'Sin guardar':'Guardado'}</span></div><progress class="practice-progress" value="${reviewing?ids.length:count}" max="${reviewing?ids.length:p.ids.length}" aria-label="Preguntas respondidas"></progress>${reviewing?'':autoAdvanceControl()}<section class="question-panel practice-panel"><h2 class="exam-question">${esc(q.text)}</h2>${questionImage(q)}<fieldset class="answer-options"><legend class="sr-only">Elige una respuesta</legend>${q.options.map(o=>`<label class="answer-option ${selected===o.key?'selected':''} ${checked&&q.correct===o.key?'is-correct':''} ${checked&&selected===o.key&&selected!==q.correct?'is-incorrect':''}"><input type="radio" name="practice-answer" value="${o.key}" ${reviewing?'disabled':''} ${selected===o.key?'checked':''}><span class="option-letter">${o.key.toUpperCase()}</span><span>${esc(o.text)}${checked&&q.correct===o.key?'<strong class="answer-label">✓ Respuesta correcta</strong>':''}${checked&&selected===o.key&&selected!==q.correct?'<strong class="answer-label">✕ Tu respuesta</strong>':''}</span></label>`).join('')}</fieldset>${checked?`<p class="practice-feedback ${selected===q.correct?'right':'wrong'}" role="status">${selected===q.correct?'✓ Correcto':selected?'La respuesta correcta es '+q.correct.toUpperCase()+'.':'Sin responder. La respuesta correcta es '+q.correct.toUpperCase()+'.'}</p>${explanation(q)}`:`<button class="btn secondary full check-answer" data-action="practice-check" ${selected?'':'disabled'}>Comprobar respuesta</button>`}${questionButtons(p.index,ids.length,'practice-finish',reviewing?'Ver resultado':'Terminar test')}${swipeHint()}${numberNavigation(p.index,ids.length,'practice')}</section><p class="local-note">${reviewing?'Revisión del test terminado.':'Respuestas y posición guardadas en este navegador.'}</p>${practiceMaterial(topicInfo(topic))}`;
+  return `<a class="back-link" href="#/tema/${topic}">← Tests del tema</a><div class="practice-heading"><div><p class="eyebrow">${esc(courseTitle(q.course))} · TEMA ${topicInfo(topic).number} · ${blockLabel(block).toUpperCase()}</p><h1>Pregunta ${p.index+1}<span> / ${ids.length}</span></h1></div><span class="saved-label">${storageFailed?'Sin guardar':'Guardado'}</span></div><progress class="practice-progress" value="${reviewing?ids.length:count}" max="${reviewing?ids.length:p.ids.length}" aria-label="Preguntas respondidas"></progress>${reviewing?'':autoAdvanceControl()}<section class="question-panel practice-panel"><h2 class="exam-question">${esc(q.text)}</h2>${questionImage(q)}<fieldset class="answer-options"><legend class="sr-only">Elige una respuesta</legend>${q.options.map(o=>`<label class="answer-option ${selected===o.key?'selected':''} ${checked&&q.correct===o.key?'is-correct':''} ${checked&&selected===o.key&&selected!==q.correct?'is-incorrect':''}"><input type="radio" name="practice-answer" value="${o.key}" ${reviewing?'disabled':''} ${selected===o.key?'checked':''}><span class="option-letter">${o.key.toUpperCase()}</span><span>${esc(o.text)}${checked&&q.correct===o.key?'<strong class="answer-label">✓ Respuesta correcta</strong>':''}${checked&&selected===o.key&&selected!==q.correct?'<strong class="answer-label">✕ Tu respuesta</strong>':''}</span></label>`).join('')}</fieldset>${checked?`<p class="practice-feedback ${selected===q.correct?'right':'wrong'}" role="status">${selected===q.correct?'✓ Correcto':selected?'La respuesta correcta es '+q.correct.toUpperCase()+'.':'Sin responder. La respuesta correcta es '+q.correct.toUpperCase()+'.'}</p>${explanation(q)}${temaFeedback(q,selected)}`:`<button class="btn secondary full check-answer" data-action="practice-check" ${selected?'':'disabled'}>Comprobar respuesta</button>`}${questionButtons(p.index,ids.length,'practice-finish',reviewing?'Ver resultado':'Terminar test')}${swipeHint()}${numberNavigation(p.index,ids.length,'practice')}</section><p class="local-note">${reviewing?'Revisión del test terminado.':'Respuestas y posición guardadas en este navegador.'}</p>${practiceMaterial(topicInfo(topic))}`;
 }
 function home() {
   const active=activeSession();
@@ -121,13 +188,13 @@ function home() {
 function coursePage(id){
   const course=bank.courses.find(c=>c.id===id);if(!course)return notFound();
   const topics=bank.topics.filter(t=>t.course===id).sort((a,b)=>a.number-b.number);
-  return `<a class="back-link" href="#/temas">← Asignaturas</a>${heading(esc(course.shortTitle||course.title),'30 preguntas por tema · Explicaciones y fuente al comprobar')}<section class="topic-list" aria-label="Temas de la asignatura">${topics.map(t=>{const done=practiceMap.get(t.id).filter((_,i)=>getPractice(t.id,i+1).finishedAt).length;return `<a class="topic-card" href="#/tema/${t.id}"><span class="unit-number">${String(t.number).padStart(2,'0')}</span><div><h2>${esc(topicTitle(t.id))}</h2><p>3 tests de 10 · Test completo de 30${done?' · '+done+' terminados':''}</p></div><span class="row-arrow" aria-hidden="true">›</span></a>`;}).join('')}</section><a class="btn secondary full course-sim" href="#/simulacro?asignatura=${esc(id)}">Simulacro de esta asignatura →</a>`;
+  return `<a class="back-link" href="#/temas">← Asignaturas</a>${heading(esc(course.shortTitle||course.title),'30 preguntas por tema · Explicaciones y fuente al comprobar')}<section class="topic-list" aria-label="Temas de la asignatura">${topics.map(t=>{const done=practiceMap.get(t.id).filter((_,i)=>getPractice(t.id,i+1).finishedAt).length;return `<a class="topic-card" href="#/tema/${t.id}"><span class="unit-number">${String(t.number).padStart(2,'0')}</span><div><h2>${esc(topicTitle(t.id))}</h2><p>${temaIndex.has(t.id)?'<span class="tema-pill">Tema digital</span> ':''}3 tests de 10 · Test completo de 30${done?' · '+done+' terminados':''}</p></div><span class="row-arrow" aria-hidden="true">›</span></a>`;}).join('')}</section><a class="btn secondary full course-sim" href="#/simulacro?asignatura=${esc(id)}">Simulacro de esta asignatura →</a>`;
 }
 function topicPage(n,params){
   const topic=topicInfo(n);if(!topic)return notFound();
   const blocks=practiceMap.get(n);const completed=blocks.filter((_,i)=>getPractice(n,i+1).finishedAt).length;
   const row=(qs,b)=>{const p=getPractice(n,b);const count=Object.keys(p.answers).length;const correct=p.ids.filter(id=>p.answers[id]===questionMap.get(id).correct).length;return `<a class="test-row" href="#/practica/${n}/${b}"><span class="test-number">${b||'30'}</span><div><h2>${blockLabel(b)}</h2><p>${p.finishedAt?`${correct}/${qs.length} aciertos · Terminado`:count?`${count}/${qs.length} respondidas · Continuar`:qs.length+' preguntas'}</p></div><span class="test-state">${p.finishedAt?'✓':count?'Continuar':'›'}</span></a>`;};
-  return `<a class="back-link" href="#/asignatura/${esc(topic.course)}">← Temas de ${esc(courseTitle(topic.course))}</a>${heading(esc(topicTitle(n)),'30 preguntas con explicación')}${materialBlock(topic)}<div class="progress-summary"><span>${completed} de 3 bloques terminados</span><span>Avance guardado</span></div><section class="test-list" aria-label="Tests del tema">${blocks.map((qs,i)=>row(qs,i+1)).join('')}${row(topicQuestions(bank.questions,n),0)}</section><p class="local-note">El test completo contiene las mismas 30 preguntas de los tres bloques, con progreso independiente. Pulsa «Comprobar respuesta» para entender cada solución.</p>`;
+  return `<a class="back-link" href="#/asignatura/${esc(topic.course)}">← Temas de ${esc(courseTitle(topic.course))}</a>${heading(esc(topicTitle(n)),'30 preguntas con explicación')}<div class="topic-columns"><div class="topic-study">${temaCard(topic)}${materialBlock(topic)}</div><div class="topic-tests"><div class="progress-summary"><span>${completed} de 3 bloques terminados</span><span>Avance guardado</span></div><section class="test-list" aria-label="Tests del tema">${blocks.map((qs,i)=>row(qs,i+1)).join('')}${row(topicQuestions(bank.questions,n),0)}</section><p class="local-note">El test completo contiene las mismas 30 preguntas de los tres bloques, con progreso independiente. Pulsa «Comprobar respuesta» para entender cada solución.</p></div></div>`;
 }
 function distributionTable(result){
   if(!result)return '';
@@ -195,11 +262,14 @@ function render(focus=true) {
   const {path,params}=currentRoute();
   const nav=path.startsWith('/tema')||path.startsWith('/asignatura')||path.startsWith('/practica')?'temas':path.startsWith('/simulacro')||path==='/examen'?'simulacro':path.startsWith('/historial')||path.startsWith('/resultado')?'historial':'';
   document.querySelectorAll('[data-nav]').forEach(a=>{if(a.dataset.nav===nav)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});
-  main.className=path==='/examen'?'exam-main':'';
+  const wide=/^\/tema\/\d+\/estudio$/.test(path);
+  main.className=path==='/examen'?'exam-main':wide?'wide-main':'';
+  document.body.classList.toggle('route-wide',wide);
   document.body.classList.toggle('in-exam',path==='/examen');
   if(path==='/examen')renderExam();
   else if(path==='/temas'||path==='/')main.innerHTML=home();
   else if(/^\/asignatura\/[a-z0-9-]+$/.test(path))main.innerHTML=coursePage(path.split('/')[2]);
+  else if(/^\/tema\/\d+\/estudio$/.test(path))main.innerHTML=temaPage(Number(path.split('/')[2]));
   else if(/^\/tema\/\d+$/.test(path))main.innerHTML=topicPage(Number(path.split('/')[2]),params);
   else if(/^\/practica\/\d+\/\d+$/.test(path))main.innerHTML=practicePage(Number(path.split('/')[2]),Number(path.split('/')[3]));
   else if(path==='/simulacro')main.innerHTML=setup();
@@ -209,6 +279,12 @@ function render(focus=true) {
   else main.innerHTML=notFound();
   document.title=(main.querySelector('h1')?.innerText.replace(/\s+/g,' ')||'Estudiar')+' · Bitácora Ciber';
   if(focus){main.style?.removeProperty('min-height');window.scrollTo(0,0);main.focus({preventScroll:true});}
+  const target=params.get('apartado');if(wide&&target)scrollToSection(target,false);
+}
+function scrollToSection(id,smooth=true){
+  const el=document.getElementById?.('apartado-'+id);if(!el)return;
+  el.scrollIntoView({behavior:smooth&&!matchMedia('(prefers-reduced-motion: reduce)').matches?'smooth':'auto',block:'start'});
+  el.querySelector('h2')?.setAttribute('tabindex','-1');el.querySelector('h2')?.focus({preventScroll:true});
 }
 let dialogAction, dialogTrigger;
 function ask(title,description,confirmLabel,action,cancelLabel='Seguir con el simulacro') {
@@ -367,6 +443,8 @@ document.addEventListener('keydown',e=>{
 function renderExamSafely(){clearInterval(timer);renderExam();}
 document.addEventListener('click',e=>{
   if(e.target.closest('.skip')){e.preventDefault();main.focus();return;}
+  const sectionLink=e.target.closest('.tema-index a[data-section]');
+  if(sectionLink){e.preventDefault();history.replaceState(null,'',sectionLink.getAttribute('href'));scrollToSection(sectionLink.dataset.section);if(matchMedia('(max-width: 1023px)').matches)sectionLink.closest('details')?.removeAttribute('open');return;}
   const button=e.target.closest('[data-action]');if(!button||button.disabled)return;
   const a=button.dataset.action;
   if(a.startsWith('practice-')){
@@ -395,6 +473,7 @@ document.addEventListener('click',e=>{
   }
   if(a==='review-filter'){reviewPage=0;reviewFilter=button.dataset.filter;const y=window.scrollY;render(false);window.scrollTo(0,y);$(`[data-filter="${reviewFilter}"]`)?.focus({preventScroll:true});}
   if(a==='reload')location.reload();
+  if(a==='tema-retry'){temaCache.delete(Number(button.dataset.topic));render();}
 });
 window.addEventListener('hashchange',()=>render());
 window.addEventListener('storage',e=>{const path=currentRoute().path;if(e.key?.startsWith(PREFIX)&&(path.startsWith('/practica/')||(e.key===PREFIX+'autoAdvance'&&path==='/examen')))render(false);});
@@ -405,6 +484,7 @@ async function init() {
     if(!response.ok)throw Error('HTTP '+response.status);
     const data=await response.json();
     validateBank(data);
+    try{const idx=await fetch(`temas/index.json?v=${encodeURIComponent(data.version)}`,{signal:AbortSignal.timeout(15000)}).then(r=>r.ok?r.json():null);if(Array.isArray(idx?.temas))temaIndex=new Map(idx.temas.filter(t=>Number.isInteger(t.topic)).map(t=>[t.topic,t]));}catch{temaIndex=new Map();}
     bank=data;questionMap=new Map(bank.questions.map(q=>[q.id,q]));practiceMap=new Map(bank.topics.map(t=>[t.id,practiceBlocks(bank.questions,t.id)]));
     const saved=activeSession();if(saved&&remaining(saved.deadline)===0){finish(true);return;}
     render(false);

@@ -58,7 +58,11 @@ Locally hosted Manrope owns reading, questions, options and navigation. Barlow C
 
 ## Layout
 
-A single column of at most 480px at all sizes, sticky 61px header, native document scrolling and fixed bottom navigation with safe-area padding. Hierarchy: subjects → topics → three blocks of ten or the full thirty-question test → one question. Natural-height explanation below the options. No horizontally scrolling subject grid. A quiet «Material del tema» section precedes the test list, with one primary open action, a secondary download action, page count and file size. Titles use «Tema n. Descripción» in numeric order, with the small row badge repeating only the number as a scanning aid. PDFs open separately; no inline PDF viewer or nested document scroller is added. Simulation hides bottom tabs and keeps answer navigation in a disclosure.
+On phones, a single column of at most 480px, sticky 61px header, native document scrolling and fixed bottom navigation with safe-area padding. Hierarchy: subjects → topics → three blocks of ten or the full thirty-question test → one question. Natural-height explanation below the options. No horizontally scrolling subject grid. A quiet «Material del tema» section precedes the test list, with one primary open action, a secondary download action, page count and file size. Titles use «Tema n. Descripción» in numeric order, with the small row badge repeating only the number as a scanning aid. PDFs open separately; no inline PDF viewer or nested document scroller is added. Simulation hides bottom tabs and keeps answer navigation in a disclosure.
+
+Desktop (from 1024px), user request of 3 November 2026: use the available width. The bottom tabs become a 220px left rail, content is centred up to 1040px, subject and topic lists use two columns, the topic page puts study material beside the tests, and practice shows the explanation beside the question. The digital topic uses up to 1400px: sticky section index, reading column limited to 72 characters, and each section's questions in a sticky side panel (index above the content between 1024 and 1279px).
+
+Digital topic (tema digital): written from zero for a beginner. Reading text 15px/1.8. Typed blocks share one panel shape with a coloured left rule and a textual label: «Imagínalo así» (analogy), «Ejemplo», «Así cae en el test» (exam trap), «Idea clave». Questions are native details: the question and options first, the argued answer in a nested disclosure so the reader can try before reading.
 
 ## Elevation & Depth
 

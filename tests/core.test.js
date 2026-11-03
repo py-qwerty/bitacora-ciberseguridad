@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-import {shuffle,signature,generateExam,gradeExam,remaining,formatTime,practiceBlocks,topicQuestions,validPractice,isValidSession,swipeDirection,validateBank,DURATION} from '../dist/core.js';
+import {shuffle,signature,generateExam,gradeExam,remaining,formatTime,practiceBlocks,topicQuestions,validPractice,isValidSession,swipeDirection,validateBank,validateTema,DURATION} from '../dist/core.js';
 export function fixture(){
  const courses=[{id:'sistemas',title:'Sistemas',shortTitle:'Sistemas'},{id:'redes',title:'Redes',shortTitle:'Redes'}];
  const topics=[{id:11,course:'sistemas',number:1,title:'Windows Server'},{id:12,course:'sistemas',number:2,title:'Linux'},{id:21,course:'redes',number:1,title:'Redes'}];
@@ -25,3 +25,9 @@ test('simulation validation rejects corrupt IDs, answer keys, flags and deadline
 test('deadline and time formatting do not allow negative remaining time',()=>{assert.equal(remaining(10,20),0);assert.equal(remaining(2000,1000),1000);assert.equal(formatTime(1),'00:01');assert.equal(formatTime(-1),'00:00');assert.equal(formatTime(DURATION),'45:00');});
 test('inherited swipe respects horizontal threshold and vertical scroll',()=>{assert.equal(swipeDirection(-44,3),1);assert.equal(swipeDirection(44,3),-1);assert.equal(swipeDirection(43,0),0);assert.equal(swipeDirection(50,80),0);});
 test('production bank has complete coverage and explanations',t=>{let d;try{d=JSON.parse(readFileSync(new URL('../dist/bank.json',import.meta.url),'utf8'));}catch(e){if(e.code==='ENOENT'){t.skip('Content bank is being assembled separately');return;}throw e;}assert.equal(validateBank(d),true);assert.equal(d.courses.length,5);assert.equal(d.topics.length,50);assert.equal(d.questions.length,1500);});
+
+function tema(){return {course:'sistemas',number:1,title:'Windows Server',intro:{why:'Porque sí.'},sections:[{id:'uno',title:'Uno',pages:[3],blocks:[{type:'p',text:'Texto'},{type:'table',head:['A','B'],rows:[['1','2']]}]}],questions:Object.fromEntries(bank.questions.filter(q=>q.topic===11).map(q=>[q.id,{section:'uno',reasoning:'Porque.',options:{a:'1',b:'2',c:'3',d:'4'}}]))};}
+test('digital topic validation requires the topic questions argued per option',()=>{
+ assert.equal(validateTema(tema(),bank).id,11);
+ for(const mutate of [t=>t.number=9,t=>delete t.questions[Object.keys(t.questions)[0]],t=>t.questions.extra={},t=>Object.values(t.questions)[0].section='nada',t=>delete Object.values(t.questions)[0].options.d,t=>t.sections[0].blocks[0].type='video',t=>t.sections[0].blocks[0].text='<script>x</script>',t=>t.sections[0].blocks[1].rows=[['1']],t=>t.sections.push({...t.sections[0]}),t=>t.sections[0].id='Mal Id',t=>Object.values(t.questions)[0].doubt='']){const t=tema();mutate(t);assert.throws(()=>validateTema(t,bank));}
+});

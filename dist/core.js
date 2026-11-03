@@ -61,3 +61,38 @@ export function validateBank(data){
   for(const t of data.topics)if(data.questions.filter(q=>q.topic===t.id).length!==30)throw Error('Cada tema debe contener treinta preguntas.');
   return true;
 }
+export const TEMA_BLOCKS = ['p','analogy','term','list','steps','table','example','exam','key'];
+const text = v => typeof v === 'string' && v.trim().length > 0 && !/<\/?[a-z][^>]*>/i.test(v);
+const texts = v => Array.isArray(v) && v.length > 0 && v.every(text);
+export function validateTema(tema, bank) {
+  const fail = message => { throw Error(`Tema digital no válido: ${message}`); };
+  if (!tema || typeof tema !== 'object') fail('vacío');
+  const topic = bank.topics.find(t => t.course === tema.course && t.number === tema.number);
+  if (!topic) fail(`${tema.course}/${tema.number} no existe en el banco`);
+  if (!text(tema.title)) fail('falta el título');
+  if (!tema.intro || !text(tema.intro.why) || (tema.intro.before && !texts(tema.intro.before)) || (tema.intro.goals && !texts(tema.intro.goals))) fail('introducción incompleta');
+  if (!Array.isArray(tema.sections) || !tema.sections.length) fail('sin apartados');
+  const sections = new Set();
+  for (const s of tema.sections) {
+    if (!s || typeof s.id !== 'string' || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(s.id) || sections.has(s.id)) fail(`id de apartado ${s?.id}`);
+    sections.add(s.id);
+    if (!text(s.title) || !Array.isArray(s.blocks) || !s.blocks.length) fail(`apartado ${s.id} incompleto`);
+    if (s.pages && !(Array.isArray(s.pages) && s.pages.every(p => Number.isInteger(p) && p > 0))) fail(`páginas de ${s.id}`);
+    for (const b of s.blocks) {
+      if (!b || !TEMA_BLOCKS.includes(b.type)) fail(`bloque ${b?.type} en ${s.id}`);
+      if (b.title !== undefined && !text(b.title)) fail(`título de bloque en ${s.id}`);
+      if (['list','steps'].includes(b.type) ? !texts(b.items) : b.type === 'table' ? !(texts(b.head) && Array.isArray(b.rows) && b.rows.length && b.rows.every(r => texts(r) && r.length === b.head.length)) : !text(b.text)) fail(`contenido de bloque ${b.type} en ${s.id}`);
+      if (b.type === 'term' && !text(b.term)) fail(`término vacío en ${s.id}`);
+    }
+  }
+  if (tema.summary && !texts(tema.summary)) fail('resumen');
+  if (tema.glossary && !(Array.isArray(tema.glossary) && tema.glossary.every(g => text(g?.term) && text(g?.text)))) fail('glosario');
+  const ids = bank.questions.filter(q => q.topic === topic.id).map(q => q.id);
+  const qs = tema.questions && typeof tema.questions === 'object' ? tema.questions : fail('sin preguntas');
+  if (Object.keys(qs).length !== ids.length || !ids.every(id => Object.hasOwn(qs, id))) fail('debe argumentar exactamente las preguntas del tema');
+  for (const id of ids) {
+    const q = qs[id];
+    if (!q || !sections.has(q.section) || !text(q.reasoning) || !q.options || !['a','b','c','d'].every(k => text(q.options[k])) || Object.keys(q.options).length !== 4 || (q.doubt !== undefined && !text(q.doubt))) fail(`argumentación de ${id}`);
+  }
+  return topic;
+}

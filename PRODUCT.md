@@ -19,3 +19,9 @@ A simulation selects thirty distinct questions from the chosen subject or all su
 ## Access and retention
 
 User follow-up, 2 November 2026: publish the repository and the application on GitHub Pages, explicitly making the repository public. Public repository under py-qwerty and public static site at https://py-qwerty.github.io/bitacora-ciberseguridad/. The workflow validates before publishing only dist/ from main; pull requests do not deploy. No backend, accounts, remote mutation, analytics or personal data. LocalStorage prefix is separate from the PER app. Practice answers/checked feedback/index persist in this browser, final simulations persist, and failures use an explicit warning plus memory fallback. Clearing browser data removes progress. Font assets remain locally hosted under their existing licenses. Local and hosted origins keep their browser progress separately.
+
+## Temas digitales
+
+User request, 3 November 2026: create digital topics embedded in the web that let the user answer every test question of each topic with an argued reason. The user only knows some general computing, so each topic is super didactic and starts from zero: every term and acronym defined, analogies, examples, exam traps. Each of the topic's 30 questions points to the section that explains it and argues each of its four options. Content lives in content/temas/<subject>/tema-NN.json, written in our own words from the UNIR material with page references; `npm run temas` validates it against the bank and publishes dist/temas/<id>.json, loaded only when opened. Where the material contradicts a practice key, the bank key is still argued and the discrepancy is shown as «Para revisar».
+
+Desktop screens must use the available width (user request, 3 November 2026); phones keep the inherited 480px notebook.
