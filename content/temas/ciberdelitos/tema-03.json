@@ -1,0 +1,1112 @@
+{
+  "course": "ciberdelitos",
+  "number": 3,
+  "title": "Normativa en materia de ciberseguridad",
+  "minutes": 55,
+  "intro": {
+    "why": "Cuando un hospital sufre un ransomware (un programa que cifra los datos y pide rescate) y deja de atender pacientes, no es solo un problema técnico: la ley le obliga a avisar a las autoridades en plazos concretos, a haber analizado antes sus riesgos y a que su dirección responda si no lo hizo. Este tema recorre las normas europeas y españolas que fijan esas obligaciones: la Directiva NIS y su transposición española, la Directiva NIS 2, la directiva de entidades críticas, el Reglamento de Ciberseguridad (ENISA y certificación) y la propuesta sobre productos con elementos digitales. El test pregunta sobre todo por plazos, por quién hace qué y por las diferencias entre NIS y NIS 2.",
+    "before": [
+      "Una **norma jurídica** es una regla obligatoria aprobada por quien tiene poder para ello (el Parlamento, el Gobierno, las instituciones de la UE). Las hay de distinto rango: unas mandan sobre otras.",
+      "La **Unión Europea (UE)** aprueba sus propias normas, que obligan a los Estados miembros. Algunas se aplican directamente y otras deben ser «traducidas» por cada país a su propia ley.",
+      "Un **incidente de ciberseguridad** es cualquier suceso que compromete la disponibilidad, integridad o confidencialidad de una red o un sistema: una caída por un ataque, una fuga de datos, un cifrado por ransomware.",
+      "Un **servicio esencial** es aquel sin el que la sociedad no funciona bien: la luz, el agua, los hospitales, los bancos, el transporte."
+    ],
+    "goals": [
+      "Al terminar sabrás distinguir una directiva de un reglamento, y un real decreto-ley de un real decreto, y explicar qué es transponer una norma.",
+      "Sabrás explicar el objeto de la Directiva NIS de 2016 y sus piezas: estrategia nacional, autoridades competentes, CSIRT, grupo de cooperación y red de CSIRT.",
+      "Sabrás qué norma transpuso NIS en España (Real Decreto-ley 12/2018) y qué añadió su desarrollo (Real Decreto 43/2021): responsable de seguridad, políticas de seguridad y procedimiento de notificación.",
+      "Sabrás situar la propuesta de NIS 2 dentro de la Estrategia de Ciberseguridad de la UE para la Década Digital.",
+      "Sabrás razonar las grandes novedades de NIS 2: entidades esenciales e importantes, medidas de gestión de riesgos, plazos de 24 h / 72 h / un mes, sanciones, responsabilidad y formación de la dirección, y divulgación coordinada de vulnerabilidades.",
+      "Sabrás qué regulan la Directiva de resiliencia de las entidades críticas, el Reglamento 2019/881 (ENISA y certificación con sus tres niveles) y la propuesta de Reglamento sobre productos con elementos digitales (CRA)."
+    ]
+  },
+  "sections": [
+    {
+      "id": "piezas-del-derecho",
+      "title": "Antes de empezar: cómo se fabrican las normas",
+      "pages": [4, 5],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Imagina una cadena de restaurantes con sede central en Bruselas. A veces la central envía un **manual que se aplica tal cual** en todos los locales (eso sería un reglamento). Otras veces envía **un objetivo** («todas las cocinas deben tener un sistema antiincendios eficaz antes de mayo») y deja que cada local decida cómo lo instala (eso sería una directiva). El local que recibe el objetivo tiene que escribir su propio procedimiento interno: eso es **transponer**."
+        },
+        {
+          "type": "p",
+          "text": "Todo el tema habla de normas con nombres largos y números. Si entiendes qué tipo de norma es cada una, la mitad de las preguntas trampa desaparecen, porque muchas juegan con cambiar «Real Decreto-ley» por «Real Decreto» o «directiva» por «reglamento»."
+        },
+        {
+          "type": "term",
+          "term": "Directiva europea",
+          "text": "Norma de la UE que fija **un resultado que deben alcanzar** los Estados miembros, pero les deja elegir la forma y los medios. No se aplica directamente a las empresas: cada país debe aprobar su propia ley para incorporarla. Se cita así: Directiva (UE) 2016/1148 (año/número)."
+        },
+        {
+          "type": "term",
+          "term": "Reglamento europeo",
+          "text": "Norma de la UE que se aplica **directamente y por igual** en todos los Estados miembros, sin necesidad de ley nacional que la incorpore. Ejemplos del tema: Reglamento (UE) 2019/881 (ENISA y certificación) o el RGPD (Reglamento General de Protección de Datos, Reglamento (UE) 2016/679)."
+        },
+        {
+          "type": "term",
+          "term": "Transposición",
+          "text": "Incorporar una directiva al derecho nacional mediante una norma propia, dentro del plazo que la directiva fija. España transpuso la Directiva NIS con el Real Decreto-ley 12/2018."
+        },
+        {
+          "type": "term",
+          "term": "Ley, real decreto-ley y real decreto (España)",
+          "text": "La **ley** la aprueban las Cortes Generales (el Parlamento). El **real decreto-ley (RDL)** lo dicta el Gobierno en casos de «extraordinaria y urgente necesidad» y tiene **rango de ley**; el Congreso debe convalidarlo en 30 días. El **real decreto (RD)** es un **reglamento** del Gobierno, de rango inferior a la ley, que normalmente **desarrolla** (concreta los detalles de) una ley o un RDL."
+        },
+        {
+          "type": "term",
+          "term": "Ley orgánica",
+          "text": "Ley que exige mayoría absoluta del Congreso y se reserva a materias especiales (derechos fundamentales, régimen electoral…). No aparece en este tema, pero conviene no confundirla con la ley ordinaria ni con el real decreto-ley."
+        },
+        {
+          "type": "term",
+          "term": "Considerando (cdo.)",
+          "text": "Párrafo numerado del principio de una norma europea que explica **por qué** se aprueba y cómo debe interpretarse. No crea obligaciones por sí mismo; las obligaciones están en los **artículos (art.)** y en los **anexos** (listas finales de sectores, requisitos, etc.)."
+        },
+        {
+          "type": "term",
+          "term": "Derogar",
+          "text": "Dejar sin efecto una norma anterior. NIS 2 deroga la Directiva NIS a partir del 18 de octubre de 2024."
+        },
+        {
+          "type": "term",
+          "term": "Recomendación y comunicación",
+          "text": "Actos de la UE **no vinculantes**: expresan voluntad política u orientaciones, pero no obligan. La Estrategia de Ciberseguridad para la Década Digital es una **comunicación** de la Comisión; la del Consejo sobre infraestructuras críticas de 2022 es una **recomendación**."
+        },
+        {
+          "type": "table",
+          "title": "Las normas del tema, de un vistazo",
+          "head": ["Norma", "Tipo", "Qué hace en una frase"],
+          "rows": [
+            ["Directiva (UE) 2016/1148 (NIS)", "Directiva UE", "Primera norma europea común sobre seguridad de redes y sistemas."],
+            ["Real Decreto-ley 12/2018", "Norma española con rango de ley", "Transpone NIS a España."],
+            ["Real Decreto 43/2021", "Reglamento español", "Desarrolla el RDL 12/2018 (detalles)."],
+            ["Directiva (UE) 2022/2555 (NIS 2)", "Directiva UE", "Sustituye a NIS y amplía su alcance."],
+            ["Directiva (UE) 2022/2557 (CER)", "Directiva UE", "Resiliencia (sobre todo física) de las entidades críticas."],
+            ["Reglamento (UE) 2019/881", "Reglamento UE", "Mandato de ENISA y certificación europea de ciberseguridad."],
+            ["Propuesta de Reglamento CRA", "Propuesta de reglamento UE", "Ciberseguridad de los productos con elementos digitales."],
+            ["Reglamento (UE) 2022/2554 (DORA)", "Reglamento UE", "Resiliencia operativa digital del sector financiero."]
+          ]
+        },
+        {
+          "type": "exam",
+          "text": "Si una opción dice «Real Decreto 12/2018» o «Ley 12/2018», está mal: es **Real Decreto-ley** 12/2018. Y si dice que NIS 2 es «un reglamento», también está mal: es una **directiva**."
+        },
+        {
+          "type": "key",
+          "text": "Directiva = objetivo que cada país transpone; reglamento = se aplica directamente. En España, el RDL tiene rango de ley y el RD lo desarrolla."
+        }
+      ]
+    },
+    {
+      "id": "directiva-nis",
+      "title": "La Directiva NIS (2016/1148): el primer suelo común europeo",
+      "pages": [5, 10],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Piensa en 28 países vecinos (en 2016) con calidades de cerraduras muy distintas. Si un ladrón entra por la casa más débil, puede pasar al resto por el patio común. La Directiva NIS pone un **listón mínimo de seguridad común** para todos y crea canales para que los vecinos se avisen cuando ven a alguien sospechoso."
+        },
+        {
+          "type": "term",
+          "term": "NIS (Network and Information Systems)",
+          "text": "«Redes y sistemas de información». La Directiva (UE) 2016/1148, de 6 de julio de 2016, también se llama **Directiva sobre ciberseguridad** o Directiva NIS (en España a veces SRI, seguridad de las redes y sistemas de información). Entró en vigor el 19 de julio de 2016."
+        },
+        {
+          "type": "p",
+          "text": "Su **objeto** es lograr un **elevado nivel común de seguridad de las redes y sistemas de información** dentro de la Unión, para mejorar el funcionamiento del mercado interior. El motivo: los incidentes crecen en número, frecuencia y efectos, pueden interrumpir la economía, causar grandes pérdidas y minar la confianza de los usuarios."
+        },
+        {
+          "type": "list",
+          "title": "A quién se dirige y a quién no",
+          "items": [
+            "**Sí**: a los **operadores de servicios esenciales** (energía, transporte, banca, salud, agua…; anexo II) y a los **proveedores de servicios digitales** (mercados en línea, motores de búsqueda y computación en nube; anexo III).",
+            "**No**: a las empresas que suministran redes públicas de comunicaciones o servicios de comunicaciones electrónicas al público, ni a los prestadores de servicios de confianza del Reglamento (UE) 910/2014 (eIDAS, el de firma electrónica), porque ya tienen sus propios requisitos de seguridad.",
+            "Los Estados debían identificar a sus operadores de servicios esenciales **antes del 9 de noviembre de 2018**.",
+            "La directiva no impide que cada Estado proteja su seguridad nacional, el orden público o la investigación de delitos."
+          ]
+        },
+        {
+          "type": "term",
+          "term": "CSIRT (Computer Security Incident Response Team)",
+          "text": "Equipo de respuesta a incidentes de seguridad informática: los «bomberos» de la ciberseguridad. Reciben avisos de incidentes, ayudan a contenerlos, analizan amenazas y coordinan la respuesta. Ejemplos en España: CCN-CERT (sector público), INCIBE-CERT (ciudadanos y empresas) y ESPDEF-CERT (Defensa). CERT es un nombre casi sinónimo."
+        },
+        {
+          "type": "list",
+          "title": "Lo que crea u obliga a crear la Directiva NIS (art. 1.2)",
+          "items": [
+            "Cada Estado adopta una **estrategia nacional** de seguridad de las redes y sistemas de información (art. 7).",
+            "Un **Grupo de cooperación** entre Estados para la cooperación **estratégica** y el intercambio de información (art. 11).",
+            "Una **red de CSIRT** para la cooperación **operativa** rápida y eficaz.",
+            "**Requisitos de seguridad y de notificación** para operadores de servicios esenciales (art. 14) y proveedores de servicios digitales (art. 16).",
+            "Cada Estado designa **autoridades nacionales competentes**, un **punto de contacto único** y **uno o varios CSIRT** (arts. 8 y 9)."
+          ]
+        },
+        {
+          "type": "list",
+          "title": "Contenido mínimo de la estrategia nacional (art. 7.1)",
+          "items": [
+            "Objetivos y prioridades.",
+            "Marco de gobernanza: funciones y responsabilidades de cada institución.",
+            "Medidas de preparación, respuesta y recuperación, incluida la cooperación público-privada.",
+            "Programas de educación, concienciación y formación.",
+            "Programas de investigación y desarrollo.",
+            "Un plan de evaluación de riesgos.",
+            "Lista de agentes que participan en su ejecución."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Las **autoridades competentes** supervisan la aplicación de la directiva en su país (pueden ser organismos ya existentes). Respecto a los CSIRT, el art. 9 dice que cada Estado designará **uno o varios** CSIRT, responsables de gestionar incidentes y riesgos con un procedimiento claramente definido; incluso puede crearse un CSIRT dentro de una autoridad competente. Los requisitos y funciones de los CSIRT van en el **anexo I**."
+        },
+        {
+          "type": "table",
+          "title": "Capítulos de la Directiva NIS",
+          "head": ["Capítulo", "Contenido"],
+          "rows": [
+            ["II", "Marcos nacionales: estrategia, autoridades, punto de contacto, CSIRT."],
+            ["III", "Cooperación: Grupo de cooperación, red de CSIRT, cooperación internacional."],
+            ["IV", "Seguridad y notificación de los operadores de servicios esenciales."],
+            ["V", "Seguridad y notificación de los proveedores de servicios digitales; jurisdicción."],
+            ["VI", "Normalización y notificación voluntaria: fomentar normas europeas o internacionales sin imponer una tecnología concreta."],
+            ["VII", "Disposiciones finales: sanciones «efectivas, proporcionadas y disuasorias» (art. 21) y transposición."]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Plazo de transposición: los Estados debían publicar sus normas **a más tardar el 9 de mayo de 2018** y aplicarlas **desde el 10 de mayo de 2018** (art. 25). La directiva lleva tres anexos: requisitos de los CSIRT, tipos de entidades (operadores de servicios esenciales) y tipos de servicios digitales. Consecuencias para España: aprobar una norma de transposición, adaptar la Estrategia Nacional de Ciberseguridad y coordinarse con el RGPD."
+        },
+        {
+          "type": "exam",
+          "text": "Trampas típicas: «cada Estado designará **un** CSIRT» (falso: **uno o varios**) o «salvo que justifique que no es necesario» (falso: no hay excepción). Recuerda también que el fin de NIS es un **nivel común elevado** de seguridad, no regular publicidad ni sustituir la investigación penal."
+        },
+        {
+          "type": "key",
+          "text": "NIS (2016) = nivel común elevado de seguridad + estrategia nacional + autoridades + uno o varios CSIRT + Grupo de cooperación + red de CSIRT, para operadores de servicios esenciales y proveedores de servicios digitales."
+        }
+      ]
+    },
+    {
+      "id": "rdl-12-2018",
+      "title": "Real Decreto-ley 12/2018: NIS llega a España",
+      "pages": [11, 14],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "España transpuso la Directiva NIS con el **Real Decreto-ley 12/2018, de 7 de septiembre, de seguridad de las redes y sistemas de información**. Llegó tarde (el plazo acababa en mayo de 2018), y por eso se usó la vía urgente del real decreto-ley."
+        },
+        {
+          "type": "p",
+          "text": "Su **objeto** (art. 1.1): regular la seguridad de las redes y sistemas que se usan para prestar **servicios esenciales** y **servicios digitales**, y establecer un **sistema de notificación de incidentes**."
+        },
+        {
+          "type": "list",
+          "title": "Ámbito de aplicación (art. 2.1)",
+          "items": [
+            "**Servicios esenciales** que dependen de redes y sistemas, dentro de los sectores estratégicos de la **Ley 8/2011** de protección de infraestructuras críticas (Ley PIC).",
+            "**Servicios digitales**: mercados en línea (como una tienda tipo marketplace), motores de búsqueda en línea y servicios de computación en nube."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "**¿Quién es operador de servicios esenciales?** Lo identifican los órganos de la Ley 8/2011, y la lista se revisa **cada dos años** (bienal). Se le identifica si un incidente suyo puede tener **efectos perturbadores significativos** en el servicio, atendiendo como mínimo a: si hay alternativas para seguir prestando el servicio; el impacto (zona geográfica, dependencia de otros sectores, duración y gravedad en la economía, la sociedad o la seguridad pública); el número de usuarios y la cuota de mercado."
+        },
+        {
+          "type": "table",
+          "title": "Autoridades competentes (art. 9.1)",
+          "head": ["Quién", "Autoridad competente"],
+          "rows": [
+            ["Operador de servicios esenciales que además es **operador crítico** (Ley 8/2011)", "Secretaría de Estado de Seguridad (Ministerio del Interior), a través del **CNPIC** (Centro Nacional de Protección de Infraestructuras y Ciberseguridad)."],
+            ["Operador de servicios esenciales **no crítico**", "La autoridad sectorial correspondiente por razón de la materia."],
+            ["Proveedor de servicios digitales", "Secretaría de Estado para el Avance Digital (entonces, Ministerio de Economía y Empresa)."],
+            ["Operadores o proveedores no críticos del **sector público** (Ley 40/2015)", "Ministerio de Defensa, a través del **CCN** (Centro Criptológico Nacional)."]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "El **punto de contacto único** es el **Consejo de Seguridad Nacional**, a través del **Departamento de Seguridad Nacional (DSN)**: hace de enlace para la cooperación transfronteriza con las autoridades de otros Estados, el Grupo de cooperación y la red de CSIRT (art. 13)."
+        },
+        {
+          "type": "list",
+          "title": "Notificación de incidentes (art. 19)",
+          "items": [
+            "Los operadores de servicios esenciales notifican a la autoridad competente, **a través del CSIRT de referencia**, los incidentes que **puedan tener** efectos perturbadores significativos.",
+            "Los proveedores de servicios digitales notifican los que **tengan** efectos perturbadores significativos, solo si tienen acceso a la información necesaria para valorar el impacto.",
+            "La obligación cubre redes propias **y de proveedores externos**.",
+            "Autoridades y CSIRT usan una **plataforma común** de notificación."
+          ]
+        },
+        {
+          "type": "steps",
+          "title": "Las tres obligaciones principales del RDL 12/2018",
+          "items": [
+            "Hacer un **análisis de riesgos**.",
+            "Implantar las **medidas** que salen de ese análisis (proporcionadas al riesgo, aunque la gestión esté externalizada).",
+            "**Notificar los incidentes** a través del CSIRT de referencia."
+          ]
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico",
+          "text": "Una distribuidora eléctrica designada operador crítico sufre un ataque que deja sin luz a una comarca. Su autoridad competente es la Secretaría de Estado de Seguridad vía CNPIC, y notifica a través de su CSIRT de referencia. Si fuera un ayuntamiento que presta un servicio esencial sin ser operador crítico, su autoridad sería el CCN, del Ministerio de Defensa."
+        },
+        {
+          "type": "exam",
+          "text": "La pregunta «¿qué norma transpuso NIS?» tiene tres distractores: «Real Decreto 12/2018», «Ley 12/2018» y «Real Decreto 43/2021». Solo vale **Real Decreto-ley 12/2018**. El RD 43/2021 **desarrolla** el RDL, no transpone la directiva."
+        },
+        {
+          "type": "key",
+          "text": "RDL 12/2018 = transposición de NIS: servicios esenciales y digitales, autoridades competentes, DSN como punto de contacto único, y tres obligaciones (analizar riesgos, aplicar medidas, notificar incidentes vía CSIRT)."
+        }
+      ]
+    },
+    {
+      "id": "rd-43-2021",
+      "title": "Real Decreto 43/2021: el reglamento que concreta los detalles",
+      "pages": [15, 24],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Si el RDL 12/2018 es la ley que dice «los restaurantes deben tener un plan de seguridad alimentaria», el RD 43/2021 es el reglamento que dice quién firma ese plan, qué apartados lleva, cada cuánto se revisa y cómo se avisa de una intoxicación."
+        },
+        {
+          "type": "list",
+          "title": "A quién se aplica y a quién no (art. 2)",
+          "items": [
+            "Operadores de servicios esenciales establecidos en España (identificados según la Ley 8/2011 y el Real Decreto 704/2011, Reglamento de protección de infraestructuras críticas).",
+            "Proveedores de servicios digitales con sede social en España que sea su establecimiento principal en la UE, o no establecidos en la UE que designen aquí a su representante.",
+            "**No** se aplica a operadores de comunicaciones electrónicas ni a prestadores de servicios de confianza que no sean operadores críticos.",
+            "**No** se aplica a proveedores de servicios digitales que sean **microempresas o pequeñas empresas** (Recomendación 2003/361/CE)."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Los CSIRT de referencia cooperan entre sí y con las autoridades a través de la **Plataforma Nacional de Notificación y Seguimiento de Ciberincidentes**. En los casos de **especial gravedad** (impacto o peligrosidad **muy alta o crítica** que exige coordinación superior a la ordinaria) el **CCN-CERT** coordina la respuesta técnica nacional. El CCN-CERT y la **OCC** (Oficina de Coordinación de Ciberseguridad del Ministerio del Interior, cuando hay operadores críticos) pueden pedir al CSIRT de referencia que confirme clasificación, peligrosidad e impacto, su plan de acción y el posible impacto transfronterizo."
+        },
+        {
+          "type": "p",
+          "text": "**Requisitos de seguridad (art. 6).** Los operadores de servicios esenciales aprueban **políticas de seguridad** basadas en principios como seguridad integral, gestión de riesgos, prevención, respuesta y recuperación, líneas de defensa, reevaluación periódica y segregación de tareas."
+        },
+        {
+          "type": "list",
+          "title": "Aspectos mínimos de esas políticas (art. 6.2)",
+          "items": [
+            "Análisis y gestión de riesgos, también de **terceros o proveedores**.",
+            "Catálogo de medidas organizativas, tecnológicas y físicas.",
+            "Gestión del personal y profesionalidad; adquisición de productos de seguridad.",
+            "Detección y gestión de incidentes; planes de recuperación y continuidad.",
+            "Mejora continua, interconexión de sistemas y registro de actividad de usuarios."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Las medidas se recogen en una **declaración de aplicabilidad**, firmada por el responsable de seguridad e incluida en la política que aprueba la dirección. Se remite a la autoridad competente **en seis meses** desde la designación y se revisa **al menos cada tres años**. Toman como referencia el anexo II del **ENS** (Esquema Nacional de Seguridad, entonces Real Decreto 3/2010) y deben tener en cuenta también los riesgos para los datos personales (art. 24 RGPD)."
+        },
+        {
+          "type": "term",
+          "term": "Responsable de seguridad de la información",
+          "text": "Novedad del RD 43/2021. Persona, unidad u órgano colegiado (en los dos últimos casos con una persona física representante) que el operador designa **en tres meses** desde su designación. Es el **punto de contacto** y de coordinación técnica con la autoridad competente y el CSIRT de referencia; envía las notificaciones, elabora las políticas y la declaración de aplicabilidad, supervisa su aplicación y forma en buenas prácticas."
+        },
+        {
+          "type": "list",
+          "title": "Requisitos del responsable de seguridad (art. 7.4)",
+          "items": [
+            "Conocimientos y experiencia en ciberseguridad organizativa, técnica y jurídica.",
+            "Recursos suficientes.",
+            "Posición que le permita comunicarse de verdad con la alta dirección.",
+            "**Independencia** respecto de los responsables de las redes y sistemas (no se vigila a sí mismo).",
+            "Puede coincidir con el responsable de seguridad y enlace (infraestructuras críticas) o con el responsable de seguridad del ENS."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "**Gestión de incidentes (art. 8).** No basta con avisar: hay que gestionar y resolver el incidente, tanto si lo detecta el propio operador como si lo señala el CSIRT. Si las redes o sistemas **no son propios**, el operador debe tomar las medidas necesarias para que **los proveedores externos** realicen esas actuaciones."
+        },
+        {
+          "type": "p",
+          "text": "**Notificación (arts. 9 y 10 y anexo).** El operador notifica a la autoridad competente, a través del CSIRT de referencia y por medio de su responsable de seguridad, los incidentes con posibles efectos perturbadores significativos. El anexo contiene la **Instrucción nacional de notificación y gestión de ciberincidentes**, con una taxonomía y seis niveles de impacto: **crítico, muy alto, alto, medio, bajo y sin impacto**. La notificación a la AEPD (Agencia Española de Protección de Datos) de las brechas de datos personales (art. 33 RGPD) es una obligación **independiente**."
+        },
+        {
+          "type": "steps",
+          "title": "Ciclo de notificación",
+          "items": [
+            "**Notificación inicial**: en cuanto se tiene información suficiente para saber que hay que notificar; su plazo cuenta desde que se conoce el incidente.",
+            "**Notificaciones intermedias**: para actualizar o completar la información cuando aparece algo nuevo.",
+            "**Notificación final** tras la resolución: evolución del suceso, probabilidad de que se repita y medidas correctoras previstas. Los plazos de intermedia y final cuentan desde la notificación inicial."
+          ]
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico",
+          "text": "Una empresa de agua potable externaliza su telecontrol en un proveedor. El proveedor sufre un ataque que afecta al suministro. La empresa no puede decir «la red no es mía»: debe notificar el incidente y asegurarse de que el proveedor ejecute las actuaciones necesarias. Dos días después descubre que el atacante también accedió a datos de clientes: envía una notificación intermedia al CSIRT y, por separado, avisa a la AEPD."
+        },
+        {
+          "type": "exam",
+          "text": "Fíjate en los números: responsable de seguridad en **3 meses**, declaración de aplicabilidad en **6 meses** y revisión cada **3 años**. Y en el principio de que tercerizar no elimina la responsabilidad: el operador debe garantizar que los proveedores actúen."
+        },
+        {
+          "type": "key",
+          "text": "RD 43/2021 = detalles: políticas de seguridad con declaración de aplicabilidad, responsable de seguridad independiente, gestión del incidente aunque el sistema sea de un proveedor, y notificaciones inicial, intermedias y final."
+        }
+      ]
+    },
+    {
+      "id": "estrategia-ue",
+      "title": "La Estrategia de Ciberseguridad de la UE para la Década Digital",
+      "pages": [25, 28],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "En **diciembre de 2020**, la Comisión Europea y el Alto Representante de la UE para Asuntos Exteriores y Política de Seguridad presentaron un **nuevo paquete de ciberseguridad**. Su pieza central es la **Estrategia de Ciberseguridad de la UE para la Década Digital** (Comunicación JOIN/2020/18). Explica cómo la UE protegerá a su población, empresas e instituciones y cómo promoverá una internet mundial y abierta."
+        },
+        {
+          "type": "p",
+          "text": "El diagnóstico: los servicios esenciales dependen cada vez más de redes y sistemas, hay más dispositivos conectados que personas y la tensión geopolítica aumenta. Además, la UE **carece de una conciencia colectiva** de las amenazas, porque las autoridades nacionales no reúnen ni comparten sistemáticamente información."
+        },
+        {
+          "type": "table",
+          "title": "Los tres ámbitos de actuación",
+          "head": ["Ámbito", "Ejemplos de medidas"],
+          "rows": [
+            ["1. Resiliencia, soberanía tecnológica y liderazgo", "**Nueva directiva NIS (la actual NIS 2)**, revisión de las infraestructuras críticas (hoy Directiva 2022/2557), escudo cibernético europeo, comunicaciones ultraseguras, 5G, internet de las cosas segura, población cibercualificada."],
+            ["2. Capacidad operativa para prevenir, disuadir y responder", "Unidad informática conjunta, lucha contra la ciberdelincuencia, ciberdiplomacia, ciberdefensa."],
+            ["3. Ciberespacio mundial y abierto", "Liderazgo en estándares, cooperación con socios, capacidades globales."]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "El tercer apartado mira hacia dentro: prevé reglamentos de seguridad de la información y de ciberseguridad comunes para las instituciones y organismos de la UE y reforzar el **CERT-UE** (el equipo de respuesta de las propias instituciones europeas)."
+        },
+        {
+          "type": "exam",
+          "text": "«¿Dónde se propone NIS 2?» → en el marco de la **Estrategia de Ciberseguridad de la UE para la Década Digital** (2020). No la prevé la propia Directiva NIS, no es una iniciativa de ENISA y, por supuesto, NIS 2 sí existe."
+        },
+        {
+          "type": "key",
+          "text": "La Estrategia para la Década Digital (2020) es el paraguas político del que nacen las propuestas de NIS 2 y de la directiva de entidades críticas."
+        }
+      ]
+    },
+    {
+      "id": "nis2-ambito",
+      "title": "NIS 2: más sectores y entidades esenciales e importantes",
+      "pages": [29, 31],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "La **Directiva (UE) 2022/2555 (NIS 2)** deroga la Directiva NIS y corrige sus deficiencias frente a la transformación digital. Su primera gran novedad es que **amplía** (no restringe) el ámbito de aplicación: entran sectores nuevos y se fija una **regla de tamaño**, de modo que todas las empresas **medianas y grandes** de esos sectores quedan incluidas."
+        },
+        {
+          "type": "analogy",
+          "text": "NIS era como un control de seguridad que solo revisaba a quienes el país había apuntado en una lista. NIS 2 cambia el criterio: si eres de cierto sector y tienes cierto tamaño, entras automáticamente, como cuando una normativa se aplica a «todos los locales de más de 50 trabajadores»."
+        },
+        {
+          "type": "table",
+          "title": "Los dos anexos de NIS 2",
+          "head": ["Anexo", "Sectores", "Tipo de entidad que suele generar"],
+          "rows": [
+            ["I. Sectores de alta criticidad", "Energía, transporte, banca, infraestructuras de mercados financieros, sanidad, agua potable, aguas residuales, infraestructura digital, Administración pública y espacio.", "Esenciales (si superan el tamaño de mediana empresa)."],
+            ["II. Otros sectores críticos", "Servicios postales y de mensajería, gestión de residuos, sustancias químicas, alimentos, proveedores de servicios digitales y parte de la fabricación.", "Importantes."]
+          ]
+        },
+        {
+          "type": "list",
+          "title": "Entidades esenciales según el art. 3.1 (resumen)",
+          "items": [
+            "Entidades del anexo I que **superan el tamaño de mediana empresa** (Recomendación 2003/361/CE: unas 250 personas o más, o 50 millones de facturación).",
+            "Prestadores cualificados de servicios de confianza, registros de dominios de primer nivel (como .es) y proveedores de DNS (el sistema que traduce nombres en direcciones IP), **sea cual sea su tamaño**.",
+            "Proveedores de redes o servicios públicos de comunicaciones electrónicas que sean **medianas** empresas.",
+            "Entidades de la Administración pública central.",
+            "Las que cada Estado identifique como esenciales y las **entidades críticas** de la Directiva 2022/2557.",
+            "Si el Estado lo decide, los antiguos operadores de servicios esenciales identificados antes del 16 de enero de 2023."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Son **entidades importantes** todas las de los anexos I o II que **no** cumplen los criterios de esencial. Para las empresas más pequeñas, cada Estado valora si suponen un alto riesgo."
+        },
+        {
+          "type": "p",
+          "text": "Segunda gran novedad: **desaparece la distinción entre operadores de servicios esenciales y proveedores de servicios digitales**. El considerando 6 la califica de **obsoleta**, porque no reflejaba la importancia real de los sectores. Ahora la clasificación se hace según la **importancia** (criticidad del sector o servicio y tamaño), en dos categorías: **esenciales** e **importantes**. Entran sectores que antes no estaban, como el postal, el alimentario o los proveedores de servicios digitales en general."
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico",
+          "text": "Una cadena de supermercados con 2.000 empleados distribuye alimentos: con NIS no estaba incluida; con NIS 2 es entidad **importante** (anexo II). Un hospital grande es entidad **esencial** (anexo I y grande). Un proveedor de DNS de 10 empleados es **esencial** aunque sea pequeño, porque el art. 3 lo incluye «independientemente de su tamaño»."
+        },
+        {
+          "type": "exam",
+          "text": "Trampas: «NIS 2 mantiene la distinción» (falso), «restringe el ámbito» (falso, lo amplía), «clasifica solo por sector» (falso, también cuenta el tamaño y otros criterios del art. 3) o «cualquier empresa del anexo II es esencial» (falso, el anexo II da normalmente importantes)."
+        },
+        {
+          "type": "key",
+          "text": "NIS 2 amplía el ámbito y sustituye «operadores de servicios esenciales / proveedores de servicios digitales» por «entidades esenciales / entidades importantes», según sector, tamaño y criterios del art. 3."
+        }
+      ]
+    },
+    {
+      "id": "nis2-riesgos",
+      "title": "NIS 2: medidas de gestión de riesgos y cadena de suministro",
+      "pages": [31, 35],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Las entidades esenciales e importantes deben adoptar medidas **técnicas, operativas y de organización adecuadas y proporcionadas** para gestionar los riesgos y reducir el impacto de los incidentes en sus usuarios. La proporcionalidad se mide por la exposición al riesgo, el tamaño de la entidad, la probabilidad y gravedad de los incidentes (incluidas sus repercusiones sociales y económicas) y el coste de aplicación."
+        },
+        {
+          "type": "term",
+          "term": "Enfoque «todos los peligros» (all-hazards)",
+          "text": "Las medidas deben proteger los sistemas **y su entorno físico** frente a cualquier tipo de incidente: un ciberataque, pero también un incendio, una inundación, un corte de luz o un error humano. No solo fallos de software ni solo amenazas extranjeras."
+        },
+        {
+          "type": "list",
+          "title": "Las diez medidas mínimas del art. 21.2",
+          "items": [
+            "a) Políticas de seguridad y **análisis de riesgos**.",
+            "b) **Gestión de incidentes**.",
+            "c) **Continuidad** de la actividad: copias de seguridad, recuperación ante desastres y gestión de crisis.",
+            "d) Seguridad de la **cadena de suministro** (relaciones con proveedores directos).",
+            "e) Seguridad en adquisición, desarrollo y mantenimiento de sistemas, incluida la gestión y divulgación de vulnerabilidades.",
+            "f) Evaluar la **eficacia** de las medidas.",
+            "g) **Ciberhigiene** básica y **formación**.",
+            "h) Uso de **criptografía** y cifrado.",
+            "i) Seguridad de los recursos humanos, **control de acceso** y gestión de activos.",
+            "j) **Autenticación multifactor** (MFA: pedir algo más que la contraseña, como un código en el móvil) o continua, y comunicaciones seguras."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "El temario cita esta lista como «art. 18», pero en el texto definitivo de NIS 2 es el **art. 21.2** (el 18 era la numeración de la propuesta). Lo importante es el contenido."
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico: «ya tenemos antivirus»",
+          "text": "Una empresa de residuos (entidad importante) cree que cumple porque compró antivirus. Le faltan casi todas las medidas: plan de continuidad y copias, procedimiento de incidentes, control de sus proveedores, gestión de accesos y MFA, formación del personal y de la dirección. El antivirus es una herramienta, no un sistema de gestión de riesgos."
+        },
+        {
+          "type": "p",
+          "text": "**Cadena de suministro.** Un proveedor comprometido puede ser la puerta de entrada (piensa en un software de gestión que se actualiza solo y trae un troyano). No es que todos los proveedores sean amenazas, sino que **sus productos y dependencias pueden introducir riesgos**, y externalizar no elimina la responsabilidad. Por eso el **Grupo de Cooperación**, con la Comisión y ENISA, hace **evaluaciones coordinadas de riesgos** de las cadenas de suministro críticas (cdo. 90, arts. 14.4 i y 22). Para elegir qué cadenas evaluar se mira cuánto dependen las entidades de esos productos TIC (tecnologías de la información y la comunicación), si tratan datos sensibles, si hay alternativas, su resiliencia y si proceden de terceros países."
+        },
+        {
+          "type": "exam",
+          "text": "Si la pregunta habla de «enfoque basado en todos los peligros», la respuesta incluye el **entorno físico**. Si pregunta por qué entra la cadena de suministro, la respuesta es que **proveedores y dependencias pueden introducir riesgos**, no que «todos los proveedores sean amenazas» ni que «externalizar elimine responsabilidad»."
+        },
+        {
+          "type": "key",
+          "text": "NIS 2 exige un conjunto amplio de medidas técnicas y organizativas (riesgos, incidentes, continuidad, proveedores, accesos, cifrado, MFA, formación) con un enfoque de todos los peligros, físico incluido."
+        }
+      ]
+    },
+    {
+      "id": "nis2-notificacion",
+      "title": "NIS 2: notificar en 24 horas, 72 horas y un mes",
+      "pages": [32, 34],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Piensa en un incendio en una fábrica. Primero llamas a emergencias en cuanto lo ves («hay fuego, parece intencionado»); después, cuando sabes más, das un informe («ha afectado a dos naves, estos son los daños»); y al final, cuando se apaga, entregas el informe completo de causas y medidas. NIS 2 sigue exactamente ese ritmo."
+        },
+        {
+          "type": "p",
+          "text": "Las entidades esenciales e importantes notifican **sin demora indebida** a su **CSIRT** o, en su caso, a su **autoridad competente**, cualquier incidente con **impacto significativo** (incidente significativo). Si procede, también avisan a los destinatarios de sus servicios. Y algo importante: **notificar no aumenta la responsabilidad** de quien notifica."
+        },
+        {
+          "type": "term",
+          "term": "Incidente significativo (art. 23.3 de NIS 2)",
+          "text": "El que ha causado o puede causar **graves perturbaciones operativas** de los servicios o **pérdidas económicas** a la entidad, o que ha afectado o puede afectar a **otras personas físicas o jurídicas** causando **perjuicios materiales o inmateriales considerables**. No es «cualquier incidencia», ni hace falta que salga en prensa ni que lo confirme una sentencia."
+        },
+        {
+          "type": "table",
+          "title": "Plazos de notificación de NIS 2 (art. 23.4)",
+          "head": ["Momento", "Documento", "Contenido"],
+          "rows": [
+            ["≤ 24 h desde que se tiene constancia", "**Alerta temprana**", "Si se sospecha acción ilícita o malintencionada y si puede haber efecto transfronterizo."],
+            ["≤ 72 h desde que se tiene constancia", "**Notificación del incidente**", "Actualiza la alerta y da una evaluación inicial: gravedad, impacto e indicadores de compromiso (IoC: rastros técnicos del ataque, como IP o hashes de malware)."],
+            ["A petición del CSIRT o autoridad", "**Informe intermedio**", "Actualizaciones de la situación."],
+            ["≤ 1 mes desde la notificación de 72 h", "**Informe final**", "Descripción detallada, causa o tipo de amenaza, medidas paliativas y repercusiones transfronterizas."],
+            ["Si sigue activo al vencer el informe final", "**Informe de situación** + informe final", "El final se presenta en un mes desde que se haya **gestionado** el incidente."]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "La notificación también sirve para **coordinar**: la entidad debe aportar la información que permita valorar las **repercusiones transfronterizas**; si la recibe la autoridad, la reenvía al CSIRT; y en incidentes transfronterizos o intersectoriales la información llega a los **puntos de contacto únicos** para cooperar con otros países."
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico",
+          "text": "Lunes 9:00: un banco detecta un ransomware que bloquea sus cajeros. Antes del martes 9:00 envía la alerta temprana (sospecha de ataque malintencionado). Antes del jueves 9:00, la notificación con gravedad e indicadores de compromiso. Si al mes el incidente sigue activo, no lo da por cerrado: presenta un informe de situación y, cuando lo haya gestionado, el informe final en el mes siguiente."
+        },
+        {
+          "type": "exam",
+          "text": "Memoriza el orden **24 → 72 → 1 mes**. Las trampas invierten los plazos (72 h la alerta y 24 h la notificación), usan 36 o 96 horas o dicen «cualquier incidente que tenga un impacto». La palabra clave es **significativo**."
+        },
+        {
+          "type": "key",
+          "text": "Incidente significativo → alerta temprana en 24 h, notificación en 72 h, informe final en un mes (o informe de situación si sigue activo), sin demora indebida y con información para la cooperación transfronteriza."
+        }
+      ]
+    },
+    {
+      "id": "nis2-gobernanza",
+      "title": "NIS 2: dirección responsable, sanciones y cooperación",
+      "pages": [35, 40],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "NIS 2 sube la ciberseguridad al consejo de administración: deja de ser «cosa del informático» y pasa a ser responsabilidad de quien dirige la empresa."
+        },
+        {
+          "type": "list",
+          "title": "Obligaciones de los órganos de dirección (art. 20)",
+          "items": [
+            "**Aprobar** las medidas de gestión de riesgos de ciberseguridad.",
+            "**Supervisar** su puesta en práctica.",
+            "**Responder** por el incumplimiento de la entidad.",
+            "**Asistir a formaciones** (es una obligación, no una sugerencia) para adquirir conocimientos que les permitan **detectar riesgos y evaluar las prácticas de gestión de riesgos** y su repercusión en los servicios.",
+            "Además, se **alienta** a las entidades a ofrecer formación similar a sus empleados periódicamente."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "La directiva no define «órganos de dirección», así que no está claro si se refiere al consejo de administración o a los directivos de operaciones. Si una entidad detecta que no cumple, debe aplicar sin demora indebida las medidas correctoras, y la dirección responde si no lo hace."
+        },
+        {
+          "type": "table",
+          "title": "Supervisión y multas máximas (arts. 32 a 34)",
+          "head": ["Aspecto", "Entidades esenciales", "Entidades importantes"],
+          "rows": [
+            ["Supervisión", "Completa, **a priori y a posteriori**: inspecciones in situ, supervisión a distancia, auditorías periódicas.", "Más ligera, **solo a posteriori** (reactiva, tras indicios)."],
+            ["Multa máxima por incumplir arts. 21 o 23", "Al menos **10 millones €** o el **2 %** de la facturación mundial anual, la mayor.", "Al menos **7 millones €** o el **1,4 %**, la mayor."],
+            ["Medidas extra", "Suspender certificaciones o autorizaciones y prohibir temporalmente funciones directivas al director general o representante legal.", "El temario no las prevé para ellas."]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "**Grupo de Cooperación (art. 14).** Ya existía en NIS y se refuerza. Lo forman **representantes de los Estados miembros, la Comisión y ENISA** (la Agencia de la Unión Europea para la Ciberseguridad). Orienta a las autoridades sobre la transposición, intercambia buenas prácticas, hace evaluaciones coordinadas de la cadena de suministro, organiza revisiones interpares (evaluación de un Estado por expertos de otros), da orientación a la red de CSIRT y a **EU-CyCLONe** (la red europea de organizaciones de enlace para crisis cibernéticas) y analiza amenazas como el ransomware («programas de secuestro»)."
+        },
+        {
+          "type": "term",
+          "term": "Divulgación coordinada de vulnerabilidades (CVD)",
+          "text": "Proceso ordenado por el que quien descubre un fallo de seguridad avisa **primero al fabricante o proveedor** para que lo corrija **antes** de publicar los detalles, y ambos acuerdan cuándo publicar. Cada Estado designa a un **CSIRT coordinador** que actúa de **intermediario de confianza** entre el notificante y el fabricante, a petición de cualquiera de ellos (art. 12.1). ENISA mantiene una **base de datos europea de vulnerabilidades** (art. 12.2)."
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico",
+          "text": "Una investigadora encuentra un fallo en un router muy vendido y el fabricante no le contesta. Puede acudir al CSIRT coordinador de su país, que contacta con el fabricante, ayuda a fijar una fecha de parche y de publicación y, si hay fabricantes de varios países afectados, coopera con la red de CSIRT. Ni se publica a ciegas ni se sanciona a la investigadora."
+        },
+        {
+          "type": "exam",
+          "text": "Trampas: «la dirección solo supervisa», «no responde del incumplimiento», «es conveniente que se forme» o «solo deben formarse los técnicos». Las cuatro son falsas. Y el Grupo de Cooperación incluye a la **Comisión y a ENISA**, no solo a los Estados ni a sus CSIRT."
+        },
+        {
+          "type": "key",
+          "text": "La dirección aprueba, supervisa, responde y se forma; las multas llegan a 10 M€/2 % (esenciales) y 7 M€/1,4 % (importantes); el Grupo de Cooperación = Estados + Comisión + ENISA; el CSIRT coordinador intermedia en la divulgación de vulnerabilidades."
+        }
+      ]
+    },
+    {
+      "id": "entidades-criticas",
+      "title": "Directiva 2022/2557: resiliencia de las entidades críticas",
+      "pages": [41, 44],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "La **Directiva (UE) 2022/2557**, de 14 de diciembre de 2022 (conocida como Directiva CER, Critical Entities Resilience), sustituye a la Directiva 2008/114/CE sobre infraestructuras críticas europeas. Se propuso **junto con NIS 2** tras una evaluación de 2019 que mostró que la norma de 2008 se había quedado corta."
+        },
+        {
+          "type": "analogy",
+          "text": "NIS 2 protege el «sistema nervioso» digital de una central eléctrica; la Directiva CER protege su «cuerpo»: los transformadores, las tuberías, las instalaciones frente a sabotajes, catástrofes naturales o atentados. Por eso se aplican **de forma coordinada**, pero la CER **no regula lo que ya regula NIS 2** (art. 1.2)."
+        },
+        {
+          "type": "p",
+          "text": "Junto a ella, el Consejo aprobó en diciembre de 2022 una **recomendación** (no vinculante) para reforzar la resiliencia de infraestructuras críticas con importancia transfronteriza (energía, infraestructuras digitales, transporte, espacio), a la vista de amenazas como la guerra de agresión rusa contra Ucrania, las campañas híbridas o los riesgos para cables submarinos e instalaciones energéticas en alta mar."
+        },
+        {
+          "type": "list",
+          "title": "Definiciones clave (art. 2)",
+          "items": [
+            "**Entidad crítica**: entidad pública o privada que un Estado identifica conforme al art. 6 dentro de las categorías del anexo.",
+            "**Servicio esencial**: crucial para funciones sociales vitales, la economía, la salud pública, la seguridad o el medio ambiente.",
+            "**Infraestructura crítica**: elemento, instalación, equipo, red o sistema necesario para prestar un servicio esencial.",
+            "**Incidente**: acontecimiento que perturba o puede perturbar significativamente un servicio esencial."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Los Estados deben identificar sus entidades críticas **a más tardar el 17 de julio de 2026**, comprobando que la entidad presta un servicio esencial, opera en su territorio con su infraestructura allí, y que un incidente tendría efectos perturbadores significativos."
+        },
+        {
+          "type": "table",
+          "title": "Obligaciones de las entidades críticas",
+          "head": ["Obligación", "Plazo"],
+          "rows": [
+            ["Evaluación de riesgos", "En **nueve meses** desde la notificación de su identificación; después, cuando haga falta y como mínimo **cada cuatro años** (art. 12)."],
+            ["Notificación inicial de incidentes", "En **24 horas** desde que se conoce (art. 15)."],
+            ["Informe detallado", "En **un mes** como máximo, si procede."]
+          ]
+        },
+        {
+          "type": "exam",
+          "text": "No confundas los plazos de la CER (24 h y un mes) con los de NIS 2 (24 h, 72 h y un mes). Y recuerda que las entidades críticas de la CER son automáticamente **entidades esenciales** en NIS 2."
+        },
+        {
+          "type": "key",
+          "text": "La Directiva CER protege la resiliencia (sobre todo física) de las entidades críticas, se aplica coordinada con NIS 2 sin duplicarla y exige evaluación de riesgos y notificación de incidentes en 24 h."
+        }
+      ]
+    },
+    {
+      "id": "reglamento-ciberseguridad",
+      "title": "Reglamento 2019/881: ENISA y la certificación europea",
+      "pages": [45, 48],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "El **Reglamento (UE) 2019/881**, de 17 de abril de 2019, conocido como **Reglamento sobre la Ciberseguridad** (en inglés Cybersecurity Act, CSA), deroga el Reglamento 526/2013 y tiene **dos objetivos**: fijar los objetivos, tareas y organización de **ENISA**, y crear un **marco europeo de certificación de la ciberseguridad** para productos, servicios y procesos TIC, evitando que cada país tenga su propio sello y se fragmente el mercado."
+        },
+        {
+          "type": "term",
+          "term": "ENISA",
+          "text": "Agencia de la Unión Europea para la Ciberseguridad (el acrónimo viene de su antiguo nombre en inglés, European Network and Information Security Agency). Es el centro de conocimiento técnico de la UE: asesora a instituciones y Estados, refuerza capacidades frente a incidentes transfronterizos, promueve la certificación europea, conciencia sobre ciberhigiene y ciberalfabetización y contribuye a elaborar el derecho de la Unión."
+        },
+        {
+          "type": "analogy",
+          "text": "La certificación funciona como las estrellas de seguridad de los coches en las pruebas de choque: un organismo comprueba el producto contra unos requisitos y le da un nivel. Aquí hay tres niveles, según contra qué tipo de atacante se ha probado."
+        },
+        {
+          "type": "table",
+          "title": "Niveles de garantía (art. 52)",
+          "head": ["Nivel", "Minimiza el riesgo de…", "¿Autoevaluación?"],
+          "rows": [
+            ["**Básico**", "Riesgos básicos conocidos de ciberincidentes y ciberataques.", "Sí, solo para productos de **bajo riesgo** y bajo responsabilidad exclusiva del fabricante (art. 53)."],
+            ["**Sustancial**", "Riesgos conocidos y ataques de agentes con **capacidades y recursos limitados**.", "No."],
+            ["**Elevado**", "Ataques **sofisticados** de agentes con **capacidades y recursos considerables**.", "No."]
+          ]
+        },
+        {
+          "type": "list",
+          "title": "Otras piezas del marco",
+          "items": [
+            "La certificación es **voluntaria**, salvo que el derecho europeo o nacional diga lo contrario (art. 56.2).",
+            "ENISA mantiene un **sitio web** con los esquemas, certificados y declaraciones UE de conformidad (art. 50).",
+            "Cada Estado designa una o más **autoridades nacionales de certificación** (o las de otro Estado, de mutuo acuerdo) (art. 58).",
+            "Se crea el **GECC** (Grupo Europeo de Certificación de la Ciberseguridad), formado por las autoridades nacionales (art. 62)."
+          ]
+        },
+        {
+          "type": "exam",
+          "text": "El nivel **elevado** no garantiza que nunca haya incidentes: significa que se ha evaluado frente a atacantes sofisticados con muchos recursos. La autoevaluación solo cabe en el nivel **básico** y para bajo riesgo, nunca en el elevado."
+        },
+        {
+          "type": "key",
+          "text": "Reglamento 2019/881 = ENISA + certificación europea voluntaria con tres niveles (básico, sustancial, elevado); autoevaluación solo en básico y bajo riesgo."
+        }
+      ]
+    },
+    {
+      "id": "cra-y-otras",
+      "title": "Productos con elementos digitales (CRA), DORA y la guía de notificación",
+      "pages": [49, 55],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "El temario presenta la **Propuesta de Reglamento** relativo a los requisitos horizontales de ciberseguridad para los **productos con elementos digitales**, conocida como **CRA** (Cyber Resilience Act, ley de ciberresiliencia). «Horizontal» significa que se aplica a todos los sectores a la vez, y «producto con elementos digitales» es cualquier hardware o software que se conecta, directa o indirectamente, a un dispositivo o a una red: un router, una cámara IP, un juguete con wifi, una aplicación."
+        },
+        {
+          "type": "p",
+          "text": "Ojo con la fecha: el texto del tema la estudia **en fase de propuesta** (2022). Posteriormente se aprobó como Reglamento (UE) 2024/2847, con aplicación escalonada. Para el test, responde según lo que dice el temario y no lo uses como fuente de vigencia actual: las normas cambian y hay que comprobar su estado en el boletín oficial."
+        },
+        {
+          "type": "list",
+          "title": "Qué establece (objeto)",
+          "items": [
+            "Normas para **introducir en el mercado** productos con elementos digitales seguros.",
+            "Requisitos esenciales de **diseño, desarrollo y fabricación** (seguridad desde el diseño).",
+            "Requisitos de **gestión de vulnerabilidades durante todo el ciclo de vida** del producto, no solo el día de la venta.",
+            "Normas de **vigilancia del mercado**."
+          ]
+        },
+        {
+          "type": "list",
+          "title": "Obligaciones del fabricante",
+          "items": [
+            "Evaluar los riesgos de ciberseguridad.",
+            "Elaborar la **documentación técnica** antes de vender (art. 23).",
+            "Aplicar procedimientos de **evaluación de la conformidad** (art. 24).",
+            "Distingue entre productos con elementos digitales (art. 5) y productos **críticos** con elementos digitales (art. 6), con requisitos más exigentes."
+          ]
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico",
+          "text": "Un fabricante de cámaras de vigilancia hace pruebas de seguridad solo antes de lanzarlas y nunca publica actualizaciones. Con la visión del CRA eso no basta: debe gestionar las vulnerabilidades que aparezcan durante la vida del producto, tener documentación técnica y pasar la evaluación de conformidad."
+        },
+        {
+          "type": "term",
+          "term": "DORA (Digital Operational Resilience Act)",
+          "text": "Reglamento (UE) 2022/2554 sobre la **resiliencia operativa digital del sector financiero**. Fija requisitos uniformes de seguridad de redes y sistemas para bancos, aseguradoras, gestoras, etc., y un sistema **homogéneo** de notificación de incidentes."
+        },
+        {
+          "type": "term",
+          "term": "Guía nacional de notificación y gestión de ciberincidentes",
+          "text": "Documento de referencia publicado por INCIBE-CERT (Instituto Nacional de Ciberseguridad) en 2020, consensuado por los organismos nacionales competentes. Es una referencia **de mínimos** que indica a cualquier entidad, pública o privada, o ciudadano, **a quién y cómo** reportar un incidente."
+        },
+        {
+          "type": "exam",
+          "text": "Si te preguntan por la visión del CRA ante un fabricante que solo revisa la seguridad al vender, la respuesta es la **gestión de vulnerabilidades a lo largo del ciclo de vida**. Y si te preguntan por qué no tomar la propuesta como prueba de vigencia, la respuesta es que el texto la presenta **como propuesta**."
+        },
+        {
+          "type": "key",
+          "text": "CRA = seguridad desde el diseño y durante todo el ciclo de vida de los productos conectados (en el temario, aún propuesta); DORA = resiliencia digital del sector financiero con notificación homogénea."
+        }
+      ]
+    }
+  ],
+  "summary": [
+    "Directiva = objetivo que cada Estado transpone; reglamento = se aplica directamente. En España, el real decreto-ley tiene rango de ley y el real decreto lo desarrolla.",
+    "La Directiva NIS (2016/1148) busca un nivel común elevado de seguridad: estrategia nacional, autoridades competentes, uno o varios CSIRT, Grupo de cooperación y red de CSIRT.",
+    "España transpuso NIS con el Real Decreto-ley 12/2018: análisis de riesgos, medidas y notificación de incidentes a través del CSIRT de referencia.",
+    "El Real Decreto 43/2021 desarrolla el RDL: políticas de seguridad, declaración de aplicabilidad, responsable de seguridad independiente y notificaciones inicial, intermedias y final; el operador responde también de los sistemas de sus proveedores.",
+    "NIS 2 nace en la Estrategia de Ciberseguridad de la UE para la Década Digital (2020).",
+    "NIS 2 amplía el ámbito y sustituye la distinción operadores/proveedores por entidades esenciales e importantes.",
+    "Las medidas de NIS 2 siguen un enfoque de todos los peligros (también el entorno físico) e incluyen continuidad, incidentes, cadena de suministro, accesos, cifrado, MFA y formación.",
+    "Incidente significativo: alerta temprana en 24 h, notificación en 72 h, informe final en un mes (informe de situación si sigue activo).",
+    "La dirección aprueba, supervisa, responde y debe formarse; multas de hasta 10 M€/2 % (esenciales) y 7 M€/1,4 % (importantes).",
+    "El Grupo de Cooperación lo forman Estados, Comisión y ENISA; el CSIRT coordinador intermedia en la divulgación de vulnerabilidades.",
+    "La Directiva 2022/2557 protege la resiliencia de las entidades críticas en coordinación con NIS 2.",
+    "El Reglamento 2019/881 regula ENISA y la certificación europea (básico, sustancial, elevado); la autoevaluación solo cabe en el nivel básico.",
+    "El CRA (propuesta en el temario) exige ciberseguridad en el diseño y durante todo el ciclo de vida de los productos con elementos digitales."
+  ],
+  "glossary": [
+    { "term": "AEPD", "text": "Agencia Española de Protección de Datos. Recibe las notificaciones de brechas de datos personales (art. 33 RGPD), independientes de las de ciberseguridad." },
+    { "term": "Autoridad competente", "text": "Organismo que supervisa que las entidades cumplen la normativa de seguridad de redes y sistemas en su ámbito." },
+    { "term": "CCN-CERT", "text": "Equipo de respuesta a incidentes del Centro Criptológico Nacional; CSIRT de referencia del sector público y coordinador en casos de especial gravedad." },
+    { "term": "CER (Directiva 2022/2557)", "text": "Directiva sobre la resiliencia de las entidades críticas." },
+    { "term": "CNPIC", "text": "Centro Nacional de Protección de Infraestructuras y Ciberseguridad, del Ministerio del Interior." },
+    { "term": "CRA (Cyber Resilience Act)", "text": "Reglamento sobre requisitos de ciberseguridad de los productos con elementos digitales." },
+    { "term": "CSIRT", "text": "Computer Security Incident Response Team: equipo de respuesta a incidentes de seguridad informática." },
+    { "term": "Declaración de aplicabilidad", "text": "Documento que recoge las medidas de seguridad adoptadas por un operador; lo firma el responsable de seguridad." },
+    { "term": "Directiva", "text": "Norma de la UE que fija un resultado y que cada Estado debe transponer a su derecho." },
+    { "term": "Divulgación coordinada de vulnerabilidades", "text": "Proceso por el que una vulnerabilidad se comunica al fabricante para que la corrija antes de hacerla pública." },
+    { "term": "DORA", "text": "Reglamento (UE) 2022/2554 de resiliencia operativa digital del sector financiero." },
+    { "term": "DSN", "text": "Departamento de Seguridad Nacional; punto de contacto único en el RDL 12/2018." },
+    { "term": "ENISA", "text": "Agencia de la Unión Europea para la Ciberseguridad." },
+    { "term": "ENS", "text": "Esquema Nacional de Seguridad: requisitos de seguridad del sector público español." },
+    { "term": "Entidad esencial", "text": "En NIS 2, entidad de alta criticidad (normalmente anexo I y gran tamaño) con supervisión a priori y a posteriori." },
+    { "term": "Entidad importante", "text": "En NIS 2, entidad de los anexos I o II que no es esencial; supervisión solo a posteriori." },
+    { "term": "GECC", "text": "Grupo Europeo de Certificación de la Ciberseguridad." },
+    { "term": "Grupo de Cooperación", "text": "Órgano de cooperación estratégica de NIS y NIS 2 formado por los Estados, la Comisión y ENISA." },
+    { "term": "Incidente significativo", "text": "El que causa o puede causar graves perturbaciones operativas, pérdidas económicas o perjuicios considerables a terceros." },
+    { "term": "NIS / NIS 2", "text": "Network and Information Systems: Directivas (UE) 2016/1148 y 2022/2555 sobre seguridad de redes y sistemas de información." },
+    { "term": "Operador de servicios esenciales", "text": "En NIS y el RDL 12/2018, entidad que presta un servicio esencial dependiente de redes y sistemas." },
+    { "term": "Proveedor de servicios digitales", "text": "En NIS, mercados en línea, motores de búsqueda y servicios de computación en nube." },
+    { "term": "Real decreto-ley", "text": "Norma del Gobierno con rango de ley para casos de extraordinaria y urgente necesidad." },
+    { "term": "Real decreto", "text": "Reglamento del Gobierno, de rango inferior a la ley, que suele desarrollarla." },
+    { "term": "Reglamento europeo", "text": "Norma de la UE directamente aplicable en todos los Estados miembros." },
+    { "term": "Responsable de seguridad", "text": "Figura del RD 43/2021: punto de contacto con la autoridad competente y el CSIRT, independiente de los responsables de sistemas." },
+    { "term": "Transposición", "text": "Incorporación de una directiva al derecho nacional." }
+  ],
+  "questions": {
+    "ciberdelitos-t03-01": {
+      "section": "rdl-12-2018",
+      "reasoning": "Una directiva debe transponerse con una norma nacional de rango de ley. España llegó tarde al plazo de mayo de 2018 y usó la vía urgente: el Real Decreto-ley 12/2018, de 7 de septiembre. Después, el Real Decreto 43/2021 lo desarrolló. Hay que fijarse en el tipo exacto de norma.",
+      "options": {
+        "a": "Incorrecta. No es un real decreto (reglamento del Gobierno), sino un real decreto-ley, con rango de ley.",
+        "b": "Incorrecta. El RD 43/2021 desarrolla el Real Decreto-ley 12/2018; no es la norma de transposición.",
+        "c": "Incorrecta. No fue una ley aprobada por las Cortes, sino un real decreto-ley del Gobierno.",
+        "d": "Correcta. El Real Decreto-ley 12/2018, de 7 de septiembre, transpone la Directiva NIS al derecho español."
+      }
+    },
+    "ciberdelitos-t03-02": {
+      "section": "estrategia-ue",
+      "reasoning": "En diciembre de 2020 la Comisión y el Alto Representante presentaron el nuevo paquete de ciberseguridad, cuyo centro es la Estrategia de Ciberseguridad de la UE para la Década Digital. En su primer ámbito (infraestructura resiliente y servicios críticos) la Comisión propone una nueva directiva NIS, la actual NIS 2.",
+      "options": {
+        "a": "Correcta. NIS 2 se propone en el marco de la Estrategia de Ciberseguridad de la UE para la Década Digital.",
+        "b": "Incorrecta. La Directiva NIS no prevé su sucesora; NIS 2 nace de la estrategia de 2020 tras evaluar las deficiencias de NIS.",
+        "c": "Incorrecta. La propuesta es de la Comisión dentro de la estrategia, no una iniciativa de ENISA.",
+        "d": "Incorrecta. NIS 2 existe: es la Directiva (UE) 2022/2555."
+      }
+    },
+    "ciberdelitos-t03-03": {
+      "section": "nis2-gobernanza",
+      "reasoning": "El art. 20.2 de NIS 2 establece la obligación de que los miembros de los órganos de dirección de entidades esenciales e importantes asistan a formaciones. Lo que solo se «alienta» es ofrecer formación similar a los empleados. Por tanto, para la dirección es un deber, no una recomendación.",
+      "options": {
+        "a": "Correcta. Los órganos de dirección deben asistir a formación en gestión de riesgos de ciberseguridad.",
+        "b": "Incorrecta. Es al revés: la dirección está obligada; la formación del resto de empleados solo se fomenta.",
+        "c": "Incorrecta. No es algo conveniente u opcional, sino una obligación.",
+        "d": "Incorrecta. Precisamente son ellos los destinatarios expresos de la obligación de formación."
+      }
+    },
+    "ciberdelitos-t03-04": {
+      "section": "nis2-gobernanza",
+      "reasoning": "El art. 20 de NIS 2 atribuye a los órganos de dirección tres funciones: aprobar las medidas de gestión de riesgos, supervisar su puesta en práctica y responder por el incumplimiento de la entidad. Cualquier opción que quite una de las tres es incompleta.",
+      "options": {
+        "a": "Incorrecta. No solo supervisan: también aprueban las medidas y responden del incumplimiento.",
+        "b": "Incorrecta. La aprobación por los órganos de dirección es obligatoria.",
+        "c": "Correcta. Aprueban, supervisan y responden: las tres funciones del art. 20.",
+        "d": "Incorrecta. Sí responden por el incumplimiento; excluir esa responsabilidad contradice la directiva."
+      }
+    },
+    "ciberdelitos-t03-05": {
+      "section": "nis2-notificacion",
+      "reasoning": "NIS 2 no obliga a notificar cualquier incidencia, sino los incidentes significativos: los que causan o pueden causar graves perturbaciones operativas o pérdidas económicas a la entidad, o perjuicios materiales o inmateriales considerables a otras personas físicas o jurídicas. No exige publicidad ni sentencia.",
+      "options": {
+        "a": "Incorrecta. El umbral es el impacto significativo; una incidencia sin efecto en el servicio ni riesgo de perjuicio no lo alcanza.",
+        "b": "Incorrecta. Que salga en prensa no es criterio; se notifica por el impacto, sea público o no.",
+        "c": "Correcta. Es la definición de incidente significativo: graves perturbaciones operativas, pérdidas económicas o perjuicios considerables a terceros.",
+        "d": "Incorrecta. La notificación es temprana (24 h); esperar a una sentencia firme la haría inútil."
+      }
+    },
+    "ciberdelitos-t03-06": {
+      "section": "nis2-ambito",
+      "reasoning": "NIS 2 califica de obsoleta la distinción entre operadores de servicios esenciales y proveedores de servicios digitales y la sustituye por entidades esenciales e importantes, clasificadas según los anexos (sector), el tamaño y los demás criterios del art. 3.",
+      "options": {
+        "a": "Incorrecta. NIS 2 elimina esa distinción; no la mantiene.",
+        "b": "Incorrecta. La nube es solo uno de los muchos servicios; la clasificación atiende a sector, tamaño y criterios del art. 3.",
+        "c": "Correcta. Sustituye la distinción anterior por entidades esenciales e importantes según el art. 3.",
+        "d": "Incorrecta. El anexo II da normalmente entidades importantes; ser esencial depende de los criterios del art. 3."
+      }
+    },
+    "ciberdelitos-t03-07": {
+      "section": "directiva-nis",
+      "reasoning": "El art. 9 de la Directiva NIS obliga a cada Estado a designar uno o varios CSIRT que cubran al menos los sectores del anexo II y los servicios del anexo III. No hay número fijo ni excepción.",
+      "options": {
+        "a": "Correcta. Cada Estado miembro designará uno o varios CSIRT.",
+        "b": "Incorrecta. No se limita a uno: pueden ser varios.",
+        "c": "Incorrecta. No existe la excepción de justificar que no es necesario.",
+        "d": "Incorrecta. Tampoco hay excepción pactada con la Comisión: la designación es obligatoria."
+      }
+    },
+    "ciberdelitos-t03-08": {
+      "section": "nis2-ambito",
+      "reasoning": "NIS 2 es una directiva que amplía el ámbito de NIS (nuevos sectores y regla de tamaño) y elimina la distinción entre operadores de servicios esenciales y proveedores de servicios digitales. Además, solo exige notificar incidentes con impacto significativo.",
+      "options": {
+        "a": "Incorrecta. No restringe el ámbito, lo amplía.",
+        "b": "Correcta. Elimina la distinción entre operadores de servicios esenciales y proveedores de servicios digitales.",
+        "c": "Incorrecta. No basta cualquier impacto: debe ser un impacto significativo.",
+        "d": "Incorrecta. NIS 2 existe y es una directiva, la 2022/2555, no un reglamento."
+      }
+    },
+    "ciberdelitos-t03-09": {
+      "section": "nis2-gobernanza",
+      "reasoning": "La Directiva NIS creó el Grupo de cooperación para la cooperación estratégica entre Estados; NIS 2 lo mantiene y refuerza (art. 14.1). Está formado por representantes de los Estados miembros, la Comisión y ENISA.",
+      "options": {
+        "a": "Correcta. Estados miembros, Comisión y ENISA.",
+        "b": "Incorrecta. Falta la Comisión y ENISA.",
+        "c": "Incorrecta. Falta la Comisión.",
+        "d": "Incorrecta. Los CSIRT forman su propia red (red de CSIRT), no el Grupo de Cooperación; y faltan la Comisión y ENISA."
+      }
+    },
+    "ciberdelitos-t03-10": {
+      "section": "nis2-notificacion",
+      "reasoning": "El art. 23.4 de NIS 2 fija el orden: primero la alerta temprana en 24 horas y después la notificación del incidente en 72 horas, ambas contadas desde que se tiene constancia del incidente significativo y siempre sin demora indebida.",
+      "options": {
+        "a": "Correcta. Alerta temprana en 24 horas y notificación del incidente en 72 horas.",
+        "b": "Incorrecta. Invierte los plazos: la alerta es la primera (24 h), no la de 72 h.",
+        "c": "Incorrecta. Ni la alerta es a las 72 horas ni existe un plazo de 96 horas.",
+        "d": "Incorrecta. La alerta temprana es en 24 horas, no en 36."
+      }
+    },
+    "ciberdelitos-t03-11": {
+      "section": "directiva-nis",
+      "reasoning": "El art. 1.1 de la Directiva NIS dice que su objeto es lograr un elevado nivel común de seguridad de las redes y sistemas de información dentro de la Unión para mejorar el mercado interior.",
+      "options": {
+        "a": "Incorrecta. No regula la publicidad, sino la seguridad de redes y sistemas.",
+        "b": "Incorrecta. No impone tecnologías; de hecho fomenta normas sin favorecer un tipo de tecnología.",
+        "c": "Incorrecta. Deja a salvo la investigación y el enjuiciamiento de delitos por los Estados.",
+        "d": "Correcta. Busca un nivel común elevado de seguridad de las redes y sistemas en la UE."
+      }
+    },
+    "ciberdelitos-t03-12": {
+      "section": "directiva-nis",
+      "reasoning": "Los CSIRT son los equipos de respuesta a incidentes: gestionan incidentes y riesgos con un procedimiento definido y, a través de la red de CSIRT, cooperan de forma operativa entre Estados.",
+      "options": {
+        "a": "Correcta. Apoyan la gestión y coordinación de incidentes.",
+        "b": "Incorrecta. No es una función administrativa de facturación.",
+        "c": "Incorrecta. Dictar sentencias corresponde a los jueces, no a un equipo técnico.",
+        "d": "Incorrecta. No sustituyen servicios esenciales; ayudan a protegerlos y recuperarlos."
+      }
+    },
+    "ciberdelitos-t03-13": {
+      "section": "rdl-12-2018",
+      "reasoning": "El art. 1.1 del RDL 12/2018 fija su objeto: regular la seguridad de las redes y sistemas usados para prestar servicios esenciales y servicios digitales, y establecer un sistema de notificación de incidentes.",
+      "options": {
+        "a": "Incorrecta. Al contrario, designa autoridades competentes (CNPIC, CCN, autoridades sectoriales…).",
+        "b": "Correcta. Seguridad de servicios esenciales y digitales y notificación de incidentes.",
+        "c": "Incorrecta. La firma no es su materia.",
+        "d": "Incorrecta. No trata de estafas ni de catálogos de delitos."
+      }
+    },
+    "ciberdelitos-t03-14": {
+      "section": "nis2-ambito",
+      "reasoning": "NIS 2 clasifica a las entidades de su ámbito en dos categorías, esenciales e importantes, según la criticidad de su sector o servicio y su tamaño (cdo. 15 y art. 3).",
+      "options": {
+        "a": "Incorrecta. Se dirige a entidades públicas y privadas de sectores críticos, no a usuarios domésticos.",
+        "b": "Incorrecta. No se limita a organismos militares.",
+        "c": "Correcta. Incorpora las categorías de entidades esenciales e importantes.",
+        "d": "Incorrecta. Abarca muchos sectores (energía, sanidad, transporte, alimentos…), no solo webs comerciales."
+      }
+    },
+    "ciberdelitos-t03-15": {
+      "section": "reglamento-ciberseguridad",
+      "reasoning": "El Reglamento (UE) 2019/881 tiene dos objetivos según su art. 1.1: regular los objetivos, tareas y organización de ENISA, y establecer un marco europeo de certificación de la ciberseguridad.",
+      "options": {
+        "a": "Incorrecta. No trata de cookies ni publicidad.",
+        "b": "Incorrecta. No regula la policía judicial.",
+        "c": "Incorrecta. No trata de facturación electrónica.",
+        "d": "Correcta. ENISA y la certificación europea de ciberseguridad."
+      }
+    },
+    "ciberdelitos-t03-16": {
+      "section": "nis2-gobernanza",
+      "reasoning": "El art. 20.2 de NIS 2 dice que la formación busca que los directivos adquieran conocimientos y destrezas suficientes para detectar riesgos y evaluar las prácticas de gestión de riesgos de ciberseguridad y su repercusión en los servicios.",
+      "options": {
+        "a": "Correcta. Adquirir conocimientos para evaluar riesgos y prácticas de seguridad.",
+        "b": "Incorrecta. La dirección no puede desentenderse: aprueba, supervisa y responde.",
+        "c": "Incorrecta. La formación complementa las medidas, no las sustituye.",
+        "d": "Incorrecta. La obligación de notificar sigue intacta."
+      }
+    },
+    "ciberdelitos-t03-17": {
+      "section": "nis2-riesgos",
+      "reasoning": "Las medidas de NIS 2 se basan en un enfoque de todos los peligros, que protege los sistemas de redes y de información y su entorno físico frente a incidentes de cualquier origen.",
+      "options": {
+        "a": "Incorrecta. La gestión de riesgos es preventiva, no solo sobre incidentes ya denunciados.",
+        "b": "Correcta. Todos los peligros, incluido el entorno físico.",
+        "c": "Incorrecta. No se limita a fallos de software.",
+        "d": "Incorrecta. No se limita a amenazas extranjeras."
+      }
+    },
+    "ciberdelitos-t03-18": {
+      "section": "nis2-riesgos",
+      "reasoning": "La letra d) de las medidas incluye la seguridad de la cadena de suministro y de las relaciones con proveedores directos, porque los productos y servicios de terceros de los que se depende pueden introducir riesgos.",
+      "options": {
+        "a": "Incorrecta. No se presume que todos los proveedores sean amenazas; se gestiona el riesgo que pueden aportar.",
+        "b": "Incorrecta. Complementa los controles internos, no los sustituye.",
+        "c": "Correcta. Proveedores y dependencias pueden introducir riesgos.",
+        "d": "Incorrecta. Externalizar no elimina la responsabilidad; por eso hay que controlar a los proveedores."
+      }
+    },
+    "ciberdelitos-t03-19": {
+      "section": "nis2-notificacion",
+      "reasoning": "NIS 2 distingue la alerta temprana, en 24 horas, de la notificación del incidente, en 72 horas, que actualiza la alerta y aporta una evaluación inicial. Después vendrán los informes intermedio y final.",
+      "options": {
+        "a": "Incorrecta. Son comunicaciones tempranas, no al finalizar.",
+        "b": "Incorrecta. Los plazos son de horas, no de un año, y la notificación sí se envía.",
+        "c": "Incorrecta. La notificación actualiza la alerta, no la anula.",
+        "d": "Correcta. La alerta temprana en 24 horas y la notificación en 72 horas."
+      }
+    },
+    "ciberdelitos-t03-20": {
+      "section": "nis2-gobernanza",
+      "reasoning": "El art. 20 de NIS 2 atribuye a los órganos de dirección de las entidades esenciales e importantes la aprobación y supervisión de las medidas de gestión de riesgos, y su responsabilidad por incumplimiento.",
+      "options": {
+        "a": "Correcta. Los órganos de dirección de las entidades afectadas.",
+        "b": "Incorrecta. Los proveedores no aprueban las medidas de la entidad.",
+        "c": "Incorrecta. El usuario final no tiene esa obligación.",
+        "d": "Incorrecta. El fabricante de hardware no aprueba las medidas de la entidad."
+      }
+    },
+    "ciberdelitos-t03-21": {
+      "section": "nis2-gobernanza",
+      "reasoning": "El art. 12.1 de NIS 2 dice que el CSIRT coordinador actúa como intermediario de confianza entre quien notifica una vulnerabilidad y el fabricante o proveedor, para que se corrija antes de publicar los detalles.",
+      "options": {
+        "a": "Incorrecta. No sustituye los parches; facilita que el fabricante los produzca.",
+        "b": "Correcta. Intermedia entre el notificante y el fabricante o proveedor.",
+        "c": "Incorrecta. La divulgación es coordinada precisamente para no publicar sin control.",
+        "d": "Incorrecta. No sanciona al investigador; lo protege como notificante."
+      }
+    },
+    "ciberdelitos-t03-22": {
+      "section": "reglamento-ciberseguridad",
+      "reasoning": "Según el art. 52.7 del Reglamento 2019/881, el nivel elevado evalúa el producto para minimizar el riesgo de ataques sofisticados de agentes con capacidades y recursos considerables.",
+      "options": {
+        "a": "Incorrecta. Ninguna certificación elimina todo riesgo; minimiza un tipo de riesgo.",
+        "b": "Incorrecta. Eso describe el nivel básico (riesgos básicos) o el sustancial (recursos limitados).",
+        "c": "Correcta. Considera ataques sofisticados con recursos considerables.",
+        "d": "Incorrecta. Implica evaluar requisitos de seguridad, no un logotipo."
+      }
+    },
+    "ciberdelitos-t03-23": {
+      "section": "cra-y-otras",
+      "reasoning": "El apartado 3.9 del temario estudia la «Propuesta de Reglamento» sobre productos con elementos digitales. Un texto que describe una propuesta en una fecha dada no sirve para acreditar su vigencia actual: hay que contrastarlo con la publicación oficial.",
+      "options": {
+        "a": "Incorrecta. Las normas cambian; de hecho, la propuesta se aprobó después.",
+        "b": "Incorrecta. El temario es un material docente fechado, no un boletín actualizado a diario.",
+        "c": "Incorrecta. Las propuestas pueden aprobarse y llegar a ser obligatorias.",
+        "d": "Correcta. El texto la presenta en fase de propuesta y debe estudiarse en ese contexto."
+      }
+    },
+    "ciberdelitos-t03-24": {
+      "section": "rd-43-2021",
+      "reasoning": "El art. 8 del RD 43/2021 obliga a gestionar y resolver los incidentes; si las redes o sistemas no son propios, el operador debe tomar las medidas necesarias para que los proveedores externos realicen esas actuaciones.",
+      "options": {
+        "a": "Correcta. Debe prever medidas para que sus proveedores ejecuten las actuaciones necesarias.",
+        "b": "Incorrecta. La obligación cubre también redes y sistemas de proveedores externos.",
+        "c": "Incorrecta. La notificación no depende de quién sea el propietario del equipo.",
+        "d": "Incorrecta. La norma no exige romper contratos, sino asegurarse de que el proveedor actúa."
+      }
+    },
+    "ciberdelitos-t03-25": {
+      "section": "rd-43-2021",
+      "reasoning": "El art. 10.3 del RD 43/2021 prevé, tras la notificación inicial, notificaciones intermedias para actualizar o completar la información y una notificación final tras la resolución con la evolución, la probabilidad de repetición y las medidas correctoras.",
+      "options": {
+        "a": "Incorrecta. Se informa a la autoridad competente a través del CSIRT de referencia, no solo al fabricante.",
+        "b": "Correcta. Notificaciones intermedias y una final sobre evolución y medidas.",
+        "c": "Incorrecta. Precisamente hay que actualizar cuando aparece información relevante.",
+        "d": "Incorrecta. Las comunicaciones previas no se retiran; se completan."
+      }
+    },
+    "ciberdelitos-t03-26": {
+      "section": "nis2-riesgos",
+      "reasoning": "El art. 21.2 de NIS 2 exige un conjunto amplio de medidas técnicas y organizativas: gestión de incidentes, continuidad, cadena de suministro, control de acceso, formación, cifrado, MFA, etc. Un antivirus no cubre casi ninguna.",
+      "options": {
+        "a": "Incorrecta. El diseño del portal no es una de las medidas exigidas.",
+        "b": "Incorrecta. La facturación no forma parte de las medidas de ciberseguridad.",
+        "c": "Correcta. Quedan fuera la continuidad, la gestión de incidentes, los proveedores, el control de acceso y la formación.",
+        "d": "Incorrecta. El color de las alertas no es una medida de la directiva."
+      }
+    },
+    "ciberdelitos-t03-27": {
+      "section": "reglamento-ciberseguridad",
+      "reasoning": "El art. 53 del Reglamento 2019/881 permite la autoevaluación de la conformidad, bajo responsabilidad exclusiva del fabricante, solo para productos de bajo riesgo del nivel básico.",
+      "options": {
+        "a": "Incorrecta. Es justo al revés: en el nivel elevado no cabe autoevaluación.",
+        "b": "Incorrecta. Está ligada al riesgo: solo cabe en bajo riesgo.",
+        "c": "Incorrecta. No es una certificación judicial; es una declaración del propio fabricante.",
+        "d": "Correcta. Solo se contempla para productos de bajo riesgo en el nivel básico."
+      }
+    },
+    "ciberdelitos-t03-28": {
+      "section": "nis2-notificacion",
+      "reasoning": "NIS 2 pide que la notificación incluya la información necesaria para valorar las repercusiones transfronterizas y que, en incidentes transfronterizos o intersectoriales, llegue a los puntos de contacto únicos para cooperar entre países.",
+      "options": {
+        "a": "Correcta. Cooperación e intercambio de información pertinente.",
+        "b": "Incorrecta. La normativa busca la comunicación entre países, no el aislamiento.",
+        "c": "Incorrecta. Las repercusiones transfronterizas deben indicarse ya desde la alerta temprana.",
+        "d": "Incorrecta. Hay plazos de 24 y 72 horas; no se espera al cierre."
+      }
+    },
+    "ciberdelitos-t03-29": {
+      "section": "cra-y-otras",
+      "reasoning": "La propuesta de CRA fija requisitos de diseño, desarrollo y fabricación y, además, procesos de gestión de vulnerabilidades durante todo el ciclo de vida del producto. Evaluar solo el día de venta no basta.",
+      "options": {
+        "a": "Incorrecta. Sí establece obligaciones de diseño, desarrollo y fabricación.",
+        "b": "Correcta. Gestión de vulnerabilidades a lo largo del ciclo de vida.",
+        "c": "Incorrecta. Exige elaborar documentación técnica antes de vender (art. 23).",
+        "d": "Incorrecta. La publicidad no sustituye la evaluación de la conformidad."
+      }
+    },
+    "ciberdelitos-t03-30": {
+      "section": "nis2-notificacion",
+      "reasoning": "Si el incidente sigue en curso cuando vence el informe final (un mes desde la notificación), NIS 2 exige presentar un informe de situación en ese momento y el informe final en el plazo de un mes desde que se haya gestionado el incidente.",
+      "options": {
+        "a": "Incorrecta. Las comunicaciones no se borran; el procedimiento continúa.",
+        "b": "Incorrecta. El vencimiento del plazo no resuelve el incidente.",
+        "c": "Correcta. Informe de situación y, tras gestionarlo, informe final.",
+        "d": "Incorrecta. No se puede cerrar sin más información mientras siga activo."
+      }
+    }
+  }
+}

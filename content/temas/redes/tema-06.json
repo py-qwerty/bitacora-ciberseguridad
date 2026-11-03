@@ -1,0 +1,933 @@
+{
+  "course": "redes",
+  "number": 6,
+  "title": "Criptografía aplicada a la seguridad en redes",
+  "minutes": 50,
+  "intro": {
+    "why": "Cada vez que abres una web con el candado de HTTPS, te conectas a una wifi con contraseña o descargas una actualización firmada, están trabajando a la vez los tres bloques de este tema: un cifrado simétrico (normalmente AES) que oculta los datos a toda velocidad, una función hash que comprueba que nada se ha alterado y un algoritmo de clave pública (RSA o Diffie-Hellman) que permite acordar la clave y firmar. Si entiendes cómo encajan estas piezas, entenderás casi todos los protocolos seguros que verás en el resto de la asignatura.",
+    "before": [
+      "**Cifrar** es transformar un mensaje legible (el **texto en claro**) en algo ilegible (el **criptograma** o texto cifrado) usando un secreto llamado **clave**. **Descifrar** es el camino de vuelta.",
+      "Un **bit** es un 0 o un 1; un **byte** u **octeto** son 8 bits. Las claves y los bloques se miden en bits: «AES-128» significa clave de 128 bits.",
+      "Un **algoritmo** es una receta de pasos. En criptografía moderna el algoritmo es público; lo único secreto es la clave.",
+      "La operación **módulo** (mod) es el resto de una división: 17 mod 5 = 2, porque 17 = 3·5 + 2. Funciona como las horas de un reloj: a las 23 h más 3 h son las 2.",
+      "Un **número primo** solo se divide entre 1 y sí mismo (2, 3, 5, 7, 11, 13…)."
+    ],
+    "goals": [
+      "Al terminar sabrás explicar la diferencia entre cifra simétrica (una clave compartida) y asimétrica (un par de claves pública y privada).",
+      "Sabrás distinguir la cifra en flujo (RC4, basada en XOR) de la cifra en bloque, y explicar rondas, subclaves y efecto de avalancha.",
+      "Sabrás comparar los modos ECB, CBC y CTR y por qué ECB no se recomienda.",
+      "Sabrás las cifras clave de AES: sustituye a DES, bloque de 128 bits y claves de 128, 192 o 256 bits.",
+      "Sabrás qué es una función hash, para qué sirve y los datos de MD5, SHA-1, SHA-2 y SHA-3.",
+      "Sabrás razonar qué clave se usa para dar confidencialidad y cuál para firmar, cómo funcionan Diffie-Hellman y RSA y cómo se verifica una firma digital."
+    ]
+  },
+  "sections": [
+    {
+      "id": "mapa-cripto",
+      "title": "El mapa: una clave compartida o un par de claves",
+      "pages": [4, 5],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Imagina dos formas de proteger una caja. En la primera, tú y tu amiga tenéis **copias de la misma llave**: quien cierra y quien abre usan la misma. En la segunda, tu amiga reparte **candados abiertos** por todo el barrio (cualquiera puede cerrar uno sobre una caja), pero **la única llave** que los abre la guarda ella. La primera es la cifra simétrica; la segunda, la asimétrica."
+        },
+        {
+          "type": "p",
+          "text": "El tema recorre tres familias de herramientas criptográficas. Conviene tener el mapa claro antes de entrar en detalle, porque muchas preguntas de test juegan a mezclar sus características."
+        },
+        {
+          "type": "term",
+          "term": "Cifra simétrica (o de clave secreta)",
+          "text": "Emisor y receptor comparten **una única clave secreta**, que sirve tanto para cifrar como para descifrar. Es muy rápida. A su vez se divide en **cifra en flujo** (bit a bit o byte a byte) y **cifra en bloque** (por grupos de bits)."
+        },
+        {
+          "type": "term",
+          "term": "Cifra asimétrica (o de clave pública)",
+          "text": "Cada usuario tiene **dos claves** relacionadas matemáticamente: una **pública**, que puede conocer todo el mundo, y una **privada**, que solo conoce su dueño. Lo que se cifra con una se descifra con la otra. Es mucho más lenta."
+        },
+        {
+          "type": "term",
+          "term": "Función resumen o hash",
+          "text": "Algoritmo **sin clave** que convierte un archivo de cualquier tamaño en una huella de tamaño fijo. No es un cifrado, porque no hay forma de «descifrar» la huella."
+        },
+        {
+          "type": "table",
+          "title": "Las tres familias de un vistazo",
+          "head": ["Familia", "Claves", "Velocidad", "Uso típico", "Ejemplos del tema"],
+          "rows": [
+            ["Simétrica en flujo", "Una secreta compartida", "Muy alta", "Cifrar datos al vuelo", "RC4"],
+            ["Simétrica en bloque", "Una secreta compartida", "Muy alta", "Cifrar archivos y comunicaciones", "AES (antes DES)"],
+            ["Hash", "Ninguna", "Alta", "Integridad, firma, contraseñas", "MD5, SHA-1, SHA-2, SHA-3"],
+            ["Asimétrica", "Par pública + privada", "Unas mil veces más lenta", "Intercambiar claves y firmar", "Diffie-Hellman, RSA"]
+          ]
+        },
+        {
+          "type": "exam",
+          "text": "Trampa clásica: «la simétrica usa una clave para cifrar y otra para descifrar». Es al revés: **dos claves distintas** es lo que define a la **asimétrica**. Otra trampa: «la simétrica cifra en bloques y la asimétrica en flujo». Bloque/flujo es una subdivisión **dentro** de la simétrica, no lo que la separa de la asimétrica."
+        },
+        {
+          "type": "key",
+          "text": "Simétrica = una clave secreta compartida y rapidez. Asimétrica = par de claves pública/privada y lentitud. Hash = sin clave, huella de tamaño fijo, no se descifra."
+        }
+      ]
+    },
+    {
+      "id": "cifra-flujo",
+      "title": "Cifra en flujo: XOR y RC4",
+      "pages": [6, 7],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Piensa en un cuaderno con una lista larguísima de números aparentemente al azar que solo tenéis tú y tu amiga. Para cifrar, sumas cada letra con el número siguiente de la lista; ella, con la misma lista, deshace la suma. La lista va cambiando a cada letra: eso es la **secuencia cifrante**."
+        },
+        {
+          "type": "p",
+          "text": "En la **cifra en flujo** el texto en claro se cifra **bit a bit o byte a byte**. No se usa la clave tal cual, sino una **secuencia cifrante Si** binaria y pseudoaleatoria (parece azar, pero se genera de forma determinista) que se obtiene a partir de una clave secreta K y un algoritmo generador. Cada bit del mensaje se combina con un bit distinto de esa secuencia."
+        },
+        {
+          "type": "term",
+          "term": "XOR (o exclusivo)",
+          "text": "Operación lógica entre dos bits: da 1 si los bits son distintos y 0 si son iguales. Se escribe ⊕. Su propiedad estrella es que es **involutiva**: si aplicas XOR dos veces con el mismo valor, vuelves al dato original. Por eso **cifrar y descifrar son la misma operación**."
+        },
+        {
+          "type": "code",
+          "title": "XOR cifra y descifra con la misma operación",
+          "text": "Texto en claro M : 1 0 1 1 0 0 1 0\nSecuencia Si    : 0 1 1 0 1 0 1 1\nCifrado C = M⊕Si: 1 1 0 1 1 0 0 1\n\nDescifrado C⊕Si : 1 0 1 1 0 0 1 0   <- vuelve M\n\n(Aplicarlo dos veces NO da cero: da el dato original.\n Lo que da cero es X⊕X, un valor consigo mismo.)"
+        },
+        {
+          "type": "list",
+          "title": "Tres rasgos de un sistema de cifra en flujo",
+          "items": [
+            "Cifra y descifra con la función **XOR**.",
+            "Usa una **secuencia cifrante pseudoaleatoria Si** generada a partir de una clave secreta K.",
+            "La **misma operación** sirve para cifrar y para descifrar, por el carácter involutivo de XOR."
+          ]
+        },
+        {
+          "type": "term",
+          "term": "RC4 (Ron's Code 4, o Rivest Cipher 4)",
+          "text": "Cifrador en flujo **byte a byte** diseñado por Ron Rivest en 1987. Tiene dos rutinas: **KSA** (Key Scheduling Algorithm, algoritmo de preparación de la clave), que inicializa el estado interno a partir de la clave, y **PRGA** (Pseudo-Random Generation Algorithm, algoritmo de generación pseudoaleatoria), que produce un byte nuevo de secuencia por cada byte de texto."
+        },
+        {
+          "type": "p",
+          "text": "RC4 fue muy popular por ser **muy rápido** (casi el doble que AES) y muy sencillo de implementar en hardware y software. Se usó en SSL/TLS (los protocolos del candado HTTPS) hasta 2014 y en el cifrado wifi **WEP** (Wired Equivalent Privacy) y **WPA** (Wi-Fi Protected Access). Hoy se considera inseguro."
+        },
+        {
+          "type": "exam",
+          "text": "Si preguntan qué pasa al aplicar XOR dos veces con la misma secuencia, la respuesta es que **se recupera el dato**. Las trampas: «produce siempre cero» (confunde con X⊕X) o «hace falta una operación inversa distinta para descifrar» (justo lo contrario de involutiva)."
+        },
+        {
+          "type": "key",
+          "text": "Cifra en flujo = texto ⊕ secuencia pseudoaleatoria derivada de la clave; como XOR es involutiva, la misma operación cifra y descifra. RC4 es el ejemplo: rápido, byte a byte, hoy obsoleto."
+        }
+      ]
+    },
+    {
+      "id": "cifra-bloque",
+      "title": "Cifra en bloque: rondas, subclaves y efecto avalancha",
+      "pages": [7, 9],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Piensa en una baraja: si la cortas una vez, aún se reconoce el orden; si la barajas diez veces, ya no queda rastro. Un cifrador en bloque «baraja» cada grupo de bits muchas veces, mezclándolo con la clave en cada pasada."
+        },
+        {
+          "type": "p",
+          "text": "En la **cifra en bloque** el texto en claro se trocea en **bloques de n bits** (típicamente 128 bits, es decir, 16 octetos; los diseños antiguos usaban 64). Cada bloque de texto en claro produce un bloque de texto cifrado del mismo tamaño. Aquí se usa **una única clave**, compartida por emisor y receptor, que no cambia durante el cifrado."
+        },
+        {
+          "type": "term",
+          "term": "Relleno (padding)",
+          "text": "Bits que se añaden al final del mensaje cuando su longitud no es múltiplo exacto del tamaño de bloque, para completar el último bloque."
+        },
+        {
+          "type": "term",
+          "term": "Cifrador de producto",
+          "text": "Nombre que reciben estos cifradores porque combinan **sustituciones** (cambiar unos valores por otros) y **permutaciones** (cambiar de sitio los bits) para mezclar los bits del texto con los de la clave."
+        },
+        {
+          "type": "term",
+          "term": "Vueltas o rondas",
+          "text": "Repeticiones de esas operaciones de sustitución y permutación. En cada ronda se usa una **subclave** distinta, calculada a partir de la clave K mediante la **expansión de clave**."
+        },
+        {
+          "type": "term",
+          "term": "Efecto de avalancha",
+          "text": "Propiedad buscada con las rondas: **cambiar un solo bit** de la entrada (o de la clave) debe cambiar **aproximadamente el 50 % de los bits de salida**. Cada bit de salida depende de forma compleja de todos los de entrada, así que no quedan patrones visibles."
+        },
+        {
+          "type": "example",
+          "title": "La avalancha en la práctica",
+          "text": "Cifras con AES la frase «Pago 100 €» y luego «Pago 900 €». Solo cambia un carácter, pero los dos bloques cifrados no se parecen en nada: alrededor de la mitad de sus 128 bits son distintos. Un espía no puede deducir que «solo ha cambiado una cifra»."
+        },
+        {
+          "type": "exam",
+          "text": "Para reconocer la cifra en bloque, busca «procesa grupos de bits de tamaño definido». Las trampas: «procesa cada bit sin agruparlo» (eso es flujo), «usa dos claves distintas» (asimétrica) o «genera una huella irreversible de longitud fija» (hash). En avalancha, la trampa es «un cambio de entrada solo altera el mismo bit de salida» o «las rondas conservan los patrones»: justo lo que la avalancha quiere evitar."
+        },
+        {
+          "type": "key",
+          "text": "Cifra en bloque = bloques de tamaño fijo, una clave única, muchas rondas de sustitución y permutación con subclaves distintas; el resultado es el efecto avalancha (1 bit cambiado → ~50 % de la salida cambiada)."
+        }
+      ]
+    },
+    {
+      "id": "modos-bloque",
+      "title": "Modos de cifra en bloque: ECB, CBC y CTR",
+      "pages": [9, 11],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Si cifras cada página de un libro por separado y con la misma clave, dos páginas idénticas quedarán cifradas igual, y quien mire verá que se repiten. Los modos de cifra deciden cómo se relaciona cada bloque con los demás para evitar esas pistas."
+        },
+        {
+          "type": "p",
+          "text": "Un algoritmo de bloque solo sabe cifrar **un** bloque. El **modo de cifra** es la regla para encadenar muchos bloques de un mensaje largo. Hay una media docena; los tres más conocidos son ECB, CBC y CTR."
+        },
+        {
+          "type": "term",
+          "term": "ECB (Electronic Codebook, libro electrónico de códigos)",
+          "text": "Cada bloque se cifra **de forma independiente** con la clave K. Problema: **bloques de entrada iguales dan bloques cifrados iguales**, así que se revelan patrones. Es vulnerable a ataques por inicios y finales iguales entre documentos y a la repetición, sustitución o modificación de bloques. **No se recomienda.**"
+        },
+        {
+          "type": "term",
+          "term": "IV (Initialization Vector, vector inicial)",
+          "text": "Valor del mismo tamaño que el bloque que se mezcla al principio del proceso para que dos mensajes iguales no den el mismo cifrado."
+        },
+        {
+          "type": "term",
+          "term": "CBC (Cipher Block Chaining, encadenamiento de bloques cifrados)",
+          "text": "Antes de cifrar, cada bloque de texto en claro se combina con XOR con el **bloque cifrado anterior** (el primero, con el IV). Así cada bloque depende de todos los anteriores. Inconvenientes: un **error de transmisión** se propaga al resto del criptograma según el temario, y **no se puede paralelizar**, lo que penaliza grandes volúmenes."
+        },
+        {
+          "type": "term",
+          "term": "CTR (Counter, contador)",
+          "text": "Se cifra un **contador** (IV, IV+1, IV+2…) y el resultado se combina con XOR con cada bloque de texto en claro. Como cada bloque usa su propio contador, se puede **paralelizar** y un error de transmisión **solo afecta a su bloque**."
+        },
+        {
+          "type": "code",
+          "title": "Esquema de los tres modos (E = cifrar con K)",
+          "text": "ECB:  C[i] = E(P[i])\nCBC:  C[1] = E(P[1] ⊕ IV)\n      C[i] = E(P[i] ⊕ C[i-1])\nCTR:  C[i] = P[i] ⊕ E(IV + i - 1)"
+        },
+        {
+          "type": "table",
+          "title": "Comparativa de modos",
+          "head": ["Modo", "Bloques iguales → cifrados iguales", "Paralelizable", "Error de transmisión", "Recomendado"],
+          "rows": [
+            ["ECB", "Sí (revela patrones)", "Sí", "Solo su bloque", "No"],
+            ["CBC", "No", "No (según el temario)", "Se propaga (según el temario)", "Sí, con cuidado"],
+            ["CTR", "No", "Sí", "Solo su bloque", "Sí"]
+          ]
+        },
+        {
+          "type": "example",
+          "title": "El pingüino de ECB",
+          "text": "Un ejemplo famoso: si cifras con ECB una imagen con grandes zonas de un solo color, se sigue viendo la silueta en la imagen cifrada, porque cada zona igual produce bloques cifrados iguales. Con CBC o CTR la imagen parece ruido."
+        },
+        {
+          "type": "exam",
+          "text": "El problema de ECB es que **cifra los bloques de forma independiente y puede revelar patrones**. Trampas: «encadena cada bloque con el anterior» (CBC), «usa un contador» (CTR) o «elimina la igualdad entre bloques idénticos» (justo lo que ECB no hace)."
+        },
+        {
+          "type": "key",
+          "text": "ECB: independiente y delator de patrones. CBC: encadena con XOR al cifrado anterior, no paraleliza. CTR: cifra un contador, paraleliza y aísla los errores."
+        }
+      ]
+    },
+    {
+      "id": "aes",
+      "title": "AES, el estándar de cifra simétrica",
+      "pages": [11, 13],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "**AES** (Advanced Encryption Standard, estándar de cifrado avanzado) es hoy el cifrador en bloque por excelencia. Nació como **sustituto de DES** (Data Encryption Standard, el antiguo estándar de los años 70, con claves de solo 56 bits). En noviembre de 2001 el **NIST** (National Institute of Standards and Technology, el instituto de normalización de EE. UU.) lo publicó en la norma **FIPS 197** (Federal Information Processing Standard). El algoritmo elegido en el concurso se llamaba **Rijndael**: AES es Rijndael convertido en estándar."
+        },
+        {
+          "type": "table",
+          "title": "Las cifras de AES que hay que saberse",
+          "head": ["Dato", "Valor"],
+          "rows": [
+            ["Tamaño de bloque", "**128 bits** siempre (16 bytes)"],
+            ["Tamaños de clave", "**128, 192 o 256 bits**"],
+            ["Estructura interna", "Matriz de estado de 4×4 bytes"],
+            ["Tipo", "No es de tipo Feistel (estructura usada por DES)"],
+            ["Sustituye a", "DES"]
+          ]
+        },
+        {
+          "type": "analogy",
+          "text": "Piensa en la clave como la combinación de una caja fuerte y en el bloque como el tamaño del cajón. Puedes elegir una combinación más larga (128, 192 o 256 bits), pero el cajón donde metes los datos mide siempre lo mismo: 128 bits."
+        },
+        {
+          "type": "list",
+          "title": "Las cuatro operaciones de cada ronda de AES",
+          "items": [
+            "**AddRoundKey**: XOR entre los bytes del estado y los de la subclave de esa ronda.",
+            "**SubBytes**: sustituye cada uno de los 16 bytes mediante una tabla (la caja S).",
+            "**ShiftRows**: rota las filas: la 1.ª no se mueve, la 2.ª rota 1 byte, la 3.ª 2 bytes y la 4.ª 3 bytes.",
+            "**MixColumns**: multiplica cada columna por una matriz polinómica, mezclando los bytes de la columna."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Aunque estas operaciones se dibujan como tablas y flechas, por debajo hay **aritmética polinómica** en un cuerpo finito: AES tiene un fondo matemático importante. El tema incluye un vídeo con un software educativo que cifra y descifra con AES."
+        },
+        {
+          "type": "exam",
+          "text": "Dos trampas muy repetidas. 1) «AES sustituye a Rijndael»: no, AES **es** Rijndael estandarizado; sustituye a **DES** (tampoco a IDEA ni a RC4). 2) Confundir clave y bloque: con clave de 256 bits el bloque **sigue siendo de 128**. Las opciones «64, 128 y 256», «128, 206 y 256» o «128, 256 y 512» son inventadas; las válidas son **128, 192 y 256**."
+        },
+        {
+          "type": "key",
+          "text": "AES = Rijndael estandarizado en 2001 para sustituir a DES; bloque fijo de 128 bits y claves de 128, 192 o 256 bits; rondas con AddRoundKey, SubBytes, ShiftRows y MixColumns."
+        }
+      ]
+    },
+    {
+      "id": "hash",
+      "title": "Funciones hash: la huella dactilar de un archivo",
+      "pages": [14, 15],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Tu huella dactilar te identifica, mide lo mismo seas alto o bajo, y nadie puede reconstruir tu cuerpo a partir de ella. Una función hash hace lo mismo con un archivo: da una huella corta y fija que lo representa, pero no permite recuperarlo."
+        },
+        {
+          "type": "p",
+          "text": "Una **función hash** (o función resumen) recibe un mensaje M de cualquier tamaño y devuelve un resumen **h(M)** de un número **fijo** de bits. Ese número actúa como huella digital del documento, en principio única."
+        },
+        {
+          "type": "list",
+          "title": "Propiedades clave",
+          "items": [
+            "**Longitud fija**: un archivo de 1 KB y otro de 4 GB dan resúmenes del mismo tamaño con la misma función (128 bits en MD5, 256 en SHA-256…). No depende del tamaño de entrada ni del número de bloques procesados.",
+            "**No tiene clave**: por eso no es un algoritmo de cifra en sentido estricto.",
+            "**No se puede invertir**: no hay «descifrado»; del resumen no se reconstruye el archivo. No es una compresión como ZIP.",
+            "**Sensible a cambios**: si se altera un solo bit del mensaje, el resumen cambia por completo."
+          ]
+        },
+        {
+          "type": "code",
+          "title": "Misma longitud para entradas muy distintas",
+          "text": "$ echo -n \"hola\" | sha256sum\nb221d9dbb083a7f33428d7c2a3c3198ae925614d70210e28716ccaa7cd4ddb79  -\n\n$ sha256sum pelicula.mkv        # 4 GB\n(otros 64 caracteres hexadecimales = 256 bits)"
+        },
+        {
+          "type": "table",
+          "title": "Para qué sirven",
+          "head": ["Uso", "Cómo ayuda el hash"],
+          "rows": [
+            ["Firma digital", "Reduce un documento enorme a unos cientos de bits; como la cifra asimétrica es muy lenta, se firma el resumen, no el documento entero."],
+            ["Integridad", "Si alguien (o un error de red) cambia un bit, el resumen recalculado ya no coincide."],
+            ["Almacenar contraseñas", "El servidor guarda el hash de la contraseña, no la contraseña. Si roban la base de datos, no ven las contraseñas en claro (aunque pueden intentar romperlas por fuerza bruta)."]
+          ]
+        },
+        {
+          "type": "example",
+          "title": "Comprobar una descarga",
+          "text": "Una web publica junto a la imagen ISO de un sistema operativo su valor SHA-256. Tras descargarla, calculas el SHA-256 de tu copia. Si coincide, el archivo llegó íntegro; si no, se corrompió o alguien lo manipuló. Fíjate en que el hash no te devuelve el archivo: solo te deja comparar."
+        },
+        {
+          "type": "exam",
+          "text": "Un hash **no es una copia recuperable** ni se descifra con ninguna clave. Las trampas típicas: «permite recuperar el mensaje mediante una clave», «su longitud depende del tamaño del archivo», «necesita un par de claves». En firma digital, el papel del hash es **obtener un resumen del documento** que luego se firma; el hash por sí solo no oculta el contenido, no envía claves y no identifica al firmante."
+        },
+        {
+          "type": "key",
+          "text": "Hash = huella de longitud fija, sin clave, irreversible y que cambia ante cualquier alteración. Sirve para firmar resúmenes, comprobar integridad y guardar contraseñas."
+        }
+      ]
+    },
+    {
+      "id": "md5-sha",
+      "title": "MD5, SHA-1, SHA-2 y SHA-3",
+      "pages": [15, 18],
+      "blocks": [
+        {
+          "type": "term",
+          "term": "MD5 (Message Digest 5)",
+          "text": "Función hash diseñada por Ron Rivest en 1992. Procesa el mensaje en **bloques de 512 bits** y da un resumen de **128 bits**. Se considera **obsoleta desde 2005** por graves fallos de diseño (se pueden fabricar colisiones: dos archivos distintos con el mismo hash) y por su resumen corto. Aun así se siguió usando para comprobar descargas, en correo y en redes P2P."
+        },
+        {
+          "type": "steps",
+          "title": "Cómo trabaja MD5",
+          "items": [
+            "Rellena el mensaje con un bit 1 y los ceros necesarios hasta quedar 64 bits por debajo de un múltiplo de 512; esos últimos 64 bits indican la longitud del mensaje.",
+            "Parte de cuatro vectores iniciales públicos A, B, C, D de 32 bits cada uno (4 × 32 = 128 bits).",
+            "A cada bloque de 512 bits le aplica **64 vueltas**: 4 rondas (funciones F, G, H, I) de 16 operaciones cada una, con constantes y desplazamientos tabulados.",
+            "Los ABCD resultantes son la entrada del siguiente bloque. Al acabar el último bloque, ABCD es el resumen h(M) de 128 bits."
+          ]
+        },
+        {
+          "type": "term",
+          "term": "SHA-1 (Secure Hash Algorithm 1)",
+          "text": "Propuesto por la **NSA** (National Security Agency, agencia de seguridad de EE. UU.) en 1993 y adoptado por el NIST en 1995 para sustituir a SHA-0. Muy parecido a MD5 (bloques de 512 bits), pero con **cinco** vectores ABCDE de 32 bits, por lo que el resumen es de **160 bits**. Hace **80 vueltas** por bloque: 4 rondas de 20. En 2017 sufrió el ataque **SHAttered** (primera colisión práctica) y dejó de usarse en certificados X.509 (los certificados digitales de las webs) a partir de 2017."
+        },
+        {
+          "type": "term",
+          "term": "SHA-2",
+          "text": "Familia creada por la NSA en 2001 con cuatro tamaños de resumen: **224, 256, 384 y 512 bits** (las dos últimas trabajan con palabras de 64 bits). Funciona de forma parecida a MD5 y SHA-1. SHA-256 es la que reemplazó a SHA-1 en los certificados."
+        },
+        {
+          "type": "term",
+          "term": "SHA-3 (Keccak)",
+          "text": "Ganador del concurso del NIST en 2012 y estándar desde 2015. Su diseño es totalmente distinto: una **esponja** que «absorbe» una entrada de cualquier longitud y se «exprime» para obtener una salida del tamaño deseado. Internamente trabaja con un array tridimensional con movimientos parecidos a los de un cubo de Rubik."
+        },
+        {
+          "type": "table",
+          "title": "Comparativa rápida",
+          "head": ["Función", "Resumen", "Bloque", "Vueltas por bloque", "Estado"],
+          "rows": [
+            ["MD5", "128 bits", "512 bits", "64 (4 rondas × 16)", "Roto, obsoleto"],
+            ["SHA-1", "160 bits", "512 bits", "80 (4 rondas × 20)", "Debilitado (SHAttered, 2017)"],
+            ["SHA-2", "224/256/384/512 bits", "512 o 1024 bits", "—", "Recomendado"],
+            ["SHA-3", "Variable", "Esponja", "—", "Recomendado"]
+          ]
+        },
+        {
+          "type": "exam",
+          "text": "Números que se mezclan en las opciones: MD5 = **128 bits y 64 vueltas**; SHA-1 = **160 bits y 80 vueltas**. Los distractores usan 124, 164 o 168 bits, o 16 vueltas (las operaciones de cada ronda de MD5) y 80 (las de SHA-1). Si te proponen MD5 para una garantía nueva de integridad, la respuesta es que **está obsoleto y tiene fallos de diseño**; MD5 no es un cifrador con clave ni produce firmas."
+        },
+        {
+          "type": "key",
+          "text": "MD5: 128 bits, 64 vueltas, roto. SHA-1: 160 bits, 80 vueltas, debilitado. Hoy se recomiendan SHA-2 (224-512 bits) o SHA-3 (esponja)."
+        }
+      ]
+    },
+    {
+      "id": "clave-publica",
+      "title": "Cifra asimétrica: qué clave usar para qué",
+      "pages": [19, 20],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Un buzón de correos: cualquiera puede echar una carta por la ranura (clave pública), pero solo el dueño tiene la llave para sacarlas (clave privada). Y un sello de lacre personal: solo tú puedes estamparlo (privada), pero todo el mundo puede reconocerlo comparándolo con el modelo público (pública)."
+        },
+        {
+          "type": "p",
+          "text": "La cifra asimétrica nace en noviembre de 1976 con **Whitfield Diffie y Martin Hellman** (Universidad de Stanford). La idea: la clave deja de ser única y se divide en **dos partes inversas entre sí**: una **pública**, conocida por todos, y una **privada**, que solo conoce su propietario. Calcular la privada a partir de la pública es computacionalmente inviable: es un problema de tipo **NP** (tiempo polinomial no determinista), es decir, no se conoce forma eficiente de resolverlo."
+        },
+        {
+          "type": "table",
+          "title": "Las dos formas de usar el par de claves",
+          "head": ["Se cifra con…", "Se descifra con…", "Qué se consigue", "Nombre en la práctica"],
+          "rows": [
+            ["La clave **pública del destinatario**", "La privada del destinatario", "**Confidencialidad**: solo el destinatario puede leerlo", "Intercambio seguro de clave"],
+            ["La clave **privada del emisor**", "La pública del emisor (cualquiera)", "**Autenticidad**: seguro que lo envió él; aplicado a un hash, también integridad", "Firma digital"]
+          ]
+        },
+        {
+          "type": "example",
+          "title": "Alicia y Bernardo",
+          "text": "Alicia quiere mandar a Bernardo una clave secreta. La cifra con la **clave pública de Bernardo**, porque solo Bernardo tiene la privada que la descifra. Si Alicia se equivoca y usa **su propia** clave pública, Bernardo no podrá descifrar nada (no tiene la privada de Alicia): el requisito es usar la pública **del receptor previsto**. En cambio, para firmar un documento, Alicia usa **su clave privada**, y Bernardo lo verifica con la **pública de Alicia**."
+        },
+        {
+          "type": "p",
+          "text": "Ojo a un detalle práctico: con la cifra asimétrica **solo se cifran números**, y además pequeños, de unas **pocas centenas de bits**: una clave de sesión de AES o el hash SHA-256 de un documento. Es unas **mil veces más lenta** que la simétrica (cientos de kilobytes por segundo frente a cientos de megabytes por segundo)."
+        },
+        {
+          "type": "term",
+          "term": "Cifrado híbrido",
+          "text": "La combinación que se usa en la práctica: el contenido grande se cifra con un algoritmo **simétrico** y una **clave de sesión** (clave temporal para esa comunicación), y esa clave pequeña se protege con criptografía **asimétrica**. Así se tiene la velocidad de la primera y la comodidad de reparto de la segunda."
+        },
+        {
+          "type": "exam",
+          "text": "Regla rápida: **confidencialidad → pública del receptor**; **firma → privada del emisor**; **verificar la firma → pública del emisor**. Nunca se envía ni se comparte una clave privada. Para un archivo muy grande la respuesta correcta es el esquema híbrido; las trampas son «cifrar todo con asimétrica», «guardar solo un hash» o «usar la firma como cifrado». Y con algoritmos asimétricos se cifran **mensajes de pocos bits**, no «del tamaño que sea» ni «más rápido que la simétrica»."
+        },
+        {
+          "type": "key",
+          "text": "Pública del destino para que solo él lea; privada propia para firmar. La asimétrica es lenta y solo cifra valores pequeños (claves de sesión y hashes); el grueso de los datos va con simétrica."
+        }
+      ]
+    },
+    {
+      "id": "diffie-hellman",
+      "title": "Diffie-Hellman: acordar un secreto a la vista de todos",
+      "pages": [20, 21],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "La analogía clásica de las pinturas: Alicia y Bernardo acuerdan en público un color base (amarillo). Cada uno añade en secreto su propio color, y se intercambian las mezclas. Al añadir otra vez su color secreto a la mezcla recibida, los dos obtienen el mismo color final. Un espía ha visto el amarillo y las dos mezclas, pero «desmezclar» pintura es prácticamente imposible."
+        },
+        {
+          "type": "p",
+          "text": "En 1976 Diffie y Hellman propusieron un método para que dos personas **acuerden una clave secreta compartida** a través de un canal público, sin enviarla nunca. Se basa en una **función de un solo sentido**: fácil de calcular, pero muy difícil de deshacer. En concreto, el **problema del logaritmo discreto**: calcular α^x mod p es rápido, pero conociendo el resultado, α y p, averiguar x es intratable si p tiene más de mil bits."
+        },
+        {
+          "type": "steps",
+          "title": "El protocolo",
+          "items": [
+            "Alicia y Bernardo acuerdan dos valores **públicos**: un primo grande p y un **generador** α (una raíz primitiva de p: un número cuyas potencias módulo p recorren todos los restos menos el 0).",
+            "Alicia elige un secreto a; Bernardo, un secreto b. No se los dicen a nadie.",
+            "Alicia calcula A = α^a mod p y se lo envía a Bernardo.",
+            "Bernardo calcula B = α^b mod p y se lo envía a Alicia.",
+            "Alicia calcula B^a mod p; Bernardo calcula A^b mod p. Ambos obtienen el mismo valor K = α^(a·b) mod p, que usan como clave de sesión."
+          ]
+        },
+        {
+          "type": "code",
+          "title": "Ejemplo con números de juguete",
+          "text": "Públicos: p = 23, α = 5\nAlicia: a = 6   ->  A = 5^6  mod 23 = 8   (envía 8)\nBernardo: b = 15 ->  B = 5^15 mod 23 = 19  (envía 19)\n\nAlicia:   19^6  mod 23 = 2\nBernardo:  8^15 mod 23 = 2\nClave compartida K = 2  (nunca viajó por la red)"
+        },
+        {
+          "type": "p",
+          "text": "Un intruso ve p, α, A y B, pero para obtener K tendría que sacar a o b, es decir, resolver el logaritmo discreto. Fíjate en lo que **no** hace Diffie-Hellman por sí solo: no cifra un documento, no firma y no verifica la identidad de los extremos; solo **acuerda un secreto**."
+        },
+        {
+          "type": "table",
+          "title": "Diffie-Hellman frente a RSA",
+          "head": ["Rasgo", "Diffie-Hellman", "RSA"],
+          "rows": [
+            ["Familia", "Clave pública", "Clave pública"],
+            ["Para qué sirve", "Acordar un secreto compartido", "Cifrar valores pequeños y firmar"],
+            ["Problema matemático", "Logaritmo discreto", "Factorizar n = p·q"],
+            ["Año", "1976", "1978"]
+          ]
+        },
+        {
+          "type": "exam",
+          "text": "La frase correcta es «**acordar un secreto compartido a través del intercambio de valores**». Trampas: «cifra directamente el documento», «firma el mensaje», «verifica la identidad» o «transmite la clave privada». Si comparan con RSA: ambos son de clave pública, pero **RSA cifra o firma y DH acuerda un secreto**; ninguno es simétrico de flujo."
+        },
+        {
+          "type": "key",
+          "text": "Diffie-Hellman permite que dos partes calculen la misma clave sin enviarla nunca; su seguridad descansa en el logaritmo discreto."
+        }
+      ]
+    },
+    {
+      "id": "rsa",
+      "title": "RSA: generar claves y cifrar",
+      "pages": [21, 23],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Multiplicar 7 × 17 es inmediato; adivinar que 119 sale de 7 × 17 ya cuesta un poco más. Con primos de más de mil bits, multiplicar sigue siendo inmediato pero deshacer la multiplicación llevaría más tiempo que la edad del universo. RSA es un candado construido sobre esa asimetría."
+        },
+        {
+          "type": "p",
+          "text": "**RSA** toma su nombre de **Rivest, Shamir y Adleman**, del MIT (Massachusetts Institute of Technology), que lo presentaron en febrero de 1978. Su seguridad se basa en la **dificultad de factorizar un número grande que es producto de dos primos grandes** (encontrar esos dos primos). Es un problema de complejidad parecida al logaritmo discreto, pero distinto."
+        },
+        {
+          "type": "steps",
+          "title": "Generar las claves (Alicia)",
+          "items": [
+            "Elige dos primos secretos p y q (de 1024 bits o más).",
+            "Calcula el **módulo** n = p · q y lo hace público.",
+            "Calcula el **indicador de Euler** Φ(n) = (p − 1)(q − 1). Es el «cuerpo trampa»: solo lo conoce ella, porque requiere saber p y q.",
+            "Elige la **clave pública e**, con 1 < e < Φ(n) y mcd(e, Φ(n)) = 1 (coprimos). En la práctica casi todo el mundo usa e = 65 537 (el número de Fermat F4 = 2^16 + 1), que acelera el cifrado.",
+            "Calcula la **clave privada d**, inversa de e módulo Φ(n), con el algoritmo extendido de Euclides: e · d mod Φ(n) = 1.",
+            "Clave pública: (n, e). Clave privada: d. También guarda en secreto p y q, que aceleran el descifrado con el Teorema Chino del Resto."
+          ]
+        },
+        {
+          "type": "code",
+          "title": "Ejemplo de generación con números pequeños",
+          "text": "p = 7, q = 17\nn = 7 · 17 = 119\nΦ(n) = 6 · 16 = 96\ne = 5          (mcd(5, 96) = 1)\nd = inv(5, 96) = 77   (5 · 77 = 385 = 4·96 + 1)\nPública: (n=119, e=5)   Privada: d=77"
+        },
+        {
+          "type": "p",
+          "text": "Para **cifrar con confidencialidad** un número N dirigido a Bernardo, Alicia usa la **clave pública de Bernardo** (n, e) y calcula **C = N^e mod n**. Bernardo, el único que conoce d, calcula **C^d mod n = N**: los exponentes e y d se anulan porque son inversos en Φ(n)."
+        },
+        {
+          "type": "code",
+          "title": "Cifrado y descifrado (ejemplo del temario)",
+          "text": "Clave pública de Bernardo: n = 143 (= 11·13), e = 7\nClave privada de Bernardo: d = 103\nSecreto de Alicia: N = 75\n\nCifrar:    75^7   mod 143 = 114   -> envía 114\nDescifrar: 114^103 mod 143 = 75    -> Bernardo recupera 75"
+        },
+        {
+          "type": "example",
+          "title": "Leer la fórmula en una pregunta",
+          "text": "Si te dicen «RSA con e = 5 y n = 35, cifra el número 3», sustituye en C = N^e mod n: **3^5 mod 35** = 243 mod 35 = 33. La base es siempre el mensaje, el exponente es e y el módulo es n."
+        },
+        {
+          "type": "exam",
+          "text": "Base de la seguridad de RSA: **factorizar un número grande producto de dos primos**. Trampas: «factorizar números grandes primos» (un primo no se puede factorizar: no tiene sentido) y «el logaritmo discreto» (eso es Diffie-Hellman). En los ejercicios, no inviertas el orden: «5^3 mod 35» o «3^35 mod 5» son incorrectos."
+        },
+        {
+          "type": "key",
+          "text": "RSA: n = p·q público, Φ(n) secreto, e público, d = inverso de e en Φ(n) privado. Cifrar: C = N^e mod n con la pública del receptor; descifrar: C^d mod n. Su seguridad es la factorización de n."
+        }
+      ]
+    },
+    {
+      "id": "firma-digital",
+      "title": "Firma digital con RSA y hash",
+      "pages": [23, 25],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Firmar a mano un contrato de cien páginas sería eterno, así que firmas una hoja resumen que identifica sin ambigüedad el contrato. Si alguien cambia una coma del contrato, la hoja resumen ya no le corresponde y la firma deja de valer."
+        },
+        {
+          "type": "p",
+          "text": "La **firma digital** usa la clave **privada** del emisor sobre el **hash** del documento. Se firma el hash y no el documento porque RSA es muy lento y solo trabaja con números de unos cientos de bits: el hash **adapta** un documento de cualquier tamaño a esa operación. Con RSA, firmar un valor H es calcular **S = H^d mod n**; verificarlo es calcular **S^e mod n** con la clave pública del firmante."
+        },
+        {
+          "type": "steps",
+          "title": "Firma y verificación paso a paso",
+          "items": [
+            "Alicia calcula el hash del archivo: H = h(M).",
+            "Alicia firma ese hash con su clave privada: S = H^d mod n.",
+            "Alicia envía a Bernardo el par (M, S).",
+            "Bernardo recibe (M', S): no sabe todavía si M' es el original o uno alterado.",
+            "Con la **clave pública de Alicia** recupera el hash firmado: S^e mod n = H.",
+            "Calcula por su cuenta h(M') del documento recibido.",
+            "Si h(M') = H, **acepta** la firma: el documento es íntegro y viene de Alicia. Si no coinciden, **rechaza** la firma."
+          ]
+        },
+        {
+          "type": "code",
+          "title": "Ejemplo numérico del temario",
+          "text": "Clave de Alicia: n = 119, e = 5 (pública), d = 77 (privada)\nHash del documento: h(M) = 46\n\nFirmar:    46^77 mod 119 = 65   -> envía (M, 65)\nVerificar: 65^5  mod 119 = 46   -> coincide con h(M): firma válida"
+        },
+        {
+          "type": "example",
+          "title": "Un contrato modificado tras la firma",
+          "text": "Alicia firma un PDF. Después alguien cambia «1.000 €» por «9.000 €» sin tocar el nombre ni el tamaño del archivo. Al verificar, Bernardo recalcula el hash del PDF modificado y no coincide con el hash que recupera de la firma: la verificación falla y la firma se rechaza. Da igual que la clave pública de Alicia siga siendo válida o que el archivo se llame igual: lo que cuenta es la huella del contenido."
+        },
+        {
+          "type": "p",
+          "text": "¿Y cifrar un mensaje largo directamente con RSA? Se podría convertir el texto en números (por ejemplo con su código ASCII) y cifrarlos, pero no tiene sentido por la lentitud: la cifra asimétrica va por cientos de kilobytes por segundo y la simétrica, por cientos de megabytes. Por eso se usa el esquema híbrido."
+        },
+        {
+          "type": "exam",
+          "text": "Si los resúmenes **no coinciden, se rechaza la firma**, aunque coincidan el nombre o el tamaño del archivo o la clave siga vigente. La firma se verifica con la **clave pública del firmante** (nunca con la privada de nadie ni con la pública del receptor). Y el hash no sustituye la identidad del firmante, no permite recuperar el original y no garantiza ausencia total de colisiones: solo compacta el documento para poder firmarlo."
+        },
+        {
+          "type": "key",
+          "text": "Firma = hash del documento cifrado con la privada del emisor. Verificación = recuperar ese hash con la pública del emisor y compararlo con el hash recalculado: coinciden → firma válida (autenticidad e integridad); no coinciden → se rechaza."
+        }
+      ]
+    }
+  ],
+  "summary": [
+    "La cifra simétrica usa una única clave secreta compartida y es muy rápida; la asimétrica usa un par de claves (pública y privada) y es unas mil veces más lenta.",
+    "La cifra en flujo combina el texto con una secuencia pseudoaleatoria mediante XOR, que es involutiva: la misma operación cifra y descifra. RC4 es el ejemplo.",
+    "La cifra en bloque trocea el texto en bloques fijos y aplica muchas rondas con subclaves distintas para lograr el efecto avalancha.",
+    "ECB cifra cada bloque por separado y revela patrones; CBC encadena con el bloque cifrado anterior; CTR cifra un contador y permite paralelizar.",
+    "AES sustituyó a DES en 2001: bloque de 128 bits y claves de 128, 192 o 256 bits.",
+    "Un hash da una huella de longitud fija, sin clave e irreversible; sirve para firmar, comprobar integridad y guardar contraseñas.",
+    "MD5 (128 bits, 64 vueltas) está roto; SHA-1 (160 bits, 80 vueltas) está debilitado; se recomiendan SHA-2 o SHA-3.",
+    "Confidencialidad: se cifra con la clave pública del destinatario. Firma: con la clave privada del emisor; se verifica con su pública.",
+    "Diffie-Hellman acuerda un secreto compartido (logaritmo discreto); RSA cifra y firma (factorización de n = p·q).",
+    "En la práctica se usa el esquema híbrido: simétrica para los datos y asimétrica para la clave de sesión y la firma del hash."
+  ],
+  "glossary": [
+    { "term": "AES (Advanced Encryption Standard)", "text": "Estándar de cifrado avanzado: cifrador en bloque de 128 bits con claves de 128, 192 o 256 bits que sustituyó a DES." },
+    { "term": "CBC (Cipher Block Chaining)", "text": "Modo de cifra que combina con XOR cada bloque con el bloque cifrado anterior antes de cifrarlo." },
+    { "term": "Clave de sesión", "text": "Clave simétrica temporal que se usa para una comunicación concreta y se protege con criptografía asimétrica." },
+    { "term": "Criptograma", "text": "Texto cifrado, resultado de cifrar el texto en claro." },
+    { "term": "CTR (Counter)", "text": "Modo de cifra que cifra un contador y lo combina con XOR con cada bloque; permite paralelizar." },
+    { "term": "DES (Data Encryption Standard)", "text": "Antiguo estándar de cifrado simétrico, sustituido por AES." },
+    { "term": "Diffie-Hellman (DH)", "text": "Protocolo de 1976 para acordar un secreto compartido por un canal público, basado en el logaritmo discreto." },
+    { "term": "ECB (Electronic Codebook)", "text": "Modo de cifra que cifra cada bloque de forma independiente; revela patrones y no se recomienda." },
+    { "term": "Efecto avalancha", "text": "Propiedad por la que cambiar un bit de la entrada cambia alrededor del 50 % de los bits de salida." },
+    { "term": "Firma digital", "text": "Hash de un documento cifrado con la clave privada del firmante; se verifica con su clave pública." },
+    { "term": "Hash (función resumen)", "text": "Algoritmo sin clave que produce una huella de longitud fija e irreversible de un mensaje." },
+    { "term": "IV (Initialization Vector)", "text": "Vector inicial: valor del tamaño de un bloque que arranca el encadenamiento en CBC o el contador en CTR." },
+    { "term": "MD5 (Message Digest 5)", "text": "Función hash de 128 bits, 64 vueltas por bloque, obsoleta desde 2005." },
+    { "term": "NIST", "text": "National Institute of Standards and Technology: organismo de normalización de EE. UU. que publica AES y SHA." },
+    { "term": "RC4 (Ron's Code 4)", "text": "Cifrador en flujo byte a byte de Ron Rivest (1987), rápido pero hoy inseguro." },
+    { "term": "RSA", "text": "Algoritmo de clave pública de Rivest, Shamir y Adleman (1978) para cifrar y firmar; su seguridad depende de factorizar n = p·q." },
+    { "term": "SHA (Secure Hash Algorithm)", "text": "Familia de funciones hash: SHA-1 (160 bits), SHA-2 (224-512 bits) y SHA-3 (Keccak, tipo esponja)." },
+    { "term": "XOR (o exclusivo)", "text": "Operación que da 1 si los bits son distintos; es involutiva: aplicada dos veces con el mismo valor recupera el dato." }
+  ],
+  "questions": {
+    "redes-t06-01": {
+      "section": "mapa-cripto",
+      "reasoning": "Lo que define a la cifra asimétrica es que la clave se divide en dos partes: con una (por ejemplo, la pública) se cifra y con la otra (la privada) se descifra. La simétrica usa una sola clave compartida para ambas cosas. La división entre bloque y flujo es una clasificación interna de la simétrica, no lo que la separa de la asimétrica.",
+      "options": {
+        "a": "Incorrecta. Es justo al revés: la simétrica usa la misma clave para cifrar y descifrar.",
+        "b": "Correcta. La asimétrica usa un par de claves distintas pero relacionadas: lo cifrado con una se descifra con la otra.",
+        "c": "Incorrecta. Bloque y flujo son dos tipos de cifra simétrica; la asimétrica no se define como «en flujo».",
+        "d": "Incorrecta. Mismo error que la c al revés: flujo y bloque son subtipos de la simétrica."
+      }
+    },
+    "redes-t06-02": {
+      "section": "aes",
+      "reasoning": "En 2001 el NIST publicó AES (FIPS 197) como nuevo estándar mundial de cifra simétrica para reemplazar al envejecido DES. El algoritmo que ganó el concurso se llamaba Rijndael, así que AES no sustituye a Rijndael: es Rijndael estandarizado.",
+      "options": {
+        "a": "Incorrecta. Rijndael es el algoritmo elegido para convertirse en AES, no el estándar al que sustituye.",
+        "b": "Incorrecta. IDEA es otro cifrador simétrico, pero nunca fue el estándar que AES vino a reemplazar.",
+        "c": "Incorrecta. RC4 es un cifrador en flujo; AES (en bloque) no se creó como su sustituto.",
+        "d": "Correcta. AES nace como sustituto de DES como estándar mundial de cifra simétrica."
+      }
+    },
+    "redes-t06-03": {
+      "section": "aes",
+      "reasoning": "AES procesa bloques de 128 bits con claves estándar de 128, 192 o 256 bits. Basta con buscar la terna exacta y descartar las que tienen valores inventados o no admitidos.",
+      "options": {
+        "a": "Incorrecta. AES no admite claves de 64 bits; ese tamaño es más propio de bloques de cifradores antiguos.",
+        "b": "Incorrecta. 206 bits no es un tamaño de clave de AES; el intermedio es 192.",
+        "c": "Correcta. Las claves estándar de AES son de 128, 192 y 256 bits.",
+        "d": "Incorrecta. AES no tiene claves de 512 bits; la mayor es de 256."
+      }
+    },
+    "redes-t06-04": {
+      "section": "clave-publica",
+      "reasoning": "La cifra asimétrica es unas mil veces más lenta que la simétrica, por lo que en la práctica solo se cifran números pequeños, de unas pocas centenas de bits: una clave de sesión o un hash. Los mensajes grandes se cifran con algoritmos simétricos.",
+      "options": {
+        "a": "Correcta. Con algoritmos asimétricos se cifran valores de pocos bits, como claves de sesión o resúmenes hash.",
+        "b": "Incorrecta. Técnicamente podría hacerse, pero no se suele hacer por su lentitud; para mensajes grandes se usa la cifra simétrica.",
+        "c": "Incorrecta. Es al contrario: la asimétrica es unas mil veces más lenta que la simétrica.",
+        "d": "Incorrecta. Sí permiten cifrar datos (por ejemplo, RSA cifra N^e mod n); lo que ocurre es que se limitan a valores pequeños."
+      }
+    },
+    "redes-t06-05": {
+      "section": "hash",
+      "reasoning": "En la firma digital, la cifra asimétrica es demasiado lenta para operar sobre un documento entero. Por eso primero se aplica una función hash, que reduce el documento a un resumen de tamaño fijo, y la firma con la clave privada se aplica sobre ese resumen. Al verificar se recalcula el hash y se compara.",
+      "options": {
+        "a": "Incorrecta. El hash no oculta el contenido: no es cifrado y el documento viaja aparte, en claro si no se cifra.",
+        "b": "Correcta. La función hash obtiene el resumen del documento sobre el que se aplica la firma.",
+        "c": "Incorrecta. La clave privada nunca se envía; el hash ni siquiera usa claves.",
+        "d": "Incorrecta. Un hash no tiene nada que ver con permisos de acceso a ficheros."
+      }
+    },
+    "redes-t06-06": {
+      "section": "md5-sha",
+      "reasoning": "MD5 aplica a cada bloque de 512 bits cuatro rondas (funciones F, G, H, I) de 16 operaciones cada una: 4 × 16 = 64 vueltas. Hay que distinguirlo de las 16 operaciones por ronda y de las 80 vueltas de SHA-1.",
+      "options": {
+        "a": "Correcta. MD5 hace 64 vueltas por bloque (4 rondas de 16).",
+        "b": "Incorrecta. 16 son las operaciones de cada una de las cuatro rondas, no el total.",
+        "c": "Incorrecta. 80 vueltas son las de SHA-1 (4 rondas de 20).",
+        "d": "Incorrecta. 128 es el tamaño en bits del resumen de MD5, no el número de vueltas."
+      }
+    },
+    "redes-t06-07": {
+      "section": "md5-sha",
+      "reasoning": "MD5 tiene cuatro vectores de 32 bits (ABCD): 4 × 32 = 128 bits. SHA-1 tiene cinco (ABCDE): 5 × 32 = 160 bits. Con esta multiplicación se descartan los valores inventados.",
+      "options": {
+        "a": "Incorrecta. MD5 produce 128 bits, no 124.",
+        "b": "Incorrecta. SHA-1 produce 160 bits, no 164.",
+        "c": "Correcta. MD5 da 128 bits y SHA-1 da 160 bits.",
+        "d": "Incorrecta. SHA-1 produce 160 bits, no 168."
+      }
+    },
+    "redes-t06-08": {
+      "section": "rsa",
+      "reasoning": "En RSA se cifra un número N con la clave pública (n, e) calculando C = N^e mod n. Aquí N = 3, e = 5 y n = 35, así que C = 3^5 mod 35 (= 243 mod 35 = 33). La base es el mensaje, el exponente es e y el módulo es n.",
+      "options": {
+        "a": "Incorrecta. Pone e como base, n como exponente y el mensaje como módulo: todo cambiado de sitio.",
+        "b": "Incorrecta. Usa n como exponente y e como módulo; el exponente debe ser e y el módulo n.",
+        "c": "Incorrecta. Invierte base y exponente: la base es el mensaje (3), no la clave e (5).",
+        "d": "Correcta. C = N^e mod n = 3^5 mod 35."
+      }
+    },
+    "redes-t06-09": {
+      "section": "rsa",
+      "reasoning": "RSA publica n = p · q, donde p y q son primos grandes y secretos. Quien consiga factorizar n obtiene p y q, calcula Φ(n) y de ahí la clave privada d. Como factorizar un número grande producto de dos primos es computacionalmente inabordable, la clave privada queda protegida.",
+      "options": {
+        "a": "Correcta. La seguridad de RSA se basa en la dificultad de factorizar un número grande que es producto de dos primos.",
+        "b": "Incorrecta. El logaritmo discreto es la base de Diffie-Hellman, no de RSA.",
+        "c": "Incorrecta. Un número primo no se puede factorizar (solo es divisible por 1 y por sí mismo); lo que se factoriza es el producto de dos primos.",
+        "d": "Incorrecta. La opción a es correcta."
+      }
+    },
+    "redes-t06-10": {
+      "section": "diffie-hellman",
+      "reasoning": "Ambos son de clave pública, pero hacen cosas distintas: RSA permite cifrar valores con la clave pública del receptor y firmar con la privada del emisor; Diffie-Hellman permite que dos partes calculen el mismo secreto sin enviarlo nunca. Además, en ambos los participantes guardan valores secretos.",
+      "options": {
+        "a": "Incorrecta. Ninguno es simétrico ni de flujo: ambos pertenecen a la criptografía de clave pública.",
+        "b": "Correcta. RSA cifra o firma; Diffie-Hellman acuerda un secreto compartido.",
+        "c": "Incorrecta. En Diffie-Hellman cada parte se queda su secreto (a o b) y solo envía α^a mod p o α^b mod p; nunca se transmite una clave privada.",
+        "d": "Incorrecta. RSA se basa justamente en una clave pública (n, e)."
+      }
+    },
+    "redes-t06-11": {
+      "section": "cifra-bloque",
+      "reasoning": "La cifra en bloque agrupa el texto en claro en bloques de n bits (típicamente 128) y cifra cada bloque como una unidad con la clave. Eso la distingue de la cifra en flujo (bit a bit), de la asimétrica (dos claves) y de los hash (huella sin clave).",
+      "options": {
+        "a": "Incorrecta. Procesar bit a bit sin agrupar describe la cifra en flujo.",
+        "b": "Incorrecta. Dos claves distintas es lo propio de la cifra asimétrica; la de bloque usa una única clave compartida.",
+        "c": "Correcta. Procesa grupos de bits de tamaño definido (bloques).",
+        "d": "Incorrecta. Una huella irreversible de longitud fija es una función hash, no un cifrado."
+      }
+    },
+    "redes-t06-12": {
+      "section": "hash",
+      "reasoning": "Un cifrado usa una clave y tiene una operación inversa (descifrado) que recupera el mensaje. Una función hash no tiene clave y no es reversible: solo produce un resumen de longitud fija, independiente del tamaño de la entrada. Por eso el temario dice que no puede considerarse un algoritmo de cifra.",
+      "options": {
+        "a": "Incorrecta. Recuperar el mensaje con una clave es lo que hace el cifrado; el hash no se descifra.",
+        "b": "Correcta. Produce una huella de tamaño fijo y no es un cifrado con clave.",
+        "c": "Incorrecta. La longitud del hash es fija y no depende del tamaño del archivo.",
+        "d": "Incorrecta. El hash no usa claves; el par pública/privada es de la cifra asimétrica."
+      }
+    },
+    "redes-t06-13": {
+      "section": "clave-publica",
+      "reasoning": "En un esquema de clave pública la clave se divide en dos partes inversas entre sí: una pública, que se difunde, y una privada, que solo conoce su propietario.",
+      "options": {
+        "a": "Correcta. Las dos partes son la clave pública y la clave privada.",
+        "b": "Incorrecta. Una clave «secreta compartida con todos» es una contradicción; además una de las dos es pública.",
+        "c": "Incorrecta. Si ambas fueran públicas, cualquiera podría descifrar o firmar; una tiene que ser privada.",
+        "d": "Incorrecta. Una única clave para cifrar y descifrar es cifra simétrica, y publicarla anularía la seguridad."
+      }
+    },
+    "redes-t06-14": {
+      "section": "aes",
+      "reasoning": "AES procesa siempre bloques completos de 128 bits (matriz de estado de 4×4 bytes). El tamaño de la clave puede ser 128, 192 o 256 bits, pero eso no cambia el bloque.",
+      "options": {
+        "a": "Incorrecta. 256 bits es uno de los tamaños de clave posibles, no el del bloque.",
+        "b": "Incorrecta. 192 bits es otro tamaño de clave, no el del bloque.",
+        "c": "Incorrecta. En AES el bloque es fijo y no depende de la longitud de la clave.",
+        "d": "Correcta. AES usa bloques de 128 bits."
+      }
+    },
+    "redes-t06-15": {
+      "section": "diffie-hellman",
+      "reasoning": "En Diffie-Hellman cada parte elige un secreto, envía α elevado a ese secreto módulo p y, con lo que recibe del otro, calcula el mismo valor K. El resultado es un secreto compartido acordado mediante valores intercambiados en público, que luego se usa como clave de sesión.",
+      "options": {
+        "a": "Incorrecta. Diffie-Hellman no cifra documentos; solo genera la clave que luego usará un cifrado simétrico.",
+        "b": "Incorrecta. No produce firmas digitales; para firmar se usa, por ejemplo, RSA con la clave privada.",
+        "c": "Correcta. Permite acordar un secreto compartido a partir del intercambio de valores públicos.",
+        "d": "Incorrecta. El protocolo por sí solo no autentica a los extremos; solo acuerda un secreto."
+      }
+    },
+    "redes-t06-16": {
+      "section": "aes",
+      "reasoning": "Las longitudes de clave estándar de AES son 128, 192 y 256 bits; el bloque, en cambio, es fijo de 128 bits. Hay que buscar exactamente esa terna.",
+      "options": {
+        "a": "Incorrecta. AES admite también claves de 192 y 256 bits, no solo de 128.",
+        "b": "Correcta. AES admite claves de 128, 192 y 256 bits.",
+        "c": "Incorrecta. AES no admite claves de 64 bits y sí de 256.",
+        "d": "Incorrecta. AES no admite claves de 512 bits y sí de 192."
+      }
+    },
+    "redes-t06-17": {
+      "section": "cifra-bloque",
+      "reasoning": "Las rondas de sustitución y permutación buscan que cada bit de salida dependa de forma compleja de todos los bits de entrada. El resultado es el efecto avalancha: cambiar un solo bit de entrada o de la clave cambia aproximadamente el 50 % de los bits de salida.",
+      "options": {
+        "a": "Incorrecta. Que un cambio solo afecte al mismo bit de salida es lo contrario de la avalancha y dejaría ver patrones.",
+        "b": "Correcta. Un pequeño cambio en la entrada altera muchos bits de salida (alrededor de la mitad).",
+        "c": "Incorrecta. La salida depende del contenido del bloque y de la clave, no solo de su posición.",
+        "d": "Incorrecta. Las rondas sirven precisamente para borrar los patrones del texto, no para conservarlos."
+      }
+    },
+    "redes-t06-18": {
+      "section": "modos-bloque",
+      "reasoning": "En ECB cada bloque se cifra de forma independiente con la misma clave, así que dos bloques de texto iguales dan el mismo bloque cifrado. Eso revela patrones (inicios o finales iguales, bloques repetidos) y permite repetir o sustituir bloques. Por eso no se recomienda.",
+      "options": {
+        "a": "Correcta. Cifra los bloques de manera independiente y puede revelar patrones.",
+        "b": "Incorrecta. Encadenar cada bloque con el criptograma anterior es lo que hace CBC.",
+        "c": "Incorrecta. Usar un contador distinto para cada bloque es lo que hace CTR.",
+        "d": "Incorrecta. ECB no elimina la igualdad entre bloques idénticos; ese es justamente su problema."
+      }
+    },
+    "redes-t06-19": {
+      "section": "firma-digital",
+      "reasoning": "Los algoritmos de firma de clave pública son muy lentos y solo operan sobre números de unos cientos de bits. Una función hash reduce un documento de cualquier tamaño a una huella compacta de longitud fija, y es esa huella la que se firma. El hash adapta el documento a la operación de firma.",
+      "options": {
+        "a": "Incorrecta. La identidad del firmante la aporta su clave privada; el hash solo representa el contenido.",
+        "b": "Incorrecta. El resumen no permite recuperar el original: es irreversible.",
+        "c": "Incorrecta. Tener longitud fija no garantiza que no haya colisiones; de hecho, MD5 y SHA-1 las tienen.",
+        "d": "Correcta. La huella compacta adapta el documento al tamaño con el que puede trabajar la operación de firma."
+      }
+    },
+    "redes-t06-20": {
+      "section": "clave-publica",
+      "reasoning": "Para dar confidencialidad se cifra con la clave pública del destinatario, porque solo él tiene la clave privada que permite descifrar. Si el destinatario es Bernardo, se usa la clave pública de Bernardo.",
+      "options": {
+        "a": "Incorrecta. Cifrar con la privada de Alicia es firmar: cualquiera con la pública de Alicia podría descifrarlo, así que no hay confidencialidad.",
+        "b": "Incorrecta. Lo cifrado con la pública de Alicia solo lo descifra Alicia, no Bernardo.",
+        "c": "Correcta. Se cifra con la clave pública de Bernardo para que solo su clave privada pueda descifrarlo.",
+        "d": "Incorrecta. Solo el tercero podría descifrarlo con su privada; Bernardo no."
+      }
+    },
+    "redes-t06-21": {
+      "section": "firma-digital",
+      "reasoning": "Alicia firma con su clave privada (S = H^d mod n). Cualquiera que conozca su clave pública (n, e) puede calcular S^e mod n y recuperar el hash firmado para compararlo. La verificación usa, por tanto, la parte pública del par del firmante.",
+      "options": {
+        "a": "Incorrecta. La clave privada de Bernardo no tiene relación con el par de claves de Alicia.",
+        "b": "Correcta. La firma hecha con la privada de Alicia se verifica con la pública de Alicia.",
+        "c": "Incorrecta. La pública de Bernardo sirve para enviarle algo confidencial, no para verificar firmas de Alicia.",
+        "d": "Incorrecta. La clave privada nunca se entrega a nadie; si Bernardo la tuviera, podría falsificar firmas de Alicia."
+      }
+    },
+    "redes-t06-22": {
+      "section": "cifra-flujo",
+      "reasoning": "XOR es involutiva: (M ⊕ S) ⊕ S = M. En la cifra en flujo se cifra con M ⊕ Si y se descifra aplicando otra vez XOR con la misma secuencia Si, que devuelve el texto en claro. Por eso la misma operación sirve para cifrar y descifrar.",
+      "options": {
+        "a": "Correcta. Aplicar XOR dos veces con la misma secuencia recupera el dato original.",
+        "b": "Incorrecta. Lo que da cero es hacer XOR de un valor consigo mismo (X ⊕ X), no aplicar dos veces la secuencia a un dato.",
+        "c": "Incorrecta. Precisamente la misma secuencia es la que permite recuperar el dato.",
+        "d": "Incorrecta. No hace falta una operación inversa distinta: XOR es su propia inversa."
+      }
+    },
+    "redes-t06-23": {
+      "section": "hash",
+      "reasoning": "Una función hash convierte cualquier archivo en una huella de unos pocos cientos de bits. En esa reducción se pierde información, no hay clave ni descifrado, y por eso es imposible reconstruir el archivo: el hash solo sirve para comparar y comprobar integridad.",
+      "options": {
+        "a": "Incorrecta. La salida no permite reconstruir la entrada: es irreversible.",
+        "b": "Incorrecta. Un hash no es una compresión tipo ZIP; no conserva el archivo.",
+        "c": "Incorrecta. El hash no usa claves y no se descifra.",
+        "d": "Correcta. Resume la información y no proporciona un descifrado del original."
+      }
+    },
+    "redes-t06-24": {
+      "section": "clave-publica",
+      "reasoning": "La cifra simétrica es unas mil veces más rápida y es la adecuada para mucho volumen. La asimétrica solo es práctica para valores pequeños, como la clave de sesión o el hash que se firma. La combinación correcta es el esquema híbrido.",
+      "options": {
+        "a": "Correcta. Cifrado simétrico para el contenido y mecanismos asimétricos para material reducido (clave de sesión, firma del hash).",
+        "b": "Incorrecta. Cifrar un archivo muy grande con asimétrica sería lentísimo; por eso se usa una clave de sesión simétrica.",
+        "c": "Incorrecta. Un hash no se descifra ni permite recuperar el archivo.",
+        "d": "Incorrecta. La firma aporta autenticidad e integridad, no oculta el contenido."
+      }
+    },
+    "redes-t06-25": {
+      "section": "hash",
+      "reasoning": "Una función hash entrega siempre un resumen de un número fijo de bits, sea cual sea el tamaño de la entrada. Dos ficheros de tamaños distintos procesados con la misma función dan salidas de la misma longitud, fijada por el algoritmo (128 bits en MD5, 160 en SHA-1, 256 en SHA-256…).",
+      "options": {
+        "a": "Incorrecta. La longitud del hash no es proporcional al tamaño de la entrada.",
+        "b": "Incorrecta. El tamaño del bloque interno (512 bits en MD5) no coincide con el del resumen (128 bits).",
+        "c": "Incorrecta. Procesar más o menos bloques no cambia la longitud final del resumen.",
+        "d": "Correcta. Ambas salidas tienen la misma longitud, fijada por el algoritmo."
+      }
+    },
+    "redes-t06-26": {
+      "section": "firma-digital",
+      "reasoning": "Al verificar, el receptor recupera con la clave pública el hash firmado y calcula el hash del documento recibido. Si coinciden, acepta; si no, rechaza. Que difieran significa que el documento no es el que se firmó, así que la firma se rechaza.",
+      "options": {
+        "a": "Incorrecta. El nombre del archivo no interviene en la verificación; cuenta la huella del contenido.",
+        "b": "Incorrecta. Que la clave pública sea válida no compensa que el contenido no coincida.",
+        "c": "Correcta. Si los resúmenes no coinciden, la firma se rechaza.",
+        "d": "Incorrecta. El tamaño no importa: basta con cambiar un bit para que el hash sea distinto."
+      }
+    },
+    "redes-t06-27": {
+      "section": "aes",
+      "reasoning": "En AES el bloque es siempre de 128 bits; la clave puede ser de 128, 192 o 256 bits. Con una clave de 256 bits, cada bloque sigue midiendo 128 bits.",
+      "options": {
+        "a": "Incorrecta. 256 bits es la longitud de la clave en este caso, no la del bloque.",
+        "b": "Correcta. AES procesa bloques de 128 bits con cualquier longitud de clave.",
+        "c": "Incorrecta. 192 bits es otro tamaño de clave posible, no el del bloque.",
+        "d": "Incorrecta. En AES el bloque no depende de la clave elegida."
+      }
+    },
+    "redes-t06-28": {
+      "section": "md5-sha",
+      "reasoning": "El temario dice que MD5 está obsoleto desde mediados de 2005 por graves fallos de diseño (colisiones) y por su resumen de solo 128 bits. Por tanto, no debe elegirse para una garantía nueva de integridad; hay que usar SHA-2 o SHA-3.",
+      "options": {
+        "a": "Correcta. MD5 está obsoleto y presenta fallos de diseño.",
+        "b": "Incorrecta. MD5 es justamente famoso por no resistir colisiones.",
+        "c": "Incorrecta. MD5 es una función hash sin clave, no un cifrador de bloque; los 128 bits son de su resumen.",
+        "d": "Incorrecta. Un hash por sí solo no identifica al remitente; la firma requiere la clave privada del emisor."
+      }
+    },
+    "redes-t06-29": {
+      "section": "clave-publica",
+      "reasoning": "Para que solo Bernardo pueda leer el secreto, Alicia debe cifrarlo con la clave pública de Bernardo, ya que solo la privada de Bernardo lo descifra. Si usa su propia clave pública, solo la privada de Alicia podría descifrarlo y Bernardo no podrá leerlo.",
+      "options": {
+        "a": "Incorrecta. Cifrar con la privada de Alicia no da confidencialidad: cualquiera con su pública podría leerlo.",
+        "b": "Incorrecta. Describe precisamente el error cometido, no el requisito que se incumple.",
+        "c": "Correcta. El requisito es usar la clave pública de Bernardo para que su clave privada permita descifrar.",
+        "d": "Incorrecta. La clave privada de Bernardo nunca se comparte."
+      }
+    },
+    "redes-t06-30": {
+      "section": "firma-digital",
+      "reasoning": "La firma protege el hash del contenido tal como estaba al firmar. Si el documento cambia después, el hash recalculado en recepción será distinto del recuperado de la firma y la verificación de integridad no coincidirá.",
+      "options": {
+        "a": "Incorrecta. El tamaño no importa: cualquier cambio de un bit cambia el hash.",
+        "b": "Correcta. La verificación de integridad no coincidirá porque el hash del documento modificado es distinto del firmado.",
+        "c": "Incorrecta. El nombre del archivo no forma parte de la verificación.",
+        "d": "Incorrecta. La verificación compara precisamente la huella del contenido; no ignora el contenido."
+      }
+    }
+  }
+}

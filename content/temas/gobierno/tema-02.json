@@ -1,0 +1,1247 @@
+{
+  "course": "gobierno",
+  "number": 2,
+  "title": "Gobierno de la seguridad de la información",
+  "minutes": 40,
+  "intro": {
+    "why": "Muchas empresas gastan mucho en seguridad y aun así sufren incidentes graves porque nadie en la dirección decidió qué proteger primero ni comprobó si el dinero se usaba bien. Este tema explica cómo la dirección «gobierna» la seguridad (misión, estrategia y Plan Director) y cómo se gestionan bien los servicios de TI con acuerdos de nivel de servicio (SLA) e ITIL, la biblioteca de buenas prácticas más conocida del sector.",
+    "before": [
+      "La **seguridad de la información** protege que los datos estén disponibles, íntegros (sin alterar) y confidenciales (solo para quien debe verlos).",
+      "Un **riesgo** es la posibilidad de que algo malo ocurra y cause un daño; se gestiona reduciéndolo hasta un nivel que la empresa acepta, nunca a cero.",
+      "Un **control** o **medida de seguridad** es cualquier cosa que reduce un riesgo: una copia de seguridad, una contraseña, un curso de formación.",
+      "**TI** son las tecnologías de la información (ordenadores, redes, aplicaciones); **TIC** añade las comunicaciones."
+    ],
+    "goals": [
+      "Explicar qué es el gobierno de la seguridad y sus tres objetivos.",
+      "Distinguir misión, visión, objetivos y estrategia de seguridad.",
+      "Describir para qué sirve un Plan Director de Seguridad y sus seis fases.",
+      "Definir un servicio de TI y un SLA, y calcular una disponibilidad.",
+      "Explicar qué es ITIL, sus características y cómo trata la capacidad y la seguridad."
+    ]
+  },
+  "sections": [
+    {
+      "id": "gobierno",
+      "title": "Gobierno de la seguridad: el consejo que marca el rumbo",
+      "pages": [
+        5,
+        5
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Antes de hablar de cortafuegos o antivirus hay que responder a una pregunta más básica: **¿quién decide hacia dónde va la seguridad de una empresa y quién responde si sale mal?** La respuesta es el **gobierno**."
+        },
+        {
+          "type": "analogy",
+          "text": "Piensa en un barco. La tripulación (técnicos) rema, iza velas y repara vías de agua. Pero alguien en el puente de mando decide el destino, vigila las tormentas y controla que no se malgaste combustible. Ese puente de mando es el gobierno. Si nadie está en el puente, el barco puede estar impecable y aun así ir directo a las rocas."
+        },
+        {
+          "type": "term",
+          "term": "Gobierno (corporativo)",
+          "text": "Conjunto de responsabilidades y prácticas que ejerce la **Dirección** (el consejo, el CEO, los directivos) para dar dirección estratégica, asegurarse de que se logran los objetivos, comprobar que los riesgos se gestionan bien y verificar que los recursos se usan con responsabilidad."
+        },
+        {
+          "type": "term",
+          "term": "CEO (Chief Executive Officer)",
+          "text": "Consejero delegado o director ejecutivo: la máxima responsabilidad de gestión de la empresa."
+        },
+        {
+          "type": "term",
+          "term": "Gobierno de la seguridad de la información",
+          "text": "La misma idea aplicada a proteger la información: la Dirección fija para qué sirve la seguridad, cuánto riesgo se acepta y cómo se invierte. No es una tarea técnica del día a día, sino de dirección y supervisión."
+        },
+        {
+          "type": "table",
+          "title": "Los tres grandes objetivos del gobierno de la seguridad",
+          "head": [
+            "Objetivo",
+            "Qué significa en la práctica"
+          ],
+          "rows": [
+            [
+              "Dar dirección estratégica y apoyar los objetivos",
+              "Alinear la seguridad con la estrategia de negocio y **optimizar** las inversiones en seguridad para que apoyen esos objetivos."
+            ],
+            [
+              "Gestionar adecuadamente los riesgos",
+              "Identificar y valorar los riesgos y aplicar medidas que reduzcan su impacto hasta un **nivel aceptable** (no a cero)."
+            ],
+            [
+              "Verificar el uso responsable de los recursos",
+              "Aprovechar al máximo el conocimiento y la infraestructura disponibles, y controlar y monitorizar la **eficacia y eficiencia** de los controles ya implantados."
+            ]
+          ]
+        },
+        {
+          "type": "term",
+          "term": "Eficacia y eficiencia",
+          "text": "Eficaz es lo que consigue el objetivo; eficiente es lo que lo consigue sin derrochar recursos. Un control puede ser eficaz pero carísimo (ineficiente)."
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico: la dirección que se lava las manos",
+          "text": "Una empresa contrata a un responsable de seguridad y la dirección le dice «encárgate tú de todo». Nunca se revisan objetivos, presupuestos ni resultados. Aunque el técnico sea brillante, falla el gobierno: nadie en la cúpula fija prioridades ni comprueba si el dinero se usa bien. Delegar la ejecución es normal; **lo que no se puede delegar es la responsabilidad de dirigir y supervisar**."
+        },
+        {
+          "type": "p",
+          "text": "Fíjate también en que la seguridad implica a **toda la organización**: la dirección (CEO) la lidera y responde de ella, el responsable de cumplimiento normativo vigila que se cumplan las leyes, y hasta el personal de limpieza tiene acceso físico a despachos, papeleras con documentos o equipos encendidos. Todos necesitan pautas."
+        },
+        {
+          "type": "exam",
+          "text": "Trampa típica: «lograr **siempre el mínimo coste**» suena razonable, pero **no** es un objetivo del gobierno. El objetivo es **optimizar** la inversión (gastar bien), no gastar lo mínimo: un ahorro extremo puede dejar riesgos sin cubrir. Otra trampa: tareas operativas («ejecutar las copias», «gestionar las alertas del antivirus») no son gobierno; gobierno es dirigir, fijar prioridades y supervisar riesgos y recursos."
+        },
+        {
+          "type": "exam",
+          "text": "Si preguntan qué roles están implicados en la seguridad (CEO, cumplimiento normativo, limpieza…), la respuesta que suele buscarse es **«todos»**."
+        },
+        {
+          "type": "key",
+          "text": "Gobierno = dirección estratégica + gestión de riesgos hasta un nivel aceptable + uso responsable y supervisado de los recursos. Lo ejerce la Dirección y no se resuelve comprando herramientas."
+        }
+      ]
+    },
+    {
+      "id": "mision-vision",
+      "title": "Misión, visión, objetivos y estrategia de seguridad",
+      "pages": [
+        6,
+        7
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Toda empresa tiene unos **fundamentos estratégicos**: una misión, una visión y unos objetivos. El gobierno de la seguridad debe tener los suyos y, sobre todo, deben **cooperar** con los de la empresa, no ir por libre."
+        },
+        {
+          "type": "analogy",
+          "text": "Piensa en un viaje en familia. La **misión** es el porqué («descansar juntos»). La **visión** es la imagen del destino («una casa en la playa tranquila»). Los **objetivos** son metas concretas («llegar el sábado, gastar menos de 1.000 €»). La **estrategia** es la ruta que eliges para llegar, y la cambias si hay un atasco."
+        },
+        {
+          "type": "table",
+          "title": "Las piezas del gobierno de la seguridad",
+          "head": [
+            "Elemento",
+            "Qué describe",
+            "¿Cambia a menudo?"
+          ],
+          "rows": [
+            [
+              "Misión de seguridad",
+              "**Por qué** la seguridad de la información es relevante para la organización. Sirve de contexto para decidir.",
+              "Casi nunca: es una realidad prácticamente invariable, que puede lograrse de varias formas."
+            ],
+            [
+              "Visión de seguridad",
+              "Lo que la entidad **desea que llegue a ser** su seguridad. Guía la definición de la estrategia.",
+              "Se revisa de forma periódica."
+            ],
+            [
+              "Objetivos de seguridad",
+              "Metas concretas que la seguridad debe alcanzar, ligadas a los objetivos de la empresa.",
+              "Se fijan para un periodo."
+            ],
+            [
+              "Estrategia de seguridad",
+              "**Cómo** alcanzar las metas definidas.",
+              "Se revisa periódicamente, porque el entorno cambia sin parar."
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "La figura del temario coloca la **estrategia** en el centro: une la misión (y la misión de seguridad) con los objetivos (y los objetivos de seguridad). Es decir, la estrategia es el puente entre el porqué y las metas, y así se conecta la seguridad con su **aportación al negocio**."
+        },
+        {
+          "type": "list",
+          "title": "Qué contiene la estrategia de seguridad",
+          "items": [
+            "**Cómo aporta valor** la seguridad a la entidad, ligando sus iniciativas a las de negocio.",
+            "**Cómo reducir los riesgos**, teniendo en cuenta el cumplimiento normativo (leyes y normas que obligan) y la reducción de costes.",
+            "**Cómo se protege** la organización frente a impactos de negocio, cómo responde a la evolución de las amenazas y cómo piensa **mejorar las medidas existentes**: formación, tecnología, concienciación…"
+          ]
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico",
+          "text": "Una tienda online tiene como objetivo de negocio vender más en Navidad. Una estrategia de seguridad alineada se pregunta: ¿qué riesgos amenazan las ventas (caída de la web, fraude con tarjetas)? ¿Qué medidas los reducen con el presupuesto disponible? Una estrategia «independiente» que solo pensara en tener la última tecnología podría bloquear la web por exceso de controles justo en campaña."
+        },
+        {
+          "type": "exam",
+          "text": "Trampa típica: «la estrategia de seguridad debe ser **independiente** de la estrategia de negocio para mantener la visión de los objetivos TIC» es **falso**. TIC son las tecnologías de la información y las comunicaciones. La seguridad debe **alinearse** y apoyar al negocio. Sí son ciertos: revisarla periódicamente, tener en cuenta los niveles de riesgo y considerar la mejora de las medidas existentes."
+        },
+        {
+          "type": "exam",
+          "text": "Si preguntan qué vincula la estrategia con su aportación al negocio, la respuesta es **la misión y los objetivos de seguridad**, no el número de controles ni el catálogo de productos."
+        },
+        {
+          "type": "key",
+          "text": "Misión = por qué (estable). Visión = a qué aspiramos (se revisa). Estrategia = cómo llegamos (se revisa a menudo). Todo debe apoyar las metas del negocio, nunca ir aparte."
+        }
+      ]
+    },
+    {
+      "id": "plan-director",
+      "title": "El Plan Director de Seguridad: la hoja de ruta",
+      "pages": [
+        7,
+        7
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "La estrategia dice hacia dónde ir; falta un documento que la convierta en proyectos con fechas y presupuesto. Ese documento es el **Plan Director de Seguridad (PDS)**."
+        },
+        {
+          "type": "analogy",
+          "text": "Es como el plan de reforma de una casa vieja. Primero ves cómo está (tuberías, cables, humedades), luego decides cómo quieres que quede en unos años y, por último, haces una lista ordenada de obras: lo urgente primero, lo que cabe en el presupuesto, en el orden lógico."
+        },
+        {
+          "type": "term",
+          "term": "Plan Director de Seguridad (PDS)",
+          "text": "Herramienta para implantar la estrategia de seguridad en un periodo que suele ir de **2 a 5 años como máximo**. Permite definir las directrices de seguridad en consonancia con los objetivos corporativos y definir, planificar y formalizar las actividades de seguridad."
+        },
+        {
+          "type": "list",
+          "title": "Las tres preguntas que responde un PDS",
+          "items": [
+            "**Dónde estamos**: el estado actual de la seguridad y de la gestión de riesgos.",
+            "**Dónde queremos llegar**: el resultado deseado en un plazo fijado, con objetivos **coherentes, medibles y alcanzables**.",
+            "**Cómo llegamos**: el plan de proyectos que describe cómo se alcanzarán esos objetivos."
+          ]
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico",
+          "text": "Una gestoría de 40 empleados descubre que no tiene copias de seguridad fiables ni control de quién accede a los expedientes. Su PDS a tres años podría ser: año 1, copias de seguridad y formación básica; año 2, control de accesos y cifrado de portátiles; año 3, plan de continuidad. Cada proyecto se justifica por un riesgo y un objetivo."
+        },
+        {
+          "type": "exam",
+          "text": "El test pregunta «¿para qué sirve un PDS?». La respuesta es **ordenar y priorizar iniciativas conforme a objetivos y riesgos**. Son incorrectas las opciones que dicen que sustituye al análisis de riesgos, que ejecuta proyectos sin prioridades o que la seguridad queda «concluida» tras comprar controles."
+        },
+        {
+          "type": "key",
+          "text": "El PDS traduce la estrategia en un plan de proyectos a 2-5 años: situación actual → situación deseada → proyectos priorizados para cubrir la diferencia."
+        }
+      ]
+    },
+    {
+      "id": "fases-pds",
+      "title": "Fases del Plan Director y el modelo de seguridad",
+      "pages": [
+        8,
+        8
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "El temario resume la elaboración de un PDS en seis fases. Conviene aprenderlas en orden, porque el test pregunta qué cabe y qué **no** cabe en cada una."
+        },
+        {
+          "type": "steps",
+          "title": "Fases de un Plan Director de Seguridad",
+          "items": [
+            "**Definición de un modelo de seguridad**: qué se quiere proteger y con qué criterios (ver la lista de más abajo).",
+            "**Análisis de la situación actual**: diagnóstico de cómo está hoy la seguridad y la gestión de riesgos.",
+            "**Realización de un análisis GAP**: medir la diferencia entre lo que hay y lo que se quiere.",
+            "**Definición del plan de acción**: proyectos, su alcance, recursos humanos y económicos, y **priorización** y planificación.",
+            "**Aprobación y desarrollo del PDS**: la Dirección lo aprueba y se ejecutan los proyectos.",
+            "**Seguimiento del plan y de los objetivos**: comprobar que se avanza y corregir."
+          ]
+        },
+        {
+          "type": "term",
+          "term": "Análisis GAP (análisis de brecha)",
+          "text": "«Gap» es «hueco» en inglés. Se compara la madurez de seguridad actual con la deseada y se identifica lo que falta. Ese hueco es lo que deben rellenar los proyectos."
+        },
+        {
+          "type": "list",
+          "title": "Qué debe tener en cuenta el modelo de seguridad",
+          "items": [
+            "**Los objetivos y la estrategia corporativa**: el resultado deseado en un plazo fijado.",
+            "**La gestión de los riesgos**: conocerlos y saber cómo gestionarlos.",
+            "**Las necesidades del negocio**: primero se fijan los objetivos de seguridad y **luego** las medidas o controles.",
+            "**Los estándares y buenas prácticas** del sector.",
+            "**Las circunstancias tecnológicas y operativas**."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Para que el plan de proyectos sea realista debe considerar el **conocimiento interno** de la empresa, los **recursos**, el **presupuesto** y la **tecnología** disponible."
+        },
+        {
+          "type": "term",
+          "term": "ISO/IEC 27001",
+          "text": "Norma internacional (ISO: Organización Internacional de Normalización; IEC: Comisión Electrotécnica Internacional) que fija los requisitos de un SGSI (Sistema de Gestión de Seguridad de la Información) y trae un catálogo de controles. Es una referencia, no una lista que haya que cumplir entera sin pensar."
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico: comprar antes de pensar",
+          "text": "Un hospital compra un sistema carísimo de prevención de fugas de datos porque «lo tiene todo el mundo». Luego descubre que su mayor riesgo era que las copias de seguridad no funcionaban. El orden correcto era: objetivos → riesgos → medidas. Igual pasa al copiar el mismo control a dos negocios con objetivos incompatibles: hay que revisar si encaja con las necesidades y la estrategia de cada uno."
+        },
+        {
+          "type": "exam",
+          "text": "Trampas típicas: (1) «Cumplir **todos y cada uno** de los controles de ISO/IEC 27001» **nunca** es una fase del PDS: los controles se seleccionan según riesgos y alcance. (2) En la fase de **definición del plan de acción** se define alcance, se estiman recursos y se prioriza; **implementar controles no** pertenece a esa fase, sino a la ejecución (desarrollo). (3) Con presupuesto limitado, se prioriza por **riesgos evaluados, estado actual y objetivos de negocio**, no por preferencias del proveedor o descuentos."
+        },
+        {
+          "type": "key",
+          "text": "Seis fases: modelo → situación actual → GAP → plan de acción (priorizar) → aprobación y desarrollo → seguimiento. Primero objetivos y riesgos; después controles."
+        }
+      ]
+    },
+    {
+      "id": "servicio-ti",
+      "title": "Qué es un servicio de TI",
+      "pages": [
+        9,
+        9
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "La segunda mitad del tema cambia de escala: pasa del gobierno a cómo se gestionan bien los **servicios de TI** (tecnologías de la información). Antes se veía la informática como un montón de máquinas; hoy se ve como un **servicio** que integra aspectos humanos, sociales y tecnológicos."
+        },
+        {
+          "type": "analogy",
+          "text": "Un restaurante no vende «hornos y sartenes»: vende comidas. Para servirlas hacen falta cocineros y camareros (personas), recetas y turnos (procesos) y cocina equipada (tecnología). Si falta cualquiera de las tres, el cliente se queda sin cenar aunque el horno sea el mejor del mundo."
+        },
+        {
+          "type": "term",
+          "term": "Servicio de TI",
+          "text": "Lo que un **proveedor** presta a uno o más **clientes** usando tecnologías de la información para **apoyarles en sus procesos de negocio**. Combina **personas, procesos y tecnología** y debe definirse en un **acuerdo de nivel de servicio**."
+        },
+        {
+          "type": "list",
+          "title": "Tres ideas de la definición",
+          "items": [
+            "**Apoyo al cliente**: si el servicio falla, hay usuarios que no pueden trabajar. Esa es la vara de medir.",
+            "**Tres componentes**: personas, procesos y tecnología; los tres cuentan al definir, diseñar y evaluar el servicio.",
+            "**Acuerdo de nivel de servicio (SLA)**: el «contrato» que hace el servicio predecible y evaluable sin ambigüedad."
+          ]
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico",
+          "text": "El servicio de correo de una empresa no es «el servidor de correo». Incluye al equipo que lo administra, el procedimiento para dar de alta a un empleado nuevo, la mesa de ayuda que atiende incidencias y el compromiso de que funcione el 99 % del tiempo. Un servicio de TI tampoco tiene por qué entregar un producto físico: un soporte técnico o una consultoría también son servicios."
+        },
+        {
+          "type": "exam",
+          "text": "Si una opción dice que un servicio es «solo infraestructura y aplicaciones, sin intervención humana», «solo el contrato y la factura» o que la responsabilidad «acaba al entregar el hardware», es falsa: faltan personas y procesos."
+        },
+        {
+          "type": "key",
+          "text": "Servicio de TI = personas + procesos + tecnología, orientado a apoyar al cliente y definido en un SLA."
+        }
+      ]
+    },
+    {
+      "id": "sla",
+      "title": "Acuerdos de nivel de servicio (SLA)",
+      "pages": [
+        9,
+        10
+      ],
+      "blocks": [
+        {
+          "type": "term",
+          "term": "SLA (Service Level Agreement, acuerdo de nivel de servicio)",
+          "text": "Acuerdo formal sobre cómo se reparte la responsabilidad de los medios informáticos entre el **DSI** (Departamento de Sistemas de Información) y los **usuarios finales**. Puede considerarse un contrato."
+        },
+        {
+          "type": "analogy",
+          "text": "Es como el contrato con la compañía de la luz: dice qué te garantizan (potencia, horas de suministro), qué haces tú (no manipular el contador), cómo se mide y qué te compensan si fallan. Sin él, «el servicio va bien» es una opinión; con él, es un dato."
+        },
+        {
+          "type": "list",
+          "title": "Recursos que debe abarcar un SLA (no solo los técnicos)",
+          "items": [
+            "Hardware y software.",
+            "Personal.",
+            "Datos.",
+            "Redes.",
+            "Procedimientos."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Los SLA no son exclusivos de la relación DSI-usuarios: se usan en **cualquier** relación de prestación de servicios. En general son un documento, normalmente de carácter legal, por el que una empresa se compromete a prestar un servicio a otra bajo ciertas condiciones y con **prestaciones mínimas**. Son muy habituales en los contratos de **outsourcing**."
+        },
+        {
+          "type": "term",
+          "term": "Outsourcing (externalización)",
+          "text": "Contratar fuera, a otra empresa, una función que antes hacía la propia organización; por ejemplo, el mantenimiento de los servidores."
+        },
+        {
+          "type": "p",
+          "text": "La **gran ventaja** de un SLA es que las responsabilidades quedan claramente definidas y los procesos del día a día quedan determinados con precisión. Además, como los niveles de calidad son explícitos, el servicio se puede evaluar sin ambigüedad en distintas dimensiones (disponibilidad, tiempo de respuesta, seguridad…)."
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico: la promesa vacía",
+          "text": "Un proveedor de alojamiento web promete «alta disponibilidad». ¿Qué es «alta»? ¿Se mide al mes o al año? ¿Desde cuándo cuenta una caída? Sin esas definiciones no hay nada que reclamar. Lo que falta concretar es la **medición y las condiciones** del SLA."
+        },
+        {
+          "type": "exam",
+          "text": "Ventajas de los SLA que pregunta el test: identifican responsabilidades del departamento TIC y de los usuarios, abarcan recursos no solo TIC (personal, datos, procedimientos) y se usan en outsourcing. Si aparecen las tres, la respuesta es **«todas las anteriores»**. Un SLA documenta **compromisos y responsabilidades**; no es un simple precio ni una lista de preferencias tecnológicas."
+        },
+        {
+          "type": "key",
+          "text": "Un SLA convierte «el servicio debe ir bien» en compromisos medibles y responsabilidades claras entre proveedor y cliente."
+        }
+      ]
+    },
+    {
+      "id": "disponibilidad",
+      "title": "Medir la disponibilidad y penalizar los fallos",
+      "pages": [
+        10,
+        11
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "El temario pone un ejemplo de cláusula de SLA: la **garantía de disponibilidad de red**, es decir, el tiempo en que el servidor tiene conexión a internet en su puerto de red."
+        },
+        {
+          "type": "code",
+          "title": "Fórmula de disponibilidad",
+          "text": "D = (T - Td) / T\n\nD  = disponibilidad del servicio (en %)\nT  = tiempo total del mes\nTd = tiempo con pérdida total de conectividad\n     (desde que se abre la incidencia hasta que se cierra)"
+        },
+        {
+          "type": "example",
+          "title": "Cálculo paso a paso",
+          "text": "Un mes de 30 días tiene T = 720 horas. Si la red estuvo caída Td = 10 horas: D = (720 − 10) / 720 = 0,986 → **98,6 %**. Según la tabla, cae en el tramo «99 % > D ≥ 98 %», nivel de penalización A."
+        },
+        {
+          "type": "table",
+          "title": "Tramos de penalización del ejemplo",
+          "head": [
+            "Disponibilidad real",
+            "Penalización"
+          ],
+          "rows": [
+            [
+              "99 % > D ≥ 98 %",
+              "Nivel A"
+            ],
+            [
+              "98 % > D ≥ 96 %",
+              "Nivel B"
+            ],
+            [
+              "96 % > D ≥ 90 %",
+              "Nivel C"
+            ],
+            [
+              "D < 90 %",
+              "Nivel D"
+            ]
+          ]
+        },
+        {
+          "type": "list",
+          "title": "Reglas para contar el tiempo de caída",
+          "items": [
+            "El tiempo de caída **empieza** cuando se avisa al DSI del problema.",
+            "**Termina** cuando el DSI comprueba que el servicio se ha restaurado por completo.",
+            "**No cuenta** como caída la causada por mal uso o mala configuración de la red por parte del cliente."
+          ]
+        },
+        {
+          "type": "exam",
+          "text": "Lo que se evalúa aquí es la idea: un compromiso de disponibilidad solo sirve si define **cómo se mide**, **desde cuándo** cuenta la caída y **qué consecuencias** tiene. Y las cifras recogidas tienen valor cuando se **comparan con los niveles pactados** y se usan para mejorar, no cuando se archivan o se presume del mejor mes."
+        },
+        {
+          "type": "key",
+          "text": "Disponibilidad = (tiempo total − tiempo caído) / tiempo total. Un buen SLA fija la fórmula, las reglas de cómputo y las penalizaciones."
+        }
+      ]
+    },
+    {
+      "id": "itil-origen",
+      "title": "ITIL: de dónde viene y quién está detrás",
+      "pages": [
+        11,
+        12
+      ],
+      "blocks": [
+        {
+          "type": "term",
+          "term": "ITIL (IT Infrastructure Library, Biblioteca de Infraestructura de TI)",
+          "text": "Colección de **buenas prácticas** para gestionar servicios de TI. Nació a finales de los ochenta, cuando el gobierno británico recopiló cómo gestionaban sus servicios las organizaciones con más éxito y lo publicó en una serie de libros."
+        },
+        {
+          "type": "analogy",
+          "text": "ITIL es como un gran recetario recopilado preguntando a los mejores restaurantes: no te obliga a usar una marca de horno, te cuenta qué hacen los que lo hacen bien."
+        },
+        {
+          "type": "table",
+          "title": "Organizaciones que aparecen en el tema",
+          "head": [
+            "Sigla",
+            "Qué es",
+            "Papel"
+          ],
+          "rows": [
+            [
+              "itSMF (IT Service Management Forum)",
+              "Foro internacional e independiente de usuarios de gestión de servicios TI, propiedad de sus miembros.",
+              "Intercambio de experiencias; influye en buenas prácticas y estándares. Primera filial: Reino Unido (1991); después Países Bajos (1993)."
+            ],
+            [
+              "OGC (Office of Government Commerce)",
+              "Oficina independiente del Tesoro británico.",
+              "Según el temario, dueña de ITIL; auspició ITIL v3."
+            ],
+            [
+              "APMG (APM Group)",
+              "Empresa contratada por la OGC.",
+              "Proveedor acreditado: define y gestiona los exámenes, formadores y materiales de ITIL v3."
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Nota de actualidad: hoy la versión vigente es **ITIL 4** y la propiedad ha cambiado de manos (pasó a AXELOS y después a PeopleCert). Para el test, quédate con lo que dice el temario: origen en el gobierno británico y propiedad de la OGC."
+        },
+        {
+          "type": "p",
+          "text": "Algo que conviene tener claro: **ITIL certifica personas** (con exámenes como ITIL Foundation), no empresas. Una organización que quiere certificar su gestión de servicios usa una **norma** como ISO/IEC 20000, y para su seguridad, ISO/IEC 27001. ITIL es una guía de buenas prácticas, no un estándar certificable."
+        },
+        {
+          "type": "exam",
+          "text": "Trampa: «cualquier compañía que provea servicios de TI puede obtener una **certificación ITIL**» es **falsa**. Las otras dos afirmaciones que suelen acompañarla son ciertas: el SLA es un elemento básico de un servicio de TI, y un servicio de TI no tiene por qué entregar un producto TIC."
+        },
+        {
+          "type": "key",
+          "text": "ITIL nació en el gobierno británico como recopilación de buenas prácticas de gestión de servicios TI. Es una guía: certifica a personas, no a empresas."
+        }
+      ]
+    },
+    {
+      "id": "itil-caracteristicas",
+      "title": "Cómo es ITIL: guía no propietaria y no prescriptiva",
+      "pages": [
+        12,
+        13
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "El principio de ITIL es **recoger todo lo que funciona**. De ahí salen cuatro rasgos que el test adora."
+        },
+        {
+          "type": "table",
+          "title": "Las cuatro características de ITIL",
+          "head": [
+            "Característica",
+            "Qué significa"
+          ],
+          "rows": [
+            [
+              "No propietario",
+              "No depende de ninguna tecnología ni sector, ni pertenece a un fabricante: era propiedad del gobierno británico."
+            ],
+            [
+              "No prescriptivo",
+              "Recoge prácticas maduras y probadas de aplicación general; **no obliga** a nada ni impone tecnologías o técnicas concretas. Cada entidad las adapta."
+            ],
+            [
+              "Mejores prácticas",
+              "Es el resultado de la experiencia acumulada a nivel mundial."
+            ],
+            [
+              "Buenas prácticas",
+              "No todo lo que contiene es «lo mejor»: lo que hoy es lo mejor, mañana será solo bueno o común, porque se descubren formas mejores o cambia el entorno."
+            ]
+          ]
+        },
+        {
+          "type": "term",
+          "term": "Prescriptivo",
+          "text": "Que dicta obligatoriamente qué hacer y cómo. Una ley es prescriptiva; un recetario de consejos, no."
+        },
+        {
+          "type": "table",
+          "title": "Guías, modelos y estándares (esquema de la página 3)",
+          "head": [
+            "Tipo",
+            "Ejemplo",
+            "¿Certificable?"
+          ],
+          "rows": [
+            [
+              "Guía de buenas prácticas",
+              "ITIL",
+              "No (certifica personas)"
+            ],
+            [
+              "Modelo de madurez",
+              "O-ISM3 (modelo abierto de gestión de la seguridad de The Open Group)",
+              "No es su finalidad principal"
+            ],
+            [
+              "Estándar",
+              "ISO/IEC 27001",
+              "Sí, la organización se certifica"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Los tres caminos alimentan el **gobierno de la ciberseguridad**: el gobierno se apoya en guías, modelos y estándares, sin confundirlos."
+        },
+        {
+          "type": "exam",
+          "text": "Trampas: «ITIL impone la misma herramienta a todos», «exige aplicar todas las prácticas sin adaptarlas» o «son **siempre** las mejores prácticas posibles» son falsas. No prescriptivo = **propone sin imponer tecnología**. Y el proceso de seguridad de ITIL **no prescribe** requisitos de un SGSI para ser «compatible con ITIL»."
+        },
+        {
+          "type": "key",
+          "text": "ITIL: no propietario, no prescriptivo, mejores prácticas… que con el tiempo pasan a ser solo buenas. Guía, no estándar certificable."
+        }
+      ]
+    },
+    {
+      "id": "itil-practicas",
+      "title": "Prácticas de ITIL: predictivas, consistentes, medibles y adaptables",
+      "pages": [
+        13,
+        14
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "ITIL agrupa sus prácticas en dos bloques: **soporte de servicios** (lo del día a día) y **entrega del servicio** (la planificación a medio plazo)."
+        },
+        {
+          "type": "table",
+          "title": "Esquema de gestión de servicios TI",
+          "head": [
+            "Soporte de servicios",
+            "Entrega del servicio"
+          ],
+          "rows": [
+            [
+              "Service desk (mesa de servicio: el punto único de contacto con usuarios)",
+              "Gestión de los niveles de servicio (los SLA)"
+            ],
+            [
+              "Gestión de incidentes (restablecer el servicio cuanto antes)",
+              "Gestión financiera"
+            ],
+            [
+              "Gestión de problemas (buscar la causa raíz de incidentes repetidos)",
+              "Gestión de la disponibilidad"
+            ],
+            [
+              "Gestión de configuración (inventario de componentes y relaciones)",
+              "Gestión de la capacidad"
+            ],
+            [
+              "Gestión del cambio (aprobar cambios de forma controlada)",
+              "—"
+            ],
+            [
+              "Gestión de entregas (poner en producción versiones nuevas)",
+              "—"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Las prácticas que recoge ITIL comparten tres rasgos:"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Predictivas en lugar de reactivas**: estudian los patrones de uso de clientes y usuarios para anticiparse, en vez de esperar a que algo se rompa.",
+            "**Consistentes y medibles**: son estables, dan predictibilidad a los servicios y se evalúan con indicadores.",
+            "**Adaptables**: permiten optimizarlas y aplicar **mejora continua**."
+          ]
+        },
+        {
+          "type": "analogy",
+          "text": "Un buen médico de cabecera es predictivo (te mira la tensión cada año antes de que haya infarto), consistente (sigue protocolos), medible (anota cifras para comparar) y adaptable (cambia el tratamiento si no funciona)."
+        },
+        {
+          "type": "term",
+          "term": "KPI (Key Performance Indicator, indicador clave de rendimiento)",
+          "text": "Una cifra que mide si una práctica cumple su objetivo; por ejemplo, «porcentaje de incidencias resueltas en menos de 4 horas»."
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico",
+          "text": "Un equipo recoge cada mes cifras de disponibilidad y las guarda en una carpeta. Eso no aporta nada. Las cifras valen cuando se **comparan con lo pactado en el SLA** y se usan para decidir mejoras. Ser medible sirve para **evaluar de forma consistente** el desempeño, no para sustituir el juicio ni para «garantizar» que no habrá incidentes."
+        },
+        {
+          "type": "exam",
+          "text": "Trampas: «son reactivas en lugar de predictivas» es al revés. Lo que permite mejorar un servicio con el tiempo es que sus prácticas sean **adaptables y medibles**, no congelar el diseño ni depender de un único experto."
+        },
+        {
+          "type": "key",
+          "text": "Soporte (día a día) y entrega (planificación). Toda práctica ITIL es predictiva, consistente, medible y adaptable (mejora continua)."
+        }
+      ]
+    },
+    {
+      "id": "capacidad",
+      "title": "Ejemplo completo: la gestión de la capacidad",
+      "pages": [
+        14,
+        15
+      ],
+      "blocks": [
+        {
+          "type": "term",
+          "term": "Gestión de la capacidad",
+          "text": "Práctica que asegura que la infraestructura de TI se proporciona **cuando se necesita, en el volumen necesario y al precio adecuado**, garantizando su uso eficiente."
+        },
+        {
+          "type": "analogy",
+          "text": "Es como el encargado de una pizzería que mira cuántos pedidos hubo los viernes anteriores y contrata repartidores extra antes de que llegue la avalancha, sin pagar repartidores ociosos el lunes."
+        },
+        {
+          "type": "table",
+          "title": "Las cuatro características aplicadas a la capacidad",
+          "head": [
+            "Característica",
+            "Cómo se ve en la gestión de la capacidad"
+          ],
+          "rows": [
+            [
+              "Predictiva",
+              "Factor crítico de éxito: dar **previsiones precisas de la demanda** de TI."
+            ],
+            [
+              "Consistente",
+              "Implantar políticas, procesos y procedimientos de gestión de la capacidad."
+            ],
+            [
+              "Medible",
+              "KPI como **dinero gastado en capacidad no utilizada** y **número de incidentes o violaciones del SLA debidos a la capacidad**."
+            ],
+            [
+              "Adaptable",
+              "Implementar cambios relacionados con la capacidad."
+            ]
+          ]
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico",
+          "text": "El consumo de almacenamiento de una empresa crece un 15 % cada trimestre, de forma previsible. Lo correcto es **prever la demanda y ajustar los recursos** antes de llenarse. Esperar a la saturación, comprar según las ofertas del fabricante o bajar el nivel de servicio sin revisar compromisos son errores. Si además las incidencias por falta de capacidad aumentan cada mes, el indicador pertinente es el **número de incumplimientos (violaciones de SLA) por capacidad**, no el total de incidencias mezcladas."
+        },
+        {
+          "type": "exam",
+          "text": "Para gestionar la capacidad sirve información sobre **previsiones de demanda y recursos no utilizados**; un inventario sin datos de uso o el precio de compra no bastan."
+        },
+        {
+          "type": "key",
+          "text": "Capacidad = la cantidad justa, en el momento justo, al precio justo. Se gestiona con previsiones de demanda y se mide con capacidad ociosa e incumplimientos de SLA por capacidad."
+        }
+      ]
+    },
+    {
+      "id": "itil-seguridad",
+      "title": "La gestión de la seguridad en ITIL",
+      "pages": [
+        15,
+        17
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "ITIL también tiene un proceso para la seguridad, y se **basa en la norma ISO 27001**. El flujo es sencillo: los **clientes** formulan requisitos; esos requisitos se traducen en servicios de seguridad y en una **calidad de seguridad** que debe quedar comprometida en la **sección de seguridad del SLA**."
+        },
+        {
+          "type": "analogy",
+          "text": "Es como encargar una caja fuerte para tu tienda: tú dices qué necesitas proteger y el proveedor se compromete por escrito a un nivel concreto (resistencia, horas de vigilancia). Esa promesa escrita es la sección de seguridad del SLA."
+        },
+        {
+          "type": "table",
+          "title": "Subprocesos de gestión de la seguridad en ITIL",
+          "head": [
+            "Subproceso",
+            "Objetivo"
+          ],
+          "rows": [
+            [
+              "Diseño de controles de seguridad",
+              "Diseñar medidas técnicas y organizativas que aseguren la **disponibilidad, integridad y confidencialidad** de recursos y servicios."
+            ],
+            [
+              "Pruebas de seguridad",
+              "Que los mecanismos de seguridad se prueben con regularidad."
+            ],
+            [
+              "Gestión de incidentes de seguridad",
+              "Detectar y combatir ataques e intrusiones y minimizar el daño de las brechas."
+            ],
+            [
+              "Revisión de la seguridad",
+              "Comprobar que las medidas son coherentes con el riesgo que percibe el negocio y que se revisan y evalúan con regularidad."
+            ]
+          ]
+        },
+        {
+          "type": "term",
+          "term": "Disponibilidad, integridad y confidencialidad",
+          "text": "Las tres dimensiones clásicas de la seguridad: que la información esté accesible cuando se necesita, que no se altere sin permiso y que solo la vea quien debe."
+        },
+        {
+          "type": "table",
+          "title": "KPI típicos del proceso de seguridad",
+          "head": [
+            "KPI",
+            "Qué mide",
+            "¿Antes o después del incidente?"
+          ],
+          "rows": [
+            [
+              "Medidas de prevención implementadas",
+              "Medidas puestas en respuesta a amenazas identificadas",
+              "Pre-incidente"
+            ],
+            [
+              "Duración de la implementación",
+              "Tiempo desde que se identifica una amenaza hasta que hay contramedida",
+              "Pre-incidente"
+            ],
+            [
+              "Incidentes de seguridad importantes",
+              "Incidentes clasificados por severidad",
+              "Post-incidente"
+            ],
+            [
+              "Caídas del nivel de servicio por seguridad",
+              "Incidentes que limitaron o interrumpieron la disponibilidad",
+              "Post-incidente (ligado a disponibilidad)"
+            ],
+            [
+              "Test de seguridad",
+              "Pruebas (y formaciones) realizadas",
+              "Pre-incidente"
+            ],
+            [
+              "Problemas identificados en los test",
+              "Fallos descubiertos en las pruebas",
+              "Pre-incidente"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Fíjate en la relación con los **modelos económicos de la seguridad**: unos indicadores miden la inversión en prevenir (pre-incidente) y otros el daño sufrido (post-incidente). Y como ITIL está orientado al servicio, uno de los KPI mide directamente la **disponibilidad**."
+        },
+        {
+          "type": "exam",
+          "text": "Si preguntan dónde se refleja la calidad de seguridad comprometida de un servicio, la respuesta es **la sección de seguridad del SLA**, no ofertas comerciales sin métricas ni instrucciones internas que el cliente desconoce. Y recuerda: ITIL se apoya en ISO 27001, pero no «prescribe» requisitos de SGSI ni es compatible solo con una versión concreta."
+        },
+        {
+          "type": "key",
+          "text": "Seguridad en ITIL: basada en ISO 27001, nace de los requisitos del cliente y se compromete en el SLA. Cuatro subprocesos (diseño, pruebas, incidentes, revisión) y KPI pre y post-incidente."
+        }
+      ]
+    }
+  ],
+  "summary": [
+    "El gobierno de la seguridad lo ejerce la Dirección: alinea la seguridad con el negocio, gestiona los riesgos hasta un nivel aceptable y vigila el uso de los recursos (optimizar, no gastar lo mínimo).",
+    "Misión = por qué importa la seguridad (estable); visión = a qué se aspira; estrategia = cómo llegar (se revisa a menudo). Nunca independiente del negocio.",
+    "El Plan Director de Seguridad (2-5 años) tiene seis fases: modelo, situación actual, GAP, plan de acción, aprobación y desarrollo, seguimiento.",
+    "Primero objetivos y riesgos, después controles; no se aplican todos los controles de ISO 27001 sin elegir.",
+    "Un servicio de TI combina personas, procesos y tecnología y se define en un SLA.",
+    "El SLA reparte responsabilidades, abarca todos los recursos, se usa en outsourcing y debe fijar cómo se mide: D = (T − Td) / T.",
+    "ITIL es una guía de buenas prácticas del gobierno británico: no propietaria, no prescriptiva y no certifica empresas.",
+    "Las prácticas ITIL son predictivas, consistentes, medibles y adaptables (mejora continua).",
+    "Gestión de la capacidad: lo necesario, cuando se necesita y al precio adecuado; se mide con capacidad ociosa e incumplimientos de SLA por capacidad.",
+    "La seguridad en ITIL se basa en ISO 27001, se compromete en la sección de seguridad del SLA y se mide con KPI pre y post-incidente."
+  ],
+  "glossary": [
+    {
+      "term": "Gobierno de la seguridad",
+      "text": "Responsabilidades y prácticas de la Dirección para orientar la seguridad, gestionar sus riesgos y supervisar sus recursos."
+    },
+    {
+      "term": "CEO (Chief Executive Officer)",
+      "text": "Director ejecutivo o consejero delegado."
+    },
+    {
+      "term": "Misión de seguridad",
+      "text": "Por qué la seguridad de la información es relevante para la organización; casi invariable."
+    },
+    {
+      "term": "Visión de seguridad",
+      "text": "Lo que la entidad quiere que llegue a ser su seguridad; se revisa periódicamente."
+    },
+    {
+      "term": "Estrategia de seguridad",
+      "text": "Cómo se alcanzan las metas de seguridad; se revisa periódicamente."
+    },
+    {
+      "term": "PDS (Plan Director de Seguridad)",
+      "text": "Plan de proyectos de seguridad a 2-5 años que lleva de la situación actual a la deseada."
+    },
+    {
+      "term": "Análisis GAP",
+      "text": "Comparación entre el estado actual y el deseado para identificar lo que falta."
+    },
+    {
+      "term": "ISO/IEC 27001",
+      "text": "Norma internacional certificable que define los requisitos de un SGSI."
+    },
+    {
+      "term": "SGSI",
+      "text": "Sistema de Gestión de Seguridad de la Información."
+    },
+    {
+      "term": "TI / TIC",
+      "text": "Tecnologías de la información / tecnologías de la información y las comunicaciones."
+    },
+    {
+      "term": "Servicio de TI",
+      "text": "Prestación de un proveedor a clientes, basada en TI, que combina personas, procesos y tecnología."
+    },
+    {
+      "term": "SLA (Service Level Agreement)",
+      "text": "Acuerdo de nivel de servicio: compromisos, responsabilidades y niveles medibles de un servicio."
+    },
+    {
+      "term": "DSI",
+      "text": "Departamento de Sistemas de Información."
+    },
+    {
+      "term": "Outsourcing",
+      "text": "Externalización: encargar a otra empresa una función propia."
+    },
+    {
+      "term": "ITIL",
+      "text": "IT Infrastructure Library: biblioteca de buenas prácticas de gestión de servicios de TI."
+    },
+    {
+      "term": "itSMF",
+      "text": "IT Service Management Forum: foro internacional e independiente de usuarios de gestión de servicios TI."
+    },
+    {
+      "term": "OGC",
+      "text": "Office of Government Commerce: oficina del Tesoro británico, dueña de ITIL según el temario."
+    },
+    {
+      "term": "APMG",
+      "text": "Empresa acreditada por la OGC para los exámenes y la formación de ITIL v3."
+    },
+    {
+      "term": "O-ISM3",
+      "text": "Modelo abierto de madurez para la gestión de la seguridad de la información."
+    },
+    {
+      "term": "KPI",
+      "text": "Key Performance Indicator: indicador clave de rendimiento."
+    },
+    {
+      "term": "Gestión de la capacidad",
+      "text": "Práctica ITIL que asegura la infraestructura necesaria, cuando se necesita y al precio adecuado."
+    }
+  ],
+  "questions": {
+    "gobierno-t02-01": {
+      "section": "gobierno",
+      "reasoning": "El gobierno de la seguridad tiene tres objetivos: alinear la seguridad con la estrategia, gestionar los riesgos hasta un nivel aceptable y usar los recursos con responsabilidad. Hablar de optimizar inversiones no es lo mismo que gastar siempre lo mínimo: un ahorro a toda costa puede dejar riesgos importantes sin cubrir. La pregunta pide lo que NO es un objetivo.",
+      "options": {
+        "a": "Incorrecta. Alinear la seguridad con los objetivos estratégicos es el primer objetivo del gobierno.",
+        "b": "Correcta. Lograr «siempre el mínimo coste» no es un objetivo: el gobierno busca optimizar la inversión, no minimizarla a costa de la protección.",
+        "c": "Incorrecta. Gestionar adecuadamente los riesgos es uno de los tres objetivos del gobierno.",
+        "d": "Incorrecta. Usar de la mejor forma los recursos disponibles corresponde al objetivo de verificar el uso responsable de los recursos."
+      }
+    },
+    "gobierno-t02-02": {
+      "section": "fases-pds",
+      "reasoning": "El PDS parte del modelo de seguridad, diagnostica la situación actual, mide la brecha (GAP) con el estado deseado y planifica proyectos priorizados. Los controles se seleccionan según riesgos, alcance y necesidades del negocio; aplicar sin más todos los controles de una norma contradice ese enfoque.",
+      "options": {
+        "a": "Incorrecta. El diagnóstico del estado actual es la fase de análisis de la situación actual.",
+        "b": "Correcta. Cumplir todos y cada uno de los controles de ISO/IEC 27001 no es una fase del PDS: los controles se eligen según riesgos y objetivos.",
+        "c": "Incorrecta. Identificar la diferencia de madurez entre lo actual y lo deseado es el análisis GAP.",
+        "d": "Incorrecta. Revisar los objetivos y la estrategia corporativa forma parte de la definición del modelo de seguridad."
+      }
+    },
+    "gobierno-t02-03": {
+      "section": "gobierno",
+      "reasoning": "La seguridad de la información no es solo cosa del departamento técnico. La Dirección (el CEO) la lidera y responde de ella; el responsable de cumplimiento vela por las leyes y normas; y el personal de limpieza tiene acceso físico a despachos, papeles y equipos. Todos tienen un papel.",
+      "options": {
+        "a": "Incorrecta. El personal de limpieza sí está implicado, pero no es el único: la opción d es más completa.",
+        "b": "Incorrecta. El responsable de cumplimiento normativo está implicado, pero no es el único.",
+        "c": "Incorrecta. El CEO dirige el gobierno de la seguridad, pero no es el único implicado.",
+        "d": "Correcta. Todos esos roles influyen en la seguridad de la información de la empresa."
+      }
+    },
+    "gobierno-t02-04": {
+      "section": "mision-vision",
+      "reasoning": "La estrategia de seguridad describe cómo alcanzar las metas, se revisa periódicamente porque el entorno cambia, tiene en cuenta los riesgos y busca mejorar las medidas existentes. Sobre todo, debe ligar las iniciativas de seguridad a las de negocio. Separarla de la estrategia de negocio va contra su razón de ser. Se pide la opción falsa.",
+      "options": {
+        "a": "Incorrecta. Es cierto: la estrategia se revisa periódicamente por los cambios del entorno.",
+        "b": "Correcta. Es falso: la estrategia de seguridad debe alinearse con la de negocio, no ser independiente.",
+        "c": "Incorrecta. Es cierto: la estrategia incluye cómo reducir los riesgos.",
+        "d": "Incorrecta. Es cierto: la estrategia contempla cómo mejorar las medidas existentes (formación, tecnología, concienciación)."
+      }
+    },
+    "gobierno-t02-05": {
+      "section": "fases-pds",
+      "reasoning": "El PDS prioriza los proyectos partiendo de la situación actual (diagnóstico), de los riesgos evaluados y de los objetivos de negocio, y lo ajusta al presupuesto y recursos disponibles. Con poco dinero, hay que gastarlo primero donde más riesgo se reduce para el negocio.",
+      "options": {
+        "a": "Incorrecta. El orden alfabético no tiene relación con el riesgo ni con los objetivos.",
+        "b": "Incorrecta. La preferencia del proveedor no responde a las necesidades de la organización.",
+        "c": "Incorrecta. El número de empleados por sí solo no indica dónde están los riesgos ni qué aporta al negocio.",
+        "d": "Correcta. Riesgos evaluados, estado actual y objetivos de negocio son la base de la priorización del PDS."
+      }
+    },
+    "gobierno-t02-06": {
+      "section": "fases-pds",
+      "reasoning": "La fase de definición del plan de acción es de planificación: definir el alcance de cada proyecto, estimar recursos humanos y económicos y priorizar y planificar. Implementar controles es ejecutar, y eso llega después, en la fase de aprobación y desarrollo del PDS.",
+      "options": {
+        "a": "Incorrecta. Definir el alcance de los proyectos forma parte del plan de acción.",
+        "b": "Incorrecta. Estimar y asignar recursos humanos y económicos forma parte del plan de acción.",
+        "c": "Incorrecta. Priorizar y planificar los proyectos es el núcleo del plan de acción.",
+        "d": "Correcta. Implementar controles es ejecución (desarrollo del PDS), no definición del plan de acción."
+      }
+    },
+    "gobierno-t02-07": {
+      "section": "itil-origen",
+      "reasoning": "Hay que localizar la afirmación falsa. Un servicio de TI se define en un SLA, así que el SLA es un elemento básico. Un servicio no tiene por qué entregar un producto físico (soporte, consultoría). En cambio, ITIL es una guía de buenas prácticas que certifica a personas; las organizaciones no obtienen una «certificación ITIL».",
+      "options": {
+        "a": "Incorrecta. Es cierta: la definición de servicio de TI incluye que debe definirse en un SLA.",
+        "b": "Correcta. Es falsa: ITIL no certifica empresas; es una guía de buenas prácticas y certifica a profesionales.",
+        "c": "Incorrecta. Es cierta: un servicio de TI apoya al cliente y no tiene por qué entregar un producto TIC.",
+        "d": "Incorrecta. Solo la b es falsa, así que no pueden serlo todas."
+      }
+    },
+    "gobierno-t02-08": {
+      "section": "sla",
+      "reasoning": "Según el temario, el servicio de TI debe definirse en un SLA, que hace explícitos los niveles de calidad y permite evaluarlo sin ambigüedad. ITIL no es prescriptivo, así que no impone requisitos de SGSI, y nada indica que solo sea compatible con la última versión de ISO 27001.",
+      "options": {
+        "a": "Correcta. Los servicios de TI se definen mediante SLA que fijan niveles de calidad en distintas dimensiones.",
+        "b": "Incorrecta. ITIL no es prescriptivo: se basa en ISO 27001 pero no prescribe requisitos de SGSI para ser «compatible».",
+        "c": "Incorrecta. El temario no establece esa limitación de versiones; ITIL se basa en ISO 27001 de forma general.",
+        "d": "Incorrecta. La opción a es cierta."
+      }
+    },
+    "gobierno-t02-09": {
+      "section": "sla",
+      "reasoning": "El SLA reparte responsabilidades entre el DSI y los usuarios, debe abarcar todos los recursos (hardware, software, personal, datos, redes, procedimientos) y se usa en todo tipo de prestaciones, incluido el outsourcing. Las tres primeras opciones son ventajas.",
+      "options": {
+        "a": "Incorrecta. Es una ventaja, pero no la única.",
+        "b": "Incorrecta. Es una ventaja, pero no la única.",
+        "c": "Incorrecta. Es una ventaja, pero no la única.",
+        "d": "Correcta. Las tres son ventajas o rasgos de los SLA recogidos en el temario."
+      }
+    },
+    "gobierno-t02-10": {
+      "section": "itil-practicas",
+      "reasoning": "Las prácticas de ITIL son predictivas (no reactivas), consistentes, medibles y adaptables, es decir, permiten optimización y mejora continua. Además, ITIL recoge buenas prácticas que no siempre serán «las mejores», porque lo mejor de hoy se queda en común mañana.",
+      "options": {
+        "a": "Incorrecta. Es al revés: son predictivas en lugar de reactivas.",
+        "b": "Correcta. Ser adaptables significa permitir la optimización y la mejora continua.",
+        "c": "Incorrecta. ITIL advierte de que no todas sus prácticas son siempre las mejores: con el tiempo pasan a ser solo buenas.",
+        "d": "Incorrecta. Solo la b es correcta."
+      }
+    },
+    "gobierno-t02-11": {
+      "section": "gobierno",
+      "reasoning": "El gobierno lo ejerce la Dirección para dar dirección estratégica, gestionar los riesgos y supervisar el uso de los recursos. Las tareas operativas (copias, antivirus, incidencias concretas) son gestión técnica, no gobierno.",
+      "options": {
+        "a": "Incorrecta. Ejecutar copias es una tarea operativa, no una función de la dirección.",
+        "b": "Incorrecta. Administrar las alertas del antivirus es operación técnica.",
+        "c": "Correcta. Dar dirección estratégica y supervisar los riesgos es la esencia del gobierno.",
+        "d": "Incorrecta. Resolver incidencias sin prioridades estratégicas es justo lo contrario del gobierno."
+      }
+    },
+    "gobierno-t02-12": {
+      "section": "mision-vision",
+      "reasoning": "El gobierno de la seguridad define su misión, visión y estrategia para cooperar en las metas de la organización. La misión explica por qué la seguridad importa para la entidad, así que está al servicio de sus metas de negocio.",
+      "options": {
+        "a": "Incorrecta. La misión es previa a las medidas; los controles se eligen después.",
+        "b": "Incorrecta. La misión no se limita a los productos que ya se tienen.",
+        "c": "Incorrecta. Debe cooperar con los objetivos de la empresa, no ser independiente.",
+        "d": "Correcta. La misión de seguridad debe apoyar las metas de negocio."
+      }
+    },
+    "gobierno-t02-13": {
+      "section": "servicio-ti",
+      "reasoning": "La definición de servicio de TI dice que combina personas, procesos y tecnología. Las tres piezas cuentan al definirlo, diseñarlo y evaluarlo.",
+      "options": {
+        "a": "Correcta. Personas, procesos y tecnología son los tres componentes de un servicio de TI.",
+        "b": "Incorrecta. Excluye a las personas, que son un componente esencial.",
+        "c": "Incorrecta. El contrato y la factura no son el servicio en sí.",
+        "d": "Incorrecta. Excluye los procesos, y el servicio se orienta a apoyar los procesos del cliente."
+      }
+    },
+    "gobierno-t02-14": {
+      "section": "sla",
+      "reasoning": "Un SLA es un acuerdo formal que reparte responsabilidades y fija las condiciones y prestaciones mínimas del servicio. Su gran ventaja es que las responsabilidades quedan claras.",
+      "options": {
+        "a": "Incorrecta. El precio no sustituye a los niveles de servicio.",
+        "b": "Correcta. El SLA documenta los compromisos y responsabilidades de la prestación.",
+        "c": "Incorrecta. El SLA es un compromiso con el cliente, no una lista de tareas internas.",
+        "d": "Incorrecta. Un SLA fija responsabilidades, no preferencias tecnológicas."
+      }
+    },
+    "gobierno-t02-15": {
+      "section": "plan-director",
+      "reasoning": "El PDS es la herramienta para implantar la estrategia de seguridad en 2-5 años: parte del estado actual, fija los objetivos deseados y ordena un plan de proyectos priorizado según objetivos y riesgos.",
+      "options": {
+        "a": "Incorrecta. El PDS se apoya en la gestión de riesgos; no la sustituye por un inventario.",
+        "b": "Incorrecta. Priorizar es precisamente una de sus fases.",
+        "c": "Correcta. Sirve para ordenar y priorizar las iniciativas de seguridad conforme a objetivos y riesgos.",
+        "d": "Incorrecta. La seguridad no termina al comprar controles; el PDS incluye seguimiento."
+      }
+    },
+    "gobierno-t02-16": {
+      "section": "mision-vision",
+      "reasoning": "En la figura del temario la estrategia une la misión (y la misión de seguridad) con los objetivos (y los objetivos de seguridad). Ese vínculo es el que conecta la seguridad con lo que aporta al negocio.",
+      "options": {
+        "a": "Incorrecta. Un catálogo de productos sin uso previsto no aporta valor por sí solo.",
+        "b": "Correcta. La misión y los objetivos de seguridad enlazan la estrategia con las metas de la organización.",
+        "c": "Incorrecta. Contar controles no mide la aportación al negocio.",
+        "d": "Incorrecta. El volumen de incidencias sin relacionarlo con objetivos no vincula nada."
+      }
+    },
+    "gobierno-t02-17": {
+      "section": "itil-caracteristicas",
+      "reasoning": "No prescriptivo significa que ITIL recoge prácticas generales, probadas, sin obligar a nada ni imponer tecnologías o técnicas concretas. Cada organización las adapta a su contexto.",
+      "options": {
+        "a": "Incorrecta. ITIL no impone ninguna herramienta.",
+        "b": "Incorrecta. ITIL no es una norma legal y no define obligaciones penales.",
+        "c": "Incorrecta. Al no ser prescriptivo, no exige aplicar todo sin adaptar.",
+        "d": "Correcta. Propone prácticas sin imponer una tecnología concreta."
+      }
+    },
+    "gobierno-t02-18": {
+      "section": "itil-practicas",
+      "reasoning": "Las prácticas de ITIL son predictivas porque estudian los patrones de uso de clientes y usuarios para anticiparse. Una práctica reactiva solo actúa cuando el problema ya ha ocurrido.",
+      "options": {
+        "a": "Correcta. Ser predictivo es anticipar necesidades analizando patrones de uso.",
+        "b": "Incorrecta. Intervenir solo después del fallo es la definición de reactivo.",
+        "c": "Incorrecta. Ignorar las tendencias de uso es lo contrario de predecir.",
+        "d": "Incorrecta. La antigüedad de los equipos no es un patrón de uso de los clientes."
+      }
+    },
+    "gobierno-t02-19": {
+      "section": "itil-practicas",
+      "reasoning": "Las buenas prácticas son consistentes y medibles: con indicadores (KPI) se evalúa el servicio de forma objetiva y repetible, y se puede optimizar.",
+      "options": {
+        "a": "Incorrecta. Medir sirve justamente para no depender de impresiones personales.",
+        "b": "Correcta. Un indicador medible permite evaluar el desempeño de forma consistente.",
+        "c": "Incorrecta. Una cifra no garantiza que no habrá incidentes.",
+        "d": "Incorrecta. Los indicadores se comparan con objetivos; no sirven para prescindir de ellos."
+      }
+    },
+    "gobierno-t02-20": {
+      "section": "capacidad",
+      "reasoning": "La gestión de la capacidad asegura la infraestructura cuando se necesita, en el volumen necesario y al precio adecuado. Su factor crítico es prever bien la demanda y uno de sus KPI es el dinero gastado en capacidad no utilizada.",
+      "options": {
+        "a": "Incorrecta. Un inventario sin datos de uso no dice cuánto se necesita.",
+        "b": "Incorrecta. Las incidencias ajenas al consumo no informan sobre la capacidad.",
+        "c": "Correcta. Previsiones de demanda y recursos no utilizados son justo lo que mide y usa esta práctica.",
+        "d": "Incorrecta. El coste de compra no estima la demanda futura."
+      }
+    },
+    "gobierno-t02-21": {
+      "section": "itil-seguridad",
+      "reasoning": "En ITIL, los requisitos de seguridad de los clientes se traducen en servicios y en una calidad de seguridad que se compromete en la sección de seguridad del SLA, donde queda escrita y verificable.",
+      "options": {
+        "a": "Incorrecta. Una oferta comercial sin métricas no es un compromiso verificable.",
+        "b": "Incorrecta. Si el cliente no lo conoce, no es un compromiso con él.",
+        "c": "Incorrecta. El precio no expresa niveles de prestación.",
+        "d": "Correcta. La calidad de seguridad se compromete en la sección de seguridad del SLA."
+      }
+    },
+    "gobierno-t02-22": {
+      "section": "itil-practicas",
+      "reasoning": "Las prácticas de ITIL deben ser medibles (para saber cómo va el servicio) y adaptables (para cambiarlas y aplicar mejora continua). Sin medir y sin poder adaptar, no hay mejora.",
+      "options": {
+        "a": "Incorrecta. Si las mediciones no se adaptan a las nuevas necesidades, dejan de ser útiles.",
+        "b": "Incorrecta. Depender de una sola persona va contra la consistencia.",
+        "c": "Correcta. Prácticas adaptables y medibles permiten mejorar el servicio con el tiempo.",
+        "d": "Incorrecta. No revisar el desempeño impide la mejora continua."
+      }
+    },
+    "gobierno-t02-23": {
+      "section": "servicio-ti",
+      "reasoning": "Un servicio de TI combina personas, procesos y tecnología y se orienta a apoyar al cliente en su negocio. Una lista de máquinas solo describe la tecnología.",
+      "options": {
+        "a": "Incorrecta. El inventario no describe cómo se apoya al cliente.",
+        "b": "Incorrecta. El servicio se define por su finalidad (apoyar al cliente), no por su coste.",
+        "c": "Incorrecta. La responsabilidad del servicio continúa mientras se presta, más allá del hardware.",
+        "d": "Correcta. El servicio incluye personas y procesos que apoyan al cliente, no solo máquinas."
+      }
+    },
+    "gobierno-t02-24": {
+      "section": "fases-pds",
+      "reasoning": "El modelo de seguridad dice que, según las necesidades del negocio, primero se fijan los objetivos de seguridad y luego las medidas o controles. Comprar antes de saber qué proteger invierte ese orden.",
+      "options": {
+        "a": "Correcta. Primero objetivos, después medidas: es el orden que marca el temario.",
+        "b": "Incorrecta. Es justo el orden inverso al recomendado.",
+        "c": "Incorrecta. Cada organización tiene su contexto; copiar sin comprobarlo no está alineado.",
+        "d": "Incorrecta. Los descuentos no son un criterio de seguridad."
+      }
+    },
+    "gobierno-t02-25": {
+      "section": "sla",
+      "reasoning": "Un SLA útil concreta cómo se mide el servicio y en qué condiciones (fórmula de disponibilidad, cuándo empieza y acaba una caída, penalizaciones). Sin eso, «alta disponibilidad» es una promesa vacía.",
+      "options": {
+        "a": "Incorrecta. El nombre comercial no hace medible el compromiso.",
+        "b": "Correcta. Falta la medición y las condiciones del acuerdo de nivel de servicio.",
+        "c": "Incorrecta. El logotipo no tiene que ver con los niveles de servicio.",
+        "d": "Incorrecta. Las firmas formalizan, pero no sustituyen a niveles medibles."
+      }
+    },
+    "gobierno-t02-26": {
+      "section": "capacidad",
+      "reasoning": "Uno de los KPI que el temario da para la gestión de la capacidad es el número de incidentes o violaciones de SLA debidos a la capacidad. Si crecen las incidencias de capacidad, ese es el indicador que las aísla.",
+      "options": {
+        "a": "Incorrecta. Los cambios documentales no tienen relación con el consumo.",
+        "b": "Incorrecta. Mezclar todas las incidencias impide ver las de capacidad.",
+        "c": "Correcta. El número de incumplimientos por capacidad es el KPI directamente pertinente.",
+        "d": "Incorrecta. Los correos sin clasificar no miden la capacidad."
+      }
+    },
+    "gobierno-t02-27": {
+      "section": "disponibilidad",
+      "reasoning": "Las prácticas deben ser medibles y adaptables: las cifras sirven cuando se comparan con lo pactado en el SLA y se usan para decidir mejoras. Recogerlas sin usarlas no aporta valor.",
+      "options": {
+        "a": "Incorrecta. Archivarlas sin contrastar con el SLA no aporta nada.",
+        "b": "Incorrecta. Un buen mes no garantiza los demás.",
+        "c": "Incorrecta. Una cifra agregada no sustituye a revisar las necesidades.",
+        "d": "Correcta. Relacionarlas con los compromisos y las mejoras es lo que les da valor."
+      }
+    },
+    "gobierno-t02-28": {
+      "section": "gobierno",
+      "reasoning": "El gobierno es responsabilidad de la Dirección: dar dirección estratégica, asegurarse de que se logran los objetivos y verificar el uso de los recursos. Si la dirección nunca supervisa, no está ejerciendo el gobierno.",
+      "options": {
+        "a": "Correcta. Muestra ausencia de gobierno de la seguridad: falta dirección y supervisión.",
+        "b": "Incorrecta. No es un problema técnico de antivirus, sino de dirección.",
+        "c": "Incorrecta. Delegar no demuestra que se cumplan los objetivos; hay que supervisar.",
+        "d": "Incorrecta. Comprar herramientas no sustituye a la responsabilidad directiva."
+      }
+    },
+    "gobierno-t02-29": {
+      "section": "capacidad",
+      "reasoning": "La gestión de la capacidad es predictiva: con un crecimiento previsible hay que prever la demanda y ajustar los recursos antes de la saturación, con eficiencia.",
+      "options": {
+        "a": "Correcta. Prever la demanda y ajustar recursos es exactamente la gestión de la capacidad.",
+        "b": "Incorrecta. Esperar a la saturación es reactivo.",
+        "c": "Incorrecta. Las promociones no reflejan la demanda real.",
+        "d": "Incorrecta. Rebajar el servicio sin revisar compromisos incumple el SLA."
+      }
+    },
+    "gobierno-t02-30": {
+      "section": "fases-pds",
+      "reasoning": "El modelo de seguridad debe partir de los objetivos y la estrategia corporativa y de las necesidades del negocio. Si dos negocios tienen objetivos incompatibles, un mismo control puede no servir a ambos: hay que revisar su alineamiento.",
+      "options": {
+        "a": "Incorrecta. La duración del contrato no resuelve el desajuste con las necesidades.",
+        "b": "Correcta. Hay que revisar si el control está alineado con las necesidades y la estrategia de cada entidad.",
+        "c": "Incorrecta. La versión del producto no indica si encaja con el negocio.",
+        "d": "Incorrecta. Contar controles sin relacionarlos con su finalidad no sirve."
+      }
+    }
+  }
+}

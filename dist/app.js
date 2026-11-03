@@ -495,7 +495,7 @@ window.addEventListener('storage',e=>{const path=currentRoute().path;if(e.key?.s
 document.addEventListener('visibilitychange',()=>{if(!document.hidden&&currentRoute().path==='/examen')render(false);});
 async function init() {
   try {
-    const response=await fetch('bank.json?v=2',{signal:AbortSignal.timeout(15000)});
+    const response=await fetch('bank.json?v=3',{signal:AbortSignal.timeout(15000)});
     if(!response.ok)throw Error('HTTP '+response.status);
     const data=await response.json();
     validateBank(data);

@@ -1,0 +1,1078 @@
+{
+  "course": "gobierno",
+  "number": 8,
+  "title": "Metodologías de análisis de riesgos",
+  "minutes": 45,
+  "intro": {
+    "why": "Imagina que diriges un hospital con 40 aplicaciones, 200 servidores y un presupuesto de seguridad que solo alcanza para la mitad de lo que te piden. ¿Qué proteges primero? Responder «a ojo» no sirve: hace falta un método que diga qué te puede pasar, cuánto te dolería y qué compensa arreglar. Este tema presenta los tres métodos más usados para hacerlo: Magerit (el español, obligatorio de facto en la Administración), la norma internacional ISO/IEC 27005 y la guía estadounidense NIST SP 800-30.",
+    "before": [
+      "Un **riesgo** es la posibilidad de que algo malo ocurra y cause daño; se mide combinando cuánto daño haría y con qué frecuencia o probabilidad puede ocurrir.",
+      "Un **activo** es cualquier cosa de valor para la organización que puede sufrir daño: datos, aplicaciones, servidores, redes, instalaciones o personas.",
+      "Una **amenaza** es lo que puede causar el daño (un atacante, un incendio, un error humano) y una **vulnerabilidad** es la debilidad por la que esa amenaza puede entrar (un programa sin parchear, una puerta sin cerradura).",
+      "Una **salvaguarda** o **control** es una medida que reduce el riesgo: una copia de seguridad, un antivirus, un procedimiento o un contrato.",
+      "Las dimensiones clásicas de la seguridad son **confidencialidad** (solo lo ve quien debe), **integridad** (nadie lo altera sin permiso) y **disponibilidad** (está accesible cuando se necesita)."
+    ],
+    "goals": [
+      "Al terminar sabrás explicar qué debe cumplir una buena metodología de análisis de riesgos.",
+      "Sabrás describir Magerit: su carácter público, su enfoque centrado en el activo, sus conceptos (activo, amenaza, salvaguarda, impacto, riesgo) y las tareas MAR.1 a MAR.4.",
+      "Sabrás qué factores condicionan la toma de decisiones sobre el riesgo y cuándo se puede aceptar un riesgo.",
+      "Sabrás qué aporta la ISO/IEC 27005, por qué no es certificable y en qué se diferencian la apreciación de alto nivel y la detallada.",
+      "Sabrás enumerar los cuatro componentes de la gestión del riesgo según NIST y las cuatro fases de la evaluación según NIST SP 800-30 Rev. 1.",
+      "Sabrás distinguir los enfoques cuantitativo, cualitativo y semicuantitativo, y las aproximaciones orientadas a la amenaza, al impacto en el activo y a la vulnerabilidad."
+    ]
+  },
+  "sections": [
+    {
+      "id": "por-que-metodologia",
+      "title": "Por qué hace falta una metodología",
+      "pages": [4, 5],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Piensa en el médico que te hace una revisión. No te receta medicinas al azar: primero te pregunta, te explora, mide la tensión y, con un protocolo conocido, decide qué es urgente y qué puede esperar. Si mañana te ve otro médico con el mismo protocolo, debería llegar a una conclusión parecida. Una metodología de análisis de riesgos es ese protocolo, pero aplicado a los sistemas de información de una organización."
+        },
+        {
+          "type": "term",
+          "term": "Metodología de análisis y gestión de riesgos",
+          "text": "Un método ordenado, con pasos y criterios definidos, para descubrir qué riesgos tiene una organización, medirlos y decidir qué hacer con ellos. Suele apoyarse en una **herramienta** (un programa) que hace los cálculos y guarda el historial."
+        },
+        {
+          "type": "list",
+          "title": "Requisitos de una buena metodología",
+          "items": [
+            "**Objetiva**: no depende de los gustos de quien la aplica.",
+            "**Fiable**: sus resultados se ajustan a la realidad.",
+            "**Medible**: da valores o niveles que se pueden comparar.",
+            "**Replicable**: otra persona, con los mismos datos, obtiene resultados parecidos.",
+            "Permite la **medición continua** (el riesgo cambia y hay que recalcularlo).",
+            "Está **soportada por una herramienta** de gestión.",
+            "Sus resultados son **entendibles por la dirección**, que es quien decide y paga."
+          ]
+        },
+        {
+          "type": "list",
+          "title": "Preguntas que la dirección quiere poder responder",
+          "items": [
+            "¿Cuánto riesgo asumimos si ponemos en producción una aplicación nueva que sostiene un proceso vital?",
+            "¿Cuánto sube el riesgo cuando se cae una aplicación y saltan las alarmas de monitorización?",
+            "¿Nuestro nivel de riesgo es razonable para nuestro sector?",
+            "¿Cómo cambia el riesgo cuando se descubre una amenaza nueva?"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "El tema estudia tres metodologías muy extendidas: **Magerit** (España), **ISO/IEC 27005** (norma internacional) y **NIST SP 800-30 Rev. 1** (Estados Unidos). No compiten entre sí: muchas organizaciones mezclan ideas de las tres."
+        },
+        {
+          "type": "key",
+          "text": "Una metodología de riesgos debe ser objetiva, fiable, medible y replicable, permitir medir de forma continua, apoyarse en una herramienta y producir resultados que entienda la dirección."
+        }
+      ]
+    },
+    {
+      "id": "magerit-que-es",
+      "title": "Magerit: la metodología pública española",
+      "pages": [6, 7],
+      "blocks": [
+        {
+          "type": "term",
+          "term": "Magerit",
+          "text": "Metodología de Análisis y Gestión de Riesgos de los Sistemas de Información. La desarrolló el antiguo **MAP** (Ministerio de Administraciones Públicas) y su versión 3.0 (2012) consta de tres libros: el Método, el Catálogo de Elementos y la Guía de Técnicas."
+        },
+        {
+          "type": "p",
+          "text": "Magerit es de **carácter público**: cualquiera puede usarla **sin pedir autorización previa** ni pagar licencias. Sirve a todo el que trabaja con información y con los sistemas que la tratan, no solo a la Administración."
+        },
+        {
+          "type": "p",
+          "text": "Su finalidad es de **gobierno**: dar a los órganos de dirección un marco para **tomar decisiones teniendo en cuenta los riesgos** que se derivan de usar tecnologías de la información. No es un programa ni un catálogo de fallos de productos."
+        },
+        {
+          "type": "term",
+          "term": "ENS (Esquema Nacional de Seguridad)",
+          "text": "Norma española, aprobada por real decreto (una norma del Gobierno con rango inferior a la ley), que fija la seguridad mínima de los sistemas de las administraciones públicas. Exige analizar riesgos, y Magerit es el instrumento habitual para hacerlo. Se aprobó con el Real Decreto 3/2010, sustituido hoy por el Real Decreto 311/2022."
+        },
+        {
+          "type": "term",
+          "term": "PILAR",
+          "text": "La herramienta informática que aplica la metodología Magerit, desarrollada para el CCN (Centro Criptológico Nacional). Ilustra la idea de «metodología + herramienta que la soporte»."
+        },
+        {
+          "type": "p",
+          "text": "Magerit define la **seguridad** como la capacidad de las redes y sistemas para **resistir, con un determinado nivel de confianza**, los accidentes o acciones malintencionadas que comprometan la **disponibilidad, autenticidad, integridad y confidencialidad** de los datos y de los servicios. Fíjate en que añade la **autenticidad** (saber que quien dice ser alguien lo es de verdad) a la terna clásica."
+        },
+        {
+          "type": "steps",
+          "title": "Fases de un proyecto Magerit",
+          "items": [
+            "**Planificación del proyecto**: organizar personas, tiempos y alcance.",
+            "**Análisis de riesgos**: averiguar qué podría pasar y cuánto dolería.",
+            "**Gestión de riesgos**: decidir y aplicar qué hacer con cada riesgo."
+          ]
+        },
+        {
+          "type": "exam",
+          "text": "Si te preguntan por el carácter de Magerit, busca «público» y «orientado a decisiones basadas en riesgos». Son trampas: «herramienta comercial» (la herramienta es PILAR y Magerit no se paga), «catálogo de vulnerabilidades de productos» o «requisitos penales»."
+        },
+        {
+          "type": "key",
+          "text": "Magerit es una metodología pública, gratuita y sin autorización previa, creada para que la dirección decida con conocimiento de los riesgos; se organiza en planificación, análisis y gestión."
+        }
+      ]
+    },
+    {
+      "id": "magerit-conceptos",
+      "title": "Activo, amenaza, salvaguarda, impacto y riesgo",
+      "pages": [7, 13],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Tu coche es un **activo**. Que te lo roben es una **amenaza**. La alarma y el garaje cerrado son **salvaguardas**. Si te lo roban, el daño (quedarte sin coche, pagar otro) es el **impacto**. Pero el **riesgo** no es solo el impacto: aparcar en una calle con muchos robos no es lo mismo que aparcar en un pueblo tranquilo. El riesgo combina el daño con lo probable que es que ocurra."
+        },
+        {
+          "type": "p",
+          "text": "Magerit es una metodología **centrada en el activo**: todo empieza por saber qué tienes y cuánto vale. A partir de ahí se buscan las amenazas, las salvaguardas, el impacto y el riesgo."
+        },
+        {
+          "type": "term",
+          "term": "Activo (según Magerit)",
+          "text": "Componente o funcionalidad de un sistema de información que puede ser atacado, a propósito o por accidente, con consecuencias para la organización. Incluye información y datos, servicios, aplicaciones (software), equipos (hardware), comunicaciones, recursos administrativos, recursos físicos y recursos humanos."
+        },
+        {
+          "type": "term",
+          "term": "Riesgo (según Magerit)",
+          "text": "Estimación del grado de exposición a que una amenaza se materialice sobre uno o más activos causando daños a la organización. Dicho de forma sencilla: lo que les podría pasar a los activos si no se protegieran bien."
+        },
+        {
+          "type": "term",
+          "term": "Impacto",
+          "text": "El **daño sobre el activo** derivado de que la amenaza se materialice. No incluye la frecuencia: responde a «si pasa, ¿cuánto duele?»."
+        },
+        {
+          "type": "term",
+          "term": "Riesgo como cálculo",
+          "text": "El **impacto ponderado con la tasa de ocurrencia** (expectativa de materialización) de la amenaza. Responde a «¿cuánto duele, teniendo en cuenta lo a menudo que pasa?»."
+        },
+        {
+          "type": "steps",
+          "title": "Aproximación metódica de Magerit para determinar el riesgo",
+          "items": [
+            "Determinar los **activos** relevantes, cómo se relacionan entre sí y su **valor** (qué perjuicio causaría su degradación).",
+            "Determinar a qué **amenazas** están expuestos.",
+            "Determinar qué **salvaguardas** hay y cuán eficaces son.",
+            "Estimar el **impacto**: el daño si la amenaza se materializa.",
+            "Estimar el **riesgo**: el impacto ponderado por la probabilidad de ocurrencia."
+          ]
+        },
+        {
+          "type": "example",
+          "title": "Impacto frente a riesgo con números",
+          "text": "La base de datos de clientes vale 100.000 €. Un ransomware la dejaría inutilizada en un 80 %: el **impacto** es 80.000 €. Si se estima que ese ataque ocurre una vez cada diez años (0,1 al año), el **riesgo** anual es 80.000 × 0,1 = 8.000 €. Un apagón que la degrade un 10 % (impacto 10.000 €) pero ocurra cinco veces al año da un riesgo de 50.000 €: menos impacto, más riesgo."
+        },
+        {
+          "type": "table",
+          "title": "No los confundas",
+          "head": ["Concepto", "Pregunta que responde", "¿Incluye la frecuencia?"],
+          "rows": [
+            ["Valor del activo", "¿Cuánto me importa este activo?", "No"],
+            ["Impacto", "Si la amenaza ocurre, ¿cuánto daño hace?", "No"],
+            ["Riesgo", "¿Cuánto daño espero, sabiendo lo probable que es?", "Sí"]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Magerit distingue también el **análisis de riesgos** (proceso sistemático para estimar la magnitud de los riesgos, es decir, saber qué podría pasar) del **tratamiento de riesgos** (proceso para modificar el riesgo: evitar lo que lo provoca, reducir su probabilidad, acotar sus consecuencias o compartirlo, por ejemplo con un seguro). Ambas actividades juntas forman la **gestión de riesgos**."
+        },
+        {
+          "type": "exam",
+          "text": "Trampas típicas: decir que el impacto «incorpora la frecuencia» (es el riesgo el que la incorpora); que el riesgo «solo describe la vulnerabilidad»; o que impacto y riesgo se diferencian por la moneda. Y si preguntan en qué está centrada Magerit, la respuesta es **el activo**, no el riesgo, la amenaza ni la vulnerabilidad."
+        },
+        {
+          "type": "key",
+          "text": "Magerit está centrada en el activo. Impacto = daño si la amenaza ocurre; riesgo = impacto ponderado por la probabilidad de que ocurra. Análisis + tratamiento = gestión de riesgos."
+        }
+      ]
+    },
+    {
+      "id": "magerit-proceso",
+      "title": "El proceso de gestión del riesgo en Magerit",
+      "pages": [7, 11],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Magerit está **alineada con la UNE-ISO 31000**, la norma general de gestión del riesgo (UNE es la marca de las normas españolas; UNE-ISO indica que es la versión española de una norma internacional ISO). Por eso su proceso reproduce las actividades de esa norma."
+        },
+        {
+          "type": "steps",
+          "title": "Actividades del proceso global",
+          "items": [
+            "**Determinación del contexto**: parámetros y condicionantes externos e internos, alcance, obligaciones legales, compromisos contractuales y relaciones con otras organizaciones. Con ello se fijan los criterios.",
+            "**Identificación de los riesgos**: lista de los riesgos posibles. Lo que no se identifica no se analiza y queda como **riesgo oculto** o ignorado.",
+            "**Análisis de los riesgos**: se califican los riesgos, cuantificando sus consecuencias (análisis cuantitativo) u ordenando su importancia relativa (análisis cualitativo).",
+            "**Valoración de los riesgos**: va más allá de lo técnico y traduce las consecuencias a **términos de negocio** (percepción, estrategia, política). Aquí se decide qué riesgos se tratan y cuáles se aceptan.",
+            "**Tratamiento de los riesgos**: se eligen e implantan las opciones que modifican la situación de riesgo.",
+            "**Comunicación y consulta**: con usuarios, proveedores y órganos de gobierno.",
+            "**Seguimiento y revisión**: comprobar qué pasa en la práctica y mejorar de forma continua."
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Análisis frente a valoración",
+          "head": ["Actividad", "Quién la hace sobre todo", "Qué produce"],
+          "rows": [
+            ["Análisis", "Técnicos y analistas", "Una visión estructurada: cifras o un orden de importancia de los riesgos"],
+            ["Valoración", "Dirección", "Decisiones de negocio: qué se trata, qué se acepta"]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "La **comunicación y consulta** existe porque un sistema muy seguro que entorpece el trabajo es absurdo: hay que equilibrar seguridad y productividad. Para ello se cuenta con:"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Usuarios**: se tienen en cuenta sus necesidades y se les informa para que colaboren dentro de los parámetros de seguridad fijados por la dirección.",
+            "**Proveedores externos**: se les dan **instrucciones claras** para poder exigirles los **niveles de servicio** pactados y una gestión adecuada de los incidentes.",
+            "**Órganos de gobierno**: se crean canales que den confianza en que el sistema responderá y en que los incidentes se afrontarán según el plan."
+          ]
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico",
+          "text": "Una empresa externaliza su copia de seguridad, pero nunca le dijo al proveedor que necesitaba recuperar los datos en menos de 4 horas. Tras un incidente, el proveedor tarda dos días y la empresa no puede reclamar nada. Faltó la comunicación: instrucciones y niveles de servicio por escrito, desde el principio."
+        },
+        {
+          "type": "p",
+          "text": "El **seguimiento y revisión** recuerda que el análisis de riesgos es una actividad «de despacho»: hay que contrastarlo con la realidad, reaccionar rápido a los incidentes y mejorar el proceso de forma continua."
+        },
+        {
+          "type": "exam",
+          "text": "Si un enunciado pregunta qué se hace primero al fijar el contexto, la respuesta es el **alcance y los condicionantes internos y externos**, no elegir la herramienta, el control o la escala. Si pregunta qué aporta la valoración frente al análisis técnico: **traducir las consecuencias a decisiones de negocio**."
+        },
+        {
+          "type": "key",
+          "text": "Contexto, identificación, análisis, valoración, tratamiento, comunicación y consulta, y seguimiento. El análisis es técnico; la valoración lo traduce a negocio; la comunicación incluye dar instrucciones claras a los proveedores."
+        }
+      ]
+    },
+    {
+      "id": "magerit-mar",
+      "title": "Las tareas del análisis: MAR.1 a MAR.4",
+      "pages": [14, 16],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Magerit divide el análisis de riesgos en cuatro actividades con código **MAR** (Método de Análisis de Riesgos). Cada una tiene subtareas y produce informes concretos."
+        },
+        {
+          "type": "table",
+          "title": "Las cuatro actividades",
+          "head": ["Actividad", "Qué busca", "Subtareas", "Resultado"],
+          "rows": [
+            ["MAR.1 Caracterización de los activos", "Identificar activos, su tipo, sus relaciones, en qué dimensiones importan y cuánto valen", "MAR.11 identificación, MAR.12 dependencias, MAR.13 valoración", "Modelo de valor"],
+            ["MAR.2 Caracterización de las amenazas", "Identificar amenazas con su probabilidad de ocurrencia y su degradación (daño)", "MAR.21 identificación, MAR.22 valoración", "Mapa de riesgos"],
+            ["MAR.3 Caracterización de las salvaguardas", "Identificar las salvaguardas desplegadas y calificar su eficacia frente a las amenazas", "MAR.31 identificación de las pertinentes, MAR.32 valoración", "Declaración de aplicabilidad, evaluación de salvaguardas e insuficiencias"],
+            ["MAR.4 Estimación del estado de riesgo", "Procesar todo lo anterior", "MAR.41 impacto, MAR.42 riesgo", "Informe de estado de riesgo e informe de insuficiencias"]
+          ]
+        },
+        {
+          "type": "term",
+          "term": "Dependencias entre activos (MAR.12)",
+          "text": "Las relaciones «este activo necesita de aquel». Un servidor vale lo que valen los servicios que dependen de él: si se cae el servidor de la web de citas, se cae el servicio de citas. Sin estudiar las dependencias, el valor del servidor sería solo su precio de compra."
+        },
+        {
+          "type": "term",
+          "term": "Declaración de aplicabilidad",
+          "text": "Documento que dice qué salvaguardas son pertinentes para el sistema y cuáles se aplican. Se llama así también en la ISO/IEC 27001."
+        },
+        {
+          "type": "term",
+          "term": "Insuficiencias",
+          "text": "Debilidades del sistema de protección: amenazas para las que no hay salvaguarda o para las que la existente no es eficaz."
+        },
+        {
+          "type": "p",
+          "text": "En la práctica, MAR.1, MAR.2 y MAR.3 suelen hacerse **a la vez**: se entrevista a las mismas personas, que tienden a contar todo lo de un activo (sus amenazas y sus defensas) antes de pasar al siguiente."
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico",
+          "text": "Un analista anota: «Servidor SRV-07, rack 3, comprado en 2021 por 6.000 €». Le falta lo esencial de MAR.1: que de él dependen la nómina y el portal del empleado (dependencias) y que una caída de dos días paralizaría los pagos (valor por degradación). Y en MAR.3 no basta contar cuántos controles hay: hay que valorar si son pertinentes y eficaces frente a cada amenaza."
+        },
+        {
+          "type": "p",
+          "text": "El temario no las desarrolla, pero el test pregunta por las **técnicas** de Magerit, recogidas en su Libro III, «Guía de Técnicas» (citado en la bibliografía). Se dividen en dos grupos:"
+        },
+        {
+          "type": "table",
+          "title": "Técnicas de Magerit (Libro III)",
+          "head": ["Grupo", "Técnicas", "Por qué ese grupo"],
+          "rows": [
+            ["Específicas del análisis de riesgos", "Análisis mediante tablas, análisis algorítmico, árboles de ataque", "Están pensadas para calcular impactos y riesgos"],
+            ["Generales", "Análisis coste-beneficio, diagramas de flujo de datos, diagramas de procesos, técnicas gráficas, planificación de proyectos, sesiones de trabajo (entrevistas, reuniones), valoración Delphi", "Sirven para cualquier proyecto, no solo para riesgos"]
+          ]
+        },
+        {
+          "type": "term",
+          "term": "Valoración Delphi",
+          "text": "Técnica en la que se pregunta a un grupo de expertos de forma anónima y en varias rondas, enseñándoles el resumen de la ronda anterior, hasta que sus opiniones convergen. Se usa en muchos campos, por eso es una técnica general."
+        },
+        {
+          "type": "exam",
+          "text": "«¿Cuál no es una técnica específica?» → la **valoración Delphi**, que es general. Tablas, algorítmico y árboles de ataque sí son específicas. Otra pregunta frecuente: un análisis que ignora qué servicios dependen de un servidor omite la tarea de **dependencias entre activos**."
+        },
+        {
+          "type": "key",
+          "text": "MAR.1 activos (modelo de valor), MAR.2 amenazas (mapa de riesgos), MAR.3 salvaguardas (aplicabilidad, eficacia, insuficiencias), MAR.4 impacto y riesgo (estado de riesgo)."
+        }
+      ]
+    },
+    {
+      "id": "magerit-decisiones",
+      "title": "La toma de decisiones sobre el riesgo",
+      "pages": [17, 19],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Con los riesgos ya calculados toca decidir. Magerit dice que las decisiones están condicionadas por **cuatro factores**:"
+        },
+        {
+          "type": "list",
+          "items": [
+            "El **nivel de riesgo**.",
+            "La **gravedad del impacto**.",
+            "Las **obligaciones legales y reglamentarias** (lo que exige una ley o un reglamento, que es una norma dictada por el Gobierno para desarrollar una ley).",
+            "Las **obligaciones contractuales** (lo pactado con clientes y proveedores)."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Además hay que pensar si la organización puede asumir **impactos intangibles**, sobre todo la **pérdida de reputación**, que perjudica la imagen pública, la relación con empleados, proveedores, clientes y socios, hace perder oportunidades de negocio y puede costar certificaciones y homologaciones."
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico",
+          "text": "Una clínica calcula que una fuga de historiales costaría poco en dinero directo, así que el riesgo residual parece asumible. Pero el RGPD (Reglamento General de Protección de Datos, norma europea de aplicación directa) le obliga a proteger esos datos de salud, y la noticia en prensa hundiría la confianza de los pacientes. La decisión correcta no puede basarse solo en la cifra: debe incluir la obligación legal y el daño a la reputación."
+        },
+        {
+          "type": "p",
+          "text": "Con todo esto se **califican los riesgos significativos** y se decide la acción (en Magerit, por ejemplo, de crítico, que exige atención urgente, a asumible, que no requiere actuar). Las decisiones de tratamiento típicas son **eliminar** el riesgo (evitar la actividad), **mitigarlo** (reducir probabilidad o impacto), **compartirlo** (un seguro, un proveedor) o **aceptarlo**. La calificación fija la **prioridad** de las actuaciones."
+        },
+        {
+          "type": "list",
+          "title": "Cuándo se puede aceptar un riesgo (siempre con prudencia y justificación)",
+          "items": [
+            "El **impacto residual** es asumible.",
+            "El **riesgo residual** es asumible.",
+            "El **coste de las salvaguardas es desproporcionado** frente al impacto y riesgo residuales."
+          ]
+        },
+        {
+          "type": "term",
+          "term": "Residual",
+          "text": "Lo que queda después de aplicar las salvaguardas. El riesgo residual es el riesgo que sigue existiendo aunque hayas puesto todas las defensas."
+        },
+        {
+          "type": "exam",
+          "text": "«¿Qué no condiciona las decisiones según Magerit?» → **el origen de la amenaza**. Es una trampa porque «orígenes de la amenaza» sí aparece en NIST, pero como factor para estimar la probabilidad, no como condicionante de la decisión. Y si un riesgo es asumible pero hay una obligación legal, la decisión debe incluir **las obligaciones legales y contractuales**, no solo la cifra o la opción más barata."
+        },
+        {
+          "type": "key",
+          "text": "Decidir depende del nivel de riesgo, la gravedad del impacto y las obligaciones legales y contractuales, más los impactos intangibles como la reputación. Aceptar un riesgo exige justificarlo."
+        }
+      ]
+    },
+    {
+      "id": "iso-27005",
+      "title": "ISO/IEC 27005: directrices, no requisitos",
+      "pages": [20, 21],
+      "blocks": [
+        {
+          "type": "term",
+          "term": "ISO e IEC",
+          "text": "ISO (International Organization for Standardization) es la Organización Internacional de Normalización; IEC (International Electrotechnical Commission) es la Comisión Electrotécnica Internacional. Juntas publican la familia de normas 27000 sobre seguridad de la información."
+        },
+        {
+          "type": "term",
+          "term": "SGSI (Sistema de Gestión de la Seguridad de la Información)",
+          "text": "El conjunto de políticas, procesos y responsables con que una organización gestiona su seguridad de forma ordenada y mejorando continuamente. Sus requisitos están en la **ISO/IEC 27001**, que sí es **certificable**: un auditor externo puede darte un certificado."
+        },
+        {
+          "type": "term",
+          "term": "PDCA (Plan-Do-Check-Act)",
+          "text": "Ciclo de mejora continua: planificar, hacer, verificar y actuar. Es la base de la ISO 27001 y la 27005 se apoya en él."
+        },
+        {
+          "type": "analogy",
+          "text": "Si la ISO 27001 es el reglamento del examen de conducir (lo que tienes que cumplir para aprobar), la ISO 27005 es el manual de la autoescuela que te explica cómo prepararte para la parte de riesgos. Nadie te da un carné por haber leído el manual."
+        },
+        {
+          "type": "p",
+          "text": "La ISO/IEC 27005 (publicada en 2011 y revisada en 2018) da **directrices para gestionar el riesgo de seguridad de la información** con un enfoque basado en riesgos. **No es una metodología** propiamente dicha: describe las fases recomendadas (establecimiento del contexto, evaluación, tratamiento, aceptación, comunicación, monitorización y revisión). **No es certificable**: es una norma de apoyo para poner en marcha el SGSI."
+        },
+        {
+          "type": "list",
+          "title": "Criterios básicos que debe abordar el enfoque elegido",
+          "items": [
+            "Criterios de **evaluación** de riesgos.",
+            "Criterios de **impacto**.",
+            "Criterios de **aceptación** de riesgos."
+          ]
+        },
+        {
+          "type": "list",
+          "title": "Recursos que la organización debe comprobar que tiene",
+          "items": [
+            "Para evaluar riesgos y establecer un plan de tratamiento.",
+            "Para definir e implantar políticas y procedimientos, incluidos los controles elegidos.",
+            "Para monitorizar los controles.",
+            "Para supervisar el propio proceso de gestión del riesgo."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "El enfoque puede variar según el alcance y los objetivos, e incluso cambiar de una iteración a otra. La estructura general procede de la ISO 31000."
+        },
+        {
+          "type": "exam",
+          "text": "Trampas: «norma de requisitos para certificar» (eso es la 27001), «relación exhaustiva de controles obligatorios» o «algoritmo único que impide adaptar escalas». La 27005 aporta **directrices** flexibles para gestionar riesgos de seguridad de la información."
+        },
+        {
+          "type": "key",
+          "text": "ISO/IEC 27005 = directrices para gestionar el riesgo de seguridad de la información, apoyadas en el PDCA de la 27001. No es una metodología cerrada ni es certificable."
+        }
+      ]
+    },
+    {
+      "id": "iso-apreciacion",
+      "title": "Apreciación de alto nivel y apreciación detallada",
+      "pages": [22, 25],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Para revisar una casa puedes empezar dando una vuelta con una linterna, viendo qué habitaciones tienen humedades graves (alto nivel), y luego llamar a un técnico con instrumental solo para esas habitaciones (detallada). Medir cada centímetro de cada pared desde el principio sería caro y lento."
+        },
+        {
+          "type": "term",
+          "term": "Apreciación del riesgo",
+          "text": "En la ISO 27005, el conjunto de identificar, analizar y evaluar los riesgos. Puede hacerse con dos aproximaciones: de **alto nivel** o **detallada**."
+        },
+        {
+          "type": "p",
+          "text": "La **aproximación de alto nivel** sirve para fijar **prioridades y cronología** de las acciones. Es útil cuando no hay presupuesto para implantar todos los controles a la vez, cuando el tratamiento no será inmediato (uno o dos años) o para sincronizarse con planes de gestión del cambio y de continuidad de negocio."
+        },
+        {
+          "type": "list",
+          "title": "Características del alto nivel",
+          "items": [
+            "Da una **visión más global** de la organización; el contexto se centra en el entorno empresarial más que en la tecnología.",
+            "Contempla una **lista más limitada de amenazas** y vulnerabilidades agrupadas por dominios, o se centra en **escenarios** de riesgo o ataque.",
+            "Sus riesgos son más generales y **no entra en detalles tecnológicos**.",
+            "Es **más apropiada para controles organizativos** y no técnicos, y para controles comunes como copias de seguridad y antivirus."
+          ]
+        },
+        {
+          "type": "list",
+          "title": "Ventajas e inconveniente",
+          "items": [
+            "Ventaja: un inicio sencillo facilita que se acepte el programa.",
+            "Ventaja: ayuda a construir una visión estratégica de la seguridad.",
+            "Ventaja: dirige los recursos a donde más sirven y prioriza los sistemas críticos.",
+            "Inconveniente: es menos precisa y puede dejar sin identificar procesos o sistemas, que exigirán una segunda apreciación detallada."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "**Regla general**: si la falta de seguridad puede causar consecuencias adversas significativas, o los objetivos que dependen del activo son críticos, se hace una **segunda iteración detallada** para ese activo."
+        },
+        {
+          "type": "p",
+          "text": "La **apreciación detallada** identifica y valora **en profundidad los activos**, evalúa sus **amenazas** y sus **vulnerabilidades**, y con ello evalúa los riesgos y elige el tratamiento. Exige mucho tiempo, esfuerzo y experiencia, así que se reserva para **sistemas de alto riesgo**. Las consecuencias se pueden valorar con métodos cuantitativos, cualitativos o combinados."
+        },
+        {
+          "type": "table",
+          "title": "Comparación",
+          "head": ["Aspecto", "Alto nivel", "Detallada"],
+          "rows": [
+            ["Punto de vista", "Negocio, visión global", "Activos, amenazas y vulnerabilidades en profundidad"],
+            ["Detalle técnico", "Poco", "Mucho"],
+            ["Coste", "Bajo", "Alto (tiempo, esfuerzo, experiencia)"],
+            ["Controles típicos", "Organizativos y comunes", "Técnicos y específicos"],
+            ["Cuándo", "Para empezar y priorizar", "Para sistemas de alto riesgo"]
+          ]
+        },
+        {
+          "type": "list",
+          "title": "De qué depende la probabilidad de que se materialice una amenaza (ISO 27005)",
+          "items": [
+            "El **atractivo** del bien o el posible impacto.",
+            "La **facilidad de obtener beneficio** explotando la vulnerabilidad.",
+            "Las **capacidades técnicas** del atacante.",
+            "La **facilidad de explotación** de la vulnerabilidad."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Para estimar la probabilidad hay que fijar el **marco temporal** durante el que el activo tiene valor. Muchos métodos usan tablas que combinan medidas subjetivas y empíricas; lo importante es que la organización confíe en el método y obtenga resultados repetibles."
+        },
+        {
+          "type": "exam",
+          "text": "«¿Qué no es característica del alto nivel?» → «no es la más apropiada para controles organizativos» (es justo al revés). «¿De qué no depende la probabilidad?» → **del número de activos**. Ante «no hay presupuesto para analizarlo todo en detalle», la respuesta es **alto nivel primero y detalle donde proceda**."
+        },
+        {
+          "type": "key",
+          "text": "Alto nivel: visión global, pocas amenazas, controles organizativos, sirve para priorizar. Detallada: activos, amenazas y vulnerabilidades en profundidad, para lo de alto riesgo."
+        }
+      ]
+    },
+    {
+      "id": "nist-gestion",
+      "title": "NIST: los cuatro componentes de la gestión del riesgo",
+      "pages": [27, 30],
+      "blocks": [
+        {
+          "type": "term",
+          "term": "NIST (National Institute of Standards and Technology)",
+          "text": "Instituto Nacional de Estándares y Tecnología de Estados Unidos. Publica guías gratuitas de seguridad en la serie **SP 800** (Special Publications). La **SP 800-39** trata la gestión del riesgo en toda la organización y la **SP 800-30 Rev. 1** (revisión 1, de 2012) detalla cómo hacer la evaluación de riesgos."
+        },
+        {
+          "type": "p",
+          "text": "NIST parte de que toda organización depende de sus sistemas de información, desde redes de oficina hasta sistemas de control industrial, y de que las amenazas pueden ser intencionadas, errores humanos o mecánicos, fallos estructurales o medioambientales. Por eso los gerentes de todos los niveles deben asumir la gestión del riesgo."
+        },
+        {
+          "type": "steps",
+          "title": "Los cuatro componentes (NIST SP 800-39)",
+          "items": [
+            "**Marco de referencia del riesgo** (framing): establece el contexto y una **estrategia** que dice cómo se va a analizar, responder y monitorizar el riesgo, con los criterios de decisión.",
+            "**Evaluación de riesgos**: identifica amenazas, vulnerabilidades internas y externas, el daño posible y la probabilidad. Resultado: un valor de riesgo, normalmente función del impacto y la probabilidad.",
+            "**Respuesta al riesgo**: desarrollar alternativas, evaluarlas, elegir las coherentes con la **tolerancia al riesgo** e implantarlas.",
+            "**Seguimiento (supervisión) del riesgo**: valorar de forma continua la eficacia de las respuestas, detectar cambios en los sistemas y su entorno y verificar que las respuestas se han implantado y se cumplen las obligaciones legales y contractuales."
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Mismo proceso, distinto vocabulario",
+          "head": ["NIST", "Magerit / ISO"],
+          "rows": [
+            ["Marco de referencia", "Determinación del contexto"],
+            ["Evaluación", "Identificación, análisis y valoración (apreciación)"],
+            ["Respuesta", "Tratamiento"],
+            ["Seguimiento", "Seguimiento y revisión"]
+          ]
+        },
+        {
+          "type": "exam",
+          "text": "Las opciones del test cambian una palabra. La lista correcta según NIST es **marco, evaluación, respuesta y seguimiento**. «Valoración» y «tratamiento» son palabras de Magerit/ISO y delatan las opciones falsas. Ojo: el test atribuye esta lista a la 800-30, aunque el tema la toma de la 800-39; da igual para contestar."
+        },
+        {
+          "type": "key",
+          "text": "Gestión del riesgo según NIST = marco de referencia + evaluación + respuesta + seguimiento. La evaluación es solo una parte de la gestión."
+        }
+      ]
+    },
+    {
+      "id": "nist-enfoques",
+      "title": "Enfoques cuantitativo, cualitativo y semicuantitativo",
+      "pages": [31, 33],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Piensa en cómo describes la temperatura. Cuantitativo: «hace 31,5 °C» (un número con significado físico que vale en cualquier sitio). Cualitativo: «hace mucho calor» (fácil de entender, pero cada uno lo interpreta a su manera). Semicuantitativo: «nivel 4 de una escala del 1 al 5 de alerta por calor» (un número, pero que solo significa algo dentro de esa escala)."
+        },
+        {
+          "type": "table",
+          "head": ["Enfoque", "Cómo mide", "Ventaja", "Inconveniente"],
+          "rows": [
+            ["Cuantitativo", "Valores numéricos cuyo significado y proporcionalidad se mantienen dentro y fuera de la evaluación (por ejemplo, euros)", "Apoya mejor el análisis coste/beneficio de las respuestas", "Los números pueden necesitar interpretación; pierde rigor si esconde valoraciones subjetivas o hay mucha incertidumbre; caro en tiempo y expertos"],
+            ["Cualitativo", "Categorías no numéricas: muy bajo, bajo, moderado, alto, muy alto", "Muy útil para comunicar a la dirección", "Pocas categorías: cuesta priorizar y comparar; expertos distintos pueden dar resultados distintos si los niveles no están bien definidos"],
+            ["Semicuantitativo", "Agrupaciones, escalas o valores numéricos cuyos rangos y significados no se mantienen fuera de ese contexto (por ejemplo, 1 a 10)", "Combina ventajas: se traduce fácil a palabras y, con suficiente granularidad, prioriza mejor que el cualitativo", "El juicio experto es más visible; pierde rigor igual que el cuantitativo si hay subjetividad oculta o incertidumbre"]
+          ]
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico",
+          "text": "Un informe dice: «Riesgo del correo: 8 sobre 10». Hay un número, pero no son euros ni probabilidades: es una posición en una escala definida por la organización. Eso es **semicuantitativo**. Un 8 no es «el doble» de un 4 en ningún sentido físico, solo está más arriba en la escala."
+        },
+        {
+          "type": "p",
+          "text": "Se puede usar un solo enfoque o combinarlos según las necesidades y la cultura de la organización."
+        },
+        {
+          "type": "exam",
+          "text": "Que una evaluación use números **no la hace cuantitativa**: puede ser semicuantitativa, con escalas cuyos valores no tienen significado proporcional fuera de su contexto. La semicuantitativa usa escalas numéricas **con rangos definidos**; no es «poner números sin definir qué significa cada nivel» ni «expresar pérdidas monetarias con frecuencias calibradas» (eso sería cuantitativo)."
+        },
+        {
+          "type": "key",
+          "text": "Cuantitativo: números con significado universal (coste/beneficio). Cualitativo: etiquetas (comunicación). Semicuantitativo: escalas numéricas que solo valen en su contexto (lo mejor de ambos)."
+        }
+      ]
+    },
+    {
+      "id": "nist-aproximaciones",
+      "title": "Aproximaciones: desde la amenaza, el impacto o la vulnerabilidad",
+      "pages": [33, 35],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Además del enfoque (cómo se mide), NIST distingue la **aproximación**: por dónde se empieza el análisis. Todas usan los mismos factores de riesgo y las mismas actividades, pero **en distinto orden**."
+        },
+        {
+          "type": "table",
+          "head": ["Aproximación", "Empieza por", "Ejemplo de pregunta inicial"],
+          "rows": [
+            ["Orientada a amenazas", "Fuentes y eventos de amenaza; construye escenarios. Las vulnerabilidades e impactos se buscan según la intención del atacante", "¿Qué haría un grupo de ransomware contra nosotros?"],
+            ["Orientada al impacto en el activo", "Impactos sobre activos críticos, usando los objetivos de negocio o un análisis de impacto en el negocio (BIA, Business Impact Analysis)", "¿Qué sería lo peor que podría pasarle a la facturación?"],
+            ["Orientada a la vulnerabilidad", "Condiciones preexistentes, debilidades y deficiencias explotables; después, las amenazas que podrían aprovecharlas", "¿Qué fallos tenemos sin parchear y quién podría explotarlos?"]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Como el punto de partida **sesga** los resultados y puede dejar riesgos sin identificar, NIST recomienda repetir la identificación desde **una segunda aproximación** para mejorar rigor y efectividad."
+        },
+        {
+          "type": "p",
+          "text": "También propone análisis basados en **gráficos** para representar relaciones de **muchos a muchos**: una fuente puede causar varios eventos y un evento puede venir de varias fuentes; un evento puede explotar varias vulnerabilidades y una vulnerabilidad puede ser explotada por varios eventos; un evento puede afectar a varios activos y un activo puede sufrir varios eventos."
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico",
+          "text": "Un equipo analiza solo amenazas conocidas (phishing, ransomware) y nunca descubre que un antiguo servidor FTP abierto a Internet no figura en ningún escenario. Si repite el análisis desde la vulnerabilidad (inventario de puertos y fallos), aparece. Eso es añadir una segunda aproximación."
+        },
+        {
+          "type": "exam",
+          "text": "Las tres aproximaciones son **amenaza, impacto en el activo y vulnerabilidad**. Falsas: «probabilidad», «riesgo» o «activo» a secas. Si un análisis orientado solo a amenazas omite escenarios, el refuerzo es **añadir una segunda aproximación**, no repetir la misma lista ni dar por inexistente lo no identificado."
+        },
+        {
+          "type": "key",
+          "text": "Amenaza, impacto en el activo o vulnerabilidad: mismos factores, distinto orden. Combinar dos aproximaciones reduce sesgos."
+        }
+      ]
+    },
+    {
+      "id": "nist-proceso",
+      "title": "Las cuatro fases de la evaluación según NIST SP 800-30",
+      "pages": [30, 39],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Es como una auditoría de cuentas: primero se prepara (qué se revisa y con qué criterios), luego se hace el trabajo de campo, después se entrega el informe a quien decide y, por último, se actualiza cada año porque las cuentas cambian."
+        },
+        {
+          "type": "steps",
+          "title": "Proceso de evaluación de riesgos",
+          "items": [
+            "**Preparación**: establecer el contexto a partir del marco de referencia.",
+            "**Ejecución**: identificar amenazas, vulnerabilidades y estimar probabilidad, impacto y riesgo.",
+            "**Comunicación de resultados** al personal clave.",
+            "**Mantenimiento** de la evaluación a lo largo del tiempo."
+          ]
+        },
+        {
+          "type": "list",
+          "title": "Fase 1. Tareas de preparación",
+          "items": [
+            "Identificar el **propósito** de la evaluación.",
+            "Identificar el **alcance**.",
+            "Identificar **supuestos y limitaciones**.",
+            "Identificar las **fuentes de información** de entrada.",
+            "Identificar el **modelo de riesgo** y los enfoques analíticos."
+          ]
+        },
+        {
+          "type": "list",
+          "title": "Fase 2. Tareas de ejecución",
+          "items": [
+            "Identificar los **orígenes** (fuentes) de la amenaza.",
+            "Identificar los **eventos** de amenaza.",
+            "Identificar **vulnerabilidades y condiciones preexistentes**.",
+            "Estimar la **probabilidad** de ocurrencia.",
+            "Estimar el **impacto**.",
+            "Estimar el **riesgo**."
+          ]
+        },
+        {
+          "type": "list",
+          "title": "Para estimar la probabilidad, NIST considera",
+          "items": [
+            "Los **orígenes** de la amenaza.",
+            "Las **vulnerabilidades y condiciones preexistentes**.",
+            "Los **controles o medidas de seguridad existentes**."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "**Fase 3. Comunicación de resultados**: comunicar los resultados y compartir la información obtenida para apoyar otras actividades de gestión del riesgo, de modo que quien decide tenga lo necesario."
+        },
+        {
+          "type": "p",
+          "text": "**Fase 4. Mantenimiento**: mantener actualizado el conocimiento del riesgo. La **monitorización** permite determinar la eficacia de las respuestas, identificar cambios y verificar el cumplimiento. Tareas: monitorizar de forma continua los factores de riesgo y actualizar la evaluación con los cambios detectados."
+        },
+        {
+          "type": "p",
+          "text": "Las evaluaciones de riesgos apoyan decisiones como diseñar la arquitectura de seguridad, definir requisitos de interconexión, diseñar soluciones, **autorizar la operación** de un sistema, e implantar, operar y mantener soluciones de seguridad."
+        },
+        {
+          "type": "table",
+          "title": "Probabilidad: no mezcles las listas",
+          "head": ["Factor", "ISO 27005", "NIST 800-30"],
+          "rows": [
+            ["Atractivo del bien o posible impacto", "Sí", "No figura"],
+            ["Facilidad de obtener beneficio el atacante", "Sí", "No figura"],
+            ["Capacidades técnicas del atacante", "Sí", "No figura"],
+            ["Facilidad de explotación de la vulnerabilidad", "Sí", "Se recoge como vulnerabilidades y condiciones preexistentes"],
+            ["Orígenes de la amenaza", "No figura", "Sí"],
+            ["Controles existentes", "No figura", "Sí"]
+          ]
+        },
+        {
+          "type": "exam",
+          "text": "Fases correctas: **preparación, ejecución, comunicación de resultados y mantenimiento**. Las opciones falsas meten «valoración» o «revisión». Antes de ejecutar hay que **preparar y establecer el contexto**. Si tras implantar controles nadie comprueba que funcionan, falta **monitorizar y mantener la evaluación**. Y para NIST, «la facilidad de obtención de beneficio por el atacante» **no** es factor de probabilidad (es de la lista ISO)."
+        },
+        {
+          "type": "key",
+          "text": "NIST 800-30: preparar, ejecutar, comunicar y mantener. La probabilidad se estima con orígenes de amenaza, vulnerabilidades y condiciones preexistentes, y controles existentes."
+        }
+      ]
+    }
+  ],
+  "summary": [
+    "Una metodología de riesgos debe ser objetiva, fiable, medible y replicable, medir de forma continua, tener una herramienta y hablar el idioma de la dirección.",
+    "Magerit es pública, sin autorización previa, centrada en el activo y alineada con la UNE-ISO 31000; su herramienta es PILAR.",
+    "Impacto = daño si la amenaza ocurre; riesgo = impacto ponderado por la probabilidad de ocurrencia.",
+    "Proceso de Magerit: contexto, identificación, análisis, valoración (traducir a negocio), tratamiento, comunicación y consulta, seguimiento.",
+    "MAR.1 activos (modelo de valor, con dependencias), MAR.2 amenazas (mapa de riesgos), MAR.3 salvaguardas (eficacia, insuficiencias), MAR.4 impacto y riesgo.",
+    "Las decisiones dependen del nivel de riesgo, la gravedad del impacto y las obligaciones legales y contractuales, más los intangibles como la reputación.",
+    "ISO/IEC 27005 da directrices, no es metodología cerrada ni certificable; distingue apreciación de alto nivel (priorizar) y detallada (alto riesgo).",
+    "NIST: gestión = marco, evaluación, respuesta, seguimiento; evaluación = preparación, ejecución, comunicación, mantenimiento.",
+    "Enfoques: cuantitativo, cualitativo, semicuantitativo. Aproximaciones: amenaza, impacto en el activo, vulnerabilidad; combinar dos reduce sesgos."
+  ],
+  "glossary": [
+    { "term": "Activo", "text": "Componente o funcionalidad de un sistema de información con valor para la organización que puede sufrir daño." },
+    { "term": "Amenaza", "text": "Causa potencial de un incidente que puede dañar un activo." },
+    { "term": "Vulnerabilidad", "text": "Debilidad que una amenaza puede explotar." },
+    { "term": "Salvaguarda", "text": "Medida que reduce el riesgo; en la ISO se llama control." },
+    { "term": "Impacto", "text": "Daño sobre el activo si la amenaza se materializa." },
+    { "term": "Riesgo", "text": "Impacto ponderado por la probabilidad o frecuencia de que la amenaza se materialice." },
+    { "term": "Riesgo residual", "text": "Riesgo que queda tras aplicar las salvaguardas." },
+    { "term": "Magerit", "text": "Metodología de Análisis y Gestión de Riesgos de los Sistemas de Información, pública y española." },
+    { "term": "PILAR", "text": "Herramienta que aplica la metodología Magerit." },
+    { "term": "MAP", "text": "Ministerio de Administraciones Públicas, que desarrolló Magerit." },
+    { "term": "ENS", "text": "Esquema Nacional de Seguridad: real decreto que fija la seguridad mínima de los sistemas de las administraciones públicas españolas." },
+    { "term": "MAR", "text": "Método de Análisis de Riesgos: código de las tareas MAR.1 a MAR.4 de Magerit." },
+    { "term": "Modelo de valor", "text": "Informe que resulta de caracterizar los activos (MAR.1)." },
+    { "term": "Mapa de riesgos", "text": "Informe que resulta de caracterizar las amenazas (MAR.2)." },
+    { "term": "Declaración de aplicabilidad", "text": "Documento que recoge qué salvaguardas son pertinentes y cuáles se aplican." },
+    { "term": "Valoración Delphi", "text": "Técnica general de consulta a expertos en rondas anónimas hasta alcanzar consenso." },
+    { "term": "ISO", "text": "International Organization for Standardization, Organización Internacional de Normalización." },
+    { "term": "IEC", "text": "International Electrotechnical Commission, Comisión Electrotécnica Internacional." },
+    { "term": "UNE", "text": "Marca de las normas técnicas españolas; UNE-ISO es la versión española de una norma ISO." },
+    { "term": "SGSI", "text": "Sistema de Gestión de la Seguridad de la Información; sus requisitos certificables están en la ISO/IEC 27001." },
+    { "term": "PDCA", "text": "Plan-Do-Check-Act: ciclo de mejora continua (planificar, hacer, verificar, actuar)." },
+    { "term": "NIST", "text": "National Institute of Standards and Technology, Instituto Nacional de Estándares y Tecnología de Estados Unidos." },
+    { "term": "SP 800-30 / SP 800-39", "text": "Guías del NIST: la 800-39 sobre la gestión del riesgo en la organización y la 800-30 Rev. 1 sobre cómo evaluar riesgos." },
+    { "term": "BIA", "text": "Business Impact Analysis, análisis de impacto en el negocio." },
+    { "term": "Tolerancia al riesgo", "text": "Cantidad de riesgo que la organización está dispuesta a soportar." }
+  ],
+  "questions": {
+    "gobierno-t08-01": {
+      "section": "magerit-conceptos",
+      "reasoning": "Magerit empieza siempre por los activos: identificarlos, ver sus dependencias y valorarlos. Solo después busca qué amenazas los afectan, qué salvaguardas tienen y qué impacto y riesgo resultan. Como el punto de partida y el eje es el activo, se dice que es una metodología centrada en el activo.",
+      "options": {
+        "a": "Correcta. Magerit define el activo como eje y construye todo el análisis a partir de su valor y sus dependencias.",
+        "b": "Incorrecta. El riesgo es el resultado que se calcula al final, no el centro del método.",
+        "c": "Incorrecta. Partir de las vulnerabilidades es una de las aproximaciones de NIST, no el enfoque de Magerit.",
+        "d": "Incorrecta. Partir de las amenazas es la aproximación orientada a amenazas de NIST; en Magerit las amenazas se estudian sobre activos ya identificados."
+      }
+    },
+    "gobierno-t08-02": {
+      "section": "magerit-decisiones",
+      "reasoning": "Magerit enumera cuatro factores que condicionan las decisiones: nivel de riesgo, gravedad del impacto, obligaciones legales y reglamentarias, y obligaciones contractuales. Hay que buscar la opción que no esté en esa lista: el origen de la amenaza, que aparece en NIST como factor para estimar la probabilidad, no como condicionante de la decisión.",
+      "options": {
+        "a": "Incorrecta. El nivel de riesgo es el primer factor que condiciona las decisiones.",
+        "b": "Correcta. El origen de la amenaza no figura entre los factores de decisión de Magerit.",
+        "c": "Incorrecta. Las obligaciones contractuales sí condicionan la decisión.",
+        "d": "Incorrecta. La gravedad del impacto sí condiciona la decisión."
+      }
+    },
+    "gobierno-t08-03": {
+      "section": "iso-apreciacion",
+      "reasoning": "La ISO 27005 dice que la apreciación de alto nivel da una visión global, contempla una lista limitada de amenazas, puede centrarse en escenarios y es más apropiada para controles organizativos y no técnicos. La opción que afirma que no es la más apropiada para controles organizativos contradice el texto, así que no es una característica.",
+      "options": {
+        "a": "Incorrecta. Contemplar una lista más limitada de amenazas sí es característica del alto nivel.",
+        "b": "Correcta. Es falso: el alto nivel es precisamente el más apropiado para controles organizativos y no técnicos.",
+        "c": "Incorrecta. Proporcionar una visión más global sí es característica del alto nivel.",
+        "d": "Incorrecta. Centrarse en escenarios de riesgo o ataque sí es característica del alto nivel."
+      }
+    },
+    "gobierno-t08-04": {
+      "section": "iso-apreciacion",
+      "reasoning": "Según la ISO 27005, la probabilidad depende del atractivo del bien, la facilidad de obtener beneficio, las capacidades técnicas del atacante y la facilidad de explotación. Tener muchos o pocos activos no hace más probable que una amenaza concreta se materialice sobre uno de ellos, así que el número de activos no es un factor.",
+      "options": {
+        "a": "Incorrecta. El atractivo del bien o el posible impacto sí influye en la probabilidad.",
+        "b": "Incorrecta. La facilidad de obtener beneficio sí influye en la probabilidad.",
+        "c": "Correcta. El número de activos no está entre los factores que la norma enumera.",
+        "d": "Incorrecta. La facilidad de explotación de la vulnerabilidad sí influye en la probabilidad."
+      }
+    },
+    "gobierno-t08-05": {
+      "section": "magerit-mar",
+      "reasoning": "La Guía de Técnicas de Magerit separa las técnicas específicas del análisis de riesgos (tablas, análisis algorítmico, árboles de ataque) de las técnicas generales que sirven para cualquier proyecto. La valoración Delphi, una consulta a expertos por rondas, pertenece a las generales, así que no es específica.",
+      "options": {
+        "a": "Incorrecta. El análisis algorítmico es una técnica específica de Magerit.",
+        "b": "Incorrecta. El análisis mediante tablas es una técnica específica de Magerit.",
+        "c": "Correcta. La valoración Delphi es una técnica general, no específica.",
+        "d": "Incorrecta. Los árboles de ataque son una técnica específica de Magerit."
+      }
+    },
+    "gobierno-t08-06": {
+      "section": "iso-apreciacion",
+      "reasoning": "La apreciación detallada de la ISO 27005 identifica y valora en profundidad los activos, evalúa sus amenazas y sus vulnerabilidades, y con esos resultados evalúa los riesgos y sus consecuencias. La respuesta debe reunir los tres elementos.",
+      "options": {
+        "a": "Correcta. Activos, amenazas y vulnerabilidades, relacionados con sus consecuencias, es exactamente lo que examina la apreciación detallada.",
+        "b": "Incorrecta. Un inventario de marcas comerciales no sirve para evaluar riesgos.",
+        "c": "Incorrecta. Las incidencias publicadas en prensa no sustituyen al estudio de los propios activos y vulnerabilidades.",
+        "d": "Incorrecta. La ubicación sin la función ignora el valor del activo y sus dependencias."
+      }
+    },
+    "gobierno-t08-07": {
+      "section": "nist-gestion",
+      "reasoning": "NIST define cuatro componentes de la gestión del riesgo: marco de referencia, evaluación, respuesta y seguimiento. Basta con comprobar las dos palabras que cambian: debe ser «evaluación» (no «valoración») y «respuesta» (no «tratamiento»).",
+      "options": {
+        "a": "Correcta. Marco de referencia, evaluación, respuesta y seguimiento son los cuatro componentes de NIST.",
+        "b": "Incorrecta. «Valoración» es un término de Magerit; NIST habla de evaluación.",
+        "c": "Incorrecta. Cambia dos términos: valoración y tratamiento son vocabulario de Magerit/ISO.",
+        "d": "Incorrecta. NIST habla de respuesta al riesgo, no de tratamiento."
+      }
+    },
+    "gobierno-t08-08": {
+      "section": "nist-proceso",
+      "reasoning": "La NIST SP 800-30 Rev. 1 divide la evaluación en cuatro fases: preparación, ejecución, comunicación de resultados y mantenimiento. Las opciones falsas sustituyen «ejecución» por «valoración» o «mantenimiento» por «revisión».",
+      "options": {
+        "a": "Incorrecta. «Revisión» no es una fase y falta el mantenimiento.",
+        "b": "Incorrecta. La segunda fase es la ejecución, no la valoración.",
+        "c": "Correcta. Preparación, ejecución, comunicación de resultados y mantenimiento.",
+        "d": "Incorrecta. Cambia ejecución por valoración y mantenimiento por revisión."
+      }
+    },
+    "gobierno-t08-09": {
+      "section": "nist-proceso",
+      "reasoning": "Para NIST, la probabilidad se estima considerando los orígenes de la amenaza, las vulnerabilidades y condiciones preexistentes y los controles existentes. La facilidad de obtener beneficio por el atacante pertenece a la lista de la ISO 27005, no a la de NIST.",
+      "options": {
+        "a": "Incorrecta. Los orígenes de la amenaza sí se consideran en NIST.",
+        "b": "Correcta. Este factor es de la ISO 27005; NIST no lo incluye en su lista.",
+        "c": "Incorrecta. Las vulnerabilidades y condiciones preexistentes sí se consideran.",
+        "d": "Incorrecta. Los controles existentes sí se consideran."
+      }
+    },
+    "gobierno-t08-10": {
+      "section": "nist-aproximaciones",
+      "reasoning": "NIST describe tres puntos de partida para el análisis: la amenaza, el impacto en el activo y la vulnerabilidad. Hay que buscar la opción que contenga los tres sin intrusos como «probabilidad», «riesgo» o «activo» a secas.",
+      "options": {
+        "a": "Incorrecta. La probabilidad es un factor que se estima, no una aproximación.",
+        "b": "Incorrecta. NIST habla de impacto en el activo, no del activo a secas.",
+        "c": "Incorrecta. El riesgo es el resultado, no un punto de partida.",
+        "d": "Correcta. Amenazas, impacto en el activo y vulnerabilidad son las tres aproximaciones."
+      }
+    },
+    "gobierno-t08-11": {
+      "section": "magerit-que-es",
+      "reasoning": "Magerit es de carácter público, se puede usar sin autorización previa y su fin es que los órganos de gobierno tomen decisiones teniendo en cuenta los riesgos. Eso descarta que sea una herramienta comercial, un catálogo de vulnerabilidades o un marco penal.",
+      "options": {
+        "a": "Correcta. Magerit es pública y orientada a decisiones basadas en riesgos.",
+        "b": "Incorrecta. No es una herramienta ni es comercial; su herramienta es PILAR y no sustituye a otras metodologías.",
+        "c": "Incorrecta. Magerit gira en torno al valor de los activos; no es un catálogo de vulnerabilidades de productos.",
+        "d": "Incorrecta. Magerit trata riesgos de los sistemas de información, no requisitos penales."
+      }
+    },
+    "gobierno-t08-12": {
+      "section": "magerit-proceso",
+      "reasoning": "La determinación del contexto consiste en conocer los parámetros y condicionantes externos e internos y fijar el alcance, con obligaciones legales, contratos y relaciones. Todo lo demás (herramienta, controles, escalas) viene después y depende de ese contexto.",
+      "options": {
+        "a": "Incorrecta. Elegir la herramienta antes de delimitar el alcance invierte el orden lógico.",
+        "b": "Correcta. Alcance y condicionantes internos y externos es lo primero al fijar el contexto.",
+        "c": "Incorrecta. El control se elige en el tratamiento, mucho después de conocer el contexto.",
+        "d": "Incorrecta. Las escalas se fijan a partir de las necesidades y restricciones, no antes."
+      }
+    },
+    "gobierno-t08-13": {
+      "section": "magerit-conceptos",
+      "reasoning": "Magerit define el impacto como el daño sobre el activo derivado de la materialización de la amenaza. No incluye la frecuencia (eso es el riesgo) ni el coste de las salvaguardas ni el número de vulnerabilidades.",
+      "options": {
+        "a": "Incorrecta. El precio de las salvaguardas es un coste de tratamiento, no el impacto.",
+        "b": "Incorrecta. La frecuencia sin consecuencias no es impacto; combinada con el impacto da el riesgo.",
+        "c": "Correcta. Impacto es el daño sobre un activo al materializarse una amenaza.",
+        "d": "Incorrecta. Contar vulnerabilidades no mide el daño."
+      }
+    },
+    "gobierno-t08-14": {
+      "section": "magerit-mar",
+      "reasoning": "MAR.1 identifica los activos, los clasifica por tipo, estudia sus relaciones (dependencias), determina en qué dimensiones de seguridad importan y valora esa importancia. Su resultado es el modelo de valor.",
+      "options": {
+        "a": "Incorrecta. Comprar recursos no es caracterizar activos y se haría sin conocer su valor.",
+        "b": "Incorrecta. El valor en Magerit es el perjuicio por degradación, no solo el precio de compra.",
+        "c": "Incorrecta. Catalogar amenazas es MAR.2, y siempre en relación con activos.",
+        "d": "Correcta. Identificar activos, relaciones, dimensiones y valor es MAR.1."
+      }
+    },
+    "gobierno-t08-15": {
+      "section": "iso-27005",
+      "reasoning": "La ISO/IEC 27005 da directrices para la gestión del riesgo de seguridad de la información: describe fases recomendadas y deja libertad para elegir enfoque. No es certificable ni impone controles o algoritmos.",
+      "options": {
+        "a": "Correcta. Aporta directrices para gestionar riesgos de seguridad de la información.",
+        "b": "Incorrecta. No es certificable; la norma certificable del SGSI es la 27001.",
+        "c": "Incorrecta. No impone una lista exhaustiva de controles obligatorios.",
+        "d": "Incorrecta. Permite distintos enfoques y escalas; no impone un algoritmo único."
+      }
+    },
+    "gobierno-t08-16": {
+      "section": "magerit-conceptos",
+      "reasoning": "El impacto es el daño si la amenaza ocurre; el riesgo es ese impacto ponderado con la tasa de ocurrencia. La diferencia, por tanto, es que el riesgo incorpora la probabilidad o frecuencia.",
+      "options": {
+        "a": "Incorrecta. Ambos pueden expresarse en la misma unidad; lo que cambia es que el riesgo incorpora la ocurrencia.",
+        "b": "Incorrecta. Es al revés: el impacto no incluye la frecuencia; el riesgo sí.",
+        "c": "Incorrecta. El riesgo incluye consecuencias (el impacto), no solo la vulnerabilidad.",
+        "d": "Correcta. El riesgo pondera el daño con la ocurrencia de la amenaza."
+      }
+    },
+    "gobierno-t08-17": {
+      "section": "iso-apreciacion",
+      "reasoning": "El alto nivel da una visión global de negocio, con pocas amenazas y sin detalle técnico. La detallada estudia en profundidad activos, amenazas y vulnerabilidades. Lo que las distingue es esa profundidad.",
+      "options": {
+        "a": "Incorrecta. Precisamente se diferencian en el grado de detalle.",
+        "b": "Correcta. La detallada profundiza en activos, amenazas y vulnerabilidades.",
+        "c": "Incorrecta. El alto nivel no entra en detalles tecnológicos ni configuraciones.",
+        "d": "Incorrecta. La detallada estudia activos y amenazas a la vez; no sustituye una cosa por otra."
+      }
+    },
+    "gobierno-t08-18": {
+      "section": "magerit-mar",
+      "reasoning": "En MAR.3 se identifican las salvaguardas pertinentes y se valoran por su eficacia frente a las amenazas que pretenden mitigar. Así se detectan las insuficiencias. No importa cuántas haya ni cuánto costaron, sino si son pertinentes y eficaces.",
+      "options": {
+        "a": "Incorrecta. El número de controles no dice si protegen bien.",
+        "b": "Incorrecta. La novedad tecnológica no es criterio de eficacia.",
+        "c": "Correcta. Se evalúan su pertinencia y su eficacia frente a los riesgos.",
+        "d": "Incorrecta. Haber invertido mucho no prueba que el riesgo haya bajado."
+      }
+    },
+    "gobierno-t08-19": {
+      "section": "nist-proceso",
+      "reasoning": "La primera fase de la evaluación según NIST es la preparación, que establece el contexto: propósito, alcance, supuestos, fuentes y modelo de riesgo. Solo después se ejecuta.",
+      "options": {
+        "a": "Incorrecta. Comunicar conclusiones es la tercera fase y requiere haber definido objetivo y alcance.",
+        "b": "Incorrecta. Implantar medidas es parte de la respuesta y no puede preceder a la evaluación.",
+        "c": "Incorrecta. Elegir escenarios automáticamente no es una tarea de NIST y sesgaría el análisis.",
+        "d": "Correcta. Preparar y establecer el contexto precede a la ejecución."
+      }
+    },
+    "gobierno-t08-20": {
+      "section": "nist-enfoques",
+      "reasoning": "La evaluación semicuantitativa usa agrupaciones, escalas o valores numéricos con rangos definidos, cuyo significado no se mantiene fuera de ese contexto. Usa números, pero no importes ni probabilidades calibradas, y cada nivel debe estar definido.",
+      "options": {
+        "a": "Correcta. Usa escalas numéricas con rangos definidos.",
+        "b": "Incorrecta. Pérdidas monetarias con frecuencias calibradas describen un enfoque cuantitativo.",
+        "c": "Incorrecta. Descripciones libres sin regla común no son ni siquiera un buen enfoque cualitativo.",
+        "d": "Incorrecta. Si no se define qué representa cada nivel, la escala no sirve; la semicuantitativa exige rangos definidos."
+      }
+    },
+    "gobierno-t08-21": {
+      "section": "nist-proceso",
+      "reasoning": "NIST incluye una fase específica, la tercera, para comunicar los resultados de la evaluación al personal clave y compartir la información con otras actividades de gestión del riesgo.",
+      "options": {
+        "a": "Incorrecta. La ejecución calcula el riesgo, pero no es la fase de entregar conclusiones.",
+        "b": "Correcta. La comunicación de resultados es la fase que informa al personal clave.",
+        "c": "Incorrecta. El mantenimiento actualiza la evaluación; no es actualizar equipos ni comunicar resultados.",
+        "d": "Incorrecta. La preparación establece el contexto; no se limita a elegir herramienta ni comunica resultados."
+      }
+    },
+    "gobierno-t08-22": {
+      "section": "magerit-proceso",
+      "reasoning": "En Magerit, la valoración va un paso más allá del análisis técnico: traduce las consecuencias a términos de negocio teniendo en cuenta percepción, estrategia y política, y decide qué se trata y qué se acepta.",
+      "options": {
+        "a": "Correcta. La valoración traduce las consecuencias a decisiones de negocio.",
+        "b": "Incorrecta. No da un resultado exacto; añade factores de percepción y política, que no son numéricos.",
+        "c": "Incorrecta. La popularidad de un control no es un criterio de valoración.",
+        "d": "Incorrecta. Es lo contrario: la valoración incorpora los objetivos de la organización."
+      }
+    },
+    "gobierno-t08-23": {
+      "section": "nist-enfoques",
+      "reasoning": "Una evaluación cuantitativa usa números cuyo significado y proporcionalidad se mantienen fuera del contexto. Pero una semicuantitativa también usa números (por ejemplo, una escala del 1 al 10) que solo tienen sentido dentro de su escala. Por eso, ver números no basta para llamarla cuantitativa.",
+      "options": {
+        "a": "Incorrecta. Las escalas deben tener criterios comunes; si no los tienen, el problema es otro.",
+        "b": "Correcta. Puede tratarse de escalas semicuantitativas, numéricas pero sin significado proporcional.",
+        "c": "Incorrecta. No toda escala numérica representa dinero; esa es precisamente la confusión.",
+        "d": "Incorrecta. El análisis cualitativo sí usa categorías ordenadas (muy bajo, bajo, moderado...)."
+      }
+    },
+    "gobierno-t08-24": {
+      "section": "iso-apreciacion",
+      "reasoning": "La ISO 27005 propone la apreciación de alto nivel justamente cuando el presupuesto no permite abordarlo todo: fija prioridades y cronología. Después, donde las consecuencias pueden ser significativas, se hace una segunda iteración detallada.",
+      "options": {
+        "a": "Incorrecta. Dar valores mínimos a lo no examinado oculta riesgos.",
+        "b": "Incorrecta. Elegir controles antes de saber qué riesgos importan invierte el proceso.",
+        "c": "Correcta. Alto nivel para priorizar y detalle donde proceda.",
+        "d": "Incorrecta. Analizar todo con el mismo detalle es justo lo que impide la falta de recursos."
+      }
+    },
+    "gobierno-t08-25": {
+      "section": "nist-aproximaciones",
+      "reasoning": "NIST advierte de que el punto de partida sesga los resultados y puede dejar riesgos sin identificar. Su recomendación es identificar los riesgos también desde una segunda aproximación (por ejemplo, desde la vulnerabilidad o el impacto en el activo).",
+      "options": {
+        "a": "Incorrecta. Repetir el mismo punto de partida reproduce el mismo sesgo.",
+        "b": "Incorrecta. Lo no identificado queda como riesgo oculto, no desaparece.",
+        "c": "Incorrecta. Quitar activos reduce el alcance y aumenta lo que se escapa.",
+        "d": "Correcta. Añadir una segunda aproximación mejora el rigor y la efectividad."
+      }
+    },
+    "gobierno-t08-26": {
+      "section": "magerit-decisiones",
+      "reasoning": "Aunque el riesgo residual sea asumible, Magerit dice que las decisiones están condicionadas también por las obligaciones legales, reglamentarias y contractuales. Por tanto, la decisión debe tenerlas en cuenta además del nivel de riesgo.",
+      "options": {
+        "a": "Correcta. Hay que incluir las obligaciones legales y contractuales además del nivel de riesgo.",
+        "b": "Incorrecta. Mirar solo las pérdidas a corto plazo ignora las obligaciones.",
+        "c": "Incorrecta. La preferencia de quien maneja la herramienta no es un criterio de decisión.",
+        "d": "Incorrecta. El precio no exime de cumplir una obligación legal."
+      }
+    },
+    "gobierno-t08-27": {
+      "section": "magerit-mar",
+      "reasoning": "MAR.1 incluye la subtarea MAR.12, dependencias entre activos. Si se analiza un servidor sin estudiar qué servicios dependen de él, falta precisamente esa subtarea, y el valor del servidor quedará infravalorado.",
+      "options": {
+        "a": "Incorrecta. La identificación de inventario es MAR.11, pero no basta sin las dependencias.",
+        "b": "Correcta. Falta identificar las dependencias entre activos (MAR.12).",
+        "c": "Incorrecta. La ubicación física no informa de las relaciones funcionales.",
+        "d": "Incorrecta. El coste de reponer el hardware ignora el valor de los servicios que dependen de él."
+      }
+    },
+    "gobierno-t08-28": {
+      "section": "nist-proceso",
+      "reasoning": "La fase de mantenimiento de NIST incluye monitorizar de forma continua para determinar la eficacia de las respuestas, detectar cambios y verificar el cumplimiento, y actualizar la evaluación. Si nadie comprueba los controles, falta esa actividad.",
+      "options": {
+        "a": "Incorrecta. Instalar no garantiza que funcione; hay que comprobar la eficacia.",
+        "b": "Incorrecta. Tras tratar el riesgo hay que actualizar los niveles, no congelarlos.",
+        "c": "Correcta. Monitorizar las respuestas y mantener la evaluación.",
+        "d": "Incorrecta. La evaluación no termina con el primer informe; se mantiene en el tiempo."
+      }
+    },
+    "gobierno-t08-29": {
+      "section": "magerit-decisiones",
+      "reasoning": "Magerit pide considerar la capacidad de la organización para asumir impactos intangibles, como la pérdida de reputación, que afectan a la imagen pública y a las relaciones con empleados, proveedores, clientes y socios. Si se ignoran, hay que añadirlos.",
+      "options": {
+        "a": "Incorrecta. El formato de los niveles no aporta las consecuencias que faltan.",
+        "b": "Incorrecta. La antigüedad de los activos no sustituye a las consecuencias.",
+        "c": "Correcta. Hay que añadir las consecuencias intangibles sobre relaciones e imagen.",
+        "d": "Incorrecta. Los costes técnicos son tangibles y dejan fuera la reputación."
+      }
+    },
+    "gobierno-t08-30": {
+      "section": "magerit-proceso",
+      "reasoning": "En la actividad de comunicación y consulta, Magerit pide dar a los proveedores externos instrucciones claras, para poder exigirles los niveles de servicio y la gestión de incidentes. Si el proveedor no conoce los requisitos, falta esa comunicación.",
+      "options": {
+        "a": "Incorrecta. Un contrato no incluye requisitos que nunca se le comunicaron.",
+        "b": "Incorrecta. Esperar al incumplimiento llega tarde y no permite exigir nada.",
+        "c": "Incorrecta. Los criterios implícitos impiden exigir su cumplimiento.",
+        "d": "Correcta. Hay que comunicar instrucciones y niveles requeridos."
+      }
+    }
+  }
+}

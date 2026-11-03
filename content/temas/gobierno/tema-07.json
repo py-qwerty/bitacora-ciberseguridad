@@ -1,0 +1,1164 @@
+{
+  "course": "gobierno",
+  "number": 7,
+  "title": "UNE-ISO 31000. 2018 Gestión del Riesgo. Directrices",
+  "minutes": 45,
+  "intro": {
+    "why": "Toda organización trabaja con incertidumbre: un proveedor de nube que cae, una ley nueva de protección de datos, un ransomware que cifra los servidores o un cliente que se va a la competencia. La norma UNE-ISO 31000:2018 es el «manual de instrucciones» más usado del mundo para gestionar esa incertidumbre de forma ordenada, sea cual sea el sector o el tamaño de la empresa. Casi todas las metodologías de análisis de riesgos que verás en el máster (MAGERIT, ISO 27005, etc.) beben de ella, así que entenderla es entender el idioma común del riesgo.",
+    "before": [
+      "Una **norma técnica** es un documento de buenas prácticas elaborado por consenso por un organismo de normalización. No es una ley: nadie te multa por no seguirla, salvo que un contrato o una ley la exijan.",
+      "**ISO** (International Organization for Standardization, Organización Internacional de Normalización) publica normas internacionales; **UNE** (Una Norma Española) es el prefijo de las normas que adopta la Asociación Española de Normalización. «UNE-ISO 31000» es la versión española de la ISO 31000; «:2018» indica el año de la edición.",
+      "Un **objetivo** es aquello que la organización quiere conseguir: vender más, dar un servicio sin cortes, cumplir la ley, proteger los datos de sus clientes.",
+      "Una **parte interesada** es cualquier persona o grupo que puede afectar a la organización o verse afectado por ella: clientes, empleados, proveedores, accionistas, reguladores, la sociedad."
+    ],
+    "goals": [
+      "Al terminar sabrás explicar qué es el riesgo según la ISO 31000 y por qué no es solo «algo malo que puede pasar».",
+      "Sabrás enumerar los beneficios de implantar la gestión de riesgos y detectar las opciones exageradas del test («garantizar», «eliminar»).",
+      "Sabrás reconocer los ocho principios y el propósito de crear y proteger valor.",
+      "Sabrás describir el marco de referencia (liderazgo, integración, diseño, implementación, valoración y mejora) y diferenciarlo del proceso.",
+      "Sabrás distinguir el contexto externo del interno con ejemplos.",
+      "Sabrás recorrer el proceso: comunicación y consulta, alcance-contexto-criterios, evaluación (identificación, análisis, valoración), tratamiento, seguimiento y revisión, y registro e informe."
+    ]
+  },
+  "sections": [
+    {
+      "id": "que-es-riesgo",
+      "title": "Qué es el riesgo y qué es la ISO 31000",
+      "pages": [4, 6],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Imagina que vas a hacer un viaje en coche para llegar a una boda a las 12:00. No sabes si habrá atasco, si lloverá o si se pinchará una rueda. Esa **incertidumbre** puede hacerte llegar tarde (efecto negativo) o, si sales antes y no hay tráfico, darte tiempo para tomar un café (efecto positivo). El riesgo no es el atasco en sí: es **el efecto que esa incertidumbre tiene sobre tu objetivo** de llegar a las 12:00."
+        },
+        {
+          "type": "term",
+          "term": "Riesgo (según ISO 31000)",
+          "text": "El **efecto de la incertidumbre sobre los objetivos**. La incertidumbre nace de factores e influencias internas y externas a las que está expuesta la organización. El efecto puede ser negativo (amenaza) o positivo (oportunidad)."
+        },
+        {
+          "type": "p",
+          "text": "Fíjate en que la definición no habla solo de pérdidas económicas ni solo de probabilidad: une **incertidumbre** y **objetivos**. Si no sabes qué quieres conseguir, no puedes saber qué te pone en peligro."
+        },
+        {
+          "type": "term",
+          "term": "UNE-ISO 31000:2018 «Gestión del riesgo. Directrices»",
+          "text": "Norma internacional que ofrece **principios y directrices** (recomendaciones, no requisitos certificables) para gestionar cualquier tipo de riesgo, en cualquier sector, de cualquier tamaño, durante toda la vida de la organización y en cualquier actividad, incluida la toma de decisiones a todos los niveles."
+        },
+        {
+          "type": "steps",
+          "title": "Lo que la norma pide hacer con el riesgo, en una frase cada paso",
+          "items": [
+            "**Identificarlo**: encontrar qué puede pasar.",
+            "**Analizarlo**: entender su naturaleza y su nivel.",
+            "**Valorarlo**: compararlo con los criterios para decidir si hay que actuar.",
+            "**Tratarlo** si hace falta, para que cumpla los criterios de riesgo de la organización.",
+            "Durante todo el camino: **comunicar y consultar** a las partes interesadas, y hacer **seguimiento y revisión** del riesgo y de los controles."
+          ]
+        },
+        {
+          "type": "term",
+          "term": "Control",
+          "text": "Cualquier medida que modifica el riesgo: una copia de seguridad, un antivirus, un procedimiento de aprobación, un seguro, una formación."
+        },
+        {
+          "type": "p",
+          "text": "Una novedad clave de la norma es colocar el **establecimiento del contexto** al principio del proceso. Así se capta qué objetivos tiene la organización, en qué entorno los persigue, quiénes son sus partes interesadas y qué criterios de riesgo usa. Sin ese contexto no se puede juzgar si un riesgo es grave o no."
+        },
+        {
+          "type": "list",
+          "title": "Una gestión de riesgos eficaz y eficiente…",
+          "items": [
+            "Es **iterativa** (se repite en ciclos) y ayuda a fijar estrategias, lograr objetivos y tomar decisiones informadas.",
+            "Forma parte de la **gobernanza y el liderazgo**: es fundamental en cómo se dirige la organización a todos los niveles.",
+            "Forma parte de **todas las actividades** e incluye la interacción con las partes interesadas.",
+            "Tiene en cuenta los **contextos externo e interno**, incluidos el comportamiento humano y los factores culturales.",
+            "Se apoya en tres piezas: **principios, marco de referencia y proceso**."
+          ]
+        },
+        {
+          "type": "exam",
+          "text": "Cuando el test pregunte «qué expresa el riesgo», busca la frase con **incertidumbre** y **objetivos**. Son trampas: «solo la pérdida económica», «solo la probabilidad sin consecuencias» o «un incumplimiento ya confirmado» (si ya ha pasado, no hay incertidumbre: es un incidente)."
+        },
+        {
+          "type": "key",
+          "text": "Riesgo = efecto de la incertidumbre sobre los objetivos. La ISO 31000 da principios y directrices para gestionarlo en cualquier organización, de forma sistemática, transparente y fiable."
+        }
+      ]
+    },
+    {
+      "id": "beneficios",
+      "title": "Para qué sirve: beneficios y las tres piezas de la norma",
+      "pages": [6, 8],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Hacer una revisión médica periódica no te garantiza no enfermar nunca, pero aumenta mucho las probabilidades de detectar a tiempo un problema y de decidir bien. Con la gestión de riesgos pasa igual: **mejora** y **aumenta probabilidades**, pero no **garantiza** ni **elimina** la incertidumbre."
+        },
+        {
+          "type": "list",
+          "title": "Beneficios que cita la norma (ayuda a la organización a…)",
+          "items": [
+            "Aumentar la probabilidad de alcanzar los objetivos.",
+            "Fomentar una gestión **proactiva** (adelantarse), no reactiva (apagar fuegos).",
+            "**Ser consciente de la necesidad de identificar y tratar el riesgo en toda la organización.**",
+            "Mejorar la identificación de oportunidades y amenazas.",
+            "Cumplir los requisitos legales y reglamentarios.",
+            "Mejorar los informes obligatorios y voluntarios, el gobierno y la confianza de las partes interesadas.",
+            "Establecer una base fiable para decidir y planificar.",
+            "Mejorar los controles y asignar los recursos de tratamiento de forma eficaz.",
+            "**Mejorar** la eficacia y la eficiencia operacional.",
+            "Mejorar la salud y seguridad, y la protección ambiental.",
+            "Mejorar la prevención de pérdidas y la gestión de incidentes; minimizar pérdidas.",
+            "Mejorar el aprendizaje y la **resiliencia** (capacidad de aguantar golpes y recuperarse) de la organización."
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Las tres piezas de la ISO 31000 (figura 1 del tema)",
+          "head": ["Pieza", "Qué es", "Pregunta que responde"],
+          "rows": [
+            ["Principios", "Ocho características de una buena gestión, al servicio de crear y proteger valor.", "¿Cómo debe ser la gestión de riesgos?"],
+            ["Marco de referencia", "Las bases organizativas: liderazgo y compromiso, integración, diseño, implementación, valoración y mejora.", "¿Cómo se integra en la organización?"],
+            ["Proceso", "Las actividades concretas: comunicación y consulta, alcance-contexto-criterios, evaluación, tratamiento, seguimiento y revisión, registro e informe.", "¿Qué se hace, paso a paso, con cada riesgo?"]
+          ]
+        },
+        {
+          "type": "exam",
+          "text": "Trampa favorita: cambiar un verbo. La norma dice que ayuda a **mejorar** la eficacia operacional; la opción «**garantizar** la eficacia y la eficiencia» es falsa. Tampoco «elimina la incertidumbre» (la incertidumbre se gestiona, no desaparece) ni busca una gestión «reactiva» (busca la proactiva)."
+        },
+        {
+          "type": "key",
+          "text": "La gestión de riesgos aumenta la probabilidad de éxito y hace a toda la organización consciente de que debe identificar y tratar el riesgo; nunca garantiza resultados ni elimina la incertidumbre."
+        }
+      ]
+    },
+    {
+      "id": "principios-valor",
+      "title": "Principios (I): crear y proteger valor, integrada, estructurada, adaptada e inclusiva",
+      "pages": [9, 10],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Los principios son la «personalidad» que debe tener una buena gestión de riesgos. Todos giran alrededor de un propósito central: **la creación y la protección del valor**. Gestionar riesgos mejora el desempeño, fomenta la innovación y contribuye al logro de objetivos."
+        },
+        {
+          "type": "analogy",
+          "text": "Piensa en el cinturón de seguridad: no es un gasto que solo protege; también te permite conducir con tranquilidad y llegar a tu destino. La gestión de riesgos **protege** lo que ya tienes (valor) y te deja **crear** valor nuevo, porque te atreves a aprovechar oportunidades sabiendo lo que arriesgas."
+        },
+        {
+          "type": "table",
+          "title": "Los cinco primeros principios",
+          "head": ["Principio", "Qué significa", "Ejemplo"],
+          "rows": [
+            ["Integrada", "No es una actividad independiente ni aislada: forma parte de todas las actividades, de las responsabilidades de gestión, de la planificación estratégica y de la gestión de proyectos y cambios.", "Antes de lanzar una nueva app, el comité de producto evalúa sus riesgos dentro del propio plan del proyecto, no en un informe aparte que nadie lee."],
+            ["Estructurada y exhaustiva", "Un enfoque ordenado y completo da resultados coherentes y comparables.", "Todas las áreas usan la misma escala de probabilidad e impacto, así se pueden comparar sus riesgos."],
+            ["Adaptada", "El marco y el proceso se ajustan y son proporcionales a los contextos externo e interno de la organización.", "Un hospital y una tienda online no usan los mismos umbrales ni los mismos responsables."],
+            ["Inclusiva", "Participación apropiada y oportuna de las partes interesadas, para tener en cuenta su conocimiento, puntos de vista y percepciones.", "Se consulta a enfermería, informática y dirección antes de decidir cómo proteger la historia clínica."],
+            ["Dinámica, mejor información, factores humanos, mejora continua", "Los otros cuatro principios, que verás en el siguiente apartado.", "—"]
+          ]
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico: el riesgo que vive en un cajón",
+          "text": "Una empresa encarga cada año un análisis de riesgos a informática. El documento se archiva y ningún directivo lo consulta al aprobar presupuestos o proyectos. Esto incumple el principio de **integrada**: la gestión de riesgos debe formar parte de las decisiones y actividades, no ser una tarea aislada de un departamento."
+        },
+        {
+          "type": "exam",
+          "text": "Si preguntan qué persigue la gestión de riesgos, la respuesta es **crear y proteger valor**. Trampas: «es una actividad independiente» (no, es integrada), «es responsabilidad exclusiva de la dirección» (no, todos los miembros gestionan riesgo), «contribuye de manera **intangible**» (no; ediciones anteriores decían «de manera **demostrable**»). «Inclusiva» no es exigir unanimidad ni consultar solo a proveedores ni pedir opinión después de decidir: es participación **oportuna** de las partes **pertinentes**."
+        },
+        {
+          "type": "key",
+          "text": "Propósito: crear y proteger valor. Integrada = dentro de todo lo que hace la organización; estructurada = comparable; adaptada = a su contexto; inclusiva = con las partes interesadas a tiempo."
+        }
+      ]
+    },
+    {
+      "id": "principios-dinamica",
+      "title": "Principios (II): dinámica, mejor información disponible, factores humanos y mejora continua",
+      "pages": [11, 12],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Un parte meteorológico de hace un mes no sirve para decidir si coges paraguas hoy. Y un buen meteorólogo te da la previsión diciendo «70 % de probabilidad de lluvia», no «lloverá seguro». Así deben ser los riesgos: **actualizados** y con su **incertidumbre** declarada."
+        },
+        {
+          "type": "table",
+          "title": "Los cuatro últimos principios",
+          "head": ["Principio", "Qué significa", "Cómo se reconoce en el test"],
+          "rows": [
+            ["Dinámica", "Los riesgos aparecen, cambian o desaparecen cuando cambia el contexto. La gestión anticipa, detecta, reconoce y responde a esos cambios de forma apropiada y **oportuna** (a tiempo).", "Ante un cambio regulatorio o tecnológico: revisar riesgos y respuestas ya, no esperar al incidente ni a la próxima auditoría."],
+            ["Mejor información disponible", "Las entradas combinan información histórica, actualizada y expectativas futuras, y tienen en cuenta de forma explícita sus **limitaciones e incertidumbres**. La información debe ser oportuna, clara y accesible para quien la necesite.", "Si los datos son escasos, hay que reconocer limitaciones e incertidumbre; repetir el cálculo no da certeza absoluta."],
+            ["Factores humanos y culturales", "El comportamiento humano y la cultura influyen en todas las etapas. La gestión identifica aptitudes, percepciones e intenciones de personas internas y externas.", "Falso: «independiente de factores humanos y culturales»."],
+            ["Mejora continua", "Se mejora con el aprendizaje y la experiencia; la organización desarrolla estrategias para aumentar su **madurez** en gestión de riesgos.", "Ligado a revisar y adaptar cuando algo no sale como se esperaba."]
+          ]
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico: llega una nueva ley",
+          "text": "Se aprueba una norma europea que obliga a notificar incidentes en 24 horas. El riesgo de sanción ha cambiado de golpe. El principio dinámico exige **revisar oportunamente** los riesgos y respuestas (procedimiento de notificación, guardias, herramientas), sin esperar a sufrir un incidente ni a que cambie el proveedor tecnológico ni a agotar el presupuesto anterior."
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico: el informe demasiado seguro",
+          "text": "Un analista calcula, con datos de solo tres meses, que «la probabilidad de fuga de datos es del 0,4 % con total certeza». El principio de mejor información disponible le obliga a declarar las **limitaciones de la información** y la **incertidumbre**, y a considerar también los cambios de contexto, no solo los datos históricos."
+        },
+        {
+          "type": "exam",
+          "text": "La frase «la gestión de riesgos debe ser **sistemática, irrepetible, ortodoxa** y oportuna» es una trampa construida a partir de la versión antigua («sistemática, estructurada y oportuna»): irrepetible y ortodoxa no tienen sentido, porque la gestión es iterativa y adaptada. Tampoco es cierto que «no trate explícitamente la incertidumbre»: la trata de forma explícita. La correcta suele ser «**formar parte de la toma de decisiones**»."
+        },
+        {
+          "type": "key",
+          "text": "Los riesgos cambian con el contexto, la información siempre tiene límites, las personas y la cultura cuentan y la gestión mejora con la experiencia."
+        }
+      ]
+    },
+    {
+      "id": "marco-liderazgo",
+      "title": "El marco de referencia y el liderazgo de la alta dirección",
+      "pages": [13, 18],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Piensa en una cocina de restaurante. El **proceso** es la receta: los pasos para preparar cada plato. El **marco de referencia** es todo lo que hace posible cocinar bien cada día: el chef que se compromete, el reparto de puestos, los proveedores, el presupuesto, la forma de comunicarse y de revisar qué platos fallan. Sin cocina organizada, la mejor receta no sale."
+        },
+        {
+          "type": "term",
+          "term": "Marco de referencia",
+          "text": "Conjunto de bases y disposiciones que permiten **integrar** la gestión de riesgos en todos los niveles de la gobernanza de la organización, incluida la toma de decisiones. Su desarrollo implica integrar, diseñar, implementar, valorar y mejorar la gestión de riesgos. Hace que la información del proceso se comunique y se use para decidir, y establece la obligación de rendir cuentas."
+        },
+        {
+          "type": "table",
+          "title": "Marco frente a proceso",
+          "head": ["Aspecto", "Marco de referencia", "Proceso"],
+          "rows": [
+            ["Función", "Facilita la integración de la gestión de riesgos en la organización.", "Organiza las actividades concretas de gestión de cada riesgo."],
+            ["Contenido", "Liderazgo y compromiso, integración, diseño, implementación, valoración, mejora.", "Comunicación y consulta, alcance-contexto-criterios, evaluación, tratamiento, seguimiento y revisión, registro e informe."],
+            ["Relación", "Complementarios: el marco crea las condiciones para que el proceso funcione y se use en las decisiones.", "Complementarios: el proceso alimenta con información la revisión del marco."]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "El marco no se copia de otra organización: cada una debe valorar sus prácticas actuales, detectar **brechas** (diferencias entre lo que hace y lo que debería hacer) y **adaptar** los componentes del marco a sus necesidades."
+        },
+        {
+          "type": "term",
+          "term": "Alta dirección y órganos de supervisión",
+          "text": "La **alta dirección** son quienes dirigen la organización (consejero delegado, comité de dirección). Los **órganos de supervisión** vigilan a la dirección (consejo de administración, comisión de auditoría). La alta dirección **rinde cuentas por gestionar** el riesgo; los órganos de supervisión **rinden cuentas por supervisar** esa gestión."
+        },
+        {
+          "type": "list",
+          "title": "La alta dirección demuestra liderazgo y compromiso mediante…",
+          "items": [
+            "Adaptar e implementar todos los componentes del marco.",
+            "Publicar una declaración o **política** con el enfoque, plan o línea de acción en riesgos.",
+            "Asegurar que se **asignan los recursos** necesarios.",
+            "Asignar **autoridad, responsabilidad y obligación de rendir cuentas** en los niveles apropiados."
+          ]
+        },
+        {
+          "type": "list",
+          "title": "Eso ayuda a la organización a…",
+          "items": [
+            "Alinear la gestión de riesgos con sus objetivos, estrategia y cultura.",
+            "Reconocer todas sus obligaciones y compromisos voluntarios.",
+            "Fijar la magnitud y el tipo de riesgo que puede o no asumir, como guía para los criterios de riesgo, y comunicarlo.",
+            "Comunicar el valor de la gestión de riesgos y promover su seguimiento sistemático.",
+            "Mantener el marco apropiado al contexto."
+          ]
+        },
+        {
+          "type": "list",
+          "title": "Los órganos de supervisión suelen asegurarse de que…",
+          "items": [
+            "Los riesgos se consideran al fijar los objetivos.",
+            "Los sistemas para gestionarlos funcionan eficazmente.",
+            "Los riesgos son apropiados para los objetivos de la organización.",
+            "La información sobre riesgos se comunica de forma apropiada.",
+            "Comprenden los riesgos a los que se enfrenta la organización."
+          ]
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico: el marco copiado",
+          "text": "Una pequeña empresa de logística copia el marco de riesgos de un banco y solo cambia el nombre en la portada. Los umbrales, comités y responsables del banco no existen en la empresa. Lo correcto es **adaptarlo a su contexto y necesidades**: aunque usen la misma tecnología, sus objetivos, tamaño y obligaciones son distintos."
+        },
+        {
+          "type": "exam",
+          "text": "Sobre la alta dirección, la respuesta buena es «**demostrar liderazgo y asignar recursos**». Trampas: delegar la aceptación de riesgos sin límites ni supervisión, aportar recursos solo cuando el riesgo ya se ha materializado o creer que el juicio técnico sustituye a los objetivos. Sobre marco y proceso: no son documentos alternativos, el marco no «ejecuta» medidas técnicas y el proceso no define la estructura directiva."
+        },
+        {
+          "type": "key",
+          "text": "El marco integra la gestión de riesgos en la organización y el proceso la ejecuta; el motor del marco es el liderazgo y compromiso de la alta dirección, con política, recursos y responsabilidades."
+        }
+      ]
+    },
+    {
+      "id": "integracion-diseno",
+      "title": "Integración y diseño del marco: contexto externo e interno",
+      "pages": [19, 24],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Alrededor del liderazgo, el marco tiene cinco componentes que forman un ciclo: **integración, diseño, implementación, valoración y mejora**. Este apartado cubre los dos primeros."
+        },
+        {
+          "type": "term",
+          "term": "Integración",
+          "text": "Hacer que el riesgo se gestione en **cada parte de la estructura** de la organización: todos sus miembros son responsables de gestionar el riesgo. Es un proceso dinámico e iterativo, adaptado a la cultura, y la gestión de riesgos forma parte del propósito, la gobernanza, la estrategia, los objetivos y las operaciones, no está separada de ellos."
+        },
+        {
+          "type": "term",
+          "term": "Gobernanza",
+          "text": "El sistema que guía el rumbo de la organización: sus relaciones internas y externas, sus reglas, procesos y prácticas. Las estructuras de gestión convierten esa orientación en estrategia y objetivos. Definir quién rinde cuentas y quién supervisa los riesgos forma parte de la gobernanza."
+        },
+        {
+          "type": "steps",
+          "title": "Las cinco actividades de la fase de diseño (figura 7)",
+          "items": [
+            "Comprensión de la organización y de su contexto (externo e interno).",
+            "Articulación del compromiso con la gestión del riesgo.",
+            "Asignación de roles, autoridades, responsabilidades y obligación de rendir cuentas.",
+            "Asignación de recursos.",
+            "Establecimiento de la comunicación y la consulta."
+          ]
+        },
+        {
+          "type": "exam",
+          "text": "Pregunta clásica: «¿qué actividad **no** se realiza en el diseño del marco?». Las cinco de la lista sí. El **establecimiento de los criterios de riesgo** no está en el diseño del marco: pertenece al **proceso**, dentro de «alcance, contexto y criterios». Es fácil confundirse porque los dos hablan de «contexto»."
+        },
+        {
+          "type": "analogy",
+          "text": "Para saber qué le puede pasar a tu casa, miras fuera (¿zona de inundaciones?, ¿barrio con robos?, ¿cambian las normas del ayuntamiento?) y miras dentro (¿instalación eléctrica vieja?, ¿quién tiene llaves?, ¿hay costumbre de dejar la puerta abierta?). Lo de fuera es el **contexto externo**; lo de dentro, el **contexto interno**."
+        },
+        {
+          "type": "table",
+          "title": "Contexto externo frente a contexto interno (figuras 9 y 10)",
+          "head": ["Contexto externo: entorno exterior en que la organización persigue sus objetivos", "Contexto interno: entorno interior en que los persigue"],
+          "rows": [
+            ["Entorno sociocultural, político, legal, reglamentario, financiero, tecnológico, económico, natural y competitivo.", "Gobierno, estructura de la organización, funciones y responsabilidades."],
+            ["Nivel internacional, nacional, regional o local.", "Políticas, objetivos y estrategias."],
+            ["Factores y tendencias clave con impacto en los objetivos.", "Aptitudes: recursos y conocimientos (capital, tiempo, personas, procesos, sistemas, tecnologías)."],
+            ["Relaciones con las partes interesadas externas, sus percepciones y valores.", "Relaciones con las partes interesadas internas, sus percepciones y valores; cultura de la organización."],
+            ["—", "Sistemas y flujos de información, procesos de decisión; normas y modelos adoptados; forma y extensión de las relaciones contractuales."]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Ejemplos para clasificar",
+          "head": ["Situación", "Contexto", "Por qué"],
+          "rows": [
+            ["Inestabilidad política en el país", "Externo", "Entorno político."],
+            ["Sequía permanente en la región", "Externo", "Entorno natural."],
+            ["Huelga de todo el sector del transporte", "Externo", "Conflicto sectorial: afecta a todas las empresas del sector, no nace dentro de la tuya."],
+            ["Un cambio legislativo", "Externo", "Entorno legal y reglamentario."],
+            ["Un cambio organizativo (fusión de departamentos)", "Interno", "Estructura, funciones y responsabilidades."],
+            ["El CRM de la empresa", "Interno", "Sistema de información propio. CRM (Customer Relationship Management) es el programa que gestiona la relación con los clientes."],
+            ["Conflicto con el comité de empresa", "Interno", "Relación con partes interesadas internas (la plantilla)."],
+            ["Cultura de «aquí nadie comparte contraseñas»", "Interno", "Cultura de la organización."]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "El contexto externo importa porque los objetivos e inquietudes de las partes interesadas externas deben reflejarse en los criterios de riesgo, con especial atención a los requisitos legales. El contexto interno importa porque la gestión de riesgos debe **alinearse con la cultura, los procedimientos, la estructura y la estrategia**: lo constituye todo lo que, dentro de la organización, puede influir en cómo tratará el riesgo."
+        },
+        {
+          "type": "exam",
+          "text": "Truco: pregúntate «¿esto lo decide o lo controla la organización por dentro?». Si sí, es interno (estructura, cultura, sistemas, conflictos con su propia plantilla). Si viene de fuera y le afecta igual que a otras (leyes, clima, política, conflictos del sector), es externo. Ojo al matiz entre «conflicto laboral **sectorial**» (externo) y «conflicto con el **comité de empresa**» (interno)."
+        },
+        {
+          "type": "key",
+          "text": "Diseñar el marco = comprender el contexto + articular el compromiso + asignar roles + asignar recursos + establecer comunicación y consulta. Los criterios de riesgo no son del diseño: son del proceso."
+        }
+      ]
+    },
+    {
+      "id": "compromiso-roles-recursos",
+      "title": "Diseño (continuación): compromiso, roles, recursos y comunicación",
+      "pages": [25, 30],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Las otras cuatro actividades del diseño convierten las buenas intenciones en algo concreto: quién decide, con qué medios y cómo se habla de riesgos."
+        },
+        {
+          "type": "list",
+          "title": "Articulación del compromiso: la política o declaración debe incluir, entre otros…",
+          "items": [
+            "El propósito de gestionar el riesgo y su vínculo con los objetivos y otras políticas.",
+            "La necesidad de integrar la gestión del riesgo en toda la cultura.",
+            "El liderazgo en la integración en las actividades principales y en la toma de decisiones.",
+            "Autoridades, responsabilidades, rendición de cuentas y disponibilidad de recursos.",
+            "Cómo manejar los **objetivos en conflicto**.",
+            "La medición e informe dentro de los indicadores de desempeño.",
+            "La revisión y la mejora."
+          ]
+        },
+        {
+          "type": "term",
+          "term": "Dueño del riesgo",
+          "text": "La persona que tiene asignada la autoridad y la obligación de rendir cuentas para gestionar un riesgo concreto. Por ejemplo, la directora financiera es dueña del riesgo de fraude en pagos."
+        },
+        {
+          "type": "p",
+          "text": "En la **asignación de roles**, la alta dirección asegura que autoridades, responsabilidades y rendición de cuentas se asignan y comunican a todos los niveles, subrayando que gestionar riesgos es una **responsabilidad principal**, no un extra."
+        },
+        {
+          "type": "list",
+          "title": "Asignación de recursos: puede incluir, sin limitarse a…",
+          "items": [
+            "Personas, habilidades, experiencia y competencias.",
+            "Procesos, métodos y herramientas para gestionar el riesgo.",
+            "Procesos y procedimientos documentados.",
+            "Sistemas de gestión de la información y del conocimiento.",
+            "Desarrollo profesional y formación.",
+            "Siempre considerando las competencias y limitaciones de los recursos existentes."
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Comunicación frente a consulta",
+          "head": ["Comunicación", "Consulta"],
+          "rows": [
+            ["Compartir información con el público objetivo.", "Además, los participantes dan **retroalimentación** que se espera que influya en las decisiones."],
+            ["Ejemplo: enviar a toda la plantilla la nueva política de contraseñas.", "Ejemplo: preguntar a los equipos qué impacto tendría antes de aprobarla."]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Ambas deben ser oportunas, recopilar, consolidar, sintetizar y compartir la información pertinente, y servir para retroalimentar y mejorar."
+        },
+        {
+          "type": "key",
+          "text": "El diseño baja el compromiso a tierra: una política escrita, dueños de riesgo con autoridad, recursos suficientes y un enfoque aprobado de comunicación y consulta."
+        }
+      ]
+    },
+    {
+      "id": "implementacion-valoracion-mejora",
+      "title": "Implementación, valoración y mejora del marco",
+      "pages": [30, 34],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Instalar un plan de entrenamiento (implementar), pesarte y medirte cada mes para ver si funciona (valorar) y cambiar el plan si no avanzas (mejorar). Sin la báscula, nunca sabrás si el plan sirve."
+        },
+        {
+          "type": "list",
+          "title": "Implementación del marco",
+          "items": [
+            "Desarrollar un plan con plazos y recursos.",
+            "Identificar dónde, cuándo, cómo y quién toma cada tipo de decisión.",
+            "Modificar los procesos de decisión cuando haga falta.",
+            "Asegurar que las disposiciones para gestionar el riesgo se comprenden y se aplican.",
+            "Requiere compromiso y concienciación de las partes interesadas; así se aborda explícitamente la incertidumbre al decidir."
+          ]
+        },
+        {
+          "type": "term",
+          "term": "Valoración del marco",
+          "text": "Para saber si el marco es eficaz y eficiente, la organización implanta **métricas y mecanismos** que midan **periódicamente** su desempeño frente a su propósito y comprueba si su diseño e implementación siguen siendo idóneos para apoyar los objetivos."
+        },
+        {
+          "type": "term",
+          "term": "Mejora del marco",
+          "text": "Seguimiento continuo y adaptación del marco a los cambios de contexto, para mantener o aumentar su eficacia, eficiencia, idoneidad y adecuación. Cuando se detectan brechas u oportunidades, se crean planes y tareas y se asignan a responsables que rinden cuentas."
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico: informes sin termómetro",
+          "text": "Una empresa genera cada trimestre un informe de riesgos impecable, pero nunca mide si el marco funciona: ¿se tratan a tiempo los riesgos altos?, ¿se cumplen los planes?, ¿bajan los incidentes? Le faltan **métricas y una valoración periódica de la eficacia**. Repetir informes, renovar el documento o cambiar de responsables sin medir resultados no lo soluciona."
+        },
+        {
+          "type": "exam",
+          "text": "No confundas la **valoración del marco** (¿funciona nuestra forma de gestionar riesgos?, con métricas periódicas) con la **valoración del riesgo** del proceso (comparar el nivel de un riesgo con los criterios). Las dos se llaman «valoración»."
+        },
+        {
+          "type": "key",
+          "text": "Un marco se implanta con un plan, se mide con métricas periódicas y se mejora de forma continua según los cambios y las brechas detectadas."
+        }
+      ]
+    },
+    {
+      "id": "proceso-comunicacion",
+      "title": "El proceso y la comunicación y consulta",
+      "pages": [35, 38],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "El **proceso** es la aplicación sistemática de políticas, procedimientos y prácticas a seis actividades. Se puede aplicar a nivel estratégico, operacional, de programa o de proyecto, y debe integrarse en la cultura y adaptarse a los procesos de negocio."
+        },
+        {
+          "type": "code",
+          "title": "Esquema del proceso (figura 19)",
+          "text": "        Comunicación y consulta  (en TODAS las etapas)\n  ┌──────────────────────────────────────────────────┐\n  │ 1. Alcance, contexto y criterios                 │\n  │ 2. Evaluación del riesgo                         │\n  │      · Identificación                            │\n  │      · Análisis                                  │\n  │      · Valoración                                │\n  │ 3. Tratamiento del riesgo                        │\n  └──────────────────────────────────────────────────┘\n        Seguimiento y revisión   (en TODAS las etapas)\n        Registro e informe       (de todo el proceso)"
+        },
+        {
+          "type": "p",
+          "text": "Aunque se dibuja como una secuencia, **en la práctica es iterativo**: se vuelve atrás cuantas veces haga falta. Y siempre hay que tener en cuenta la naturaleza cambiante del comportamiento humano y de la cultura."
+        },
+        {
+          "type": "analogy",
+          "text": "En una comunidad de vecinos que decide si instala cámaras, la **comunicación** es explicar en la junta qué riesgo hay y por qué se propone la medida. La **consulta** es escuchar a los vecinos (privacidad, coste, robos sufridos) antes de votar. Las percepciones serán distintas: el del bajo ha sufrido dos robos y el del ático no."
+        },
+        {
+          "type": "term",
+          "term": "Propósito de la comunicación y consulta",
+          "text": "Ayudar a las partes interesadas a **comprender el riesgo, las bases con que se toman las decisiones y las razones** de las acciones. La comunicación promueve conciencia y comprensión; la consulta obtiene retroalimentación e información para decidir. El intercambio debe ser basado en hechos, oportuno, pertinente, exacto y comprensible, respetando la confidencialidad, la integridad y la privacidad."
+        },
+        {
+          "type": "list",
+          "title": "Un enfoque consultivo en equipo ayuda a…",
+          "items": [
+            "Establecer bien el contexto y entender los intereses de las partes interesadas.",
+            "Identificar los riesgos adecuadamente y reunir distintas áreas de experiencia para analizarlos.",
+            "Considerar diferentes opiniones al definir criterios y valorar riesgos.",
+            "Conseguir aprobación y apoyo para el plan de tratamiento.",
+            "Favorecer la gestión del cambio y desarrollar un plan de comunicación y consulta (que se prepara en una de las primeras etapas)."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Las partes interesadas juzgan el riesgo según sus **percepciones**, que varían por valores, necesidades, hipótesis, conceptos e inquietudes. Como pueden influir mucho en las decisiones, esas percepciones se deben **identificar, registrar y tener en cuenta**."
+        },
+        {
+          "type": "exam",
+          "text": "Si usuarios y técnicos ven distinto un riesgo, la respuesta es **comunicación y consulta** de perspectivas. Trampas: excluir las percepciones no técnicas, elegir la visión más optimista, promediar opiniones sin entender sus supuestos, sustituir la evaluación por la voluntad de la mayoría, «garantizar que no haya diferencias de percepción» o «divulgar toda la información a cualquiera» (hay que respetar la confidencialidad)."
+        },
+        {
+          "type": "key",
+          "text": "El proceso es iterativo; la comunicación y consulta lo acompaña en todas las etapas para que todos entiendan el riesgo y los motivos de las decisiones, recogiendo sus percepciones."
+        }
+      ]
+    },
+    {
+      "id": "alcance-contexto-criterios",
+      "title": "Alcance, contexto y criterios del proceso",
+      "pages": [38, 43],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Antes de buscar riesgos hay que acotar **dónde** se buscan, **en qué entorno** y **con qué vara de medir**. Esta actividad adapta el proceso para que la evaluación sea eficaz y el tratamiento apropiado."
+        },
+        {
+          "type": "list",
+          "title": "Definir el alcance incluye planificar…",
+          "items": [
+            "Los objetivos y las decisiones que hay que tomar.",
+            "Los resultados esperados de cada etapa.",
+            "Tiempo, ubicación, inclusiones y exclusiones.",
+            "Herramientas y técnicas de evaluación del riesgo.",
+            "Recursos, responsabilidades y registros que conservar.",
+            "Las **relaciones con otros proyectos, procesos y actividades**."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "El contexto del proceso se basa en el que se estudió al diseñar el marco, pero **con más detalle** y centrado en la actividad concreta. Es importante porque la gestión de riesgos se hace en el contexto de los objetivos, porque los propios factores organizativos pueden ser fuente de riesgo y porque el alcance debe relacionarse con los objetivos globales."
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico: una migración que toca a todos",
+          "text": "El área de ventas quiere cambiar de CRM. La migración afecta a facturación, atención al cliente y protección de datos. El contexto del análisis debe incluir las **relaciones con esos proyectos y procesos vinculados**, no solo el equipo que inicia el cambio, su presupuesto o los activos físicos de su planta."
+        },
+        {
+          "type": "term",
+          "term": "Criterios de riesgo",
+          "text": "La «vara de medir» con la que se decide si un riesgo es importante. Expresan el **apetito de riesgo** (cuánto y qué tipo de riesgo está dispuesta a asumir la organización según sus objetivos). Reflejan valores, objetivos y recursos; algunos vienen impuestos por leyes o contratos. Se definen **al comienzo** del proceso, son coherentes con la política de riesgos y se revisan continuamente."
+        },
+        {
+          "type": "list",
+          "title": "Al definir los criterios se considera…",
+          "items": [
+            "Naturaleza y tipos de riesgos, tangibles e intangibles.",
+            "Consecuencias positivas y negativas y cómo medirlas.",
+            "Cómo se define la probabilidad y sus plazos.",
+            "Cómo se determina el nivel de riesgo, con mediciones coherentes.",
+            "Opiniones de las partes interesadas.",
+            "El nivel a partir del cual el riesgo es aceptable o tolerable.",
+            "Si se combinan riesgos múltiples y cómo.",
+            "La capacidad de la organización."
+          ]
+        },
+        {
+          "type": "example",
+          "title": "Criterio de riesgo en la práctica",
+          "text": "Un hospital fija: «cualquier riesgo que pueda dejar sin acceso a la historia clínica más de 4 horas es inaceptable y debe tratarse». Una tienda online fija: «toleramos hasta 2 horas de caída al mes». Son criterios distintos porque los objetivos y el apetito de riesgo son distintos."
+        },
+        {
+          "type": "exam",
+          "text": "Recuerda la secuencia: los criterios se fijan **antes** de evaluar; la valoración los **usa** para comparar. Por eso «determinar los criterios de riesgo» no es la finalidad de la valoración del riesgo, ni una actividad del diseño del marco."
+        },
+        {
+          "type": "key",
+          "text": "Alcance = dónde y para qué; contexto = el entorno de esa actividad y sus relaciones con otras; criterios = el apetito de riesgo convertido en reglas de decisión, definidos al principio."
+        }
+      ]
+    },
+    {
+      "id": "evaluacion",
+      "title": "Evaluación del riesgo: identificar, analizar y valorar",
+      "pages": [43, 50],
+      "blocks": [
+        {
+          "type": "term",
+          "term": "Evaluación del riesgo",
+          "text": "El proceso global de **identificación, análisis y valoración** del riesgo. Se hace de forma sistemática, iterativa y colaborativa, con la mejor información disponible."
+        },
+        {
+          "type": "analogy",
+          "text": "Una visita al médico: primero cuentas los síntomas y el médico apunta todo lo que podría estar pasando (**identificar**); luego pide pruebas para entender qué tienes y su gravedad (**analizar**); por último compara los resultados con valores de referencia y decide si hace falta tratamiento, más pruebas o nada (**valorar**). El tratamiento viene después, y no forma parte del diagnóstico."
+        },
+        {
+          "type": "table",
+          "title": "Las tres etapas de la evaluación",
+          "head": ["Etapa", "Propósito", "Qué produce"],
+          "rows": [
+            ["Identificación", "Encontrar, reconocer y describir los riesgos que pueden ayudar o impedir lograr los objetivos.", "Una lista exhaustiva de riesgos con sus fuentes, sucesos, causas y consecuencias."],
+            ["Análisis", "Comprender la naturaleza y características del riesgo y, cuando proceda, su nivel.", "Consecuencias, probabilidad, eficacia de los controles existentes y nivel de riesgo."],
+            ["Valoración", "**Ayudar a la toma de decisiones** comparando el nivel de riesgo con los criterios.", "Una decisión: no hacer nada, tratar, analizar más, mantener controles o reconsiderar objetivos."]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "**Identificación.** La identificación debe ser exhaustiva: un riesgo que no se identifica aquí no se analizará después. Incluye riesgos cuyo origen está o no bajo el control de la organización, efectos en cascada o acumulativos y también el riesgo de **no** aprovechar una oportunidad. Intervienen personas con conocimientos apropiados."
+        },
+        {
+          "type": "list",
+          "title": "Factores a considerar al identificar",
+          "items": [
+            "Fuentes de riesgo tangibles e intangibles; eventos y sus causas.",
+            "Oportunidades y amenazas; vulnerabilidades y capacidades.",
+            "Cambios en los contextos; indicadores de riesgos emergentes.",
+            "Valor y naturaleza de los activos y recursos; consecuencias sobre los objetivos.",
+            "Limitaciones de la información; factores temporales.",
+            "Percepciones, creencias, supuestos y **sesgos** de las personas."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "**Análisis.** Estudia causas y fuentes, consecuencias positivas y negativas, probabilidad, interrelaciones, factores temporales y volatilidad, eficacia de los controles existentes y niveles de confianza y sensibilidad. Un suceso puede tener varias consecuencias y afectar a varios objetivos."
+        },
+        {
+          "type": "table",
+          "title": "Técnicas de análisis",
+          "head": ["Tipo", "Cómo expresa el riesgo", "Ejemplo"],
+          "rows": [
+            ["Cualitativa", "Con palabras o escalas descriptivas.", "Probabilidad «alta», impacto «grave»."],
+            ["Semicuantitativa", "Escalas numéricas que se combinan.", "Probabilidad 4 × impacto 5 = 20 sobre 25."],
+            ["Cuantitativa", "Valores numéricos reales.", "15 % anual × 200.000 € = 30.000 € de pérdida esperada."],
+            ["Combinación", "Varias a la vez.", "Útil en sucesos de alta incertidumbre y consecuencias severas, difíciles de cuantificar."]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "El análisis puede verse influido por divergencias de opinión, sesgos, calidad de la información, supuestos y limitaciones de las técnicas. Todo ello se debe considerar, documentar y comunicar a quien decide."
+        },
+        {
+          "type": "list",
+          "title": "Valoración: decisiones posibles tras comparar con los criterios",
+          "items": [
+            "No tomar ninguna acción más.",
+            "Considerar opciones de tratamiento.",
+            "Hacer un análisis adicional para comprender mejor el riesgo.",
+            "Mantener los controles existentes.",
+            "Reconsiderar los objetivos."
+          ]
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico: valorar el riesgo de phishing",
+          "text": "El análisis da un nivel 12 sobre 25 para el phishing (correos fraudulentos que suplantan a alguien para robar credenciales). El criterio dice que por encima de 10 hay que tratar. La valoración concluye: «requiere tratamiento». Si hubiera salido 8, podría decidir que bastan los controles existentes (filtro antispam y formación anual)."
+        },
+        {
+          "type": "exam",
+          "text": "«La evaluación del riesgo comprende…» → **identificación, análisis y valoración**. Ni el establecimiento del contexto (lo prepara) ni el tratamiento (usa sus resultados). «La finalidad de la valoración es…» → **ayudar a la toma de decisiones**; no es fijar criterios (eso fue antes) ni implantar tratamientos (eso es después), así que «todas las anteriores» es falsa. Identificar no es comparar con niveles de tolerancia (eso es valorar) ni elegir controles."
+        },
+        {
+          "type": "key",
+          "text": "Evaluar = identificar (qué puede pasar) + analizar (cómo de grave y probable) + valorar (comparar con los criterios para decidir)."
+        }
+      ]
+    },
+    {
+      "id": "tratamiento",
+      "title": "Tratamiento del riesgo: opciones, riesgo residual y planes",
+      "pages": [50, 54],
+      "blocks": [
+        {
+          "type": "term",
+          "term": "Tratamiento del riesgo",
+          "text": "Seleccionar e implementar una o varias opciones para **modificar** el riesgo. Una vez implantados, los tratamientos crean o modifican controles."
+        },
+        {
+          "type": "steps",
+          "title": "El tratamiento es un ciclo",
+          "items": [
+            "Formular y seleccionar opciones.",
+            "Planificar e implementar el tratamiento.",
+            "Evaluar su eficacia.",
+            "Decidir si el riesgo residual es tolerable.",
+            "Si no lo es, aplicar un tratamiento adicional."
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Opciones de tratamiento con un ejemplo de ciberseguridad",
+          "head": ["Opción", "Ejemplo"],
+          "rows": [
+            ["Evitar: no iniciar o no continuar la actividad que causa el riesgo", "No publicar en Internet un servidor antiguo sin soporte."],
+            ["Aceptar o aumentar el riesgo para perseguir una oportunidad", "Lanzar un servicio en la nube nuevo sabiendo que asume más exposición."],
+            ["Eliminar la fuente del riesgo", "Desinstalar un software vulnerable que nadie usa."],
+            ["Modificar la probabilidad", "Activar la autenticación multifactor para que robar una contraseña no baste."],
+            ["Modificar las consecuencias", "Copias de seguridad fuera de línea para recuperar tras un ransomware."],
+            ["Compartir el riesgo con otras partes (contratos, financiación del riesgo)", "Contratar un ciberseguro o un servicio externo con acuerdo de responsabilidades."],
+            ["Retener el riesgo con una decisión informada", "Aceptar el riesgo bajo de que falle una impresora secundaria."]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Las opciones **no se excluyen necesariamente** entre sí ni son apropiadas en todas las circunstancias; lo habitual y beneficioso es **combinarlas**."
+        },
+        {
+          "type": "p",
+          "text": "Seleccionar implica equilibrar beneficios frente a costes y esfuerzos, pero la justificación debe ir **más allá de lo económico**: requisitos legales y reglamentarios, responsabilidad social, protección del entorno, compromisos voluntarios y opiniones de las partes interesadas. También hay que pensar en riesgos **severos pero raros**, cuyo tratamiento no se justifica solo con números."
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico: el riesgo raro pero devastador",
+          "text": "Un incendio que destruya el único centro de datos es muy improbable. Si solo miras el coste inmediato, un centro de respaldo «no sale a cuenta». Pero la consecuencia sería el cierre de la empresa y el incumplimiento de contratos. La decisión debe pesar esas **obligaciones y consecuencias severas**, no solo el precio de compra."
+        },
+        {
+          "type": "list",
+          "title": "Lo que puede salir mal y cómo se gestiona",
+          "items": [
+            "Los tratamientos pueden no dar el resultado esperado o generar **consecuencias no previstas**.",
+            "Pueden introducir **riesgos secundarios**: se incluyen en el **mismo plan** que el riesgo original, manteniendo su relación, no como riesgos nuevos aislados.",
+            "El fallo de un tratamiento es en sí un riesgo; por eso el **seguimiento y la revisión** forman parte de su implementación.",
+            "Si no hay opciones o no bastan, el riesgo se registra y se mantiene en revisión continua."
+          ]
+        },
+        {
+          "type": "term",
+          "term": "Riesgo residual",
+          "text": "El riesgo que queda después del tratamiento. Quien decide debe conocer su naturaleza y nivel; se documenta, se sigue, se revisa y, si procede, se trata más."
+        },
+        {
+          "type": "list",
+          "title": "Un plan de tratamiento debe recoger",
+          "items": [
+            "Las razones de la elección y los beneficios previstos.",
+            "Quién aprueba el plan y quién lo implementa.",
+            "Las acciones propuestas y la prioridad entre ellas.",
+            "Recursos necesarios, incluidas contingencias.",
+            "Medidas de desempeño y restricciones.",
+            "Requisitos de información y seguimiento.",
+            "Calendario y programación."
+          ]
+        },
+        {
+          "type": "exam",
+          "text": "Las opciones de tratamiento **incluyen modificar la probabilidad y las consecuencias**. Falsas: «se excluyen necesariamente», «son apropiadas en todas las circunstancias», «no contemplan retener el riesgo». Si tras tratar aparecen riesgos nuevos, la respuesta es **seguir, revisar y adaptar**; no cerrar el análisis, no culpar solo al proveedor ni congelar el resultado anterior."
+        },
+        {
+          "type": "key",
+          "text": "Tratar = elegir y combinar opciones (evitar, aceptar, eliminar la fuente, cambiar probabilidad o consecuencias, compartir, retener) con criterios que van más allá del coste, vigilando el riesgo residual y los riesgos secundarios."
+        }
+      ]
+    },
+    {
+      "id": "seguimiento-registro",
+      "title": "Seguimiento y revisión, registro e informe",
+      "pages": [54, 57],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Un piloto no revisa los instrumentos solo al despegar: los vigila durante todo el vuelo (seguimiento) y, al aterrizar, rellena el cuaderno de a bordo (registro) para que otros aprendan. Así funcionan estas dos actividades."
+        },
+        {
+          "type": "term",
+          "term": "Seguimiento y revisión",
+          "text": "Su propósito es asegurar y mejorar la calidad y eficacia del diseño, la implementación y los resultados del proceso. Se planifica, tiene responsables definidos, puede ser periódico o eventual y tiene lugar en **todas las etapas** del proceso."
+        },
+        {
+          "type": "list",
+          "title": "Para qué sirve el seguimiento y la revisión",
+          "items": [
+            "Asegurar que los controles son eficaces y eficientes en diseño y uso.",
+            "Obtener información para mejorar la evaluación del riesgo.",
+            "Aprender de sucesos, cambios, tendencias, éxitos y fallos.",
+            "Detectar cambios en el contexto, en los criterios y en el propio riesgo que obliguen a revisar tratamientos y prioridades.",
+            "Identificar riesgos emergentes."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Sus resultados se registran, se incluyen en informes internos y externos y sirven de **entrada para revisar el marco**. Así se cierra el círculo entre proceso y marco."
+        },
+        {
+          "type": "term",
+          "term": "Registro e informe",
+          "text": "Las actividades de gestión de riesgos deben ser **trazables** (se puede reconstruir qué se hizo, quién y por qué). Registros e informes comunican actividades y resultados, dan información para decidir y sirven para mejorar métodos, herramientas y el proceso."
+        },
+        {
+          "type": "table",
+          "title": "Qué tener en cuenta",
+          "head": ["Al crear registros", "Al elaborar informes"],
+          "rows": [
+            ["Necesidades de aprendizaje continuo y beneficio de reutilizar la información.", "Necesidades y requisitos de información de cada parte interesada."],
+            ["Coste y esfuerzo de crearlos y mantenerlos.", "Momento, frecuencia y coste de elaborarlos."],
+            ["Requisitos legales, reglamentarios y operativos.", "Métodos de elaboración y comunicación."],
+            ["Acceso, recuperación, almacenamiento, periodo de conservación, sensibilidad de la información y contexto.", "Pertinencia de la información respecto a los objetivos y la toma de decisiones."]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Elaborar informes es parte integral de la **gobernanza**: mejora el diálogo con las partes interesadas y ayuda a la alta dirección y a los órganos de supervisión a cumplir sus responsabilidades."
+        },
+        {
+          "type": "exam",
+          "text": "«¿Cuándo se realizan el seguimiento y la revisión?» → **en todas las etapas del proceso**. Son trampas las opciones que lo limitan a una etapa (solo evaluación, solo comunicación y consulta, solo definición del proceso)."
+        },
+        {
+          "type": "key",
+          "text": "Seguimiento y revisión acompañan todas las etapas y alimentan la mejora del marco; registro e informe hacen la gestión trazable y apoyan la gobernanza."
+        }
+      ]
+    }
+  ],
+  "summary": [
+    "Riesgo es el efecto de la incertidumbre sobre los objetivos; puede ser negativo o positivo.",
+    "La ISO 31000 se apoya en tres piezas: principios, marco de referencia y proceso.",
+    "La gestión de riesgos ayuda a mejorar y a ser consciente de la necesidad de identificar y tratar el riesgo; no garantiza resultados ni elimina la incertidumbre.",
+    "Su propósito es crear y proteger valor, con ocho principios: integrada, estructurada y exhaustiva, adaptada, inclusiva, dinámica, mejor información disponible, factores humanos y culturales, y mejora continua.",
+    "El marco (liderazgo y compromiso, integración, diseño, implementación, valoración, mejora) integra la gestión de riesgos; el proceso la ejecuta.",
+    "El diseño del marco incluye contexto, compromiso, roles, recursos y comunicación y consulta; los criterios de riesgo son del proceso.",
+    "Contexto externo: legal, político, económico, natural, sectorial. Contexto interno: estructura, cultura, sistemas, estrategia, relaciones internas.",
+    "Evaluación = identificación + análisis + valoración; la valoración sirve para ayudar a decidir.",
+    "Las opciones de tratamiento se combinan e incluyen modificar probabilidad y consecuencias; su selección va más allá del coste.",
+    "Comunicación y consulta y seguimiento y revisión se hacen en todas las etapas; registro e informe aportan trazabilidad."
+  ],
+  "glossary": [
+    { "term": "Apetito de riesgo", "text": "Cantidad y tipo de riesgo que una organización está dispuesta a asumir para lograr sus objetivos." },
+    { "term": "Alta dirección", "text": "Personas que dirigen la organización al máximo nivel; rinden cuentas por gestionar el riesgo." },
+    { "term": "Control", "text": "Medida que modifica el riesgo." },
+    { "term": "Contexto externo", "text": "Entorno exterior (legal, político, económico, natural, tecnológico, competitivo, partes interesadas externas) en que la organización busca sus objetivos." },
+    { "term": "Contexto interno", "text": "Entorno interior (gobierno, estructura, cultura, sistemas, estrategias, partes interesadas internas) en que la organización busca sus objetivos." },
+    { "term": "CRM (Customer Relationship Management)", "text": "Sistema informático de gestión de las relaciones con los clientes." },
+    { "term": "Criterios de riesgo", "text": "Referencias para juzgar la importancia de un riesgo; se fijan al inicio del proceso." },
+    { "term": "Dueño del riesgo", "text": "Persona con autoridad y obligación de rendir cuentas para gestionar un riesgo." },
+    { "term": "Evaluación del riesgo", "text": "Proceso global de identificación, análisis y valoración del riesgo." },
+    { "term": "ISO (International Organization for Standardization)", "text": "Organización Internacional de Normalización, que publica normas internacionales." },
+    { "term": "Marco de referencia", "text": "Bases y disposiciones que integran la gestión de riesgos en la organización." },
+    { "term": "Órganos de supervisión", "text": "Órganos que vigilan a la dirección (por ejemplo, el consejo de administración); rinden cuentas por supervisar la gestión de riesgos." },
+    { "term": "Parte interesada", "text": "Persona u organización que puede afectar o verse afectada por una decisión o actividad." },
+    { "term": "Riesgo", "text": "Efecto de la incertidumbre sobre los objetivos." },
+    { "term": "Riesgo residual", "text": "Riesgo que permanece tras el tratamiento." },
+    { "term": "Riesgo secundario", "text": "Riesgo nuevo que introduce un tratamiento; se gestiona en el mismo plan que el original." },
+    { "term": "Trazabilidad", "text": "Capacidad de reconstruir qué se hizo, quién lo hizo y por qué." },
+    { "term": "UNE (Una Norma Española)", "text": "Prefijo de las normas adoptadas por la Asociación Española de Normalización." },
+    { "term": "Valoración del riesgo", "text": "Comparación del nivel de riesgo con los criterios para ayudar a decidir." }
+  ],
+  "questions": {
+    "gobierno-t07-01": {
+      "section": "principios-valor",
+      "reasoning": "La norma dice que el propósito de la gestión de riesgos es la creación y la protección del valor. Además es integrada (no independiente) y todos los miembros de la organización gestionan riesgo (no solo la dirección). Por tanto, la única afirmación correcta es que crea y protege el valor.",
+      "options": {
+        "a": "Correcta. Crear y proteger el valor es el propósito central sobre el que se construyen todos los principios.",
+        "b": "Incorrecta. Contribuye al logro de objetivos de forma demostrable, mejorando el desempeño; «intangible» es una trampa.",
+        "c": "Incorrecta. El principio de integrada dice justo lo contrario: no es una actividad independiente ni separada.",
+        "d": "Incorrecta. La alta dirección lidera y rinde cuentas, pero todos los miembros de la organización tienen responsabilidad en gestionar el riesgo."
+      }
+    },
+    "gobierno-t07-02": {
+      "section": "integracion-diseno",
+      "reasoning": "El contexto externo es el entorno exterior: político, legal, económico, natural, competitivo, sectorial. La inestabilidad política (entorno político), la sequía (entorno natural) y un conflicto laboral de todo el sector vienen de fuera. Un cambio organizativo afecta a la estructura, funciones y responsabilidades, que son contexto interno.",
+      "options": {
+        "a": "Incorrecta. La inestabilidad política pertenece al entorno político, parte del contexto externo.",
+        "b": "Incorrecta. Una sequía permanente es entorno natural, contexto externo.",
+        "c": "Incorrecta. Un conflicto laboral sectorial afecta a todo el sector y no nace dentro de la organización: es externo.",
+        "d": "Correcta. Un cambio organizativo toca la estructura, funciones y responsabilidades: es contexto interno, no externo."
+      }
+    },
+    "gobierno-t07-03": {
+      "section": "integracion-diseno",
+      "reasoning": "El contexto interno abarca gobierno, estructura, cultura, sistemas de información, relaciones con partes interesadas internas y la forma de las relaciones contractuales. El CRM es un sistema de información propio y el conflicto con el comité de empresa es una relación con la plantilla: ambos son internos. La relación con los clientes se gestiona desde dentro (CRM, contratos). Un cambio legislativo viene del entorno legal y reglamentario, que es contexto externo.",
+      "options": {
+        "a": "Incorrecta. El CRM es un sistema de información de la organización: contexto interno.",
+        "b": "Incorrecta según la clave. La forma en que la organización gestiona su relación con los clientes (sistemas, contratos, procesos) se trata aquí como interna.",
+        "c": "Incorrecta. El comité de empresa representa a la plantilla, una parte interesada interna.",
+        "d": "Correcta. Un cambio legislativo pertenece al entorno legal y reglamentario, propio del contexto externo."
+      },
+      "doubt": "La figura 10 del tema solo incluye en el contexto interno las relaciones con las partes interesadas internas, mientras que la figura 9 coloca en el contexto externo las relaciones con las partes interesadas externas (los clientes lo son). Por eso la opción b también podría considerarse ajena al contexto interno. La d sigue siendo la respuesta más clara, pero la opción b es discutible."
+    },
+    "gobierno-t07-04": {
+      "section": "beneficios",
+      "reasoning": "La lista de beneficios de la norma incluye literalmente «ser consciente de la necesidad de identificar y tratar el riesgo en toda la organización». Las demás opciones exageran o contradicen la lista: la norma habla de mejorar la eficacia (no garantizarla), de gestión proactiva (no reactiva) y nunca de eliminar la incertidumbre.",
+      "options": {
+        "a": "Incorrecta. La norma dice «mejorar» la eficacia y la eficiencia operacional; «garantizar» es demasiado absoluto.",
+        "b": "Incorrecta. Busca fomentar una gestión proactiva, que se adelante a los problemas.",
+        "c": "Correcta. Es uno de los beneficios citados expresamente.",
+        "d": "Incorrecta. El riesgo es el efecto de la incertidumbre; la incertidumbre se gestiona, no se elimina."
+      }
+    },
+    "gobierno-t07-05": {
+      "section": "integracion-diseno",
+      "reasoning": "La fase de diseño del marco tiene cinco actividades: comprensión del contexto, articulación del compromiso, asignación de roles y responsabilidades, asignación de recursos y establecimiento de la comunicación y consulta. El establecimiento de los criterios de riesgo no está en esa lista: pertenece al proceso, en la actividad de alcance, contexto y criterios.",
+      "options": {
+        "a": "Incorrecta. La asignación de roles, autoridades y responsabilidades es la tercera actividad del diseño.",
+        "b": "Incorrecta. La asignación de recursos es la cuarta actividad del diseño.",
+        "c": "Correcta. Los criterios de riesgo se definen en el proceso, no en el diseño del marco.",
+        "d": "Incorrecta. El establecimiento de la comunicación y la consulta es la quinta actividad del diseño."
+      }
+    },
+    "gobierno-t07-06": {
+      "section": "principios-dinamica",
+      "reasoning": "La gestión de riesgos es parte de la gobernanza y asiste a tomar decisiones informadas; la implementación del marco busca abordar explícitamente la incertidumbre en la toma de decisiones. Por tanto, debe formar parte de la toma de decisiones. Las demás opciones contradicen los principios.",
+      "options": {
+        "a": "Correcta. La norma la sitúa dentro de la toma de decisiones a todos los niveles.",
+        "b": "Incorrecta. Trata la incertidumbre de forma explícita, incluidas las limitaciones de la información.",
+        "c": "Incorrecta. Es sistemática y oportuna, pero no «irrepetible» ni «ortodoxa»: es iterativa y adaptada.",
+        "d": "Incorrecta. Un principio dice expresamente que los factores humanos y culturales influyen en todas las etapas."
+      }
+    },
+    "gobierno-t07-07": {
+      "section": "evaluacion",
+      "reasoning": "La norma define el propósito de la valoración del riesgo como ayudar a la toma de decisiones, comparando el nivel de riesgo con los criterios ya establecidos. Los criterios se fijan antes (alcance, contexto y criterios) y la implantación de acciones llega después (tratamiento). Si b y c son falsas, «todas las anteriores» también lo es.",
+      "options": {
+        "a": "Correcta. Es literalmente la finalidad de la valoración.",
+        "b": "Incorrecta. Los criterios se definen al comienzo del proceso; la valoración los usa, no los determina.",
+        "c": "Incorrecta. Implantar acciones corresponde al tratamiento del riesgo.",
+        "d": "Incorrecta. Solo la opción a es cierta."
+      }
+    },
+    "gobierno-t07-08": {
+      "section": "tratamiento",
+      "reasoning": "La lista de opciones de tratamiento incluye evitar, aceptar o aumentar, eliminar la fuente, modificar la probabilidad, modificar las consecuencias, compartir y retener. La norma añade que no se excluyen necesariamente y que no son apropiadas en todas las circunstancias.",
+      "options": {
+        "a": "Incorrecta. La norma dice que no se excluyen necesariamente y que lo habitual es combinarlas.",
+        "b": "Incorrecta. La norma dice expresamente que no son apropiadas en todas las circunstancias.",
+        "c": "Correcta. Modificar la probabilidad y modificar las consecuencias son dos de las opciones listadas.",
+        "d": "Incorrecta. Retener el riesgo con una decisión informada es una de las opciones."
+      }
+    },
+    "gobierno-t07-09": {
+      "section": "evaluacion",
+      "reasoning": "La norma define la evaluación del riesgo como el proceso global de identificación, análisis y valoración. El establecimiento del contexto es una actividad previa y el tratamiento es posterior; ninguno forma parte de la evaluación.",
+      "options": {
+        "a": "Incorrecta. Añade el establecimiento del contexto, que es una actividad previa.",
+        "b": "Correcta. Identificación, análisis y valoración son exactamente las tres etapas de la evaluación.",
+        "c": "Incorrecta. Añade el tratamiento, que es la actividad siguiente.",
+        "d": "Incorrecta. Omite identificación y valoración e incluye contexto y tratamiento."
+      }
+    },
+    "gobierno-t07-10": {
+      "section": "seguimiento-registro",
+      "reasoning": "Según el tema, el seguimiento y la revisión deberían tener lugar en todas las etapas del proceso de gestión de riesgos; en el esquema rodean a todas las actividades. Cualquier opción que los limite a una sola etapa es falsa.",
+      "options": {
+        "a": "Incorrecta. No se limitan a la evaluación del riesgo.",
+        "b": "Incorrecta. La comunicación y consulta es otra actividad transversal; el seguimiento no se reduce a ella.",
+        "c": "Incorrecta. No se limitan a la definición del proceso.",
+        "d": "Correcta. Se realizan en todas las etapas del proceso."
+      }
+    },
+    "gobierno-t07-11": {
+      "section": "que-es-riesgo",
+      "reasoning": "La ISO 31000 relaciona el riesgo con la incertidumbre que generan factores internos y externos y que puede poner en peligro el cumplimiento de los objetivos. Es decir, el riesgo es el efecto de la incertidumbre sobre los objetivos. No es solo pérdida económica, ni solo probabilidad, ni algo ya ocurrido.",
+      "options": {
+        "a": "Incorrecta. El efecto puede ser positivo o negativo y de cualquier tipo, no solo económico ni solo posterior al evento.",
+        "b": "Incorrecta. El análisis del riesgo considera tanto la probabilidad como las consecuencias.",
+        "c": "Incorrecta. Si el incumplimiento ya está confirmado no hay incertidumbre: es un incidente, no un riesgo.",
+        "d": "Correcta. Es la idea central de la norma: efecto de la incertidumbre sobre los objetivos."
+      }
+    },
+    "gobierno-t07-12": {
+      "section": "principios-valor",
+      "reasoning": "Los principios se ordenan alrededor de un propósito: la creación y la protección del valor, que mejora el desempeño, fomenta la innovación y apoya los objetivos. Las demás opciones sustituyen los objetivos por controles, reducen la gestión al gasto o ignoran que debe adaptarse.",
+      "options": {
+        "a": "Correcta. Crear y proteger valor es el propósito de la gestión de riesgos.",
+        "b": "Incorrecta. La gestión de riesgos sirve a los objetivos; no los sustituye por un catálogo de controles.",
+        "c": "Incorrecta. La justificación va más allá de lo económico y no se limita al gasto inmediato.",
+        "d": "Incorrecta. El principio de adaptada exige ajustarse a cada organización, así que las evaluaciones no serán iguales."
+      }
+    },
+    "gobierno-t07-13": {
+      "section": "principios-valor",
+      "reasoning": "El principio de integrada dice que la gestión de riesgos no es independiente ni separada: forma parte de todas las actividades y procesos, de la planificación estratégica y de la gestión de proyectos y cambios. Eso equivale a formar parte de las actividades y decisiones organizativas.",
+      "options": {
+        "a": "Incorrecta. Integrar no es imponer una plantilla única; además, la gestión debe ser adaptada.",
+        "b": "Correcta. Integrada significa que forma parte de las actividades y decisiones de la organización.",
+        "c": "Incorrecta. Aislarla en informática es justo lo contrario de integrarla.",
+        "d": "Incorrecta. Consultarla solo tras una interrupción la convierte en reactiva y aislada."
+      }
+    },
+    "gobierno-t07-14": {
+      "section": "principios-dinamica",
+      "reasoning": "El principio de dinámica explica que los riesgos pueden aparecer, cambiar o desaparecer cuando varían los contextos externo e interno. Por eso la gestión debe anticipar, detectar y responder a esos cambios de forma oportuna.",
+      "options": {
+        "a": "Incorrecta. Un inventario aprobado envejece y necesita nuevas evidencias cuando cambia el contexto.",
+        "b": "Incorrecta. Mantener constante la lista de amenazas contradice el principio dinámico.",
+        "c": "Correcta. Los riesgos cambian con el contexto, y la gestión debe seguir ese ritmo.",
+        "d": "Incorrecta. Los cambios se atienden cuando se producen, no solo en auditorías de certificación."
+      }
+    },
+    "gobierno-t07-15": {
+      "section": "marco-liderazgo",
+      "reasoning": "La alta dirección debe demostrar liderazgo y compromiso: adaptar e implementar el marco, publicar una política, asegurar los recursos necesarios y asignar autoridad, responsabilidad y rendición de cuentas. La respuesta que lo resume es demostrar liderazgo y asignar recursos.",
+      "options": {
+        "a": "Incorrecta. La dirección fija la magnitud y tipo de riesgo que se puede asumir y asigna responsabilidades; no delega sin límites ni supervisión.",
+        "b": "Incorrecta. La gestión de riesgos se alinea con los objetivos; el juicio técnico no los sustituye.",
+        "c": "Incorrecta. Los recursos se asignan para gestionar el riesgo antes de que se materialice, no después.",
+        "d": "Correcta. Demostrar liderazgo y asignar recursos es el papel de la alta dirección en el marco."
+      }
+    },
+    "gobierno-t07-16": {
+      "section": "principios-valor",
+      "reasoning": "El principio de inclusiva habla de la participación apropiada y oportuna de las partes interesadas para tener en cuenta su conocimiento, puntos de vista y percepciones. Las demás opciones restringen la participación, la hacen inútil o la convierten en un bloqueo.",
+      "options": {
+        "a": "Incorrecta. Se consulta a las partes interesadas pertinentes, no solo a los proveedores de herramientas.",
+        "b": "Incorrecta. La participación debe ser oportuna, es decir, a tiempo de influir en la decisión.",
+        "c": "Correcta. Es la definición del principio de inclusiva.",
+        "d": "Incorrecta. Incluir no es exigir unanimidad; las percepciones se consideran, pero la decisión corresponde a quien tiene la autoridad."
+      }
+    },
+    "gobierno-t07-17": {
+      "section": "proceso-comunicacion",
+      "reasoning": "El propósito de la comunicación y la consulta es ayudar a las partes interesadas a comprender el riesgo, las bases de las decisiones y las razones de las acciones. La consulta aporta retroalimentación para decidir, pero no sustituye la evaluación ni elimina las diferencias de percepción.",
+      "options": {
+        "a": "Correcta. Coincide con el propósito descrito por la norma.",
+        "b": "Incorrecta. La consulta informa la decisión; no reemplaza la evaluación por una votación.",
+        "c": "Incorrecta. Las percepciones varían por valores y necesidades; se identifican y se tienen en cuenta, no se garantiza que desaparezcan.",
+        "d": "Incorrecta. El intercambio debe respetar la confidencialidad, la integridad y la privacidad; no se divulga todo a cualquiera."
+      }
+    },
+    "gobierno-t07-18": {
+      "section": "integracion-diseno",
+      "reasoning": "El tema dice que el proceso de gestión de riesgos debe alinearse con la cultura, los procedimientos, la estructura y la estrategia de la organización: eso es el contexto interno. Las demás opciones (leyes, economía, competencia, situación internacional, clima) son contexto externo.",
+      "options": {
+        "a": "Incorrecta. Las variaciones legislativas y económicas pertenecen al contexto externo.",
+        "b": "Correcta. Cultura, estructura, procedimientos y estrategia forman el contexto interno.",
+        "c": "Incorrecta. Competencia y situación internacional son contexto externo.",
+        "d": "Incorrecta. Las condiciones ambientales externas son entorno natural, contexto externo."
+      }
+    },
+    "gobierno-t07-19": {
+      "section": "evaluacion",
+      "reasoning": "El propósito de la identificación es encontrar, reconocer y describir los riesgos (sucesos con sus causas y consecuencias) que pueden ayudar o impedir lograr los objetivos. Comparar con niveles es valorar y elegir controles o tratar es tratamiento.",
+      "options": {
+        "a": "Incorrecta. Seleccionar controles forma parte del tratamiento.",
+        "b": "Incorrecta. Comparar valores con niveles de tolerancia es la valoración.",
+        "c": "Correcta. Identificar es encontrar y describir los sucesos que afectan a los objetivos.",
+        "d": "Incorrecta. El tratamiento llega después de la evaluación, no antes de describir escenarios."
+      }
+    },
+    "gobierno-t07-20": {
+      "section": "evaluacion",
+      "reasoning": "La valoración compara el nivel de riesgo obtenido en el análisis con los criterios establecidos, para decidir: no hacer nada, tratar, analizar más, mantener controles o reconsiderar objetivos. Su aportación es decidir según criterios si el riesgo requiere tratamiento.",
+      "options": {
+        "a": "Incorrecta. La valoración usa precisamente las conclusiones del análisis.",
+        "b": "Incorrecta. Estudiar causas es análisis; la valoración aplica criterios de decisión.",
+        "c": "Incorrecta. La norma reconoce la incertidumbre; no se garantiza una estimación exacta.",
+        "d": "Correcta. Decide, comparando con los criterios, si el riesgo necesita tratamiento."
+      }
+    },
+    "gobierno-t07-21": {
+      "section": "tratamiento",
+      "reasoning": "La norma dice que la justificación del tratamiento debe ser más amplia que lo económico: hay que tener en cuenta obligaciones legales, compromisos voluntarios, partes interesadas y los riesgos severos pero raros, cuyo tratamiento no se justifica solo en términos económicos.",
+      "options": {
+        "a": "Correcta. Cuentan las obligaciones y las consecuencias severas, aunque el riesgo sea poco probable.",
+        "b": "Incorrecta. Elegir siempre lo más barato es justo el error que la norma quiere evitar.",
+        "c": "Incorrecta. Se consideran también los efectos en cadena, en cascada y acumulativos.",
+        "d": "Incorrecta. Los requisitos legales y contractuales se consideran al seleccionar el tratamiento, no después de un incidente."
+      }
+    },
+    "gobierno-t07-22": {
+      "section": "marco-liderazgo",
+      "reasoning": "El marco de referencia proporciona las bases para integrar la gestión de riesgos en toda la organización; el proceso organiza las actividades concretas (contexto, evaluación, tratamiento, etc.). Son complementarios: el marco permite que el proceso funcione y el proceso alimenta la mejora del marco.",
+      "options": {
+        "a": "Incorrecta. El marco no ejecuta medidas técnicas; crea las condiciones organizativas.",
+        "b": "Incorrecta. El proceso no define la estructura directiva; organiza las actividades de gestión del riesgo.",
+        "c": "Incorrecta. No son alternativos: se necesitan mutuamente.",
+        "d": "Correcta. El marco facilita la integración y el proceso organiza las actividades de gestión."
+      }
+    },
+    "gobierno-t07-23": {
+      "section": "principios-dinamica",
+      "reasoning": "El principio de mejor información disponible combina datos históricos, actualizados y expectativas futuras, y tiene en cuenta de forma explícita las limitaciones e incertidumbres de la información. El principio dinámico añade los cambios de contexto. Por eso hay que considerar cambios de contexto y limitaciones de información.",
+      "options": {
+        "a": "Correcta. Cambios de contexto y limitaciones de la información completan los datos históricos.",
+        "b": "Incorrecta. Elegir solo el periodo con menos incidentes introduce un sesgo optimista.",
+        "c": "Incorrecta. El gasto del año anterior no describe el riesgo actual.",
+        "d": "Incorrecta. La opinión de un proveedor no sustituye el contexto propio de la organización."
+      }
+    },
+    "gobierno-t07-24": {
+      "section": "marco-liderazgo",
+      "reasoning": "La norma pide que la organización valore sus prácticas, detecte brechas y adapte los componentes del marco a sus necesidades específicas; además, el principio de adaptada exige proporcionalidad con el contexto. Un marco copiado de una empresa muy distinta debe adaptarse.",
+      "options": {
+        "a": "Incorrecta. Compartir tecnología no implica compartir objetivos, apetito de riesgo ni umbrales.",
+        "b": "Correcta. El marco debe adaptarse al contexto y necesidades de cada organización.",
+        "c": "Incorrecta. Las responsabilidades deben asignarse a roles reales de la propia organización.",
+        "d": "Incorrecta. Cambiar solo el nombre es una adaptación aparente que no ajusta nada."
+      }
+    },
+    "gobierno-t07-25": {
+      "section": "principios-dinamica",
+      "reasoning": "El principio dinámico dice que la gestión de riesgos anticipa, detecta, reconoce y responde a los cambios de contexto de forma apropiada y oportuna. Un cambio regulatorio relevante es un cambio de contexto externo, así que hay que revisar riesgos y respuestas cuanto antes.",
+      "options": {
+        "a": "Incorrecta. Esperar al incidente es gestión reactiva, contraria a la anticipación.",
+        "b": "Incorrecta. El presupuesto del plan anterior no marca cuándo hay que revisar.",
+        "c": "Correcta. Revisar riesgos y respuestas oportunamente es lo que exige el principio dinámico.",
+        "d": "Incorrecta. El cambio regulatorio basta por sí solo para revisar; no depende del proveedor."
+      }
+    },
+    "gobierno-t07-26": {
+      "section": "principios-dinamica",
+      "reasoning": "Según el principio de mejor información disponible, la gestión tiene en cuenta explícitamente las limitaciones e incertidumbres de la información. En el análisis, además, hay que indicar la confianza y la calidad de los datos. Un análisis con datos escasos que promete certeza absoluta debe reconocer esas limitaciones.",
+      "options": {
+        "a": "Incorrecta. El número de participantes no resuelve la falta de datos ni la incertidumbre.",
+        "b": "Incorrecta. Los controles no compensan automáticamente la falta de información.",
+        "c": "Incorrecta. Repetir un cálculo con los mismos datos no elimina la incertidumbre.",
+        "d": "Correcta. Hay que reconocer las limitaciones de la información y la incertidumbre."
+      }
+    },
+    "gobierno-t07-27": {
+      "section": "proceso-comunicacion",
+      "reasoning": "La norma explica que las percepciones del riesgo varían por valores, necesidades, hipótesis e inquietudes, y que deben identificarse, registrarse y tenerse en cuenta. La herramienta para ello es la comunicación y consulta, que reúne diferentes puntos de vista al definir criterios y valorar riesgos.",
+      "options": {
+        "a": "Correcta. La comunicación y consulta recoge e integra las distintas perspectivas.",
+        "b": "Incorrecta. Las percepciones no técnicas deben considerarse, aunque no tengan métricas.",
+        "c": "Incorrecta. Elegir la visión más optimista introduce un sesgo, no fundamenta la decisión.",
+        "d": "Incorrecta. Promediar sin entender los supuestos ignora por qué difieren las percepciones."
+      }
+    },
+    "gobierno-t07-28": {
+      "section": "tratamiento",
+      "reasoning": "Los tratamientos pueden tener consecuencias no previstas y riesgos secundarios. La norma pide incorporarlos al mismo plan, hacer seguimiento y revisión como parte integral del tratamiento y adaptar la gestión con la mejora continua. La respuesta es seguir, revisar y adaptar.",
+      "options": {
+        "a": "Incorrecta. Los nuevos riesgos se gestionan dentro del plan de tratamiento; no basta con atribuirlos a un tercero.",
+        "b": "Correcta. El proceso es iterativo: se sigue, se revisa y se adapta la gestión.",
+        "c": "Incorrecta. Ejecutar el tratamiento no cierra el ciclo; hay que evaluar su eficacia y el riesgo residual.",
+        "d": "Incorrecta. Conservar un resultado desactualizado ignora el cambio en el riesgo."
+      }
+    },
+    "gobierno-t07-29": {
+      "section": "alcance-contexto-criterios",
+      "reasoning": "Al definir el alcance y el contexto del proceso hay que considerar las relaciones con otros proyectos, procesos y actividades de la organización. Si una actividad afecta a otras áreas, esas relaciones deben formar parte del contexto del análisis.",
+      "options": {
+        "a": "Incorrecta. Limitar el análisis al equipo que inicia la actividad deja fuera áreas afectadas.",
+        "b": "Correcta. El contexto debe recoger las relaciones con proyectos y procesos vinculados.",
+        "c": "Incorrecta. El presupuesto de una unidad no describe el contexto completo.",
+        "d": "Incorrecta. Los activos de otras áreas y los intangibles también pueden verse afectados."
+      }
+    },
+    "gobierno-t07-30": {
+      "section": "implementacion-valoracion-mejora",
+      "reasoning": "La valoración del marco exige implantar métricas y mecanismos que midan periódicamente su desempeño frente a su propósito. Si se generan informes pero nunca se mide el desempeño, falta precisamente eso.",
+      "options": {
+        "a": "Incorrecta. Repetir informes sin criterios de eficacia no mide el desempeño.",
+        "b": "Incorrecta. Renovar el documento sin observar su funcionamiento no valora nada.",
+        "c": "Correcta. Faltan métricas y una valoración periódica de la eficacia del marco.",
+        "d": "Incorrecta. Cambiar responsables sin evaluar resultados no aporta información sobre la eficacia."
+      }
+    }
+  }
+}

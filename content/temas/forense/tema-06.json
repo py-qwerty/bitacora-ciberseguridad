@@ -1,0 +1,1237 @@
+{
+  "course": "forense",
+  "number": 6,
+  "title": "Esquema general de análisis",
+  "minutes": 40,
+  "intro": {
+    "why": "Un disco duro de 1 TB puede tener un millón de archivos, y el juez no pregunta «qué hay», sino algo concreto: ¿se llevó este empleado los planos?, ¿desde este equipo se clonaron tarjetas? Sin un método, el perito se ahoga. Este tema da ese método: un esquema en dos fases que primero prepara y filtra la evidencia y después la interroga, con herramientas como Autopsy, FTK o PhotoRec.",
+    "before": [
+      "Una **evidencia digital** suele ser una copia exacta (imagen forense) de un disco o un móvil; se trabaja sobre la copia para no alterar el original.",
+      "Un **sistema de ficheros** es el índice del disco: dice qué archivos hay, dónde están, de quién son y sus fechas.",
+      "Un archivo tiene un **nombre con extensión** (.pdf, .jpg), pero su formato real lo dicen sus primeros bytes.",
+      "Una **suite forense** (Autopsy, EnCase, FTK) es un programa que reúne muchas herramientas de análisis y automatiza tareas repetitivas."
+    ],
+    "goals": [
+      "Al terminar sabrás explicar las dos fases del esquema general y en qué orden van sus pasos.",
+      "Sabrás distinguir la recuperación básica de la recuperación en bruto y qué información se pierde en cada una.",
+      "Sabrás qué hacer con cifrados, archivos comprimidos, documentos con elementos embebidos y máquinas virtuales.",
+      "Sabrás para qué sirve el hash en el filtrado, qué es la NSRL, por qué hay que usar el mismo algoritmo y cuándo conviene el hash borroso.",
+      "Sabrás por qué la firma de un archivo pesa más que su extensión.",
+      "Sabrás leer expresiones regulares sencillas y plantear reglas de archivos de interés.",
+      "Sabrás qué se revisa en el sistema operativo y en las comunicaciones, y qué límite legal impone el secreto de las comunicaciones."
+    ]
+  },
+  "sections": [
+    {
+      "id": "esquema-general",
+      "title": "El mapa del viaje: dos fases, pre-análisis y análisis",
+      "pages": [
+        4,
+        7
+      ],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Piensa en una mudanza. Antes de colocar nada en la casa nueva, abres las cajas, sacas lo que venía envuelto, tiras lo que sabes que no sirve y etiquetas cada cosa. Solo entonces decides dónde va cada objeto. En un análisis forense pasa lo mismo: primero **preparas** el contenido de la evidencia (pre-análisis) y después lo **estudias** para responder a las preguntas del caso (análisis)."
+        },
+        {
+          "type": "term",
+          "term": "Análisis forense digital",
+          "text": "Examen de un dispositivo o de una copia de él (la «evidencia») con métodos que se puedan explicar y repetir, para responder a preguntas concretas que se plantean en una investigación o en un juicio: ¿quién copió este archivo?, ¿cuándo?, ¿por dónde salió?"
+        },
+        {
+          "type": "term",
+          "term": "Evidencia",
+          "text": "El material que se analiza: normalmente una imagen forense (copia exacta, bit a bit) de un disco, un pendrive o un móvil. Se trabaja sobre la copia para no alterar el original."
+        },
+        {
+          "type": "p",
+          "text": "Como cada caso y cada sistema son distintos, el tema no da una receta cerrada, sino un **esquema general**: los pasos que se dan en la mayoría de los análisis. Tanto el esquema como las herramientas que se citan son **orientativos** y pueden cambiar según el caso."
+        },
+        {
+          "type": "p",
+          "text": "El esquema tiene **solo dos fases**. El pre-análisis va desde el inicio hasta la verificación de firmas de archivo; el análisis va desde la búsqueda de palabras clave y archivos de interés hasta el final."
+        },
+        {
+          "type": "table",
+          "head": [
+            "Fase",
+            "Para qué sirve",
+            "Pasos, en orden"
+          ],
+          "rows": [
+            [
+              "Pre-análisis",
+              "Preparar la información de la evidencia para estudiarla después. Es casi igual en todos los casos y se automatiza mucho.",
+              "1. Recuperar archivos eliminados. 2. Buscar archivos y volúmenes cifrados y descifrarlos si se puede. 3. Descomprimir archivos comprimidos y empaquetados. 4. Buscar máquinas virtuales. 5. Calcular el hash de todos los archivos para filtrarlos. 6. Verificar firmas y extensiones."
+            ],
+            [
+              "Análisis",
+              "Responder a las preguntas concretas del caso. Es la fase más personalizada.",
+              "1. Buscar palabras clave y archivos de interés. 2. Analizar el sistema operativo. 3. Analizar las comunicaciones (red, correo, navegación…). 4. Analizar los archivos relevantes."
+            ]
+          ],
+          "title": "Las dos fases del esquema"
+        },
+        {
+          "type": "p",
+          "text": "Una regla para no perderte: si el paso **prepara o filtra** datos (recuperar, descifrar, descomprimir, calcular hashes, comprobar firmas), es pre-análisis. Si **busca respuestas** (palabras clave, sistema operativo, comunicaciones, contenido de los archivos), es análisis."
+        },
+        {
+          "type": "exam",
+          "text": "Trampa clásica: «pre-análisis, análisis y **post-análisis**». El esquema del tema no tiene fase de post-análisis; son **dos** fases. Tampoco vale «análisis y post-análisis». Cuando una opción ubique un paso en el «post-análisis», descártala sin dudar."
+        },
+        {
+          "type": "exam",
+          "text": "Otra trampa: preguntar en qué fase va un paso concreto. Cifrados, máquinas virtuales, hashes, firmas, descompresión y recuperación de borrados son **pre-análisis**. Palabras clave y sistema operativo son **análisis**."
+        },
+        {
+          "type": "key",
+          "text": "Dos fases: el pre-análisis prepara (6 pasos, muy automatizables) y el análisis responde a las preguntas del caso (4 pasos, muy personalizados). No existe post-análisis en este esquema."
+        }
+      ]
+    },
+    {
+      "id": "recuperar-borrados",
+      "title": "Paso 1 del pre-análisis: recuperar archivos eliminados",
+      "pages": [
+        8,
+        9
+      ],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Borrar un archivo se parece a arrancar la ficha de un libro del catálogo de una biblioteca: el libro sigue en la estantería hasta que alguien ponga otro en su hueco. Si encuentras la ficha arrancada en la papelera, sabes título, autor y fecha de préstamo. Si solo encuentras el libro suelto, tienes el contenido, pero no su ficha."
+        },
+        {
+          "type": "p",
+          "text": "Cuando se elimina un archivo, normalmente solo se marca como borrado en el **índice del sistema de ficheros**; los datos siguen en el disco mientras no se **sobrescriban**. En los discos **SSD** hay un matiz: el propio disco puede borrar físicamente esos bloques por su cuenta, y entonces ya no se recuperan."
+        },
+        {
+          "type": "term",
+          "term": "Sistema de ficheros",
+          "text": "La forma en que el sistema operativo organiza el disco: un índice que dice qué archivos hay, dónde están sus trozos, quién es su propietario y sus fechas (creación, modificación, último acceso). Ejemplos: NTFS en Windows, ext4 en Linux."
+        },
+        {
+          "type": "term",
+          "term": "SSD (Solid State Drive)",
+          "text": "Disco de memoria flash, sin piezas móviles. Para mantener su rendimiento libera internamente los bloques borrados (por ejemplo, con la orden TRIM), lo que dificulta la recuperación."
+        },
+        {
+          "type": "p",
+          "text": "El tema propone recuperar en **dos rondas**:"
+        },
+        {
+          "type": "table",
+          "head": [
+            "Tipo",
+            "Cómo funciona",
+            "Herramientas",
+            "Qué obtienes"
+          ],
+          "rows": [
+            [
+              "Recuperación «básica»",
+              "Lee el índice del sistema de ficheros y muestra los archivos marcados como borrados.",
+              "FTK Imager, Autopsy",
+              "El archivo **y** sus datos asociados del sistema de ficheros: fechas, propietario, ruta."
+            ],
+            [
+              "Recuperación en bruto (carving)",
+              "Recorre todo el espacio del disco buscando **cabeceras** de archivos, sin mirar el índice.",
+              "PhotoRec, R-Studio, Recuva",
+              "Solo el contenido. Se pierden fechas, propietario y ruta del sistema de ficheros, salvo que estén dentro de los metadatos del propio archivo."
+            ]
+          ],
+          "title": "Recuperación básica frente a recuperación en bruto"
+        },
+        {
+          "type": "term",
+          "term": "Metadatos",
+          "text": "«Datos sobre los datos». Hay dos tipos: los **externos**, que guarda el sistema de ficheros (fechas, propietario, ruta), y los **internos**, que viajan dentro del archivo (por ejemplo, el autor de un Word o la cámara y la fecha de una foto en sus datos EXIF). La recuperación en bruto pierde los externos, pero conserva los internos que tuviera el archivo."
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico",
+          "text": "Un ordenador de una oficina lo usan tres empleados. Encuentras, por recuperación en bruto, un Excel con datos de clientes. Tienes el contenido, pero no sabes qué usuario del sistema era su propietario ni cuándo se modificó. Si lo hubieras recuperado por la vía básica, el sistema de ficheros te diría que era de la cuenta «mgarcia» y que se modificó el 3 de marzo. Por eso se hace primero la básica y después la de bruto."
+        },
+        {
+          "type": "exam",
+          "text": "Si preguntan por la limitación de la recuperación en bruto, la respuesta es que **pueden faltar** atributos externos como el **propietario** o las **fechas** del sistema de ficheros. Trampas: «mantiene siempre rutas y propietarios» (falso), «suprime los metadatos internos» (falso: los internos siguen en el archivo) o «basta para atribuir autoría» (nunca)."
+        },
+        {
+          "type": "key",
+          "text": "Primero recuperación básica (archivo + datos del sistema de ficheros) y después en bruto (solo contenido, buscando cabeceras). La de bruto pierde propietario y fechas externas, lo que importa mucho en equipos compartidos."
+        }
+      ]
+    },
+    {
+      "id": "cifrados",
+      "title": "Paso 2: archivos y volúmenes cifrados",
+      "pages": [
+        9,
+        10
+      ],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Si registras una casa y encuentras una caja fuerte, no la dejas para el final: es lo primero que intentas abrir, porque quien guarda algo bajo llave suele tener motivos. Y si no puedes abrirla, lo escribes en el acta: «hay una caja fuerte que no se ha podido abrir»."
+        },
+        {
+          "type": "term",
+          "term": "Cifrado",
+          "text": "Transformar datos con una clave para que solo quien la tenga pueda leerlos. Un **archivo cifrado** es un documento suelto protegido; un **volumen cifrado** es una partición o un contenedor entero protegido (por ejemplo, con BitLocker o VeraCrypt)."
+        },
+        {
+          "type": "p",
+          "text": "Cada vez aparecen más elementos cifrados en las evidencias, y suelen ser de **gran interés**: si alguien se molestó en cifrar un documento, es probable que contenga algo relevante. Para encontrarlos se usan programas como **Passware Encryption Analyzer** o **Encrypted Disk Detector** (de Magnet Forensics), que escanean la evidencia; muchas suites forenses ya traen complementos que lo hacen."
+        },
+        {
+          "type": "p",
+          "text": "Se buscan en el **pre-análisis** para empezar **cuanto antes** a intentar descifrarlos, porque romper una contraseña puede llevar mucho tiempo. Aun así, no siempre se consigue, sobre todo con un cifrado o una contraseña robustos."
+        },
+        {
+          "type": "term",
+          "term": "Documentar una limitación",
+          "text": "Dejar escrito en el informe qué parte de la evidencia no se ha podido examinar y por qué. Así quien lea el informe (un juez, un cliente) conoce el alcance real del trabajo."
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico",
+          "text": "En el portátil de un directivo aparece un contenedor VeraCrypt de 20 GB. Tras días de ataque por diccionario, no se obtiene la contraseña. El perito no puede decir «no contenía nada relevante» ni «es prueba de un delito». Lo correcto es escribir: «Se localizó un volumen cifrado de 20 GB en la ruta X; no ha sido posible acceder a su contenido»."
+        },
+        {
+          "type": "exam",
+          "text": "Ante «¿qué hacer si no se puede descifrar?», la respuesta es **documentar esa limitación**. Las trampas tientan con suposiciones: que no guarda relación con el caso, que todo lo cifrado prueba algo ilícito, o presentar como examinado lo que no se abrió. Las tres son conclusiones sin base."
+        },
+        {
+          "type": "exam",
+          "text": "¿En qué fase se identifican los volúmenes cifrados? En el **pre-análisis**. No en el análisis, ni en un inexistente post-análisis; y desde luego sí se identifican."
+        },
+        {
+          "type": "key",
+          "text": "Los cifrados se buscan pronto (pre-análisis) para intentar descifrarlos cuanto antes; si no se puede, se documenta, sin suponer nada sobre su contenido."
+        }
+      ]
+    },
+    {
+      "id": "descomprimir",
+      "title": "Paso 3: descomprimir y extraer lo que va dentro de otros archivos",
+      "pages": [
+        10,
+        11
+      ],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Imagina que buscas una foto concreta en una casa. Revisas todos los marcos y álbumes, pero la foto está pegada dentro de un cuaderno cerrado. Si no abres los cuadernos, nunca la verás. Los archivos comprimidos y los documentos con imágenes son esos cuadernos cerrados."
+        },
+        {
+          "type": "term",
+          "term": "Archivo comprimido o empaquetado",
+          "text": "Un archivo que contiene otros dentro, normalmente reducidos de tamaño: .ZIP, .RAR, .7Z… Para el buscador del sistema, es un único bloque opaco."
+        },
+        {
+          "type": "term",
+          "term": "Elemento embebido",
+          "text": "Un archivo metido dentro de otro: una imagen pegada en un Word, una hoja de cálculo insertada en un PowerPoint, un adjunto dentro de un correo."
+        },
+        {
+          "type": "p",
+          "text": "Descomprimir y **extraer los elementos embebidos** permite aplicarles a ellos también las búsquedas y los filtros (hashes, firmas, palabras clave). Si no se hace, ese contenido queda fuera del análisis."
+        },
+        {
+          "type": "p",
+          "text": "Dato muy útil: los documentos modernos de Microsoft Office (**DOCX, XLSX, PPTX**) son en realidad **archivos ZIP** con una estructura de carpetas. Las imágenes que contienen están ahí dentro como archivos independientes. Los formatos antiguos (DOC, PPT) también pueden llevar objetos embebidos."
+        },
+        {
+          "type": "code",
+          "text": "$ cp informe.docx informe.zip\n$ unzip -l informe.zip\n  [Content_Types].xml\n  word/document.xml\n  word/media/image1.png   <- la imagen insertada en el documento\n  word/media/image2.jpg",
+          "title": "Un DOCX abierto como ZIP"
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico",
+          "text": "Buscas el logotipo de una empresa competidora en el equipo de un empleado sospechoso de espionaje industrial. Una búsqueda de archivos .png o .jpg no lo encuentra. Al extraer los elementos embebidos de los informes .docx, aparece como word/media/image3.png dentro de tres documentos."
+        },
+        {
+          "type": "exam",
+          "text": "Pregunta típica: no encuentras una imagen que sospechas que está en informes ofimáticos. La respuesta es **extraer los elementos embebidos**. Trampas: repetir la misma búsqueda, buscar solo por nombres de fotografías o descartar los documentos porque «su extensión no es de imagen»."
+        },
+        {
+          "type": "key",
+          "text": "Lo que está dentro de un ZIP o de un documento no se ve hasta que se extrae. Los DOCX/XLSX/PPTX son ZIP: sus imágenes solo aparecen al abrirlos por dentro."
+        }
+      ]
+    },
+    {
+      "id": "maquinas-virtuales",
+      "title": "Paso 4: buscar máquinas virtuales",
+      "pages": [
+        11,
+        12
+      ],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Una máquina virtual es como una casa de muñecas completa dentro de una habitación: tiene sus propias habitaciones, muebles y cajones. Si registras la habitación y no abres la casa de muñecas, te dejas una casa entera sin registrar."
+        },
+        {
+          "type": "term",
+          "term": "Máquina virtual (MV)",
+          "text": "Un ordenador simulado por software que funciona dentro de otro (el «anfitrión»). Tiene su propio sistema operativo, usuarios, programas y archivos, guardados en un **disco duro virtual**: un archivo grande del equipo anfitrión."
+        },
+        {
+          "type": "p",
+          "text": "Por eso una MV puede contener evidencias **distintas** de las del equipo anfitrión: alguien puede hacer todo lo comprometedor dentro de ella."
+        },
+        {
+          "type": "steps",
+          "items": [
+            "**Empieza por las aplicaciones de virtualización instaladas** (VirtualBox, VMware, Hyper-V…). Si hay una, es lógico pensar que hay máquinas virtuales gestionadas por ella.",
+            "**Revisa los registros y la configuración de esas aplicaciones**: indican la ubicación por defecto de las máquinas virtuales y de sus discos.",
+            "**Busca los discos duros virtuales** por su extensión o, mejor aún, por su firma de archivo (por si se renombraron)."
+          ],
+          "title": "Cómo localizarlas, según el tema"
+        },
+        {
+          "type": "table",
+          "head": [
+            "Formato",
+            "Significado",
+            "Programa"
+          ],
+          "rows": [
+            [
+              "VDI",
+              "VirtualBox Disk Image",
+              "VirtualBox"
+            ],
+            [
+              "VMDK",
+              "Virtual Machine Disk",
+              "VMware"
+            ],
+            [
+              "VHD / VHDX",
+              "Virtual Hard Disk",
+              "Windows e Hyper-V"
+            ],
+            [
+              "HDD",
+              "Parallels Hard Disk",
+              "Parallels"
+            ],
+            [
+              "QED / QCOW",
+              "QEMU Enhanced Disk / QEMU Copy-On-Write",
+              "QEMU"
+            ]
+          ],
+          "title": "Formatos de disco virtual más comunes"
+        },
+        {
+          "type": "exam",
+          "text": "La pregunta del test enumera tres afirmaciones: es un paso del pre-análisis, lo ideal es empezar por las aplicaciones de virtualización y también se localizan por sus discos. Las tres son ciertas, así que la respuesta es **«todas las anteriores»**. En otra variante, el indicio correcto son los **archivos de disco virtual y los registros del software de virtualización**, no las cuentas de usuario, los apagados o el cortafuegos."
+        },
+        {
+          "type": "key",
+          "text": "Buscar MV es un paso del pre-análisis: primero el software de virtualización y sus registros, después los discos virtuales (VDI, VMDK, VHD/VHDX, HDD, QED/QCOW) por extensión o por firma."
+        }
+      ]
+    },
+    {
+      "id": "hash-filtrado",
+      "title": "Paso 5: el hash de cada archivo para filtrar",
+      "pages": [
+        12,
+        13
+      ],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "El hash es como la huella dactilar de un archivo. Dos personas pueden llamarse igual, pero no tienen la misma huella; y una persona que se cambia de nombre conserva su huella. Si tienes un fichero policial de huellas de «gente de confianza» y otro de «buscados», puedes clasificar a mil personas sin entrevistar a cada una."
+        },
+        {
+          "type": "term",
+          "term": "Hash (función resumen)",
+          "text": "Un cálculo que convierte el contenido de un archivo, de cualquier tamaño, en una cadena corta de longitud fija. Si cambia un solo bit del contenido, el hash cambia por completo. No se puede «invertir» para obtener el archivo original. Algoritmos habituales: MD5, SHA-1, SHA-256."
+        },
+        {
+          "type": "code",
+          "text": "$ sha256sum contrato.pdf copia_renombrada.pdf\n9f2c...e41a  contrato.pdf\n9f2c...e41a  copia_renombrada.pdf   <- mismo contenido, mismo hash\n\n$ md5sum contrato.pdf\n5d41...a7c9  contrato.pdf           <- otro algoritmo, otro valor",
+          "title": "El hash depende del contenido, no del nombre"
+        },
+        {
+          "type": "p",
+          "text": "En el pre-análisis se calcula el hash de **todos** los archivos con un objetivo: **filtrarlos** y clasificarlos en «buenos» (conocidos y lícitos) o «sospechosos». Así se reduce muchísimo lo que hay que mirar a mano."
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Hashes de archivos conocidos y legítimos**: los de Windows, Office, Adobe, Photoshop… Si un archivo coincide, se puede apartar.",
+            "**Hashes de archivos maliciosos** (malware); los antivirus también ayudan aquí.",
+            "**Hashes de imágenes con contenido ilegal**, sobre todo de abuso sexual infantil, para localizarlas sin tener que verlas una a una.",
+            "**Hashes de los archivos que buscas** en tu caso concreto, por ejemplo los documentos robados en una fuga de información."
+          ],
+          "title": "Contra qué se comparan los hashes"
+        },
+        {
+          "type": "term",
+          "term": "NSRL (National Software Reference Library)",
+          "text": "Base de datos del NIST (National Institute of Standards and Technology, el instituto de normalización de EE. UU.) con el hash de unos **280 millones** de archivos de programas comerciales. Sirve para **descartar archivos lícitos**."
+        },
+        {
+          "type": "p",
+          "text": "Un requisito importantísimo: **usar el mismo algoritmo**. Un hash MD5 y un hash SHA-1 del mismo archivo son cadenas distintas; si tu base de datos tiene MD5 y tú calculas SHA-1, nunca encontrarás coincidencias."
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico",
+          "text": "Una empresa denuncia que un exempleado se llevó 40 documentos de diseño. La empresa entrega los SHA-256 de esos 40 archivos. El perito calcula el SHA-256 de todos los archivos del pendrive del exempleado y encuentra 12 coincidencias, aunque los archivos se llaman «vacaciones1.jpg», «notas.txt»… Como el hash depende del contenido y no del nombre, el cambio de nombre no los oculta."
+        },
+        {
+          "type": "exam",
+          "text": "El hash **no** sirve para comprobar si la extensión coincide con el contenido: eso es la **verificación de firmas** (paso 6). Si una opción dice eso para el hash, es la trampa. Tampoco es «contraproducente» calcularlo, ni recupera contenido sobrescrito, ni identifica al autor, ni se invierte para obtener el texto."
+        },
+        {
+          "type": "exam",
+          "text": "Comparar hashes de **distintos algoritmos** nunca da coincidencia: no «tienen el mismo significado». Y un archivo renombrado sin cambios se encuentra comparando su hash, no su nombre ni su carpeta."
+        },
+        {
+          "type": "key",
+          "text": "Hash = huella del contenido. Se calcula a todos los archivos para filtrarlos contra bases como la NSRL (buenos) o listas de malware y de archivos buscados (sospechosos), siempre con el mismo algoritmo."
+        }
+      ]
+    },
+    {
+      "id": "hash-borroso",
+      "title": "El hash borroso: encontrar archivos parecidos",
+      "pages": [
+        13,
+        14
+      ],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "La huella dactilar exige coincidencia exacta. Pero si buscas a alguien que se ha dejado barba y se ha puesto gafas, necesitas otra cosa: un reconocimiento facial que diga «se parece en un 85 %». Eso es el hash borroso."
+        },
+        {
+          "type": "p",
+          "text": "El hash convencional es **muy sensible**: si alguien cambia una sola coma de un documento robado, su hash ya no coincide y la búsqueda por hash no lo encuentra."
+        },
+        {
+          "type": "term",
+          "term": "Hash borroso (fuzzy hashing)",
+          "text": "Técnica que **trocea** el archivo en pequeños fragmentos, calcula el hash de cada trozo y compara cuántos trozos coinciden. El resultado es un **porcentaje de similitud** entre dos archivos, no un sí o un no. Se usa sobre todo con **imágenes, código fuente y muestras de malware**."
+        },
+        {
+          "type": "table",
+          "head": [
+            "Aspecto",
+            "Hash convencional",
+            "Hash borroso"
+          ],
+          "rows": [
+            [
+              "Pregunta que responde",
+              "¿Son idénticos byte a byte?",
+              "¿Cuánto se parecen?"
+            ],
+            [
+              "Resultado",
+              "Coincide / no coincide",
+              "Porcentaje de similitud"
+            ],
+            [
+              "Si cambia un byte",
+              "El hash cambia por completo",
+              "La similitud sigue siendo alta"
+            ],
+            [
+              "Uso típico",
+              "Filtrar conocidos, localizar copias exactas",
+              "Versiones editadas, variantes de malware, imágenes retocadas"
+            ]
+          ],
+          "title": "Convencional frente a borroso"
+        },
+        {
+          "type": "p",
+          "text": "Hay varios algoritmos (por ejemplo, ssdeep para archivos en general o dHash para imágenes) y se eligen según lo que se busque. Suelen venir como scripts sueltos o como complementos de las suites forenses."
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico",
+          "text": "El documento robado «plan_comercial.docx» aparece en el equipo de un sospechoso, pero con el título cambiado y un párrafo añadido. Su SHA-256 ya no coincide. Con hash borroso, la herramienta indica un 92 % de similitud: es una pista fuerte que luego hay que confirmar abriendo y comparando ambos documentos."
+        },
+        {
+          "type": "exam",
+          "text": "El hash borroso **estima similitud**. No demuestra igualdad exacta, no recupera la versión original ni descifra nada. Si un archivo fue editado ligeramente, la respuesta es el hash borroso; descartar la relación por no coincidir el hash convencional es la trampa."
+        },
+        {
+          "type": "key",
+          "text": "Hash convencional para copias exactas; hash borroso para parecidos (imágenes, código, malware, documentos editados). Su resultado orienta, no prueba por sí solo."
+        }
+      ]
+    },
+    {
+      "id": "firmas",
+      "title": "Paso 6: verificar firmas y extensiones",
+      "pages": [
+        14,
+        16
+      ],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "La extensión de un archivo es la etiqueta de un bote; la firma es lo que hay dentro. Cualquiera puede pegar la etiqueta «azúcar» en un bote de sal. Para saberlo, hay que probarlo."
+        },
+        {
+          "type": "term",
+          "term": "Extensión",
+          "text": "Las letras tras el punto del nombre (.jpg, .pdf, .docx). Solo es parte del nombre: se cambia en un segundo renombrando el archivo."
+        },
+        {
+          "type": "term",
+          "term": "Firma de archivo (cabecera o «número mágico»)",
+          "text": "Los primeros bytes del contenido, que identifican su formato real. Es lo que **de verdad** indica el tipo de archivo."
+        },
+        {
+          "type": "code",
+          "text": "JPEG : FF D8 FF\nPNG  : 89 50 4E 47 0D 0A 1A 0A   (\"\\x89PNG\")\nPDF  : 25 50 44 46               (\"%PDF\")\nZIP  : 50 4B 03 04               (\"PK\" - tambien DOCX, XLSX, PPTX)\nVMDK : 4B 44 4D                  (\"KDM\")",
+          "title": "Algunas firmas conocidas (en hexadecimal)"
+        },
+        {
+          "type": "p",
+          "text": "La **verificación de firmas** compara la extensión con la firma de cada archivo. La mayoría de las herramientas forenses lo hacen solas y **avisan** cuando no coinciden; por ejemplo, el módulo Mismatch File Search de OSForensics."
+        },
+        {
+          "type": "p",
+          "text": "Cambiar la extensión o esconder el archivo en una ruta extraña es una técnica de ocultación **muy rudimentaria**, pero todavía muy usada, y es un **signo claro de intención de ocultar** algo. Aun así, una discrepancia es un indicio que hay que investigar en su contexto: a veces la causa es inocente (un programa que guarda con una extensión propia)."
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico",
+          "text": "Un archivo se llama «drivers_impresora.dll», pero su firma empieza por FF D8 FF: es una foto JPEG. La herramienta lo marca en rojo. Al abrirlo como imagen, resulta ser la foto de un documento confidencial."
+        },
+        {
+          "type": "exam",
+          "text": "Ojo con mezclar pasos: comprobar que la extensión coincide con el contenido es la **verificación de firmas**, no el cálculo del hash. Y una discrepancia indica que **conviene investigar** si el formato real está oculto o mal identificado; no prueba un delito ni que el contenido se destruyera, y la extensión no describe mejor el formato que los bytes."
+        },
+        {
+          "type": "key",
+          "text": "Manda la firma, no la extensión. Verificar firmas es el último paso del pre-análisis y destapa archivos renombrados para ocultarlos."
+        }
+      ]
+    },
+    {
+      "id": "palabras-clave",
+      "title": "Análisis, paso 1: palabras clave, expresiones regulares y archivos de interés",
+      "pages": [
+        17,
+        19
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Con la evidencia preparada, empieza la **fase de análisis**, la más **personalizada**: depende de las preguntas del caso. En una **revelación de secretos** (filtrar información confidencial) interesan los programas de correo y sus bases de datos; en una **falsificación de documentos**, el software de retoque fotográfico y las impresoras y escáneres configurados."
+        },
+        {
+          "type": "analogy",
+          "text": "Buscar palabras clave es como usar Ctrl+F, pero sobre todo el disco y con superpoderes: mira también **dentro** de los archivos y en el **espacio libre** (donde quedan restos de borrados). Y las expresiones regulares son como decir «búscame cualquier matrícula», en vez de «búscame la 1234-ABC»."
+        },
+        {
+          "type": "p",
+          "text": "La **búsqueda de palabras clave** sirve cuando hay que obtener documentos relacionados con ciertas palabras: los que mencionan a una **persona**, un **lugar** o unos **secretos empresariales**. Se diferencia del buscador del sistema en que también busca en el espacio libre y en el interior de los archivos, y en que admite expresiones regulares."
+        },
+        {
+          "type": "term",
+          "term": "Expresión regular (regex)",
+          "text": "Una secuencia de caracteres que forma un **patrón de búsqueda**. Se compara con un texto más amplio para localizar todas las coincidencias. Mezcla caracteres normales (que se buscan tal cual) con **metacaracteres**, que tienen un significado especial."
+        },
+        {
+          "type": "table",
+          "head": [
+            "Metacarácter",
+            "Significado",
+            "Ejemplo"
+          ],
+          "rows": [
+            [
+              "[A-Z]",
+              "Una letra mayúscula de la A a la Z",
+              "[A-Z] encaja con «K»"
+            ],
+            [
+              "[0-9] o \\d",
+              "Un dígito",
+              "[0-9] encaja con «7»"
+            ],
+            [
+              "{n}",
+              "Exactamente n repeticiones de lo anterior",
+              "[0-9]{4} = cuatro dígitos"
+            ],
+            [
+              "+",
+              "Una o más repeticiones (sin límite)",
+              "[0-9]+ = 1, 12, 123456…"
+            ],
+            [
+              "\\b",
+              "Límite de palabra (inicio o fin)",
+              "\\bcasa\\b no encaja dentro de «casamiento»"
+            ],
+            [
+              "^ y $",
+              "Inicio y fin de la línea o cadena",
+              "^Hola solo al principio"
+            ],
+            [
+              "- fuera de corchetes",
+              "Un guion literal",
+              "AB-1234"
+            ]
+          ],
+          "title": "Metacaracteres básicos"
+        },
+        {
+          "type": "code",
+          "text": "\\b[A-Z]{2}-[0-9]{4}\\b\n# encaja: AB-1234, CD-5678\n# no encaja: AB-12 (pocos digitos), A-1234 (una letra), ab-1234 (minusculas)",
+          "title": "Patrón: dos mayúsculas, guion, cuatro dígitos"
+        },
+        {
+          "type": "code",
+          "text": "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$",
+          "title": "Direcciones de correo (ejemplo del tema)"
+        },
+        {
+          "type": "p",
+          "text": "El tema muestra también un patrón para **números de tarjeta de crédito** válidos de varias familias (Visa, MasterCard, American Express…). Las herramientas forenses traen regex **precargadas** y permiten añadir las tuyas."
+        },
+        {
+          "type": "term",
+          "term": "Archivos de interés",
+          "text": "Archivos que cumplen unas características definidas mediante **reglas**: fechas, tamaño, ruta, tipo, nombre. Por ejemplo, ofimáticos creados entre dos fechas o imágenes de entre 1 MB y 100 MB."
+        },
+        {
+          "type": "p",
+          "text": "Las reglas se agrupan y se **reutilizan entre casos**: «programas de cifrado», «monederos de criptomonedas», «carpetas o archivos con la palabra privado». Un ejemplo es el módulo Interesting Files Identifier de **Autopsy**. Son muy útiles en **fugas de información** (archivos accedidos entre ciertas fechas) y en **malware** (archivos descargados o ejecutados en un intervalo)."
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico",
+          "text": "Investigas una fuga ocurrida la semana del 10 de junio. Creas una regla: documentos .docx, .xlsx o .pdf, accedidos entre el 10 y el 14 de junio, en la carpeta del usuario. De 80.000 archivos quedan 140. La regla es explícita y repetible, pero no dice cuáles son relevantes: eso lo decides al revisarlos."
+        },
+        {
+          "type": "exam",
+          "text": "La búsqueda de palabras clave es de la fase de **análisis** (no de pre-análisis ni de post-análisis) y **sí** sirve para documentos que mencionan a personas. Una expresión regular es un patrón de **búsqueda** (no «de análisis» ni «de respuesta»)."
+        },
+        {
+          "type": "exam",
+          "text": "En las preguntas de patrones, cuenta con cuidado: {4} exige **exactamente** cuatro, mientras que + acepta cualquier cantidad. Fíjate también en el orden letras/dígitos. Y para localizar muchas direcciones de correo que no conoces, lo adecuado es una regex que describa su estructura, no una dirección literal."
+        },
+        {
+          "type": "key",
+          "text": "Palabras clave y archivos de interés abren la fase de análisis. Las regex describen la forma de lo que buscas; las reglas acotan por fecha, tamaño o ruta de forma reproducible, pero lo encontrado siempre se revisa."
+        }
+      ]
+    },
+    {
+      "id": "sistema-operativo",
+      "title": "Análisis, paso 2: el sistema operativo",
+      "pages": [
+        20,
+        23
+      ],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "El sistema operativo es el conserje del edificio: apunta quién vive en cada piso, qué muebles han entrado, quién llamó al timbre y a qué hora. Leer su libreta te dice qué se podía hacer en el edificio y qué se hizo."
+        },
+        {
+          "type": "p",
+          "text": "Aquí se estudian los datos que registra el propio sistema: **registros de eventos**, **cuentas de usuario**, **actividad reciente**, programas instalados, hardware… El tema lo organiza como una lista de preguntas:"
+        },
+        {
+          "type": "table",
+          "head": [
+            "Qué se revisa",
+            "Preguntas que hay que responder"
+          ],
+          "rows": [
+            [
+              "1. Nombre y versión del sistema y actualizaciones",
+              "¿Es una versión no oficial, o hay alguna actualización que no lo sea?"
+            ],
+            [
+              "2. Usuarios y privilegios",
+              "¿Hay algún usuario anormal? ¿Cuentas anónimas activas? ¿Algún usuario es propietario de un archivo sospechoso?"
+            ],
+            [
+              "3. Programas instalados",
+              "¿Hay programas que permitan cometer el hecho investigado? (p. ej., software para copiar tarjetas en un caso de clonación)"
+            ],
+            [
+              "4. Antivirus y análisis de seguridad",
+              "¿Hay antivirus? ¿Alguno es falso? ¿Está el equipo infectado y el virus sigue activo?"
+            ],
+            [
+              "5. Archivos de registro (logs)",
+              "¿Qué sucesos se registran? ¿Se han modificado los registros?"
+            ],
+            [
+              "6. Hardware",
+              "¿Qué hardware hay configurado? ¿Qué dispositivos se han conectado (USB, móviles)? ¿Con ese hardware se pudo cometer el incidente?"
+            ]
+          ],
+          "title": "Las seis comprobaciones del sistema operativo"
+        },
+        {
+          "type": "term",
+          "term": "Registro de Windows",
+          "text": "Gran base de datos interna donde Windows guarda su configuración: programas instalados, usuarios, dispositivos USB conectados, documentos abiertos recientemente…"
+        },
+        {
+          "type": "term",
+          "term": "Registro de eventos (logs)",
+          "text": "Diario del sistema: inicios de sesión, errores, instalaciones, apagados. Si alguien lo ha borrado o manipulado, eso mismo es un indicio."
+        },
+        {
+          "type": "p",
+          "text": "Las suites forenses obtienen mucho de esto de forma automática, pero a menudo se recurre a herramientas de terceros: **Windows Registry Recovery** para el registro de Windows y **Event Log Explorer** para los eventos. El tema incluye además dos vídeos sobre la suite **Autopsy** y sus complementos."
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico",
+          "text": "Caso de clonación de tarjetas: en el sistema aparece instalado un programa de escritura de bandas magnéticas, y el registro muestra que se conectó un lector-grabador USB cuatro veces en mayo. El software y el hardware hacían posible el hecho; los logs dicen cuándo."
+        },
+        {
+          "type": "exam",
+          "text": "Las preguntas suelen enumerar varias tareas (versión no oficial, infección por virus, dispositivos conectados) y preguntar cuál pertenece al análisis del sistema operativo: son **todas**. Y la parte que estudia cuentas, privilegios y programas instalados es el **análisis del sistema operativo**, no el de comunicaciones ni la recuperación en bruto."
+        },
+        {
+          "type": "key",
+          "text": "El análisis del sistema operativo dice qué se podía hacer con el equipo (versión, usuarios, programas, hardware) y qué se hizo (logs, dispositivos conectados)."
+        }
+      ]
+    },
+    {
+      "id": "comunicaciones",
+      "title": "Análisis, paso 3: las comunicaciones",
+      "pages": [
+        23,
+        25
+      ],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Si el sistema operativo es el conserje, las comunicaciones son el buzón, el teléfono y la puerta de la calle: por ahí entra y sale la información del edificio."
+        },
+        {
+          "type": "p",
+          "text": "Se estudian los **componentes de red** y todo lo que conecta el equipo con el exterior:"
+        },
+        {
+          "type": "table",
+          "head": [
+            "Qué se revisa",
+            "Qué se busca"
+          ],
+          "rows": [
+            [
+              "1. P2P, FTP y otros programas de compartición",
+              "Qué programas había y cómo estaban configurados, si alguno tenía una configuración «extraña», qué se compartió o descargó."
+            ],
+            [
+              "2. Correo y mensajería instantánea",
+              "Programas instalados, contactos, archivos enviados o recibidos, listado de mensajes, chats y llamadas VoIP."
+            ],
+            [
+              "3. Navegadores (Chrome, Firefox, Edge…)",
+              "Programas instalados, **páginas visitadas**, favoritos, contraseñas guardadas y certificados, cookies y archivos temporales, descargas."
+            ],
+            [
+              "4. Otros programas con acceso a Internet",
+              "Aplicaciones de sincronización en la nube: Dropbox, Google Drive, OneDrive…"
+            ]
+          ],
+          "title": "Lo que se revisa en las comunicaciones"
+        },
+        {
+          "type": "term",
+          "term": "P2P (peer to peer)",
+          "text": "Redes en las que los equipos comparten archivos directamente entre sí, sin servidor central (por ejemplo, BitTorrent o eMule)."
+        },
+        {
+          "type": "term",
+          "term": "FTP (File Transfer Protocol)",
+          "text": "Protocolo clásico para subir y bajar archivos de un servidor."
+        },
+        {
+          "type": "term",
+          "term": "VoIP (Voice over IP)",
+          "text": "Llamadas de voz por Internet (Skype, WhatsApp, Teams)."
+        },
+        {
+          "type": "term",
+          "term": "Cookie",
+          "text": "Pequeño archivo que una web guarda en el navegador para recordarte (sesión iniciada, preferencias). Revela qué sitios se han visitado."
+        },
+        {
+          "type": "p",
+          "text": "Herramientas como **ChromeHistoryView** (de NirSoft) extraen el historial de Chrome. Y las apps de nube son una vía clásica de salida de documentos: su configuración, sus registros y su carpeta local dicen qué se sincronizó y cuándo."
+        },
+        {
+          "type": "p",
+          "text": "**Límite legal importante**: el correo, la mensajería y cualquier programa con comunicaciones privadas están protegidos por el **secreto de las comunicaciones**, un derecho fundamental reconocido en el artículo 18.3 de la Constitución. Leerlas sin autorización (orden judicial o base legal adecuada) puede ser un **delito** del Código Penal, castigado en su artículo 197 (descubrimiento y revelación de secretos)."
+        },
+        {
+          "type": "term",
+          "term": "Ley orgánica",
+          "text": "Ley que regula materias especialmente importantes, como los derechos fundamentales o los delitos, y que exige mayoría absoluta del Congreso. El Código Penal es la Ley Orgánica 10/1995."
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico",
+          "text": "Una empresa sospecha que un empleado envió planos a un competidor. El perito puede analizar la configuración del cliente de correo y localizar los adjuntos de los planos, pero leer los mensajes personales del empleado requiere una base legal clara (consentimiento, política de uso conocida o autorización judicial). Si se salta esto, la prueba puede anularse y el perito puede incurrir en un delito."
+        },
+        {
+          "type": "exam",
+          "text": "Para el test: en el análisis de comunicaciones se obtiene la **lista de páginas web visitadas**. La «lista de programas que permiten realizar el hecho» es del análisis del **sistema operativo**, y es falso que los componentes de red no se analicen. Si el archivo salió por la nube, revisa los **datos y la configuración de la app de sincronización**, no solo las cookies del navegador ni los eventos de apagado."
+        },
+        {
+          "type": "key",
+          "text": "Comunicaciones = P2P/FTP, correo y mensajería, navegadores y apps de nube. Aportan muchísimo, pero el secreto de las comunicaciones marca un límite legal."
+        }
+      ]
+    },
+    {
+      "id": "archivos-relevantes",
+      "title": "Análisis, paso 4: los archivos relevantes y el trabajo en equipo",
+      "pages": [
+        25,
+        26
+      ],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Un cerrajero abre la caja fuerte y saca los papeles, pero no es quien sabe si las cuentas están maquilladas: para eso llamas a un contable. El perito informático localiza y recupera; el especialista interpreta."
+        },
+        {
+          "type": "p",
+          "text": "El último paso es estudiar los archivos localizados que interesan: **bases de datos**, **documentos ofimáticos**, hojas de cálculo… El tipo de análisis depende del caso y de las preguntas concretas del encargo."
+        },
+        {
+          "type": "p",
+          "text": "Según dónde trabajes, este paso puede corresponder a **peritos especializados** en la materia. En una **falsificación de las cuentas** de una empresa, lo normal es que el especialista en forense digital localice y recupere los archivos, y que los **especialistas en contabilidad** los analicen en busca de pruebas."
+        },
+        {
+          "type": "term",
+          "term": "Perito",
+          "text": "Experto que aporta al juez conocimientos técnicos que este no tiene, mediante un informe (la «pericial»). Debe limitarse a lo que sabe hacer y justificar sus conclusiones."
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico",
+          "text": "En un caso de fraude, el perito informático recupera 300 hojas Excel borradas, con su hash y su fecha de modificación. Un auditor de cuentas las analiza y concluye que hay facturas duplicadas. Cada uno firma la parte que domina."
+        },
+        {
+          "type": "exam",
+          "text": "Si aparecen datos que exigen conocimientos de otra disciplina, la respuesta es **repartir**: el analista digital localiza y recupera; el especialista interpreta. Trampas: atribuir significado contable sin conocimientos, creer que la suite forense valida conclusiones económicas, u omitir los archivos porque «no son registros del sistema»."
+        },
+        {
+          "type": "exam",
+          "text": "Recuerda también la idea general: el análisis se **adapta al caso**. En una filtración por correo se priorizan las aplicaciones de correo, sus datos y los archivos transmitidos; no se reutilizan sin más los filtros de otro caso ni se revisan elementos sin relación."
+        },
+        {
+          "type": "key",
+          "text": "El análisis termina con los archivos relevantes para el encargo; si su interpretación exige otra especialidad, el perito digital aporta los datos y otro experto los interpreta."
+        }
+      ]
+    }
+  ],
+  "summary": [
+    "El esquema general tiene dos fases: pre-análisis (preparar) y análisis (responder). No hay post-análisis.",
+    "Pre-análisis, en orden: recuperar borrados, buscar cifrados, descomprimir y extraer embebidos, buscar máquinas virtuales, calcular hashes y verificar firmas.",
+    "Análisis, en orden: palabras clave y archivos de interés, sistema operativo, comunicaciones y archivos relevantes.",
+    "La recuperación básica conserva fechas y propietario; la recuperación en bruto (carving) solo recupera el contenido.",
+    "Si un cifrado no se puede romper, se documenta la limitación sin suponer nada sobre su contenido.",
+    "DOCX, XLSX y PPTX son ZIP: sus imágenes solo se encuentran al extraerlas.",
+    "Las máquinas virtuales se buscan por el software de virtualización, sus registros y sus discos (VDI, VMDK, VHD/VHDX, HDD, QED/QCOW).",
+    "El hash sirve para filtrar archivos en buenos y sospechosos (NSRL, malware, archivos buscados), siempre con el mismo algoritmo; no depende del nombre.",
+    "El hash borroso estima la similitud entre archivos modificados (imágenes, código, malware).",
+    "Manda la firma (cabecera), no la extensión; una discrepancia indica posible ocultación y se investiga.",
+    "Una expresión regular es un patrón de búsqueda; {n} exige exactamente n repeticiones.",
+    "Las comunicaciones incluyen navegación, correo, P2P y la nube, con el límite legal del secreto de las comunicaciones."
+  ],
+  "glossary": [
+    {
+      "term": "Pre-análisis",
+      "text": "Primera fase del esquema: prepara la información de la evidencia (recuperar, descifrar, descomprimir, buscar MV, hashes, firmas)."
+    },
+    {
+      "term": "Análisis",
+      "text": "Segunda fase: responde a las preguntas concretas del caso (palabras clave, sistema operativo, comunicaciones, archivos relevantes)."
+    },
+    {
+      "term": "Carving (recuperación en bruto)",
+      "text": "Recuperar archivos buscando sus cabeceras por todo el disco, sin usar el índice del sistema de ficheros."
+    },
+    {
+      "term": "Metadatos",
+      "text": "Datos sobre un archivo: externos (los del sistema de ficheros) o internos (dentro del propio archivo)."
+    },
+    {
+      "term": "Volumen cifrado",
+      "text": "Partición o contenedor completo protegido con una clave (BitLocker, VeraCrypt)."
+    },
+    {
+      "term": "Elemento embebido",
+      "text": "Archivo contenido dentro de otro, como una imagen dentro de un DOCX."
+    },
+    {
+      "term": "Máquina virtual",
+      "text": "Ordenador simulado dentro de otro, con su propio disco virtual."
+    },
+    {
+      "term": "Hash",
+      "text": "Resumen de longitud fija que identifica el contenido de un archivo; cambia si cambia un solo bit."
+    },
+    {
+      "term": "NSRL (National Software Reference Library)",
+      "text": "Base de datos del NIST con unos 280 millones de hashes de software comercial, usada para descartar archivos lícitos."
+    },
+    {
+      "term": "Hash borroso (fuzzy hashing)",
+      "text": "Hash por fragmentos que da un porcentaje de similitud entre archivos."
+    },
+    {
+      "term": "Firma de archivo",
+      "text": "Bytes iniciales que identifican el formato real de un archivo, con independencia de su extensión."
+    },
+    {
+      "term": "Expresión regular",
+      "text": "Secuencia de caracteres que forma un patrón de búsqueda."
+    },
+    {
+      "term": "Archivos de interés",
+      "text": "Archivos seleccionados mediante reglas reutilizables por fecha, tamaño, ruta o nombre."
+    },
+    {
+      "term": "P2P (peer to peer)",
+      "text": "Compartición directa de archivos entre equipos, sin servidor central."
+    },
+    {
+      "term": "VoIP (Voice over IP)",
+      "text": "Llamadas de voz a través de Internet."
+    },
+    {
+      "term": "Secreto de las comunicaciones",
+      "text": "Derecho fundamental (art. 18.3 de la Constitución) que protege las comunicaciones privadas frente a su interceptación sin autorización."
+    }
+  ],
+  "questions": {
+    "forense-t06-01": {
+      "section": "esquema-general",
+      "reasoning": "El esquema general que propone el tema se divide en dos fases: la de pre-análisis, que prepara la evidencia, y la de análisis, que responde a las preguntas del caso. No hay una tercera fase de post-análisis.",
+      "options": {
+        "a": "Incorrecta. Añade una fase de post-análisis que el esquema no contempla.",
+        "b": "Incorrecta. Omite el pre-análisis e inventa un post-análisis.",
+        "c": "Correcta. Las dos fases son pre-análisis y análisis.",
+        "d": "Incorrecta. La opción c describe exactamente las dos fases del esquema."
+      }
+    },
+    "forense-t06-02": {
+      "section": "cifrados",
+      "reasoning": "Buscar archivos y volúmenes cifrados es el paso 2 del pre-análisis. Se hace pronto precisamente para empezar cuanto antes a intentar descifrarlos.",
+      "options": {
+        "a": "Incorrecta. Sí se identifican, y además se consideran de gran interés.",
+        "b": "Incorrecta. El esquema no tiene fase de post-análisis.",
+        "c": "Incorrecta. La fase de análisis empieza con la búsqueda de palabras clave; la identificación de cifrados es anterior.",
+        "d": "Correcta. Forma parte de la preparación de la evidencia: el pre-análisis."
+      }
+    },
+    "forense-t06-03": {
+      "section": "esquema-general",
+      "reasoning": "El pre-análisis prepara la evidencia y su primer paso es recuperar los archivos eliminados. La búsqueda de palabras clave y el análisis del sistema operativo ya buscan respuestas, así que son de la fase de análisis.",
+      "options": {
+        "a": "Correcta. La recuperación de archivos eliminados es el primer paso del pre-análisis.",
+        "b": "Incorrecta. La búsqueda de palabras clave es el primer paso de la fase de análisis.",
+        "c": "Incorrecta. El análisis del sistema operativo es el segundo paso de la fase de análisis.",
+        "d": "Incorrecta. El esquema sí tiene una fase de pre-análisis."
+      }
+    },
+    "forense-t06-04": {
+      "section": "esquema-general",
+      "reasoning": "Los pasos de la fase de análisis son: palabras clave y archivos de interés, sistema operativo, comunicaciones y archivos relevantes. Tanto la búsqueda de palabras clave como el análisis del sistema operativo están en esa lista, así que la respuesta que reúne ambas es la correcta.",
+      "options": {
+        "a": "Incorrecta por incompleta. Es un paso de la fase de análisis, pero no el único de los que se ofrecen.",
+        "b": "Incorrecta por incompleta. También es de la fase de análisis, pero la búsqueda de palabras clave lo es igualmente.",
+        "c": "Correcta. Ambos pasos pertenecen a la fase de análisis.",
+        "d": "Incorrecta. La fase de análisis existe y es la segunda del esquema."
+      }
+    },
+    "forense-t06-05": {
+      "section": "hash-filtrado",
+      "reasoning": "Se calcula el hash de todos los archivos para compararlos con bases de datos de hashes conocidos (legítimos, maliciosos o buscados). Así se clasifican en «buenos» y «sospechosos» y se reduce lo que hay que revisar.",
+      "options": {
+        "a": "Incorrecta. Comprobar si la extensión coincide con el contenido es la verificación de firmas, otro paso del pre-análisis.",
+        "b": "Correcta. El hash permite filtrar y clasificar los archivos en buenos y sospechosos.",
+        "c": "Incorrecta. No es contraproducente: el tema lo propone como paso del pre-análisis.",
+        "d": "Incorrecta. La opción b es correcta."
+      }
+    },
+    "forense-t06-06": {
+      "section": "maquinas-virtuales",
+      "reasoning": "La búsqueda de máquinas virtuales es el paso 4 del pre-análisis. El tema recomienda empezar por las aplicaciones de virtualización instaladas y añade que también se localizan por sus discos duros virtuales. Como las tres afirmaciones son ciertas, la respuesta es «todas».",
+      "options": {
+        "a": "Incorrecta por incompleta. Es cierta, pero b y c también lo son.",
+        "b": "Incorrecta por incompleta. Es cierta, pero no es la única.",
+        "c": "Incorrecta por incompleta. Es cierta, pero a y b también lo son.",
+        "d": "Correcta. Las tres afirmaciones anteriores son verdaderas."
+      }
+    },
+    "forense-t06-07": {
+      "section": "palabras-clave",
+      "reasoning": "La búsqueda de palabras clave se usa cuando hay que obtener documentos relacionados con ciertas palabras, por ejemplo los que mencionan a una persona o un lugar. Es el primer paso de la fase de análisis.",
+      "options": {
+        "a": "Correcta. Es la situación que la justifica: obtener documentos relacionados con determinadas palabras.",
+        "b": "Incorrecta. Pertenece a la fase de análisis, no al pre-análisis.",
+        "c": "Incorrecta. Al contrario: buscar documentos en los que se menciona a una persona es uno de sus usos típicos.",
+        "d": "Incorrecta. El esquema no tiene post-análisis."
+      }
+    },
+    "forense-t06-08": {
+      "section": "palabras-clave",
+      "reasoning": "Se descompone el formato: dos letras mayúsculas → [A-Z]{2}; un guion literal → -; exactamente cuatro dígitos → [0-9]{4}. \\b marca el límite de palabra a ambos lados. Solo una opción respeta orden y cantidades exactas.",
+      "options": {
+        "a": "Correcta. [A-Z]{2}-[0-9]{4} describe exactamente dos mayúsculas, guion y cuatro dígitos.",
+        "b": "Incorrecta. Invierte el orden: pide dos dígitos y después cuatro letras.",
+        "c": "Incorrecta. Pide cuatro letras y dos dígitos, al revés de lo que se busca.",
+        "d": "Incorrecta. El + acepta uno o más dígitos sin límite, así que no exige exactamente cuatro (aceptaría AB-1 o AB-123456)."
+      }
+    },
+    "forense-t06-09": {
+      "section": "sistema-operativo",
+      "reasoning": "El análisis del sistema operativo responde a seis bloques de preguntas: versión y actualizaciones (¿alguna no oficial?), usuarios, programas, antivirus y posibles infecciones, registros y hardware (incluidos los dispositivos conectados). Las tres afirmaciones están en esa lista.",
+      "options": {
+        "a": "Incorrecta por incompleta. Es una pregunta del bloque de versión y actualizaciones, pero no la única afirmación cierta.",
+        "b": "Incorrecta por incompleta. El análisis de seguridad y la detección de virus también forman parte, junto con las demás.",
+        "c": "Incorrecta por incompleta. Los dispositivos conectados son del bloque de hardware, y las otras opciones también son ciertas.",
+        "d": "Correcta. Las tres tareas forman parte del análisis del sistema operativo."
+      }
+    },
+    "forense-t06-10": {
+      "section": "comunicaciones",
+      "reasoning": "En el análisis de comunicaciones se estudian los navegadores y, entre otras cosas, se obtienen las páginas visitadas, los favoritos, las cookies y las descargas. Los programas que permiten cometer el hecho se revisan en el análisis del sistema operativo.",
+      "options": {
+        "a": "Incorrecta. La lista de programas que permiten realizar el hecho es una pregunta del análisis del sistema operativo.",
+        "b": "Incorrecta. Los componentes de red sí se analizan: es justo el objeto de este paso.",
+        "c": "Correcta. El historial de páginas visitadas es una de las fuentes del análisis de comunicaciones.",
+        "d": "Incorrecta. La opción c es correcta."
+      }
+    },
+    "forense-t06-11": {
+      "section": "esquema-general",
+      "reasoning": "El pre-análisis consiste en preparar la información de la evidencia para estudiarla después a fondo. Las conclusiones llegan más tarde, en la fase de análisis, y nunca se altera ni se restaura el dispositivo.",
+      "options": {
+        "a": "Correcta. Su finalidad es preparar la información para el estudio exhaustivo posterior.",
+        "b": "Incorrecta. En el pre-análisis no se formulan conclusiones, y menos sin examinar artefactos.",
+        "c": "Incorrecta. Restaurar el dispositivo a fábrica destruiría la evidencia; no tiene nada que ver con el método forense.",
+        "d": "Incorrecta. No se descartan archivos por cómo se abren; se filtran con criterios como el hash."
+      }
+    },
+    "forense-t06-12": {
+      "section": "descomprimir",
+      "reasoning": "El paso 3 del pre-análisis es descomprimir los archivos comprimidos y extraer los empaquetados o embebidos, para poder buscar y filtrar también su contenido. Dictaminar o responder al caso es propio del análisis.",
+      "options": {
+        "a": "Incorrecta. Atribuir autoría es una conclusión, no una tarea de preparación, y requiere mucho más que el pre-análisis.",
+        "b": "Correcta. Descomprimir y extraer contenido empaquetado es un paso del pre-análisis.",
+        "c": "Incorrecta. En un análisis forense se preserva la evidencia; priorizar la recuperación del servicio no es un paso de este esquema.",
+        "d": "Incorrecta. Responder a las preguntas del caso corresponde a la fase de análisis."
+      }
+    },
+    "forense-t06-13": {
+      "section": "cifrados",
+      "reasoning": "El tema avisa de que no siempre se puede descifrar, sobre todo con cifrados o contraseñas robustos, y dice que entonces hay que documentarlo. Así queda claro el alcance real del examen y no se afirma nada sin base.",
+      "options": {
+        "a": "Incorrecta. Es una suposición sin fundamento; de hecho, lo cifrado suele ser de interés.",
+        "b": "Incorrecta. Presentar como examinado algo inaccesible falsea el informe.",
+        "c": "Incorrecta. Cifrar no es ilícito en sí; sería una conclusión sin pruebas.",
+        "d": "Correcta. Se documenta la limitación."
+      }
+    },
+    "forense-t06-14": {
+      "section": "hash-filtrado",
+      "reasoning": "El hash es una huella del contenido que se compara con bases de datos de referencia (NSRL, malware, archivos buscados) para filtrar lo conocido y centrarse en lo sospechoso. No se puede invertir ni recupera datos.",
+      "options": {
+        "a": "Incorrecta. Un hash no se puede invertir para obtener el contenido original.",
+        "b": "Correcta. Se comparan con referencias para filtrar datos conocidos.",
+        "c": "Incorrecta. El hash no recupera nada; lo sobrescrito se ha perdido.",
+        "d": "Incorrecta. El hash identifica contenido, no personas."
+      }
+    },
+    "forense-t06-15": {
+      "section": "palabras-clave",
+      "reasoning": "Una expresión regular es una secuencia de caracteres que forma un patrón de búsqueda y localiza coincidencias en un texto más amplio, por ejemplo cualquier dirección de correo.",
+      "options": {
+        "a": "Incorrecta. Describe una estructura del sistema de ficheros, no una herramienta de búsqueda.",
+        "b": "Correcta. Es un patrón de caracteres que localiza coincidencias.",
+        "c": "Incorrecta. Precisamente la regex no se limita a coincidencias literales: usa metacaracteres para describir formas.",
+        "d": "Incorrecta. Eso describe un hash, no una expresión regular."
+      }
+    },
+    "forense-t06-16": {
+      "section": "sistema-operativo",
+      "reasoning": "Usuarios y privilegios, y programas instalados, son los bloques 2 y 3 del análisis del sistema operativo.",
+      "options": {
+        "a": "Incorrecta. La inspección de documentos corresponde al análisis de archivos relevantes y no estudia cuentas ni programas.",
+        "b": "Incorrecta. Las comunicaciones revisan navegación, correo, P2P y nube, no las cuentas del sistema.",
+        "c": "Incorrecta. La recuperación en bruto es un paso del pre-análisis que solo recupera contenido.",
+        "d": "Correcta. Es el análisis del sistema operativo."
+      }
+    },
+    "forense-t06-17": {
+      "section": "recuperar-borrados",
+      "reasoning": "La recuperación en bruto busca cabeceras por todo el disco sin usar el índice del sistema de ficheros. Por eso recupera el contenido, pero pierde los datos que guardaba ese índice: fechas y propietario. Solo se conservan si están en los metadatos internos del archivo.",
+      "options": {
+        "a": "Incorrecta. Recuperar el contenido nunca basta por sí solo para atribuir autoría; además, se ha perdido el propietario.",
+        "b": "Incorrecta. Los metadatos internos viajan dentro del archivo y se conservan; lo que se pierde son los externos.",
+        "c": "Incorrecta. Es al revés: no conserva rutas ni propietarios del sistema de ficheros.",
+        "d": "Correcta. Pueden faltar atributos externos como el propietario o las fechas del sistema de ficheros."
+      }
+    },
+    "forense-t06-18": {
+      "section": "descomprimir",
+      "reasoning": "Una imagen insertada en un documento ofimático no es un archivo suelto: no la localizarás si antes no extraes los elementos embebidos.",
+      "options": {
+        "a": "Incorrecta. El tema no dice que las imágenes externas sean menos relevantes.",
+        "b": "Incorrecta. Insertar una imagen en un documento es lo normal; no prueba ninguna ocultación.",
+        "c": "Incorrecta. Un documento con imágenes conserva su texto.",
+        "d": "Correcta. Una búsqueda que no mire el interior del documento no detectaría la imagen."
+      }
+    },
+    "forense-t06-19": {
+      "section": "maquinas-virtuales",
+      "reasoning": "El tema propone buscar el software de virtualización, revisar sus registros (que indican dónde se guardan las MV) y localizar los discos virtuales (VDI, VMDK, VHD…).",
+      "options": {
+        "a": "Incorrecta. Las cuentas de usuario no indican por sí solas que haya máquinas virtuales.",
+        "b": "Incorrecta. El historial de apagados no sirve para localizarlas.",
+        "c": "Correcta. Los archivos de disco virtual y los registros del software de virtualización son los indicios que propone el tema.",
+        "d": "Incorrecta. Las reglas del cortafuegos no tienen relación con esta búsqueda."
+      }
+    },
+    "forense-t06-20": {
+      "section": "hash-filtrado",
+      "reasoning": "Cada algoritmo produce un valor distinto para el mismo archivo. Si la base de referencia está en MD5 y calculas SHA-1, nunca habrá coincidencias, así que hay que usar el mismo algoritmo.",
+      "options": {
+        "a": "Correcta. Solo con el mismo algoritmo los valores son comparables.",
+        "b": "Incorrecta. El hash compara contenido; los nombres pueden haber cambiado.",
+        "c": "Incorrecta. Valores de algoritmos distintos no se pueden comparar entre sí.",
+        "d": "Incorrecta. La ruta no influye en el hash del contenido."
+      }
+    },
+    "forense-t06-21": {
+      "section": "hash-borroso",
+      "reasoning": "El hash convencional cambia por completo si se altera un byte. El hash borroso trocea el archivo y calcula el porcentaje de similitud, así que sirve para archivos que pueden haber cambiado.",
+      "options": {
+        "a": "Incorrecta. No reconstruye ninguna versión; solo mide parecido.",
+        "b": "Incorrecta. La igualdad exacta es cosa del hash convencional, y con cambios no la hay.",
+        "c": "Correcta. Estima la similitud entre archivos modificados.",
+        "d": "Incorrecta. No tiene relación con descifrar."
+      }
+    },
+    "forense-t06-22": {
+      "section": "firmas",
+      "reasoning": "El tipo real lo indica la firma, no la extensión, que se cambia con facilidad. Una discrepancia es un aviso de posible ocultación que hay que investigar en contexto.",
+      "options": {
+        "a": "Incorrecta. Es al revés: los bytes (la firma) describen el formato mejor que la extensión.",
+        "b": "Correcta. Conviene investigar si el formato real está oculto o mal identificado.",
+        "c": "Incorrecta. La discrepancia no indica destrucción: el contenido sigue ahí.",
+        "d": "Incorrecta. Es un indicio, no una prueba de delito; puede tener causas inocentes."
+      }
+    },
+    "forense-t06-23": {
+      "section": "palabras-clave",
+      "reasoning": "Las reglas de archivos de interés seleccionan por criterios explícitos (fechas, tamaño, ruta), se agrupan y se reutilizan entre casos. Acotan de forma precisa y repetible, pero lo seleccionado sigue necesitando revisión.",
+      "options": {
+        "a": "Correcta. Permiten seleccionar archivos de interés de forma más precisa y reproducible.",
+        "b": "Incorrecta. Precisamente van más allá de los nombres completos conocidos.",
+        "c": "Incorrecta. Una regla no prueba relevancia; solo filtra.",
+        "d": "Incorrecta. El contenido de los seleccionados se sigue revisando."
+      }
+    },
+    "forense-t06-24": {
+      "section": "descomprimir",
+      "reasoning": "Si el logotipo está insertado en informes ofimáticos (que en formato DOCX son ZIP), no existe como archivo independiente hasta que se extraen los elementos embebidos.",
+      "options": {
+        "a": "Incorrecta. Repetir la misma búsqueda dará el mismo resultado vacío.",
+        "b": "Incorrecta. La imagen embebida no tiene un nombre externo de fotografía.",
+        "c": "Correcta. Extraer los elementos embebidos saca la imagen como archivo analizable.",
+        "d": "Incorrecta. Precisamente ahí puede estar la imagen."
+      }
+    },
+    "forense-t06-25": {
+      "section": "hash-filtrado",
+      "reasoning": "El hash depende solo del contenido, no del nombre ni de la ubicación. Si el contenido no cambió, el hash del archivo copiado coincide con el del original, siempre que se use el mismo algoritmo.",
+      "options": {
+        "a": "Incorrecta. Cambiar el nombre no altera el hash; la comparación sigue siendo posible.",
+        "b": "Incorrecta. La carpeta de origen no identifica el contenido.",
+        "c": "Correcta. Comparar hashes con el mismo algoritmo localiza la copia renombrada.",
+        "d": "Incorrecta. Al buscar solo por el nombre original se perdería justamente la copia renombrada."
+      }
+    },
+    "forense-t06-26": {
+      "section": "hash-borroso",
+      "reasoning": "Al editarse, el hash convencional cambia. El hash borroso mide la similitud por fragmentos y puede orientar hacia versiones relacionadas, que después se examinan.",
+      "options": {
+        "a": "Incorrecta. Que no coincida el hash convencional no descarta la relación; solo indica que el contenido no es idéntico.",
+        "b": "Incorrecta. Si ambas versiones se renombraron, el nombre no sirve.",
+        "c": "Correcta. El hash borroso compara la similitud.",
+        "d": "Incorrecta. Exigir igualdad tras un cambio de bytes es imposible."
+      }
+    },
+    "forense-t06-27": {
+      "section": "comunicaciones",
+      "reasoning": "La fase de análisis se personaliza según las preguntas del caso. En una filtración por correo, lo relevante son las aplicaciones de correo, sus datos y los archivos enviados.",
+      "options": {
+        "a": "Incorrecta. Omitir las comunicaciones en una filtración por correo deja fuera lo principal.",
+        "b": "Correcta. Se priorizan las aplicaciones de correo, sus datos y los archivos transmitidos relevantes.",
+        "c": "Incorrecta. Las impresoras interesan, por ejemplo, en falsificaciones; aquí no tienen relación.",
+        "d": "Incorrecta. El análisis se adapta a cada caso."
+      }
+    },
+    "forense-t06-28": {
+      "section": "palabras-clave",
+      "reasoning": "No conoces las direcciones de antemano, pero sí su forma (texto@dominio.ext). Una expresión regular describe esa forma y localiza todas las que encajen.",
+      "options": {
+        "a": "Correcta. La regex describe la estructura y encuentra direcciones desconocidas.",
+        "b": "Incorrecta. Una búsqueda literal solo encuentra la dirección que ya conoces.",
+        "c": "Incorrecta. El tamaño del archivo no dice nada sobre si contiene direcciones de correo.",
+        "d": "Incorrecta. Las fechas no localizan cadenas de texto."
+      }
+    },
+    "forense-t06-29": {
+      "section": "comunicaciones",
+      "reasoning": "Las aplicaciones de sincronización en la nube (Dropbox, Google Drive, OneDrive) forman parte del análisis de comunicaciones. Sus datos y su configuración muestran qué se sincronizó y cuándo.",
+      "options": {
+        "a": "Correcta. Los datos y la configuración de la app de sincronización son la fuente directa.",
+        "b": "Incorrecta. Saber que está instalada no basta; hay que revisar sus datos.",
+        "c": "Incorrecta. Los eventos de apagado no muestran transferencias.",
+        "d": "Incorrecta. Si la sincronización la hizo otra aplicación, las cookies del navegador no la reflejan."
+      }
+    },
+    "forense-t06-30": {
+      "section": "archivos-relevantes",
+      "reasoning": "El tema pone el ejemplo de la falsificación de cuentas: el especialista forense localiza y recupera los archivos, y los especialistas en contabilidad los analizan en busca de pruebas.",
+      "options": {
+        "a": "Incorrecta. El perito no debe pronunciarse fuera de su especialidad.",
+        "b": "Incorrecta. Ninguna suite forense valida conclusiones económicas.",
+        "c": "Incorrecta. Los archivos relevantes son precisamente el último paso del análisis, aunque no sean registros del sistema.",
+        "d": "Correcta. El analista digital localiza y recupera; el especialista contable interpreta."
+      }
+    }
+  }
+}

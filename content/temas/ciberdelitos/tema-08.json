@@ -1,0 +1,997 @@
+{
+  "course": "ciberdelitos",
+  "number": 8,
+  "title": "Tipos delictivos II",
+  "minutes": 45,
+  "intro": {
+    "why": "Las estafas por Internet son el delito que más gente sufre y el que menos se denuncia. Cualquiera ha recibido el correo de un «príncipe» que quiere compartir su herencia, un premio de una lotería en la que no jugó o un aviso de virus que pide comprar un antivirus. Detrás hay organizaciones con guiones, papeles repartidos y hasta cámaras escondidas en cajeros. Este tema te enseña a reconocer los fraudes más típicos de la red y los fraudes con tarjetas bancarias, y a encajarlos en el Código Penal español.",
+    "before": [
+      "Un **delito** es una conducta que la ley castiga con una pena; en España los delitos están recogidos en el **Código Penal**.",
+      "Una **estafa** es, en lenguaje de la calle, sacarle dinero a alguien con mentiras: la víctima paga o entrega algo porque la han engañado.",
+      "La **ingeniería social** es manipular a una persona (con prisas, miedo, avaricia o cariño) para que haga algo que no haría si conociera la verdad.",
+      "Una **tarjeta bancaria** guarda datos de dos formas: los que se ven a simple vista (número, caducidad, código del reverso) y los que van dentro, en la banda magnética o en el chip."
+    ],
+    "goals": [
+      "Al terminar sabrás explicar qué es la cifra negra y por qué los fraudes online se denuncian tan poco.",
+      "Sabrás distinguir la estafa clásica cometida por Internet de la estafa informática y del uso fraudulento de tarjetas en el Código Penal.",
+      "Sabrás reconocer la carta nigeriana, la estafa de la lotería, la falsa venta de vehículos con escrow, el romancescam y los falsos antivirus (rogues).",
+      "Sabrás diferenciar el carding (tarjeta no presente) del skimming (clonación de la tarjeta física).",
+      "Sabrás describir el ciclo del skimming: captura de la banda y del PIN, distribución de los datos, clonación y uso.",
+      "Sabrás por qué el chip EMV complica tanto la vida a los clonadores de tarjetas."
+    ]
+  },
+  "sections": [
+    {
+      "id": "cifra-negra",
+      "title": "La cifra negra: los fraudes que nadie denuncia",
+      "pages": [4, 4],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Imagina que en tu barrio te roban 8 euros del bolsillo. ¿Irías a comisaría, harías cola, firmarías una denuncia y quizá declararías ante un juez meses después? La mayoría no. Ese robo existe, pero nunca aparecerá en ninguna estadística. Esa parte invisible es la **cifra negra**."
+        },
+        {
+          "type": "term",
+          "term": "Cifra negra (o cifra oculta)",
+          "text": "Conjunto de delitos que ocurren pero no llegan al conocimiento de las autoridades porque nadie los denuncia. Las estadísticas oficiales solo cuentan lo denunciado, así que siempre se quedan cortas."
+        },
+        {
+          "type": "p",
+          "text": "El tema afirma que los **fraudes online**, junto con los delitos contra el honor (insultos, calumnias), son los que tienen **mayor cifra negra**. Da dos razones."
+        },
+        {
+          "type": "table",
+          "title": "Por qué no se denuncian los fraudes online",
+          "head": ["Quién", "Motivo", "Ejemplo"],
+          "rows": [
+            ["Particulares", "**Importes bajos**: no compensa pasar por todo el proceso judicial (denuncia, declaraciones, juicio).", "Te cobran 30 € por un producto que nunca llega y das el dinero por perdido."],
+            ["Empresas", "**Miedo a la mala imagen**: hacer pública la estafa les costaría más (clientes, reputación) que lo que han perdido.", "Una tienda online estafada en 20.000 € calla para no parecer insegura."]
+          ]
+        },
+        {
+          "type": "example",
+          "title": "Lectura crítica de una estadística",
+          "text": "Un informe dice: «Este año ha habido 1.000 denuncias por fraude online». Eso no significa que haya habido 1.000 fraudes: son los que **llegaron a denunciarse**. Si sube el número de denuncias, puede que haya más fraudes… o simplemente que la gente denuncie más. Una estadística basada solo en denuncias deja fuera los hechos no denunciados y puede estar sesgada (por ejemplo, infrarrepresentar los fraudes pequeños o los que sufren empresas)."
+        },
+        {
+          "type": "exam",
+          "text": "Pregunta típica: «el mayor índice de delitos no denunciados se debe principalmente a…». La respuesta del temario es que **los importes suelen ser bajos**. Las trampas («falta información sobre dónde denunciar», «desconfianza policial») suenan razonables, pero no son las razones que da el tema. Otra variante pide la limitación de una estadística hecha solo con denuncias: quedan fuera los hechos no denunciados. Ojo con frases absolutas como «cada denuncia equivale a una condena» o «más denuncias mide por sí solo el total real»."
+        },
+        {
+          "type": "key",
+          "text": "La cifra negra es lo que ocurre y no se denuncia. En fraudes online es enorme porque las víctimas pierden poco dinero y las empresas temen por su reputación."
+        }
+      ]
+    },
+    {
+      "id": "estafa-codigo-penal",
+      "title": "La estafa en el Código Penal: engaño, manipulación y tarjetas",
+      "pages": [4, 5],
+      "blocks": [
+        {
+          "type": "term",
+          "term": "Ley orgánica (LO)",
+          "text": "Tipo de ley que en España exige mayoría absoluta del Congreso y se reserva para materias especialmente importantes, como los derechos fundamentales. Como las penas de prisión afectan a la libertad, el Código Penal es una ley orgánica."
+        },
+        {
+          "type": "term",
+          "term": "Código Penal (CP)",
+          "text": "La Ley Orgánica 10/1995, de 23 de noviembre: el «catálogo» de delitos y penas en España. Se ha reformado muchas veces mediante otras leyes orgánicas."
+        },
+        {
+          "type": "term",
+          "term": "Tipo delictivo",
+          "text": "La descripción exacta de la conducta que la ley castiga. «Tipificar» una conducta es meterla en ese catálogo. Por eso el tema se llama «Tipos delictivos»."
+        },
+        {
+          "type": "p",
+          "text": "La **estafa clásica** tiene cuatro piezas que conviene memorizar: **ánimo de lucro** (buscar un beneficio económico), **engaño bastante** (suficiente para que caiga una persona normal), que provoca un **error** en la víctima, y que la lleva a hacer un **acto de disposición** (pagar, transferir, entregar) en **perjuicio** propio o de otro."
+        },
+        {
+          "type": "analogy",
+          "text": "Piensa en dos ladrones. El primero te convence con una historia de que le prestes 500 €: tú mismo le das el dinero (engaño a una persona). El segundo no habla contigo: entra en tu banca online con tus claves y se hace una transferencia (engaña a una máquina). El primero es la **estafa clásica**, aunque use el correo electrónico; el segundo es la **estafa informática**."
+        },
+        {
+          "type": "table",
+          "title": "Las modalidades que recoge el tema (art. 248 CP, en la redacción que cita el temario)",
+          "head": ["Modalidad", "Qué castiga", "Ejemplo"],
+          "rows": [
+            ["Estafa clásica (248.1)", "Engaño bastante a una persona para que disponga de su patrimonio. Internet solo es el **medio facilitador**.", "Fraude en el comercio electrónico: pagas un móvil anunciado en una web que nunca te lo envía."],
+            ["Estafa informática (248.2.a)", "Conseguir, con ánimo de lucro, una **transferencia no consentida** mediante **manipulación informática** o artificio semejante.", "Entrar en la banca online de otro con sus claves robadas y vaciar la cuenta."],
+            ["Programas para estafar (248.2.b)", "Fabricar, introducir, poseer o facilitar **programas informáticos** pensados específicamente para cometer estafas.", "Vender un kit de phishing listo para usar."],
+            ["Uso de tarjetas o cheques (248.2.c)", "Usar **tarjetas de crédito o débito, cheques de viaje o sus datos** para hacer operaciones en perjuicio del titular o de un tercero.", "Comprar en Internet con el número de tarjeta de otra persona."]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Fíjate en que la **estafa informática** no necesita engañar a ninguna persona: lo característico es la **manipulación informática** que produce una **transferencia patrimonial no autorizada** por su legítimo dueño, causando un perjuicio."
+        },
+        {
+          "type": "p",
+          "text": "Una nota de actualidad: el temario cita la numeración antigua. La reforma del Código Penal hecha por la **LO 14/2022** reordenó estos preceptos y las modalidades informáticas y de tarjetas pasaron al **artículo 249**. Las ideas son las mismas; para el test, quédate con el **concepto** y con la numeración que usa el temario."
+        },
+        {
+          "type": "p",
+          "text": "Las estafas por Internet van desde las muy sencillas (sin planificación ni conocimientos técnicos) hasta las muy sofisticadas (preparación detallada, autores muy cualificados y medios técnicos avanzados, en varias fases). El tema no puede recogerlas todas y elige las más representativas."
+        },
+        {
+          "type": "exam",
+          "text": "Pregunta típica: «¿qué dos tipos de fraude relacionados con Internet distingue el Código Penal?». Respuesta: los que usan **Internet como elemento facilitador** (estafa clásica, por ejemplo en el comercio electrónico) y las **estafas informáticas** (manipulación informática). Trampas: dividirlas por cuantía («graves y menos graves»), por canal («correo y web») o inventar parejas como «informáticas y tecnológicas»."
+        },
+        {
+          "type": "key",
+          "text": "Estafa clásica = engañar a una persona (Internet solo facilita). Estafa informática = manipular un sistema para lograr una transferencia no consentida. El uso fraudulento de tarjetas o de sus datos es otra modalidad de estafa."
+        }
+      ]
+    },
+    {
+      "id": "carta-nigeriana",
+      "title": "La carta nigeriana: la fortuna que nunca llega",
+      "pages": [6, 14],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Todas las estafas de este tema comparten un ingrediente: la **ingeniería social**. El delincuente no rompe ninguna cerradura; consigue un engaño suficiente para que la víctima pague por voluntad propia. Las técnicas solo están limitadas por la imaginación del estafador."
+        },
+        {
+          "type": "term",
+          "term": "Carta nigeriana (estafa nigeriana, scam 419)",
+          "text": "Fraude en el que un desconocido te pide ayuda para sacar una gran fortuna (herencia, subvención internacional, dinero robado…) a cambio de una comisión, y luego te pide pagos por adelantado que nunca acaban. El nombre «419» viene del artículo del código penal de Nigeria que castiga esta conducta."
+        },
+        {
+          "type": "term",
+          "term": "Fraude de pago anticipado",
+          "text": "Familia de estafas en la que se promete un gran beneficio futuro a cambio de pequeños pagos previos (tasas, impuestos, sobornos). El beneficio no existe; el negocio del estafador son los adelantos."
+        },
+        {
+          "type": "p",
+          "text": "**No es un delito nuevo**: antes de Internet se enviaban miles de cartas en papel. El correo electrónico solo lo hizo más barato, más rápido y masivo."
+        },
+        {
+          "type": "list",
+          "title": "Cómo se presenta el remitente",
+          "items": [
+            "Familiar de un dictador o de un ministro fallecido o detenido.",
+            "Político corrupto, soldado en un conflicto, empleado de banca desleal.",
+            "Persona mayor o con una enfermedad incurable.",
+            "A veces incluye un **enlace a una noticia real** de un medio serio (por ejemplo, un accidente aéreo) para dar credibilidad a la historia."
+          ]
+        },
+        {
+          "type": "code",
+          "title": "Esquema típico de un correo (ejemplo inventado)",
+          "text": "De: Sr. X, director de sucursal <director.banco@correo-gratuito.com>\nPara: (destinatarios ocultos)\nAsunto: URGENTE Y CONFIDENCIAL\n\nQuerido amigo: he descubierto una cuenta sin dueño con 11 millones de dólares.\nComo empleado no puedo cobrarla; necesito a un extranjero de confianza.\nLe ofrezco el 30 %. Envíeme su número de cuenta y copia de su pasaporte.\nPor favor, no lo comente con nadie."
+        },
+        {
+          "type": "list",
+          "title": "Señales de alarma",
+          "items": [
+            "Cantidades enormes y una comisión muy generosa por casi nada.",
+            "Urgencia y **petición de secreto**: así la víctima no consulta a nadie que le abra los ojos.",
+            "Remitente con correo gratuito o de un dominio que no cuadra con el banco que dice representar.",
+            "Traducciones automáticas con errores gramaticales (el idioma se adapta al país de la víctima).",
+            "Documentos con sellos y firmas que aparentan autoridad."
+          ]
+        },
+        {
+          "type": "steps",
+          "title": "Cómo avanza la estafa",
+          "items": [
+            "Objetivo inicial: que **alguien conteste**. A partir de ahí, los estafadores convencen de lo fácil y beneficioso que es el negocio.",
+            "Se pide solo un número de cuenta y copia de documentación «para los trámites».",
+            "Cuando todo parece ir bien, aparece un obstáculo: un permiso, un impuesto, un soborno… y se pide **un pequeño adelanto**.",
+            "Si la víctima paga, surgen **nuevos gastos**, uno tras otro, siempre «el último».",
+            "La cadena sigue hasta que la víctima se da cuenta de que la han estafado."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "En las versiones más elaboradas, los delincuentes crean una **web falsa que imita a un banco occidental** real y dan a la víctima unas claves para «comprobar» que en una cuenta a su nombre ya hay millones. Convencida de que el dinero existe, paga sin reparos las comisiones e impuestos que le piden para «liberarlo»."
+        },
+        {
+          "type": "example",
+          "title": "Por qué funciona la cadena de pagos",
+          "text": "Luis ya ha pagado 300 € de «tasas». Ahora le piden 800 € más por un «certificado antiterrorista». Si no paga, pierde lo invertido y la fortuna prometida; si paga, cree que está más cerca. Es la **expectativa de la recompensa** lo que sostiene los adelantos sucesivos, no ninguna comprobación real: Luis nunca ha controlado los fondos ni ha recibido nada."
+        },
+        {
+          "type": "exam",
+          "text": "Si el enunciado habla de una **ganancia económica procedente de una herencia, subvención internacional o robo**, es la **carta nigeriana**. No la confundas con el romancescam (relación sentimental) ni con el ransomware (programa malicioso que cifra tus archivos y pide un rescate). En preguntas de caso, los sellos, firmas y el secreto sirven para **aparentar autoridad y aislar a la víctima**, nunca acreditan que el dinero exista."
+        },
+        {
+          "type": "key",
+          "text": "Carta nigeriana = promesa de una fortuna ajena + adelantos que nunca terminan. El dinero prometido es el cebo; el negocio real son los pagos previos."
+        }
+      ]
+    },
+    {
+      "id": "loteria",
+      "title": "El premio de la lotería en la que no jugaste",
+      "pages": [15, 19],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Es una **variante de la carta nigeriana**. En lugar de alguien que quiere compartir una fortuna, el correo anuncia que **has ganado un premio**: de la lotería nacional (la española es la más usada como reclamo), de otra lotería extranjera o de una supuesta lotería de una empresa privada («Microsoft Lotería», «premio a tu dirección de correo»…)."
+        },
+        {
+          "type": "code",
+          "title": "Ejemplo inventado",
+          "text": "Asunto: ¡ENHORABUENA!\nSu dirección de correo ha ganado 1.000.000 € en el sorteo internacional celebrado en Madrid.\nNúmero de lote: 0904-6657\nPara cobrar, envíe nombre, teléfono y forma de pago al abogado acreditado:\nlicenciado.premios@correo-gratuito.ru"
+        },
+        {
+          "type": "p",
+          "text": "Para que la víctima se lo crea, se adjuntan **documentos falsificados** con logotipos, sellos y firmas de supuestos responsables de organismos oficiales, que «certifican» el premio y explican los pasos para cobrarlo. A partir de ahí, la mecánica es la misma: gastos de gestión, impuestos, honorarios del abogado…"
+        },
+        {
+          "type": "analogy",
+          "text": "Es como si alguien llamara a tu puerta para darte el premio de una rifa en la que nunca compraste papeleta. Por muy bonito que sea el diploma que trae, la primera pregunta no es «¿qué bien impreso está?», sino «¿cuándo jugué yo a esto?»."
+        },
+        {
+          "type": "exam",
+          "text": "Pregunta de caso: llega un premio de una lotería en la que no recuerdas participar. Lo que hay que analizar primero es la **coherencia de la supuesta participación** y la **autenticidad del origen** de la comunicación. Trampas: creer que los colores del certificado, el número de firmas o la mención de una ciudad real acreditan algo. Los documentos y logotipos forman parte del engaño."
+        },
+        {
+          "type": "key",
+          "text": "Nadie gana un sorteo en el que no ha jugado. Los certificados vistosos son atrezo: lo que cuenta es si participaste y si el remitente es verificable."
+        }
+      ]
+    },
+    {
+      "id": "vehiculos-escrow",
+      "title": "Venta de vehículos por Internet y la falsa empresa escrow",
+      "pages": [19, 25],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Las páginas de **compraventa y subastas online** concentran la inmensa mayoría de las ciberestafas. Es muy fácil: basta publicar un anuncio y esperar. Sirve cualquier cosa (ordenadores, bicis, muebles, robots de cocina) y también servicios (alquiler de pisos, casas rurales, vacaciones). Lo habitual es **copiar un anuncio auténtico** y publicarlo en otro sitio con los datos de contacto del estafador. Las más persistentes son las de **vehículos**."
+        },
+        {
+          "type": "steps",
+          "title": "Preparación del anuncio",
+          "items": [
+            "Localizan un anuncio real de un coche y contactan con su dueño haciéndose pasar por compradores.",
+            "Con esa excusa le piden la **documentación escaneada** del vehículo. La guardan para enseñarla luego a sus víctimas «como prueba» de que son los dueños.",
+            "Publican el anuncio copiado (fotos, descripción, estado) en otro portal con un **precio muy inferior al de mercado**, para atraer a muchos interesados.",
+            "Ocultan desde dónde publican y, si el portal cobra, pagan con **numeraciones de tarjetas robadas**."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Cuando un comprador pregunta por qué es tan barato, recibe una historia: el dueño se ha ido a vivir al extranjero (casi siempre **Reino Unido**, lo que explica querer vender un coche con el volante a la izquierda), no lo usa y necesita venderlo rápido. El coche, dice, ya está en manos de una empresa de transporte que se ocupará de todo."
+        },
+        {
+          "type": "term",
+          "term": "Empresa escrow (depósito en garantía)",
+          "text": "Intermediario real y legítimo que retiene el dinero del comprador hasta que este recibe y revisa el producto. Solo entonces paga al vendedor. Protege a las dos partes."
+        },
+        {
+          "type": "steps",
+          "title": "Cómo funciona un escrow legítimo",
+          "items": [
+            "Comprador y vendedor acuerdan precio y condiciones y contratan juntos el servicio.",
+            "El comprador envía el dinero a la empresa escrow.",
+            "Con el dinero ya depositado, el vendedor envía la mercancía; la empresa la comprueba y garantiza que llega.",
+            "El comprador tiene un plazo para inspeccionarla y aceptarla o rechazarla.",
+            "Si todo está bien, la empresa paga al vendedor. Además, puede garantizar el anonimato del vendedor."
+          ]
+        },
+        {
+          "type": "analogy",
+          "text": "Un escrow es como el amigo de confianza que sujeta la apuesta: ninguno de los dos se fía del otro, así que el dinero lo guarda un tercero hasta ver quién cumple. El fraude consiste en que el «amigo» lo ha puesto el propio tramposo."
+        },
+        {
+          "type": "steps",
+          "title": "La estafa con la falsa empresa escrow",
+          "items": [
+            "El «vendedor» propone usar una empresa escrow y asegura que no se paga nada hasta recibir y revisar el coche; si no gusta, se devuelve gratis.",
+            "Llega un correo de la supuesta empresa (en realidad **solo existe una web falsa**, a veces copiando la imagen de una real) que dice tener el coche.",
+            "Le dan un enlace, usuario y contraseña para «seguir» el vehículo; la web se va modificando según convenga.",
+            "Surge un problema: el coche no puede cruzar una frontera sin pagar un **impuesto**. Hay que enviarlo por una empresa de **envío internacional de dinero**.",
+            "Después aparece otro gasto (aduanas, seguro, desbloqueo…), y otro, hasta que el comprador se da cuenta."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Lo curioso: los estafadores **nunca pretenden cobrar el precio del coche**. Su negocio son los pequeños pagos exigidos por la falsa empresa escrow, multiplicados por muchísimas víctimas. Una estafa sencilla de preparar y muy rentable."
+        },
+        {
+          "type": "table",
+          "title": "Lo que parece una prueba y lo que realmente demuestra",
+          "head": ["Lo que ves", "Lo que NO demuestra"],
+          "rows": [
+            ["Fotos que coinciden con otro anuncio auténtico", "Que sea el mismo vendedor: el estafador puede haberlo copiado."],
+            ["Copia de la documentación del coche", "Que quien la envía sea el dueño: puede haberla pedido al propietario real con engaños."],
+            ["Una empresa escrow conocida existe", "Que el correo, la web o la cuenta de pago de esta operación sean suyos."],
+            ["Una web de seguimiento con usuario y contraseña", "Que el coche exista: la web la controla el estafador."]
+          ]
+        },
+        {
+          "type": "exam",
+          "text": "Varias preguntas de caso salen de aquí. Claves: la coincidencia de fotos se explica porque el estafador **reutiliza un anuncio real**; la copia de la documentación puede haberse **obtenido del propietario real** con un contacto engañoso; el escrow legítimo es una **intermediación acordada** que condiciona la liberación del dinero a la operación; los pagos sucesivos por aduanas o seguros son **obstáculos nuevos para seguir cobrando sin entregar**; y hay que distinguir **la existencia de la empresa legítima** de **quién controla los canales** (correo, web) de esa operación concreta."
+        },
+        {
+          "type": "key",
+          "text": "Coche muy barato + vendedor en el extranjero + escrow que pide pagos sucesivos = estafa. El escrow real es útil; el fraude es suplantarlo con una web falsa."
+        }
+      ]
+    },
+    {
+      "id": "romancescam",
+      "title": "Romancescam: estafas con el corazón",
+      "pages": [25, 30],
+      "blocks": [
+        {
+          "type": "term",
+          "term": "Romancescam (estafa romántica o sentimental)",
+          "text": "Fraude en el que el delincuente crea una relación de amistad o amor a distancia, durante semanas o meses, para después pedir dinero con historias de necesidad."
+        },
+        {
+          "type": "p",
+          "text": "En las webs de contactos y aficiones la gente cuenta muchísimo de sí misma: edad, gustos, costumbres, familia, nivel económico, creencias. Con un poco de ingeniería social, el estafador usa esos datos para **diseñar una estafa a medida**: adapta su personaje para parecer afín y descubre puntos débiles (soledad, problemas familiares). Estos estafadores trabajan con **organización, cautela y paciencia**."
+        },
+        {
+          "type": "table",
+          "title": "Las dos vías para contactar con las víctimas",
+          "head": ["Vía", "Cómo lo hacen"],
+          "rows": [
+            ["Activa", "Envían correos a direcciones reales y activas, sobre todo de usuarios de webs de contactos. Las consiguen una a una o **comprando bases de datos robadas** a grupos de hacking."],
+            ["Pasiva", "Publican **perfiles atractivos** en webs de contactos y esperan a que la víctima escriba. Las cuotas de la web las pagan con **tarjetas robadas** compradas en el mercado del cibercrimen."]
+          ]
+        },
+        {
+          "type": "list",
+          "title": "Cómo hacen creíble el personaje",
+          "items": [
+            "Fotos sacadas de Internet (modelos, redes sociales) o, cada vez más, de **personas reales de la organización** que posan a cambio de dinero. Así pueden enviar fotos «personalizadas» cuando la víctima, desconfiada, las pide como prueba.",
+            "Perfiles de mujeres, pero también, cada vez más, de **hombres** que buscan una relación seria.",
+            "Si la víctima insiste en hablar por teléfono o por llamadas por Internet (como Skype), la organización tiene **personas que siguen un guion** para no contradecir lo escrito."
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Dos modelos típicos",
+          "head": ["Rasgo", "Novia rusa", "Accidente o enfermedad en el extranjero"],
+          "rows": [
+            ["A quién se dirige", "Sobre todo a hombres.", "Sobre todo a mujeres."],
+            ["El personaje", "Mujer joven y atractiva de Europa del Este (o de un país occidental), familia sin recursos, quiere venir a España.", "Hombre serio y leal, con hijos mayores, con un trabajo que le obliga a viajar por el mundo."],
+            ["Cómo pide dinero", "Insinúa necesitar dinero para un viaje o gastos; luego atraco, familiar enfermo, deuda del padre, desahucio…", "Un tercero (familiar, amigo) avisa de que ha tenido un accidente grave en otro país y necesita dinero urgente para el hospital; después, sobornos, material médico, repatriación…"],
+            ["Duración", "Meses de correos.", "Más elaborada y larga; exige una complicidad previa sincera."]
+          ]
+        },
+        {
+          "type": "example",
+          "title": "La cadena de excusas",
+          "text": "Marta envía 400 € a Daniel para un billete de avión. Una semana después, a él le han robado y necesita 600 €. Luego es una deuda de su padre. Cada excusa es distinta, pero el resultado es siempre el mismo: otra transferencia. Mirar la **cadena completa** (repetición de peticiones y evolución de las excusas) revela el patrón; evaluar cada pago por separado lo oculta."
+        },
+        {
+          "type": "exam",
+          "text": "«Novia rusa» es un tipo de **romancescam**, no una carta nigeriana. En las preguntas de caso: los datos del perfil sirven para **adaptar la historia y ganarse la confianza**, no dan acceso automático al banco; una **videollamada** no demuestra nada, porque puede ser una persona que **representa un papel** dentro de la organización; el aviso de un tercero sobre un accidente sirve para **aprovechar la confianza previa** e introducir una necesidad difícil de comprobar."
+        },
+        {
+          "type": "key",
+          "text": "Romancescam = relación sentimental fabricada con paciencia + peticiones de dinero que se repiten con excusas cambiantes. Ver o hablar con alguien no verifica su historia."
+        }
+      ]
+    },
+    {
+      "id": "rogue",
+      "title": "Falsos antivirus: los rogues",
+      "pages": [30, 32],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Imagina un «técnico» que pasa por tu casa sin que lo llames, te dice que hay una fuga de gas gravísima y que solo él vende la válvula que la arregla. Ni hay fuga ni la válvula sirve para nada. Eso es un rogue."
+        },
+        {
+          "type": "term",
+          "term": "Malware",
+          "text": "Programa malicioso: cualquier software diseñado para dañar, espiar o engañar al usuario (virus, troyanos, ransomware…)."
+        },
+        {
+          "type": "term",
+          "term": "Rogue (falso antivirus)",
+          "text": "Tipo concreto de malware que se instala **de forma oculta** al navegar por webs poco seguras o al descargar ficheros de páginas de descarga directa o redes P2P (peer to peer, redes de intercambio de archivos entre usuarios). Simula infecciones para que compres una falsa solución."
+        },
+        {
+          "type": "steps",
+          "title": "Cómo funciona",
+          "items": [
+            "Una vez instalado, muestra una y otra vez **ventanas emergentes** (pop-ups) que avisan de un virus peligrosísimo.",
+            "Desde la propia ventana ofrece descargar un «antivirus» que lo eliminará.",
+            "El programa descargado hace un falso análisis y «confirma» el virus y otros peligros.",
+            "Invita a comprar la **licencia** de la versión completa en una web, pagando con tarjeta bancaria."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "El fraude es doble: **ni el virus existe ni el antivirus es una herramienta de seguridad**. Quien da la alarma es el mismo que vende la solución, así que el diagnóstico y el remedio no se validan entre sí. Además de muy extendido, es uno de los métodos de estafa más efectivos."
+        },
+        {
+          "type": "exam",
+          "text": "Si preguntan qué es un rogue según el temario: malware que **se instala de manera oculta durante la navegación por webs poco seguras** (trampas: «en dispositivos USB» o «solo en la darknet»). Si preguntan su funcionamiento: **simula infecciones para inducir a comprar** una supuesta solución. En casos prácticos: hay que cuestionar que **quien genera la alarma controla también la solución**, y recordar que **pagar no valida** ni la detección ni la herramienta."
+        },
+        {
+          "type": "key",
+          "text": "Rogue = falsa alarma de virus + falso antivirus de pago. El mismo que asusta es el que cobra; pagar no demuestra que hubiera ningún problema."
+        }
+      ]
+    },
+    {
+      "id": "carding",
+      "title": "Carding: comprar con una tarjeta que no está presente",
+      "pages": [33, 34],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Pasamos al fraude con **medios de pago físicos**: las tarjetas. El Código Penal lo trata como estafa en la letra c del artículo 248 (en la numeración que usa el temario): usar tarjetas de crédito o débito, cheques de viaje **o los datos que contienen** para hacer operaciones en perjuicio del titular o de un tercero."
+        },
+        {
+          "type": "p",
+          "text": "En el phishing (correos o webs falsas que imitan a tu banco para robarte las claves) el objetivo eran el usuario y la contraseña de la banca online. Aquí el objetivo es otro: los datos **impresos a la vista** en la tarjeta."
+        },
+        {
+          "type": "list",
+          "title": "Los datos visibles que buscan",
+          "items": [
+            "El **número** de la tarjeta.",
+            "La **fecha de caducidad**.",
+            "El **código de verificación** (CVC, CVC2 o CID): número de 3 o 4 cifras que se pide en compras por Internet o por teléfono para comprobar que tienes la tarjeta en la mano."
+          ]
+        },
+        {
+          "type": "term",
+          "term": "Carding o CNP fraud (card not present fraud, fraude de tarjeta no presente)",
+          "text": "Usar sin autorización los datos de una tarjeta para comprar productos o servicios por Internet o por teléfono, **sin presentar físicamente** la tarjeta."
+        },
+        {
+          "type": "list",
+          "title": "Cómo operan",
+          "items": [
+            "Obtienen los datos con malware específico, redes de equipos infectados (**botnets**) y, sobre todo, **comprándolos en mercados ilegales** (webs, foros y chats dedicados).",
+            "Compran cosas fáciles de revender rápido: electrónica, ordenadores, teléfonos, y también billetes de avión o de transporte.",
+            "Piden la entrega en **domicilios ajenos** y esperan al repartidor cerca, dando el nombre ficticio usado en la compra; o recogen el paquete en la oficina de la empresa de transporte con **documentación falsa**.",
+            "Prefieren **tarjetas extranjeras**: entre la compra, el momento en que el titular lo descubre y el momento en que lo saben las autoridades pasa mucho tiempo."
+          ]
+        },
+        {
+          "type": "example",
+          "title": "Tengo la tarjeta en la cartera, ¿cómo me han cobrado?",
+          "text": "Ana ve en su extracto tres compras en una tienda online de móviles. Su tarjeta nunca ha salido de su cartera. No hay contradicción: para el carding **no hace falta el plástico**, solo sus datos. Conservar la tarjeta no prueba que los cargos fueran consentidos."
+        },
+        {
+          "type": "exam",
+          "text": "El test original pregunta qué dato es el esencial del carding: **la numeración de la tarjeta** (no el banco ni el nombre del cliente). La versión adaptada pide la definición: usar sin autorización datos de una tarjeta para operar **sin presentarla físicamente**. Trampas: «leer el saldo en un cajero», «alterar la resolución de nombres de dominio» (eso es pharming) o «cifrar archivos y pedir rescate» (ransomware)."
+        },
+        {
+          "type": "key",
+          "text": "Carding = usar los datos visibles de una tarjeta (número, caducidad, CVC) para comprar a distancia. El titular puede conservar la tarjeta y aun así sufrir el fraude."
+        }
+      ]
+    },
+    {
+      "id": "skimming-banda",
+      "title": "Skimming: clonar la tarjeta, el delito y la banda magnética",
+      "pages": [34, 37],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "El carding usa lo que se ve. El **skimming** va a por lo que **no se ve**: la información grabada en la banda magnética. Como el titular no la conoce, no se la pueden sacar con engaños ni infectando su ordenador; hay que leer la tarjeta físicamente."
+        },
+        {
+          "type": "term",
+          "term": "Skimming",
+          "text": "Conjunto de técnicas y procedimientos para **clonar** una tarjeta: copiar los datos de su banda magnética, grabarlos en otra tarjeta y usarla en comercios y cajeros como si fuera la original. Para sacar dinero hace falta, además, el **PIN**."
+        },
+        {
+          "type": "term",
+          "term": "PIN (Personal Identification Number, número de identificación personal)",
+          "text": "El código secreto de 4 cifras (normalmente) que solo debe conocer el titular y que se teclea en cajeros y comercios."
+        },
+        {
+          "type": "p",
+          "text": "Exige aparatos electrónicos diseñados a propósito, conocimientos específicos y pertenecer a una **organización con capacidad internacional**. Estas organizaciones conocen cada tipo de tarjeta, sus límites de retirada, sus medidas de seguridad y el funcionamiento de cada modelo de cajero."
+        },
+        {
+          "type": "p",
+          "text": "**El delito**: la **LO 5/2010** reformó el Código Penal y creó, dentro de las falsedades documentales, una sección dedicada a la falsificación de tarjetas de crédito y débito y cheques de viaje, con un único artículo: el **399 bis**."
+        },
+        {
+          "type": "table",
+          "title": "Artículo 399 bis CP",
+          "head": ["Apartado", "Conducta", "Pena"],
+          "rows": [
+            ["1", "Alterar, copiar, reproducir o falsificar tarjetas de crédito o débito o cheques de viaje.", "Prisión de 4 a 8 años; en su mitad superior si afecta a una generalidad de personas o lo hace una organización criminal. Si responde una persona jurídica (empresa, art. 31 bis), multa de 2 a 5 años."],
+            ["2", "Tener tarjetas o cheques falsificados destinados a distribuirlos o traficar con ellos.", "La misma que la falsificación."],
+            ["3", "Usar, sin haber participado en la falsificación, tarjetas o cheques falsos en perjuicio de otro y sabiendo que lo son.", "Prisión de 2 a 5 años."]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "El **ciclo del skimming** abarca todo el proceso: **obtención** de los datos, **distribución** y **clonación**, y **uso** físico en comercios y cajeros. Lo vemos en este apartado y los dos siguientes."
+        },
+        {
+          "type": "p",
+          "text": "**La banda magnética** está regulada por normas internacionales ISO (International Organization for Standardization, organismo que publica estándares técnicos): la **ISO 7810** fija las características de las tarjetas de identificación y pago, la **ISO 7811** describe el relieve, la banda, la posición de las pistas y su capacidad, y también se cita la **ISO 7813**. La banda tiene **tres pistas**:"
+        },
+        {
+          "type": "table",
+          "title": "Las tres pistas de la banda magnética",
+          "head": ["Pista", "Capacidad", "Contenido", "¿Se puede reescribir?"],
+          "rows": [
+            ["1", "79 caracteres alfanuméricos", "Código de país, nombre del titular, caducidad, código de servicio y datos discrecionales. Debe coincidir con lo que va en relieve.", "No, solo lectura"],
+            ["2", "40 caracteres numéricos", "Entre otros, el número de cuenta principal.", "No, solo lectura"],
+            ["3", "107 caracteres numéricos", "Información que cambia o puede cambiar con frecuencia.", "Pensada para datos cambiantes"]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Y lo más importante para el test: **el PIN no está en ninguna de las pistas**. Por eso los delincuentes necesitan capturarlo por otra vía (cámaras, teclados falsos, alguien mirando)."
+        },
+        {
+          "type": "exam",
+          "text": "«¿En qué pista está grabado el PIN?» → **en ninguna** («Ninguna de las anteriores»). «Copiar la información de una tarjeta que no aparece a simple vista» → **skimming**. Distráctores: **pharming** (alterar la resolución de nombres de dominio, el DNS o Domain Name System, para llevarte a una web falsa aunque escribas bien la dirección) y **vishing** (phishing por llamada de voz)."
+        },
+        {
+          "type": "key",
+          "text": "Skimming = clonar la banda magnética + capturar el PIN aparte, porque el PIN no está en ninguna pista. Falsificar tarjetas se castiga en el art. 399 bis CP, introducido por la LO 5/2010."
+        }
+      ]
+    },
+    {
+      "id": "captura-datos",
+      "title": "Cómo se roban la banda y el PIN: cajeros trucados y empleados desleales",
+      "pages": [37, 43],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "El temario distingue **dos técnicas principales** para apoderarse de la información de las tarjetas: **instalar físicamente sistemas lectores** y contar con la **participación de una persona**, como un **empleado desleal**."
+        },
+        {
+          "type": "p",
+          "text": "**1. Instalación física de lectores en cajeros.** Organizaciones con equipos de desarrollo estudian cada modelo de cajero y fabrican piezas a medida que parecen parte del aparato."
+        },
+        {
+          "type": "list",
+          "title": "Las piezas del cajero trucado",
+          "items": [
+            "**Falsa boca lectora**: pieza de plástico idéntica a la ranura original, un poco más grande para encajar encima. Lleva una cabeza lectora que copia la banda al pasar. Como está justo antes del lector auténtico, el cajero lee la tarjeta con normalidad y la operación sigue: así nadie sospecha y se copian más tarjetas. A veces hay que fabricar también embellecedores y paneles.",
+            "**Almacenamiento**: antes se guardaba en una memoria (RAM, USB) que había que ir a recoger, lo que aumentaba el riesgo de ser descubiertos. Hoy se **envía de forma inalámbrica** (Bluetooth, SMS, GSM), con pequeñas baterías.",
+            "**Minicámara**: escondida en un falso embellecedor o en un soporte de sobres o publicidad, con visión directa del teclado para grabar el PIN.",
+            "**Falso teclado**: finísimo, se pega sobre el original; guarda los números pulsados mientras el teclado real los recibe sin errores. También puede transmitir el PIN a un ordenador cercano."
+          ]
+        },
+        {
+          "type": "term",
+          "term": "GSM (Global System for Mobile communications)",
+          "text": "El estándar de telefonía móvil clásico. Un módulo GSM permite que un aparato escondido envíe datos por la red de móviles, como si fuera un teléfono."
+        },
+        {
+          "type": "p",
+          "text": "Estas técnicas no se limitan a cajeros: también aparecen en **surtidores de gasolineras**, **peajes** y **TPV** (terminal punto de venta, el datáfono de los comercios). Por eso los fabricantes añaden protecciones antiskimming (el temario muestra una en máquinas de billetes de tren de Holanda)."
+        },
+        {
+          "type": "p",
+          "text": "**2. Empleado confabulado.** Alguien con acceso breve a tarjetas ajenas (un camarero, un dependiente) aprovecha que el cliente le entrega la tarjeta para pasarla discretamente por un **lector portátil** diminuto con memoria interna. Los datos se extraen después con un programa."
+        },
+        {
+          "type": "example",
+          "title": "Técnicas combinadas",
+          "text": "En un restaurante, el camarero pasa la tarjeta por un lector oculto en el bolsillo (copia la banda) mientras un compinche en la barra observa cómo el cliente teclea el PIN y lo anota. Ninguna de las dos acciones basta sola: una aporta la banda y la otra el PIN. Y no ha hecho falta atacar ningún servidor del banco."
+        },
+        {
+          "type": "exam",
+          "text": "«Una técnica es instalar sistemas físicos, ¿cuál es la otra?» → **empleados desleales** (no la violencia física, ni «solo existe una»). Si se encuentran a la vez un lector de banda y una cámara apuntando al teclado, es porque son **canales complementarios**: uno copia los datos de la tarjeta y el otro capta el PIN, que no está en la banda. Trampas: que la cámara «cifre» la banda o que el lector «saque una imagen» del teclado."
+        },
+        {
+          "type": "key",
+          "text": "Para clonar hace falta banda + PIN. Se obtienen con piezas falsas en cajeros y TPV (boca lectora, cámara, teclado) o con un empleado desleal y un lector portátil, a menudo combinando técnicas."
+        }
+      ]
+    },
+    {
+      "id": "distribucion-uso",
+      "title": "Del dump a la tarjeta clonada: mercado negro, fabricación, uso y EMV",
+      "pages": [43, 47],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Con los datos en la mano, toca **distribuirlos y clonar**. Puede hacerlo la misma banda que los robó, otros delincuentes especializados en esa fase o terceros que los **compran**. Es una cadena con especialistas, como una fábrica con turnos."
+        },
+        {
+          "type": "term",
+          "term": "Dump",
+          "text": "Término del mercado criminal para los datos robados de tarjetas bancarias (sobre todo el contenido de la banda). El precio depende del tipo de tarjeta (classic, gold, platinum, infinite…) y del país o zona de origen; sube si incluye el PIN o una garantía de saldo."
+        },
+        {
+          "type": "list",
+          "title": "Dónde se venden",
+          "items": [
+            "Anuncios en webs y foros dedicados a este mercado, con precios por lotes y condiciones de envío.",
+            "El contacto con el vendedor se hacía desde hace años por **ICQ**, un programa de mensajería instantánea (es el **canal de contacto**, no el mercado).",
+            "Hoy el **principal mercado negro** es la **darknet**: redes ocultas a las que se accede con software especial (como Tor) y que no aparecen en los buscadores normales."
+          ]
+        },
+        {
+          "type": "steps",
+          "title": "Fabricar la tarjeta clonada",
+          "items": [
+            "Tarjetas **en blanco con banda magnética**.",
+            "Una **impresora** especial de alta calidad que reproduzca el diseño y los colores de la original.",
+            "**Hologramas** y logotipos de cada tipo de tarjeta, que se compran sin dificultad en algunas webs.",
+            "Software de codificación y un **lector/grabador de bandas magnéticas** para escribir las pistas.",
+            "Una **troqueladora** (manual card embosser) para imprimir en relieve los mismos datos que van en la banda."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "**Uso**: cada tarjeta clonada va acompañada de un **documento de identidad falso** con la foto de quien la usa y los datos del titular grabados en la banda, para superar las comprobaciones básicas en comercios. Además, se usan **en un país distinto** al de la captura, para retrasar la denuncia del titular. Gracias a la distribución electrónica y a la coordinación, se han visto compras en el extranjero **pocas horas** después de copiar la banda en un cajero de España."
+        },
+        {
+          "type": "list",
+          "title": "De qué depende cuánto tiempo pueden usar la tarjeta",
+          "items": [
+            "El **límite** económico de la tarjeta.",
+            "Lo que tarde el **titular en darse cuenta**.",
+            "Los **sistemas antifraude** de la entidad que la emitió.",
+            "El **país** donde se usa la copia."
+          ]
+        },
+        {
+          "type": "term",
+          "term": "EMV (Europay, Mastercard y VISA)",
+          "text": "Estándar de tarjetas con **chip** (circuito integrado). El chip puede hacer operaciones criptográficas, de modo que la información de la operación viaja **cifrada** y no puede interceptarse ni copiarse como una banda magnética. Es el mayor obstáculo actual para las redes de skimming."
+        },
+        {
+          "type": "analogy",
+          "text": "La banda magnética es como una cinta de casete: cualquiera con el aparato adecuado la copia. El chip EMV es como un portero que responde a cada pregunta con una contraseña distinta cada vez: escuchar una respuesta no sirve para la siguiente."
+        },
+        {
+          "type": "exam",
+          "text": "«Uno de los principales mercados negros de tarjetas» → **darknet**. Trampa: «aplicaciones de mensajería instantánea» (ICQ era la vía de contacto, no el mercado). En casos: la rapidez de compras en otro país se explica por la **distribución electrónica** y por **actores en lugares distintos**, sin mover el plástico original; la ventana de uso depende de **límites, detección del titular y controles antifraude**, no del color del plástico ni de la nacionalidad sola."
+        },
+        {
+          "type": "key",
+          "text": "Datos robados (dumps) → venta en foros y darknet → clonación con impresora, hologramas, grabador y troqueladora → uso en otro país con DNI falso. El chip EMV, al cifrar, es la gran barrera contra el skimming."
+        }
+      ]
+    }
+  ],
+  "summary": [
+    "Los fraudes online tienen la mayor cifra negra: importes bajos que desaniman a denunciar y empresas que callan por su reputación.",
+    "El Código Penal distingue la estafa clásica, en la que Internet solo facilita el engaño, de la estafa informática, basada en una manipulación que logra una transferencia no consentida. El uso fraudulento de tarjetas o de sus datos también es estafa (art. 248 en el temario; art. 249 tras la LO 14/2022).",
+    "Todas las ciberestafas se apoyan en la ingeniería social.",
+    "Carta nigeriana (scam 419): fortuna ajena + adelantos sucesivos. La lotería falsa es su variante con premio inexistente y certificados falsificados.",
+    "En la venta de vehículos el estafador copia un anuncio real, alega estar en el extranjero y usa una falsa empresa escrow para cobrar pagos sucesivos, no el precio del coche.",
+    "Romancescam: relación sentimental fabricada (novia rusa, accidente en el extranjero) para pedir dinero con excusas cambiantes.",
+    "Rogue: malware que se instala de forma oculta al navegar por webs poco seguras, simula infecciones y vende un falso antivirus.",
+    "Carding (CNP fraud): usar número, caducidad y CVC para comprar a distancia sin la tarjeta.",
+    "Skimming: clonar la banda magnética y capturar el PIN, que no está en ninguna pista. Se castiga en el art. 399 bis CP (LO 5/2010).",
+    "Captura por dispositivos en cajeros y TPV (boca lectora, cámara, teclado falso) o por empleados desleales con lectores portátiles.",
+    "Los dumps se venden en foros (contacto por ICQ) y sobre todo en la darknet; el chip EMV, al cifrar, frena el skimming."
+  ],
+  "glossary": [
+    { "term": "Carding / CNP fraud", "text": "Fraude de tarjeta no presente: compras por Internet o teléfono con los datos visibles de una tarjeta ajena." },
+    { "term": "Carta nigeriana (scam 419)", "text": "Fraude de pago anticipado que promete parte de una gran fortuna a cambio de adelantos sucesivos." },
+    { "term": "Cifra negra", "text": "Delitos cometidos que no se denuncian y no aparecen en las estadísticas oficiales." },
+    { "term": "Código Penal (CP)", "text": "Ley Orgánica 10/1995, que recoge los delitos y sus penas en España." },
+    { "term": "CVC / CVC2 / CID", "text": "Código de verificación de 3 o 4 cifras impreso en la tarjeta para comprobar que se tiene físicamente en compras a distancia." },
+    { "term": "Darknet", "text": "Redes ocultas, accesibles con software especial, donde hoy está el principal mercado negro de tarjetas robadas." },
+    { "term": "Dump", "text": "Datos robados de tarjetas bancarias tal como se venden en el mercado criminal." },
+    { "term": "EMV (Europay, Mastercard y VISA)", "text": "Estándar de tarjeta con chip que cifra la información de las operaciones." },
+    { "term": "Escrow", "text": "Intermediario que retiene el pago hasta que el comprador recibe y acepta el producto." },
+    { "term": "Estafa informática", "text": "Transferencia patrimonial no consentida lograda mediante manipulación informática o artificio semejante." },
+    { "term": "ICQ", "text": "Programa de mensajería instantánea usado durante años para contactar con vendedores de datos de tarjetas." },
+    { "term": "Ingeniería social", "text": "Manipulación psicológica de una persona para que haga lo que interesa al atacante." },
+    { "term": "Ley orgánica (LO)", "text": "Ley que requiere mayoría absoluta del Congreso y regula materias como los derechos fundamentales o el Código Penal." },
+    { "term": "Malware", "text": "Software malicioso." },
+    { "term": "Pharming", "text": "Ataque que altera la resolución de nombres de dominio (DNS) para llevar a la víctima a una web falsa." },
+    { "term": "PIN (Personal Identification Number)", "text": "Número secreto del titular de la tarjeta; no se graba en ninguna pista de la banda." },
+    { "term": "Ransomware", "text": "Malware que cifra los archivos de la víctima y pide un rescate." },
+    { "term": "Rogue", "text": "Falso antivirus: malware que simula infecciones para vender una falsa solución." },
+    { "term": "Romancescam", "text": "Estafa sentimental: relación fabricada a distancia para obtener dinero." },
+    { "term": "Skimming", "text": "Técnicas para clonar tarjetas copiando la banda magnética y capturando el PIN." },
+    { "term": "TPV (terminal punto de venta)", "text": "Datáfono de los comercios para pagar con tarjeta." },
+    { "term": "Vishing", "text": "Phishing realizado mediante llamadas de voz." }
+  ],
+  "questions": {
+    "ciberdelitos-t08-01": {
+      "section": "cifra-negra",
+      "reasoning": "El temario explica que los fraudes online tienen la mayor cifra negra por dos factores: que las estafas suelen ser de importes bajos (no compensa pasar por el proceso) y que las empresas prefieren callar por su imagen. El primero, el de los particulares, es el motivo principal que recoge la opción a.",
+      "options": {
+        "a": "Correcta. El temario señala que los importes bajos desaniman a las víctimas a denunciar porque no les compensa pasar por todas las fases procesales.",
+        "b": "Incorrecta. La falta de información sobre dónde denunciar no es uno de los factores que da el tema.",
+        "c": "Incorrecta. El tema no atribuye la cifra negra a desconfianza hacia la policía.",
+        "d": "Incorrecta. La opción a recoge precisamente el motivo principal que señala el temario."
+      }
+    },
+    "ciberdelitos-t08-02": {
+      "section": "estafa-codigo-penal",
+      "reasoning": "El Código Penal separa la estafa clásica, en la que se engaña a una persona y Internet solo es el medio (por ejemplo, el fraude en comercio electrónico), de la estafa informática, en la que una manipulación informática consigue una transferencia no consentida. Esa es la pareja de la opción b.",
+      "options": {
+        "a": "Incorrecta. La distinción que hace el temario no se basa en la cuantía estafada.",
+        "b": "Correcta. Distingue los fraudes en los que Internet es solo un elemento facilitador de las estafas informáticas basadas en manipulación informática.",
+        "c": "Incorrecta. El canal (correo o web) no es el criterio legal de distinción.",
+        "d": "Incorrecta. «Estafas tecnológicas» no es una categoría del Código Penal; la otra categoría es la estafa clásica facilitada por Internet."
+      }
+    },
+    "ciberdelitos-t08-03": {
+      "section": "carding",
+      "reasoning": "Card not present significa literalmente «tarjeta no presente»: el delincuente no tiene el plástico, solo sus datos visibles (número, caducidad, CVC), y los usa para comprar por Internet o por teléfono. Eso es lo que describe la opción a.",
+      "options": {
+        "a": "Correcta. El carding consiste en usar sin autorización los datos de una tarjeta para operar sin presentarla físicamente.",
+        "b": "Incorrecta. Consultar el saldo en un cajero autorizado no es ningún fraude ni requiere usar datos ajenos a distancia.",
+        "c": "Incorrecta. Alterar la resolución de nombres de dominio (DNS) es pharming.",
+        "d": "Incorrecta. Cifrar archivos y pedir rescate es ransomware."
+      }
+    },
+    "ciberdelitos-t08-04": {
+      "section": "skimming-banda",
+      "reasoning": "La información que no se ve a simple vista es la grabada en la banda magnética. Como el titular no la conoce, no se puede obtener con engaños; hay que leer la tarjeta físicamente y copiarla en otra. Ese conjunto de técnicas de clonación se llama skimming.",
+      "options": {
+        "a": "Incorrecta. El pharming altera la resolución de nombres de dominio (DNS) para dirigir a webs falsas; no copia tarjetas.",
+        "b": "Incorrecta. El vishing es phishing por llamada de voz.",
+        "c": "Correcta. El skimming copia la información de la banda magnética, que no aparece a simple vista, para clonar la tarjeta.",
+        "d": "Incorrecta. Existe un término exacto, skimming, recogido en la opción c."
+      }
+    },
+    "ciberdelitos-t08-05": {
+      "section": "skimming-banda",
+      "reasoning": "La banda tiene tres pistas: la 1 con nombre, país y caducidad; la 2 con el número de cuenta principal; la 3 con datos que cambian. El temario dice expresamente que el PIN no aparece en ninguna pista y solo debe conocerlo el titular; por eso los skimmers lo capturan con cámaras o teclados falsos.",
+      "options": {
+        "a": "Incorrecta. La pista 1 guarda país, nombre del titular, caducidad y código de servicio, no el PIN.",
+        "b": "Incorrecta. La pista 2 guarda, entre otros datos, el número de cuenta principal, no el PIN.",
+        "c": "Incorrecta. La pista 3 guarda información que cambia con frecuencia, no el PIN.",
+        "d": "Correcta. El PIN no está grabado en ninguna de las tres pistas."
+      }
+    },
+    "ciberdelitos-t08-06": {
+      "section": "captura-datos",
+      "reasoning": "El temario distingue dos técnicas principales: instalar físicamente sistemas lectores (en cajeros, TPV, surtidores) y contar con la participación de una persona con acceso a las tarjetas, como un empleado desleal que las pasa por un lector portátil.",
+      "options": {
+        "a": "Incorrecta. El tema describe dos técnicas, no una.",
+        "b": "Correcta. La segunda técnica es la participación de empleados desleales o confabulados.",
+        "c": "Incorrecta. La violencia física no es una técnica de skimming; este fraude busca precisamente pasar desapercibido.",
+        "d": "Incorrecta. La opción b es la que recoge el temario."
+      }
+    },
+    "ciberdelitos-t08-07": {
+      "section": "distribucion-uso",
+      "reasoning": "El temario dice que hoy la darknet es, sin duda, el principal mercado negro de material ilícito, incluidas las tarjetas obtenidas de forma fraudulenta. La mensajería instantánea (ICQ) aparecía como forma de contactar con el vendedor, no como el mercado.",
+      "options": {
+        "a": "Incorrecta. La mensajería instantánea (ICQ) se usaba para contactar con vendedores, pero no es el mercado principal.",
+        "b": "Correcta. La darknet es el principal mercado negro de tarjetas robadas según el temario.",
+        "c": "Incorrecta. El tema no señala las redes sociales como mercado de tarjetas.",
+        "d": "Incorrecta. La darknet (opción b) es la respuesta del temario."
+      }
+    },
+    "ciberdelitos-t08-08": {
+      "section": "carta-nigeriana",
+      "reasoning": "La carta nigeriana siempre hace referencia a una gran cantidad de dinero procedente de herencias, subvenciones internacionales o robos, que el remitente no puede cobrar y quiere compartir. Las otras opciones son fraudes de naturaleza distinta.",
+      "options": {
+        "a": "Incorrecta. El romancescam se basa en una relación sentimental, no en la comunicación de una ganancia.",
+        "b": "Correcta. La carta nigeriana anuncia una gran suma procedente de herencias, subvenciones o robos para pedir después adelantos.",
+        "c": "Incorrecta. El ransomware es malware que cifra archivos y pide un rescate.",
+        "d": "Incorrecta. La opción b es la denominación correcta."
+      }
+    },
+    "ciberdelitos-t08-09": {
+      "section": "romancescam",
+      "reasoning": "La novia rusa es una supuesta mujer joven y atractiva que entabla una relación sentimental a distancia y acaba pidiendo dinero con distintas excusas. El temario la presenta como uno de los dos ejemplos típicos de romancescam.",
+      "options": {
+        "a": "Correcta. La novia rusa es una modalidad de romancescam o estafa sentimental.",
+        "b": "Incorrecta. La carta nigeriana se basa en una fortuna que se quiere compartir, no en una relación sentimental.",
+        "c": "Incorrecta. El ransomware es malware de cifrado y rescate.",
+        "d": "Incorrecta. La opción a es correcta."
+      }
+    },
+    "ciberdelitos-t08-10": {
+      "section": "rogue",
+      "reasoning": "Un rogue se instala de forma oculta, lanza ventanas emergentes que avisan de un virus inexistente, ofrece descargar un antivirus que hace un falso análisis y pide comprar la licencia. Su funcionamiento característico es simular infecciones para vender una falsa solución.",
+      "options": {
+        "a": "Incorrecta. Un rogue no distribuye actualizaciones verificadas: distribuye un falso antivirus.",
+        "b": "Incorrecta. Administrar claves de cifrado no tiene relación con el rogue.",
+        "c": "Correcta. Simula infecciones para inducir a la víctima a comprar o instalar una supuesta solución.",
+        "d": "Incorrecta. Copiar la banda magnética es skimming, que requiere dispositivos físicos."
+      }
+    },
+    "ciberdelitos-t08-11": {
+      "section": "carta-nigeriana",
+      "reasoning": "En la carta nigeriana, tras aceptar el negocio se pide un pequeño adelanto (permiso, impuesto, soborno); si se paga, aparecen más. La víctima nunca recibe nada ni controla los fondos: lo que la mantiene pagando es la expectativa de cobrar la gran suma prometida.",
+      "options": {
+        "a": "Correcta. El engaño se sostiene en la expectativa de una recompensa próxima que exige adelantos sucesivos.",
+        "b": "Incorrecta. En este fraude no se entrega nunca la herencia, ni antes ni después de los pagos.",
+        "c": "Incorrecta. La víctima nunca controla los fondos prometidos, que no existen.",
+        "d": "Incorrecta. No hay ninguna comprobación independiente; los gastos se justifican con obstáculos ficticios."
+      }
+    },
+    "ciberdelitos-t08-12": {
+      "section": "loteria",
+      "reasoning": "En la estafa de la lotería se adjuntan documentos falsificados con sellos y firmas de supuestos organismos oficiales. Por tanto, la presentación no prueba nada. Lo primero que hay que preguntarse es si se participó realmente en ese sorteo y si el remitente es auténtico y verificable.",
+      "options": {
+        "a": "Incorrecta. Los colores del certificado no acreditan nada: estos documentos se falsifican.",
+        "b": "Incorrecta. Las firmas impresas también forman parte del engaño y no eximen de comprobar.",
+        "c": "Incorrecta. Citar una ciudad real (los correos suelen citar Madrid) no descarta la suplantación.",
+        "d": "Correcta. Hay que analizar la coherencia de la supuesta participación y la autenticidad del origen de la comunicación."
+      }
+    },
+    "ciberdelitos-t08-13": {
+      "section": "vehiculos-escrow",
+      "reasoning": "El temario explica que los estafadores suelen copiar un anuncio auténtico (fotos y descripción) y publicarlo en otro portal con sus datos de contacto. Así aparentan tener el producto sin poseerlo, lo que explica que las fotos coincidan con las de otra persona.",
+      "options": {
+        "a": "Incorrecta. Las imágenes de un anuncio público puede descargarlas cualquiera.",
+        "b": "Incorrecta. Las plataformas no comparten necesariamente vendedor; la coincidencia se debe a la copia.",
+        "c": "Correcta. El estafador reutiliza un anuncio real para dar credibilidad al suyo, que es falso.",
+        "d": "Incorrecta. Que exista una oferta auténtica no garantiza las copias; al contrario, es lo que el estafador aprovecha."
+      }
+    },
+    "ciberdelitos-t08-14": {
+      "section": "vehiculos-escrow",
+      "reasoning": "Los estafadores contactan con el propietario real haciéndose pasar por compradores y le piden la documentación escaneada, para enseñarla luego a sus víctimas. El documento puede ser auténtico y, aun así, no demostrar que quien lo envía es el dueño.",
+      "options": {
+        "a": "Incorrecta. Una copia de la documentación no identifica a quien controla la cuenta donde se pide el dinero.",
+        "b": "Correcta. La copia puede haberse obtenido del propietario real mediante un contacto previo engañoso.",
+        "c": "Incorrecta. La documentación sí contiene información útil; el problema es quién la envía.",
+        "d": "Incorrecta. No todos los documentos enviados por correo son falsos; aquí puede ser auténtico pero reutilizado."
+      }
+    },
+    "ciberdelitos-t08-15": {
+      "section": "vehiculos-escrow",
+      "reasoning": "Un escrow legítimo es un intermediario acordado por comprador y vendedor: recibe el dinero, garantiza la entrega, deja un plazo de inspección y solo entonces paga al vendedor. Su esencia es condicionar la liberación de los fondos al buen fin de la operación.",
+      "options": {
+        "a": "Correcta. Es una intermediación acordada que condiciona la liberación de los fondos al cumplimiento de la operación.",
+        "b": "Incorrecta. Las condiciones del pago se pactan entre las partes; no se le ocultan al comprador.",
+        "c": "Incorrecta. Al contrario: la liquidación al vendedor depende de la entrega y aceptación.",
+        "d": "Incorrecta. El escrow no convierte un anticipo en garantía absoluta de autenticidad; protege la operación, y además puede ser suplantado."
+      }
+    },
+    "ciberdelitos-t08-16": {
+      "section": "vehiculos-escrow",
+      "reasoning": "En la estafa del vehículo, la falsa empresa escrow inventa un problema (un impuesto para cruzar una frontera) y pide un pago; luego otro y otro. Los estafadores no buscan cobrar el coche, sino esos pagos sucesivos, y el bien nunca se entrega.",
+      "options": {
+        "a": "Incorrecta. El comprador no ha inspeccionado ningún coche; el vehículo nunca llega.",
+        "b": "Incorrecta. Cada petición produce un perjuicio económico real a la víctima.",
+        "c": "Incorrecta. Los pagos no son únicos y contradicen las condiciones originales, que decían que los gastos estaban incluidos.",
+        "d": "Correcta. Se crean obstáculos nuevos para mantener los pagos sin entregar nunca el bien."
+      }
+    },
+    "ciberdelitos-t08-17": {
+      "section": "vehiculos-escrow",
+      "reasoning": "La falsa empresa escrow suele ser solo una web creada por los estafadores, que puede copiar la imagen de una empresa real. Por eso hay que separar dos cosas: que la empresa legítima exista y quién controla realmente el correo, la web y las instrucciones de pago de esta operación.",
+      "options": {
+        "a": "Incorrecta. Un nombre comercial sí puede suplantarse.",
+        "b": "Incorrecta. La titularidad del vehículo es otra cuestión; aquí se trata de la empresa intermediaria y sus canales.",
+        "c": "Correcta. Hay que distinguir la existencia de la empresa legítima de quién controla los canales concretos de esta operación.",
+        "d": "Incorrecta. Un logotipo en un enlace no prueba que el enlace pertenezca a la empresa."
+      }
+    },
+    "ciberdelitos-t08-18": {
+      "section": "romancescam",
+      "reasoning": "Los perfiles de las webs de contactos muestran aficiones, costumbres, familia y nivel económico. El temario explica que, con ingeniería social, el estafador usa esos datos para planificar una estafa personalizada: adapta su historia para parecer afín y ganarse la confianza.",
+      "options": {
+        "a": "Incorrecta. Un perfil público no verifica técnicamente la identidad de nadie.",
+        "b": "Correcta. Adapta su historia para parecer afín y construir una relación de confianza.",
+        "c": "Incorrecta. El estafador no controla qué otros mensajes recibe la víctima.",
+        "d": "Incorrecta. La información pública no da acceso automático a las claves bancarias; el estafador necesita que la víctima pague."
+      }
+    },
+    "ciberdelitos-t08-19": {
+      "section": "romancescam",
+      "reasoning": "El temario explica que, cuando la víctima insiste en hablar por teléfono o por llamadas por Internet, la organización tiene personas que siguen un guion. Por tanto, ver o hablar con alguien que coincide con el perfil no demuestra que su historia sea cierta.",
+      "options": {
+        "a": "Correcta. Puede ser una persona que representa un papel dentro del fraude organizado.",
+        "b": "Incorrecta. Una videollamada no confirma las historias ni las necesidades económicas.",
+        "c": "Incorrecta. Las organizaciones también hacen llamadas y usan fotos de personas reales.",
+        "d": "Incorrecta. Ver una imagen no demuestra quién controla los pagos que se piden después."
+      }
+    },
+    "ciberdelitos-t08-20": {
+      "section": "romancescam",
+      "reasoning": "En la modalidad de accidente en el extranjero, la relación se consolida durante mucho tiempo; luego un tercero comunica un accidente y pide dinero urgente para la asistencia médica. La confianza acumulada y la urgencia hacen que la víctima pague algo que no puede comprobar.",
+      "options": {
+        "a": "Incorrecta. El tercero no aporta una identidad verificada; refuerza la historia falsa.",
+        "b": "Incorrecta. El dinero va a los estafadores, no a un hospital.",
+        "c": "Incorrecta. Precisamente es una organización la que gestiona varios personajes (novio, familiar, amigo).",
+        "d": "Correcta. Aprovecha la confianza previa para introducir una necesidad económica difícil de contrastar."
+      }
+    },
+    "ciberdelitos-t08-21": {
+      "section": "romancescam",
+      "reasoning": "En la novia rusa, tras el primer envío llegan más peticiones con excusas distintas: atraco, familiar enfermo, deuda, desahucio. Analizar el conjunto, es decir, que las peticiones se repiten y las excusas cambian, es lo que revela el patrón de la estafa.",
+      "options": {
+        "a": "Incorrecta. Un primer pago no acredita la identidad de quien lo recibe.",
+        "b": "Incorrecta. Compartir gustos es justo lo que el estafador busca aparentar; no hace innecesario verificar.",
+        "c": "Correcta. La repetición de peticiones y la evolución de las excusas dentro de la relación muestran el patrón.",
+        "d": "Incorrecta. Evaluar cada pago por separado oculta el patrón de explotación."
+      }
+    },
+    "ciberdelitos-t08-22": {
+      "section": "rogue",
+      "reasoning": "El rogue muestra la alarma y, desde la misma ventana, ofrece el «antivirus» de pago. Diagnóstico y remedio proceden de la misma fuente, así que no se validan entre sí; hay que cuestionar justamente esa relación.",
+      "options": {
+        "a": "Incorrecta. Comprar el producto no demuestra que las amenazas existan.",
+        "b": "Correcta. Quien genera la alarma controla también la solución de pago que propone.",
+        "c": "Incorrecta. Ningún mensaje de error obliga a comprar el producto que menciona.",
+        "d": "Incorrecta. Mostrar una lista de archivos no es un análisis independiente; lo genera el propio falso antivirus."
+      }
+    },
+    "ciberdelitos-t08-23": {
+      "section": "rogue",
+      "reasoning": "En el rogue, ni el virus existe ni el antivirus es una herramienta de seguridad. Pagar es un hecho económico; no comprueba técnicamente que la detección fuera cierta ni que el programa sea auténtico.",
+      "options": {
+        "a": "Correcta. Una transacción no acredita que la detección ni la herramienta sean auténticas.",
+        "b": "Incorrecta. Pagar no convierte ningún programa en una herramienta de seguridad certificada.",
+        "c": "Incorrecta. Las supuestas amenazas no existían; registrar una tarjeta no cambia nada técnico.",
+        "d": "Incorrecta. Tener una licencia no impide que todo el producto sea un fraude."
+      }
+    },
+    "ciberdelitos-t08-24": {
+      "section": "carding",
+      "reasoning": "En el carding o CNP fraud no hace falta la tarjeta física: basta con sus datos (número, caducidad, CVC) para comprar por Internet o por teléfono. Por eso conservar la tarjeta no excluye el fraude.",
+      "options": {
+        "a": "Incorrecta. Con los datos de la tarjeta se puede comprar sin robarla.",
+        "b": "Incorrecta. Conservar el plástico no prueba que los cargos fueran consentidos.",
+        "c": "Incorrecta. Las compras remotas no necesitan copiar la banda; eso es propio del skimming para uso presencial.",
+        "d": "Correcta. La posesión física no excluye el uso fraudulento de los datos de la tarjeta."
+      }
+    },
+    "ciberdelitos-t08-25": {
+      "section": "captura-datos",
+      "reasoning": "Para usar una tarjeta clonada hacen falta los datos de la banda y el PIN. La falsa boca lectora copia la banda, pero el PIN no está en la banda, así que se instala además una cámara orientada al teclado. Son dos capturas complementarias.",
+      "options": {
+        "a": "Incorrecta. La cámara graba el teclado; no cifra la banda.",
+        "b": "Incorrecta. Ningún dispositivo acredita la identidad del titular; ambos roban información.",
+        "c": "Correcta. Uno obtiene los datos de la tarjeta y la otra observa por separado el código introducido.",
+        "d": "Incorrecta. El lector de banda solo lee la banda; no obtiene imágenes del teclado."
+      }
+    },
+    "ciberdelitos-t08-26": {
+      "section": "captura-datos",
+      "reasoning": "El temario describe la combinación de técnicas: un grabador disimulado copia la banda mientras alguien observa discretamente el teclado y anota el PIN. No hace falta atacar el banco; cada acción aporta una parte.",
+      "options": {
+        "a": "Incorrecta. No es necesario intervenir el servidor del banco; todo ocurre en el comercio.",
+        "b": "Correcta. Combina la captura física de los datos con la observación del código introducido.",
+        "c": "Incorrecta. Mirar el teclado solo da el PIN, no los datos de la banda.",
+        "d": "Incorrecta. No hay ninguna validación bancaria; es un robo de datos."
+      }
+    },
+    "ciberdelitos-t08-27": {
+      "section": "distribucion-uso",
+      "reasoning": "Los datos capturados se envían de forma inalámbrica y se distribuyen entre especialistas que pueden estar en otros países. El temario cita compras en el extranjero pocas horas después de copiar una banda en un cajero español, sin mover la tarjeta original.",
+      "options": {
+        "a": "Correcta. La distribución electrónica de los datos y la intervención de actores en lugares distintos explican la rapidez.",
+        "b": "Incorrecta. La tarjeta original sigue en poder del titular; se usa una copia.",
+        "c": "Incorrecta. Los datos pueden usarse lejos de la víctima; de hecho, se prefieren otros países.",
+        "d": "Incorrecta. Precisamente hay una coordinación estrecha entre quien captura y quien usa."
+      }
+    },
+    "ciberdelitos-t08-28": {
+      "section": "distribucion-uso",
+      "reasoning": "El temario dice que el tiempo de uso de una tarjeta clonada depende del límite económico, de lo que tarde el titular en darse cuenta, de los sistemas antifraude de la entidad y del país de uso. La opción d recoge los tres primeros.",
+      "options": {
+        "a": "Incorrecta. El color del plástico no influye en la duración del fraude.",
+        "b": "Incorrecta. La nacionalidad del titular, sola y sin tener en cuenta los controles, no explica la ventana de uso.",
+        "c": "Incorrecta. El nombre del establecimiento es irrelevante.",
+        "d": "Correcta. Los límites de la tarjeta, la detección por el titular y los controles antifraude son los factores pertinentes."
+      }
+    },
+    "ciberdelitos-t08-29": {
+      "section": "cifra-negra",
+      "reasoning": "La cifra negra son los delitos que no se denuncian. Una estadística construida solo con denuncias deja fuera esa parte y puede estar sesgada, por ejemplo infrarrepresentando los fraudes de poco importe o los que sufren empresas que prefieren callar.",
+      "options": {
+        "a": "Incorrecta. Los fraudes pequeños sí tienen víctimas; son justamente los que más se quedan sin denunciar.",
+        "b": "Incorrecta. Un aumento de denuncias puede deberse a que se denuncia más, no necesariamente a que haya más fraudes.",
+        "c": "Correcta. Quedan fuera los hechos no denunciados y puede haber sesgo de representación.",
+        "d": "Incorrecta. Una denuncia no equivale a una condena firme."
+      }
+    },
+    "ciberdelitos-t08-30": {
+      "section": "carta-nigeriana",
+      "reasoning": "En la carta nigeriana y la lotería falsa se envían documentos con sellos y firmas falsificados y se pide máxima confidencialidad. Lo primero aparenta autoridad; lo segundo evita que la víctima consulte a alguien que la advierta. Ninguno demuestra que el dinero exista.",
+      "options": {
+        "a": "Incorrecta. Al contrario: refuerzan el engaño para seguir obteniendo adelantos.",
+        "b": "Correcta. Refuerzan una apariencia de autoridad y reducen la consulta a terceros que podrían cuestionar el pago.",
+        "c": "Incorrecta. Los documentos son falsos y no acreditan que exista el dinero.",
+        "d": "Incorrecta. No hay verificación independiente: todo procede del propio remitente."
+      }
+    }
+  }
+}

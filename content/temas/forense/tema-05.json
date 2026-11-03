@@ -1,0 +1,913 @@
+{
+  "course": "forense",
+  "number": 5,
+  "title": "Recuperación de archivos",
+  "minutes": 40,
+  "intro": {
+    "why": "Cuando alguien «borra» un archivo, casi nunca desaparece de verdad: el ordenador solo deja de enseñarlo y marca su espacio como libre. Por eso un perito puede rescatar la foto, el contrato o la hoja de cálculo que un sospechoso creía eliminada, y por eso los metadatos de un documento publicado pueden delatar a sus autores, como le pasó al Gobierno británico en 2003. Este tema explica qué es realmente un archivo, por qué se puede recuperar lo borrado, qué parte se puede recuperar según lo que haya pasado después y por qué los discos SSD complican tanto el trabajo.",
+    "before": [
+      "Un **byte** es la unidad básica de información: 8 bits (ceros y unos). Todo lo que guarda un ordenador, desde una foto hasta un programa, son bytes.",
+      "El **sistema de ficheros** (por ejemplo FAT, NTFS o ext4) es la organización que el sistema operativo pone sobre el disco para saber qué archivos hay, cómo se llaman y en qué zonas del disco están. Lo viste en el tema 4.",
+      "El **hexadecimal** es una forma de escribir números en base 16 (cifras 0-9 y letras A-F). Se usa para mostrar bytes de forma compacta: cada byte son dos cifras hexadecimales, por ejemplo FF o 4D. Se suele escribir con el prefijo 0x (0xE5).",
+      "Un **disco duro (HDD, Hard Disk Drive)** guarda los datos en platos magnéticos que giran; un **SSD (Solid State Drive, unidad de estado sólido)** los guarda en chips de memoria flash, sin piezas móviles."
+    ],
+    "goals": [
+      "Al terminar sabrás explicar qué es un archivo y por qué su nombre no forma parte de él.",
+      "Sabrás qué es la firma (magic number) de un archivo y por qué un forense no se fía de la extensión.",
+      "Sabrás distinguir los metadatos internos de un archivo de la información que guarda el sistema de ficheros.",
+      "Sabrás razonar por qué un archivo borrado se puede recuperar y qué se pierde cuando se sobrescribe.",
+      "Sabrás qué se recupera en cada escenario de borrado y si toca una recuperación básica o en bruto (file carving).",
+      "Sabrás leer una entrada de directorio FAT, reconocer un archivo borrado (0xE5) y calcular los clústeres que ocupa.",
+      "Sabrás por qué la nivelación del desgaste, el recolector de basura y TRIM dificultan la recuperación en SSD."
+    ]
+  },
+  "sections": [
+    {
+      "id": "archivo",
+      "title": "Qué es un archivo (y qué no es)",
+      "pages": [4, 5],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Piensa en una biblioteca. El **libro** es el contenido: sus páginas. La **ficha del catálogo** dice el título con el que está registrado, en qué estantería está, cuándo llegó y quién lo prestó. Si arrancas la ficha, el libro sigue en la estantería, pero ya nadie sabe dónde buscarlo. Un archivo es el libro; el sistema de ficheros es el catálogo."
+        },
+        {
+          "type": "term",
+          "term": "Archivo o fichero informático",
+          "text": "Un **conjunto de bytes relacionados entre sí**, que forman una información que **se puede usar de forma individual** y que está **guardada en un dispositivo de almacenamiento** (disco, memoria USB, tarjeta SD…). Las tres partes de la definición van juntas."
+        },
+        {
+          "type": "p",
+          "text": "Fíjate en lo que la definición **no** dice: un conjunto de bytes no tiene nombre, ni extensión, ni propietario, ni fechas. El archivo es **solo la información**. Todo lo demás (nombre, extensión, ruta o carpeta, usuario propietario, fechas de creación, modificación y acceso) lo gestiona el **sistema de ficheros**, que es independiente del archivo."
+        },
+        {
+          "type": "p",
+          "text": "Matiz importante: el propio archivo puede llevar dentro **metadatos** que repiten o amplían parte de esa información, por ejemplo el título y el autor de una fotografía. Pero eso son datos dentro del contenido, no el nombre con el que el sistema de ficheros lo registra."
+        },
+        {
+          "type": "term",
+          "term": "MBR (Master Boot Record, registro de arranque maestro)",
+          "text": "El primer sector de un disco con particionado clásico. Guarda el código que inicia el arranque y la **tabla de particiones** (dónde empieza y acaba cada partición). No guarda nombres de archivos."
+        },
+        {
+          "type": "table",
+          "title": "Dónde vive cada dato de un archivo",
+          "head": ["Dato", "Dónde se guarda"],
+          "rows": [
+            ["Los bytes del contenido", "En el propio archivo (bloques o clústeres del disco)"],
+            ["Nombre, extensión, ruta", "En el sistema de ficheros"],
+            ["Fechas de creación, modificación y acceso; propietario", "En el sistema de ficheros"],
+            ["Autor, título, GPS, cámara… (si existen)", "Dentro del archivo, como metadatos"],
+            ["Tabla de particiones", "En el MBR (o en la GPT en discos modernos)"]
+          ]
+        },
+        {
+          "type": "exam",
+          "text": "«¿Qué es un archivo?» con tres opciones que son trozos de la definición (bytes relacionados, información usable de forma individual, información almacenada) y una cuarta «todas las anteriores»: la respuesta es **todas**. Y si preguntan dónde se almacena el **nombre**, es en el **sistema de ficheros**; ni dentro del archivo ni en el MBR."
+        },
+        {
+          "type": "key",
+          "text": "Un archivo es solo un conjunto de bytes con sentido propio. El nombre, la extensión, las fechas y el propietario los guarda el sistema de ficheros, aparte."
+        }
+      ]
+    },
+    {
+      "id": "firmas",
+      "title": "Firmas de archivo: el DNI que va en los primeros bytes",
+      "pages": [5, 8],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Si a una botella de vino le pegas una etiqueta que dice «agua», sigue siendo vino. Para saber qué hay dentro no lees la etiqueta: lo pruebas. La **extensión** (.jpg, .pdf, .txt) es la etiqueta; la **firma** es el sabor."
+        },
+        {
+          "type": "term",
+          "term": "Firma de archivo (magic number, número mágico)",
+          "text": "Conjunto de bytes situado **al principio** del archivo que **identifica el tipo de archivo** que es. Un archivo es lo que dice su firma, no lo que dice su extensión."
+        },
+        {
+          "type": "p",
+          "text": "Cambiar la extensión **no cambia nada del contenido**: para un forense es igual que cambiar el nombre. Por eso las herramientas forenses identifican los archivos por su firma. Casi todos los formatos tienen firma; las excepciones son los de **texto plano** (TXT, XML, JavaScript, HTML…), que son solo caracteres legibles."
+        },
+        {
+          "type": "p",
+          "text": "Algunos formatos tienen además una **firma de final**. El ejemplo del tema es la imagen **JPG**, que empieza por FF D8 y termina por FF D9. Esto es muy útil para recortar el archivo cuando se rescata de un disco sin ayuda del sistema de ficheros."
+        },
+        {
+          "type": "term",
+          "term": "ASCII",
+          "text": "American Standard Code for Information Interchange: la tabla que asigna un carácter a cada valor de byte (por ejemplo, 0x50 es la letra P). Por eso muchas firmas se pueden «leer» como letras: %PDF, GIF8, MZ."
+        },
+        {
+          "type": "table",
+          "title": "Firmas típicas (figura 4 del temario)",
+          "head": ["Hexadecimal", "Como texto ASCII", "Tipo de archivo"],
+          "rows": [
+            ["FF D8 FF E0 / E1 / E8", "ÿØÿà", "Imagen JPG"],
+            ["89 50 4E 47", ".PNG", "Imagen PNG"],
+            ["47 49 46 38", "GIF8", "Imagen GIF"],
+            ["50 4B 03 04", "PK..", "Office Open XML (DOCX, XLSX, PPTX) y también ZIP (PKZIP)"],
+            ["4D 5A", "MZ", "Ejecutable de Windows (EXE)"],
+            ["25 50 44 46", "%PDF", "PDF (Portable Document Format)"],
+            ["49 44 33", "ID3", "Audio MP3 con etiquetas ID3v2"]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Curiosidad que ayuda a razonar: un DOCX y un ZIP comparten firma porque un documento de Office moderno **es** un ZIP con ficheros XML dentro. La firma dice el formato del contenedor."
+        },
+        {
+          "type": "list",
+          "title": "Cómo averiguar la firma de un archivo",
+          "items": [
+            "Abrirlo con un **editor hexadecimal** y leer los primeros bytes.",
+            "Usar el comando **file** de Linux o macOS, que analiza la firma y dice el tipo real.",
+            "Consultar bases de datos de firmas: la lista de Wikipedia, la de Gary Kessler, filesignatures.net… (la mayoría del software forense ya trae la suya)."
+          ]
+        },
+        {
+          "type": "code",
+          "title": "Una foto disfrazada de texto",
+          "text": "$ file notas.txt\nnotas.txt: JPEG image data, JFIF standard 1.01\n\n$ xxd notas.txt | head -1\n00000000: ffd8 ffe0 0010 4a46 4946 0001 0101 0048  ......JFIF.....H"
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico",
+          "text": "Un empleado sospechoso de llevarse planos de la empresa guarda en su pendrive un archivo «lista_compra.txt». El perito no se queda con la extensión: comprueba la firma, ve 25 50 44 46 (%PDF) y descubre que es un PDF con los planos. Renombrar no ocultó nada."
+        },
+        {
+          "type": "exam",
+          "text": "Trampas en la definición de firma: **al final** en vez de al principio, o que identifica su **función** en vez de su **tipo**. Correcta: bytes **al principio** que identifican el **tipo**. Tampoco es la extensión, ni una fecha, ni el propietario, ni una firma electrónica. Y si cambias la extensión, el contenido **permanece igual**: no se convierte, ni se reescribe la cabecera."
+        },
+        {
+          "type": "key",
+          "text": "La extensión es una etiqueta que cualquiera cambia; la firma (magic number) son los primeros bytes y dice el tipo real. Se comprueba con un editor hexadecimal o con el comando file."
+        }
+      ]
+    },
+    {
+      "id": "metadatos",
+      "title": "Metadatos frente a datos del sistema de ficheros",
+      "pages": [8, 10],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Una carta lleva dentro, al pie, la firma de quien la escribió y la fecha (eso viaja con la carta). En el sobre, el cartero apunta cuándo la recibió y en qué buzón la dejó (eso es de la oficina de correos). Los metadatos son lo que va **dentro** de la carta; el sistema de ficheros es lo que apunta **correos**."
+        },
+        {
+          "type": "term",
+          "term": "Metadatos",
+          "text": "**Datos que describen a otros datos.** En informática, los asociados a los archivos que dan información sobre ellos: fechas de creación o edición, autor o autores, una descripción del contenido… Cada formato tiene los suyos."
+        },
+        {
+          "type": "p",
+          "text": "Casi cualquier archivo puede llevar metadatos, pero donde más se encuentran es en **documentos ofimáticos** (textos, hojas de cálculo, presentaciones), **fotografías e imágenes** y **archivos de vídeo y audio**. Los metadatos **forman parte del propio archivo**: si copias el archivo a otro disco, viajan con él."
+        },
+        {
+          "type": "table",
+          "title": "Una fotografía JPG: qué guarda cada uno",
+          "head": ["Metadatos (dentro del archivo)", "Sistema de ficheros (fuera del archivo)"],
+          "rows": [
+            ["Título de la foto", "Nombre del archivo (no tiene por qué coincidir con el título)"],
+            ["Autor", "Usuario propietario"],
+            ["Fecha y hora en que se tomó", "Fechas de creación, modificación y último acceso al archivo"],
+            ["Coordenadas GPS", "Ruta o carpeta donde está"],
+            ["Marca y modelo de la cámara", "Tamaño y ubicación en el disco"]
+          ]
+        },
+        {
+          "type": "list",
+          "title": "Estándares para guardar metadatos",
+          "items": [
+            "**Exif** (Exchangeable image file format): el de las fotos; guarda cámara, exposición, fecha de captura y GPS.",
+            "**ID3**: el de los archivos de audio MP3; guarda artista, álbum, título de la canción…",
+            "**XMP** (Extensible Metadata Platform): el más generalista, creado por Adobe y usado en PDF, imágenes y más."
+          ]
+        },
+        {
+          "type": "code",
+          "title": "Ver los metadatos Exif de una foto con exiftool",
+          "text": "$ exiftool IMG_2041.jpg\nMake                : Canon\nCamera Model Name   : Canon EOS 250D\nDate/Time Original  : 2024:05:12 18:43:07\nGPS Latitude        : 40 deg 24' 59.00 N\nGPS Longitude       : 3 deg 42' 9.00 W"
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico",
+          "text": "Para saber dónde se tomó una foto no sirve mirar el nombre de la carpeta («Vacaciones Cádiz»), ni el tamaño, ni las fechas del sistema de ficheros (que cambian al copiar el archivo). Hay que examinar los **metadatos internos de ubicación** (GPS en Exif), si existen, y valorar su fiabilidad: se pueden editar o borrar."
+        },
+        {
+          "type": "exam",
+          "text": "La definición de metadatos es literal: «datos que describen a otros datos». Trampas: «información que almacena el **sistema de ficheros**» o «solo el nombre y la ruta». Eso es justo lo que **no** son los metadatos del archivo. Si preguntan qué dato es del sistema de ficheros y no del contenido de una foto, la respuesta es el **nombre y la ruta**; la cámara, el título o las coordenadas son metadatos internos."
+        },
+        {
+          "type": "key",
+          "text": "Metadatos = datos sobre datos, guardados dentro del archivo (Exif, ID3, XMP). Nombre, ruta, propietario y fechas del archivo son del sistema de ficheros."
+        }
+      ]
+    },
+    {
+      "id": "caso-dossier",
+      "title": "Un caso real: el dossier de Iraq que hablaba de más",
+      "pages": [10, 11],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Este caso muestra por qué los metadatos interesan tanto a un investigador. En **febrero de 2003** el Gobierno del Reino Unido publicó en su web, en formato **DOC** (Word antiguo), un dossier sobre la seguridad en Iraq y sus servicios de inteligencia. Nadie se acordó de limpiar los metadatos."
+        },
+        {
+          "type": "list",
+          "title": "Lo que revelaron los metadatos del documento",
+          "items": [
+            "Que el documento había pasado por **diez revisiones**.",
+            "Que, poco antes de que **Colin Powell** lo usara en su discurso ante las Naciones Unidas, uno de los autores lo había copiado de su ordenador a un **disquete** para la presentación.",
+            "Los **nombres de los autores** (P. Hamill, J. Pratt, A. Blackshaw y M. Khan), y a partir de ellos su cargo y su lugar de trabajo.",
+            "Que buena parte del texto estaba **plagiado** de trabajos de un investigador estadounidense."
+          ]
+        },
+        {
+          "type": "example",
+          "title": "Llevado a tu día a día",
+          "text": "Si mandas un currículum en Word que reutilizaste de un amigo, el campo «Autor» puede seguir diciendo su nombre. Un forense, o un reclutador curioso, lo ve en Archivo → Propiedades. Antes de publicar un documento conviene revisar y borrar sus metadatos."
+        },
+        {
+          "type": "exam",
+          "text": "Si sale este caso, recuerda los cuatro hallazgos: revisiones, copia a disquete, autores y plagio. La idea que se evalúa es que los metadatos aportan información de investigación que no se ve en el contenido visible."
+        },
+        {
+          "type": "key",
+          "text": "Los metadatos pueden revelar autores, historial de revisiones y movimientos de un documento: son una fuente de pruebas y también un riesgo de fuga de información."
+        }
+      ]
+    },
+    {
+      "id": "borrado",
+      "title": "Por qué se puede recuperar lo borrado",
+      "pages": [12, 14],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Cuando una biblioteca da de baja un libro, no lo quema: tacha su ficha y pone la estantería como «libre». El libro sigue ahí hasta que llega otro y ocupa su hueco. Si coges el libro antes de que lo tapen, lo lees entero; si ya han metido otro encima a medias, solo lees los capítulos que quedaron."
+        },
+        {
+          "type": "p",
+          "text": "Imagina un vídeo de 16 GB. En el disco no está en un único bloque: está **repartido en varias partes**. Cuando lo borras, el sistema operativo **no lo elimina físicamente**: lo **marca como eliminado** (o quita su enlace del índice del sistema de ficheros) y anota que ese espacio **está disponible**."
+        },
+        {
+          "type": "p",
+          "text": "¿Por qué no lo borra de verdad? Porque eso exigiría **escribir ceros** sobre los 16 GB, y tardaría lo mismo que copiar el vídeo. Marcarlo es instantáneo. Ese atajo de rendimiento es lo que permite a los forenses recuperar datos."
+        },
+        {
+          "type": "term",
+          "term": "Borrado lógico",
+          "text": "El borrado normal: se marcan las referencias o el espacio como libres **sin sobrescribir necesariamente** los datos. El sistema ya no muestra el archivo al usuario, pero sus bytes siguen en el disco."
+        },
+        {
+          "type": "term",
+          "term": "Sobrescritura",
+          "text": "Cuando una escritura posterior ocupa parte del espacio liberado y reemplaza los bytes antiguos. Puede dejar el archivo inicial **parcial o totalmente irrecuperable**."
+        },
+        {
+          "type": "p",
+          "text": "Si una foto JPG se sobrescribe a medias, al recuperarla puede salir solo la parte de arriba y el resto gris o con colores aleatorios. En un caso cotidiano no es grave, pero si es la **única prueba** de una falsificación y está muy dañada, quizá no haya nada que presentar en el informe."
+        },
+        {
+          "type": "list",
+          "title": "Archivos muy sensibles a la corrupción",
+          "items": [
+            "**Ejecutables**: si falta la cabecera o las tablas internas, el programa no puede cargarse.",
+            "**Cifrados y/o comprimidos**: cada parte depende de las anteriores; si falta una estructura clave, el resto no se puede descifrar o descomprimir.",
+            "**Algunos formatos de base de datos**: sin sus índices y estructuras, los datos son ilegibles."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "En estos formatos, aunque recuperes casi todo el archivo, si se pierden ciertas estructuras esenciales **todo el conjunto** queda ilegible. Una pérdida pequeña tiene consecuencias grandes."
+        },
+        {
+          "type": "exam",
+          "text": "Opciones trampa sobre el borrado: «sobrescribe inmediatamente con ceros», «crea una copia en otra partición» o «siempre pasa por la papelera». El borrado normal **solo marca como disponible**. Sobre la sobrescritura: puede volver el archivo **parcial o totalmente irrecuperable**; no afecta solo al nombre ni solo a las fechas, ni permite siempre recuperarlo íntegro."
+        },
+        {
+          "type": "key",
+          "text": "Borrar es tachar la ficha, no quemar el libro: los bytes siguen ahí hasta que se sobrescriben. Ejecutables, cifrados, comprimidos y bases de datos se vuelven ilegibles con poco daño."
+        }
+      ]
+    },
+    {
+      "id": "que-se-recupera",
+      "title": "Qué se recupera en cada escenario",
+      "pages": [14, 15],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Cuantas más cosas le pasan a un archivo después de borrarlo, más información se pierde. El temario lo resume en dos tablas que conviene entender, no memorizar. Llamaremos **datos asociados** a la información que el sistema de ficheros guarda del archivo: nombre, ruta, fechas, propietario."
+        },
+        {
+          "type": "table",
+          "title": "Tabla 1. Qué se pierde y qué se recupera",
+          "head": ["Lo que hace el usuario", "Qué ocurre", "Qué podemos recuperar"],
+          "rows": [
+            ["Borra el archivo", "Se mueve a la papelera de reciclaje (o carpeta similar)", "**Todo**: contenido y datos asociados"],
+            ["Borra y vacía la papelera", "El archivo se **marca como borrado** en el índice, o se **elimina el enlace** a él", "Si solo está marcado: **todo**. Si se eliminó el enlace: **solo el contenido**"],
+            ["Borra, vacía la papelera y se sobrescribe la entrada del índice", "La **entrada** del archivo en el índice se elimina", "**Solo el contenido**, no los datos asociados"],
+            ["Borra, vacía la papelera y se sobrescriben los datos", "El archivo se sobrescribe total o parcialmente", "Según cuánto se haya sobrescrito, **una parte** del archivo o **nada**"]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Tabla 2. Qué tipo de recuperación hace falta",
+          "head": ["Situación", "Tipo de recuperación", "Probabilidad"],
+          "rows": [
+            ["Archivo en la papelera", "**No hace falta**: está en una carpeta especial", "Alta"],
+            ["Papelera vaciada (o borrado sin pasar por ella)", "**Básica**: programas que leen el sistema de ficheros (FTK Imager, Autopsy)", "Alta"],
+            ["Además, se sobrescribió la entrada del índice", "**En bruto**: recorrer el dispositivo buscando firmas (PhotoRec, R-Studio)", "Media"],
+            ["Además, se sobrescribieron los datos", "**En bruto**", "Baja"]
+          ]
+        },
+        {
+          "type": "steps",
+          "title": "Cómo razonar cualquier pregunta de este tipo",
+          "items": [
+            "¿El índice del sistema de ficheros conserva la entrada (aunque marcada como borrada)? Entonces se recupera **todo**: contenido y datos asociados.",
+            "¿La entrada o el enlace han desaparecido? Entonces los datos asociados se han perdido y solo queda **el contenido**.",
+            "¿Los bytes del contenido se han sobrescrito? Entonces solo queda **lo que no se haya pisado**, quizá nada."
+          ]
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico",
+          "text": "Una administrativa borra «nominas_2024.xlsx» y vacía la papelera. Si el perito llega pronto, la entrada sigue en el índice marcada como borrada: recupera el archivo con su nombre y sus fechas. Si durante semanas se instalaron programas, la entrada pudo reutilizarse: con suerte aparece un «f0012345.xlsx» sin nombre ni fechas originales. Si además se pisaron sus datos, quizá solo salga media hoja o nada."
+        },
+        {
+          "type": "exam",
+          "text": "El test hace cuatro preguntas casi idénticas y cambia solo el escenario: **papelera → todo**; **marcado como borrado en el índice → todo**; **entrada del índice eliminada → solo el contenido**; **sobrescritura parcial → una parte, según cuánto se haya sobrescrito**. No confundas «marcado como borrado» (la ficha sigue, tachada) con «entrada eliminada» (la ficha ya no está)."
+        },
+        {
+          "type": "key",
+          "text": "Mientras la ficha del índice exista, aunque esté tachada, se recupera todo. Sin ficha, solo el contenido. Con los datos pisados, solo lo que sobreviva."
+        }
+      ]
+    },
+    {
+      "id": "basica-bruto",
+      "title": "Recuperación básica frente a recuperación en bruto (file carving)",
+      "pages": [15, 16],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Recuperación **básica**: buscas el libro mirando el catálogo, aunque la ficha esté tachada; te dice título, estantería y fecha. Recuperación **en bruto**: el catálogo se ha perdido, así que recorres todas las estanterías abriendo cada tomo y reconociendo los libros por su primera página. Encuentras el contenido, pero no sabrás con qué título estaba registrado."
+        },
+        {
+          "type": "term",
+          "term": "Recuperación básica",
+          "text": "Usar programas que acceden **a bajo nivel al sistema de ficheros** y muestran tanto los archivos existentes como los **marcados como eliminados**. Exige que el sistema de ficheros conserve el **enlace** al archivo. Recupera el **contenido y los datos asociados** (nombre, fechas…). Herramientas: **FTK Imager, Autopsy, Recuva**."
+        },
+        {
+          "type": "term",
+          "term": "Recuperación en bruto (file carving, «tallado» de archivos)",
+          "text": "**Buscar firmas de archivo a lo largo de todo el dispositivo** (o de una partición concreta). Funciona aunque se haya perdido el enlace en el sistema de ficheros, pero recupera **solo el contenido**: sin nombre, ruta ni fechas originales. Herramientas: **Recuva, PhotoRec, R-Studio**."
+        },
+        {
+          "type": "table",
+          "title": "Comparación rápida",
+          "head": ["Aspecto", "Básica", "En bruto"],
+          "rows": [
+            ["Qué necesita", "Que el sistema de ficheros conserve el enlace", "Nada del sistema de ficheros; solo los bytes"],
+            ["Cómo trabaja", "Lee el índice y sigue el enlace", "Recorre el soporte buscando firmas (y firmas de final)"],
+            ["Qué recupera", "Contenido + datos asociados", "Solo contenido"],
+            ["Riesgos", "Pocos", "Falsos positivos y archivos parcialmente sobrescritos"],
+            ["Herramientas", "FTK Imager, Autopsy, Recuva", "Recuva, PhotoRec, R-Studio"]
+          ]
+        },
+        {
+          "type": "term",
+          "term": "Falso positivo",
+          "text": "Algo que el programa interpreta como un archivo pero no lo es: por ejemplo, unos bytes que por casualidad empiezan como una firma. El resultado no se abre o tiene bytes sin sentido."
+        },
+        {
+          "type": "p",
+          "text": "Por eso los resultados de una recuperación en bruto **se verifican antes de interpretarlos**. Si un supuesto documento no se abre y sus bytes son incoherentes, puede ser un **falso positivo** o un archivo **parcialmente sobrescrito**. El nombre que le pone la herramienta (f0012345.pdf) es inventado y no prueba nada."
+        },
+        {
+          "type": "code",
+          "title": "Lo que suele generar un carving con PhotoRec",
+          "text": "recup_dir.1/\n  f0002048.jpg   <- sin nombre original: lo genera la herramienta\n  f0002416.pdf\n  f0009880.docx  <- puede no abrir: falso positivo o sobrescrito"
+        },
+        {
+          "type": "exam",
+          "text": "«¿En qué consiste la recuperación en bruto?» → la búsqueda de **firmas** a lo largo de todo el dispositivo o de una partición. Las opciones «programas que acceden a bajo nivel al sistema de ficheros y muestran archivos existentes / eliminados» describen la **básica**. Otras trampas: que el bruto recupera siempre nombres y rutas, que evita los falsos positivos o que necesita el enlace intacto; las tres son falsas. Recuva aparece en las dos listas de herramientas."
+        },
+        {
+          "type": "key",
+          "text": "Básica = sigue el enlace del sistema de ficheros y recupera todo. En bruto = busca firmas por todo el soporte, recupera solo contenido y puede dar falsos positivos."
+        }
+      ]
+    },
+    {
+      "id": "fat-ejemplo",
+      "title": "Recuperar a mano en FAT: entradas, 0xE5 y clústeres",
+      "pages": [16, 20],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Para ver qué hace por dentro un programa de recuperación básica, el temario recorre paso a paso una imagen con sistema de ficheros **FAT**. En otros sistemas de ficheros el procedimiento se parece, pero no es igual."
+        },
+        {
+          "type": "term",
+          "term": "FAT (File Allocation Table, tabla de asignación de archivos)",
+          "text": "Sistema de ficheros sencillo y antiguo, todavía habitual en memorias USB y tarjetas SD. Su «catálogo» son las entradas de directorio y una tabla que encadena los clústeres de cada archivo."
+        },
+        {
+          "type": "term",
+          "term": "Sector y clúster",
+          "text": "El **sector** es la unidad mínima que lee el disco (aquí, 512 bytes). El **clúster** es un grupo de sectores que el sistema de ficheros asigna de golpe (aquí, 8 sectores = 4096 bytes). Un archivo siempre ocupa clústeres **completos**. Estos tamaños se leen en el **sector de arranque** de la partición."
+        },
+        {
+          "type": "steps",
+          "title": "Los pasos del ejemplo",
+          "items": [
+            "Leer el **directorio raíz**. Aparecen cuatro entradas: la primera es el **nombre del volumen** (algo propio de FAT) y las otras tres son archivos.",
+            "Cada entrada ocupa **32 bytes**: nombre en formato 8.3 (11 bytes), byte de atributos, fechas de creación, último acceso y modificación, **primer clúster** y **tamaño** del archivo.",
+            "Mirar el **primer byte** de cada entrada para saber su estado (tabla de abajo). Dos de las tres entradas empiezan por 0xE5: son los archivos borrados «?ORMIGA.JPG» y «?EADOW.JPG».",
+            "De cada entrada borrada se leen sus fechas, su **clúster inicial** y su **tamaño**.",
+            "Con el clúster inicial y el tamaño se calcula el **clúster final** y se copian esos clústeres."
+          ]
+        },
+        {
+          "type": "term",
+          "term": "Formato 8.3",
+          "text": "Nombre de hasta 8 caracteres más extensión de 3, como HORMIGA.JPG. Los nombres largos se guardan en entradas extra llamadas LFN (Long File Name)."
+        },
+        {
+          "type": "table",
+          "title": "Primer byte de una entrada FAT",
+          "head": ["Valor", "Significado"],
+          "rows": [
+            ["0x00", "Entrada sin usar"],
+            ["0xE5", "El archivo de esa entrada **ha sido eliminado**"],
+            ["0x05", "El nombre empieza realmente por el carácter cuyo código es 0xE5 (se guarda como 0x05 para no confundirlo con un borrado)"]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Al borrar, FAT solo sustituye la **primera letra** del nombre por 0xE5. Por eso se pierde esa letra (de ahí el «?ORMIGA», que seguramente era HORMIGA) pero se conservan fechas, clúster inicial y tamaño: es el escenario de «marcado como borrado» en el que se recupera todo, salvo adivinar la primera letra."
+        },
+        {
+          "type": "code",
+          "title": "Cálculo de clústeres de _ORMIGA.JPG",
+          "text": "Tamaño del archivo      = 183.857 bytes\nSector                  = 512 bytes\nSectores por clúster    = 8   (8 x 512 = 4096 bytes por clúster)\n\n183.857 / 512 = 359,09  -> se redondea hacia arriba: 360 sectores\n360 / 8       = 45 clústeres\n\nPrimer clúster = 2  -> ocupa del clúster 2 al 46 (45 clústeres)\n(el siguiente archivo borrado, ?EADOW, empieza en el clúster 47)"
+        },
+        {
+          "type": "p",
+          "text": "La regla general: **clústeres = tamaño ÷ tamaño de clúster, redondeado hacia arriba**, porque no se puede ocupar medio clúster. Ejemplo: 9000 bytes con clústeres de 4096 → 9000 / 4096 = 2,2 → **3 clústeres** (dos solo dan 8192 bytes)."
+        },
+        {
+          "type": "exam",
+          "text": "En los cálculos, la trampa es redondear hacia abajo. Siempre hacia arriba: si sobra un solo byte, necesita otro clúster entero. Y recuerda que en FAT un archivo borrado se reconoce porque su entrada empieza por **0xE5**."
+        },
+        {
+          "type": "key",
+          "text": "En FAT, borrar cambia la primera letra del nombre por 0xE5 y deja fechas, clúster inicial y tamaño. Con eso se calcula qué clústeres leer, redondeando siempre hacia arriba."
+        }
+      ]
+    },
+    {
+      "id": "ssd-desgaste",
+      "title": "Discos SSD y nivelación del desgaste",
+      "pages": [21, 22],
+      "blocks": [
+        {
+          "type": "term",
+          "term": "SSD (Solid State Drive, unidad de estado sólido)",
+          "text": "Dispositivo de almacenamiento que guarda los datos en **memorias flash** (chips, como los de un pendrive), en lugar de en los **discos magnéticos** giratorios de un disco duro tradicional. No es RAM (la RAM pierde los datos al apagar; la flash no) ni cinta."
+        },
+        {
+          "type": "p",
+          "text": "Las peculiaridades de la memoria flash hacen que recuperar archivos borrados en un SSD sea **mucho más complejo** que en un disco duro. Hay dos características culpables: la **nivelación del desgaste** (wear leveling) y el **recolector de basura** (garbage collector) junto con el **comando TRIM**. Las tres juntas son las que más afectan."
+        },
+        {
+          "type": "analogy",
+          "text": "Imagina un aparcamiento cuyas plazas se estropean tras cierto número de usos. Si todo el mundo aparca en las plazas junto a la puerta, esas se rompen pronto y las del fondo quedan nuevas. El vigilante decide repartir los coches por todas las plazas para que se gasten por igual. Resultado: los coches de una misma familia acaban desperdigados por todo el aparcamiento."
+        },
+        {
+          "type": "term",
+          "term": "Nivelación del desgaste (wear leveling)",
+          "text": "Cada bloque de memoria flash aguanta un **número máximo de ciclos de escritura** (el temario dice lectura/escritura); pasado ese límite empieza a fallar. La nivelación del desgaste **reparte la información por todos los bloques de forma uniforme** para que todos se usen un número parecido de veces y ninguno falle antes de tiempo."
+        },
+        {
+          "type": "p",
+          "text": "Consecuencia forense: esa distribución uniforme provoca una **alta fragmentación**. Los trozos de un archivo quedan dispersos por bloques no contiguos, y la **recuperación en bruto** (que busca una firma y lee a continuación) tiene mucho más difícil reconstruir el archivo."
+        },
+        {
+          "type": "table",
+          "title": "Disco duro frente a SSD desde el punto de vista forense",
+          "head": ["Aspecto", "Disco duro (HDD)", "SSD"],
+          "rows": [
+            ["Soporte", "Platos magnéticos", "Memoria flash"],
+            ["¿Puede sobrescribir directamente?", "Sí", "No: antes debe borrar el bloque"],
+            ["Ubicación de los datos", "Tiende a ser estable y a menudo contigua", "Repartida por la nivelación del desgaste (fragmentada)"],
+            ["Lo borrado sigue en el disco…", "Hasta que algo lo sobrescribe", "Hasta que el recolector de basura lo elimina (puede ser en minutos)"],
+            ["Recuperación de borrados", "Relativamente viable", "Difícil o imposible"]
+          ]
+        },
+        {
+          "type": "exam",
+          "text": "Si preguntan qué tecnología usa un SSD: **memoria flash** (no platos magnéticos, ni cinta, ni RAM volátil). Si preguntan qué busca la nivelación del desgaste: **repartir el uso de los bloques para que se desgasten por igual**; no hace los bloques contiguos ni deja cada archivo fijo en el mismo bloque. Su efecto forense: **dificulta la recuperación en bruto** por la fragmentación."
+        },
+        {
+          "type": "key",
+          "text": "El SSD usa memoria flash, que se gasta. Para gastarla por igual reparte los datos por todos los bloques, y esa fragmentación complica la recuperación en bruto."
+        }
+      ]
+    },
+    {
+      "id": "trim",
+      "title": "Recolector de basura y TRIM: el SSD que se limpia solo",
+      "pages": [22, 23],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Por su tecnología, un SSD **no puede escribir en un bloque que ya tiene datos**: primero tiene que borrarlo (ponerlo a cero) y después escribir. Los primeros SSD se volvían cada vez más lentos, porque al reutilizar un bloque marcado como borrado tenían que hacer dos operaciones en lugar de una."
+        },
+        {
+          "type": "analogy",
+          "text": "Es como una pizarra: no puedes escribir encima de lo que ya hay; primero hay que pasar el borrador. Si el profesor espera a necesitar la pizarra para borrarla, pierde tiempo en clase. Mejor que el alumno de guardia le avise de qué partes ya no sirven y las borre en el recreo."
+        },
+        {
+          "type": "term",
+          "term": "Comando TRIM",
+          "text": "Orden con la que el **sistema operativo** (que debe ser compatible) **le dice al SSD qué bloques están marcados como borrados**, es decir, que ya no contienen datos útiles. No es una sigla: trim significa «recortar»."
+        },
+        {
+          "type": "term",
+          "term": "Recolector de basura (garbage collector)",
+          "text": "Proceso interno del SSD que, **cuando el disco está inactivo**, **borra físicamente** los bloques que TRIM le ha señalado, para que la próxima escritura sea rápida."
+        },
+        {
+          "type": "steps",
+          "title": "Qué pasa con un archivo borrado en un SSD con TRIM",
+          "items": [
+            "El usuario borra el archivo y el sistema de ficheros lo marca como borrado (igual que en un disco duro).",
+            "El sistema operativo envía TRIM: «estos bloques ya no se usan».",
+            "En un rato de inactividad, el recolector de basura pone esos bloques a cero.",
+            "Los datos han desaparecido físicamente: no hay nada que recuperar, ni con recuperación básica ni en bruto."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Lo que mejoró muchísimo el rendimiento de los SSD funciona, en la práctica, como un **borrado seguro** automático: con el paso del tiempo los archivos borrados se eliminan físicamente, lo que **dificulta e incluso impide** su recuperación."
+        },
+        {
+          "type": "p",
+          "text": "Para limitar el problema existen herramientas forenses que acceden al dispositivo a bajo nivel y lo **«bloquean»**, para que el recolector no siga borrando durante la investigación. Pero tienen un límite claro: **lo que ya se eliminó antes de la adquisición sigue siendo irrecuperable**. Ni bloquear ahora, ni hacer otra copia de la imagen, ni cambiar el algoritmo hash lo devuelven."
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico",
+          "text": "Un cliente entrega su portátil con SSD una semana después de que un empleado borrase unos correos. El perito bloquea el dispositivo y lo adquiere, pero debe explicar al cliente que, si el recolector de basura ya vació esos bloques, **no hay forma de reconstruirlos**: la protección sirve hacia delante, no hacia atrás. En un SSD, la rapidez con que se interviene el equipo es decisiva."
+        },
+        {
+          "type": "exam",
+          "text": "TRIM **comunica qué bloques ya no están en uso** para facilitar su eliminación interna. Trampas: que desactiva los procesos internos de borrado, que guarda copias de los bloques borrados o que asigna propietarios. Y si preguntan qué características de los SSD afectan más a la recuperación: nivelación del desgaste, recolector de basura **y** TRIM, es decir, **todas**."
+        },
+        {
+          "type": "key",
+          "text": "TRIM avisa al SSD de qué bloques sobran y el recolector de basura los borra físicamente cuando el disco descansa. Bloquear el disco frena futuros borrados, pero no devuelve lo ya eliminado."
+        }
+      ]
+    }
+  ],
+  "summary": [
+    "Un archivo es un conjunto de bytes relacionados, utilizable por sí solo y almacenado en un dispositivo. Nombre, extensión, ruta, fechas y propietario los guarda el sistema de ficheros.",
+    "La firma o magic number son los primeros bytes y dicen el tipo real del archivo; cambiar la extensión no cambia el contenido. Se comprueba con un editor hexadecimal o con el comando file.",
+    "Los metadatos son datos que describen a otros datos y van dentro del archivo (Exif, ID3, XMP): autor, GPS, cámara, revisiones. No se confunden con los datos del sistema de ficheros.",
+    "Borrar no elimina físicamente: marca la entrada y el espacio como libres. Los bytes persisten hasta que se sobrescriben.",
+    "Papelera o entrada marcada como borrada: se recupera todo. Entrada o enlace eliminados: solo el contenido. Datos sobrescritos: una parte o nada.",
+    "La recuperación básica sigue el enlace del sistema de ficheros (FTK Imager, Autopsy, Recuva); la recuperación en bruto busca firmas por todo el soporte (PhotoRec, R-Studio, Recuva), recupera solo contenido y puede dar falsos positivos.",
+    "En FAT, una entrada de 32 bytes que empieza por 0xE5 es un archivo borrado; con su clúster inicial y su tamaño se calculan los clústeres, redondeando hacia arriba.",
+    "En los SSD, la nivelación del desgaste fragmenta los datos y TRIM junto al recolector de basura los borra físicamente; bloquear el dispositivo no recupera lo ya eliminado."
+  ],
+  "glossary": [
+    { "term": "Archivo", "text": "Conjunto de bytes relacionados, utilizable de forma individual y guardado en un dispositivo de almacenamiento." },
+    { "term": "Sistema de ficheros", "text": "Organización que mantiene el índice de archivos de un volumen: nombres, rutas, fechas, propietarios y ubicación de los datos." },
+    { "term": "Firma de archivo (magic number)", "text": "Bytes al inicio de un archivo que identifican su tipo. Algunos formatos, como JPG, tienen también firma de final." },
+    { "term": "Editor hexadecimal", "text": "Programa que muestra los bytes de un archivo en hexadecimal, útil para leer firmas y estructuras." },
+    { "term": "file", "text": "Comando de Linux y macOS que identifica el tipo de un archivo analizando su firma." },
+    { "term": "Metadatos", "text": "Datos que describen a otros datos; en un archivo, información interna como autor, fechas, GPS o revisiones." },
+    { "term": "Exif", "text": "Exchangeable image file format: estándar de metadatos de fotografías." },
+    { "term": "ID3", "text": "Estándar de metadatos de los archivos de audio MP3." },
+    { "term": "XMP", "text": "Extensible Metadata Platform: estándar generalista de metadatos." },
+    { "term": "MBR (Master Boot Record)", "text": "Primer sector del disco con el código de arranque y la tabla de particiones." },
+    { "term": "Borrado lógico", "text": "Marcar un archivo y su espacio como libres sin sobrescribir sus datos." },
+    { "term": "Recuperación básica", "text": "Recuperación que lee el sistema de ficheros y sigue el enlace de los archivos borrados; obtiene contenido y datos asociados." },
+    { "term": "Recuperación en bruto (file carving)", "text": "Búsqueda de firmas por todo el dispositivo o una partición; obtiene solo el contenido." },
+    { "term": "Falso positivo", "text": "Resultado que la herramienta toma por archivo pero no lo es." },
+    { "term": "FAT (File Allocation Table)", "text": "Sistema de ficheros sencillo usado en memorias USB y tarjetas SD; marca los archivos borrados con 0xE5 en el primer byte de su entrada." },
+    { "term": "Clúster", "text": "Grupo de sectores que el sistema de ficheros asigna como unidad; un archivo ocupa clústeres completos." },
+    { "term": "SSD (Solid State Drive)", "text": "Unidad de almacenamiento basada en memoria flash." },
+    { "term": "Nivelación del desgaste (wear leveling)", "text": "Técnica del SSD que reparte las escrituras por todos los bloques para que se gasten por igual; fragmenta los datos." },
+    { "term": "Recolector de basura (garbage collector)", "text": "Proceso interno del SSD que borra físicamente los bloques descartados cuando el disco está inactivo." },
+    { "term": "TRIM", "text": "Orden del sistema operativo que indica al SSD qué bloques ya no contienen datos útiles." }
+  ],
+  "questions": {
+    "forense-t05-01": {
+      "section": "archivo",
+      "reasoning": "La definición del temario tiene tres partes: un archivo es un conjunto de bytes relacionados entre sí, que forman información que se puede usar de forma individual y que se almacena en un dispositivo de almacenamiento. Cada una de las tres primeras opciones recoge una de esas partes y ninguna contradice a las otras, así que la respuesta es la que las reúne todas.",
+      "options": {
+        "a": "Incorrecta. Es verdad, pero solo es una parte de la definición; marcarla deja fuera las otras dos, igual de ciertas.",
+        "b": "Incorrecta. También es cierta, pero incompleta: falta que son bytes relacionados y que están almacenados.",
+        "c": "Incorrecta. Cierta pero parcial: no menciona los bytes relacionados ni el uso individual.",
+        "d": "Correcta. Las tres descripciones forman juntas la definición de archivo del temario."
+      }
+    },
+    "forense-t05-02": {
+      "section": "archivo",
+      "reasoning": "Un archivo es solo un conjunto de bytes, y un conjunto de bytes no tiene nombre. El nombre, la extensión, la ruta, las fechas y el propietario los gestiona el sistema de ficheros, que es independiente del contenido del archivo. Por tanto el nombre se guarda en el sistema de ficheros.",
+      "options": {
+        "a": "Incorrecta. El contenido del archivo no incluye su nombre; como mucho puede llevar metadatos como un título, que no es el nombre.",
+        "b": "Correcta. El nombre es uno de los datos que el sistema de ficheros guarda sobre el archivo.",
+        "c": "Incorrecta. El MBR (Master Boot Record) guarda el código de arranque y la tabla de particiones, no nombres de archivos.",
+        "d": "Incorrecta. La opción b es correcta."
+      }
+    },
+    "forense-t05-03": {
+      "section": "firmas",
+      "reasoning": "La firma o magic number se define por dos rasgos: dónde está (al principio del archivo) y qué indica (el tipo de archivo). Hay que buscar la opción que combine ambos. Las firmas de final existen en algunos formatos como JPG, pero no son la definición de firma.",
+      "options": {
+        "a": "Incorrecta. Falla en los dos rasgos: no está al final ni identifica la función.",
+        "b": "Incorrecta. Identifica el tipo, pero la firma está al principio; la firma de final es un complemento de algunos formatos.",
+        "c": "Incorrecta. Está al principio, pero identifica el tipo de archivo, no su función.",
+        "d": "Correcta. Bytes al principio del archivo que identifican el tipo de archivo que es."
+      }
+    },
+    "forense-t05-04": {
+      "section": "metadatos",
+      "reasoning": "El temario define los metadatos como datos que describen a otros datos y aclara que forman parte del propio archivo y que no deben confundirse con la información que guarda el sistema de ficheros. Por tanto la opción correcta es la definición literal, y las que hablan del sistema de ficheros describen otra cosa.",
+      "options": {
+        "a": "Correcta. Es la definición literal: datos que describen a otros datos.",
+        "b": "Incorrecta. La información que guarda el sistema de ficheros (nombre, fechas, propietario) es justo lo que no hay que confundir con los metadatos del archivo.",
+        "c": "Incorrecta. Describir los archivos desde el sistema de ficheros es, de nuevo, la información del sistema de ficheros, no los metadatos.",
+        "d": "Incorrecta. La opción a es correcta."
+      }
+    },
+    "forense-t05-05": {
+      "section": "que-se-recupera",
+      "reasoning": "Mover un archivo a la papelera de reciclaje no lo borra: solo lo traslada a una carpeta especial. El contenido y su entrada en el sistema de ficheros siguen intactos, así que la tabla 1 indica que se recupera todo, y la tabla 2 que ni siquiera hace falta una técnica de recuperación.",
+      "options": {
+        "a": "Correcta. Se recupera todo: el contenido y los datos asociados que guarda el sistema de ficheros.",
+        "b": "Incorrecta. Recuperar solo el contenido corresponde a cuando se ha eliminado la entrada o el enlace del índice.",
+        "c": "Incorrecta. No hay ningún escenario en el que se recuperen solo los datos asociados sin el contenido.",
+        "d": "Incorrecta. La opción a es correcta."
+      }
+    },
+    "forense-t05-06": {
+      "section": "que-se-recupera",
+      "reasoning": "Si el archivo solo se marca como borrado en el índice, la entrada sigue existiendo (como una ficha tachada): conserva el nombre (salvo quizá la primera letra en FAT), las fechas, la ubicación y el tamaño. Siguiendo ese enlace con una recuperación básica se obtiene el contenido y los datos asociados, siempre que no se haya sobrescrito nada.",
+      "options": {
+        "a": "Correcta. Con la entrada solo marcada, la tabla 1 dice que se recupera todo: contenido y datos asociados.",
+        "b": "Incorrecta. Solo el contenido es lo que queda cuando la entrada o el enlace se han eliminado, no cuando solo se marca.",
+        "c": "Incorrecta. No se recuperan los datos asociados sin el contenido.",
+        "d": "Incorrecta. La opción a es correcta."
+      }
+    },
+    "forense-t05-07": {
+      "section": "que-se-recupera",
+      "reasoning": "Los datos asociados (nombre, ruta, fechas) viven en la entrada del índice. Si esa entrada se elimina, esos datos se pierden. Los bytes del contenido pueden seguir en el disco y rescatarse con una recuperación en bruto, buscando la firma. Por eso solo queda el contenido.",
+      "options": {
+        "a": "Incorrecta. Al perderse la entrada se pierden también el nombre, la ruta y las fechas; no se recupera todo.",
+        "b": "Correcta. Se recupera únicamente el contenido del archivo, no los datos asociados.",
+        "c": "Incorrecta. Es al revés: los datos asociados son justamente lo que se pierde.",
+        "d": "Incorrecta. La opción b es correcta."
+      }
+    },
+    "forense-t05-08": {
+      "section": "que-se-recupera",
+      "reasoning": "Sobrescribir significa que nuevos datos han ocupado parte del espacio del archivo. Lo pisado ya no existe; lo que no se pisó puede rescatarse. Por eso lo recuperable depende de cuánta información se haya sobrescrito: una parte del archivo o, si se sobrescribió del todo, nada.",
+      "options": {
+        "a": "Incorrecta. Los bytes sobrescritos se han perdido; no se puede recuperar todo.",
+        "b": "Correcta. En función de la cantidad sobrescrita, es posible recuperar una parte del archivo.",
+        "c": "Incorrecta. Ni siquiera el contenido completo está garantizado: parte de él ha sido reemplazada.",
+        "d": "Incorrecta. La opción b es correcta."
+      }
+    },
+    "forense-t05-09": {
+      "section": "basica-bruto",
+      "reasoning": "Hay que distinguir las dos técnicas. La básica usa programas que acceden a bajo nivel al sistema de ficheros y muestran los archivos existentes y los marcados como eliminados. La recuperación en bruto no depende del sistema de ficheros: recorre todo el dispositivo, o una partición, buscando firmas de archivo.",
+      "options": {
+        "a": "Incorrecta. Mostrar los archivos marcados como eliminados desde el sistema de ficheros es la recuperación básica.",
+        "b": "Incorrecta. Mostrar los archivos existentes desde el sistema de ficheros también describe la recuperación básica.",
+        "c": "Correcta. La recuperación en bruto busca firmas de archivo a lo largo de todo el dispositivo o de una partición concreta.",
+        "d": "Incorrecta. La opción c es correcta."
+      }
+    },
+    "forense-t05-10": {
+      "section": "ssd-desgaste",
+      "reasoning": "El temario señala dos características de los SSD que más afectan a la recuperación: la nivelación del desgaste, que fragmenta los datos, y el recolector de basura con el comando TRIM, que borran físicamente los bloques descartados. Como las tres opciones forman parte de esa lista, la respuesta es todas.",
+      "options": {
+        "a": "Incorrecta. Afecta, pero no es la única característica.",
+        "b": "Incorrecta. Afecta, pero trabaja junto a TRIM y a la nivelación del desgaste.",
+        "c": "Incorrecta. Afecta, pero solo es una de las tres.",
+        "d": "Correcta. Nivelación del desgaste, recolector de basura y TRIM son las características que más impacto tienen."
+      }
+    },
+    "forense-t05-11": {
+      "section": "firmas",
+      "reasoning": "La firma o número mágico es un conjunto de bytes característicos, al principio del archivo, que permiten identificar su formato. No tiene relación con fechas, nombres ni propietarios, que son datos del sistema de ficheros.",
+      "options": {
+        "a": "Correcta. Son bytes característicos que identifican el formato del archivo.",
+        "b": "Incorrecta. La fecha de última apertura la guarda el sistema de ficheros, no la firma.",
+        "c": "Incorrecta. La extensión forma parte del nombre y puede cambiarse sin tocar la firma.",
+        "d": "Incorrecta. El propietario es un dato del sistema de ficheros."
+      }
+    },
+    "forense-t05-12": {
+      "section": "firmas",
+      "reasoning": "La extensión es parte del nombre, que vive en el sistema de ficheros. Cambiarla es como cambiar el nombre: no se toca ni un byte del contenido. La imagen sigue siendo la misma imagen, con su misma firma.",
+      "options": {
+        "a": "Incorrecta. Renombrar no convierte el formato; para eso hace falta un programa que reescriba los datos.",
+        "b": "Incorrecta. Cambiar el nombre no borra ni sobrescribe el contenido.",
+        "c": "Correcta. El contenido permanece igual aunque cambie su nombre visible.",
+        "d": "Incorrecta. La cabecera, y con ella la firma, no se modifica al cambiar la extensión."
+      }
+    },
+    "forense-t05-13": {
+      "section": "metadatos",
+      "reasoning": "Los metadatos son datos que describen a otros datos: en un archivo, sus características o su contenido, como autor, fechas, descripción o coordenadas. No son bloques libres, ni lo que se imprime, ni el nombre y la ruta del sistema de ficheros.",
+      "options": {
+        "a": "Incorrecta. Las referencias a bloques libres son estructuras del sistema de ficheros, no metadatos del archivo.",
+        "b": "Correcta. Son datos que describen el contenido o las características del archivo.",
+        "c": "Incorrecta. Los metadatos normalmente no se ven al imprimir; no son el contenido visible.",
+        "d": "Incorrecta. El nombre y la ruta son información del sistema de ficheros, que no hay que confundir con los metadatos."
+      }
+    },
+    "forense-t05-14": {
+      "section": "borrado",
+      "reasoning": "Borrar físicamente obligaría a escribir ceros sobre todo el archivo, y tardaría tanto como copiarlo. Por eso el borrado normal solo marca el archivo como eliminado (o quita su enlace) y declara su espacio como disponible. Los datos siguen ahí hasta que algo los sobrescribe.",
+      "options": {
+        "a": "Incorrecta. Poner todo a ceros es justo lo que el sistema evita por ser lento.",
+        "b": "Incorrecta. El borrado no crea copias de respaldo en ningún sitio.",
+        "c": "Correcta. Marca las referencias o el espacio como disponibles sin sobrescribir necesariamente los datos.",
+        "d": "Incorrecta. Se puede borrar sin pasar por la papelera, y la papelera no es un borrado sino un traslado."
+      }
+    },
+    "forense-t05-15": {
+      "section": "basica-bruto",
+      "reasoning": "La recuperación en bruto o file carving recorre los datos del soporte buscando firmas de archivo. Su ventaja es que no necesita el enlace del sistema de ficheros, así que funciona aunque la entrada se haya perdido. A cambio, solo recupera el contenido.",
+      "options": {
+        "a": "Incorrecta. No recupera atributos originales ni trabaja a partir del nombre; justamente pierde el nombre.",
+        "b": "Correcta. Busca patrones (firmas) en los datos sin depender de un enlace intacto del sistema de ficheros.",
+        "c": "Incorrecta. No descifra nada; si el archivo está cifrado, sin la clave seguirá ilegible.",
+        "d": "Incorrecta. Necesitar la referencia de directorio intacta describe la recuperación básica."
+      }
+    },
+    "forense-t05-16": {
+      "section": "ssd-desgaste",
+      "reasoning": "Por definición, una unidad de estado sólido usa memorias flash para almacenar datos en lugar de los discos magnéticos de los discos duros convencionales. Las demás opciones describen otros soportes.",
+      "options": {
+        "a": "Incorrecta. Los platos magnéticos giratorios son los del disco duro tradicional.",
+        "b": "Incorrecta. La cinta magnética secuencial es un soporte de copias de seguridad, no un SSD.",
+        "c": "Incorrecta. La RAM pierde los datos al apagar; la flash de un SSD los conserva.",
+        "d": "Correcta. El SSD almacena los datos en memoria flash."
+      }
+    },
+    "forense-t05-17": {
+      "section": "metadatos",
+      "reasoning": "En el ejemplo de la foto JPG del temario, el título, el autor, la fecha de captura, el GPS y la cámara son metadatos internos; el nombre del archivo, sus fechas de creación, modificación y acceso, y su propietario los guarda el sistema de ficheros. Entre las opciones, solo el nombre y la ruta pertenecen al sistema de ficheros.",
+      "options": {
+        "a": "Incorrecta. La marca de la cámara es un metadato Exif guardado dentro de la foto.",
+        "b": "Incorrecta. El título es un metadato interno y no tiene por qué coincidir con el nombre del archivo.",
+        "c": "Incorrecta. Las coordenadas GPS son metadatos incorporados a la imagen.",
+        "d": "Correcta. El nombre del archivo y su ruta los mantiene el sistema de ficheros."
+      }
+    },
+    "forense-t05-18": {
+      "section": "firmas",
+      "reasoning": "El temario presenta el comando file de Linux y macOS como la forma rápida de analizar la firma de un archivo y mostrar qué tipo de archivo es, sin fiarse de la extensión. No repara datos ni identifica personas.",
+      "options": {
+        "a": "Incorrecta. file solo lee e identifica; no puede reconstruir zonas sobrescritas.",
+        "b": "Incorrecta. Justamente no se queda en la extensión: analiza el contenido.",
+        "c": "Correcta. Examina el contenido (la firma) para indicar el tipo de archivo.",
+        "d": "Incorrecta. Identificar el formato no dice nada de quién escribió el documento."
+      }
+    },
+    "forense-t05-19": {
+      "section": "borrado",
+      "reasoning": "Tras el borrado, el espacio del archivo queda libre y otras escrituras pueden ocuparlo. Los bytes reemplazados se pierden. Según cuánto se pise, el archivo queda parcial o totalmente irrecuperable.",
+      "options": {
+        "a": "Incorrecta. La sobrescritura afecta a los bytes del contenido, no solo al nombre.",
+        "b": "Correcta. Puede volver el archivo parcial o totalmente irrecuperable.",
+        "c": "Incorrecta. No afecta solo a las fechas: modifica los bytes del archivo.",
+        "d": "Incorrecta. Lo sobrescrito no se puede recuperar íntegramente."
+      }
+    },
+    "forense-t05-20": {
+      "section": "borrado",
+      "reasoning": "En los archivos cifrados, comprimidos, ejecutables y algunas bases de datos, el contenido depende de ciertas estructuras internas. Si esas estructuras se pierden, aunque se recupere el resto del archivo la información es ilegible.",
+      "options": {
+        "a": "Incorrecta. La extensión no impide recuperar nada; es solo parte del nombre.",
+        "b": "Correcta. Si se pierden estructuras necesarias, todo el conjunto puede quedar ilegible.",
+        "c": "Incorrecta. Ningún archivo guarda una copia completa de sí mismo en la cabecera.",
+        "d": "Incorrecta. Es al contrario: la recuperación parcial puede perder justo esas estructuras esenciales."
+      }
+    },
+    "forense-t05-21": {
+      "section": "basica-bruto",
+      "reasoning": "La recuperación en bruto encuentra los archivos por su firma, sin pasar por el sistema de ficheros. Por eso recupera el contenido pero no el nombre, la ruta, las fechas ni el propietario, que estaban en el sistema de ficheros. Además puede dar falsos positivos.",
+      "options": {
+        "a": "Incorrecta. El temario advierte expresamente de que puede producir falsos positivos.",
+        "b": "Incorrecta. Precisamente pierde nombres, rutas y propietarios.",
+        "c": "Correcta. Puede recuperar el contenido sin conservar los nombres ni los atributos originales.",
+        "d": "Incorrecta. Su ventaja es recuperar archivos que ya no aparecen en ningún listado."
+      }
+    },
+    "forense-t05-22": {
+      "section": "ssd-desgaste",
+      "reasoning": "Cada bloque de memoria flash soporta un número limitado de ciclos. La nivelación del desgaste reparte las escrituras por todos los bloques para que se gasten por igual y ninguno falle antes que los demás.",
+      "options": {
+        "a": "Correcta. Distribuye el uso de los bloques para evitar un desgaste desigual.",
+        "b": "Incorrecta. No es una función de recuperación ni trabaja con nombres de archivo.",
+        "c": "Incorrecta. Hace lo contrario: dispersa los datos y aumenta la fragmentación.",
+        "d": "Incorrecta. Mueve los datos entre bloques para repartir el desgaste; no los deja fijos."
+      }
+    },
+    "forense-t05-23": {
+      "section": "trim",
+      "reasoning": "Un SSD no puede escribir sobre un bloque ocupado sin borrarlo antes. Con TRIM, el sistema operativo le indica qué bloques están marcados como borrados, y el recolector de basura los elimina físicamente cuando el disco está inactivo.",
+      "options": {
+        "a": "Incorrecta. TRIM no tiene nada que ver con propietarios ni con la recuperación de archivos.",
+        "b": "Incorrecta. Al contrario: alimenta el proceso interno de borrado.",
+        "c": "Incorrecta. No guarda copias; provoca que los bloques se borren de verdad.",
+        "d": "Correcta. Comunica qué bloques ya no están en uso para que el SSD los elimine internamente."
+      }
+    },
+    "forense-t05-24": {
+      "section": "firmas",
+      "reasoning": "La extensión .txt es solo parte del nombre y cualquiera puede cambiarla. Para saber qué es realmente el archivo hay que mirar su firma y su contenido: si empieza por FF D8 FF, es un JPG aunque se llame notas.txt.",
+      "options": {
+        "a": "Correcta. Comparar la firma y el contenido real descubre el formato verdadero.",
+        "b": "Incorrecta. Cambiar la extensión otra vez no comprueba nada; el contenido no cambia.",
+        "c": "Incorrecta. Buscar por extensión no sirve si la extensión es justo lo que se ha cambiado.",
+        "d": "Incorrecta. Aceptar la extensión es el error que el forense debe evitar."
+      }
+    },
+    "forense-t05-25": {
+      "section": "metadatos",
+      "reasoning": "Las coordenadas GPS de una foto son metadatos internos (Exif), guardados dentro del archivo. Ni las fechas del sistema de ficheros, ni el tamaño, ni el nombre de la carpeta contienen información geográfica fiable. Además hay que comprobar si esos metadatos existen en la foto concreta.",
+      "options": {
+        "a": "Incorrecta. Las fechas del sistema de ficheros no contienen coordenadas.",
+        "b": "Correcta. Hay que examinar los metadatos internos de ubicación, si existen.",
+        "c": "Incorrecta. El tamaño no aporta información sobre el lugar de captura.",
+        "d": "Incorrecta. El nombre de la carpeta lo pone cualquiera y no prueba nada."
+      }
+    },
+    "forense-t05-26": {
+      "section": "basica-bruto",
+      "reasoning": "Si el enlace del sistema de ficheros se ha perdido, la recuperación básica no tiene por dónde empezar. La recuperación en bruto no lo necesita: busca firmas en todo el soporte y rescata el contenido que siga presente.",
+      "options": {
+        "a": "Incorrecta. Sin examinar los bloques de datos no se recupera ningún contenido.",
+        "b": "Incorrecta. La recuperación básica necesita un enlace intacto, y aquí se ha perdido.",
+        "c": "Incorrecta. El documento ya no es visible en el directorio; limitarse a lo visible no lo encuentra.",
+        "d": "Correcta. La recuperación en bruto basada en firmas no depende del enlace."
+      }
+    },
+    "forense-t05-27": {
+      "section": "basica-bruto",
+      "reasoning": "La recuperación en bruto puede devolver archivos parcialmente sobrescritos o falsos positivos (datos que la herramienta tomó por un archivo sin serlo). Un resultado que no se abre y tiene bytes incoherentes encaja con cualquiera de los dos, y hay que verificarlo antes de usarlo.",
+      "options": {
+        "a": "Correcta. Puede ser un falso positivo o un archivo parcialmente sobrescrito.",
+        "b": "Incorrecta. No todo resultado es un archivo válido; por eso existen los falsos positivos.",
+        "c": "Incorrecta. El nombre lo genera la herramienta; no prueba que el archivo esté íntegro.",
+        "d": "Incorrecta. Que no se abra no demuestra que no existiera; puede estar dañado por la sobrescritura."
+      }
+    },
+    "forense-t05-28": {
+      "section": "fat-ejemplo",
+      "reasoning": "Un archivo ocupa clústeres completos. 9000 / 4096 = 2,2. Dos clústeres solo dan 8192 bytes y faltarían 808, así que hace falta un tercero. Se redondea siempre hacia arriba, igual que en el ejemplo de _ORMIGA.JPG.",
+      "options": {
+        "a": "Correcta. 9000 / 4096 = 2,2, que redondeado hacia arriba son tres clústeres.",
+        "b": "Incorrecta. Es redondear hacia abajo: dos clústeres solo almacenan 8192 bytes.",
+        "c": "Incorrecta. Sobra un clúster: tres ya dan 12288 bytes, más que suficiente.",
+        "d": "Incorrecta. Un clúster de 4096 bytes no da para 9000."
+      }
+    },
+    "forense-t05-29": {
+      "section": "ssd-desgaste",
+      "reasoning": "La nivelación del desgaste reparte los datos por todos los bloques. Eso fragmenta los archivos, y la recuperación en bruto, que busca una firma y lee a continuación, tiene muchas más dificultades para reconstruirlos.",
+      "options": {
+        "a": "Incorrecta. Provoca lo contrario: fragmentos dispersos.",
+        "b": "Incorrecta. Mueve los datos de un bloque a otro para repartir el uso.",
+        "c": "Correcta. Puede dificultar la reconstrucción mediante recuperación en bruto.",
+        "d": "Incorrecta. La fragmentación hace la reconstrucción más necesaria y más difícil."
+      }
+    },
+    "forense-t05-30": {
+      "section": "trim",
+      "reasoning": "Las herramientas que bloquean un SSD a bajo nivel impiden que el recolector de basura siga borrando a partir de ese momento. Pero lo que el SSD ya eliminó físicamente antes de la adquisición ha desaparecido: ninguna técnica posterior lo reconstruye. Eso es lo que hay que explicar al cliente.",
+      "options": {
+        "a": "Incorrecta. Otra copia solo copiará los bloques tal como están ahora, ya vacíos.",
+        "b": "Incorrecta. El hash solo comprueba la integridad; no crea ni recupera datos.",
+        "c": "Incorrecta. La protección actúa hacia delante; no garantiza recuperar lo borrado antes.",
+        "d": "Correcta. Bloquear el dispositivo ahora no reconstruye los datos que ya se borraron físicamente."
+      }
+    }
+  }
+}

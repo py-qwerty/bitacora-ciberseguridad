@@ -1,0 +1,1039 @@
+{
+  "course": "forense",
+  "number": 8,
+  "title": "Análisis forense de dispositivos móviles",
+  "minutes": 45,
+  "intro": {
+    "why": "Hoy casi cualquier caso pasa por un teléfono: un acoso por WhatsApp, una estafa por SMS, una foto que sitúa a alguien en un lugar o el rastro de las redes Wi-Fi a las que se conectó. Pero un móvil no es un disco duro: está cifrado, bloqueado y protegido para que nadie lea lo que no debe, y eso incluye al perito. Este tema explica qué partes de un móvil se pueden examinar, con qué métodos (de los más sencillos a los que exigen soldar el chip) y dónde están los datos que interesan en Android y en iOS.",
+    "before": [
+      "La **adquisición** es la fase forense en la que se hace una copia de la evidencia para trabajar sobre ella y no sobre el original; el **análisis** es el examen de esa copia.",
+      "Un **bloqueador de escritura** es un aparato o programa que deja leer un soporte pero impide escribir en él; en la informática forense clásica es la garantía de que el original no se toca.",
+      "Un **hash** es una «huella digital» de un archivo: un número que cambia por completo si cambia un solo bit. Sirve para demostrar que una copia es idéntica y no se ha alterado después.",
+      "Una **adquisición lógica** copia archivos y carpetas tal como el sistema los muestra; una **adquisición física** copia la memoria entera bit a bit, incluidos los huecos donde pueden quedar restos de archivos borrados.",
+      "**Android** (de Google, basado en Linux) e **iOS** (de Apple, el sistema del iPhone) son los dos sistemas operativos móviles dominantes, y se tratan de forma distinta."
+    ],
+    "goals": [
+      "Al terminar sabrás explicar por qué en un móvil no se puede cumplir la regla de «no modificar la evidencia» y qué limitaciones impone la seguridad del terminal.",
+      "Sabrás el orden de adquisición: tarjeta SIM, tarjeta de memoria y memoria del terminal.",
+      "Sabrás qué contiene una SIM (ICCID, IMSI, agenda, SMS), qué se necesita para leerla y por qué una eSIM no se adquiere.",
+      "Sabrás comparar las seis vías de adquisición del terminal: backup del fabricante, Magnet ACQUIRE, adquisición lógica de iOS, ADB, Custom Recovery y métodos avanzados (JTAG, Direct eMMC y Chip Off).",
+      "Sabrás leer un comando dd y distinguir su origen (if) de su destino (of).",
+      "Sabrás analizar una adquisición Android con Autopsy y su plugin Android Analyzer, y dónde están las bases de datos más útiles.",
+      "Sabrás por qué un iPhone se analiza casi siempre a partir de una copia de seguridad, y qué son las bases SQLite y los archivos Plist."
+    ]
+  },
+  "sections": [
+    {
+      "id": "peculiaridades",
+      "title": "Por qué un móvil no es un disco duro",
+      "pages": [4, 6],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Cuando un perito examina un ordenador, saca el disco duro, lo conecta a un bloqueador de escritura y hace una copia exacta sin cambiar ni un bit. Esa es la regla de oro de la informática forense: **no modificar la evidencia**. Con un teléfono, una tableta o un smartwatch (reloj inteligente) esa regla **no se puede cumplir**: es imposible adquirir un dispositivo móvil sin alterar algo de su contenido."
+        },
+        {
+          "type": "analogy",
+          "text": "Copiar un disco duro es como fotocopiar un libro que te han prestado: lo abres, lo copias y lo devuelves intacto. Copiar un móvil es como entrevistar a un testigo que solo contesta si le hablas: para que te dé la información tienes que encenderlo, desbloquearlo y conectarle un programa, y todo eso deja huella (registros nuevos, archivos temporales, cambios de estado). Lo importante es que la huella sea mínima y quede **documentada**."
+        },
+        {
+          "type": "list",
+          "title": "Los tres grandes obstáculos",
+          "items": [
+            "**Limitaciones de seguridad.** El sistema no da acceso completo a la memoria. En la mayoría de los casos no se puede hacer una copia completa como la de un disco duro.",
+            "**Solo se ve lo que ve el usuario.** Salvo que el terminal esté rooteado (o se pueda rootear), solo se obtiene la información disponible para el usuario: nada de archivos a los que solo accede el sistema y nada de recuperar archivos borrados «en bruto» (alguno se puede recuperar, pero no por tallado de la memoria completa).",
+            "**El bloqueo del terminal.** Si no se conoce el patrón, PIN o contraseña, no se puede adquirir, salvo que se explote una vulnerabilidad conocida o se use una herramienta comercial que lo haga."
+          ]
+        },
+        {
+          "type": "term",
+          "term": "Root (rootear)",
+          "text": "Root es el superusuario de los sistemas tipo Linux, la cuenta que puede hacerlo todo. Rootear un Android es conseguir esos privilegios, que de fábrica están vetados al usuario. Con root se puede leer toda la memoria; sin él, solo la parte del usuario."
+        },
+        {
+          "type": "term",
+          "term": "PIN (Personal Identification Number) y patrón de desbloqueo",
+          "text": "El PIN es un código numérico; el patrón es el dibujo que se traza sobre una cuadrícula de puntos. El temario llama «patrón» de forma genérica a cualquier secreto de desbloqueo (PIN, contraseña, dibujo)."
+        },
+        {
+          "type": "p",
+          "text": "Rootear es una acción delicada: cambia el sistema y puede dañar la evidencia. Por eso, si se puede y es necesario para hacer la pericial con garantías, hay que pedir **permiso expreso al juez o al propietario** del dispositivo."
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico",
+          "text": "La policía entrega un Android bloqueado de un sospechoso. Si el perito no tiene el código y no hay una vulnerabilidad conocida para ese modelo, quizá solo pueda adquirir la SIM y la microSD. Si el sospechoso facilita el código, podrá hacer una adquisición lógica de la memoria del usuario. Si además el juez autoriza rootearlo, podrá ir más allá. El informe debe decir qué se obtuvo y qué no, y por qué."
+        },
+        {
+          "type": "exam",
+          "text": "Pregunta típica: ¿qué limitación diferencia un móvil de un disco extraído? Respuesta: las **restricciones de acceso** pueden impedir adquirir toda su memoria. Trampas: «la copia de seguridad incluye siempre los datos eliminados» (falso, sin root no), «acceso físico completo sin privilegios» (justo lo contrario) y «se protege la memoria interna con el mismo bloqueador externo que un disco» (no: no se puede adquirir un móvil sin alterarlo)."
+        },
+        {
+          "type": "key",
+          "text": "En telefonía forense no existe la adquisición sin cambios: la seguridad limita lo que se puede copiar, el bloqueo puede impedirlo y cualquier escalada de privilegios necesita autorización."
+        }
+      ]
+    },
+    {
+      "id": "procedimiento",
+      "title": "El orden de adquisición: SIM, tarjeta y terminal",
+      "pages": [7, 7],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Un móvil no es una sola fuente de datos, sino hasta tres. El procedimiento las adquiere por separado y siempre en el mismo orden."
+        },
+        {
+          "type": "steps",
+          "title": "Procedimiento de adquisición de un móvil",
+          "items": [
+            "Adquirir la **tarjeta del operador** (la tarjeta SIM).",
+            "Adquirir la **tarjeta de memoria** (la microSD), si el teléfono la tiene.",
+            "Adquirir la **memoria del terminal** (la memoria interna). Si se conoce el patrón, con herramientas como Magnet ACQUIRE o el backup del fabricante; si no, explotando alguna vulnerabilidad conocida o con herramientas comerciales que lo permitan."
+          ]
+        },
+        {
+          "type": "analogy",
+          "text": "Piensa en registrar una cartera: primero sacas el DNI (la SIM, que dice quién es el abonado), después la libreta de fotos suelta (la microSD) y por último examinas el bolso entero (la memoria interna). Cada cosa se cataloga por separado."
+        },
+        {
+          "type": "p",
+          "text": "Las dos tarjetas se extraen antes porque son soportes independientes que se pueden copiar con su propio lector, y porque así no se mezclan con la adquisición del terminal (que, como verás, altera el teléfono)."
+        },
+        {
+          "type": "exam",
+          "text": "La respuesta correcta incluye **las tres** fuentes: tarjeta del operador, tarjeta de memoria (si existe) y memoria del terminal. Las trampas omiten una de ellas: «tarjeta del operador y memoria del terminal» (falta la microSD) o «tarjeta de memoria y memoria del terminal» (falta la SIM)."
+        },
+        {
+          "type": "key",
+          "text": "Orden fijo: SIM → tarjeta de memoria (si la hay) → memoria interna del terminal."
+        }
+      ]
+    },
+    {
+      "id": "tarjeta-sim",
+      "title": "La tarjeta SIM y la eSIM",
+      "pages": [7, 10],
+      "blocks": [
+        {
+          "type": "term",
+          "term": "SIM (Subscriber Identity Module, módulo de identidad del abonado)",
+          "text": "La pequeña tarjeta con chip que da el operador (Movistar, Vodafone…). Identifica la línea ante la red de telefonía. El temario la llama también «tarjeta del operador»."
+        },
+        {
+          "type": "list",
+          "title": "Peculiaridades de la SIM",
+          "items": [
+            "**Poca capacidad** de almacenamiento.",
+            "**Puede contener contactos, registro de llamadas y SMS** (mensajes de texto), aunque cada vez más los teléfonos guardan esa información en su propia memoria y no en la tarjeta.",
+            "**No contiene multimedia**: ni fotos, ni audio, ni vídeo.",
+            "Permite obtener dos códigos: el **ICCID** y el **IMSI**."
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Los dos identificadores que no hay que confundir",
+          "head": ["Código", "Qué significa", "Qué identifica"],
+          "rows": [
+            ["ICCID", "Integrated Circuit Card Identifier, identificador de la tarjeta de circuito integrado", "La **tarjeta** física (el plástico con chip). Es el número que viene impreso en ella."],
+            ["IMSI", "International Mobile Subscriber Identity, identidad internacional del abonado móvil", "La **línea** o abonado: el contrato con el operador."],
+            ["MSISDN", "Mobile Station International Subscriber Directory Number", "El número de teléfono asociado al abonado (el que marcas para llamar)."],
+            ["IMEI", "International Mobile Equipment Identity", "El **teléfono** (el aparato), no la tarjeta. Aparece en la base agent_sim.db de Magnet ACQUIRE."]
+          ]
+        },
+        {
+          "type": "analogy",
+          "text": "El ICCID es como el número de serie de tu tarjeta bancaria de plástico; el IMSI, como el número de tu cuenta. Si te cambian la tarjeta por una nueva, el ICCID cambia, pero la cuenta (la línea) sigue siendo la misma."
+        },
+        {
+          "type": "p",
+          "text": "Por dentro, la SIM se organiza de forma parecida a un disco con carpetas y archivos. La raíz es el **MF** (Master File, archivo maestro), como el directorio raíz de un sistema FAT. De ella cuelgan los **DF** (Dedicated File, archivos dedicados), que son como subcarpetas especializadas, y dentro están los **EF** (Elementary File, archivos elementales), que guardan los datos."
+        },
+        {
+          "type": "table",
+          "title": "Archivos importantes de la SIM",
+          "head": ["Archivo", "Qué guarda"],
+          "rows": [
+            ["DF (GSM) / DF (DCS 1800)", "La aplicación GSM (Global System for Mobile communications, el estándar de telefonía 2G)."],
+            ["DF (Telecom)", "Servicios del operador; dentro: EF (ADN) la agenda, EF (SMS) los mensajes, EF (MSISDN) el número del abonado."],
+            ["EF (ICCID)", "Identificador de la tarjeta."],
+            ["EF (IMSI)", "Identidad internacional del abonado móvil."],
+            ["EF (LND)", "Last Number Dialled: últimos números marcados."]
+          ]
+        },
+        {
+          "type": "list",
+          "title": "Qué hace falta para adquirir una SIM física",
+          "items": [
+            "Un **lector de tarjetas SIM**.",
+            "Un **software de adquisición** (por ejemplo, simcon o SIM Explorer).",
+            "El **PIN y/o PUK** de la tarjeta. Sin él no hay acceso: la herramienta lo pide antes de empezar."
+          ]
+        },
+        {
+          "type": "term",
+          "term": "PUK (Personal Unblocking Key, clave personal de desbloqueo)",
+          "text": "Código de 8 cifras que da el operador para desbloquear la SIM cuando se ha fallado el PIN demasiadas veces."
+        },
+        {
+          "type": "p",
+          "text": "Por lo demás, se adquiere como cualquier dispositivo externo (un pendrive), solo que con otro software. Ojo: muchos datos de la SIM son registros de comunicación con las antenas, difíciles de interpretar. Lo recomendable es **pedírselos a la operadora a través de la autoridad judicial**."
+        },
+        {
+          "type": "term",
+          "term": "eSIM (SIM embebida o virtual)",
+          "text": "Evolución de la SIM en la que el chip va integrado en el hardware del teléfono: no hay que insertar ni cambiar ninguna tarjeta al cambiar de operador. **Una eSIM no se puede adquirir como tal**: no guarda información como la de una SIM clásica, solo mantiene el ICCID que la identifica."
+        },
+        {
+          "type": "exam",
+          "text": "Tres trampas habituales: (1) en «peculiaridades de la SIM» o «qué necesito para adquirirla» la respuesta suele ser **todas las anteriores** (poca capacidad + contactos + llamadas/SMS; lector + software + PIN/PUK). (2) Si preguntan qué componente guarda contactos y datos de la línea pero **no fotos**, es la SIM, no la microSD. (3) ICCID = tarjeta, IMSI = abonado; ninguno es el número de teléfono ni una contraseña."
+        },
+        {
+          "type": "key",
+          "text": "La SIM guarda poco (contactos, SMS, últimas llamadas, ICCID e IMSI) y nada multimedia; se lee con lector, software y PIN/PUK. La eSIM no se adquiere."
+        }
+      ]
+    },
+    {
+      "id": "tarjeta-memoria",
+      "title": "La tarjeta de memoria: como un pendrive",
+      "pages": [10, 11],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "No todos los teléfonos llevan tarjeta de memoria (la típica **microSD**), pero si la llevan hay que analizarla, porque suele contener mucha información."
+        },
+        {
+          "type": "list",
+          "title": "Qué se puede encontrar en una microSD",
+          "items": [
+            "Archivos multimedia: fotos, vídeos, música.",
+            "APK instaladas por el usuario (APK, Android Package: el archivo instalador de una aplicación Android, como un .exe en Windows).",
+            "Descargas.",
+            "Bases de datos.",
+            "Cachés o registros de aplicaciones (archivos temporales y logs)."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Aquí sí vuelve la forense clásica: la microSD es un **soporte de almacenamiento extraíble** y se adquiere igual que un pendrive, que la norma **ISO/IEC 27037** (guía internacional para identificar, recoger, adquirir y preservar evidencias digitales) incluye entre los procedimientos especiales de adquisición."
+        },
+        {
+          "type": "list",
+          "title": "Qué hace falta",
+          "items": [
+            "Un **lector de tarjetas**: mejor si tiene **bloqueo contra escritura por hardware**; si no, se usa un bloqueo por software.",
+            "Un **software de adquisición**, como FTK Imager (herramienta gratuita de AccessData para hacer imágenes forenses) o dc3dd (versión forense del comando dd que calcula hashes mientras copia)."
+          ]
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico",
+          "text": "En un caso de difusión de fotos íntimas, la galería del teléfono está vacía, pero la microSD contiene la carpeta de descargas de una app de mensajería con las imágenes. El perito saca la tarjeta, la conecta a un lector con bloqueo de escritura, la copia con FTK Imager y calcula el hash: esa copia sí es idéntica al original."
+        },
+        {
+          "type": "exam",
+          "text": "Si preguntan qué hay en la tarjeta de memoria, suele ser **todas las anteriores** (multimedia, descargas, cachés). Si preguntan cómo se aborda, la respuesta es «como un soporte que puede adquirirse **con protección contra escritura**». Trampas: «no requiere controles de integridad por ser extraíble», «es idéntica a la SIM» o «solo se copia mediante la agenda»."
+        },
+        {
+          "type": "key",
+          "text": "La microSD es la excepción amable: se saca y se copia como un pendrive, con bloqueo de escritura y hash."
+        }
+      ]
+    },
+    {
+      "id": "vias-terminal",
+      "title": "Las seis vías para adquirir la memoria del terminal",
+      "pages": [11, 12],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "La memoria interna es la fuente más rica y cada vez más grande. Pero por la seguridad del teléfono, a menudo solo se puede copiar la parte disponible para el usuario, y solo si se tiene acceso (patrón, contraseña…). Hay seis vías, ordenadas de más sencilla a más agresiva."
+        },
+        {
+          "type": "table",
+          "title": "Comparativa de métodos",
+          "head": ["Vía", "Sistema", "Necesita", "Qué obtiene"],
+          "rows": [
+            ["1. Backup del fabricante", "Android e iOS", "Teléfono desbloqueado", "Lo básico, rápido."],
+            ["2. Magnet ACQUIRE", "Android e iOS", "Desbloqueado y depuración USB", "Más información que el backup; root permite la completa."],
+            ["3. Adquisición lógica de iOS", "Solo iOS", "Desbloqueado y confianza con el PC", "Como el backup, pero con herramientas forenses (Dr. Fone)."],
+            ["4. ADB", "Solo Android", "Depuración USB y root", "Toda la memoria si hay acceso privilegiado."],
+            ["5. Custom Recovery", "Solo Android", "Bootloader desbloqueado y autorización", "Toda la memoria si hay acceso privilegiado."],
+            ["6. Métodos avanzados (JTAG, Direct eMMC, Chip Off)", "Cualquiera", "Microsoldadura, autorización judicial", "Volcado directo del chip, con riesgo de destruirlo."]
+          ]
+        },
+        {
+          "type": "analogy",
+          "text": "Es como entrar en una casa: con las llaves (el código) entras por la puerta (backup o Magnet). Sin llaves puedes cambiar la cerradura (Custom Recovery) o pedir un pasadizo de servicio (ADB con root). Y si todo falla, te llevas la caja fuerte al taller y la abres con soplete (Chip Off)."
+        },
+        {
+          "type": "p",
+          "text": "Las dos más sencillas (backup del fabricante y Magnet ACQUIRE u otra herramienta para iOS) exigen **conocer el código de desbloqueo**. ADB y Custom Recovery, solo para Android, dan más información si se consigue acceso privilegiado, pero las mejoras continuas de seguridad las hacen cada vez más difíciles. Los métodos avanzados acceden al chip directamente, pero requieren conocimientos de electrónica y microsoldadura y suelen encargarse a empresas especializadas."
+        },
+        {
+          "type": "exam",
+          "text": "«Si tengo el patrón, ¿cuál es la opción más sencilla?» → una herramienta como **Magnet ACQUIRE** (o el backup del fabricante). Trampas: Chip Off (la más destructiva, solo cuando nada más funciona) y Custom Recovery (invasivo, para cuando **no** se tiene el código)."
+        },
+        {
+          "type": "key",
+          "text": "Con código: backup o Magnet ACQUIRE. Sin código y en Android: ADB o Custom Recovery con privilegios. Último recurso: JTAG, Direct eMMC o Chip Off."
+        }
+      ]
+    },
+    {
+      "id": "backup-fabricante",
+      "title": "Adquisición con el backup del fabricante",
+      "pages": [13, 14],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Es la forma **más sencilla**: usar el programa oficial de copia de seguridad del fabricante (iTunes para iPhone, Smart Switch para Samsung…). Da información básica pero muy útil: fotos y vídeos, registro de llamadas, contactos, algunas conversaciones de mensajería como WhatsApp, correos y notas de voz."
+        },
+        {
+          "type": "p",
+          "text": "Para analizar el resultado: si es un **Android**, vale cualquier herramienta forense como **Autopsy**; si es un **iPhone**, hacen falta herramientas específicas como **Dr. Fone** o **iBackup Viewer**."
+        },
+        {
+          "type": "p",
+          "text": "Cada suite guarda la copia en un sitio distinto, y hay que localizarla. Por ejemplo, iTunes:"
+        },
+        {
+          "type": "code",
+          "title": "Ubicaciones de los backups de iTunes",
+          "text": "Windows:\n  C:\\Users\\[Usuario]\\AppData\\Roaming\\Apple Computer\\MobileSync\\Backup\\\n  C:\\Users\\[Usuario]\\Apple\\MobileSync\\Backup\nmacOS:\n  ~/Library/Application Support/MobileSync/Backup"
+        },
+        {
+          "type": "steps",
+          "title": "Pasos de la adquisición lógica por backup",
+          "items": [
+            "Extraer la tarjeta de memoria y la SIM.",
+            "Poner el terminal en **modo avión** (si no se hizo al recogerlo y no hay inhibidores de frecuencia), para aislarlo de la red.",
+            "**No bloquear la escritura** de los puertos USB: este método necesita hablar con el teléfono y puede alterar la evidencia.",
+            "El teléfono debe estar **encendido y desbloqueado**.",
+            "Activar el modo **MTP** (Media Transfer Protocol, el modo «transferencia de archivos» que aparece al conectar el móvil al PC).",
+            "Ejecutar el backup con la suite del fabricante."
+          ]
+        },
+        {
+          "type": "term",
+          "term": "Inhibidor de frecuencia",
+          "text": "Aparato que bloquea las señales de radio (móvil, Wi-Fi, Bluetooth) en una zona. Junto con las bolsas de Faraday, evita que el teléfono reciba mensajes nuevos o una orden de borrado remoto durante la intervención."
+        },
+        {
+          "type": "analogy",
+          "text": "Poner el móvil en modo avión es como cerrar la puerta de la sala de interrogatorios: nadie de fuera puede entrar a cambiar el testimonio (un mensaje nuevo que sobreescribe uno viejo, un borrado remoto desde la cuenta de Google o de Apple)."
+        },
+        {
+          "type": "exam",
+          "text": "Dos preguntas frecuentes. ¿Por qué no se usa el bloqueo de escritura? Porque **el procedimiento necesita comunicarse con el terminal y puede modificarlo** (no porque «el móvil no necesite preservar integridad» ni porque «los cambios no se documenten»). ¿Por qué el modo avión? Para **reducir interacciones externas** durante la intervención; no quita el cifrado, ni el patrón, ni convierte la copia en física."
+        },
+        {
+          "type": "key",
+          "text": "El backup del fabricante es la vía sencilla para lo básico: teléfono desbloqueado, en modo avión, sin bloqueo USB y en modo MTP."
+        }
+      ]
+    },
+    {
+      "id": "magnet-ios",
+      "title": "Magnet ACQUIRE y la adquisición lógica de iOS",
+      "pages": [14, 17],
+      "blocks": [
+        {
+          "type": "term",
+          "term": "Magnet ACQUIRE",
+          "text": "Herramienta forense gratuita de Magnet Forensics para adquirir móviles y discos. Es de las más sencillas y usadas cuando se conoce el código de desbloqueo."
+        },
+        {
+          "type": "p",
+          "text": "Los pasos se parecen al backup, pero además del teléfono **desbloqueado** hace falta la **depuración por USB activada** (una opción de las «opciones de desarrollador» de Android que permite a un PC dar órdenes al teléfono). Así la aplicación reconoce el terminal y lo adquiere."
+        },
+        {
+          "type": "table",
+          "title": "Los dos modos de Magnet ACQUIRE",
+          "head": ["Modo", "Cuándo se puede usar", "Alcance"],
+          "rows": [
+            ["Rápida", "Siempre (sin root)", "La información accesible al usuario."],
+            ["Completa", "Solo si somos **root** (el teléfono ya estaba rooteado o se ha explotado una vulnerabilidad)", "Toda la información."]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Al ser una herramienta forense, al terminar **calcula los hashes** de lo adquirido y **genera logs** (registros) de lo que ha hecho. Los hashes permiten verificar después que la copia no ha cambiado; los logs dan trazabilidad (qué se hizo, cuándo y cómo). Lo que no hacen es demostrar que el teléfono original no cambió durante la captura, ni que se haya copiado todo."
+        },
+        {
+          "type": "p",
+          "text": "Un **iPhone** se puede adquirir con el backup de iTunes, con Magnet ACQUIRE o con herramientas específicas como **Dr. Fone**. La ventaja de estas últimas es que se centran en la información que normalmente se necesita y simplifican todo el proceso. Dr. Fone es comercial pero barato y fácil, buena puerta de entrada al forense móvil."
+        },
+        {
+          "type": "steps",
+          "title": "Recuperación con Dr. Fone",
+          "items": [
+            "Conectar el iPhone al equipo; puede pedir el código de desbloqueo y que se acepte «Confiar en este ordenador».",
+            "Elegir la herramienta de recuperación y marcar qué se quiere: mensajes, contactos, llamadas, notas, calendario, WhatsApp, Viber, marcadores de Safari… incluidos archivos eliminados si es posible.",
+            "Pulsar «Iniciar escaneo».",
+            "Revisar por categorías la información encontrada. En mensajería (WhatsApp, Viber, KIK) obtiene también los **adjuntos** enviados y recibidos."
+          ]
+        },
+        {
+          "type": "exam",
+          "text": "¿Qué determina que Magnet ACQUIRE haga una adquisición completa de Android? **Tener privilegios de superusuario (root)**; no la cantidad de contactos, ni dónde se guarda la copia, ni su extensión. Y ¿para qué sirven hashes y logs? Para **verificar los datos adquiridos y documentar el proceso**; trampa: «demuestran que el original no cambió» o «garantizan que se adquirió todo»."
+        },
+        {
+          "type": "key",
+          "text": "Magnet ACQUIRE: desbloqueo + depuración USB; rápida sin root, completa con root; genera hashes y logs. Para iOS, Dr. Fone simplifica la recuperación."
+        }
+      ]
+    },
+    {
+      "id": "adb",
+      "title": "Adquisición mediante ADB y el comando dd",
+      "pages": [17, 19],
+      "blocks": [
+        {
+          "type": "term",
+          "term": "ADB (Android Debug Bridge, puente de depuración de Android)",
+          "text": "Herramienta de línea de comandos de Google que comunica un PC con un dispositivo Android para depurarlo y darle órdenes. Es **exclusiva de Android**: no sirve para iPhone."
+        },
+        {
+          "type": "list",
+          "title": "Requisitos",
+          "items": [
+            "Drivers ADB en el equipo.",
+            "Las **Android SDK Platform Tools** instaladas (SDK, Software Development Kit: el paquete de herramientas de desarrollo de Android, que incluye adb).",
+            "**Depuración por USB** habilitada en el teléfono.",
+            "Ser **root** en el terminal.",
+            "**BusyBox** instalado en el teléfono: un paquete que reúne muchas utilidades de Linux y da una shell más completa, con el comando dd.",
+            "Un **soporte de salida** para la copia: normalmente una microSD borrada de forma segura conectada al teléfono, o enviar los datos por red con **netcat** (utilidad que manda datos de una máquina a otra por TCP/IP)."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Ser root es un arma de doble filo: da acceso total, pero es una acción potencialmente dañina para la evidencia. Lo recomendable es **pedir permiso expreso al juez**, explicando que solo se escalarán privilegios para adquirir la memoria."
+        },
+        {
+          "type": "p",
+          "text": "Hay que saber dónde buscar: las memorias aparecen en la carpeta **/dev**. Los **bloques** (la memoria completa) se llaman mmcblk0, mmcblk1… y cada bloque engloba varias **particiones** (sus divisiones), que se llaman como el bloque con «p» y un número (mmcblk0p1, mmcblk0p2…; el PDF lo escribe «mmcmlkp0», una errata)."
+        },
+        {
+          "type": "analogy",
+          "text": "El bloque es el edificio y las particiones, sus pisos. Copiar mmcblk0 es copiar el edificio entero; copiar una partición es copiar un solo piso."
+        },
+        {
+          "type": "code",
+          "title": "Secuencia de adquisición por ADB",
+          "text": "adb devices                 # 1. lista los dispositivos conectados\nadb shell                   # 2. abre una shell en el teléfono\nsu                          #    y se eleva a superusuario (el PDF lo resume como «adb shell /su»)\ncat /proc/partitions        # 3. lista bloques y particiones\ndd if=/dev/block/mmcblk0 of=/storage/307D-X/imagen.dd   # 4. copia el bloque 0 a la microSD"
+        },
+        {
+          "type": "term",
+          "term": "dd: if y of",
+          "text": "dd copia datos bit a bit. **if** (input file) es el **origen**: lo que se lee. **of** (output file) es el **destino**: donde se escribe. En el ejemplo, se lee el bloque 0 del teléfono y se escribe en imagen.dd dentro de la tarjeta. Al terminar, dd muestra un resumen de bloques leídos, copiados y bytes transferidos."
+        },
+        {
+          "type": "example",
+          "title": "Por qué importa no confundirlos",
+          "text": "Si alguien escribe por error dd if=/storage/307D-X/imagen.dd of=/dev/block/mmcblk0, estaría escribiendo el archivo de la tarjeta sobre la memoria del teléfono: destruiría la evidencia. Antes de pulsar Intro, se comprueba que if apunta a la evidencia y of al soporte de salida."
+        },
+        {
+          "type": "exam",
+          "text": "¿Se puede adquirir un iOS por ADB? **No, ADB solo vale para Android.** ¿Qué es ADB? Una interfaz de comunicación y depuración para interactuar con Android; no garantiza acceso sin depuración ni privilegios, ni es un formato de iPhone. En dd, recuerda: **i**f = **i**nput = origen; **o**f = **o**utput = destino."
+        },
+        {
+          "type": "key",
+          "text": "ADB es solo Android y exige depuración USB, root y BusyBox; se lista con cat /proc/partitions y se copia con dd if=origen of=destino."
+        }
+      ]
+    },
+    {
+      "id": "custom-recovery",
+      "title": "Adquisición mediante Custom Recovery",
+      "pages": [19, 21],
+      "blocks": [
+        {
+          "type": "term",
+          "term": "Partición de recuperación (recovery)",
+          "text": "Un «mini sistema operativo» independiente del principal que arranca el teléfono en modo recuperación (para restablecer de fábrica o instalar actualizaciones)."
+        },
+        {
+          "type": "term",
+          "term": "Custom Recovery (recuperación personalizada)",
+          "text": "Una **distribución específica que sustituye la partición de recuperación** del terminal y permite adquirir su información. La más común es **TWRP** (Team Win Recovery Project). No es un driver ni una herramienta de flasheo: es lo que se instala con ellas."
+        },
+        {
+          "type": "analogy",
+          "text": "Es como cambiar el taller de mantenimiento del edificio por uno tuyo: el inquilino (Android) sigue igual, pero cuando el edificio se pone en «modo mantenimiento», mandas tú y puedes copiar lo que quieras."
+        },
+        {
+          "type": "list",
+          "title": "A tener en cuenta",
+          "items": [
+            "Se **sustituye la partición recovery** del terminal: se modifica el teléfono.",
+            "Cada marca y modelo funciona de una manera.",
+            "El **bootloader** (el programa que arranca el teléfono y decide qué sistema cargar) debe estar desbloqueado; si no lo está, desbloquearlo suele **restaurar de fábrica** y borrar todo.",
+            "**No hace falta el código de bloqueo**, aunque el contenido leído puede estar cifrado.",
+            "Es potencialmente dañino: requiere experiencia, destreza y **autorización judicial**."
+          ]
+        },
+        {
+          "type": "list",
+          "title": "Herramientas",
+          "items": [
+            "Drivers del terminal (Samsung, HTC…).",
+            "Una herramienta de **flasheo** (programa que escribe una partición del teléfono) específica del modelo, por ejemplo **Odin** para Samsung.",
+            "El Custom Recovery del terminal, normalmente TWRP.",
+            "Una microSD o un pendrive (si el teléfono tiene **OTG**, On-The-Go, que permite conectarle memorias USB) para guardar el volcado."
+          ]
+        },
+        {
+          "type": "steps",
+          "title": "Procedimiento general",
+          "items": [
+            "Reiniciar el teléfono en **modo descarga**.",
+            "Abrir el software de flasheo en el PC conectado.",
+            "Cargar el Custom Recovery en la partición de recuperación.",
+            "Reiniciar en **modo recuperación**: aparece la interfaz de TWRP.",
+            "Montar las particiones necesarias y copiarlas con **dd** a la tarjeta o al pendrive."
+          ]
+        },
+        {
+          "type": "exam",
+          "text": "¿Qué es un Custom Recovery? Una **distribución que sustituye la partición de recuperación**. Trampas: «driver para Samsung» (eso son los drivers), «herramienta de flasheo» (eso es Odin). ¿Qué cambia? **La partición de recuperación del terminal**, no la SIM ni solo la copia del laboratorio."
+        },
+        {
+          "type": "key",
+          "text": "Custom Recovery reemplaza la recovery por una como TWRP para volcar con dd; no necesita el código, pero sí bootloader desbloqueado y autorización judicial."
+        }
+      ]
+    },
+    {
+      "id": "metodos-avanzados",
+      "title": "Métodos avanzados: JTAG, Direct eMMC y Chip Off",
+      "pages": [21, 24],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Son técnicas que acceden **a bajo nivel**, directamente a los chips de memoria. Son **invasivas** y pueden dejar el indicio inservible, por lo que necesitan **auto judicial** (resolución del juez) que las autorice."
+        },
+        {
+          "type": "p",
+          "text": "En la petición se mencionan las técnicas que se van a emplear (en principio, las tres, porque no se sabe cuál funcionará) y su **peligrosidad**, avisando de que se puede perder toda la memoria."
+        },
+        {
+          "type": "term",
+          "term": "PCB (Printed Circuit Board) y eMMC",
+          "text": "La PCB es la placa de circuito impreso donde van soldados los componentes. eMMC (embedded MultiMediaCard) es el chip de memoria soldado a la placa que hace de «disco» del teléfono; eMCP combina memoria y RAM en un solo chip."
+        },
+        {
+          "type": "table",
+          "title": "Comparativa de los tres métodos",
+          "head": ["Método", "Cómo funciona", "Ventaja", "Inconveniente"],
+          "rows": [
+            ["JTAG (Joint Test Action Group)", "Usa los contactos de prueba (TAGs) que el fabricante emplea para verificar la placa; se accede a la memoria como por una puerta trasera.", "La **menos lesiva**: apenas altera el indicio.", "Muy **lenta** (una sola línea de datos, protocolo en serie): un móvil de 32 GB puede tardar 24 h. Requiere microsoldadura."],
+            ["Direct eMMC (o ISP, In-System Programming)", "Se conecta a unos conectores auxiliares de la PCB y habla con el chip sin extraerlo.", "Comunica con la memoria **sin pasar por la CPU**; más rápida que JTAG.", "Conectores diminutos: alto riesgo de dañar la placa. Requiere gran habilidad soldando."],
+            ["Chip Off", "Se **extrae físicamente el chip** de memoria y se lee con un lector específico.", "Funciona cuando nada más puede (teléfonos dañados).", "La **más destructiva**; exige gran destreza para no destruir la evidencia."]
+          ]
+        },
+        {
+          "type": "analogy",
+          "text": "Imagina que quieres leer un diario guardado en un cajón cerrado. JTAG es leerlo con una linterna por la ranura, despacio. Direct eMMC es abrir una trampilla lateral diminuta. Chip Off es arrancar el cajón del mueble y llevártelo."
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico",
+          "text": "Un teléfono rescatado de un incendio no enciende. Ni backup ni ADB son posibles. El perito pide al juzgado autorización para JTAG, Direct eMMC y Chip Off, explicando que puede perderse todo. Como la placa está dañada, acaba usando Chip Off: desuelda el chip y lo lee en un lector externo."
+        },
+        {
+          "type": "exam",
+          "text": "«¿Cuál de estos **no** es un procedimiento avanzado: JTAG, Chip Off, Direct eMMC?» → **todos lo son**. «¿Qué distingue al Chip Off?» → **extrae físicamente el chip** para leerlo. «¿Qué debe incluir la decisión previa?» → **la técnica, sus riesgos y la autorización**; no vale garantizar la recuperación como sustituto de autorización ni omitir la intervención del informe."
+        },
+        {
+          "type": "key",
+          "text": "JTAG (menos lesivo, lento), Direct eMMC (más rápido, sin pasar por la CPU) y Chip Off (extraer el chip, el más destructivo): siempre con auto judicial que recoja su peligrosidad."
+        }
+      ]
+    },
+    {
+      "id": "analisis-android",
+      "title": "Análisis de Android: particiones, Autopsy y bases de datos",
+      "pages": [25, 29],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Android está **basado en Linux**, así que su análisis se parece al de un Linux, salvo por las aplicaciones y bases de datos propias del móvil."
+        },
+        {
+          "type": "table",
+          "title": "Particiones relevantes (adquisición física)",
+          "head": ["Partición", "Qué contiene"],
+          "rows": [
+            ["boot", "Drivers, kernel (núcleo del sistema) y archivos de arranque."],
+            ["system", "Archivos del sistema operativo."],
+            ["recovery", "El «mini sistema» de recuperación."],
+            ["cache", "Datos temporales para actualizar el sistema; opcional si el teléfono usa actualizaciones A/B (dos copias del sistema que se alternan)."],
+            ["data / userdata", "Aplicaciones y archivos del usuario: la de **mayor interés forense**."]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Si la adquisición fue **lógica**, solo se tiene un conjunto limitado de carpetas: multimedia, configuraciones de aplicaciones y algunas bases de datos. Por eso, **que algo no esté en la copia no significa que nunca existiera**: puede que simplemente no se haya adquirido."
+        },
+        {
+          "type": "term",
+          "term": "Autopsy",
+          "text": "Suite forense gratuita y de código abierto para analizar imágenes. No es solo para ordenadores: tiene un **plugin específico, Android Analyzer**, para interpretar artefactos de Android."
+        },
+        {
+          "type": "steps",
+          "title": "Analizar una imagen de Magnet ACQUIRE en Autopsy",
+          "items": [
+            "Crear un caso nuevo.",
+            "Añadir el contenido de la imagen: descomprimir el ZIP generado y añadir también la carpeta **«Agent Data»**.",
+            "Seleccionar los plugins; como mínimo, **Android Analyzer**.",
+            "Revisar los resultados: lo que extrae Android Analyzer más lo que obtuvo el agente de Magnet facilitan mucho el análisis."
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Bases de datos del agente de Magnet ACQUIRE",
+          "head": ["Base", "Qué contiene"],
+          "rows": [
+            ["agent_accounts.db", "Cuentas del usuario (Google, WhatsApp…)."],
+            ["agent_mmssms.db", "SMS y MMS (mensajes multimedia)."],
+            ["agent_sim.db", "Datos de la SIM: IMEI, IMSI, ICCID, número de teléfono."],
+            ["bluetooth.db", "Dispositivos Bluetooth emparejados."],
+            ["contactsX.db", "Contactos, teléfonos, direcciones, historial de llamadas."],
+            ["downloads.db", "Archivos descargados y su ruta."],
+            ["wifi.db", "Redes Wi-Fi recordadas por el terminal."]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Magnet también copia el almacenamiento del teléfono (parecido a lo de una microSD) y los datos de las aplicaciones. Ahí pueden aparecer las **copias de seguridad de WhatsApp, cifradas** (o no aparecer, según la versión) y los **archivos de preferencias** de las apps, muy valiosos."
+        },
+        {
+          "type": "code",
+          "title": "Bases de datos de interés en una adquisición física de Android",
+          "text": "Notas (Samsung)        Userdata/Root/data/com.samsung.android.app.memo/databases/memo.db\nContactos y llamadas   Userdata/Root/data/com.android.providers.contacts/databases/contacts2.db\nCalendario             Userdata/Root/data/com.android.providers.calendar/databases/calendar.db\nCorreo (Samsung)       Userdata/Root/data/com.samsung.android.email.provider/databases/EmailProvider.db\nHistorial Chrome       Userdata/Root/data/com.android.chrome/app_chrome/Default/History\nNavegador por defecto  Userdata/Root/data/com.android.browser/databases/browser2.db\nSMS y MMS              Userdata/Root/data/com.android.providers.telephony/databases/mmssms.db"
+        },
+        {
+          "type": "p",
+          "text": "Fíjate en que la ruta indica la aplicación dueña (com.android.providers.contacts es el proveedor de contactos) y que contacts2.db guarda a la vez contactos y registro de llamadas. Algunas de estas bases pueden **no estar** en una adquisición lógica."
+        },
+        {
+          "type": "exam",
+          "text": "¿Sirve Autopsy para Android? **Verdadero, tiene un plugin específico** (Android Analyzer); trampas: «solo iOS», «solo ordenadores», «solo adquisición». Para redes inalámbricas recordadas → **wifi.db**, no agent_accounts.db, downloads.db ni contactsX.db. Y si algo falta en una copia lógica, la conclusión correcta es que **puede no haberse adquirido**, no que nunca existiera."
+        },
+        {
+          "type": "key",
+          "text": "En Android lo jugoso está en userdata; Autopsy con Android Analyzer y la carpeta Agent Data de Magnet dan cuentas, SMS, SIM, Bluetooth, contactos, descargas y Wi-Fi."
+        }
+      ]
+    },
+    {
+      "id": "analisis-ios",
+      "title": "Análisis de iOS: sandbox, SQLite y Plist",
+      "pages": [29, 34],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "El iPhone se organiza de forma muy distinta a Android. Tiene **dos particiones, de sistema y de usuario, ambas cifradas**. Además, cada aplicación se ejecuta dentro de una **sandbox**."
+        },
+        {
+          "type": "term",
+          "term": "Sandbox (entorno aislado)",
+          "text": "Un «cajón» propio para cada app: solo puede tocar sus datos y no puede acceder a otras aplicaciones ni a datos para los que no tiene permiso. Protege al usuario y, de paso, limita lo que una herramienta puede extraer."
+        },
+        {
+          "type": "analogy",
+          "text": "Es como un hotel: cada huésped (app) tiene la llave de su habitación y no puede entrar en la de al lado. Si quieres ver todas las habitaciones, no te sirve la llave de un huésped: necesitas que recepción (el propio iPhone, mediante su copia de seguridad) te dé lo que guarda."
+        },
+        {
+          "type": "p",
+          "text": "Por el cifrado y la sandbox, la vía más viable en iOS es **una copia de seguridad o adquisición lógica** de la información del usuario. Se analiza con herramientas como **Dr. Fone** o **iBackup Viewer**: se selecciona el backup de iTunes o de Magnet ACQUIRE y la herramienta lo procesa sola. Muestra contactos, mensajes, llamadas, aplicaciones… y también el sistema de ficheros, con archivos Plist y bases SQLite. También se puede analizar «a mano»."
+        },
+        {
+          "type": "term",
+          "term": "SQLite",
+          "text": "Un motor de base de datos que cabe en un único archivo, sin servidor. Lo usan masivamente las apps **tanto de Android como de iOS** (los .db anteriores son SQLite) y da información sobre las apps, el dispositivo y su uso."
+        },
+        {
+          "type": "p",
+          "text": "El temario recoge en una tabla (Tabla 1, página 33, en imagen) las bases SQLite de iOS más interesantes para el forense; típicamente, la de SMS e iMessage (sms.db), la de contactos (AddressBook.sqlitedb) y la de llamadas."
+        },
+        {
+          "type": "term",
+          "term": "Plist (Property List, lista de propiedades)",
+          "text": "Archivos que iOS y macOS usan para guardar información de las apps en forma **clave – valor** (por ejemplo, «tema = oscuro»). Pueden estar en **XML** (eXtensible Markup Language, texto legible con etiquetas; se llaman Plist) o en **binario** (BPlist)."
+        },
+        {
+          "type": "list",
+          "title": "Lo que hay que saber de los Plist",
+          "items": [
+            "Su uso más común: guardar **preferencias del usuario**.",
+            "También pueden contener **tokens de sesión, contraseñas** o metadatos de archivos (por ejemplo, las partes de una grabación de audio).",
+            "Los XML se leen con cualquier editor de texto; los binarios necesitan herramientas específicas: **Plist Explorer, PlistEdit Pro o Plist Pad**.",
+            "Ejemplo: las últimas búsquedas de Safari están en Library/Caches/Safari/RecentSearches.plist."
+          ]
+        },
+        {
+          "type": "code",
+          "title": "Aspecto de un Plist en XML",
+          "text": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<plist version=\"1.0\">\n<dict>\n  <key>RecentSearches</key>\n  <array>\n    <string>vuelos a Lisboa</string>\n  </array>\n</dict>\n</plist>"
+        },
+        {
+          "type": "exam",
+          "text": "Los Plist: clave-valor, sobre todo preferencias, en binario (BPlist) o XML → **todas correctas**. Si un Plist binario no se entiende como texto, se usa **un visor compatible** con listas binarias: binario no significa cifrado, cambiar la extensión no lo convierte, y las preferencias sí pueden ser relevantes. La sandbox **limita el acceso** entre apps (no elimina el cifrado ni garantiza copias completas). SQLite aparece **en Android y en iOS**."
+        },
+        {
+          "type": "key",
+          "text": "iOS: particiones cifradas y apps en sandbox, así que se trabaja sobre backups; la información está sobre todo en bases SQLite y en Plist (clave-valor, XML o binario)."
+        }
+      ]
+    }
+  ],
+  "summary": [
+    "En telefonía forense es imposible adquirir sin alterar el dispositivo; la seguridad y el bloqueo limitan lo que se obtiene.",
+    "Orden de adquisición: SIM, tarjeta de memoria (si la hay) y memoria del terminal.",
+    "La SIM guarda poco (contactos, SMS, últimas llamadas) y nada multimedia; ICCID identifica la tarjeta e IMSI la línea; se lee con lector, software y PIN/PUK.",
+    "La eSIM no se puede adquirir: solo mantiene su ICCID.",
+    "La microSD se adquiere como un pendrive, con bloqueo de escritura (ISO 27037).",
+    "Con código de desbloqueo, lo más sencillo es el backup del fabricante o Magnet ACQUIRE; en el backup no se bloquea el USB y se usa modo avión.",
+    "Magnet ACQUIRE hace adquisición rápida sin root y completa con root, y genera hashes y logs.",
+    "ADB y Custom Recovery son solo para Android y requieren privilegios; dd if= origen, of= destino.",
+    "JTAG, Direct eMMC y Chip Off son métodos avanzados invasivos que necesitan auto judicial.",
+    "Android se analiza con Autopsy y Android Analyzer; userdata es la partición clave y wifi.db guarda las redes recordadas.",
+    "iOS tiene particiones cifradas y sandbox; se analiza el backup con Dr. Fone o iBackup Viewer, buscando SQLite y Plist."
+  ],
+  "glossary": [
+    { "term": "ADB (Android Debug Bridge)", "text": "Herramienta que comunica un PC con un Android para depurarlo y darle órdenes; solo Android." },
+    { "term": "Adquisición lógica", "text": "Copia de los archivos visibles para el sistema o el usuario; no incluye espacio libre ni borrados." },
+    { "term": "Adquisición física", "text": "Copia bit a bit de toda la memoria o de sus particiones." },
+    { "term": "Autopsy", "text": "Suite forense libre de análisis; con el plugin Android Analyzer interpreta artefactos de Android." },
+    { "term": "Bootloader", "text": "Programa que arranca el teléfono; si está bloqueado, desbloquearlo suele borrar el dispositivo." },
+    { "term": "BusyBox", "text": "Paquete de utilidades Linux para Android que incluye dd." },
+    { "term": "Chip Off", "text": "Extracción física del chip de memoria para leerlo; el método más destructivo." },
+    { "term": "Custom Recovery", "text": "Distribución que sustituye la partición de recuperación para adquirir datos; por ejemplo, TWRP." },
+    { "term": "dd", "text": "Comando de copia bit a bit; if es el origen y of el destino." },
+    { "term": "Direct eMMC (ISP)", "text": "Lectura del chip de memoria mediante conectores de la placa, sin extraerlo ni pasar por la CPU." },
+    { "term": "Dr. Fone", "text": "Herramienta comercial sencilla para recuperar y analizar información de móviles, sobre todo iOS." },
+    { "term": "eMMC", "text": "Chip de memoria soldado a la placa que hace de disco del teléfono." },
+    { "term": "eSIM", "text": "SIM integrada en el hardware; no se adquiere, solo conserva su ICCID." },
+    { "term": "iBackup Viewer", "text": "Herramienta para explorar backups de iOS." },
+    { "term": "ICCID", "text": "Integrated Circuit Card Identifier: identifica la tarjeta SIM." },
+    { "term": "IMEI", "text": "International Mobile Equipment Identity: identifica el teléfono." },
+    { "term": "IMSI", "text": "International Mobile Subscriber Identity: identifica la línea o abonado." },
+    { "term": "JTAG (Joint Test Action Group)", "text": "Estándar de prueba de placas usado para volcar la memoria; el método avanzado menos lesivo y más lento." },
+    { "term": "Magnet ACQUIRE", "text": "Herramienta forense gratuita de adquisición; rápida sin root, completa con root; genera hashes y logs." },
+    { "term": "MTP (Media Transfer Protocol)", "text": "Modo de transferencia de archivos al conectar el móvil al PC." },
+    { "term": "PIN / PUK", "text": "Código de la SIM y clave de desbloqueo de la SIM cuando el PIN se bloquea." },
+    { "term": "Plist (Property List)", "text": "Archivo clave-valor de iOS y macOS, en XML o binario (BPlist)." },
+    { "term": "Root", "text": "Superusuario de los sistemas tipo Linux; en Android da acceso a toda la memoria." },
+    { "term": "Sandbox", "text": "Entorno aislado que impide a una app acceder a datos de otras." },
+    { "term": "SIM (Subscriber Identity Module)", "text": "Tarjeta del operador que identifica al abonado." },
+    { "term": "SQLite", "text": "Base de datos en un solo archivo, muy usada por las apps de Android e iOS." },
+    { "term": "TWRP (Team Win Recovery Project)", "text": "El Custom Recovery más habitual." },
+    { "term": "userdata", "text": "Partición de Android con las apps y archivos del usuario; la de mayor interés forense." }
+  ],
+  "questions": {
+    "forense-t08-01": {
+      "section": "procedimiento",
+      "reasoning": "Un móvil tiene hasta tres fuentes de datos independientes: la SIM, la microSD y la memoria interna. El procedimiento del tema las adquiere todas y en ese orden, con la salvedad de que la tarjeta de memoria solo si existe. La opción que recoge las tres es la correcta.",
+      "options": {
+        "a": "Correcta. Recoge las tres fuentes en orden: tarjeta del operador, tarjeta de memoria (si la hay) y memoria del terminal.",
+        "b": "Incorrecta. Olvida la tarjeta de memoria, que puede contener mucha información multimedia.",
+        "c": "Incorrecta. Olvida la tarjeta del operador (SIM), que es el primer paso del procedimiento.",
+        "d": "Incorrecta. La opción a describe exactamente el procedimiento."
+      }
+    },
+    "forense-t08-02": {
+      "section": "tarjeta-sim",
+      "reasoning": "El temario enumera las peculiaridades de la SIM: poca capacidad, puede contener contactos, registro de llamadas o SMS, no guarda multimedia y permite obtener ICCID e IMSI. Las tres primeras opciones son peculiaridades de esa lista, así que la respuesta es «todas».",
+      "options": {
+        "a": "Incorrecta. Es cierto que tiene poca capacidad, pero no es la única peculiaridad: b y c también lo son.",
+        "b": "Incorrecta. Es cierto que puede contener contactos, pero a y c también son correctas.",
+        "c": "Incorrecta. Es cierto que puede contener llamadas y mensajes, pero a y b también son correctas.",
+        "d": "Correcta. Poca capacidad, contactos y registros de llamadas y SMS son todas peculiaridades de la SIM."
+      }
+    },
+    "forense-t08-03": {
+      "section": "tarjeta-sim",
+      "reasoning": "Para leer una SIM física hacen falta tres cosas: un lector donde insertarla, un programa que extraiga los datos (simcon, SIM Explorer) y el PIN o PUK, porque sin él la tarjeta no deja acceder. Como las tres son necesarias, la respuesta es «todas».",
+      "options": {
+        "a": "Incorrecta. El lector es necesario, pero no suficiente: también hacen falta el software y el PIN/PUK.",
+        "b": "Incorrecta. El software es necesario, pero sin lector ni PIN/PUK no se puede leer.",
+        "c": "Incorrecta. El PIN/PUK es imprescindible, pero también el lector y el software.",
+        "d": "Correcta. Lector, software de adquisición y PIN/PUK son los tres requisitos."
+      }
+    },
+    "forense-t08-04": {
+      "section": "tarjeta-memoria",
+      "reasoning": "La lista del temario de lo que contiene una microSD incluye multimedia, APK, descargas, bases de datos y cachés o registros de aplicaciones. Las opciones a, b y c están en esa lista, así que la respuesta es «todas».",
+      "options": {
+        "a": "Incorrecta. Los multimedia están, pero no son lo único: también descargas y cachés.",
+        "b": "Incorrecta. Las descargas están, pero también multimedia y cachés.",
+        "c": "Incorrecta. Las cachés y registros están, pero también multimedia y descargas.",
+        "d": "Correcta. Multimedia, descargas y cachés o registros de aplicaciones se pueden encontrar en la tarjeta de memoria."
+      }
+    },
+    "forense-t08-05": {
+      "section": "vias-terminal",
+      "reasoning": "Si se conoce el código de desbloqueo, las vías más sencillas son el backup del fabricante o una herramienta como Magnet ACQUIRE. Custom Recovery y Chip Off son métodos invasivos, pensados para cuando no hay acceso, y requieren autorización y destreza.",
+      "options": {
+        "a": "Incorrecta. Chip Off es el método más destructivo y se reserva para cuando nada más es posible.",
+        "b": "Incorrecta. Custom Recovery modifica la partición de recuperación, exige bootloader desbloqueado y autorización; es más complejo y no necesita el código.",
+        "c": "Correcta. Con el patrón, Magnet ACQUIRE es una de las opciones más sencillas y utilizadas.",
+        "d": "Incorrecta. La opción c es correcta."
+      }
+    },
+    "forense-t08-06": {
+      "section": "adb",
+      "reasoning": "ADB significa Android Debug Bridge: es la herramienta de depuración de Android. El temario indica expresamente que la adquisición por ADB es para Android únicamente. Un iPhone no habla ADB.",
+      "options": {
+        "a": "Incorrecta. ADB no funciona con iOS.",
+        "b": "Incorrecta. ADB no es válido para iOS.",
+        "c": "Correcta. La adquisición mediante ADB solo es válida para Android.",
+        "d": "Incorrecta. Sí es válida para Android (con depuración USB y root)."
+      }
+    },
+    "forense-t08-07": {
+      "section": "custom-recovery",
+      "reasoning": "La adquisición por Custom Recovery consiste en modificar la partición de recuperación del dispositivo e instalar en ella una distribución específica, como TWRP. Los drivers y las herramientas de flasheo (Odin) son medios para instalarla, no el Custom Recovery en sí.",
+      "options": {
+        "a": "Incorrecta. Los drivers del terminal son un requisito aparte; el Custom Recovery no es un driver.",
+        "b": "Incorrecta. La herramienta de flasheo (por ejemplo, Odin) es la que lo instala, no el Custom Recovery.",
+        "c": "Correcta. Es una distribución específica que sustituye la partición de recuperación del terminal.",
+        "d": "Incorrecta. La opción c es correcta."
+      }
+    },
+    "forense-t08-08": {
+      "section": "metodos-avanzados",
+      "reasoning": "El temario define como métodos avanzados las técnicas de acceso a bajo nivel a los chips y nombra tres: JTAG, Direct eMMC y Chip Off. La pregunta busca cuál no lo es; como los tres lo son, ninguno queda fuera.",
+      "options": {
+        "a": "Incorrecta. JTAG sí es un método avanzado.",
+        "b": "Incorrecta. Chip Off sí es un método avanzado.",
+        "c": "Incorrecta. Direct eMMC sí es un método avanzado.",
+        "d": "Correcta. JTAG, Chip Off y Direct eMMC se consideran procedimientos avanzados."
+      }
+    },
+    "forense-t08-09": {
+      "section": "analisis-android",
+      "reasoning": "El temario explica cómo cargar en Autopsy la imagen de Magnet ACQUIRE y aplicar el plugin Android Analyzer. Por tanto, Autopsy sí analiza Android, y lo hace gracias a ese plugin específico.",
+      "options": {
+        "a": "Correcta. Autopsy dispone del plugin Android Analyzer.",
+        "b": "Incorrecta. Autopsy no es solo para iOS; de hecho, el tema lo usa para Android y para iOS recomienda Dr. Fone o iBackup Viewer.",
+        "c": "Incorrecta. Autopsy también analiza móviles, como Android.",
+        "d": "Incorrecta. Autopsy es una suite de análisis, no de adquisición."
+      }
+    },
+    "forense-t08-10": {
+      "section": "analisis-ios",
+      "reasoning": "Los Plist guardan información en forma clave-valor, su uso más común es almacenar preferencias del usuario y pueden estar en binario (BPlist) o en XML (Plist). Las tres afirmaciones son ciertas.",
+      "options": {
+        "a": "Incorrecta. Es cierta, pero b y c también lo son.",
+        "b": "Incorrecta. Es cierta, pero a y c también lo son.",
+        "c": "Incorrecta. Es cierta, pero a y b también lo son.",
+        "d": "Correcta. Las tres características de los Plist son ciertas."
+      }
+    },
+    "forense-t08-11": {
+      "section": "peculiaridades",
+      "reasoning": "En un disco extraído se puede copiar todo con un bloqueador. En un móvil, las limitaciones de seguridad no dan acceso completo a la memoria, y sin root solo se obtiene lo disponible para el usuario. Esa es la limitación diferencial.",
+      "options": {
+        "a": "Incorrecta. Sin root no se recuperan archivos borrados en bruto; una copia de seguridad no los incluye siempre.",
+        "b": "Incorrecta. Es justo lo contrario: sin privilegios no hay acceso físico completo.",
+        "c": "Correcta. Las restricciones de acceso del terminal pueden impedir adquirir toda su memoria.",
+        "d": "Incorrecta. En un móvil no se puede adquirir sin alterar el contenido; no basta un bloqueador como el de un disco."
+      }
+    },
+    "forense-t08-12": {
+      "section": "tarjeta-sim",
+      "reasoning": "El componente que puede guardar contactos y datos de la línea (ICCID, IMSI, MSISDN) pero no multimedia es la SIM. La microSD, el backup y la partición de usuario sí contienen fotos.",
+      "options": {
+        "a": "Correcta. La SIM puede contener contactos y datos de la línea, pero no fotos ni otros multimedia.",
+        "b": "Incorrecta. La tarjeta de memoria sí contiene fotos y vídeos.",
+        "c": "Incorrecta. Una copia de seguridad incluye multimedia.",
+        "d": "Incorrecta. La partición de datos del usuario contiene fotos y archivos del usuario."
+      }
+    },
+    "forense-t08-13": {
+      "section": "tarjeta-memoria",
+      "reasoning": "La microSD se adquiere igual que un pendrive: con un lector, preferiblemente con bloqueo de escritura por hardware (o por software) y un programa como FTK Imager. Es un soporte de almacenamiento normal.",
+      "options": {
+        "a": "Incorrecta. La SIM y la microSD guardan cosas distintas; la SIM no tiene multimedia.",
+        "b": "Incorrecta. Como cualquier evidencia, requiere controles de integridad (bloqueo de escritura, hash).",
+        "c": "Correcta. Es un soporte de almacenamiento que puede adquirirse con protección contra escritura.",
+        "d": "Incorrecta. Se copia con un lector y software de adquisición, no a través de la agenda."
+      }
+    },
+    "forense-t08-14": {
+      "section": "backup-fabricante",
+      "reasoning": "El temario dice que la adquisición mediante la suite de backup del fabricante es la más sencilla y permite obtener información básica pero útil.",
+      "options": {
+        "a": "Incorrecta. El acceso directo a los chips son los métodos avanzados, que requieren herramientas y microsoldadura.",
+        "b": "Incorrecta. Sustituir la partición de recuperación es el Custom Recovery, un método invasivo.",
+        "c": "Incorrecta. No se trata de copiar a mano la agenda: el backup obtiene multimedia, llamadas, contactos y más.",
+        "d": "Correcta. La herramienta de copia de seguridad del fabricante es la vía más sencilla para la información básica."
+      }
+    },
+    "forense-t08-15": {
+      "section": "analisis-ios",
+      "reasoning": "En iOS cada app corre en una sandbox que le impide acceder a otras aplicaciones o datos para los que no tiene permiso. Es una medida de aislamiento, no de copia ni de descifrado.",
+      "options": {
+        "a": "Incorrecta. La sandbox no toca el cifrado; las particiones de iOS siguen cifradas.",
+        "b": "Correcta. Limita el acceso a datos y aplicaciones para los que no tienen permiso.",
+        "c": "Incorrecta. Es justo lo contrario: impide compartir datos libremente.",
+        "d": "Incorrecta. La sandbox dificulta la adquisición; no garantiza nada sobre la copia lógica."
+      }
+    },
+    "forense-t08-16": {
+      "section": "analisis-ios",
+      "reasoning": "El temario indica que las bases de datos SQLite son muy comunes en Android y en iOS. Las demás opciones confunden con imágenes de disco, la SIM o Windows.",
+      "options": {
+        "a": "Correcta. Las bases SQLite son habituales en ambos sistemas.",
+        "b": "Incorrecta. Las apps no guardan imágenes de disco completas; guardan bases de datos y preferencias.",
+        "c": "Incorrecta. La SIM guarda muy poco; las apps guardan sus datos en la memoria del teléfono.",
+        "d": "Incorrecta. El Registro de Windows no existe en Android ni en iOS."
+      }
+    },
+    "forense-t08-17": {
+      "section": "tarjeta-sim",
+      "reasoning": "El temario dice que el ICCID identifica la propia tarjeta y el IMSI identifica la línea (el abonado). Ninguno es el número de teléfono (eso es el MSISDN) ni un código de desbloqueo.",
+      "options": {
+        "a": "Incorrecta. El número de teléfono es el MSISDN; ICCID e IMSI son otra cosa.",
+        "b": "Incorrecta. El teléfono lo identifica el IMEI; la batería no tiene identificador en la SIM.",
+        "c": "Correcta. El ICCID identifica la tarjeta y el IMSI al abonado móvil.",
+        "d": "Incorrecta. No son códigos de desbloqueo; el patrón y la contraseña son del terminal."
+      }
+    },
+    "forense-t08-18": {
+      "section": "backup-fabricante",
+      "reasoning": "En la adquisición por backup el temario dice que no se bloquea la escritura de los puertos USB porque este tipo de adquisición puede alterar la evidencia: el PC debe comunicarse con el teléfono en ambos sentidos.",
+      "options": {
+        "a": "Incorrecta. El bloqueo no convierte nada en adquisición física; simplemente impediría la comunicación.",
+        "b": "Correcta. El procedimiento necesita comunicarse con el terminal y puede modificarlo.",
+        "c": "Incorrecta. La integridad sigue siendo importante; por eso se calculan hashes y se documenta.",
+        "d": "Incorrecta. Los cambios deben documentarse siempre."
+      }
+    },
+    "forense-t08-19": {
+      "section": "magnet-ios",
+      "reasoning": "Magnet ACQUIRE ofrece adquisición rápida y completa. La completa solo es posible si somos root; sin root solo queda la rápida. Lo decisivo son los privilegios.",
+      "options": {
+        "a": "Incorrecta. Dónde se guarde la copia no cambia lo que se puede leer del teléfono.",
+        "b": "Incorrecta. El número de contactos no influye en el tipo de adquisición.",
+        "c": "Correcta. Disponer de privilegios de superusuario (root) permite la adquisición completa.",
+        "d": "Incorrecta. La extensión del archivo es irrelevante."
+      }
+    },
+    "forense-t08-20": {
+      "section": "adb",
+      "reasoning": "ADB (Android Debug Bridge) es la interfaz de comunicación y depuración con la que un PC interactúa con un Android. Requiere depuración USB y, para adquirir toda la memoria, root.",
+      "options": {
+        "a": "Incorrecta. ADB requiere la depuración USB activada y, para adquirir, privilegios de root.",
+        "b": "Incorrecta. ADB es de Android, no un formato de iPhone.",
+        "c": "Incorrecta. No es una base de datos ni tiene que ver con la SIM.",
+        "d": "Correcta. Es una interfaz de comunicación y depuración para interactuar con Android."
+      }
+    },
+    "forense-t08-21": {
+      "section": "custom-recovery",
+      "reasoning": "Custom Recovery sustituye la partición de recuperación (recovery) del terminal por una distribución propia como TWRP. Por tanto, lo que cambia es el propio teléfono, en esa partición.",
+      "options": {
+        "a": "Incorrecta. No toca la SIM, y sí modifica el terminal.",
+        "b": "Incorrecta. Modifica el teléfono, no solo la copia del laboratorio.",
+        "c": "Incorrecta. No altera los documentos recuperados.",
+        "d": "Correcta. Cambia la partición de recuperación del terminal."
+      }
+    },
+    "forense-t08-22": {
+      "section": "metodos-avanzados",
+      "reasoning": "Chip Off es la técnica más destructiva: consiste en extraer físicamente el chip de memoria para leerlo directamente con un dispositivo específico.",
+      "options": {
+        "a": "Correcta. Extrae físicamente el chip de memoria para su lectura.",
+        "b": "Incorrecta. No usa la agenda: lee el chip directamente.",
+        "c": "Incorrecta. Eso es el backup del fabricante; Chip Off interviene el hardware.",
+        "d": "Incorrecta. Lee toda la memoria del chip, no solo preferencias."
+      }
+    },
+    "forense-t08-23": {
+      "section": "analisis-android",
+      "reasoning": "Una adquisición lógica solo da acceso a un conjunto limitado de archivos, y el tema advierte que algunas bases pueden no haberse adquirido. Por eso la ausencia de un dato no prueba que no existiera.",
+      "options": {
+        "a": "Incorrecta. Las bases de datos también aparecen y son relevantes en adquisiciones lógicas.",
+        "b": "Incorrecta. La ausencia puede deberse al alcance de la copia, no a que el dato no existiera.",
+        "c": "Incorrecta. Una copia lógica no incluye el espacio libre ni todas las particiones; eso es la física.",
+        "d": "Correcta. Algunas bases de datos o partes del dispositivo pueden no haberse adquirido."
+      }
+    },
+    "forense-t08-24": {
+      "section": "backup-fabricante",
+      "reasoning": "El modo avión (o los inhibidores) aísla el teléfono de la red para que no lleguen mensajes, sincronizaciones o borrados remotos mientras se trabaja. Es una medida para reducir cambios externos, no para saltarse protecciones.",
+      "options": {
+        "a": "Incorrecta. Aislar el teléfono no cambia el tipo de adquisición.",
+        "b": "Incorrecta. El modo avión no elimina el patrón; el teléfono debe estar desbloqueado.",
+        "c": "Correcta. Reduce las interacciones externas durante la intervención.",
+        "d": "Incorrecta. El cifrado no desaparece por desconectar la red."
+      }
+    },
+    "forense-t08-25": {
+      "section": "magnet-ios",
+      "reasoning": "Magnet ACQUIRE calcula hashes de lo adquirido y genera logs del proceso. El hash permite verificar que la copia no cambia después; los logs documentan qué se hizo. No prueban que el original no cambiara durante la captura (en móviles siempre hay cambios) ni que se copiara todo.",
+      "options": {
+        "a": "Correcta. Permiten verificar los datos adquiridos y documentar el proceso.",
+        "b": "Incorrecta. En un móvil la adquisición siempre altera algo; el hash verifica la copia, no el original durante la captura.",
+        "c": "Incorrecta. El hash no dice nada sobre lo que quedó sin adquirir.",
+        "d": "Incorrecta. El alcance de la copia debe explicarse igualmente en el informe."
+      }
+    },
+    "forense-t08-26": {
+      "section": "adb",
+      "reasoning": "En dd, if (input file) es lo que se lee y of (output file) es donde se escribe. En el ejemplo, if=/dev/block/mmcblk0 es el bloque del teléfono (origen) y of=/storage/307D-X/imagen.dd es el archivo en la tarjeta (destino).",
+      "options": {
+        "a": "Correcta. if designa el origen y of el destino.",
+        "b": "Incorrecta. of es el destino, e if no indica una cantidad de memoria.",
+        "c": "Incorrecta. Es al revés: invertirlos podría sobrescribir la evidencia.",
+        "d": "Incorrecta. Solo of indica el fichero final; if es el origen."
+      }
+    },
+    "forense-t08-27": {
+      "section": "metodos-avanzados",
+      "reasoning": "Los métodos avanzados son invasivos y pueden inutilizar el indicio. El temario exige auto judicial que mencione las técnicas que se emplearán y su peligrosidad, incluida la posible pérdida total de la memoria.",
+      "options": {
+        "a": "Incorrecta. Hay que valorar y exponer los efectos, no solo nombrar la herramienta.",
+        "b": "Correcta. Debe incluir la técnica prevista, sus riesgos y la autorización correspondiente.",
+        "c": "Incorrecta. No se puede garantizar la recuperación, y nada sustituye la autorización.",
+        "d": "Incorrecta. Toda intervención y sus cambios deben constar en el informe."
+      }
+    },
+    "forense-t08-28": {
+      "section": "analisis-android",
+      "reasoning": "Para analizar en Autopsy una adquisición de Magnet ACQUIRE, el temario pide seleccionar al menos el plugin Android Analyzer, además de añadir la carpeta Agent Data.",
+      "options": {
+        "a": "Incorrecta. Un visor hexadecimal no interpreta los artefactos de Android.",
+        "b": "Correcta. Android Analyzer es el plugin que hay que seleccionar como mínimo.",
+        "c": "Incorrecta. El Registro de Windows no existe en Android.",
+        "d": "Incorrecta. Una extensión de navegador no es un módulo de análisis forense."
+      }
+    },
+    "forense-t08-29": {
+      "section": "analisis-android",
+      "reasoning": "Entre las bases del agente de Magnet ACQUIRE, wifi.db guarda las redes Wi-Fi recordadas por el terminal. Las demás guardan cuentas, descargas o contactos.",
+      "options": {
+        "a": "Incorrecta. agent_accounts.db guarda cuentas del usuario (Google, WhatsApp…).",
+        "b": "Incorrecta. downloads.db guarda los archivos descargados y su ruta.",
+        "c": "Incorrecta. contactsX.db guarda contactos e historial de llamadas.",
+        "d": "Correcta. wifi.db contiene las redes Wi-Fi recordadas."
+      }
+    },
+    "forense-t08-30": {
+      "section": "analisis-ios",
+      "reasoning": "Los Plist pueden estar en XML (legible con un editor de texto) o en binario (BPlist). Los binarios se leen con herramientas específicas como Plist Explorer, PlistEdit Pro o Plist Pad. Binario no significa cifrado.",
+      "options": {
+        "a": "Incorrecta. Los Plist pueden contener tokens, contraseñas o metadatos muy relevantes.",
+        "b": "Correcta. Se usa un visor compatible con listas de propiedades binarias.",
+        "c": "Incorrecta. Cambiar la extensión no cambia el formato interno del archivo.",
+        "d": "Incorrecta. Binario es un formato de codificación, no un cifrado."
+      }
+    }
+  }
+}

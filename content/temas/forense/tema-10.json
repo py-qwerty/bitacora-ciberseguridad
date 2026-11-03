@@ -1,0 +1,1200 @@
+{
+  "course": "forense",
+  "number": 10,
+  "title": "Redacción del informe pericial",
+  "minutes": 35,
+  "intro": {
+    "why": "Imagina que has pasado tres semanas analizando el portátil de un empleado acusado de llevarse la base de clientes a la competencia. Has encontrado la prueba: un USB conectado la víspera de su marcha y una carpeta copiada. Pero el juez no verá nunca tu laboratorio ni tus herramientas: solo leerá **tu informe**. Si está desordenado, lleno de jerga o con conclusiones que no se sostienen, todo tu trabajo valdrá poco. Este tema enseña a escribir ese documento con la estructura de la norma UNE 197010:2015.",
+    "before": [
+      "Un **perito** es un experto al que se llama a un juicio para explicar algo que los juristas no dominan: en nuestro caso, lo que ha pasado en un sistema informático.",
+      "Un **procedimiento judicial** es el proceso completo de un juicio: demanda o denuncia, pruebas, vistas y sentencia. Las **partes** son quienes se enfrentan en él (por ejemplo, demandante y demandado).",
+      "Una **evidencia digital** es cualquier dato (un archivo, un registro, un correo) que sirve para demostrar un hecho. Debe conservarse sin alterar y con su **cadena de custodia**: el registro de quién la ha tenido y qué ha hecho con ella.",
+      "Un **hash** es una especie de huella dactilar de un archivo: un resumen numérico que cambia por completo si el archivo cambia un solo bit. Sirve para demostrar que algo no se ha modificado."
+    ],
+    "goals": [
+      "Al terminar sabrás explicar para quién se escribe un informe pericial y por qué debe ser riguroso y didáctico a la vez.",
+      "Sabrás las cuatro características de un buen informe: claridad, concisión, fundamentación y justificación.",
+      "Sabrás qué es la norma UNE 197010:2015, por qué no es obligatoria y qué contenidos mínimos propone.",
+      "Sabrás cómo se identifica un informe (código único, destinatario, turno de oficio, perito de parte, contrapericial).",
+      "Sabrás qué son la declaración de imparcialidad (artículo 343 de la LEC) y el juramento o promesa (artículo 335.2 de la LEC).",
+      "Sabrás qué va en cada parte del cuerpo: resumen ejecutivo, objeto del encargo, antecedentes, fuentes, procedimiento, análisis, conclusiones y anexos.",
+      "Sabrás usar recursos visuales (esquemas, líneas de tiempo, fichas de artefactos) y las reglas de formato (numeración, código, soporte inalterable)."
+    ]
+  },
+  "sections": [
+    {
+      "id": "audiencia",
+      "title": "Para quién se escribe: el informe como ayuda al juez",
+      "pages": [
+        4,
+        7
+      ],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Piensa en un médico que explica a una familia el resultado de una operación. Si habla solo en latín médico, la familia no entiende nada; si lo cuenta como un cuento infantil, pierde credibilidad ante otro médico que lo escuche. El perito está en la misma situación: tiene que ser **exacto** para los expertos y **comprensible** para los que no lo son."
+        },
+        {
+          "type": "term",
+          "term": "Informe pericial (o dictamen pericial)",
+          "text": "Documento en el que un perito recoge el trabajo realizado, cómo lo ha hecho y a qué conclusiones llega, para responder a unas preguntas concretas planteadas en un procedimiento judicial. Es lo que los demás usarán para **valorar** su trabajo."
+        },
+        {
+          "type": "p",
+          "text": "El perito informático asiste al procedimiento en materias que **escapan al conocimiento de los juristas**. Por eso su informe es una herramienta de ayuda para **el juez, el fiscal, los abogados, el jurado** y, en general, cualquier interesado en el procedimiento, incluidos lectores **sin conocimientos técnicos**."
+        },
+        {
+          "type": "list",
+          "title": "Quién puede pedir el informe",
+          "items": [
+            "Una de las **partes** del juicio (por ejemplo, la empresa que denuncia o el empleado denunciado).",
+            "El **Ministerio Fiscal**: el órgano público que defiende la legalidad y el interés público en los juicios (los fiscales).",
+            "El propio **juez**."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Lo pida quien lo pida, el informe debe ser **imparcial y objetivo**, y debe **dar respuesta a las cuestiones planteadas**: el perito no investiga por curiosidad, sino para contestar unas dudas concretas."
+        },
+        {
+          "type": "term",
+          "term": "Sana crítica",
+          "text": "Forma en que el juez valora las pruebas: con lógica, experiencia y sentido común, sin estar obligado a aceptar automáticamente lo que dice un perito. El perito **no prueba nada por sí mismo**: ofrece al juez una base científica o técnica, y es el tribunal quien decide cuánto valor darle."
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico",
+          "text": "El informe dice: «Se verificó el hash SHA-256 de la imagen». Un juez no sabe qué es eso. Mejor: «Se calculó el hash SHA-256 de la copia, que funciona como una huella dactilar del contenido: si se hubiera cambiado un solo carácter, la huella sería distinta. La huella de la copia coincide con la del disco original, lo que demuestra que la copia es idéntica». Se mantiene el dato técnico (rigor) y se explica para qué sirve (didáctica)."
+        },
+        {
+          "type": "exam",
+          "text": "La fórmula ganadora es **«riguroso, pero a la vez didáctico»**. Trampas: «solo lenguaje científico» (olvida al lector profano), «ante todo didáctico aunque no sea totalmente riguroso» (sacrifica la exactitud) y «terminología legal por encima del hecho tecnológico» (el perito es experto en tecnología, no en derecho). Si preguntan a quién debe ayudar el informe, la respuesta incluye a lectores sin conocimientos técnicos."
+        },
+        {
+          "type": "key",
+          "text": "El informe pericial ayuda al juez, fiscal, abogados, jurado y demás interesados a entender un hecho tecnológico. Debe ser riguroso y didáctico a la vez, imparcial y centrado en responder lo que se pregunta. El juez lo valora según la sana crítica."
+        }
+      ]
+    },
+    {
+      "id": "caracteristicas",
+      "title": "Las cuatro cualidades de un buen informe",
+      "pages": [
+        5,
+        6
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "El temario resume las cualidades de un informe pericial en cuatro palabras. Conviene saber qué significa cada una y, sobre todo, **qué no significa**."
+        },
+        {
+          "type": "table",
+          "title": "Claridad, concisión, fundamentación y justificación",
+          "head": [
+            "Cualidad",
+            "Qué significa",
+            "Error que evita"
+          ],
+          "rows": [
+            [
+              "Claridad",
+              "Que lo entienda cualquiera, sea cual sea su nivel técnico: lenguaje sencillo, explicar los términos complejos y, si hace falta, un glosario",
+              "Usar tecnicismos sin explicar «para demostrar que sabes»… o pasarse al otro extremo con un texto infantil perdido en ejemplos"
+            ],
+            [
+              "Concisión",
+              "No escribir ni una línea innecesaria. Más argumentos solo dan más solidez si se complementan y forman un discurso ordenado. Lo que amplía información va a los **anexos**",
+              "Informes enormes, repetitivos, con datos que no aportan nada nuevo"
+            ],
+            [
+              "Fundamentación",
+              "Cada acción se respalda en la experiencia del perito o en **referencias bibliográficas de prestigio** (cuanta más autoridad, más respaldo)",
+              "Hacer las cosas «porque sí» o citando fuentes dudosas"
+            ],
+            [
+              "Justificación",
+              "Explicar en qué hechos se basan las conclusiones, que siempre salen del trabajo realizado. Sin juicios de valor y con tono imparcial",
+              "Opiniones personales o conclusiones que no se apoyan en ningún hallazgo"
+            ]
+          ]
+        },
+        {
+          "type": "term",
+          "term": "Documento autocontenido",
+          "text": "Documento cuya lectura basta por sí sola para entender el trabajo y sus conclusiones. Los anexos y la documentación adicional (por ejemplo, en el soporte de entrega) sirven para ampliar, no para entender lo esencial."
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico",
+          "text": "Un perito escribe 120 páginas copiando todos los registros del sistema en el cuerpo del informe. El juez se pierde. La versión correcta tiene 25 páginas con lo esencial, explica los términos (qué es un registro del sistema, qué es una dirección IP) y remite a un anexo con los registros completos para que otro perito pueda revisarlos."
+        },
+        {
+          "type": "exam",
+          "text": "Si una opción recomienda «simplificar tanto que desaparezca el fundamento técnico», «usar términos sin explicarlos» o «repetir datos aunque no aporten información», es incorrecta. La correcta suele ser **explicar los términos complejos y escribir de forma clara y rigurosa**."
+        },
+        {
+          "type": "key",
+          "text": "Claridad (que se entienda), concisión (nada sobra; lo extra, a anexos), fundamentación (cada paso respaldado por experiencia o fuentes de prestigio) y justificación (conclusiones apoyadas en hechos, sin juicios de valor)."
+        }
+      ]
+    },
+    {
+      "id": "une-197010",
+      "title": "La norma UNE 197010:2015: una plantilla, no una ley",
+      "pages": [
+        8,
+        9
+      ],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Piensa en la receta de un pastel de un libro de cocina famoso. Nadie te obliga a seguirla, pero si lo haces es difícil olvidar un ingrediente, cualquier otro cocinero entiende lo que has hecho y tu pastel parece profesional. La norma UNE 197010 es esa receta para informes periciales informáticos."
+        },
+        {
+          "type": "term",
+          "term": "Norma UNE",
+          "text": "UNE significa «Una Norma Española». Es un documento técnico elaborado por la Asociación Española de Normalización (también llamada UNE) que recoge buenas prácticas consensuadas. A diferencia de una **ley**, que aprueba el Parlamento y es obligatoria, una norma técnica es **voluntaria** salvo que una ley la haga obligatoria."
+        },
+        {
+          "type": "term",
+          "term": "UNE 197010:2015",
+          "text": "Norma de 2015 titulada «Criterios generales para la elaboración de informes y dictámenes periciales sobre Tecnologías de la Información y las Comunicaciones (TIC)». TIC son los ordenadores, redes, teléfonos y demás tecnología que maneja información. La norma propone una **estructura tipo** para el informe."
+        },
+        {
+          "type": "p",
+          "text": "Punto de partida importante: **la legislación no impone una estructura concreta** para el informe pericial; queda a criterio del perito. Aun así, conviene seguir una estructura habitual, porque el informe es un **documento de consulta** y quien lo usa debe encontrar rápido cada parte."
+        },
+        {
+          "type": "list",
+          "title": "Ventajas de seguir la norma",
+          "items": [
+            "Da una **imagen de profesionalidad**.",
+            "Asegura un trabajo de calidad y que **no se olvida nada**.",
+            "Facilita el **trabajo en equipo** sobre un mismo documento.",
+            "Los interesados trabajan siempre con documentos de **formato similar**, lo que mejora la claridad."
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Los ocho contenidos que la norma pide en todo informe",
+          "head": [
+            "Contenido",
+            "En pocas palabras"
+          ],
+          "rows": [
+            [
+              "Identificación",
+              "Título, código único, destinatario, procedimiento, cliente, perito, fecha y firma"
+            ],
+            [
+              "Declaración de imparcialidad",
+              "El perito declara que no tiene circunstancias que le impidan ser independiente"
+            ],
+            [
+              "Juramento o promesa",
+              "Jura o promete actuar con objetividad y conocer sus responsabilidades"
+            ],
+            [
+              "Índice",
+              "Para consultar el documento con rapidez"
+            ],
+            [
+              "Cuerpo del informe",
+              "El trabajo propiamente dicho"
+            ],
+            [
+              "Conclusiones",
+              "Respuesta a las preguntas planteadas"
+            ],
+            [
+              "Firma",
+              "Del perito"
+            ],
+            [
+              "Anexos",
+              "Información complementaria"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Estos contenidos **no tienen por qué ser apartados separados**: la norma dice qué debe aparecer, no exactamente cómo ordenar el índice. Además, la norma pide un **código único de identificación** del trabajo y especifica unos **anexos mínimos según el tipo de evidencias** (página 17 del temario)."
+        },
+        {
+          "type": "exam",
+          "text": "Preguntas típicas: (1) ¿es obligatorio seguir la norma? No: es **aconsejable** por profesionalidad y claridad; no es obligatoria en ninguna jurisdicción, el juez no la impone y un informe no se invalida por no seguirla. (2) ¿qué debe contener? Índice, firma, juramento o promesa… → «todas las anteriores». (3) ¿qué especifica la norma? El banco da por buena «cómo debe **codificarse** (identificarse con un código) el informe»; no fija un tamaño mínimo ni un índice exacto. (4) ¿Garantiza que el tribunal acepte las conclusiones? No: es una guía para organizar y mejorar la calidad."
+        },
+        {
+          "type": "key",
+          "text": "La ley no fija estructura; la UNE 197010:2015 ofrece una estructura tipo voluntaria pero aconsejable. Contenidos mínimos: identificación, imparcialidad, juramento o promesa, índice, cuerpo, conclusiones, firma y anexos."
+        }
+      ]
+    },
+    {
+      "id": "identificacion",
+      "title": "Identificación: código único, encargo y contrapericial",
+      "pages": [
+        9,
+        10
+      ],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Un informe pericial es como un expediente en una oficina con miles de carpetas. Si una hoja se cae al suelo, tiene que poder volver a su carpeta sin dudas. Por eso cada informe lleva un **código único** que se imprime en **todas sus páginas**."
+        },
+        {
+          "type": "term",
+          "term": "Código único de identificación",
+          "text": "Referencia exclusiva que el perito asigna a cada trabajo (por ejemplo, «PER-2026-014»), junto a un **título descriptivo**. Debe aparecer en **todas las páginas** del documento, para identificar sin error el trabajo y cada una de sus hojas. No sustituye la identificación del perito ni la numeración de páginas: se suma a ellas."
+        },
+        {
+          "type": "list",
+          "title": "Lo que se identifica en las primeras páginas",
+          "items": [
+            "**Destinatario** del informe (juzgado o parte que lo encarga).",
+            "**Procedimiento judicial**, si lo hay: juzgado, causa, número de expediente.",
+            "**Cliente** o solicitante y, si existe, su **procurador** (profesional que representa a la parte ante el juzgado y se encarga de los trámites).",
+            "**Perito**: nombre, titulación, experiencia.",
+            "**Otras personas** que hayan ayudado al perito.",
+            "**Fecha** de emisión.",
+            "**Firma** del perito."
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Las dos vías por las que llega un encargo",
+          "head": [
+            "Vía",
+            "Quién encarga",
+            "Cómo se elige al perito"
+          ],
+          "rows": [
+            [
+              "Turno de oficio (perito judicial)",
+              "El propio juzgado, que necesita un experto",
+              "Por listas de peritos que gestionan asociaciones y colegios profesionales; el perito debe haberse inscrito antes"
+            ],
+            [
+              "Peritaje de parte",
+              "Una de las partes que quiere aportar una prueba",
+              "La parte contrata al profesional por su cuenta"
+            ]
+          ]
+        },
+        {
+          "type": "term",
+          "term": "Contrapericial",
+          "text": "Encargo para **revisar críticamente el informe del perito de la otra parte**: comprobar si su método, sus fuentes y sus conclusiones se sostienen. No es una sentencia sobre la validez del informe (eso lo decide el juez) ni una simple repetición de sus conclusiones: tiene que apoyarse en análisis y fundamentos como cualquier informe."
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico",
+          "text": "La empresa A aporta un informe que dice que un exempleado borró correos. El exempleado contrata a otra perita para una contrapericial. Ella revisa el informe y detecta que las horas se interpretaron en UTC (hora universal) sin convertir a hora española, lo que cambia el orden de los hechos. Su contrapericial explica el error y lo demuestra con los propios datos."
+        },
+        {
+          "type": "exam",
+          "text": "El informe debe estar **identificado en todas sus páginas**, **numerado** y con **índice**, y llevar la **firma** del perito. Pero no se exige **firmar cada página**: esa es la afirmación falsa típica. Si preguntan para qué sirve el código único: para identificar inequívocamente el trabajo y sus páginas."
+        },
+        {
+          "type": "key",
+          "text": "Cada informe lleva título y código único en todas las páginas, y en sus primeras páginas identifica destinatario, procedimiento, cliente, perito, colaboradores, fecha y firma. El encargo llega por turno de oficio o de parte; revisar el informe contrario es una contrapericial."
+        }
+      ]
+    },
+    {
+      "id": "imparcialidad",
+      "title": "Imparcialidad y juramento: lo que dice la LEC",
+      "pages": [
+        10,
+        12
+      ],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Un árbitro de fútbol no puede pitar un partido en el que juega su hermano. No porque vaya a hacer trampas seguro, sino porque nadie se fiaría de sus decisiones. Con el perito pasa igual: antes de empezar declara que no tiene relaciones que hagan dudar de su independencia."
+        },
+        {
+          "type": "term",
+          "term": "LEC (Ley de Enjuiciamiento Civil)",
+          "text": "Ley 1/2000 que regula cómo se desarrollan los juicios civiles en España (los que enfrentan a particulares o empresas por contratos, daños, despidos con reclamaciones económicas, etc.). Es una **ley ordinaria** aprobada por las Cortes, y sus reglas sobre peritos se usan como referencia en otros ámbitos. Se divide en **artículos** numerados; aquí importan el 335.2 y el 343."
+        },
+        {
+          "type": "p",
+          "text": "La norma UNE pide dos contenidos que suelen ir juntos, como un formalismo: la **declaración de imparcialidad** y el **juramento o promesa**."
+        },
+        {
+          "type": "term",
+          "term": "Declaración de imparcialidad (artículo 343 LEC)",
+          "text": "El perito declara que conoce las **tachas**: las circunstancias que, según el artículo 343 de la LEC, le impedirían trabajar con independencia y que la otra parte puede alegar para restar crédito a su informe."
+        },
+        {
+          "type": "table",
+          "title": "Las tachas del artículo 343 LEC que recoge la declaración",
+          "head": [
+            "Tacha",
+            "Ejemplo"
+          ],
+          "rows": [
+            [
+              "Ser cónyuge o pariente (por sangre o por matrimonio) hasta el cuarto grado de una parte, sus abogados o procuradores",
+              "El perito es primo del demandante"
+            ],
+            [
+              "Tener interés directo o indirecto en el asunto o en otro semejante",
+              "El perito es socio de la empresa que reclama"
+            ],
+            [
+              "Estar o haber estado en situación de dependencia, comunidad o contraposición de intereses con una parte o sus abogados o procuradores",
+              "El perito es empleado de la empresa demandada (relación laboral)"
+            ],
+            [
+              "Tener amistad íntima o enemistad con una parte o sus abogados o procuradores",
+              "El perito y el demandado están enemistados desde hace años"
+            ],
+            [
+              "Cualquier otra circunstancia que le haga desmerecer en el concepto profesional",
+              "Ha sido sancionado por su colegio profesional por falsear informes"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Fíjate en lo que **no** aparece: vivir cerca de una parte, ser del mismo pueblo o del mismo equipo de fútbol. La proximidad del domicilio por sí sola **no es tacha**. Si existe alguna relación que sí lo sea, el perito no debe ocultarla: tiene que explicar qué tipo de relación hay."
+        },
+        {
+          "type": "term",
+          "term": "Juramento o promesa (artículo 335.2 LEC)",
+          "text": "Al emitir el dictamen, el perito manifiesta bajo juramento (fórmula religiosa) o promesa (fórmula laica) de decir verdad que ha actuado y actuará **con la mayor objetividad posible**, tomando en consideración **tanto lo que pueda favorecer como lo que pueda perjudicar a cualquiera de las partes**, y que conoce las **sanciones penales** en que podría incurrir si incumple su deber."
+        },
+        {
+          "type": "p",
+          "text": "La fórmula que propone el temario añade que el perito conoce sus **responsabilidades civiles, penales, disciplinarias y asociativas**. Por ejemplo, un perito que falta a la verdad a sabiendas puede cometer un delito de falso testimonio."
+        },
+        {
+          "type": "code",
+          "title": "Esquema de una declaración (fórmula resumida)",
+          "text": "D./Dña. [nombre], con titulación de [título], colegiado/a n.º [número],\nrequerido/a por [parte / Juzgado n.º X / procurador], certifica:\n- Que conoce las tachas del art. 343 LEC y declara no estar incurso en ellas.\n- Que, conforme al art. 335.2 LEC, jura/promete decir verdad, actuar con la mayor\n  objetividad posible considerando lo que pueda favorecer o perjudicar a\n  cualquiera de las partes, y que conoce las sanciones penales aplicables."
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico",
+          "text": "Contrata a un perito la empresa demandante. Durante el análisis aparece un correo que indica que el propio director de la empresa autorizó la copia de datos que ahora denuncia. El cliente pide quitarlo del informe. El perito no puede: ha jurado considerar **lo que favorece y lo que perjudica** a cualquiera de las partes. Debe incluir el hallazgo y reflejar su efecto en las conclusiones."
+        },
+        {
+          "type": "exam",
+          "text": "Si preguntan qué implica la imparcialidad, la respuesta es **considerar lo que favorece y lo que perjudica a cualquiera de las partes**; nunca «excluir lo que no apoya al cliente» ni «defender a quien paga». En la pregunta de tachas, la opción incorrecta (que no es tacha) es **residir cerca** de una parte; amistad o enemistad, relación laboral (dependencia) y parentesco sí lo son."
+        },
+        {
+          "type": "key",
+          "text": "Declaración de imparcialidad = conocer y no estar incurso en las tachas del art. 343 LEC (parentesco, interés, dependencia, amistad íntima o enemistad, desmerecimiento). Juramento o promesa = art. 335.2 LEC: objetividad, considerar lo favorable y lo desfavorable, y conocer las sanciones penales."
+        }
+      ]
+    },
+    {
+      "id": "cuerpo-inicio",
+      "title": "Índice, resumen, objeto, antecedentes y fuentes",
+      "pages": [
+        12,
+        13
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "El **cuerpo del informe** es el grueso del trabajo. Antes de él va el **índice**, imprescindible porque el informe es un documento de consulta: el abogado que busca «qué se encontró en el USB» debe ir directo a esa página. El cuerpo suele recorrer estos puntos, en este orden."
+        },
+        {
+          "type": "steps",
+          "title": "El recorrido del cuerpo del informe",
+          "items": [
+            "**Resumen ejecutivo**: un pequeño compendio del trabajo realizado y de las conclusiones principales, para quien solo tiene dos minutos.",
+            "**Objeto del encargo**: para qué se ha pedido el informe y qué preguntas hay que responder.",
+            "**Antecedentes**: circunstancias conocidas y hechos previos que explican la situación actual.",
+            "**Fuentes de información**: los elementos sobre los que se trabaja.",
+            "**Procedimiento de trabajo y fundamentación**: los pasos y por qué son correctos.",
+            "**Análisis**: lo que se ha hecho y los resultados (siguiente apartado)."
+          ]
+        },
+        {
+          "type": "term",
+          "term": "Objeto del encargo",
+          "text": "Apartado que desglosa el **motivo del trabajo** y las **cuestiones que hay que responder**: para qué se ha requerido el informe y qué se pretende conseguir. Esas preguntas suelen llamarse **proposiciones de la prueba pericial** y deben incluirse en el informe. Delimita todo lo demás: métodos y conclusiones deben girar alrededor de ellas."
+        },
+        {
+          "type": "term",
+          "term": "Fuentes de información (entorno de investigación)",
+          "text": "Todo aquello sobre lo que se va a actuar: equipos, evidencias ya recogidas, otros soportes. Se listan con todos los datos que permitan identificarlos (marca, modelo, número de serie, número de prueba) y, si conviene, con una **nomenclatura** propia (E1, E2…) y **fotografías** del inventario recibido."
+        },
+        {
+          "type": "p",
+          "text": "Dentro de las fuentes va el subapartado **«obtención de fuentes de información»**: si el perito ha adquirido él mismo las evidencias, describe los métodos y criterios de adquisición; si se las han entregado, describe la **cadena de custodia**."
+        },
+        {
+          "type": "table",
+          "title": "No confundas los apartados iniciales",
+          "head": [
+            "Apartado",
+            "Responde a…",
+            "Ejemplo"
+          ],
+          "rows": [
+            [
+              "Resumen ejecutivo",
+              "¿Qué se hizo y qué se concluyó, en breve?",
+              "«Se analizó el portátil E1; se acredita la copia de 3 carpetas a un USB el 12/03»"
+            ],
+            [
+              "Objeto del encargo",
+              "¿Para qué me llaman y qué debo contestar?",
+              "«Determinar si se copiaron los archivos X a un dispositivo externo»"
+            ],
+            [
+              "Antecedentes",
+              "¿Qué pasó antes que explica la situación?",
+              "«El empleado causó baja el 13/03 y se incorporó a una empresa competidora»"
+            ],
+            [
+              "Fuentes de información",
+              "¿Con qué elementos trabajo?",
+              "«E1: portátil marca M, n.º de serie S, recibido precintado»"
+            ]
+          ]
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico",
+          "text": "Te piden saber si unos archivos se copiaron a un USB. El objeto del encargo lo plantea así, y todo el análisis se centra en contestar esa pregunta: registros de conexión de dispositivos, accesos a los archivos, fechas. No se amplía a revisar fotos personales o conversaciones sin relación, y no se da por probada la copia solo porque el USB se conectara: conectar no es copiar."
+        },
+        {
+          "type": "exam",
+          "text": "El test da cuatro descripciones y pregunta cuál es la del objeto del encargo: la correcta habla del **motivo del trabajo y las cuestiones a responder**. «Resumen de las labores y conclusiones» es el resumen ejecutivo; «describir los elementos de trabajo» son las fuentes; «circunstancias que dan lugar a la situación actual» son los antecedentes. Si el enunciado añade un contexto (por ejemplo, la nube), no cambia la respuesta."
+        },
+        {
+          "type": "key",
+          "text": "Índice para consultar; resumen ejecutivo = compendio; objeto = para qué y qué preguntas (proposiciones de la prueba pericial); antecedentes = contexto previo; fuentes = elementos identificados con detalle, más su adquisición o cadena de custodia."
+        }
+      ]
+    },
+    {
+      "id": "procedimiento-analisis",
+      "title": "Procedimiento, fundamentación y análisis",
+      "pages": [
+        14,
+        15
+      ],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "En un examen de matemáticas no basta con escribir el resultado: hay que mostrar las operaciones para que el profesor vea que no lo has copiado. El procedimiento y el análisis son «las operaciones» del perito: permiten a cualquiera seguir el camino desde la evidencia hasta la conclusión."
+        },
+        {
+          "type": "term",
+          "term": "Procedimiento de trabajo y fundamentación",
+          "text": "Apartado que detalla los **pasos** que se van a seguir y la **base teórica** que los avala, para que todo el mundo entienda que el método es el correcto y adecuado. Suele empezar por los **objetivos y prioridades** de la actuación, y se apoya en bibliografía cualificada, normativa aplicable y otras fuentes solventes. Puede incluir un pequeño glosario para el profano. Es riguroso y didáctico a la vez."
+        },
+        {
+          "type": "p",
+          "text": "Puede citar legislación, pero **sin salirse del marco pericial**: el perito explica la técnica, no hace de abogado."
+        },
+        {
+          "type": "term",
+          "term": "Análisis",
+          "text": "El **punto más importante** del informe: describe el trabajo realmente efectuado. De que se describa bien depende, en gran medida, que los resultados y las conclusiones queden justificados."
+        },
+        {
+          "type": "steps",
+          "title": "Cómo se redacta el análisis",
+          "items": [
+            "Describir el **entorno de trabajo**: el equipo del perito y las herramientas usadas en cada parte. No hace falta explicar a fondo cada herramienta; lo relevante sobre ella puede ir a un anexo. El entorno debe garantizar que no se alteran las evidencias.",
+            "Explicar los **pasos efectuados con cada evidencia, en orden cronológico**, enumerando los resultados.",
+            "Si había **varias alternativas**, explicar por qué se eligió una y qué impacto tiene esa elección en el resto del análisis.",
+            "Exponer los **resultados**: lo que se obtuvo al aplicar las herramientas a las evidencias."
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Resultados frente a conclusiones",
+          "head": [
+            "Aspecto",
+            "Resultados",
+            "Conclusiones"
+          ],
+          "rows": [
+            [
+              "Qué son",
+              "Hallazgos objetivos: lo que se observó",
+              "Interpretación experta de esos hallazgos para responder a las preguntas"
+            ],
+            [
+              "Ejemplo",
+              "«El registro USBSTOR muestra el dispositivo con n.º de serie Z conectado el 12/03 a las 18:02»",
+              "«Se acredita que el día 12/03 se conectó un dispositivo externo y se accedió a las carpetas objeto de la pericia»"
+            ],
+            [
+              "Regla",
+              "Incluyen todo lo pertinente, favorezca a quien favorezca",
+              "No pueden introducir hechos no examinados; deben poder seguirse desde los resultados"
+            ]
+          ]
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico",
+          "text": "Mala redacción: «Con la herramienta X se encontró el archivo». Buena redacción: «Sobre la copia forense E1-C (hash verificado), en la estación de análisis del laboratorio, se usó la herramienta X versión 4.2 para recuperar archivos borrados de la partición 2. Se obtuvo el archivo clientes.xlsx, borrado el 12/03 a las 18:15 (ver anexo III)». Entorno, herramienta, pasos y resultado: otro perito puede repetirlo."
+        },
+        {
+          "type": "exam",
+          "text": "Si preguntan qué ayuda a que otro profesional entienda cómo se obtuvo un dato, la respuesta es **describir entorno, herramienta, pasos y resultado**. Citar solo el nombre comercial de la herramienta, una captura aislada o «la conclusión automática del programa» no basta: la herramienta no sustituye la descripción del procedimiento. Y el procedimiento sirve para **explicar los pasos y por qué son técnicamente adecuados**, no para listar herramientas o costes."
+        },
+        {
+          "type": "key",
+          "text": "Procedimiento = qué pasos y por qué son correctos, con fuentes solventes. Análisis = el corazón del informe: entorno, pasos cronológicos por evidencia, elección justificada entre alternativas y resultados. Los resultados describen; las conclusiones interpretan."
+        }
+      ]
+    },
+    {
+      "id": "conclusiones",
+      "title": "Conclusiones: responder a lo que se preguntó",
+      "pages": [
+        15,
+        17
+      ],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Si en un examen te hacen cinco preguntas, el profesor quiere ver cinco respuestas, numeradas igual y en el mismo orden. Si una no sabes contestarla, mejor decir por qué que inventarte algo. Las conclusiones del informe funcionan igual."
+        },
+        {
+          "type": "p",
+          "text": "En las conclusiones se **vinculan los resultados con las preguntas** del objeto del encargo, demostrando que se han contestado todas. Son **fruto de la interpretación experta** de los resultados del análisis. Conviene responder **en el mismo orden y numeración** en que se plantearon. Si alguna no se puede contestar por falta de pruebas, se documenta y se explica por qué."
+        },
+        {
+          "type": "p",
+          "text": "Es habitual cerrar con una **conclusión final** que resume no solo los resultados sino todo el procedimiento, e indica, solo si procede, lo siguiente."
+        },
+        {
+          "type": "list",
+          "title": "Qué puede señalar la conclusión final",
+          "items": [
+            "Si las evidencias eran **suficientes** y estaban **correctamente adquiridas**.",
+            "Si hubo **dificultades o impedimentos** por parte de algún interviniente.",
+            "Si el procedimiento estaba bien documentado y las preguntas eran claras y resolubles por un perito.",
+            "Cualquier otra cosa de interés."
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Las cuatro cualidades de las conclusiones",
+          "head": [
+            "Cualidad",
+            "Qué significa"
+          ],
+          "rows": [
+            [
+              "Claras y rotundas",
+              "Sin ambigüedades ni dudas de redacción; entendibles por cualquiera. El perito no debe parecer que duda de ellas"
+            ],
+            [
+              "Ajustadas a lo solicitado",
+              "Ni quedarse corto ni pasarse. El perito responde incógnitas, no juzga a nadie ni «resuelve» el caso"
+            ],
+            [
+              "Ajustadas al hecho tecnológico",
+              "Responde a la técnica. Si de ella se deriva una responsabilidad jurídica, solo lo señala: valorarla es tarea de los juristas"
+            ],
+            [
+              "Imparciales",
+              "Aunque trabaje para una parte, se debe a la verdad y a las evidencias"
+            ]
+          ]
+        },
+        {
+          "type": "code",
+          "title": "Fórmulas habituales de apertura y cierre",
+          "text": "«Conforme a los resultados anteriormente expuestos, este perito llega a las\nsiguientes conclusiones:»\n\n1. Respuesta a la proposición 1…\n2. Respuesta a la proposición 2…\n\n«Esta es mi fiel y técnica información pericial, que someto al más ilustrado\ndictamen de Su Señoría en (localidad) a (fecha)…\nFdo.: (nombre) – (titulación, n.º de colegiado)»"
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico",
+          "text": "El disco del segundo equipo implicado no se pudo adquirir porque estaba cifrado y nadie facilitó la clave. Conclusión correcta: «No ha sido posible examinar el equipo E2, por lo que no puede determinarse si los archivos llegaron a él. Esta limitación no afecta a lo concluido sobre E1». Incorrecto: suponer lo que «probablemente» contendría, ocultar la carencia o rellenar con datos de otro caso."
+        },
+        {
+          "type": "exam",
+          "text": "Las conclusiones **contestan a las preguntas y cierran con una conclusión final** y además **son la interpretación experta de los resultados**: si el test ofrece «la A y la C son ciertas» con esas dos ideas, es la correcta. Trampas: un límite fijo de líneas («no más de cinco») no existe; «determinar culpabilidad y sanción» o «formular consecuencias jurídicas» no es tarea del perito; y ante una evidencia no adquirida se **indica la limitación y cómo afecta** a lo que puede afirmarse."
+        },
+        {
+          "type": "key",
+          "text": "Conclusiones: responder a cada pregunta en su orden, interpretando los resultados, con una conclusión final y declarando los límites. Claras, ajustadas a lo pedido, ceñidas al hecho tecnológico e imparciales."
+        }
+      ]
+    },
+    {
+      "id": "anexos-estructura",
+      "title": "Anexos, visado y estructura típica",
+      "pages": [
+        17,
+        19
+      ],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Los anexos son como el trastero de una casa bien ordenada: el salón (el cuerpo del informe) solo tiene lo necesario para vivir, pero si alguien quiere comprobar algo, en el trastero está todo, etiquetado. Lo que no se guarda en el trastero es basura sin relación con la casa."
+        },
+        {
+          "type": "term",
+          "term": "Anexos",
+          "text": "Información **complementaria** que permite profundizar y demuestra todo el trabajo que en el cuerpo se ha resumido. Suele ser más técnica, pensada para que la revise otro perito. Pueden ponerse **tantos como se consideren necesarios**, siempre que sean **pertinentes** al encargo."
+        },
+        {
+          "type": "list",
+          "title": "Ejemplos de anexos",
+          "items": [
+            "Logs (registros) del sistema.",
+            "Listados de archivos, direcciones IP, usuarios.",
+            "Historiales de comandos.",
+            "Especificaciones de las herramientas usadas.",
+            "Un **glosario** de términos para el lector profano y un **currículum resumido (CV, curriculum vitae)** del perito que permita valorar su competencia.",
+            "Los **anexos mínimos** que la norma UNE 197010 especifica según el tipo de evidencias."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Lo que **no** son anexos: conclusiones nuevas que no se justifican en el cuerpo, datos de otros casos para rellenar huecos, copias de todas las conversaciones con el cliente o de todos los títulos y diplomas del perito. Acumular papel no da solidez."
+        },
+        {
+          "type": "term",
+          "term": "Visado",
+          "text": "Revisión del informe por un **colegio profesional** (asociación oficial de una profesión, como el colegio de ingenieros informáticos). La norma lo contempla, pero en España **no es obligatorio**. Algunos peritos lo piden como garantía adicional de calidad; además asegura el **depósito** del documento y un **seguro de responsabilidad civil**."
+        },
+        {
+          "type": "table",
+          "title": "Estructura habitual y su correspondencia con la norma",
+          "head": [
+            "Apartado habitual",
+            "Contenido de la norma que cubre"
+          ],
+          "rows": [
+            [
+              "Portada",
+              "Identificación"
+            ],
+            [
+              "Firma",
+              "Firma, declaración de imparcialidad y juramento o promesa"
+            ],
+            [
+              "Índice",
+              "Índice"
+            ],
+            [
+              "Resumen ejecutivo, objeto del encargo, fuentes de información, análisis",
+              "Cuerpo del informe"
+            ],
+            [
+              "Conclusiones",
+              "Conclusiones"
+            ],
+            [
+              "Anexos",
+              "Anexos"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "La tabla anterior es una reconstrucción didáctica: en el temario la correspondencia aparece como imagen (figura 1) y su contenido no se puede leer en el texto extraído."
+        },
+        {
+          "type": "exam",
+          "text": "Como anexo conveniente, el test da por buena la pareja **CV del perito y glosario de términos**. Trampas: «no conviene poner anexos porque aumentan el tamaño» (al contrario, sirven para que el cuerpo sea conciso), «todas las conversaciones con el cliente» o «todos nuestros títulos». Los anexos guardan **información complementaria que apoya el informe sin cargar el texto principal**."
+        },
+        {
+          "type": "key",
+          "text": "Anexos = material complementario y pertinente (logs, listados, herramientas, glosario, CV), nunca conclusiones nuevas ni relleno. Visado colegial: posible, no obligatorio en España. Estructura habitual: portada, firma, índice, resumen ejecutivo, objeto, fuentes, análisis, conclusiones y anexos."
+        }
+      ]
+    },
+    {
+      "id": "formato-recursos",
+      "title": "Formato y recursos visuales: numeración, cronologías y fichas",
+      "pages": [
+        20,
+        22
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Además del contenido, el temario da unas **reglas generales de formato** que evitan problemas prácticos."
+        },
+        {
+          "type": "list",
+          "title": "Generalidades",
+          "items": [
+            "Todas las páginas **numeradas**; se recomienda indicar también el **total** («página 7 de 32») y el **número de identificación** del informe.",
+            "Entregar en un **soporte no alterable**, como un DVD o un PDF, con **firma digital** (una firma electrónica que demuestra quién firma y que el documento no ha cambiado) e incluso su **hash**."
+          ]
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico",
+          "text": "En una vista, un abogado presenta una hoja suelta. Gracias al pie de página «PER-2026-014 · Página 12 de 40», todos saben a qué informe pertenece y que no falta ninguna. Si solo hubiera fecha, o solo una portada identificada, no habría forma de saberlo."
+        },
+        {
+          "type": "p",
+          "text": "Los **recursos visuales** (tablas, esquemas, gráficos) ayudan a sintetizar y a que el lector comprenda. **No son obligatorios** ni los impone la norma UNE 197010: el temario los propone como recursos útiles cuando aportan claridad."
+        },
+        {
+          "type": "table",
+          "title": "Recursos visuales típicos",
+          "head": [
+            "Recurso",
+            "Para qué sirve",
+            "Cuándo usarlo"
+          ],
+          "rows": [
+            [
+              "Esquema de elementos implicados (diagrama de red)",
+              "Muestra usuarios, equipos y cómo se relacionan",
+              "Cuando hay varios actores o equipos y hay que aclarar dónde está cada uno"
+            ],
+            [
+              "Tabla de tiempos",
+              "Lista ordenada de hechos con su fecha y hora; admite columnas extra (fuente, equipo, evidencia)",
+              "Para mostrar la secuencia de lo ocurrido con detalle"
+            ],
+            [
+              "Línea o diagrama de tiempos",
+              "Representación gráfica de la secuencia",
+              "Para dar una visión rápida del orden de los hechos"
+            ],
+            [
+              "Volcados de pantalla",
+              "Complementan lo anterior",
+              "Cuando una imagen del dato ayuda a entenderlo"
+            ],
+            [
+              "Ficha de análisis de artefacto",
+              "Resume el examen de cada artefacto",
+              "En el análisis, una por artefacto"
+            ]
+          ]
+        },
+        {
+          "type": "code",
+          "title": "Ejemplo de tabla de tiempos",
+          "text": "Fecha/hora (CET)   | Equipo | Hecho                                   | Fuente\n12/03/2026 17:58   | E1     | Inicio de sesión del usuario jlopez    | Registro de seguridad de Windows\n12/03/2026 18:02   | E1     | Conexión USB n.º serie Z                | Registro USBSTOR\n12/03/2026 18:05   | E1     | Acceso a carpeta \\Clientes             | Jump lists / LNK\n12/03/2026 18:15   | E1     | Borrado de clientes.xlsx                | $MFT\n13/03/2026 09:10   | SRV1   | Baja de la cuenta jlopez                | Log del directorio"
+        },
+        {
+          "type": "term",
+          "term": "Artefacto",
+          "text": "En forense, cualquier rastro que deja el sistema o una aplicación y que sirve para reconstruir lo ocurrido: una entrada del registro de Windows, un historial del navegador, un archivo de accesos directos."
+        },
+        {
+          "type": "code",
+          "title": "Ejemplo de ficha de análisis de artefacto",
+          "text": "Nombre:        USBSTOR (registro de Windows)\nUbicación:     E1-C, SYSTEM\\CurrentControlSet\\Enum\\USBSTOR\nEstado:        Íntegro\nHerramienta:   Visor de registro X v2.1\nProcedimiento: Exportación de la clave y conversión de marcas de tiempo a CET\nResultados:    Dispositivo n.º de serie Z, primera conexión 12/03/2026 18:02\nObservaciones: Coincide con la tabla de tiempos (fila 2)"
+        },
+        {
+          "type": "exam",
+          "text": "Diagramas y tablas o líneas de tiempo son **recursos útiles para entender mejor** el informe: ni obligatorios, ni prohibidos, ni específicamente recomendados por la norma. Si hay hechos en varios equipos y el lector se pierde, ayuda **una cronología que relacione hechos, tiempos y fuentes**; no eliminar las fuentes que discrepan ni ordenar por nombre de equipo. Una ficha de artefacto recoge **nombre, ubicación, herramienta, procedimiento y resultados**."
+        },
+        {
+          "type": "key",
+          "text": "Páginas numeradas, con total y código del informe; entrega en soporte inalterable con firma digital y hash. Esquemas, tablas y líneas de tiempo y fichas de artefacto (nombre, ubicación, estado, herramienta, procedimiento, resultados) son recursos útiles, no obligatorios."
+        }
+      ]
+    }
+  ],
+  "summary": [
+    "El informe pericial ayuda al juez, fiscal, abogados, jurado y demás interesados a entender un hecho tecnológico; el juez lo valora según la sana crítica.",
+    "Debe ser riguroso y didáctico a la vez, imparcial y objetivo, y responder a las cuestiones planteadas.",
+    "Cualidades: claridad, concisión, fundamentación y justificación.",
+    "La ley no fija una estructura; la UNE 197010:2015 propone una estructura tipo, voluntaria pero aconsejable por profesionalidad y claridad.",
+    "Contenidos de la norma: identificación, declaración de imparcialidad, juramento o promesa, índice, cuerpo, conclusiones, firma y anexos.",
+    "Cada informe lleva título y código único en todas sus páginas; no se exige firmar cada página.",
+    "El encargo llega por turno de oficio o de parte; revisar el informe contrario es una contrapericial.",
+    "Declaración de imparcialidad: tachas del art. 343 LEC (parentesco, interés, dependencia, amistad íntima o enemistad, desmerecimiento). Vivir cerca no es tacha.",
+    "Juramento o promesa (art. 335.2 LEC): objetividad, considerar lo favorable y lo desfavorable a cualquier parte, conocer las sanciones penales.",
+    "Cuerpo: resumen ejecutivo, objeto del encargo, antecedentes, fuentes de información, procedimiento y fundamentación, análisis.",
+    "Las conclusiones responden a cada pregunta en su orden, interpretan los resultados, declaran las limitaciones y se ciñen al hecho tecnológico.",
+    "Anexos: material complementario y pertinente; el visado colegial no es obligatorio en España.",
+    "Páginas numeradas con total y código; recursos visuales (esquemas, cronologías, fichas de artefacto) útiles pero no obligatorios."
+  ],
+  "glossary": [
+    {
+      "term": "Perito",
+      "text": "Experto que aporta a un procedimiento judicial conocimientos técnicos que los juristas no tienen."
+    },
+    {
+      "term": "Informe o dictamen pericial",
+      "text": "Documento que recoge el trabajo del perito y sus conclusiones para responder a unas preguntas concretas."
+    },
+    {
+      "term": "Sana crítica",
+      "text": "Criterio con el que el juez valora libremente las pruebas, incluido el dictamen pericial, según la lógica y la experiencia."
+    },
+    {
+      "term": "UNE 197010:2015",
+      "text": "Norma española que propone criterios y una estructura tipo para informes periciales TIC. Voluntaria."
+    },
+    {
+      "term": "UNE",
+      "text": "Una Norma Española; también, la Asociación Española de Normalización que las elabora."
+    },
+    {
+      "term": "TIC",
+      "text": "Tecnologías de la Información y las Comunicaciones."
+    },
+    {
+      "term": "LEC",
+      "text": "Ley de Enjuiciamiento Civil (Ley 1/2000), que regula los juicios civiles y, entre otras cosas, a los peritos."
+    },
+    {
+      "term": "Tacha",
+      "text": "Circunstancia del art. 343 LEC que pone en duda la imparcialidad de un perito y que la otra parte puede alegar."
+    },
+    {
+      "term": "Turno de oficio",
+      "text": "Listas de peritos gestionadas por colegios y asociaciones de las que el juzgado elige cuando necesita uno."
+    },
+    {
+      "term": "Peritaje de parte",
+      "text": "Informe encargado y pagado por una de las partes del juicio."
+    },
+    {
+      "term": "Contrapericial",
+      "text": "Revisión crítica y fundamentada del informe del perito de la otra parte."
+    },
+    {
+      "term": "Proposiciones de la prueba pericial",
+      "text": "Preguntas concretas que el perito debe responder; se recogen en el objeto del encargo."
+    },
+    {
+      "term": "Resumen ejecutivo",
+      "text": "Compendio breve del trabajo y de las conclusiones principales."
+    },
+    {
+      "term": "Fuentes de información",
+      "text": "Elementos sobre los que actúa el perito (equipos, soportes, evidencias); también llamadas entorno de investigación."
+    },
+    {
+      "term": "Artefacto",
+      "text": "Rastro que deja un sistema o aplicación y que permite reconstruir lo ocurrido."
+    },
+    {
+      "term": "Visado",
+      "text": "Revisión del informe por un colegio profesional; no obligatoria en España."
+    },
+    {
+      "term": "Procurador",
+      "text": "Profesional que representa a una parte ante el juzgado y gestiona sus trámites."
+    },
+    {
+      "term": "Hash",
+      "text": "Resumen numérico de unos datos que cambia si cambian los datos; sirve para demostrar integridad."
+    }
+  ],
+  "questions": {
+    "forense-t10-01": {
+      "section": "identificacion",
+      "reasoning": "Se busca la afirmación falsa. El temario exige que el código del informe aparezca en todas las páginas, que las páginas estén numeradas y que haya índice, y la firma del perito es uno de los contenidos. Lo que no exige en ningún momento es firmar cada página. Esa es la falsa.",
+      "options": {
+        "a": "Incorrecta como respuesta, porque es cierta: el código único de identificación debe aparecer en todas las páginas.",
+        "b": "Incorrecta como respuesta, porque es cierta: el índice es un contenido obligado por la norma, al ser el informe un documento de consulta.",
+        "c": "Incorrecta como respuesta, porque es cierta: todas las páginas deben ir numeradas, a ser posible con el total.",
+        "d": "Correcta (es la falsa). El informe debe estar firmado por el perito, pero no se exige firmar cada una de sus páginas."
+      }
+    },
+    "forense-t10-02": {
+      "section": "formato-recursos",
+      "reasoning": "El temario presenta los esquemas de red y las tablas o líneas de tiempo como recursos visuales que facilitan la síntesis y la comprensión. No dice que sean obligatorios, ni los prohíbe, ni los atribuye a la norma UNE 197010: son propuestas del propio temario.",
+      "options": {
+        "a": "Incorrecta. No son obligatorios: se usan cuando aportan claridad, por ejemplo con varios equipos o actores.",
+        "b": "Incorrecta. Al contrario, el temario los recomienda como recursos útiles.",
+        "c": "Correcta. Son recursos útiles para entender mejor la información del informe.",
+        "d": "Incorrecta. La norma fija contenidos mínimos (identificación, índice, cuerpo, conclusiones…), no recomienda específicamente estos recursos visuales."
+      }
+    },
+    "forense-t10-03": {
+      "section": "une-197010",
+      "reasoning": "La norma enumera los contenidos que deben aparecer en todo informe: identificación, declaración de imparcialidad, juramento o promesa, índice, cuerpo, conclusiones, firma y anexos. Índice, firma y juramento o promesa están en la lista, así que las tres primeras opciones son ciertas.",
+      "options": {
+        "a": "Incorrecta como respuesta única. El índice es obligatorio, pero no es lo único.",
+        "b": "Incorrecta como respuesta única. La firma del perito también está en la lista, junto con las demás.",
+        "c": "Incorrecta como respuesta única. El juramento o promesa es uno de los contenidos, pero no el único.",
+        "d": "Correcta. Índice, firma y juramento o promesa forman parte de los contenidos mínimos de la norma."
+      }
+    },
+    "forense-t10-04": {
+      "section": "une-197010",
+      "reasoning": "La clave del banco es que la norma especifica cómo codificar el informe: el temario exige asignar a cada trabajo un código único de identificación que aparezca en todas las páginas. No fija un tamaño mínimo, y aunque marca contenidos, dice expresamente que no tienen por qué ser apartados separados, así que no impone un índice exacto.",
+      "options": {
+        "a": "Incorrecta según la clave del banco. Ojo: el temario (p. 17) sí dice que la norma especifica unos anexos mínimos según el tipo de evidencias; ver la duda.",
+        "b": "Correcta. La norma pide identificar el informe con un título y un código único presente en todas sus páginas.",
+        "c": "Incorrecta. No hay tamaño mínimo; al contrario, se busca la concisión.",
+        "d": "Incorrecta. La norma indica contenidos, pero no un índice exacto: no tienen por qué ser apartados independientes y la estructura habitual es otra."
+      },
+      "doubt": "El temario (página 17) afirma literalmente que «la norma especifica, además, una serie de anexos mínimos a incluir según el tipo de evidencias», lo que respalda la opción a casi palabra por palabra. La opción b (codificación) se apoya en el código único de identificación de la página 9, que el temario no atribuye de forma tan explícita a la norma. La clave b del banco es discutible: a parece al menos igual de correcta."
+    },
+    "forense-t10-05": {
+      "section": "imparcialidad",
+      "reasoning": "Las tachas del art. 343 LEC que recoge el temario son: parentesco hasta el cuarto grado, interés directo o indirecto, dependencia o comunidad o contraposición de intereses, amistad íntima o enemistad, y otras circunstancias que hagan desmerecer al perito. La relación laboral es una situación de dependencia. Vivir cerca de una parte no aparece en la lista.",
+      "options": {
+        "a": "Incorrecta como respuesta, porque es cierta: la amistad íntima o la enemistad es tacha.",
+        "b": "Incorrecta como respuesta, porque es cierta: la relación laboral es una situación de dependencia con una parte.",
+        "c": "Correcta (es la opción incorrecta). Residir cerca de una parte no es una tacha del art. 343 LEC.",
+        "d": "Incorrecta como respuesta, porque es cierta: el parentesco hasta el cuarto grado es tacha."
+      }
+    },
+    "forense-t10-06": {
+      "section": "une-197010",
+      "reasoning": "La legislación no impone una estructura para el informe: queda a criterio del perito. Seguir la UNE 197010 es aconsejable porque da imagen de profesionalidad, evita olvidos, facilita el trabajo en equipo y homogeneiza el formato. No es obligatorio en ninguna jurisdicción ni causa de invalidez.",
+      "options": {
+        "a": "Incorrecta. Ninguna jurisdicción, tampoco la contencioso-administrativa, obliga a seguir una norma de redacción.",
+        "b": "Incorrecta. El temario no contempla que el juez imponga la norma; la estructura queda a criterio del perito.",
+        "c": "Correcta. Es aconsejable por profesionalidad, por facilitar la elaboración y por mejorar la claridad.",
+        "d": "Incorrecta. No seguir una norma no invalida el informe; el juez lo valora según la sana crítica."
+      }
+    },
+    "forense-t10-07": {
+      "section": "cuerpo-inicio",
+      "reasoning": "Aunque el enunciado mencione la nube, la pregunta es qué contiene el objeto del encargo, y eso no depende de la tecnología analizada. El objeto desglosa el motivo del trabajo y las cuestiones que hay que responder. Las otras opciones describen el resumen ejecutivo, las fuentes y los antecedentes.",
+      "options": {
+        "a": "Incorrecta. Un pequeño resumen de las labores y conclusiones es el resumen ejecutivo.",
+        "b": "Incorrecta. Describir los elementos con los que se trabaja corresponde a las fuentes de información.",
+        "c": "Incorrecta. Las circunstancias que dan lugar a la situación actual son los antecedentes.",
+        "d": "Correcta. El objeto del encargo explica para qué se ha pedido el informe y qué preguntas hay que responder."
+      }
+    },
+    "forense-t10-08": {
+      "section": "conclusiones",
+      "reasoning": "Las conclusiones responden a las preguntas planteadas y suelen cerrarse con una conclusión final (A), y son la interpretación experta de los resultados del análisis (C). No hay un límite de extensión fijo. Por tanto A y C son ciertas.",
+      "options": {
+        "a": "Incorrecta como respuesta única. Es cierta, pero también lo es la C.",
+        "b": "Incorrecta. No existe un límite de cinco líneas: deben ser claras y responder a todo lo pedido.",
+        "c": "Incorrecta como respuesta única. Es cierta, pero también lo es la A.",
+        "d": "Correcta. A y C describen juntas lo que son las conclusiones."
+      }
+    },
+    "forense-t10-09": {
+      "section": "anexos-estructura",
+      "reasoning": "Los anexos recogen información complementaria y pertinente. El temario recomienda un glosario para el lector profano, y la competencia del perito (titulación y experiencia) forma parte de lo que se valora, así que un CV resumido es un anexo razonable. No tiene sentido acumular conversaciones con el cliente o diplomas, y los anexos no se evitan por tamaño: precisamente permiten que el cuerpo sea conciso.",
+      "options": {
+        "a": "Correcta. El CV del perito y un glosario de términos son anexos útiles: uno permite valorar su competencia y el otro ayuda a entender el informe.",
+        "b": "Incorrecta. Los anexos son convenientes: se pueden poner tantos como haga falta y permiten mantener el cuerpo breve.",
+        "c": "Incorrecta. Las conversaciones con el cliente no son material pertinente para el análisis técnico.",
+        "d": "Incorrecta. Basta un resumen de la formación y experiencia; copiar todos los títulos es relleno."
+      }
+    },
+    "forense-t10-10": {
+      "section": "audiencia",
+      "reasoning": "Al perito se le contrata como experto, así que el informe debe ser riguroso; pero lo leen jueces, abogados y jurados sin formación técnica, así que también debe ser didáctico. Ninguna de las dos cualidades puede sacrificarse a la otra, y el foco es el hecho tecnológico, no el lenguaje jurídico.",
+      "options": {
+        "a": "Incorrecta. Rigor sí, pero solo con lenguaje científico el lector profano no entendería nada.",
+        "b": "Correcta. Riguroso, pero a la vez didáctico: es la fórmula del temario.",
+        "c": "Incorrecta. La didáctica no justifica ejemplos que no sean rigurosos; el temario advierte contra el texto infantil perdido en ejemplos.",
+        "d": "Incorrecta. El perito responde al hecho tecnológico; la terminología y la valoración legal corresponden a los juristas."
+      }
+    },
+    "forense-t10-11": {
+      "section": "audiencia",
+      "reasoning": "El perito asiste en materias que escapan al conocimiento de los juristas. Por eso el informe es una ayuda para el juez, el fiscal, los abogados, el jurado y cualquier interesado en el procedimiento, la mayoría sin conocimientos técnicos.",
+      "options": {
+        "a": "Incorrecta. Si solo lo entendieran los expertos en las herramientas, no ayudaría a quien tiene que decidir.",
+        "b": "Correcta. Debe servir a todos los que intervienen en el procedimiento, incluidos lectores sin formación técnica.",
+        "c": "Incorrecta. Un informe que el tribunal no puede interpretar no cumple su función, aunque lo encargue una parte.",
+        "d": "Incorrecta. El autor de la copia no es el destinatario: el informe se escribe para el procedimiento."
+      }
+    },
+    "forense-t10-12": {
+      "section": "caracteristicas",
+      "reasoning": "La claridad pide un lenguaje sencillo y explicar los términos complejos, y la exigencia de rigor impide simplificar hasta perder el fundamento. La concisión impide repetir datos que no aportan nada. La única opción que respeta las tres ideas es la que combina explicación, claridad y rigor.",
+      "options": {
+        "a": "Incorrecta. Simplificar hasta perder el fundamento técnico rompe el rigor y la justificación.",
+        "b": "Incorrecta. Usar tecnicismos sin explicarlos va contra la claridad.",
+        "c": "Incorrecta. Repetir sin aportar nada va contra la concisión.",
+        "d": "Correcta. Explicar los términos complejos y escribir de forma clara y rigurosa es lo que recomienda el tema."
+      }
+    },
+    "forense-t10-13": {
+      "section": "identificacion",
+      "reasoning": "Cada trabajo del perito recibe un título y un código único que debe aparecer en todas las páginas. Su función es identificar sin ambigüedad el informe y que cada hoja pueda asociarse a él. Es un dato añadido: no sustituye a la firma ni a la numeración.",
+      "options": {
+        "a": "Incorrecta. El perito sigue identificándose y firmando; el código identifica el trabajo, no a la persona.",
+        "b": "Incorrecta. La numeración de páginas sigue siendo necesaria; código y numeración se complementan.",
+        "c": "Incorrecta. Los anexos forman parte del mismo informe; el código no los convierte en documentos independientes.",
+        "d": "Correcta. Sirve para identificar inequívocamente el trabajo y sus páginas."
+      }
+    },
+    "forense-t10-14": {
+      "section": "cuerpo-inicio",
+      "reasoning": "El objeto del encargo desglosa el motivo del trabajo y las cuestiones a responder (las proposiciones de la prueba pericial). Se escribe antes del análisis, así que no puede contener conclusiones, y no es una lista de herramientas ni de antecedentes irrelevantes.",
+      "options": {
+        "a": "Correcta. Explica para qué se pidió el informe y qué preguntas debe responder.",
+        "b": "Incorrecta. Los antecedentes van en su propio apartado y solo si son relevantes para contextualizar.",
+        "c": "Incorrecta. Las herramientas se describen en el entorno de trabajo del análisis.",
+        "d": "Incorrecta. Las conclusiones salen del análisis y van al final, nunca antes de examinar las evidencias."
+      }
+    },
+    "forense-t10-15": {
+      "section": "anexos-estructura",
+      "reasoning": "Los anexos sirven para profundizar y demostrar el trabajo que en el cuerpo se ha resumido, permitiendo que el texto principal sea conciso. Deben ser pertinentes y no añaden conclusiones ni datos ajenos al caso.",
+      "options": {
+        "a": "Incorrecta. Las conclusiones van en su apartado y deben justificarse en el cuerpo; un anexo no puede introducir otras.",
+        "b": "Correcta. Recogen información complementaria que apoya el informe sin cargar el texto principal.",
+        "c": "Incorrecta. Usar datos de otros casos para rellenar huecos falsearía el informe.",
+        "d": "Incorrecta. Los anexos deben estar relacionados con el encargo; no se incluye material solo porque esté disponible."
+      }
+    },
+    "forense-t10-16": {
+      "section": "formato-recursos",
+      "reasoning": "Para mostrar la secuencia de los hechos el temario propone cronogramas: una tabla de tiempos o una línea (diagrama) de tiempos. Cualquier recurso sin fechas o sin sucesos no puede mostrar una secuencia.",
+      "options": {
+        "a": "Correcta. Una tabla o línea de tiempo ordena los hechos según cuándo ocurrieron.",
+        "b": "Incorrecta. Una tabla de capacidades de soportes no contiene sucesos.",
+        "c": "Incorrecta. Ordenar herramientas por fabricante no dice nada de la secuencia de hechos.",
+        "d": "Incorrecta. Sin fechas no hay secuencia temporal."
+      }
+    },
+    "forense-t10-17": {
+      "section": "une-197010",
+      "reasoning": "El temario usa la UNE 197010:2015 como estructura de referencia: ayuda a no olvidar nada, da profesionalidad y homogeneiza el formato. No es una ley, no obliga al tribunal ni sustituye el trabajo técnico.",
+      "options": {
+        "a": "Incorrecta. El juez valora el dictamen según la sana crítica; seguir una norma no garantiza que acepte las conclusiones.",
+        "b": "Correcta. Es una guía para organizar los contenidos y mejorar la calidad del informe.",
+        "c": "Incorrecta. La norma no fija un número de páginas.",
+        "d": "Incorrecta. La estructura ordena el trabajo, pero el examen técnico sigue siendo imprescindible."
+      }
+    },
+    "forense-t10-18": {
+      "section": "identificacion",
+      "reasoning": "En el peritaje de parte es habitual que se encargue revisar el trabajo del perito de la otra parte: eso es la contrapericial. Es un análisis crítico y fundamentado, no una resolución judicial ni una copia.",
+      "options": {
+        "a": "Incorrecta. Decidir sobre la validez del informe corresponde al juez, no a otro perito.",
+        "b": "Correcta. Es el examen crítico del trabajo pericial presentado por la otra parte.",
+        "c": "Incorrecta. Puede requerir revisar evidencias, pero su esencia es examinar el trabajo previo, no solo copiar evidencias.",
+        "d": "Incorrecta. Repetir las conclusiones no aportaría nada; la contrapericial las somete a crítica."
+      }
+    },
+    "forense-t10-19": {
+      "section": "imparcialidad",
+      "reasoning": "El art. 335.2 LEC obliga al perito a actuar con la mayor objetividad posible, tomando en consideración tanto lo que pueda favorecer como lo que pueda perjudicar a cualquiera de las partes. Eso descarta seleccionar hallazgos o alinearse con nadie.",
+      "options": {
+        "a": "Correcta. Implica considerar lo que favorece y lo que perjudica a cualquiera de las partes.",
+        "b": "Incorrecta. Excluir hallazgos incómodos para el cliente es justo lo contrario de la imparcialidad.",
+        "c": "Incorrecta. Imparcialidad no es coincidir con otro perito; las conclusiones salen de las propias evidencias.",
+        "d": "Incorrecta. Aunque trabaje para una parte, el perito se debe a la verdad y a las evidencias."
+      }
+    },
+    "forense-t10-20": {
+      "section": "procedimiento-analisis",
+      "reasoning": "El apartado de procedimiento y fundamentación detalla los pasos que se van a seguir y la base teórica que los avala (bibliografía, normativa, referencias solventes), para que cualquiera entienda que el método es correcto y adecuado.",
+      "options": {
+        "a": "Correcta. Explica los pasos elegidos y por qué son técnicamente adecuados.",
+        "b": "Incorrecta. El coste del encargo no forma parte de la fundamentación técnica.",
+        "c": "Incorrecta. Las conclusiones van al final, después de identificar y analizar las fuentes.",
+        "d": "Incorrecta. Listar herramientas sin explicar cómo y por qué se usan no fundamenta nada."
+      }
+    },
+    "forense-t10-21": {
+      "section": "procedimiento-analisis",
+      "reasoning": "En el análisis se exponen los resultados, es decir, lo que se obtuvo al aplicar las herramientas. Las conclusiones vinculan esos resultados con las preguntas del encargo e interpretan qué responden. Ninguno de los dos puede omitir hallazgos ni inventar hechos.",
+      "options": {
+        "a": "Incorrecta. Las conclusiones no pueden introducir hechos no examinados, por probables que parezcan.",
+        "b": "Incorrecta. Los resultados incluyen todo lo pertinente, favorezca o no al cliente.",
+        "c": "Incorrecta. Una lista de herramientas no es ni un resultado ni una conclusión.",
+        "d": "Correcta. Los resultados recogen hallazgos y las conclusiones interpretan qué responden a las preguntas planteadas."
+      }
+    },
+    "forense-t10-22": {
+      "section": "conclusiones",
+      "reasoning": "Las conclusiones deben ajustarse al hecho tecnológico: si de él se deriva alguna responsabilidad jurídica, el perito solo lo señala y deja la valoración a los juristas. No juzga a nadie ni resuelve el caso.",
+      "options": {
+        "a": "Incorrecta. Ajustar el dictamen al objetivo del cliente rompe la imparcialidad.",
+        "b": "Incorrecta. Las consecuencias jurídicas no son hallazgos técnicos y no le corresponde formularlas.",
+        "c": "Correcta. Responde al hecho tecnológico sin sustituir a quienes hacen la valoración jurídica.",
+        "d": "Incorrecta. Culpabilidad y sanción las decide el tribunal, no el perito."
+      }
+    },
+    "forense-t10-23": {
+      "section": "formato-recursos",
+      "reasoning": "El temario propone una ficha por artefacto con su nombre, ubicación, estado, herramienta de análisis, procedimiento, resultados y otra información relevante. Solo la opción que reúne varios de esos datos describe una ficha útil.",
+      "options": {
+        "a": "Incorrecta. Sin datos del artefacto, la ficha no identifica qué se analizó.",
+        "b": "Incorrecta. El propietario sin resultados no explica el análisis.",
+        "c": "Correcta. Nombre, ubicación, herramienta, procedimiento y resultados son los datos de la ficha.",
+        "d": "Incorrecta. Sin ubicación ni pasos, nadie puede comprobar de dónde sale la conclusión."
+      }
+    },
+    "forense-t10-24": {
+      "section": "audiencia",
+      "reasoning": "La claridad exige explicar los términos complejos para el lector no experto, y el rigor exige mantener el fundamento técnico. Con el hash, la solución es explicar qué es (un resumen calculado de los datos, como una huella) y para qué se ha usado en el caso, sin eliminar el control de integridad.",
+      "options": {
+        "a": "Incorrecta. No se puede presuponer que el juez o el jurado conocen el término.",
+        "b": "Incorrecta. Cambiar el cálculo por una afirmación de confianza elimina la prueba técnica.",
+        "c": "Correcta. Se explica que es un resumen calculado de los datos y para qué sirve en el caso.",
+        "d": "Incorrecta. Omitir los controles de integridad sacrifica el rigor para ganar sencillez."
+      }
+    },
+    "forense-t10-25": {
+      "section": "cuerpo-inicio",
+      "reasoning": "El objeto del encargo fija las preguntas a responder, y métodos y conclusiones deben girar en torno a ellas. Además las conclusiones deben ajustarse a lo solicitado y al hecho tecnológico: ni presuponer, ni ampliar sin motivo, ni valorar a las personas.",
+      "options": {
+        "a": "Incorrecta. Que un dispositivo se conectara no demuestra por sí solo que se copiaran archivos.",
+        "b": "Incorrecta. La valoración personal del empleado no es un hecho tecnológico.",
+        "c": "Incorrecta. Revisar datos personales sin relación excede el encargo.",
+        "d": "Correcta. La cuestión se plantea en el objeto y los métodos y conclusiones se centran en responderla."
+      }
+    },
+    "forense-t10-26": {
+      "section": "procedimiento-analisis",
+      "reasoning": "En el análisis se describe el entorno de trabajo (equipo y herramientas), los pasos efectuados con cada evidencia y los resultados obtenidos. Así otro profesional puede seguir y comprobar el camino. La herramienta por sí sola no explica nada.",
+      "options": {
+        "a": "Correcta. Entorno, herramienta, pasos y resultado permiten entender y reproducir cómo se obtuvo el dato.",
+        "b": "Incorrecta. Una captura sin identificar el artefacto ni el paso no permite saber de dónde sale.",
+        "c": "Incorrecta. El nombre comercial no describe el procedimiento seguido.",
+        "d": "Incorrecta. La conclusión automática de un programa no sustituye la interpretación ni la descripción del perito."
+      }
+    },
+    "forense-t10-27": {
+      "section": "conclusiones",
+      "reasoning": "La conclusión final debe indicar si las evidencias eran suficientes y estaban bien adquiridas, y si una pregunta no se puede contestar por falta de pruebas se documenta y se explica por qué. Inventar, ocultar o completar con datos ajenos rompe la justificación y la imparcialidad.",
+      "options": {
+        "a": "Incorrecta. No se pueden afirmar contenidos de una evidencia no examinada.",
+        "b": "Incorrecta. Ocultar la carencia hace que las conclusiones digan más de lo que el trabajo permite.",
+        "c": "Incorrecta. Los datos de otro caso no prueban nada sobre este.",
+        "d": "Correcta. Se indica la limitación y cómo afecta a lo que puede afirmarse."
+      }
+    },
+    "forense-t10-28": {
+      "section": "imparcialidad",
+      "reasoning": "El perito jura o promete (art. 335.2 LEC) considerar lo que favorece y lo que perjudica a cualquiera de las partes, y sus conclusiones deben ser imparciales: aunque trabaje para una parte, se debe a la verdad y a las evidencias. Ocultar un hallazgo, de cualquier forma, va contra eso.",
+      "options": {
+        "a": "Incorrecta. Quien contrata no decide qué resultados son válidos; lo deciden las evidencias.",
+        "b": "Incorrecta. Elegir una herramienta para no ver el dato es manipular el análisis.",
+        "c": "Correcta. Debe guiarle la imparcialidad y unas conclusiones apoyadas en todas las evidencias pertinentes.",
+        "d": "Incorrecta. Guardarlo en notas privadas sin reflejar su efecto en las conclusiones es otra forma de ocultarlo."
+      }
+    },
+    "forense-t10-29": {
+      "section": "formato-recursos",
+      "reasoning": "El temario recomienda numerar todas las páginas, indicar el total y el número de identificación del informe, y el código único debe aparecer en todas las páginas. Con eso una página suelta se reconoce y se sabe si falta alguna.",
+      "options": {
+        "a": "Incorrecta. Si las páginas interiores son anónimas, una hoja suelta no se puede asociar al informe.",
+        "b": "Correcta. Código del informe y numeración, preferiblemente con el total, en cada página.",
+        "c": "Incorrecta. La fecha sola no distingue informes emitidos el mismo día ni indica la posición de la página.",
+        "d": "Incorrecta. El programa que creó el archivo no identifica el informe."
+      }
+    },
+    "forense-t10-30": {
+      "section": "formato-recursos",
+      "reasoning": "Cuando hay varios equipos y el lector pierde el hilo, el temario propone cronogramas (tabla o línea de tiempos), que pueden llevar columnas extra como la fuente. Así se relacionan hechos, tiempos y origen de cada dato sin ocultar información.",
+      "options": {
+        "a": "Incorrecta. Quitar los tiempos hace imposible entender el orden de lo ocurrido.",
+        "b": "Incorrecta. Eliminar las fuentes que discrepan es seleccionar datos, contra la imparcialidad.",
+        "c": "Correcta. Una cronología que relacione los hechos con sus tiempos y fuentes explicadas.",
+        "d": "Incorrecta. Ordenar por nombre de equipo no muestra la secuencia temporal."
+      }
+    }
+  }
+}

@@ -1,0 +1,967 @@
+{
+  "course": "gobierno",
+  "number": 10,
+  "title": "Respuesta y monitorización",
+  "minutes": 40,
+  "intro": {
+    "why": "Imagina que una empresa ha hecho un análisis de riesgos impecable: sabe que su tienda online puede caer por un ataque de denegación de servicio y que eso le costaría miles de euros por hora. Si ese informe se queda en un cajón, no ha servido de nada. Este tema cierra el ciclo: explica qué hacer con cada riesgo (evitarlo, compartirlo, reducirlo, aceptarlo…), con qué medidas reducirlo y, sobre todo, cómo **medir** después si esas medidas funcionan. Porque, como repite el temario, lo que no se mide no se puede mejorar.",
+    "before": [
+      "Un **riesgo** combina lo **probable** que es que algo malo ocurra y el **impacto** (el daño) que causaría si ocurre.",
+      "Una **amenaza** es lo que puede causar el daño (un atacante, un incendio, un fallo eléctrico); se **materializa** cuando de verdad ocurre.",
+      "Una **salvaguarda** (también llamada **control** o **medida de seguridad**) es cualquier cosa que reduce un riesgo: una copia de seguridad, un cortafuegos, un curso de formación, una cerradura.",
+      "La **evaluación del riesgo** (temas anteriores) consiste en identificar, analizar y valorar los riesgos. Este tema empieza justo cuando esa evaluación termina."
+    ],
+    "goals": [
+      "Al terminar sabrás explicar las opciones de tratamiento del riesgo de la norma ISO 31000 y por qué pueden combinarse.",
+      "Sabrás qué significa mitigar un riesgo y cómo se hace: reducir la probabilidad, el impacto o ambos mejorando las salvaguardas.",
+      "Sabrás distinguir salvaguardas preventivas y reactivas y reconocerlas en un caso práctico.",
+      "Sabrás por qué la eficacia real de una salvaguarda depende de su grado de implantación y de su eficacia intrínseca, y qué es un modelo de madurez de 0 a 5.",
+      "Sabrás distinguir medida, métrica e indicador, y explicar las características SMART de un buen indicador.",
+      "Sabrás los pasos para diseñar métricas (entidades, atributos, conceptos medibles, métricas), qué son las métricas directas e indirectas, los métodos de medición y las escalas.",
+      "Sabrás rellenar el formulario de una métrica: metas, objetivos, propósito, evidencia, frecuencia, fórmula, origen de los datos e indicadores."
+    ]
+  },
+  "sections": [
+    {
+      "id": "ciclo-tratamiento",
+      "title": "Del análisis a la acción: el ciclo de tratamiento",
+      "pages": [3, 5],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Piensa en una revisión médica. Primero el médico te hace pruebas y te dice qué tienes y cuán grave es (eso es la **evaluación del riesgo**). Después decide el tratamiento: operar, darte pastillas, cambiar tu dieta o simplemente vigilar (eso es el **tratamiento del riesgo**). Y por último te cita a revisión para comprobar si el tratamiento funciona (eso es la **monitorización**). Nadie da por curado a un paciente solo porque se le recetó algo."
+        },
+        {
+          "type": "p",
+          "text": "El tema se divide en dos bloques que se alimentan mutuamente: **respuesta y mitigación del riesgo** (qué hacemos con cada riesgo y con qué salvaguardas) y **monitoreo y reporte de riesgos y controles** (cómo medimos, con métricas e indicadores, si todo va como esperábamos). Ambos forman parte del **ciclo de vida de la gestión del riesgo** de las tecnologías de la información (TI)."
+        },
+        {
+          "type": "term",
+          "term": "ISO 31000",
+          "text": "Norma internacional de la ISO (International Organization for Standardization, Organización Internacional de Normalización) que da principios y directrices para gestionar cualquier tipo de riesgo. No es una ley: es una guía de buenas prácticas que las organizaciones adoptan voluntariamente. La versión citada en el tema es la de 2018."
+        },
+        {
+          "type": "term",
+          "term": "Tratamiento del riesgo",
+          "text": "Según la ISO 31000, es seleccionar e implantar **una o varias** opciones para modificar los riesgos que ya se han identificado, analizado y valorado."
+        },
+        {
+          "type": "steps",
+          "title": "El circuito de la figura 1 (tratamiento según la ISO 31000)",
+          "items": [
+            "Se parte de la **evaluación del riesgo**: sabemos qué riesgos hay y cuánto pesan.",
+            "Se hace un **estudio de las opciones de tratamiento**, apoyado en un **estudio coste/beneficio** (¿cuánto cuesta la medida frente a lo que nos ahorra?).",
+            "Si el riesgo **se acepta**, no desaparece: pasa a **monitorización continua** para vigilar que no crezca.",
+            "Si el riesgo **se trata**, se elige una opción: se evita, se comparte, se elimina o se mitiga (minimizando el impacto o la probabilidad).",
+            "Tanto lo tratado como lo monitorizado **vuelve a la evaluación del riesgo**: se comprueba el efecto y se recalcula lo que queda."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Lo que queda después de aplicar las medidas se llama **riesgo residual**. Si sigue por encima del nivel que la dirección está dispuesta a tolerar, el ciclo obliga a **revisar el tratamiento y mejorar las salvaguardas**. Haber invertido dinero no convierte un riesgo en aceptable."
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico: el antivirus que no basta",
+          "text": "Una gestoría instala un antivirus para reducir el riesgo de ransomware (programa que cifra tus archivos y pide un rescate). Seis meses después, la revisión muestra que el riesgo residual sigue alto porque los empleados abren adjuntos maliciosos. La respuesta correcta no es «ya pagamos el antivirus, lo damos por bueno», sino volver al estudio de opciones: añadir formación, copias de seguridad desconectadas, filtrado de correo…"
+        },
+        {
+          "type": "exam",
+          "text": "Trampas típicas: «aceptar automáticamente porque ya hubo una inversión», «mantener los valores iniciales aunque cambie el contexto» o «reclasificar el riesgo sin revisar probabilidad ni consecuencias». Todas rompen el ciclo. La respuesta buena siempre habla de **comprobar el efecto** del tratamiento y **revisar/mejorar** las medidas."
+        },
+        {
+          "type": "key",
+          "text": "Tratar un riesgo no es un acto único: es un ciclo evaluar → tratar → monitorizar → volver a evaluar, que se repite mientras el riesgo residual no esté dentro de lo tolerable."
+        }
+      ]
+    },
+    {
+      "id": "opciones-tratamiento",
+      "title": "Las opciones de tratamiento de la ISO 31000",
+      "pages": [5, 6],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Piensa en el riesgo de que te roben la bici. Puedes **no comprarla** (evitar), **asegurarla** (compartir), **ponerle un candado mejor** (reducir probabilidad), **comprar una barata** (reducir consecuencias) o **asumir que puede pasar** (retener). Y nada te impide hacer varias cosas a la vez: candado y seguro."
+        },
+        {
+          "type": "table",
+          "title": "Opciones de tratamiento según la ISO 31000",
+          "head": ["Opción", "Qué significa", "Ejemplo en TI"],
+          "rows": [
+            ["Evitar el riesgo", "No iniciar, o dejar de hacer, la actividad que genera el riesgo.", "La empresa decide no ofrecer pagos online para no custodiar datos de tarjetas."],
+            ["Aceptar o aumentar el riesgo", "Asumir más riesgo a propósito para aprovechar una oportunidad.", "Lanzar una app nueva antes que la competencia, sabiendo que tendrá fallos iniciales."],
+            ["Eliminar la fuente del riesgo", "Quitar el origen del peligro.", "Desinstalar un servidor obsoleto que ya nadie usa."],
+            ["Modificar la probabilidad", "Hacer que sea menos probable que ocurra.", "Parchear los equipos, poner doble factor de autenticación."],
+            ["Modificar las consecuencias", "Hacer que, si ocurre, el daño sea menor.", "Copias de seguridad, plan de recuperación."],
+            ["Compartir el riesgo", "Repartirlo con un tercero (por contrato o seguro).", "Contratar un ciberseguro o externalizar a un proveedor con penalizaciones."],
+            ["Retener el riesgo", "Asumirlo conscientemente, tras una decisión informada.", "Aceptar que un PC de la sala de espera pueda fallar porque reponerlo cuesta poco."]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "La norma insiste en dos ideas: las opciones **no se excluyen necesariamente** entre sí (se pueden combinar según el contexto y los objetivos) y **no son apropiadas en todas las circunstancias** (evitar una actividad puede ser imposible si es el núcleo del negocio)."
+        },
+        {
+          "type": "p",
+          "text": "Compartir no es lo mismo que evitar: con un seguro sigues haciendo la actividad y, además, normalmente solo trasladas la parte **económica** del daño, no la reputacional ni la responsabilidad. Y aceptar no es lo mismo que ignorar: se acepta **con información** y se sigue vigilando."
+        },
+        {
+          "type": "exam",
+          "text": "Si la pregunta dice «no iniciar o dejar la actividad», la respuesta es **evitar**. Si habla de mantener la actividad y poner un control, es **mitigar** (modificar probabilidad o consecuencias). Si habla de una póliza, es **compartir**. Desconfía de las opciones que dicen que cada riesgo debe tratarse con **una única opción excluyente**: es falso."
+        },
+        {
+          "type": "key",
+          "text": "Evitar, aceptar/aumentar, eliminar la fuente, modificar probabilidad, modificar consecuencias, compartir y retener: opciones combinables y que se eligen según el contexto."
+        }
+      ]
+    },
+    {
+      "id": "mitigacion",
+      "title": "Mitigar: reducir probabilidad, impacto o ambos",
+      "pages": [6, 7],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "**Mitigar** un riesgo es elegir una de estas dos opciones de tratamiento, o las dos juntas: **minimizar la probabilidad** (que ocurra menos veces) o **minimizar el impacto** (que, si ocurre, haga menos daño). A minimizar el impacto también se le llama **acotar el impacto**."
+        },
+        {
+          "type": "list",
+          "title": "Dos formas de minimizar el impacto",
+          "items": [
+            "Reducir la **degradación del activo**: que el servidor quede menos dañado (por ejemplo, un sistema de extinción de incendios que actúa en segundos).",
+            "Reducir las **consecuencias para la organización**: que, aunque el servidor se pierda, el negocio siga (un servidor de respaldo en otra sede)."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "En los dos casos, la herramienta es la misma: **ampliar o mejorar el conjunto de controles, salvaguardas y medidas de seguridad**. Si hablamos en términos de madurez, mitigar es **subir el nivel de madurez** de las salvaguardas (lo verás en el apartado de eficacia)."
+        },
+        {
+          "type": "list",
+          "title": "Cómo elegir las salvaguardas",
+          "items": [
+            "Se necesita una **combinación** de salvaguardas de distintos tipos; ninguna sola basta.",
+            "La selección debe ser **equilibrada** y tener en cuenta el **tipo de activo**, su **valor**, el valor de los activos que **dependen** de él y las **amenazas** a las que está expuesto el sistema."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Las salvaguardas, sobre todo las técnicas, **caducan**: aparecen tecnologías nuevas y desaparecen las antiguas, cambian los activos, surgen amenazas nuevas, los atacantes mejoran y evoluciona el catálogo de salvaguardas disponibles. Por eso el catálogo que verás a continuación es **genérico**: no es una lista de productos que comprar, sino de tipos de protección."
+        },
+        {
+          "type": "example",
+          "title": "Ejemplo",
+          "text": "Hace quince años bastaba con un cortafuegos perimetral porque todo el mundo trabajaba en la oficina. Con el teletrabajo y la nube, el perímetro se ha difuminado y han tenido que añadirse salvaguardas nuevas (VPN, autenticación multifactor, protección del correo). El tipo de salvaguarda «protección perimetral» sigue en el catálogo; lo que cambia es cómo se concreta."
+        },
+        {
+          "type": "key",
+          "text": "Mitigar = bajar probabilidad y/o impacto mejorando las salvaguardas, con una combinación equilibrada que se adapta a los activos, a las amenazas y a la evolución tecnológica."
+        }
+      ]
+    },
+    {
+      "id": "catalogo-salvaguardas",
+      "title": "El catálogo de salvaguardas",
+      "pages": [7, 12],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "El catálogo es como el índice de un botiquín: te dice que necesitas «algo para desinfectar» y «algo para vendar», no qué marca de alcohol comprar. Cada organización concreta después la salvaguarda con la tecnología y los procedimientos del momento."
+        },
+        {
+          "type": "p",
+          "text": "La tabla 1 del temario agrupa salvaguardas genéricas según el **tipo de activo** que protegen. Este es un resumen:"
+        },
+        {
+          "type": "table",
+          "title": "Catálogo de salvaguardas por tipo de activo (resumen de la tabla 1)",
+          "head": ["Activo", "Salvaguardas de ejemplo"],
+          "rows": [
+            ["Datos/información", "Copias de seguridad (backup), cifrado, firma electrónica."],
+            ["Claves criptográficas", "Sellado de tiempo, gestión de claves de firma, de contenedores cifrados y de comunicaciones, gestión de certificados."],
+            ["Servicios", "Aseguramiento de la disponibilidad, aceptación y puesta en operación, perfiles de seguridad, gestión de cambios, protección de web, correo, directorio y DNS, teletrabajo, voz sobre IP."],
+            ["Equipos (hardware)", "Puesta en producción, perfiles de seguridad, disponibilidad, operación, cambios (actualizaciones y mantenimiento), terminación, informática móvil."],
+            ["Comunicaciones", "Autenticación del canal, integridad y confidencialidad (cifrado) de los datos intercambiados, uso de Internet, seguridad wifi, telefonía móvil, segregación de redes en dominios."],
+            ["Organización", "Organización, gestión de riesgos, planificación de la seguridad, inspecciones."],
+            ["Interconexiones", "Puntos de interconexión entre zonas de confianza, protección perimetral, protección de equipos de frontera."],
+            ["Soportes", "Disponibilidad, cifrado del contenido, limpieza de contenidos, destrucción."],
+            ["Elementos auxiliares", "Disponibilidad, instalación, suministro eléctrico, climatización, protección del cableado."],
+            ["Instalaciones", "Diseño, defensa en profundidad, control de accesos físicos, disponibilidad, terminación."],
+            ["Personal", "Gestión del personal, formación y concienciación, disponibilidad."],
+            ["Operaciones", "Prevención y reacción ante desastres, continuidad del negocio, análisis de impacto, plan de recuperación de desastres."],
+            ["Externalización", "Relaciones externas, acuerdos de intercambio, acceso externo, servicios de terceros, personal subcontratado."],
+            ["Adquisición y desarrollo", "Adquisición o desarrollo de servicios, aplicaciones, equipos, comunicaciones y soportes; productos certificados o acreditados."]
+          ]
+        },
+        {
+          "type": "term",
+          "term": "Defensa en profundidad",
+          "text": "Poner varias capas de protección sucesivas (valla, puerta, tarjeta, contraseña) para que, si una falla, las demás sigan protegiendo."
+        },
+        {
+          "type": "term",
+          "term": "DNS (Domain Name System, sistema de nombres de dominio)",
+          "text": "El servicio que traduce nombres como unir.net a direcciones IP. El catálogo lo llama «servidor de nombres de dominio»."
+        },
+        {
+          "type": "exam",
+          "text": "El test no suele pedir memorizar la tabla, pero sí entender que es un **catálogo genérico** y que una salvaguarda vale según el activo que protege. Ojo con la idea de que «figurar en el catálogo» equivale a estar implantada: no es así."
+        },
+        {
+          "type": "key",
+          "text": "El catálogo clasifica salvaguardas genéricas por tipo de activo; no es una lista de productos y cada organización lo concreta según su tecnología y sus amenazas."
+        }
+      ]
+    },
+    {
+      "id": "preventivas-reactivas",
+      "title": "Salvaguardas preventivas y reactivas",
+      "pages": [12, 13],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "En una cocina, la **campana extractora y no dejar el aceite solo** evitan que se prenda fuego: son **preventivas**. El **extintor y la manta ignífuga** no evitan el fuego, pero limitan el daño cuando ya ha empezado: son **reactivas**."
+        },
+        {
+          "type": "table",
+          "title": "Clasificación según su forma de actuar",
+          "head": ["Tipo", "Sobre qué actúa", "Cuándo actúa", "Ejemplos"],
+          "rows": [
+            ["Preventiva", "Reduce la **probabilidad** de que la amenaza se materialice, reduciendo las oportunidades de que ocurra el incidente.", "Antes del incidente", "Parches, control de accesos, formación, cortafuegos, cerradura."],
+            ["Reactiva", "Limita el **impacto**: acota las consecuencias del incidente.", "Durante o después del incidente", "Copias de seguridad, plan de recuperación, extinción de incendios, servidor de respaldo."]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Fíjate en que esta clasificación encaja con la mitigación: las preventivas **minimizan la probabilidad** y las reactivas **minimizan el impacto**. Una buena estrategia combina las dos, porque ninguna prevención es perfecta."
+        },
+        {
+          "type": "example",
+          "title": "Alarma y recuperación",
+          "text": "Una empresa instala una alarma antiintrusión (disuade y dificulta la entrada: reduce la probabilidad) y un mecanismo de recuperación de datos (si el robo ocurre, el negocio se recupera antes: reduce el impacto). Para valorarlos no basta con su precio ni con su fabricante: hay que analizar **cómo previene o cómo limita las consecuencias** cada uno."
+        },
+        {
+          "type": "exam",
+          "text": "Trampa frecuente: «la preventiva reduce el número de amenazas» o «reduce el impacto». No: reduce la **probabilidad de materialización** de las amenazas (las amenazas siguen existiendo). Y la reactiva no «disminuye la probabilidad antes del suceso» ni «transfiere responsabilidades»: limita consecuencias. Compensar económicamente un daño (un seguro) es **compartir** el riesgo, no una salvaguarda preventiva."
+        },
+        {
+          "type": "key",
+          "text": "Preventiva = antes, menos probabilidad. Reactiva = después, menos impacto."
+        }
+      ]
+    },
+    {
+      "id": "eficacia-madurez",
+      "title": "Eficacia de una salvaguarda y nivel de madurez",
+      "pages": [13, 15],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Un casco de moto homologado es muy eficaz… si lo llevas abrochado. Si va colgado del codo, su protección real es casi nula. La calidad del casco es su **eficacia intrínseca**; cómo lo usas es su **grado de implantación**. Lo que de verdad te protege es la combinación de ambas."
+        },
+        {
+          "type": "term",
+          "term": "Grado de implantación",
+          "text": "Cómo está realmente desplegada y configurada la medida hoy: hasta dónde llega (alcance), lo bien ajustada que está y cuánto la conocen las personas que deben usarla o mantenerla."
+        },
+        {
+          "type": "term",
+          "term": "Eficacia intrínseca",
+          "text": "El grado de protección que daría la salvaguarda contra una amenaza concreta si estuviera implantada al 100 % y funcionara al máximo que permiten su diseño y la tecnología."
+        },
+        {
+          "type": "term",
+          "term": "Eficacia real",
+          "text": "Resultado de combinar el grado de implantación con la eficacia intrínseca. Es lo que determina cuánto reduce de verdad la salvaguarda el **riesgo inherente** (el riesgo que habría sin ninguna salvaguarda)."
+        },
+        {
+          "type": "p",
+          "text": "Para **determinar la eficacia** de una salvaguarda, por tanto, **es imprescindible conocer su grado de implantación**. Ese grado se puede valorar de dos formas: **en porcentaje** (por ejemplo, «el antivirus está en el 80 % de los equipos») o con un **modelo de madurez**."
+        },
+        {
+          "type": "table",
+          "title": "Nivel de madurez de las salvaguardas (tabla 2, resumida)",
+          "head": ["Nivel", "Situación de la medida"],
+          "rows": [
+            ["0", "No está implantada."],
+            ["1", "Está implantada con graves deficiencias por obsolescencia o falta de mantenimiento."],
+            ["2", "Está instalada, pero su actualización o mantenimiento no son adecuados ni permanentes."],
+            ["3", "Instalada en la mayor parte de la infraestructura, pero no en toda; el desconocimiento de algunas personas reduce su eficacia."],
+            ["4", "Completamente desplegada e implantada, aunque quienes la desarrollan y aplican no la conocen lo suficiente."],
+            ["5", "Completamente desplegada, implantada y **probada**; todas las personas implicadas están informadas y no depende de medidas de menor nivel."]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "La tabla 3 del temario es una **matriz** que cruza el nivel de madurez (filas, de 0 a 5) con la eficacia intrínseca (columnas, de 1 a 5) y colorea la eficacia real: rojo en toda la fila 0 (una medida no implantada no protege nada, por buena que sea), naranja en la fila 1, y verde oscuro solo cuando madurez y eficacia intrínseca son ambas 5. Una salvaguarda excelente mal implantada rinde poco; una mediocre perfectamente implantada tampoco llega al máximo."
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico: comprado pero no configurado",
+          "text": "Un hospital compra un sistema de detección de intrusos. La factura está pagada y aparece en la política de seguridad, pero aún no se ha configurado ni conectado a la red. Su madurez es 0 o, como mucho, 1: su eficacia real es prácticamente nula. Debe valorarse por su **implantación real**, no por el importe pagado, la marca o el hecho de figurar en un documento."
+        },
+        {
+          "type": "exam",
+          "text": "Si una opción dice que la eficacia depende de la **marca**, del **importe pagado**, de estar **en la política** o de existir un **contrato de mantenimiento**, es incorrecta. La correcta habla de **implantación y configuración efectivas**. Y ante «¿es necesario conocer el grado de implantación?», la respuesta es sí."
+        },
+        {
+          "type": "key",
+          "text": "Eficacia real = eficacia intrínseca × grado de implantación. Sin implantación real (madurez 0) no hay protección."
+        }
+      ]
+    },
+    {
+      "id": "monitorizar-medir",
+      "title": "Por qué monitorizar: medida y métrica",
+      "pages": [16, 16],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Un mapa de carreteras de hace diez años te sirve de orientación, pero no te avisa de las obras de hoy. Un análisis de riesgos es igual: es una foto hecha con estimaciones, y la realidad se mueve. Necesitas un GPS que se actualice: eso es la monitorización."
+        },
+        {
+          "type": "p",
+          "text": "La evaluación de riesgos se basa en **estimaciones y valoraciones** que pueden no reflejar exactamente la realidad y que, con el tiempo, **se alejan** de ella. Por eso el sistema de información debe estar en **monitorización permanente**, para detectar cambios en el contexto **externo** (nuevas amenazas, leyes, competidores), **interno** (nuevos sistemas, reorganizaciones) y en el **comportamiento humano**."
+        },
+        {
+          "type": "p",
+          "text": "Medir el desempeño de los procesos permite **analizar, comprender y controlar** su funcionamiento, **predecir** su comportamiento y el de los riesgos, y **mejorar** su eficiencia y eficacia. Para hacerlo hay que distinguir tres conceptos que se parecen mucho:"
+        },
+        {
+          "type": "table",
+          "title": "Medida, métrica e indicador",
+          "head": ["Concepto", "Definición del tema", "Ejemplo"],
+          "rows": [
+            ["Medida", "Indicación **cuantitativa** de la extensión, cantidad, dimensiones, capacidad o tamaño de un atributo de un elemento.", "Hay 340 equipos; 12 no tienen el parche."],
+            ["Métrica", "Medida **cuantitativa** del **grado** en que un sistema, componente o proceso posee un atributo dado. Permite relacionar y comparar mediciones de forma objetiva.", "Porcentaje de equipos parcheados = 96,5 %."],
+            ["Indicador de riesgo", "Métrica o combinación de métricas que, con un criterio de interpretación, permite conocer el comportamiento de los riesgos.", "Si el % de parcheo baja del 95 %, alerta: el riesgo de explotación sube."]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Las métricas sirven para **especificar en el mundo formal** (números) la correspondencia de un **atributo del mundo real**, y son la base de los métodos **cuantitativos** de evaluación y predicción."
+        },
+        {
+          "type": "example",
+          "title": "Datos caducados",
+          "text": "Un comité de dirección recibe un informe de riesgos elaborado con datos de hace tres años. El problema no es el formato del informe: es que esos datos **ya no se corresponden con la situación actual** (hay sistemas nuevos, teletrabajo, amenazas nuevas). Hay que volver a medir."
+        },
+        {
+          "type": "exam",
+          "text": "Pregunta clásica: «una métrica es una medida…». La palabra clave es **cuantitativa**. No es una «estimación», ni «cualitativa», ni «cualitativa o cuantitativa». Recuerda: la métrica da un número; el indicador lo interpreta."
+        },
+        {
+          "type": "key",
+          "text": "Las estimaciones envejecen; por eso se monitoriza de forma permanente. Medida (dato), métrica (grado cuantitativo de un atributo) e indicador (interpretación orientada al riesgo) no son lo mismo."
+        }
+      ]
+    },
+    {
+      "id": "indicadores-riesgo",
+      "title": "Indicadores de riesgo, KRI y cuadro de mando",
+      "pages": [17, 19],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "El salpicadero de un coche es un cuadro de mando: no te enseña cada medición del motor, sino unos pocos indicadores (velocidad, gasolina, temperatura) con umbrales claros (la aguja en rojo, el testigo que se enciende). Con eso decides si paras a repostar. Un cuadro de mando de riesgos hace lo mismo para la dirección."
+        },
+        {
+          "type": "term",
+          "term": "Indicador de riesgos",
+          "text": "Métrica o combinación de métricas que permite conocer en profundidad el comportamiento de los riesgos: la evolución y el potencial de las amenazas (actuales o emergentes) y la aplicabilidad y efectividad de las salvaguardas implantadas."
+        },
+        {
+          "type": "table",
+          "title": "Características de un buen indicador (SMART)",
+          "head": ["Letra", "Característica", "Qué significa"],
+          "rows": [
+            ["S", "Específico", "Mide una cosa concreta y bien definida, no «la seguridad en general»."],
+            ["M", "Medible", "Se puede cuantificar, de modo que se puede comprobar si alcanza un umbral."],
+            ["A", "Alcanzable", "El valor objetivo es posible de lograr."],
+            ["R", "Realista", "Tiene sentido con los recursos y el contexto de la organización."],
+            ["T", "A tiempo", "Tiene un plazo o periodo de observación definido."]
+          ]
+        },
+        {
+          "type": "exam",
+          "text": "El test original preguntaba cuál **no** es característica de un indicador e incluía «Objetivo» entre las opciones: no está en la lista SMART del tema (específico, medible, alcanzable, realista, a tiempo). Eso no significa que la objetividad sea mala; solo que no es una de las cinco letras. Si te preguntan qué permite comprobar si un indicador alcanza un umbral: **que sea medible**."
+        },
+        {
+          "type": "list",
+          "title": "Para qué sirven los indicadores (soporte a la toma de decisiones)",
+          "items": [
+            "Medir la evolución de amenazas actuales y emergentes.",
+            "Medir la efectividad de las salvaguardas implantadas.",
+            "Medir la capacidad o habilidad de la organización en las tareas de seguridad.",
+            "Obtener datos relevantes sobre el estado de seguridad.",
+            "Saber dónde hay que hacer hincapié para mejorar."
+          ]
+        },
+        {
+          "type": "term",
+          "term": "KRI (Key Risk Indicator, indicador clave de riesgo)",
+          "text": "Los pocos indicadores más importantes para vigilar un riesgo. Para cada KRI hay que definir con exactitud: en qué **medidas** se basa, cuál es su **algoritmo de cálculo**, su **periodicidad** de evaluación y sus **umbrales de aviso y de alarma**."
+        },
+        {
+          "type": "p",
+          "text": "Con los KRI se monta un **cuadro de mando de riesgos** escrito en **lenguaje de negocio** (no técnico), integrado en el modelo de gestión de riesgos, para que las métricas estén alineadas con el negocio, aporten valor y ayuden a controlar los riesgos. Los indicadores de **impacto y riesgo potenciales** ayudan a decidir qué vigilar, y los indicadores **predictivos** alimentan un **sistema de alerta temprana** que, junto con un sistema de respuesta a incidentes, permite detectar pronto y comunicar la situación a las partes interesadas."
+        },
+        {
+          "type": "list",
+          "title": "Objetivos de realizar mediciones",
+          "items": [
+            "Evaluar la efectividad de la implementación de las salvaguardas.",
+            "Evaluar la peligrosidad de las amenazas actuales y emergentes.",
+            "Mejorar la respuesta a los riesgos.",
+            "Ayudar a la evaluación de riesgos y al plan de tratamiento."
+          ]
+        },
+        {
+          "type": "example",
+          "title": "Un KRI bien definido",
+          "text": "KRI «Equipos sin parches críticos». Medidas: inventario de equipos y estado de parcheo. Algoritmo: equipos sin parche crítico de más de 15 días / total de equipos × 100. Periodicidad: semanal. Umbral de aviso: 5 %. Umbral de alarma: 10 %. En el cuadro de mando de la dirección aparece como «Exposición a vulnerabilidades conocidas: 3 % (verde)»."
+        },
+        {
+          "type": "exam",
+          "text": "Desconfía de opciones que dicen que los indicadores **sustituyen** las decisiones, **eliminan** la incertidumbre, **evitan** revisar el plan o miden la eficacia por el **gasto** o el **número de productos** comprados. Los indicadores **apoyan** decisiones y mejoran el conocimiento del riesgo. Si las tres primeras opciones son usos del listado y la cuarta es «todas son ciertas», suele ser esa."
+        },
+        {
+          "type": "key",
+          "text": "Un indicador interpreta métricas respecto al riesgo; debe ser SMART. Los KRI necesitan medidas, algoritmo, periodicidad y umbrales, y se presentan en un cuadro de mando en lenguaje de negocio."
+        }
+      ]
+    },
+    {
+      "id": "diseno-medicion",
+      "title": "Diseñar un sistema de medición: de la entidad al responsable",
+      "pages": [18, 20],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Para medir la salud de una persona, primero decides **a quién** mides (la entidad: el paciente), **qué** propiedad (el atributo: la tensión arterial), **para qué** lo necesitas (concepto medible: riesgo cardiovascular) y **cómo** lo mides (la métrica: tensiómetro, en mmHg, en reposo, por la mañana). Si cada día lo mides de una manera distinta, no puedes comparar."
+        },
+        {
+          "type": "steps",
+          "title": "Tareas para diseñar métricas e indicadores de riesgos",
+          "items": [
+            "**Determinar las entidades a medir.** Una entidad es el objeto que se caracteriza midiendo sus atributos. Puede ser **intangible** (un riesgo) o **tangible** (una salvaguarda).",
+            "**Determinar los atributos a medir.** Un atributo es una propiedad mensurable, física o abstracta, de la entidad. Puede ser interno o externo y se cuantifica con una métrica directa o indirecta.",
+            "**Determinar los conceptos medibles.** Un concepto medible relaciona atributos de una o más entidades con una **necesidad de información** (lo que la dirección quiere saber).",
+            "**Definir las métricas.** Una métrica es un método de medición y una escala que hacen corresponder el mundo real (dominio empírico) con un mundo formal (números). La medida es el valor numérico o nominal que resulta."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Lo importante es el orden: primero **qué y para qué** se mide, después **cómo**. Recoger «cualquier número disponible y decidir después qué significa» o elegir primero la herramienta y luego la finalidad es justo lo contrario."
+        },
+        {
+          "type": "list",
+          "title": "Qué hay que especificar para cada indicador",
+          "items": [
+            "La amenaza, el proceso o la salvaguarda que se monitoriza.",
+            "El **responsable** del análisis de los datos.",
+            "La **periodicidad** de control.",
+            "El **valor mínimo** o límite admisible (umbral).",
+            "El **valor esperado** o valor objetivo."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Además, los indicadores deben dar resultados **comparables y reproducibles**: si en enero se mide con un criterio y en febrero con otro, la tendencia no significa nada. Para comparar mediciones mensuales hacen falta **definiciones y métodos estables**."
+        },
+        {
+          "type": "p",
+          "text": "La **responsabilidad de monitorizar un riesgo recae en su propietario**. Puede delegar el seguimiento diario, pero retoma el control cuando el riesgo se sale de los márgenes tolerables. Y cada vez que la realidad difiere de lo estimado, conviene **revisar el análisis y las decisiones de tratamiento**."
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico: el indicador que sube sin dueño",
+          "text": "El indicador «intentos de acceso fallidos» lleva tres meses subiendo, pero nadie reacciona: no tiene umbral de alarma, ni valor objetivo, ni responsable que lo analice. La mejora prioritaria es **definir límites, objetivo y responsable**. Elegir el objetivo después de ver cada resultado o cambiar la escala para que no se note la subida sería hacerse trampas."
+        },
+        {
+          "type": "exam",
+          "text": "El test original pregunta qué **no** es necesario para diseñar métricas, con opciones casi idénticas a la lista (entidades, atributos, conceptos medibles) y una cambiada: «definir las medidas» en lugar de «definir las métricas». Lee palabra por palabra. Y si te preguntan qué hace comparable una medición, la respuesta es **especificar entidad, atributo, método, escala y criterio de interpretación**."
+        },
+        {
+          "type": "key",
+          "text": "Entidad → atributo → concepto medible → métrica. Cada indicador necesita responsable, periodicidad, umbral y valor objetivo, y debe ser comparable y reproducible. Monitoriza el propietario del riesgo."
+        }
+      ]
+    },
+    {
+      "id": "elaboracion-metricas",
+      "title": "Elaborar métricas: directas e indirectas, métodos y escalas",
+      "pages": [20, 21],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Para elaborar métricas hay que definir tres cosas: los **métodos de medición**, la **escala** y los **indicadores**. Además, hay que saber que existen dos tipos de métricas: **directas** e **indirectas**."
+        },
+        {
+          "type": "table",
+          "title": "Métricas directas e indirectas",
+          "head": ["Tipo", "Definición", "Ejemplo"],
+          "rows": [
+            ["Directa", "Mide un atributo **sin depender** de ninguna métrica de otro atributo.", "Número de incidentes registrados este mes."],
+            ["Indirecta", "Se **deriva** de una o más métricas de otros atributos mediante una **función de medición** (un algoritmo que combina métricas).", "Incidentes por cada 100 empleados = incidentes / empleados × 100."]
+          ]
+        },
+        {
+          "type": "code",
+          "title": "Una métrica indirecta como función de medición",
+          "text": "equipos_parcheados = 328        # métrica directa\nequipos_totales    = 340        # métrica directa\n\n% parcheo = equipos_parcheados / equipos_totales * 100\n          = 96.5 %              # métrica indirecta"
+        },
+        {
+          "type": "term",
+          "term": "Método de medición",
+          "text": "Secuencia lógica de operaciones, escrita de forma genérica, para cuantificar un atributo. Es **subjetivo** si la cuantificación depende del juicio de una persona (un auditor puntúa la concienciación de 1 a 5) y **objetivo** si se basa en métodos numéricos (contar registros en un log)."
+        },
+        {
+          "type": "term",
+          "term": "Escala",
+          "text": "Conjunto de valores con propiedades definidas. Puede ser cualitativa o numérica, continua o discreta, aritmética o logarítmica. El **tipo de escala** decide qué transformaciones, operaciones matemáticas y análisis estadísticos están permitidos."
+        },
+        {
+          "type": "example",
+          "title": "Escalas que no se pueden sumar",
+          "text": "Un departamento informa del riesgo con la escala «bajo/medio/alto» y otro con euros de pérdida esperada. Sumar «alto + 20 000 €» o promediar niveles como si fueran importes no tiene sentido. Antes de comparar hay que revisar las **propiedades de cada escala** y qué **operaciones admite**; no los colores del gráfico ni la herramienta con que se exportó."
+        },
+        {
+          "type": "term",
+          "term": "Indicador (definición formal)",
+          "text": "Método de cálculo y escala, con un **modelo y criterios de decisión**, que ofrece una evaluación de un concepto medible respecto a una necesidad de información. Las métricas solas no pueden interpretar un concepto medible: para eso hacen falta indicadores."
+        },
+        {
+          "type": "exam",
+          "text": "«Existen métricas…» → **directas e indirectas** (no «simples y compuestas», ni «de impacto y de riesgo»). «Es necesario definir…» → **métodos de medición, escala e indicadores** (no «métodos de análisis», ni «las métricas»: estás elaborándolas). Una métrica que combina otras sigue siendo métrica: es **indirecta**, aunque el resultado sea un porcentaje."
+        },
+        {
+          "type": "key",
+          "text": "Elaborar métricas = definir método de medición (subjetivo u objetivo), escala (que fija las operaciones válidas) e indicadores. Directa: no depende de otras; indirecta: se calcula a partir de otras."
+        }
+      ]
+    },
+    {
+      "id": "ficha-metrica",
+      "title": "La ficha de una métrica: metas, fórmula y origen de datos",
+      "pages": [21, 24],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Una receta de cocina no dice solo «haz una tarta»: dice para qué ocasión es, qué ingredientes y de dónde sacarlos, cómo mezclarlos, cada cuánto revisar el horno y cómo saber que está hecha. La ficha de una métrica es su receta: cualquiera que la lea debe poder repetir la medición y obtener lo mismo."
+        },
+        {
+          "type": "table",
+          "title": "Campos mínimos del formulario de una métrica",
+          "head": ["Campo", "Qué recoge", "Ejemplo (métrica de parcheo)"],
+          "rows": [
+            ["Metas", "Los **resultados deseados** al implantar uno o varios objetivos de control o técnicas medidos por la métrica.", "Que los equipos estén protegidos frente a vulnerabilidades conocidas."],
+            ["Objetivos", "Las **acciones** necesarias para alcanzar las metas.", "Aplicar los parches críticos en menos de 15 días."],
+            ["Métrica", "La medida cuantitativa, con una definición que empieza por «porcentaje», «número», «media»…", "Porcentaje de equipos con todos los parches críticos."],
+            ["Propósito", "Para qué se recoge: uso interno o informes, visibilidad esperada, razones legales.", "Informe mensual al comité de seguridad."],
+            ["Evidencia de la implantación", "Pruebas de que existen los controles; sirven para calcular la métrica y señalar causas.", "Informe de la consola de gestión de parches."],
+            ["Frecuencia", "**Cada cuánto** se recogen los datos para medir cambios.", "Semanal."],
+            ["Fórmula", "El **cálculo** que produce el resultado numérico.", "Equipos parcheados / equipos totales × 100."],
+            ["Origen de los datos", "**De dónde** salen los datos: bases de datos, herramientas, organizaciones o roles.", "Inventario CMDB y consola de parches."],
+            ["Indicadores", "A qué indicadores se asocia: significado, tendencia, causas, soluciones y qué tendencia es positiva.", "Por encima del 95 % = bien; tendencia creciente = positiva."]
+          ]
+        },
+        {
+          "type": "term",
+          "term": "CMDB (Configuration Management Database, base de datos de gestión de la configuración)",
+          "text": "Inventario centralizado de los equipos y programas de una organización y de sus relaciones."
+        },
+        {
+          "type": "p",
+          "text": "Identificar el **origen de los datos** permite saber de dónde proceden los valores, repetir la medición con la misma información y valorar su calidad (no todos los datos son igual de fiables). La **frecuencia** no es el tiempo de recuperación ni la duración de un contrato: es la periodicidad de la toma de datos."
+        },
+        {
+          "type": "p",
+          "text": "La tabla 4 del temario propone otra ficha más detallada con: **medida** (nombre), **valor** (porcentaje, número, frecuencia, coeficiente…), **tipo** de control (de despliegue, de eficacia, de eficiencia), **propósito**, **cliente** (público destinatario), **método de medida**, **procedimiento** de recogida, **personas a cargo** (propietario, peticionario, entrada, comunicación y revisión), **ciclo de vida** (frecuencia de obtención, periodicidad de la entrada, fecha de obtención, fecha de validez), **criterios** y **alcance o dominio** (una máquina, un servicio, una red, un edificio, un departamento…)."
+        },
+        {
+          "type": "exam",
+          "text": "Meta = **resultado deseado** (no el obtenido). Objetivos = **acciones** para alcanzar la meta. No las confundas: es la pregunta clásica del test. Fórmula = cálculo; frecuencia = cada cuánto; origen = de dónde vienen los datos."
+        },
+        {
+          "type": "key",
+          "text": "Una métrica bien documentada dice qué se quiere conseguir (meta), cómo (objetivos), qué se calcula (fórmula), con qué datos (origen), cada cuánto (frecuencia) y cómo se interpreta (indicadores)."
+        }
+      ]
+    },
+    {
+      "id": "a-fondo",
+      "title": "Para ampliar: guías de indicadores y casos",
+      "pages": [26, 30],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "El temario recomienda varias lecturas que aplican lo visto a casos reales. No suelen preguntarse en el test, pero ayudan a ver métricas «de verdad»."
+        },
+        {
+          "type": "table",
+          "title": "Lecturas recomendadas",
+          "head": ["Documento", "Autor", "Para qué sirve"],
+          "rows": [
+            ["IMC_01 y IMC_02 (Indicadores para la Mejora de la Ciberresiliencia)", "INCIBE (Instituto Nacional de Ciberseguridad)", "Metodología y diccionario de indicadores para medir la madurez de los controles en cuatro objetivos: anticipar, resistir, recuperar y evolucionar. Pensado para sistemas TIC e industriales (OT, Operation Technology)."],
+            ["CCN-STIC-815: métricas e indicadores", "CCN (Centro Criptológico Nacional)", "Propone datos a registrar, métricas, cuadros de mando y el informe anual que exige el ENS a las administraciones públicas."],
+            ["Guía de áreas críticas para la nube v4.0", "CSA (Cloud Security Alliance)", "Orientación para gestionar y mitigar riesgos al adoptar computación en la nube."],
+            ["Modelo de mitigación de vulnerabilidades en servicios web", "Trabajo de máster (PUCE Ambato)", "Caso que aplica la metodología MAGERIT v3 para identificar activos, analizar riesgos y mitigar vulnerabilidades web."]
+          ]
+        },
+        {
+          "type": "term",
+          "term": "ENS (Esquema Nacional de Seguridad)",
+          "text": "Norma española, aprobada por real decreto (una norma del Gobierno que desarrolla una ley), que fija las medidas de seguridad que deben cumplir las administraciones públicas y sus proveedores. Les exige, entre otras cosas, informar periódicamente del estado de su seguridad."
+        },
+        {
+          "type": "term",
+          "term": "Ciberresiliencia",
+          "text": "Capacidad de una organización para anticiparse, resistir, recuperarse y adaptarse ante ataques o situaciones adversas."
+        },
+        {
+          "type": "key",
+          "text": "Las guías del INCIBE y del CCN son ejemplos reales de catálogos de indicadores y cuadros de mando como los que describe este tema."
+        }
+      ]
+    }
+  ],
+  "summary": [
+    "Tratar un riesgo (ISO 31000) es elegir e implantar una o varias opciones: evitar, aceptar/aumentar, eliminar la fuente, modificar probabilidad, modificar consecuencias, compartir o retener. No son excluyentes.",
+    "El tratamiento es un ciclo: se comprueba el efecto, se mide el riesgo residual y, si sigue alto, se revisan y mejoran las salvaguardas.",
+    "Mitigar es reducir probabilidad y/o impacto mejorando las salvaguardas o su nivel de madurez, con una combinación equilibrada.",
+    "Preventivas: reducen la probabilidad de materialización de las amenazas. Reactivas: limitan el impacto.",
+    "La eficacia real combina eficacia intrínseca y grado de implantación; este se valora en porcentaje o con un modelo de madurez de 0 a 5.",
+    "Las estimaciones se alejan de la realidad con el tiempo: hay que monitorizar de forma permanente.",
+    "Medida (dato), métrica (medida cuantitativa del grado de un atributo) e indicador (métrica interpretada con criterios de decisión) son cosas distintas.",
+    "Indicadores SMART: específicos, medibles, alcanzables, realistas y a tiempo. Los KRI necesitan medidas, algoritmo, periodicidad y umbrales.",
+    "Diseño: entidades → atributos → conceptos medibles → métricas. Cada indicador: responsable, periodicidad, umbral y valor objetivo; resultados comparables y reproducibles.",
+    "Elaborar métricas: métodos de medición (subjetivos u objetivos), escala e indicadores. Métricas directas e indirectas.",
+    "Ficha de métrica: metas (resultados deseados), objetivos (acciones), métrica, propósito, evidencia, frecuencia, fórmula, origen de datos e indicadores."
+  ],
+  "glossary": [
+    { "term": "Atributo", "text": "Propiedad mensurable, física o abstracta, de una entidad." },
+    { "term": "Concepto medible", "text": "Relación abstracta entre atributos de una o más entidades y una necesidad de información." },
+    { "term": "Cuadro de mando", "text": "Conjunto de indicadores clave, presentado en lenguaje de negocio, para seguir el nivel de riesgo y la efectividad de las salvaguardas." },
+    { "term": "Eficacia intrínseca", "text": "Protección que daría una salvaguarda con implantación total y funcionamiento máximo." },
+    { "term": "Eficacia real", "text": "Combinación de la eficacia intrínseca y el grado de implantación de una salvaguarda." },
+    { "term": "Entidad", "text": "Objeto, tangible o intangible, que se caracteriza midiendo sus atributos." },
+    { "term": "Escala", "text": "Conjunto de valores con propiedades definidas que determina qué operaciones y análisis son válidos." },
+    { "term": "Indicador", "text": "Métrica o combinación de métricas con un modelo y criterios de decisión que permite interpretar un concepto medible." },
+    { "term": "ISO 31000", "text": "Norma internacional con principios y directrices para la gestión del riesgo." },
+    { "term": "KRI (Key Risk Indicator)", "text": "Indicador clave de riesgo, con medidas, algoritmo, periodicidad y umbrales de aviso y alarma definidos." },
+    { "term": "Medida", "text": "Indicación cuantitativa de la extensión, cantidad, dimensión, capacidad o tamaño de un atributo." },
+    { "term": "Meta", "text": "Resultado deseado al implantar uno o varios objetivos de control medidos por una métrica." },
+    { "term": "Métrica", "text": "Medida cuantitativa del grado en que un sistema, componente o proceso posee un atributo." },
+    { "term": "Métrica directa / indirecta", "text": "Directa: no depende de otras métricas. Indirecta: se deriva de otras mediante una función de medición." },
+    { "term": "Mitigación", "text": "Reducir la probabilidad, el impacto o ambos de un riesgo mejorando las salvaguardas." },
+    { "term": "Nivel de madurez", "text": "Escala de 0 (no implantada) a 5 (desplegada, probada y conocida) para valorar la implantación de una salvaguarda." },
+    { "term": "Riesgo residual", "text": "Riesgo que queda después de aplicar las salvaguardas." },
+    { "term": "Salvaguarda preventiva", "text": "La que reduce la probabilidad de que una amenaza se materialice." },
+    { "term": "Salvaguarda reactiva", "text": "La que limita el impacto de una amenaza ya materializada." },
+    { "term": "SMART", "text": "Específico, medible, alcanzable, realista y a tiempo: características de un buen indicador." }
+  ],
+  "questions": {
+    "gobierno-t10-01": {
+      "section": "indicadores-riesgo",
+      "reasoning": "La lista del tema es SMART: específico, medible, alcanzable, realista y a tiempo. Para saber si un indicador alcanza o no un umbral hay que poder cuantificarlo, es decir, que sea medible. Las demás opciones contradicen directamente la lista: cambiar de definición rompe la especificidad y la comparabilidad, no tener plazo rompe el «a tiempo» y no asociarse a objetivos lo hace inútil.",
+      "options": {
+        "a": "Correcta. «Medible» es la M de SMART: solo un valor cuantificable puede compararse con un umbral de aviso o alarma.",
+        "b": "Incorrecta. Si la definición cambia en cada periodo, el indicador deja de ser específico y sus resultados no son comparables ni reproducibles.",
+        "c": "Incorrecta. Un indicador debe ser «a tiempo»: necesita un periodo de observación y una periodicidad definida.",
+        "d": "Incorrecta. Los indicadores sirven precisamente para medir si se alcanzan metas y objetivos; desvincularlos les quita su función."
+      }
+    },
+    "gobierno-t10-02": {
+      "section": "monitorizar-medir",
+      "reasoning": "El tema define la métrica como una medida cuantitativa del grado en que un sistema, componente o proceso posee un atributo dado. La palabra decisiva es «cuantitativa». Hay que descartar las versiones que la convierten en estimación o que admiten lo cualitativo.",
+      "options": {
+        "a": "Incorrecta. Una métrica no es una estimación: es una medida que permite medir de forma objetiva y comparar mediciones.",
+        "b": "Incorrecta. Añade «cualitativa o»; la definición del tema solo habla de medida cuantitativa.",
+        "c": "Correcta. Es la definición literal del tema: medida cuantitativa del grado en que un sistema, componente o proceso posee un atributo.",
+        "d": "Incorrecta. La métrica es cuantitativa, no cualitativa; traduce un atributo del mundo real a un mundo formal numérico."
+      }
+    },
+    "gobierno-t10-03": {
+      "section": "indicadores-riesgo",
+      "reasoning": "El tema enumera para qué sirven los indicadores como soporte a la toma de decisiones: medir la evolución de amenazas actuales y emergentes, la efectividad de las salvaguardas, la capacidad de la organización en tareas de seguridad, obtener datos del estado de seguridad y saber dónde mejorar. Las opciones a, b y c están todas en la lista, así que la respuesta es la que las engloba.",
+      "options": {
+        "a": "Incorrecta como respuesta única. Es cierta (está en la lista), pero no es la única, así que la opción completa es d.",
+        "b": "Incorrecta como respuesta única. Medir la efectividad de las salvaguardas es un uso de los indicadores, pero también lo son a y c.",
+        "c": "Incorrecta como respuesta única. Medir la capacidad de la organización en seguridad también está en la lista, junto con a y b.",
+        "d": "Correcta. Las tres afirmaciones anteriores figuran en la lista de usos de los indicadores del tema."
+      }
+    },
+    "gobierno-t10-04": {
+      "section": "preventivas-reactivas",
+      "reasoning": "Las salvaguardas se clasifican por su forma de actuar. Las preventivas actúan antes del incidente reduciendo las oportunidades de que ocurra, es decir, la probabilidad de materialización de la amenaza. Las que actúan después (restaurar, documentar daños, reducir costes de restauración) son reactivas o ni siquiera son salvaguardas.",
+      "options": {
+        "a": "Incorrecta. Reducir costes de restauración es actuar sobre las consecuencias, propio de una salvaguarda reactiva.",
+        "b": "Correcta. Es la definición de salvaguarda preventiva: reduce la probabilidad de que la amenaza se materialice.",
+        "c": "Incorrecta. Restaurar archivos destruidos ocurre después del incidente y limita su impacto: es reactiva.",
+        "d": "Incorrecta. Documentar daños ya producidos no reduce la probabilidad; ni siquiera limita por sí mismo el impacto."
+      }
+    },
+    "gobierno-t10-05": {
+      "section": "eficacia-madurez",
+      "reasoning": "El tema dice que para determinar la eficacia de una salvaguarda es necesario conocer su grado de implantación, porque la eficacia real resulta de combinar ese grado con la eficacia intrínseca. Probabilidad e impacto son variables del riesgo, no lo que define la eficacia de la medida.",
+      "options": {
+        "a": "Correcta. Sin conocer el grado de implantación (cómo está configurada, su alcance y cuánto la conocen las personas) no se puede calcular la eficacia real.",
+        "b": "Incorrecta. Es la negación de lo que afirma el tema: el grado de implantación es imprescindible.",
+        "c": "Incorrecta. La probabilidad de materialización forma parte del análisis del riesgo, no es lo que el tema exige para valorar la eficacia de la salvaguarda.",
+        "d": "Incorrecta. El impacto es otra variable del riesgo; la eficacia de la salvaguarda depende de su implantación y su eficacia intrínseca."
+      }
+    },
+    "gobierno-t10-06": {
+      "section": "diseno-medicion",
+      "reasoning": "Para que las mediciones sean comparables hay que diseñarlas antes de medir: entidad, atributo, concepto medible, método de medición, escala y criterio de interpretación (indicador). Solo así dos mediciones de distintos periodos significan lo mismo. Las otras opciones dejan la definición abierta o la cambian sin control.",
+      "options": {
+        "a": "Correcta. Especificar entidad, atributo, método, escala y criterio de interpretación es justo el proceso de diseño que hace los resultados comparables y reproducibles.",
+        "b": "Incorrecta. Recoger cualquier número y decidir después qué significa invierte el orden del diseño: primero qué y para qué se mide.",
+        "c": "Incorrecta. Cambiar el método sin registrarlo hace que las mediciones no sean comparables ni reproducibles.",
+        "d": "Incorrecta. Una impresión verbal sin periodo no es cuantitativa ni tiene la periodicidad que exige un indicador."
+      }
+    },
+    "gobierno-t10-07": {
+      "section": "indicadores-riesgo",
+      "reasoning": "Medir la eficacia de los controles y la evolución de las amenazas son objetivos de las mediciones que el tema enumera: evaluar la efectividad de las salvaguardas, la peligrosidad de las amenazas, mejorar la respuesta a los riesgos y ayudar a la evaluación y al plan de tratamiento. Todo apunta a conocer mejor el riesgo y decidir mejor.",
+      "options": {
+        "a": "Incorrecta. Las mediciones apoyan las decisiones de negocio, no las sustituyen, y la eficacia no se mide por el número de productos comprados.",
+        "b": "Correcta. Las mediciones sirven para conocer mejor el riesgo y mejorar la respuesta y el plan de tratamiento.",
+        "c": "Incorrecta. Ninguna medición elimina toda incertidumbre; los indicadores ayudan a anticiparse, no garantizan el futuro.",
+        "d": "Incorrecta. Al contrario: si las mediciones muestran que la realidad difiere de lo estimado, hay que revisar el análisis y el tratamiento."
+      }
+    },
+    "gobierno-t10-08": {
+      "section": "elaboracion-metricas",
+      "reasoning": "El tema dice que al elaborar métricas hay que definir los métodos de medición, la escala y los indicadores. Las opciones juegan cambiando «medición» por «análisis» y «escala» por «métricas». Solo una mantiene las tres piezas exactas.",
+      "options": {
+        "a": "Incorrecta. Cambia «métodos de medición» por «métodos de análisis».",
+        "b": "Correcta. Métodos de medición, escala e indicadores son los tres elementos que el tema exige definir.",
+        "c": "Incorrecta. Sustituye la escala por «las métricas», que es precisamente lo que se está elaborando.",
+        "d": "Incorrecta. Contiene los dos cambios: «análisis» en lugar de «medición» y «métricas» en lugar de «escala»."
+      }
+    },
+    "gobierno-t10-09": {
+      "section": "elaboracion-metricas",
+      "reasoning": "El criterio de clasificación es si la métrica depende de otras. La directa mide un atributo sin depender de métricas de otros atributos; la indirecta se deriva de una o varias métricas de otros atributos mediante una función de medición (un algoritmo). Una métrica calculada combinando otras es, por tanto, indirecta.",
+      "options": {
+        "a": "Incorrecta. La directa es justo la que no depende de otras métricas; aquí hay combinación.",
+        "b": "Correcta. Se deriva de otras métricas mediante una función de medición: es la definición de métrica indirecta.",
+        "c": "Incorrecta. La clasificación directa/indirecta no trata de si es cualitativa; además, un porcentaje es un resultado numérico.",
+        "d": "Incorrecta. Sigue siendo una métrica: el tema prevé expresamente métricas que se calculan a partir de otras."
+      }
+    },
+    "gobierno-t10-10": {
+      "section": "ficha-metrica",
+      "reasoning": "En el formulario de una métrica, las metas definen los resultados deseados en la implantación de uno o varios objetivos de control o técnicas medidos por la métrica; los objetivos son las acciones para alcanzar las metas. Hay que buscar «resultados deseados», no «obtenidos» ni «acciones».",
+      "options": {
+        "a": "Correcta. Es la definición de meta del tema: resultados deseados al implantar objetivos de control o técnicas medidos por la métrica.",
+        "b": "Incorrecta. «Acciones que se requieren para alcanzar…» es la definición de objetivos, no de metas (y además habla de medidas).",
+        "c": "Incorrecta. La meta es lo que se desea conseguir, no lo ya obtenido; lo obtenido se compara con la meta.",
+        "d": "Incorrecta. Vuelve a describir acciones (objetivos) y las vincula a un riesgo aceptable, que no aparece en la definición de meta."
+      }
+    },
+    "gobierno-t10-11": {
+      "section": "opciones-tratamiento",
+      "reasoning": "Entre las opciones de tratamiento de la ISO 31000, evitar el riesgo consiste en decidir no iniciar o no continuar la actividad que lo causa. Si la actividad se mantiene, ya no es evitar: puede ser aceptar, mitigar o compartir.",
+      "options": {
+        "a": "Incorrecta. Aceptar la exposición sin cambiar la actividad es retener o aceptar el riesgo.",
+        "b": "Incorrecta. Mantener la actividad y reducir la probabilidad con un control es mitigar (modificar la probabilidad).",
+        "c": "Correcta. Evitar es no iniciar o abandonar la actividad que genera el riesgo.",
+        "d": "Incorrecta. Una póliza traslada consecuencias económicas a un tercero: eso es compartir el riesgo."
+      }
+    },
+    "gobierno-t10-12": {
+      "section": "preventivas-reactivas",
+      "reasoning": "Las salvaguardas preventivas reducen las oportunidades de que ocurra un incidente, es decir, la probabilidad de materialización de las amenazas. Todo lo que actúa después del suceso (reducir pérdidas, recuperar, compensar) es reactivo o es compartir el riesgo.",
+      "options": {
+        "a": "Incorrecta. Reducir pérdidas después del suceso es limitar el impacto: función reactiva.",
+        "b": "Incorrecta. Recuperar el servicio tras la interrupción es reactivo.",
+        "c": "Incorrecta. Compensar económicamente el daño es propio de compartir el riesgo (seguro), no de una salvaguarda preventiva.",
+        "d": "Correcta. La salvaguarda preventiva busca reducir la probabilidad de materialización de la amenaza."
+      }
+    },
+    "gobierno-t10-13": {
+      "section": "preventivas-reactivas",
+      "reasoning": "Las salvaguardas reactivas actúan cuando la amenaza ya se ha materializado, limitando el impacto y acotando las consecuencias del incidente.",
+      "options": {
+        "a": "Correcta. Limitar las consecuencias de un incidente es la definición de salvaguarda reactiva.",
+        "b": "Incorrecta. Disminuir la probabilidad antes del suceso es lo que hace la preventiva.",
+        "c": "Incorrecta. Transferir responsabilidades a un proveedor sería, en su caso, compartir el riesgo; y nunca se transfiere «automáticamente todo».",
+        "d": "Incorrecta. La reactiva busca recuperarse y limitar el daño, no sustituir la recuperación por aceptarlo."
+      }
+    },
+    "gobierno-t10-14": {
+      "section": "eficacia-madurez",
+      "reasoning": "La eficacia real combina la eficacia intrínseca con el grado de implantación, que mide cómo está configurada y desplegada la medida y cuánto la conocen las personas. Marca, precio o figurar en la política no dicen nada de cómo funciona en la práctica.",
+      "options": {
+        "a": "Incorrecta. La marca no garantiza nada si la medida no está bien implantada.",
+        "b": "Correcta. La eficacia real depende de la implantación y configuración efectivas (junto con la eficacia intrínseca).",
+        "c": "Incorrecta. Una medida que figura en la política pero no está operativa tiene madurez 0: no protege.",
+        "d": "Incorrecta. El importe pagado no mide el funcionamiento; hay que comprobar la implantación."
+      }
+    },
+    "gobierno-t10-15": {
+      "section": "indicadores-riesgo",
+      "reasoning": "Un indicador de riesgos permite conocer el comportamiento de los riesgos: la evolución de las amenazas y la aplicabilidad y efectividad de las salvaguardas. Es un apoyo a la decisión, no un sustituto ni una medida de gasto.",
+      "options": {
+        "a": "Incorrecta. Los indicadores dan soporte a las decisiones de tratamiento, no las sustituyen.",
+        "b": "Incorrecta. El gasto ejecutado no acredita eficacia; el indicador mide la efectividad real de las salvaguardas.",
+        "c": "Correcta. Sirven para conocer la evolución de los riesgos y la efectividad de los controles.",
+        "d": "Incorrecta. Al contrario: cuando la realidad difiere de lo estimado, obligan a revisar hipótesis y contexto."
+      }
+    },
+    "gobierno-t10-16": {
+      "section": "opciones-tratamiento",
+      "reasoning": "La ISO 31000 dice expresamente que las opciones de tratamiento no se excluyen necesariamente entre sí y que no son apropiadas en todas las circunstancias. Por tanto, se pueden combinar según el contexto y los objetivos.",
+      "options": {
+        "a": "Incorrecta. La norma no exige que las opciones sean del mismo tipo de control para combinarlas.",
+        "b": "Correcta. Las opciones no son excluyentes y se combinan según el contexto y los objetivos (por ejemplo, mitigar y además compartir con un seguro).",
+        "c": "Incorrecta. Es lo contrario de lo que dice la norma: las opciones no se excluyen necesariamente.",
+        "d": "Incorrecta. El tratamiento se decide tras la evaluación del riesgo, no hace falta esperar a un incidente."
+      }
+    },
+    "gobierno-t10-17": {
+      "section": "ciclo-tratamiento",
+      "reasoning": "En el ciclo de tratamiento, tanto lo tratado como lo aceptado vuelven a la evaluación y a la monitorización. El objetivo es comprobar si las medidas funcionan y cuánto riesgo queda (riesgo residual), porque las estimaciones pueden no reflejar la realidad.",
+      "options": {
+        "a": "Incorrecta. Aceptar un riesgo no implica que los controles no funcionen; es una decisión informada que también se vigila.",
+        "b": "Incorrecta. Se revisa precisamente para actualizar los valores cuando cambia el contexto, no para mantenerlos.",
+        "c": "Incorrecta. Observar un efecto no transfiere el riesgo a nadie; compartir es una opción que se decide expresamente.",
+        "d": "Correcta. La revisión comprueba el efecto del tratamiento y los riesgos que quedan (riesgo residual)."
+      }
+    },
+    "gobierno-t10-18": {
+      "section": "diseno-medicion",
+      "reasoning": "El tema pide que, al diseñar un indicador, se especifique qué se monitoriza, el responsable del análisis, la periodicidad de control y los valores mínimo (límite admisible) y esperado (valor objetivo). Sin estos elementos el indicador no se puede gestionar.",
+      "options": {
+        "a": "Correcta. Responsable, frecuencia, umbrales y valor objetivo son los elementos que el tema exige especificar.",
+        "b": "Incorrecta. Un nombre y una herramienta no dicen cómo se interpreta ni quién actúa.",
+        "c": "Incorrecta. Un valor sin criterios de evaluación (umbral, objetivo) no permite decidir nada.",
+        "d": "Incorrecta. El coste importa, pero sin definir interpretación, umbrales y responsable el indicador no sirve para monitorizar."
+      }
+    },
+    "gobierno-t10-19": {
+      "section": "ficha-metrica",
+      "reasoning": "En el formulario de una métrica, el campo «fórmula» describe el cálculo que debe realizarse y que proporciona los resultados numéricos. Las demás opciones corresponden a otros campos (frecuencia, meta) o a nada del formulario.",
+      "options": {
+        "a": "Incorrecta. La periodicidad de la toma de datos es el campo «frecuencia».",
+        "b": "Correcta. La fórmula es el cálculo que produce el valor de la métrica.",
+        "c": "Incorrecta. El nivel objetivo se relaciona con las metas y los indicadores, no con la fórmula.",
+        "d": "Incorrecta. Quién aprueba la política no forma parte de la fórmula; las personas a cargo son otro apartado de la ficha."
+      }
+    },
+    "gobierno-t10-20": {
+      "section": "ficha-metrica",
+      "reasoning": "La frecuencia del formulario de una métrica son los periodos de tiempo propuestos para recoger los datos con los que se miden los cambios. Es decir, cada cuánto se toman datos.",
+      "options": {
+        "a": "Incorrecta. El tiempo de recuperación tras un incidente es un objetivo de continuidad, no la frecuencia de una métrica.",
+        "b": "Incorrecta. El número de controles del tratamiento no tiene que ver con la frecuencia de medición.",
+        "c": "Correcta. La frecuencia indica cada cuánto se recogen los datos de la métrica.",
+        "d": "Incorrecta. La duración de un contrato de herramienta no es un campo de la ficha de la métrica."
+      }
+    },
+    "gobierno-t10-21": {
+      "section": "diseno-medicion",
+      "reasoning": "El primer paso del diseño es determinar las entidades a medir: el objeto, tangible o intangible, que se caracteriza midiendo sus atributos. Es decir, se fija qué se mide y qué propiedades interesan antes de pensar en herramientas o datos disponibles.",
+      "options": {
+        "a": "Incorrecta. Elegir la herramienta antes de fijar la finalidad invierte el orden del diseño.",
+        "b": "Incorrecta. Copiar el indicador de otra organización sin adaptar su objeto no es identificar la entidad propia.",
+        "c": "Incorrecta. Recoger datos y decidir después qué representan es lo contrario de definir primero la entidad.",
+        "d": "Correcta. Identificar la entidad es precisar el objeto de la medición (un riesgo, una salvaguarda) y los atributos que se van a medir de él."
+      }
+    },
+    "gobierno-t10-22": {
+      "section": "monitorizar-medir",
+      "reasoning": "La métrica da un valor cuantitativo del grado en que algo posee un atributo; el indicador es una métrica o combinación de métricas con modelo y criterios de decisión que permite interpretar el comportamiento de los riesgos. Las métricas solas no interpretan; para eso están los indicadores.",
+      "options": {
+        "a": "Incorrecta. Es al revés: el dato bruto sin criterio es la métrica; el indicador añade la interpretación.",
+        "b": "Incorrecta. La métrica no incorpora decisiones de aceptación del riesgo; solo mide.",
+        "c": "Correcta. El indicador interpreta una métrica o combinación de métricas respecto al riesgo.",
+        "d": "Incorrecta. El tema distingue expresamente medida, métrica e indicador."
+      }
+    },
+    "gobierno-t10-23": {
+      "section": "ficha-metrica",
+      "reasoning": "El campo «origen de los datos» recoge dónde están los datos usados para calcular la métrica: bases de datos, herramientas, organizaciones o roles. Saberlo permite conocer la procedencia de los valores, repetir la medición y valorar su calidad.",
+      "options": {
+        "a": "Incorrecta. El origen de los datos no sustituye a la fórmula; son campos distintos y complementarios.",
+        "b": "Incorrecta. Es justo al revés: identificar el origen permite repetir la medición con la misma información.",
+        "c": "Incorrecta. Conocer el origen ayuda a valorar la calidad de los datos; no todos son igual de fiables.",
+        "d": "Correcta. Sirve para saber de dónde proceden los valores con los que se calcula la métrica."
+      }
+    },
+    "gobierno-t10-24": {
+      "section": "eficacia-madurez",
+      "reasoning": "La eficacia real depende del grado de implantación. Un control comprado pero sin configurar está, como mucho, en el nivel 0 o 1 de madurez. Hay que valorarlo por su implantación real, no por la factura, el catálogo ni el contrato.",
+      "options": {
+        "a": "Correcta. Se valora según su implantación real, sin suponer eficacia plena.",
+        "b": "Incorrecta. Pagar la factura no implanta la medida; su eficacia real es casi nula mientras no esté configurada.",
+        "c": "Incorrecta. Figurar en el catálogo no equivale a estar desplegado; el catálogo es una lista genérica.",
+        "d": "Incorrecta. Un contrato de mantenimiento no significa que la medida esté implantada ni funcionando."
+      }
+    },
+    "gobierno-t10-25": {
+      "section": "preventivas-reactivas",
+      "reasoning": "Una alarma busca reducir la probabilidad de que el incidente ocurra o prospere (preventiva) y un mecanismo de recuperación limita el impacto cuando ya ha ocurrido (reactiva). Lo relevante es analizar la función de cada medida: si previene o si limita consecuencias, y cómo se combinan.",
+      "options": {
+        "a": "Incorrecta. El coste de licencia importa en el estudio coste/beneficio, pero no explica qué función cumple cada medida.",
+        "b": "Correcta. Hay que analizar cómo cada medida previene (reduce probabilidad) o limita consecuencias (reduce impacto).",
+        "c": "Incorrecta. El fabricante y la versión no determinan si una salvaguarda es preventiva o reactiva.",
+        "d": "Incorrecta. Contar activos sin examinar la función de cada medida no responde a la distinción preventiva/reactiva."
+      }
+    },
+    "gobierno-t10-26": {
+      "section": "diseno-medicion",
+      "reasoning": "Un indicador necesita responsable de análisis, periodicidad y valores mínimo (umbral) y esperado (objetivo). Si sube y nadie sabe si eso es grave ni a quién le toca actuar, lo prioritario es definir esos elementos.",
+      "options": {
+        "a": "Incorrecta. Publicar el valor aislado no permite interpretarlo; falta el criterio de decisión.",
+        "b": "Incorrecta. Fijar el objetivo después de ver cada resultado anula su función de referencia.",
+        "c": "Correcta. Definir límites (umbrales), objetivo y responsable hace operativo el indicador.",
+        "d": "Incorrecta. Manipular la escala para ocultar la subida falsea la medición."
+      }
+    },
+    "gobierno-t10-27": {
+      "section": "monitorizar-medir",
+      "reasoning": "El tema advierte que las estimaciones y valoraciones de la evaluación de riesgos pueden alejarse de la realidad con el tiempo; por eso hay que monitorizar de forma permanente. Datos de hace varios años probablemente no reflejan la situación actual.",
+      "options": {
+        "a": "Incorrecta. El problema de fondo no es el formato sino la vigencia de los datos.",
+        "b": "Incorrecta. Es al revés: la antigüedad de los datos obliga a hacer nuevas mediciones.",
+        "c": "Incorrecta. Un dato histórico no prueba por sí solo que no haya controles; simplemente puede estar desfasado.",
+        "d": "Correcta. Hay que abordar la pérdida de correspondencia entre esos datos y la situación actual."
+      }
+    },
+    "gobierno-t10-28": {
+      "section": "diseno-medicion",
+      "reasoning": "Los indicadores deben proporcionar resultados comparables y reproducibles. Si cada mes se mide con criterios distintos, la evolución no significa nada. Hacen falta definiciones y métodos estables.",
+      "options": {
+        "a": "Correcta. Se necesitan definiciones y métodos comparables y reproducibles.",
+        "b": "Incorrecta. Sumar valores de atributos distintos no tiene sentido.",
+        "c": "Incorrecta. Con escalas distintas los números no son comparables; la escala determina qué operaciones son válidas.",
+        "d": "Incorrecta. Cambiar la presentación visual no arregla que los criterios de medición sean distintos."
+      }
+    },
+    "gobierno-t10-29": {
+      "section": "ciclo-tratamiento",
+      "reasoning": "Si tras aplicar una medida el riesgo residual sigue por encima del límite tolerable, el ciclo de tratamiento obliga a volver al estudio de opciones y mejorar las salvaguardas (subir su madurez o añadir otras). La inversión hecha no justifica aceptar el riesgo.",
+      "options": {
+        "a": "Correcta. Hay que revisar y mejorar el tratamiento y las salvaguardas hasta que el riesgo residual sea tolerable.",
+        "b": "Incorrecta. Aceptar exige una decisión informada, no es automático por haber invertido.",
+        "c": "Incorrecta. Reclasificar sin revisar probabilidad ni consecuencias es maquillar el riesgo.",
+        "d": "Incorrecta. Mantener el valor anterior ignora lo que muestra la medición; hay que actualizarlo y actuar."
+      }
+    },
+    "gobierno-t10-30": {
+      "section": "elaboracion-metricas",
+      "reasoning": "El tipo de escala determina las transformaciones admisibles, las operaciones matemáticas y los análisis estadísticos válidos. Comparar valores de escalas incompatibles como si fueran importes es un error de escala, no de presentación.",
+      "options": {
+        "a": "Incorrecta. La herramienta de exportación no resuelve el problema de unidades y escalas.",
+        "b": "Correcta. Hay que revisar las propiedades de las escalas y qué operaciones admiten.",
+        "c": "Incorrecta. Los colores son presentación; no cambian la naturaleza de la escala.",
+        "d": "Incorrecta. El orden de las tablas no afecta a si los valores son comparables."
+      }
+    }
+  }
+}

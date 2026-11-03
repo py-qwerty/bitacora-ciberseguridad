@@ -1,0 +1,1043 @@
+{
+  "course": "forense",
+  "number": 1,
+  "title": "Introducción a la Respuesta a Incidentes y Análisis Forense",
+  "minutes": 40,
+  "intro": {
+    "why": "Un lunes por la mañana los ordenadores de un hospital muestran un mensaje: los datos están cifrados y piden un rescate. En ese momento hay dos trabajos a la vez: **volver a funcionar** cuanto antes (respuesta a incidentes) y **averiguar qué ha pasado** con pruebas que aguanten ante un juez (análisis forense). Si se hace lo primero sin pensar en lo segundo, se borran las huellas; si se hace solo lo segundo, el hospital sigue parado. Este tema presenta los dos mundos y las reglas legales que los unen.",
+    "before": [
+      "La **seguridad de la información** protege tres cosas: que solo la vea quien debe (confidencialidad), que no se altere sin permiso (integridad) y que esté disponible cuando se necesita (disponibilidad).",
+      "Un **log** (registro) es un archivo donde un sistema anota lo que pasa: quién entró, a qué hora, qué falló. Es como el diario de a bordo de un barco.",
+      "Una **dirección IP** (Internet Protocol) identifica a un equipo dentro de una red, como el número de una casa en una calle; la **dirección MAC** (Media Access Control) identifica la tarjeta de red física, como el número de bastidor de un coche.",
+      "Una **copia de seguridad** (backup) es una foto de los datos en un momento dado; si algo se rompe, se vuelve a esa foto, pero se pierde lo que pasó después."
+    ],
+    "goals": [
+      "Al terminar sabrás explicar qué es un incidente de seguridad, qué es un ciberataque y de qué tipos pueden ser.",
+      "Sabrás distinguir continuidad de negocio (BCM) y recuperación ante desastres (DRP), y qué papel tiene el análisis de impacto (BIA).",
+      "Sabrás interpretar RTO, RPO y MTD en un caso práctico con horas concretas.",
+      "Sabrás enumerar los cuatro procesos clave de la gestión de incidentes y los servicios de un CSIRT.",
+      "Sabrás explicar los retos de la nube, la movilidad (BYOD) y el DRaaS.",
+      "Sabrás qué persigue el análisis forense digital, sus tres preguntas, sus cuatro etapas según el NIST y hasta dónde llega la atribución.",
+      "Sabrás qué es la cadena de custodia y qué responsabilidades penales, civiles y disciplinarias tiene un perito."
+    ]
+  },
+  "sections": [
+    {
+      "id": "incidente",
+      "title": "Qué es un incidente y qué es un ciberataque",
+      "pages": [5, 5],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Piensa en una tienda. Que se vaya la luz, que un empleado deje la caja abierta o que entre un ladrón son cosas muy distintas, pero todas tienen algo en común: nadie las quería y pueden impedir que la tienda funcione. Eso es un **incidente**. Solo el ladrón, que actúa a propósito, sería el equivalente a un **ataque**."
+        },
+        {
+          "type": "term",
+          "term": "Incidente de seguridad",
+          "text": "Evento **no deseado** con **alta probabilidad** de comprometer las operaciones de una organización y de amenazar una o varias de las tres dimensiones de la seguridad: confidencialidad, integridad y disponibilidad. Puede surgir de forma espontánea (un fallo, una inundación) o provocada."
+        },
+        {
+          "type": "table",
+          "title": "Las tres dimensiones de la seguridad",
+          "head": ["Dimensión", "Qué protege", "Ejemplo de incidente que la daña"],
+          "rows": [
+            ["Confidencialidad", "Que solo acceda quien está autorizado", "Alguien lee los datos de clientes sin permiso, aunque no cambie nada"],
+            ["Integridad", "Que los datos no se alteren sin permiso", "Un atacante cambia el número de cuenta de una factura"],
+            ["Disponibilidad", "Que el servicio y los datos se puedan usar cuando hacen falta", "El portal de clientes se cae y nadie puede entrar"]
+          ]
+        },
+        {
+          "type": "term",
+          "term": "Ciberataque",
+          "text": "Incidente **provocado** a propósito. El NIST (National Institute of Standards and Technology, Instituto Nacional de Estándares y Tecnología de Estados Unidos) lo define como un ataque a través del ciberespacio para interrumpir, inutilizar, destruir o controlar maliciosamente una infraestructura informática, destruir la integridad de los datos o robar información controlada."
+        },
+        {
+          "type": "term",
+          "term": "MITRE ATT&CK",
+          "text": "Catálogo público (attack.mitre.org) elaborado por la organización estadounidense MITRE que describe, como un gran diccionario, las tácticas y técnicas que usan los atacantes. Sirve para caracterizar cualquier ciberataque y sistematizar cómo reaccionar ante él."
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico",
+          "text": "Un fallo eléctrico deja sin servicio la tienda online durante dos horas. No hay atacante, no se ha robado nada y ningún dato ha cambiado. Aun así es un incidente: es no deseado, compromete las operaciones y daña directamente la **disponibilidad**. Ojo: tampoco se daña la confidencialidad «porque los datos no se pueden ver»; no poder verlos por una caída no es lo mismo que los vea alguien no autorizado."
+        },
+        {
+          "type": "exam",
+          "text": "Dos trampas en la definición: «evento **planificado**» (no, es no deseado) y «**baja** probabilidad» (no, es alta). Y una tercera: pensar que todo incidente es un ataque. El ataque es solo el caso provocado. Si un enunciado describe una caída accidental y pregunta la dimensión afectada, la respuesta es disponibilidad, no integridad ni confidencialidad."
+        },
+        {
+          "type": "key",
+          "text": "Incidente = evento no deseado, con alta probabilidad de comprometer las operaciones y de dañar confidencialidad, integridad o disponibilidad. Ciberataque = incidente provocado a través del ciberespacio."
+        }
+      ]
+    },
+    {
+      "id": "tipos-incidente",
+      "title": "De dónde vienen los incidentes",
+      "pages": [6, 6],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Para preparar la respuesta, la organización tiene que imaginar **todo** lo que puede salir mal, no solo los hackers. El temario recoge cuatro orígenes habituales."
+        },
+        {
+          "type": "table",
+          "title": "Los cuatro orígenes más comunes",
+          "head": ["Origen", "Qué es", "Cómo se combate"],
+          "rows": [
+            ["Desastres naturales", "Inundaciones, incendios, terremotos. Imposibles de evitar y de predecir, con alto impacto", "Plan de contingencias detallado"],
+            ["Ataques (externos)", "Vienen de fuera, con motivaciones muy distintas (dinero, espionaje, activismo), y por eso con formas muy variadas", "Defensas técnicas, detección y respuesta"],
+            ["Ataque interno (insider)", "Lo comete alguien de dentro: un empleado, un ex empleado, un proveedor con acceso. Muy difícil de detectar pronto; cuando se descubre, el daño suele ser grande", "Políticas de control de acceso que limiten su radio de acción"],
+            ["Errores humanos", "Fallos de personas sin mala intención, a veces inducidos por ingeniería social", "Formación corporativa"]
+          ]
+        },
+        {
+          "type": "term",
+          "term": "Insider",
+          "text": "Persona de dentro de la organización (o con acceso legítimo a ella) que causa un incidente a propósito. Su ventaja es que ya está dentro y conoce los sistemas."
+        },
+        {
+          "type": "term",
+          "term": "Ingeniería social",
+          "text": "Engañar a una persona para que haga algo que no debe: dar su contraseña por teléfono, abrir un adjunto, transferir dinero. Ataca al humano, no a la máquina."
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico",
+          "text": "Una administrativa, con toda su buena fe, envía la hoja de nóminas a una dirección equivocada. No hay malicia: es un **error humano**. Si, en cambio, un empleado despechado copia la base de clientes antes de irse, es un **ataque interno**. Las dos cosas son incidentes, pero se previenen distinto: la primera con formación, la segunda con control de accesos."
+        },
+        {
+          "type": "exam",
+          "text": "Si la pregunta enumera desastres naturales, ataques (internos y/o externos) y errores humanos y ofrece «todas las anteriores», esa es la respuesta: los tres son incidentes. Si pregunta qué origen obliga a pensar en **empleados bienintencionados**, la respuesta es el **error humano**, no el ataque interno (que es malicioso)."
+        },
+        {
+          "type": "key",
+          "text": "Los incidentes no son solo ataques: desastres naturales, ataques externos, ataques internos y errores humanos. Cada origen pide una defensa distinta."
+        }
+      ]
+    },
+    {
+      "id": "continuidad-negocio",
+      "title": "Continuidad de negocio: que la empresa siga funcionando",
+      "pages": [5, 8],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Una panadería se queda sin horno. Arreglar el horno es una cosa; pero mientras tanto, ¿qué se vende? Quizá se compra pan a otra panadería, se reduce la carta o se avisa a los clientes. Pensar en cómo **seguir dando servicio** mientras se arregla el problema es la continuidad de negocio."
+        },
+        {
+          "type": "p",
+          "text": "La **respuesta a incidentes** es el conjunto de procedimientos para afrontar un incidente de forma óptima, tanto en lo tecnológico como en lo empresarial. Hay dos perspectivas: la de negocio (continuidad) y la tecnológica (recuperación ante desastres, siguiente apartado)."
+        },
+        {
+          "type": "term",
+          "term": "BC (Business Continuity, continuidad de negocio)",
+          "text": "Mantener los procesos productivos de la empresa ante **cualquier** eventualidad, no solo tecnológica: una huelga de transporte, una pandemia o un incendio también cuentan."
+        },
+        {
+          "type": "term",
+          "term": "BCM (Business Continuity Management, gestión de la continuidad de negocio)",
+          "text": "La forma de organizar y sistematizar esa continuidad mediante una serie de pasos."
+        },
+        {
+          "type": "steps",
+          "title": "Cómo se sistematiza la continuidad (BCM)",
+          "items": [
+            "Definir los **procesos críticos** del negocio y su nivel de criticidad: qué es lo que no puede pararse.",
+            "Aplicar una metodología de **evaluación de riesgos** sobre esos procesos y una estrategia de contingencias para cada riesgo encontrado.",
+            "Planificar el **intervalo de recuperación**, no solo la vuelta al estado inicial: cómo gestionar las interrupciones, si hay un modo de operación alternativo, cuáles son los **niveles mínimos de servicio aceptables** y cómo minimizar el impacto económico.",
+            "**Entrenar al personal** para activar los mecanismos de contingencia cuando haga falta."
+          ]
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico",
+          "text": "Una fábrica pierde su sistema central de pedidos. El equipo técnico restaura el servidor (eso es recuperación). Pero, mientras tanto, el plan de continuidad indica que los pedidos urgentes se tomen en papel y por teléfono para mantener un servicio mínimo. Esa medida alternativa es **continuidad de negocio**. Esperar a terminar el análisis del ataque antes de activar cualquier alternativa sería justo lo contrario."
+        },
+        {
+          "type": "exam",
+          "text": "El test suele contraponer «restaurar servidores» con «mantener procesos y niveles mínimos de servicio durante la interrupción». Lo segundo es continuidad. Desconfía de opciones como «la continuidad se limita a recuperar servidores» o «fija solo la frecuencia de las copias»: se quedan cortas."
+        },
+        {
+          "type": "key",
+          "text": "Continuidad de negocio = perspectiva de negocio: identificar procesos críticos, evaluar riesgos, prever operación alternativa y servicio mínimo durante la interrupción, y entrenar al personal."
+        }
+      ]
+    },
+    {
+      "id": "recuperacion-desastres",
+      "title": "Recuperación ante desastres: volver a levantar la tecnología",
+      "pages": [8, 9],
+      "blocks": [
+        {
+          "type": "term",
+          "term": "DR (Disaster Recovery, recuperación ante desastres) y DRP (Disaster Recovery Plan, plan de recuperación ante desastres)",
+          "text": "Restablecer la **infraestructura tecnológica** (servidores, redes, aplicaciones) tras un desastre natural o humano, por ejemplo un ciberataque. El DRP es el documento que dice cómo hacerlo."
+        },
+        {
+          "type": "term",
+          "term": "INCIBE (Instituto Nacional de Ciberseguridad)",
+          "text": "Organismo público español, con sede en León, que ayuda a ciudadanos y empresas en ciberseguridad. Propone las fases de un DRP."
+        },
+        {
+          "type": "steps",
+          "title": "Fases de un plan de recuperación según el INCIBE",
+          "items": [
+            "Alinearlo con el plan de continuidad de negocio.",
+            "Evaluar los riesgos para conocer las actividades críticas.",
+            "Hacer un análisis de impacto de negocio (BIA) para saber qué necesita recuperar la organización y en cuánto tiempo.",
+            "Desarrollar las medidas de recuperación de los servicios y aplicaciones prioritarios, para volver a la normalidad lo antes posible.",
+            "Hacer pruebas periódicas: comprobar que el plan funciona de verdad.",
+            "Actualizar y mejorar el plan con lo aprendido, porque las amenazas cambian.",
+            "Capacitar a los responsables, concienciar y difundir el plan."
+          ]
+        },
+        {
+          "type": "table",
+          "title": "BCM frente a DRP",
+          "head": ["Aspecto", "Continuidad de negocio (BCM)", "Recuperación ante desastres (DRP)"],
+          "rows": [
+            ["Perspectiva", "Negocio", "Tecnológica"],
+            ["Pregunta que responde", "¿Cómo seguimos trabajando mientras dura el problema?", "¿Cómo volvemos a poner en marcha los sistemas informáticos?"],
+            ["Alcance", "Cualquier eventualidad, también no tecnológica", "Infraestructura y servicios informáticos"],
+            ["Relación", "Marco general", "Debe estar alineado con el BCM"]
+          ]
+        },
+        {
+          "type": "exam",
+          "text": "Los dos planes parecen solaparse, pero el test pregunta por la **perspectiva**. «Restablecer infraestructura y servicios informáticos» = DRP (tecnológico). «Mantener cualquier proceso comercial, incluidos los no tecnológicos» = continuidad. Identificar judicialmente al culpable no es ninguno de los dos: eso es forense."
+        },
+        {
+          "type": "key",
+          "text": "DRP = recuperar la tecnología; BCM = mantener el negocio. El DRP se alinea con el BCM y se apoya en un BIA."
+        }
+      ]
+    },
+    {
+      "id": "bia-rto-rpo",
+      "title": "BIA, RTO, RPO y MTD: poner números a la recuperación",
+      "pages": [9, 9],
+      "blocks": [
+        {
+          "type": "term",
+          "term": "BIA (Business Impact Analysis, análisis de impacto de negocio)",
+          "text": "Documento que estudia los procesos y operaciones de la empresa para saber cómo le afectaría un incidente inesperado y fija **tiempos máximos** en los que el impacto de la interrupción todavía es asumible."
+        },
+        {
+          "type": "analogy",
+          "text": "Imagina que escribes un trabajo largo y el ordenador se cuelga. El **RPO** responde a «¿hasta qué versión guardada puedo volver?»: si guardaste hace una hora, pierdes una hora de trabajo. El **RTO** responde a «¿cuánto tardo en tener el ordenador otra vez funcionando?». Uno mira **hacia atrás** (datos perdidos), el otro **hacia delante** (tiempo parado)."
+        },
+        {
+          "type": "table",
+          "title": "Los tres tiempos del BIA",
+          "head": ["Sigla", "Nombre", "Qué mide", "Dirección"],
+          "rows": [
+            ["RTO", "Recovery Time Objective, tiempo de recuperación objetivo", "Cuánto se espera tardar en tener el sistema operando de nuevo con normalidad", "Hacia delante desde el desastre"],
+            ["RPO", "Recovery Point Objective, punto de recuperación objetivo", "El estado anterior al desastre al que se va a recuperar el sistema (último backup o transacción consolidada)", "Hacia atrás desde el desastre"],
+            ["MTD", "Maximum Tolerable Downtime, tiempo máximo de caída tolerable", "El tiempo máximo que el sistema puede estar caído sin daño inasumible", "Límite global"]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Casi nunca se puede recuperar el sistema justo en el instante del desastre: se vuelve a un punto anterior (las transacciones ya consolidadas, la última copia). Por eso el temario indica que el **tiempo real de pérdida** de un incidente es la suma **RTO + RPO**: el trabajo que se pierde hacia atrás más el tiempo que se está parado hacia delante."
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico con números",
+          "text": "Una tienda online hace copia cada hora y se compromete a volver a vender en cuatro horas. Cae a las 10:00. La última copia es de las 9:00, así que el **RPO es de una hora** (se pierden los pedidos entre 9:00 y 10:00). El servicio vuelve a las 14:00, así que el **RTO es de cuatro horas**. La pérdida real equivale a 1 + 4 = 5 horas de actividad. Si el MTD fuese de tres horas, el plan no sería suficiente."
+        },
+        {
+          "type": "exam",
+          "text": "La trampa clásica es cruzar las siglas: «RTO = punto de recuperación objetivo» o «tiempo de recuperación al origen» son falsas. RTO es **tiempo** de recuperación **objetivo**; RPO es **punto** de recuperación **objetivo**. En los casos con cifras, el plazo para volver a funcionar es el RTO y la antigüedad admisible de los datos es el RPO."
+        },
+        {
+          "type": "key",
+          "text": "RTO = cuánto tardo en volver (tiempo); RPO = a qué momento anterior vuelven mis datos (punto); MTD = máximo tiempo de caída tolerable. Pérdida real ≈ RTO + RPO."
+        }
+      ]
+    },
+    {
+      "id": "procesos-clave",
+      "title": "Los cuatro procesos clave de la gestión de incidentes",
+      "pages": [10, 11],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Piensa en los bomberos de una ciudad. Necesitan detectores de humo que avisen pronto, un protocolo que diga quién hace qué en cada tipo de fuego, una centralita que coordine la información y, al final, una investigación para saber cómo empezó el incendio y evitar el siguiente."
+        },
+        {
+          "type": "table",
+          "title": "Procesos clave comunes a todas las metodologías",
+          "head": ["Proceso", "En qué consiste"],
+          "rows": [
+            ["Sistemas de detección", "Alerta temprana para saber cuanto antes que hay un ataque. Se usan sistemas que recogen eventos y gestionan alertas de seguridad"],
+            ["Procedimientos de respuesta", "Un plan que fija qué acciones tomar en cada escenario y quién es el responsable de cada una"],
+            ["Estrategia de comunicación", "Un punto central de comunicación que recibe la información y la difunde a terceros, para evitar mensajes contradictorios"],
+            ["Investigación y análisis", "Estudiar a fondo el incidente para aprender lecciones; aquí entra el análisis forense para recoger la máxima información"]
+          ]
+        },
+        {
+          "type": "term",
+          "term": "SIEM (Security Information and Event Management)",
+          "text": "Nombre habitual del sistema que recoge eventos (logs) de muchos equipos y genera alertas de seguridad. El temario no usa la sigla, pero describe exactamente esto al hablar de recolección de eventos y gestión de alertas."
+        },
+        {
+          "type": "list",
+          "title": "Guías de referencia que cita el tema",
+          "items": [
+            "**CCN-STIC 817, Gestión de ciberincidentes**: guía del CCN (Centro Criptológico Nacional) para el sector público español, dentro del ENS (Esquema Nacional de Seguridad).",
+            "**NIST SP 800-61 r2, Computer Security Incident Handling Guide**: la guía estadounidense de referencia para gestionar incidentes. SP significa Special Publication."
+          ]
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico",
+          "text": "Durante un incidente, el departamento comercial dice a los clientes que no pasa nada, mientras el técnico publica en redes que hay una fuga de datos. El problema es la falta de **estrategia de comunicación**: el plan debía haber definido un punto de coordinación por el que pasa toda la información antes de salir."
+        },
+        {
+          "type": "exam",
+          "text": "Si el enunciado habla de mensajes contradictorios, la solución es un punto de coordinación y un flujo de comunicación definido; nunca ocultarlo todo ni dejar que cada área publique sus conclusiones. Si pregunta qué hace organizada una respuesta, combina **detección temprana** y **procedimientos con acciones y responsables definidos**; elegir responsables cuando todo ya está restaurado llega tarde."
+        },
+        {
+          "type": "key",
+          "text": "Detección, procedimientos de respuesta (acciones + responsables), comunicación centralizada e investigación forense: los cuatro pilares de cualquier metodología de gestión de incidentes."
+        }
+      ]
+    },
+    {
+      "id": "csirt",
+      "title": "CSIRT y CERT: los equipos de respuesta",
+      "pages": [11, 13],
+      "blocks": [
+        {
+          "type": "term",
+          "term": "CSIRT (Computer Security Incident Response Team) y CERT (Computer Emergency Response Team)",
+          "text": "Equipos especializados que vigilan, analizan y asisten ante incidentes de seguridad para unos «clientes» concretos (su comunidad). Ambos nombres designan lo mismo; **CERT es una marca registrada** de la Universidad Carnegie Mellon (EE. UU.), por eso muchos equipos usan CSIRT."
+        },
+        {
+          "type": "p",
+          "text": "Hay CSIRT **públicos**, creados por gobiernos para atender a la Administración, empresas estratégicas o el ámbito militar (en España, el CCN-CERT o INCIBE-CERT), y **privados**, que atienden a las empresas que los sostienen. Lo ideal es que todos compartan información no crítica de forma fluida."
+        },
+        {
+          "type": "analogy",
+          "text": "Un CSIRT es como un servicio médico de empresa: atiende las urgencias (reactivo), da charlas de prevención y hace revisiones (proactivo) y certifica que las instalaciones son seguras (calidad)."
+        },
+        {
+          "type": "table",
+          "title": "Servicios de un CSIRT (West-Brown et al., 2003)",
+          "head": ["Tipo", "Idea", "Ejemplos"],
+          "rows": [
+            ["Gestión de incidentes", "El servicio más importante y su razón de ser: asistir al cliente cuando notifica un incidente, establecer gravedad y prioridad", "Recibir el aviso, clasificarlo y atenderlo"],
+            ["Proactivos", "Por iniciativa propia, para **reducir** el número de incidentes antes de que ocurran", "Divulgación (avisos preventivos), vigilancia tecnológica, auditorías, configurar herramientas, detección de intrusiones, desarrollar herramientas propias"],
+            ["Reactivos", "A demanda, cuando el cliente detecta un problema, para recuperarse con el menor impacto", "Gestión de alertas, tratamiento de vulnerabilidades, tratamiento de artefactos"],
+            ["Control de calidad", "Garantizar y evaluar el nivel de seguridad de su comunidad", "Análisis de riesgos, BCM y DRP, consultoría, campañas de sensibilización, evaluación y certificación de productos"]
+          ]
+        },
+        {
+          "type": "term",
+          "term": "Artefacto",
+          "text": "En el lenguaje de los CSIRT, elemento que se usa para crear o explotar una vulnerabilidad: un malware, un script de ataque, un exploit encontrado en un equipo."
+        },
+        {
+          "type": "exam",
+          "text": "Un CSIRT que **publica avisos preventivos** presta un servicio **proactivo** (divulgación). La trampa es pensar que todo lo que hace un CSIRT es reactivo o que exige un incidente previo. Ojo: el texto del temario dice en un momento que estas entidades dan «un servicio reactivo al realizar labores de vigilancia», pero la clasificación de la página 12 deja claro que vigilancia y divulgación son servicios proactivos."
+        },
+        {
+          "type": "key",
+          "text": "CSIRT = CERT (marca registrada de Carnegie Mellon). Servicios: gestión de incidentes (el principal), proactivos (prevenir), reactivos (a demanda) y de control de calidad."
+        }
+      ]
+    },
+    {
+      "id": "nuevos-retos",
+      "title": "Nuevos retos: nube, movilidad y DRaaS",
+      "pages": [13, 16],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Los entornos tecnológicos son cada vez más variados y complejos, y eso complica gestionar un incidente. El temario destaca tres frentes."
+        },
+        {
+          "type": "analogy",
+          "text": "Llevar tus sistemas a la nube es como guardar tus joyas en la caja fuerte de un banco: ganas comodidad, pero ya no tienes la llave del edificio. Por eso necesitas un contrato que diga qué te garantiza el banco y una forma de comprobar que lo cumple."
+        },
+        {
+          "type": "term",
+          "term": "SLA (Service Level Agreement, acuerdo de nivel de servicio)",
+          "text": "Contrato con el proveedor que fija los niveles de servicio y los requisitos (también de seguridad) que debe cumplir. La empresa puede **exigirlos y verificarlos**. No demuestra por sí solo que no habrá brechas ni sustituye los controles propios."
+        },
+        {
+          "type": "list",
+          "title": "Computación en la nube: qué debe incluir el protocolo de incidentes",
+          "items": [
+            "Al externalizar la infraestructura se externaliza también parte de la gestión de la seguridad y **se pierde control** sobre ella. Aparecen nuevos puntos de fallo: acceso de terceros y, en nubes compartidas, problemas de aislamiento entre clientes.",
+            "Gestionar los **SLA**: fijar los requisitos mínimos de seguridad exigibles al elegir proveedor.",
+            "**Verificar** que el proveedor cumple esos acuerdos, pidiéndole la información necesaria.",
+            "Implicar al departamento **legal o de compliance** (cumplimiento normativo) para ver restricciones o consecuencias legales.",
+            "Añadir seguridad desde dentro, como un **CASB** (Cloud Access Security Broker): software que se sitúa entre la red local y la nube para definir y vigilar políticas de seguridad en el acceso a los servicios cloud."
+          ]
+        },
+        {
+          "type": "term",
+          "term": "BYOD (Bring Your Own Device, trae tu propio dispositivo)",
+          "text": "Política que permite usar el móvil o portátil personal para trabajar. El dispositivo puede no ser de la empresa y mezcla uso personal y profesional, lo que lo hace más vulnerable."
+        },
+        {
+          "type": "table",
+          "title": "Los dos problemas de la movilidad",
+          "head": ["Problema", "Por qué"],
+          "rows": [
+            ["Acceso remoto", "Acceder a la información de la empresa desde fuera siempre complica controlar quién entra"],
+            ["El propio terminal", "No se controla la comunicación de extremo a extremo ni el dispositivo; con BYOD, ni siquiera es propiedad de la empresa"]
+          ]
+        },
+        {
+          "type": "term",
+          "term": "MDM (Mobile Device Management, gestión de dispositivos móviles)",
+          "text": "Herramienta para controlar de forma centralizada los móviles que acceden a datos corporativos: exigir bloqueo, cifrado, borrar datos de empresa en caso de robo, etc."
+        },
+        {
+          "type": "term",
+          "term": "DRaaS (Disaster Recovery as a Service, recuperación ante desastres como servicio)",
+          "text": "Externalizar la propia infraestructura de recuperación: usar la nube como sede de respaldo para seguir operando en una crisis. Exige definir cómo se replican los datos según los tiempos del BIA (RTO, RPO y MTD; el PDF escribe «MDT» por errata)."
+        },
+        {
+          "type": "exam",
+          "text": "Sobre el SLA, la respuesta buena siempre habla de **requisitos pactados que se pueden exigir y comprobar**; descarta «demuestra por sí solo que no hay brechas» o «hace innecesario evaluar controles». Sobre BYOD, la idea clave es **uso mixto personal/profesional y menor control corporativo**; nunca «el mismo control que un equipo corporativo» ni «basta con proteger el acceso remoto»."
+        },
+        {
+          "type": "key",
+          "text": "Nube: se pierde control, se compensa con SLA verificados, apoyo legal y CASB. Movilidad: riesgo de acceso remoto y del terminal (BYOD), se compensa con MDM. DRaaS: recuperación en la nube según RTO/RPO/MTD."
+        }
+      ]
+    },
+    {
+      "id": "forense-objetivos",
+      "title": "Análisis forense digital: qué es y qué preguntas responde",
+      "pages": [17, 19],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "En las series policiacas, el equipo científico recoge huellas y muestras para reconstruir el crimen y llevar pruebas al juicio. El análisis forense digital hace lo mismo, pero la escena del crimen es un ordenador, un móvil, un dron o la centralita de un coche, y las «huellas» son logs, archivos y registros."
+        },
+        {
+          "type": "term",
+          "term": "Análisis forense digital",
+          "text": "Según el INCIBE, el **proceso de investigación** de los sistemas de información para detectar toda evidencia que pueda presentarse como **prueba fehaciente** (fiable, que da fe) en un procedimiento judicial. Dos ideas: es una investigación y sus resultados deben valer como prueba."
+        },
+        {
+          "type": "p",
+          "text": "Brown (2010) lo define como el arte y la ciencia de aplicar la informática para ayudar al proceso legal. **Ciencia**, porque sigue procedimientos y herramientas; **arte**, porque el buen investigador va un paso más allá y llega a pensar como el autor al que busca."
+        },
+        {
+          "type": "p",
+          "text": "El fin último es **esclarecer los hechos** a partir de las evidencias. No es restaurar el servicio (eso es recuperación) ni enumerar riesgos futuros (eso es análisis de riesgos)."
+        },
+        {
+          "type": "table",
+          "title": "Las tres preguntas del análisis forense",
+          "head": ["Pregunta", "Qué se busca", "Ejemplo"],
+          "rows": [
+            ["¿Qué se ha alterado?", "Detectar accesos o cambios no autorizados, incluidas simples lecturas o copias", "Alguien accedió al móvil de una persona famosa y copió sus fotos sin modificar nada"],
+            ["¿Cómo se ha alterado?", "Reconstruir los pasos del autor para entender su método y evitar que se repita", "Entró con una contraseña robada por phishing y escaló privilegios"],
+            ["¿Quién lo ha hecho?", "Identificar al autor, con los límites técnicos que se explican abajo", "La cuenta «jperez» desde la IP 192.168.1.40"]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Fíjate en lo que **no** está: el **porqué** (el motivo) no es uno de los objetivos. Las huellas digitales muestran qué, cómo y desde dónde, pero no lo que pasaba por la cabeza del autor."
+        },
+        {
+          "type": "term",
+          "term": "Límite de la atribución",
+          "text": "En una huella dactilar o un ADN se identifica a la persona. En lo digital, lo más concreto a lo que se llega es al **usuario** del sistema (local o remoto) y a la **dirección IP o MAC** del equipo usado. Para llegar a la **persona física** hacen falta otras técnicas de investigación (cámaras, testigos, horarios, registros de acceso al edificio…)."
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico",
+          "text": "Se detecta un acceso a la base de datos de nóminas con la cuenta de Ana desde su portátil. Conclusión rigurosa: la actividad se asocia a **la cuenta de Ana y a su equipo**. No se puede afirmar que Ana lo hiciera personalmente (alguien pudo usar su sesión o robarle la contraseña), ni tampoco que compartiera su contraseña. Para atribuirlo a una persona hacen falta más pruebas."
+        },
+        {
+          "type": "exam",
+          "text": "Dos preguntas típicas. «¿Cuál **no** es objetivo?» → el **porqué** de la alteración. «¿Qué se obtiene al responder quién?» → el **usuario** y la **IP o MAC**, no la persona física. Toda opción que diga que la IP, el equipo o la titularidad de la cuenta prueban por sí solos quién estaba al teclado es falsa."
+        },
+        {
+          "type": "key",
+          "text": "Forense digital = investigar para obtener pruebas válidas en juicio. Responde qué, cómo y quién (usuario, IP o MAC), nunca el porqué, y no identifica por sí solo a la persona física."
+        }
+      ]
+    },
+    {
+      "id": "etapas-forense",
+      "title": "Las cuatro etapas del análisis forense según el NIST",
+      "pages": [19, 21],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "El NIST, en su guía SP 800-86 sobre cómo integrar el forense en la respuesta a incidentes, divide el proceso en **cuatro etapas**. Cada una transforma lo que recibe: dispositivos → datos → información → evidencias presentadas."
+        },
+        {
+          "type": "steps",
+          "title": "Etapas NIST",
+          "items": [
+            "**Recolección (Collection)**: identificar dónde puede haber evidencias y adquirirlas. Se trabaja con los dispositivos (media). Es como recoger una muestra de sangre en la escena del crimen; aquí la «sangre» puede ser un simple log o un disco duro entero.",
+            "**Examen (Examination)**: evaluar los datos recogidos y extraer lo relevante, descartando lo que no tiene relación con el caso.",
+            "**Análisis (Analysis)**: responder a las preguntas del caso (qué, cómo, quién) y a cualquier otra que se plantee.",
+            "**Informe (Reporting)**: redactar el informe pericial con los análisis realizados, los resultados y las conclusiones basadas en ellos."
+          ]
+        },
+        {
+          "type": "term",
+          "term": "ISO/IEC 27037",
+          "text": "Norma internacional (ISO, Organización Internacional de Normalización; IEC, Comisión Electrotécnica Internacional) dedicada a la etapa de recolección, que divide en tres: **identificación, adquisición o recolección y preservación**."
+        },
+        {
+          "type": "term",
+          "term": "LECrim (Ley de Enjuiciamiento Criminal)",
+          "text": "Ley española que regula cómo se tramitan los procesos penales: quién investiga, cómo se practican las pruebas, cómo actúan los peritos. Es de 1882, con muchas reformas posteriores."
+        },
+        {
+          "type": "list",
+          "title": "Lo que exige la ley al recoger evidencias",
+          "items": [
+            "**Art. 482.3 LECrim**: se deben tomar las precauciones convenientes para **evitar cualquier alteración** del material analizado. Por eso se usan medios que eviten modificar la evidencia (por ejemplo, bloqueadores de escritura).",
+            "**Art. 479 LECrim**: si el perito tiene que destruir o alterar lo que analiza, debe **conservar, si es posible, una parte a disposición del juez** para que pueda repetirse el análisis. Traducido a lo digital: se trabaja sobre **copias** y se guarda el original intacto.",
+            "Si alguna actuación inevitable modifica el equipo (por ejemplo, conectarse a un servidor encendido), hay que **documentarlo**."
+          ]
+        },
+        {
+          "type": "code",
+          "title": "Ejemplo: copia bit a bit y huella hash del original y de la copia",
+          "text": "# Copia exacta del disco sospechoso a un archivo imagen\ndd if=/dev/sdb of=evidencia01.dd bs=4M status=progress\n\n# Huella (hash) del original y de la copia: deben coincidir\nsha256sum /dev/sdb\nsha256sum evidencia01.dd"
+        },
+        {
+          "type": "example",
+          "title": "Por qué se trabaja con copias",
+          "text": "Si el perito abre directamente el disco original, el propio sistema operativo puede cambiar fechas de acceso. Trabajando sobre una copia idéntica (verificada con hash), el original queda sin tocar y otro perito puede repetir el análisis más tarde. La copia no convierte automáticamente los datos en prueba suficiente ni permite tirar el original."
+        },
+        {
+          "type": "exam",
+          "text": "Las cuatro etapas NIST son **recolección, examen, análisis e informe**. Las trampas quitan una (tres etapas) o cuelan «respuesta». En la recolección se busca **obtener las evidencias de interés**; responder «¿cómo se alteró?» es del análisis. De la recolección, son ciertas a la vez: hacerla sin modificar las evidencias en lo posible, documentar los cambios inevitables y ser uno de los primeros pasos, así que «todas las anteriores» es correcta."
+        },
+        {
+          "type": "key",
+          "text": "Recolección → examen → análisis → informe. Recoger sin alterar, documentar lo inevitable, trabajar con copias y dejar el original a disposición judicial."
+        }
+      ]
+    },
+    {
+      "id": "cadena-custodia",
+      "title": "La cadena de custodia",
+      "pages": [22, 23],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Piensa en un paquete con seguimiento: en cada punto se anota quién lo recibió, cuándo y qué hizo con él. Si un día aparece abierto, se sabe en qué tramo pasó. La cadena de custodia es ese seguimiento para una prueba."
+        },
+        {
+          "type": "term",
+          "term": "Cadena de custodia",
+          "text": "Proceso por el cual la evidencia se transmite **sin ninguna modificación** desde quien la ocupa (la recoge) hasta quien la analiza, y que permite demostrar que lo presentado en juicio es lo mismo que se recogió."
+        },
+        {
+          "type": "list",
+          "title": "Qué garantiza",
+          "items": [
+            "**Integridad**: la evidencia no ha cambiado.",
+            "**Autenticidad**: se puede contrastar su origen.",
+            "**Localización**: se sabe en todo momento dónde está.",
+            "**Trazabilidad** de los accesos: quién la ha tocado.",
+            "**Preservación** a largo plazo."
+          ]
+        },
+        {
+          "type": "term",
+          "term": "Función hash",
+          "text": "Cálculo matemático que convierte un archivo o un disco en una «huella» corta (por ejemplo, SHA-256). Si cambia un solo bit, la huella cambia por completo. Comparar el hash al recoger y al analizar demuestra la integridad."
+        },
+        {
+          "type": "table",
+          "title": "Cómo se mantiene en lo digital",
+          "head": ["Herramienta", "Qué aporta"],
+          "rows": [
+            ["Documentación de los custodios", "Quién ha tenido la evidencia en cada momento"],
+            ["Funciones hash", "Prueba matemática de que no se ha modificado"],
+            ["Registro de operaciones", "Por cada operación: qué se hizo, fecha y hora de inicio y de fin, y quién la hizo"]
+          ]
+        },
+        {
+          "type": "code",
+          "title": "Ejemplo de entrada en el registro de custodia",
+          "text": "Evidencia: EV-2026-014 (disco SATA 1 TB, n.º serie WX12...)\nSHA-256: 9f2c...e71a\nOperación: entrega de la investigadora L. Martín al custodio R. Gil\nInicio: 03/11/2026 09:15  Fin: 03/11/2026 09:20\nFirma entrega: L. Martín   Firma recepción: R. Gil"
+        },
+        {
+          "type": "exam",
+          "text": "Si preguntan cómo se mantiene la cadena de custodia, la respuesta es **todas**: documentar custodios, usar hash y registrar operaciones. El hash solo no basta (no dice quién la tuvo) y el nombre del custodio solo tampoco (falta fecha y operación). La finalidad principal es la **trazabilidad desde la recogida hasta la presentación**, no identificar al autor del delito."
+        },
+        {
+          "type": "key",
+          "text": "Cadena de custodia = trazabilidad sin alteraciones desde la recogida hasta el juicio: custodios documentados, hash para la integridad y registro de cada operación con persona y fechas de inicio y fin."
+        }
+      ]
+    },
+    {
+      "id": "perito-responsabilidad",
+      "title": "El perito y sus responsabilidades legales",
+      "pages": [23, 27],
+      "blocks": [
+        {
+          "type": "term",
+          "term": "Perito",
+          "text": "Experto en una materia (científica, técnica o artística) que el juez no domina, y que explica al tribunal lo que no es fácil de entender. En España no se exige titulación ni colegiación para serlo, aunque ambas aportan credibilidad. Un **perito de parte** es el que contrata una de las partes del juicio."
+        },
+        {
+          "type": "list",
+          "title": "Leyes que aparecen en este apartado",
+          "items": [
+            "**Código Penal**: la ley que define los delitos y sus penas. En España es la **Ley Orgánica 10/1995**. Una **ley orgánica** es una ley que regula materias especialmente importantes (derechos fundamentales, delitos) y necesita mayoría absoluta del Congreso para aprobarse.",
+            "**LEC (Ley de Enjuiciamiento Civil, Ley 1/2000)**: regula los juicios civiles (reclamaciones entre particulares o empresas).",
+            "**LECrim (Ley de Enjuiciamiento Criminal)**: regula los juicios penales.",
+            "**Jurisprudencia** o doctrina jurisprudencial: criterio que fijan los tribunales (sobre todo el Tribunal Supremo) al interpretar las leyes."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "El perito debe ser **imparcial**, haya sido contratado por quien haya sido. Según el **art. 335.2 LEC**, jura o promete decir verdad y actuar con la mayor objetividad, considerando lo que favorece y lo que perjudica a cualquiera de las partes. Su responsabilidad penal surge con **dolo** (voluntad deliberada de cometer el delito sabiendo que lo es), pero el temario advierte que también la imprudencia o la falta de celo pueden traer problemas, sobre todo en peritos de parte que callan lo que perjudica a su cliente."
+        },
+        {
+          "type": "table",
+          "title": "Delitos de falsedad en la pericia (Código Penal)",
+          "head": ["Figura", "Conducta", "Pena"],
+          "rows": [
+            ["Falso testimonio del testigo (art. 458.1)", "Faltar a la verdad en causa judicial (tipo básico)", "Prisión de 6 meses a 2 años y multa de 3 a 6 meses"],
+            ["Falso testimonio **propio** del perito (art. 459)", "Faltar a la verdad **maliciosamente** en el dictamen", "Las penas anteriores en su mitad superior + inhabilitación especial de 6 a 12 años"],
+            ["Falso testimonio **impropio** (art. 460)", "Sin mentir sustancialmente, alterar la verdad con reticencias, inexactitudes o callando datos relevantes que conocía", "Multa de 6 a 12 meses y, en su caso, suspensión de 6 meses a 3 años"]
+          ]
+        },
+        {
+          "type": "list",
+          "title": "Rasgos jurídicos de la falsa pericia",
+          "items": [
+            "Es una **modalidad agravada** del falso testimonio.",
+            "Es un **delito especial propio**: solo puede cometerlo un perito.",
+            "No exige un **resultado** concreto (basta con el dictamen falso, aunque el juez no se lo crea).",
+            "Protege el **correcto funcionamiento de la Administración de Justicia**, no el interés de las partes.",
+            "Puede cometerse por **acción** (juicios falsos, mal motivados o con hechos tergiversados) o por **omisión** (callar juicios relevantes).",
+            "Exige **dolo directo** («maliciosamente»): un simple error no es delito.",
+            "Es difícil de probar: la falsedad la debe confirmar otro perito de la misma especialidad, y la frontera está entre lo científicamente opinable y lo insostenible."
+          ]
+        },
+        {
+          "type": "term",
+          "term": "Cohecho (arts. 420 y 422 CP)",
+          "text": "Solicitar, recibir o aceptar regalos, favores o promesas a cambio de un acto del cargo. A estos efectos, el perito se equipara a **funcionario público**. Art. 420: de 2 a 4 años de prisión, multa e inhabilitación; art. 422 (admitir regalos por razón del cargo): de 6 meses a 1 año y suspensión. Tiene menos incidencia práctica."
+        },
+        {
+          "type": "table",
+          "title": "Los tres tipos de responsabilidad del perito",
+          "head": ["Tipo", "En qué consiste", "Quién la exige"],
+          "rows": [
+            ["Penal", "Delitos de falso testimonio o cohecho", "Los tribunales penales"],
+            ["Civil", "Reparar los perjuicios de un dictamen inexacto. **No cambia** la sentencia del juicio original (no rompe la cosa juzgada)", "El perjudicado en un proceso civil"],
+            ["Disciplinaria", "Sanción ante el juez o tribunal del caso y ante su colegio profesional. Puede ir junto a la penal o civil, o sola si infringe normas éticas", "El tribunal, o el colegio de oficio o a petición del agraviado"]
+          ]
+        },
+        {
+          "type": "term",
+          "term": "Cosa juzgada",
+          "text": "Efecto de una sentencia firme: lo decidido ya no se puede volver a discutir (salvo la vía extraordinaria de revisión). Por eso, aunque se condene civilmente al perito, la sentencia original no cambia."
+        },
+        {
+          "type": "example",
+          "title": "Caso verosímil",
+          "text": "Una empresa contrata a un perito para defender que un ex empleado robó datos. El perito encuentra logs que muestran que la cuenta del ex empleado se usó cuando él ya estaba de vacaciones fuera del país, y no lo menciona en el informe. No ha escrito ninguna mentira, pero ha callado un dato relevante que conocía: encaja en el **falso testimonio impropio (art. 460)**. Además podría responder civilmente ante el perjudicado y disciplinariamente ante su colegio."
+        },
+        {
+          "type": "exam",
+          "text": "Si un enunciado describe un perito que **miente a sabiendas** → art. 459; que **calla u omite** datos sin mentir → art. 460. Un error honesto no es delito. Y recuerda: el perito no necesita estar colegiado ni titulado para actuar ante un juez en España."
+        },
+        {
+          "type": "key",
+          "text": "El perito jura objetividad (art. 335.2 LEC). Mentir maliciosamente es falso testimonio propio (art. 459 CP); callar o matizar es impropio (art. 460 CP). Puede responder penal, civil y disciplinariamente."
+        }
+      ]
+    },
+    {
+      "id": "informe-pericial",
+      "title": "El informe pericial: cerrar el trabajo para que otros lo entiendan",
+      "pages": [21, 23],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Un médico que opera sin anotar nada en el historial deja al siguiente médico a ciegas. El informe pericial es el historial del análisis: sin él, el trabajo técnico no sirve a nadie más."
+        },
+        {
+          "type": "p",
+          "text": "La última etapa del NIST es el **informe**: en él se plasman **todos los análisis realizados**, los **resultados** obtenidos y las **conclusiones** basadas en esos resultados. Debe estar escrito de forma clara para el juez, que no es experto, y ser imparcial."
+        },
+        {
+          "type": "list",
+          "title": "Qué debe permitir el informe",
+          "items": [
+            "Entender **cómo** se llegó a cada conclusión (procedimiento y herramientas).",
+            "Que otro perito pueda **repetir** el trabajo y comprobarlo.",
+            "Que las conclusiones estén **fundamentadas** en los resultados, no en la preferencia del cliente."
+          ]
+        },
+        {
+          "type": "exam",
+          "text": "Opciones como «solo las conclusiones», «solo el inventario de evidencias» o «solo las salidas de las herramientas sin interpretar» son incompletas. Lo correcto es redactar **procedimiento, resultados y conclusiones fundamentadas**."
+        },
+        {
+          "type": "key",
+          "text": "Informe pericial = método + resultados + conclusiones fundamentadas, explicado de forma clara e imparcial."
+        }
+      ]
+    }
+  ],
+  "summary": [
+    "Un incidente es un evento no deseado con alta probabilidad de comprometer las operaciones y la confidencialidad, integridad o disponibilidad; el ciberataque es el incidente provocado.",
+    "Los incidentes pueden venir de desastres naturales, ataques externos, ataques internos (insiders) y errores humanos.",
+    "La continuidad de negocio (BCM) mantiene los procesos y un servicio mínimo; la recuperación ante desastres (DRP) restablece la tecnología.",
+    "El BIA fija RTO (cuánto tardo en volver), RPO (a qué punto anterior vuelven los datos) y MTD (caída máxima tolerable); la pérdida real es RTO + RPO.",
+    "Procesos clave: detección, procedimientos de respuesta con responsables, comunicación centralizada e investigación y análisis.",
+    "Los CSIRT (o CERT) prestan gestión de incidentes, servicios proactivos, reactivos y de control de calidad.",
+    "Nube (SLA, CASB), movilidad (BYOD, MDM) y DRaaS son los nuevos retos de la gestión de incidentes.",
+    "El forense digital investiga para obtener pruebas válidas en juicio: qué, cómo y quién (usuario, IP o MAC), no el porqué ni la persona física por sí solo.",
+    "Etapas NIST: recolección, examen, análisis e informe; se recoge sin alterar, se documenta lo inevitable y se trabaja con copias.",
+    "La cadena de custodia garantiza trazabilidad e integridad con custodios documentados, hash y registro de operaciones.",
+    "El perito que miente maliciosamente comete falso testimonio propio (art. 459 CP); si calla u omite, impropio (art. 460 CP); además responde civil y disciplinariamente."
+  ],
+  "glossary": [
+    { "term": "Incidente de seguridad", "text": "Evento no deseado con alta probabilidad de comprometer las operaciones y la seguridad de la información." },
+    { "term": "Ciberataque", "text": "Incidente provocado a propósito a través del ciberespacio." },
+    { "term": "MITRE ATT&CK", "text": "Catálogo de tácticas y técnicas de los atacantes para caracterizar ciberataques." },
+    { "term": "Insider", "text": "Persona de dentro de la organización que causa un incidente intencionado." },
+    { "term": "BC / BCM", "text": "Business Continuity / Business Continuity Management: continuidad de negocio y su gestión." },
+    { "term": "DR / DRP", "text": "Disaster Recovery / Disaster Recovery Plan: recuperación de la infraestructura tecnológica tras un desastre." },
+    { "term": "BIA", "text": "Business Impact Analysis, análisis de impacto de negocio: fija tiempos máximos asumibles de interrupción." },
+    { "term": "RTO", "text": "Recovery Time Objective, tiempo de recuperación objetivo: cuánto se tarda en volver a operar." },
+    { "term": "RPO", "text": "Recovery Point Objective, punto de recuperación objetivo: estado anterior al que se recuperan los datos." },
+    { "term": "MTD", "text": "Maximum Tolerable Downtime, tiempo máximo de caída tolerable." },
+    { "term": "CSIRT / CERT", "text": "Equipo de respuesta a incidentes de seguridad; CERT es marca registrada de Carnegie Mellon." },
+    { "term": "Artefacto", "text": "Elemento usado para crear o explotar una vulnerabilidad." },
+    { "term": "SLA", "text": "Service Level Agreement, acuerdo de nivel de servicio exigible al proveedor." },
+    { "term": "CASB", "text": "Cloud Access Security Broker: software entre la red local y la nube que aplica y vigila políticas de seguridad." },
+    { "term": "BYOD", "text": "Bring Your Own Device: uso del dispositivo personal para trabajar." },
+    { "term": "MDM", "text": "Mobile Device Management: gestión centralizada de dispositivos móviles." },
+    { "term": "DRaaS", "text": "Disaster Recovery as a Service: recuperación ante desastres en la nube." },
+    { "term": "INCIBE", "text": "Instituto Nacional de Ciberseguridad de España." },
+    { "term": "NIST", "text": "National Institute of Standards and Technology, organismo de normalización de EE. UU." },
+    { "term": "ISO/IEC 27037", "text": "Norma internacional sobre identificación, recolección y preservación de evidencias digitales." },
+    { "term": "Cadena de custodia", "text": "Proceso que garantiza que la evidencia pasa sin alteración desde quien la recoge hasta quien la analiza." },
+    { "term": "Hash", "text": "Huella matemática de un archivo o disco; cambia por completo si cambia un solo bit." },
+    { "term": "Perito", "text": "Experto que explica al juez cuestiones técnicas que este no domina." },
+    { "term": "Dolo", "text": "Voluntad deliberada de cometer un delito sabiendo que lo es." },
+    { "term": "LECrim / LEC", "text": "Leyes de Enjuiciamiento Criminal y Civil: regulan los juicios penales y civiles." },
+    { "term": "Ley orgánica", "text": "Ley sobre materias especialmente importantes (como los delitos) que exige mayoría absoluta del Congreso; el Código Penal es la LO 10/1995." },
+    { "term": "Cohecho", "text": "Delito de pedir o aceptar regalos o promesas a cambio de actos del cargo; el perito se equipara a funcionario público." },
+    { "term": "Cosa juzgada", "text": "Efecto de la sentencia firme que impide volver a discutir lo decidido." }
+  ],
+  "questions": {
+    "forense-t01-01": {
+      "section": "incidente",
+      "reasoning": "La definición tiene dos piezas: el evento es no deseado (nadie lo planifica, ni siquiera el accidente) y tiene alta probabilidad de comprometer las operaciones. Basta buscar la opción que combine «no deseado» con «alta probabilidad».",
+      "options": {
+        "a": "Incorrecta. Un incidente no es un evento planificado; es no deseado, aunque pueda ser provocado por alguien.",
+        "b": "Correcta. Es la definición del temario: evento no deseado con alta probabilidad de comprometer las operaciones de la entidad.",
+        "c": "Incorrecta. Falla en las dos piezas: ni es planificado ni la probabilidad es baja.",
+        "d": "Incorrecta. Acierta en «no deseado», pero la probabilidad de comprometer las operaciones es alta, no baja."
+      }
+    },
+    "forense-t01-02": {
+      "section": "tipos-incidente",
+      "reasoning": "El temario enumera como orígenes comunes los desastres naturales, los ataques externos, los ataques internos y los errores humanos. Las tres primeras opciones son ejemplos de esa lista, así que la que las engloba a todas es la correcta.",
+      "options": {
+        "a": "Incorrecta como respuesta única. Los desastres naturales son incidentes, pero no los únicos de la lista.",
+        "b": "Incorrecta como respuesta única. Los ataques internos y externos son incidentes, pero también lo son las otras opciones.",
+        "c": "Incorrecta como respuesta única. Los errores humanos son incidentes, pero no excluyen a los demás.",
+        "d": "Correcta. Desastres naturales, ataques (internos o externos) y errores humanos son todos orígenes comunes de incidentes."
+      }
+    },
+    "forense-t01-03": {
+      "section": "bia-rto-rpo",
+      "reasoning": "RTO son las siglas de Recovery Time Objective. Time = tiempo, Objective = objetivo. Es el tiempo en el que se espera que el sistema vuelva a operar. La «P» de RPO es la de Point (punto), así que «punto» corresponde a RPO, no a RTO.",
+      "options": {
+        "a": "Incorrecta. «Punto de recuperación objetivo» es el RPO.",
+        "b": "Incorrecta. No existe «tiempo de recuperación al origen»; la O es de Objective (objetivo).",
+        "c": "Incorrecta. Mezcla «punto» (de RPO) con un «origen» que no forma parte de ninguna sigla.",
+        "d": "Correcta. RTO = Recovery Time Objective = tiempo de recuperación objetivo."
+      }
+    },
+    "forense-t01-04": {
+      "section": "procesos-clave",
+      "reasoning": "Uno de los cuatro procesos clave es la estrategia de comunicación: en un momento crítico se fija un punto central que recibe la información y la difunde. Si el problema son mensajes contradictorios, la solución es precisamente ese punto de coordinación con un flujo definido.",
+      "options": {
+        "a": "Incorrecta. Ocultar el incidente a los responsables impide que actúen quienes deben hacerlo; lo contrario de una buena comunicación.",
+        "b": "Correcta. Un punto de coordinación y un flujo de comunicación definido es lo que el temario llama estrategia de comunicación.",
+        "c": "Incorrecta. Que cada área publique sin contrastar es justo lo que genera los mensajes contradictorios.",
+        "d": "Incorrecta. La comunicación no sustituye a la investigación y análisis; ambos son procesos clave distintos."
+      }
+    },
+    "forense-t01-05": {
+      "section": "forense-objetivos",
+      "reasoning": "El análisis forense busca esclarecer los hechos respondiendo a tres preguntas: qué se ha alterado, cómo y quién. El porqué (la motivación) no aparece, porque las huellas digitales no muestran las intenciones del autor. La pregunta pide el que NO es objetivo.",
+      "options": {
+        "a": "Incorrecta. Averiguar qué se ha alterado es la primera de las tres preguntas del análisis forense.",
+        "b": "Correcta. Descubrir por qué se hizo no es uno de los objetivos del análisis forense; por eso es la que no pertenece.",
+        "c": "Incorrecta. Saber cómo se alteró es un objetivo: reconstruir los pasos del autor para evitar que se repita.",
+        "d": "Incorrecta. Descubrir quién lo hizo es la tercera pregunta del análisis, con sus límites técnicos."
+      }
+    },
+    "forense-t01-06": {
+      "section": "forense-objetivos",
+      "reasoning": "En lo digital no se identifica a una persona como con el ADN. Lo más concreto a lo que se llega es al usuario (local o remoto) que hizo el cambio y a la IP o MAC del equipo. Para llegar a la persona física hacen falta otras técnicas. Por tanto B y C son ciertas y A es una exigencia que el forense digital no puede cumplir por sí solo.",
+      "options": {
+        "a": "Incorrecta. El análisis forense digital no llega por sí solo a la persona física; para eso hacen falta otras técnicas de investigación.",
+        "b": "Incorrecta como respuesta única. Es cierto que se puede llegar al usuario del sistema, pero también es cierta la C.",
+        "c": "Incorrecta como respuesta única. Es cierto que se puede obtener la IP o MAC, pero también es cierta la B.",
+        "d": "Correcta. Usuario del sistema e IP o MAC del equipo son las conclusiones más concretas a las que llega el análisis."
+      }
+    },
+    "forense-t01-07": {
+      "section": "etapas-forense",
+      "reasoning": "La recolección es la primera etapa del NIST. La LECrim (art. 482.3) exige precauciones para evitar alterar la evidencia, y cuando una modificación es inevitable hay que documentarla y conservar material para un nuevo análisis (art. 479). Las tres afirmaciones son ciertas.",
+      "options": {
+        "a": "Incorrecta como respuesta única. Es cierto que debe hacerse sin modificar las evidencias en lo posible, pero no es la única cierta.",
+        "b": "Incorrecta como respuesta única. Documentar los cambios inevitables también es obligatorio, pero las demás también son ciertas.",
+        "c": "Incorrecta como respuesta única. Es una de las primeras etapas (la primera del NIST), pero no es la única afirmación correcta.",
+        "d": "Correcta. Las tres afirmaciones describen correctamente la recolección de evidencias."
+      }
+    },
+    "forense-t01-08": {
+      "section": "etapas-forense",
+      "reasoning": "El NIST divide el análisis forense en cuatro etapas: recolección (collection), examen (examination), análisis (analysis) e informe (reporting). Hay que buscar la opción con las cuatro y sin intrusos.",
+      "options": {
+        "a": "Correcta. Recolección, examen, análisis y redacción del informe pericial son las cuatro etapas del NIST.",
+        "b": "Incorrecta. «Respuesta» no es una etapa del análisis forense del NIST y falta el informe.",
+        "c": "Incorrecta. Falta la redacción del informe pericial: solo tiene tres etapas.",
+        "d": "Incorrecta. Falta el examen, que es distinto del análisis: el examen filtra lo relevante y el análisis extrae conclusiones."
+      }
+    },
+    "forense-t01-09": {
+      "section": "etapas-forense",
+      "reasoning": "En la recolección se identifican los elementos que pueden contener evidencias y se adquieren. Su objetivo es obtener las evidencias de interés. Garantizar que lo analizado es lo recolectado es tarea de la cadena de custodia y la preservación, y responder «¿cómo se ha alterado?» pertenece a la etapa de análisis.",
+      "options": {
+        "a": "Incorrecta. Garantizar que lo analizado coincide con lo recogido es la finalidad de la cadena de custodia (y del hash), no el objetivo de la fase de recolección.",
+        "b": "Correcta. La recolección identifica y obtiene las evidencias consideradas de interés.",
+        "c": "Incorrecta. Responder cómo se ha alterado es objetivo de la etapa de análisis.",
+        "d": "Incorrecta. La opción b es correcta."
+      }
+    },
+    "forense-t01-10": {
+      "section": "cadena-custodia",
+      "reasoning": "El temario indica que en lo digital la cadena de custodia se mantiene documentando a los custodios y los procesos, usando funciones hash para la integridad y registrando a cada persona que opera con la evidencia, con la operación y sus fechas. Son tres herramientas complementarias.",
+      "options": {
+        "a": "Incorrecta como respuesta única. Documentar a los custodios es necesario, pero no basta.",
+        "b": "Incorrecta como respuesta única. El hash garantiza la integridad, pero no dice quién tuvo la evidencia.",
+        "c": "Incorrecta como respuesta única. El registro de operaciones es necesario, pero se complementa con lo anterior.",
+        "d": "Correcta. Las tres medidas se usan juntas para mantener la cadena de custodia."
+      }
+    },
+    "forense-t01-11": {
+      "section": "incidente",
+      "reasoning": "La disponibilidad es poder usar el servicio o la información cuando se necesita. Una caída deja el portal inaccesible: eso es exactamente pérdida de disponibilidad. Nadie ha leído datos sin permiso (confidencialidad) ni los ha cambiado (integridad).",
+      "options": {
+        "a": "Incorrecta. Si los documentos no se han modificado, la integridad no se ve afectada.",
+        "b": "Incorrecta. Que los datos estén inaccesibles no significa que alguien no autorizado los haya visto; eso sería confidencialidad.",
+        "c": "Incorrecta. No poder iniciar sesión es consecuencia de la caída, no de que se haya suplantado a nadie.",
+        "d": "Correcta. Una caída que deja sin servicio afecta directamente a la disponibilidad."
+      }
+    },
+    "forense-t01-12": {
+      "section": "tipos-incidente",
+      "reasoning": "Entre los orígenes de incidentes, el único que no implica mala intención es el error humano: fallos inherentes a la actividad, a veces inducidos por ingeniería social, que se previenen con formación. Un empleado bienintencionado que se equivoca encaja ahí.",
+      "options": {
+        "a": "Correcta. El error humano cubre los fallos de empleados sin mala intención.",
+        "b": "Incorrecta. La explotación remota de una vulnerabilidad es un ataque deliberado.",
+        "c": "Incorrecta. Interceptar tráfico es una acción maliciosa de terceros, no un error.",
+        "d": "Incorrecta. El ataque interno es malicioso por definición (insider); no es el caso de un empleado bienintencionado."
+      }
+    },
+    "forense-t01-13": {
+      "section": "recuperacion-desastres",
+      "reasoning": "La recuperación ante desastres es la perspectiva tecnológica: restablecer la infraestructura informática tras un desastre. La continuidad de negocio es la perspectiva de negocio. Hay que buscar la opción que hable de infraestructura y servicios informáticos.",
+      "options": {
+        "a": "Incorrecta. Identificar al culpable es tarea de la investigación forense y judicial, no de la recuperación.",
+        "b": "Incorrecta. Mantener cualquier proceso comercial, incluso no tecnológico, es la continuidad de negocio.",
+        "c": "Incorrecta. Fijar los datos que pueden perderse (RPO) es solo un parámetro del BIA, no el enfoque de la recuperación en su conjunto.",
+        "d": "Correcta. Restablecer infraestructura y servicios informáticos es la esencia tecnológica del Disaster Recovery."
+      }
+    },
+    "forense-t01-14": {
+      "section": "bia-rto-rpo",
+      "reasoning": "El RTO es el tiempo en el que se espera que el sistema vuelva a operar con normalidad. Mira hacia delante desde el desastre: cuánto tardo en volver. La antigüedad de los datos recuperados es el RPO.",
+      "options": {
+        "a": "Correcta. El RTO es el plazo previsto para recuperar el funcionamiento del sistema.",
+        "b": "Incorrecta. Observar al atacante no tiene nada que ver con los tiempos del BIA.",
+        "c": "Incorrecta. La antigüedad máxima admisible de los datos recuperados es el RPO.",
+        "d": "Incorrecta. La conservación de registros es una política de retención, no un objetivo de recuperación."
+      }
+    },
+    "forense-t01-15": {
+      "section": "forense-objetivos",
+      "reasoning": "El forense digital es un proceso de investigación que busca evidencias que puedan presentarse como prueba, con el fin último de esclarecer los hechos ocurridos. No es su tarea restaurar el servicio ni hacer análisis de riesgos futuros.",
+      "options": {
+        "a": "Incorrecta. Restaurar el servicio es tarea de la recuperación ante desastres, y hacerlo deprisa puede destruir evidencias.",
+        "b": "Correcta. Obtener y analizar evidencias para esclarecer los hechos es el fin del análisis forense digital.",
+        "c": "Incorrecta. Comprobar el antivirus puede ser un detalle del análisis, pero no su finalidad única.",
+        "d": "Incorrecta. El forense investiga hechos ya ocurridos; enumerar riesgos futuros es análisis de riesgos."
+      }
+    },
+    "forense-t01-16": {
+      "section": "cadena-custodia",
+      "reasoning": "La cadena de custodia asegura que la evidencia no se ha alterado desde su recogida hasta su análisis y presentación, garantizando integridad, autenticidad, localización y trazabilidad de los accesos. Su función principal es esa trazabilidad de principio a fin.",
+      "options": {
+        "a": "Correcta. Documentar la cadena de custodia da trazabilidad a la evidencia desde la recogida hasta su presentación.",
+        "b": "Incorrecta. El nombre del archivo no acredita nada; la integridad se comprueba con hash y registro.",
+        "c": "Incorrecta. Precisamente hay que registrar los traspasos; sin ellos no hay cadena.",
+        "d": "Incorrecta. Quién custodia la evidencia no dice nada sobre quién cometió los hechos."
+      }
+    },
+    "forense-t01-17": {
+      "section": "continuidad-negocio",
+      "reasoning": "La continuidad de negocio no se limita a volver al estado inicial: planifica el intervalo de recuperación, con operación alternativa, niveles mínimos de servicio y reducción del impacto económico. Eso la distingue de restaurar servidores.",
+      "options": {
+        "a": "Incorrecta. La continuidad no sustituye la operación alternativa por análisis de evidencias; al contrario, la prevé.",
+        "b": "Incorrecta. Recuperar servidores es la parte tecnológica (DRP); la continuidad va más allá.",
+        "c": "Correcta. Mantener procesos y niveles mínimos de servicio durante la interrupción es lo propio de la continuidad.",
+        "d": "Incorrecta. La frecuencia de copias es un detalle técnico ligado al RPO, no la esencia de la continuidad."
+      }
+    },
+    "forense-t01-18": {
+      "section": "bia-rto-rpo",
+      "reasoning": "El RPO marca el estado anterior al desastre al que se va a recuperar el sistema, normalmente el de la última copia o transacción consolidada. Mira hacia atrás: hasta qué punto vuelven los datos.",
+      "options": {
+        "a": "Incorrecta. La duración del análisis de evidencias no es un parámetro del BIA.",
+        "b": "Incorrecta. La conservación del informe no tiene relación con el RPO.",
+        "c": "Incorrecta. Cuánto se tarda en restablecer el servicio es el RTO.",
+        "d": "Correcta. El RPO indica hasta qué estado anterior al desastre se pretende recuperar la información."
+      }
+    },
+    "forense-t01-19": {
+      "section": "procesos-clave",
+      "reasoning": "Dos de los procesos clave son los sistemas de detección (alerta temprana) y los procedimientos de respuesta, con acciones para cada escenario y responsables definidos. Combinarlos da una respuesta organizada en lugar de improvisada.",
+      "options": {
+        "a": "Incorrecta. Los responsables se definen antes, en el plan; elegirlos después de restaurar llega tarde.",
+        "b": "Incorrecta. El plan debe fijar las acciones para cada escenario concreto.",
+        "c": "Correcta. Detección temprana más procedimientos con acciones y responsables es una respuesta organizada.",
+        "d": "Incorrecta. Recoger alertas sin saber cómo evaluarlas ni responder deja la detección sin utilidad."
+      }
+    },
+    "forense-t01-20": {
+      "section": "csirt",
+      "reasoning": "Los servicios proactivos son los que el CSIRT presta por iniciativa propia para reducir incidentes; el primero de la lista es la divulgación sobre seguridad. Publicar avisos preventivos es divulgación, luego es un servicio proactivo.",
+      "options": {
+        "a": "Incorrecta. No todo lo que hace un CSIRT exige un incidente previo; los servicios proactivos se adelantan a ellos.",
+        "b": "Correcta. Publicar avisos preventivos es divulgación, un servicio proactivo.",
+        "c": "Incorrecta. Un aviso no custodia ni preserva datos; la custodia es un concepto forense.",
+        "d": "Incorrecta. Un aviso no restaura infraestructura; eso sería recuperación."
+      }
+    },
+    "forense-t01-21": {
+      "section": "nuevos-retos",
+      "reasoning": "Al irse a la nube se pierde control sobre la seguridad. El temario propone gestionar los SLA para fijar requisitos mínimos exigibles y verificar que el proveedor los cumple. Un SLA es, por tanto, un compromiso pactado que se puede exigir y comprobar, no una garantía absoluta.",
+      "options": {
+        "a": "Incorrecta. Un compromiso por escrito no demuestra que no haya brechas; hay que verificar su cumplimiento.",
+        "b": "Correcta. El SLA fija requisitos que la empresa puede exigir y comprobar al proveedor.",
+        "c": "Incorrecta. Un acuerdo de nivel de servicio no da derecho a adquirir los sistemas del proveedor.",
+        "d": "Incorrecta. El temario recomienda además controles propios como un CASB; el SLA no los hace innecesarios."
+      }
+    },
+    "forense-t01-22": {
+      "section": "forense-objetivos",
+      "reasoning": "El análisis forense digital llega, como mucho, al usuario del sistema y a la IP o MAC del equipo. Para dar el salto a la persona física que estaba al teclado se necesitan otras técnicas de investigación. Ese es su límite de atribución.",
+      "options": {
+        "a": "Incorrecta. Una dirección de red identifica un equipo, no a quien lo usaba; hay que contrastarla con otras pruebas.",
+        "b": "Incorrecta. Saber qué equipo se usó no demuestra quién lo manejaba.",
+        "c": "Correcta. Identificar una cuenta o un equipo no identifica por sí solo a la persona física.",
+        "d": "Incorrecta. Ser titular de una cuenta no prueba haber realizado las acciones; la cuenta pudo ser usada por otro."
+      }
+    },
+    "forense-t01-23": {
+      "section": "etapas-forense",
+      "reasoning": "La LECrim exige evitar alterar la materia analizada (art. 482.3) y, si hay que alterarla, conservar parte a disposición del juez para un nuevo análisis (art. 479). Trabajar sobre una copia verificada con hash protege el original y permite repetir el análisis.",
+      "options": {
+        "a": "Incorrecta. Cualquier cambio debe documentarse; la copia no exime de registrar nada.",
+        "b": "Incorrecta. El original se conserva precisamente para poder verificar y repetir el análisis.",
+        "c": "Correcta. Las copias reducen la modificación de los originales y permiten verificaciones posteriores.",
+        "d": "Incorrecta. Copiar datos no los convierte en prueba suficiente; su valor depende del análisis y de la cadena de custodia."
+      }
+    },
+    "forense-t01-24": {
+      "section": "bia-rto-rpo",
+      "reasoning": "Hay que asignar cada cifra a su sigla. «Servicio recuperado en cuatro horas» es el tiempo para volver a operar: RTO = 4 h. «Datos recuperados hasta una hora antes de la caída» es el punto anterior al que vuelven los datos: RPO = 1 h.",
+      "options": {
+        "a": "Incorrecta. Solo la antigüedad de los datos (RPO) es de una hora; el plazo de servicio es otro objetivo distinto.",
+        "b": "Correcta. RTO de cuatro horas (volver a funcionar) y RPO de una hora (datos hasta una hora antes).",
+        "c": "Incorrecta. Intercambia las cifras: el plazo de servicio es el RTO y la antigüedad de los datos el RPO.",
+        "d": "Incorrecta. Solo el plazo de servicio (RTO) es de cuatro horas; el RPO mide otra cosa."
+      }
+    },
+    "forense-t01-25": {
+      "section": "continuidad-negocio",
+      "reasoning": "La continuidad de negocio planifica el intervalo de recuperación: si hay operación alternativa y cuál es el nivel mínimo de servicio aceptable. Mientras se restaura el sistema, activar un procedimiento alternativo que mantenga ese mínimo es una medida de continuidad.",
+      "options": {
+        "a": "Incorrecta. La fecha de la próxima copia es un detalle técnico, no mantiene la actividad durante la caída.",
+        "b": "Incorrecta. Esperar al análisis completo antes de activar alternativas alarga la interrupción; la continuidad busca minimizarla.",
+        "c": "Incorrecta. Restaurar sin decidir cómo operar mientras tanto es solo recuperación técnica, sin continuidad.",
+        "d": "Correcta. Un procedimiento alternativo con servicio mínimo aceptable es la esencia de la continuidad de negocio."
+      }
+    },
+    "forense-t01-26": {
+      "section": "nuevos-retos",
+      "reasoning": "Con BYOD el dispositivo puede no ser de la empresa y se usa a la vez para fines personales y profesionales, lo que lo hace más vulnerable. Además de los riesgos del acceso remoto, se pierde control sobre el terminal.",
+      "options": {
+        "a": "Incorrecta. El temario señala dos problemas, el acceso remoto y el propio terminal; atender solo uno no basta.",
+        "b": "Correcta. BYOD mezcla uso personal y profesional y reduce el control corporativo del terminal.",
+        "c": "Incorrecta. Al revés: el dispositivo es del empleado y la empresa tiene menos control, no control total.",
+        "d": "Incorrecta. Un dispositivo personal no se puede controlar igual que uno íntegramente administrado por la empresa."
+      }
+    },
+    "forense-t01-27": {
+      "section": "cadena-custodia",
+      "reasoning": "El registro de custodia anota, por cada operación con la evidencia, la operación realizada, las fechas de inicio y fin y la persona que la realiza. Una entrega entre investigadora y custodio es una operación: hay que anotar personas, operación y fechas.",
+      "options": {
+        "a": "Incorrecta. Sin fecha ni actividad no se puede reconstruir la trazabilidad.",
+        "b": "Incorrecta. El hash prueba la integridad, pero no dice quién tuvo la evidencia ni cuándo.",
+        "c": "Incorrecta. La cadena exige anotar cada operación posterior, no solo el inventario inicial.",
+        "d": "Correcta. Personas intervinientes, operación y fechas de inicio y fin es lo que exige el registro de custodia."
+      }
+    },
+    "forense-t01-28": {
+      "section": "forense-objetivos",
+      "reasoning": "El análisis forense puede asociar una acción a una cuenta y a un equipo, pero no a la persona física sin otras pruebas. La conclusión rigurosa es asociar la actividad a la cuenta y señalar que hace falta más investigación.",
+      "options": {
+        "a": "Incorrecta. El acceso desde una cuenta no descarta el uso indebido de credenciales; al contrario, es una hipótesis que hay que investigar.",
+        "b": "Incorrecta. Afirmar que la contraseña se compartió necesariamente es una conclusión sin pruebas; pudo ser robada.",
+        "c": "Correcta. La actividad se asocia a la cuenta y hace falta investigación adicional para atribuirla a una persona.",
+        "d": "Incorrecta. La titularidad de la cuenta no prueba que su titular realizara personalmente el acceso."
+      }
+    },
+    "forense-t01-29": {
+      "section": "forense-objetivos",
+      "reasoning": "El análisis forense se orienta por tres preguntas: qué se ha alterado, cómo y quién (usuario o equipo). La opción que las reúne es el plan correcto.",
+      "options": {
+        "a": "Correcta. Qué cambió, cómo se hizo y qué usuario o equipo intervino son las tres preguntas del análisis forense.",
+        "b": "Incorrecta. El perito debe ser imparcial; la explicación preferida por el cliente no orienta el análisis.",
+        "c": "Incorrecta. Qué servicio restaurar es una decisión de recuperación, no una pregunta de análisis forense.",
+        "d": "Incorrecta. El forense investiga hechos ocurridos; vulnerabilidades que no intervinieron son materia de análisis de riesgos."
+      }
+    },
+    "forense-t01-30": {
+      "section": "informe-pericial",
+      "reasoning": "La última etapa del NIST es la redacción del informe pericial, que recoge los análisis realizados, los resultados y las conclusiones basadas en ellos. Sin el método y los resultados, nadie puede entender ni verificar las conclusiones.",
+      "options": {
+        "a": "Correcta. Redactar procedimiento, resultados y conclusiones fundamentadas es lo que define el informe pericial.",
+        "b": "Incorrecta. Sin el método, las conclusiones no se pueden comprobar ni repetir.",
+        "c": "Incorrecta. Un inventario de evidencias no explica qué se hizo con ellas ni qué se concluyó.",
+        "d": "Incorrecta. Las salidas en bruto no son comprensibles para el juez; el perito debe interpretarlas."
+      }
+    }
+  }
+}

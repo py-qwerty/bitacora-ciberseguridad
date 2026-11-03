@@ -1,0 +1,1062 @@
+{
+  "course": "forense",
+  "number": 3,
+  "title": "Adquisición de evidencias digitales",
+  "minutes": 40,
+  "intro": {
+    "why": "En un juicio, la prueba es lo que decide. Por eso la defensa de la parte contraria no siempre discute lo que dice un disco duro: muchas veces discute **cómo se copió**. Si el perito no puede demostrar que su copia es idéntica al original y que nadie la ha tocado desde entonces, la prueba se puede anular aunque el contenido sea demoledor. Imagina un despido por fuga de datos que se cae porque el informático de la empresa encendió el portátil del empleado «para echar un vistazo»: ese simple arranque cambió fechas y archivos del disco. Este tema enseña a copiar evidencias digitales sin dar ese flanco, siguiendo la norma internacional ISO/IEC 27037.",
+    "before": [
+      "Una **evidencia digital** es cualquier información guardada o transmitida en formato digital que puede servir como prueba: un correo, un archivo, un registro de un servidor, el contenido de la memoria de un ordenador.",
+      "Un **disco duro** guarda la información en pequeños bloques llamados **sectores**; un disco se divide en **particiones** (trozos independientes, como la C: y la D: de Windows) y la **tabla de particiones** es el índice que dice dónde empieza y acaba cada una.",
+      "La **memoria RAM** es la memoria de trabajo del ordenador: es rapidísima pero **volátil**, es decir, se borra en cuanto se corta la corriente. El disco, en cambio, es **no volátil**: conserva los datos apagado.",
+      "Un **sistema operativo** (Windows, Linux, macOS) escribe constantemente en los discos que tiene conectados, aunque tú no hagas nada: registros, archivos temporales, fechas de último acceso."
+    ],
+    "goals": [
+      "Al terminar sabrás explicar cómo se acota la escena del crimen: qué equipos están afectados y cuáles están relacionados.",
+      "Sabrás qué es una función hash, qué propiedades tiene, qué algoritmos son habituales y cómo sirve para demostrar que una copia no ha cambiado.",
+      "Sabrás preparar una adquisición: bloqueo contra escritura (hardware, software o distribución Linux forense) y borrado seguro del disco de destino.",
+      "Sabrás distinguir imagen forense y clonado, adquisición en caliente y en frío, y adquisición física y lógica.",
+      "Sabrás distinguir recolección y adquisición según la ISO/IEC 27037 y seguir sus flujos en frío y en caliente.",
+      "Sabrás cómo se preserva la integridad en frío (tres hashes) y en caliente (hash del resultado y tercero de confianza), y cuáles son los supuestos especiales de la norma."
+    ]
+  },
+  "sections": [
+    {
+      "id": "por-que-importa",
+      "title": "Por qué la adquisición es el momento más delicado",
+      "pages": [4, 5],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Piensa en la policía científica en un escenario real: antes de tocar nada, se ponen guantes, fotografían, numeran cada objeto y lo meten en bolsas precintadas. No lo hacen por manía, sino porque un abogado hábil preguntará: «¿Y cómo sabe usted que esa huella no la dejó uno de sus agentes?». En informática forense pasa lo mismo, con una dificultad añadida: los datos digitales se modifican con muchísima facilidad y sin dejar rastro visible."
+        },
+        {
+          "type": "p",
+          "text": "La **adquisición** es el momento en que el perito obtiene una copia de la información que puede servir de prueba. Como la prueba es el elemento fundamental del juicio, la parte contraria intenta muchas veces **invalidarla por cuestiones de procedimiento**: si la copia se hizo mal, da igual lo que contenga. Por eso todo el tema gira en torno a una idea: copiar **sin alterar** el original y **poder demostrarlo**."
+        },
+        {
+          "type": "term",
+          "term": "ISO/IEC 27037",
+          "text": "ISO (International Organization for Standardization, Organización Internacional de Normalización) e IEC (International Electrotechnical Commission, Comisión Electrotécnica Internacional) publican normas técnicas internacionales. La 27037 da directrices para **identificar, recolectar, adquirir y preservar** evidencias digitales. Es de 2012 y en España la ratificó AENOR en 2016 como UNE-EN ISO/IEC 27037:2016; el tema la cita como ISO/IEC 27037:2016."
+        },
+        {
+          "type": "term",
+          "term": "Norma técnica frente a ley",
+          "text": "Una norma ISO no es una ley: nadie te multa por no seguirla. Pero es la «buena práctica» reconocida internacionalmente, y un perito que puede decir «he seguido la ISO/IEC 27037 paso a paso» tiene mucho más difícil que le tumben la prueba."
+        },
+        {
+          "type": "term",
+          "term": "Cadena de custodia",
+          "text": "El registro documentado de todo lo que le pasa a una evidencia desde que se obtiene hasta que llega al juicio: quién la tuvo, cuándo, dónde y qué hizo con ella. Su objetivo es demostrar que lo analizado es exactamente lo que se encontró en origen."
+        },
+        {
+          "type": "term",
+          "term": "Fedatario público",
+          "text": "Persona con autoridad legal para dar fe de que algo ha ocurrido tal y como se cuenta: un notario o un letrado de la Administración de Justicia (el antiguo secretario judicial). Acudir con él, o al menos con testigos suficientes, refuerza el valor de lo que hagamos."
+        },
+        {
+          "type": "list",
+          "title": "Lo que debes saber hacer al terminar (objetivos del tema)",
+          "items": [
+            "Seguir el procedimiento de adquisición de la norma.",
+            "Entender los casos concretos de cada tipo de adquisición.",
+            "Adquirir en la práctica con herramientas forenses.",
+            "Iniciar una cadena de custodia.",
+            "Acotar debidamente la escena del crimen."
+          ]
+        },
+        {
+          "type": "key",
+          "text": "En forense digital, una prueba vale tanto como el procedimiento con el que se obtuvo. La referencia de ese procedimiento es la ISO/IEC 27037."
+        }
+      ]
+    },
+    {
+      "id": "escena",
+      "title": "Acotar la escena del crimen: ni de menos ni de más",
+      "pages": [5, 7],
+      "blocks": [
+        {
+          "type": "example",
+          "title": "El escenario típico en una empresa",
+          "text": "Llegas a una empresa (mejor acompañado de un notario o de testigos) y te llevan a la mesa del empleado investigado. Allí hay su ordenador, un par de pendrives y un disco duro externo. Te cuentan que el ordenador guarda archivos en un servidor corporativo y usa una aplicación cuyos datos están en un servidor de bases de datos. El correo está en la nube (Google Workspace o Microsoft 365) y probablemente también comparte carpetas en esa nube. ¿Qué copias? ¿Todo? ¿Solo el ordenador?"
+        },
+        {
+          "type": "p",
+          "text": "El lugar donde se actúa se llama, por analogía con la policía, **escena del crimen**. En ella suele haber muchos aparatos capaces de guardar información. **Acotar la escena** es decidir con criterio **qué hay que adquirir y qué no es necesario**, antes de empezar a copiar."
+        },
+        {
+          "type": "steps",
+          "title": "Las dos preguntas para acotar",
+          "items": [
+            "¿Qué equipos han sufrido **directamente** el incidente?",
+            "¿Qué otros equipos, **sin haber sufrido el incidente**, pueden estar **relacionados** con él?"
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Ejemplo del tema: infección por malware que entró por correo",
+          "head": ["Pregunta", "Respuesta en este caso"],
+          "rows": [
+            ["Afectados directamente", "Los equipos infectados y, si el malware pudo propagarse, los dispositivos externos infectados (pendrives, discos externos)."],
+            ["Relacionados sin estar infectados", "El servidor de correo por el que entró el mensaje y los equipos de seguridad que lo analizaron: antivirus, cortafuegos de aplicaciones, IDS."]
+          ]
+        },
+        {
+          "type": "term",
+          "term": "Malware",
+          "text": "Cualquier programa malicioso: virus, troyanos, ransomware, etc."
+        },
+        {
+          "type": "term",
+          "term": "IDS (Intrusion Detection System)",
+          "text": "Sistema de detección de intrusiones: vigila el tráfico de la red y avisa si ve algo sospechoso. Sus registros pueden contar cómo entró el ataque aunque él no esté infectado."
+        },
+        {
+          "type": "analogy",
+          "text": "Si roban en una joyería, la policía no se limita a la vitrina rota: mira también la cámara de seguridad de la calle, aunque a la cámara no le haya pasado nada. Pero tampoco se lleva todos los objetos del centro comercial «por si acaso». El servidor de correo es esa cámara: no está infectado, pero vio pasar al ladrón."
+        },
+        {
+          "type": "exam",
+          "text": "La respuesta correcta siempre combina **lo afectado directamente + lo relacionado**. Trampas: «solo los equipos afectados» (se queda corto); «recoger todo el material posible» (no: hay que justificar la relevancia, no adquirir indiscriminadamente y justificar después); «todos los servidores con los que interactúe» (demasiado amplio: no todos están relacionados); elegir un equipo por algo irrelevante, como tener el mismo fabricante, o descartar datos porque están en remoto (la nube también puede formar parte de la escena)."
+        },
+        {
+          "type": "key",
+          "text": "Acotar es identificar qué dispositivos y datos están relacionados con el caso: los que sufrieron el incidente y los que, sin sufrirlo, guardan rastros de él."
+        }
+      ]
+    },
+    {
+      "id": "hash-concepto",
+      "title": "Funciones hash: la huella dactilar de los datos",
+      "pages": [8, 9],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Una huella dactilar ocupa lo mismo sea la persona alta o baja, y basta para saber si dos personas son la misma sin compararlas centímetro a centímetro. Un hash hace eso con los datos: da igual que metas una palabra o un disco de 2 TB, obtienes una «huella» corta de longitud fija. Si dos huellas coinciden, los datos son idénticos; si cambia una sola letra, la huella cambia por completo."
+        },
+        {
+          "type": "term",
+          "term": "Función hash (o algoritmo hash)",
+          "text": "Función matemática que toma una entrada de tamaño variable (un archivo, un disco entero, un texto) y produce una salida de **tamaño fijo**, normalmente escrita como una cadena **hexadecimal** (dígitos del 0 al 9 y letras de la a a la f). A esa salida se le llama hash, resumen o huella."
+        },
+        {
+          "type": "code",
+          "title": "Una sola mayúscula cambia todo el hash",
+          "text": "$ printf forense | md5\ne1576f172c3b126ae7a6026e8995da85\n$ printf Forense | md5\nf0128cf087fa49732bf066306d5f4a6f\n\n$ printf forense | shasum -a 1\n12fce1fcce8913c12c37e925500af2e03016289a\n$ printf Forense | shasum -a 1\nda984d2a2eaa8acf2289ccbc388c812ef21c97ed"
+        },
+        {
+          "type": "table",
+          "title": "Propiedades de una función hash a nivel forense",
+          "head": ["Propiedad", "Qué significa", "Para qué le sirve al perito"],
+          "rows": [
+            ["Bajo coste computacional", "Se calcula rápido y con cualquier equipo. Lo lento es leer toda la información (un disco enorme), no el cálculo.", "Se puede hacer in situ con un portátil."],
+            ["Compresión", "La salida son unos pocos caracteres, muchísimo más manejable que la entrada.", "Se puede anotar en un acta o leer en voz alta ante notario."],
+            ["Inyectividad (ideal)", "Lo deseable es que cada entrada tenga un hash diferente. Pero hay infinitas entradas y un número finito de salidas, así que forzosamente habrá repeticiones.", "En la práctica, entradas distintas dan hashes distintos."],
+            ["Unidireccionalidad", "De la entrada A sale el hash B, pero a partir de B no se puede reconstruir A.", "El hash no es una copia ni un cifrado: no «se descifra»."],
+            ["Determinismo", "La misma entrada, con el mismo algoritmo, da siempre la misma salida.", "Permite repetir el cálculo días después y comparar: el proceso es reproducible."],
+            ["Resistencia a colisiones", "Una colisión es que dos entradas distintas den el mismo hash. En teoría existen; lo que exige la propiedad es que encontrarlas a propósito sea computacionalmente carísimo o, de momento, inalcanzable.", "Nadie puede fabricar un archivo falso con la misma huella que la evidencia."]
+          ]
+        },
+        {
+          "type": "term",
+          "term": "Colisión",
+          "text": "Situación en que dos datos distintos producen exactamente el mismo hash. No es compresión, ni descifrado, ni autenticación de autor: es una coincidencia (o una falsificación, si alguien la busca a propósito)."
+        },
+        {
+          "type": "p",
+          "text": "Fíjate en un detalle: el PDF define la resistencia a colisiones diciendo que «podemos encontrar» dos entradas con la misma salida. Esa frase está al revés; lo que el propio texto explica a continuación, y lo correcto, es que **encontrarlas debe ser muy difícil**. También mezcla inyectividad y determinismo al hablar de reproducibilidad: lo que hace reproducible la comparación es el **determinismo**."
+        },
+        {
+          "type": "exam",
+          "text": "Preguntas típicas: «¿qué produce un hash?» → un resumen de longitud fija (no una copia comprimida recuperable, ni un cifrado reversible, ni un identificador de quien creó los datos). «¿Qué propiedad hace útil repetir el hash?» → el determinismo. «¿Qué propiedad NO tiene?» → la **bidireccionalidad** (es unidireccional). «Dos archivos distintos con el mismo hash» → **colisión**."
+        },
+        {
+          "type": "key",
+          "text": "Un hash es una huella de tamaño fijo, determinista, de un solo sentido y resistente a colisiones: si coincide, los datos son idénticos; si cambia un bit, cambia todo."
+        }
+      ]
+    },
+    {
+      "id": "hash-usos",
+      "title": "Para qué usa el forense los hash y qué algoritmos hay",
+      "pages": [9, 11],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "La idea básica es **comparar**: si los hash de dos elementos coinciden, son idénticos; si hay la mínima variación, los hash son completamente distintos. Con eso el perito puede hacer cuatro cosas."
+        },
+        {
+          "type": "list",
+          "title": "Usos forenses de los hash",
+          "items": [
+            "**Descartar o señalar archivos conocidos**: por ejemplo, ignorar los miles de archivos estándar de Windows comparando su hash con una lista conocida, o marcar al instante una herramienta de hacking conocida.",
+            "**Señalar archivos relevantes**: buscar en un disco un documento concreto cuyo hash ya conocemos.",
+            "**Buscar duplicados** (o incluso archivos parecidos con técnicas especiales).",
+            "**Garantizar que la evidencia no se ha modificado**: el uso estrella, que verás en el apartado de preservación."
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Algoritmos hash más típicos",
+          "head": ["Algoritmo", "Significado", "Tamaño de salida"],
+          "rows": [
+            ["MD5", "Message-Digest algorithm 5 (algoritmo de resumen de mensaje 5)", "128 bits = 32 caracteres hexadecimales"],
+            ["SHA-1 (o simplemente SHA)", "Secure Hash Algorithm (algoritmo de hash seguro)", "160 bits = 40 caracteres hexadecimales"],
+            ["SHA-2", "Segunda versión de SHA (SHA-224, SHA-256, SHA-384, SHA-512)", "224, 256, 384 o 512 bits"],
+            ["SHA-3", "Tercera y última versión de SHA", "224, 256, 384 o 512 bits"]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Cada carácter hexadecimal representa 4 bits; por eso 128 bits son 32 caracteres y 160 bits son 40. Un apunte de actualidad: hoy se conocen formas de fabricar colisiones en MD5 y SHA-1, así que para usos nuevos se prefiere SHA-256 o superior. Aun así, **los cuatro son algoritmos hash**, y muchos peritos calculan dos (por ejemplo MD5 y SHA-256) a la vez."
+        },
+        {
+          "type": "code",
+          "title": "Calcular el hash de un disco completo en Linux",
+          "text": "$ sudo sha256sum /dev/sdb\n3b1f0c9a...(64 caracteres hexadecimales)...e27d  /dev/sdb"
+        },
+        {
+          "type": "exam",
+          "text": "«¿Cuáles son algoritmos hash: SHA1, SHA3, MD5?» → **todas**. No te dejes despistar por saber que MD5 está «roto» criptográficamente: sigue siendo una función hash. La tabla del PDF con el hash de «forense» y «Forense» es una imagen; lo que debes recordar es que una mayúscula basta para cambiar el resultado entero."
+        },
+        {
+          "type": "key",
+          "text": "MD5, SHA-1, SHA-2 y SHA-3 son funciones hash; el forense las usa para comparar, filtrar archivos y, sobre todo, demostrar que la evidencia no ha cambiado."
+        }
+      ]
+    },
+    {
+      "id": "bloqueo-escritura",
+      "title": "Bloqueo contra escritura: mirar sin tocar",
+      "pages": [12, 14],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Es como consultar un manuscrito antiguo en una biblioteca: te lo dejan dentro de una vitrina para que puedas leerlo pero no subrayarlo ni mancharlo. El bloqueador es la vitrina del disco: deja **leer** y prohíbe **escribir**."
+        },
+        {
+          "type": "p",
+          "text": "La fase de preparación tiene dos tareas: una sobre el **original** (bloquearlo contra escritura) y otra sobre el **destino** (borrarlo de forma segura). Empezamos por el original. Al conectar un disco a un ordenador, el sistema operativo escribe en él por su cuenta (índices, fechas de acceso, archivos ocultos) y además nosotros podemos equivocarnos. Hay que impedirlo."
+        },
+        {
+          "type": "term",
+          "term": "Bloqueador contra escritura",
+          "text": "Herramienta, hardware o software, que **impide la escritura** sobre un dispositivo de almacenamiento. No impide leerlo (si no, no podríamos copiarlo) ni afecta al disco donde guardamos la copia."
+        },
+        {
+          "type": "table",
+          "title": "Las tres formas de bloquear",
+          "head": ["Tipo", "Cómo funciona", "Pros y contras"],
+          "rows": [
+            ["Hardware", "Un aparato que se pone de puente entre el disco original y nuestro equipo (por USB, FireWire u otra conexión rápida) y descarta toda orden de escritura. Marcas conocidas: WiebeTech (CRU) y Tableau.", "La opción más fiable. Necesita los adaptadores adecuados para cada tipo de disco."],
+            ["Software", "Programas o pequeños scripts que impiden al sistema operativo escribir en un dispositivo o puerto, por ejemplo en todos los USB.", "Barato y rápido, pero **no impide escrituras a bajo nivel**: solo es recomendable en entornos controlados, como nuestro laboratorio, donde sabemos qué se ejecuta."],
+            ["Distribución Linux forense", "Un tipo especial de bloqueo software: arrancas el equipo con un Linux cuyo modo forense no monta los discos (no los «engancha»), así que no puede escribir en ellos; si hace falta los monta en solo lectura.", "Útil cuando no puedes extraer el disco o no tienes adaptador para el bloqueador hardware. Ejemplos: Kali Linux, Parrot Security OS, Tsurugi Linux."]
+          ]
+        },
+        {
+          "type": "term",
+          "term": "Montar un dispositivo",
+          "text": "Hacer que el sistema operativo reconozca su sistema de archivos y lo muestre como una unidad utilizable. Si no se monta, el sistema no lo lee ni lo escribe por su cuenta."
+        },
+        {
+          "type": "code",
+          "title": "Bloqueo software de USB en Windows mediante el Registro",
+          "text": "; Para bloquear la escritura en dispositivos USB\n[HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\StorageDevicePolicies]\n\"WriteProtect\"=dword:00000001\n\n; Para volver a permitir la escritura\n[HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\StorageDevicePolicies]\n\"WriteProtect\"=dword:00000000"
+        },
+        {
+          "type": "p",
+          "text": "El **Registro de Windows** es la gran base de datos de configuración del sistema; cambiando ese valor, Windows deja de escribir en los USB. Ojo: el PDF coloca WiebeTech y Tableau en una lista de bloqueadores «por software», pero son fabricantes de bloqueadores **hardware**; es una errata del texto."
+        },
+        {
+          "type": "exam",
+          "text": "«¿Cómo aseguramos el bloqueo en frío?» → hardware, **o** software (programas o scripts), **o** distribución Linux forense: la opción que enumera las tres. «Todas las anteriores» es trampa porque incluiría «nunca es posible bloquear». «¿Para qué sirve el bloqueador?» → impedir escrituras que modifiquen la fuente (no impedir leerla, ni borrar el destino). «¿Por qué el software necesita un entorno controlado?» → porque **no protege frente a todas las escrituras de bajo nivel**."
+        },
+        {
+          "type": "key",
+          "text": "El original se protege con bloqueo hardware (lo más fiable), software (solo en entorno controlado) o arrancando una distribución Linux forense que no monta los discos."
+        }
+      ]
+    },
+    {
+      "id": "borrado-seguro",
+      "title": "Borrado seguro: el disco de destino, limpio como una patena",
+      "pages": [14, 16],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Si vas a guardar pruebas de un caso en una bolsa, la bolsa tiene que estar vacía y nueva. Si dentro hubiera restos de otro caso, el abogado contrario diría: «¿Cómo sabemos que ese documento estaba en el ordenador de mi cliente y no en su bolsa?»."
+        },
+        {
+          "type": "term",
+          "term": "Borrado seguro (o sanitización)",
+          "text": "Método de borrado que **sobrescribe** la información para que no se pueda recuperar. Lo más común es escribir ceros en todo el soporte, aunque también se puede usar otro valor o datos aleatorios. Borrar un archivo «normal» o formatear rápido no basta: los datos siguen ahí y se pueden recuperar."
+        },
+        {
+          "type": "p",
+          "text": "Se aplica sobre el **soporte de destino**, nunca sobre el original que queremos preservar. Es especialmente importante en un **clonado**, porque el clon ocupa el disco entero y cualquier dato preexistente se confundiría con los del caso."
+        },
+        {
+          "type": "table",
+          "title": "Qué se puede borrar de forma segura",
+          "head": ["Alcance", "Cómo"],
+          "rows": [
+            ["Todo el dispositivo", "Con software específico."],
+            ["Una partición", "Con un formateo lento (el que escribe en todo el espacio, no el rápido)."],
+            ["Solo el espacio libre", "Impide recuperar archivos ya borrados, sin tocar los que existen."]
+          ]
+        },
+        {
+          "type": "list",
+          "title": "Cuándo hace el forense un borrado seguro",
+          "items": [
+            "Cuando va a **desechar** un dispositivo.",
+            "Cuando un dispositivo usado en un caso se va a **reutilizar en otro** caso.",
+            "Cuando va a usar un dispositivo como **destino de un clonado**."
+          ]
+        },
+        {
+          "type": "code",
+          "title": "Sobrescribir con ceros un disco de destino en Linux",
+          "text": "# ¡Cuidado! /dev/sdc debe ser el DESTINO, nunca la evidencia\n$ sudo dd if=/dev/zero of=/dev/sdc bs=1M status=progress"
+        },
+        {
+          "type": "p",
+          "text": "Herramientas habituales: EnCase Forensic Imager (Windows), dd y dc3dd (Linux y macOS), R-Wipe & Clean (Windows y macOS) y HDShredder (Windows). El tema incluye además un vídeo sobre borrado seguro y bloqueo contra escritura."
+        },
+        {
+          "type": "exam",
+          "text": "«¿Sobre qué soporte se aplica el borrado seguro antes de clonar?» → sobre el **destino**. Trampas: borrar el original «para evitar información residual» (destruirías la prueba), borrar «ambos» o borrar la imagen final después de calcular su hash."
+        },
+        {
+          "type": "key",
+          "text": "Bloqueo para el original, borrado seguro para el destino: así nadie puede dudar de que lo que hay en la copia procede de la evidencia."
+        }
+      ]
+    },
+    {
+      "id": "imagen-clonado",
+      "title": "Imagen forense frente a clonado: archivo o disco gemelo",
+      "pages": [17, 18],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Quieres conservar un cuadro. Puedes hacer una fotografía de altísima resolución y guardarla como archivo en tu ordenador (junto a muchas otras fotos), o pintar una réplica idéntica en otro lienzo del mismo tamaño. La foto es la **imagen forense**; la réplica en otro lienzo es el **clonado**."
+        },
+        {
+          "type": "term",
+          "term": "Imagen forense",
+          "text": "Copia exacta de un dispositivo guardada **en un archivo**, que se puede almacenar en cualquier soporte capaz de guardar archivos. Formatos habituales: RAW o DD (copia en bruto) y E01 (formato de EnCase con metadatos y compresión)."
+        },
+        {
+          "type": "term",
+          "term": "Clonado forense",
+          "text": "Copia exacta **bit a bit** de un dispositivo físico **en otro dispositivo físico** similar. Origen y clon quedan idénticos en contenido y estructura."
+        },
+        {
+          "type": "table",
+          "title": "Comparativa",
+          "head": ["Aspecto", "Imagen forense", "Clonado"],
+          "rows": [
+            ["Dónde queda", "Un archivo dentro de cualquier soporte", "Un disco físico entero dedicado"],
+            ["Varias copias en un mismo disco", "Sí, tantas como quepan", "No: un disco por cada clonado"],
+            ["Extras", "Puede llevar metadatos del caso, compresión y redundancia para tolerar fallos (según el formato)", "Ninguno: es un gemelo exacto"],
+            ["Requisitos del destino", "Espacio suficiente", "Tamaño igual o mayor que el original y borrado seguro previo"],
+            ["Distribución", "Fácil de copiar y enviar", "Hay que mover el disco"],
+            ["Para usarla", "Hace falta un programa que la lea", "No hace falta ningún programa: se conecta y funciona; incluso puede usarse en el hardware original"],
+            ["Uso típico", "La mayoría de casos", "Hardware muy específico, como un sistema de CCTV (circuito cerrado de televisión)"]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Aunque en la calle se usen como sinónimos, el tema insiste en que son conceptos distintos (incluso dice «antagónicos»). Lo que los distingue no es la exactitud, porque ambos pueden ser copias exactas, sino **cómo se almacenan**."
+        },
+        {
+          "type": "exam",
+          "text": "Ventajas de la imagen: **varias imágenes en un mismo dispositivo** y **compresión, metadatos y redundancia** → «la B y la C». La trampa es «no hace falta ningún programa para trabajar con imágenes»: esa es la ventaja del **clonado**. En un caso práctico de guardar varias adquisiciones en un único disco del laboratorio, la respuesta es imágenes como archivos separados; clonar varios orígenes en el mismo disco no es posible."
+        },
+        {
+          "type": "key",
+          "text": "Imagen = archivo (versátil, varias por disco, con metadatos); clonado = disco gemelo (sin programas, pero un disco limpio y del mismo tamaño o mayor por cada copia)."
+        }
+      ]
+    },
+    {
+      "id": "caliente-frio",
+      "title": "Adquisición en caliente frente a en frío",
+      "pages": [18, 19],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Fotografiar una pizarra en clase: si esperas a que el profesor la borre (apague el equipo), lo que estaba escrito con tiza se pierde; si la fotografías mientras sigue hablando, capturas todo, pero la pizarra cambia mientras haces la foto. Lo que está en un cuaderno guardado en la mochila (el disco) puedes copiarlo después con calma."
+        },
+        {
+          "type": "table",
+          "title": "Las dos situaciones",
+          "head": ["Aspecto", "En frío", "En caliente"],
+          "rows": [
+            ["Otros nombres", "Post-mortem o Traditional Acquisition", "Live Response Acquisition (adquisición en vivo)"],
+            ["Estado del equipo", "Apagado o desconectado, y se mantiene así", "Encendido, y se adquiere mientras sigue encendido"],
+            ["Ejemplos", "Un pendrive desconectado que conectamos con bloqueo; el disco extraído de un ordenador; un ordenador apagado que arrancamos con una distribución Linux forense", "Volcar la memoria RAM de un ordenador encendido; copiar el disco de un servidor que no se apaga"],
+            ["Qué se puede obtener", "Solo datos no volátiles", "Datos volátiles y no volátiles"]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Regla de oro: las **evidencias volátiles** (RAM, procesos en ejecución, conexiones de red abiertas) **solo se pueden adquirir en caliente**, porque desaparecen al apagar. Las **no volátiles** (el disco) se pueden adquirir en frío o en caliente, según cómo nos encontremos el equipo."
+        },
+        {
+          "type": "list",
+          "title": "Cuándo hay que adquirir en caliente",
+          "items": [
+            "Cuando hay **evidencias volátiles** que queremos conservar.",
+            "Cuando el equipo **no se puede apagar** (un servidor crítico, un sistema médico).",
+            "Cuando hay un **disco o volumen cifrado** que ahora está desbloqueado: si apagamos, puede que no volvamos a acceder a él."
+          ]
+        },
+        {
+          "type": "term",
+          "term": "Cifrado de disco",
+          "text": "Técnica que convierte el contenido del disco en datos ilegibles sin la clave (por ejemplo BitLocker en Windows o FileVault en macOS). Mientras el equipo está encendido y desbloqueado, el sistema lee los datos en claro; al apagarlo, vuelven a quedar protegidos."
+        },
+        {
+          "type": "exam",
+          "text": "«¿Qué caracteriza la adquisición en caliente?» → que se hace **con el dispositivo encendido**. Trampas: «se hace después de apagar para preservar memoria» (contradicción: apagar borra la memoria) o «cualquier copia a un soporte nuevo». «¿Cuándo en caliente?» → volátiles, no se puede apagar y disco cifrado: **todas**."
+        },
+        {
+          "type": "key",
+          "text": "Caliente = encendido (lo único que permite capturar lo volátil); frío = apagado y se mantiene apagado."
+        }
+      ]
+    },
+    {
+      "id": "fisica-logica",
+      "title": "Adquisición física frente a lógica: todo el disco o solo una parte",
+      "pages": [19, 21],
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Fotocopiar un libro entero, incluidas portada, índice, páginas en blanco y notas a lápiz en los márgenes, es una copia **física**. Fotocopiar solo el capítulo 4 es una copia **lógica**."
+        },
+        {
+          "type": "term",
+          "term": "Adquisición física",
+          "text": "Copia de **toda** la estructura del dispositivo, del primer al último bit (en un disco, del primer al último sector): tabla de particiones, todas las particiones, espacio libre y restos de archivos borrados. Puede hacerse como imagen o como clonado."
+        },
+        {
+          "type": "term",
+          "term": "Adquisición lógica",
+          "text": "Copia limitada a **un volumen o una parte de él**: unas carpetas, unos archivos o una base de datos concreta. Solo se puede hacer como **imagen forense**, nunca como clonado, porque el clonado reproduce la estructura completa del dispositivo."
+        },
+        {
+          "type": "table",
+          "title": "No confundas los tres ejes de clasificación",
+          "head": ["Eje", "Opciones", "Qué responde"],
+          "rows": [
+            ["Formato", "Imagen o clonado", "¿Dónde se guarda la copia?"],
+            ["Estado del equipo", "Frío o caliente", "¿Está apagado o encendido?"],
+            ["Alcance", "Física o lógica", "¿Copio todo el dispositivo o solo una parte?"]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Los ejes son independientes: puede haber una adquisición física en caliente (el disco entero de un servidor encendido) o lógica en frío (unas carpetas de un pendrive desconectado). El tema incluye vídeos sobre adquisición remota de un servidor Linux y sobre las herramientas EFW Tools."
+        },
+        {
+          "type": "exam",
+          "text": "«Disco completo, con todas sus particiones y la tabla de particiones» → **física**. Trampas: confundir el alcance con el estado («en caliente», «imagen en caliente»); afirmar que la física copia solo archivos visibles y la lógica todos los sectores (es al revés); o que la física es siempre en frío y la lógica siempre en caliente."
+        },
+        {
+          "type": "key",
+          "text": "Física = todo el dispositivo bit a bit; lógica = una selección de datos, y solo en formato imagen."
+        }
+      ]
+    },
+    {
+      "id": "recoleccion",
+      "title": "Recolección según la ISO/IEC 27037: en frío y en caliente",
+      "pages": [22, 26],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "La norma distingue dos conceptos que en el lenguaje cotidiano se confunden. Primero se **recolecta** el «recipiente»; luego se **adquiere** su contenido."
+        },
+        {
+          "type": "table",
+          "title": "Recolección frente a adquisición",
+          "head": ["Aspecto", "Recolección", "Adquisición"],
+          "rows": [
+            ["Definición", "«El proceso de recopilación de los elementos físicos que pueden contener una potencial evidencia digital» (ISO/IEC 27037)", "Obtener la información que contienen esos elementos, es decir, copiarla"],
+            ["Sobre qué actúa", "Objetos físicos: ordenadores, discos, pendrives", "Datos"],
+            ["Dónde", "Se identifican in situ y se trasladan al laboratorio", "En el laboratorio tras la recolección, o in situ (el dispositivo se queda en su lugar, en sede judicial o en notaría)"]
+          ]
+        },
+        {
+          "type": "analogy",
+          "text": "Recolectar es meter la caja fuerte en la furgoneta; adquirir es sacar y copiar los documentos que hay dentro. Puedes hacer las dos cosas, o solo copiar los documentos sin llevarte la caja."
+        },
+        {
+          "type": "list",
+          "title": "Los cinco escenarios de la norma",
+          "items": [
+            "Recolección en frío.",
+            "Recolección en caliente.",
+            "Adquisición en frío.",
+            "Adquisición en caliente.",
+            "Supuestos especiales."
+          ]
+        },
+        {
+          "type": "steps",
+          "title": "Recolección en frío (equipo apagado), para cada dispositivo",
+          "items": [
+            "Comprobar si tiene **batería** que pueda mantener su estado o arrancarlo por accidente, y desconectarla. Si eso obliga a abrir el portátil, se aprovecha para **extraer el disco**, etiquetarlo y documentarlo.",
+            "**Desconectar el cable de alimentación** para conservar el estado. Después, desconectar los demás cables identificando y fotografiando cada uno, para poder reconstruir la configuración.",
+            "Poner **cinta sobre el botón de encendido**, para que nadie lo pulse sin querer, y documentarlo todo.",
+            "Buscar **otros medios relacionados** (discos, pendrives, un CD olvidado dentro del lector) y tratarlos igual. Si un soporte relevante no se inventaría bien, puede no admitirse en el juicio.",
+            "Seguir recolectando o pasar a la adquisición."
+          ]
+        },
+        {
+          "type": "steps",
+          "title": "Recolección en caliente (equipo encendido)",
+          "items": [
+            "¿Hay **datos volátiles** que recopilar (RAM, tabla de procesos…)? Si los hay, se adquieren primero en caliente.",
+            "¿Los datos del disco están **estables**, es decir, no se comprometen al cortar la corriente? Hay sistemas lentos, antiguos o **transaccionales** (los que solo graban los datos definitivamente al terminar cada operación, como una base de datos bancaria) donde un corte puede corromperlos.",
+            "Si no hay riesgo: **apagado forense**, que consiste en quitar la batería o el cable de corriente de golpe.",
+            "Si hay riesgo de corrupción: **apagado limpio** (el normal del sistema), sabiendo que puede perderse información.",
+            "Desconectar cables y dispositivos, etiquetar, fotografiar, documentar y buscar otros medios asociados."
+          ]
+        },
+        {
+          "type": "term",
+          "term": "Apagado forense frente a apagado limpio",
+          "text": "El apagado forense (cortar la corriente de golpe) congela el disco tal como estaba: no se pierden el archivo de paginación ni los temporales, y no se ejecutan scripts de limpieza que se lanzan al apagar, como los de un cibercafé o los que un sospechoso haya preparado para borrar su rastro. El apagado limpio solo se usa si el corte brusco puede corromper datos."
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico",
+          "text": "Encuentras un portátil apagado bajo la mesa del sospechoso. No lo enciendes «para ver la última sesión», no lo conectas a la red para que se actualice ni cambias su configuración: cualquiera de esas cosas escribe en el disco. Desconectas la batería y la alimentación, fotografías y etiquetas los cables, tapas el botón con cinta y anotas todo en el acta."
+        },
+        {
+          "type": "exam",
+          "text": "«Proceso de recopilación de los elementos físicos…» → **recolección** (no adquisición, ni clonado, ni imagen). «¿Qué distingue recolección y adquisición?» → recolección reúne contenedores físicos y adquisición obtiene su información (ninguna de las dos exige apagar el equipo). En un portátil apagado, lo correcto es **desconectar la alimentación y documentar conexiones**. Ante un equipo encendido con procesos relevantes, antes de cortar la corriente hay que valorar **adquirir los volátiles** y el **riesgo para los datos en curso**."
+        },
+        {
+          "type": "key",
+          "text": "Recolectar es llevarse el contenedor; adquirir es copiar su contenido. En frío se preserva el estado apagado; en caliente se capturan primero los volátiles y luego se decide entre apagado forense y apagado limpio."
+        }
+      ]
+    },
+    {
+      "id": "adquisicion-campo",
+      "title": "Adquisición en frío y en caliente paso a paso",
+      "pages": [26, 29],
+      "blocks": [
+        {
+          "type": "steps",
+          "title": "Adquisición en frío (ISO/IEC 27037)",
+          "items": [
+            "**Extraer** el dispositivo de almacenamiento del equipo que lo contiene (el disco del ordenador). Si es externo o ya está extraído, se pasa al siguiente paso.",
+            "**Preparar el destino** con borrado seguro. Si haremos imágenes, un disco sirve para varias; si haremos clonados, hace falta un disco por dispositivo y la sanitización es aún más importante.",
+            "**Copiar**: conectar origen y destino a una clonadora forense (que ya protege el origen) o a un ordenador. Si es un ordenador de uso general, se usa un **bloqueador de escritura** hardware o, si no hay, uno por software.",
+            "**Documentar, sellar** el disco de destino y **custodiarlo** junto con la documentación."
+          ]
+        },
+        {
+          "type": "steps",
+          "title": "Adquisición en caliente (ISO/IEC 27037)",
+          "items": [
+            "¿Hay datos vivos que adquirir? Si no, se valora llevarse el equipo, volviendo al flujo de recolección en caliente para apagarlo. Si no se puede llevar, termina ahí.",
+            "Si hay datos que adquirir, comprobar con herramientas si hay **datos cifrados**. Si los hay, adquirir en vivo primero los **cifrados volátiles** y luego los **cifrados no volátiles**: si apagamos, quizá no podamos volver a acceder.",
+            "Si no hay cifrado, buscar y adquirir la **información volátil** con software forense **aportado por nosotros**, en versión portable (live o standalone, que se ejecuta sin instalarse).",
+            "Decidir si también se adquieren en caliente los **datos no volátiles** o si se apaga el equipo y se lleva al laboratorio para extraer el disco y adquirirlo en frío.",
+            "**Sellar** los soportes, **documentar** todo, adjuntar la documentación y **custodiar** el conjunto."
+          ]
+        },
+        {
+          "type": "analogy",
+          "text": "Si sospechas que alguien ha trucado el termómetro de una casa, no medirías la fiebre con él: traerías el tuyo. En un equipo sospechoso, las propias herramientas del sistema (el administrador de tareas, el explorador) pueden estar manipuladas por el atacante para esconder cosas. Por eso el perito lleva su propio software en un USB."
+        },
+        {
+          "type": "code",
+          "title": "Ejemplo: volcar la RAM de Windows con una herramienta portable desde nuestro USB",
+          "text": "E:\\> winpmem_mini_x64.exe E:\\caso042\\ram_PC-ADMIN.raw\nE:\\> certutil -hashfile E:\\caso042\\ram_PC-ADMIN.raw SHA256"
+        },
+        {
+          "type": "p",
+          "text": "Fíjate en que incluso así **no se garantiza** que la adquisición en vivo no modifique nada: ejecutar cualquier programa en un equipo encendido ocupa memoria y deja huella. Lo que se busca es **minimizar el impacto** y no depender de software que puede estar comprometido. Además, hay que **registrar qué herramienta y qué versión** se usó y calcular el hash del resultado."
+        },
+        {
+          "type": "exam",
+          "text": "Volumen cifrado accesible en un equipo encendido: no se apaga sin valorar la adquisición en vivo porque **se puede perder el acceso a la información descifrada** (apagar no convierte el cifrado en texto claro ni borra el disco). Herramienta portable del analista: **reduce el impacto y evita confiar en software comprometido**. Trampas: «garantiza que no se modifica ningún dato», «ya no hace falta calcular el hash» o «ya no hace falta registrar la herramienta»."
+        },
+        {
+          "type": "key",
+          "text": "En frío: extraer, sanear el destino, copiar con bloqueo, sellar y custodiar. En caliente: primero lo cifrado, luego lo volátil, con software propio y portable, y documentarlo todo."
+        }
+      ]
+    },
+    {
+      "id": "preservacion",
+      "title": "Preservar la integridad: los tres hashes y el tercero de confianza",
+      "pages": [29, 32],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Una vez adquirida la evidencia hay que **preservarla**: demostrar que lo que se analiza es exactamente igual a lo que había en origen y que nada ha cambiado entre la adquisición y el análisis. Eso es respetar la **cadena de custodia**, y la herramienta para demostrarlo es el hash."
+        },
+        {
+          "type": "steps",
+          "title": "Preservación en frío: tres hashes",
+          "items": [
+            "**HA1**: hash del origen **antes** de la adquisición.",
+            "**HA2**: hash del origen **después** de la adquisición.",
+            "**HB**: hash de la información **adquirida** (la copia).",
+            "Si **HA1 = HA2 = HB**, el origen no se ha alterado y la copia es idéntica al origen."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Más adelante, en cualquier momento del análisis, basta con recalcular el hash de la copia que se está analizando y compararlo con **HA1**: si coinciden, se analiza una copia exacta; si no, la evidencia ha sido alterada. Las suites forenses Autopsy, EnCase y FTK (Forensic Toolkit) hacen esta comprobación automáticamente y avisan si los valores no coinciden."
+        },
+        {
+          "type": "code",
+          "title": "Ejemplo de acta con los tres hashes (SHA-256, mismo alcance)",
+          "text": "HA1 (origen, antes)   : 7f3a...c91e\nHA2 (origen, después) : 7f3a...c91e\nHB  (imagen E01)      : 7f3a...c91e\nResultado: coinciden -> origen inalterado y copia exacta"
+        },
+        {
+          "type": "p",
+          "text": "Para que la comparación tenga sentido hay que usar el **mismo algoritmo** y el **mismo alcance** (el disco entero en los tres casos, por ejemplo). Comparar nombres de archivo o contar los archivos que muestra el explorador no demuestra nada."
+        },
+        {
+          "type": "term",
+          "term": "Preservación en caliente",
+          "text": "Al adquirir la RAM no se puede bloquear la escritura: la memoria cambia sin parar, incluso mientras la copiamos. Calcular el hash del origen no tiene sentido, porque sabemos de antemano que no coincidirá. Así que solo se calcula el **hash del resultado** y se usa como referencia para detectar cualquier cambio **posterior** en el archivo adquirido."
+        },
+        {
+          "type": "p",
+          "text": "Ese hash **no garantiza el origen**: no prueba que la copia sea igual a lo que había en la memoria. Para cubrir ese hueco se recurre a un **tercero de confianza** que dé fe del proceso: un fedatario público (letrado de la Administración de Justicia), un notario u otro mecanismo aceptado como tal. El tema incluye un vídeo sobre la adquisición de RAM en Windows."
+        },
+        {
+          "type": "table",
+          "title": "Resumen",
+          "head": ["Aspecto", "En frío", "En caliente"],
+          "rows": [
+            ["Bloqueo del origen", "Sí", "En general no es posible"],
+            ["Hashes", "HA1, HA2 y HB", "Solo el del resultado"],
+            ["Qué demuestra el hash", "Origen inalterado y copia idéntica", "Que el archivo adquirido no ha cambiado después"],
+            ["Garantía del origen", "El propio hash", "Un tercero de confianza (notario, fedatario)"]
+          ]
+        },
+        {
+          "type": "exam",
+          "text": "En frío, lo que apoya la integridad es «hash del origen antes, del origen después y de la copia» (no solo el de la copia, ni nombres, ni número de archivos). En caliente, el hash del volcado de memoria permite comprobar que **el archivo adquirido no cambió después**; no que la memoria no cambiara durante la captura ni que origen y copia fueran idénticos en todo momento, y desde luego no identifica a la persona que usaba el equipo."
+        },
+        {
+          "type": "key",
+          "text": "En frío, tres hashes iguales prueban origen intacto y copia exacta. En caliente, el hash solo protege la copia desde que se hizo; el origen lo avala un tercero de confianza."
+        }
+      ]
+    },
+    {
+      "id": "supuestos-especiales",
+      "title": "Supuestos especiales: críticos, parciales y almacenamiento",
+      "pages": [33, 35],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "La ISO/IEC 27037 reconoce situaciones en las que no se pueden seguir al pie de la letra los flujos anteriores. Son tres **supuestos especiales**: **dispositivos críticos**, **adquisiciones parciales** y **dispositivos de almacenamiento**. Un portátil normal y corriente **no** es un supuesto especial: se trata con el flujo general."
+        },
+        {
+          "type": "term",
+          "term": "Dispositivo crítico",
+          "text": "Sistema que no se puede apagar sin causar un daño mayor: servidores de un centro de datos que dan servicio a clientes ajenos a la investigación, equipos de soporte médico, etc. Se aplican las directrices de adquisición de dispositivos encendidos o de adquisición parcial."
+        },
+        {
+          "type": "list",
+          "title": "Cuándo está justificada una adquisición parcial",
+          "items": [
+            "Cuando el dispositivo es **tan grande** que es imposible adquirirlo entero (por ejemplo, un servidor de bases de datos).",
+            "Cuando el sistema es **crítico** y no se puede apagar.",
+            "Cuando **solo una parte** de la información es relevante (por ejemplo, solo interesan los correos de un equipo).",
+            "Cuando **legalmente** se limita el alcance, por ejemplo porque el juez solo autoriza una parte."
+          ]
+        },
+        {
+          "type": "steps",
+          "title": "Procedimiento simplificado de adquisición parcial",
+          "items": [
+            "Identificar los archivos, carpetas u otros elementos con la información relevante.",
+            "Hacer una **adquisición lógica** de esos elementos.",
+            "Documentar el alcance, los límites y lo que se ha excluido, y por qué."
+          ]
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico",
+          "text": "Un juez autoriza a adquirir solo los correos de la cuenta de un directivo, que están en el servidor de correo de la empresa. Ese servidor da servicio a 2.000 empleados y no puede apagarse. Lo correcto: una **adquisición lógica en caliente** limitada a esa cuenta, documentando el procedimiento. Lo incorrecto: apagar el servidor «para que no sea parcial», clonar todos los discos antes de comprobar la autorización o copiar solo los asuntos de los mensajes sin su contenido."
+        },
+        {
+          "type": "term",
+          "term": "Dispositivos de almacenamiento",
+          "text": "Pendrives, tarjetas SD y similares que aparecen en la escena. Son los **menos volátiles**, así que tienen la menor prioridad de recolección y adquisición, lo que no significa que no sean importantes. Hay que documentar su ubicación (conectado por USB, en una bahía extraíble…) y sus datos identificativos (marca, modelo, número de serie), decidir si se recolectan o se adquieren en el momento y etiquetar el dispositivo y lo asociado a él, como carcasas o cables."
+        },
+        {
+          "type": "p",
+          "text": "Una adquisición parcial nunca es una «selección informal»: no vale descartar lo que no tenga una extensión conocida ni omitir datos que contradigan la hipótesis del analista. El tema cierra con un vídeo sobre recuperación de archivos con PhotoRec (file carving) y discos SSD."
+        },
+        {
+          "type": "exam",
+          "text": "«¿Cuál NO es un supuesto especial?» → el **ordenador portátil**. «¿Cuándo una adquisición parcial?» → tamaño muy grande, alcance limitado por el juez y relevancia de solo una parte: **todas**. En las variantes con opciones trampa, la buena siempre dice «solo una parte es relevante o el alcance está limitado legalmente», con la selección justificada y documentada."
+        },
+        {
+          "type": "key",
+          "text": "Supuestos especiales: dispositivos críticos, adquisiciones parciales y dispositivos de almacenamiento. Lo parcial se resuelve con una adquisición lógica justificada y documentada."
+        }
+      ]
+    }
+  ],
+  "summary": [
+    "La prueba digital se ataca por el procedimiento; por eso la adquisición sigue la ISO/IEC 27037 y se documenta todo.",
+    "Acotar la escena es identificar los equipos afectados directamente y los relacionados (como el servidor de correo o el antivirus), sin recoger indiscriminadamente.",
+    "Un hash es un resumen de tamaño fijo, determinista, unidireccional y resistente a colisiones; MD5, SHA-1, SHA-2 y SHA-3 son algoritmos hash.",
+    "El original se protege con bloqueo contra escritura (hardware, software o distribución Linux forense); el software no frena escrituras de bajo nivel.",
+    "El destino se prepara con borrado seguro, sobre todo si va a recibir un clonado.",
+    "Imagen = archivo (varias por disco, metadatos, compresión); clonado = disco gemelo (sin programas, un disco por copia).",
+    "Caliente = encendido (único modo para lo volátil, para equipos que no se apagan y para discos cifrados abiertos); frío = apagado.",
+    "Física = todo el dispositivo; lógica = una parte, y solo como imagen.",
+    "Recolectar es reunir los contenedores físicos; adquirir es copiar su información.",
+    "En frío, HA1 = HA2 = HB prueba la integridad; en caliente, solo se hace el hash del resultado y el origen lo avala un tercero de confianza.",
+    "Supuestos especiales de la norma: dispositivos críticos, adquisiciones parciales y dispositivos de almacenamiento."
+  ],
+  "glossary": [
+    { "term": "Adquisición", "text": "Obtención (copia) de la información contenida en un dispositivo que puede contener evidencias digitales." },
+    { "term": "Adquisición en caliente (Live Response)", "text": "La que se hace con el dispositivo encendido; es la única que captura datos volátiles." },
+    { "term": "Adquisición en frío (post-mortem)", "text": "La que se hace con el dispositivo apagado o desconectado, manteniéndolo así." },
+    { "term": "Adquisición física", "text": "Copia de todo el dispositivo, del primer al último bit o sector." },
+    { "term": "Adquisición lógica", "text": "Copia de un volumen o parte de él (carpetas, archivos, una base de datos); solo en formato imagen." },
+    { "term": "Adquisición parcial", "text": "Supuesto especial en que solo se adquiere parte de la información, de forma justificada y documentada." },
+    { "term": "Apagado forense", "text": "Cortar la corriente de golpe para congelar el estado del disco y evitar scripts de limpieza." },
+    { "term": "Bloqueador contra escritura", "text": "Herramienta hardware o software que impide escribir en un dispositivo de almacenamiento." },
+    { "term": "Borrado seguro (sanitización)", "text": "Sobrescritura de un soporte para que su contenido anterior no pueda recuperarse." },
+    { "term": "Cadena de custodia", "text": "Registro de todo lo ocurrido con una evidencia desde su obtención hasta el juicio." },
+    { "term": "CCTV (circuito cerrado de televisión)", "text": "Sistema de cámaras de vigilancia; su hardware específico suele justificar un clonado." },
+    { "term": "Clonado", "text": "Copia bit a bit de un dispositivo físico en otro dispositivo físico similar." },
+    { "term": "Colisión", "text": "Dos entradas distintas que producen el mismo hash." },
+    { "term": "Dispositivo crítico", "text": "Sistema que no puede apagarse sin causar un daño mayor; supuesto especial de la ISO/IEC 27037." },
+    { "term": "Distribución Linux forense", "text": "Linux que arranca sin montar los discos del equipo (o en solo lectura), como Kali, Parrot o Tsurugi." },
+    { "term": "Evidencia volátil", "text": "Información que se pierde al apagar el equipo, como la RAM o los procesos en ejecución." },
+    { "term": "Fedatario público", "text": "Persona que da fe legal de un hecho, como un notario o un letrado de la Administración de Justicia." },
+    { "term": "Función hash", "text": "Función que resume datos de tamaño variable en una salida de tamaño fijo." },
+    { "term": "IDS (Intrusion Detection System)", "text": "Sistema que detecta intrusiones vigilando el tráfico de red." },
+    { "term": "Imagen forense", "text": "Copia exacta de un dispositivo almacenada en un archivo." },
+    { "term": "ISO/IEC 27037", "text": "Norma internacional con directrices para identificar, recolectar, adquirir y preservar evidencias digitales." },
+    { "term": "MD5 (Message-Digest algorithm 5)", "text": "Algoritmo hash de 128 bits (32 caracteres hexadecimales)." },
+    { "term": "Recolección", "text": "Proceso de recopilación de los elementos físicos que pueden contener una potencial evidencia digital." },
+    { "term": "SHA (Secure Hash Algorithm)", "text": "Familia de algoritmos hash: SHA-1 (160 bits), SHA-2 y SHA-3 (224, 256, 384 o 512 bits)." },
+    { "term": "Tercero de confianza", "text": "Persona o mecanismo aceptado (notario, fedatario) que da fe de un proceso que el hash no puede garantizar." }
+  ],
+  "questions": {
+    "forense-t03-01": {
+      "section": "bloqueo-escritura",
+      "reasoning": "Para adquirir en frío hay que impedir que se escriba en el original. El tema da tres vías: bloqueadores hardware, bloqueo software mediante programas o scripts, y arrancar con una distribución Linux forense que no monta los discos. La respuesta buena es la que reúne las tres, y no «todas», porque entre las opciones hay una falsa.",
+      "options": {
+        "a": "Incorrecta. El hardware es una vía válida, pero no la única: deja fuera el software y las distribuciones forenses.",
+        "b": "Incorrecta. Sí es posible bloquear la escritura; con un bloqueador hardware se consigue de forma fiable.",
+        "c": "Correcta. Enumera las tres formas que describe el tema: hardware, software (programas o scripts) y distribución Linux forense.",
+        "d": "Incorrecta. No pueden ser todas ciertas, porque la b afirma algo falso y además contradice a la a y a la c."
+      }
+    },
+    "forense-t03-02": {
+      "section": "escena",
+      "reasoning": "Acotar la escena se hace con dos preguntas: qué equipos han sufrido directamente el incidente y qué otros, sin sufrirlo, pueden estar relacionados. La respuesta debe recoger ambas.",
+      "options": {
+        "a": "Incorrecta. Se queda corta: ignora los equipos relacionados, como el servidor de correo por el que entró un malware.",
+        "b": "Correcta. Recoge las dos preguntas del tema: afectados directamente más otros relacionados.",
+        "c": "Incorrecta. Acotar es justo lo contrario de recoger todo: se decide qué es necesario y qué no.",
+        "d": "Incorrecta. Es demasiado amplia: no todos los servidores con los que interactúa el equipo están relacionados con el incidente."
+      }
+    },
+    "forense-t03-03": {
+      "section": "hash-usos",
+      "reasoning": "El tema enumera como funciones hash típicas MD5 (128 bits), SHA o SHA-1 (160 bits), SHA-2 y SHA-3. Las tres opciones son, por tanto, algoritmos hash.",
+      "options": {
+        "a": "Incorrecta como respuesta única. SHA-1 es un algoritmo hash, pero no es el único de la lista.",
+        "b": "Incorrecta como respuesta única. SHA-3 es un algoritmo hash, pero también lo son los otros dos.",
+        "c": "Incorrecta como respuesta única. MD5 es un algoritmo hash (aunque hoy débil frente a colisiones), pero no el único.",
+        "d": "Correcta. MD5, SHA-1 y SHA-3 son todos funciones hash."
+      }
+    },
+    "forense-t03-04": {
+      "section": "caliente-frio",
+      "reasoning": "La adquisición en caliente se hace con el equipo encendido. Es obligada para lo volátil (solo existe mientras hay corriente), para equipos que no pueden apagarse (dispositivos críticos) y cuando hay datos cifrados accesibles, porque al apagar puede perderse el acceso. Los tres motivos son válidos.",
+      "options": {
+        "a": "Incorrecta como respuesta única. Es un motivo cierto: lo volátil solo se adquiere en caliente. Pero no es el único.",
+        "b": "Incorrecta como respuesta única. Es cierta: un dispositivo crítico se adquiere encendido. Pero hay otros motivos.",
+        "c": "Incorrecta como respuesta única. Es cierta: con un disco cifrado abierto, apagar puede dejarlo inaccesible. Pero no es la única.",
+        "d": "Correcta. Los tres supuestos justifican una adquisición en caliente."
+      }
+    },
+    "forense-t03-05": {
+      "section": "imagen-clonado",
+      "reasoning": "La imagen forense es un archivo, así que se pueden guardar varias en un mismo soporte, y su formato permite añadir metadatos, compresión y redundancia. No necesitar ningún programa es, en cambio, la ventaja del clonado.",
+      "options": {
+        "a": "Incorrecta. Es al revés: para abrir una imagen hace falta un programa; el clonado es el que no necesita ninguno.",
+        "b": "Incorrecta como respuesta única. Es una ventaja real de la imagen, pero no la única.",
+        "c": "Incorrecta como respuesta única. También es una ventaja real de la imagen, pero falta la b.",
+        "d": "Correcta. Las dos ventajas de la imagen frente al clonado son la b y la c."
+      }
+    },
+    "forense-t03-06": {
+      "section": "fisica-logica",
+      "reasoning": "La pregunta habla del alcance de la copia: el disco entero, con particiones y tabla de particiones. Copiar toda la estructura, del primer al último sector, es una adquisición física. Encendido o apagado es otro eje que la pregunta no menciona.",
+      "options": {
+        "a": "Incorrecta. En caliente se refiere a que el equipo está encendido, no al alcance de lo copiado.",
+        "b": "Incorrecta. La lógica se limita a un volumen o a parte de él; no copia la tabla de particiones ni el disco completo.",
+        "c": "Correcta. Copiar el dispositivo completo con toda su estructura es la definición de adquisición física.",
+        "d": "Incorrecta. Mezcla formato y estado; no describe el alcance completo, que es lo que se pregunta."
+      }
+    },
+    "forense-t03-07": {
+      "section": "supuestos-especiales",
+      "reasoning": "La ISO/IEC 27037 justifica la adquisición parcial cuando el dispositivo es demasiado grande, cuando el sistema es crítico, cuando solo una parte es relevante y cuando la ley o el juez limitan el alcance. Las opciones a, c y d están en esa lista.",
+      "options": {
+        "a": "Incorrecta como respuesta única. El tamaño muy grande es un motivo válido, pero no el único.",
+        "b": "Correcta. Tamaño, límite judicial y relevancia parcial son motivos que recoge la norma.",
+        "c": "Incorrecta como respuesta única. El límite legal es un motivo válido, pero hay otros.",
+        "d": "Incorrecta como respuesta única. La relevancia parcial es un motivo válido, pero no el único."
+      }
+    },
+    "forense-t03-08": {
+      "section": "recoleccion",
+      "reasoning": "La frase es la definición literal que da la ISO/IEC 27037 de recolección: reunir los objetos físicos que pueden contener evidencias. La adquisición es otra cosa: copiar la información que contienen.",
+      "options": {
+        "a": "Incorrecta. La adquisición es obtener los datos de esos elementos, no recopilar los elementos físicos.",
+        "b": "Incorrecta. El clonado es un formato de copia (disco a disco), no la recopilación de objetos.",
+        "c": "Correcta. Es la definición de recolección en la ISO/IEC 27037.",
+        "d": "Incorrecta. La imagen forense es una copia guardada en un archivo, no un proceso de recopilación física."
+      }
+    },
+    "forense-t03-09": {
+      "section": "supuestos-especiales",
+      "reasoning": "La norma reconoce tres supuestos especiales: dispositivos críticos, adquisiciones parciales y dispositivos de almacenamiento. Un portátil corriente se trata con los flujos generales, así que es el único que no es un supuesto especial.",
+      "options": {
+        "a": "Incorrecta. La adquisición parcial sí es un supuesto especial.",
+        "b": "Correcta. El ordenador portátil no figura entre los supuestos especiales; de hecho el tema lo pone como ejemplo del caso general de recolección en frío.",
+        "c": "Incorrecta. Los dispositivos de almacenamiento sí son un supuesto especial.",
+        "d": "Incorrecta. Los dispositivos críticos sí son un supuesto especial."
+      }
+    },
+    "forense-t03-10": {
+      "section": "hash-concepto",
+      "reasoning": "Una función hash tiene infinitas entradas posibles y un número finito de salidas, así que por fuerza hay entradas distintas con el mismo hash. Ese fenómeno se llama colisión, y la resistencia a colisiones exige que encontrarlas a propósito sea muy difícil.",
+      "options": {
+        "a": "Correcta. Dos entradas distintas con el mismo hash es una colisión.",
+        "b": "Incorrecta. La compresión es que la salida sea corta, no que dos archivos compartan hash; además, de un hash no se recupera el original.",
+        "c": "Incorrecta. El hash es unidireccional: no hay nada que descifrar.",
+        "d": "Incorrecta. Un hash no identifica al autor de los datos; solo resume su contenido."
+      }
+    },
+    "forense-t03-11": {
+      "section": "escena",
+      "reasoning": "Acotar la escena es decidir sobre qué equipos y datos actuar: los afectados y los relacionados. Implica un juicio previo de relevancia, no copiar a ciegas ni limitarse a lo que está físicamente presente.",
+      "options": {
+        "a": "Correcta. Acotar es identificar qué dispositivos y datos están relacionados con el caso.",
+        "b": "Incorrecta. Olvida los sistemas relacionados, como el servidor de correo, que forman parte de la escena.",
+        "c": "Incorrecta. El alcance se justifica antes de adquirir, no después de haberlo copiado todo.",
+        "d": "Incorrecta. Los datos en remoto (servidor corporativo, nube) pueden formar parte de la escena; el ejemplo del tema incluye correo y almacenamiento en la nube."
+      }
+    },
+    "forense-t03-12": {
+      "section": "hash-concepto",
+      "reasoning": "Una función hash convierte datos de cualquier tamaño en una salida de tamaño fijo, que depende del algoritmo (128 bits MD5, 160 bits SHA-1…). Es unidireccional: no permite recuperar el original.",
+      "options": {
+        "a": "Incorrecta. El hash no es una copia comprimida: no se puede reconstruir el original a partir de él.",
+        "b": "Incorrecta. No identifica a la persona que creó los datos; solo depende del contenido.",
+        "c": "Correcta. Produce un resumen de longitud fija para el algoritmo usado.",
+        "d": "Incorrecta. No es un cifrado: el cifrado es reversible con la clave y el hash es unidireccional."
+      }
+    },
+    "forense-t03-13": {
+      "section": "bloqueo-escritura",
+      "reasoning": "El bloqueador se pone entre el disco original y el equipo para que ni el sistema operativo ni un error humano escriban en la evidencia. Deja leer (si no, no habría copia) y no actúa sobre el destino.",
+      "options": {
+        "a": "Incorrecta. Al contrario: el bloqueador permite leer el original; lo que impide es escribir.",
+        "b": "Incorrecta. El bloqueador protege la fuente; la imagen de salida se guarda en el destino con normalidad.",
+        "c": "Incorrecta. Borrar el destino es tarea del borrado seguro, no del bloqueador.",
+        "d": "Correcta. Su finalidad es impedir escrituras que puedan modificar la fuente."
+      }
+    },
+    "forense-t03-14": {
+      "section": "borrado-seguro",
+      "reasoning": "El borrado seguro deja el destino limpio para que nadie pueda decir que los datos de la copia ya estaban ahí. Se hace sobre el soporte que va a recibir el clonado; el original se preserva, nunca se borra.",
+      "options": {
+        "a": "Correcta. Se aplica sobre el soporte de destino que va a recibir la copia.",
+        "b": "Incorrecta. Borrar el original destruiría la evidencia que se pretende preservar.",
+        "c": "Incorrecta. Borrar la imagen final eliminaría el resultado de la adquisición; el borrado es previo y sobre el destino.",
+        "d": "Incorrecta. El original nunca se borra, así que «ambos» es falso."
+      }
+    },
+    "forense-t03-15": {
+      "section": "imagen-clonado",
+      "reasoning": "Imagen y clonado pueden ser copias igual de exactas; lo que los diferencia es el almacenamiento. La imagen es un archivo que puede guardarse en cualquier soporte; el clonado reproduce el dispositivo en otro dispositivo físico.",
+      "options": {
+        "a": "Incorrecta. Es el clonado el que exige un disco por copia; en un disco caben varias imágenes.",
+        "b": "Correcta. Imagen = archivo; clonado = copia en otro soporte físico.",
+        "c": "Incorrecta. Ambos pueden ser copias completas; ninguno se limita a archivos visibles o borrados.",
+        "d": "Incorrecta. Describe una imagen (archivo comprimido con metadatos), no un clonado."
+      }
+    },
+    "forense-t03-16": {
+      "section": "caliente-frio",
+      "reasoning": "En caliente (Live Response) significa adquirir mientras el dispositivo está encendido. Es lo que permite obtener datos volátiles.",
+      "options": {
+        "a": "Incorrecta. Un soporte extraíble desconectado se adquiere en frío.",
+        "b": "Incorrecta. Guardar la copia en un soporte nuevo no define el estado del equipo; sirve igual para frío y caliente.",
+        "c": "Incorrecta. Es contradictoria: apagar el sistema borra la memoria; eso describe un escenario en frío.",
+        "d": "Correcta. Se realiza mientras el dispositivo está encendido."
+      }
+    },
+    "forense-t03-17": {
+      "section": "hash-concepto",
+      "reasoning": "Para comparar hashes en distintos momentos (al adquirir y semanas después, en el análisis) hace falta que la misma entrada dé siempre la misma salida con el mismo algoritmo. Esa propiedad es el determinismo.",
+      "options": {
+        "a": "Incorrecta. El hash es unidireccional: no se puede invertir.",
+        "b": "Incorrecta. El hash no identifica a ninguna persona.",
+        "c": "Correcta. El determinismo hace que repetir el cálculo sobre datos inalterados dé el mismo valor.",
+        "d": "Incorrecta. Si cambiara cada vez, sería inútil para comparar; es justo lo contrario del determinismo."
+      }
+    },
+    "forense-t03-18": {
+      "section": "fisica-logica",
+      "reasoning": "Física y lógica se distinguen por el alcance: la física copia el dispositivo entero, del primer al último sector; la lógica, un volumen o un conjunto de datos. No tiene nada que ver con que el equipo esté encendido o apagado.",
+      "options": {
+        "a": "Correcta. La física copia todo el dispositivo y la lógica selecciona un volumen o conjunto de datos.",
+        "b": "Incorrecta. Está invertida: la física copia todos los sectores.",
+        "c": "Incorrecta. La copia bit a bit del dispositivo completo es la física; la lógica ni siquiera puede ser un clonado.",
+        "d": "Incorrecta. Confunde alcance con estado: ambas pueden hacerse en frío o en caliente."
+      }
+    },
+    "forense-t03-19": {
+      "section": "recoleccion",
+      "reasoning": "Según la ISO/IEC 27037, recolectar es reunir los elementos físicos que pueden contener evidencias; adquirir es obtener la información que contienen. Se puede recolectar y adquirir después, o adquirir in situ sin recolectar.",
+      "options": {
+        "a": "Correcta. La recolección reúne los contenedores físicos y la adquisición obtiene su información.",
+        "b": "Incorrecta. El embalaje forma parte de la recolección y la custodia; adquirir es copiar los datos.",
+        "c": "Incorrecta. Está invertida: la adquisición copia datos y la recolección traslada dispositivos.",
+        "d": "Incorrecta. Existen la recolección y la adquisición en caliente, con el equipo encendido."
+      }
+    },
+    "forense-t03-20": {
+      "section": "bloqueo-escritura",
+      "reasoning": "El tema advierte de que los bloqueadores por software no pueden impedir escrituras a bajo nivel. Por eso solo se recomiendan en entornos controlados, donde sabemos qué se ejecuta.",
+      "options": {
+        "a": "Incorrecta. Es lo contrario de lo que dice el tema: el software no da protección absoluta.",
+        "b": "Incorrecta. El bloqueo permite leer; si impidiera leer, no se podría adquirir.",
+        "c": "Incorrecta. Ningún bloqueador borra el original; borrar es tarea del borrado seguro, y solo sobre el destino.",
+        "d": "Correcta. No protege necesariamente frente a escrituras de bajo nivel, de ahí que exija un entorno controlado."
+      }
+    },
+    "forense-t03-21": {
+      "section": "preservacion",
+      "reasoning": "En frío el origen está bloqueado y se pueden calcular tres hashes: HA1 (origen antes), HA2 (origen después) y HB (copia). Si los tres coinciden, el origen no se alteró y la copia es exacta.",
+      "options": {
+        "a": "Incorrecta. Sin un hash del origen no hay con qué comparar la copia.",
+        "b": "Incorrecta. Nombres y extensiones no dicen nada del contenido; dos archivos con el mismo nombre pueden ser distintos.",
+        "c": "Correcta. Es el procedimiento de los tres hashes que describe el tema.",
+        "d": "Incorrecta. Contar archivos visibles no detecta modificaciones del contenido ni de las zonas no visibles."
+      }
+    },
+    "forense-t03-22": {
+      "section": "preservacion",
+      "reasoning": "La memoria RAM cambia sin parar y no se puede bloquear, así que no tiene sentido calcular el hash del origen. Solo se calcula el hash del archivo resultante, que sirve de referencia para detectar cambios posteriores. El origen lo avala un tercero de confianza.",
+      "options": {
+        "a": "Incorrecta. Un hash no identifica a ninguna persona.",
+        "b": "Correcta. Permite comprobar que el archivo adquirido no ha cambiado respecto a ese resumen.",
+        "c": "Incorrecta. El tema dice expresamente que en caliente el hash no garantiza que origen y copia sean iguales.",
+        "d": "Incorrecta. La memoria cambia durante la captura, y el hash del resultado no puede demostrar lo contrario."
+      }
+    },
+    "forense-t03-23": {
+      "section": "supuestos-especiales",
+      "reasoning": "La adquisición parcial es razonable cuando hay un motivo que la justifica (tamaño, sistema crítico, relevancia parcial, límite legal) y siempre documentada. Nunca sirve para hacer selecciones informales o interesadas.",
+      "options": {
+        "a": "Incorrecta. La adquisición parcial exige más documentación, no menos.",
+        "b": "Incorrecta. Descartar por extensión no es un criterio de relevancia justificado: un archivo relevante puede tener cualquier extensión.",
+        "c": "Correcta. Relevancia parcial y límite legal son dos de los motivos de la norma.",
+        "d": "Incorrecta. Omitir datos contrarios a la hipótesis es parcialidad, no adquisición parcial."
+      }
+    },
+    "forense-t03-24": {
+      "section": "escena",
+      "reasoning": "En el ejemplo del tema, si el malware entró por correo, el servidor de correo está relacionado aunque no esté infectado: guarda rastros de la entrega. Lo mismo ocurre con los antivirus, cortafuegos o IDS que analizaron el mensaje.",
+      "options": {
+        "a": "Incorrecta. Una impresora que no intervino en la recepción no tiene relación con la entrada del ataque.",
+        "b": "Incorrecta. Un soporte que nunca se conectó ni a la red ni al equipo no puede tener rastros del incidente.",
+        "c": "Correcta. El servidor de correo que entregó el mensaje es el ejemplo de sistema relacionado del tema.",
+        "d": "Incorrecta. Compartir fabricante no crea ninguna relación con el incidente."
+      }
+    },
+    "forense-t03-25": {
+      "section": "imagen-clonado",
+      "reasoning": "Para guardar varias adquisiciones en un solo disco hacen falta archivos: eso es la imagen forense. El clonado ocupa un dispositivo de destino entero por cada origen.",
+      "options": {
+        "a": "Incorrecta. Unas capturas de carpetas no son una adquisición forense: no copian el contenido completo.",
+        "b": "Incorrecta. Una lista de archivos no contiene los datos.",
+        "c": "Incorrecta. El clonado necesita un disco por cada origen; no se pueden meter varios clones en el mismo disco.",
+        "d": "Correcta. Las imágenes forenses son archivos y caben varias en un mismo disco."
+      }
+    },
+    "forense-t03-26": {
+      "section": "recoleccion",
+      "reasoning": "En la recolección en frío el objetivo es mantener el estado apagado. La norma manda desconectar la batería y la alimentación, desconectar y fotografiar los cables, tapar el botón de encendido y documentarlo todo.",
+      "options": {
+        "a": "Incorrecta. Conectarlo a la red y actualizarlo modificaría el disco.",
+        "b": "Correcta. Desconectar la alimentación y documentar conexiones y dispositivos relacionados es lo que marca la recolección en frío.",
+        "c": "Incorrecta. Arrancarlo rompe el estado en frío y escribe en el disco.",
+        "d": "Incorrecta. Cambiar la configuración altera la evidencia."
+      }
+    },
+    "forense-t03-27": {
+      "section": "recoleccion",
+      "reasoning": "En la recolección en caliente, lo primero es ver si hay datos volátiles que adquirir, porque se pierden al apagar. Después se valora si los datos del disco son estables o si un corte de corriente los corrompería (sistemas transaccionales). Con eso se decide entre apagado forense y apagado limpio.",
+      "options": {
+        "a": "Incorrecta. Ignora la memoria, que se perdería al apagar antes de pensar en clonar.",
+        "b": "Correcta. Hay que valorar adquirir los volátiles y el riesgo para los datos en curso.",
+        "c": "Incorrecta. Ignorar la memoria activa es justo el error que se debe evitar.",
+        "d": "Incorrecta. El sistema de archivos del soporte de destino no decide si se puede cortar la corriente del equipo investigado."
+      }
+    },
+    "forense-t03-28": {
+      "section": "adquisicion-campo",
+      "reasoning": "Con el equipo encendido y el volumen desbloqueado, el sistema puede leer los datos en claro. Al apagar, el volumen vuelve a quedar cifrado y, sin la clave, puede ser inaccesible. Por eso la norma manda adquirir en vivo primero los datos cifrados.",
+      "options": {
+        "a": "Correcta. Tras el apagado puede perderse el acceso a la información descifrada.",
+        "b": "Incorrecta. Apagar no descifra nada; al contrario, vuelve a proteger los datos.",
+        "c": "Incorrecta. Que haya cifrado no quita relevancia a los datos.",
+        "d": "Incorrecta. Un volumen cifrado no se borra al apagar; sigue ahí, pero inaccesible sin la clave."
+      }
+    },
+    "forense-t03-29": {
+      "section": "adquisicion-campo",
+      "reasoning": "En caliente hay que ejecutar software en el equipo investigado. El tema pide que lo aporte el perito, en versión portable, para no depender de herramientas que pueden estar comprometidas y para minimizar el impacto. Eso no exime del hash ni de documentar la herramienta, ni garantiza impacto cero.",
+      "options": {
+        "a": "Incorrecta. Hay que calcular el hash de referencia del resultado igualmente.",
+        "b": "Incorrecta. Siempre se debe documentar qué herramienta y qué versión se han usado.",
+        "c": "Incorrecta. Ninguna adquisición en vivo garantiza no modificar nada: ejecutar un programa ya cambia la memoria.",
+        "d": "Correcta. Reduce el impacto y evita confiar en software del equipo que podría estar comprometido."
+      }
+    },
+    "forense-t03-30": {
+      "section": "supuestos-especiales",
+      "reasoning": "Se juntan dos supuestos especiales: un sistema crítico que no puede apagarse y un alcance limitado legalmente. El procedimiento de adquisición parcial es identificar la información autorizada y hacer una adquisición lógica de ella, en caliente y documentada.",
+      "options": {
+        "a": "Incorrecta. Un sistema crítico no se apaga, y el límite legal sigue existiendo aunque se apague.",
+        "b": "Correcta. Adquisición lógica limitada a lo autorizado, documentando el procedimiento.",
+        "c": "Incorrecta. Se queda corta: se autorizó adquirir los correos, no solo sus nombres.",
+        "d": "Incorrecta. Excede la autorización y además apagaría o afectaría a un sistema crítico; la autorización se comprueba antes."
+      }
+    }
+  }
+}
