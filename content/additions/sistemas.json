@@ -13,7 +13,7 @@
             "Para cumplir los requisitos de seguridad de los roles específicos del servidor.",
             "Ninguna de las anteriores."
           ],
-          "source_page": 39,
+          "source_page": 12,
           "correct": 0,
           "explanation": "El nivel de dominio aplica requisitos comunes, como las políticas de cuentas y contraseñas, a los servidores del dominio. El nivel de rol añade después las necesidades de cada función.",
           "difficulty": "media",
@@ -28,7 +28,7 @@
             "Para cumplir los requisitos de seguridad de los roles específicos del servidor.",
             "Ninguna de las anteriores."
           ],
-          "source_page": 39,
+          "source_page": 12,
           "correct": 1,
           "explanation": "El nivel de referencia establece la base de seguridad común de los servidores miembros. Sobre esa base se añaden las configuraciones específicas de cada rol.",
           "difficulty": "media",
@@ -43,7 +43,7 @@
             "Para cumplir los requisitos de seguridad de los roles específicos del servidor.",
             "Ninguna de las anteriores."
           ],
-          "source_page": 39,
+          "source_page": 12,
           "correct": 2,
           "explanation": "El nivel de rol adapta la seguridad a la función concreta: un servidor web y un controlador de dominio necesitan permisos y servicios diferentes.",
           "difficulty": "media",
@@ -58,7 +58,7 @@
             "2022.",
             "Ninguna de las anteriores."
           ],
-          "source_page": 40,
+          "source_page": 8,
           "correct": 0,
           "explanation": "Windows Server 2025 presenta la seguridad multicapa core-to-cloud: varias defensas coordinadas desde el hardware y el sistema operativo hasta las comunicaciones y la nube.",
           "difficulty": "media",
@@ -73,7 +73,7 @@
             "2022.",
             "Ninguna de las anteriores."
           ],
-          "source_page": 40,
+          "source_page": 8,
           "correct": 1,
           "explanation": "En Windows Server 2025, Credential Guard se activa por defecto en equipos compatibles. Aísla credenciales mediante virtualización para dificultar su robo y reutilización.",
           "difficulty": "media",
@@ -88,7 +88,7 @@
             "2022.",
             "Ninguna de las anteriores."
           ],
-          "source_page": 40,
+          "source_page": 7,
           "correct": 2,
           "explanation": "Secured-core server se incorpora en Windows Server 2022. Combina protecciones del hardware, firmware y sistema operativo para reforzar el arranque y el entorno de ejecución.",
           "difficulty": "media",
@@ -103,7 +103,7 @@
             "Solo a los administradores.",
             "Todas las anteriores son ciertas."
           ],
-          "source_page": 40,
+          "source_page": 15,
           "correct": 3,
           "explanation": "La corrección del campus confirma que afecta a cuentas de usuarios, servicios y administradores. Las opciones individuales usan incorrectamente «solo»: la idea que debes recordar es que abarca las tres categorías.",
           "difficulty": "media",
@@ -118,7 +118,7 @@
             "Directivas de contraseñas\\opciones de seguridad.",
             "Ninguna de las anteriores."
           ],
-          "source_page": 41,
+          "source_page": 19,
           "correct": 1,
           "explanation": "Los tipos de cifrado permitidos para Kerberos se configuran en Directivas locales → Opciones de seguridad. No deben confundirse con la duración de los tiques, configurada en Directivas de cuenta → Directiva Kerberos.",
           "difficulty": "media",
@@ -133,7 +133,7 @@
             "Directiva de registro.",
             "Ninguna de las anteriores."
           ],
-          "source_page": 41,
+          "source_page": 19,
           "correct": 0,
           "explanation": "La auditoría pertenece a Directivas locales → Directiva de auditoría. Puede distribuirse mediante un objeto de directiva de grupo, aunque su categoría de configuración siga llamándose local.",
           "difficulty": "media",
@@ -148,7 +148,7 @@
             "Opciones de seguridad.",
             "Todas las anteriores son ciertas."
           ],
-          "source_page": 41,
+          "source_page": 25,
           "correct": 1,
           "explanation": "Un firewall o cortafuegos permite o deniega tráfico entrante y saliente según reglas. Se deben publicar únicamente los servicios necesarios y restringir sus orígenes cuando corresponda.",
           "difficulty": "media",
@@ -169,7 +169,7 @@
             "DELETE.",
             "PUT."
           ],
-          "source_page": 43,
+          "source_page": 5,
           "correct": 2,
           "explanation": "DELETE es el método del protocolo de transferencia de hipertexto, HTTP, destinado a solicitar la eliminación del recurso identificado. La aplicación debe comprobar además autenticación y permisos.",
           "difficulty": "media",
@@ -186,7 +186,7 @@
             "ISO 27001.",
             "Todos las anteriores son ciertas."
           ],
-          "source_page": 43,
+          "source_page": 6,
           "correct": 0,
           "explanation": "Open SAMM, Software Assurance Maturity Model o modelo de madurez para el aseguramiento del software, organiza prácticas de desarrollo seguro. Los otros marcos no son específicamente ese modelo de desarrollo.",
           "difficulty": "media",
@@ -205,7 +205,7 @@
             "Pruebas.",
             "Producción."
           ],
-          "source_page": 43,
+          "source_page": 34,
           "correct": 2,
           "explanation": "El tema sitúa la prueba de penetración en la fase de pruebas o despliegue, con una aplicación ejecutable. Las revisiones de diseño y código deben comenzar antes.",
           "difficulty": "media",
@@ -219,7 +219,7 @@
             "Análisis de seguridad del código fuente.",
             "La A y la B."
           ],
-          "source_page": 43,
+          "source_page": 6,
           "correct": 3,
           "explanation": "Los requisitos se derivan del análisis de riesgos y del modelado de amenazas o casos de abuso. Así responden a activos y ataques concretos, en vez de limitarse a una lista genérica.",
           "difficulty": "media",
@@ -233,7 +233,7 @@
             "Análisis de seguridad del código fuente.",
             "Todas las anteriores son ciertas."
           ],
-          "source_page": 44,
+          "source_page": 34,
           "correct": 3,
           "explanation": "Antes de la prueba de penetración se definen requisitos, se modelan amenazas y se revisa el código. La prueba final complementa esas actividades; no las sustituye.",
           "difficulty": "media",
@@ -247,7 +247,7 @@
             "SQLI.",
             "OWASP."
           ],
-          "source_page": 44,
+          "source_page": 6,
           "correct": 0,
           "explanation": "SSDLC significa Secure Software Development Life Cycle: ciclo de vida de desarrollo de software seguro. Integra actividades de seguridad desde los requisitos hasta mantenimiento y producción.",
           "difficulty": "media",
@@ -267,7 +267,7 @@
             "POST.",
             "CONNECT."
           ],
-          "source_page": 44,
+          "source_page": 5,
           "correct": 3,
           "explanation": "CONNECT solicita al intermediario un túnel hacia el destino. Se utiliza, por ejemplo, para transportar una conexión cifrada a través de un proxy HTTP.",
           "difficulty": "media",
@@ -284,7 +284,7 @@
             "POST",
             "GET"
           ],
-          "source_page": 44,
+          "source_page": 5,
           "correct": 1,
           "explanation": "HEAD solicita las cabeceras de la respuesta que correspondería a GET, pero sin su cuerpo. Resulta útil para consultar metadatos sin descargar el contenido completo.",
           "difficulty": "media",
@@ -322,7 +322,7 @@
             "La inyección de código SQL.",
             "La inyección de código HTML."
           ],
-          "source_page": 45,
+          "source_page": 26,
           "correct": 0,
           "explanation": "La división de respuestas HTTP puede permitir inyectar contenido HTML, HyperText Markup Language, y JavaScript. Se evita rechazando caracteres de control peligrosos en valores usados para construir cabeceras.",
           "difficulty": "media",
@@ -347,7 +347,7 @@
             "Falsificación de solicitud entre sitios (CSRF).",
             "Cross-site scripting (XSS)."
           ],
-          "source_page": 38,
+          "source_page": 8,
           "correct": 3,
           "explanation": "XSS significa Cross-Site Scripting: ejecución de código introducido por un atacante en el navegador de otra persona. La aplicación debe codificar la salida según el contexto donde se inserta.",
           "difficulty": "media",
@@ -368,7 +368,7 @@
             "Inyección de comandos.",
             "Falsificación de solicitud del lado del servidor (SSRF)."
           ],
-          "source_page": 38,
+          "source_page": 11,
           "correct": 2,
           "explanation": "La inyección de comandos ocurre cuando una entrada controlada por el usuario termina interpretándose como una orden del sistema operativo. Es preferible evitar el intérprete y usar interfaces específicas con argumentos separados.",
           "difficulty": "media",
@@ -385,7 +385,7 @@
             "El XSS almacenado requiere interacción del usuario, pero el XSS reflejado no.",
             "El XSS reflejado afecta a un solo usuario, mientras que el XSS almacenado pude afectar a todos los usuarios que acceden a la página."
           ],
-          "source_page": 38,
+          "source_page": 8,
           "correct": 3,
           "explanation": "El XSS almacenado persiste en la aplicación y puede ejecutarse en futuras visitas. El reflejado vuelve en una respuesta ligada a una petición manipulada; también puede afectar a varias víctimas si reciben ese enlace.",
           "difficulty": "media",
@@ -402,7 +402,7 @@
             "Inyectar código malicioso en la página web.",
             "Robar cookies de la sesión del usuario."
           ],
-          "source_page": 39,
+          "source_page": 20,
           "correct": 0,
           "explanation": "CSRF, Cross-Site Request Forgery o falsificación de solicitudes entre sitios, induce al navegador autenticado a enviar una acción no deseada. Un token impredecible validado en el servidor ayuda a impedirlo.",
           "difficulty": "media",
@@ -419,7 +419,7 @@
             "Cross-site scripting (XSS).",
             "Falsificación de solicitud entre sitios (CSRF)."
           ],
-          "source_page": 39,
+          "source_page": 6,
           "correct": 1,
           "explanation": "SQL significa Structured Query Language, lenguaje de consulta estructurado. Una inyección SQL hace que datos del usuario alteren una consulta; las consultas parametrizadas separan los datos de las instrucciones.",
           "difficulty": "media",
@@ -439,7 +439,7 @@
             "Solo ataques de inyección de comandos del sistema operativo (OS Command Injection).",
             "Inyecciones de código y ataques de cross-site scripting (XSS)."
           ],
-          "source_page": 39,
+          "source_page": 6,
           "correct": 3,
           "explanation": "Las entradas no fiables pueden acabar en intérpretes de consultas, comandos o código del navegador. Validar entradas ayuda, pero también son esenciales las consultas parametrizadas y la codificación de salida.",
           "difficulty": "media",
@@ -478,7 +478,7 @@
             "Utilizar consultas parametrizadas (prepared statements).",
             "Filtrar caracteres especiales, como el punto y coma (;)."
           ],
-          "source_page": 40,
+          "source_page": 6,
           "correct": 2,
           "explanation": "Las consultas parametrizadas mantienen el valor de entrada separado de la estructura SQL. El cifrado de la base de datos no impide que una consulta construida inseguramente cambie de significado.",
           "difficulty": "media",
@@ -495,7 +495,7 @@
             "Inyección SQL.",
             "RFI."
           ],
-          "source_page": 40,
+          "source_page": 16,
           "correct": 0,
           "explanation": "Path traversal utiliza rutas manipuladas para salir del directorio permitido y acceder a archivos locales. Deben resolverse y comprobarse las rutas contra una ubicación autorizada, sin confiar en la entrada recibida.",
           "difficulty": "media",
@@ -514,7 +514,7 @@
             "Inyección de código SQL.",
             "Inyección de código HTML."
           ],
-          "source_page": 40,
+          "source_page": 14,
           "correct": 0,
           "explanation": "La división de respuestas HTTP puede introducir HTML y JavaScript en una respuesta falsificada. La inyección SQL es un problema distinto, situado en la construcción de consultas a la base de datos.",
           "difficulty": "media",
@@ -539,7 +539,7 @@
             "Codificadas en Base64.",
             "Hash MD5."
           ],
-          "source_page": 55,
+          "source_page": 8,
           "correct": 2,
           "explanation": "Basic codifica usuario y contraseña en Base64, que es reversible y no constituye cifrado. Debe viajar sobre una conexión cifrada con TLS, Transport Layer Security o seguridad de la capa de transporte.",
           "difficulty": "media",
@@ -556,7 +556,7 @@
             "Hash.",
             "Todas las anteriores."
           ],
-          "source_page": 55,
+          "source_page": 10,
           "correct": 3,
           "explanation": "Digest utiliza un nonce, valor de desafío, una respuesta calculada y funciones resumen o hash. Su seguridad depende de cómo se implementen los desafíos y la protección frente a reutilización.",
           "difficulty": "media",
@@ -570,7 +570,7 @@
             "TFS.",
             "AES."
           ],
-          "source_page": 55,
+          "source_page": 19,
           "correct": 0,
           "explanation": "TGT significa Ticket Granting Ticket, tique de concesión de tiques. Permite solicitar al servicio de concesión los tiques necesarios para acceder a servicios concretos.",
           "difficulty": "media",
@@ -610,7 +610,7 @@
             "Nonce.",
             "Response."
           ],
-          "source_page": 56,
+          "source_page": 10,
           "correct": 2,
           "explanation": "El nonce del servidor debe ser impredecible, controlarse y caducar adecuadamente. Así una respuesta capturada no sigue siendo válida indefinidamente y se dificultan los ataques de repetición.",
           "difficulty": "media",
@@ -627,7 +627,7 @@
             "La A y la B.",
             "Ninguna de las anteriores."
           ],
-          "source_page": 56,
+          "source_page": 44,
           "correct": 2,
           "explanation": "OAuth 2.0 puede usar un código de autorización para obtener un token de acceso. Es un marco de autorización delegada: por sí solo no define un protocolo completo de identificación del usuario.",
           "difficulty": "media",
@@ -641,7 +641,7 @@
             "Digest.",
             "La A y la B."
           ],
-          "source_page": 56,
+          "source_page": 14,
           "correct": 3,
           "explanation": "Active Directory utiliza Kerberos y NTLM, NT LAN Manager. Kerberos emplea tiques; NTLM es un mecanismo de desafío y respuesta que aparece en escenarios heredados o de compatibilidad.",
           "difficulty": "media",
@@ -658,7 +658,7 @@
             "Tokens.",
             "Assertion."
           ],
-          "source_page": 56,
+          "source_page": 19,
           "correct": 1,
           "explanation": "Kerberos autentica mediante tiques emitidos por una autoridad de confianza. El usuario no debe enviar su contraseña a cada servicio al que accede.",
           "difficulty": "media",
@@ -672,7 +672,7 @@
             "Man in the middle (MITM).",
             "Todas las anteriores."
           ],
-          "source_page": 57,
+          "source_page": 46,
           "correct": 3,
           "explanation": "La repetición reutiliza mensajes capturados, la fuerza bruta prueba candidatos y un ataque MITM, Man-in-the-Middle o intermediario, intercepta la comunicación. Se necesitan defensas complementarias.",
           "difficulty": "media",
@@ -689,7 +689,7 @@
             "Salt.",
             "Todas las anteriores."
           ],
-          "source_page": 57,
+          "source_page": 46,
           "correct": 3,
           "explanation": "Una política de contraseñas ayuda frente a adivinación, CAPTCHA distingue respuestas humanas de automatización y una sal aleatoria dificulta reutilizar tablas de hashes. CAPTCHA significa Completely Automated Public Turing test to tell Computers and Humans Apart.",
           "difficulty": "media",
@@ -709,7 +709,7 @@
             "1024 bits.",
             "2048 bits."
           ],
-          "source_page": 46,
+          "source_page": 10,
           "correct": 1,
           "explanation": "ID significa identificador. El tema recomienda al menos 128 bits aleatorios para el identificador de sesión; la imprevisibilidad es tan importante como la longitud para evitar adivinaciones.",
           "difficulty": "media",
@@ -742,7 +742,7 @@
             "Fijación de sesión.",
             "Todas las anteriores."
           ],
-          "source_page": 46,
+          "source_page": 13,
           "correct": 3,
           "explanation": "La captura, adivinación y fijación de un identificador válido pueden permitir suplantar una sesión. Debe ser impredecible, regenerarse al autenticar y revocarse al cerrar sesión.",
           "difficulty": "media",
@@ -759,7 +759,7 @@
             "Evitar SQLi.",
             "Ninguna de las anteriores."
           ],
-          "source_page": 46,
+          "source_page": 15,
           "correct": 0,
           "explanation": "Un token anti-CSRF, contra la falsificación de solicitudes entre sitios, vincula una petición con la sesión o contexto autorizado. No sustituye las defensas contra ejecución de scripts ni contra inyección SQL.",
           "difficulty": "media",
@@ -778,7 +778,7 @@
             "En cualquier momento.",
             "No es necesario."
           ],
-          "source_page": 47,
+          "source_page": 4,
           "correct": 1,
           "explanation": "Al completar correctamente la autenticación debe emitirse un identificador nuevo e invalidarse el anterior. Pueden existir sesiones anónimas antes del acceso, pero no deben conservar el mismo identificador tras autenticarse.",
           "difficulty": "media",
@@ -795,7 +795,7 @@
             "Parámetro POST.",
             "Todas las anteriores."
           ],
-          "source_page": 47,
+          "source_page": 4,
           "correct": 3,
           "explanation": "El tema describe cookies, parámetros de dirección URL y datos enviados por POST como ubicaciones posibles. Que una ubicación sea posible no la hace recomendable: exponer el identificador en la dirección facilita filtraciones.",
           "difficulty": "media",
@@ -813,7 +813,7 @@
             "Roles.",
             "Recursos."
           ],
-          "source_page": 47,
+          "source_page": 26,
           "correct": 0,
           "explanation": "La lista de control de acceso registra quién puede realizar qué operaciones sobre un recurso. Autenticarse demuestra la identidad; la consulta de permisos determina si esa acción está autorizada.",
           "difficulty": "media",
@@ -827,7 +827,7 @@
             "LFI.",
             "Todos los anteriores."
           ],
-          "source_page": 47,
+          "source_page": 33,
           "correct": 0,
           "explanation": "TOCTOU significa Time Of Check To Time Of Use: intervalo entre comprobar una condición y usar el recurso. Si cambia en ese intervalo, una operación puede ejecutarse con permisos o datos ya inválidos.",
           "difficulty": "media",
@@ -862,7 +862,7 @@
             "No tener un ID de sesión largo.",
             "La A y la B."
           ],
-          "source_page": 48,
+          "source_page": 33,
           "correct": 3,
           "explanation": "Una comprobación separada del uso permite cambios concurrentes. Las operaciones atómicas y el bloqueo adecuado evitan que otro actor modifique el recurso entre ambas etapas.",
           "difficulty": "media",
@@ -886,7 +886,7 @@
             "Exposición de contraseñas en texto plano.",
             "Acceso concurrente a memoria compartida."
           ],
-          "source_page": 57,
+          "source_page": 25,
           "correct": 1,
           "explanation": "CWE significa Common Weakness Enumeration, catálogo de debilidades comunes. CWE-22 describe el recorrido de directorios: una ruta manipulada puede permitir leer archivos fuera de la ubicación autorizada.",
           "difficulty": "media",
@@ -903,7 +903,7 @@
             "Ejecución de scripts maliciosos en el navegador de la víctima.",
             "Falsificación de certificados SSL."
           ],
-          "source_page": 57,
+          "source_page": 16,
           "correct": 2,
           "explanation": "CWE-79 corresponde a XSS, Cross-Site Scripting: scripts del atacante se ejecutan en el navegador de la víctima con el contexto de la aplicación vulnerable.",
           "difficulty": "media",
@@ -922,7 +922,7 @@
             "Manipular cabeceras HTTP.",
             "Forzar peticiones a API internas."
           ],
-          "source_page": 57,
+          "source_page": 14,
           "correct": 1,
           "explanation": "Una condición como OR 1=1 puede alterar una consulta SQL, Structured Query Language o lenguaje de consulta estructurado, si la entrada se concatena como código. Los parámetros preparados evitan esa interpretación.",
           "difficulty": "media",
@@ -942,7 +942,7 @@
             "Que el navegador tenga cookies deshabilitadas.",
             "Que el firewall esté inactivo."
           ],
-          "source_page": 57,
+          "source_page": 20,
           "correct": 0,
           "explanation": "CSRF, Cross-Site Request Forgery, aprovecha una sesión válida para inducir acciones no deseadas. La aplicación debe verificar tokens y el contexto de la petición; el cifrado de la base de datos no resuelve el problema.",
           "difficulty": "media",
@@ -960,7 +960,7 @@
             "El uso de cookies persistentes.",
             "La presencia de código JavaScript externo."
           ],
-          "source_page": 58,
+          "source_page": 25,
           "correct": 1,
           "explanation": "CWE-78 es la construcción insegura de órdenes del sistema operativo. Una entrada no fiable no debe convertirse en sintaxis del intérprete de comandos.",
           "difficulty": "media",
@@ -978,7 +978,7 @@
             "Acceso a funciones sin verificar permisos del usuario.",
             "Uso de librerías desactualizadas."
           ],
-          "source_page": 58,
+          "source_page": 31,
           "correct": 2,
           "explanation": "CWE-862 es la ausencia de autorización. Aunque la identidad esté comprobada, cada función debe verificar que esa persona posee permiso para ejecutarla.",
           "difficulty": "media",
@@ -995,7 +995,7 @@
             "Fuga de tokens de sesión.",
             "Intercambio inseguro de claves."
           ],
-          "source_page": 58,
+          "source_page": 31,
           "correct": 1,
           "explanation": "CWE-434 es la carga sin restricciones de tipos peligrosos. Un archivo subido puede convertirse en código ejecutable si se acepta y publica en un lugar donde el servidor lo interpreta.",
           "difficulty": "media",
@@ -1012,7 +1012,7 @@
             "Cambiar contraseñas periódicamente.",
             "Usar solo cookies seguras."
           ],
-          "source_page": 58,
+          "source_page": 37,
           "correct": 1,
           "explanation": "CWE-611 trata del procesamiento inseguro de entidades externas XML, Extensible Markup Language o lenguaje de marcado extensible. Deshabilitar su resolución evita accesos a archivos y conexiones inesperadas.",
           "difficulty": "media",
@@ -1030,7 +1030,7 @@
             "Interceptar tráfico entre usuarios.",
             "Inyección de SQL en segundo plano."
           ],
-          "source_page": 59,
+          "source_page": 37,
           "correct": 1,
           "explanation": "CWE-918 es SSRF, Server-Side Request Forgery. El servidor vulnerable puede convertirse en un puente hacia servicios internos a los que el atacante no llega directamente.",
           "difficulty": "media",
@@ -1049,7 +1049,7 @@
             "El atacante puede obtener acceso privilegiado fácilmente.",
             "El servidor se reinicia inesperadamente."
           ],
-          "source_page": 59,
+          "source_page": 42,
           "correct": 2,
           "explanation": "CWE-798 describe credenciales incrustadas en el código. Si un atacante las extrae de una aplicación o repositorio, puede reutilizarlas para acceder con los privilegios de esa cuenta.",
           "difficulty": "media",
@@ -1072,7 +1072,7 @@
             "Semántico.",
             "Todos los anteriores."
           ],
-          "source_page": 53,
+          "source_page": 19,
           "correct": 1,
           "explanation": "SAST, Static Application Security Testing o pruebas estáticas de seguridad, puede analizar llamadas entre funciones. Ese análisis interprocedural sigue datos y control más allá de una única función.",
           "difficulty": "media",
@@ -1089,7 +1089,7 @@
             "Interprocedural",
             "Intraprodedural."
           ],
-          "source_page": 53,
+          "source_page": 28,
           "correct": 1,
           "explanation": "DAST significa Dynamic Application Security Testing, pruebas dinámicas de seguridad. El tema indica que analiza sintácticamente las peticiones y respuestas de una aplicación en ejecución, sin comprender por completo su lógica interna.",
           "difficulty": "media",
@@ -1106,7 +1106,7 @@
             "Código ejecutable.",
             "Ninguna de las anteriores."
           ],
-          "source_page": 53,
+          "source_page": 35,
           "correct": 2,
           "explanation": "IAST, Interactive Application Security Testing o pruebas interactivas de seguridad, instrumenta el código ejecutable mediante agentes. Observa el comportamiento interno mientras se realizan peticiones reales o de prueba.",
           "difficulty": "media",
@@ -1123,7 +1123,7 @@
             "Desarrollo.",
             "Pruebas o despliegue."
           ],
-          "source_page": 53,
+          "source_page": 7,
           "correct": 3,
           "explanation": "La prueba funcional comprueba que los requisitos de seguridad se cumplen con la aplicación ejecutable. Se sitúa en pruebas o despliegue, aunque sus casos se definan desde los requisitos.",
           "difficulty": "media",
@@ -1137,7 +1137,7 @@
             "Desarrollo.",
             "Pruebas o despliegue."
           ],
-          "source_page": 54,
+          "source_page": 7,
           "correct": 2,
           "explanation": "El análisis estático se integra durante el desarrollo para corregir pronto los defectos. No necesita esperar a la aplicación desplegada y puede repetirse con cada cambio relevante.",
           "difficulty": "media",
@@ -1151,7 +1151,7 @@
             "Realiza un análisis léxico, sintáctico y semántico del código fuente y configuraciones.",
             "Todas las anteriores."
           ],
-          "source_page": 54,
+          "source_page": 19,
           "correct": 3,
           "explanation": "El análisis de caja blanca puede combinar revisiones léxicas, sintácticas y semánticas, análisis local y seguimiento entre procedimientos. Cada técnica aporta información diferente sobre el código.",
           "difficulty": "media",
@@ -1165,7 +1165,7 @@
             "Las herramientas de tipo IAST normalmente no tienen impacto en el rendimiento.",
             "Las herramientas IAST obtienen un informe del análisis de vulnerabilidades."
           ],
-          "source_page": 54,
+          "source_page": 35,
           "correct": 2,
           "explanation": "IAST, pruebas interactivas de seguridad, añade instrumentación en ejecución y puede consumir tiempo y memoria. El impacto depende de la herramienta y su configuración; no debe suponerse que sea siempre nulo.",
           "difficulty": "media",
@@ -1183,7 +1183,7 @@
             "Tienen muchos falsos positivos.",
             "Todas las anteriores son ciertas."
           ],
-          "source_page": 54,
+          "source_page": 35,
           "correct": 0,
           "explanation": "RASP significa Runtime Application Self-Protection, autoprotección de la aplicación en ejecución. Su contexto interno permite bloquear intentos de explotación, además de detectar condiciones peligrosas.",
           "difficulty": "media",
@@ -1200,7 +1200,7 @@
             "Desarrollo.",
             "Producción."
           ],
-          "source_page": 55,
+          "source_page": 35,
           "correct": 3,
           "explanation": "RASP, autoprotección de la aplicación en ejecución, se utiliza para proteger la aplicación mientras funciona en producción. Complementa las actividades de diseño, desarrollo y pruebas.",
           "difficulty": "media",
@@ -1210,14 +1210,14 @@
           }
         },
         {
-          "question": "Señalar la afirmación correcta en cuanto a herramie ntas de análisis de la seguridad SAST.",
+          "question": "Señalar la afirmación correcta en cuanto a herramientas de análisis de la seguridad SAST.",
           "options": [
             "Las herramientas SAST no cubren todo en código de la aplicación.",
             "Las herramientas SAST tienen falsos negativos y falsos positivos.",
             "Las herramientas SAST no pueden analizar código ejecutable.",
             "Todas las anteriores son falsas."
           ],
-          "source_page": 55,
+          "source_page": 19,
           "correct": 1,
           "explanation": "SAST, pruebas estáticas de seguridad, puede producir falsos positivos —alarmas sin vulnerabilidad real— y falsos negativos —defectos que no detecta—. Sus resultados deben revisarse y complementarse.",
           "difficulty": "media",
@@ -1240,7 +1240,7 @@
             "No bloquea ataques.",
             "Ninguna de las anteriores."
           ],
-          "source_page": 38,
+          "source_page": 12,
           "correct": 0,
           "explanation": "WAF significa Web Application Firewall, cortafuegos de aplicaciones web. En el modelo del tema analiza mensajes mediante reglas y expresiones regulares para reconocer patrones permitidos o maliciosos.",
           "difficulty": "media",
@@ -1257,7 +1257,7 @@
             "Pasivo.",
             "Ninguna de las anteriores."
           ],
-          "source_page": 38,
+          "source_page": 13,
           "correct": 2,
           "explanation": "En modo pasivo el WAF recibe una copia del tráfico y puede alertar, pero no se interpone en su recorrido. Por eso no puede bloquear directamente la petición original.",
           "difficulty": "media",
@@ -1274,7 +1274,7 @@
             "Pasivo.",
             "Ninguna de las anteriores."
           ],
-          "source_page": 38,
+          "source_page": 13,
           "correct": 1,
           "explanation": "El tema recomienda el proxy inverso: recibe las peticiones antes del servidor y decide si las reenvía o bloquea. Debe configurarse de modo que no pueda eludirse accediendo directamente al servidor.",
           "difficulty": "media",
@@ -1291,7 +1291,7 @@
             "Pasivo.",
             "Ninguna de las anteriores."
           ],
-          "source_page": 38,
+          "source_page": 13,
           "correct": 0,
           "explanation": "El modo bridge o puente transparente funciona a nivel de enlace, como un conmutador. Permite insertarlo sin cambiar las direcciones IP, Internet Protocol o protocolo de Internet, de los equipos protegidos.",
           "difficulty": "media",
@@ -1310,7 +1310,7 @@
             "Servidor de propósito general.",
             "Todas las anteriores son ciertas."
           ],
-          "source_page": 39,
+          "source_page": 12,
           "correct": 3,
           "explanation": "El tema describe dispositivos dedicados, implementaciones integradas en hardware y programas sobre servidores de propósito general. La elección depende del rendimiento, la disponibilidad y la administración requerida.",
           "difficulty": "media",
@@ -1327,7 +1327,7 @@
             "WAF.",
             "Todas las anteriores."
           ],
-          "source_page": 39,
+          "source_page": 9,
           "correct": 3,
           "explanation": "Balanceadores, clústeres y cortafuegos web pueden contribuir frente a ataques de denegación de servicio. Su eficacia depende del ataque: ninguna de estas medidas garantiza por sí sola resistir una saturación de capacidad.",
           "difficulty": "media",
@@ -1363,7 +1363,7 @@
             "Modo pasivo.",
             "Todas las anteriores son ciertas."
           ],
-          "source_page": 39,
+          "source_page": 13,
           "correct": 3,
           "explanation": "Un cortafuegos web puede desplegarse como proxy inverso, puente transparente o sensor pasivo. El modo determina si ve copias del tráfico o puede decidir sobre el tráfico real.",
           "difficulty": "media",
@@ -1380,7 +1380,7 @@
             "Blacklist consiste en mantener una base de datos de firmas de ataques, mientras que whitelist consiste en tener un modelo de tráfico aceptado entre la aplicación y el cliente.",
             "Todas las demás son correctas."
           ],
-          "source_page": 40,
+          "source_page": 13,
           "correct": 3,
           "explanation": "El tema aconseja proxy inverso con redundancia. Una lista de bloqueo reconoce ataques conocidos; una lista de permitidos define el comportamiento aceptable. Ambas requieren mantenimiento y pruebas.",
           "difficulty": "media",
@@ -1397,7 +1397,7 @@
             "RASP se integra en la aplicación en tiempo de ejecución para detectar y responder a amenazas desde el interior del sistema.",
             "RASP se instala en el cortafuegos perimetral para bloquear ataques a nivel de red antes de que lleguen a la aplicación."
           ],
-          "source_page": 40,
+          "source_page": 19,
           "correct": 2,
           "explanation": "RASP se integra en la aplicación en ejecución y usa información interna para detectar y responder. No equivale a revisar solamente el código fuente ni a filtrar paquetes en el perímetro.",
           "difficulty": "media",
@@ -1420,7 +1420,7 @@
             "Claves",
             "Todas las anteriores."
           ],
-          "source_page": 43,
+          "source_page": 31,
           "correct": 3,
           "explanation": "El temario presenta los almacenes, secretos y claves de Azure Key Vault. Un secreto conserva un valor sensible; una clave permite realizar operaciones criptográficas sin repartir el material privado a cada consumidor.",
           "difficulty": "media",
@@ -1434,7 +1434,7 @@
             "Grupos de administración.",
             "Ninguna de las anteriores."
           ],
-          "source_page": 43,
+          "source_page": 11,
           "correct": 2,
           "explanation": "Los grupos de administración reúnen suscripciones para aplicar gobernanza y políticas de forma jerárquica. Un grupo de recursos reúne recursos dentro de una suscripción, no sustituye ese nivel superior.",
           "difficulty": "media",
@@ -1448,7 +1448,7 @@
             "Grupo de recursos.",
             "Ninguna de las anteriores."
           ],
-          "source_page": 43,
+          "source_page": 11,
           "correct": 0,
           "explanation": "La suscripción es una unidad lógica de servicios asociada a una cuenta y usada para administración, acceso y facturación. Puede contener varios grupos de recursos.",
           "difficulty": "media",
@@ -1462,7 +1462,7 @@
             "Se pueden anidar.",
             "Ninguna de las anteriores."
           ],
-          "source_page": 43,
+          "source_page": 8,
           "correct": 2,
           "explanation": "Los grupos de recursos no se anidan. Los recursos se organizan en un grupo de recursos, mientras que la jerarquía superior pasa por suscripciones y grupos de administración.",
           "difficulty": "media",
@@ -1476,7 +1476,7 @@
             "Se puede requerir suscripción o no.",
             "Todas las anteriores son ciertas."
           ],
-          "source_page": 44,
+          "source_page": 11,
           "correct": 1,
           "explanation": "Una suscripción de Azure es una unidad lógica de sus servicios. Permite organizar la administración y el consumo; no equivale a un recurso individual ni a un grupo de administración.",
           "difficulty": "media",
@@ -1487,10 +1487,10 @@
           "options": [
             "Un elemento Action facilita las capacidades de administración que están permitidas.",
             "Un elemento Action determina qué datos puede manipular el rol.",
-            "decide a qué recurso se aplica el rol.",
+            "Decide a qué recurso se aplica el rol.",
             "Todas las anteriores."
           ],
-          "source_page": 44,
+          "source_page": 22,
           "correct": 0,
           "explanation": "Actions enumera operaciones permitidas sobre el plano de administración. Las operaciones sobre datos se expresan con DataActions, y el ámbito se fija al asignar el rol.",
           "difficulty": "media",
@@ -1504,7 +1504,7 @@
             "NotActions permite especificar una única operación que no está permitida.",
             "Ninguna de las anteriores."
           ],
-          "source_page": 44,
+          "source_page": 22,
           "correct": 0,
           "explanation": "NotActions resta operaciones de Actions dentro de esa definición. No crea una denegación absoluta: otro rol asignado puede conceder la operación excluida.",
           "difficulty": "media",
@@ -1518,7 +1518,7 @@
             "El enlace de un rol a una entidad de seguridad en un ámbito específico para conceder acceso.",
             "Todas las anteriores son ciertas."
           ],
-          "source_page": 45,
+          "source_page": 22,
           "correct": 0,
           "explanation": "La definición de rol es el conjunto de permisos. Su asignación vincula esa definición con una identidad y un ámbito; ambas piezas deben distinguirse.",
           "difficulty": "media",
@@ -1532,7 +1532,7 @@
             "Lector.",
             "Ninguna de las anteriores."
           ],
-          "source_page": 45,
+          "source_page": 21,
           "correct": 1,
           "explanation": "Colaborador permite administrar recursos, pero no conceder acceso a otras identidades mediante asignaciones de roles. Propietario añade esa capacidad y Lector no puede modificar los recursos.",
           "difficulty": "media",
@@ -1544,9 +1544,9 @@
             "Grupo de administración, grupo de recursos, suscripción, recurso.",
             "Grupo de administración, suscripción, grupo de recursos, recurso.",
             "Suscripción, grupo de administración, grupo de recursos, recurso.",
-            "Ninguna de las anterioresPrincipio del formulario ."
+            "Ninguna de las anteriores."
           ],
-          "source_page": 45,
+          "source_page": 7,
           "correct": 1,
           "explanation": "La jerarquía es grupo de administración → suscripción → grupo de recursos → recurso. Las asignaciones de niveles superiores pueden heredarse por los inferiores.",
           "difficulty": "media",
@@ -1566,7 +1566,7 @@
             "Gestionar clústeres de procesamiento de datos en la nube.",
             "Proveer herramientas gráficas para visualizar datos masivos."
           ],
-          "source_page": 38,
+          "source_page": 5,
           "correct": 1,
           "explanation": "NIST significa National Institute of Standards and Technology, Instituto Nacional de Estándares y Tecnología de Estados Unidos. Su modelo ofrece un lenguaje común para diseñar y analizar arquitecturas de grandes datos, incluida su seguridad.",
           "difficulty": "media",
@@ -1584,7 +1584,7 @@
             "Veracidad.",
             "Validación."
           ],
-          "source_page": 38,
+          "source_page": 9,
           "correct": 3,
           "explanation": "Las cinco V del tema son volumen, velocidad, variedad, veracidad y valor. La validación es una actividad útil, pero no es una de esas cinco características nombradas.",
           "difficulty": "media",
@@ -1598,7 +1598,7 @@
             "Sistema de big data.",
             "Consumidor de datos."
           ],
-          "source_page": 38,
+          "source_page": 5,
           "correct": 1,
           "explanation": "La plataforma de big data aporta la infraestructura y los servicios básicos de almacenamiento y procesamiento. El proveedor suministra datos y el consumidor utiliza los resultados.",
           "difficulty": "media",
@@ -1615,7 +1615,7 @@
             "Kerberos.",
             "SAML."
           ],
-          "source_page": 38,
+          "source_page": 24,
           "correct": 2,
           "explanation": "Kerberos utiliza tiques para autenticar identidades en un entorno distribuido. En Hadoop permite que los servicios comprueben la identidad sin reenviar una contraseña a cada nodo.",
           "difficulty": "media",
@@ -1634,7 +1634,7 @@
             "HDFS.",
             "Hive."
           ],
-          "source_page": 39,
+          "source_page": 22,
           "correct": 2,
           "explanation": "HDFS significa Hadoop Distributed File System, sistema de archivos distribuido de Hadoop. Distribuye y replica archivos entre nodos; no es el componente encargado de asignar recursos de cálculo.",
           "difficulty": "media",
@@ -1652,7 +1652,7 @@
             "Administrar políticas de seguridad y control de acceso.",
             "Almacenar archivos grandes en clústeres."
           ],
-          "source_page": 39,
+          "source_page": 24,
           "correct": 2,
           "explanation": "Apache Ranger centraliza políticas de autorización y auditoría para servicios del ecosistema. Definir permisos coherentes ayuda a evitar accesos excesivos entre componentes.",
           "difficulty": "media",
@@ -1666,7 +1666,7 @@
             "Cifrado simétrico.",
             "Cifrado de respaldo."
           ],
-          "source_page": 39,
+          "source_page": 14,
           "correct": 1,
           "explanation": "El cifrado en tránsito protege los datos mientras circulan por la red. El cifrado en reposo protege su almacenamiento; ambos cubren momentos distintos del tratamiento de la información.",
           "difficulty": "media",
@@ -1680,7 +1680,7 @@
             "Superficie de ataque amplia por distribución del sistema.",
             "Escalabilidad excesiva."
           ],
-          "source_page": 39,
+          "source_page": 9,
           "correct": 2,
           "explanation": "La distribución entre nodos y servicios amplía las interfaces, identidades y comunicaciones que deben protegerse. La seguridad debe aplicarse a toda la arquitectura, no solo al punto de entrada.",
           "difficulty": "media",
@@ -1694,7 +1694,7 @@
             "RBAC.",
             "Biometría."
           ],
-          "source_page": 40,
+          "source_page": 13,
           "correct": 2,
           "explanation": "RBAC significa Role-Based Access Control, control de acceso basado en roles. Agrupa permisos según funciones; ABAC se basa en atributos y puede añadir condiciones más detalladas.",
           "difficulty": "media",
@@ -1714,7 +1714,7 @@
             "YARN.",
             "Pig."
           ],
-          "source_page": 40,
+          "source_page": 22,
           "correct": 2,
           "explanation": "YARN significa Yet Another Resource Negotiator. Coordina los recursos del clúster y la ejecución de aplicaciones; HDFS se ocupa del almacenamiento distribuido.",
           "difficulty": "media",

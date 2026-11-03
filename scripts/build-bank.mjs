@@ -44,7 +44,9 @@ for (const [courseIndex, course] of courses.entries()) {
       const fullText = [q.question, ...q.options, q.explanation].join(' ');
       const terms = Object.fromEntries(Object.entries({ ...glossary, ...(q.glossary || {}) }).filter(([term]) => new RegExp(`(?<![A-Za-z0-9])${escapeRE(term)}(?![A-Za-z0-9])`).test(fullText)));
       if (terms.DROP && /\bSQL\b|bases? de datos/i.test(fullText)) terms.DROP = 'En SQL, instrucción para eliminar un objeto de la base de datos, por ejemplo una tabla; es diferente del veredicto DROP de un cortafuegos.';
-      const expansion = Object.entries(terms).map(([key, value]) => `${key}: ${value}`).join(' ');
+      // Some source explanations already carry a hand-written «Siglas:» note; merge it with the glossary note instead of repeating it.
+      const [body, manual = ''] = norm(q.explanation).split(/\s*Siglas:\s*/);
+      const expansion = [manual, ...Object.entries(terms).filter(([key]) => !manual.includes(`${key}:`)).map(([key, value]) => `${key}: ${value}`)].filter(Boolean).join(' ');
       const source = { kind: q.kind || 'practice', title: `Temario UNIR · Tema ${number}. ${topic.title}`, page: q.source_page };
       // Course-level links contain no student attempt/history identifiers.
       if (q.reference) {
@@ -54,7 +56,7 @@ for (const [courseIndex, course] of courses.entries()) {
       }
       if (q.source_question !== undefined) source.originalQuestion = q.source_question;
       if (q.original_issue) source.adaptation = q.original_issue;
-      questions.push({ id, course: course.id, topic: topic.id, test: `Tema ${number}`, order: index + 1, text: norm(q.question), options: q.options.map((text, i) => ({ key: 'abcd'[i], text: norm(text) })), correct: 'abcd'[q.correct], explanation: norm(q.explanation) + (expansion ? ` Siglas y términos: ${expansion}` : ''), difficulty: q.difficulty || 'media', source, ...(Object.keys(terms).length ? { glossary: terms } : {}) });
+      questions.push({ id, course: course.id, topic: topic.id, test: `Tema ${number}`, order: index + 1, text: norm(q.question), options: q.options.map((text, i) => ({ key: 'abcd'[i], text: norm(text) })), correct: 'abcd'[q.correct], explanation: body + (expansion ? ` Siglas y términos: ${expansion}` : ''), difficulty: q.difficulty || 'media', source, ...(Object.keys(terms).length ? { glossary: terms } : {}) });
     });
   }
 }

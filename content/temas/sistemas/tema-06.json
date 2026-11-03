@@ -119,7 +119,12 @@
         {
           "type": "example",
           "title": "Caso práctico: el disfraz %2E%2E%2F",
-          "text": "Un atacante quiere pedir `../etc/passwd` (subir carpetas hasta el fichero de usuarios de Linux), pero sabe que el filtro busca «../». Así que lo escribe con codificación URL: `%2E%2E%2Fetc%2Fpasswd` (%2E es el punto y %2F la barra). Un filtro ingenuo no ve «../» y lo deja pasar. Si el sistema **canonicaliza** primero, decodifica la cadena, obtiene `../etc/passwd`, la compara con los patrones de ataque y la bloquea. La canonicalización actúa como un desenmascarador frente a la **ofuscación** (disfrazar el ataque con hexadecimal, UTF-8 o codificación URL)."
+          "text": "Un atacante quiere pedir `../etc/passwd` (subir carpetas hasta el fichero de usuarios de Linux), pero sabe que el filtro busca «../». Así que lo escribe con codificación URL, como en el ejemplo de abajo (%2E es el punto y %2F la barra). Un filtro ingenuo no ve «../» y lo deja pasar. Si el sistema **canonicaliza** primero, decodifica la cadena, obtiene `../etc/passwd`, la compara con los patrones de ataque y la bloquea. La canonicalización actúa como un desenmascarador frente a la **ofuscación** (disfrazar el ataque con hexadecimal, UTF-8 o codificación URL)."
+        },
+        {
+          "type": "code",
+          "title": "La misma ruta, disfrazada y canonicalizada",
+          "text": "Lo que envía el atacante:          %2E%2E%2Fetc%2Fpasswd\nLo que ve un filtro ingenuo:       no contiene «../» → la deja pasar\nTras canonicalizar (decodificar):  ../etc/passwd     → contiene «../» → se bloquea"
         },
         {
           "type": "exam",
@@ -143,7 +148,12 @@
         {
           "type": "term",
           "term": "Codificación de salida (output encoding)",
-          "text": "Transformar los caracteres especiales de un dato antes de enviarlo a su destino (una página HTML, una consulta SQL, un comando…) para que el destino los trate como **datos** y no como **código**. En HTML, por ejemplo, el símbolo < se convierte en la entidad &lt;, que el navegador pinta como «<» pero no interpreta como inicio de etiqueta."
+          "text": "Transformar los caracteres especiales de un dato antes de enviarlo a su destino (una página HTML, una consulta SQL, un comando…) para que el destino los trate como **datos** y no como **código**. En HTML, por ejemplo, el símbolo < se convierte en la entidad &lt;, que el navegador pinta como «<» pero no interpreta como inicio de etiqueta. Mira el ejemplo de abajo."
+        },
+        {
+          "type": "code",
+          "title": "Antes y después de codificar para HTML",
+          "text": "Dato que escribió el usuario:\n<script>alert('hola')</script>\n\nDato codificado que se escribe en la página:\n&lt;script&gt;alert(&#39;hola&#39;)&lt;/script&gt;\n\nLo que muestra el navegador (texto, no código):\n<script>alert('hola')</script>"
         },
         {
           "type": "list",
@@ -269,12 +279,22 @@
         {
           "type": "example",
           "title": "Explotación: ' OR '1'='1",
-          "text": "El Servlet toma el parámetro user_id y monta: `SELECT * FROM users WHERE id = '` + user_id + `'`. El atacante escribe como user_id: `' OR '1'='1`. La consulta final queda `SELECT * FROM users WHERE id = '' OR '1'='1'`. Como '1'='1' siempre es verdad, la condición se cumple para todas las filas y el atacante obtiene los datos de **todos** los usuarios. La variante «OR 1=1» es la forma más conocida de explotar SQLi."
+          "text": "El Servlet toma el parámetro user_id y lo pega dentro de la consulta, como en el ejemplo de abajo. El atacante escribe como user_id: `' OR '1'='1`. La consulta final queda como la última línea del ejemplo. Como '1'='1' siempre es verdad, la condición se cumple para todas las filas y el atacante obtiene los datos de **todos** los usuarios. La variante «OR 1=1» es la forma más conocida de explotar SQLi."
+        },
+        {
+          "type": "code",
+          "title": "Concatenar: el código vulnerable y su resultado",
+          "text": "// Java: la entrada se pega dentro del texto de la consulta\nString sql = \"SELECT * FROM users WHERE id = '\" + userId + \"'\";\n\n// El atacante envía como user_id:\n' OR '1'='1\n\n// Consulta que se ejecuta:\nSELECT * FROM users WHERE id = '' OR '1'='1'"
         },
         {
           "type": "term",
           "term": "PreparedStatement (sentencia preparada)",
           "text": "Clase de Java que envía primero a la base de datos la **estructura** de la consulta con huecos marcados con `?` (por ejemplo, `SELECT * FROM users WHERE id = ?`) y después, por separado, los **valores**. La base de datos ya tiene la consulta precompilada, así que trata lo que llega en el hueco siempre como un dato, nunca como parte del comando."
+        },
+        {
+          "type": "code",
+          "title": "La versión segura con PreparedStatement",
+          "text": "PreparedStatement ps = conn.prepareStatement(\n    \"SELECT * FROM users WHERE id = ?\");   // estructura fija\nps.setString(1, userId);                   // el valor viaja aparte\nResultSet rs = ps.executeQuery();"
         },
         {
           "type": "p",
@@ -308,7 +328,12 @@
         {
           "type": "example",
           "title": "Caso práctico: el ErrorServlet",
-          "text": "Un ErrorServlet muestra el texto del parámetro mensaje dentro de la página tal cual. El atacante fabrica un enlace como `http://ejemplo.com/ErrorServlet?mensaje=` seguido de una etiqueta script que contiene `alert('XSS_Robo_de_Cookies')`, y se lo envía a la víctima. Al hacer clic, el servidor devuelve una página que contiene esa etiqueta script, y el navegador la ejecuta con los permisos de ejemplo.com. Un script real podría robar la **cookie de sesión**, registrar las pulsaciones de teclas o redirigir a una web de phishing (página falsa que imita a la real para robar datos)."
+          "text": "Un ErrorServlet muestra el texto del parámetro mensaje dentro de la página tal cual. El atacante fabrica un enlace como el del ejemplo de abajo, con un script en el parámetro mensaje, y se lo envía a la víctima. Al hacer clic, el servidor devuelve una página que contiene ese script, y el navegador lo ejecuta con los permisos de example.com. Un script real podría robar la **cookie de sesión**, registrar las pulsaciones de teclas o redirigir a una web de phishing (página falsa que imita a la real para robar datos)."
+        },
+        {
+          "type": "code",
+          "title": "XSS reflejado en el ErrorServlet",
+          "text": "Enlace trampa:\nhttp://example.com/ErrorServlet?mensaje=<script>alert('XSS_Robo_de_Cookies')</script>\n\nPágina que devuelve el servidor:\n<p>Error: <script>alert('XSS_Robo_de_Cookies')</script></p>"
         },
         {
           "type": "p",
@@ -320,12 +345,22 @@
           "text": "Librería gratuita de codificadores contextuales probados. Se añade como dependencia (con Maven, la herramienta que descarga las librerías de un proyecto Java) y se usa, por ejemplo, `Encode.forHtml(mensaje)` antes de escribir el mensaje en el HTML. Tiene métodos distintos para cada contexto (HTML, atributos, JavaScript, URL)."
         },
         {
+          "type": "code",
+          "title": "Antes y después en el Servlet",
+          "text": "// Vulnerable: el mensaje se escribe tal cual\nout.println(\"<p>Error: \" + mensaje + \"</p>\");\n\n// Seguro: se codifica para el contexto HTML\nout.println(\"<p>Error: \" + Encode.forHtml(mensaje) + \"</p>\");\n\n// Resultado en la página con el enlace trampa:\n<p>Error: &lt;script&gt;alert(&#39;XSS_Robo_de_Cookies&#39;)&lt;/script&gt;</p>"
+        },
+        {
           "type": "list",
           "title": "Defensas adicionales (en capas)",
           "items": [
             "**Validación estricta de entrada**: si el dato solo puede ser un número o texto simple, rechaza cualquier carácter especial.",
-            "**CSP (Content Security Policy, política de seguridad de contenido)**: una cabecera HTTP que le dice al navegador de qué orígenes puede cargar scripts y estilos. Es una red de seguridad si la codificación falla."
+            "**CSP (Content Security Policy, política de seguridad de contenido)**: una cabecera HTTP que le dice al navegador de qué orígenes puede cargar scripts y estilos. Es una red de seguridad si la codificación falla. Ejemplo de cabecera abajo."
           ]
+        },
+        {
+          "type": "code",
+          "title": "Cabecera CSP: solo scripts del propio sitio",
+          "text": "Content-Security-Policy: script-src 'self'"
         },
         {
           "type": "exam",
@@ -356,10 +391,15 @@
           "title": "Cómo se explota (Alice y Bob)",
           "items": [
             "**Víctima autenticada**: Alice inicia sesión en https://banco.com y su navegador guarda la cookie de sesión. Este es el requisito imprescindible del ataque.",
-            "**Página maliciosa**: Bob crea https://sitio-malicioso.com con un formulario invisible o JavaScript que hace un POST automático a la URL vulnerable (o una etiqueta de imagen, img, que dispara la petición al cargarse).",
+            "**Página maliciosa**: Bob crea https://sitio-malicioso.example.com con un formulario invisible que hace un POST automático a la URL vulnerable, o con una imagen (img) que dispara la petición al cargarse. Tienes las dos variantes en el código de abajo.",
             "**Ejecución**: Bob engaña a Alice para que visite su página mientras su sesión del banco sigue abierta.",
             "**Resultado**: el navegador de Alice envía la petición al EliminarCuentaServlet con la cookie válida; el Servlet ve una sesión correcta y borra la cuenta sin el consentimiento de Alice."
           ]
+        },
+        {
+          "type": "code",
+          "title": "La página de Bob",
+          "text": "<!-- Formulario invisible que se envía solo al abrir la página -->\n<form id=\"f\" action=\"https://banco.example.com/EliminarCuentaServlet\" method=\"POST\">\n  <input type=\"hidden\" name=\"confirmar\" value=\"si\">\n</form>\n<script>document.getElementById(\"f\").submit();</script>\n\n<!-- Variante con imagen (solo sirve si la acción acepta GET) -->\n<img src=\"https://banco.example.com/EliminarCuentaServlet?confirmar=si\" width=\"0\" height=\"0\">"
         },
         {
           "type": "term",
@@ -371,9 +411,14 @@
           "title": "La solución en tres pasos",
           "items": [
             "Generar el token cuando se muestra el formulario (doGet) y guardarlo en la sesión.",
-            "Incluirlo en el formulario de la página JSP como campo oculto.",
+            "Incluirlo en el formulario de la página JSP como campo oculto (mira el ejemplo de abajo).",
             "Al procesar la acción (doPost), comprobar que el token recibido coincide con el de la sesión; si no, rechazar."
           ]
+        },
+        {
+          "type": "code",
+          "title": "Campo oculto con el token en la JSP",
+          "text": "<form action=\"EliminarCuentaServlet\" method=\"POST\">\n  <input type=\"hidden\" name=\"csrfToken\" value=\"${sessionScope.csrfToken}\">\n  <button>Eliminar mi cuenta</button>\n</form>"
         },
         {
           "type": "term",
@@ -416,7 +461,12 @@
         {
           "type": "example",
           "title": "Explotación de la descarga de archivos",
-          "text": "Petición: `/app/download?filename=../../../../etc/passwd`. Ruta construida: `/var/www/data/docs/../../../../etc/passwd`, que el sistema resuelve como `/etc/passwd`, el fichero con información de los usuarios de Linux."
+          "text": "Mira el ejemplo de abajo: la petición pide un nombre de archivo lleno de ../, el Servlet lo pega detrás de su carpeta base y el sistema resuelve la ruta como `/etc/passwd`, el fichero con información de los usuarios de Linux."
+        },
+        {
+          "type": "code",
+          "title": "Del parámetro a /etc/passwd",
+          "text": "Petición:          /app/download?filename=../../../../etc/passwd\nRuta construida:   /var/www/data/docs/../../../../etc/passwd\nRuta resuelta:     /etc/passwd"
         },
         {
           "type": "list",
@@ -428,6 +478,11 @@
           ]
         },
         {
+          "type": "code",
+          "title": "Normalizar y comprobar el prefijo en Java",
+          "text": "Path base = Paths.get(\"/var/www/data/docs\").toRealPath();\nPath pedido = base.resolve(filename).normalize();   // quita los ..\nif (!pedido.startsWith(base)) {                     // ¿sigue dentro?\n    response.sendError(403);\n    return;\n}"
+        },
+        {
           "type": "term",
           "term": "Command injection (CWE-78, inyección de comandos del sistema operativo)",
           "text": "La aplicación ejecuta un comando del sistema operativo (SO) metiendo en él la entrada del usuario sin validar. El atacante añade **metacaracteres del shell** (el **shell** es el intérprete de órdenes, como Bash) como `;`, `&&` o `|`, que sirven para encadenar comandos."
@@ -435,16 +490,26 @@
         {
           "type": "example",
           "title": "Explotación del Servlet de ping",
-          "text": "El Servlet ejecuta `ping -c 4` + host. El atacante envía como host `127.0.0.1; cat /etc/passwd`. El comando final es `ping -c 4 127.0.0.1; cat /etc/passwd`: el servidor hace el ping y, a continuación, muestra el fichero de usuarios (si el proceso tiene permiso de lectura)."
+          "text": "El Servlet ejecuta `ping -c 4` seguido del host que escribe el usuario. El atacante envía como host `127.0.0.1; cat /etc/passwd`, y el comando final es el de la última línea del ejemplo de abajo: el servidor hace el ping y, a continuación, muestra el fichero de usuarios (si el proceso tiene permiso de lectura)."
+        },
+        {
+          "type": "code",
+          "title": "Inyección en el Servlet de ping",
+          "text": "# Host que envía un usuario normal:\n127.0.0.1\nping -c 4 127.0.0.1\n\n# Host que envía el atacante:\n127.0.0.1; cat /etc/passwd\nping -c 4 127.0.0.1; cat /etc/passwd"
         },
         {
           "type": "list",
           "title": "Solución",
           "items": [
             "Lo mejor: **no ejecutar comandos del SO** si se puede evitar (usar una función de la propia librería).",
-            "Si es imprescindible, **evitar el shell** (defensa principal): usar `ProcessBuilder` o `Runtime.exec(String[])` pasando cada argumento por separado en un array. El ejecutable se lanza directamente, sin intérprete, y la entrada del atacante llega como un único argumento literal: `ping -c 4 \"127.0.0.1; cat /etc/passwd\"`. Ping no entiende ese «host» y falla, pero no se ejecuta nada más.",
+            "Si es imprescindible, **evitar el shell** (defensa principal): usar `ProcessBuilder` o `Runtime.exec(String[])` pasando cada argumento por separado en un array. El ejecutable se lanza directamente, sin intérprete, y la entrada del atacante llega como un único argumento literal: `ping -c 4 \"127.0.0.1; cat /etc/passwd\"`. Ping no entiende ese «host» y falla, pero no se ejecuta nada más. Compara las dos versiones en el código de abajo.",
             "**Lista blanca** (defensa secundaria, `SAFE_HOST_PATTERN`): solo letras, números, puntos y guiones; rechazar `&`, `|`, `;`, `$`, etc. antes de ejecutar."
           ]
+        },
+        {
+          "type": "code",
+          "title": "Con shell y sin shell",
+          "text": "// Vulnerable: el shell (sh) interpreta el ; y ejecuta dos órdenes\nRuntime.getRuntime().exec(new String[]{\"sh\", \"-c\", \"ping -c 4 \" + host});\n\n// Seguro: sin shell, cada argumento por separado\nnew ProcessBuilder(\"ping\", \"-c\", \"4\", host).start();"
         },
         {
           "type": "exam",
@@ -482,7 +547,12 @@
         {
           "type": "example",
           "title": "Explotación: el borrado administrativo",
-          "text": "Un Servlet de borrado de cuentas comprueba que hay sesión, pero nunca mira si el usuario es administrador. Un usuario normal inicia sesión y envía directamente `POST /app/admin/deleteUser?id=12345`. El Servlet ve una sesión válida y borra la cuenta: un usuario corriente ha hecho una acción de administrador. Esconder el botón en el menú no sirve, porque la petición se puede escribir a mano."
+          "text": "Un Servlet de borrado de cuentas comprueba que hay sesión, pero nunca mira si el usuario es administrador. Un usuario normal inicia sesión y envía directamente la petición del ejemplo de abajo. El Servlet ve una sesión válida y borra la cuenta: un usuario corriente ha hecho una acción de administrador. Esconder el botón en el menú no sirve, porque la petición se puede escribir a mano."
+        },
+        {
+          "type": "code",
+          "title": "Petición escrita a mano por un usuario normal",
+          "text": "POST /app/admin/deleteUser?id=12345 HTTP/1.1\nHost: example.com\nCookie: JSESSIONID=sesion-valida-de-un-usuario-normal"
         },
         {
           "type": "steps",
@@ -510,7 +580,12 @@
         {
           "type": "example",
           "title": "Explotación: shell.jsp",
-          "text": "El atacante sube shell.jsp (un webshell en Java). El Servlet vulnerable lo guarda en `/var/www/html/uploads/shell.jsp`, dentro de la carpeta pública. El atacante abre `http://servidor.com/uploads/shell.jsp`; el servidor (por ejemplo, Tomcat) procesa el .jsp, ejecuta el código y le da control remoto del servidor."
+          "text": "El atacante sube shell.jsp (un webshell en Java). El Servlet vulnerable lo guarda dentro de la carpeta pública y el atacante solo tiene que pedirlo por URL, como en el ejemplo de abajo; el servidor (por ejemplo, Tomcat) procesa el .jsp, ejecuta el código y le da control remoto del servidor."
+        },
+        {
+          "type": "code",
+          "title": "Del archivo subido a la ejecución",
+          "text": "Dónde lo guarda el Servlet:   /var/www/html/uploads/shell.jsp\nCómo lo ejecuta el atacante:  http://example.com/uploads/shell.jsp"
         },
         {
           "type": "list",
@@ -544,12 +619,12 @@
         {
           "type": "term",
           "term": "XML (Extensible Markup Language, lenguaje de marcado extensible)",
-          "text": "Formato de texto con etiquetas, como una etiqueta username que encierra el texto «ana», que usan muchas aplicaciones para intercambiar datos. Un **parser** o analizador XML es el programa que lo lee."
+          "text": "Formato de texto con etiquetas, como `<username>ana</username>`, que usan muchas aplicaciones para intercambiar datos. Un **parser** o analizador XML es el programa que lo lee."
         },
         {
           "type": "term",
           "term": "DTD (Document Type Definition) y entidad externa",
-          "text": "La DTD es una cabecera opcional del XML (la declaración DOCTYPE) que puede definir **entidades**: atajos que se sustituyen por un contenido. Una **entidad externa** dice «sustitúyeme por el contenido de este archivo o URL»."
+          "text": "La DTD es una cabecera opcional del XML (la declaración `<!DOCTYPE …>`) que puede definir **entidades**: atajos que se sustituyen por un contenido. Una **entidad externa** dice «sustitúyeme por el contenido de este archivo o URL»."
         },
         {
           "type": "term",
@@ -559,7 +634,12 @@
         {
           "type": "example",
           "title": "Explotación de XXE",
-          "text": "El Servlet usa la librería estándar de Java (DocumentBuilderFactory), que por defecto procesa entidades externas. El atacante envía un XML que define la entidad &xxe; apuntando a `/etc/passwd` y la coloca dentro de la etiqueta username. El parser lee el archivo y lo inserta; la respuesta muestra algo como «Procesado XML para usuario: root:x:0:0:root:/root:/bin/bash…»."
+          "text": "El Servlet usa la librería estándar de Java (DocumentBuilderFactory), que por defecto procesa entidades externas. El atacante envía el XML del ejemplo de abajo: define la entidad xxe apuntando a `/etc/passwd` y la usa (&xxe;) dentro de `<username>`. El parser lee el archivo y lo inserta; la respuesta muestra algo como «Procesado XML para usuario: root:x:0:0:root:/root:/bin/bash…»."
+        },
+        {
+          "type": "code",
+          "title": "XML malicioso con una entidad externa",
+          "text": "<?xml version=\"1.0\"?>\n<!DOCTYPE datos [\n  <!ENTITY xxe SYSTEM \"file:///etc/passwd\">\n]>\n<datos>\n  <username>&xxe;</username>\n</datos>"
         },
         {
           "type": "list",
@@ -571,6 +651,11 @@
           ]
         },
         {
+          "type": "code",
+          "title": "Configurar DocumentBuilderFactory antes de crear el parser",
+          "text": "DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();\ndbf.setFeature(\"http://apache.org/xml/features/disallow-doctype-decl\", true);\ndbf.setFeature(\"http://xml.org/sax/features/external-general-entities\", false);\ndbf.setFeature(\"http://xml.org/sax/features/external-parameter-entities\", false);\nDocumentBuilder parser = dbf.newDocumentBuilder();"
+        },
+        {
           "type": "term",
           "term": "SSRF (Server-Side Request Forgery, CWE-918, falsificación de peticiones del lado del servidor)",
           "text": "La aplicación recibe una URL del usuario y hace una petición de red (HTTP, FTP…) a esa URL sin validarla. El atacante la usa para que el servidor acceda a **recursos internos** (intranet, servicios en la nube, localhost) que desde fuera no se ven."
@@ -578,7 +663,12 @@
         {
           "type": "example",
           "title": "Explotación de SSRF",
-          "text": "Panel de administración local: `http://servidor.com/getdata?url=http://127.0.0.1/admin` (127.0.0.1 o localhost es el propio servidor). Metadatos de la nube: `?url=http://169.254.169.254/latest/meta-data/`, la dirección interna donde AWS o Azure guardan datos de la máquina, a veces incluso credenciales."
+          "text": "En el ejemplo de abajo, el parámetro url apunta primero al panel de administración local (127.0.0.1 o localhost es el propio servidor) y después a los metadatos de la nube: 169.254.169.254 es la dirección interna donde AWS o Azure guardan datos de la máquina, a veces incluso credenciales."
+        },
+        {
+          "type": "code",
+          "title": "Dos peticiones SSRF",
+          "text": "Panel de administración local:\nhttp://example.com/getdata?url=http://127.0.0.1/admin\n\nMetadatos de la nube:\nhttp://example.com/getdata?url=http://169.254.169.254/latest/meta-data/"
         },
         {
           "type": "p",
@@ -617,9 +707,14 @@
           "title": "Solución: externalizar los secretos",
           "items": [
             "Cargar las credenciales **en tiempo de ejecución** desde una fuente protegida: **variables de entorno** (valores que el sistema operativo da al programa al arrancar, como DB_USER o DB_PASSWORD) o un fichero de propiedades fuera del código.",
-            "En el servidor se configuran esas variables (en Linux, con `export DB_PASSWORD=...`).",
+            "En el servidor se configuran esas variables (en Linux, con export, como en el ejemplo de abajo).",
             "El código ya no contiene secretos; su gestión pasa al entorno de despliegue, más controlado."
           ]
+        },
+        {
+          "type": "code",
+          "title": "Del secreto en el código al secreto en el entorno",
+          "text": "// Mal: la contraseña queda escrita en el código fuente\nString password = \"Contraseña123\";\n\n// Bien: se lee del entorno al arrancar\nString password = System.getenv(\"DB_PASSWORD\");\n\n# En el servidor (Linux), antes de arrancar la aplicación:\nexport DB_PASSWORD='valor-secreto'"
         },
         {
           "type": "term",
@@ -629,7 +724,12 @@
         {
           "type": "example",
           "title": "Explotación y solución",
-          "text": "Un Servlet recibe el parámetro length y crea una lista de ese tamaño. Con `https://sitioweb/process?length=2000000000` el servidor intenta reservar gigabytes y cae con un OutOfMemoryError (error de memoria agotada) o se queda sin CPU. La solución principal es **comprobar el tamaño de la entrada antes de reservar** y rechazar cualquier valor que supere el máximo permitido."
+          "text": "Un Servlet recibe el parámetro length y crea una lista de ese tamaño. Con la petición del ejemplo de abajo el servidor intenta reservar gigabytes y cae con un OutOfMemoryError (error de memoria agotada) o se queda sin CPU. La solución principal es **comprobar el tamaño de la entrada antes de reservar** y rechazar cualquier valor que supere el máximo permitido, como en el código del ejemplo."
+        },
+        {
+          "type": "code",
+          "title": "Petición abusiva y comprobación previa",
+          "text": "Petición del atacante:\nhttps://example.com/process?length=2000000000\n\n// Comprobar ANTES de reservar memoria\nint length = Integer.parseInt(request.getParameter(\"length\"));\nif (length < 0 || length > MAX_LENGTH) {\n    response.sendError(400);\n    return;\n}\nList<String> lista = new ArrayList<>(length);"
         },
         {
           "type": "exam",
@@ -658,15 +758,25 @@
         {
           "type": "term",
           "term": "HTTP response splitting (CWE-113, división de la respuesta HTTP)",
-          "text": "La aplicación mete entrada del usuario sin sanear en una **cabecera** de la respuesta (en el ejemplo, el valor de una cookie a partir del parámetro user_setting). Si esa entrada contiene `%0d%0a`, el atacante corta la cabecera, inyecta **cabeceras adicionales** o incluso un **cuerpo de respuesta nuevo**, lo que permite XSS o **envenenamiento de caché** (cache poisoning: que un servidor intermedio guarde la respuesta falsa y se la sirva a otros usuarios)."
+          "text": "La aplicación mete entrada del usuario sin sanear en una **cabecera** de la respuesta (en el ejemplo, el valor de una cookie a partir del parámetro user_setting). Si esa entrada contiene `%0d%0a` (mira el ejemplo de abajo), el atacante corta la cabecera, inyecta **cabeceras adicionales** o incluso un **cuerpo de respuesta nuevo**, lo que permite XSS o **envenenamiento de caché** (cache poisoning: que un servidor intermedio guarde la respuesta falsa y se la sirva a otros usuarios)."
+        },
+        {
+          "type": "code",
+          "title": "Una cabecera inyectada con %0d%0a",
+          "text": "Petición del atacante:\nhttps://example.com/preferencias?user_setting=oscuro%0d%0aSet-Cookie:%20admin=true\n\nCabeceras de la respuesta:\nHTTP/1.1 200 OK\nSet-Cookie: user_setting=oscuro\nSet-Cookie: admin=true        <- cabecera añadida por el atacante"
         },
         {
           "type": "list",
           "title": "Prevención",
           "items": [
-            "**Eliminar o reemplazar** los caracteres CR y LF de cualquier entrada que vaya a una cabecera de respuesta.",
+            "**Eliminar o reemplazar** los caracteres CR y LF de cualquier entrada que vaya a una cabecera de respuesta (ejemplo abajo).",
             "Usar librerías de codificación de salida probadas, como **OWASP Java Encoder**."
           ]
+        },
+        {
+          "type": "code",
+          "title": "Quitar CR y LF antes de crear la cookie",
+          "text": "String limpio = userSetting.replaceAll(\"[\\r\\n]\", \"\");\nresponse.addCookie(new Cookie(\"user_setting\", limpio));"
         },
         {
           "type": "table",
@@ -744,7 +854,7 @@
     },
     "sistemas-t06-02": {
       "section": "xss",
-      "reasoning": "En XSS la aplicación incluye en la página, sin codificar, un texto controlado por el atacante (por ejemplo, una etiqueta script). Quien interpreta esa página es el navegador de la víctima, que ejecuta el script con los permisos del sitio. De ahí que el impacto principal sea la ejecución de scripts maliciosos en el navegador de la víctima (robo de cookies, keylogging, redirección a phishing).",
+      "reasoning": "En XSS la aplicación incluye en la página, sin codificar, un texto controlado por el atacante (por ejemplo, una etiqueta <script>). Quien interpreta esa página es el navegador de la víctima, que ejecuta el script con los permisos del sitio. De ahí que el impacto principal sea la ejecución de scripts maliciosos en el navegador de la víctima (robo de cookies, keylogging, redirección a phishing).",
       "options": {
         "a": "Incorrecta. Acceder directamente a la base de datos es propio de la inyección SQL (CWE-89).",
         "b": "Incorrecta. El XSS actúa en el navegador, no suplanta el sistema operativo.",
