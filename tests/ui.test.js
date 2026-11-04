@@ -84,7 +84,7 @@ function temaFixture(){
 test('digital topic renders sections, grouped argued questions, page links and escaped rich text',()=>{
  const {api}=runtime();const data=fixture();data.topics[0].material={url:'materials/sistemas/tema-01.pdf',format:'pdf',title:'Windows Server'};api.seed(data);api.seedTema(11,temaFixture());
  const html=api.temaPage(11);
- assert.match(html,/TEMA DIGITAL/);assert.match(html,/Un <strong>dominio<\/strong> agrupa equipos/);
+ assert.match(html,/Sistemas, tema 1/);assert.match(html,/<span class="sr-only">Apartado 1\. <\/span>El dominio/);assert.match(html,/Un <strong>dominio<\/strong> agrupa equipos/);
  assert.match(html,/href="materials\/sistemas\/tema-01\.pdf#page=5"/);assert.match(html,/Páginas 5–7 del PDF/);
  assert.match(html,/Pon a prueba este apartado <span>20<\/span>/);assert.match(html,/Pon a prueba este apartado <span>10<\/span>/);
  assert.match(html,/<pre><code>&lt;script&gt;alert\(1\)&lt;\/script&gt;<\/code><\/pre>/);assert.doesNotMatch(html,/<script>/);
