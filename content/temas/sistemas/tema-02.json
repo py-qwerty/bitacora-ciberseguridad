@@ -2,7 +2,7 @@
   "course": "sistemas",
   "number": 2,
   "title": "Seguridad en aplicaciones web. Introducción",
-  "minutes": 40,
+  "minutes": 70,
   "intro": {
     "why": "Cuando compras en una tienda online, pides cita médica o consultas tu banco, estás usando una aplicación web. Están abiertas a todo Internet, así que cualquiera puede intentar atacarlas, y la mayoría de las filtraciones de datos que salen en las noticias empiezan por una de ellas. Este tema explica cómo están construidas (sus arquitecturas), cómo «hablan» (el protocolo HTTP) y cómo se fabrican de forma segura desde el primer día (el SSDLC).",
     "before": [
@@ -18,7 +18,11 @@
       "Sabrás para qué sirve cada método HTTP (GET, POST, PUT, DELETE, HEAD, TRACE, OPTIONS, CONNECT) y qué riesgos tiene.",
       "Sabrás explicar por qué HTTP es «sin estado» y para qué sirve un identificador de sesión.",
       "Sabrás reconocer los ataques XST, CSRF y HTTP response splitting a partir de su mecanismo.",
-      "Sabrás situar en el SSDLC cada actividad de seguridad: requisitos, modelado de amenazas, codificación segura, SAST, DAST, IAST, SCA, pruebas de penetración y mantenimiento."
+      "Sabrás situar en el SSDLC cada actividad de seguridad: requisitos, modelado de amenazas, codificación segura, SAST, DAST, IAST, SCA, pruebas de penetración y mantenimiento.",
+      "Sabrás nombrar las piezas de un ciberataque y los siete objetivos de seguridad de una aplicación web, con cómo se consigue cada uno.",
+      "Sabrás interpretar los códigos de estado HTTP, sobre todo la diferencia entre 401 y 403.",
+      "Sabrás qué es la política del mismo origen, CORS y los atributos de seguridad de una cookie (HttpOnly, Secure, SameSite).",
+      "Sabrás distinguir herramientas de caja blanca y negra (SAST, DAST, IAST, RASP) y qué son un falso positivo y un falso negativo."
     ]
   },
   "sections": [
@@ -62,8 +66,152 @@
           "text": "Idea transversal: la seguridad no se «añade» al final. El SSDLC propone meterla **desde las primeras fases**: análisis y gestión dinámica del riesgo, revisión de seguridad del código, pruebas de seguridad y monitorización continua una vez desplegada."
         },
         {
+          "type": "list",
+          "title": "Datos que citó el profesor para justificar la asignatura (no caen en el test)",
+          "items": [
+            "Según un informe reciente que mostró en clase (de una empresa que analiza la seguridad de aplicaciones en la nube), las aplicaciones que superan un análisis frente al **OWASP Top 10** pasaron del **32 % en 2020 al 52 % en 2025**. Mejora, pero casi la mitad sigue sin pasarlo.",
+            "El mismo informe indica que **ahora se tarda más en aplicar los parches** que en 2020. Reflexión del profesor: ¿de qué sirve encontrar vulnerabilidades si luego tardas mucho en corregirlas?",
+            "También hay vulnerabilidades, algunas críticas, en las **bibliotecas de terceros** (las dependencias) que usan las aplicaciones: de ahí la importancia de los CVE y del análisis SCA que verás más adelante.",
+            "Lenguajes más usados según las estadísticas de 2025 que enseñó: JavaScript (se ejecuta en el navegador), TypeScript (evolución de JavaScript, que también se usa en el servidor con Node.js y Express, y en el cliente con Angular), Java y C# (los que el profesor etiqueta como de **entorno empresarial**, con mejor rendimiento y seguridad), PHP, Python y Go."
+          ]
+        },
+        {
           "type": "key",
           "text": "Las aplicaciones web son accesibles desde cualquier lugar y dispositivo, y eso las hace igual de accesibles para los atacantes. Para defenderlas hay que conocer su arquitectura, su protocolo (HTTP) y construirlas con un ciclo de desarrollo seguro."
+        }
+      ]
+    },
+    {
+      "id": "anatomia-objetivos",
+      "title": "Anatomía de un ataque web y objetivos de seguridad",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Antes de ver arquitecturas y protocolos conviene tener claro **qué piezas forman un ciberataque** y **qué debe garantizar** una aplicación web. Son los dos mapas con los que el profesor pidió leer todo lo demás."
+        },
+        {
+          "type": "table",
+          "title": "Las piezas de un ciberataque (ejemplo: inyección SQL en un formulario de login)",
+          "head": [
+            "Pieza",
+            "Qué es",
+            "En el ejemplo"
+          ],
+          "rows": [
+            [
+              "Agente de la amenaza",
+              "Quien lleva a cabo el ataque.",
+              "Un atacante en Internet."
+            ],
+            [
+              "Vector de ataque",
+              "El camino por el que entra.",
+              "El formulario de login de la aplicación web."
+            ],
+            [
+              "Payload (carga útil)",
+              "El texto malicioso que se escribe en el campo.",
+              "Algo como una comilla simple, OR 1=1 y un guion doble."
+            ],
+            [
+              "Vulnerabilidad",
+              "El fallo que permite el ataque.",
+              "La aplicación no valida lo que se escribe en el campo y lo deja pasar."
+            ],
+            [
+              "Activo impactado",
+              "Lo que se daña o se expone.",
+              "La base de datos, que ejecuta la consulta manipulada."
+            ],
+            [
+              "Impacto en el negocio",
+              "La consecuencia para la organización.",
+              "Saltarse la autenticación, filtrar datos, perder dinero o reputación."
+            ]
+          ]
+        },
+        {
+          "type": "analogy",
+          "text": "Piensa en un robo: el **agente** es el ladrón; el **vector**, la ventana por la que entra; el **payload**, la ganzúa; la **vulnerabilidad**, la cerradura defectuosa; el **activo**, la caja fuerte; y el **impacto**, lo que pierde la empresa."
+        },
+        {
+          "type": "term",
+          "term": "Payload (carga útil)",
+          "text": "El contenido concreto que el atacante envía para aprovechar una vulnerabilidad. En una inyección SQL suele ser una comilla simple seguida de una condición siempre verdadera (como OR 1=1) y un guion doble que anula el resto de la consulta; así la base de datos da por buena la identificación sin conocer la contraseña."
+        },
+        {
+          "type": "table",
+          "title": "Objetivos de seguridad aplicados a una aplicación web (según la clase)",
+          "head": [
+            "Objetivo",
+            "Qué garantiza",
+            "Cómo se consigue en una web"
+          ],
+          "rows": [
+            [
+              "Autenticación",
+              "Saber quién eres.",
+              "Varios factores a la vez: TLS mutuo (certificado también en el cliente, además de cifrar), formulario de usuario y contraseña, y un código de validación por SMS o correo."
+            ],
+            [
+              "Autorización (control de acceso)",
+              "Qué puedes hacer y a qué recursos accedes.",
+              "Roles (invitado, usuario, administrador, compras…). Un usuario puede tener más de un rol y sus derechos se suman."
+            ],
+            [
+              "Confidencialidad",
+              "Que solo lo vea quien debe.",
+              "Cifrar en reposo (en la base de datos o en ficheros, si la normativa de protección de datos lo exige) y en tránsito (TLS)."
+            ],
+            [
+              "Integridad",
+              "Que nadie altere lo que no le corresponde.",
+              "Roles y niveles de acceso, funciones hash y firma digital."
+            ],
+            [
+              "Disponibilidad",
+              "Que el servicio funcione cuando se necesita.",
+              "Redundancia de servicios y clústeres."
+            ],
+            [
+              "No repudio",
+              "Que nadie pueda negar que hizo algo.",
+              "Firma digital."
+            ],
+            [
+              "Trazabilidad",
+              "Saber quién hizo qué y en qué momento.",
+              "Un registro (log) bien diseñado más una monitorización continua, 24 horas los 7 días."
+            ]
+          ]
+        },
+        {
+          "type": "steps",
+          "title": "Cómo se encadenan autenticación y autorización en una petición",
+          "items": [
+            "Te identificas y autenticas una sola vez, con tu contraseña (y los demás factores).",
+            "La aplicación crea una sesión y te da un **identificador de sesión**, o bien un **JWT** (un token firmado; lo verás en el apartado de sesiones).",
+            "En cada petición siguiente, tu navegador presenta ese identificador o token como credencial: la contraseña ya no se vuelve a validar.",
+            "El servidor comprueba que sigue vigente (caduca por duración absoluta o por inactividad) y mira qué rol tiene su dueño.",
+            "Según ese rol, permite o deniega el acceso al recurso pedido."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "**Trazabilidad necesita dos cosas, no una.** Los registros no pueden dejarse como los genera por defecto un servidor como Apache Tomcat: hay que **diseñarlos** en la fase de análisis y diseño para que guarden lo que de verdad ayuda a detectar un incidente y descartar el ruido. Y además hace falta alguien o algo que los **vigile de forma continua**. Un registro que nadie mira no sirve."
+        },
+        {
+          "type": "term",
+          "term": "SIEM y SOAR",
+          "text": "Un **SIEM** recoge los registros de muchas fuentes (un IDS, el firewall de aplicaciones web, el firewall de red…) y los **correlaciona**: si un IDS y un WAF detectan el mismo ataque, el SIEM lo presenta como una sola alerta en lugar de dos. Un **SOAR** es un SIEM avanzado que además es capaz de **responder** a los incidentes. El término SOAR es reciente. Un **IDS** es un sistema de detección de intrusiones y un **WAF**, un firewall de aplicaciones web."
+        },
+        {
+          "type": "exam",
+          "text": "Distingue los tres objetivos que más se confunden: **confidencialidad** (que no lo lea quien no debe), **integridad** (que no lo altere quien no debe) y **no repudio** (que nadie pueda negar haberlo hecho, con firma digital). Y recuerda que la **trazabilidad** exige registros diseñados Y monitorización continua; con solo una de las dos no se cumple."
+        },
+        {
+          "type": "key",
+          "text": "Un ataque es una cadena: agente, vector, payload, vulnerabilidad, activo e impacto. Y la seguridad de una web se mide con siete objetivos: autenticación, autorización, confidencialidad, integridad, disponibilidad, no repudio y trazabilidad."
         }
       ]
     },
@@ -143,6 +291,72 @@
           "text": "Una «ventanilla» con normas fijas para que un programa pida cosas a otro. REST es un estilo de API muy usado sobre HTTP; GraphQL y gRPC son otras formas; SOAP es un estándar más antiguo basado en XML."
         },
         {
+          "type": "table",
+          "title": "Familias de aplicaciones web (clasificación de la clase)",
+          "head": [
+            "Familia",
+            "Tecnologías y ejemplos",
+            "Idea"
+          ],
+          "rows": [
+            [
+              "Tradicionales",
+              "Páginas generadas en el servidor.",
+              "Es la arquitectura clásica (MPA)."
+            ],
+            [
+              "RIA (Rich Internet Applications, aplicaciones ricas de Internet)",
+              "AJAX, Flash, Silverlight, JavaFX, HTML5, Angular, React, Vue.",
+              "Interfaz rica y rápida. A una alumna que preguntó, el profesor le aclaró que el concepto de arquitectura RIA es el mismo que SPA con AJAX."
+            ],
+            [
+              "Servicios web",
+              "SOAP (basado en SOA), GraphQL, REST.",
+              "Interfaces para que hablen entre sí los programas. REST es el más usado en microservicios."
+            ],
+            [
+              "Aplicaciones móviles",
+              "Nativas, basadas en navegador e híbridas.",
+              "Casi siempre tienen un backend en la nube, así que son aplicaciones web."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Tres tipos de aplicación móvil según el cliente",
+          "head": [
+            "Tipo",
+            "Cómo está hecha",
+            "Acceso al hardware del móvil"
+          ],
+          "rows": [
+            [
+              "Nativa",
+              "En el mismo lenguaje de programación que el sistema operativo del móvil.",
+              "Total."
+            ],
+            [
+              "Basada en navegador",
+              "Se ejecuta dentro del navegador.",
+              "Menor."
+            ],
+            [
+              "Híbrida",
+              "Navegador más un componente escrito en el lenguaje del sistema operativo.",
+              "También accede al hardware, gracias a ese componente."
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Desde el punto de vista de la seguridad, una aplicación móvil con servidor es una **aplicación web más**: trabaja con los mismos protocolos y puertos de la web (80, 443 y similares), así que se le aplican las mismas consideraciones."
+        },
+        {
+          "type": "term",
+          "term": "Servidor web y servidor de aplicaciones",
+          "text": "Un **servidor web** aloja contenido estático y aplicaciones escritas en lenguajes **interpretados** (el código se traduce al ejecutarlo), como Python, Ruby o PHP. Un **servidor de aplicaciones** aloja aplicaciones **precompiladas** (como Java o C#). Según el profesor, estas últimas rinden más y son las que se usan tradicionalmente en entornos empresariales: finanzas, gobiernos… Java tiene detrás un consorcio de empresas (Oracle entre ellas) y C# pertenece a la pila .NET de Microsoft."
+        },
+        {
           "type": "exam",
           "text": "Si una pregunta describe «recarga toda la página tras cada interacción», está hablando de la arquitectura clásica (MPA), no de una SPA. Ojo también a la lista del temario: incluye «GRADLE» entre los servicios web, pero Gradle es en realidad una herramienta para compilar proyectos; no te despistes si aparece."
         },
@@ -202,6 +416,30 @@
         {
           "type": "p",
           "text": "Dividir en capas tiene ventajas: **separación de tareas y responsabilidades**, piezas reutilizables y la posibilidad de **repartir las capas entre varios servidores** para escalar. El precio es más complejidad, porque hay que controlar el acceso y vigilar la comunicación entre capas."
+        },
+        {
+          "type": "term",
+          "term": "MVC (Model-View-Controller, Modelo-Vista-Controlador)",
+          "text": "El patrón de diseño típico de la arquitectura clásica: trocea el software en tres piezas. El **Modelo** son las clases que acceden a la base de datos; la **Vista** es lo que se muestra al usuario; el **Controlador** recibe la petición, decide qué hacer y orquesta a las otras dos. En la arquitectura clásica, las tres viven en el servidor."
+        },
+        {
+          "type": "steps",
+          "title": "Una petición en MVC (ejemplo con tecnología Java)",
+          "items": [
+            "El navegador envía la petición y llega al **Controlador** (en Java, un servlet), que la examina.",
+            "Si hacen falta datos, el controlador pide ayuda al **Modelo** (clases como los JavaBeans), que consulta la base de datos y devuelve los resultados.",
+            "El controlador elige la **Vista** adecuada (en Java, una página JSP).",
+            "Se rellena la vista con los datos y el resultado se envía al navegador."
+          ]
+        },
+        {
+          "type": "list",
+          "title": "Conceptos de seguridad que el profesor ubicó en esta arquitectura",
+          "items": [
+            "**Entre navegador y servidor:** comunicación cifrada con TLS.",
+            "**En el servidor:** validación de entrada y de salida, gestión de errores y excepciones, auditoría y registro (logging), cifrado de datos, gestión de sesiones, y autenticación y autorización.",
+            "El servidor se separa de Internet por un firewall de aplicaciones web."
+          ]
         },
         {
           "type": "exam",
@@ -315,6 +553,29 @@
             "Separación clara entre frontend (la SPA en el navegador) y backend (una API que da datos y lógica de negocio).",
             "MEAN (MongoDB, Express, AngularJS y Node.js) es un ejemplo de pila tecnológica completa en JavaScript para construir SPA."
           ]
+        },
+        {
+          "type": "p",
+          "text": "**Qué cambia de sitio.** En el modelo clásico la capa de presentación (la página) se genera en el **servidor**. En el modelo AJAX se genera dentro del **navegador**, en el motor AJAX que traen todos los navegadores: tu interfaz llama a JavaScript, este compone el HTML, las hojas de estilo y el JavaScript necesarios, y solo va al servidor cuando necesita datos."
+        },
+        {
+          "type": "term",
+          "term": "XMLHttpRequest y fetch",
+          "text": "Las dos formas de hacer en JavaScript una **llamada asíncrona** al backend. Encapsulan los métodos HTTP (GET, POST, PUT, DELETE…). El backend responde con datos, hoy normalmente en JSON y a veces en XML (la X de AJAX)."
+        },
+        {
+          "type": "list",
+          "title": "¿Dónde se implementa la seguridad? Casi toda en el backend",
+          "items": [
+            "La **autenticación es obligatoria en el servidor**. Hacerla además en el cliente es válido solo como extra.",
+            "También en el servidor: la validación contra inyecciones SQL y XSS, los roles y las cabeceras de seguridad (que pueden añadirse en el código o en la configuración del servidor).",
+            "La lógica de presentación que viaja al navegador **puede verse** con las herramientas de desarrollador de cualquier navegador: no pongas ahí nada que deba ser secreto.",
+            "En estas aplicaciones el frontend y el backend suelen ejecutarse en **puertos distintos** (por ejemplo, el frontend en el 3000 y el backend en el 5000). Esto enlaza con la política del mismo origen, que verás más adelante."
+          ]
+        },
+        {
+          "type": "exam",
+          "text": "Si preguntan **dónde** se aplica la mayor parte de la seguridad en una SPA, la respuesta es el **backend**. La seguridad del cliente es solo un complemento: el atacante controla su navegador y puede saltarse lo que allí se haga."
         },
         {
           "type": "exam",
@@ -486,6 +747,21 @@
           "text": "El módulo de pagos recibe casi toda la carga. En un monolito habría que replicar la aplicación entera (catálogo, usuarios, carrito…) para dar más capacidad a pagos. Con microservicios se lanzan más instancias solo del servicio de pagos. A cambio, cada compra implica varias llamadas por red entre servicios (catálogo → carrito → pagos), con su latencia, y hay que vigilar muchas piezas."
         },
         {
+          "type": "steps",
+          "title": "Ejemplo de arquitectura de microservicios con Java y Spring (según la clase)",
+          "items": [
+            "El cliente entra por el **frontend** con su navegador.",
+            "La petición llega a una **pasarela de API** (API Gateway; en el ejemplo, Spring Cloud Gateway), que la recibe y la redirige al microservicio adecuado.",
+            "Cada microservicio se **registra** al arrancar en un servicio de registro (en el ejemplo, Netflix Eureka), que funciona como una agenda de servicios.",
+            "Al llegar una petición, la pasarela pregunta al registro qué servicio corresponde y se la reenvía.",
+            "Cada microservicio tiene **su propio servidor de aplicaciones y su propio motor de base de datos**. Con Spring Boot se crean con facilidad servicios REST."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Esa independencia aporta ventajas de monitorización y escalabilidad, y se gestiona bien con **contenedores (Docker) y Kubernetes**, que es la tendencia actual."
+        },
+        {
           "type": "exam",
           "text": "Las trampas describen un monolito disfrazado: «un proceso único con módulos que se despliegan juntos», «toda función comparte ciclo de despliegue», «escalar toda la aplicación como una unidad». Y en desventajas, desconfía de «las llamadas remotas cuestan lo mismo que las internas» o «la separación elimina la coordinación»: es justo al revés, aparecen latencia y complejidad."
         },
@@ -631,6 +907,14 @@
           ]
         },
         {
+          "type": "p",
+          "text": "**MVC frente a MVVM.** En MVC (arquitectura clásica) la vista se genera en el servidor. En MVVM la **Vista y el ViewModel corren en el navegador** y el **Modelo corre en el backend**: este último contiene la lógica de negocio y el software que accede a la base de datos. El ViewModel recoge las peticiones de datos de la Vista, llama al Modelo, formatea lo que recibe y se lo entrega a la Vista."
+        },
+        {
+          "type": "p",
+          "text": "**¿Dónde se aplica la seguridad?** En el backend. En una arquitectura MVC se concentra en el **controlador** (valida, autentica y autoriza antes de que se genere nada), y en MVVM, en el **modelo**. La vista solo muestra datos que ya han pasado por esos controles. El profesor subirá un documento y un pequeño proyecto de ejemplo en TypeScript para profundizar en este patrón."
+        },
+        {
           "type": "exam",
           "text": "«¿Qué debe evitar un mensaje de error?» → revelar detalles internos útiles a un atacante. Las otras opciones (un mensaje genérico, un identificador no sensible de incidencia, avisar de que la petición falló) son justamente lo que **sí** está bien mostrar."
         },
@@ -728,12 +1012,225 @@
           "text": "Una app quiere saber si el PDF del catálogo (50 MB) ha cambiado desde ayer. Si hace GET, descarga los 50 MB. Si hace HEAD, recibe solo las cabeceras con la fecha de última modificación y el tamaño. Si no ha cambiado, se ahorra la descarga."
         },
         {
+          "type": "p",
+          "text": "**Mínimos privilegios también para los métodos.** Igual que cada usuario debe tener solo los permisos que necesita, un servidor debe aceptar solo los métodos que necesita. Según el profesor, para una aplicación normal **basta con GET (cargar páginas) y POST (enviar datos)**; el resto se puede deshabilitar."
+        },
+        {
+          "type": "table",
+          "title": "Qué métodos conviene deshabilitar y por qué (según la clase)",
+          "head": [
+            "Método",
+            "¿Hace falta?",
+            "Riesgo si se deja abierto"
+          ],
+          "rows": [
+            [
+              "GET",
+              "Sí, para cargar páginas.",
+              "Sus parámetros van en la URL tras el «?». Un hipervínculo puede esconder código JavaScript en un parámetro, lo que facilita ataques como XSS y el phishing."
+            ],
+            [
+              "POST",
+              "Sí, es el necesario.",
+              "Los parámetros van en el cuerpo, no en la URL."
+            ],
+            [
+              "HEAD",
+              "No.",
+              "Sirve a un atacante para investigar qué cabeceras implementa el servidor."
+            ],
+            [
+              "PUT",
+              "No.",
+              "Permite subir un fichero al servidor."
+            ],
+            [
+              "TRACE",
+              "No.",
+              "Origina la vulnerabilidad XST."
+            ],
+            [
+              "OPTIONS",
+              "No.",
+              "Revela qué métodos admite el servidor, información útil para un atacante."
+            ],
+            [
+              "CONNECT",
+              "No.",
+              "Permite explorar servicios internos que están detrás de un proxy."
+            ]
+          ]
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico: CONNECT como puerta a la red interna",
+          "text": "Un atacante se conecta a un proxy, al que llamaremos victima.com, y, conociendo la gramática de HTTP, le envía una petición CONNECT pidiendo llegar a un servicio interno, por ejemplo un servidor de correo en el puerto 25. Si el proxy le abre el túnel, el atacante descubre qué servicios corren en la red interna sin estar dentro de ella. Se hace con herramientas como netcat, que verás en el apartado de práctica."
+        },
+        {
+          "type": "p",
+          "text": "Un detalle más: la **línea inicial** de GET aparece en la barra de direcciones del navegador. Si en esa línea van las credenciales, cualquiera que mire tu pantalla en un entorno de trabajo compartido puede verlas. Por eso un login puede cargarse con GET, pero **nunca debe enviar las credenciales con GET**: se envían con POST."
+        },
+        {
           "type": "exam",
           "text": "Asocia verbo y acción: eliminar → DELETE (no PUT, que sube o reemplaza); solo cabeceras / metadatos sin contenido → HEAD (no GET, que trae el cuerpo; no OPTIONS, que lista los métodos admitidos); servicio detrás de un proxy → CONNECT. Trampa: «HEAD devuelve solo el cuerpo sin cabeceras» o «una versión reducida del cuerpo»: HEAD **nunca** trae cuerpo."
         },
         {
           "type": "key",
           "text": "GET lee, HEAD lee solo cabeceras, POST envía en el cuerpo, PUT sube, DELETE borra, TRACE devuelve la petición, OPTIONS lista métodos y CONNECT atraviesa un proxy."
+        }
+      ]
+    },
+    {
+      "id": "http-mensajes",
+      "title": "El mensaje HTTP por dentro: versiones, cabeceras y códigos de estado",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "HTTP vive en la **capa de aplicación** de la pila TCP/IP, junto con protocolos como Telnet, TFTP, DNS o RIP. Esa capa equivale a las capas 5, 6 y 7 del modelo de referencia OSI, que es un modelo teórico. Por debajo van TCP (transporte con conexión) o UDP (sin conexión), IP en la capa de red y Ethernet en la de enlace."
+        },
+        {
+          "type": "table",
+          "title": "Versiones de HTTP (según la clase)",
+          "head": [
+            "Versión",
+            "Qué cambia"
+          ],
+          "rows": [
+            [
+              "1.0",
+              "Cada petición HTTP necesita una conexión TCP independiente."
+            ],
+            [
+              "1.1",
+              "Una misma conexión TCP se reutiliza para varias peticiones. La cabecera Host pasa a ser obligatoria."
+            ],
+            [
+              "2",
+              "En una sola conexión TCP se **multiplexan** peticiones de cualquier tipo (imágenes, código, HTML…). Mejora el rendimiento."
+            ],
+            [
+              "3",
+              "Deja de usar TCP y se basa en **QUIC** (apoyado en UDP). Se usa sobre todo en redes móviles 4G y 5G, no en las aplicaciones web habituales. Burp Suite, la herramienta que usarás, no lo incorpora."
+            ]
+          ]
+        },
+        {
+          "type": "term",
+          "term": "Multiplexar",
+          "text": "Enviar varias comunicaciones distintas por un mismo canal a la vez. Es como un único carril por el que circulan coches de varios tipos, en lugar de un carril por cada coche. Ojo: no confundas **conexión TCP** (el canal) con **petición HTTP** (cada mensaje que viaja por él)."
+        },
+        {
+          "type": "steps",
+          "title": "Las cuatro partes de un mensaje, tanto de petición como de respuesta",
+          "items": [
+            "**Línea inicial.** En una petición: método, URL y versión del protocolo. En una respuesta: versión, código de estado y texto (por ejemplo, 200 OK).",
+            "**Cabeceras**, una por línea, con información adicional.",
+            "**Línea vacía.** Separa las cabeceras del cuerpo. En realidad son dos parejas de retorno de carro y nueva línea (CRLF) seguidas, caracteres que no se ven en pantalla.",
+            "**Cuerpo.** El contenido: HTML, una imagen, JSON, XML… o, en un POST, los parámetros enviados."
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Cabeceras que conviene reconocer",
+          "head": [
+            "Cabecera",
+            "Dónde",
+            "Para qué sirve"
+          ],
+          "rows": [
+            [
+              "Host",
+              "Petición",
+              "Obligatoria desde HTTP/1.1. Indica el dominio de la aplicación."
+            ],
+            [
+              "User-Agent",
+              "Petición",
+              "Informa del navegador o cliente que hace la petición."
+            ],
+            [
+              "Cookie",
+              "Petición",
+              "El navegador devuelve al servidor las cookies que guardó, como el identificador de sesión."
+            ],
+            [
+              "Set-Cookie",
+              "Respuesta",
+              "El servidor ordena al navegador guardar una cookie. Una cookie admite como máximo 4096 bytes de datos."
+            ],
+            [
+              "Content-Type y Content-Length",
+              "Respuesta",
+              "Tipo de contenido (text/html, image/jpeg…) y su tamaño en bytes."
+            ],
+            [
+              "Cache-Control",
+              "Respuesta",
+              "Controla la caché. **private**: la copia es solo para ese usuario. **no-store**: no se guarda nada y siempre se pide al servidor; es lo más seguro, pero cuesta rendimiento."
+            ],
+            [
+              "X-Frame-Options",
+              "Respuesta",
+              "Con el valor de mismo origen, la página solo puede abrirse dentro de un marco de su propio dominio, no dentro de otro. Evita que otra web te incruste."
+            ],
+            [
+              "X-XSS-Protection",
+              "Respuesta",
+              "Pedía al navegador que examinara y bloqueara código JavaScript sospechoso. El profesor la vio en las cabeceras de un sitio conocido; hoy los navegadores modernos ya la han retirado."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Códigos de estado: la primera cifra manda",
+          "head": [
+            "Familia",
+            "Significado",
+            "Ejemplos"
+          ],
+          "rows": [
+            [
+              "1xx",
+              "Informativos.",
+              "—"
+            ],
+            [
+              "2xx",
+              "Todo correcto.",
+              "200 OK: la petición está bien formada y se ha atendido."
+            ],
+            [
+              "3xx",
+              "Redirección. Aparece, por ejemplo, cuando la petición pasa por un proxy.",
+              "301 y 303."
+            ],
+            [
+              "4xx",
+              "Error del cliente.",
+              "400 Bad Request (petición mal formada); **401** (no autenticado); **403** (prohibido); 404 (el recurso no existe)."
+            ],
+            [
+              "5xx",
+              "Error del servidor.",
+              "500 (error interno); 502 Bad Gateway (problema de comunicación entre servicios); 503 (servicio no disponible)."
+            ]
+          ]
+        },
+        {
+          "type": "analogy",
+          "text": "Imagina la entrada de un edificio de oficinas. Si llegas **sin acreditación**, el guarda te dice «identifíquese»: eso es un **401**. Si tienes acreditación pero intentas entrar en la sala de servidores, para la que tu cargo no vale, te dice «aquí no puede pasar»: eso es un **403**. Y si buscas una sala que no existe, es un **404**."
+        },
+        {
+          "type": "p",
+          "text": "**Los errores 500 pueden delatar vulnerabilidades.** Cuando se investigan inyecciones SQL o se prueban rutas de directorios del sistema operativo del servidor, un error 500 puede indicar que el payload ha llegado donde no debía. Además, si no se reconfigura el servidor, sus páginas de error 400 y 500 muestran por defecto **la traza completa**: rutas de ficheros, nombres de archivos, lenguaje usado, dominios y direcciones IP. A un usuario normal no le sirve de nada, pero a un atacante le da mucha información. Hay que cambiarlas por mensajes **totalmente genéricos**."
+        },
+        {
+          "type": "exam",
+          "text": "**401 y 403 no son lo mismo**, y el nombre en inglés del 401 (Unauthorized) engaña: el 401 significa que **no estás autenticado**, la petición no trae credenciales válidas. El **403** significa que sí estás autenticado, pero tu **rol no tiene permiso** sobre ese recurso. En una pregunta, busca esta pista: «sin sesión» es 401; «con sesión pero sin derechos» es 403."
+        },
+        {
+          "type": "key",
+          "text": "Un mensaje HTTP tiene línea inicial, cabeceras, línea vacía y cuerpo. La primera cifra del código de estado indica la familia, y 401 (no autenticado) se distingue de 403 (autenticado sin permiso)."
         }
       ]
     },
@@ -838,6 +1335,70 @@
           ]
         },
         {
+          "type": "p",
+          "text": "**Matiz importante: POST no cifra.** Poner los parámetros en el cuerpo evita que queden en la barra de direcciones, el historial y los registros, y que alguien los vea por encima del hombro. Pero siguen viajando en claro dentro del mensaje: quien intercepte la petición, por ejemplo con un proxy de pruebas, los ve en el cuerpo. Lo que protege el viaje es **TLS (HTTPS)**."
+        },
+        {
+          "type": "table",
+          "title": "TLS frente a TLS mutuo",
+          "head": [
+            "Aspecto",
+            "TLS (el HTTPS de siempre)",
+            "TLS mutuo"
+          ],
+          "rows": [
+            [
+              "Certificado",
+              "Solo el servidor presenta uno.",
+              "El servidor **y cada cliente** presentan uno, firmado por la misma autoridad de certificación."
+            ],
+            [
+              "Qué autentica",
+              "Al servidor.",
+              "A ambos."
+            ],
+            [
+              "¿Cifra la comunicación?",
+              "Sí.",
+              "Sí."
+            ],
+            [
+              "¿Puede interceptarlo un proxy de pruebas?",
+              "Sí: la herramienta acepta el certificado del servidor y descifra el tráfico.",
+              "No, a menos que presente un certificado de cliente válido."
+            ]
+          ]
+        },
+        {
+          "type": "term",
+          "term": "Gorro blanco y gorro negro",
+          "text": "Expresiones para distinguir al **auditor de seguridad autorizado** (gorro blanco), que trabaja en un entorno de pruebas permitido, del **atacante real** (gorro negro). El primero apunta la configuración de proxy de su navegador al puerto de su herramienta de interceptación; el segundo necesita antes colocarse en medio de la comunicación."
+        },
+        {
+          "type": "term",
+          "term": "ARP spoofing",
+          "text": "Engañar a una red local para que el tráfico de la víctima pase por la máquina del atacante. Es el paso previo de un ataque de **hombre en medio** (man in the middle) real; con él se puede reenviar después el tráfico a un proxy de interceptación. Usar para ello un analizador de red en modo promiscuo hace mucho ruido y un IDS puede detectarlo."
+        },
+        {
+          "type": "steps",
+          "title": "El ataque XST completo, paso a paso (según la clase)",
+          "items": [
+            "La víctima inicia sesión en su aplicación legítima y su navegador guarda la cookie de sesión.",
+            "Sin cerrar sesión, visita una web que controla el atacante.",
+            "Esa página trae un botón (o un script) que, mediante XMLHttpRequest, lanza una petición **TRACE** contra el servidor de la aplicación legítima.",
+            "Si TRACE está habilitado, el servidor devuelve las cabeceras de la petición, **incluida la cookie de sesión, copiada en el cuerpo de la respuesta**.",
+            "El script lee ese cuerpo (el JavaScript no podía leer la cabecera por HttpOnly, pero el cuerpo sí) y se lo envía al atacante, que ya tiene la sesión de la víctima."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Condiciones y límites del ataque: solo funciona si **TRACE está habilitado en el navegador y en el servidor**; hoy los navegadores lo tienen deshabilitado, así que no tiene éxito. Lo robado sirve **mientras la sesión no caduque**. Con un JWT guardado en una cookie el ataque sería idéntico."
+        },
+        {
+          "type": "exam",
+          "text": "XST necesita TRACE habilitado y se salta la defensa HttpOnly, porque la cookie ya no se lee de la cabecera sino del **cuerpo** de la respuesta. La defensa es deshabilitar TRACE, no el cifrado."
+        },
+        {
           "type": "exam",
           "text": "Response splitting inyecta **HTML y JavaScript** (las dos), no SQL: la inyección SQL ataca la base de datos, no la respuesta al navegador. En la pregunta de GET, desconfía de «HTTPS evita que aparezca en el historial» o «el método cifra los parámetros»: HTTPS cifra el viaje, pero la URL sigue guardándose en el historial y en los registros del servidor."
         },
@@ -888,12 +1449,204 @@
           "text": "Añades unas zapatillas en la página del producto y luego vas a la página del carrito. Son dos peticiones HTTP independientes. Para que el carrito «recuerde» las zapatillas, la aplicación crea una sesión y le da a tu navegador una cookie con su identificador. En la segunda petición el navegador la envía, y el servidor encuentra tu carrito. Ni el método HEAD ni una conexión persistente sin contexto resuelven esto."
         },
         {
+          "type": "term",
+          "term": "JWT (JSON Web Token)",
+          "text": "Alternativa al identificador de sesión. Al autenticarte, la aplicación te entrega un token firmado que **se guarda solo en el cliente**, no en el servidor, y que viaja en una cabecera (normalmente en una cookie). Se dice que es **«sin estado»** porque el servidor no guarda ninguna sesión. Para un atacante vale lo mismo que un identificador de sesión: quien lo robe, es tú hasta que caduque."
+        },
+        {
+          "type": "table",
+          "title": "Identificador de sesión frente a JWT",
+          "head": [
+            "Aspecto",
+            "Identificador de sesión",
+            "JWT"
+          ],
+          "rows": [
+            [
+              "Dónde se guarda el contexto",
+              "En el servidor; el identificador solo apunta a él.",
+              "En el token, que está en el cliente."
+            ],
+            [
+              "Cómo viaja",
+              "En una cabecera, normalmente en una cookie.",
+              "En una cabecera, normalmente en una cookie."
+            ],
+            [
+              "Cómo se acaba",
+              "Caduca por duración absoluta o por inactividad.",
+              "Igual: caduca."
+            ],
+            [
+              "Si se roba",
+              "El atacante suplanta al usuario mientras sea válido.",
+              "Ídem."
+            ]
+          ]
+        },
+        {
+          "type": "term",
+          "term": "Base64",
+          "text": "Una forma de **codificar** datos usando 64 caracteres. Muchos identificadores de sesión «raros» son solo Base64, y pueden decodificarse con cualquier herramienta de decodificación. **Codificar no es cifrar**: no oculta nada a quien sabe leerlo."
+        },
+        {
+          "type": "p",
+          "text": "No confundas dos «sin estado»: **HTTP** es sin estado porque no recuerda peticiones anteriores; un **JWT** hace que la aplicación no tenga que guardar la sesión en el servidor."
+        },
+        {
+          "type": "exam",
+          "text": "Cuando pregunten qué guarda el servidor, recuerda: con identificador de sesión, el servidor guarda la sesión; con JWT, **no** (todo viaja en el token). En ambos casos la credencial se valida en cada petición, no solo al inicio."
+        },
+        {
           "type": "exam",
           "text": "«¿Para qué se emplea un identificador de sesión?» → asociar peticiones distintas al contexto de un usuario. Trampas: «cifrar el contenido» (eso lo hace TLS), «reemplazar la autenticación inicial» o «determinar todos los permisos sin comprobación adicional» (la autorización se sigue comprobando)."
         },
         {
           "type": "key",
           "text": "HTTP es sin estado; la sesión le pone memoria. El identificador de sesión es tan valioso como una contraseña: debe ser fuerte, difícil de robar y revocarse a tiempo."
+        }
+      ]
+    },
+    {
+      "id": "mismo-origen",
+      "title": "Política del mismo origen, CORS y cookies seguras",
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Cada pestaña del navegador es como una oficina distinta de un mismo edificio. La **política del mismo origen** es la norma que impide que quien trabaja en una oficina entre en otra a leer sus papeles, salvo que sea la misma empresa."
+        },
+        {
+          "type": "term",
+          "term": "Política del mismo origen (same-origin policy)",
+          "text": "Norma que implementan **de forma nativa todos los navegadores**: el código de una aplicación no puede acceder a un dominio distinto del suyo. Se considera el mismo origen cuando coinciden protocolo, servidor y puerto."
+        },
+        {
+          "type": "p",
+          "text": "El método de AJAX (XMLHttpRequest) respeta esta política: solo permite el acceso cuando el origen coincide. Pero **puede saltarse** con etiquetas como script, link, img, video y frame, que el navegador deja cargar desde otros dominios. La etiqueta **script** es la más peligrosa, porque permite ejecutar código del atacante."
+        },
+        {
+          "type": "term",
+          "term": "CORS (Cross-Origin Resource Sharing)",
+          "text": "Mecanismo basado en **cabeceras HTTP** con el que el servidor declara qué otros dominios (orígenes) tienen permiso para acceder a sus recursos. Bien configurado, solo los dominios de confianza pasan; sin él, vale la política del mismo origen básica del navegador. Es parecido a la política del mismo origen, pero la configura la aplicación."
+        },
+        {
+          "type": "table",
+          "title": "Dónde guarda datos el navegador",
+          "head": [
+            "Almacén",
+            "Cómo funciona",
+            "¿Tiene atributos de seguridad?"
+          ],
+          "rows": [
+            [
+              "Cookies",
+              "Pares nombre-valor de hasta 4096 bytes. Viajan al servidor en cada petición.",
+              "Sí."
+            ],
+            [
+              "localStorage",
+              "Datos que **persisten** aunque cierres el navegador. Hasta unos 10 MB.",
+              "No."
+            ],
+            [
+              "sessionStorage",
+              "Datos que **desaparecen** al cerrar la sesión del navegador.",
+              "No."
+            ],
+            [
+              "IndexedDB",
+              "Base de datos no relacional (pares clave-valor) dentro del navegador.",
+              "No."
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Todos pueden ser leídos por el código JavaScript de la aplicación. Por eso el profesor recomienda **guardar la información sensible solo en cookies bien protegidas**, incluso un posible JWT."
+        },
+        {
+          "type": "table",
+          "title": "Atributos de seguridad de una cookie",
+          "head": [
+            "Atributo",
+            "Qué hace"
+          ],
+          "rows": [
+            [
+              "HttpOnly",
+              "Impide que el JavaScript de la página lea la cookie. Es la defensa contra el robo por XSS, pero XST la salta."
+            ],
+            [
+              "Secure",
+              "La cookie solo viaja por conexiones cifradas con TLS (HTTPS)."
+            ],
+            [
+              "SameSite (con valor Strict)",
+              "La cookie solo se envía cuando la petición se origina en el propio sitio, no desde otro dominio."
+            ]
+          ]
+        },
+        {
+          "type": "exam",
+          "text": "Una cookie bien protegida lleva **HttpOnly, Secure y SameSite=Strict**, los tres activados. Cuidado con las opciones que atribuyen a HttpOnly el cifrado (eso es Secure/TLS) o la protección frente a XST (no la da)."
+        },
+        {
+          "type": "key",
+          "text": "El navegador aísla los orígenes con la política del mismo origen; CORS lo ajusta con cabeceras. Para lo sensible, usa cookies con HttpOnly, Secure y SameSite=Strict, no localStorage ni sessionStorage."
+        }
+      ]
+    },
+    {
+      "id": "practica-http-herramientas",
+      "title": "Del tema a la práctica: inspeccionar HTTP con curl, netcat y el navegador",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "**Esta parte no cae en el test.** Son las demostraciones que el profesor hizo en clase para ver HTTP «por dentro». Haz estas pruebas solo en un entorno de laboratorio propio (una máquina virtual con una aplicación vulnerable a propósito, como BadStore) o en sitios donde tengas permiso. Y si algo no sale, repite el procedimiento con calma: casi siempre es un paso mal hecho."
+        },
+        {
+          "type": "term",
+          "term": "Distribución para pruebas de seguridad",
+          "text": "El profesor usa **Parrot Security**; **Kali** es otra muy conocida. Las herramientas son prácticamente las mismas. Se descargan como imagen ISO para VirtualBox o VMware, o para UTM en un Mac con chip Apple (ARM64); también existen versiones en Docker. Ambas son Linux Debian."
+        },
+        {
+          "type": "steps",
+          "title": "curl: lanzar peticiones desde la línea de comandos",
+          "items": [
+            "Con curl y la opción de modo detallado (verbose) contra un sitio web, verás la negociación TLS (en la demostración, TLS 1.3 con un hash SHA-384 y HTTP/2), la verificación del certificado y las cabeceras de la petición, con pocas cabeceras, entre ellas la obligatoria Host.",
+            "Después aparecen las cabeceras de la respuesta. En la demostración, un 301 (redirección), el tipo de contenido y la codificación, y varias cabeceras de seguridad como X-Frame-Options.",
+            "Con la opción -X puedes **forzar otro método**: por ejemplo, TRACE (ves tus propias cabeceras copiadas en el cuerpo de la respuesta, que es la raíz del XST) u OPTIONS (te dice qué métodos admite el servidor, como GET, HEAD, OPTIONS y TRACE). Para HEAD (solo cabeceras), curl ofrece la opción -I."
+          ]
+        },
+        {
+          "type": "steps",
+          "title": "netcat: escribir tú mismo la petición HTTP",
+          "items": [
+            "Conéctate al servidor con netcat en modo detallado indicando su dirección IP y el puerto 80.",
+            "Escribe la **línea inicial**: método, ruta y versión, por ejemplo OPTIONS barra HTTP/1.1.",
+            "En la siguiente línea, la cabecera Host con el nombre del sitio, que es la única obligatoria.",
+            "Pulsa Intro **dos veces** más: es la línea vacía que cierra las cabeceras. Entonces llega la respuesta.",
+            "La ventaja de netcat es que te obliga a conocer la gramática exacta de HTTP; así funcionan también los ataques del tipo CONNECT que viste antes."
+          ]
+        },
+        {
+          "type": "steps",
+          "title": "Herramientas de desarrollador del navegador (tecla F12 en Firefox)",
+          "items": [
+            "**Red (Network).** Recarga la página y examina cada petición con sus cabeceras de petición y de respuesta. Las de petición deben adecuarse a lo que marcan las de respuesta.",
+            "Regístrate en la aplicación de pruebas: en la respuesta aparece **Set-Cookie** con el identificador de sesión, normalmente codificado en Base64.",
+            "**Almacenamiento (Storage).** Mira las cookies con sus atributos HttpOnly, Secure y SameSite, y los otros almacenes del navegador.",
+            "**Consola.** Escribe document punto cookie: si la cookie no tiene HttpOnly, el JavaScript puede **leer el identificador de sesión**. Es justo lo que explotaría un XSS.",
+            "También están el **Inspector** (el HTML de la página) y el **Depurador** (el código JavaScript)."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "**Qué vendrá después.** Con **Burp Suite** (un proxy de interceptación, como ZAP) interceptarás y modificarás peticiones, y harás la demostración práctica de XST y de la política del mismo origen. El profesor recomienda también la documentación de **Mozilla Developer (MDN)** como referencia sobre HTTP y sus cabeceras."
+        },
+        {
+          "type": "key",
+          "text": "Para entender HTTP, míralo en crudo: curl con -v y -X, netcat escribiendo la petición a mano y la pestaña Red del navegador. Con la consola puedes comprobar si una cookie es legible desde JavaScript."
         }
       ]
     },
@@ -997,12 +1750,204 @@
           "text": "En diseño, el equipo modela amenazas y descubre que un paciente podría ver citas de otro cambiando un número en la petición. El análisis de riesgos dice que los datos de salud son muy sensibles. De ambas cosas se deriva un requisito: «el servidor comprobará en cada petición que la cita pertenece al usuario autenticado». Arreglarlo ahora cuesta una frase; descubrirlo en producción costaría una filtración."
         },
         {
+          "type": "table",
+          "title": "Cuánto cuesta corregir un fallo según cuándo se detecta (cita que enseñó el profesor, de un libro sobre código seguro de 2001)",
+          "head": [
+            "Fase en que empieza la seguridad",
+            "Coste relativo"
+          ],
+          "rows": [
+            [
+              "Análisis y diseño",
+              "1 (el punto de partida)"
+            ],
+            [
+              "Implementación",
+              "Unas 6,5 veces"
+            ],
+            [
+              "Pruebas",
+              "Unas 15 veces"
+            ],
+            [
+              "Producción (si no se pensó antes en seguridad)",
+              "Hasta unas 60 veces"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Es una cifra orientativa, no exacta, pero el mensaje es la razón de ser del SSDLC: **cuanto más tarde se aborda la seguridad, más cara resulta**, por el esfuerzo y por los ataques que se pueden sufrir mientras tanto."
+        },
+        {
+          "type": "table",
+          "title": "Análisis de riesgos frente a modelado de amenazas y casos de abuso",
+          "head": [
+            "Aspecto",
+            "Análisis de riesgos",
+            "Modelado de amenazas y casos de abuso"
+          ],
+          "rows": [
+            [
+              "Ámbito",
+              "**Todos los activos de la organización**: la aplicación que desarrollas, pero también el firewall, el IDS y los demás controles, que también pueden tener vulnerabilidades.",
+              "**La aplicación** que estás desarrollando, capa por capa."
+            ],
+            [
+              "Qué hace",
+              "Identifica activos, amenazas e impacto para priorizar.",
+              "Detalla los requisitos de cada capa (presentación, lógica de negocio, modelo, base de datos, comunicaciones) y extrae las amenazas posibles de cada una."
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Para el profesor son actividades muy parecidas; la diferencia está en el **ámbito**. Además, el análisis de riesgos **no es una foto fija**: hay que rehacerlo cada vez que cambia la arquitectura, por ejemplo al corregir vulnerabilidades o al añadir un firewall de aplicaciones web que antes no estaba."
+        },
+        {
+          "type": "example",
+          "title": "Caso práctico: casos de abuso del login",
+          "text": "Caso de uso: iniciar sesión (login). Casos de abuso: inyección SQL, ataque de hombre en medio, fuerza bruta y denegación de servicio. Para cada uno se piensa qué control de seguridad hay que añadir como requisito. A veces este ejercicio te hace cambiar la forma de autenticación que habías pensado."
+        },
+        {
+          "type": "term",
+          "term": "Microsoft Threat Modeling Tool",
+          "text": "Herramienta gratuita de modelado de amenazas. Dibujas las capas de la aplicación y los flujos entre ellas, indicas qué autenticación usa cada una y si hay HTTPS, y con un botón te muestra las **amenazas posibles, de qué tipo son y cómo mitigarlas**. Hay otras, entre ellas algunas de OWASP."
+        },
+        {
+          "type": "term",
+          "term": "OWASP ASVS (Application Security Verification Standard)",
+          "text": "Otra vía para elaborar los requisitos de seguridad web. Es un documento de unas 100 páginas, organizado, según la clase, en **17 categorías** de requisitos (autenticación robusta, cifrado en tránsito…) con el detalle de lo que hay que hacer en cada una. Si se sigue al pie de la letra, da un conjunto de requisitos muy completo. Aun así, el profesor recomienda hacer **todas las actividades** (modelado de amenazas, análisis de riesgos y ASVS) si da tiempo, para no dejar nada atrás."
+        },
+        {
+          "type": "term",
+          "term": "Plan de pruebas funcionales de seguridad (test plans)",
+          "text": "Una batería de casos de prueba pensados desde cada requisito de seguridad y cada riesgo; son como **pequeños tests de penetración enfocados en un requisito**. Por ejemplo, para la autenticación: fuerza bruta, hombre en medio, denegación de servicio. Se **planifican** en las primeras fases y se **ejecutan** cuando ya hay una primera versión de la aplicación funcionando, en despliegue y pruebas."
+        },
+        {
+          "type": "exam",
+          "text": "No confundas los ámbitos: el **análisis de riesgos** mira todos los activos de la organización; el **modelado de amenazas** mira la aplicación capa por capa. Y recuerda que los casos de abuso son como los casos de uso, pero escritos desde el punto de vista del atacante."
+        },
+        {
           "type": "exam",
           "text": "«¿De qué depende la derivación de requisitos?» → modelado de amenazas **y** análisis de riesgos (la opción combinada). «¿Qué modelo es de desarrollo seguro?» → OpenSAMM; CSF e ISO 27001 son marcos de gestión de la organización, así que «todas» es falsa. «¿Qué proceso implanta la seguridad desde el principio?» → SSDLC (no SGSI, ni SQLI, ni OWASP, que es la organización). «Aplicación aún en diseño» → modelado de amenazas, porque un escáner dinámico necesita una aplicación que funcione."
         },
         {
           "type": "key",
           "text": "SSDLC = seguridad en todas las fases. Los requisitos de seguridad salen del modelado de amenazas más el análisis de riesgos, y el modelado se hace en diseño, antes de escribir código."
+        }
+      ]
+    },
+    {
+      "id": "ssdlc-normas-madurez",
+      "title": "Normas, siete puntos de contacto y madurez del SSDLC",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "¿De dónde sale un proceso de desarrollo seguro? Las normas se organizan en niveles: las generales de toda la organización generan políticas y procesos, y uno de esos procesos es el de desarrollo seguro de aplicaciones, que a su vez adopta una norma concreta."
+        },
+        {
+          "type": "table",
+          "title": "De la norma general al proceso de desarrollo",
+          "head": [
+            "Nivel",
+            "Ejemplos",
+            "Para qué sirve"
+          ],
+          "rows": [
+            [
+              "Marco de gestión de la seguridad de la organización (SGSI)",
+              "ISO 27001, NIST CSF 2.0, el Esquema Nacional de Seguridad (ENS) en España (para la administración pública y las empresas que trabajan con ella).",
+              "Dan la política de seguridad de la organización y de ella nacen políticas y procesos más concretos."
+            ],
+            [
+              "Proceso de desarrollo seguro (SSDLC)",
+              "OWASP SAMM (gratuita), NIST SSDF (gratuita) y BSIMM (de pago; antes era abierta).",
+              "Dicen qué hacer en cada fase del ciclo de vida del software."
+            ],
+            [
+              "Requisitos de seguridad",
+              "OWASP ASVS.",
+              "Catálogo de requisitos que cumplir."
+            ]
+          ]
+        },
+        {
+          "type": "term",
+          "term": "Siete puntos de contacto (Seven Touch Points) de Gary McGraw",
+          "text": "Modelo conceptual de las **siete actividades de seguridad** que debería incluir todo ciclo de desarrollo seguro. Su idea clave es que se pueden **añadir a cualquier ciclo de vida tradicional** que no contemple seguridad, así que sirve para adaptar un proceso ya existente. Está incluido en BSIMM."
+        },
+        {
+          "type": "table",
+          "title": "Dónde cae cada actividad en el ciclo de vida",
+          "head": [
+            "Fase",
+            "Actividad de seguridad"
+          ],
+          "rows": [
+            [
+              "Análisis y diseño",
+              "Requisitos de seguridad, casos de abuso y modelado de amenazas, análisis de riesgos, y planificación de los tests de seguridad."
+            ],
+            [
+              "Desarrollo",
+              "Formación en codificación segura y revisión de la seguridad del código."
+            ],
+            [
+              "Pruebas y despliegue",
+              "Ejecución de los tests funcionales de seguridad y prueba de penetración."
+            ],
+            [
+              "Producción",
+              "Operaciones de seguridad: monitorización continua, parches, respuesta a incidentes."
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "El autor representa con círculos de distinto tamaño la importancia de cada actividad; el profesor dijo no estar del todo de acuerdo con esa valoración. Lo importante es que **el ciclo no termina nunca**: mientras la aplicación esté en producción, ya se están analizando y diseñando los requisitos de la versión siguiente."
+        },
+        {
+          "type": "table",
+          "title": "OWASP SAMM: cinco funciones (según la clase)",
+          "head": [
+            "Función",
+            "Qué incluye"
+          ],
+          "rows": [
+            [
+              "Gobernanza",
+              "Estrategia y métricas, políticas, educación y formación."
+            ],
+            [
+              "Diseño",
+              "Modelado de amenazas, requisitos de seguridad, arquitectura segura."
+            ],
+            [
+              "Implementación",
+              "Construcción segura, gestión de las dependencias (software de terceros), despliegue seguro."
+            ],
+            [
+              "Verificación",
+              "Análisis de la arquitectura, tests de requisitos y tests de seguridad (estático, dinámico e interactivo)."
+            ],
+            [
+              "Operaciones",
+              "Gestión de incidentes, del entorno (parches, configuraciones seguras) y de operaciones (protección de datos)."
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "SAMM se puede implantar en **tres niveles de madurez**, paso a paso, y es un documento gratuito. La herramienta **SAMMY** te ayuda a medir tu nivel: respondes una encuesta («¿se usan herramientas de análisis automático para escanear las aplicaciones?») y obtienes gráficos con tu grado de madurez. También sirve para otras normas de desarrollo y de gestión. El profesor avisó de que alguna de las versiones de normas que ofrece son antiguas y no son la última."
+        },
+        {
+          "type": "exam",
+          "text": "Si una pregunta menciona **«BSIMM»**, es un modelo de desarrollo seguro **de pago**; **SAMM** y **SSDF** son gratuitos. SAMM se organiza en cinco funciones (gobernanza, diseño, implementación, verificación y operaciones) y tres niveles de madurez."
+        },
+        {
+          "type": "key",
+          "text": "Las normas generales (ISO 27001, NIST CSF, ENS) dan el marco; el SSDLC (SAMM, SSDF, BSIMM) lo concreta para el software. Los siete puntos de contacto de McGraw sirven para añadir seguridad a cualquier ciclo existente."
         }
       ]
     },
@@ -1099,6 +2044,139 @@
           "text": "Tu aplicación lleva seis meses en producción y se publica un CVE crítico en una biblioteca de registro que usas. El análisis que hiciste antes de publicar no lo detectó porque el fallo no se conocía. Toca evaluar si te afecta, actualizar la biblioteca y vigilar los registros por si ya te atacaron. No basta con renovar el certificado HTTPS, ni esperar a ver si alguien lo explota."
         },
         {
+          "type": "p",
+          "text": "**Primero, la formación.** El programador debe conocer las vulnerabilidades: los conceptos (SQL injection, XSS…) son los mismos en cualquier lenguaje; lo que cambia es la sintaxis. Formarlo en seguridad es una medida preventiva fundamental."
+        },
+        {
+          "type": "table",
+          "title": "Caja blanca y caja negra: qué ve cada herramienta",
+          "head": [
+            "Herramienta",
+            "Caja",
+            "Qué ve",
+            "Necesita la aplicación en marcha",
+            "Fase"
+          ],
+          "rows": [
+            [
+              "SAST",
+              "Blanca",
+              "Todo el código fuente y las configuraciones.",
+              "No.",
+              "Desarrollo"
+            ],
+            [
+              "DAST",
+              "Negra",
+              "Solo peticiones y respuestas, desde fuera, sintácticamente.",
+              "Sí.",
+              "Pruebas"
+            ],
+            [
+              "IAST",
+              "Blanca",
+              "Código, ejecución, peticiones, respuestas y configuración, mediante un **agente embebido** en el servidor de aplicaciones.",
+              "Sí, y que le lleguen peticiones.",
+              "Pruebas"
+            ],
+            [
+              "RASP",
+              "Blanca",
+              "Lo mismo que IAST, pero bloquea los ataques.",
+              "Sí.",
+              "Producción"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "**DAST e IAST se ejecutan a la vez**, porque una se alimenta de la otra: el DAST (con su crawler, que recorre la aplicación, y su escaneo activo, que lanza muchas peticiones automáticamente) genera el tráfico que aprovecha el agente interactivo. Las peticiones pueden también hacerse a mano. Existen además herramientas **híbridas**. Como DAST, el profesor usará en clase **Burp Suite** y **ZAP** (otro ejemplo comercial es Acunetix)."
+        },
+        {
+          "type": "term",
+          "term": "RASP (Runtime Application Self-Protection)",
+          "text": "Es «prima hermana» de IAST: el **mismo agente** embebido, configurado para que, cuando detecte un ataque que puede aprovechar una vulnerabilidad del código, lo **bloquee**. La misma herramienta suele tener los dos modos. Con **IAST** (en despliegue) obtienes un informe: «hay indicios de inyección». Con **RASP** (en producción) detectas y frenas un ataque que realmente estás sufriendo. El trabajo y la carga que genera el agente son los mismos en ambos modos, por lo que hay que **probar el rendimiento** del servidor con el agente instalado."
+        },
+        {
+          "type": "term",
+          "term": "WAF (Web Application Firewall)",
+          "text": "Firewall de aplicaciones web: examina el tráfico HTTP hacia la aplicación y bloquea lo malicioso, como inyecciones o XSS. Junto con RASP es la otra medida de protección clave en producción. No lo confundas con un EDR, que se centra sobre todo en el malware de los equipos."
+        },
+        {
+          "type": "list",
+          "title": "Además, en producción",
+          "items": [
+            "Procedimientos de **backup y recuperación** diseñados y probados.",
+            "Procedimientos de **gestión de incidentes** de seguridad.",
+            "**Monitorización continua.**",
+            "Rehacer el análisis de riesgos cada vez que cambie la arquitectura."
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Aciertos y errores de una herramienta de análisis",
+          "head": [
+            "Resultado",
+            "Qué significa",
+            "Qué hacer"
+          ],
+          "rows": [
+            [
+              "Verdadero positivo",
+              "La vulnerabilidad existe y la herramienta la encuentra.",
+              "Corregirla."
+            ],
+            [
+              "Falso positivo",
+              "La herramienta avisa de una vulnerabilidad que en realidad no existe.",
+              "Comprobar uno por uno si es verdadero o falso."
+            ],
+            [
+              "Falso negativo",
+              "La vulnerabilidad existe pero la herramienta no la ve, y queda en el código. Es el problema principal.",
+              "Complementar con revisión manual y con otras herramientas."
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Revisar a mano un millón de líneas es agotador: tras muchos días ya no sabes lo que estás viendo. En la práctica, el término medio es auditar lo que reporta el análisis estático y mirar algo más. Hoy la **inteligencia artificial** también se usa en análisis estático (por ejemplo, Snyk tiene una opción gratuita que se conecta a un repositorio de código); pero el profesor insiste en que **no es automáticamente mejor**: depende. No hay una herramienta «mejor»: **son complementarias** y conviene usar cuantos más tipos de análisis, mejor, porque encontrar el 100 % de las vulnerabilidades es imposible."
+        },
+        {
+          "type": "table",
+          "title": "CWE, OWASP Top 10 y CVE: tres cosas distintas",
+          "head": [
+            "Nombre",
+            "Qué es",
+            "Analogía"
+          ],
+          "rows": [
+            [
+              "CWE (Common Weakness Enumeration, de MITRE)",
+              "Diccionario de tipos de debilidad, uno por uno. El profesor lo prefiere por su detalle.",
+              "El catálogo de enfermedades."
+            ],
+            [
+              "OWASP Top 10",
+              "Las 10 **categorías** de vulnerabilidades más importantes (inyección, XSS…).",
+              "La lista de los grupos de enfermedades más frecuentes."
+            ],
+            [
+              "CVE (también de MITRE)",
+              "Una vulnerabilidad **real y concreta** en un producto concreto, con su «matrícula»: CVE, año y un número.",
+              "El diagnóstico de un paciente concreto."
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "**SCA y la cadena de suministro.** Las dependencias son bibliotecas ya escritas a las que llama tu código. Aunque muchas veces no tengas su código fuente, debes investigar los **CVE públicos** que tienen y comprobar si hay parche. Cuidado con los exploits públicos que puedan existir. Un ejemplo de herramienta SCA es OWASP Dependency-Check. Los ataques que entran por dependencias se consideran **ataques a la cadena de suministro**."
+        },
+        {
+          "type": "exam",
+          "text": "Memoriza el eje **caja blanca / caja negra**: SAST e IAST (y RASP) ven el interior; DAST es caja negra. Y recuerda la diferencia IAST/RASP: **mismo agente, distinto modo y fase** (IAST informa en despliegue; RASP bloquea en producción). Si un análisis «no encuentra nada», eso no prueba que no haya nada: puede haber **falsos negativos**."
+        },
+        {
           "type": "exam",
           "text": "SAST = código sin ejecutar (no «probar entradas contra la app en ejecución», que es DAST; ni «agente observando», que es IAST; ni «comparar versiones de dependencias», que es SCA). Contra la inyección SQL: consultas parametrizadas (cambiar GET por POST no la evita, y validar solo en JavaScript tampoco, porque el atacante se lo salta). Contra código inyectado en una página: codificar la salida. Pentest: fase de pruebas."
         },
@@ -1122,7 +2200,15 @@
     "HTTP es sin estado: el identificador de sesión asocia las peticiones a un usuario y debe ser fuerte y revocable.",
     "SSDLC integra la seguridad en todas las fases; OWASP SAMM es un modelo abierto de SSDLC.",
     "Los requisitos de seguridad se derivan del modelado de amenazas y del análisis de riesgos; el modelado se hace en diseño.",
-    "SAST y SCA en desarrollo; DAST, IAST y pentest en pruebas; monitorización, parches y respuesta a incidentes en producción."
+    "SAST y SCA en desarrollo; DAST, IAST y pentest en pruebas; monitorización, parches y respuesta a incidentes en producción.",
+    "Un ataque web se compone de agente, vector, payload, vulnerabilidad, activo e impacto; los objetivos de seguridad son autenticación, autorización, confidencialidad, integridad, disponibilidad, no repudio y trazabilidad (logs diseñados más monitorización continua).",
+    "La seguridad de una aplicación web se implementa sobre todo en el backend; en el cliente solo como complemento. Para un servidor basta con GET y POST: el resto de métodos se deshabilitan.",
+    "POST no cifra: solo saca los parámetros de la URL. Cifrar es tarea de TLS; con TLS mutuo el cliente también presenta certificado y un proxy de pruebas no puede interceptarlo sin él.",
+    "Códigos de estado: 401 es no autenticado, 403 es autenticado sin permiso, 404 no existe y los 5xx son errores del servidor. Una traza de error completa ayuda al atacante.",
+    "Sesión: un identificador (guardado en el servidor) o un JWT (guardado en el cliente). Ambos se roban igual y caducan. Una cookie segura lleva HttpOnly, Secure y SameSite=Strict.",
+    "La política del mismo origen la implementan los navegadores y puede saltarse con etiquetas como script; CORS la ajusta con cabeceras.",
+    "Corregir un fallo cuesta más cuanto más tarde se detecta. El análisis de riesgos mira todos los activos; el modelado de amenazas, la aplicación capa por capa. SAMM, SSDF y BSIMM son normas de SSDLC (BSIMM de pago).",
+    "SAST e IAST son de caja blanca, DAST de caja negra; RASP es el IAST que bloquea en producción. Las herramientas dan falsos positivos y negativos, así que se combinan."
   ],
   "glossary": [
     {
@@ -1130,12 +2216,16 @@
       "text": "Técnica para pedir datos al servidor en segundo plano sin recargar la página."
     },
     {
+      "term": "Análisis de riesgos",
+      "text": "Identificar activos, amenazas e impacto para priorizar qué proteger."
+    },
+    {
       "term": "API (Application Programming Interface)",
       "text": "Interfaz con normas fijas para que un programa pida datos o acciones a otro."
     },
     {
-      "term": "Análisis de riesgos",
-      "text": "Identificar activos, amenazas e impacto para priorizar qué proteger."
+      "term": "Base64",
+      "text": "Codificación de datos con 64 caracteres; no es cifrado."
     },
     {
       "term": "Caso de abuso",
@@ -1146,12 +2236,20 @@
       "text": "Pequeño dato que el servidor guarda en el navegador y que este reenvía en cada petición; suele contener el identificador de sesión."
     },
     {
+      "term": "CORS (Cross-Origin Resource Sharing)",
+      "text": "Cabeceras con las que el servidor declara qué otros dominios pueden acceder a sus recursos."
+    },
+    {
       "term": "CSRF (Cross-Site Request Forgery)",
       "text": "Ataque que hace que el navegador de la víctima envíe, con su sesión, una petición preparada por el atacante."
     },
     {
       "term": "CVE (Common Vulnerabilities and Exposures)",
       "text": "Código público único para cada vulnerabilidad conocida."
+    },
+    {
+      "term": "CWE (Common Weakness Enumeration)",
+      "text": "Diccionario de MITRE de tipos de debilidad de software, uno por uno."
     },
     {
       "term": "DAST (Dynamic Application Security Testing)",
@@ -1162,20 +2260,28 @@
       "text": "Enfoque que integra la seguridad en el desarrollo y la operación como responsabilidad compartida."
     },
     {
-      "term": "HTTP (HyperText Transfer Protocol)",
-      "text": "Protocolo sin estado con el que cliente y servidor web se comunican."
+      "term": "Falso positivo y falso negativo",
+      "text": "Falso positivo: la herramienta avisa de una vulnerabilidad que no existe. Falso negativo: existe y la herramienta no la ve."
     },
     {
-      "term": "HTTPS",
-      "text": "HTTP cifrado con TLS."
+      "term": "HTTP (HyperText Transfer Protocol)",
+      "text": "Protocolo sin estado con el que cliente y servidor web se comunican."
     },
     {
       "term": "HttpOnly",
       "text": "Atributo de cookie que impide que el JavaScript de la página la lea."
     },
     {
+      "term": "HTTPS",
+      "text": "HTTP cifrado con TLS."
+    },
+    {
       "term": "IAST (Interactive Application Security Testing)",
       "text": "Análisis que observa desde dentro la aplicación en ejecución, a menudo junto con un DAST."
+    },
+    {
+      "term": "JWT (JSON Web Token)",
+      "text": "Token firmado que se guarda en el cliente y sustituye al identificador de sesión; el servidor no guarda la sesión."
     },
     {
       "term": "Microservicios",
@@ -1194,20 +2300,44 @@
       "text": "Patrón que separa Vista, lógica de presentación (ViewModel) y Modelo de negocio y datos."
     },
     {
+      "term": "OWASP ASVS",
+      "text": "Catálogo de requisitos de seguridad para aplicaciones web."
+    },
+    {
       "term": "OWASP SAMM",
       "text": "Modelo abierto de madurez para el desarrollo seguro de software (antes OpenSAMM)."
+    },
+    {
+      "term": "OWASP Top 10",
+      "text": "Lista de las diez categorías de vulnerabilidades web más importantes."
+    },
+    {
+      "term": "Payload (carga útil)",
+      "text": "Texto malicioso que el atacante envía para aprovechar una vulnerabilidad."
     },
     {
       "term": "Pentest (prueba de penetración)",
       "text": "Simulación controlada de un ataque real contra la aplicación en ejecución."
     },
     {
+      "term": "Política del mismo origen",
+      "text": "Norma de los navegadores que impide que el código de una aplicación acceda a otro origen distinto."
+    },
+    {
       "term": "PWA (Progressive Web Application)",
       "text": "Aplicación web instalable que funciona sin conexión gracias a los service workers."
     },
     {
+      "term": "RASP (Runtime Application Self-Protection)",
+      "text": "Agente embebido, como el de IAST, que bloquea ataques en producción."
+    },
+    {
       "term": "Response splitting",
       "text": "Inyección de \\r\\n en una cabecera para crear una segunda respuesta HTTP con HTML o JavaScript del atacante."
+    },
+    {
+      "term": "SameSite, Secure y HttpOnly",
+      "text": "Atributos de seguridad de una cookie: solo para el mismo sitio, solo por TLS y no legible por JavaScript."
     },
     {
       "term": "SAST (Static Application Security Testing)",
@@ -1226,12 +2356,32 @@
       "text": "Contexto que la aplicación guarda de un usuario entre peticiones; se asocia mediante un identificador."
     },
     {
+      "term": "SIEM y SOAR",
+      "text": "SIEM: recoge y correlaciona registros de seguridad. SOAR: SIEM avanzado que además responde a incidentes."
+    },
+    {
+      "term": "Siete puntos de contacto (Seven Touch Points)",
+      "text": "Siete actividades de seguridad de Gary McGraw que se pueden añadir a cualquier ciclo de vida de desarrollo."
+    },
+    {
       "term": "SPA (Single Page Application)",
       "text": "Aplicación que carga una página y después actualiza solo las partes que cambian."
     },
     {
       "term": "SSDLC (Secure Software Development Life Cycle)",
       "text": "Ciclo de vida de desarrollo que integra actividades de seguridad en cada fase."
+    },
+    {
+      "term": "TLS mutuo",
+      "text": "TLS en el que cliente y servidor presentan certificado."
+    },
+    {
+      "term": "Trazabilidad",
+      "text": "Saber quién hizo qué y cuándo: requiere registros bien diseñados y monitorización continua."
+    },
+    {
+      "term": "WAF (Web Application Firewall)",
+      "text": "Firewall de aplicaciones web que filtra el tráfico HTTP malicioso."
     },
     {
       "term": "XSS (Cross-Site Scripting)",
