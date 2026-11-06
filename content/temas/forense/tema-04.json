@@ -2,7 +2,7 @@
   "course": "forense",
   "number": 4,
   "title": "Sistemas de ficheros",
-  "minutes": 40,
+  "minutes": 45,
   "intro": {
     "why": "Cuando un perito recibe el disco de un sospechoso, lo que tiene en la mano es una larga ristra de unos y ceros. Para encontrar una foto borrada, un documento escondido en una partición antigua o la fecha en que se creó un archivo, tiene que saber cómo está organizada esa ristra: particiones, volúmenes y sistema de ficheros. Este tema es el mapa de ese territorio: explica cómo guardan y «borran» los archivos FAT, NTFS, Ext4 y APFS, y por qué casi nunca un borrado destruye de verdad los datos.",
     "before": [
@@ -17,7 +17,9 @@
       "Sabrás qué es un RAID y en qué se diferencian RAID 0, RAID 1 y RAID 5, y por qué importa al analizarlo.",
       "Sabrás qué hace un sistema de ficheros, por qué se parece al índice de un libro y por qué el espacio sin particionar puede esconder evidencias.",
       "Sabrás qué archivos forman el índice en FAT (entradas de directorio, FAT1 y FAT2) y en NTFS ($Bitmap, $MFT y $MFTMirr), y qué pasa al crear y borrar un archivo.",
-      "Sabrás cómo se organiza Ext4 (grupos de bloques, inodos) y qué rasgos tiene APFS (clones, Catalog, Bitmap)."
+      "Sabrás cómo se organiza Ext4 (grupos de bloques, inodos) y qué rasgos tiene APFS (clones, Catalog, Bitmap).",
+      "Sabrás qué es Btrfs y qué significan copy-on-write e instantáneas.",
+      "Sabrás cómo estudiar este tema técnico sin perderte en los detalles."
     ]
   },
   "sections": [
@@ -111,6 +113,20 @@
           ]
         },
         {
+          "type": "analogy",
+          "text": "Imagina el disco como una **tarta entera**: cada partición es un trozo cortado, y el volumen es ese trozo ya con su etiqueta (un sistema de ficheros listo para guardar cosas)."
+        },
+        {
+          "type": "term",
+          "term": "Letras de unidad (C:, D:, E:…)",
+          "text": "Windows nombra los volúmenes con letras. Empiezan en la **C** porque la A y la B se reservaban a las disqueteras: el equipo probaba a arrancar por la A, luego por la B y luego por la C."
+        },
+        {
+          "type": "term",
+          "term": "Retrocompatibilidad",
+          "text": "Capacidad de un sistema nuevo de seguir funcionando con formatos y programas antiguos. Por eso, según contó el profesor, aún se encuentran sistemas muy viejos en empresas e industria (él vio un Windows 98, que por antiguo ni siquiera se vio afectado por un ransomware). Moraleja forense: **no descartes nada**."
+        },
+        {
           "type": "exam",
           "text": "«¿Qué es una partición?» La respuesta es **una división lógica del espacio disponible**. Trampas: «división física» (no se corta nada físicamente) y «división lógica formateada» (eso ya describe un volumen). Y si preguntan por los dos esquemas de particionado, son **MBR y GPT**: NTFS y FAT son sistemas de ficheros, y «MBR y Master Boot Record» es la misma cosa dicha dos veces."
         },
@@ -178,6 +194,26 @@
             ["Particiones", "4 primarias (o 3 + extendida con lógicas)", "Sin ese límite de cuatro"],
             ["Arranque", "Código en ensamblador en el propio MBR", "Lo gestiona la UEFI"]
           ]
+        },
+        {
+          "type": "table",
+          "title": "MBR frente a GPT: las cifras de la clase",
+          "head": ["Rasgo", "MBR", "GPT"],
+          "rows": [
+            ["Número de particiones", "4", "Hasta 128"],
+            ["Particiones arrancables", "Solo una", "Sin límite: eliges por cuál arrancar"],
+            ["Tamaño máximo del disco", "Unos 2 TB", "Unos 8 ZB (zettabytes)"],
+            ["Tipo de arranque", "BIOS", "UEFI"]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "La BIOS (el programa de arranque de la placa) también tiene memoria propia. Según la clase, hay pocos casos, pero existen, de malware alojado en ella, con un nivel de persistencia enorme."
+        },
+        {
+          "type": "example",
+          "title": "Ver el principio de un volumen con FTK Imager",
+          "text": "Al añadir como evidencia una partición NTFS y mirar sus primeros bytes, a la derecha se lee en texto la palabra «NTFS» y, algo más abajo, mensajes de error de arranque en inglés (como que ha ocurrido un error de lectura de disco o que falta el gestor de arranque). Son restos del código de arranque del volumen: la «entradilla» del disco. Así se ve en bruto el esquema de particionado y el sistema de ficheros, sin que el sistema operativo los interprete."
         },
         {
           "type": "exam",
@@ -578,6 +614,38 @@
       ]
     },
     {
+      "id": "btrfs",
+      "title": "Btrfs: copiar al escribir y las instantáneas",
+      "blocks": [
+        {
+          "type": "term",
+          "term": "Btrfs",
+          "text": "Sistema de ficheros de Linux más moderno que la familia ext. Según la clase, nace como sustituto y se basa en **árboles B** (la misma idea de índice por niveles que ya viste en APFS). Su rasgo más destacado es el copy-on-write."
+        },
+        {
+          "type": "term",
+          "term": "Copy-on-write (CoW, «copiar al escribir»)",
+          "text": "Cuando se modifica un dato, no se pisa el original: la versión nueva se escribe en otro sitio y solo después se actualiza la referencia. Si falta la luz a mitad de la modificación, el dato original sigue intacto y no se corrompe. Es lo que también permite hacer **instantáneas (snapshots)**, como en las máquinas virtuales."
+        },
+        {
+          "type": "analogy",
+          "text": "Es como editar un documento con «Guardar como»: el archivo original no se toca hasta que la copia nueva está completa y comprobada."
+        },
+        {
+          "type": "p",
+          "text": "Según el profesor, el copy-on-write no aparece en el temario (lo achacó a una errata) pero **puede caer como pregunta de test**. Quédate con la pareja: Btrfs = copy-on-write + instantáneas. Para el forense, tener versiones anteriores de los datos puede abrir posibilidades de recuperación, pero depende de cada caso."
+        },
+        {
+          "type": "exam",
+          "text": "No confundas las tres ideas «de moda» de los sistemas modernos: **journaling** en ext4 (registrar lo que se va a hacer para poder repararlo), **clones** en APFS (copia que solo guarda los cambios) y **copy-on-write con instantáneas** en Btrfs."
+        },
+        {
+          "type": "key",
+          "text": "Btrfs: sistema de ficheros de Linux con árboles B, copy-on-write e instantáneas."
+        }
+      ]
+    },
+    {
       "id": "vision-forense",
       "title": "Visión de conjunto: crear, borrar y recuperar",
       "pages": [13, 23],
@@ -609,6 +677,17 @@
           ]
         },
         {
+          "type": "list",
+          "title": "Cómo estudiar este tema (consejos del profesor)",
+          "items": [
+            "Es el tema más técnico hasta ahora, y el profesor reconoce que suele abrumar. No hace falta saberlo todo de cada sistema: **apunta las características principales o las novedades que aportó cada uno y sus archivos principales**; con un par de ideas por sistema basta.",
+            "Los imprescindibles son FAT (y FAT32), NTFS y ext4; de APFS y de los demás basta saber qué aportan.",
+            "Detalles como el journaling, las sumas de comprobación (checksums) o la desfragmentación: basta saber que existen. Según la clase, no son objeto del examen.",
+            "En NTFS, borrar un archivo cambia **varias cosas** (la entrada de la MFT y el mapa de bits, $Bitmap), no una sola marca como parece en FAT; eso explica por qué borrar un archivo grande no es tan simple como «marcar una casilla».",
+            "Imagen para recordar la biblioteca: un sistema de ficheros usa **dos «mostradores»**, uno que dice dónde está cada libro y otro que dice cuánto sitio queda en cada estantería. Trabajan juntos, y en varios sistemas se guardan copias de ellos para evitar corrupción."
+          ]
+        },
+        {
           "type": "exam",
           "text": "Cuando una opción diga «se sobrescriben inmediatamente todos sus bytes», «siempre está vacío porque no lo muestra el sistema operativo» o «solo tiene interés si aparece como carpeta», desconfía: el tema insiste en que lo invisible puede conservar información."
         },
@@ -630,18 +709,22 @@
     "FAT: entradas de directorio, FAT1 y FAT2 (copia de seguridad). Al borrar, la entrada se marca como disponible.",
     "NTFS: $MFT (una entrada por archivo con sus atributos), $MFTMirr (sus cuatro primeros registros) y $Bitmap (clústeres libres u ocupados).",
     "Ext4: grupos de bloques; entrada de directorio → inodo → bloques. Al borrar se eliminan los enlaces del inodo a los bloques.",
-    "APFS: sustituye a HFS+; clones que comparten bloques y guardan solo los cambios; Catalog describe la jerarquía y Bitmap los bloques disponibles."
+    "APFS: sustituye a HFS+; clones que comparten bloques y guardan solo los cambios; Catalog describe la jerarquía y Bitmap los bloques disponibles.",
+    "Btrfs: copy-on-write (no se pisa el original al modificar) e instantáneas. MBR: 4 particiones y una arrancable; GPT: hasta 128 y sin límite de arrancables."
   ],
   "glossary": [
     { "term": "APFS (Apple File System)", "text": "Sistema de ficheros de Apple desde 2016, sustituto de HFS+." },
     { "term": "Bitmap (mapa de bits)", "text": "Estructura con un bit por bloque o clúster que indica si está libre u ocupado." },
+    { "term": "Btrfs", "text": "Sistema de ficheros moderno de Linux basado en árboles B, con copy-on-write e instantáneas." },
     { "term": "Clon (APFS)", "text": "Copia de un archivo que comparte bloques con el original y solo guarda los cambios." },
     { "term": "Clúster o bloque", "text": "Unidad mínima de asignación de espacio de un sistema de ficheros; agrupa varios sectores." },
+    { "term": "Copy-on-write (CoW)", "text": "Al modificar un dato se escribe la versión nueva aparte en vez de pisar el original; evita corrupción y permite instantáneas." },
     { "term": "Ext4", "text": "Cuarta versión del Extended File System de Linux (2006)." },
     { "term": "Extent", "text": "Tramo de bloques físicos contiguos que Ext4 usa en lugar de referencias a bloques sueltos." },
     { "term": "FAT (File Allocation Table)", "text": "Sistema de ficheros de Microsoft (1980) con versiones FAT12, FAT16 y FAT32." },
     { "term": "GPT (GUID Partition Table)", "text": "Esquema de particionado de la especificación UEFI que sustituye a MBR." },
     { "term": "Inodo", "text": "Estructura de Ext4 con la información de un archivo y las referencias a sus bloques de datos." },
+    { "term": "Instantánea (snapshot)", "text": "Foto del estado de un volumen o máquina virtual en un instante, que se puede restaurar después." },
     { "term": "Journaling", "text": "Diario de transacciones donde el sistema de ficheros anota los cambios para recuperarse tras un fallo." },
     { "term": "MBR (Master Boot Record)", "text": "Primeros 512 bytes del disco con el cargador de arranque y la tabla de particiones." },
     { "term": "$MFT (Master File Table)", "text": "Tabla maestra de NTFS con una entrada por archivo." },
@@ -649,6 +732,7 @@
     { "term": "Partición", "text": "División lógica del espacio de un dispositivo de almacenamiento." },
     { "term": "Partición extendida", "text": "Partición primaria especial que contiene particiones lógicas; solo una por disco." },
     { "term": "RAID (Redundant Array of Independent Disks)", "text": "Volumen único formado por varios discos que trabajan en conjunto." },
+    { "term": "Retrocompatibilidad", "text": "Capacidad de un sistema nuevo de funcionar con formatos y programas antiguos." },
     { "term": "UEFI (Unified Extensible Firmware Interface)", "text": "Firmware moderno de arranque que sustituye a la BIOS." },
     { "term": "Volumen", "text": "Partición (o conjunto de particiones) formateada con un sistema de ficheros." }
   ],

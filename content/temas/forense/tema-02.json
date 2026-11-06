@@ -2,7 +2,7 @@
   "course": "forense",
   "number": 2,
   "title": "La evidencia digital",
-  "minutes": 30,
+  "minutes": 32,
   "intro": {
     "why": "En un juicio no gana quien tiene razón, sino quien la puede **demostrar**. Cuando un empleado se lleva datos de clientes, alguien difunde una foto ilícita o un intruso entra en un servidor, la prueba es casi siempre digital: un archivo, un registro o un rastro en la memoria. Este tema explica qué convierte un dato en evidencia, qué requisitos debe cumplir para que un juez se fíe de él y en qué orden hay que recogerlo antes de que se esfume.",
     "before": [
@@ -335,6 +335,26 @@
           "type": "example",
           "title": "Un correo de origen dudoso",
           "text": "Alguien aporta un correo impreso, pero no sabe explicar de qué cuenta procede ni cómo lo obtuvo. Puede ser muy relevante (habla del caso), pero falla la **confianza**: no se puede contrastar su origen ni descartar que se haya modificado."
+        },
+        {
+          "type": "p",
+          "text": "En clase el profesor presentó además la lista **clásica de cinco características** de una evidencia. Es una forma complementaria de recordar lo mismo; cuando una pregunta dice «según la ISO/IEC 27037» son las **tres** de arriba."
+        },
+        {
+          "type": "table",
+          "title": "Las cinco características del profesor y su equivalencia con la ISO 27037",
+          "head": ["Característica (clase)", "Qué pide", "Se parece a (ISO 27037)"],
+          "rows": [
+            ["Admisible", "Está relacionada con el hecho que se investiga", "Relevancia"],
+            ["Auténtica", "Es real: es lo que dice ser", "Confianza"],
+            ["Completa", "Por sí sola es un indicio, y varias juntas corroboran las acciones que se quieren probar", "Suficiencia"],
+            ["Confiable", "No hay ninguna duda sobre su autenticidad ni su veracidad", "Confianza"],
+            ["Creíble", "Es clara y comprensible para cualquier juez", "Relevancia (que sea clara y comprensible)"]
+          ]
+        },
+        {
+          "type": "exam",
+          "text": "No mezcles las dos listas: la ISO 27037 tiene **tres** requisitos (relevancia, confianza, suficiencia) y la lista de cinco (admisible, auténtica, completa, confiable, creíble) es la explicación de clase. En ninguna de las dos la volatilidad es una característica."
         },
         {
           "type": "exam",
@@ -730,7 +750,8 @@
     "Fuentes típicas: documentos, imágenes y vídeos, logs, registros del sistema, navegador (historial y cookies) y tráfico de red.",
     "Lo digital se copia con exactitud: se adquiere mediante copias fieles y se analiza sin alterar el original.",
     "Las evidencias volátiles cambian rápido, desaparecen sin corriente y se adquieren primero.",
-    "RFC 3227: de mayor a menor volatilidad; RAM (procesos, tablas de enrutamiento) antes que temporales, disco y removibles. La caché del procesador no se adquiere."
+    "RFC 3227: de mayor a menor volatilidad; RAM (procesos, tablas de enrutamiento) antes que temporales, disco y removibles. La caché del procesador no se adquiere.",
+    "Lista clásica de cinco características (clase): admisible, auténtica, completa, confiable y creíble; equivalen a grandes rasgos a las tres de la ISO 27037."
   ],
   "glossary": [
     {

@@ -2,7 +2,7 @@
   "course": "gobierno",
   "number": 3,
   "title": "Estándares de Gestión de la Seguridad y Niveles de Madurez",
-  "minutes": 40,
+  "minutes": 50,
   "intro": {
     "why": "Cuando una empresa te dice «tenemos la ISO 27001», te está diciendo que un auditor independiente ha comprobado que gestiona la seguridad de su información con un método reconocido en todo el mundo. Muchos contratos públicos y grandes clientes la exigen a sus proveedores. Este tema explica qué pide esa norma, cómo ha cambiado en 2022 y cómo se mide el grado de madurez de una organización con modelos como CMMI u O-ISM3.",
     "before": [
@@ -17,7 +17,10 @@
       "Sabrás situar cada actividad del SGSI en su fase del ciclo PDCA.",
       "Sabrás razonar sobre el alcance, la documentación y el compromiso de la dirección, y qué cuenta como evidencia.",
       "Sabrás enumerar las cifras de cada versión y los cambios de la ISO 27001:2022.",
-      "Sabrás diferenciar una norma certificable de un modelo de madurez, y describir CMMI y O-ISM3."
+      "Sabrás diferenciar una norma certificable de un modelo de madurez, y describir CMMI y O-ISM3.",
+      "Sabrás por qué se confía en la ISO 27001 pero no es la panacea, y que la certificación de una empresa es distinta de la de una persona.",
+      "Conocerás los cuatro conceptos clave de la norma: gestión de riesgos, apoyo de la dirección, mejora continua y cuerpo normativo.",
+      "Sabrás para qué sirven los atributos de los controles y en qué orden se usan un estándar y un modelo de madurez."
     ]
   },
   "sections": [
@@ -109,6 +112,28 @@
           "type": "example",
           "title": "Caso práctico",
           "text": "Una gestoría trabaja solo en la nube y nunca envía discos ni papeles fuera de su oficina. Al revisar su lista de controles encuentra «medios físicos en tránsito». Lo razonable no es aplicarlo a ciegas ni concluir que la norma ya no le sirve: es **analizar si ese supuesto existe** y, si no, justificar que no lo aplica. Si el año próximo empieza a enviar copias en disco a otra sede, el control pasará a ser pertinente."
+        },
+        {
+          "type": "list",
+          "title": "Por qué se confía en la ISO 27001 (y por qué no es la panacea)",
+          "items": [
+            "Es un **estándar internacional**, no una ley: lo normal es que ninguna empresa esté obligada a implantarlo (con algunas excepciones según el país). Implantarlo es una decisión **voluntaria** de la organización.",
+            "La elabora ISO con un **panel de expertos reconocidos** que han decidido qué controles debe tener un sistema de información. Eso le da peso y **credibilidad** ante clientes, proveedores y terceros.",
+            "**Pero no es la panacea.** Tener la ISO 27001 no impide sufrir incidentes. El profesor avisó de que a veces la dirección, o quien convoca un concurso, cree que «seguridad es igual a ISO 27001», y no es así."
+          ]
+        },
+        {
+          "type": "analogy",
+          "text": "Piensa en el carnet de conducir. Es necesario para conducir con garantías, pero tenerlo no impide tener un accidente. La ISO 27001 es una condición muy recomendable para gestionar bien la seguridad, pero por sí sola no la garantiza."
+        },
+        {
+          "type": "term",
+          "term": "Certificación de la empresa y certificación personal",
+          "text": "Son dos procesos distintos. La **empresa** se certifica cuando una entidad certificadora audita su SGSI y comprueba que cumple la norma. Una **persona** se certifica como auditor o implantador de la norma, para lo cual debe conocerla a fondo. Hacer una pre-auditoría (como en la actividad 1) no certifica a nadie: solo revisa qué se cumple y qué falta."
+        },
+        {
+          "type": "p",
+          "text": "Una pista de lectura: en la familia 27000, **a medida que sube la numeración, las normas suelen tratar aspectos o sectores más específicos** (nube, entornos industriales…). Las primeras, como la 27001, la 27002, las de métricas y las de riesgos, son las que más te pueden servir. Y cuando el profesor dice «la norma», «el estándar» o «la ISO» sin más, se refiere a la **ISO 27001**."
         },
         {
           "type": "exam",
@@ -257,6 +282,41 @@
           "text": "**Qué contempla y qué no.** La ISO 27001 se ocupa de proteger la información con controles como la **ubicación adecuada de las copias de respaldo** (copias de seguridad guardadas en un lugar distinto y protegido). En cambio, **no** fija los objetivos de negocio de la empresa (eso es cosa de la dirección; la norma solo pide que el SGSI esté alineado con ellos), no obliga a crear un comité único y exclusivo de continuidad del negocio ni impone un modelo organizativo concreto (por ejemplo, fusionar seguridad física y lógica en un solo departamento). Tampoco es una arquitectura de red obligatoria ni un simple catálogo técnico que sustituya la gestión."
         },
         {
+          "type": "table",
+          "title": "Los cuatro conceptos en los que se apoya la ISO 27001 (según el profesor)",
+          "head": [
+            "Concepto",
+            "Qué significa",
+            "Idea para recordar"
+          ],
+          "rows": [
+            [
+              "Gestión de riesgos",
+              "Es el **concepto troncal**: todo en la norma se articula a su alrededor. Tiene dos partes: identificar escenarios de riesgo y analizarlos (impacto y probabilidad) y **tratar** los riesgos. Da igual la metodología, pero hay que hacerla.",
+              "Sin gestión de riesgos no sabes a qué te enfrentas ni qué controles necesitas."
+            ],
+            [
+              "Apoyo de la dirección",
+              "No es solo dinero: es participar en los comités, interesarse por los riesgos, dotar presupuesto, formación y concienciación.",
+              "El movimiento se demuestra andando: si la dirección no se implica, el equipo técnico, por bueno que sea, no llega."
+            ],
+            [
+              "Mejora continua",
+              "Implantar los controles, **monitorizarlos** y mejorarlos, porque las amenazas evolucionan.",
+              "Quien no se adapta se queda atrás y sufre más incidentes."
+            ],
+            [
+              "Cuerpo normativo",
+              "Tener políticas, normas y procedimientos documentados (se desarrolla en el tema 4).",
+              "Documentar es menos divertido, pero ayuda a gobernar la seguridad."
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "**La norma es corta.** Según el profesor, el documento de la ISO 27001 ronda las treinta páginas y su contenido empieza en el capítulo 4. Los controles detallados no están ahí: el **Anexo A** solo lista sus nombres y una descripción general, y la **ISO 27002** los desarrolla con todos sus atributos."
+        },
+        {
           "type": "exam",
           "text": "El test mezcla capítulos y dominios. «Evaluación del desempeño» es un **capítulo** (el 9), no un dominio; «Análisis y gestión de riesgos» es una **actividad** de la planificación, no un dominio; «Seguridad física y ambiental» **sí** es un dominio de 2013. Si te preguntan por capítulos, Alcance (1), Planificación (6) y Mejora (10) lo son los tres. Y ante «¿qué establece la ISO 27001?», la respuesta es siempre **requisitos de un SGSI**, no una metodología única de riesgos ni una arquitectura técnica."
         },
@@ -337,6 +397,16 @@
         {
           "type": "p",
           "text": "¿Por qué una **auditoría interna** aporta valor? Porque permite revisar cómo funciona el sistema y detectar desviaciones antes de que lo haga un auditor externo o un atacante. Ojo: no garantiza que se detecten **todas** las debilidades (es un muestreo), ni traslada las decisiones de riesgo al equipo auditor: la responsabilidad sigue siendo de la dirección."
+        },
+        {
+          "type": "list",
+          "title": "El ciclo en la vida real (aclaraciones de la clase)",
+          "items": [
+            "**La fase de Planificar es, para el profesor, la más crítica** (alcance, política, riesgos, selección de controles y declaración de aplicabilidad). **Hacer** suele ser la que más tiempo lleva, según el alcance elegido. En **Comprobar** se definen indicadores, se monitoriza y se audita. **Actuar** es el mantenimiento para seguir mejorando.",
+            "El **alcance es voluntario**: se puede implantar la norma en toda la empresa o solo en áreas concretas. Una empresa muy grande puede empezar por unos servicios y ampliar después.",
+            "**Se dan varias vueltas al ciclo.** En la primera vuelta se implanta; luego llega la auditoría. Una pre-auditoría, como la de la actividad 1, es una revisión previa que detecta huecos (controles con poco cumplimiento) y alimenta los planes de acción de las fases de Hacer, Comprobar y Actuar.",
+            "**El certificado no es eterno.** Hay que volver a pasar el proceso de certificación cada cierto tiempo y cuando cambia la versión de la norma. La primera certificación es la más dolorosa; las siguientes cuestan menos."
+          ]
         },
         {
           "type": "exam",
@@ -637,6 +707,36 @@
           "title": "Las cifras que hay que recordar"
         },
         {
+          "type": "table",
+          "title": "La transición de la versión 2013 a la 2022 (informativo)",
+          "head": [
+            "Cuándo",
+            "Qué ocurrió (según la clase)"
+          ],
+          "rows": [
+            [
+              "Octubre de 2022",
+              "Se publica la ISO 27001:2022."
+            ],
+            [
+              "Primer trimestre de 2023",
+              "Las entidades certificadoras están listas: antes tuvieron que formar a sus auditores en las nuevas cláusulas y controles."
+            ],
+            [
+              "Hasta octubre de 2023",
+              "Un año de margen para certificarse o renovar todavía con la versión 2013."
+            ],
+            [
+              "Hasta octubre de 2025",
+              "Los certificados emitidos con la versión 2013 siguen siendo válidos (tres años desde la publicación)."
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "No hace falta que memorices estas fechas: sirven para entender que cuando ISO cambia una norma concede un **periodo de gracia**. En la práctica, te permite saber qué versión puedes exigir a un proveedor y hasta cuándo es válido su certificado."
+        },
+        {
           "type": "exam",
           "text": "Cuando una pregunta dice «ISO 27001:2013», razona con la estructura de **14 dominios** (por ejemplo, «Seguridad física y ambiental»). Si dice «2022», piensa en **4 grupos**. No mezcles: «14 dominios idénticos a los de 2013» nunca describe la versión 2022."
         },
@@ -810,6 +910,24 @@
           "title": "Los 5 atributos de los controles"
         },
         {
+          "type": "p",
+          "text": "**Para qué sirven los atributos, en palabras del profesor.** Son categorías nuevas de la versión 2022 (no existían en la 2013) que hacen cada control más fácil de entender y de filtrar."
+        },
+        {
+          "type": "list",
+          "title": "Qué aporta cada atributo",
+          "items": [
+            "**Tipo de control:** según la clase, cada uno de los 93 controles es **preventivo** (se anticipa al riesgo), **detectivo** (identifica eventos anómalos) o **correctivo** (actúa sobre la causa tras un evento). Si en el PDF encuentras otra palabra para el tipo intermedio, razona por la función.",
+            "**Propiedades de la seguridad:** indica si el control protege la confidencialidad, la integridad, la disponibilidad o varias.",
+            "**Conceptos de ciberseguridad:** el más útil en la práctica, porque permite **mapear** la ISO 27001 con otros marcos como el NIST (muy usado en el ámbito americano y cada vez más a nivel internacional). Quien ya tiene la ISO puede reutilizar sus controles para certificarse en NIST, y al revés, sin empezar de cero.",
+            "**Capacidad operativa y dominios de seguridad** (gobernanza, protección, defensa y resiliencia): son otras formas de clasificar. Al profesor le parecen más confusas y que se solapan: te las debes conocer, pero aportan menos que las anteriores."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "**Qué no hay que estudiar.** Los cuadros con los controles fusionados, reordenados o renombrados son informativos: el día de mañana tendrás el estándar a mano. Lo que importa es entender la estructura, las cláusulas, los tipos de controles y sus atributos."
+        },
+        {
           "type": "exam",
           "text": "La agrupación de 2022 es **organizacionales, personas, físicos y tecnológicos**. Trampas: «14 dominios idénticos a 2013», «capítulos de requisitos como única clasificación» o «preventivos, detectivos y correctivos como única agrupación» (el tipo de control es un **atributo**, no la agrupación). Sobre roles, la 2022 pide **comunicarlos a toda la organización**, no solo al auditor ni a un administrador."
         },
@@ -925,6 +1043,18 @@
           "type": "example",
           "title": "Caso práctico",
           "text": "Una empresa conoce muchas buenas prácticas de seguridad pero no sabe por dónde empezar a mejorar. CMMI le da una **guía para evaluar sus procesos actuales y establecer prioridades**. No le impone una secuencia única de programación, no prioriza «automáticamente» sin conocer sus objetivos y no es una certificación que sustituya su propio análisis de riesgos."
+        },
+        {
+          "type": "p",
+          "text": "**En qué orden se usan.** El profesor recomienda (aunque no es una ciencia exacta) implantar **primero** un marco o estándar como la ISO 27001 y **después** aplicar un modelo de madurez para ver si los procesos y controles que has implantado son maduros. Hoy ninguna ley obliga a aplicar un modelo de madurez, pero es muy útil para mejorar."
+        },
+        {
+          "type": "example",
+          "text": "Dos empresas cumplen el mismo control de copias de seguridad. La primera lo hace a mano, con un papel, y sólo mide algo cuando hay un incidente. La segunda lo hace con una herramienta automática y revisa cada mes un indicador. Las dos consiguen el objetivo, pero la segunda es **más madura**: trabaja mejor, dedica menos tiempo y comete menos errores. Un modelo de madurez mide exactamente esa diferencia en una escala de niveles, y por eso ayuda a **gastar menos y mejorar más**."
+        },
+        {
+          "type": "p",
+          "text": "Idea final: un modelo de madurez no sustituye al estándar. El estándar dice **qué** hay que tener y el modelo de madurez dice **qué tal de bien** lo estás ejecutando (CMMI usa cinco niveles; O-ISM3 busca priorizar las inversiones en seguridad)."
         },
         {
           "type": "exam",
@@ -1046,7 +1176,11 @@
     "Cifras: 2005 = 11/39/133; 2013 = 14/35/114; 2022 = 93 controles en 4 grupos, 11 nuevos.",
     "La 2022 exige definir procesos, comunicar roles, monitorizar objetivos y planificar los cambios.",
     "Un modelo de madurez mide el grado de desarrollo de la gestión; CMMI tiene 5 niveles y mide la capacidad por área de proceso.",
-    "O-ISM3 se apoya en gestión de riesgos, controles de seguridad y gestión de la seguridad."
+    "O-ISM3 se apoya en gestión de riesgos, controles de seguridad y gestión de la seguridad.",
+    "La ISO 27001 es voluntaria, la avala un panel de expertos y da credibilidad, pero no garantiza que no haya incidentes.",
+    "Sus cuatro pilares: gestión de riesgos (el troncal), apoyo de la dirección (más que dinero), mejora continua y cuerpo normativo.",
+    "Los atributos de la versión 2022 clasifican los 93 controles; el de conceptos permite mapear con NIST.",
+    "Un modelo de madurez se aplica después de implantar el estándar y mide qué tal se ejecutan los procesos, no qué controles existen."
   ],
   "glossary": [
     {
@@ -1132,6 +1266,18 @@
     {
       "term": "UNE",
       "text": "Prefijo de las normas adoptadas en España."
+    },
+    {
+      "term": "Certificación de empresa y personal",
+      "text": "La empresa se certifica cuando una entidad audita su SGSI; una persona se certifica como auditor o implantador de la norma. Son procesos distintos."
+    },
+    {
+      "term": "Periodo de gracia (transición)",
+      "text": "Tiempo que ISO concede tras publicar una nueva versión para que las empresas se adapten y se certifiquen."
+    },
+    {
+      "term": "Tipos de control",
+      "text": "Según la ISO 27002:2022, un control puede ser preventivo, detectivo o correctivo."
     }
   ],
   "questions": {

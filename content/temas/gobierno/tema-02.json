@@ -2,7 +2,7 @@
   "course": "gobierno",
   "number": 2,
   "title": "Gobierno de la seguridad de la información",
-  "minutes": 40,
+  "minutes": 50,
   "intro": {
     "why": "Muchas empresas gastan mucho en seguridad y aun así sufren incidentes graves porque nadie en la dirección decidió qué proteger primero ni comprobó si el dinero se usaba bien. Este tema explica cómo la dirección «gobierna» la seguridad (misión, estrategia y Plan Director) y cómo se gestionan bien los servicios de TI con acuerdos de nivel de servicio (SLA) e ITIL, la biblioteca de buenas prácticas más conocida del sector.",
     "before": [
@@ -16,7 +16,10 @@
       "Distinguir misión, visión, objetivos y estrategia de seguridad.",
       "Describir para qué sirve un Plan Director de Seguridad y sus seis fases.",
       "Definir un servicio de TI y un SLA, y calcular una disponibilidad.",
-      "Explicar qué es ITIL, sus características y cómo trata la capacidad y la seguridad."
+      "Explicar qué es ITIL, sus características y cómo trata la capacidad y la seguridad.",
+      "Distinguir el gobierno corporativo del gobierno de la seguridad y saber en qué se traduce en la práctica.",
+      "Situar el Plan Director de Seguridad en el nivel estratégico y saber por qué no es obligatorio pero sí recomendable.",
+      "Conocer cómo han evolucionado las versiones de ITIL y qué parte importa para el examen."
     ]
   },
   "sections": [
@@ -86,6 +89,39 @@
         {
           "type": "p",
           "text": "Fíjate también en que la seguridad implica a **toda la organización**: la dirección (CEO) la lidera y responde de ella, el responsable de cumplimiento normativo vigila que se cumplan las leyes, y hasta el personal de limpieza tiene acceso físico a despachos, papeleras con documentos o equipos encendidos. Todos necesitan pautas."
+        },
+        {
+          "type": "p",
+          "text": "**Dos gobiernos que deben ir de la mano.** El profesor pidió que te grabes esta idea: existe el **gobierno corporativo** (cómo se organiza la empresa para lograr sus objetivos de negocio) y el **gobierno de la seguridad** (cómo se organizan las actividades de seguridad). El segundo debe estar siempre **alineado** con el primero. La seguridad no está para frenar al negocio, sino para facilitar que cumpla sus objetivos, aunque a veces se nos vea como un freno."
+        },
+        {
+          "type": "list",
+          "title": "¿En qué se traduce el gobierno en la práctica? (ejemplos del profesor)",
+          "items": [
+            "**Indicadores** bien definidos y medidos con regularidad.",
+            "Varias **líneas de defensa**: controles, auditorías internas y procesos corporativos que miden el nivel de madurez de la seguridad.",
+            "Una **estructura jerárquica** clara de roles y responsabilidades, también en las áreas que se relacionan con la seguridad.",
+            "**Comités de seguimiento** con las distintas partes interesadas, para comprobar que los riesgos conocidos siguen por debajo del **apetito de riesgo**.",
+            "Una **planificación reglada** de las actividades de seguridad."
+          ]
+        },
+        {
+          "type": "term",
+          "term": "Apetito de riesgo",
+          "text": "Cuánto riesgo está dispuesta a aceptar una organización para lograr sus objetivos. Los controles no eliminan todo el riesgo: el que queda debe mantenerse por debajo de este nivel."
+        },
+        {
+          "type": "p",
+          "text": "**El gobierno no es implantar controles, pero los vigila.** Su papel es comprobar que los controles funcionan de verdad, que mitigan los riesgos para los que se pusieron y que se miden periódicamente. Sin gobierno, las cosas se pueden hacer, pero de forma inmadura: se compran soluciones sin saber si funcionan, se implantan controles que no hacían falta, se reparte el presupuesto en cosas poco prioritarias y nadie sabe quién tiene que hacer qué cuando hay un incidente."
+        },
+        {
+          "type": "p",
+          "text": "**Un matiz de madurez.** Las empresas que empiezan o tienen pocos recursos suelen preocuparse primero de implantar controles, y está bien; el gobierno llega después para hacerlos más eficaces y eficientes. Además, **no hay un estándar único** que diga cuántos comités o indicadores hacen falta ni cada cuánto medirlos: depende del tamaño de la organización, de su alcance y de sus recursos. Hay buenas prácticas y modelos de madurez que orientan."
+        },
+        {
+          "type": "term",
+          "term": "ISO/IEC 38500",
+          "text": "Norma de **gobierno corporativo** de las tecnologías de la información (no de seguridad concreta). Propone evaluar, dirigir y monitorizar los procesos de negocio. El profesor la mostró como lectura de referencia: sirve para ubicar el gobierno, pero está en un nivel muy alto y no baja a servicios ni sectores concretos."
         },
         {
           "type": "exam",
@@ -216,6 +252,47 @@
           "text": "Una gestoría de 40 empleados descubre que no tiene copias de seguridad fiables ni control de quién accede a los expedientes. Su PDS a tres años podría ser: año 1, copias de seguridad y formación básica; año 2, control de accesos y cifrado de portátiles; año 3, plan de continuidad. Cada proyecto se justifica por un riesgo y un objetivo."
         },
         {
+          "type": "table",
+          "title": "Tres niveles de decisión (el PDS está en el más alto)",
+          "head": [
+            "Nivel",
+            "Qué decide",
+            "Ejemplo de empresa"
+          ],
+          "rows": [
+            [
+              "Estratégico",
+              "Directrices y objetivos de alto nivel: a dónde queremos ir.",
+              "«Vamos a operar en tal mercado».  Aquí está el Plan Director de Seguridad."
+            ],
+            [
+              "Táctico",
+              "Detalles concretos para llegar: qué hay que montar primero.",
+              "«Para operar en ese mercado hay que abrir esta línea de negocio y contactar con estos socios»."
+            ],
+            [
+              "Operativo",
+              "Tareas del día a día que ejecutan lo anterior.",
+              "«Sacar una plataforma nueva, conseguir clientes»."
+            ]
+          ]
+        },
+        {
+          "type": "list",
+          "title": "Lo que remarcó el profesor sobre el PDS",
+          "items": [
+            "**No es obligatorio:** ninguna ley ni la ISO 27001 lo exigen (la norma sí pide tener una **política**). Pero es una **buena práctica** que evidencia un buen nivel de madurez en gobierno.",
+            "No lo veas como un simple documento: debe ser la **piedra angular** viva que marca los proyectos y presupuestos de seguridad. Se elabora a nivel directivo y requiere conocer bien el negocio.",
+            "**La política es el escalón siguiente:** baja la estrategia a algo más tangible (por ejemplo, «hay que preservar la CID»). Muchas empresas se quedan solo con la política y definen las acciones sin un plan director.",
+            "**Se revisa cada año**, y al terminar el periodo (2 a 5 años) se crea otro con objetivos más exigentes, porque se supone que ya has mejorado. Puede haber desviaciones, como en cualquier plan.",
+            "Una actividad concreta, como la pre-auditoría de la actividad 1 o el propio objetivo de certificarse en ISO 27001, sería **una acción dentro** del PDS, no el PDS entero."
+          ]
+        },
+        {
+          "type": "example",
+          "text": "**Un ejemplo de nivel estratégico.** Las estrategias nacionales de ciberseguridad (como la de España) son declaraciones de intenciones a alto nivel: ser «ciberresilientes», proteger las infraestructuras críticas, ayudar a la transformación digital. No dicen qué ley aplicar ni qué herramienta comprar: eso es lo que baja a los niveles siguientes. El PDS de una empresa está en ese mismo nivel, pero con sus objetivos y su plazo."
+        },
+        {
           "type": "exam",
           "text": "El test pregunta «¿para qué sirve un PDS?». La respuesta es **ordenar y priorizar iniciativas conforme a objetivos y riesgos**. Son incorrectas las opciones que dicen que sustituye al análisis de riesgos, que ejecuta proyectos sin prioridades o que la seguridad queda «concluida» tras comprar controles."
         },
@@ -278,6 +355,16 @@
           "type": "example",
           "title": "Caso práctico: comprar antes de pensar",
           "text": "Un hospital compra un sistema carísimo de prevención de fugas de datos porque «lo tiene todo el mundo». Luego descubre que su mayor riesgo era que las copias de seguridad no funcionaban. El orden correcto era: objetivos → riesgos → medidas. Igual pasa al copiar el mismo control a dos negocios con objetivos incompatibles: hay que revisar si encaja con las necesidades y la estrategia de cada uno."
+        },
+        {
+          "type": "list",
+          "title": "Matices de las fases (según la clase)",
+          "items": [
+            "**Definir el modelo:** es una decisión optativa de la empresa. Por ejemplo: «en cinco años quiero estar certificado en ISO 27001, en el Esquema Nacional de Seguridad nivel alto y en PCI». Los objetivos deben ser **retadores pero alcanzables**: ni tan altos que no se cumplan ni tan bajos que no mejoren nada. Y recuerda que la seguridad es un proceso: pasados los cinco años seguirá habiendo trabajo.",
+            "**Analizar la situación actual (GAP):** hay que ser realista. Se destacan las fortalezas, pero sobre todo las debilidades; no es una auditoría al uso. Si la foto no es real, el plan que salga de ella no servirá.",
+            "**El diagrama de araña:** el análisis GAP suele representarse en un gráfico de radar donde cada eje es un dominio de seguridad. Cuanto más cerca del borde (el estado ideal), más madurez; la diferencia entre la situación actual y la deseada es el GAP.",
+            "**Aprobación y seguimiento:** la dirección debe aprobar el plan para implicarse y **provisionar los recursos**; después se revisa al menos una vez al año si se está cumpliendo."
+          ]
         },
         {
           "type": "exam",
@@ -507,6 +594,41 @@
         {
           "type": "p",
           "text": "Algo que conviene tener claro: **ITIL certifica personas** (con exámenes como ITIL Foundation), no empresas. Una organización que quiere certificar su gestión de servicios usa una **norma** como ISO/IEC 20000, y para su seguridad, ISO/IEC 27001. ITIL es una guía de buenas prácticas, no un estándar certificable."
+        },
+        {
+          "type": "table",
+          "title": "Cómo ha cambiado ITIL con las versiones (según la clase)",
+          "head": [
+            "Versión",
+            "Qué la caracteriza"
+          ],
+          "rows": [
+            [
+              "Esquema del temario (soporte y entrega)",
+              "Las prácticas se agrupan en soporte de servicios y entrega del servicio. Es lo que verás en el test."
+            ],
+            [
+              "ITIL 3",
+              "El profesor la tomó como referencia: cinco etapas del ciclo del servicio y, dentro de cada una, procesos (las «cajitas»). Estuvo vigente hasta 2019."
+            ],
+            [
+              "ITIL 4 (2019)",
+              "Los procesos pasan a llamarse **prácticas**, y la versión se articula en torno al **valor** del servicio: cadena de valor, principios guía y prácticas. Las prácticas se agrupan en tres bloques: **gestión general, gestión de servicios y gestión técnica**."
+            ],
+            [
+              "ITIL 5 (recién publicada)",
+              "Según la clase, publicada a comienzos de 2026. Mantiene la base de la versión 4 y añade **inteligencia artificial y automatización**, transformación y experiencia digital, entornos en la nube, ecosistema digital y cadena de suministro. Llega solo siete años después de la 4, tras los doce que separaron la 3 de la 4."
+            ]
+          ]
+        },
+        {
+          "type": "list",
+          "title": "Qué te puede preguntar el profesor sobre ITIL",
+          "items": [
+            "**Sí:** que ITIL es un conjunto de buenas prácticas (no es un estándar, ni un framework, ni un modelo de madurez), sus **principios**, las **características de las prácticas** (predictivas, consistentes, medibles, adaptables) y cómo han evolucionado sus versiones.",
+            "**No lo pedirá de memoria:** el detalle de los diagramas de ITIL 4 (cadena de valor, fases, listados de prácticas). Son cultura general; solo se estudian a fondo si quieres certificarte.",
+            "ITIL ve la seguridad con una visión **limitada**, como un área más de calidad del servicio. Tu visión como profesional debe ser mucho más amplia (por eso existen la ISO 27001 y el resto del temario)."
+          ]
         },
         {
           "type": "exam",
@@ -854,7 +976,11 @@
     "ITIL es una guía de buenas prácticas del gobierno británico: no propietaria, no prescriptiva y no certifica empresas.",
     "Las prácticas ITIL son predictivas, consistentes, medibles y adaptables (mejora continua).",
     "Gestión de la capacidad: lo necesario, cuando se necesita y al precio adecuado; se mide con capacidad ociosa e incumplimientos de SLA por capacidad.",
-    "La seguridad en ITIL se basa en ISO 27001, se compromete en la sección de seguridad del SLA y se mide con KPI pre y post-incidente."
+    "La seguridad en ITIL se basa en ISO 27001, se compromete en la sección de seguridad del SLA y se mide con KPI pre y post-incidente.",
+    "El gobierno de la seguridad debe estar alineado con el gobierno corporativo; en la práctica son indicadores, líneas de defensa, roles claros y comités que mantienen el riesgo por debajo del apetito de riesgo.",
+    "El PDS está en el nivel estratégico, no es obligatorio (ni la ley ni la ISO 27001 lo exigen) y se revisa cada año; la política es el escalón siguiente.",
+    "El análisis GAP suele dibujarse en un radar; los objetivos del modelo deben ser retadores pero alcanzables.",
+    "ITIL 3 hablaba de procesos, ITIL 4 de prácticas y valor, e ITIL 5 incorpora IA, nube y cadena de suministro; del examen, importan los principios y las características, no los diagramas."
   ],
   "glossary": [
     {
@@ -940,6 +1066,18 @@
     {
       "term": "Gestión de la capacidad",
       "text": "Práctica ITIL que asegura la infraestructura necesaria, cuando se necesita y al precio adecuado."
+    },
+    {
+      "term": "Apetito de riesgo",
+      "text": "Nivel de riesgo que una organización está dispuesta a aceptar para lograr sus objetivos."
+    },
+    {
+      "term": "ISO/IEC 38500",
+      "text": "Norma de gobierno corporativo de las TI; propone evaluar, dirigir y monitorizar."
+    },
+    {
+      "term": "Nivel estratégico / táctico / operativo",
+      "text": "Tres niveles de decisión, de más alto a más bajo; el Plan Director de Seguridad está en el estratégico."
     }
   ],
   "questions": {

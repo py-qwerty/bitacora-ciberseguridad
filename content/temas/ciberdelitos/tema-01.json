@@ -2,7 +2,7 @@
   "course": "ciberdelitos",
   "number": 1,
   "title": "Protección de datos personales",
-  "minutes": 50,
+  "minutes": 65,
   "intro": {
     "why": "Cada vez que te das de alta en una web, pagas con tarjeta o pasas por delante de una cámara, alguien está recogiendo datos sobre ti. La protección de datos es el conjunto de reglas que dice quién puede usar esos datos, para qué y con qué garantías. En ciberseguridad es inevitable: cuando una empresa sufre un ataque de ransomware (programa que cifra los datos y pide un rescate) y se filtran los datos de sus clientes, además del problema técnico tiene un problema legal, con plazos para avisar a la autoridad y multas que pueden ser millonarias.",
     "before": [
@@ -19,7 +19,10 @@
       "Sabrás razonar la responsabilidad proactiva: seguridad basada en riesgos, evaluación de impacto y privacidad desde el diseño y por defecto.",
       "Sabrás qué derechos tiene una persona sobre sus datos, con sus plazos y excepciones.",
       "Sabrás cuándo una brecha se notifica a la autoridad de control y cuándo se comunica a los afectados.",
-      "Sabrás qué hace el delegado de protección de datos y qué derechos digitales añade la LOPDGDD."
+      "Sabrás qué hace el delegado de protección de datos y qué derechos digitales añade la LOPDGDD.",
+      "Sabrás qué debe recoger el contrato con el encargado y cómo elegirlo y vigilarlo con diligencia.",
+      "Sabrás cómo explicó la profesora el consentimiento (tácito prohibido, relación laboral, contrato frente a consentimiento) y el bloqueo de datos.",
+      "Sabrás en qué se diferencia una EIPD de un análisis de riesgos y qué se hace en la actividad grupal con Sandas."
     ]
   },
   "sections": [
@@ -107,6 +110,17 @@
           "type": "example",
           "title": "Caso práctico",
           "text": "Un ayuntamiento publica en su web la lista de multas de tráfico con nombre, DNI y matrícula. Ninguno de esos datos es «íntimo» en sentido estricto, así que la intimidad apenas entra en juego. Pero son datos personales, y su difusión sin base legal vulnera la protección de datos. Por eso hacía falta un derecho distinto."
+        },
+        {
+          "type": "list",
+          "title": "Ideas que la profesora remarcó en clase",
+          "items": [
+            "Es un derecho fundamental **porque está recogido en la Constitución**, y está al mismo nivel que otros como la intimidad o la vida. Es de «tercera generación»: apareció cuando Internet permitió captar y difundir muchísima información.",
+            "Consiste en el **poder de disposición y control** sobre tus datos: decidir quién los tiene y qué hace con ellos. Por eso, pedir que una empresa te borre o saber qué sabe de ti es ejercer este derecho.",
+            "**No es absoluto.** Hay leyes que obligan a ciertas entidades a tratar datos (si lo fuera, nadie dejaría que Hacienda tuviera los suyos).",
+            "Puede **converger** con la intimidad: que tengas una enfermedad es a la vez un dato íntimo y un dato personal. Que coincidan en un punto no significa que uno dependa del otro.",
+            "**Privacidad** es una palabra importada del derecho americano (privacy), donde no distinguen intimidad de protección de datos. En Europa sí se distinguen, y en una respuesta de examen conviene usar el término exacto."
+          ]
         },
         {
           "type": "exam",
@@ -200,6 +214,31 @@
           "text": "Una tienda online con sede solo en Estados Unidos vende en euros, tiene la web en español y envía a Madrid. Aunque no tenga oficina en Europa, debe cumplir el RGPD con sus clientes europeos, porque dirige su oferta a personas que están en la Unión. Lo mismo una app extranjera que rastrea la ubicación de usuarios en Francia."
         },
         {
+          "type": "p",
+          "text": "**Un detalle curioso.** El RGPD empezó a aplicarse en mayo de 2018 y la LOPDGDD se aprobó en diciembre del mismo año. Durante unos meses España no tuvo ley nueva y no pasó nada grave, porque el reglamento europeo **se aplica solo, sin necesitar ley nacional**. La ley española existe únicamente para completar lo que el reglamento deja a cada país. Un ejemplo, según la clase: el RGPD obliga a nombrar delegado de protección de datos en tres supuestos y permite a los Estados ampliarlos; España los amplió mucho."
+        },
+        {
+          "type": "list",
+          "title": "Tratamientos concretos que regula la LOPDGDD (según la clase)",
+          "items": [
+            "**Videovigilancia**: de ahí vienen los carteles amarillos que ves en tiendas y portales.",
+            "**Sistemas de exclusión publicitaria**, las llamadas **listas Robinson**, a las que te apuntas si no quieres recibir publicidad.",
+            "**Canales de denuncias internas** de las empresas.",
+            "**Datos de contacto profesional**, por ejemplo cuando entregas tu tarjeta de empresa.",
+            "**Ficheros de solvencia patrimonial y crédito** (los «ficheros de morosos»)."
+          ]
+        },
+        {
+          "type": "list",
+          "title": "Cómo se estudia y se examina esta asignatura (según la profesora)",
+          "items": [
+            "Protección de datos ocupa **dos clases** completas: es una señal de que pesa mucho en el examen.",
+            "El examen incluye **10 preguntas tipo test de los 10 temas** (las respuestas incorrectas no restan, así que conviene contestarlas todas) y **preguntas de desarrollo con caso práctico**, entre ellas una por cada parte de la asignatura (legal y de delitos).",
+            "**No hay que memorizar números de artículos ni nombres exactos de leyes**, pero sí entender los conceptos. En el caso práctico no basta una línea: hay que **razonar y fundamentar** la respuesta.",
+            "Método recomendado: leer el tema antes de clase, ir a clase (o verla) y hacer los tests de cada tema, que tienen intentos ilimitados."
+          ]
+        },
+        {
           "type": "exam",
           "text": "Si preguntan qué diferencia un reglamento de una directiva, la respuesta es que **el reglamento es directamente aplicable**. Trampas: «el reglamento requiere una transposición idéntica» (eso sería una directiva), «la directiva no tiene efectos jurídicos» (sí los tiene: obliga a los Estados) o «ambos son recomendaciones voluntarias» (ninguno lo es). Ojo también con las fechas: entrada en vigor 2016, aplicación 2018."
         },
@@ -278,6 +317,50 @@
           "type": "example",
           "title": "Caso práctico",
           "text": "Recibes cada semana correos publicitarios de una empresa a la que nunca diste tu dirección y que ignora tus peticiones de baja. Puedes presentar una reclamación ante la AEPD, que investigará y, si procede, sancionará a la empresa e informará del resultado."
+        },
+        {
+          "type": "list",
+          "title": "Quién es competente y quién interpreta (según la clase)",
+          "items": [
+            "La AEPD es competente para **todo el sector privado** de España. Para los tratamientos **públicos** de su territorio existen además autoridades autonómicas: la catalana, la vasca y la andaluza.",
+            "El **Comité Europeo de Protección de Datos** reúne a representantes de las autoridades de control de la Unión. Su misión es que el RGPD se **interprete igual en todos los países** (no puede ser que un artículo signifique una cosa en España y otra en Alemania). Emite informes y dictámenes muy claros y útiles."
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Vía administrativa frente a vía penal",
+          "head": [
+            "Aspecto",
+            "Vía administrativa (protección de datos)",
+            "Vía penal"
+          ],
+          "rows": [
+            [
+              "Quién actúa",
+              "La AEPD, con un procedimiento administrativo.",
+              "Juzgados y tribunales penales."
+            ],
+            [
+              "Cuándo",
+              "Cuando se incumple el RGPD o la LOPDGDD.",
+              "Solo si hay una **conducta delictiva** (por ejemplo, una revelación de secretos o una estafa). Si no hay delito, no se puede sancionar penalmente."
+            ],
+            [
+              "Resultado",
+              "Multa o sanción, con función **disuasoria**: que empresas y administraciones traten bien los datos. Se puede recurrir ante la Audiencia Nacional.",
+              "Pena, si se prueba el delito."
+            ],
+            [
+              "Si coinciden",
+              "Si ya hay un procedimiento penal por los mismos hechos, el administrativo se **paraliza** mientras se resuelve el penal.",
+              "—"
+            ]
+          ]
+        },
+        {
+          "type": "example",
+          "title": "Defender tus derechos en la práctica",
+          "text": "Te llama una empresa para venderte algo y tú nunca le diste tus datos, o sigue llamándote aunque estés en una lista Robinson. La profesora anima a usar la norma: apunta el nombre de la empresa y el teléfono desde el que llaman, exige que demuestren de dónde sacaron tu consentimiento y, si no lo hacen, denúncialo ante la AEPD. Es la forma de ejercer el control sobre tus datos."
         },
         {
           "type": "exam",
@@ -384,6 +467,94 @@
           "type": "example",
           "title": "Caso práctico",
           "text": "Una clínica dental contrata a una gestoría para calcular las nóminas de su plantilla. La clínica decide qué datos de sus empleados se usan y para qué: es la **responsable**. La gestoría los trata solo siguiendo esas instrucciones: es la **encargada**, y ambas deben firmar un contrato de encargo. Si la gestoría empezara a usar esos datos para venderles seguros a los empleados, estaría decidiendo un fin propio y dejaría de actuar como mera encargada."
+        },
+        {
+          "type": "table",
+          "title": "¿Es dato personal? Ejemplos de la clase",
+          "head": [
+            "Información",
+            "¿Es dato personal?",
+            "Por qué"
+          ],
+          "rows": [
+            [
+              "Huella dactilar",
+              "Sí",
+              "Es un dato biométrico, aunque no sepas de quién es: identifica a alguien."
+            ],
+            [
+              "Imagen o foto de una persona",
+              "Sí",
+              "Una cara identifica a una persona, aunque no sepamos su nombre."
+            ],
+            [
+              "Número de alumno o DNI",
+              "Sí",
+              "Es un número que permite identificar a la persona."
+            ],
+            [
+              "Correo juan.perez@empresa.com",
+              "Sí",
+              "Contiene el nombre y se vincula a una persona."
+            ],
+            [
+              "Correo genérico, tipo info@empresa.com",
+              "Depende",
+              "Solo es personal si se puede vincular a **una única persona** que lo gestiona."
+            ],
+            [
+              "Historial de búsqueda en Internet",
+              "Sí",
+              "Dice mucho de ti y puede revelar incluso datos de categoría especial (por ejemplo, de salud) según lo que busques."
+            ],
+            [
+              "Cookie, identificador en línea, forma de andar, tatuaje",
+              "Sí",
+              "Son rasgos o identificadores que permiten reconocer a alguien."
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "¿Hasta cuándo una persona es «identificable», si hoy casi todo deja huella digital? El reglamento pone un límite de sentido común: basta con que identificarla requiera **esfuerzos razonables**."
+        },
+        {
+          "type": "term",
+          "term": "Categorías especiales de datos",
+          "text": "Los datos más sensibles, los que rozan la intimidad: origen racial o étnico, opiniones políticas, afiliación a un sindicato, creencias religiosas o filosóficas, datos genéticos, biométricos, de salud y de orientación sexual. **La regla general es que no se pueden tratar**; solo se tratan si se cumple una excepción (por ejemplo, el médico necesita tus datos de salud para atenderte, la prevención de riesgos laborales o tu consentimiento explícito). La lista es **cerrada**: un número de cuenta bancaria es dato personal, pero **no** categoría especial. Los datos sobre condenas e infracciones penales tampoco están en la lista, pero reciben un trato parecido."
+        },
+        {
+          "type": "p",
+          "text": "Los **neurodatos** (datos del cerebro) no aparecen en la lista porque cuando se escribió no existían. No quedan desprotegidos: se pueden asimilar por analogía a datos de salud o biométricos, y así recibir la protección reforzada. Con los datos biométricos y genéticos pasó lo mismo: la directiva de 1995 no los recogía."
+        },
+        {
+          "type": "list",
+          "title": "Elegir y vigilar a un encargado (según la clase)",
+          "items": [
+            "El responsable no puede firmar un contrato y desentenderse. Debe poder **demostrar que fue diligente al elegir** al encargado: pedirle información sobre sus medidas de seguridad, la formación de su personal, sus certificaciones, etc. (suele hacerse con cuestionarios extensos).",
+            "Debe elegir al que ofrezca **garantías suficientes**. El precio no puede ser el criterio principal.",
+            "La vigilancia es **periódica**, no solo al contratar: hay que comprobar que sigue manteniendo, dos años después, lo que dijo tener.",
+            "Esto tiene consecuencias reales: según la profesora, hay empresas que se han librado de una multa porque demostraron que supervisaban bien a su encargado, y otras que la han asumido porque firmaron y se olvidaron."
+          ]
+        },
+        {
+          "type": "list",
+          "title": "Qué debe recoger el contrato con el encargado (según la clase)",
+          "items": [
+            "El **servicio** para el que se contrata y la **finalidad** del tratamiento.",
+            "El **tipo de datos** y las **categorías de interesados** (por ejemplo, trabajadores si se trata de nóminas, alumnos si se trata de una universidad).",
+            "Las **instrucciones** del responsable: el encargado solo puede hacer lo que se le encarga, nunca usar los datos para lo que quiera.",
+            "El **deber de confidencialidad** del personal del encargado, que sigue después de acabar la relación laboral.",
+            "Las **medidas de seguridad** exigidas, por ejemplo cumplir el ENS o la ISO 27001.",
+            "El **régimen de subcontratación**: el responsable puede prohibirla o exigir autorización previa.",
+            "Qué pasa con los datos al terminar: **devolverlos o destruirlos**.",
+            "La **colaboración ante una brecha**: la notificación a la AEPD corresponde al responsable, pero la brecha puede ocurrir en casa del encargado, que debe avisar."
+          ]
+        },
+        {
+          "type": "example",
+          "title": "¿Responsable o encargado? Dos ejemplos de la clase",
+          "text": "Una empresa subcontrata una asesoría laboral para hacer las nóminas: la empresa es **responsable** y la asesoría es **encargada**. Si la asesoría, al conocer las direcciones, enviara por su cuenta una carta publicitaria a los empleados, se saldría del encargo y estaría decidiendo un fin propio. Una empresa que contrata un **servicio de hosting** también es responsable, y el proveedor de hosting es encargado: solo debe alojar los datos, aunque tenga datos de muchos clientes distintos."
         },
         {
           "type": "exam",
@@ -499,6 +670,25 @@
           "text": "Una web de viajes muestra una casilla ya marcada que dice «Acepto recibir publicidad de empresas colaboradoras». El usuario no la toca y compra su billete. La empresa no puede alegar consentimiento: no hubo **clara acción afirmativa**, y además se mezcla con la compra. Para retirar luego ese consentimiento, la web debería ofrecer un medio tan sencillo como el que usó para pedirlo, por ejemplo un enlace de baja en cada correo."
         },
         {
+          "type": "list",
+          "title": "Matices del aula sobre el consentimiento y las bases",
+          "items": [
+            "**El consentimiento tácito está prohibido en protección de datos.** En derecho en general existe y es legal («si en un mes no dices nada, entiendo que aceptas»), pero el RGPD exige una **acción afirmativa**. Por eso las casillas premarcadas no valen.",
+            "**Para que sea libre debes poder decir que no en ese mismo momento.** En una relación laboral, el empleador está en posición superior (relación asimétrica), así que el consentimiento no se prohíbe pero se usa poco: el día que firmas el contrato, no te sientes libre de rechazar la cláusula de la foto en la web.",
+            "**Contrato frente a consentimiento.** La base «ejecución del contrato» solo cubre lo que es **necesario** para cumplir ese contrato. Tu nombre, dirección y número de la Seguridad Social: contrato laboral. Tu foto para la web de la empresa, que te feliciten el cumpleaños o el contacto de emergencia de tu madre: consentimiento. La excepción es un trabajo donde la imagen es parte del puesto (una presentadora de televisión).",
+            "**Retirar el consentimiento debe ser tan fácil como darlo.** Si lo diste con un clic en una web, no te pueden exigir una carta postal o una llamada a un teléfono a partir de las doce.",
+            "**Consentimiento dentro de un contrato largo** (la cuenta bancaria con letra pequeña): si piden consentimiento para algo distinto, debe verse **separado y diferenciado**, no mezclado con el contrato. Muchas veces se acepta por «fatiga», sin leer; por eso conviene escribir claro, con tablas que permitan localizar, por ejemplo, la base de legitimación.",
+            "**Obligación legal:** el hotel envía tus datos a la policía no porque se lo permitas, sino porque la ley lo obliga; aun así, **te tiene que informar**.",
+            "**Interés vital:** salvar una vida. Cuando dos derechos fundamentales chocan, se valora el caso y aquí es evidente cuál prima. Se usa poco, pero cierra el sistema.",
+            "**Interés legítimo:** exige **ponderar** el interés del responsable frente a los derechos y libertades de la persona. Un ejemplo de la profesora: una compañía de trenes envía **una única encuesta de satisfacción** tras tu compra; si luego te bombardeara con publicidad, ya no sería interés legítimo. Esta base es la que más se discute hoy para entrenar sistemas de inteligencia artificial.",
+            "Si no hay **ninguna base**, el tratamiento no se puede hacer, por mucha seguridad que se le añada."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Sobre la **edad**, la profesora recordó que en España una persona puede facilitar por sí misma sus datos básicos a partir de los **14 años**; para ir más allá se aplican reglas especiales para menores. De ahí la dificultad de controlar el acceso de los jóvenes a las redes sociales: se puede educar y formar, pero prohibir sin más tiene un alcance limitado."
+        },
+        {
           "type": "exam",
           "text": "Si preguntan por qué el consentimiento no es la única base, la respuesta es que **existen otras bases**, como el contrato o la obligación legal. Trampas: «el consentimiento ya no existe» (sí existe) o «cualquier finalidad empresarial basta» (el interés legítimo exige ponderar). Ante una casilla premarcada, falta la **manifestación afirmativa, libre e inequívoca**. Ante una retirada de consentimiento, lo correcto es un **medio sencillo** para retirarlo, nunca ocultar el canal ni pedir una compra."
         },
@@ -570,6 +760,60 @@
           "type": "example",
           "title": "Caso práctico",
           "text": "Una tienda de ropa pide en su formulario de boletín: correo, fecha de nacimiento, peso y enfermedades crónicas, todos obligatorios, sin explicar por qué. Para enviar un boletín basta el correo electrónico. El resto vulnera la **minimización de datos**, y los datos de salud, además, son una categoría especial que exige aún más cautela."
+        },
+        {
+          "type": "p",
+          "text": "**Por qué importan tanto:** según la profesora, las mayores sanciones en protección de datos son por infringir uno de estos principios, y una infracción de cualquiera de ellos es una infracción **muy grave**, la categoría más alta. La profesora cita seis principios y la responsabilidad proactiva como complemento; en el artículo 5 los verás todos juntos (siete en este tema)."
+        },
+        {
+          "type": "table",
+          "title": "Ejemplos de la profesora, uno por principio",
+          "head": [
+            "Principio",
+            "Ejemplo de la clase",
+            "Idea clave"
+          ],
+          "rows": [
+            [
+              "Licitud, lealtad y transparencia",
+              "Una cámara con reconocimiento facial que te analiza sin que nadie te lo diga.",
+              "Tienes que saber que tratan tus datos; sin base legítima, el tratamiento es ilícito."
+            ],
+            [
+              "Limitación de la finalidad",
+              "Una empresa tiene muchos datos y quiere entrenar un sistema de inteligencia artificial con ellos.",
+              "Solo se usan para lo que se dijo al recogerlos, con finalidad concreta y explícita, no «nebulosa»; hay que valorar si el nuevo uso es compatible."
+            ],
+            [
+              "Minimización",
+              "Comprar unos zapatos y que te pregunten tu estado civil.",
+              "Solo los datos adecuados, pertinentes y no excesivos."
+            ],
+            [
+              "Exactitud",
+              "Si te mudas y no lo comunicas, la empresa no puede adivinarlo; los currículums no deberían guardarse más de unos 6 meses o un año.",
+              "Datos actualizados; los obsoletos son un problema."
+            ],
+            [
+              "Limitación del plazo",
+              "Las nóminas se conservan 4 años por la normativa laboral; los títulos oficiales, muchos años.",
+              "La ley de protección de datos no fija el plazo: hay que mirar las leyes aplicables a cada tratamiento."
+            ],
+            [
+              "Integridad y confidencialidad",
+              "Una brecha de seguridad por no haber aplicado medidas adecuadas.",
+              "Medidas técnicas y organizativas."
+            ],
+            [
+              "Responsabilidad proactiva",
+              "Grabar la llamada en la que contratas un servicio, para poder demostrar que contrataste.",
+              "No basta cumplir: hay que poder probarlo y mantener trazabilidad."
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "En toda empresa o administración debe haber **procedimientos** que digan cada cuánto se suprimen los datos: no se puede conservar nada de forma indefinida."
         },
         {
           "type": "exam",
@@ -684,6 +928,26 @@
           "text": "Una cadena de gimnasios quiere instalar acceso por reconocimiento facial. Son datos biométricos (categoría especial) a gran escala: la EIPD es obligatoria. Tras aplicar medidas (cifrado de plantillas, alternativa con tarjeta para quien no quiera, borrado al darse de baja), evalúa el riesgo residual. Si siguiera siendo alto, debería consultar a la AEPD antes de ponerlo en marcha, no lanzarlo «asumiendo el riesgo»."
         },
         {
+          "type": "list",
+          "title": "La EIPD, paso a paso según la profesora",
+          "items": [
+            "Es **un análisis de riesgos «plus»**: incluye el análisis de riesgos, pero añade antes una parte previa de **necesidad y proporcionalidad**. Presentar solo un análisis de riesgos cuando se pide una EIPD es un error grave.",
+            "**Primero se valora si la medida es necesaria y proporcional.** Si es desproporcionada, la evaluación se acaba ahí: la medida no se puede llevar a cabo, por brillante que parezca. No es un trámite: hay entidades sancionadas por tratamientos que no superaban este juicio.",
+            "**Después se identifican los riesgos**, se valora cómo afectan a los **derechos y libertades de las personas** (no solo al daño reputacional de la empresa) y se compara con el **nivel de riesgo aceptable** (el «apetito de riesgo»).",
+            "**Por último se trata el riesgo.** En un análisis de riesgos, **aceptar equivale a no hacer nada**: lo que hay que hacer es **mitigar**, con medidas concretas, responsables y fechas, y recalcular el **riesgo residual**.",
+            "El delegado de protección de datos **supervisa** la EIPD; no es quien la hace."
+          ]
+        },
+        {
+          "type": "example",
+          "title": "Ejemplo de la clase: cobrar el comedor con la cara",
+          "text": "Un colegio quiere usar reconocimiento facial para saber qué niño ha comido y cobrar el menú, porque algunos niños pequeños todavía no hablan. Llaman al delegado de protección de datos. La respuesta es que la medida es **desproporcionada**: hay formas mucho menos invasivas de conseguir lo mismo. Fíjate en que ni siquiera se llega a analizar los riesgos. Otro caso que citó: el control de presencia en el trabajo con datos biométricos ha acabado en sanciones (aunque la profesora advirtió de que esto puede cambiar en un futuro no muy lejano)."
+        },
+        {
+          "type": "p",
+          "text": "**Obligatoriedad en el caso práctico.** Un hospital que va a implantar algo nuevo trata datos de salud (categoría especial) a gran escala, y por eso la EIPD es obligatoria. Fíjate siempre en la frase del enunciado: categorías especiales, tecnología especialmente invasiva (como el reconocimiento facial) o grandes volúmenes de datos son las pistas."
+        },
+        {
           "type": "exam",
           "text": "Varias preguntas salen de aquí. **Medidas de seguridad**: técnicas y organizativas (no solo una de las dos, ni «automatizadas»). **EIPD**: hay supuestos obligatorios y además puede hacerse voluntariamente; es falso que no haya supuestos, que solo se haga con categorías especiales o que el RGPD no los defina. **Tras la EIPD**: el riesgo puede o no bajar a un nivel aceptable; si no baja, consulta a la autoridad de control, nunca «asumir el exceso de riesgo». **Tratar el riesgo**: medidas apropiadas y evaluación del riesgo residual, no aceptarlo automáticamente ni confiar en un seguro. **Responsabilidad proactiva**: poder demostrar el cumplimiento. **Controles antiguos por niveles**: hoy se exige análisis de riesgos. **Privacidad desde el diseño**: todo el ciclo de vida."
         },
@@ -791,6 +1055,17 @@
           "items": [
             "**Iconos normalizados**: la información puede acompañarse de iconos visibles e inteligibles; si son electrónicos, legibles por máquina. La Comisión Europea puede fijarlos mediante actos delegados.",
             "**Información más extensa**: ahora hay que informar también del plazo de conservación, del derecho a reclamar, de las transferencias internacionales y de la fuente de los datos, entre otros."
+          ]
+        },
+        {
+          "type": "list",
+          "title": "Matices de la clase sobre el registro y la información",
+          "items": [
+            "El registro no contiene los datos en sí, sino los **tipos de datos y de tratamientos**: una empresa tiene datos de clientes, proveedores y empleados, y eso es lo que se anota.",
+            "Las **administraciones públicas** deben **publicar** su registro, y en España deben añadir la **base de legitimación** de cada tratamiento (el RGPD no lo exigía). La profesora sugirió buscar el de tu ayuntamiento o ministerio como ejercicio.",
+            "Alojar los datos en un hosting de Estados Unidos ya es una **transferencia internacional**, y debe constar en el registro.",
+            "Cuando hay delegado de protección de datos, hay que dar su **medio de contacto** (normalmente un correo) en el deber de información; no hace falta decir quién es.",
+            "**Información por capas:** el cartel amarillo de videovigilancia es el ejemplo clásico. La capa básica va en el cartel (responsable, finalidad, ejercicio de derechos y, en su caso, perfiles) y el resto se ofrece con una dirección web, un código QR, al dorso del papel o en un formulario en recepción. Es muy útil para pantallas pequeñas."
           ]
         },
         {
@@ -902,6 +1177,15 @@
           "type": "example",
           "title": "Casos prácticos",
           "text": "1) Tu banco tiene mal escrito tu segundo apellido: ejerces la **rectificación**. 2) Cambias de compañía eléctrica y quieres llevarte tu historial de consumo en un archivo legible por la nueva: **portabilidad**. 3) Un cliente pide a una empresa que borre todos sus correos, pero ese cliente ha demandado a la empresa y los correos son la prueba de su defensa: la empresa puede conservarlos, porque la **defensa de reclamaciones** es un límite de la supresión."
+        },
+        {
+          "type": "term",
+          "term": "Bloqueo (invento español)",
+          "text": "Cuando ejerces la **supresión** o la **rectificación**, en España el dato no se borra ni se sustituye sin más: se **bloquea**. Mientras está bloqueado, **nadie en la organización puede acceder a él**; solo jueces y tribunales, el Ministerio Fiscal y las administraciones públicas competentes (como la AEPD). Sirve para poder demostrar, si te reclaman, qué se hizo con tus datos. Cuando pasa el plazo en el que podrían exigir responsabilidades, se suprime de forma definitiva. Es una particularidad de la ley española (no está en el RGPD)."
+        },
+        {
+          "type": "analogy",
+          "text": "Imagina que pides que te borren de una empresa y, al llamar para comprobarlo, un empleado te saluda: «María, cuánto tiempo». Eso demuestra que tus datos seguían accesibles. Un dato bloqueado es como un archivo guardado bajo llave en un despacho al que solo entra el juez."
         },
         {
           "type": "exam",
@@ -1069,6 +1353,49 @@
           "text": "Un hospital público debe tener DPO por dos motivos: es un organismo público y trata datos de salud a gran escala. El DPO le advierte de que el nuevo sistema de citas por app necesita una EIPD, forma al personal de admisión y es quien habla con la AEPD si hay una brecha. Pero no decide si se lanza la app: eso lo decide el hospital como responsable."
         },
         {
+          "type": "list",
+          "title": "Matices de la clase sobre el DPO",
+          "items": [
+            "**Autoridades u organismos públicos:** todos, **sin importar el tamaño** (incluso un pequeño ayuntamiento). Única excepción: los tribunales cuando actúan en su función jurisdiccional. Es habitual que haya varios, por ejemplo uno por ministerio.",
+            "**Actividades principales a gran escala** de seguimiento regular y sistemático (por ejemplo, dispositivos que geolocalizan a empleados las 24 horas) o de categorías especiales y datos penales. Hacen falta **los dos requisitos**: que sea actividad principal, no secundaria, y que sea a gran escala. Un hospital encaja sobre todo en el tercer supuesto.",
+            "Cualquier entidad puede nombrarlo **voluntariamente**, y también el encargado puede tener uno.",
+            "Puede ser **persona física o jurídica**, **interno o externo**. Que pueda ser una empresa **no es una vía para esquivar requisitos**: si es una empresa, todas las personas asignadas al proyecto deben cumplirlos.",
+            "**Supervisa, no ejecuta.** Los análisis de riesgos y las EIPD los hacen otros; él comprueba que se hacen. Además atiende dudas de empleados y de personas externas, coopera con la autoridad y, si hay una brecha, el diálogo con la AEPD pasa por él.",
+            "Los requisitos de formación: **conocimientos jurídicos** (no hace falta ser licenciado en derecho), **práctica** en protección de datos y **capacidad** para el puesto, que depende del sector (en un laboratorio farmacéutico, conocer su legislación; en una multinacional, idiomas).",
+            "La **certificación** de la AEPD con ENAC es voluntaria, pero las administraciones suelen exigirla al contratar a un DPO externo, porque se gasta dinero público."
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Dónde España amplía la obligación (ejemplos de la clase)",
+          "head": [
+            "Sector",
+            "Ejemplos"
+          ],
+          "rows": [
+            [
+              "Profesiones y educación",
+              "Colegios profesionales y sus consejos generales; centros docentes (colegios y universidades, públicas y privadas)."
+            ],
+            [
+              "Telecomunicaciones y sociedad de la información",
+              "Operadores de comunicaciones electrónicas; prestadores de servicios de la sociedad de la información que elaboran perfiles a gran escala."
+            ],
+            [
+              "Finanzas y seguros",
+              "Ficheros de solvencia patrimonial y crédito (morosos); entidades de crédito; aseguradoras y reaseguradoras; empresas de servicios de inversión."
+            ],
+            [
+              "Energía",
+              "Comercializadoras de energía y de gas natural."
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "La lista de la ley española es más larga: estos son solo ejemplos, que no hay que memorizar. Lo importante es saber que **el RGPD fija un mínimo y España lo amplía**."
+        },
+        {
           "type": "exam",
           "text": "La función del DPO es **asesorar y supervisar el cumplimiento**. Trampas: «decidir las finalidades comerciales» (eso es del responsable), «sustituir a la autoridad de control» (coopera con ella, no la sustituye) o «garantizar que nunca habrá sanciones» (nadie puede garantizarlo)."
         },
@@ -1148,6 +1475,60 @@
           "text": "La LOPDGDD añade en su Título X los derechos digitales (neutralidad, desconexión, olvido en buscadores y redes, testamento digital…). Algunos artículos tienen rango de ley ordinaria y solo los arts. 89 a 94 entran en el ámbito de aplicación del art. 2.1."
         }
       ]
+    },
+    {
+      "id": "practica-eipd-sandas",
+      "title": "Del tema a la práctica: la actividad grupal de la EIPD",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Esta parte **no cae en el test**, pero convierte lo estudiado en algo que puedes tocar. La actividad grupal de la parte legal consiste en hacer una **evaluación de impacto (EIPD)** de un tratamiento de datos en un hospital, usando la aplicación **Sandas** de Telefónica. Según la profesora, la actividad vale 5 puntos y la corrige ella."
+        },
+        {
+          "type": "analogy",
+          "text": "Es como pasar una inspección antes de abrir un local: primero te preguntas si el local debería abrirse siquiera (necesidad y proporcionalidad); después buscas los peligros (riesgos), decides qué reformas haces (mitigación) y compruebas cuánto peligro queda tras las reformas (riesgo residual)."
+        },
+        {
+          "type": "steps",
+          "title": "El orden de trabajo",
+          "items": [
+            "**Decidir si la EIPD es obligatoria** y razonarlo: el supuesto del hospital trata datos de salud, una categoría especial, y de ahí parte la obligación del artículo 35 del RGPD.",
+            "**Valorar la necesidad y la proporcionalidad** de la medida. Esta parte **no se hace en Sandas**: se redacta aparte (por ejemplo en un documento de texto) con ayuda de la guía de la AEPD, y luego se pega en el informe final.",
+            "**Crear el tratamiento en Sandas.** Primero hay que crear el tratamiento, que la aplicación divide en 8 pasos. Entre otras cosas pide: nombre, si eres responsable o encargado, finalidad, base de legitimación, número de afectados, ámbito, sistema (papel o automatizado), origen de los datos, categorías de interesados y de datos, plazos de conservación, cesiones y transferencias internacionales. Saber si quien hace la evaluación es responsable o encargado forma parte del ejercicio.",
+            "**Crear la evaluación de impacto** (11 pasos, y la aplicación te lleva de la mano): datos generales (conviene poner nombres de personas para asignar tareas), criterios de impacto (derechos y libertades de las personas), apetito de riesgo y nivel aceptable, selección del tratamiento, comité de riesgo y flujo de datos.",
+            "**Añadir los escenarios de riesgo**, del catálogo o a mano, y **evaluar** cada uno (frecuencia e impacto), comparándolo con el umbral aceptable. Ejemplo de la clase: armarios sin llave donde se guardan historias clínicas, o deficiencias en el control de accesos.",
+            "**Tratar los riesgos:** elegir **mitigar** (no «aceptar»), añadir controles (sugeridos por la aplicación o manuales) con responsable, supervisor y fecha, y **modificar el riesgo residual**. Ejemplo: comprar armarios con llave baja el riesgo.",
+            "**Generar el informe:** anexar el seguimiento y control, descargar el documento, pegar la necesidad y proporcionalidad y entregarlo, preferiblemente en PDF, junto con la hoja de control."
+          ]
+        },
+        {
+          "type": "list",
+          "title": "Errores que la profesora quiere evitar",
+          "items": [
+            "**Olvidar mitigar:** si el riesgo residual es igual al inicial (el color no cambia en el informe), el error es grave. Se detecta imprimiendo el informe antes de entregar.",
+            "**Entregar un análisis de riesgos** en lugar de una evaluación de impacto: no son lo mismo.",
+            "**Poner todos los riesgos del catálogo.** No se corrige «a peso»: se valora que los riesgos sean los **acertados** para el supuesto, no cuántos haya.",
+            "**Omitir la necesidad y la proporcionalidad.**",
+            "**Entregar un informe que no venga de Sandas:** no se acepta."
+          ]
+        },
+        {
+          "type": "list",
+          "title": "Normas de la actividad grupal (según la clase)",
+          "items": [
+            "Los grupos (normalmente de 3 personas) los forma UNIR **al azar** y **no se pueden cambiar**. Si te quedas solo, hay que comunicarlo para que te asignen a un grupo; no se entrega en solitario sin autorización.",
+            "Cada equipo recibe **un único usuario y contraseña**. La cuenta se **bloquea al tercer intento fallido**: si ocurre, se avisa en el foro de problemas técnicos.",
+            "Lo mejor es **turnarse** al trabajar, para no pisarse los cambios.",
+            "Todos los miembros entregan el **mismo documento** y reciben **la misma nota**; la **hoja de control** permite reflejar si alguien no ha participado.",
+            "Las dudas de la actividad van al foro específico, con las iniciales de la profesora. Se puede aportar documentación adicional, que se valora en la rúbrica.",
+            "Puedes empezar a leer **individualmente** el apartado de evaluación de impacto de la guía de la AEPD antes de reunirte con tu grupo."
+          ]
+        },
+        {
+          "type": "key",
+          "text": "La EIPD se hace en este orden: obligatoriedad, necesidad y proporcionalidad, riesgos, mitigación con riesgo residual e informe. Lo que más penaliza es no mitigar, confundirla con un análisis de riesgos y rellenar de más."
+        }
+      ]
     }
   ],
   "summary": [
@@ -1161,7 +1542,13 @@
     "La seguridad se basa en el análisis de riesgos, con medidas técnicas y organizativas; la EIPD es obligatoria en alto riesgo y, si el riesgo residual sigue alto, se consulta a la autoridad.",
     "Derechos: acceso, rectificación, supresión, limitación, portabilidad y oposición; respuesta en un mes ampliable dos; la supresión tiene límites.",
     "Brechas: a la autoridad en 72 horas salvo riesgo improbable; a los afectados si hay alto riesgo; la información puede completarse gradualmente.",
-    "El DPO asesora y supervisa; es obligatorio en organismos públicos y tratamientos a gran escala de seguimiento o datos especiales."
+    "El DPO asesora y supervisa; es obligatorio en organismos públicos y tratamientos a gran escala de seguimiento o datos especiales.",
+    "La protección de datos es un poder de disposición y control, no absoluto; privacidad es un término importado del derecho americano.",
+    "Regla general sobre las categorías especiales: no se tratan salvo excepción; la lista es cerrada y los neurodatos se asimilan por analogía.",
+    "El responsable debe poder demostrar diligencia al elegir y vigilar al encargado; el precio no manda.",
+    "El consentimiento tácito está prohibido y la ejecución del contrato solo cubre lo necesario.",
+    "Infringir un principio del tratamiento es infracción muy grave; el bloqueo es una figura española que protege la prueba tras suprimir o rectificar.",
+    "La EIPD incluye primero la necesidad y proporcionalidad y después el análisis de riesgos; aceptar un riesgo no es tratarlo, hay que mitigar."
   ],
   "glossary": [
     {
@@ -1177,8 +1564,16 @@
       "text": "Organismo público independiente encargado de supervisar la aplicación del RGPD en cada Estado."
     },
     {
+      "term": "Bloqueo",
+      "text": "Figura de la ley española: tras suprimir o rectificar un dato, se guarda inaccesible para la organización, solo disponible para jueces, Fiscalía y administraciones competentes, hasta que prescriban las posibles responsabilidades."
+    },
+    {
       "term": "Categorías especiales de datos",
       "text": "Datos especialmente sensibles, como los de salud, biométricos, genéticos, ideología u origen étnico, que exigen garantías reforzadas."
+    },
+    {
+      "term": "Comité Europeo de Protección de Datos",
+      "text": "Órgano que reúne a las autoridades de control de la Unión para que el RGPD se interprete igual en todos los países."
     },
     {
       "term": "Consentimiento",
@@ -1209,8 +1604,16 @@
       "text": "Quien trata datos personales por cuenta del responsable."
     },
     {
+      "term": "Información por capas",
+      "text": "Dar primero una información básica (responsable, finalidad, derechos) y remitir el resto a una dirección web, un QR o un papel aparte."
+    },
+    {
       "term": "Interesado",
       "text": "Persona física cuyos datos se tratan."
+    },
+    {
+      "term": "Lista Robinson",
+      "text": "Sistema de exclusión publicitaria al que se apunta quien no quiere recibir publicidad."
     },
     {
       "term": "LOPD",
@@ -1219,6 +1622,14 @@
     {
       "term": "LOPDGDD",
       "text": "Ley Orgánica 3/2018 de Protección de Datos Personales y garantía de los derechos digitales."
+    },
+    {
+      "term": "Necesidad y proporcionalidad",
+      "text": "Juicio previo de la EIPD sobre si una medida es necesaria y no excesiva; si no lo supera, no se puede llevar a cabo."
+    },
+    {
+      "term": "Privacidad",
+      "text": "Término importado del derecho americano que mezcla intimidad, protección de datos e imagen; en Europa se distinguen."
     },
     {
       "term": "Reglamento europeo",
@@ -1235,6 +1646,14 @@
     {
       "term": "RGPD",
       "text": "Reglamento General de Protección de Datos, Reglamento (UE) 2016/679."
+    },
+    {
+      "term": "Riesgo residual",
+      "text": "Riesgo que queda después de aplicar las medidas de mitigación."
+    },
+    {
+      "term": "Sandas",
+      "text": "Aplicación web de Telefónica que se usa en la actividad grupal para crear el tratamiento y hacer la evaluación de impacto."
     },
     {
       "term": "Seudonimización",

@@ -2,7 +2,7 @@
   "course": "ciberdelitos",
   "number": 3,
   "title": "Normativa en materia de ciberseguridad",
-  "minutes": 55,
+  "minutes": 70,
   "intro": {
     "why": "Cuando un hospital sufre un ransomware (un programa que cifra los datos y pide rescate) y deja de atender pacientes, no es solo un problema técnico: la ley le obliga a avisar a las autoridades en plazos concretos, a haber analizado antes sus riesgos y a que su dirección responda si no lo hizo. Este tema recorre las normas europeas y españolas que fijan esas obligaciones: la Directiva NIS y su transposición española, la Directiva NIS 2, la directiva de entidades críticas, el Reglamento de Ciberseguridad (ENISA y certificación) y la propuesta sobre productos con elementos digitales. El test pregunta sobre todo por plazos, por quién hace qué y por las diferencias entre NIS y NIS 2.",
     "before": [
@@ -17,7 +17,10 @@
       "Sabrás qué norma transpuso NIS en España (Real Decreto-ley 12/2018) y qué añadió su desarrollo (Real Decreto 43/2021): responsable de seguridad, políticas de seguridad y procedimiento de notificación.",
       "Sabrás situar la propuesta de NIS 2 dentro de la Estrategia de Ciberseguridad de la UE para la Década Digital.",
       "Sabrás razonar las grandes novedades de NIS 2: entidades esenciales e importantes, medidas de gestión de riesgos, plazos de 24 h / 72 h / un mes, sanciones, responsabilidad y formación de la dirección, y divulgación coordinada de vulnerabilidades.",
-      "Sabrás qué regulan la Directiva de resiliencia de las entidades críticas, el Reglamento 2019/881 (ENISA y certificación con sus tres niveles) y la propuesta de Reglamento sobre productos con elementos digitales (CRA)."
+      "Sabrás qué regulan la Directiva de resiliencia de las entidades críticas, el Reglamento 2019/881 (ENISA y certificación con sus tres niveles) y la propuesta de Reglamento sobre productos con elementos digitales (CRA).",
+      "Sabrás distinguir qué partes de este tema son contexto y cuáles se piden en el examen (a quién aplica cada norma, sectores esenciales e importantes).",
+      "Sabrás explicar a alto nivel el Reglamento de cibersolidaridad y sus tres mecanismos.",
+      "Sabrás reconocer en un caso práctico qué prácticas de inteligencia artificial están prohibidas, cuáles son de alto riesgo y a quién se aplica el Reglamento."
     ]
   },
   "sections": [
@@ -88,6 +91,26 @@
             ["Propuesta de Reglamento CRA", "Propuesta de reglamento UE", "Ciberseguridad de los productos con elementos digitales."],
             ["Reglamento (UE) 2022/2554 (DORA)", "Reglamento UE", "Resiliencia operativa digital del sector financiero."]
           ]
+        },
+        {
+          "type": "list",
+          "title": "Qué entra y qué no en este tema (según la profesora)",
+          "items": [
+            "Este tema se actualiza casi cada edición porque la Unión Europea aprueba normas sin parar. La profesora subió a la documentación del campus una **versión actualizada del tema extendido**, que es la que hay que estudiar.",
+            "Las dos normas españolas que desarrollaban la Directiva NIS (el **Real Decreto-ley 12/2018** y el **Real Decreto 43/2021**) **no entran en el examen**: no tiene sentido estudiarlas cuando la Directiva NIS está sustituida por NIS 2. Las secciones de este tema que las tratan son contexto, no materia de examen.",
+            "Para entender NIS 2 se explica antes NIS 1, porque NIS 2 es muy continuista con ella.",
+            "**España todavía no ha transpuesto NIS 2** y va fuera de plazo, por lo que probablemente reciba sanción. Se espera que la futura norma se apoye en el **Esquema Nacional de Seguridad**, así que lo que has estudiado de él te servirá.",
+            "Lo que se pregunta sobre todo: **a quién aplica cada norma** y qué obligaciones tiene cada una. En el caso práctico habrá que razonar si una empresa debe cumplir NIS 2, el ENS, el Reglamento de IA, etc."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "**¿Por qué a veces directiva y a veces reglamento?** Según la profesora, la Unión prefiere cada vez más **reglamentos**, porque para tener de verdad un mercado único hace falta una legislación homogénea; si no, habría que consultar la ley de cada país. Antes de que el RGPD sustituyera a la directiva de 1995, una multinacional con servidores en un país, oficinas en otro y decisiones en un tercero no sabía qué ley le tocaba. En cambio, la seguridad nacional y la soberanía las decide cada Estado: por ejemplo, qué se considera servicio esencial puede variar de un país a otro. Por eso esas materias se regulan con **directivas**, cuyos artículos son más generales para dejar margen a cada Estado. Y si España usa un real decreto-ley para transponer una directiva, es porque suele llegar tarde."
+        },
+        {
+          "type": "term",
+          "term": "«Act» no significa «ley» en la Unión Europea",
+          "text": "En inglés, los nombres Cyber Resilience **Act** o AI **Act** se suelen traducir por «ley», pero en el derecho de la Unión son **reglamentos** (en inglés, regulation). Al ver las siglas CRA o la expresión «ley de inteligencia artificial», recuerda que no son leyes nacionales: son reglamentos europeos directamente aplicables."
         },
         {
           "type": "exam",
@@ -436,6 +459,16 @@
           "text": "Una cadena de supermercados con 2.000 empleados distribuye alimentos: con NIS no estaba incluida; con NIS 2 es entidad **importante** (anexo II). Un hospital grande es entidad **esencial** (anexo I y grande). Un proveedor de DNS de 10 empleados es **esencial** aunque sea pequeño, porque el art. 3 lo incluye «independientemente de su tamaño»."
         },
         {
+          "type": "list",
+          "title": "Por qué se amplió y cómo preguntar (según la clase)",
+          "items": [
+            "Con la pandemia se vio que había **sectores esenciales que no cabían** en el concepto de «servicio esencial» de NIS, y que la distinción entre operadores y proveedores digitales ya no reflejaba su importancia real. De ahí los dos anexos y la regla de tamaño.",
+            "**Los sectores hay que saberlos.** Ejemplo del aula: una entidad que suministra **agua potable** a una ciudad está en un sector de alta criticidad, por lo que sería entidad esencial.",
+            "Entidades esenciales (alta criticidad): energía, transporte, banca, infraestructuras de mercados financieros, sanitario, agua potable, aguas residuales, infraestructura digital, administración pública y espacio. Entidades importantes: postales y mensajería, gestión de residuos, fabricación y distribución de sustancias químicas, alimentación, proveedores de servicios digitales y otros sectores de fabricación.",
+            "El nivel de detalle del tamaño de empresa no se pide; sí **los sectores**."
+          ]
+        },
+        {
           "type": "exam",
           "text": "Trampas: «NIS 2 mantiene la distinción» (falso), «restringe el ámbito» (falso, lo amplía), «clasifica solo por sector» (falso, también cuenta el tamaño y otros criterios del art. 3) o «cualquier empresa del anexo II es esencial» (falso, el anexo II da normalmente importantes)."
         },
@@ -538,6 +571,22 @@
           "text": "Lunes 9:00: un banco detecta un ransomware que bloquea sus cajeros. Antes del martes 9:00 envía la alerta temprana (sospecha de ataque malintencionado). Antes del jueves 9:00, la notificación con gravedad e indicadores de compromiso. Si al mes el incidente sigue activo, no lo da por cerrado: presenta un informe de situación y, cuando lo haya gestionado, el informe final en el mes siguiente."
         },
         {
+          "type": "list",
+          "title": "Matices del aula sobre la notificación",
+          "items": [
+            "**No se exige un resultado concreto.** El incidente es significativo si **causa o puede causar** graves perturbaciones operativas o pérdidas económicas, o perjuicios materiales o inmateriales a personas. Basta que pueda causarlos.",
+            "**Notificar a NIS 2 no te exime de notificar a la AEPD** si el incidente afecta a datos personales. Aplican las dos normas a la vez: 24 h y 72 h en NIS 2, 72 h en el RGPD.",
+            "La **alerta temprana** de 24 horas solo se exige si se sospecha una **acción ilícita o malintencionada** o que puede tener **repercusiones transfronterizas**: tiene sentido, porque así se avisa cuanto antes al país vecino.",
+            "Si has hecho alerta temprana, la notificación de las 72 horas **la actualiza**.",
+            "**Excepción: prestadores de servicios de confianza.** Según la clase, en su caso el plazo es **siempre de 24 horas** desde que se tiene constancia, sin los 72 de la regla general.",
+            "El **informe intermedio** solo se emite si la autoridad o el CSIRT lo piden. El informe final llega **un mes después de la notificación**, y solo se puede emitir si el incidente **ha terminado**; si sigue vivo, se presenta un informe de situación."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Los plazos NIS 2 se parecen a los del RGPD (la cuenta empieza cuando **tienes constancia** del incidente, no cuando ocurre), pero no se sustituyen. Recuerda: **24 horas alerta, 72 horas notificación, un mes informe final**."
+        },
+        {
           "type": "exam",
           "text": "Memoriza el orden **24 → 72 → 1 mes**. Las trampas invierten los plazos (72 h la alerta y 24 h la notificación), usan 36 o 96 horas o dicen «cualquier incidente que tenga un impacto». La palabra clave es **significativo**."
         },
@@ -594,6 +643,15 @@
           "type": "example",
           "title": "Caso práctico",
           "text": "Una investigadora encuentra un fallo en un router muy vendido y el fabricante no le contesta. Puede acudir al CSIRT coordinador de su país, que contacta con el fabricante, ayuda a fijar una fecha de parche y de publicación y, si hay fabricantes de varios países afectados, coopera con la red de CSIRT. Ni se publica a ciegas ni se sanciona a la investigadora."
+        },
+        {
+          "type": "list",
+          "title": "Matices del aula sobre sanciones y dirección",
+          "items": [
+            "Las sanciones **no son solo multas**. La autoridad puede hacer **inspecciones**, pedir documentación y exigir pruebas (para comprobar que lo que dice tu política de ciberseguridad se cumple). También puede emitir un **apercibimiento** (te da la oportunidad de corregir antes de multarte) o ordenar que se haga o se deje de hacer algo.",
+            "**Quien responde del incumplimiento es la dirección**, no solo la persona jurídica. Por eso debe aprobar y supervisar las medidas: para responder de algo, hay que haber tenido responsabilidad sobre ello. No lo aprueba el responsable de seguridad.",
+            "La **formación en ciberseguridad** de la dirección es **obligatoria**; para los demás empleados la directiva dice que se «alentará» (es recomendable), aunque la profesora opina que en la práctica debe considerarse necesaria, como ya exige el ENS."
+          ]
         },
         {
           "type": "exam",
@@ -753,12 +811,157 @@
           "text": "Documento de referencia publicado por INCIBE-CERT (Instituto Nacional de Ciberseguridad) en 2020, consensuado por los organismos nacionales competentes. Es una referencia **de mínimos** que indica a cualquier entidad, pública o privada, o ciudadano, **a quién y cómo** reportar un incidente."
         },
         {
+          "type": "table",
+          "title": "Tres categorías de productos en el CRA (según la clase)",
+          "head": ["Categoría", "Qué exige", "Ejemplos citados"],
+          "rows": [
+            ["Productos con elementos digitales", "Requisitos esenciales de ciberseguridad y evaluación de la conformidad.", "Cualquier producto con conexión de datos, directa o indirecta, a un dispositivo o red."],
+            ["Productos **importantes** con elementos digitales", "Evaluación de la conformidad más exigente (en el espíritu de «esencial / importante» de NIS 2).", "Sistemas de gestión de identidades, navegadores, gestores de contraseñas, VPN, sistemas de gestión de redes y SIEM, microprocesadores."],
+            ["Productos **críticos** con elementos digitales", "Certificado europeo de ciberseguridad.", "Dispositivos con cajas de seguridad, pasarelas de contadores inteligentes, tarjetas inteligentes con elementos seguros."]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Según la profesora, el CRA se parece al Reglamento de IA en su lógica: **documentación técnica** antes de poner el producto en el mercado, **evaluación de la conformidad** y **vigilancia del mercado** una vez que el producto está en circulación (notificar incidentes graves, enviar parches, hacer seguimiento y dar solución a los usuarios). Europa tiene una larga tradición regulando la seguridad de los productos, y estas normas reutilizan esa experiencia. Los productos críticos se comparan con los sistemas de IA de alto riesgo."
+        },
+        {
           "type": "exam",
           "text": "Si te preguntan por la visión del CRA ante un fabricante que solo revisa la seguridad al vender, la respuesta es la **gestión de vulnerabilidades a lo largo del ciclo de vida**. Y si te preguntan por qué no tomar la propuesta como prueba de vigencia, la respuesta es que el texto la presenta **como propuesta**."
         },
         {
           "type": "key",
           "text": "CRA = seguridad desde el diseño y durante todo el ciclo de vida de los productos conectados (en el temario, aún propuesta); DORA = resiliencia digital del sector financiero con notificación homogénea."
+        }
+      ]
+    },
+    {
+      "id": "cibersolidaridad",
+      "title": "Reglamento de cibersolidaridad: ayuda mutua entre Estados",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Si NIS 2 obliga a cada entidad a protegerse, el **Reglamento de cibersolidaridad** responde a otra pregunta: ¿cómo se ayudan los países de la Unión cuando un ataque es demasiado grande para uno solo? Según la profesora, Europa busca también reforzar su **soberanía tecnológica**: ser capaz de hacer frente por sí misma a las amenazas."
+        },
+        {
+          "type": "analogy",
+          "text": "Es como un sistema contra incendios a escala europea: unos detectores que avisan a todos (alerta), un retén de bomberos con refuerzos que pueden acudir de otro país (emergencia) y, después del incendio, un informe que explica qué falló para que no se repita (revisión)."
+        },
+        {
+          "type": "table",
+          "title": "Los tres mecanismos",
+          "head": ["Mecanismo", "Cuándo actúa", "Qué hace"],
+          "rows": [
+            ["Sistema europeo de alerta de ciberseguridad", "Antes y mientras", "Aprovecha los centros que ya existen (los CSIRT) o crea una autoridad específica como punto de contacto sobre ciberamenazas e incidentes, públicos y privados. Pueden crearse **centros cibernéticos transfronterizos**, con un mínimo de **tres Estados**, normalmente vecinos, para compartir información y herramientas y crear confianza."],
+            ["Mecanismo de emergencia", "Ante incidentes significativos a gran escala o equivalentes", "Tiene tres tipos de acciones: **preparación** (pruebas coordinadas entre Estados), **respuesta** (una **reserva de ciberseguridad de la Unión**, es decir, una lista de proveedores de confianza, incluso privados, que pueden prestar ayuda) y **asistencia mutua** entre autoridades nacionales."],
+            ["Mecanismo europeo de revisión de incidentes", "Después", "ENISA analiza qué pasó y cómo se actuó, extrae **lecciones aprendidas** para que no se repita y puede publicar un **resumen** (no el informe completo, que contiene información sensible)."]
+          ]
+        },
+        {
+          "type": "exam",
+          "text": "Ordena por momento: **prevención** (alerta y pruebas), **durante** (reserva y asistencia mutua) y **después** (revisión de ENISA con lecciones aprendidas). No lo confundas con el Grupo de Cooperación de NIS 2, que intercambia información y buenas prácticas pero no actúa como mecanismo de emergencia."
+        },
+        {
+          "type": "key",
+          "text": "El Reglamento de cibersolidaridad crea un sistema europeo de alerta, un mecanismo de emergencia (preparación, respuesta con una reserva de proveedores de confianza y asistencia mutua) y una revisión posterior de ENISA con lecciones aprendidas."
+        }
+      ]
+    },
+    {
+      "id": "reglamento-ia",
+      "title": "Reglamento de inteligencia artificial: usos prohibidos, de alto riesgo y de transparencia",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "El Reglamento de inteligencia artificial (el RIA, en inglés AI Act) no entra en detalle técnico: se estudia a muy alto nivel para saber **a quién se aplica** y **qué usos prohíbe**. La profesora subrayó dos cosas: el reglamento **no regula la inteligencia artificial en sí, sino los usos** que se hacen de ella, y **está en vigor de forma escalonada** (se ha modificado ya para simplificar obligaciones, porque faltan normas técnicas europeas). Además, aunque un reglamento no necesita ley nacional, España necesita una ley propia para el **sistema de infracciones y sanciones**, que aún no está aprobada."
+        },
+        {
+          "type": "analogy",
+          "text": "Piensa en un semáforo. En rojo, lo prohibido: usos que contradicen los valores de la Unión. En ámbar, el alto riesgo: se puede usar, pero con muchas garantías para la seguridad, la salud y los derechos fundamentales. En verde, el resto, con algunas obligaciones de transparencia. Aparte, los modelos de propósito general, que se añadieron cuando apareció ChatGPT, cuando el reglamento ya se estaba redactando."
+        },
+        {
+          "type": "table",
+          "title": "El semáforo del reglamento",
+          "head": ["Nivel", "Qué significa", "Ejemplos de la clase"],
+          "rows": [
+            ["Prohibido", "No se puede utilizar.", "Manipular a personas, puntuación social, predecir delitos individuales."],
+            ["Alto riesgo", "Permitido con requisitos estrictos.", "Sistemas para admitir alumnos, despedir empleados, conceder subvenciones, control de fronteras."],
+            ["Transparencia y otros", "Obligaciones de informar.", "Chatbots, contenido sintético, deepfakes."],
+            ["Modelos de propósito general", "Normas específicas; reforzadas si tienen riesgo sistémico.", "Los grandes modelos que se han extendido por toda la Unión en pocas horas."]
+          ]
+        },
+        {
+          "type": "list",
+          "title": "Prácticas prohibidas (según la clase)",
+          "items": [
+            "Sistemas que **manipulan** a las personas directamente.",
+            "**Reconocimiento de emociones en el trabajo y en centros educativos.** Ojo: solo está prohibido en esos contextos; en otros no lo prohíbe este reglamento (aunque puede prohibirlo la protección de datos).",
+            "Sistemas de **categorización biométrica**: clasificar a alguien en un grupo a partir de sus datos biométricos.",
+            "**Identificación biométrica remota en tiempo real** en espacios públicos con fines de aplicación de la ley, salvo circunstancias muy concretas y con garantías (por ejemplo, localizar a un terrorista fugado o a un menor secuestrado). Fue polémico, porque se permite una excepción a algo prohibido.",
+            "**Recoger imágenes faciales de Internet o de cámaras de circuito cerrado** de forma masiva (web scraping).",
+            "Sistemas que evalúan la **probabilidad de que una persona cometa un delito** (el «Minority Report»).",
+            "Sistemas de **puntuación social** de los ciudadanos, como el crédito social chino: el Estado no puede puntuar la conducta de las personas.",
+            "Según la modificación reciente, también los que permiten **generar desnudos de menores o contenido sexual**."
+          ]
+        },
+        {
+          "type": "term",
+          "term": "Que el RIA lo permita no significa que sea legal",
+          "text": "Un uso no prohibido por el reglamento sigue sujeto al resto de normas. Ejemplo: reconocimiento de emociones de clientes en un comercio. Aunque no esté prohibido por el RIA, necesitaría una **base de licitud del RGPD** (probablemente el consentimiento). Sin base de licitud, no se puede tratar ningún dato, con o sin inteligencia artificial. Además, un país puede tener leyes que permitan o prohíban cosas que otro no."
+        },
+        {
+          "type": "list",
+          "title": "Sistemas de alto riesgo",
+          "items": [
+            "**Anexo I:** productos que ya tenían una norma europea de seguridad, como juguetes, ascensores, embarcaciones o productos sanitarios. El reglamento los considera de alto riesgo.",
+            "**Anexo III:** usos sin norma de producto, en **ocho categorías**: biometría, infraestructuras críticas, educación (qué alumno se admite), empleo (a quién despedir), acceso a servicios y prestaciones esenciales (a quién se concede una subvención), aplicación de la ley, migración, asilo y control fronterizo, y administración de justicia y procesos democráticos (por ejemplo, un detector de mentiras).",
+            "Un ejemplo real: en Europa se detectó que un algoritmo penalizaba a quienes pedían subvenciones por su **código postal**. Eso es un **sesgo** que perjudica a personas con derecho a la ayuda, y por eso el reglamento protege los derechos fundamentales, no solo la seguridad."
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Quién es quién en la cadena",
+          "head": ["Figura", "Qué hace"],
+          "rows": [
+            ["Proveedor", "Desarrolla el sistema (o encarga su desarrollo) y lo introduce en el mercado. **Tiene la principal responsabilidad** y debe cumplir los requisitos de alto riesgo."],
+            ["Responsable del despliegue", "Empresa o administración que adopta un sistema que ya está en el mercado y lo utiliza."],
+            ["Importador y distribuidor", "Cuando el sistema viene de fuera de la Unión (por ejemplo, de Estados Unidos), comprueban sucesivamente que cumple los requisitos. Si no, no pueden introducirlo (doble control)."],
+            ["Representante autorizado", "El proveedor de fuera de la Unión debe nombrar a una persona que le represente dentro."]
+          ]
+        },
+        {
+          "type": "list",
+          "title": "Requisitos de los sistemas de alto riesgo (a grandes rasgos)",
+          "items": [
+            "**Gestión de riesgos** que valore también el impacto en derechos fundamentales y protección de datos, no solo la seguridad.",
+            "**Calidad de los datos de entrenamiento**: deben ser representativos y estar libres de sesgos, y hay que dejar **constancia** de con qué conjuntos se entrenó el sistema (trazabilidad).",
+            "**Documentación técnica** y conservación de **registros (logs)**.",
+            "**Supervisión humana real**: no vale poner a cualquier persona como trámite; debe estar formada y tener capacidad de **parar el sistema** si detecta un riesgo.",
+            "**Información al responsable del despliegue**: instrucciones de uso y hasta qué **nivel de ciberseguridad** se ha probado.",
+            "**Declaración de conformidad y marcado CE**, sistema de gestión de la calidad y registro europeo de sistemas de alto riesgo."
+          ]
+        },
+        {
+          "type": "list",
+          "title": "Transparencia (sistemas que interactúan con personas)",
+          "items": [
+            "Hay que **informar de que se interactúa con una IA**, salvo que sea evidente para una persona razonablemente informada, atenta y perspicaz. La profesora cree que el listón es alto.",
+            "El proveedor debe **marcar como sintético** el contenido generado.",
+            "Las imágenes creadas artificialmente que imitan a personas (deepfakes, llamadas en el reglamento «ultrafalsificaciones») deben indicar que son artificiales.",
+            "Quien despliegue reconocimiento de emociones o categorización biométrica debe **informar a las personas expuestas** y tratar sus datos conforme al RGPD."
+          ]
+        },
+        {
+          "type": "term",
+          "term": "Modelos de IA de uso general",
+          "text": "Se dividen en dos grupos. Los **modelos con riesgo sistémico** (se habla del modelo, no del sistema) tienen gran capacidad e impacto sobre la población, y tienen obligaciones reforzadas. Los **sistemas de uso general** son los que usamos con una interfaz y sirven para muchos fines; su reto principal es cumplir la propiedad intelectual, para lo que existen **códigos de buenas prácticas** a los que las empresas pueden adherirse."
+        },
+        {
+          "type": "exam",
+          "text": "Esta norma suele preguntarse así: ¿está prohibido este uso (por ejemplo, reconocer emociones en un colegio o en el trabajo) o no? ¿Qué sistema es de alto riesgo? ¿A quién se aplica (proveedor, importador, responsable del despliegue)? Recuerda que puede aplicarse a sistemas de fuera de la Unión que afecten a personas en Europa, que solo se prohíbe el reconocimiento de emociones en el trabajo y la educación, y que, además del RIA, hay que cumplir el RGPD."
+        },
+        {
+          "type": "key",
+          "text": "El RIA regula usos, no la tecnología: semáforo de prácticas prohibidas, alto riesgo (anexos I y III) y transparencia, más modelos de propósito general. Lo permitido por el RIA debe cumplir también el RGPD."
         }
       ]
     }
@@ -776,7 +979,13 @@
     "El Grupo de Cooperación lo forman Estados, Comisión y ENISA; el CSIRT coordinador intermedia en la divulgación de vulnerabilidades.",
     "La Directiva 2022/2557 protege la resiliencia de las entidades críticas en coordinación con NIS 2.",
     "El Reglamento 2019/881 regula ENISA y la certificación europea (básico, sustancial, elevado); la autoevaluación solo cabe en el nivel básico.",
-    "El CRA (propuesta en el temario) exige ciberseguridad en el diseño y durante todo el ciclo de vida de los productos con elementos digitales."
+    "El CRA (propuesta en el temario) exige ciberseguridad en el diseño y durante todo el ciclo de vida de los productos con elementos digitales.",
+    "Según la profesora, el RDL 12/2018 y el RD 43/2021 no entran en el examen; se estudia NIS 2, que España aún no ha transpuesto.",
+    "Se usan reglamentos para homogeneizar el mercado y directivas para materias de soberanía; «Act» en inglés se traduce como «ley» pero designa reglamentos.",
+    "NIS 2 y el RGPD se aplican a la vez ante un incidente con datos personales; los prestadores de servicios de confianza notifican siempre en 24 horas.",
+    "El Reglamento de cibersolidaridad crea un sistema de alerta, un mecanismo de emergencia y una revisión posterior de incidentes por ENISA.",
+    "El CRA clasifica los productos con elementos digitales en normales, importantes y críticos (estos con certificado europeo).",
+    "El RIA regula usos de la IA con un semáforo: prohibidos, alto riesgo (anexos I y III) y transparencia; lo permitido por el RIA debe cumplir también el RGPD."
   ],
   "glossary": [
     { "term": "AEPD", "text": "Agencia Española de Protección de Datos. Recibe las notificaciones de brechas de datos personales (art. 33 RGPD), independientes de las de ciberseguridad." },
@@ -805,7 +1014,12 @@
     { "term": "Real decreto", "text": "Reglamento del Gobierno, de rango inferior a la ley, que suele desarrollarla." },
     { "term": "Reglamento europeo", "text": "Norma de la UE directamente aplicable en todos los Estados miembros." },
     { "term": "Responsable de seguridad", "text": "Figura del RD 43/2021: punto de contacto con la autoridad competente y el CSIRT, independiente de los responsables de sistemas." },
-    { "term": "Transposición", "text": "Incorporación de una directiva al derecho nacional." }
+    { "term": "Transposición", "text": "Incorporación de una directiva al derecho nacional." },
+    { "term": "Reglamento de cibersolidaridad", "text": "Reglamento europeo que organiza la ayuda mutua ante ciberincidentes graves: sistema de alerta, mecanismo de emergencia y revisión posterior." },
+    { "term": "Reserva de ciberseguridad de la Unión", "text": "Lista de proveedores de confianza, incluso privados, que pueden prestar ayuda ante un incidente grave." },
+    { "term": "RIA (Reglamento de inteligencia artificial)", "text": "Reglamento europeo que regula los usos de la IA con niveles de riesgo: prohibidos, alto riesgo, transparencia y modelos de propósito general." },
+    { "term": "Proveedor / responsable del despliegue (IA)", "text": "El proveedor desarrolla e introduce el sistema en el mercado; el responsable del despliegue es quien lo adopta y utiliza." },
+    { "term": "Ultrafalsificación (deepfake)", "text": "Imagen, audio o vídeo creado artificialmente que imita a una persona real; debe indicar que es artificial." }
   ],
   "questions": {
     "ciberdelitos-t03-01": {

@@ -2,7 +2,7 @@
   "course": "forense",
   "number": 3,
   "title": "Adquisición de evidencias digitales",
-  "minutes": 40,
+  "minutes": 50,
   "intro": {
     "why": "En un juicio, la prueba es lo que decide. Por eso la defensa de la parte contraria no siempre discute lo que dice un disco duro: muchas veces discute **cómo se copió**. Si el perito no puede demostrar que su copia es idéntica al original y que nadie la ha tocado desde entonces, la prueba se puede anular aunque el contenido sea demoledor. Imagina un despido por fuga de datos que se cae porque el informático de la empresa encendió el portátil del empleado «para echar un vistazo»: ese simple arranque cambió fechas y archivos del disco. Este tema enseña a copiar evidencias digitales sin dar ese flanco, siguiendo la norma internacional ISO/IEC 27037.",
     "before": [
@@ -17,7 +17,9 @@
       "Sabrás preparar una adquisición: bloqueo contra escritura (hardware, software o distribución Linux forense) y borrado seguro del disco de destino.",
       "Sabrás distinguir imagen forense y clonado, adquisición en caliente y en frío, y adquisición física y lógica.",
       "Sabrás distinguir recolección y adquisición según la ISO/IEC 27037 y seguir sus flujos en frío y en caliente.",
-      "Sabrás cómo se preserva la integridad en frío (tres hashes) y en caliente (hash del resultado y tercero de confianza), y cuáles son los supuestos especiales de la norma."
+      "Sabrás cómo se preserva la integridad en frío (tres hashes) y en caliente (hash del resultado y tercero de confianza), y cuáles son los supuestos especiales de la norma.",
+      "Sabrás qué es el método Gutmann y por qué un borrado con datos aleatorios es más difícil de detectar que uno con ceros.",
+      "Sabrás qué hacer con la energía y el cifrado en móviles y equipos encendidos, y cómo se acota una escena en una empresa grande."
     ]
   },
   "sections": [
@@ -117,6 +119,37 @@
           "text": "Si roban en una joyería, la policía no se limita a la vitrina rota: mira también la cámara de seguridad de la calle, aunque a la cámara no le haya pasado nada. Pero tampoco se lleva todos los objetos del centro comercial «por si acaso». El servidor de correo es esa cámara: no está infectado, pero vio pasar al ladrón."
         },
         {
+          "type": "p",
+          "text": "Acotar la escena también significa **controlar quién accede**. Desde que el forense entra en acción, nadie más debe tocar ninguna prueba o posible prueba hasta que él tenga una copia y garantice que ya no se puede perder ni alterar."
+        },
+        {
+          "type": "list",
+          "title": "El inventario: no pienses solo en el ordenador y el móvil",
+          "items": [
+            "Cualquier cosa con almacenamiento digital es un posible **contenedor**: pendrives, discos externos, tarjetas, consolas, cámaras e incluso algunos ratones o cascos modernos, que llevan memoria interna.",
+            "Aunque estén vacíos, siguen siendo contenedores de potenciales evidencias.",
+            "En el sitio hay que **etiquetarlo todo**; por eso el forense lleva rollos de pegatinas, además de cables y adaptadores."
+          ]
+        },
+        {
+          "type": "term",
+          "term": "Contactos de apoyo",
+          "text": "En una empresa grande no sabes dónde está nada (la clase puso de ejemplo una granja de servidores virtualizados). Lo primero es localizar a personas de la propia empresa que den acceso y expliquen la infraestructura: un contacto de **redes**, otro del **centro de proceso de datos (CPD)** y otro de **TI**. Según la clase, se les hace firmar un compromiso de no entorpecer la investigación, y se comprueba con la nomenclatura o un inventario que el servidor señalado es de verdad el que se busca (por ejemplo, el de correo), casi como una auditoría."
+        },
+        {
+          "type": "term",
+          "term": "Instantánea (snapshot)",
+          "text": "«Foto» del estado de una máquina virtual en un instante concreto. Programas como VMware o VirtualBox permiten guardarla, incluso con el estado de la memoria RAM. Si el servidor es virtual, se puede adquirir una instantánea en lugar de apagarlo y llevarse el disco entero, y luego recuperar la máquina tal como estaba."
+        },
+        {
+          "type": "analogy",
+          "text": "Dos estilos al adquirir. **Pesca de arrastre**: tiras la red, coges todo y decides después qué te quedas. **Forense cirujano**: vas al detalle y te llevas solo lo indispensable. Según el profesor, la solución está en medio: ten la ambición del primero y el olfato del segundo. Si dudas, llévate de más: tardarás más, pero no te dejarás nada; con experiencia irás afinando. (Esto lo dijo para contextualizar; no cae en el test.)"
+        },
+        {
+          "type": "p",
+          "text": "Recuerda dos retos que van en contra: el **tiempo** (copiar y analizar 32 GB no es lo mismo que 1 TB) y el **nivel de detalle** (dos dispositivos o veinticinco). Para eso sirven el **triaje** (priorizar) y el análisis por capas. Y el disco donde copias debe tener **igual o mayor capacidad** que el original."
+        },
+        {
           "type": "exam",
           "text": "La respuesta correcta siempre combina **lo afectado directamente + lo relacionado**. Trampas: «solo los equipos afectados» (se queda corto); «recoger todo el material posible» (no: hay que justificar la relevancia, no adquirir indiscriminadamente y justificar después); «todos los servidores con los que interactúe» (demasiado amplio: no todos están relacionados); elegir un equipo por algo irrelevante, como tener el mismo fabricante, o descartar datos porque están en remoto (la nube también puede formar parte de la escena)."
         },
@@ -168,6 +201,16 @@
           "text": "Fíjate en un detalle: el PDF define la resistencia a colisiones diciendo que «podemos encontrar» dos entradas con la misma salida. Esa frase está al revés; lo que el propio texto explica a continuación, y lo correcto, es que **encontrarlas debe ser muy difícil**. También mezcla inyectividad y determinismo al hablar de reproducibilidad: lo que hace reproducible la comparación es el **determinismo**."
         },
         {
+          "type": "example",
+          "title": "Una colisión con un algoritmo de juguete",
+          "text": "Imagina un «algoritmo resumen» que solo se queda con las vocales de un texto. «palabra» da «aaa». Pero «banana» también da «aaa». Dos entradas distintas, la misma salida: eso es una **colisión**. En los algoritmos reales es muy difícil encontrar una, pero se ha logrado en MD5 y SHA-1; por eso, para que una prueba no sea refutable, se calculan **al menos dos** algoritmos a la vez (que coincidan los dos a la vez sería rarísimo). Puedes seguir usando MD5 y SHA-1 con seguridad para comprobar que algo no ha cambiado."
+        },
+        {
+          "type": "example",
+          "title": "Hash y contraseñas",
+          "text": "Un hash siempre da el mismo resultado para la misma entrada. Si la contraseña «12345» se guarda con MD5, su hash es siempre 827ccb0eea8a706c4c34a16891f84e7b. Si en una filtración de datos aparece ese valor, se deduce que la contraseña era «12345» (se hace con listas de hashes calculados de antemano, las llamadas **tablas arcoíris**). Por eso las contraseñas nunca deben guardarse en texto plano ni con un hash simple sin protección."
+        },
+        {
           "type": "exam",
           "text": "Preguntas típicas: «¿qué produce un hash?» → un resumen de longitud fija (no una copia comprimida recuperable, ni un cifrado reversible, ni un identificador de quien creó los datos). «¿Qué propiedad hace útil repetir el hash?» → el determinismo. «¿Qué propiedad NO tiene?» → la **bidireccionalidad** (es unidireccional). «Dos archivos distintos con el mismo hash» → **colisión**."
         },
@@ -215,6 +258,20 @@
           "type": "code",
           "title": "Calcular el hash de un disco completo en Linux",
           "text": "$ sudo sha256sum /dev/sdb\n3b1f0c9a...(64 caracteres hexadecimales)...e27d  /dev/sdb"
+        },
+        {
+          "type": "table",
+          "title": "Herramientas para calcular hash según el sistema (las que usa el profesor)",
+          "head": ["Sistema", "Herramientas", "Notas"],
+          "rows": [
+            ["Windows", "FTK Imager (calcula los hash al adquirir) y HashMyFiles, de NirSoft", "HashMyFiles se instala y queda en el equipo; sirve para comparaciones rápidas de archivos, carpetas o discos, y calcula varios algoritmos a la vez"],
+            ["Linux", "FTK Imager en línea de comandos, Guymager (según la clase) y los comandos md5sum y sha1sum", "Para un disco entero usa el dispositivo, como en el ejemplo de abajo"],
+            ["macOS", "FTK Imager en línea de comandos y los comandos md5 y shasum", "Mismo planteamiento que en Linux"]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Calcular un hash lleva tiempo cuando el dato es grande: un PDF de 15 MB es instantáneo, pero un archivo de 20 GB puede tardar varios minutos porque hay que leerlo entero. La herramienta de adquisición forense, como FTK Imager, **ya calcula el hash por sí sola**; sería raro que una herramienta de adquisición no lo hiciera."
         },
         {
           "type": "exam",
@@ -267,6 +324,15 @@
         {
           "type": "p",
           "text": "El **Registro de Windows** es la gran base de datos de configuración del sistema; cambiando ese valor, Windows deja de escribir en los USB. Ojo: el PDF coloca WiebeTech y Tableau en una lista de bloqueadores «por software», pero son fabricantes de bloqueadores **hardware**; es una errata del texto."
+        },
+        {
+          "type": "list",
+          "title": "Más detalles de la distribución forense en vivo y del bloqueo por software",
+          "items": [
+            "Estas distribuciones (Kali y similares) se arrancan desde un USB o un CD y montan el sistema **en la memoria RAM** del equipo; después puedes quitar el pendrive o usarlo como almacenamiento auxiliar.",
+            "Al apagar, la distribución desaparece como si nada hubiera pasado, y como no arranca el sistema operativo del equipo investigado, **no queda huella de tu acceso** en él: los registros los escribe el sistema operativo, y aquí no interviene el suyo.",
+            "El bloqueo por software puede fallar, porque al final es un tema de permisos que se puede alterar en cualquier momento. Y en una adquisición en caliente, instalar una herramienta como FTK Imager en el equipo ya modifica algo: es normal, pero conviene dejar constancia de ello porque «queda menos limpio»."
+          ]
         },
         {
           "type": "exam",
@@ -323,6 +389,20 @@
         {
           "type": "p",
           "text": "Herramientas habituales: EnCase Forensic Imager (Windows), dd y dc3dd (Linux y macOS), R-Wipe & Clean (Windows y macOS) y HDShredder (Windows). El tema incluye además un vídeo sobre borrado seguro y bloqueo contra escritura."
+        },
+        {
+          "type": "term",
+          "term": "Método Gutmann (35 pasadas)",
+          "text": "Método teórico de borrado seguro que sobrescribe cada zona del disco **35 veces** con distintos patrones (ceros, unos y datos aleatorios). Hoy casi nadie lo aplica, salvo sitios muy concretos: es lentísimo y exige un equipo potente."
+        },
+        {
+          "type": "analogy",
+          "text": "¿Por qué se prefiere a veces rellenar con datos **aleatorios**? Si borras con ceros, queda un hueco de ceros del tamaño exacto del archivo: es como quitar un libro de una estantería llena, ves el hueco y sabes que ahí había algo de ese tamaño. Con datos aleatorios, ese hueco se mezcla con lo que hay alrededor y no sabes dónde empieza ni acaba lo borrado."
+        },
+        {
+          "type": "example",
+          "title": "Cuando el borrado es un indicio",
+          "text": "Según una noticia que comentó el profesor, en España se supo que unos ordenadores se habían formateado 35 veces antes de entregarlos a los peritos. Quienes lo hicieron alegaron que era parte de su metodología. Sea cual sea la explicación, el número recuerda al método Gutmann y permite hablar de **intencionalidad**: borrar así no es lo habitual. Para el forense, aunque no pueda recuperar el contenido, el propio patrón de borrado puede ser un indicio. (Solo es un ejemplo para entender la idea; no se afirma nada más del caso.)"
         },
         {
           "type": "exam",
@@ -418,6 +498,22 @@
           "type": "term",
           "term": "Cifrado de disco",
           "text": "Técnica que convierte el contenido del disco en datos ilegibles sin la clave (por ejemplo BitLocker en Windows o FileVault en macOS). Mientras el equipo está encendido y desbloqueado, el sistema lee los datos en claro; al apagarlo, vuelven a quedar protegidos."
+        },
+        {
+          "type": "list",
+          "title": "Consejos prácticos del profesor",
+          "items": [
+            "**Energía en móviles, tabletas y wearables:** conéctalos a una fuente (por ejemplo, una batería externa) para que no se apaguen. En un equipo normal no es tan crítico.",
+            "Según la clase, un móvil que lleva tiempo encendido desde el arranque tiene el almacenamiento accesible; tras reiniciarse, queda cifrado hasta que se introduce el PIN (el ejemplo fue un iPhone). Por eso apagarlo por descuido puede costarte los datos.",
+            "**Adquiere en caliente siempre que puedas**, incluso discos: con un cifrado como BitLocker, lo que ves con el equipo encendido (descifrado al vuelo) no es lo mismo que al sacar el disco y mirarlo apagado.",
+            "Si el equipo ya está **apagado y cifrado**, no se acaba el mundo: hay que conseguir la clave de recuperación. En empresas la gestiona TI; en equipos con cuenta de Microsoft se puede pedir a través de la cuenta.",
+            "Las adquisiciones en caliente se hacen **in situ**; las de frío, en el laboratorio. Si no puedes llevarte el equipo (un servidor en producción, el portátil de un directivo), adquieres allí.",
+            "Los diagramas de flujo de la ISO 27037 (encendido o apagado: etiquetar, desconectar, asegurar, llevarse los cables) **no hay que memorizarlos**: basta entender que el procedimiento cambia según el estado del equipo."
+          ]
+        },
+        {
+          "type": "exam",
+          "text": "En el ejercicio teórico-práctico de desarrollo del examen suelen darte, por ejemplo, un móvil con un 5 % de batería y pedirte que **priorices los pasos** sin decirte cuáles son. El olvido más frecuente es **darle energía** al dispositivo. No hay una única respuesta correcta al 100 %: se valora que ordenes bien y justifiques."
         },
         {
           "type": "exam",
@@ -728,7 +824,10 @@
     "Física = todo el dispositivo; lógica = una parte, y solo como imagen.",
     "Recolectar es reunir los contenedores físicos; adquirir es copiar su información.",
     "En frío, HA1 = HA2 = HB prueba la integridad; en caliente, solo se hace el hash del resultado y el origen lo avala un tercero de confianza.",
-    "Supuestos especiales de la norma: dispositivos críticos, adquisiciones parciales y dispositivos de almacenamiento."
+    "Supuestos especiales de la norma: dispositivos críticos, adquisiciones parciales y dispositivos de almacenamiento.",
+    "Acotar la escena incluye controlar quién accede, inventariar todo contenedor posible y apoyarse en contactos de la empresa (redes, CPD, TI); en servidores virtuales sirve una instantánea.",
+    "En móviles y tabletas, conéctalos a una fuente de energía; en cualquier equipo cifrado, adquiere en caliente siempre que sea posible.",
+    "Borrar con datos aleatorios evita el hueco de ceros que delata el tamaño de lo borrado; el método Gutmann (35 pasadas) es teórico y casi no se usa."
   ],
   "glossary": [
     { "term": "Adquisición", "text": "Obtención (copia) de la información contenida en un dispositivo que puede contener evidencias digitales." },
@@ -744,6 +843,7 @@
     { "term": "CCTV (circuito cerrado de televisión)", "text": "Sistema de cámaras de vigilancia; su hardware específico suele justificar un clonado." },
     { "term": "Clonado", "text": "Copia bit a bit de un dispositivo físico en otro dispositivo físico similar." },
     { "term": "Colisión", "text": "Dos entradas distintas que producen el mismo hash." },
+    { "term": "Contactos de apoyo", "text": "Personas de la empresa investigada (redes, CPD, TI) que dan acceso y explican la infraestructura al forense." },
     { "term": "Dispositivo crítico", "text": "Sistema que no puede apagarse sin causar un daño mayor; supuesto especial de la ISO/IEC 27037." },
     { "term": "Distribución Linux forense", "text": "Linux que arranca sin montar los discos del equipo (o en solo lectura), como Kali, Parrot o Tsurugi." },
     { "term": "Evidencia volátil", "text": "Información que se pierde al apagar el equipo, como la RAM o los procesos en ejecución." },
@@ -751,10 +851,13 @@
     { "term": "Función hash", "text": "Función que resume datos de tamaño variable en una salida de tamaño fijo." },
     { "term": "IDS (Intrusion Detection System)", "text": "Sistema que detecta intrusiones vigilando el tráfico de red." },
     { "term": "Imagen forense", "text": "Copia exacta de un dispositivo almacenada en un archivo." },
+    { "term": "Instantánea (snapshot)", "text": "Foto del estado de una máquina virtual en un instante; permite adquirirla sin apagarla." },
     { "term": "ISO/IEC 27037", "text": "Norma internacional con directrices para identificar, recolectar, adquirir y preservar evidencias digitales." },
     { "term": "MD5 (Message-Digest algorithm 5)", "text": "Algoritmo hash de 128 bits (32 caracteres hexadecimales)." },
+    { "term": "Método Gutmann", "text": "Borrado seguro teórico que sobrescribe 35 veces cada zona del disco con distintos patrones." },
     { "term": "Recolección", "text": "Proceso de recopilación de los elementos físicos que pueden contener una potencial evidencia digital." },
     { "term": "SHA (Secure Hash Algorithm)", "text": "Familia de algoritmos hash: SHA-1 (160 bits), SHA-2 y SHA-3 (224, 256, 384 o 512 bits)." },
+    { "term": "Tabla arcoíris", "text": "Lista de hashes calculados de antemano que permite deducir contraseñas débiles a partir de su hash." },
     { "term": "Tercero de confianza", "text": "Persona o mecanismo aceptado (notario, fedatario) que da fe de un proceso que el hash no puede garantizar." }
   ],
   "questions": {

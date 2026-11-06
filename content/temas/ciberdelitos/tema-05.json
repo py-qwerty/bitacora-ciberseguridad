@@ -2,7 +2,7 @@
   "course": "ciberdelitos",
   "number": 5,
   "title": "Firma electrónica. Marco legal y normativo",
-  "minutes": 50,
+  "minutes": 55,
   "intro": {
     "why": "Cada vez que presentas la declaración de la renta por Internet, firmas un contrato de alquiler desde el móvil o recibes una factura electrónica, hay una firma electrónica detrás. Para que un juez o una administración se fíe de ella hacen falta dos cosas: matemáticas (la criptografía) y leyes que digan qué valor tiene cada tipo de firma. Este tema explica ambas: cómo funciona la firma digital, qué dicen el Reglamento europeo eIDAS y la Ley española 6/2020, y cómo usa todo esto el DNI electrónico.",
     "before": [
@@ -17,7 +17,9 @@
       "Sabrás distinguir firma electrónica simple, avanzada y cualificada, y el valor jurídico de cada una.",
       "Sabrás situar en el tiempo la Directiva 1999/93/CE, la Ley 59/2003, el Reglamento eIDAS y la Ley 6/2020.",
       "Sabrás las obligaciones principales de los prestadores de servicios de confianza: vigencia de certificados, identificación, seudónimos, conservación, comunicación de actividad y violaciones de seguridad.",
-      "Sabrás qué certificados lleva el DNI electrónico, para qué sirve el PIN y cómo se comprueba si un certificado está revocado (CRL y OCSP)."
+      "Sabrás qué certificados lleva el DNI electrónico, para qué sirve el PIN y cómo se comprueba si un certificado está revocado (CRL y OCSP).",
+      "Sabrás qué es la cartera europea de identidad digital y qué aporta frente a enseñar el DNI completo.",
+      "Sabrás distinguir los tres certificados (firma, sello y autenticación de sitio web) y quién usa cada uno."
     ]
   },
   "sections": [
@@ -331,6 +333,29 @@
           "text": "openssl ocsp -issuer ac_emisora.pem -cert lucia.pem -url http://ocsp.prestador.example -resp_text\n...\nlucia.pem: revoked\n    Revocation Time: Mar 10 09:12:00 2026 GMT"
         },
         {
+          "type": "list",
+          "title": "Tres propiedades y tres roles que la profesora quiere claros",
+          "items": [
+            "**Propiedades de la firma:** **integridad** (el contenido no se ha modificado desde que se firmó), **autenticidad** (quien firma es quien dice ser) y **no repudio** (nadie puede decir «yo no firmé esto», porque técnicamente es imposible).",
+            "**Firmante:** siempre es una **persona física**. Puede firmar en nombre propio o como directora general de una empresa, pero sigue siendo una persona física. Cuando firma la entidad, lo que se usa es un **sello**.",
+            "**Servicios de confianza:** no solo crear la firma, también verificarla, validarla, emitir un certificado para **autenticar un sitio web**, el sello de tiempo o la preservación de firmas. Los presta el prestador de servicios electrónicos de confianza."
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Tipos de certificado (según la clase)",
+          "head": ["Certificado", "Para quién", "Para qué"],
+          "rows": [
+            ["De firma electrónica", "Personas físicas", "Firmar."],
+            ["De sello electrónico", "Personas jurídicas (empresas, entidades)", "Sellar: garantizar el origen y la integridad de lo que emite la entidad."],
+            ["De autenticación de sitio web", "Titulares de una web", "Acreditar que el sitio es seguro y de quién es."]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Todos pueden ser **cualificados o no cualificados**. Eso afecta al nivel de seguridad, pero **todos tienen validez**. Pregunta típica de caso práctico: si el enunciado dice que «una empresa ha firmado con firma cualificada», hay que corregirlo: una empresa **sella**."
+        },
+        {
           "type": "exam",
           "text": "Si un certificado «no ha caducado pero el titular perdió el control de la clave privada», lo esencial es comprobar **su posible revocación y estado de validez**. ¿Quién valida la firma conforme a una política? **El verificador**. ¿Qué contiene la DPC? **Las condiciones y procedimientos de emisión y gestión** de certificados. ¿Para qué sirve OCSP? Para **consultar el estado de validez o revocación**, nunca para corregir documentos ni publicar claves."
         },
@@ -440,6 +465,40 @@
       ]
     },
     {
+      "id": "eidas-2-cartera",
+      "title": "La actualización de 2024 de eIDAS y la cartera europea de identidad digital",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "En 2024 se **actualizó el Reglamento eIDAS**. Según la profesora, el motivo principal es la **cartera europea de identidad digital** (en inglés, European Digital Identity Wallet o EUDI Wallet), un «monedero» en el móvil que permitirá identificarse y firmar en toda la Unión. La implantación ya está calendarizada, aunque las fechas pueden cambiar."
+        },
+        {
+          "type": "analogy",
+          "text": "Es como enseñar un carné que solo muestra lo que necesitas. Para entrar a una discoteca basta con demostrar que eres mayor de 18 años; no tienes por qué entregar el DNI con tu dirección, tu sexo y tu fecha de nacimiento. La cartera te permite mostrar solo el **atributo** necesario."
+        },
+        {
+          "type": "list",
+          "title": "Características (según la clase)",
+          "items": [
+            "El **propio usuario** controla sus atributos y elige cuáles mostrar en cada servicio.",
+            "La emite **cada Estado miembro**, y la pueden usar **personas físicas y jurídicas**.",
+            "Su uso es **gratuito** y válido en **toda la Unión**, para servicios públicos o privados que requieran identificación electrónica. También la pueden aceptar proveedores de servicios privados.",
+            "Permite **firmar** electrónicamente.",
+            "Usos posibles: acceder a una historia clínica sin enviar el DNI por Internet, abrir una cuenta bancaria o solicitar documentación legal."
+          ]
+        },
+        {
+          "type": "example",
+          "title": "Cartera y protección de datos",
+          "text": "Una web para mayores de 18 años quiere comprobar la edad. Si recoge la identidad completa de cada visitante, acumula datos que no necesita (y que podrían incluso revelar información sensible), lo que choca con el principio de **minimización**. Con la cartera, el usuario muestra solo el atributo «mayor de 18»: la web sabe lo que necesita y nada más. Es una forma de identificarse mucho más respetuosa con la privacidad."
+        },
+        {
+          "type": "key",
+          "text": "El eIDAS actualizado en 2024 crea la cartera europea de identidad digital: la emite cada Estado, es gratuita, válida en la Unión, la controla el usuario y permite mostrar solo los atributos necesarios y firmar."
+        }
+      ]
+    },
+    {
       "id": "ley-6-2020",
       "title": "La Ley 6/2020: lo que España añade a eIDAS",
       "pages": [14, 16],
@@ -521,6 +580,16 @@
           "type": "example",
           "title": "Caso verosímil",
           "text": "Un prestador sufre una intrusión y teme que se hayan filtrado datos de sus clientes. Debe notificarlo al ministerio supervisor (eIDAS exige hacerlo sin demora y, en todo caso, en 24 horas) y, como hay datos personales, también a la AEPD. Una cosa no excluye la otra."
+        },
+        {
+          "type": "list",
+          "title": "Quién presta y quién controla (según la clase)",
+          "items": [
+            "**Prestadores públicos y privados.** En España, la Fábrica Nacional de Moneda y Timbre es el ejemplo público más conocido; también hay prestadores autonómicos y los de algunos colectivos profesionales, como los abogados, los notarios o los médicos.",
+            "El prestador **verifica tu identidad** (edad e identidad) antes de entregarte la firma; puede hacerse presencialmente o por videoidentificación.",
+            "El control lo ejerce el Ministerio competente, que puede apoyarse en entidades privadas para inspeccionar. También hay instrucciones del CCN y de ENISA.",
+            "Las sanciones por incumplir pueden llegar, según la profesora, hasta los **300.000 euros**."
+          ]
         },
         {
           "type": "exam",
@@ -647,7 +716,9 @@
     "Solo las personas físicas firman; las personas jurídicas usan sellos electrónicos.",
     "Ley 6/2020: certificados cualificados de 5 años como máximo, conservación de 15 años, comunicación de los no cualificados en 3 meses y notificación de brechas al ministerio sin perjuicio de la AEPD.",
     "La caducidad y la revocación son causas distintas de extinción; la revocación se consulta con CRL u OCSP.",
-    "El DNIe lleva dos certificados (autenticación y firma) protegidos por un PIN."
+    "El DNIe lleva dos certificados (autenticación y firma) protegidos por un PIN.",
+    "Firmante = persona física; entidades = sello. Todos los certificados pueden ser cualificados o no, y todos tienen validez.",
+    "La actualización de 2024 de eIDAS introduce la cartera europea de identidad digital: la emite cada Estado, es gratuita, válida en toda la Unión y permite mostrar solo los atributos necesarios."
   ],
   "glossary": [
     { "term": "AEPD", "text": "Agencia Española de Protección de Datos, autoridad que supervisa el tratamiento de datos personales." },
@@ -670,7 +741,9 @@
     { "term": "QSCD", "text": "Qualified Signature Creation Device: dispositivo cualificado de creación de firma." },
     { "term": "Sello electrónico", "text": "Equivalente de la firma para personas jurídicas; garantiza origen e integridad." },
     { "term": "TSA (Time Stamping Authority)", "text": "Autoridad de sellado de tiempo: certifica que unos datos existían en un instante." },
-    { "term": "Lista de confianza", "text": "Lista oficial de prestadores cualificados y de sus servicios cualificados." }
+    { "term": "Lista de confianza", "text": "Lista oficial de prestadores cualificados y de sus servicios cualificados." },
+    { "term": "Cartera europea de identidad digital (EUDI Wallet)", "text": "Monedero en el móvil emitido por cada Estado, que permite identificarse, mostrar solo ciertos atributos y firmar en toda la Unión." },
+    { "term": "Atributo", "text": "Dato concreto de una persona que puede mostrarse por separado, como «mayor de 18 años», sin revelar el resto de su identidad." }
   ],
   "questions": {
     "ciberdelitos-t05-01": {

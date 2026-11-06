@@ -2,7 +2,7 @@
   "course": "gobierno",
   "number": 4,
   "title": "Programas, procesos y políticas de seguridad de la información",
-  "minutes": 40,
+  "minutes": 50,
   "intro": {
     "why": "Comprar un cortafuegos no convierte a una empresa en segura, igual que comprar una alarma no protege una casa si nadie la conecta ni sabe el código. La seguridad necesita un plan: saber qué puede salir mal, cuánto costaría, qué se decide hacer y quién se encarga. Este tema explica ese plan desde dos piezas: la **gestión de riesgos** (decidir con números y criterio qué proteger y cómo) y las **políticas de seguridad** (las reglas escritas que lo convierten en obligación para toda la organización).",
     "before": [
@@ -17,7 +17,9 @@
       "Sabrás razonar las cuatro respuestas ante un riesgo: asumirlo, mitigarlo, transferirlo o evitarlo.",
       "Sabrás diferenciar amenaza, agente de la amenaza, vulnerabilidad y exposición, y los tipos de controles.",
       "Sabrás calcular el factor de exposición, la expectativa de pérdida, la tasa anual de ocurrencia y la pérdida anual esperada, y usarlos en un análisis coste-beneficio.",
-      "Sabrás qué es una política de seguridad, en qué se diferencia de su implementación y qué partes debe tener."
+      "Sabrás qué es una política de seguridad, en qué se diferencia de su implementación y qué partes debe tener.",
+      "Sabrás cuándo conviene un programa de seguridad a medida y qué fases y atributos de control lo definen.",
+      "Sabrás clasificar un control por tipología, objetivo y naturaleza, y distinguir preventivo, disuasorio, detectivo, correctivo y compensatorio."
     ]
   },
   "sections": [
@@ -63,6 +65,61 @@
         {
           "type": "key",
           "text": "Un programa de seguridad es un conjunto planificado y permanente de actividades para proteger la tríada CIA; empieza por los riesgos, se comunica a todos, se refuerza con concienciación y se evalúa de forma continua."
+        }
+      ]
+    },
+    {
+      "id": "programa-a-medida",
+      "title": "Programa a medida: cuando la ISO 27001 no encaja",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Hasta ahora has visto la ISO 27001 como la opción de referencia. Pero el profesor planteó una pregunta incómoda: **¿qué pasa si una organización decide no seguir un estándar?** Hay casos reales en los que no encaja, y para ellos existe la alternativa de un programa de gestión de la seguridad **a medida** (en inglés, tailored)."
+        },
+        {
+          "type": "list",
+          "title": "Cuándo tiene sentido un programa a medida",
+          "items": [
+            "**Una pyme con pocos recursos.** Un listado de 93 controles muy exigentes puede ser inabordable para una empresa pequeña que lucha por salir adelante: querer implantarlo podría hacerle cerrar el negocio. No se trata de olvidar la seguridad, sino de adaptarla.",
+            "**Sectores o mercados muy específicos** (el mundo industrial, ciertos países o mercados), donde un estándar general puede no cubrir todos los riesgos.",
+            "**Entornos muy exigentes** donde la ISO 27001 se queda corta y hay recursos para un programa con más músculo. Ojo: a veces es dispararse en el pie; hay que conocer muy bien el negocio y el mercado."
+          ]
+        },
+        {
+          "type": "analogy",
+          "text": "Es la diferencia entre un traje de confección y un traje a medida. El de confección (la ISO 27001) está muy bien hecho y sirve a casi todo el mundo. El traje a medida se hace cuando tus medidas no encajan en ninguna talla. No es mejor ni peor: depende de la persona."
+        },
+        {
+          "type": "term",
+          "term": "Programa de gestión de seguridad a medida",
+          "text": "Programa **diseñado para la situación concreta** de una organización. Persigue lo mismo que un estándar (garantizar la confidencialidad, integridad y disponibilidad, gestionar riesgos, medir y mejorar), pero con un alcance, unos controles y unos roles definidos por la propia empresa. No hace falta empezar de cero: lo habitual es **reutilizar controles de la ISO 27002, del NIST** u otros y adaptar o añadir los que falten. Como cualquier programa, debe comunicarse, tener un alcance y estar orientado a la mejora continua."
+        },
+        {
+          "type": "steps",
+          "title": "Fases de un programa a medida (muy parecidas al ciclo PDCA)",
+          "items": [
+            "**Planificar.** Analizar los factores de la compañía: misión, visión y estrategia corporativa y de seguridad, cultura, sector, factores internos y externos, marco legal, contractual y regulatorio, y análisis de riesgos. Los **dos elementos imprescindibles** son el **análisis de riesgos** y la **legislación**, porque de ellos salen los controles.",
+            "**Definir.** Es la fase más difícil: hay que diseñar cada control (ver la lista de abajo), con libertad de reutilizar controles de otros marcos.",
+            "**Implantar.** Poner en marcha los controles definidos.",
+            "**Monitorizar.** Medir y revisar para mantener y mejorar el programa."
+          ]
+        },
+        {
+          "type": "list",
+          "title": "Qué atributos debe tener un control bien definido",
+          "items": [
+            "**Objetivo:** para qué se implanta. Un control que no cumple ningún objetivo no tiene sentido.",
+            "**Descripción:** qué hace (funcional y técnicamente), de qué otros controles depende y por qué es importante.",
+            "**Frecuencia:** cada cuánto se ejecuta y se mide. Ayuda a fijar los indicadores (KPI) para comprobar si funciona."
+          ]
+        },
+        {
+          "type": "exam",
+          "text": "Trampas: «un programa a medida es siempre mejor que un estándar» (falso: depende del contexto), «tiene que empezar de cero y no puede usar la ISO 27001» (falso: lo habitual es reutilizar controles) y «la ISO 27001 es obligatoria si no hay programa a medida» (falso: ninguna ley la impone con carácter general; es voluntaria). Los dos elementos que no pueden faltar al planificar son el análisis de riesgos y el marco legal."
+        },
+        {
+          "type": "key",
+          "text": "Un programa a medida adapta la gestión de la seguridad a casos en los que un estándar no encaja (pymes, sectores específicos) o se queda corto; persigue los mismos fines, se apoya en el análisis de riesgos y la legislación, y define cada control con objetivo, descripción y frecuencia."
         }
       ]
     },
@@ -309,6 +366,108 @@
       ]
     },
     {
+      "id": "clasificar-controles",
+      "title": "Tres formas de clasificar los controles: tipología, objetivo y naturaleza",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Además de la clasificación por naturaleza y por momento de actuación que ya conoces, el profesor presentó una clasificación más completa. Un mismo control puede encajar en **las tres a la vez**: por ejemplo, un antivirus es técnico (tipología), preventivo (objetivo) y automático (naturaleza)."
+        },
+        {
+          "type": "table",
+          "title": "1. Por tipología: de qué tipo de medida se trata",
+          "head": [
+            "Tipo",
+            "Qué es",
+            "Ejemplos"
+          ],
+          "rows": [
+            [
+              "Técnico",
+              "Medida de seguridad implantada con tecnología, normalmente apoyada en herramientas.",
+              "Antimalware, cifrado, copias de seguridad."
+            ],
+            [
+              "Físico",
+              "Protege el entorno físico.",
+              "Control de acceso a edificios, salas y centros de proceso de datos; vigilancia."
+            ],
+            [
+              "Administrativo (de gestión)",
+              "Define cómo debe comportarse el personal.",
+              "Políticas y pautas de actuación."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "2. Por objetivo: qué hace frente al riesgo",
+          "head": [
+            "Tipo",
+            "Qué hace",
+            "Ejemplo"
+          ],
+          "rows": [
+            [
+              "Preventivo",
+              "Se anticipa y restringe el acceso para que la causa del riesgo no se materialice.",
+              "Una puerta con control de acceso."
+            ],
+            [
+              "Disuasorio",
+              "No impide nada, pero **desanima**.",
+              "El aviso al iniciar sesión en un equipo corporativo («todo uso queda registrado y tiene consecuencias legales»); vallas o vigilantes."
+            ],
+            [
+              "Detectivo",
+              "No previene, pero **identifica** ataques, intentos o eventos anómalos.",
+              "Un sistema que detecta intrusiones, físicas o en la red."
+            ],
+            [
+              "Correctivo",
+              "Actúa sobre la causa de un problema ya ocurrido para que el sistema vuelva a su estado normal.",
+              "Restaurar los sistemas desde la copia tras un ataque."
+            ],
+            [
+              "Compensatorio (alternativo)",
+              "No evita el incidente, pero ofrece una **alternativa** para seguir operando con normalidad.",
+              "Un sitio alternativo desde el que trabajar si cae el principal."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "3. Por naturaleza: quién lo impone y cómo se ejecuta",
+          "head": [
+            "Pareja",
+            "Significado"
+          ],
+          "rows": [
+            [
+              "Obligatorio / voluntario",
+              "Obligatorio: lo impone una ley, una legislación o una autoridad. Voluntario: lo define la propia organización."
+            ],
+            [
+              "Manual / automático",
+              "Manual: lo ejecutan personas. Automático: lo ejecutan herramientas o procesos automatizados."
+            ]
+          ]
+        },
+        {
+          "type": "example",
+          "text": "**Una oficina con cartel «zona vigilada», cámara y puerta con tarjeta.** El cartel es **disuasorio** (avisa y desanima). La cámara es **detectiva** (registra lo que ocurre). La puerta con tarjeta es **preventiva** (impide el paso). Los tres son además controles **físicos**. Si hubiera una intrusión y se restaurase el sistema, ese paso sería **correctivo**."
+        },
+        {
+          "type": "exam",
+          "text": "Fíjate en el verbo: «restringe o impide» es preventivo, «desanima» es disuasorio, «identifica» es detectivo, «repara después» es correctivo y «ofrece una alternativa para seguir» es compensatorio. Un cartel de aviso no es preventivo: no impide nada. Y no mezcles clasificaciones: «técnico» responde a «de qué es», «preventivo» a «qué hace»."
+        },
+        {
+          "type": "key",
+          "text": "Un control se clasifica por tipología (técnico, físico, administrativo), por objetivo (preventivo, disuasorio, detectivo, correctivo, compensatorio) y por naturaleza (obligatorio o voluntario, manual o automático)."
+        }
+      ]
+    },
+    {
       "id": "cuantitativo",
       "title": "Análisis cuantitativo: FE, SLE, ARO y ALE",
       "pages": [10, 10],
@@ -521,6 +680,31 @@
           "text": "Los materiales complementarios refuerzan las dos ideas del tema: el riesgo se gestiona con procesos y números, y las políticas reales se organizan por temas."
         }
       ]
+    },
+    {
+      "id": "practica-act2",
+      "title": "Del tema a la práctica: la actividad 2 (norma de seguridad)",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Esta parte **no cae en el test**. El profesor la adelantó al final de la sesión y dijo que daría más detalles en la siguiente, así que aquí solo está lo que dejó claro."
+        },
+        {
+          "type": "list",
+          "title": "Qué se sabe de la actividad",
+          "items": [
+            "Es la actividad **en grupo** de la asignatura y tiene fecha prevista de entrega el **16 de noviembre** (sujeta a confirmación). Los grupos los forma la dirección del máster y los comunica por el correo institucional; pueden ser distintos en cada asignatura.",
+            "Consiste en **redactar una norma de seguridad**: un documento normativo sobre un **dominio concreto de la seguridad**, que emule las directrices y requisitos que debe tener un documento de este estilo.",
+            "El dominio es de elección libre. El profesor propuso opciones como la gestión de inventarios o la clasificación de la información: solo hay que elegir uno.",
+            "Hay una **plantilla** ya subida a la plataforma, con los capítulos que hay que rellenar. En la siguiente sesión el profesor enseñará dos ejemplos de normas.",
+            "Conecta con lo que has visto: una norma es un documento del cuerpo normativo (tema 1 y este tema), baja a detalle una política y debe poder comprobarse mediante controles."
+          ]
+        },
+        {
+          "type": "key",
+          "text": "La actividad 2 es grupal: redactar una norma de seguridad sobre un dominio elegido, siguiendo una plantilla."
+        }
+      ]
     }
   ],
   "summary": [
@@ -534,7 +718,10 @@
     "SLE = valor × FE; ALE = SLE × ARO; el FE depende del impacto y el ARO de la frecuencia, estimable con históricos.",
     "El valor de un recurso combina coste, aportación al negocio y valor de mercado, y permite el análisis coste-beneficio anualizado.",
     "La política es un plan de alto nivel con objetivos, independiente de productos concretos, aprobado por la dirección, aplicable a toda la organización y auditable.",
-    "Una política incluye propósito, ámbito, descripción, responsabilidades por roles, definiciones, referencias y control de versiones."
+    "Una política incluye propósito, ámbito, descripción, responsabilidades por roles, definiciones, referencias y control de versiones.",
+    "Un programa a medida adapta la seguridad a los casos en que un estándar no encaja (pymes, sectores específicos) o se queda corto; sigue fases parecidas al PDCA y parte del análisis de riesgos y la legislación.",
+    "Un control bien definido tiene objetivo, descripción y frecuencia.",
+    "Los controles se clasifican por tipología (técnico, físico, administrativo), objetivo (preventivo, disuasorio, detectivo, correctivo, compensatorio) y naturaleza (obligatorio o voluntario, manual o automático)."
   ],
   "glossary": [
     { "term": "Programa de gestión de la seguridad", "text": "Conjunto de actividades planificadas para garantizar confidencialidad, integridad y disponibilidad de la información." },
@@ -558,7 +745,12 @@
     { "term": "ALE (annualized loss expectancy)", "text": "Pérdida anual esperada: SLE × ARO (en el PDF, «ALO»)." },
     { "term": "NIST SP 800-30", "text": "Guía estadounidense de gestión de riesgos: evaluación, implementación de controles y evaluación continua." },
     { "term": "SANS", "text": "Instituto de formación en ciberseguridad que publica plantillas de políticas." },
-    { "term": "OWASP", "text": "Comunidad abierta de estándares y guías de seguridad de aplicaciones web." }
+    { "term": "OWASP", "text": "Comunidad abierta de estándares y guías de seguridad de aplicaciones web." },
+    { "term": "Programa a medida (tailored)", "text": "Programa de gestión de la seguridad diseñado para la situación concreta de una organización cuando un estándar no encaja o se queda corto." },
+    { "term": "Control disuasorio", "text": "Control que no impide un acto pero desanima a quien lo piensa, como un aviso legal al iniciar sesión." },
+    { "term": "Control detectivo", "text": "Control que identifica ataques, intentos o eventos anómalos sin impedirlos." },
+    { "term": "Control compensatorio", "text": "Control que no evita el incidente pero ofrece una alternativa para seguir operando con normalidad." },
+    { "term": "Frecuencia de un control", "text": "Cada cuánto se ejecuta y se mide un control; ayuda a definir sus indicadores." }
   ],
   "questions": {
     "gobierno-t04-01": {

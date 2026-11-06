@@ -2,7 +2,7 @@
   "course": "forense",
   "number": 5,
   "title": "Recuperación de archivos",
-  "minutes": 40,
+  "minutes": 50,
   "intro": {
     "why": "Cuando alguien «borra» un archivo, casi nunca desaparece de verdad: el ordenador solo deja de enseñarlo y marca su espacio como libre. Por eso un perito puede rescatar la foto, el contrato o la hoja de cálculo que un sospechoso creía eliminada, y por eso los metadatos de un documento publicado pueden delatar a sus autores, como le pasó al Gobierno británico en 2003. Este tema explica qué es realmente un archivo, por qué se puede recuperar lo borrado, qué parte se puede recuperar según lo que haya pasado después y por qué los discos SSD complican tanto el trabajo.",
     "before": [
@@ -18,7 +18,9 @@
       "Sabrás razonar por qué un archivo borrado se puede recuperar y qué se pierde cuando se sobrescribe.",
       "Sabrás qué se recupera en cada escenario de borrado y si toca una recuperación básica o en bruto (file carving).",
       "Sabrás leer una entrada de directorio FAT, reconocer un archivo borrado (0xE5) y calcular los clústeres que ocupa.",
-      "Sabrás por qué la nivelación del desgaste, el recolector de basura y TRIM dificultan la recuperación en SSD."
+      "Sabrás por qué la nivelación del desgaste, el recolector de basura y TRIM dificultan la recuperación en SSD.",
+      "Sabrás qué es un flujo de datos alternativo de NTFS y por qué puede esconder contenido.",
+      "Sabrás qué ocurre al renombrar un archivo y por qué los metadatos de un reenvío o de una red social no son los originales."
     ]
   },
   "sections": [
@@ -136,6 +138,21 @@
           "text": "Un empleado sospechoso de llevarse planos de la empresa guarda en su pendrive un archivo «lista_compra.txt». El perito no se queda con la extensión: comprueba la firma, ve 25 50 44 46 (%PDF) y descubre que es un PDF con los planos. Renombrar no ocultó nada."
         },
         {
+          "type": "list",
+          "title": "La demostración del profesor con un PDF",
+          "items": [
+            "Al abrir un PDF con un **editor hexadecimal** (se usó HxD) se ve al principio «%PDF» y la versión (en el ejemplo, la 1.6); más abajo hay texto legible, como nombres de fuentes o campos de formulario.",
+            "Al **renombrar el PDF a .txt**, Windows avisa de que el archivo podría quedar inutilizable. Pero en el editor hexadecimal sigue siendo un PDF: **no ha cambiado ni un byte**. El lector de PDF lo abre igual porque comprueba los **bytes iniciales**, no la extensión.",
+            "Si a un documento le pones extensión **.exe** e intentas ejecutarlo, Windows responde que no es una aplicación válida para esa plataforma: detecta la discrepancia entre el tipo declarado y el real.",
+            "Esa discrepancia entre firma y extensión es en sí un indicio de **ocultación**, y se comprueba muy rápido."
+          ]
+        },
+        {
+          "type": "term",
+          "term": "Firma ELF",
+          "text": "Firma de los ejecutables de **Linux**, igual que «MZ» lo es de los de Windows. Importa cuando alguien sube binarios a un servidor (por ejemplo, tras explotar una vulnerabilidad en una web): se comprueba la firma para saber qué tipo de ejecutable es. Si una protección solo mira la firma, un atacante podría cambiar esos primeros bytes para engañarla; por eso el forense también compara el hash del archivo con el original."
+        },
+        {
           "type": "exam",
           "text": "Trampas en la definición de firma: **al final** en vez de al principio, o que identifica su **función** en vez de su **tipo**. Correcta: bytes **al principio** que identifican el **tipo**. Tampoco es la extensión, ni una fecha, ni el propietario, ni una firma electrónica. Y si cambias la extensión, el contenido **permanece igual**: no se convierte, ni se reescribe la cabecera."
         },
@@ -195,12 +212,76 @@
           "text": "Para saber dónde se tomó una foto no sirve mirar el nombre de la carpeta («Vacaciones Cádiz»), ni el tamaño, ni las fechas del sistema de ficheros (que cambian al copiar el archivo). Hay que examinar los **metadatos internos de ubicación** (GPS en Exif), si existen, y valorar su fiabilidad: se pueden editar o borrar."
         },
         {
+          "type": "list",
+          "title": "Los metadatos en la práctica (lo que contó el profesor)",
+          "items": [
+            "**Se pueden editar o falsear.** Con herramientas adecuadas se puede cambiar, por ejemplo, la fecha de modificación de un archivo para que parezca anterior. Desconfía si muestran cosas raras y contrástalos con otras fuentes.",
+            "**Aun así son una pieza de prueba clave.** Ejemplo ficticio de clase: una persona de baja laboral dice que unas fotos de playa son de hace cinco años, pero los metadatos muestran que se hicieron con su móvil de empresa en esa fecha y lugar. Sin recuperaciones complejas, ya tienes los hechos triangulados.",
+            "**Las redes sociales y las apps de mensajería suelen eliminar los metadatos** (Instagram, Facebook, WhatsApp). Si te pasan una prueba por una de ellas, lo que tienes es otra copia, no el archivo original.",
+            "**Un correo reenviado no es el original:** analizas una copia. Para estudiar el original hay que pedir que lo exporten («Guardar como») en formato **.eml**, que conserva las cabeceras, donde se ve por dónde ha pasado el mensaje.",
+            "**Los documentos publicados filtran datos.** Con búsquedas avanzadas en un buscador se pueden encontrar muchísimos documentos ofimáticos públicos y leer sus metadatos: autores, correos y hasta comentarios de revisión (en la clase se vio el caso de un informe ambiental de un gobierno). Defensivamente: limpia los metadatos antes de publicar.",
+            "**Herramientas:** ExifTool (Windows y Linux, la de referencia) y FOCA, desarrollada en su día por el laboratorio de ciberseguridad de Telefónica, hoy sin soporte.",
+            "Anécdota que se cuenta: la ubicación de un conocido fundador de antivirus que huía se habría descubierto por los metadatos de una foto que publicó. Tómalo como una leyenda ilustrativa."
+          ]
+        },
+        {
           "type": "exam",
           "text": "La definición de metadatos es literal: «datos que describen a otros datos». Trampas: «información que almacena el **sistema de ficheros**» o «solo el nombre y la ruta». Eso es justo lo que **no** son los metadatos del archivo. Si preguntan qué dato es del sistema de ficheros y no del contenido de una foto, la respuesta es el **nombre y la ruta**; la cámara, el título o las coordenadas son metadatos internos."
         },
         {
           "type": "key",
           "text": "Metadatos = datos sobre datos, guardados dentro del archivo (Exif, ID3, XMP). Nombre, ruta, propietario y fechas del archivo son del sistema de ficheros."
+        }
+      ]
+    },
+    {
+      "id": "flujos-alternativos",
+      "title": "Flujos de datos alternativos (ADS): la cara oculta de un archivo",
+      "blocks": [
+        {
+          "type": "analogy",
+          "text": "Como la Luna, un archivo de Windows puede tener una **cara que no se ve**. El Explorador te enseña un archivo y su tamaño, pero detrás puede haber otros compartimentos ocultos, cada uno con su propio contenido."
+        },
+        {
+          "type": "term",
+          "term": "Flujo de datos alternativo (ADS, Alternate Data Stream)",
+          "text": "Característica de **NTFS** (el sistema de ficheros de Windows) por la que una misma referencia a un archivo puede apuntar a **varias secuencias de bytes**. La que ves al abrirlo es el flujo principal (mainstream); las demás son flujos alternativos. También pueden tenerlos las carpetas."
+        },
+        {
+          "type": "p",
+          "text": "Si no pides expresamente un flujo, el sistema te da siempre el principal. Así, un mismo archivo puede esconder en otro flujo un texto, una imagen o incluso un **ejecutable**, y Windows no lo muestra por defecto."
+        },
+        {
+          "type": "list",
+          "title": "Qué tiene de especial para el forense",
+          "items": [
+            "**Usos legítimos hay, pero pocos.** Según la clase, la idea original tenía que ver con el control de versiones, pero al final se usa mucho más para hacer el mal que para otra cosa.",
+            "**El tamaño engaña.** Los flujos alternativos no cuentan en el tamaño que muestra Windows: un archivo puede decir ocupar 1 MB y ocupar muchísimo más en disco.",
+            "**Malware escondido.** Se ha usado para ocultar código malicioso en el flujo alternativo de un archivo aparentemente normal, como un PDF. Los antivirus antiguos solo leían el flujo principal; hoy los modernos ya examinan también los alternativos.",
+            "**Rutina de detección.** Basta con incluir en tu análisis de archivos una comparación entre el tamaño que muestra el sistema y el tamaño real que ocupa en disco: si un PDF dice 1 MB y ocupa 500 MB, huele raro."
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Cómo ver los flujos alternativos",
+          "head": ["Herramienta", "Cómo se usa"],
+          "rows": [
+            ["Comando dir de la consola", "Con la opción /r muestra, bajo cada archivo, sus flujos alternativos"],
+            ["AlternateStreamView (NirSoft)", "Programa gráfico que lista los flujos alternativos de los archivos"]
+          ]
+        },
+        {
+          "type": "example",
+          "title": "Cómo se vería",
+          "text": "Con «dir /r» en una carpeta aparece el archivo «informe.pdf» con su tamaño normal y, justo debajo, una línea como «informe.pdf:oculto.txt:$DATA» con el tamaño de ese flujo escondido. Sin la opción /r, esa segunda línea no se ve."
+        },
+        {
+          "type": "exam",
+          "text": "Según el profesor, esto no se pregunta con detalle, pero sí conviene entenderlo: es una característica de NTFS, el flujo principal es el que se ve, y los alternativos no se muestran por defecto ni cuentan en el tamaño. Si lo quieres ampliar, investiga usos legítimos y maliciosos por tu cuenta."
+        },
+        {
+          "type": "key",
+          "text": "Un archivo NTFS puede tener flujos de datos alternativos ocultos: no se ven por defecto ni suman al tamaño mostrado. Se detectan con dir /r o con herramientas como AlternateStreamView."
         }
       ]
     },
@@ -391,6 +472,15 @@
           "type": "code",
           "title": "Lo que suele generar un carving con PhotoRec",
           "text": "recup_dir.1/\n  f0002048.jpg   <- sin nombre original: lo genera la herramienta\n  f0002416.pdf\n  f0009880.docx  <- puede no abrir: falso positivo o sobrescrito"
+        },
+        {
+          "type": "list",
+          "title": "Notas prácticas de la clase",
+          "items": [
+            "**Recuperación parcial.** A veces un archivo se recupera a medias (una imagen cortada o con los colores alterados). No hay una ley que diga cuántos píxeles hacen falta; según la experiencia del profesor, una imagen recuperada al 80–90 % se acepta sin discusión, y sirve para demostrar que es la misma imagen aunque falle una zona.",
+            "**Recuva** es un primer intento rápido, pero hace una búsqueda más laxa. Para un trabajo serio conviene «subir el nivel» con **FTK Imager y Autopsy**, que permiten ir a una carpeta concreta y revisar archivo a archivo.",
+            "**PhotoRec** recupera por la consistencia y las firmas de los archivos. Según la clase, empiezan a aparecer productos que usan inteligencia artificial para la recuperación en bruto, pero todavía no hay nada estandarizado."
+          ]
         },
         {
           "type": "exam",
@@ -584,7 +674,9 @@
     "Papelera o entrada marcada como borrada: se recupera todo. Entrada o enlace eliminados: solo el contenido. Datos sobrescritos: una parte o nada.",
     "La recuperación básica sigue el enlace del sistema de ficheros (FTK Imager, Autopsy, Recuva); la recuperación en bruto busca firmas por todo el soporte (PhotoRec, R-Studio, Recuva), recupera solo contenido y puede dar falsos positivos.",
     "En FAT, una entrada de 32 bytes que empieza por 0xE5 es un archivo borrado; con su clúster inicial y su tamaño se calculan los clústeres, redondeando hacia arriba.",
-    "En los SSD, la nivelación del desgaste fragmenta los datos y TRIM junto al recolector de basura los borra físicamente; bloquear el dispositivo no recupera lo ya eliminado."
+    "En los SSD, la nivelación del desgaste fragmenta los datos y TRIM junto al recolector de basura los borra físicamente; bloquear el dispositivo no recupera lo ya eliminado.",
+    "Un archivo NTFS puede tener flujos de datos alternativos ocultos que no se ven por defecto ni suman al tamaño mostrado (dir /r, AlternateStreamView).",
+    "Los metadatos se pueden falsear y las redes sociales los eliminan; un correo reenviado no es el original: hay que pedir el .eml."
   ],
   "glossary": [
     { "term": "Archivo", "text": "Conjunto de bytes relacionados, utilizable de forma individual y guardado en un dispositivo de almacenamiento." },
@@ -606,7 +698,11 @@
     { "term": "SSD (Solid State Drive)", "text": "Unidad de almacenamiento basada en memoria flash." },
     { "term": "Nivelación del desgaste (wear leveling)", "text": "Técnica del SSD que reparte las escrituras por todos los bloques para que se gasten por igual; fragmenta los datos." },
     { "term": "Recolector de basura (garbage collector)", "text": "Proceso interno del SSD que borra físicamente los bloques descartados cuando el disco está inactivo." },
-    { "term": "TRIM", "text": "Orden del sistema operativo que indica al SSD qué bloques ya no contienen datos útiles." }
+    { "term": "TRIM", "text": "Orden del sistema operativo que indica al SSD qué bloques ya no contienen datos útiles." },
+    { "term": "Flujo de datos alternativo (ADS)", "text": "Secuencia de bytes oculta que NTFS permite asociar a un mismo archivo o carpeta, además de su contenido principal." },
+    { "term": "Firma ELF", "text": "Firma de los ejecutables de Linux, equivalente a «MZ» en Windows." },
+    { "term": "Archivo EML", "text": "Formato de correo guardado con sus cabeceras completas; es la forma de aportar el correo original en vez de un reenvío." },
+    { "term": "Recuperación parcial", "text": "Recuperación de un archivo a medias; según la experiencia del profesor, una imagen recuperada al 80–90 % suele aceptarse." }
   ],
   "questions": {
     "forense-t05-01": {

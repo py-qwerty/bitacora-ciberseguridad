@@ -2,7 +2,7 @@
   "course": "gobierno",
   "number": 1,
   "title": "La seguridad de la información en las organizaciones",
-  "minutes": 45,
+  "minutes": 60,
   "intro": {
     "why": "Una empresa puede gastar una fortuna en cortafuegos y antivirus y aun así perder su lista de clientes porque un empleado contesta a una llamada de un falso técnico, o perder un día entero de ventas porque se inunda la sala de servidores. Este tema cambia la mirada: la seguridad no es un aparato que se compra, sino una forma de gestionar la organización que decide qué proteger, por qué, de qué y cuánto dinero merece la pena gastar en ello. Es la base sobre la que se construye toda la asignatura de gobierno y análisis de riesgos.",
     "before": [
@@ -18,7 +18,10 @@
       "Sabrás explicar por qué la seguridad es un proceso continuo y no un producto.",
       "Sabrás ordenar la jerarquía documental: política general, políticas funcionales, estándares, directrices, procedimientos y líneas base.",
       "Sabrás para qué sirve clasificar la información y qué hacen el propietario, el custodio y el usuario.",
-      "Sabrás qué es un control de seguridad, las cuatro vías para tratar un riesgo y por qué importan la seguridad física y el factor humano."
+      "Sabrás qué es un control de seguridad, las cuatro vías para tratar un riesgo y por qué importan la seguridad física y el factor humano.",
+      "Sabrás relacionar negocio, servicios y activos, y por qué cada tipo de activo necesita controles distintos.",
+      "Sabrás cuáles son los documentos mínimos del cuerpo normativo y qué papel tienen propietario, custodio y CISO.",
+      "Conocerás cómo se evalúa la asignatura y qué se hace en la actividad 1 (esto último no cae en el test)."
     ]
   },
   "sections": [
@@ -85,6 +88,89 @@
         {
           "type": "key",
           "text": "Seguridad de la información = proteger la información en cualquier soporte desde tres perspectivas (legal, organizativa y técnica); la seguridad informática es solo la parte técnica."
+        }
+      ]
+    },
+    {
+      "id": "negocio-activos-amenazas",
+      "title": "Del negocio a los controles: qué, de qué y cómo proteger",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "El profesor insistió en clase en que, antes de pensar en controles, hay que responder tres preguntas: **qué protegemos, de qué lo protegemos y con qué medios**. Y la primera respuesta siempre sale del **negocio**: la seguridad existe para que la empresa pueda seguir prestando sus servicios y fabricando sus productos."
+        },
+        {
+          "type": "analogy",
+          "text": "Un médico no receta antes de conocer al paciente. Un profesional de la seguridad tampoco puede proteger bien una empresa que no conoce: cuanto mejor entiendas a qué se dedica, de qué servicios vive y qué sistemas los sostienen, mejor decidirás qué proteger primero. El profesor reconoció que conocer a fondo un negocio lleva **años**: él lleva más de cinco en su empresa y todavía descubre cosas, porque a veces a seguridad se la ve como «el enemigo» y no se le cuenta todo."
+        },
+        {
+          "type": "steps",
+          "title": "La cadena que explicó el profesor",
+          "items": [
+            "La empresa tiene **líneas de negocio**: servicios que presta o productos que fabrica.",
+            "Esos servicios se apoyan en **sistemas de información**.",
+            "Un sistema de información está hecho de **activos**: un servidor, un programa, un dato, una línea de comunicación, un usuario… todo lo que da valor a la empresa.",
+            "Protegemos esos activos con **controles**, para que los servicios sigan funcionando con confidencialidad, integridad y disponibilidad."
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Cada tipo de activo pide medidas distintas (ejemplos de la clase)",
+          "head": [
+            "Activo",
+            "Cómo se protege"
+          ],
+          "rows": [
+            [
+              "Usuario (persona)",
+              "Concienciarlo con campañas, **medir** si ha aprendido (por ejemplo, con simulacros de phishing) y seguir entrenándolo. Además, evitar el fraude: las funciones críticas no deben depender de una sola persona (separación de obligaciones)."
+            ],
+            [
+              "Servidor (hardware)",
+              "Parchearlo, buscar sus vulnerabilidades y quitar servicios y puertos que no se usan. Si un puerto crítico sí hace falta (por ejemplo, el de una base de datos), no se cierra: se **cifra** la comunicación y se **filtra por dirección IP** para que solo conecte quien debe."
+            ],
+            [
+              "Aplicación (software propio, SaaS, app móvil)",
+              "Desarrollo seguro, **doble factor de autenticación** en el inicio de sesión, pruebas periódicas y cabeceras de seguridad."
+            ],
+            [
+              "Línea de comunicación",
+              "Cifrar el canal y limitar quién puede usarlo (por ejemplo, solo un proveedor concreto)."
+            ]
+          ]
+        },
+        {
+          "type": "example",
+          "text": "**No todos los activos valen lo mismo.** Si la aplicación de fichajes de los empleados se cae un día, se ficha al día siguiente y no pasa nada grave (aunque sea necesaria para cumplir la ley). Si se cae una hora la plataforma de venta online, se pierden ventas. Y si un atacante accede a los datos de los clientes (cuenta bancaria, correo…) el problema es mayor que si accede a un número de empleado y un nombre. No es que los empleados importen menos: es que el daño posible es distinto. Por eso el nivel de protección de la confidencialidad, la integridad y la disponibilidad se ajusta a la **criticidad** de cada activo."
+        },
+        {
+          "type": "list",
+          "title": "Las dos puertas de entrada de las amenazas",
+          "items": [
+            "**Externas:** hackers que entran en cuentas, grupos activistas que roban datos, la competencia que busca secretos corporativos y el aficionado que lanza herramientas ya hechas (por ejemplo, para rastrear los puertos abiertos de un servidor).",
+            "**Internas:** el empleado descontento, quien quiere cometer fraude y, ojo, las **negligencias y errores de configuración**, que no tienen mala intención pero también comprometen datos."
+          ]
+        },
+        {
+          "type": "term",
+          "term": "Ransomware",
+          "text": "Programa malicioso que **cifra los archivos** de la víctima y exige un pago (rescate) para devolverlos. Es una de las amenazas con más impacto y más extendidas."
+        },
+        {
+          "type": "example",
+          "text": "**Casos y tendencias que citó el profesor** (según la clase). Ha visto en auditorías pymes españolas que sufrieron un ransomware y tardaron mucho tiempo en recuperarse. Comentó que cada vez hay más ataques que usan **inteligencia artificial** para automatizarse y mencionó el caso de una compañía en la que se **clonó la voz de un directivo** para suplantarlo y conseguir transferencias de dinero. La lección: las mismas herramientas que usamos para defender las usan los atacantes, y el panorama de amenazas cambia deprisa."
+        },
+        {
+          "type": "p",
+          "text": "**Los recursos nunca son infinitos.** Los presupuestos, los proyectos y el personal de seguridad son limitados, así que no se pueden implantar todos los controles a la vez. Por eso importa tanto el análisis de riesgos (lo verás en la segunda parte de la asignatura): conociendo el negocio, los activos y las amenazas, ayuda a **priorizar** qué controles hacen falta antes."
+        },
+        {
+          "type": "example",
+          "text": "**Aviso del profesor: la seguridad no es una lista de comprobación con un sello.** Él mismo contó que, cuando prepara una auditoría interna, se pasa semanas evidenciando controles y documentando, «dando capas de pintura» para que todo parezca bien. Al hacerlo se olvida de lo que de verdad es la seguridad: ayudar al negocio, pedir a desarrollo que diseñe con requisitos de seguridad, gestionar las vulnerabilidades que van saliendo y documentar los incidentes. Certificarse en ISO 27001 o en el Esquema Nacional de Seguridad está muy bien, pero no significa «ya estoy seguro»."
+        },
+        {
+          "type": "key",
+          "text": "La seguridad nace del negocio: servicios, sistemas y activos. Cada activo necesita controles distintos según su criticidad, los recursos son limitados (hay que priorizar) y cumplir una lista de controles no equivale a estar seguro."
         }
       ]
     },
@@ -343,6 +429,20 @@
           ]
         },
         {
+          "type": "term",
+          "term": "Cuerpo normativo de seguridad",
+          "text": "El conjunto de documentos (políticas, normas, procedimientos…) con los que una organización dice cómo se hace la seguridad. En la cúspide está el **Plan Director de Seguridad** (lo verás en el tema 2), que marca la estrategia; de él se derivan las políticas y, más abajo, el resto."
+        },
+        {
+          "type": "list",
+          "title": "Qué dijo el profesor sobre cuántos documentos hacen falta",
+          "items": [
+            "Los **mínimos exigibles** son dos: la **política de seguridad de la información** y la **política de clasificación de la información**. Sin ellos no se pasa una auditoría de ISO 27001.",
+            "Cuántas normas y procedimientos más haga falta tener depende del contexto de la organización y de los recursos que tenga.",
+            "Tener muchos documentos no te hace mejor ni tener pocos te hace peor, pero **cuanto más documentados están los procesos, suelen estar más maduros** y la gestión de la seguridad es más firme. Hay que documentar con criterio."
+          ]
+        },
+        {
           "type": "exam",
           "text": "Trampas clásicas: «los procedimientos detallan a **alto nivel**» (no: son el nivel más detallado); «las directrices son de obligado cumplimiento» (no: recomiendan); «el estándar recomienda y la directriz impone» (al revés); «las políticas detallan qué software usar» (eso es un estándar). Truco: **estándar = obligatorio, directriz = recomendación, procedimiento = pasos, línea base = configuración**."
         },
@@ -422,6 +522,33 @@
           "type": "example",
           "title": "Caso práctico",
           "text": "Un laboratorio guarda en la misma carpeta compartida la fórmula de su vacuna y el folleto para farmacias. Proteger los dos igual es un error en ambos sentidos: o se gasta de más en el folleto o se protege de menos la fórmula. Lo prioritario es clasificar ambos según su valor y las consecuencias de que se difundan. Años después, cuando la fórmula sea pública, se aplicará el **procedimiento de desclasificación** previsto, decidido por el propietario y no por un usuario cualquiera."
+        },
+        {
+          "type": "p",
+          "text": "**Ampliación con lo que dijo el profesor sobre los roles.** En un inventario de activos, como mínimo hay que anotar un **propietario** para cada activo: siempre tiene que haber alguien que vele por él. En la práctica el propietario es sobre quien recae la responsabilidad última del activo, y el custodio es quien se encarga de su protección."
+        },
+        {
+          "type": "example",
+          "text": "En la empresa del profesor cada servicio se registra con **dos activos**: el activo «de negocio» (su propietario es alguien de negocio, que conoce el servicio que se presta) y el activo «de TI» (su propietario es alguien técnico, que sabe cómo funciona). El custodio puede ser la misma persona que el propietario, aunque no es lo habitual. El director general (CEO) rara vez es propietario de un activo; sí podría serlo, por ejemplo, de la sede central de la empresa."
+        },
+        {
+          "type": "term",
+          "term": "Matriz RACI",
+          "text": "Tabla que reparte las responsabilidades entre roles para una tarea o un activo: **R** (Responsible, quien lo hace), **A** (Accountable, quien responde del resultado), **C** (Consulted, a quien se consulta) e **I** (Informed, a quien se informa). El profesor la citó como una forma de ordenar quién es propietario, custodio y usuario."
+        },
+        {
+          "type": "p",
+          "text": "**Para la actividad de inventario, lo que importa es el valor estratégico del activo** (cuánto sustenta los servicios de la empresa), no su coste. El coste se puede anotar (por ejemplo, por la obsolescencia o el coste de las licencias), pero no es lo que prioriza la protección."
+        },
+        {
+          "type": "list",
+          "title": "Roles de dirección que conviene reconocer (cultura general, según la clase)",
+          "items": [
+            "**Alta gerencia / dirección ejecutiva (CEO):** la menciona mucho la ISO 27001, porque su compromiso es una condición de la norma.",
+            "**CIO:** el responsable de la tecnología de la empresa.",
+            "**CSO:** figura que complementa al CEO y que no siempre se define de forma explícita; el profesor la asoció más al riesgo.",
+            "**CISO:** el último responsable de la seguridad de la información; el que rinde cuentas, sobre todo cuando ocurre un incidente."
+          ]
         },
         {
           "type": "exam",
@@ -625,6 +752,120 @@
           "text": "La ingeniería social explota el factor humano para obtener información confidencial; se combate con formación y procedimientos, no solo con tecnología."
         }
       ]
+    },
+    {
+      "id": "como-se-evalua",
+      "title": "Cómo se evalúa Gobierno y cómo estudiarlo (según el profesor)",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Esta sección **no cae en el test**: es información práctica que dio el profesor en la presentación de la asignatura. Te sirve para planificarte."
+        },
+        {
+          "type": "table",
+          "title": "Cómo se compone la nota",
+          "head": [
+            "Pieza",
+            "Qué es"
+          ],
+          "rows": [
+            [
+              "Examen final",
+              "Reparte su peso al 50 % entre la parte de Gobierno (este bloque) y la de Análisis de riesgos; cada profesor pone el mismo número de preguntas de test y de desarrollo. **Hay que aprobarlo** para aprobar la asignatura: con un 10 en la evaluación continua y un 4 en el examen, no se aprueba."
+            ],
+            [
+              "Evaluación continua",
+              "Según la clase pesa alrededor del 40 %. Incluye dos actividades individuales (una con cada profesor), una actividad grupal, los test de autoevaluación y la asistencia a las clases en directo (suman unas décimas). Si no entregas nada de evaluación continua, aprobar el examen puede no bastar: el profesor contó el caso de un alumno que se quedó sin aprobar por eso."
+            ],
+            [
+              "Test de autoevaluación",
+              "Hay uno por tema, se pueden repetir las veces que quieras y suman unas décimas. Se cierran una semana o diez días antes del examen, así que no los dejes para el último día. El profesor no usa estas preguntas en el examen."
+            ]
+          ]
+        },
+        {
+          "type": "list",
+          "title": "Cómo estudiar (consejos del profesor)",
+          "items": [
+            "Puedes estudiar con las **presentaciones** (más sintéticas, con lo que él cuenta en clase) o con los **temas en PDF** (más desarrollados). Las dos opciones valen; con las presentaciones y lo explicado en clase se puede aprobar. Las referencias y lecturas adicionales no hacen falta.",
+            "Lo que busca el examen es que **hayas entendido los conceptos**, no que repitas definiciones de memoria. No quiere respuestas «de manual», sino que demuestres con tus palabras qué significa cada idea.",
+            "No vale cualquier respuesta: evita las genéricas («todo es un ataque», «todo es físico») y **no dejes preguntas en blanco**; un intento razonado siempre es mejor.",
+            "Las actividades se entregan en plazo; un retraso pequeño y razonable no se penaliza, pero una entrega fuera de plazo sin causa justificada (que se comunica a través del mentor) no se tiene en cuenta."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "practica-act1",
+      "title": "Del tema a la práctica: la actividad 1 (pre-auditoría con Marisma)",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Esta parte **no cae en el test**, pero te enseña a aplicar lo que has visto. La actividad 1 es **individual**: con la herramienta **Marisma** haces la **pre-auditoría** de una empresa ficticia, tomando como referencia los controles de la ISO 27001/27002 (que se explican con más detalle en el tema 3). Se hace la práctica antes que la teoría a propósito."
+        },
+        {
+          "type": "analogy",
+          "text": "Es como pasar una revisión previa antes de la ITV oficial: nadie te da ningún certificado, pero descubres qué fallaría y puedes arreglarlo antes de que lo mire el auditor de verdad."
+        },
+        {
+          "type": "steps",
+          "title": "Pasos en la herramienta",
+          "items": [
+            "**Crear el proyecto** y elegir como patrón la ISO 27000 (hay versión en español y en inglés; solo cambia el idioma, la numeración de los controles es la misma).",
+            "**Crear un subproyecto de pre-auditoría.** Tarda unos minutos y llega un aviso al terminar. Las demás opciones de la herramienta (gestión de incidentes, etc.) no son necesarias.",
+            "**Dar de alta los activos** en la gestión de activos. Rellena solo los campos con asterisco, varía los **tipos y subtipos**, pon un propietario y una breve descripción. El campo importante es el **valor estratégico** (cinco niveles, de muy alto a muy bajo): no lo pongas al azar, razónalo según lo que aporta el activo a los servicios de la empresa. Un cortafuegos, por ejemplo, ni muy alto ni muy bajo. El coste no hace falta.",
+            "**Crear una checklist** que agrupe todos tus activos: nueva checklist, pasa todos los activos a la columna de la derecha («activos agrupados») y guarda. Si creas más de una, no pasa nada.",
+            "**Rellenar las respuestas de la agrupación.** Aparece la lista de controles organizada por dominios. El apartado «ciclo de Deming» que sale al principio no es un dominio real: no trabajes con él.",
+            "**Elegir 20 controles: cinco de cada dominio** (organizativos, personas, infraestructuras o físicos, y tecnología). Cada control tiene varias preguntas que se responden con cumple, parcial o no; la herramienta recalcula sola el porcentaje de cobertura. Los otros 73 controles no hace falta tocarlos (quedan al 100 %).",
+            "**Cerrar la agrupación** al terminar: queda congelada y ya no se puede editar.",
+            "**Mirar los gráficos** (cuadro de mando, cobertura, atributos) para apoyar el informe. El profesor recomienda el cuadro de mando, pero cualquiera sirve si lo comentas.",
+            "**Rellenar el plan de acción** (método de implantación y responsable), solo para los 20 controles elegidos."
+          ]
+        },
+        {
+          "type": "list",
+          "title": "Qué se espera del informe (lo que valora el profesor)",
+          "items": [
+            "La herramienta es solo apoyo: lo imprescindible es el **informe**. Los comentarios dentro de Marisma son opcionales, pero en el informe debes decir cuáles son los 20 controles y qué situación has simulado.",
+            "Inventa el contexto de una empresa ficticia con coherencia. Se recomienda plantear alguna situación negativa para tener algo que analizar, pero sin incoherencias: no digas que «todo está fenomenal» y luego muestres una cobertura del 20 %. Si un control está al 100 %, di qué evidencia viste.",
+            "Haz un **análisis de fortalezas y debilidades** y **sintetiza**: un informe de pre-auditoría no tiene que detallarlo todo.",
+            "**Todo gráfico o captura debe ir comentado.** Mejor pocos gráficos bien explicados que muchos sin una palabra. Escribe pensando en el auditado, que puede tener poco contexto técnico.",
+            "En las conclusiones, resume los **hallazgos principales**. La bibliografía puede ser sencilla, sin formato estricto.",
+            "La extensión indicada ronda las 15 a 20 páginas, pero el profesor prefiere la calidad: un informe de 10 páginas bien hecho vale más que uno largo y vacío.",
+            "Si quieres, puedes adjuntar las exportaciones de la herramienta (por ejemplo, el Excel de activos), comprimidas en un zip."
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Un plan de acción no es una lista vaga de deseos",
+          "head": [
+            "Elemento",
+            "Flojo",
+            "Bueno"
+          ],
+          "rows": [
+            [
+              "Acciones",
+              "«Hay que mejorar la política».",
+              "«Elaborar la política con diez apartados, aprobarla y publicarla en la intranet»."
+            ],
+            [
+              "Fechas",
+              "Sin fecha.",
+              "Un trimestre («cuarto trimestre de 2026») o una fecha límite («30 de diciembre»)."
+            ],
+            [
+              "Responsable",
+              "Nadie, o «el departamento».",
+              "Un rol concreto (el CISO, el responsable de infraestructuras) o una persona."
+            ]
+          ]
+        },
+        {
+          "type": "key",
+          "text": "La actividad 1 aplica el tema: activos con propietario y valor estratégico, controles evaluados por dominios, y un informe que explica la situación con análisis y un plan de acción con acciones concretas, fechas y responsables."
+        }
+      ]
     }
   ],
   "summary": [
@@ -638,7 +879,12 @@
     "Clasificar permite proteger más lo que más vale. El propietario fija la criticidad, el custodio aplica la protección y el usuario cumple; hay excepciones y desclasificación.",
     "Un control reduce la probabilidad o el impacto de un riesgo y se justifica por el riesgo que reduce; casi siempre queda riesgo residual.",
     "Ante un riesgo se puede aceptar, mitigar, evitar o transferir (seguro).",
-    "La seguridad física (accesos, agua, fuego, energía) y el factor humano (ingeniería social) son tan importantes como la técnica."
+    "La seguridad física (accesos, agua, fuego, energía) y el factor humano (ingeniería social) son tan importantes como la técnica.",
+    "La seguridad nace del negocio: los servicios se apoyan en sistemas de información, formados por activos; cada tipo de activo necesita controles distintos según su criticidad.",
+    "Las amenazas pueden ser externas o internas (incluidas las negligencias), los recursos son limitados y por eso hay que priorizar con el análisis de riesgos.",
+    "Cumplir una lista de controles o tener un sello no equivale a estar seguro.",
+    "Los documentos mínimos del cuerpo normativo son la política de seguridad de la información y la política de clasificación de la información; en la cúspide está el Plan Director de Seguridad.",
+    "Como mínimo, cada activo debe tener un propietario; el custodio puede coincidir con él, y el CISO es el último responsable de la seguridad."
   ],
   "glossary": [
     { "term": "Activo", "text": "Cualquier recurso con valor para la organización que debe protegerse: información, equipos, programas, instalaciones o personas." },
@@ -646,8 +892,10 @@
     { "term": "Autorización", "text": "Derechos y permisos que tiene un usuario sobre los recursos del sistema." },
     { "term": "Botnet", "text": "Red de equipos infectados que un atacante controla a distancia, por ejemplo, para lanzar ataques DoS." },
     { "term": "CID (CIA)", "text": "Confidencialidad, integridad y disponibilidad: los tres principios de la seguridad de la información." },
+    { "term": "CIO / CSO", "text": "CIO es el responsable de la tecnología de la empresa; el CSO es una figura que complementa al CEO y que el profesor asoció más al riesgo." },
     { "term": "Control de seguridad", "text": "Medida que reduce la probabilidad o el impacto de una amenaza o vulnerabilidad." },
     { "term": "CTB (cost to break)", "text": "Coste de ruptura: lo que le cuesta al atacante superar las defensas." },
+    { "term": "Cuerpo normativo", "text": "Conjunto de documentos (políticas, normas y procedimientos) que dicen cómo se hace la seguridad en una organización; los mínimos son la política de seguridad y la de clasificación de la información." },
     { "term": "Custodio (custodian)", "text": "Persona, normalmente técnica, que aplica la protección diaria delegada por el propietario de la información." },
     { "term": "Directriz", "text": "Recomendación no obligatoria para aplicar las políticas." },
     { "term": "DoS (Denial of Service)", "text": "Denegación de servicio: ataque que impide a los usuarios legítimos usar un sistema." },
@@ -656,10 +904,14 @@
     { "term": "IDS (Intrusion Detection System)", "text": "Sistema que detecta actividad sospechosa en una red o equipo y avisa de ella." },
     { "term": "Ingeniería social", "text": "Obtención de información confidencial mediante la manipulación de usuarios legítimos." },
     { "term": "Línea base (baseline)", "text": "Descripción de cómo configurar elementos de seguridad para aplicarlos de forma uniforme en toda la organización." },
+    { "term": "Marisma", "text": "Herramienta que se usa en la actividad 1 para hacer la pre-auditoría de una empresa ficticia sobre los controles de la ISO 27001/27002." },
+    { "term": "Matriz RACI", "text": "Tabla que reparte las responsabilidades entre roles: quien hace, quien responde, a quien se consulta y a quien se informa." },
     { "term": "Pentesting", "text": "Prueba de penetración: profesionales contratados atacan el sistema en condiciones realistas para encontrar fallos." },
     { "term": "Phishing", "text": "Engaño que suplanta a una entidad de confianza para robar credenciales o datos." },
+    { "term": "Pre-auditoría", "text": "Revisión previa y sin valor de certificación para descubrir qué incumpliría una organización antes de la auditoría oficial." },
     { "term": "Procedimiento", "text": "Descripción detallada, paso a paso, de cómo realizar una tarea concreta." },
     { "term": "Propietario (owner)", "text": "Responsable de un activo de información que establece su criticidad según la política de clasificación." },
+    { "term": "Ransomware", "text": "Programa malicioso que cifra los archivos de la víctima y exige un rescate para devolverlos." },
     { "term": "Rendición de cuentas (accountability)", "text": "Capacidad de atribuir cada acción a un usuario concreto, por ejemplo, con registros (logs)." },
     { "term": "Riesgo residual", "text": "Riesgo que queda después de aplicar los controles." },
     { "term": "ROSI", "text": "Return on Security Investment: retorno de la inversión en seguridad." }

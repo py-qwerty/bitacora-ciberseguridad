@@ -2,7 +2,7 @@
   "course": "forense",
   "number": 1,
   "title": "Introducción a la Respuesta a Incidentes y Análisis Forense",
-  "minutes": 40,
+  "minutes": 45,
   "intro": {
     "why": "Un lunes por la mañana los ordenadores de un hospital muestran un mensaje: los datos están cifrados y piden un rescate. En ese momento hay dos trabajos a la vez: **volver a funcionar** cuanto antes (respuesta a incidentes) y **averiguar qué ha pasado** con pruebas que aguanten ante un juez (análisis forense). Si se hace lo primero sin pensar en lo segundo, se borran las huellas; si se hace solo lo segundo, el hospital sigue parado. Este tema presenta los dos mundos y las reglas legales que los unen.",
     "before": [
@@ -18,7 +18,9 @@
       "Sabrás enumerar los cuatro procesos clave de la gestión de incidentes y los servicios de un CSIRT.",
       "Sabrás explicar los retos de la nube, la movilidad (BYOD) y el DRaaS.",
       "Sabrás qué persigue el análisis forense digital, sus tres preguntas, sus cuatro etapas según el NIST y hasta dónde llega la atribución.",
-      "Sabrás qué es la cadena de custodia y qué responsabilidades penales, civiles y disciplinarias tiene un perito."
+      "Sabrás qué es la cadena de custodia y qué responsabilidades penales, civiles y disciplinarias tiene un perito.",
+      "Sabrás explicar con un símil la diferencia entre continuidad de negocio y recuperación ante desastres.",
+      "Sabrás por qué el forense es un «invitado» en el mundo legal y qué errores del perito (dolo, imprudencia, falta de celo) pueden costarle la carrera."
     ]
   },
   "sections": [
@@ -60,6 +62,15 @@
           "type": "example",
           "title": "Caso práctico",
           "text": "Un fallo eléctrico deja sin servicio la tienda online durante dos horas. No hay atacante, no se ha robado nada y ningún dato ha cambiado. Aun así es un incidente: es no deseado, compromete las operaciones y daña directamente la **disponibilidad**. Ojo: tampoco se daña la confidencialidad «porque los datos no se pueden ver»; no poder verlos por una caída no es lo mismo que los vea alguien no autorizado."
+        },
+        {
+          "type": "list",
+          "title": "Cómo estudiar esta asignatura (consejos del profesor; no cae en el test)",
+          "items": [
+            "Se estudia el **temario** (10 temas con sus lecciones magistrales y píldoras). Las presentaciones de las clases son un apoyo del profesor, muy resumidas, y **no sustituyen al temario**.",
+            "La evaluación combina tres actividades (dos individuales y una grupal), los test de autoevaluación de cada tema, la asistencia a al menos dos clases en directo y el examen final. Los foros no puntúan directamente, pero se tienen en cuenta cuando una nota está en el límite.",
+            "El examen incluye, además del test, un ejercicio **teórico-práctico de desarrollo**, donde no hay una única respuesta cierta al 100 %; lo verás en el tema 3."
+          ]
         },
         {
           "type": "exam",
@@ -153,6 +164,15 @@
           "type": "example",
           "title": "Caso práctico",
           "text": "Una fábrica pierde su sistema central de pedidos. El equipo técnico restaura el servidor (eso es recuperación). Pero, mientras tanto, el plan de continuidad indica que los pedidos urgentes se tomen en papel y por teléfono para mantener un servicio mínimo. Esa medida alternativa es **continuidad de negocio**. Esperar a terminar el análisis del ataque antes de activar cualquier alternativa sería justo lo contrario."
+        },
+        {
+          "type": "analogy",
+          "text": "El profesor lo explicó con un incendio en una ciudad. La **continuidad de negocio** es desviar el tráfico por otras carreteras para que la ciudad siga moviéndose; la **recuperación ante desastres** son los bomberos apagando el fuego y reparando lo dañado. Los dos trabajan a la vez y tienen que estar alineados: uno dice cómo seguir mientras se arregla, el otro arregla."
+        },
+        {
+          "type": "example",
+          "title": "Dos casos reales que contó el profesor",
+          "text": "**Incendio en un centro de datos** que alojaba muchos servidores de un videojuego muy popular: los sistemas que no se quemaron se pasaron a otro centro de datos mientras se resolvía el daño físico (eso es continuidad). **Parche defectuoso de un fabricante de seguridad** (tecnología EDR, una evolución del antivirus que vigila lo que hace cada equipo): hace un par de veranos, como casi todo el mundo usaba ese producto, se colapsaron sistemas en medio mundo y los aeropuertos tuvieron que trabajar con papel durante un fin de semana. Moraleja: un incidente no tiene por qué ser un ataque (aquí fue un error humano) y la continuidad no consiste solo en ordenadores."
         },
         {
           "type": "exam",
@@ -293,6 +313,21 @@
           "type": "example",
           "title": "Caso práctico",
           "text": "Durante un incidente, el departamento comercial dice a los clientes que no pasa nada, mientras el técnico publica en redes que hay una fuga de datos. El problema es la falta de **estrategia de comunicación**: el plan debía haber definido un punto de coordinación por el que pasa toda la información antes de salir."
+        },
+        {
+          "type": "term",
+          "term": "Threat hunting (caza de amenazas)",
+          "text": "Búsqueda **activa** de intrusos o de comportamientos raros dentro de una red, sin esperar a que salte una alarma. El profesor lo puso como ejemplo de actividad **proactiva**: la monitorización constante forma parte de la respuesta a incidentes y «la acción empieza cada día», no el día en que ocurre el incidente."
+        },
+        {
+          "type": "list",
+          "title": "Ideas que el profesor remarcó sobre la respuesta a incidentes",
+          "items": [
+            "Se puede responder a un incidente **sin análisis forense**, pero el forense siempre exige técnicas especializadas que poca gente domina; por eso la asignatura se centra más en él.",
+            "El personal de ciberseguridad no solo ejecuta comandos: también **toma decisiones estratégicas** y elabora planes adaptados a lo que tiene la empresa (sistemas virtualizados, industria, etc.).",
+            "La **comunicación** importa mucho: en un incidente hay mucha gente preocupada y mucho dinero en juego.",
+            "Las investigaciones se **guardan y se analizan después** para aprender qué falló y que el siguiente incidente cueste menos."
+          ]
         },
         {
           "type": "exam",
@@ -456,6 +491,15 @@
           "type": "example",
           "title": "Caso práctico",
           "text": "Se detecta un acceso a la base de datos de nóminas con la cuenta de Ana desde su portátil. Conclusión rigurosa: la actividad se asocia a **la cuenta de Ana y a su equipo**. No se puede afirmar que Ana lo hiciera personalmente (alguien pudo usar su sesión o robarle la contraseña), ni tampoco que compartiera su contraseña. Para atribuirlo a una persona hacen falta más pruebas."
+        },
+        {
+          "type": "analogy",
+          "text": "Idea que el profesor repitió varias veces: el informático forense es un **invitado en el mundo legal**. La casa es de jueces, abogados y fiscales, así que hay que hablar su idioma (litigio, prueba, cadena de custodia) y respetar sus reglas. A la vez, somos su referencia en lo técnico: según la clase, en un pleito español sobre webs de enlaces a archivos compartidos hubo que explicar al juez hasta cómo se comunican los ordenadores mediante TCP/IP."
+        },
+        {
+          "type": "example",
+          "title": "Las tres preguntas con un paquete de red",
+          "text": "Se detecta un paquete de red que sale hacia un servidor en Rusia. **¿Qué ha pasado?** Hay una conexión saliente a esa dirección. **¿Cómo?** Por el contenido del paquete, parece una navegación web. **¿Quién?** Se mira quién tenía abierto el navegador en ese momento y con qué cuenta de usuario. Es un ejemplo muy básico; en casos reales se encadenan muchas pruebas. Fíjate también en que **leer** un archivo no es lo mismo que **modificarlo**, y tiene implicaciones legales distintas: por eso interesa saber qué archivos se abrieron, no solo cuáles cambiaron."
         },
         {
           "type": "exam",
@@ -653,6 +697,17 @@
           "text": "Una empresa contrata a un perito para defender que un ex empleado robó datos. El perito encuentra logs que muestran que la cuenta del ex empleado se usó cuando él ya estaba de vacaciones fuera del país, y no lo menciona en el informe. No ha escrito ninguna mentira, pero ha callado un dato relevante que conocía: encaja en el **falso testimonio impropio (art. 460)**. Además podría responder civilmente ante el perjudicado y disciplinariamente ante su colegio."
         },
         {
+          "type": "list",
+          "title": "Lo que el profesor subrayó sobre la responsabilidad del perito",
+          "items": [
+            "**Experiencia antes que título.** No hace falta titulación ni colegio; al juez le pesa más el número de casos que llevas a la espalda. Apuntarte a un colegio es opcional y no te garantiza mejor trato.",
+            "**Imprudencia** es no tratar la evidencia con cuidado, por ejemplo guardar un archivo sobre el original mientras lo analizas. Por eso se trabaja con **copias, o con copias de las copias**: si tocas el original, puedes acabar señalado tú.",
+            "**Falta de celo** es no hacer el análisis de forma profesional: fiarte de que «seguro que está en solo lectura» sin comprobarlo, o actuar en un caso donde estás implicado (por ejemplo, con un familiar). Aunque puedas actuar de oficio, hay un conflicto de interés.",
+            "**Dolo** es actuar sabiendo que no es legal, como alterar pruebas.",
+            "Según el profesor, el **detalle de los artículos del Código Penal no entra en el examen** (no cae en el test); quédate con la idea de cada figura."
+          ]
+        },
+        {
           "type": "exam",
           "text": "Si un enunciado describe un perito que **miente a sabiendas** → art. 459; que **calla u omite** datos sin mentir → art. 460. Un error honesto no es delito. Y recuerda: el perito no necesita estar colegiado ni titulado para actuar ante un juez en España."
         },
@@ -706,7 +761,9 @@
     "El forense digital investiga para obtener pruebas válidas en juicio: qué, cómo y quién (usuario, IP o MAC), no el porqué ni la persona física por sí solo.",
     "Etapas NIST: recolección, examen, análisis e informe; se recoge sin alterar, se documenta lo inevitable y se trabaja con copias.",
     "La cadena de custodia garantiza trazabilidad e integridad con custodios documentados, hash y registro de operaciones.",
-    "El perito que miente maliciosamente comete falso testimonio propio (art. 459 CP); si calla u omite, impropio (art. 460 CP); además responde civil y disciplinariamente."
+    "El perito que miente maliciosamente comete falso testimonio propio (art. 459 CP); si calla u omite, impropio (art. 460 CP); además responde civil y disciplinariamente.",
+    "Continuidad de negocio = desviar el tráfico mientras se apaga el fuego; recuperación ante desastres = los bomberos. Un incidente puede ser un simple error humano.",
+    "El forense es un invitado en el mundo legal: habla su idioma y trabaja con copias para no incurrir en imprudencia ni falta de celo."
   ],
   "glossary": [
     { "term": "Incidente de seguridad", "text": "Evento no deseado con alta probabilidad de comprometer las operaciones y la seguridad de la información." },
@@ -736,7 +793,9 @@
     { "term": "LECrim / LEC", "text": "Leyes de Enjuiciamiento Criminal y Civil: regulan los juicios penales y civiles." },
     { "term": "Ley orgánica", "text": "Ley sobre materias especialmente importantes (como los delitos) que exige mayoría absoluta del Congreso; el Código Penal es la LO 10/1995." },
     { "term": "Cohecho", "text": "Delito de pedir o aceptar regalos o promesas a cambio de actos del cargo; el perito se equipara a funcionario público." },
-    { "term": "Cosa juzgada", "text": "Efecto de la sentencia firme que impide volver a discutir lo decidido." }
+    { "term": "Cosa juzgada", "text": "Efecto de la sentencia firme que impide volver a discutir lo decidido." },
+    { "term": "Threat hunting", "text": "Búsqueda activa de intrusos o comportamientos anómalos en una red, sin esperar a que salte una alarma." },
+    { "term": "EDR", "text": "Tecnología que vigila lo que hace cada equipo para detectar y responder a amenazas; una evolución del antivirus." }
   ],
   "questions": {
     "forense-t01-01": {

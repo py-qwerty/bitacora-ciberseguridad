@@ -2,7 +2,7 @@
   "course": "ciberdelitos",
   "number": 2,
   "title": "Esquema Nacional de Seguridad",
-  "minutes": 45,
+  "minutes": 52,
   "intro": {
     "why": "Cada vez que pides cita para el DNI, presentas la declaración de la renta o consultas tu expediente en una universidad pública, confías en que esos sistemas funcionen, que nadie altere tus datos y que nadie los lea sin permiso. El Esquema Nacional de Seguridad (ENS) es la norma que obliga a las administraciones públicas españolas, y a las empresas que les prestan servicios, a garantizar esa confianza. Cuando un hospital o un ayuntamiento sufre un ransomware (un programa que cifra los datos y pide rescate), una de las primeras preguntas es si cumplía el ENS.",
     "before": [
@@ -19,7 +19,10 @@
       "Sabrás distinguir los requisitos mínimos de los principios y localizar el mínimo privilegio entre ellos.",
       "Sabrás definir las cinco dimensiones de seguridad (C, I, T, A, D) y cuál es la básica de la información y del servicio.",
       "Sabrás explicar los tres grupos de medidas (org, op, mp), los perfiles de cumplimiento específico y las guías CCN-STIC serie 800.",
-      "Sabrás razonar cuándo basta una autoevaluación y cuándo hace falta una auditoría, y cada cuánto tiempo."
+      "Sabrás razonar cuándo basta una autoevaluación y cuándo hace falta una auditoría, y cada cuánto tiempo.",
+      "Sabrás aplicar la regla del valor más alto para categorizar un sistema y distinguir nivel (de dimensión) de categoría (del sistema).",
+      "Sabrás qué contiene la declaración de aplicabilidad: medidas obligatorias, refuerzos y medidas compensatorias.",
+      "Sabrás distinguir declaración y certificación de conformidad."
     ]
   },
   "sections": [
@@ -74,6 +77,15 @@
           "type": "example",
           "title": "Caso práctico",
           "text": "Un ayuntamiento lanza una sede electrónica para pedir licencias de obra. Sin el ENS, cada ayuntamiento decidiría por su cuenta qué proteger. Con el ENS, todos parten de los mismos principios y requisitos mínimos, y el vecino puede confiar en que su solicitud no se perderá ni la leerá quien no debe."
+        },
+        {
+          "type": "example",
+          "title": "El ENS protege la continuidad, no solo la información",
+          "text": "La profesora puso como ejemplo el apagón eléctrico: los hospitales siguieron funcionando porque el ENS obliga a prever la **continuidad de los servicios públicos**. Por eso se dice que el ENS protege **información y servicios**, y que su concepto de «información» es más amplio que el de los datos personales, aunque los incluye: la Administración conoce dónde vives, cuánto ganas y qué haces, así que su seguridad debe estar garantizada."
+        },
+        {
+          "type": "p",
+          "text": "Una comparación que hizo la profesora: en algunos países de Latinoamérica, en lugar de crear una norma propia para la Administración, adoptaron directamente la **ISO 27001**. España decidió crear su propia norma legal. De ahí que el ENS sea una **ley o reglamento que hay que cumplir** y la ISO 27001 un **estándar al que uno se certifica si quiere**."
         },
         {
           "type": "exam",
@@ -328,6 +340,21 @@
           "text": "Antes del RD 311/2022, la guía **CCN-STIC-830** (ámbito de aplicación del ENS) ya decía que las soluciones y servicios prestados por organizaciones privadas dentro del ámbito del ENS debían cumplirlo, y que la entidad pública debía exigirles la conformidad. El RD 311/2022 lo incorporó expresamente a su artículo 2.3."
         },
         {
+          "type": "list",
+          "title": "Aclaraciones del aula sobre quién entra",
+          "items": [
+            "Lo que todos entendemos por «Administración» (la del Estado, la de las comunidades autónomas y la local) es solo una parte. También entra el **sector público institucional**: organismos públicos y entidades de derecho público vinculadas o dependientes de una Administración, **empresas públicas**, entidades de derecho privado vinculadas o dependientes de una Administración y **universidades públicas**. Ejemplos citados: Adif y Renfe, entidades públicas empresariales.",
+            "Los **colegios profesionales** son un caso mixto: cumplen **funciones públicas** (un colegio de arquitectos visa proyectos; el Colegio de Abogados provee el abogado de oficio) y **funciones privadas** (sus empleados no son funcionarios, sino personal laboral normal).",
+            "Las **empresas privadas** no cumplen el ENS por ser privadas, sino **solo si prestan servicios a la Administración**. Tiene lógica: si contrato a alguien para un servicio, ese alguien debe cumplir lo mismo que yo. Se exige en el **pliego de condiciones** del concurso.",
+            "También alcanza a la **cadena de suministro** de esos contratistas y a los sistemas que tratan **información clasificada**, una novedad del ENS de 2022.",
+            "Una paradoja que la profesora ve en la práctica: a menudo **las empresas privadas cumplen el ENS y la propia Administración, menos**."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Para el examen, la profesora insistió en que debes saber **a quién aplica el ENS**, porque en el caso práctico puede preguntarse qué normativa debe cumplir una empresa o entidad. Esa es la forma de razonar: ¿es sector público o proveedor suyo? Entonces, ENS."
+        },
+        {
           "type": "exam",
           "text": "Frase falsa típica: «el ENS es exigible **solo** a la Administración pública». Es falsa porque alcanza también a los sistemas **operados por terceros** o situados **en dependencias de terceros** que prestan servicios a las AA. PP. (Administraciones Públicas). En cambio, es verdad que obliga a todos los sistemas de información de las AA. PP. **con independencia de dónde estén** (en su edificio o en el centro de datos de un proveedor)."
         },
@@ -516,6 +543,25 @@
           "text": "El servicio de cita previa del SEPE cae durante un día. No se ha filtrado nada (confidencialidad intacta) ni se ha alterado ningún dato (integridad intacta), pero miles de personas no pueden pedir cita: se ha roto la **disponibilidad**, que es la dimensión básica de un **servicio**."
         },
         {
+          "type": "term",
+          "term": "Regla del valor más alto",
+          "text": "Cada dimensión se valora con un **nivel** (bajo, medio o alto) según el impacto que tendría un incidente sobre ella. El sistema entero toma la **categoría** (básica, media o alta) del **nivel más alto** que alcance **cualquiera** de sus dimensiones. Basta con una dimensión en nivel medio para que todo el sistema sea de categoría media; con una en nivel alto, todo el sistema es de categoría alta y se aplican las medidas de nivel alto."
+        },
+        {
+          "type": "table",
+          "title": "Dos escalas que no hay que confundir (según la clase)",
+          "head": ["Qué se valora", "Cómo se llama la escala", "Género (truco para recordarlo)"],
+          "rows": [
+            ["Cada dimensión (C, I, T, A, D)", "Nivel: bajo, medio, alto", "Masculino: «el nivel»."],
+            ["El sistema entero", "Categoría: básica, media, alta", "Femenino: «la categoría»."]
+          ]
+        },
+        {
+          "type": "example",
+          "title": "Aplicando la regla",
+          "text": "Un sistema de citas tiene confidencialidad, integridad, trazabilidad y autenticidad en nivel bajo, y disponibilidad en nivel medio. Aunque cuatro de cinco sean bajas, el sistema es de categoría **media**, porque una sola dimensión basta para subirlo. Quienes valoran el impacto son los responsables de la **información** y del **servicio**, porque son quienes conocen qué pasa si algo falla."
+        },
+        {
           "type": "exam",
           "text": "Trampas frecuentes: 1) confundir integridad con confidencialidad («no accesible por terceros sin autorización» es **confidencialidad**, no integridad). 2) colar dimensiones inventadas: **portabilidad, eficiencia, concentración, rentabilidad, velocidad**. Las cinco son C, I, T, A, D. 3) La dimensión básica del **servicio** es la **disponibilidad**; la de la **información**, confidencialidad e integridad. 4) Atribuir una acción a alguien = **trazabilidad**; confirmar identidad u origen = **autenticidad**."
         },
@@ -666,6 +712,27 @@
           "text": "Una consultora termina el proyecto de adecuación de un organismo, entrega la documentación y se marcha. Un año después se han cambiado servidores y contratado servicios nuevos, pero nadie ha revisado nada. Lo que falta es mantener el **ciclo de mejora y actualización**: la adecuación no es una foto fija, y ni la factura ni el informe final sustituyen a ese ciclo."
         },
         {
+          "type": "list",
+          "title": "Qué contiene la declaración de aplicabilidad (según la clase)",
+          "items": [
+            "Las **medidas obligatorias** que derivan de la categoría del sistema: son un mínimo que se adopta sí o sí.",
+            "Los **refuerzos de seguridad** que el **responsable de seguridad** decide añadir, según su criterio. Algunos refuerzos son obligatorios, pero entre varias opciones posibles se elige una (la tabla del ENS indica cuántos exige cada categoría).",
+            "Las **medidas compensatorias**: en casos excepcionales, el responsable de seguridad puede **sustituir** una medida obligatoria por otra que considere más eficaz, pero debe **documentar y fundamentar** por qué, y quedará recogido en la declaración, que debe aprobarse."
+          ]
+        },
+        {
+          "type": "steps",
+          "title": "Orden de las primeras tareas (según la clase)",
+          "items": [
+            "Nombrar los **roles y responsabilidades** (información, servicio, seguridad y sistema).",
+            "Aprobar la **política de seguridad**, obligatoria en toda entidad, sin excepción.",
+            "**Identificar, valorar y categorizar** los servicios y la información (con apoyo de las guías del CCN).",
+            "Redactar la **declaración de aplicabilidad**.",
+            "En la **implantación**: formar y concienciar a todo el personal y monitorizar que todo funciona.",
+            "En la **revisión**: auditorías y verificación de la conformidad."
+          ]
+        },
+        {
           "type": "exam",
           "text": "Si la pregunta habla de por qué la adecuación se vincula a un sistema de gestión continuo, o de qué hacer cuando el proyecto termina, la respuesta es siempre la **actualización y mejora permanentes**. Descarta «basta una foto inicial», «declaración de riesgo cero» o «elimina el análisis de riesgos»."
         },
@@ -709,6 +776,24 @@
           "text": "Es como la ITV. Un patinete eléctrico (categoría básica) basta con que su dueño compruebe que está bien. Un autobús escolar (categoría media o alta) tiene que pasar inspección oficial en una estación acreditada, cada cierto tiempo y también si se le hace una reforma importante."
         },
         {
+          "type": "p",
+          "text": "**Truco para no confundir los nombres** (de la profesora): cuando **tú mismo** te evalúas, **declaras** que cumples; cuando **alguien externo** te audita, **certifica** que cumples. Por eso se habla de **declaración de conformidad** (autoevaluación, categoría básica) y de **certificación de conformidad** (auditoría, categorías media y alta)."
+        },
+        {
+          "type": "list",
+          "title": "Más detalles de la clase",
+          "items": [
+            "Quien obtiene la conformidad puede exhibir un **distintivo** (logotipo normalizado) que se ve, por ejemplo, en la web de la entidad.",
+            "La declaración o certificación debe **publicarse en la sede electrónica**, con un lenguaje sencillo, porque la leen los ciudadanos. La guía del CCN explica cómo redactarla.",
+            "Los informes de auditoría **se elevan al responsable de seguridad**, que los analiza y traslada las conclusiones al **responsable del sistema**.",
+            "**No cualquier empresa puede certificar**: solo las acreditadas por ENAC."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Para el examen, la profesora destacó: saber **a quién aplica** el ENS, las **cinco dimensiones**, y **cuándo hace falta auditoría o certificación**."
+        },
+        {
           "type": "exam",
           "text": "Respuesta correcta: auditoría obligatoria para categoría **media o alta**, **al menos cada dos años**. Trampas: «solo nivel alto» (olvida la media), «cada año» (es cada dos) o «el ENS no obliga a auditar». La categoría básica no está obligada a auditoría, pero sí a autoevaluación."
         },
@@ -731,7 +816,11 @@
     "Cinco dimensiones: C, I, T, A, D. Información → confidencialidad e integridad; servicio → disponibilidad.",
     "Medidas del anexo II: org, op y mp, proporcionales a dimensiones y categoría; novedades: refuerzos y PCE aprobados por el CCN.",
     "La adecuación es un ciclo PDCA de mejora continua.",
-    "Básica: autoevaluación; media o alta: auditoría formal; al menos cada dos años."
+    "Básica: autoevaluación; media o alta: auditoría formal; al menos cada dos años.",
+    "La categoría del sistema la fija la dimensión con el nivel más alto: con una sola dimensión en nivel alto, todo el sistema es de categoría alta.",
+    "La declaración de aplicabilidad reúne las medidas obligatorias por categoría, los refuerzos que decide el responsable de seguridad y, si hace falta, medidas compensatorias justificadas.",
+    "Autoevaluación implica declaración de conformidad; auditoría externa, certificación de conformidad, y solo certifican entidades acreditadas por ENAC.",
+    "Las empresas privadas solo cumplen el ENS si prestan servicios a la Administración, y se exige en los pliegos."
   ],
   "glossary": [
     { "term": "ENS (Esquema Nacional de Seguridad)", "text": "Norma que fija la política de seguridad en el uso de medios electrónicos por el sector público y sus proveedores; hoy regulada por el RD 311/2022." },
@@ -753,7 +842,11 @@
     { "term": "Declaración de aplicabilidad", "text": "Relación de las medidas del anexo II que se aplican a un sistema." },
     { "term": "INES", "text": "Informe Nacional del Estado de la Seguridad que recoge el CCN." },
     { "term": "ENAC", "text": "Entidad Nacional de Acreditación; acredita a las entidades que certifican la conformidad con el ENS." },
-    { "term": "PDCA", "text": "Plan, Do, Check, Act: ciclo de planificar, hacer, verificar y actuar para mejorar de forma continua." }
+    { "term": "PDCA", "text": "Plan, Do, Check, Act: ciclo de planificar, hacer, verificar y actuar para mejorar de forma continua." },
+    { "term": "Medida compensatoria", "text": "Medida que, de forma excepcional y justificada por escrito, sustituye a una medida obligatoria del ENS por otra considerada más eficaz." },
+    { "term": "Refuerzo de seguridad", "text": "Medida adicional a las obligatorias de la categoría; algunos son opcionales y el responsable de seguridad decide cuáles aplicar." },
+    { "term": "Declaración de conformidad", "text": "Documento con el que una entidad declara, tras autoevaluarse, que cumple el ENS (categoría básica)." },
+    { "term": "Certificación de conformidad", "text": "Resultado de una auditoría externa que certifica el cumplimiento del ENS (categorías media y alta)." }
   ],
   "questions": {
     "ciberdelitos-t02-01": {
