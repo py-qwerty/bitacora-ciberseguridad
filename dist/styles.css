@@ -390,3 +390,33 @@ a.page-ref:hover{color:var(--color-primary)}
  .dg-compare{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
 }
 @media(forced-colors:active){.tb-diagram,.dg-node,.dg-col,.dg-layer,.dg-frame{border-color:CanvasText}.dg-wire{background:CanvasText}.dg-solid{background:Canvas;color:CanvasText}}
+
+/* Preguntas laterales del tema: hoja de examen, misma tinta y papel que los esquemas */
+.tema-section-questions{padding:0;border:2px solid var(--color-primary);border-radius:3px;background:var(--color-surface);overflow:clip}
+.tema-section-questions h3{margin:0;padding:10px 14px;background:var(--color-primary);font:700 20px/1.1 var(--font-display);letter-spacing:.2px;color:#fff}
+.tema-section-questions h3 span{min-width:28px;padding:2px 6px;border:1.5px solid var(--color-accent);border-radius:2px;background:none;color:var(--color-accent);font:700 15px/1.2 var(--font-display)}
+.tema-section-questions .small{margin:0;padding:8px 14px;border-bottom:1px solid var(--color-border);font-size:12px;color:var(--color-muted)}
+.tema-section-questions .tq{border:0;border-bottom:1px solid var(--color-border);border-radius:0}
+.tema-section-questions .tq:last-child{border-bottom:0}
+.tema-section-questions .tq+.tq{margin-top:0}
+.tema-section-questions .tq>summary{padding:12px 14px;gap:12px;font-size:13px}
+.tema-section-questions .tq>summary:focus-visible,.tema-section-questions .tq-answer>summary:focus-visible{outline:3px solid var(--color-focus);outline-offset:-3px}
+.tema-section-questions .tq-number{flex:0 0 28px;min-width:28px;height:28px;border-radius:2px;background:var(--color-primary);color:#fff;font:700 15px/1 var(--font-display)}
+.tema-section-questions .tq[open]{background:var(--color-surface)}
+.tema-section-questions .tq[open]>summary{border-bottom:2px solid var(--color-primary);background:var(--color-tint)}
+.tema-section-questions .tq[open]>summary::after{border-color:var(--color-primary)}
+.tema-section-questions .tq-body{padding:14px;background-image:radial-gradient(var(--color-border) 1px,transparent 1.3px);background-size:14px 14px}
+.tema-section-questions .tq-badge{padding:2px 8px;border:1.5px solid var(--color-success);border-radius:2px;background:var(--color-surface)}
+.tema-section-questions .option-letter{display:inline-grid;place-items:center;flex:0 0 24px;width:24px;height:24px;border:1.5px solid var(--color-primary);border-radius:2px;background:var(--color-surface);color:var(--color-primary);font:700 14px/1 var(--font-display)}
+.tema-section-questions .tq-options li{align-items:flex-start;padding:7px 9px;border:1px solid var(--color-border);border-radius:3px;background:var(--color-surface)}
+.tema-section-questions .tq-answer>summary{display:flex;align-items:center;justify-content:center;min-height:44px;padding:0 12px;border:1.5px solid var(--color-primary);border-radius:3px;background:var(--color-surface);color:var(--color-primary);font-size:13px;font-weight:700;list-style:none;cursor:pointer}
+.tema-section-questions .tq-answer>summary::-webkit-details-marker{display:none}
+.tema-section-questions .tq-answer[open]>summary{background:var(--color-primary);color:#fff}
+.tema-section-questions .tq-solution{display:flex;align-items:center;gap:8px;margin:12px 0 8px;font-size:13px;font-weight:700;color:var(--color-primary)}
+.tema-section-questions .tq-solution b{display:inline-grid;place-items:center;min-width:30px;height:30px;border-radius:2px;background:var(--color-success);color:#fff;font:700 18px/1 var(--font-display)}
+.tema-section-questions .argued-options li{padding:9px 10px;border:1.5px solid var(--color-border);border-radius:3px;background:var(--color-surface)}
+.tema-section-questions .argued-options li.is-correct{border-color:var(--color-success);background:var(--color-surface)}
+.tema-section-questions .argued-options li.is-correct .option-letter{border-color:var(--color-success);background:var(--color-success);color:#fff}
+.tema-section-questions .argued-options li.is-wrong .option-letter{border-color:var(--color-muted);color:var(--color-muted)}
+.tema-section-questions .tq-doubt{border:1.5px dashed var(--color-warning);border-radius:3px;background:var(--color-surface)}
+@media(forced-colors:active){.tema-section-questions,.tema-section-questions .tq-options li,.tema-section-questions .argued-options li{border-color:CanvasText}.tema-section-questions h3{background:Canvas;color:CanvasText;border-bottom:2px solid CanvasText}}
