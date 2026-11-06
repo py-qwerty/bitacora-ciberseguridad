@@ -2,7 +2,7 @@
   "course": "redes",
   "number": 2,
   "title": "Seguridad perimetral",
-  "minutes": 40,
+  "minutes": 55,
   "intro": {
     "why": "Cualquier empresa conectada a Internet tiene que dejar abiertas algunas puertas (su web, su correo, su DNS) y cerrar todas las demás. El aparato que decide qué entra y qué sale es el cortafuegos. Cuando una empresa sufre una intrusión, una de las primeras preguntas de la investigación es siempre la misma: ¿qué permitía el cortafuegos y por qué? Este tema explica qué es un cortafuegos, qué tipos hay, qué aportan los de nueva generación y cómo se configura uno real en Linux con iptables.",
     "before": [
@@ -17,7 +17,10 @@
       "Sabrás comparar el filtrado de paquetes (con y sin estado), la pasarela a nivel de aplicación y la pasarela a nivel de circuito.",
       "Sabrás razonar la diferencia entre una política restrictiva y una permisiva.",
       "Sabrás qué es un NGFW y qué relación tiene con la defensa en profundidad.",
-      "Sabrás leer y escribir reglas básicas de iptables: tablas, cadenas, acciones y comandos."
+      "Sabrás leer y escribir reglas básicas de iptables: tablas, cadenas, acciones y comandos.",
+      "Sabrás en qué orden se consultan las tablas y por qué NAT va en PREROUTING y filter no.",
+      "Sabrás usar los estados NEW, ESTABLISHED y RELATED y evitar reglas redundantes o contradictorias.",
+      "Sabrás qué se pide y cómo se evalúa la actividad 1 de iptables."
     ]
   },
   "sections": [
@@ -500,6 +503,20 @@
           ]
         },
         {
+          "type": "list",
+          "title": "¿Por qué se estudia iptables si es antiguo? (explicación del profesor)",
+          "items": [
+            "Está a **bajo nivel**: obliga a escribir más y a entender de verdad cómo decide un cortafuegos. Herramientas más modernas y sencillas (como ufw) lo esconden detrás de órdenes más cortas.",
+            "Quien maneja iptables **entiende la lógica de cualquier cortafuegos** y puede trasladarla a un producto comercial que use el mismo sistema de reglas.",
+            "Sigue usándose en muchos **sistemas heredados** (legacy). Además, en la asignatura solo se enseña **software libre**.",
+            "En el examen no se piden comandos complejos de memoria: sí **reglas sencillas** que debes saber leer o escribir."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "**Qué tablas importan de verdad.** Según la clase, las dos que vas a usar casi siempre son **filter** (aceptar o descartar; es la tabla por defecto, la que se usa si no escribes -t) y **nat** (traducir direcciones). **mangle** se usa para modificar cabeceras (por ejemplo, el TTL), **raw** actúa antes del seguimiento de conexiones y es raro verla, y **security** solo aparece con SELinux y es todavía más rara."
+        },
+        {
           "type": "exam",
           "text": "Asocia verbo y tabla: **aceptar/descartar → filter**; **cambiar direcciones → nat**; **cambiar campos de cabecera como el TTL → mangle**; **sacar del seguimiento de estado → raw**. Las opciones incorrectas suelen ser las descripciones de las otras tablas."
         },
@@ -543,6 +560,26 @@
           "type": "example",
           "title": "Tres casos prácticos",
           "text": "1) El propio equipo con iptables es el servidor web y recibe una conexión al puerto 80: **INPUT**. 2) El equipo es el cortafuegos de la empresa y el servidor web es otra máquina detrás de él: los paquetes de Internet al servidor lo **atraviesan**, así que **FORWARD**. 3) El cortafuegos descarga actualizaciones de su sistema: los paquetes los crea un proceso local, así que **OUTPUT**."
+        },
+        {
+          "type": "steps",
+          "title": "El orden de las tablas en el viaje del paquete (según la clase)",
+          "items": [
+            "El paquete llega a la interfaz. En **PREROUTING** se consultan, por este orden, las tablas **raw → mangle → nat**. Todavía **no hay filter**: aún no se ha decidido a dónde va el paquete, así que no tiene sentido aceptarlo o descartarlo.",
+            "Se toma la **decisión de enrutado**: ¿es para este equipo o solo pasa por él?",
+            "Si es para el equipo: **INPUT** (mangle, luego filter). Si solo pasa de largo: **FORWARD** (mangle, luego filter).",
+            "Si lo genera el propio equipo: **OUTPUT** (por ejemplo mangle, nat, filter).",
+            "Antes de salir por la interfaz: **POSTROUTING** (mangle y nat), donde todavía se puede, por ejemplo, cambiar la dirección de origen."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "**Regla para recordarlo:** el orden de las tablas dentro de un mismo punto es siempre **raw, mangle, nat, filter**. Y la pregunta clave antes de escribir una regla es: **¿cuál es el origen y el destino del paquete?** Si el destino es el propio cortafuegos usa INPUT; si el origen es el cortafuegos, OUTPUT; si ninguno de los dos es el cortafuegos (solo lo atraviesa), FORWARD."
+        },
+        {
+          "type": "example",
+          "title": "Redirigir y traducir: por qué NAT va en PREROUTING",
+          "text": "Si quieres **cambiar el destino** de un paquete (por ejemplo, mandar el tráfico web entrante a otro puerto del equipo, o el tráfico HTTPS hacia un servidor de una zona desmilitarizada), la decisión de enrutado todavía no se ha tomado: usas la tabla **nat** y la cadena **PREROUTING**. En clase se puso como ejemplo desviar el puerto 80 a otro puerto (el 3128, típico de un proxy) y reenviar el 443 a un servidor interno concreto. Al traducir hay que indicar **siempre a qué IP y a qué puerto** se envía: iptables no puede adivinarlo."
         },
         {
           "type": "exam",
@@ -625,12 +662,97 @@
           "text": "iptables -P FORWARD DROP (por defecto, nada atraviesa). iptables -A FORWARD -p tcp -d 192.168.1.10 --dport 443 -j ACCEPT (excepción: HTTPS hacia el servidor web interno). iptables -L FORWARD (comprobar). Si algo sale mal, iptables -F FORWARD borra las reglas y se empieza de nuevo. Para probar las reglas se puede usar **netcat** (nc), una herramienta que abre conexiones a un puerto para ver si pasan."
         },
         {
+          "type": "p",
+          "text": "**Cómo se leen los comandos que ves en los ejemplos.** El profesor repasó las opciones más habituales: -p protocolo, -s IP de origen, -d IP de destino, -i interfaz de entrada, -o interfaz de salida, --sport puerto de origen, --dport puerto de destino, -t tabla, -j acción (jump). Además, -A añade al final, -D borra una regla concreta, -L lista, -S muestra las reglas como comandos y -F vacía una cadena."
+        },
+        {
+          "type": "term",
+          "term": "Estado de la conexión (módulo state)",
+          "text": "Se usa con -m state --state y permite decidir según el momento de la conexión. **NEW**: primer paquete de una conexión nueva. **ESTABLISHED**: paquetes de una conexión que ya está en marcha. **RELATED**: conexiones nuevas pero **relacionadas** con otra ya existente. Ejemplo de la clase: FTP abre primero una conexión de control y luego otras para transferir los datos; esas segundas son RELATED, no solo ESTABLISHED."
+        },
+        {
+          "type": "list",
+          "title": "Cómo traducir un enunciado a una regla (ejemplos de la clase)",
+          "items": [
+            "«**Acepta nuevas conexiones entrantes por el puerto 80 (TCP)**» hacia el propio cortafuegos: tabla filter, cadena INPUT (añadir con -A), protocolo tcp, puerto de destino 80, estado NEW, acción ACCEPT.",
+            "«**Acepta las conexiones ya establecidas** entre otras máquinas»: el tráfico solo pasa por el cortafuegos, así que la cadena es **FORWARD**, con estado ESTABLISHED y acción ACCEPT.",
+            "«**Permite el tráfico local** (localhost)»: reglas sobre la interfaz de loopback en entrada y salida.",
+            "«**Reenvía el tráfico HTTPS a un servidor de la DMZ**»: es traducción de destino; va en la tabla **nat**, cadena **PREROUTING**, indicando IP y puerto del servidor."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "**Errores que el profesor señaló.** (1) **Reglas redundantes**: si la política por defecto ya es ACCEPT, añadir reglas ACCEPT sobra. Las que sí aportan son las de DROP, por ejemplo cerrar los puertos privilegiados (del 1 al 1024, los que requieren permisos de administrador). (2) **No añadas una regla contraria para deshacer otra**: solo se aplica la primera que coincide, así que acabarás con un lío; **borra la regla anterior** (con -D) y ya está. (3) **Ante la duda, usa ESTABLISHED y RELATED** juntas, salvo que el enunciado diga lo contrario."
+        },
+        {
+          "type": "p",
+          "text": "**Interfaz de salida.** Indica siempre -o. Si no, con direcciones privadas (que se repiten entre redes distintas) el cortafuegos puede no saber por cuál interfaz sacar el paquete. La buena práctica es **no repetir rangos de IP privadas** en subredes diferentes, para no provocar conflictos."
+        },
+        {
           "type": "exam",
           "text": "Trampas: «si no se cumple ninguna regla no pasa nada» (falso: se aplica la política por defecto); «el orden no importa» (falso: manda la primera coincidencia); «DROP avisa y REJECT no» (es al revés); «-L borra y -F lista» (es al revés: -L **L**ista, -F **F**lush/vacía). Y -P no añade una regla al final: define la **P**olítica por defecto."
         },
         {
           "type": "key",
           "text": "Las reglas se leen en orden y gana la primera coincidencia terminante; lo que no coincide va a la política por defecto (-P). DROP calla, REJECT avisa; -L lista, -F vacía, -A añade."
+        }
+      ]
+    },
+    {
+      "id": "practica-act1",
+      "title": "Del tema a la práctica: la ACT1 de iptables",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Esta parte **no cae en el test**, pero te prepara para la actividad 1, que es sobre iptables. Es una actividad con un cortafuegos de laboratorio y un enunciado con una lista de acciones que debes traducir a reglas."
+        },
+        {
+          "type": "analogy",
+          "text": "Es como configurar la garita de un edificio con tres puertas: una a la calle (Internet), otra a la zona con el servidor web y otra a una oficina con varios equipos. Tú decides quién puede pasar de una zona a otra."
+        },
+        {
+          "type": "list",
+          "title": "El escenario (según el diagrama de la clase)",
+          "items": [
+            "Un **cortafuegos con tres interfaces**, cada una en una subred distinta: una hacia Internet, otra hacia una subred con un servidor web y otra hacia una subred con tres equipos.",
+            "Es el **único cortafuegos** de la actividad (el encadenamiento de varios se ve en el tema siguiente).",
+            "El laboratorio es una máquina virtual pública que ya viene preparada en los escritorios virtuales de UNIR, con las IP del enunciado; no hace falta instalar iptables ni cambiar direcciones."
+          ]
+        },
+        {
+          "type": "steps",
+          "title": "Cómo entregar la actividad",
+          "items": [
+            "Escribe y **prueba** las reglas en el laboratorio.",
+            "Vuelca las reglas con **iptables-save** a un fichero con el nombre y la extensión que indique el enunciado (en el curso, un CSV).",
+            "Entrega **solo ese fichero**. Si adjuntas un Word o un PDF, **no se evalúa**; si el fichero entregado no es el pedido, se descarta.",
+            "Respeta el plazo: pasada la fecha límite, no se corrige."
+          ]
+        },
+        {
+          "type": "list",
+          "title": "Qué se valora y dónde se pierde nota",
+          "items": [
+            "Son **10 acciones**, un punto cada una. Se restan **0,5 por cada fallo en las cadenas** y **0,25 por cada otro fallo**; con **tres o más fallos** esa acción puntúa 0.",
+            "En cada regla debes especificar **todos los parámetros**: tabla, cadena, acción, interfaz de entrada/salida, protocolo, IP y puerto de origen y destino y estado de la conexión. Aunque algo sea redundante (como la tabla filter, que va por defecto), **ponlo igualmente**: se quiere comprobar que lo sabes. Omitirlo penaliza.",
+            "**Algunas acciones necesitan dos reglas.** Si te dejas dos detalles en una de ellas, pierdes la acción entera.",
+            "Usa los **nombres de interfaz del enunciado**, no los que aparezcan en la máquina virtual: si en el laboratorio se llaman distinto, cámbialos en el fichero antes de entregar.",
+            "Las dudas se preguntan en el foro de la actividad. Nunca se publican soluciones."
+          ]
+        },
+        {
+          "type": "list",
+          "title": "Consejos prácticos",
+          "items": [
+            "Usa los escritorios virtuales: reserva con tiempo, porque cerca de la fecha se agotan los huecos. La sesión dura como máximo tres horas y **al terminar se borra todo**, así que descarga tu fichero antes de salir.",
+            "Si la consola de la máquina virtual se queda atascada, pulsa Enter varias veces: a veces tarda en responder.",
+            "Antes de dar una regla por buena, **compruébala** en el laboratorio (por ejemplo, con netcat) y revisa con iptables -L o -S cómo ha quedado.",
+            "Un orden mental útil: primero la política por defecto, luego las excepciones, comprobando que ninguna regla anterior se adelanta a otra."
+          ]
+        },
+        {
+          "type": "key",
+          "text": "La ACT1 se resuelve con iptables sencillo pero escrito con todos los parámetros, usando los nombres de interfaz del enunciado y entregando solo el fichero volcado con iptables-save."
         }
       ]
     }
@@ -647,7 +769,12 @@
     "NGFW: cortafuegos tradicional + inspección profunda, aplicaciones, IPS e inteligencia; apoya la defensa en profundidad.",
     "iptables: tablas (filter, nat, mangle, raw, security) → cadenas (PREROUTING, INPUT, FORWARD, OUTPUT, POSTROUTING) → reglas.",
     "Para mí → INPUT; a través de mí → FORWARD; desde mí → OUTPUT.",
-    "Las reglas se evalúan en orden; gana la primera que coincide; si ninguna coincide, se aplica la política por defecto (-P). DROP no avisa, REJECT sí."
+    "Las reglas se evalúan en orden; gana la primera que coincide; si ninguna coincide, se aplica la política por defecto (-P). DROP no avisa, REJECT sí.",
+    "Orden de tablas dentro de cada punto: raw, mangle, nat, filter. En PREROUTING no hay filter porque aún no se ha enrutado.",
+    "Para cambiar el destino de un paquete (NAT/redirección) se usa nat + PREROUTING; para filtrar, filter + INPUT/FORWARD/OUTPUT.",
+    "Estados: NEW (conexión nueva), ESTABLISHED (en marcha), RELATED (nueva pero ligada a otra, como los datos de FTP).",
+    "Para deshacer una regla se borra; no se añade la contraria. Con política ACCEPT, las reglas ACCEPT sobran.",
+    "ACT1: especificar todos los parámetros, usar los nombres de interfaz del enunciado y entregar solo el fichero de iptables-save."
   ],
   "glossary": [
     { "term": "Cortafuegos (firewall)", "text": "Sistema que filtra el tráfico entre redes (o de un equipo) según una política de seguridad." },
@@ -676,7 +803,11 @@
     { "term": "iptables", "text": "Herramienta de Linux para configurar Netfilter como cortafuegos de estado." },
     { "term": "TTL (Time To Live)", "text": "Campo de la cabecera IP que limita cuántos saltos puede dar un paquete." },
     { "term": "SELinux", "text": "Security-Enhanced Linux: extensión de seguridad de Linux basada en contextos." },
-    { "term": "syslog", "text": "Sistema de registro de eventos de Linux, al que envía datos la acción LOG." }
+    { "term": "syslog", "text": "Sistema de registro de eventos de Linux, al que envía datos la acción LOG." },
+    { "term": "Estado NEW / ESTABLISHED / RELATED", "text": "Momento de la conexión que se puede comprobar en una regla: nueva, ya en marcha o nueva pero relacionada con una existente." },
+    { "term": "Puertos privilegiados", "text": "Los puertos del 1 al 1024, que requieren permisos de administrador para abrirlos." },
+    { "term": "iptables-save", "text": "Orden que vuelca las reglas actuales de iptables para guardarlas en un fichero." },
+    { "term": "DNAT / redirección", "text": "Traducción del destino de un paquete; se hace en la tabla nat, cadena PREROUTING." }
   ],
   "questions": {
     "redes-t02-01": {

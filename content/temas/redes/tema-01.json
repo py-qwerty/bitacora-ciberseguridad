@@ -2,7 +2,7 @@
   "course": "redes",
   "number": 1,
   "title": "Introducción a la seguridad en redes",
-  "minutes": 40,
+  "minutes": 50,
   "intro": {
     "why": "Cada vez que pagas con el móvil, envías un correo o entras en la web del banco, tus datos viajan por redes que no controlas: la wifi de una cafetería, el router de tu operador, cables submarinos. Por el camino alguien podría leerlos, cambiarlos, repetirlos o impedir que lleguen. Este tema da el vocabulario básico para hablar de todo eso con precisión: qué capas tiene una red, qué tipos de ataque existen, qué servicios de seguridad necesitamos y con qué mecanismos se consiguen. Es la base de todo el resto de la asignatura.",
     "before": [
@@ -17,7 +17,10 @@
       "Sabrás qué es la recomendación X.800 y distinguir vulnerabilidad, amenaza y ataque.",
       "Sabrás clasificar un ataque como pasivo (obtención de contenido, análisis de tráfico) o activo (suplantación, repetición, modificación, denegación de servicio).",
       "Sabrás definir los servicios de seguridad (autenticación, control de acceso, confidencialidad, integridad, no repudio, disponibilidad) y qué ataque frena cada uno.",
-      "Sabrás qué mecanismos (cifrado, firma digital, relleno de tráfico, notarización…) implementan cada servicio, y describir el modelo general de seguridad en redes."
+      "Sabrás qué mecanismos (cifrado, firma digital, relleno de tráfico, notarización…) implementan cada servicio, y describir el modelo general de seguridad en redes.",
+      "Sabrás decidir si un ataque es pasivo o activo preguntándote si modifica el flujo (el hombre en el medio y la denegación de servicio son activos).",
+      "Sabrás explicar cómo viaja un paquete por Internet entre ISP y por qué conviene pensar «en qué capa trabaja» cada protocolo.",
+      "Sabrás qué es Scapy y el ataque Land, y qué muestran sobre el encapsulado."
     ]
   },
   "sections": [
@@ -116,6 +119,28 @@
           ]
         },
         {
+          "type": "p",
+          "text": "**¿Cómo viaja de verdad un paquete por Internet?** El profesor lo explicó con un dibujo sencillo. Tu equipo se conecta a tu router; el router a un **ISP** (Internet Service Provider, el proveedor de Internet que te da el servicio); ese ISP, a su vez, se conecta a otro más grande, y así sucesivamente, como las ramas de un árbol. El tráfico **salta** de un ISP a otro, por enlaces físicos (fibra, ADSL…), hasta llegar al ISP del destino y, por fin, al equipo de la otra persona."
+        },
+        {
+          "type": "analogy",
+          "text": "Es una carta que pasa por varias oficinas de correos: cada una solo sabe a qué oficina entregársela a continuación, y todas pueden ver el sobre (la cabecera). Cada paquete que sale de tu equipo lleva, de fuera adentro: la dirección física (capa de red/enlace), las IP de origen y destino, el segmento TCP y, dentro, el mensaje de la aplicación (por ejemplo, una petición web)."
+        },
+        {
+          "type": "list",
+          "title": "Ideas del profesor para pensar «en capas»",
+          "items": [
+            "**Tienes que saber las capas «como la Biblia»**: cada vez que veas un protocolo (SMTP, SSL/TLS, IPsec…), la primera pregunta es **en qué capa trabaja**. De ello depende qué parte del mensaje puede proteger: un protocolo de aplicación solo cubre lo que va en esa capa; uno de capas más bajas puede proteger todo lo que viaja por encima.",
+            "**La dirección MAC** identifica la tarjeta de red y se considera única; la **dirección IP** sirve para **ubicar** el equipo dentro de una red y, en las redes privadas, **no es única** (muchas casas usan las mismas direcciones privadas). Por eso existe ARP, que traduce entre una y otra.",
+            "**IP y las direcciones MAC son inseguros de diseño**: Internet se diseñó hacia 1969-1971, cuando casi nadie pensaba en atacantes. Gran parte de la asignatura consiste en añadir seguridad por encima de esa base.",
+            "**En la clase se resumieron las equivalencias así**: la capa de aplicación de TCP/IP agrupa las tres superiores de OSI (aplicación, presentación y sesión); la inferior de TCP/IP (la que el profesor llamó «de red» y el tema «física») agrupa enlace y física de OSI; red y transporte coinciden en ambos modelos. El profesor avisó de que según el libro que consultes los nombres cambian."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Un adelanto: el navegador **Tor** (tema 9) oculta por qué saltos pasa tu tráfico y a quién te conectas, haciendo saltos aleatorios y cifrando por capas; sirve justo para que un observador situado en medio de ese «árbol» de ISP no pueda trazar el camino de origen a destino."
+        },
+        {
           "type": "exam",
           "text": "Pregunta clásica: «un datagrama UDP se encapsula…». Razona con las capas: va justo **en la capa inmediatamente inferior**, es decir, en la parte de datos de un paquete IP. Trampas: «dentro de un segmento TCP» (TCP y UDP están en la misma capa, uno no va dentro del otro), «en la cabecera de una trama Ethernet» (las cabeceras llevan control, no los datos de arriba) y «en una trama SMTP» (SMTP es de aplicación, está por encima)."
         },
@@ -188,6 +213,24 @@
           "type": "example",
           "title": "Caso práctico",
           "text": "Un servidor web usa una versión antigua con un fallo conocido (vulnerabilidad). Existen grupos criminales que buscan servidores con ese fallo (amenaza). Un día uno de ellos lanza un programa que lo explota y se cuela (ataque)."
+        },
+        {
+          "type": "p",
+          "text": "**Una vulnerabilidad sin amenaza todavía.** El profesor insistió en un matiz: la vulnerabilidad existe aunque nadie la conozca. Si tu puerta tiene una cerradura muy sencilla de forzar y durante diez años nadie lo descubre, tienes una vulnerabilidad pero **todavía no una amenaza activa**. En cuanto alguien se entera, hay amenaza (puede aprovecharla). Cuando la fuerza y entra, hay **ataque**."
+        },
+        {
+          "type": "list",
+          "title": "Tres ejemplos de la clase",
+          "items": [
+            "**Servidor con inyección SQL** (un fallo que deja meter órdenes en la base de datos a través de un formulario): es una vulnerabilidad; si nadie la ha descubierto, aún no hay amenaza; cuando la explotan, ataque.",
+            "**Contraseña débil (por ejemplo, 1234)**: también es una vulnerabilidad, del tipo «política de contraseñas poco robusta». Quien la adivina y entra, ataca con éxito.",
+            "**Un ataque puede fracasar**: un servidor bien protegido recibe intentos de fuerza bruta que no tienen éxito porque no hay vulnerabilidad que explotar. Que haya intento de ataque no implica que haya sistema vulnerable."
+          ]
+        },
+        {
+          "type": "term",
+          "term": "Vector de ataque",
+          "text": "**La vía o el camino concreto** por el que se realiza un ataque (un correo con un enlace malicioso, un puerto expuesto, una wifi falsa…). No es un sinónimo de «ataque»: el ataque es el acto; el vector es por dónde se hace."
         },
         {
           "type": "exam",
@@ -274,12 +317,81 @@
           "text": "**Prevenir** los ataques activos es muy difícil, porque las vías de entrada son enormes. Por eso las medidas preventivas se combinan con herramientas que permitan **detectarlos** y **recuperarse** si llegan a producirse. Fíjate en el contraste: los pasivos se previenen pero se detectan mal; los activos se detectan mejor pero se previenen mal."
         },
         {
+          "type": "p",
+          "text": "**Cómo decidir si un ataque es pasivo o activo (regla del profesor).** Pregúntate si el atacante **modifica el flujo de la información**. Si solo escucha (olfatear el tráfico, *sniffing*), es pasivo. Si altera, inyecta, interfiere o impide, es activo. Por eso el **hombre en el medio** (man in the middle) y la **denegación de servicio** son **siempre ataques activos**: para ponerse entre dos equipos hay que modificar algo (por ejemplo, la tabla ARP o la tabla de rutas), y eso ya es intervenir. El profesor lo marcó como pregunta típica de test."
+        },
+        {
+          "type": "term",
+          "term": "Hombre en el medio (man in the middle, MitM)",
+          "text": "Ataque en el que el intruso se coloca **entre dos extremos** que creen hablar directamente entre sí, y puede leer y alterar lo que pasa. Es un ataque **activo**, aunque su objetivo sea solo espiar, porque para colocarse en medio debe modificar el flujo."
+        },
+        {
           "type": "exam",
           "text": "La suplantación es **siempre activa**: el atacante actúa, no solo observa. La confidencialidad no la evita, porque ocultar el contenido no demuestra quién está al otro lado; lo que la frena es la **autenticación** y el **control de acceso**. La DoS ataca la **disponibilidad**, no la confidencialidad ni la integridad: si te preguntan si amenaza a cualquiera de estas dos, la respuesta es «ninguna de las anteriores». Repetición ≠ modificación: en la repetición el mensaje se reenvía tal cual."
         },
         {
           "type": "key",
           "text": "Activo = interferir. Cuatro tipos: suplantación (fingir ser otro), repetición (reenviar lo capturado), modificación (cambiar el contenido) y denegación de servicio (impedir el uso)."
+        }
+      ]
+    },
+    {
+      "id": "scapy-land",
+      "title": "Ver los paquetes por dentro: Scapy y el ataque Land",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "En clase el profesor hizo una demostración con **Scapy** para que entendieras cómo se construye un paquete capa a capa. No es materia de test, pero convierte el encapsulado del tema en algo que puedes tocar. **Hazlo solo en tu propio laboratorio** (tu máquina o una máquina virtual tuya): fabricar y enviar paquetes contra equipos ajenos es un delito."
+        },
+        {
+          "type": "term",
+          "term": "Scapy",
+          "text": "Biblioteca del lenguaje **Python** (un lenguaje de programación sencillo) que permite **fabricar, enviar, capturar y examinar paquetes a medida**, de la capa más baja a la más alta. Los profesionales la usan mucho para probar redes y protocolos, incluidos los industriales, que a menudo son raros y exigen paquetes personalizados."
+        },
+        {
+          "type": "analogy",
+          "text": "Es como montar un sobre a mano: primero eliges el sobre (capa de red), luego le escribes remitente y destinatario (IP), después metes una hoja de instrucciones de entrega (TCP) y, por último, el mensaje (contenido). Scapy te deja rellenar cada campo de cada capa."
+        },
+        {
+          "type": "steps",
+          "title": "Cómo se construye un paquete con Scapy (según la clase)",
+          "items": [
+            "Se crea la **capa inferior** (Ethernet, la de red del modelo TCP/IP).",
+            "Se le encapsula la **capa IP** y se rellenan sus campos: dirección de origen y de destino.",
+            "Se encapsula la **capa de transporte** (aquí TCP; podría ser UDP, que no tiene flags) y se rellenan puerto de origen, puerto de destino, número de secuencia y **flags**.",
+            "Se añade el **contenido (payload)** del paquete. Para llegar a la capa de aplicación se añadiría encima un protocolo como HTTP.",
+            "Se **envía** (con una función de envío; si además se espera respuesta, con otra distinta) y se **inspecciona** el resultado, incluido su volcado en hexadecimal."
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Qué campo pertenece a qué capa",
+          "head": ["Capa", "Campos que se rellenan en la demo"],
+          "rows": [
+            ["Red (Ethernet)", "Es la primera capa que se crea; la demo la deja con valores por defecto."],
+            ["Internet (IP)", "IP de origen e IP de destino."],
+            ["Transporte (TCP)", "Puerto de origen, puerto de destino, número de secuencia y flags (por ejemplo, SYN: inicio de conexión)."],
+            ["Aplicación", "Contenido del paquete (payload) y, si se desea, un protocolo como HTTP por encima."]
+          ]
+        },
+        {
+          "type": "term",
+          "term": "Ataque Land (ataque «Tierra»)",
+          "text": "Ataque de denegación de servicio en el que se envían paquetes TCP SYN cuya **IP de origen y de destino son la misma, la de la víctima**, y con el mismo puerto de origen y destino. El equipo recibe peticiones que parecen venir de sí mismo y, si no está preparado, puede entrar en un bucle y dejar de responder. Es una **suplantación de IP** (activa)."
+        },
+        {
+          "type": "list",
+          "title": "Qué conviene recordar (enfoque defensivo)",
+          "items": [
+            "En la demo, el profesor se envió **10.000 paquetes de este tipo a sí mismo** y no ocurrió nada: los sistemas operativos actuales los descartan sin problema.",
+            "Sí pueden ser vulnerables **dispositivos industriales** y equipos sin contramedidas; por eso este ataque se incluye en las pruebas de seguridad de esos dispositivos.",
+            "Se puede observar el efecto con **Wireshark** (analizador de paquetes): ves tanto lo que envías como la respuesta del otro equipo. Cuando un equipo deja de contestar con SYN-ACK a los SYN que le llegan, es señal de que ha dejado de responder. Según la clase, la práctica 3 de la asignatura usa Wireshark.",
+            "La defensa pasa por filtrar en el cortafuegos los paquetes con IP de origen imposible (por ejemplo, tu propia IP llegando desde fuera) y mantener el software al día."
+          ]
+        },
+        {
+          "type": "key",
+          "text": "Scapy fabrica paquetes capa a capa y demuestra el encapsulado. El ataque Land es una denegación de servicio con IP de origen y destino iguales; funciona solo contra equipos sin protección y se prueba únicamente en laboratorio propio."
         }
       ]
     },
@@ -580,33 +692,44 @@
     "Confidencialidad evita la revelación; integridad detecta (no evita) modificaciones; disponibilidad mantiene el recurso utilizable.",
     "No repudio en origen prueba el envío; en destino, la recepción.",
     "Los mecanismos implementan los servicios: cifrado → confidencialidad; firma digital → autenticación, integridad y no repudio; notarización → tercero que da fe.",
-    "El modelo de seguridad en redes se basa en transformar el mensaje con un secreto compartido, a veces con una tercera parte confiable, y en proteger también los extremos."
+    "El modelo de seguridad en redes se basa en transformar el mensaje con un secreto compartido, a veces con una tercera parte confiable, y en proteger también los extremos.",
+    "Una vulnerabilidad existe aunque nadie la conozca; hay amenaza cuando alguien puede aprovecharla y ataque cuando lo hace. Un intento de ataque puede fallar si no hay vulnerabilidad.",
+    "Pasivo = solo escucha; activo = modifica el flujo. El hombre en el medio y la denegación de servicio son siempre activos.",
+    "Ante cualquier protocolo, pregunta en qué capa trabaja: de ello depende qué parte del mensaje protege.",
+    "Scapy permite construir paquetes capa a capa (clase del profesor); el ataque Land usa IP de origen y destino iguales y solo afecta a equipos sin protección."
   ],
   "glossary": [
     { "term": "ARP (Address Resolution Protocol)", "text": "Protocolo que averigua la dirección física (MAC) de una máquina a partir de su dirección IP." },
     { "term": "Análisis de tráfico", "text": "Ataque pasivo que deduce información de los patrones de comunicación (quién, cuándo, cuánto) aunque el contenido esté cifrado." },
     { "term": "Amenaza", "text": "Posibilidad de que una vulnerabilidad sea explotada y cause daño." },
     { "term": "Ataque", "text": "Acto deliberado que intenta evadir los servicios de seguridad y violar la política de un sistema." },
+    { "term": "Ataque Land", "text": "Denegación de servicio con paquetes TCP SYN cuya IP de origen y destino es la de la víctima." },
     { "term": "Autenticación", "text": "Servicio que confirma que la identidad declarada por una entidad es verdadera." },
     { "term": "Cifrado", "text": "Mecanismo que hace incomprensible un mensaje para quien no conoce la clave y el algoritmo." },
     { "term": "Confidencialidad", "text": "Servicio que protege los datos contra su revelación a entidades no autorizadas." },
     { "term": "Control de acceso", "text": "Servicio que protege los recursos contra su uso no autorizado aplicando los derechos de cada entidad autenticada." },
+    { "term": "Dirección MAC", "text": "Identificador de la tarjeta de red, considerado único. La dirección IP, en cambio, ubica al equipo dentro de una red y en redes privadas puede repetirse." },
     { "term": "Disponibilidad", "text": "Propiedad de un recurso de estar accesible y utilizable cuando lo pide una entidad autorizada." },
     { "term": "DoS (Denial of Service, denegación de servicio)", "text": "Ataque activo que hace inaccesible un servicio a los usuarios legítimos." },
     { "term": "Encapsulado", "text": "Introducir los datos de una capa en la parte de datos de la capa inferior, añadiendo una cabecera." },
     { "term": "Firma digital", "text": "Mecanismo criptográfico que vincula la identidad del emisor al mensaje y permite verificar origen e integridad." },
+    { "term": "Hombre en el medio (man in the middle)", "text": "Ataque activo en el que el intruso se coloca entre dos extremos y puede leer y modificar lo que pasa." },
     { "term": "Integridad", "text": "Servicio que permite detectar si los datos han sido modificados." },
     { "term": "IP (Internet Protocol)", "text": "Protocolo de la capa de red que direcciona y encamina los paquetes." },
+    { "term": "ISP (Internet Service Provider)", "text": "Proveedor de Internet. Los ISP se conectan entre sí en forma de árbol y el tráfico salta de uno a otro hasta llegar al destino." },
     { "term": "ITU (International Telecommunication Union)", "text": "Unión Internacional de Telecomunicaciones, organismo que publica la recomendación X.800." },
     { "term": "No repudio", "text": "Servicio que impide negar falsamente haber enviado (origen) o recibido (destino) un mensaje." },
     { "term": "Notarización", "text": "Mecanismo por el que una tercera parte de confianza registra datos y da fe de su veracidad." },
     { "term": "OSI (Open Systems Interconnection)", "text": "Modelo de referencia de 7 capas de la ISO para describir las comunicaciones en red." },
+    { "term": "Payload (carga útil)", "text": "El contenido de un paquete, lo que va dentro de las cabeceras." },
     { "term": "RFC (Request for Comments)", "text": "Documento técnico de los estándares de Internet; el RFC 4949 es un glosario de seguridad." },
     { "term": "Relleno de tráfico", "text": "Mecanismo que añade tráfico o datos de cobertura para dificultar el análisis de tráfico." },
     { "term": "Repetición", "text": "Ataque activo que captura mensajes y los retransmite después para provocar un efecto no deseado." },
+    { "term": "Scapy", "text": "Biblioteca de Python para fabricar, enviar y examinar paquetes capa a capa." },
     { "term": "Suplantación de identidad", "text": "Ataque activo en el que una entidad se hace pasar por otra." },
     { "term": "TCP (Transmission Control Protocol)", "text": "Protocolo de transporte orientado a conexión que ofrece un flujo de datos fiable." },
     { "term": "UDP (User Datagram Protocol)", "text": "Protocolo de transporte simple, no orientado a conexión, que no garantiza la entrega." },
+    { "term": "Vector de ataque", "text": "La vía o camino concreto por el que se realiza un ataque; no es lo mismo que el ataque." },
     { "term": "Vulnerabilidad", "text": "Fallo o debilidad de diseño, implementación u operación que puede explotarse." },
     { "term": "X.800", "text": "Recomendación de la ITU que define la arquitectura de seguridad OSI: servicios, mecanismos y ataques." }
   ],

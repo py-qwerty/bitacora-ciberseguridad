@@ -2,7 +2,7 @@
   "course": "redes",
   "number": 4,
   "title": "Herramientas de seguridad. IDS/IPS y sistemas trampa",
-  "minutes": 40,
+  "minutes": 55,
   "intro": {
     "why": "Casi todas las empresas tienen un cortafuegos en la puerta, pero muy pocas saben qué pasa cuando alguien ya ha entrado. En muchos incidentes graves los atacantes pasan semanas dentro de la red sin que nadie lo note. Este tema explica las herramientas que vigilan el tráfico (IDS), las que además lo cortan (IPS), las que engañan al atacante para estudiarlo (honeypots, honeynets y padded cells) y cómo se usa en la práctica Snort, el IDS/IPS de código abierto más extendido.",
     "before": [
@@ -17,7 +17,10 @@
       "Sabrás cómo se despliega un IDS en modo escucha y un IPS en modo en línea.",
       "Sabrás qué aportan el switch de aplicación, el IPS de host a nivel de aplicación y el conmutador híbrido.",
       "Sabrás para qué sirven los sistemas trampa y distinguir honeypots de baja, media y alta interacción, honeynets y padded cells.",
-      "Sabrás manejar los modos, la arquitectura, los comandos básicos y las reglas de Snort."
+      "Sabrás manejar los modos, la arquitectura, los comandos básicos y las reglas de Snort.",
+      "Sabrás qué diferencia hay entre Snort 2 y Snort 3 y dónde conviene colocar Snort respecto al cortafuegos.",
+      "Sabrás usar content con offset, depth, distance y within, y entender flags, flow y threshold en una regla.",
+      "Sabrás qué se pide en la actividad 2 de Snort y cómo se entrega."
     ]
   },
   "sections": [
@@ -818,6 +821,22 @@
           "text": "Es como el correo de una empresa: el cartero recoge las cartas (sniffer), en recepción las abren y ordenan (preprocesador), el responsable de seguridad las lee y decide si alguna es sospechosa (motor de detección) y la secretaria archiva o da aviso (salida)."
         },
         {
+          "type": "list",
+          "title": "Matices de la clase sobre Snort",
+          "items": [
+            "**Snort 2 y Snort 3.** La asignatura enseña **Snort 2** (la actividad usa la versión 2.9). Mucho software sigue usando la 2, y las reglas se pueden migrar a Snort 3 con la utilidad **snort2lua**. Snort 3 simplifica las reglas, así que aprender primero la 2 (más complicada) facilita después la 3.",
+            "**Es el IDS/IPS de código abierto más usado del mundo**, aunque el profesor pidió tomarlo con cautela: Suricata es su gran competidor.",
+            "**Dónde colocarlo.** Puede ir delante o detrás del cortafuegos; el consejo es **detrás**, en una red más interna. Delante recibiría alertas constantes por los ataques que llegan a Internet.",
+            "**Siempre combinado con un cortafuegos.** Un IDS solo detecta; para bloquear hace falta un cortafuegos. IDS + cortafuegos en un mismo componente = IPS.",
+            "**Los productos actuales mezclan funciones.** Hay routers con funciones de IPS o de cortafuegos, UTM con IDS y NGFW con IDS. La clase presenta las definiciones por su función para que entiendas las diferencias, pero en el mercado todo se solapa.",
+            "**Ventaja y límite de las reglas.** Son fáciles de implementar y hay muchas reglas públicas ya hechas; pero si no puedes describir el ataque con una regla, no lo detectarás. Para ataques avanzados hace falta un IDS por anomalías (en la clase se citó Bro, hoy Zeek)."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "**Una pieza más en la arquitectura.** El profesor describió la arquitectura con cinco pasos: el módulo de **captura** de tráfico (un sniffer), un **decodificador** (interpreta el tráfico en bruto según el protocolo: HTTP, FTP, incluso protocolos industriales), los **preprocesadores** (reorganizan lo decodificado en campos, como hace Wireshark para que puedas filtrar), el **motor de detección** (el cerebro: reglas y plugins de detección) y los **plugins de salida** (informes, ficheros de log para enviar a un syslog u otras herramientas). Es la misma cadena del tema, con el decodificador explícito."
+        },
+        {
           "type": "exam",
           "text": "¿Quién decide según las reglas? El **motor de detección**, no el preprocesador. ¿Quién captura? El sniffer. ¿Quién prepara los paquetes para el motor? El preprocesador. Y si preguntan qué hace el modo logger: **guardar paquetes para un análisis posterior** (no aplicar reglas, no filtrar en línea, no limitarse a mostrar). En «Snort es un IDS / un IPS / puede usarse para construir una padded cell», todas son ciertas."
         },
@@ -918,6 +937,41 @@
           "type": "example",
           "title": "Caso práctico",
           "text": "Durante un incidente, el equipo guardó el tráfico sospechoso en incidente.pcap. Una analista quiere saber qué reglas habrían saltado. No necesita tocar la red: lanza Snort con -r incidente.pcap para leer la captura y -c snort.conf para aplicarle las reglas."
+        },
+        {
+          "type": "table",
+          "title": "Más opciones que se mencionaron en la clase",
+          "head": [
+            "Opción",
+            "Para qué sirve"
+          ],
+          "rows": [
+            [
+              "-D",
+              "Ejecutar en segundo plano (modo demonio)."
+            ],
+            [
+              "-q",
+              "Modo silencioso: no muestra el banner inicial ni las estadísticas."
+            ],
+            [
+              "-A modo",
+              "Formato de las alertas por pantalla. En modo fast se muestran la hora, el mensaje y las IP de origen y destino; en modo full, además, la cabecera completa."
+            ],
+            [
+              "-r fichero (con -c)",
+              "Como ya viste, analiza una captura en lugar de tráfico en vivo. El profesor destacó su utilidad en análisis forense: aplicas tus reglas a un ataque que ya ocurrió."
+            ]
+          ]
+        },
+        {
+          "type": "list",
+          "title": "Consejos prácticos",
+          "items": [
+            "Para ver todas las opciones, consulta el manual con **man snort** o la documentación oficial; no se espera que las memorices todas.",
+            "Se instala con el gestor de paquetes (apt, en Debian/Ubuntu). La configuración suele estar en /etc/snort, aunque cambia con la distribución, y ahí hay una carpeta con **reglas de ejemplo** muy útiles para aprender.",
+            "**No edites las reglas de ejemplo.** Crea tu propio fichero (por ejemplo local.rules) y pon ahí tus reglas, separadas de las que vienen de serie."
+          ]
         },
         {
           "type": "exam",
@@ -1089,12 +1143,148 @@
           "text": "Tu regla con sid:1000001 y rev:1 da demasiadas falsas alarmas y la afinas. Mantienes sid:1000001 (sigue siendo «la misma regla») y pasas a rev:2. Así cualquiera sabe qué versión de la regla generó cada alerta."
         },
         {
+          "type": "p",
+          "text": "**Variables.** En lugar de escribir las direcciones de tu red en cada regla, se definen una vez como **variables** (por ejemplo, red interna, red externa, servidor web, puertos HTTP) y las reglas las usan por su nombre. Si la red cambia, modificas la variable y todas las reglas se actualizan. La sintaxis exacta la tienes en la documentación; la actividad 2 pide que la busques tú."
+        },
+        {
+          "type": "table",
+          "title": "Opciones de contenido: dónde busca Snort dentro del paquete",
+          "head": [
+            "Opción",
+            "Qué hace",
+            "Tipo de posición"
+          ],
+          "rows": [
+            [
+              "content",
+              "Busca ese texto o patrón en el contenido del paquete. Va entre comillas y debe coincidir literalmente.",
+              "-"
+            ],
+            [
+              "nocase",
+              "Ignora mayúsculas y minúsculas.",
+              "-"
+            ],
+            [
+              "offset",
+              "Empieza a buscar a partir de ese byte, contando desde el **inicio** del paquete.",
+              "Absoluta"
+            ],
+            [
+              "depth",
+              "Hasta dónde buscar a partir del offset (cuántos bytes).",
+              "Absoluta"
+            ],
+            [
+              "distance",
+              "Cuántos bytes **se saltan** después de la última coincidencia antes de empezar a buscar la siguiente.",
+              "Relativa al último acierto"
+            ],
+            [
+              "within",
+              "En cuántos bytes, contando desde ese punto, debe aparecer la siguiente coincidencia.",
+              "Relativa al último acierto"
+            ]
+          ]
+        },
+        {
+          "type": "example",
+          "title": "Ejemplos de combinar content con posiciones",
+          "text": "1) content:\"GET\"; offset:0; depth:3: busca GET en los **3 primeros bytes** del contenido. Es lo típico para detectar peticiones web. 2) content:\"GET\"; depth:3; content:\"download\"; distance:10; within:20: tras encontrar GET, se saltan 10 bytes y se busca la palabra «download» en los 20 siguientes. La clave: **offset y depth** cuentan siempre desde el principio del paquete; **distance y within** cuentan desde la última coincidencia, y por eso solo tienen sentido cuando ya hubo una anterior."
+        },
+        {
+          "type": "table",
+          "title": "Otras opciones que aparecieron en los ejemplos de la clase",
+          "head": [
+            "Opción",
+            "Qué hace"
+          ],
+          "rows": [
+            [
+              "classtype",
+              "Pone una **etiqueta** predefinida a la regla (por ejemplo, intento de reconocimiento o actividad de troyano) para clasificarla y filtrarla después. No se puede inventar: hay etiquetas definidas."
+            ],
+            [
+              "flags:S",
+              "Comprueba los flags TCP del paquete. S = paquete SYN, el primero del saludo de tres pasos que abre una conexión TCP."
+            ],
+            [
+              "flow",
+              "Dirección y estado de la conexión. Por ejemplo, to_client,established: tráfico que **vuelve al cliente** en una conexión ya establecida (útil para detectar descargas)."
+            ],
+            [
+              "file_data",
+              "Hace que el contenido buscado se compare con el **fichero** que viaja dentro del paquete, no con el paquete en bruto."
+            ],
+            [
+              "threshold",
+              "Controla cuántas alertas se lanzan: type (limit, threshold, both), track (por qué IP contar), count (número de eventos) y seconds (ventana de tiempo)."
+            ]
+          ]
+        },
+        {
+          "type": "example",
+          "title": "Regla de ejemplo 1: detectar un posible escaneo SYN",
+          "text": "Una regla de red externa a red interna con flags:S, un threshold de tipo both, track by_src, count 20 y seconds 60 y un classtype de reconocimiento. Significa: «si una misma IP de origen envía unos 20 paquetes SYN en 60 segundos, lanza una sola alerta de posible escaneo TCP SYN». El escaneo es justo eso: una máquina haciendo muchas peticiones de conexión en poco tiempo. Sobre type: **both** avisa una vez al alcanzarse el número; **limit** solo avisa de los primeros eventos de cada intervalo; **threshold** avisa cada vez que se acumula ese número. La explicación oral de limit y threshold fue confusa en clase; esto es lo que dice el manual de Snort."
+        },
+        {
+          "type": "example",
+          "title": "Regla de ejemplo 2: buscar una cadena de un malware conocido",
+          "text": "Una regla de red externa a red interna, TCP, con puertos HTTP, flow to_client,established, file_data y un content con un nombre de variable o clave que se sabe que usa un cierto ransomware, más nocase. Sirve para analizar el **fichero descargado** y avisar si contiene ese indicador. Es la idea de «detección por firma»: solo detecta lo que ya conoces."
+        },
+        {
+          "type": "list",
+          "title": "Detalles que dan problemas",
+          "items": [
+            "En **Snort 2** puedes partir una regla en varias líneas con una **barra invertida** al final de cada línea; en **Snort 3** no hace falta (ni conviene). Es un fallo típico al migrar reglas.",
+            "El **content** debe ser la frase literal entre comillas; se pueden usar expresiones regulares, que también aparecen en la actividad.",
+            "Si cambias una regla, **mantén el sid y sube el rev**: el sid identifica la regla; el rev, su versión.",
+            "El profesor avisó de que las opciones no se piden de memoria (excepto las básicas, como msg, rev o sid): lo normal es consultar la documentación o ayudarte de herramientas."
+          ]
+        },
+        {
           "type": "exam",
           "text": "Recuerda la escalera: **log** solo registra; **drop** bloquea y registra; **sdrop** bloquea sin registrar; **reject** bloquea, registra y además contesta. Si piden «bloquear y guardar sin la respuesta adicional de rechazo», es drop. La cabecera es acción + protocolo + IP/puerto de origen + dirección + IP/puerto de destino; msg, sid y rev son **opciones**, no cabecera. Y el campo que refleja la revisión es **rev**, no sid."
         },
         {
           "type": "key",
           "text": "Regla = cabecera (acción, protocolo, extremos y sentido) + opciones (msg, sid, rev…). alert/log avisan o guardan; drop, reject y sdrop bloquean."
+        }
+      ]
+    },
+    {
+      "id": "practica-act2",
+      "title": "Del tema a la práctica: la ACT2 de Snort",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Esta parte **no cae en el test**. Resume lo que se explicó de la actividad 2, que usa Snort en el mismo laboratorio de máquina virtual de la actividad 1. Léete siempre el enunciado completo: la clase solo da el resumen."
+        },
+        {
+          "type": "steps",
+          "title": "Qué te piden, en orden",
+          "items": [
+            "**Instalar Snort 2** (la actividad usa la versión 2.9 o cualquier variante de la 2). En los escritorios virtuales puede estar ya instalado.",
+            "**Definir variables de red** (por ejemplo, red local, servidor web y red externa) en la configuración.",
+            "**Escribir reglas**: una que detecte el método GET en los primeros caracteres de los paquetes que van de Internet al sitio web; otra que detecte un intento de explotar el servidor Apache Tomcat mediante comandos PUT con un contenido concreto; y otra más según el enunciado.",
+            "**Entregar solo el fichero de reglas con extensión .rules.** Cualquier otro formato no puntúa (en la ACT1 se suspendió a quien no entregó el CSV pedido)."
+          ]
+        },
+        {
+          "type": "list",
+          "title": "Evaluación y consejos",
+          "items": [
+            "Cada variable y cada regla tiene su peso. En las reglas se resta **0,75 por cada fallo** y con **3 o más fallos** esa regla puntúa 0, (la misma lógica de «tres fallos = 0» que en iptables).",
+            "Es habitual perder puntos por confundir **offset/depth** con **distance/within**, por olvidar parámetros que pide el enunciado o por mezclar sintaxis de Snort 2 y 3.",
+            "No hace falta una configuración de red perfecta: lo que importa es **probar que la regla detecta el tráfico** correcto. Puedes simular ese tráfico de una forma sencilla.",
+            "Mantén tus reglas en un fichero propio (local.rules) y prueba con el modo NIDS (-c) y, si quieres, con una captura (-r).",
+            "Si ves que las sesiones por consola se atascan (acceso por telnet), pulsa Enter varias veces.",
+            "Las dudas van al foro de la actividad 2; no se publican soluciones."
+          ]
+        },
+        {
+          "type": "key",
+          "text": "La ACT2 trata de definir variables y escribir reglas correctas de Snort 2, entregando únicamente el fichero .rules. Practica sobre todo la diferencia entre posiciones absolutas (offset/depth) y relativas (distance/within)."
         }
       ]
     }
@@ -1109,7 +1299,12 @@
     "Los sistemas trampa atraen al atacante: distraen, detectan con pocos falsos positivos y aceleran la respuesta.",
     "Baja interacción emula (poco riesgo, poca información); alta interacción usa sistemas reales con datos falsos (mucha información, más riesgo); media virtualiza la aplicación.",
     "Honeynet = red entera de equipos reales para investigación. Padded cell = el IDS redirige al atacante a un entorno aislado (por ejemplo, Bait and Switch con Snort).",
-    "Snort: modos sniffer, logger y NIDS; cadena sniffer → preprocesador → motor → salida; reglas con cabecera (acción, protocolo, extremos, sentido) y opciones (msg, sid, rev)."
+    "Snort: modos sniffer, logger y NIDS; cadena sniffer → preprocesador → motor → salida; reglas con cabecera (acción, protocolo, extremos, sentido) y opciones (msg, sid, rev).",
+    "Snort se coloca detrás del cortafuegos y siempre combinado con él: un IDS solo detecta; con cortafuegos forma un IPS.",
+    "Snort 2 es la versión de la asignatura; las reglas se migran a Snort 3 con snort2lua. En Snort 2 se puede partir una regla con barra invertida; en Snort 3 no.",
+    "offset/depth son posiciones absolutas desde el inicio del paquete; distance/within son relativas a la última coincidencia.",
+    "threshold (limit, threshold, both) controla cuántas alertas se emiten; flags:S detecta SYN; flow to_client,established y file_data permiten analizar descargas.",
+    "ACT2: definir variables y escribir reglas; se entrega solo el fichero .rules."
   ],
   "glossary": [
     {
@@ -1199,6 +1394,34 @@
     {
       "term": "sid / rev",
       "text": "Opciones de una regla de Snort: identificador único de la regla y número de revisión."
+    },
+    {
+      "term": "snort2lua",
+      "text": "Utilidad que convierte reglas de Snort 2 al formato de Snort 3."
+    },
+    {
+      "term": "Suricata",
+      "text": "Otro IDS/IPS de código abierto, competidor de Snort."
+    },
+    {
+      "term": "Variable (Snort)",
+      "text": "Nombre que representa una red, un puerto o un servidor, para reutilizarlo en muchas reglas y cambiarlo en un solo sitio."
+    },
+    {
+      "term": "offset / depth / distance / within",
+      "text": "Opciones que delimitan dónde busca un content: offset y depth desde el inicio del paquete; distance y within desde la última coincidencia."
+    },
+    {
+      "term": "threshold (Snort)",
+      "text": "Opción que limita cuántas alertas se emiten: tipo limit, threshold o both, contando por IP de origen en una ventana de tiempo."
+    },
+    {
+      "term": "flags:S",
+      "text": "Condición de una regla que comprueba que el paquete TCP lleva activado el flag SYN (inicio de conexión)."
+    },
+    {
+      "term": "local.rules",
+      "text": "Fichero propio donde conviene guardar tus reglas, separadas de las de ejemplo."
     }
   ],
   "questions": {
