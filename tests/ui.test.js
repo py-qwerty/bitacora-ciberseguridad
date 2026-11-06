@@ -13,7 +13,7 @@ function runtime(){
  const window={addEventListener(){},scrollX:0,scrollY:0,scrollTo(){},innerHeight:700};
  const sandbox={...core,document,window,localStorage:{getItem:k=>storage.get(k)||null,setItem:(k,v)=>storage.set(k,v),key:i=>[...storage.keys()][i],get length(){return storage.size}},location:{hash:'#/temas'},setInterval:()=>1,clearInterval(){},setTimeout,clearTimeout,URLSearchParams,Map,Set,Date,Math,JSON,Number,String,Object,Array,performance:{now:()=>0},crypto:{randomUUID:()=> 'simulation-1'},matchMedia:()=>({matches:true}),innerWidth:390};
  ctx=vm.createContext(sandbox);const script=readFileSync(new URL('../dist/app.js',import.meta.url),'utf8').replace(/^import .*?;\n/,'').replace(/init\(\);\s*$/,'');
- vm.runInContext(script+`\nglobalThis.api={seed(data){bank=data;questionMap=new Map(bank.questions.map(q=>[q.id,q]));practiceMap=new Map(bank.topics.map(t=>[t.id,practiceBlocks(bank.questions,t.id)]));},home,coursePage,topicPage,practicePage,setup,resultsPage,historyPage,explanation,read,write,getPractice,savePractice,autoAdvanceEnabled,navigationContext,render,startExam,session:()=>session,temaPage,toggleStudied,temaProgress,seedTema(n,data){temaIndex.set(n,{topic:n,sections:data.sections.length,minutes:data.minutes});temaCache.set(n,{status:'ready',data});}};`,ctx);
+ vm.runInContext(script+`\nglobalThis.api={seed(data){bank=data;questionMap=new Map(bank.questions.map(q=>[q.id,q]));practiceMap=new Map(bank.topics.map(t=>[t.id,practiceBlocks(bank.questions,t.id)]));},home,coursePage,topicPage,practicePage,setup,resultsPage,historyPage,explanation,read,write,getPractice,savePractice,autoAdvanceEnabled,navigationContext,render,startExam,session:()=>session,temaPage,diagramBlock,toggleStudied,temaProgress,seedTema(n,data){temaIndex.set(n,{topic:n,sections:data.sections.length,minutes:data.minutes});temaCache.set(n,{status:'ready',data});}};`,ctx);
  ctx.api.seed(fixture());return {api:ctx.api,ctx,elements,get,events,storage};
 }
 test('subject hierarchy and all30 entry render without simulation state',()=>{const {api}=runtime();assert.match(api.home(),/Asignaturas/);assert.match(api.coursePage('sistemas'),/Windows Server/);assert.match(api.topicPage(11),/Test completo/);assert.match(api.topicPage(11),/#\/practica\/11\/0/);assert.match(api.setup(),/45 minutos es orientativa/);});
@@ -124,3 +124,13 @@ test('checked practice feedback links to the digital topic section and argues ev
  assert.match(html,/Argumentación opción por opción/);assert.match(html,/Motivo D/);assert.match(html,/Repasar en el tema digital: El dominio/);assert.match(html,/✕ Incorrecta · Tu respuesta/);
 });
 test('topic without digital content has no digital route',()=>{const {api}=runtime();assert.match(api.temaPage(11),/No encontramos esa página/);});
+test('diagram blocks render every kind as accessible markup and escape text',()=>{
+ const {api}=runtime();const n=(icon,title,text)=>({icon,title,text});
+ const hub=api.diagramBlock({type:'diagram',kind:'hub',title:'Dominio <i>',frame:n('building','Dominio'),hub:{...n('server-2','DC','Un servidor'),chips:[{icon:'key',text:'Claves'}]},members:[n('device-desktop','PC')],arrow:'¿Entra?'});
+ assert.match(hub,/<figure class="tb-diagram dg-hub">/);assert.match(hub,/dg-frame/);assert.match(hub,/dg-chips/);assert.match(hub,/aria-hidden="true"/);assert.ok(!hub.includes('<i>'));assert.match(hub,/&lt;i&gt;/);
+ const flow=api.diagramBlock({type:'diagram',kind:'flow',title:'Pasos',items:[n('user','Uno'),n('server','Dos'),n('check','Tres')],links:['pide','responde']});
+ assert.equal((flow.match(/dg-link/g)||[]).length,2);assert.match(flow,/<ol class="dg-flow">/);assert.match(flow,/pide/);
+ assert.match(api.diagramBlock({type:'diagram',kind:'layers',title:'Capas',items:[n('building','Fuera'),n('shield','Dentro')]}),/--d:1/);
+ const cmp=api.diagramBlock({type:'diagram',kind:'compare',title:'Cmp',columns:[{icon:'check',title:'Bien',tone:'good',items:['a']},{icon:'x',title:'Mal',tone:'bad',items:['b']}]});
+ assert.match(cmp,/tone-good/);assert.match(cmp,/tone-bad/);
+});

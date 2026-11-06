@@ -515,6 +515,7 @@
             ["Todo el flujo", "Auditoría, trazabilidad, monitorización, gestión de claves y políticas dinámicas."]
           ]
         },
+        {"type": "diagram", "kind": "flow", "title": "El recorrido de los datos y sus controles", "caption": "En todo el flujo: auditoría, monitorización y gestión de claves.", "items": [{"icon": "transfer-in", "title": "Ingesta", "text": "Autenticar y validar el origen"}, {"icon": "database", "title": "Almacenamiento", "text": "Cifrado y acceso granular"}, {"icon": "cpu", "title": "Procesamiento y análisis", "text": "Políticas en los motores"}, {"icon": "report-analytics", "title": "Presentación", "text": "Mostrar solo lo permitido"}], "links": ["Datos entran", "Datos guardados", "Resultados"]},
         {
           "type": "term",
           "term": "Ingesta",
@@ -592,6 +593,7 @@
             ["Otros", "HBase (base de datos), Spark (procesamiento en memoria), Kafka (flujos de eventos), ZooKeeper (coordinación), Oozie (planificación de trabajos).", "Servicios auxiliares de la biblioteca."]
           ]
         },
+        {"type": "diagram", "kind": "hub", "title": "HDFS: quién guarda y quién sabe dónde", "caption": "Cada archivo se trocea en bloques y se replica entre nodos.", "frame": {"icon": "database", "title": "HDFS", "text": "Almacenamiento distribuido"}, "hub": {"icon": "layout-list", "title": "NameNode", "text": "Nodo maestro con los metadatos", "tone": "accent", "chips": [{"icon": "file", "text": "Qué bloques forman cada archivo"}, {"icon": "map-pin", "text": "Dónde está cada bloque"}]}, "direction": "out", "arrow": "Los bloques viven en los DataNodes", "members": [{"icon": "server", "title": "DataNode 1", "text": "Guarda bloques de datos"}, {"icon": "server", "title": "DataNode 2", "text": "Guarda bloques de datos"}, {"icon": "server", "title": "DataNode 3", "text": "Guarda bloques de datos"}]},
         {
           "type": "p",
           "text": "Esa misma arquitectura que lo hace potente lo expone: es **distribuido**, sus nodos son **heterogéneos**, ofrece **muchos servicios y API** y por dentro circulan datos sensibles, metadatos y flujos internos."
@@ -650,6 +652,7 @@
             ["Proyecto Rhino", "Iniciativa que añade a Hadoop cifrado y gestión de claves, un marco común de autorización, sesión única con tokens, ACL más finas en HBase y mejor auditoría."]
           ]
         },
+        {"type": "diagram", "kind": "hub", "title": "Quién protege qué en un clúster Hadoop", "hub": {"icon": "topology-star-3", "title": "Clúster Hadoop", "text": "Muchos nodos y servicios"}, "direction": "out", "arrow": "Cada herramienta cubre una parte", "members": [{"icon": "door-enter", "title": "Knox", "text": "Punto único de entrada REST"}, {"icon": "ticket", "title": "Kerberos", "text": "Autentica con tiques y keytabs"}, {"icon": "gavel", "title": "Ranger", "text": "Políticas de acceso y auditoría"}, {"icon": "key", "title": "KMS", "text": "Claves de las zonas de cifrado"}]},
         {
           "type": "p",
           "text": "**Cifrado en reposo.** HDFS ofrece **cifrado transparente** mediante **zonas de cifrado**: directorios especiales cuyo contenido se cifra al escribir y se descifra al leer automáticamente, **sin cambiar la aplicación cliente**, usando claves gestionadas por el **KMS**. **Cifrado en tránsito**: TLS/SSL en RPC, HttpFS y API REST, bien configurado para evitar downgrade y algoritmos débiles."

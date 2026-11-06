@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-import {shuffle,signature,generateExam,gradeExam,remaining,formatTime,practiceBlocks,topicQuestions,validPractice,isValidSession,swipeDirection,validateBank,validateTema,DURATION} from '../dist/core.js';
+import {ICONS,shuffle,signature,generateExam,gradeExam,remaining,formatTime,practiceBlocks,topicQuestions,validPractice,isValidSession,swipeDirection,validateBank,validateTema,DURATION} from '../dist/core.js';
 export function fixture(){
  const courses=[{id:'sistemas',title:'Sistemas',shortTitle:'Sistemas'},{id:'redes',title:'Redes',shortTitle:'Redes'}];
  const topics=[{id:11,course:'sistemas',number:1,title:'Windows Server'},{id:12,course:'sistemas',number:2,title:'Linux'},{id:21,course:'redes',number:1,title:'Redes'}];
@@ -30,4 +30,13 @@ function tema(){return {course:'sistemas',number:1,title:'Windows Server',intro:
 test('digital topic validation requires the topic questions argued per option',()=>{
  assert.equal(validateTema(tema(),bank).id,11);
  for(const mutate of [t=>t.number=9,t=>delete t.questions[Object.keys(t.questions)[0]],t=>t.questions.extra={},t=>Object.values(t.questions)[0].section='nada',t=>delete Object.values(t.questions)[0].options.d,t=>t.sections[0].blocks[0].type='video',t=>t.sections[0].blocks[0].text='  ',t=>t.sections[0].blocks[1].rows=[['1']],t=>t.sections.push({...t.sections[0]}),t=>t.sections[0].id='Mal Id',t=>Object.values(t.questions)[0].doubt='']){const t=tema();mutate(t);assert.throws(()=>validateTema(t,bank));}
+});
+test('diagram blocks are validated: closed icon list, shapes and sizes',()=>{
+ const node=(icon='server',title='Pieza')=>({icon,title});
+ const ok=[{type:'diagram',kind:'hub',title:'T',hub:{...node(),chips:[{icon:'key',text:'c'}]},members:[node('user')],direction:'in',arrow:'a',frame:node('building')},{type:'diagram',kind:'flow',title:'T',items:[node(),node('user')],links:['x']},{type:'diagram',kind:'layers',title:'T',items:[node(),node('user')]},{type:'diagram',kind:'compare',title:'T',columns:[{...node('check'),tone:'good',items:['a']},{...node('x'),tone:'bad',items:['b']}]}];
+ for(const b of ok){const t=tema();t.sections[0].blocks.push(JSON.parse(JSON.stringify(b)));assert.equal(validateTema(t,bank).id,11);}
+ const breaks=[b=>b.kind='otro',b=>delete b.title,b=>{b.items=[node()]},b=>{b.items[0].icon='icono-que-no-existe'},b=>{b.items[0].tone='rojo'},b=>{b.links=['a','b']},b=>{b.items[1].text=' '}];
+ for(const m of breaks){const t=tema();const b=JSON.parse(JSON.stringify(ok[1]));m(b);t.sections[0].blocks.push(b);assert.throws(()=>validateTema(t,bank));}
+ const t=tema();const h=JSON.parse(JSON.stringify(ok[0]));h.members=[];t.sections[0].blocks.push(h);assert.throws(()=>validateTema(t,bank));
+ assert.ok(ICONS.server&&ICONS['server-2']);
 });

@@ -1,4 +1,4 @@
-import { DURATION, EXAM_SIZE, generateExam, gradeExam, remaining, formatTime, isValidSession, practiceBlocks, topicQuestions, baseQuestions, validPractice, swipeDirection, validateBank, validateTema } from './core.js?v=6';
+import { DURATION, EXAM_SIZE, generateExam, gradeExam, remaining, formatTime, isValidSession, practiceBlocks, topicQuestions, baseQuestions, validPractice, swipeDirection, validateBank, validateTema, ICONS } from './core.js?v=7';
 const $ = s => document.querySelector(s);
 const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const number = n => n.toLocaleString('es-ES');
@@ -99,6 +99,28 @@ function pageLinks(topic,pages){
   const label=pages.length>1&&pages[pages.length-1]!==pages[0]?`Páginas ${pages[0]}–${pages[pages.length-1]}`:`Página ${pages[0]}`;
   return m?`<a class="page-ref" href="${esc(m.url)}#page=${pages[0]}" target="_blank" rel="noopener">${label} del PDF <span aria-hidden="true">↗</span></a>`:`<span class="page-ref">${label} del PDF</span>`;
 }
+// Esquemas con iconos de los temas (bloque «diagram»): todo el texto pasa por esc/rich y los iconos salen de una lista cerrada.
+const dgIcon = name => `<svg class="dg-ico" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">${ICONS[name]||''}</svg>`;
+const dgNode = (n, tone, tag = 'div', extra = '') => `<${tag} class="dg-node${n.tone || tone ? ` tone-${n.tone || tone}` : ''}${extra}"><span class="dg-icon">${dgIcon(n.icon)}</span><span class="dg-text"><b>${rich(n.title)}</b>${n.text ? `<small>${rich(n.text)}</small>` : ''}</span></${tag}>`;
+const dgLine = (dir, label) => `<span class="dg-wire dg-wire-${dir}" aria-hidden="true"></span>${label ? `<span class="dg-wire-label">${rich(label)}</span>` : ''}`;
+function diagramBlock(b){
+  const cap = `<figcaption><b>${rich(b.title)}</b>${b.caption ? `<span>${rich(b.caption)}</span>` : ''}</figcaption>`;
+  let body = '';
+  if (b.kind === 'hub') {
+    const dir = b.direction || 'in';
+    const chips = b.hub.chips?.length ? `<ul class="dg-chips">${b.hub.chips.map(c => `<li>${dgIcon(c.icon)}<span>${rich(c.text)}</span></li>`).join('')}</ul>` : '';
+    const row = `<div class="dg-hub-row"><div class="dg-center">${dgNode(b.hub, '', 'div', ' dg-solid')}${chips}</div><div class="dg-bus">${dgLine(dir, b.arrow)}</div><ul class="dg-members">${b.members.map(m => `<li>${dgNode(m, '')}</li>`).join('')}</ul></div>`;
+    body = b.frame ? `<div class="dg-frame"><div class="dg-frame-head">${dgIcon(b.frame.icon)}<b>${rich(b.frame.title)}</b>${b.frame.text ? `<small>${rich(b.frame.text)}</small>` : ''}</div>${row}</div>` : row;
+  } else if (b.kind === 'flow') {
+    body = `<ol class="dg-flow">${b.items.map((n, i) => `<li>${dgNode(n, '')}</li>${i < b.items.length - 1 ? `<li class="dg-link">${dgLine('out', b.links?.[i])}</li>` : ''}`).join('')}</ol>`;
+  } else if (b.kind === 'layers') {
+    const nest = i => `<div class="dg-layer" style="--d:${i}">${dgNode(b.items[i], '', 'div', ' dg-plain')}${i < b.items.length - 1 ? nest(i + 1) : ''}</div>`;
+    body = nest(0);
+  } else {
+    body = `<div class="dg-compare">${b.columns.map(c => `<section class="dg-col tone-${c.tone || 'accent'}">${dgNode(c, '', 'div', ' dg-plain')}<ul>${c.items.map(i => `<li>${rich(i)}</li>`).join('')}</ul></section>`).join('')}</div>`;
+  }
+  return `<figure class="tb-diagram dg-${b.kind}">${cap}<div class="dg-body">${body}</div></figure>`;
+}
 function temaBlock(b){
   const title=b.title?`<h4>${rich(b.title)}</h4>`:'';
   switch(b.type){
@@ -111,6 +133,7 @@ function temaBlock(b){
     case 'example':return `<aside class="tb tb-example"><span class="tb-label">Ejemplo</span>${title}<p>${rich(b.text)}</p></aside>`;
     case 'exam':return `<aside class="tb tb-exam"><span class="tb-label">Así cae en el test</span>${title}<p>${rich(b.text)}</p></aside>`;
     case 'code':return `<figure class="tb-code">${b.title?`<figcaption>${rich(b.title)}</figcaption>`:''}<pre><code>${esc(b.text)}</code></pre></figure>`;
+    case 'diagram':return diagramBlock(b);
     case 'key':return `<aside class="tb tb-key"><span class="tb-label">Idea clave</span><p>${rich(b.text)}</p></aside>`;
     default:return '';
   }

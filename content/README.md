@@ -24,3 +24,7 @@ Los ejercicios de normativa se interpretan en el contexto y versión citados. Se
 Las claves de práctica están razonadas para el aprendizaje. La revisión editorial y las pruebas de integridad no equivalen a validación independiente de cada respuesta por el profesorado. El banco no es un examen oficial.
 
 `clases/` contiene las «preguntas de clase»: hasta diez por tema, basadas en lo que los profesores remarcaron en las clases grabadas. No cuentan en las 1.500 del banco base ni en el test completo de 30; forman un test aparte por tema (`fromClass: true`).
+
+## Esquemas con iconos
+
+Un apartado puede incluir `{ "type": "diagram", "kind": "hub|flow|layers|compare", ... }`. Los iconos salen de la lista cerrada `ICONS` de `dist/core.js` (Tabler Icons, licencia MIT) y `validateTema` rechaza iconos o formas no válidos. Solo se permite **negrita** en los textos.

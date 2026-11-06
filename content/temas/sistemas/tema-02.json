@@ -413,6 +413,7 @@
             ]
           ]
         },
+        {"type":"diagram","kind":"flow","title":"Las tres capas de un monolito","caption":"Todo en el mismo edificio, pero cada zona con su función.","items":[{"icon":"browser","title":"Presentación","text":"Interfaz: el comedor"},{"icon":"settings","title":"Lógica de negocio","text":"Reglas y decisiones: la cocina"},{"icon":"database","title":"Acceso a datos","text":"Lee y escribe en la BD: la despensa"}],"links":["envía lo que hace el usuario","pide datos"]},
         {
           "type": "p",
           "text": "Dividir en capas tiene ventajas: **separación de tareas y responsabilidades**, piezas reutilizables y la posibilidad de **repartir las capas entre varios servidores** para escalar. El precio es más complejidad, porque hay que controlar el acceso y vigilar la comunicación entre capas."
@@ -757,6 +758,7 @@
             "Cada microservicio tiene **su propio servidor de aplicaciones y su propio motor de base de datos**. Con Spring Boot se crean con facilidad servicios REST."
           ]
         },
+        {"type":"diagram","kind":"hub","title":"Microservicios: la pasarela reparte las peticiones","caption":"Cada microservicio tiene su propio servidor y su base de datos.","hub":{"icon":"api","title":"Pasarela de API (API Gateway)","text":"Recibe y redirige cada petición","chips":[{"icon":"list-check","text":"Pregunta al registro (Eureka)"}]},"direction":"out","arrow":"redirige al servicio adecuado","members":[{"icon":"box","title":"Productos","text":"Microservicio independiente"},{"icon":"box","title":"Carrito","text":"Microservicio independiente"},{"icon":"box","title":"Pagos","text":"Microservicio independiente"}]},
         {
           "type": "p",
           "text": "Esa independencia aporta ventajas de monitorización y escalabilidad, y se gestiona bien con **contenedores (Docker) y Kubernetes**, que es la tendencia actual."
@@ -1289,6 +1291,7 @@
             "Defensa: incluir en el formulario un campo que la aplicación pueda validar (un valor secreto e impredecible) y que la web del atacante no conoce."
           ]
         },
+        {"type":"diagram","kind":"flow","title":"El ataque CSRF paso a paso","items":[{"icon":"user","title":"Administrador","text":"Tiene la sesión abierta"},{"icon":"bug","title":"Web del atacante","text":"Formulario oculto","tone":"bad"},{"icon":"cookie","title":"Petición con su cookie","text":"El navegador la envía solo","tone":"warn"},{"icon":"server","title":"La aplicación","text":"Crea el usuario del atacante","tone":"bad"}],"links":["visita","se envía","se fía de la cookie"]},
         {
           "type": "analogy",
           "text": "El CSRF es como si alguien te pasara un papel para firmar entre otros muchos y tú, con tu firma auténtica, autorizaras sin darte cuenta una transferencia. El banco ve tu firma válida y la ejecuta. La defensa es pedir además un código que solo tú tienes en ese momento."

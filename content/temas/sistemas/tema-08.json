@@ -99,6 +99,7 @@
             "El cliente debería responder **ACK** («perfecto, empezamos»). En el ataque volumétrico este tercer paso **nunca llega**: el servidor se queda con miles de conexiones medio abiertas (half-open) ocupando memoria."
           ]
         },
+        {"type":"diagram","kind":"flow","title":"El saludo TCP y el ataque de la conexión a medio hacer","caption":"En el ataque volumétrico el tercer paso nunca llega.","items":[{"icon":"device-desktop","title":"Cliente","text":"Envía SYN: «quiero hablar»"},{"icon":"server-2","title":"Servidor","text":"Reserva memoria y responde SYN-ACK"},{"icon":"x","title":"ACK que no llega","text":"Conexión half-open ocupando memoria","tone":"bad"}],"links":["SYN","SYN-ACK"]},
         {
           "type": "p",
           "text": "TCP (Transmission Control Protocol) es el protocolo que garantiza que los datos llegan completos y en orden; antes de hablar, cliente y servidor se saludan en tres pasos. Los ataques de inundación TCP/IP abusan justamente de ese saludo. Pero también hay ataques DoS pensados específicamente para aplicaciones web, que van por HTTP:"
@@ -412,6 +413,7 @@
             ["Qué puede hacer", "Bloquear la petición.", "Bloquear la solicitud, cerrar la sesión, deshabilitar una función, cortar la conexión."]
           ]
         },
+        {"type":"diagram","kind":"compare","title":"WAF frente a RASP","caption":"Uno vigila desde fuera; el otro, desde dentro.","columns":[{"icon":"shield","title":"WAF","text":"Fuera, entre cliente y servidor","tone":"accent","items":["Ve el tráfico HTTP","Decide con reglas y expresiones regulares","Bloquea la petición"]},{"icon":"shield-lock","title":"RASP","text":"Dentro de la aplicación","tone":"good","items":["Ve código, estado y variables","Reglas, heurísticas y modelos de comportamiento","Bloquea, cierra sesión o corta la conexión"]}]},
         {
           "type": "table",
           "title": "Modos de operación de RASP",
@@ -592,6 +594,7 @@
             ["Recapitulación", "Documentar y aprender.", "Archivar datos, debatir lecciones aprendidas, informar y formar a los empleados."]
           ]
         },
+        {"type":"diagram","kind":"flow","title":"Las fases de la gestión de un incidente","items":[{"icon":"tool","title":"Preparación","text":"Herramientas listas de antemano"},{"icon":"search","title":"Identificación","text":"Detectar y medir el alcance"},{"icon":"lock","title":"Contención","text":"Impedir que se extienda"},{"icon":"flame","title":"Erradicación","text":"Reinstalar o restaurar backup"},{"icon":"book-2","title":"Recapitulación","text":"Documentar y aprender"}],"links":["Ocurre algo","Se conoce el alcance","Ya contenido","Sistema limpio"]},
         {
           "type": "term",
           "term": "CERT (Computer Emergency Response Team)",

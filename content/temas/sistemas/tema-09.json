@@ -117,6 +117,7 @@
             "Recurso"
           ]
         },
+        {"type": "diagram", "kind": "layers", "title": "Qué va dentro de qué en Azure", "items": [{"icon": "sitemap", "title": "Grupo de administración", "text": "Agrupa varias suscripciones"}, {"icon": "wallet", "title": "Suscripción", "text": "Facturación y frontera de acceso"}, {"icon": "folder", "title": "Grupo de recursos", "text": "Recursos con el mismo ciclo de vida"}, {"icon": "server-2", "title": "Recurso", "text": "Máquina virtual, base de datos..."}]},
         {
           "type": "term",
           "term": "Ámbito (scope)",
@@ -511,6 +512,7 @@
             ["¿Dónde?", "Ámbito", "Grupo de administración, suscripción, grupo de recursos o recurso."]
           ]
         },
+        {"type": "diagram", "kind": "hub", "title": "Una asignación de rol junta tres piezas", "caption": "Sin asignación no hay acceso, aunque el rol exista.", "hub": {"icon": "link", "title": "Asignación de rol", "text": "Concede el acceso"}, "direction": "in", "arrow": "Se unen en la asignación", "members": [{"icon": "users", "title": "¿Quién?", "text": "Usuario, grupo o entidad de servicio"}, {"icon": "user-cog", "title": "¿Qué?", "text": "Definición de rol: Colaborador, Lector..."}, {"icon": "map-pin", "title": "¿Dónde?", "text": "El ámbito: el más pequeño que sirva"}]},
         {
           "type": "p",
           "text": "Una **asignación de roles** enlaza un rol con una identidad dentro de un ámbito concreto para conceder acceso. **Para conceder acceso hay que crear la asignación; para revocarlo hay que eliminarla.**"
@@ -609,6 +611,7 @@
             ["Secretos", "Datos pequeños (menos de 10 KB) protegidos por una clave del almacén.", "Cadenas de conexión SQL, claves de almacenamiento, contraseñas, claves de API."]
           ]
         },
+        {"type": "diagram", "kind": "hub", "title": "Key Vault entre la aplicación y sus secretos", "caption": "La aplicación pide la operación; la clave no sale del almacén.", "hub": {"icon": "lock", "title": "Azure Key Vault", "text": "Almacén central con registro de accesos", "tone": "good", "chips": [{"icon": "password", "text": "Secretos"}, {"icon": "key", "text": "Claves"}, {"icon": "certificate", "text": "Certificados"}]}, "direction": "in", "arrow": "«Cifra o firma esto por mí»", "members": [{"icon": "code", "title": "Aplicación", "text": "Nunca recibe la clave"}, {"icon": "user-shield", "title": "Administradores", "text": "Las mínimas personas necesarias"}]},
         {
           "type": "term",
           "term": "HSM (Hardware Security Module, módulo de seguridad de hardware)",

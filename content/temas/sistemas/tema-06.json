@@ -300,6 +300,7 @@
           "type": "p",
           "text": "Con PreparedStatement, si el atacante envía `' OR '1'='1`, la base de datos buscará literalmente un usuario cuyo id sea ese texto raro, no encontrará ninguno y no pasará nada. Es la solución **principal, más robusta y estándar** en Java contra SQLi (también es la recomendación de la OWASP SQL Injection Prevention Cheat Sheet)."
         },
+        {"type":"diagram","kind":"compare","title":"Consulta SQL: concatenar frente a PreparedStatement","columns":[{"icon":"bug","title":"Concatenar el texto","tone":"bad","items":["La entrada se pega dentro de la consulta.","' OR '1'='1 se vuelve parte del comando.","La condición siempre es verdadera.","El atacante obtiene todos los usuarios."]},{"icon":"shield-lock","title":"PreparedStatement","tone":"good","items":["Primero va la estructura con huecos ?","Los valores van después, por separado.","Lo del hueco es siempre un dato.","No encuentra ningún usuario: no pasa nada."]}]},
         {
           "type": "exam",
           "text": "Trampas típicas ante «el desarrollador concatena la entrada en la consulta, ¿qué cambia?»: pasar el formulario de GET a POST (solo cambia cómo viajan los datos, no cómo se usan), validar solo en JavaScript (se elude) o escapar el texto de error (no toca la consulta). La respuesta es **sentencia preparada con parámetros**, que separa la estructura de la consulta de sus valores. Y no confundas SQLi con inyectar comandos Bash (eso es CWE-78) ni con manipular cabeceras (CWE-113)."
@@ -415,6 +416,7 @@
             "Al procesar la acción (doPost), comprobar que el token recibido coincide con el de la sesión; si no, rechazar."
           ]
         },
+        {"type":"diagram","kind":"compare","title":"CSRF: sin token frente a con token","columns":[{"icon":"lock-open","title":"Sin token anti-CSRF","tone":"bad","items":["Se confía solo en la cookie de sesión.","El navegador adjunta la cookie válida.","La petición de Bob parece de Alice.","Se borra la cuenta sin permiso."]},{"icon":"shield-check","title":"Con token anti-CSRF","tone":"good","items":["Token secreto, aleatorio y único.","Va en el formulario y en la sesión.","Bob no puede conocerlo.","El servidor rechaza la petición."]}]},
         {
           "type": "code",
           "title": "Campo oculto con el token en la JSP",
@@ -674,6 +676,7 @@
           "type": "p",
           "text": "Solución SSRF: **lista blanca estricta** de URL, **protocolos** y **hosts** permitidos y, a la vez, **bloquear direcciones internas** (localhost, IP privadas)."
         },
+        {"type":"diagram","kind":"hub","title":"SSRF: el servidor llega donde tú no podrías","frame":{"icon":"building","title":"Red interna del servidor","text":"Invisible desde fuera"},"hub":{"icon":"server-2","title":"Servidor de la aplicación","text":"Hace la petición a la URL recibida"},"direction":"out","arrow":"URL que envía el atacante","members":[{"icon":"settings","title":"Panel de administración","text":"http://127.0.0.1/admin","tone":"bad"},{"icon":"cloud","title":"Metadatos de la nube","text":"169.254.169.254, a veces credenciales","tone":"bad"},{"icon":"network","title":"Intranet y servicios internos","text":"Recursos que desde fuera no se ven","tone":"bad"}],"caption":"Defensa: lista blanca estricta de URL, protocolos y hosts permitidos."},
         {
           "type": "exam",
           "text": "Para CWE-611 la mitigación es **desactivar la carga de entidades externas (y las declaraciones DOCTYPE) en el analizador XML**; usar expresiones regulares, validar solo el tamaño, aceptar entidades porque el archivo termine en .xml o confiar porque el documento venga de un usuario autenticado no resuelve nada. Para CWE-918 el riesgo típico es **acceder a redes internas a través del servidor vulnerable** (no capturar teclas ni interceptar tráfico entre usuarios), y la defensa es **restringir protocolos y destinos con lista permitida**; comprobar solo que la URL empieza por http no basta."

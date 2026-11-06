@@ -372,6 +372,7 @@
           "type": "p",
           "text": "La defensa es sencilla y está en todas las listas del tema: **crear un ID nuevo justo después de autenticar** e invalidar el anterior. Así el ID que conocía el atacante deja de valer en el momento clave. En Spring Security, por ejemplo, se configura con sessionFixation().migrateSession()."
         },
+        {"type":"diagram","kind":"flow","title":"Fijación de sesión: el atacante elige tu ID antes del login","items":[{"icon":"spy","title":"El atacante obtiene un ID","text":"Visita la web: recibe abc123","tone":"bad"},{"icon":"link","title":"Te lo impone","text":"Enlace con ;jsessionid=abc123","tone":"bad"},{"icon":"user","title":"Inicias sesión","text":"La web marca abc123 como autenticado"},{"icon":"door-enter","title":"El atacante entra","text":"Usa abc123 y es tú","tone":"bad"}],"links":["envía el enlace","se autentica","usa el ID conocido"],"caption":"Defensa: crear un ID nuevo justo después de autenticar."},
         {
           "type": "table",
           "title": "Fijación frente a secuestro",
@@ -435,6 +436,7 @@
           "term": "Token anti-CSRF",
           "text": "Valor aleatorio y secreto que la aplicación mete en cada formulario (normalmente en un campo oculto) y que el servidor **comprueba antes de procesar** el resto de datos. La web del atacante no puede conocerlo, así que su petición falsa llega sin él o con uno incorrecto y se **rechaza**. Sirve para **validar la procedencia** de la petición y debe ser único en cada petición."
         },
+        {"type":"diagram","kind":"flow","title":"CSRF: tu navegador envía la petición falsa con tu cookie","items":[{"icon":"user-shield","title":"Administrador con sesión","text":"Tiene sesión activa en sitio.com"},{"icon":"world-www","title":"Visita la web del atacante","text":"Contiene un formulario oculto","tone":"bad"},{"icon":"send","title":"El formulario se envía solo","text":"Apunta a sitio.com","tone":"bad"},{"icon":"cookie","title":"El navegador añade la cookie","text":"La web cree que eres tú","tone":"warn"},{"icon":"user-x","title":"Se crea una cuenta","text":"Cuenta para el atacante","tone":"bad"}],"links":["abre otra página","al cargarse","la cookie va sola","la acepta"],"caption":"El token anti-CSRF hace que esa petición falsa se rechace."},
         {
           "type": "p",
           "text": "Con una **API que usa JWT** en una cabecera de la petición no hace falta el token anti-CSRF: como el token no viaja en una cookie que el navegador adjunte solo, una web ajena no puede hacer que se envíe."
@@ -929,6 +931,7 @@
             ]
           ]
         },
+        {"type":"diagram","kind":"flow","title":"OAuth 2.0: de tu permiso al acceso a tus datos","items":[{"icon":"user-check","title":"Das permiso","text":"Sin dar tu contraseña de A"},{"icon":"ticket","title":"Código de autorización","text":"Prueba de que diste permiso"},{"icon":"key","title":"Token de acceso","text":"Acceso limitado en alcance y tiempo"},{"icon":"server-2","title":"Datos del sistema A","text":"B los pide con el token"},{"icon":"refresh","title":"Token de refresco","text":"Da un token nuevo al caducar"}],"links":["B recibe","B lo canjea por","B lo presenta para pedir","si caduca, usa el"],"caption":"Quien tenga un token de acceso válido puede usarlo mientras dure."},
         {
           "type": "p",
           "text": "Pregunta clave del tema: si alguien **intercepta un token de acceso**, ¿puede usarlo? **Sí**, durante el tiempo en que sea válido. Es un token «al portador»: lo usa quien lo tiene, como un billete. Por eso la especificación impone medidas para que robarlo sea difícil y para que, si se roba, sirva de poco."

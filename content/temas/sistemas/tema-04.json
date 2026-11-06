@@ -311,6 +311,7 @@
             "(6) El servidor lo descifra con su clave, obtiene la clave de sesión y se establece un canal autenticado."
           ]
         },
+        { "type": "diagram", "kind": "hub", "title": "Kerberos: quién habla con quién", "caption": "El cliente se identifica una sola vez ante el KDC; al servidor solo le enseña un tique.", "hub": { "icon": "server-2", "title": "KDC", "text": "Tercero de confianza", "chips": [ { "icon": "user-check", "text": "AS: da el TGT" }, { "icon": "ticket", "text": "TGS: da tiques de servicio" } ] }, "direction": "both", "arrow": "La contraseña no viaja", "members": [ { "icon": "device-laptop", "title": "Cliente", "text": "Pide TGT y tique de servicio" }, { "icon": "folder-share", "title": "Servidor de destino", "text": "Recibe y descifra el tique" } ] },
         {
           "type": "table",
           "title": "Ataques contra Kerberos",
@@ -394,6 +395,7 @@
           "term": "Firma y su propósito",
           "text": "La firma garantiza la **integridad**: si alguien cambia una coma del header o del payload, la firma deja de cuadrar y el servidor lo detecta. **No** da confidencialidad: el payload está solo en Base64 y cualquiera lo lee. Para ocultarlo hace falta JWE (JSON Web Encryption)."
         },
+        { "type": "diagram", "kind": "compare", "title": "Qué protege la firma de un JWT", "columns": [ { "icon": "shield-check", "title": "Sí protege", "tone": "good", "items": [ "Integridad: detecta cualquier cambio", "Si alguien toca el payload, la firma no cuadra" ] }, { "icon": "eye", "title": "No protege", "tone": "bad", "items": [ "Confidencialidad: el payload se lee", "Solo está en Base64", "Para ocultarlo hace falta JWE" ] } ] },
         {
           "type": "table",
           "title": "Algoritmos de firma",
@@ -725,6 +727,7 @@
             ["Qué entrega", "Código de autorización y token de acceso", "Además, un ID token (JWT)"]
           ]
         },
+        { "type": "diagram", "kind": "compare", "title": "OAuth 2.0 frente a OpenID Connect", "columns": [ { "icon": "key", "title": "OAuth 2.0", "text": "Autorización", "tone": "accent", "items": [ "¿Qué puede hacer esta app en tu nombre?", "Entrega código y token de acceso" ] }, { "icon": "id", "title": "OpenID Connect", "text": "Autenticación sobre OAuth", "tone": "good", "items": [ "¿Quién es este usuario?", "Añade un ID token (un JWT)" ] } ] },
         {
           "type": "list",
           "title": "Ventajas e inconvenientes",

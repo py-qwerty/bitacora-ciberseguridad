@@ -149,6 +149,7 @@
           ],
           "title": "Los tipos de análisis en una tabla"
         },
+        {"type":"diagram","kind":"compare","title":"SAST, DAST e IAST de un vistazo","caption":"Los tres buscan fallos, pero miran la aplicación desde sitios distintos.","columns":[{"icon":"file-code","title":"SAST","text":"Pruebas estáticas","tone":"accent","items":["Caja blanca: ve el código","Analiza fuente, binarios o bytecode","No ejecuta la aplicación"]},{"icon":"bug","title":"DAST","text":"Pruebas dinámicas","tone":"warn","items":["Caja negra (o gris): mira desde fuera","Simula ataques externos","Necesita la aplicación en marcha"]},{"icon":"radar","title":"IAST","text":"Pruebas interactivas","tone":"good","items":["Caja blanca: un agente dentro","Observa el interior mientras se ejecuta","Necesita la aplicación en marcha"]}]},
         {
           "type": "term",
           "term": "Bytecode",
@@ -230,6 +231,7 @@
           ],
           "title": "Fases del SSDLC y análisis asociados"
         },
+        {"type":"diagram","kind":"flow","title":"Qué análisis toca en cada fase del SSDLC","items":[{"icon":"clipboard-check","title":"Análisis y diseño","text":"Completitud de requisitos de seguridad"},{"icon":"code","title":"Desarrollo","text":"SAST y SCA"},{"icon":"microscope","title":"Pruebas o despliegue","text":"Funcional, DAST e IAST"},{"icon":"shield-check","title":"Producción","text":"RASP en ejecución","tone":"good"},{"icon":"report-analytics","title":"Al final","text":"Correlación de resultados"}],"links":["Ya hay código","App ejecutable","Publicada","Juntar informes"]},
         {
           "type": "example",
           "title": "Caso práctico",
@@ -969,6 +971,7 @@
           ],
           "title": "De dónde llegan los hallazgos (por API, ficheros, plugins o CI/CD)"
         },
+        {"type":"diagram","kind":"hub","title":"La correlación junta los hallazgos de todas las fuentes","caption":"Muchos avisos, un solo informe sin duplicados.","hub":{"icon":"report-analytics","title":"Herramienta de correlación","text":"Vista unificada y priorizada","chips":[{"icon":"filter","text":"Elimina duplicados"},{"icon":"list-check","text":"Prioriza por riesgo"},{"icon":"refresh","text":"Sigue el ciclo de vida"}]},"direction":"in","arrow":"Envían sus hallazgos","members":[{"icon":"file-code","title":"SAST","text":"SonarQube, Fortify…"},{"icon":"bug","title":"DAST","text":"OWASP ZAP, Burp Suite…"},{"icon":"packages","title":"SCA","text":"Snyk, Dependency-Check…"},{"icon":"radar","title":"IAST","text":"Contrast, Seeker"},{"icon":"network","title":"Infraestructura y red","text":"Nessus, Qualys, OpenVAS"},{"icon":"box","title":"Contenedores y nube","text":"Trivy, Scout Suite…"}]},
         {
           "type": "term",
           "term": "CWE (Common Weakness Enumeration)",
