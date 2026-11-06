@@ -13,7 +13,7 @@ function runtime(){
  const window={addEventListener(){},scrollX:0,scrollY:0,scrollTo(){},innerHeight:700};
  const sandbox={...core,document,window,localStorage:{getItem:k=>storage.get(k)||null,setItem:(k,v)=>storage.set(k,v),key:i=>[...storage.keys()][i],get length(){return storage.size}},location:{hash:'#/temas'},setInterval:()=>1,clearInterval(){},setTimeout,clearTimeout,URLSearchParams,Map,Set,Date,Math,JSON,Number,String,Object,Array,performance:{now:()=>0},crypto:{randomUUID:()=> 'simulation-1'},matchMedia:()=>({matches:true}),innerWidth:390};
  ctx=vm.createContext(sandbox);const script=readFileSync(new URL('../dist/app.js',import.meta.url),'utf8').replace(/^import .*?;\n/,'').replace(/init\(\);\s*$/,'');
- vm.runInContext(script+`\nglobalThis.api={seed(data){bank=data;questionMap=new Map(bank.questions.map(q=>[q.id,q]));practiceMap=new Map(bank.topics.map(t=>[t.id,practiceBlocks(bank.questions,t.id)]));},home,coursePage,topicPage,practicePage,setup,resultsPage,historyPage,explanation,read,write,getPractice,savePractice,autoAdvanceEnabled,navigationContext,render,startExam,session:()=>session,temaPage,seedTema(n,data){temaIndex.set(n,{topic:n,sections:data.sections.length,minutes:data.minutes});temaCache.set(n,{status:'ready',data});}};`,ctx);
+ vm.runInContext(script+`\nglobalThis.api={seed(data){bank=data;questionMap=new Map(bank.questions.map(q=>[q.id,q]));practiceMap=new Map(bank.topics.map(t=>[t.id,practiceBlocks(bank.questions,t.id)]));},home,coursePage,topicPage,practicePage,setup,resultsPage,historyPage,explanation,read,write,getPractice,savePractice,autoAdvanceEnabled,navigationContext,render,startExam,session:()=>session,temaPage,toggleStudied,temaProgress,seedTema(n,data){temaIndex.set(n,{topic:n,sections:data.sections.length,minutes:data.minutes});temaCache.set(n,{status:'ready',data});}};`,ctx);
  ctx.api.seed(fixture());return {api:ctx.api,ctx,elements,get,events,storage};
 }
 test('subject hierarchy and all30 entry render without simulation state',()=>{const {api}=runtime();assert.match(api.home(),/Asignaturas/);assert.match(api.coursePage('sistemas'),/Windows Server/);assert.match(api.topicPage(11),/Test completo/);assert.match(api.topicPage(11),/#\/practica\/11\/0/);assert.match(api.setup(),/45 minutos es orientativa/);});
@@ -91,6 +91,32 @@ test('digital topic renders sections, grouped argued questions, page links and e
  assert.match(html,/&lt;b&gt;sin HTML&lt;\/b&gt;/);assert.doesNotMatch(html,/<b>sin HTML/);
  assert.match(html,/Para revisar:<\/b> Clave discutible/);assert.match(html,/#\/tema\/11\/estudio\?apartado=gpo/);assert.match(html,/Glosario/);
  assert.match(api.topicPage(11),/Estudiar el tema →/);assert.match(api.coursePage('sistemas'),/Tema digital/);assert.doesNotMatch(api.topicPage(12),/Estudiar el tema/);
+});
+test('digital topic starts without progress and lets the student mark sections as studied',()=>{
+ const {api}=runtime();api.seed(fixture());api.seedTema(11,temaFixture());
+ let html=api.temaPage(11);
+ assert.match(html,/<b>0<\/b> de 2 apartados estudiados/);assert.match(html,/aria-pressed="false"/);assert.doesNotMatch(html,/Continuar donde lo dejaste/);assert.doesNotMatch(html,/is-studied/);
+ assert.equal(api.toggleStudied(11,'dominio'),true);
+ html=api.temaPage(11);
+ assert.match(html,/<b>1<\/b> de 2 apartados estudiados/);assert.match(html,/data-section="dominio"[^>]*aria-pressed="true"/);assert.match(html,/<li data-section-li="dominio" class="is-studied">/);assert.match(html,/<progress max="2" value="1"/);
+ assert.equal(api.toggleStudied(11,'dominio'),false);assert.match(api.temaPage(11),/<b>0<\/b> de 2 apartados estudiados/);
+});
+test('digital topic remembers the last section and offers to continue from there',()=>{
+ const {api}=runtime();api.seed(fixture());api.seedTema(11,temaFixture());
+ api.write('tema:11',{studied:{gpo:true},last:'gpo'});
+ const html=api.temaPage(11);
+ assert.match(html,/Continuar donde lo dejaste · apartado 2/);assert.match(html,/href="#\/tema\/11\/estudio\?apartado=gpo" data-resume="gpo"/);
+ const card=api.topicPage(11);assert.match(card,/Continuar el tema →/);assert.match(card,/1 estudiados/);assert.match(card,/apartado=gpo/);assert.doesNotMatch(card,/Estudiar el tema →/);
+ assert.match(api.coursePage('sistemas'),/Tema digital · 1\/2/);
+});
+test('invalid saved study progress is ignored instead of breaking the topic page',()=>{
+ const {api}=runtime();api.seed(fixture());api.seedTema(11,temaFixture());
+ for(const bad of [null,'texto',42,{studied:'sí',last:7},{studied:{dominio:'sí',gpo:1},last:{}}]){
+  api.write('tema:11',bad);const html=api.temaPage(11);
+  assert.match(html,/<b>0<\/b> de 2 apartados estudiados/);assert.doesNotMatch(html,/Continuar donde lo dejaste/);assert.equal(Object.keys(api.temaProgress(11).studied).length,0);
+ }
+ api.write('tema:11',{studied:{dominio:true,fantasma:true},last:'no-existe'});
+ const html=api.temaPage(11);assert.match(html,/<b>1<\/b> de 2 apartados estudiados/);assert.doesNotMatch(html,/Continuar donde lo dejaste/);
 });
 test('checked practice feedback links to the digital topic section and argues every option',()=>{
  const {api,ctx}=runtime();api.seedTema(11,temaFixture());ctx.location.hash='#/practica/11/1';const p=api.getPractice(11,1);p.answers[p.ids[0]]='b';p.checked=[p.ids[0]];api.savePractice(p);
