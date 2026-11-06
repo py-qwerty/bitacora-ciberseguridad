@@ -13,7 +13,7 @@ function runtime(){
  const window={addEventListener(){},scrollX:0,scrollY:0,scrollTo(){},innerHeight:700};
  const sandbox={...core,document,window,localStorage:{getItem:k=>storage.get(k)||null,setItem:(k,v)=>storage.set(k,v),key:i=>[...storage.keys()][i],get length(){return storage.size}},location:{hash:'#/temas'},setInterval:()=>1,clearInterval(){},setTimeout,clearTimeout,URLSearchParams,Map,Set,Date,Math,JSON,Number,String,Object,Array,performance:{now:()=>0},crypto:{randomUUID:()=> 'simulation-1'},matchMedia:()=>({matches:true}),innerWidth:390};
  ctx=vm.createContext(sandbox);const script=readFileSync(new URL('../dist/app.js',import.meta.url),'utf8').replace(/^import .*?;\n/,'').replace(/init\(\);\s*$/,'');
- vm.runInContext(script+`\nglobalThis.api={seed(data){bank=data;questionMap=new Map(bank.questions.map(q=>[q.id,q]));practiceMap=new Map(bank.topics.map(t=>[t.id,practiceBlocks(bank.questions,t.id)]));},home,coursePage,topicPage,practicePage,setup,resultsPage,historyPage,explanation,read,write,getPractice,savePractice,autoAdvanceEnabled,navigationContext,render,startExam,session:()=>session,temaPage,diagramBlock,toggleStudied,temaProgress,seedTema(n,data){temaIndex.set(n,{topic:n,sections:data.sections.length,minutes:data.minutes});temaCache.set(n,{status:'ready',data});}};`,ctx);
+ vm.runInContext(script+`\nglobalThis.api={seed(data){bank=data;questionMap=new Map(bank.questions.map(q=>[q.id,q]));practiceMap=new Map(bank.topics.map(t=>[t.id,practiceBlocks(bank.questions,t.id)]));},home,coursePage,topicPage,practicePage,setup,resultsPage,historyPage,explanation,read,write,getPractice,savePractice,autoAdvanceEnabled,navigationContext,render,startExam,session:()=>session,temaPage,diagramBlock,temaQuestion,tqPicked,tqCount,toggleStudied,temaProgress,seedTema(n,data){temaIndex.set(n,{topic:n,sections:data.sections.length,minutes:data.minutes});temaCache.set(n,{status:'ready',data});}};`,ctx);
  ctx.api.seed(fixture());return {api:ctx.api,ctx,elements,get,events,storage};
 }
 test('subject hierarchy and all30 entry render without simulation state',()=>{const {api}=runtime();assert.match(api.home(),/Asignaturas/);assert.match(api.coursePage('sistemas'),/Windows Server/);assert.match(api.topicPage(11),/Test completo/);assert.match(api.topicPage(11),/#\/practica\/11\/0/);assert.match(api.setup(),/45 minutos es orientativa/);});
@@ -83,10 +83,11 @@ function temaFixture(){
 }
 test('digital topic renders sections, grouped argued questions, page links and escaped rich text',()=>{
  const {api}=runtime();const data=fixture();data.topics[0].material={url:'materials/sistemas/tema-01.pdf',format:'pdf',title:'Windows Server'};api.seed(data);api.seedTema(11,temaFixture());
- const html=api.temaPage(11);
+ data.questions.filter(x=>x.topic===11).forEach(x=>api.tqPicked.set(x.id,'a'));
+ const html=api.temaPage(11);api.tqPicked.clear();
  assert.match(html,/Sistemas, tema 1/);assert.match(html,/<span class="sr-only">Apartado 1\. <\/span>El dominio/);assert.match(html,/Un <strong>dominio<\/strong> agrupa equipos/);
  assert.match(html,/href="materials\/sistemas\/tema-01\.pdf#page=5"/);assert.match(html,/Páginas 5–7 del PDF/);
- assert.match(html,/Pon a prueba este apartado <span>20<\/span>/);assert.match(html,/Pon a prueba este apartado <span>10<\/span>/);
+ assert.match(html,/Pon a prueba este apartado <span class="tq-count">(?:[0-9]+\/)?20<\/span>/);assert.match(html,/Pon a prueba este apartado <span class="tq-count">(?:[0-9]+\/)?10<\/span>/);
  assert.match(html,/<pre><code>&lt;script&gt;alert\(1\)&lt;\/script&gt;<\/code><\/pre>/);assert.doesNotMatch(html,/<script>/);
  assert.match(html,/&lt;b&gt;sin HTML&lt;\/b&gt;/);assert.doesNotMatch(html,/<b>sin HTML/);
  assert.match(html,/Para revisar:<\/b> Clave discutible/);assert.match(html,/#\/tema\/11\/estudio\?apartado=gpo/);assert.match(html,/Glosario/);
@@ -133,4 +134,16 @@ test('diagram blocks render every kind as accessible markup and escape text',()=
  assert.match(api.diagramBlock({type:'diagram',kind:'layers',title:'Capas',items:[n('building','Fuera'),n('shield','Dentro')]}),/--d:1/);
  const cmp=api.diagramBlock({type:'diagram',kind:'compare',title:'Cmp',columns:[{icon:'check',title:'Bien',tone:'good',items:['a']},{icon:'x',title:'Mal',tone:'bad',items:['b']}]});
  assert.match(cmp,/tone-good/);assert.match(cmp,/tone-bad/);
+});
+test('side questions are interactive: pick marks right and wrong at once, then can be retried',()=>{
+ const {api}=runtime();const data=fixture();api.seed(data);const t=temaFixture();api.seedTema(11,t);
+ const q=data.questions.find(x=>x.topic===11&&!x.fromClass);const arg=t.questions[q.id];
+ const wrong=q.options.find(o=>o.key!==q.correct).key;
+ let html=api.temaQuestion(q,arg);
+ assert.match(html,/Elige una opción/);assert.doesNotMatch(html,/disabled/);assert.equal((html.match(/data-action="tq-pick"/g)||[]).length,4);assert.match(html,/Sin responder/);
+ api.tqPicked.set(q.id,wrong);html=api.temaQuestion(q,arg);
+ assert.match(html,/tq tq-bad/);assert.match(html,/No es esa/);assert.match(html,/is-picked/);assert.match(html,/is-right/);assert.equal((html.match(/ disabled>/g)||[]).length,4);assert.match(html,/data-action="tq-retry"/);assert.match(html,/Fallada/);
+ api.tqPicked.set(q.id,q.correct);html=api.temaQuestion(q,arg);
+ assert.match(html,/tq tq-ok/);assert.match(html,/>Correcto</);assert.match(html,/Acertada/);
+ assert.equal(api.tqCount([q]),'1/1');api.tqPicked.delete(q.id);assert.equal(api.tqCount([q]),'1');
 });
