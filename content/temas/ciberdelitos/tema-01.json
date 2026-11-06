@@ -1972,6 +1972,56 @@
         "c": "Incorrecta. El consentimiento es una base de licitud; no exime de aplicar medidas de seguridad.",
         "d": "Incorrecta. Copiar controles sin contexto es justo lo que el enfoque de riesgos quiere evitar."
       }
+    },
+    "ciberdelitos-t01-31": {
+      "section": "conceptos-y-actores",
+      "reasoning": "Hay que distinguir dos niveles: dato personal (cualquier información sobre una persona identificable) y categoría especial (solo los datos de la lista cerrada). El número de cuenta bancaria está vinculado a su titular, así que es dato personal, pero no está en la lista y por tanto no recibe el régimen reforzado de prohibición general con excepciones.",
+      "options": {
+        "a": "Incorrecta. Los datos económicos no entran «automáticamente»: solo son categorías especiales los de la lista cerrada, y los bancarios no figuran.",
+        "b": "Incorrecta. Una cuenta bancaria se asocia a su titular, así que permite identificarlo y es un dato personal.",
+        "c": "Correcta. Está vinculado a su titular, por lo que es dato personal, pero la lista de categorías especiales es cerrada y los datos bancarios no están en ella.",
+        "d": "Incorrecta. La analogía se admite para datos nuevos muy parecidos (como los neurodatos, cercanos a los de salud), no para datos bancarios."
+      }
+    },
+    "ciberdelitos-t01-32": {
+      "section": "conceptos-y-actores",
+      "reasoning": "Por la responsabilidad proactiva, el responsable no solo cumple: debe poder demostrar que cumple. Eso incluye pedir información al encargado (medidas de seguridad, formación, certificaciones), elegir al que ofrezca garantías suficientes y volver a comprobarlo con el tiempo, porque lo que tenía hace dos años puede no mantenerse.",
+      "options": {
+        "a": "Incorrecta. Un contrato no traslada la responsabilidad del responsable: si no fue diligente al elegir y vigilar, la multa puede recaer sobre él.",
+        "b": "Incorrecta. La supervisión no termina al firmar: hay que comprobar periódicamente que el proveedor mantiene lo que prometió.",
+        "c": "Incorrecta. El criterio principal son las garantías suficientes que ofrezca el proveedor, no el precio.",
+        "d": "Correcta. La diligencia en la elección y la supervisión continua son lo que el responsable debe poder demostrar ante la autoridad."
+      }
+    },
+    "ciberdelitos-t01-33": {
+      "section": "delegado",
+      "reasoning": "El verbo clave es «supervisar»: el DPD informa, asesora y comprueba, pero no ejecuta. También es punto de contacto con la autoridad y con empleados o personas externas. Quien decide el tratamiento y responde de él es el responsable.",
+      "options": {
+        "a": "Incorrecta. El DPD supervisa; no es quien ejecuta esas tareas.",
+        "b": "Correcta. Supervisa y asesora; los análisis de riesgos y la evaluación de impacto los realizan otros y él comprueba que se hacen.",
+        "c": "Incorrecta. La decisión sobre el tratamiento corresponde al responsable, que es quien determina fines y medios.",
+        "d": "Incorrecta. El DPD sí asesora sobre la evaluación de impacto y supervisa su aplicación."
+      }
+    },
+    "ciberdelitos-t01-34": {
+      "section": "delegado",
+      "reasoning": "El RGPD fija tres supuestos. El primero (autoridad u organismo público) no depende del tamaño. En los otros dos, la actividad debe ser principal y a gran escala. Por eso incluso un ayuntamiento pequeño necesita delegado.",
+      "options": {
+        "a": "Incorrecta. La exigencia de actividad principal a gran escala vale para los otros dos supuestos, no para los organismos públicos.",
+        "b": "Incorrecta. El primer supuesto del RGPD se refiere precisamente a autoridades y organismos públicos.",
+        "c": "Correcta. El supuesto de autoridad u organismo público no depende del tamaño; solo se exceptúan los tribunales en su función judicial.",
+        "d": "Incorrecta. El RGPD no fija ningún umbral de habitantes: basta ser autoridad u organismo público."
+      }
+    },
+    "ciberdelitos-t01-35": {
+      "section": "derechos",
+      "reasoning": "La idea es poder acreditar lo ocurrido: si alguien reclama, hay que poder demostrar qué se hizo con los datos. Por eso no se borran al instante, pero nadie en la empresa debe poder usarlos. Al terminar el plazo en que podrían exigirse responsabilidades, se eliminan definitivamente.",
+      "options": {
+        "a": "Correcta. Quedan inaccesibles para toda la organización y solo los ven jueces, Fiscalía y administraciones competentes, hasta la supresión final.",
+        "b": "Incorrecta. Con el bloqueo no se borran de inmediato: se conservan inaccesibles durante el plazo de posibles reclamaciones.",
+        "c": "Incorrecta. Si el personal pudiera verlos, no estarían bloqueados: el bloqueo exige que nadie de la organización acceda.",
+        "d": "Incorrecta. El bloqueo no es una cesión a otra entidad; los datos permanecen en la organización, inaccesibles."
+      }
     }
   }
 }

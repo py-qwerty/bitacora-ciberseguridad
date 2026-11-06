@@ -704,6 +704,46 @@
         "c": "Incorrecta. Compartir una cuenta entre servicios hace que un robo los comprometa a todos.",
         "d": "Incorrecta. Usar la cuenta administrativa del día a día viola el principio de mínimo privilegio."
       }
+    },
+    "sistemas-t01-31": {
+      "section": "gpo-prioridad",
+      "reasoning": "El profesor lo marcó como «muy importante»: lo que manda el dominio gana a lo que se configure a mano en una máquina. Así el administrador del dominio puede garantizar una seguridad uniforme aunque alguien toque la configuración local.",
+      "options": {
+        "a": "Incorrecta. La directiva local es justo la de menor prioridad: cualquier GPO del dominio la sobrescribe. Estar «más cerca» de la máquina no la hace más fuerte.",
+        "b": "Correcta. El orden de prioridad es local, sitio, dominio y OU concreta. Una GPO propagada desde el controlador de dominio gana a la directiva local del equipo.",
+        "c": "Incorrecta. Un conflicto entre dos niveles se resuelve siempre por prioridad, sin necesidad de que nadie elija. Solo se usa el valor predeterminado cuando el ajuste «no está definido» en ninguna GPO.",
+        "d": "Incorrecta. La fecha de modificación no decide nada. Lo que cuenta es el nivel donde se define el ajuste."
+      }
+    },
+    "sistemas-t01-32": {
+      "section": "gpo-prioridad",
+      "reasoning": "El profesor lo explicó varias veces porque es un error típico: creer que algo está bloqueado cuando en realidad rige el valor por defecto. Por ejemplo, «Agregar estaciones de trabajo al dominio» sin definir permite hacerlo a cualquier usuario autenticado.",
+      "options": {
+        "a": "Incorrecta. «No definido» no es lo mismo que «deshabilitado». Deshabilitar es una decisión explícita; no definir es no decidir nada.",
+        "b": "Incorrecta. El equipo siempre tiene algún comportamiento: si la GPO no lo toca, rige el valor predeterminado de Windows. No queda vacío.",
+        "c": "Incorrecta. Windows no elige el valor más restrictivo por su cuenta. Si no se define, se usa el predeterminado, que a menudo es más permisivo de lo que se piensa.",
+        "d": "Correcta. La GPO no toca ese ajuste y se aplica el valor predeterminado de Windows. Definirlo lo sustituye por el valor que tú elijas."
+      }
+    },
+    "sistemas-t01-33": {
+      "section": "active-directory",
+      "reasoning": "Las GPO se vinculan a OU. Si el equipo no está en la OU correcta, la GPO no le llega. El profesor insistió en este paso al explicar la actividad: crear la OU de clientes y mover ahí el equipo.",
+      "options": {
+        "a": "Correcta. Los equipos recién unidos aparecen en Computers, un contenedor genérico donde no se aplica tu GPO de clientes. Hay que moverlos a su propia OU.",
+        "b": "Incorrecta. No hace falta reiniciar el controlador de dominio. El problema es de ubicación del equipo, no del servidor.",
+        "c": "Incorrecta. El perfil del firewall no explica que falte una GPO concreta, y un perfil Público no es el habitual para un equipo con conexión al dominio.",
+        "d": "Incorrecta. Windows 11 Pro sí recibe GPO del dominio; de hecho, la actividad aplica una guía pensada para clientes Windows 11."
+      }
+    },
+    "sistemas-t01-34": {
+      "section": "bloqueo-kerberos",
+      "reasoning": "El profesor lo resumió así: cuanto menos dure el ticket, más seguridad, aunque al caducar haya que volver a autenticarse. Es la misma idea que la pulsera de un festival que solo vale mientras esté vigente.",
+      "options": {
+        "a": "Incorrecta. Acortar la vigencia no acelera nada; al contrario, obliga a renovar o a autenticarse con más frecuencia.",
+        "b": "Incorrecta. El ticket se obtiene tras autenticarse; no elimina la necesidad de contraseña. Solo evita enviarla en cada acceso.",
+        "c": "Correcta. Un ticket robado deja de ser útil al caducar, así que la ventana del atacante es menor. El precio es una autenticación más frecuente.",
+        "d": "Incorrecta. La vigencia no tiene relación con activar o desactivar el cifrado. Los tipos de cifrado se configuran aparte, en las opciones de seguridad."
+      }
     }
   }
 }

@@ -1148,6 +1148,56 @@
         "c": "Incorrecta. La factura no aporta ninguna seguridad.",
         "d": "Incorrecta. La portada del informe es irrelevante para mantener la seguridad."
       }
+    },
+    "ciberdelitos-t02-31": {
+      "section": "dimensiones",
+      "reasoning": "Se aplica la regla del valor más alto: se valora cada dimensión y el sistema entero queda en la categoría del mayor nivel alcanzado por cualquiera de ellas. Con una sola dimensión en nivel alto, todo el sistema es de categoría alta y debe aplicar las medidas de ese nivel.",
+      "options": {
+        "a": "Incorrecta. No cuenta la mayoría: manda el nivel más alto de cualquier dimensión.",
+        "b": "Correcta. Basta una dimensión en nivel alto para que todo el sistema sea de categoría alta.",
+        "c": "Incorrecta. No se hace ninguna media; se toma el valor más alto, que aquí es alto.",
+        "d": "Incorrecta. No se exigen tres dimensiones: una sola en nivel alto basta."
+      }
+    },
+    "ciberdelitos-t02-32": {
+      "section": "dimensiones",
+      "reasoning": "Truco de la clase: «nivel» es masculino y se aplica a cada dimensión (bajo, medio, alto); «categoría» es femenino y se aplica al sistema (básica, media, alta). El nivel más alto de las dimensiones determina la categoría del sistema.",
+      "options": {
+        "a": "Correcta. Nivel para cada dimensión y categoría para el sistema entero.",
+        "b": "Incorrecta. Está invertido: las dimensiones tienen nivel y el sistema tiene categoría.",
+        "c": "Incorrecta. Las dimensiones se valoran en bajo, medio y alto; las categorías básica, media y alta son del sistema.",
+        "d": "Incorrecta. El sistema no suma niveles: toma la categoría del nivel más alto alcanzado."
+      }
+    },
+    "ciberdelitos-t02-33": {
+      "section": "conformidad",
+      "reasoning": "Declaración de conformidad = autoevaluación (categoría básica). Certificación de conformidad = auditoría externa (categorías media y alta), realizada por una entidad acreditada por ENAC. La declaración de aplicabilidad es otro documento distinto: lista las medidas que se aplicarán.",
+      "options": {
+        "a": "Incorrecta. Está al revés: quien se autoevalúa declara y quien audita desde fuera certifica.",
+        "b": "Correcta. Autoevaluación implica declaración; auditoría externa implica certificación.",
+        "c": "Incorrecta. La declaración de aplicabilidad lista las medidas del sistema; no acredita la conformidad ni sustituye a la certificación.",
+        "d": "Incorrecta. La auditoría externa por una entidad acreditada da lugar a la certificación; la declaración es una autoevaluación."
+      }
+    },
+    "ciberdelitos-t02-34": {
+      "section": "ciclo-adecuacion",
+      "reasoning": "La declaración de aplicabilidad reúne las medidas obligatorias de la categoría, los refuerzos elegidos por el responsable de seguridad y, si procede, las compensatorias. Estas últimas son una excepción y exigen justificación escrita y aprobación.",
+      "options": {
+        "a": "Incorrecta. Las medidas de la categoría son obligatorias, no meras recomendaciones.",
+        "b": "Incorrecta. Sí existe una vía excepcional: las medidas compensatorias.",
+        "c": "Incorrecta. La sustitución debe documentarse y fundamentarse; no basta el criterio sin justificar.",
+        "d": "Correcta. La sustitución es excepcional y debe quedar documentada y fundamentada, y la declaración de aplicabilidad debe aprobarse."
+      }
+    },
+    "ciberdelitos-t02-35": {
+      "section": "marco-normativo",
+      "reasoning": "La primera diferencia es la naturaleza: norma legal frente a estándar de certificación. De ella se derivan las demás: obligatoriedad (ENS sí, ISO voluntaria) y ámbito (ENS para el sector público y sus proveedores; ISO para cualquier sistema de gestión de la seguridad, público o privado).",
+      "options": {
+        "a": "Incorrecta. Está invertido: ninguna entidad está obligada por ley a certificarse en ISO 27001.",
+        "b": "Correcta. El ENS es obligatorio en su ámbito y la ISO 27001 es un estándar voluntario aplicable a cualquier organización.",
+        "c": "Incorrecta. La ISO 27001 no es una norma legal, y el ENS no se limita a ayuntamientos: abarca todo el sector público y sus proveedores.",
+        "d": "Incorrecta. El ENS no es voluntario: es una norma legal obligatoria para su ámbito de aplicación."
+      }
     }
   }
 }

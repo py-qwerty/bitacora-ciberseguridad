@@ -1033,6 +1033,56 @@
         "c": "Correcta. El no repudio en destino aporta la prueba de recepción.",
         "d": "Incorrecta. La confidencialidad de la conexión protege el secreto de los datos."
       }
+    },
+    "redes-t01-31": {
+      "section": "vulnerabilidad-amenaza-ataque",
+      "reasoning": "El profesor usó el ejemplo de una puerta con una cerradura fácil de forzar que nadie descubre en diez años: la debilidad está ahí (vulnerabilidad), pero sin nadie que la conozca no hay posibilidad real de que se aproveche (amenaza), y menos un acto deliberado (ataque).",
+      "options": {
+        "a": "Incorrecta. Un ataque es un acto deliberado de explotación; aquí nadie ha hecho nada todavía.",
+        "b": "Incorrecta. La amenaza aparece cuando alguien conoce el fallo y puede aprovecharlo; que el fallo exista solo lo hace vulnerabilidad.",
+        "c": "Correcta. El fallo es la vulnerabilidad; mientras nadie lo descubra no hay amenaza activa, y sin explotación tampoco hay ataque.",
+        "d": "Incorrecta. La vulnerabilidad existe y es clasificable aunque nunca se explote; no hace falta que haya éxito para llamarla así."
+      }
+    },
+    "redes-t01-32": {
+      "section": "ataques-activos",
+      "reasoning": "El criterio que se repite en clase es preguntarse si el atacante modifica el flujo. Poner a un equipo en medio exige manipular algo (por ejemplo la tabla ARP o la de rutas), así que es intervenir, aunque después solo mire.",
+      "options": {
+        "a": "Correcta. Colocarse en medio exige cambiar el flujo, y eso lo convierte en un ataque activo siempre.",
+        "b": "Incorrecta. Lo que cuenta es si se modifica el flujo, no la intención final; escuchar a través de una posición forzada sigue siendo activo.",
+        "c": "Incorrecta. La clasificación no depende de si luego se alteran mensajes: ponerse en medio ya requiere intervenir en la comunicación.",
+        "d": "Incorrecta. Solo existen las dos categorías, pasivo y activo, y el criterio es el mismo para cualquier protocolo."
+      }
+    },
+    "redes-t01-33": {
+      "section": "capas",
+      "reasoning": "El profesor pidió saber esta equivalencia «como la Biblia»: OSI tiene 7 capas y TCP/IP 4. Las tres de arriba de OSI (sesión, presentación, aplicación) se funden en una; las dos de abajo (enlace y física) en otra; red y transporte se mantienen.",
+      "options": {
+        "a": "Incorrecta. La capa de transporte de OSI tiene su equivalente directo en la de transporte de TCP/IP, no se funde con aplicación.",
+        "b": "Incorrecta. La capa de red de OSI corresponde a la de red (IP) de TCP/IP; no pertenece al bloque de aplicación.",
+        "c": "Incorrecta. Las capas de presentación y sesión no desaparecen: se integran en la de aplicación de TCP/IP.",
+        "d": "Correcta. Aplicación, presentación y sesión de OSI forman la capa de aplicación de TCP/IP."
+      }
+    },
+    "redes-t01-34": {
+      "section": "capas-tcpip",
+      "reasoning": "La IP se creó para poder ubicar dispositivos que se identifican por una MAC única. Como las redes privadas reutilizan rangos (por ejemplo, muchas casas usan las mismas direcciones), una IP por sí sola no identifica un equipo de forma única; por eso existe ARP, que traduce entre ambas.",
+      "options": {
+        "a": "Incorrecta. Está al revés: la MAC está asociada a la tarjeta y la IP depende de la red en la que estés.",
+        "b": "Correcta. La MAC identifica la tarjeta y es única; la IP ubica el equipo y puede repetirse entre redes privadas.",
+        "c": "Incorrecta. La IP no es única en redes privadas, y ninguna de las dos va cifrada por defecto: ambas son inseguras de diseño.",
+        "d": "Incorrecta. Ninguna identifica programas; los puertos de transporte son los que distinguen aplicaciones."
+      }
+    },
+    "redes-t01-35": {
+      "section": "scapy-land",
+      "reasoning": "En la demo se fabricó un paquete con la misma IP y el mismo puerto como origen y destino. Los sistemas operativos actuales lo descartan sin problema, pero algunos dispositivos industriales sin contramedidas pueden entrar en bucle y dejar de responder.",
+      "options": {
+        "a": "Correcta. Origen y destino son la IP de la víctima, con los mismos puertos y el flag SYN.",
+        "b": "Incorrecta. Eso describe un ataque de repetición, no el ataque Land.",
+        "c": "Incorrecta. Eso describe un ataque de modificación de mensajes o de hombre en el medio.",
+        "d": "Incorrecta. Eso es una denegación de servicio distribuida; el Land usa un único paquete trucado, no muchas fuentes."
+      }
     }
   }
 }

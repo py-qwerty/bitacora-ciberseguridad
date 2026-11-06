@@ -1,0 +1,372 @@
+{
+  "topics": [
+    {
+      "number": 1,
+      "questions": [
+        {
+          "question": "El profesor insistió en que no hay que esperar a que ocurra un incidente para actuar. ¿Cuál de estas actividades es proactiva?",
+          "options": [
+            "Restablecer la infraestructura dañada después de que un incendio afecte al centro de datos",
+            "Redirigir el servicio a otro centro de datos mientras se arregla el principal",
+            "Practicar la caza de amenazas y la monitorización constante, sin esperar a una alarma",
+            "Redactar las lecciones aprendidas cuando el incidente ya se ha cerrado"
+          ],
+          "correct": 2,
+          "explanation": "La caza de amenazas (threat hunting) y la monitorización constante buscan problemas antes de que salte una alarma, por eso son proactivas. El resto actúa cuando el incidente ya ha ocurrido.",
+          "difficulty": "media",
+          "clase": "Clase del 29 sep"
+        },
+        {
+          "question": "Según la legislación española explicada en clase, ¿qué se exige para actuar como perito informático?",
+          "options": [
+            "Estar colegiado en el colegio profesional correspondiente; sin ello el dictamen no vale",
+            "Ser experto en la materia concreta; no se exige titulación ni pertenecer a un colegio",
+            "Tener una titulación universitaria oficial en ingeniería informática o similar",
+            "Haber obtenido antes una certificación internacional de análisis forense reconocida"
+          ],
+          "correct": 1,
+          "explanation": "En España el perito es un experto en una materia y no se exige titulación ni colegiación; ambas aportan credibilidad, pero no son obligatorias.",
+          "difficulty": "baja",
+          "clase": "Clase del 29 sep"
+        },
+        {
+          "question": "En clase se distinguió entre dolo, imprudencia y falta de celo del perito. ¿Qué es actuar con dolo?",
+          "options": [
+            "Tratar la evidencia sin el cuidado necesario, por un descuido involuntario",
+            "No hacer el análisis de forma profesional por confiar en que algo está en solo lectura",
+            "Aceptar un caso en el que el perito tiene un conflicto de interés familiar",
+            "Hacer algo a sabiendas de que es ilegal, como alterar pruebas a propósito"
+          ],
+          "correct": 3,
+          "explanation": "El dolo es actuar sabiendo que se hace algo ilegal, por ejemplo alterar pruebas a propósito. El descuido es imprudencia y no comprobar o implicarse es falta de celo.",
+          "difficulty": "media",
+          "clase": "Clase del 29 sep"
+        },
+        {
+          "question": "Un perito acepta analizar un caso judicial en el que está implicado un familiar suyo. Aunque podría actuar de oficio, ¿qué problema señaló el profesor?",
+          "options": [
+            "Falta de celo: hay conflicto de interés y no actúa de forma profesional",
+            "Cohecho: recibe un beneficio a cambio de favorecer a una de las partes del juicio",
+            "Falso testimonio propio: miente de forma maliciosa en su dictamen",
+            "Ninguno: al poder actuar de oficio su imparcialidad queda garantizada"
+          ],
+          "correct": 0,
+          "explanation": "Analizar un caso en el que se está implicado, por ejemplo con un familiar, es falta de celo: hay un conflicto de interés que impide actuar con profesionalidad.",
+          "difficulty": "media",
+          "clase": "Clase del 29 sep"
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "questions": [
+        {
+          "question": "En el registro de una habitación aparecen una consola, un ratón con memoria interna y unos auriculares con almacenamiento. ¿Cómo debe tratarlos el forense, según insistió el profesor?",
+          "options": [
+            "Como evidencias digitales, porque son los objetos que se presentarán al juez",
+            "Como objetos sin interés forense, porque solo importan ordenadores y móviles",
+            "Como contenedores de potenciales evidencias: la evidencia es su contenido",
+            "Como evidencias físicas que se analizan igual que un arma o una huella"
+          ],
+          "correct": 2,
+          "explanation": "Cualquier aparato con almacenamiento es un contenedor de potenciales evidencias digitales. La evidencia es la información que contiene, no el objeto.",
+          "difficulty": "baja",
+          "clase": "Clase del 29 sep"
+        },
+        {
+          "question": "En la lista de cinco características de una evidencia que dio el profesor, ¿cuál pide que sea clara y comprensible para cualquier juez?",
+          "options": [
+            "Admisible",
+            "Creíble",
+            "Completa",
+            "Confiable"
+          ],
+          "correct": 1,
+          "explanation": "En la lista de clase, creíble significa que la evidencia sea clara y comprensible para cualquier juez.",
+          "difficulty": "media",
+          "clase": "Clase del 29 sep"
+        },
+        {
+          "question": "El profesor explicó que una evidencia, por sí sola, es un indicio de un hecho, pero varias juntas pueden corroborar las acciones. ¿A qué característica de la lista de clase se refiere?",
+          "options": [
+            "Admisible",
+            "Auténtica",
+            "Creíble",
+            "Completa"
+          ],
+          "correct": 3,
+          "explanation": "Es la característica completa: una evidencia aislada es un indicio y, combinada con otras, ayuda a probar acciones. En la ISO 27037 se parece a la suficiencia.",
+          "difficulty": "media",
+          "clase": "Clase del 29 sep"
+        },
+        {
+          "question": "¿Cuál de estas NO es una de las cinco características de una evidencia que el profesor presentó en clase?",
+          "options": [
+            "Volátil",
+            "Admisible",
+            "Completa",
+            "Creíble"
+          ],
+          "correct": 0,
+          "explanation": "La volatilidad no es una característica de la evidencia. Describe lo rápido que cambia y sirve para ordenar la recogida.",
+          "difficulty": "baja",
+          "clase": "Clase del 29 sep"
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "questions": [
+        {
+          "question": "¿Por qué a veces se prefiere borrar un soporte con datos aleatorios en lugar de con ceros?",
+          "options": [
+            "Porque los datos aleatorios se escriben más rápido que los ceros en cualquier disco",
+            "Porque los ceros no se consideran nunca un borrado seguro en ningún soporte",
+            "Porque así el hash de la copia resulta siempre idéntico al hash del origen",
+            "Porque con ceros queda un hueco del tamaño del archivo que delata lo borrado"
+          ],
+          "correct": 3,
+          "explanation": "Con ceros se ve un hueco del tamaño exacto del archivo borrado. Con datos aleatorios no se distingue dónde acaba un archivo ni dónde empieza otro.",
+          "difficulty": "media",
+          "clase": "Clase del 19 oct"
+        },
+        {
+          "question": "Se recomienda calcular el hash de una evidencia con al menos dos algoritmos distintos. ¿Por qué?",
+          "options": [
+            "Porque es muy raro que dos archivos distintos coincidan en ambos a la vez",
+            "Porque un algoritmo cifra la evidencia y el otro la descifra para poder comprobarla",
+            "Porque cada algoritmo protege una mitad distinta del archivo analizado",
+            "Porque la ley obliga a presentar siempre dos algoritmos concretos juntos"
+          ],
+          "correct": 0,
+          "explanation": "Se conocen colisiones en MD5 y SHA-1. Con dos algoritmos, que dos archivos distintos coincidan en ambos a la vez es extremadamente raro.",
+          "difficulty": "media",
+          "clase": "Clase del 19 oct"
+        },
+        {
+          "question": "Un ejercicio te da un móvil con un 5 % de batería y te pide que priorices los pasos. ¿Qué paso suele olvidarse y es clave?",
+          "options": [
+            "Apagarlo de inmediato para evitar cambios en su memoria interna",
+            "Conectarlo a una fuente de energía para que no se apague",
+            "Reiniciarlo para que el almacenamiento quede accesible",
+            "Dejar que se descargue del todo antes de adquirirlo"
+          ],
+          "correct": 1,
+          "explanation": "Hay que mantener el móvil encendido conectándolo a una fuente de energía. Si se apaga o reinicia, su almacenamiento puede quedar cifrado hasta introducir el PIN.",
+          "difficulty": "media",
+          "clase": "Clase del 19 oct"
+        },
+        {
+          "question": "Vas a clonar un disco de 1 TB. ¿Qué debe cumplir el disco de destino?",
+          "options": [
+            "Puede ser más pequeño si el sistema comprime los datos durante el clonado",
+            "Puede tener cualquier tamaño, porque solo se copian los sectores con archivos",
+            "Tener una capacidad igual o mayor y haber sido borrado de forma segura antes",
+            "Ser del mismo fabricante, modelo y año de fabricación que el original"
+          ],
+          "correct": 2,
+          "explanation": "El clonado es una copia bit a bit en otro disco, así que el destino debe tener capacidad igual o mayor que el origen y estar limpio mediante borrado seguro.",
+          "difficulty": "media",
+          "clase": "Clase del 19 oct"
+        },
+        {
+          "question": "Hay que adquirir un servidor de correo virtualizado que no se puede apagar. ¿Qué opción ofrece la virtualización?",
+          "options": [
+            "Guardar una instantánea de la máquina virtual y exportarla, con la RAM incluida",
+            "Apagar la máquina virtual, porque en un servidor virtual no hay datos volátiles",
+            "Copiar solo los asuntos de los mensajes para no tocar nada de la máquina",
+            "Adquirir únicamente el equipo del empleado, porque el servidor virtual no tiene evidencias"
+          ],
+          "correct": 0,
+          "explanation": "Las herramientas de virtualización permiten guardar una instantánea (snapshot) del estado de la máquina, a veces incluida la RAM, y exportarla sin apagar el servidor.",
+          "difficulty": "media",
+          "clase": "Clase del 19 oct"
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "questions": [
+        {
+          "question": "Necesitas un disco con seis particiones y poder elegir por cuál arrancar. ¿Qué esquema de particionado encaja?",
+          "options": [
+            "MBR, que permite varias particiones arrancables a la vez sin límite",
+            "GPT: hasta 128 particiones y sin límite de arrancables",
+            "Ninguno: un disco no admite más de cuatro particiones en total",
+            "MBR, porque admite discos de hasta 8 zettabytes de capacidad"
+          ],
+          "correct": 1,
+          "explanation": "GPT admite hasta 128 particiones y no limita las arrancables. MBR llega a cuatro primarias y solo una puede ser arrancable.",
+          "difficulty": "media",
+          "clase": "Clase del 19 oct"
+        },
+        {
+          "question": "En NTFS se crea un archivo de texto de solo 12 caracteres. ¿Dónde puede encontrarse su contenido?",
+          "options": [
+            "En el archivo $Bitmap, que guarda el contenido de los archivos pequeños",
+            "En $MFTMirr, que duplica los archivos de menos de 512 bytes",
+            "En un clúster de $BadClus reservado para archivos pequeños",
+            "Dentro de la propia $MFT, al ocupar menos de 512 bytes"
+          ],
+          "correct": 3,
+          "explanation": "En NTFS, si un archivo ocupa menos de 512 bytes, su contenido se guarda dentro de su entrada en la $MFT.",
+          "difficulty": "alta",
+          "clase": "Clase del 19 oct"
+        },
+        {
+          "question": "El profesor recalcó que en NTFS borrar un archivo no es una sola marca. ¿Qué cambia?",
+          "options": [
+            "Se actualizan varias estructuras: la entrada de la $MFT y el $Bitmap",
+            "Se sobrescriben con ceros todos los clústeres del archivo para liberarlos",
+            "Solo se cambia la extensión del nombre del archivo dentro de la $MFT",
+            "Se elimina físicamente la entrada de la $MFT y esta se reduce de tamaño"
+          ],
+          "correct": 0,
+          "explanation": "Al borrar en NTFS cambian varias cosas: la entrada de la $MFT se marca como disponible y el $Bitmap se actualiza. No se sobrescriben los datos.",
+          "difficulty": "alta",
+          "clase": "Clase del 19 oct"
+        },
+        {
+          "question": "Según los consejos de la clase, ¿qué sistemas de ficheros son los imprescindibles de conocer?",
+          "options": [
+            "APFS, Btrfs y HFS+, por ser los más complejos",
+            "Todos por igual, memorizando cada archivo de sus estructuras",
+            "FAT (y FAT32), NTFS y ext4, con sus archivos principales",
+            "Solo NTFS, porque los demás no aparecen en casos reales"
+          ],
+          "correct": 2,
+          "explanation": "Los imprescindibles son FAT (y FAT32), NTFS y ext4. De APFS y de los demás basta saber qué aportan.",
+          "difficulty": "baja",
+          "clase": "Clase del 19 oct"
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "questions": [
+        {
+          "question": "¿Cómo se identifica un archivo de texto plano (por ejemplo, un .txt) cuando se busca su firma?",
+          "options": [
+            "Por una firma de final que termina en FF D9 y marca el cierre del archivo",
+            "Por los bytes iniciales %PDF seguidos de la versión del formato",
+            "Por su extensión, que es lo único que lo identifica",
+            "No tiene firma: es texto puro, sin bytes iniciales que lo identifiquen"
+          ],
+          "correct": 3,
+          "explanation": "Casi todos los formatos tienen firma, salvo los de texto plano. Un TXT es solo texto puro, sin bytes iniciales que lo identifiquen.",
+          "difficulty": "media",
+          "clase": "Clase del 26 oct"
+        },
+        {
+          "question": "Un atacante cambia los primeros bytes de un ejecutable para engañar a una protección que solo mira la firma. ¿Qué comprobación añade el forense?",
+          "options": [
+            "Fiarse de la extensión, que no ha cambiado",
+            "Comparar el hash del archivo con el del original",
+            "Mirar solo los últimos bytes, que no se pueden modificar",
+            "Calcular el tamaño del clúster donde está almacenado"
+          ],
+          "correct": 1,
+          "explanation": "El forense compara el hash del archivo con el del original: si los primeros bytes se han alterado, el hash será completamente distinto.",
+          "difficulty": "alta",
+          "clase": "Clase del 26 oct"
+        },
+        {
+          "question": "Una foto muestra una fecha de modificación sospechosamente anterior. ¿Qué actitud es correcta según la clase?",
+          "options": [
+            "Aceptarla sin más, porque los metadatos no se pueden modificar de ningún modo",
+            "Descartarla, porque los metadatos nunca valen como prueba en un juicio",
+            "Desconfiar y contrastarla con otras fuentes: puede falsearse, pero es pieza clave",
+            "Recalcular el hash de la foto para corregir su fecha de modificación"
+          ],
+          "correct": 2,
+          "explanation": "Los metadatos pueden editarse o falsearse, así que si muestran algo raro se contrastan con otras fuentes. Aun así son una pieza de prueba clave.",
+          "difficulty": "media",
+          "clase": "Clase del 26 oct"
+        },
+        {
+          "question": "Un archivo se ve de 1 MB en el Explorador de Windows, pero ocupa mucho más en el disco. ¿Qué característica de NTFS lo puede explicar?",
+          "options": [
+            "Un flujo de datos alternativo oculto, que no se ve ni cuenta en el tamaño",
+            "Una partición oculta que duplica el archivo en otro volumen del mismo disco",
+            "La entrada de la papelera de reciclaje, que guarda una copia comprimida",
+            "El espacio sin asignar que Windows añade al borrar el archivo"
+          ],
+          "correct": 0,
+          "explanation": "NTFS permite que una referencia apunte a varias secuencias de bytes. Los flujos alternativos no se muestran por defecto ni se cuentan en el tamaño que ve el usuario.",
+          "difficulty": "alta",
+          "clase": "Clase del 26 oct"
+        },
+        {
+          "question": "Se recupera una imagen borrada, pero sale recortada y con los colores alterados. ¿Qué valor puede tener según el profesor?",
+          "options": [
+            "Ninguno: una recuperación parcial nunca se admite como prueba",
+            "Solo vale si la ley fija un porcentaje mínimo de píxeles recuperados",
+            "Solo vale si se ha recuperado con una herramienta de pago",
+            "Puede demostrar que es la misma imagen aunque falle una zona"
+          ],
+          "correct": 3,
+          "explanation": "No hay una regla que fije cuántos píxeles hacen falta. Una imagen recuperada en parte puede servir para demostrar que es la misma, aunque falle una zona.",
+          "difficulty": "media",
+          "clase": "Clase del 26 oct"
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "questions": [
+        {
+          "question": "En el pre-análisis, ¿en qué orden se recuperan los archivos eliminados?",
+          "options": [
+            "Primero la recuperación en bruto y después la básica con FTK Imager o Autopsy",
+            "Primero con la suite forense sobre el sistema de ficheros y luego en bruto",
+            "Solo en bruto, porque la básica altera el índice del sistema de ficheros",
+            "Solo la básica, porque la recuperación en bruto no se usa en forense"
+          ],
+          "correct": 1,
+          "explanation": "Primero se sacan con la suite (FTK Imager o Autopsy) todos los archivos, borrados o no, que aún tiene el sistema de ficheros. Después se hace la recuperación en bruto.",
+          "difficulty": "media",
+          "clase": "Clase del 5 nov"
+        },
+        {
+          "question": "Según el profesor, ¿qué papel tiene la IA en el análisis forense?",
+          "options": [
+            "Esclarece los hechos por sí sola, de modo que sustituye al perito",
+            "Es siempre fiable, incluso al interpretar datos subjetivos",
+            "Acelera y ayuda a decidir, pero no decide; puede alucinar",
+            "Debe evitarse por completo porque no sirve en tareas forenses"
+          ],
+          "correct": 2,
+          "explanation": "La IA acelera mucho el proceso, pero ayuda a decidir, no decide. Puede alucinar y es más fiable con datos objetivos, como la hora del último arranque.",
+          "difficulty": "baja",
+          "clase": "Clase del 5 nov"
+        },
+        {
+          "question": "Se encuentra un archivo cifrado cuya contraseña no se conoce. ¿Cómo trata la fuerza bruta el profesor?",
+          "options": [
+            "La evita siempre, porque romper una contraseña nunca está permitido en un caso",
+            "La lanza solo al final, cuando ya no queda ninguna otra tarea pendiente",
+            "La da por buena: lo que salga se incluye en el informe sin comprobarlo",
+            "La intenta siempre y la deja en paralelo, validando a mano lo que salga"
+          ],
+          "correct": 3,
+          "explanation": "El profesor la intenta siempre y la deja corriendo en paralelo mientras trabaja o redacta el informe. Lo que salga se valida a mano.",
+          "difficulty": "media",
+          "clase": "Clase del 5 nov"
+        },
+        {
+          "question": "¿Por qué le interesa al forense encontrar WSL (Windows Subsystem for Linux) en un equipo Windows?",
+          "options": [
+            "Ejecuta binarios de Linux en Windows, también los de atacantes; su disco se analiza",
+            "Es un antivirus integrado que borra las pruebas de forma automática al detectarlas",
+            "Sustituye a la $MFT y cambia por completo cómo se recuperan los archivos",
+            "Cifra todo el volumen y obliga a abandonar el análisis por completo"
+          ],
+          "correct": 0,
+          "explanation": "WSL instala un Linux dentro de Windows. Los atacantes también lo usan, y su disco es un archivo dentro de Windows que se analiza como un disco duro adicional.",
+          "difficulty": "media",
+          "clase": "Clase del 5 nov"
+        }
+      ]
+    }
+  ]
+}

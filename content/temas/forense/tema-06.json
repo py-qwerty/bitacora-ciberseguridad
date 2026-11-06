@@ -1342,6 +1342,46 @@
         "c": "Incorrecta. Los archivos relevantes son precisamente el último paso del análisis, aunque no sean registros del sistema.",
         "d": "Correcta. El analista digital localiza y recupera; el especialista contable interpreta."
       }
+    },
+    "forense-t06-31": {
+      "section": "recuperar-borrados",
+      "reasoning": "El profesor lo dijo como esquema estándar del proceso: la básica conserva fechas, propietario y ruta; la recuperación en bruto completa lo que ya no tiene referencias.",
+      "options": {
+        "a": "Incorrecta. Se invierte el orden: primero va la básica, que conserva datos del sistema de ficheros.",
+        "b": "Correcta. Primero la recuperación básica con la suite y, después, la recuperación en bruto con herramientas como PhotoRec.",
+        "c": "Incorrecta. La básica solo lee el índice; no lo altera. Además, la recuperación en bruto no sustituye a la básica.",
+        "d": "Incorrecta. La recuperación en bruto sí se usa: recupera lo que ya no tiene referencias en el sistema de ficheros."
+      }
+    },
+    "forense-t06-32": {
+      "section": "esquema-general",
+      "reasoning": "Todo lo que proponga una IA debe verificarse en la evidencia. Es una herramienta de apoyo, no un sustituto del criterio del perito.",
+      "options": {
+        "a": "Incorrecta. No esclarece los hechos por sí sola; su papel es de apoyo.",
+        "b": "Incorrecta. Puede alucinar, es decir, inventarse datos que suenan convincentes.",
+        "c": "Correcta. Es la idea del profesor: acelera y ayuda a decidir, pero no decide, y hay que verificarla.",
+        "d": "Incorrecta. Sí sirve: acelera mucho el pre-análisis, aunque debe usarse con cautela."
+      }
+    },
+    "forense-t06-33": {
+      "section": "cifrados",
+      "reasoning": "Lo llamó «pesca de arrastre»: lanzas la red y luego compruebas qué resultados aportan algo al informe.",
+      "options": {
+        "a": "Incorrecta. Está permitido cuando un caso lo avala; no se descarta.",
+        "b": "Incorrecta. Se lanza cuanto antes y en paralelo, para aprovechar el tiempo, no al final.",
+        "c": "Incorrecta. Los resultados deben validarse a mano para ver si aportan algo.",
+        "d": "Correcta. Es lo que hace el profesor: siempre, en paralelo, y comprobando después los resultados."
+      }
+    },
+    "forense-t06-34": {
+      "section": "maquinas-virtuales",
+      "reasoning": "Para el forense es un tipo de máquina virtual: hay que localizar su disco virtual y analizarlo como un disco más.",
+      "options": {
+        "a": "Correcta. Es el motivo correcto: se pueden ejecutar binarios de Linux, a veces con fines maliciosos, y su disco se analiza como adicional.",
+        "b": "Incorrecta. No es un antivirus ni borra pruebas por sí mismo.",
+        "c": "Incorrecta. La $MFT sigue siendo la estructura de NTFS; WSL no la sustituye.",
+        "d": "Incorrecta. No cifra el volumen ni impide el análisis."
+      }
     }
   }
 }

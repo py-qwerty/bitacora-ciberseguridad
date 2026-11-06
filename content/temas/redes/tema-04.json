@@ -1724,6 +1724,56 @@
         "c": "Incorrecta. El protocolo forma parte de la cabecera y no tiene nada que ver con las versiones de la regla.",
         "d": "Correcta. rev identifica cada revisión de la regla."
       }
+    },
+    "redes-t04-31": {
+      "section": "snort-arquitectura",
+      "reasoning": "El tráfico de Internet recibe ataques de forma continua, así que un IDS situado delante saturaría de alertas. Además, un IDS solo detecta: para bloquear hace falta un cortafuegos, y IDS más cortafuegos en un mismo componente es un IPS.",
+      "options": {
+        "a": "Incorrecta. Se puede poner delante, pero se desaconseja: lanzaría alertas constantes por el ruido de Internet.",
+        "b": "Correcta. Detrás del cortafuegos, en una red más interna, se evita el ruido y se combina con el cortafuegos.",
+        "c": "Incorrecta. En modo IDS Snort detecta y alerta; para bloquear se necesita un cortafuegos o desplegarlo como IPS.",
+        "d": "Incorrecta. Puede instalarse en cualquier sitio, incluso en algunos routers, pero la recomendación es la de situarlo detrás del cortafuegos."
+      }
+    },
+    "redes-t04-32": {
+      "section": "snort-arquitectura",
+      "reasoning": "La cadena explicada es: captura (sniffer), decodificador, preprocesadores, motor de detección y plugins de salida. El tráfico en bruto no es lo mismo en HTTP que en FTP, por eso hay que interpretarlo y estructurarlo antes de aplicar las reglas.",
+      "options": {
+        "a": "Incorrecta. El tráfico en bruto debe interpretarse y estructurarse antes; si no, las reglas no podrían buscar en campos concretos.",
+        "b": "Incorrecta. Los plugins de salida son el último paso de la cadena, no un paso previo al análisis.",
+        "c": "Correcta. Decodificador y preprocesadores preparan el tráfico para que el motor lo compare con las reglas.",
+        "d": "Incorrecta. La arquitectura no incluye ningún paso de cifrado del tráfico capturado."
+      }
+    },
+    "redes-t04-33": {
+      "section": "snort-comandos",
+      "reasoning": "Usar -r con -c deja analizar tráfico sin tocar la red: se pasan las reglas por una captura de un incidente pasado. Guardar en disco es el papel de -l (y -b), y ejecutarlo en segundo plano es -D.",
+      "options": {
+        "a": "Incorrecta. Guardar paquetes es función de -l (y -b para formato binario), no de -r.",
+        "b": "Correcta. -r lee una captura almacenada y, con -c, aplica las reglas de forma offline, útil en forense.",
+        "c": "Incorrecta. -r no recarga reglas; su función es leer una captura.",
+        "d": "Incorrecta. Ejecutar en segundo plano es el modo demonio, con la opción -D."
+      }
+    },
+    "redes-t04-34": {
+      "section": "snort-reglas",
+      "reasoning": "El profesor insistió en que distance depende del último patrón encontrado, mientras que offset es un desplazamiento fijo del puntero desde el principio. Con reglas complejas (varios content, expresiones regulares), usar uno u otro no es equivalente.",
+      "options": {
+        "a": "Correcta. Offset es absoluto desde el inicio; distance es relativo a la coincidencia anterior.",
+        "b": "Incorrecta. Distance no cuenta desde el inicio del paquete, sino desde el último acierto.",
+        "c": "Incorrecta. Está al revés: offset es absoluto y distance es relativo.",
+        "d": "Incorrecta. No dependen del protocolo de transporte; la diferencia está en desde dónde se cuenta."
+      }
+    },
+    "redes-t04-35": {
+      "section": "snort-reglas",
+      "reasoning": "El profesor puso el caso de tener 100 reglas: si la red externa cambia y las direcciones están escritas a mano, habría que editar las 100. Con una variable se cambia una sola vez, igual que una constante en programación.",
+      "options": {
+        "a": "Incorrecta. Snort admite direcciones escritas directamente; las variables son una comodidad, no una obligación.",
+        "b": "Incorrecta. Las variables no influyen en la captura, solo en cómo se escriben y mantienen las reglas.",
+        "c": "Incorrecta. Las reglas dinámicas se activan con otra regla de tipo activate; no tiene relación con las variables.",
+        "d": "Correcta. Se cambia una vez la variable y todas las reglas que la usan se actualizan."
+      }
     }
   }
 }

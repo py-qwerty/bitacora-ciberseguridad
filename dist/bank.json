@@ -1,5 +1,5 @@
 {
-  "version": "2026-11-02.2",
+  "version": "2026-11-06.1",
   "title": "Bitácora Ciber",
   "context": "Práctica personal a partir del material docente. Solo la categoría campus-confirmed incorpora corrección observada en el campus; las demás claves están razonadas para estudiar. Los simulacros no reproducen reglas oficiales. Las referencias de versiones y normativa pertenecen al material citado.",
   "courses": [
@@ -1713,6 +1713,153 @@
       }
     },
     {
+      "id": "sistemas-t01-31",
+      "course": "sistemas",
+      "topic": 1,
+      "test": "Tema 1 · Clase",
+      "order": 31,
+      "fromClass": true,
+      "text": "Un ajuste de seguridad está configurado de forma distinta en la directiva local de un servidor miembro (editada con gpedit.msc) y en una GPO del dominio que le llega desde el controlador de dominio. ¿Cuál se aplica?",
+      "options": [
+        {
+          "key": "a",
+          "text": "La directiva local, porque está en la propia máquina y es la más cercana."
+        },
+        {
+          "key": "b",
+          "text": "La GPO del dominio, porque prevalece sobre las directivas locales."
+        },
+        {
+          "key": "c",
+          "text": "Ninguna de las dos: se deja el valor predeterminado hasta que un administrador elija."
+        },
+        {
+          "key": "d",
+          "text": "La que se haya modificado más recientemente, sin importar dónde esté definida."
+        }
+      ],
+      "correct": "b",
+      "explanation": "Las GPO que se propagan desde el controlador de dominio tienen prioridad sobre la directiva local del equipo. El orden es local, sitio, dominio y OU concreta, de menor a mayor prioridad. Siglas y términos: GPO: Group Policy Object, objeto de directiva de grupo. OU: Organizational Unit, unidad organizativa.",
+      "difficulty": "media",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 2 oct · Tema 1. Seguridad en Windows Server"
+      },
+      "glossary": {
+        "GPO": "Group Policy Object, objeto de directiva de grupo.",
+        "OU": "Organizational Unit, unidad organizativa."
+      }
+    },
+    {
+      "id": "sistemas-t01-32",
+      "course": "sistemas",
+      "topic": 1,
+      "test": "Tema 1 · Clase",
+      "order": 32,
+      "fromClass": true,
+      "text": "En una GPO, un parámetro de seguridad aparece como «No definido». ¿Qué significa realmente?",
+      "options": [
+        {
+          "key": "a",
+          "text": "Que ese ajuste está desactivado y, por tanto, bloqueado para todos los usuarios."
+        },
+        {
+          "key": "b",
+          "text": "Que no hay ningún valor configurado en el equipo y el comportamiento queda vacío."
+        },
+        {
+          "key": "c",
+          "text": "Que ese ajuste queda habilitado automáticamente con el valor más restrictivo posible."
+        },
+        {
+          "key": "d",
+          "text": "Que esa GPO no toca el ajuste, así que se aplica el valor predeterminado de Windows."
+        }
+      ],
+      "correct": "d",
+      "explanation": "«No definido» no es «nada configurado»: la GPO no modifica ese ajuste y se aplica el valor predeterminado de Windows, que puede ser permisivo. Por eso conviene leer la explicación de cada directiva. Siglas y términos: GPO: Group Policy Object, objeto de directiva de grupo.",
+      "difficulty": "media",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 2 oct · Tema 1. Seguridad en Windows Server"
+      },
+      "glossary": {
+        "GPO": "Group Policy Object, objeto de directiva de grupo."
+      }
+    },
+    {
+      "id": "sistemas-t01-33",
+      "course": "sistemas",
+      "topic": 1,
+      "test": "Tema 1 · Clase",
+      "order": 33,
+      "fromClass": true,
+      "text": "Acabas de unir un equipo con Windows 11 al dominio, pero no recibe la GPO diseñada para los clientes. ¿Cuál es la causa más probable?",
+      "options": [
+        {
+          "key": "a",
+          "text": "Está en el contenedor Computers por defecto y hay que moverlo a la OU de esa GPO."
+        },
+        {
+          "key": "b",
+          "text": "La GPO de clientes solo se aplica tras reiniciar el controlador de dominio al menos una vez."
+        },
+        {
+          "key": "c",
+          "text": "El perfil del firewall es Público y bloquea la descarga de cualquier directiva de grupo."
+        },
+        {
+          "key": "d",
+          "text": "Windows 11 no admite GPO del dominio y hay que configurarlo siempre con directivas locales."
+        }
+      ],
+      "correct": "a",
+      "explanation": "Al unirse al dominio, el equipo cae por defecto en el contenedor Computers, al que no llega la GPO de los clientes. Hay que moverlo a la OU creada para ellos. Siglas y términos: GPO: Group Policy Object, objeto de directiva de grupo. OU: Organizational Unit, unidad organizativa.",
+      "difficulty": "baja",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 2 oct · Tema 1. Seguridad en Windows Server"
+      },
+      "glossary": {
+        "GPO": "Group Policy Object, objeto de directiva de grupo.",
+        "OU": "Organizational Unit, unidad organizativa."
+      }
+    },
+    {
+      "id": "sistemas-t01-34",
+      "course": "sistemas",
+      "topic": 1,
+      "test": "Tema 1 · Clase",
+      "order": 34,
+      "fromClass": true,
+      "text": "Según la clase, ¿qué efecto tiene reducir la vigencia de los tickets de Kerberos?",
+      "options": [
+        {
+          "key": "a",
+          "text": "Se acelera el inicio de sesión porque los tickets caducan antes y son más ligeros para el servidor."
+        },
+        {
+          "key": "b",
+          "text": "Los usuarios dejan de necesitar contraseña, porque el ticket sustituye por completo a la autenticación."
+        },
+        {
+          "key": "c",
+          "text": "Un ticket robado solo sirve poco tiempo, aunque se deba autenticar más a menudo."
+        },
+        {
+          "key": "d",
+          "text": "Se deshabilita el cifrado de Kerberos, que ya no es necesario cuando los tickets son tan cortos."
+        }
+      ],
+      "correct": "c",
+      "explanation": "Con tickets más cortos, un atacante que robe uno dispone de menos tiempo para suplantar al usuario. A cambio, los usuarios deben autenticarse más a menudo.",
+      "difficulty": "media",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 2 oct · Tema 1. Seguridad en Windows Server"
+      }
+    },
+    {
       "id": "sistemas-t02-01",
       "course": "sistemas",
       "topic": 2,
@@ -2808,6 +2955,190 @@
       }
     },
     {
+      "id": "sistemas-t02-31",
+      "course": "sistemas",
+      "topic": 2,
+      "test": "Tema 2 · Clase",
+      "order": 31,
+      "fromClass": true,
+      "text": "Un usuario con una sesión válida intenta abrir un recurso para el que su rol no tiene permiso. ¿Qué código HTTP recibe lo más probable, y cómo se distingue del 401?",
+      "options": [
+        {
+          "key": "a",
+          "text": "401: significa que el usuario está autenticado pero no tiene permiso para ese recurso."
+        },
+        {
+          "key": "b",
+          "text": "404: el servidor oculta siempre con este código los recursos que están prohibidos."
+        },
+        {
+          "key": "c",
+          "text": "403: está autenticado pero sin permiso; el 401 indica que falta autenticación."
+        },
+        {
+          "key": "d",
+          "text": "400: la petición está mal formada porque el rol del usuario no encaja con el recurso."
+        }
+      ],
+      "correct": "c",
+      "explanation": "403 significa que el usuario está identificado pero su rol no permite acceder al recurso. El 401 se da cuando la petición no incluye la autenticación que la aplicación exige. Siglas y términos: HTTP: Hypertext Transfer Protocol, protocolo de transferencia de hipertexto.",
+      "difficulty": "media",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 23 oct · Tema 2. Seguridad en aplicaciones web. Introducción"
+      },
+      "glossary": {
+        "HTTP": "Hypertext Transfer Protocol, protocolo de transferencia de hipertexto."
+      }
+    },
+    {
+      "id": "sistemas-t02-32",
+      "course": "sistemas",
+      "topic": 2,
+      "test": "Tema 2 · Clase",
+      "order": 32,
+      "fromClass": true,
+      "text": "Un compañero dice que su aplicación tiene «trazabilidad» porque genera logs en el servidor. Según la clase, ¿qué le falta?",
+      "options": [
+        {
+          "key": "a",
+          "text": "Registros diseñados para lo que interesa y monitorización continua de ellos."
+        },
+        {
+          "key": "b",
+          "text": "Una firma digital en cada mensaje, que es lo único que garantiza la trazabilidad."
+        },
+        {
+          "key": "c",
+          "text": "Cifrar los logs en reposo; con eso ya se sabe con certeza quién hizo qué y cuándo."
+        },
+        {
+          "key": "d",
+          "text": "Redundancia de servidores en clúster, que asegura que siempre haya registros disponibles."
+        }
+      ],
+      "correct": "a",
+      "explanation": "La trazabilidad exige dos cosas a la vez: un registro bien diseñado (qué se guarda) y su monitorización continua. Con solo una de ellas, no se cumple.",
+      "difficulty": "media",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 16 oct · Tema 2. Seguridad en aplicaciones web. Introducción"
+      }
+    },
+    {
+      "id": "sistemas-t02-33",
+      "course": "sistemas",
+      "topic": 2,
+      "test": "Tema 2 · Clase",
+      "order": 33,
+      "fromClass": true,
+      "text": "Un atacante quiere robar la cookie de sesión, pero esta tiene el atributo HttpOnly. ¿Cómo puede saltarse esa defensa el ataque XST (Cross-Site Tracing)?",
+      "options": [
+        {
+          "key": "a",
+          "text": "Desactivando el atributo HttpOnly de la cookie en el servidor mediante el método OPTIONS del protocolo."
+        },
+        {
+          "key": "b",
+          "text": "Enviando la cookie por GET, para que viaje visible en la dirección y el JavaScript pueda leerla en la barra."
+        },
+        {
+          "key": "c",
+          "text": "Cifrando la petición con TLS mutuo, de modo que el navegador deje de bloquear la lectura de la cookie."
+        },
+        {
+          "key": "d",
+          "text": "Con TRACE: el servidor copia las cookies de la petición en el cuerpo de la respuesta, legible por JavaScript."
+        }
+      ],
+      "correct": "d",
+      "explanation": "TRACE devuelve las cabeceras de la petición en el cuerpo de la respuesta. La cookie, que viaja en una cabecera, aparece copiada en el cuerpo y HttpOnly deja de protegerla. Siglas y términos: TLS: Transport Layer Security, seguridad de la capa de transporte. GET: Método HTTP para solicitar la representación de un recurso; es un nombre de método, no una sigla.",
+      "difficulty": "alta",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 23 oct · Tema 2. Seguridad en aplicaciones web. Introducción"
+      },
+      "glossary": {
+        "TLS": "Transport Layer Security, seguridad de la capa de transporte.",
+        "GET": "Método HTTP para solicitar la representación de un recurso; es un nombre de método, no una sigla."
+      }
+    },
+    {
+      "id": "sistemas-t02-34",
+      "course": "sistemas",
+      "topic": 2,
+      "test": "Tema 2 · Clase",
+      "order": 34,
+      "fromClass": true,
+      "text": "Con un proxy interceptor como Burp Suite, ¿en qué se diferencia interceptar una aplicación protegida con TLS normal de otra con TLS mutuo?",
+      "options": [
+        {
+          "key": "a",
+          "text": "Con TLS normal el proxy no puede ver nada, porque todo va cifrado de extremo a extremo entre cliente y servidor."
+        },
+        {
+          "key": "b",
+          "text": "TLS normal: el proxy acepta el certificado del servidor y descifra. TLS mutuo: exige además certificado de cliente."
+        },
+        {
+          "key": "c",
+          "text": "Con TLS mutuo no hay cifrado, así que cualquier proxy puede leer el tráfico sin necesitar ningún certificado."
+        },
+        {
+          "key": "d",
+          "text": "No hay ninguna diferencia: en ambos casos el proxy descifra el tráfico porque acepta cualquier certificado."
+        }
+      ],
+      "correct": "b",
+      "explanation": "Con TLS normal, solo el servidor presenta certificado y el proxy lo acepta y descifra. Con TLS mutuo el servidor exige además un certificado de cliente, y sin uno válido el atacante no puede interceptar. Siglas y términos: TLS: Transport Layer Security, seguridad de la capa de transporte.",
+      "difficulty": "alta",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 23 oct · Tema 2. Seguridad en aplicaciones web. Introducción"
+      },
+      "glossary": {
+        "TLS": "Transport Layer Security, seguridad de la capa de transporte."
+      }
+    },
+    {
+      "id": "sistemas-t02-35",
+      "course": "sistemas",
+      "topic": 2,
+      "test": "Tema 2 · Clase",
+      "order": 35,
+      "fromClass": true,
+      "text": "IAST y RASP usan el mismo agente instalado en el servidor de aplicaciones. ¿Qué los diferencia según el profesor?",
+      "options": [
+        {
+          "key": "a",
+          "text": "IAST es una herramienta de caja negra y RASP una de caja blanca, porque RASP ve el código."
+        },
+        {
+          "key": "b",
+          "text": "IAST informa de posibles vulnerabilidades en despliegue; RASP bloquea el ataque en producción."
+        },
+        {
+          "key": "c",
+          "text": "IAST analiza el código sin ejecutarlo en la fase de desarrollo y RASP solo revisa dependencias de terceros."
+        },
+        {
+          "key": "d",
+          "text": "RASP se usa antes de programar para derivar requisitos y IAST después de la puesta en producción del sistema."
+        }
+      ],
+      "correct": "b",
+      "explanation": "Es la misma herramienta en dos modos y fases: IAST (en despliegue) emite un informe de posibles vulnerabilidades; RASP (en producción) bloquea el ataque cuando detecta una explotación. Siglas y términos: IAST: Interactive Application Security Testing, pruebas interactivas de seguridad de aplicaciones. RASP: Runtime Application Self-Protection, autoprotección de aplicaciones en ejecución.",
+      "difficulty": "alta",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 16 oct · Tema 2. Seguridad en aplicaciones web. Introducción"
+      },
+      "glossary": {
+        "IAST": "Interactive Application Security Testing, pruebas interactivas de seguridad de aplicaciones.",
+        "RASP": "Runtime Application Self-Protection, autoprotección de aplicaciones en ejecución."
+      }
+    },
+    {
       "id": "sistemas-t03-01",
       "course": "sistemas",
       "topic": 3,
@@ -3897,6 +4228,192 @@
         "kind": "practice",
         "title": "Temario UNIR · Tema 3. Vulnerabilidades en aplicaciones web",
         "page": 16
+      }
+    },
+    {
+      "id": "sistemas-t03-31",
+      "course": "sistemas",
+      "topic": 3,
+      "test": "Tema 3 · Clase",
+      "order": 31,
+      "fromClass": true,
+      "text": "Una aplicación valida una entrada contra un conjunto de valores buenos conocidos y rechaza todo lo demás. ¿Es necesario añadir además una lista negra de cadenas maliciosas?",
+      "options": [
+        {
+          "key": "a",
+          "text": "Sí, porque la lista blanca no detecta por sí sola las entradas maliciosas."
+        },
+        {
+          "key": "b",
+          "text": "Sí, pero solo para la inyección SQL; en el resto de ataques no hace falta."
+        },
+        {
+          "key": "c",
+          "text": "No, si la lista blanca es correcta: lo que no está en ella se rechaza."
+        },
+        {
+          "key": "d",
+          "text": "No, porque la lista negra es más segura y hace innecesaria la lista blanca."
+        }
+      ],
+      "correct": "c",
+      "explanation": "Una lista blanca correcta basta: cualquier entrada que no esté en ella se rechaza. Añadir una lista negra no aporta nada, y por sí sola sería débil porque las cadenas maliciosas posibles son casi infinitas. Siglas y términos: SQL: Structured Query Language, lenguaje de consultas estructurado.",
+      "difficulty": "media",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 30 oct · Tema 3. Vulnerabilidades en aplicaciones web"
+      },
+      "glossary": {
+        "SQL": "Structured Query Language, lenguaje de consultas estructurado."
+      }
+    },
+    {
+      "id": "sistemas-t03-32",
+      "course": "sistemas",
+      "topic": 3,
+      "test": "Tema 3 · Clase",
+      "order": 32,
+      "fromClass": true,
+      "text": "Un formulario web comprueba con JavaScript que un campo no contenga caracteres peligrosos. Un atacante usa un proxy interceptor y modifica la petición antes de que salga. ¿Qué enseña esto sobre dónde validar?",
+      "options": [
+        {
+          "key": "a",
+          "text": "Que la validación del navegador es suficiente si el JavaScript está bien programado y es robusto."
+        },
+        {
+          "key": "b",
+          "text": "Que hay que validar solo en la base de datos, que es donde finalmente se ejecuta el ataque."
+        },
+        {
+          "key": "c",
+          "text": "Que conviene desactivar JavaScript en el navegador de todos los usuarios de la aplicación."
+        },
+        {
+          "key": "d",
+          "text": "Que las validaciones importantes van siempre en el servidor, porque las del cliente se saltan."
+        }
+      ],
+      "correct": "d",
+      "explanation": "El proxy modifica la petición después de que el navegador la haya validado, así que la validación del cliente no protege nada. Las validaciones que importan se hacen siempre en el servidor.",
+      "difficulty": "media",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 30 oct · Tema 3. Vulnerabilidades en aplicaciones web"
+      }
+    },
+    {
+      "id": "sistemas-t03-33",
+      "course": "sistemas",
+      "topic": 3,
+      "test": "Tema 3 · Clase",
+      "order": 33,
+      "fromClass": true,
+      "text": "En la demo de XSS, el script leyó la cookie de sesión de la aplicación PHP, pero no la de la aplicación Java. ¿Por qué?",
+      "options": [
+        {
+          "key": "a",
+          "text": "La cookie de Java tenía HttpOnly activado y la de PHP no, así que el script solo leyó la de PHP."
+        },
+        {
+          "key": "b",
+          "text": "Porque Java es un lenguaje compilado y por ello no permite ejecutar scripts inyectados en el navegador."
+        },
+        {
+          "key": "c",
+          "text": "Porque la aplicación Java usaba TLS mutuo y esa configuración bloqueó el script del atacante."
+        },
+        {
+          "key": "d",
+          "text": "Porque la cookie de PHP estaba cifrada y la de Java no, y el script solo lee las cifradas."
+        }
+      ],
+      "correct": "a",
+      "explanation": "La diferencia estaba en el atributo HttpOnly de la cookie: en la de PHP estaba en falso (el script la leía) y en la de Java en verdadero (el script no podía leerla). Siglas y términos: TLS: Transport Layer Security, seguridad de la capa de transporte. XSS: Cross-Site Scripting, inyección de scripts en el contexto de un sitio web.",
+      "difficulty": "media",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 30 oct · Tema 3. Vulnerabilidades en aplicaciones web"
+      },
+      "glossary": {
+        "TLS": "Transport Layer Security, seguridad de la capa de transporte.",
+        "XSS": "Cross-Site Scripting, inyección de scripts en el contexto de un sitio web."
+      }
+    },
+    {
+      "id": "sistemas-t03-34",
+      "course": "sistemas",
+      "topic": 3,
+      "test": "Tema 3 · Clase",
+      "order": 34,
+      "fromClass": true,
+      "text": "Una página maliciosa carga la web del banco en un marco transparente por delante de la suya, para que la víctima pulse sin saberlo en el banco. ¿Qué ataque es y qué cabecera lo frena?",
+      "options": [
+        {
+          "key": "a",
+          "text": "CSRF, que se frena con la cabecera de caché Cache-Control con el valor no-store."
+        },
+        {
+          "key": "b",
+          "text": "XST, que se frena con el atributo HttpOnly en la cabecera Set-Cookie de la respuesta."
+        },
+        {
+          "key": "c",
+          "text": "Clickjacking, que se frena con la cabecera X-Frame-Options (por ejemplo DENY)."
+        },
+        {
+          "key": "d",
+          "text": "SSRF, que se frena con la cabecera Content-Length del mensaje de respuesta."
+        }
+      ],
+      "correct": "c",
+      "explanation": "Es clickjacking: la víctima pulsa sin saberlo en una página transparente. Se evita con X-Frame-Options, que impide que la página se abra dentro de un marco ajeno. Siglas y términos: CSRF: Cross-Site Request Forgery, falsificación de solicitudes entre sitios. SSRF: Server-Side Request Forgery, falsificación de solicitudes desde el servidor.",
+      "difficulty": "media",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 30 oct · Tema 3. Vulnerabilidades en aplicaciones web"
+      },
+      "glossary": {
+        "CSRF": "Cross-Site Request Forgery, falsificación de solicitudes entre sitios.",
+        "SSRF": "Server-Side Request Forgery, falsificación de solicitudes desde el servidor."
+      }
+    },
+    {
+      "id": "sistemas-t03-35",
+      "course": "sistemas",
+      "topic": 3,
+      "test": "Tema 3 · Clase",
+      "order": 35,
+      "fromClass": true,
+      "text": "CWE-89 describe la inyección SQL en general, mientras que un identificador CVE señala una inyección SQL concreta encontrada en una versión de WordPress. ¿Cuál es la relación entre CWE y CVE?",
+      "options": [
+        {
+          "key": "a",
+          "text": "CWE y CVE son sinónimos: dos nombres distintos para el mismo catálogo de vulnerabilidades."
+        },
+        {
+          "key": "b",
+          "text": "CWE es el tipo de fallo (la clase) y CVE es un caso real concreto de ese tipo (la instancia)."
+        },
+        {
+          "key": "c",
+          "text": "CVE es el tipo general de fallo (la clase) y CWE es cada caso real publicado en un programa."
+        },
+        {
+          "key": "d",
+          "text": "CWE es la lista de las diez categorías más frecuentes y CVE es la de las veinticinco más graves."
+        }
+      ],
+      "correct": "b",
+      "explanation": "CWE cataloga los tipos de fallo (clase) y CVE identifica una vulnerabilidad concreta y pública en un software (instancia). Un CVE suele asociarse a un CWE. Siglas y términos: CVE: Common Vulnerabilities and Exposures, identificadores de vulnerabilidades y exposiciones comunes. CWE: Common Weakness Enumeration, catálogo de clases de debilidades de software. SQL: Structured Query Language, lenguaje de consultas estructurado.",
+      "difficulty": "media",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 30 oct · Tema 3. Vulnerabilidades en aplicaciones web"
+      },
+      "glossary": {
+        "CVE": "Common Vulnerabilities and Exposures, identificadores de vulnerabilidades y exposiciones comunes.",
+        "CWE": "Common Weakness Enumeration, catálogo de clases de debilidades de software.",
+        "SQL": "Structured Query Language, lenguaje de consultas estructurado."
       }
     },
     {
@@ -12293,6 +12810,192 @@
       }
     },
     {
+      "id": "redes-t01-31",
+      "course": "redes",
+      "topic": 11,
+      "test": "Tema 1 · Clase",
+      "order": 31,
+      "fromClass": true,
+      "text": "Un servidor web tiene un fallo de inyección SQL que nadie ha descubierto todavía. ¿Cómo se describe esa situación según la clase?",
+      "options": [
+        {
+          "key": "a",
+          "text": "Hay un ataque en curso, aunque el atacante aún no haya obtenido ningún dato."
+        },
+        {
+          "key": "b",
+          "text": "Hay una amenaza activa, porque el fallo existe y eso basta para que lo sea."
+        },
+        {
+          "key": "c",
+          "text": "Hay una vulnerabilidad, pero todavía no una amenaza activa ni un ataque."
+        },
+        {
+          "key": "d",
+          "text": "No hay nada que clasificar mientras el fallo no se explote con éxito."
+        }
+      ],
+      "correct": "c",
+      "explanation": "La vulnerabilidad existe aunque nadie la conozca. Se convierte en amenaza cuando alguien la descubre y en ataque cuando la explota. Siglas y términos: SQL: Structured Query Language, lenguaje de consultas estructurado.",
+      "difficulty": "media",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 30 sep · Tema 1. Introducción a la seguridad en redes"
+      },
+      "glossary": {
+        "SQL": "Structured Query Language, lenguaje de consultas estructurado."
+      }
+    },
+    {
+      "id": "redes-t01-32",
+      "course": "redes",
+      "topic": 11,
+      "test": "Tema 1 · Clase",
+      "order": 32,
+      "fromClass": true,
+      "text": "Un atacante se coloca entre dos equipos que creen hablar directamente y solo pretende espiar la conversación. ¿Cómo se clasifica un ataque de hombre en el medio (man in the middle)?",
+      "options": [
+        {
+          "key": "a",
+          "text": "Activo, porque para ponerse en medio hay que modificar algo, como la tabla ARP."
+        },
+        {
+          "key": "b",
+          "text": "Pasivo, porque su objetivo final es solo escuchar la comunicación entre ambos."
+        },
+        {
+          "key": "c",
+          "text": "Pasivo si no altera mensajes y activo únicamente si llega a modificarlos después."
+        },
+        {
+          "key": "d",
+          "text": "Ni activo ni pasivo: es un tipo aparte que depende del protocolo atacado en cada caso."
+        }
+      ],
+      "correct": "a",
+      "explanation": "Según la regla del profesor, si el atacante modifica el flujo de la información el ataque es activo. Para situarse en medio hay que alterar tablas o rutas. Siglas y términos: ARP: Address Resolution Protocol, protocolo de resolución de direcciones.",
+      "difficulty": "media",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 30 sep · Tema 1. Introducción a la seguridad en redes"
+      },
+      "glossary": {
+        "ARP": "Address Resolution Protocol, protocolo de resolución de direcciones."
+      }
+    },
+    {
+      "id": "redes-t01-33",
+      "course": "redes",
+      "topic": 11,
+      "test": "Tema 1 · Clase",
+      "order": 33,
+      "fromClass": true,
+      "text": "Un libro de texto agrupa las capas de OSI en las cuatro de TCP/IP. ¿Qué capas de OSI quedan englobadas en la capa de aplicación de TCP/IP?",
+      "options": [
+        {
+          "key": "a",
+          "text": "Aplicación y transporte, porque ambas gestionan la conversación entre programas."
+        },
+        {
+          "key": "b",
+          "text": "Presentación, sesión y red, las tres que no tienen equivalente directo."
+        },
+        {
+          "key": "c",
+          "text": "Solo aplicación, ya que en TCP/IP las demás desaparecen por completo."
+        },
+        {
+          "key": "d",
+          "text": "Aplicación, presentación y sesión, que son las tres capas superiores de OSI."
+        }
+      ],
+      "correct": "d",
+      "explanation": "La capa de aplicación de TCP/IP absorbe las tres capas superiores de OSI: aplicación, presentación y sesión. Red y transporte coinciden en ambos modelos. Siglas y términos: IP: Internet Protocol, protocolo de Internet. TCP: Transmission Control Protocol, protocolo de control de transmisión.",
+      "difficulty": "baja",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 30 sep · Tema 1. Introducción a la seguridad en redes"
+      },
+      "glossary": {
+        "IP": "Internet Protocol, protocolo de Internet.",
+        "TCP": "Transmission Control Protocol, protocolo de control de transmisión."
+      }
+    },
+    {
+      "id": "redes-t01-34",
+      "course": "redes",
+      "topic": 11,
+      "test": "Tema 1 · Clase",
+      "order": 34,
+      "fromClass": true,
+      "text": "¿Qué diferencia señaló el profesor entre la dirección MAC y la dirección IP de un equipo?",
+      "options": [
+        {
+          "key": "a",
+          "text": "La MAC se asigna según la red a la que se conecta el equipo y la IP viene grabada en la tarjeta."
+        },
+        {
+          "key": "b",
+          "text": "La MAC identifica la tarjeta y es única; la IP ubica el equipo y en redes privadas puede repetirse."
+        },
+        {
+          "key": "c",
+          "text": "Las dos son únicas en todo el mundo, pero la IP viaja cifrada y la MAC no lo hace nunca."
+        },
+        {
+          "key": "d",
+          "text": "La IP identifica el hardware de cada equipo y la MAC identifica el programa que envía el paquete."
+        }
+      ],
+      "correct": "b",
+      "explanation": "La MAC identifica la tarjeta de red y se considera única. La IP ubica el equipo dentro de una red y no es única, porque muchas redes privadas reutilizan las mismas direcciones. Siglas y términos: IP: Internet Protocol, protocolo de Internet.",
+      "difficulty": "media",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 30 sep · Tema 1. Introducción a la seguridad en redes"
+      },
+      "glossary": {
+        "IP": "Internet Protocol, protocolo de Internet."
+      }
+    },
+    {
+      "id": "redes-t01-35",
+      "course": "redes",
+      "topic": 11,
+      "test": "Tema 1 · Clase",
+      "order": 35,
+      "fromClass": true,
+      "text": "¿Qué caracteriza al ataque Land que el profesor construyó con Scapy?",
+      "options": [
+        {
+          "key": "a",
+          "text": "Se envían SYN con IP de origen y destino de la víctima y el mismo puerto."
+        },
+        {
+          "key": "b",
+          "text": "Se capturan mensajes legítimos y se retransmiten después para repetir una operación."
+        },
+        {
+          "key": "c",
+          "text": "Se intercepta la conversación entre dos equipos para modificar los datos en tránsito."
+        },
+        {
+          "key": "d",
+          "text": "Se inunda a la víctima con peticiones desde miles de equipos distintos a la vez."
+        }
+      ],
+      "correct": "a",
+      "explanation": "El ataque Land envía paquetes SYN con origen y destino iguales (la víctima), de modo que el equipo cree recibir peticiones de sí mismo. Es una suplantación de IP que busca una denegación de servicio. Siglas y términos: IP: Internet Protocol, protocolo de Internet.",
+      "difficulty": "media",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 30 sep · Tema 1. Introducción a la seguridad en redes"
+      },
+      "glossary": {
+        "IP": "Internet Protocol, protocolo de Internet."
+      }
+    },
+    {
       "id": "redes-t02-01",
       "course": "redes",
       "topic": 12,
@@ -13360,6 +14063,201 @@
         "kind": "practice",
         "title": "Temario UNIR · Tema 2. Seguridad perimetral",
         "page": 17
+      }
+    },
+    {
+      "id": "redes-t02-31",
+      "course": "redes",
+      "topic": 12,
+      "test": "Tema 2 · Clase",
+      "order": 31,
+      "fromClass": true,
+      "text": "Un paquete llega a la interfaz de un cortafuegos con iptables y todavía no se ha decidido hacia dónde enrutarlo. ¿Qué tablas se consultan en PREROUTING y por qué no aparece filter?",
+      "options": [
+        {
+          "key": "a",
+          "text": "Raw, mangle y nat, por ese orden; filter aún no, porque no se sabe el destino."
+        },
+        {
+          "key": "b",
+          "text": "Filter, nat y mangle, por ese orden; filter va primero para descartar cuanto antes."
+        },
+        {
+          "key": "c",
+          "text": "Solo nat, porque PREROUTING existe únicamente para traducir direcciones."
+        },
+        {
+          "key": "d",
+          "text": "Raw, mangle, nat y filter, porque todas las tablas actúan en todos los puntos."
+        }
+      ],
+      "correct": "a",
+      "explanation": "En PREROUTING se consultan raw, mangle y nat, en ese orden. Filter queda para después de la decisión de enrutado (INPUT, FORWARD u OUTPUT). Siglas y términos: FORWARD: Cadena de filtrado de iptables para tráfico que atraviesa el equipo. INPUT: Cadena de filtrado de iptables para tráfico destinado al propio equipo. OUTPUT: Cadena de iptables para tráfico generado en el propio equipo. PREROUTING: Punto de procesamiento de netfilter anterior a la decisión de encaminamiento.",
+      "difficulty": "alta",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 5 oct · Tema 2. Seguridad perimetral"
+      },
+      "glossary": {
+        "FORWARD": "Cadena de filtrado de iptables para tráfico que atraviesa el equipo.",
+        "INPUT": "Cadena de filtrado de iptables para tráfico destinado al propio equipo.",
+        "OUTPUT": "Cadena de iptables para tráfico generado en el propio equipo.",
+        "PREROUTING": "Punto de procesamiento de netfilter anterior a la decisión de encaminamiento."
+      }
+    },
+    {
+      "id": "redes-t02-32",
+      "course": "redes",
+      "topic": 12,
+      "test": "Tema 2 · Clase",
+      "order": 32,
+      "fromClass": true,
+      "text": "Un administrador quiere que el tráfico entrante al puerto 80 se desvíe a otro puerto del propio equipo (por ejemplo, el de un proxy). ¿Dónde debe escribir la regla?",
+      "options": [
+        {
+          "key": "a",
+          "text": "En la tabla filter y la cadena FORWARD, porque el tráfico atraviesa el cortafuegos."
+        },
+        {
+          "key": "b",
+          "text": "En la tabla filter y la cadena INPUT, porque el tráfico va dirigido al equipo."
+        },
+        {
+          "key": "c",
+          "text": "En la tabla mangle y la cadena OUTPUT, porque se modifican los paquetes salientes."
+        },
+        {
+          "key": "d",
+          "text": "En nat y la cadena PREROUTING, porque se cambia el destino antes de enrutar."
+        }
+      ],
+      "correct": "d",
+      "explanation": "Para cambiar el destino de un paquete se usa nat en PREROUTING, antes de la decisión de enrutado. Además hay que indicar siempre a qué IP y puerto se redirige. Siglas y términos: IP: Internet Protocol, protocolo de Internet. FORWARD: Cadena de filtrado de iptables para tráfico que atraviesa el equipo. INPUT: Cadena de filtrado de iptables para tráfico destinado al propio equipo. OUTPUT: Cadena de iptables para tráfico generado en el propio equipo. PREROUTING: Punto de procesamiento de netfilter anterior a la decisión de encaminamiento.",
+      "difficulty": "alta",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 5 oct · Tema 2. Seguridad perimetral"
+      },
+      "glossary": {
+        "IP": "Internet Protocol, protocolo de Internet.",
+        "FORWARD": "Cadena de filtrado de iptables para tráfico que atraviesa el equipo.",
+        "INPUT": "Cadena de filtrado de iptables para tráfico destinado al propio equipo.",
+        "OUTPUT": "Cadena de iptables para tráfico generado en el propio equipo.",
+        "PREROUTING": "Punto de procesamiento de netfilter anterior a la decisión de encaminamiento."
+      }
+    },
+    {
+      "id": "redes-t02-33",
+      "course": "redes",
+      "topic": 12,
+      "test": "Tema 2 · Clase",
+      "order": 33,
+      "fromClass": true,
+      "text": "Un cortafuegos con iptables debe dejar pasar una transferencia FTP. El protocolo abre una conexión de control y luego otras nuevas para los datos. ¿Cómo se clasifican esas segundas conexiones?",
+      "options": [
+        {
+          "key": "a",
+          "text": "NEW, porque son conexiones nuevas que no guardan relación con la anterior."
+        },
+        {
+          "key": "b",
+          "text": "RELATED, porque son nuevas pero relacionadas con otra ya existente."
+        },
+        {
+          "key": "c",
+          "text": "ESTABLISHED, igual que cualquier paquete de una conexión ya en marcha."
+        },
+        {
+          "key": "d",
+          "text": "INVALID, porque no usan el mismo puerto que la conexión de control."
+        }
+      ],
+      "correct": "b",
+      "explanation": "Las conexiones de datos de FTP son nuevas pero relacionadas con la de control, por eso son RELATED. Ante la duda, el profesor recomendó usar ESTABLISHED y RELATED juntas. Siglas y términos: FTP: File Transfer Protocol, protocolo de transferencia de archivos.",
+      "difficulty": "media",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 5 oct · Tema 2. Seguridad perimetral"
+      },
+      "glossary": {
+        "FTP": "File Transfer Protocol, protocolo de transferencia de archivos."
+      }
+    },
+    {
+      "id": "redes-t02-34",
+      "course": "redes",
+      "topic": 12,
+      "test": "Tema 2 · Clase",
+      "order": 34,
+      "fromClass": true,
+      "text": "En un cortafuegos con la política por defecto de INPUT en ACCEPT, un alumno añade reglas ACCEPT para varios puertos y reglas DROP para los puertos privilegiados. ¿Qué reglas aportan algo según la clase?",
+      "options": [
+        {
+          "key": "a",
+          "text": "Ninguna aporta, porque la política por defecto decide siempre el resultado final."
+        },
+        {
+          "key": "b",
+          "text": "Las ACCEPT y las DROP por igual, porque cada regla se evalúa por separado."
+        },
+        {
+          "key": "c",
+          "text": "Solo las DROP, porque las ACCEPT son redundantes si la política ya acepta."
+        },
+        {
+          "key": "d",
+          "text": "Solo las ACCEPT, porque las DROP nunca se aplican con una política permisiva."
+        }
+      ],
+      "correct": "c",
+      "explanation": "Con política ACCEPT, las reglas ACCEPT sobran porque ya se acepta por defecto. Solo las DROP cambian el resultado, por ejemplo al cerrar puertos privilegiados. Siglas y términos: INPUT: Cadena de filtrado de iptables para tráfico destinado al propio equipo. ACCEPT: Veredicto de aceptación de paquetes en el contexto de reglas de cortafuegos. DROP: Veredicto de descarte sin aviso al emisor en el contexto de reglas de cortafuegos.",
+      "difficulty": "media",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 5 oct · Tema 2. Seguridad perimetral"
+      },
+      "glossary": {
+        "INPUT": "Cadena de filtrado de iptables para tráfico destinado al propio equipo.",
+        "ACCEPT": "Veredicto de aceptación de paquetes en el contexto de reglas de cortafuegos.",
+        "DROP": "Veredicto de descarte sin aviso al emisor en el contexto de reglas de cortafuegos."
+      }
+    },
+    {
+      "id": "redes-t02-35",
+      "course": "redes",
+      "topic": 12,
+      "test": "Tema 2 · Clase",
+      "order": 35,
+      "fromClass": true,
+      "text": "Hay una regla DROP para el tráfico hacia MySQL y se decide volver a permitirlo. ¿Qué recomendó el profesor?",
+      "options": [
+        {
+          "key": "a",
+          "text": "Añadir al final una regla ACCEPT contraria, para que anule a la anterior."
+        },
+        {
+          "key": "b",
+          "text": "Cambiar la política por defecto a ACCEPT y dejar la regla DROP como está."
+        },
+        {
+          "key": "c",
+          "text": "Poner la regla ACCEPT antes que el resto de reglas de todas las cadenas."
+        },
+        {
+          "key": "d",
+          "text": "Borrar la regla DROP anterior en lugar de añadir una regla contraria."
+        }
+      ],
+      "correct": "d",
+      "explanation": "Como solo se aplica la primera regla que coincide, añadir una regla contraria genera un lío. Lo correcto es borrar la regla anterior, por ejemplo con -D. Siglas y términos: ACCEPT: Veredicto de aceptación de paquetes en el contexto de reglas de cortafuegos. DROP: Veredicto de descarte sin aviso al emisor en el contexto de reglas de cortafuegos.",
+      "difficulty": "media",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 5 oct · Tema 2. Seguridad perimetral"
+      },
+      "glossary": {
+        "ACCEPT": "Veredicto de aceptación de paquetes en el contexto de reglas de cortafuegos.",
+        "DROP": "Veredicto de descarte sin aviso al emisor en el contexto de reglas de cortafuegos."
       }
     },
     {
@@ -15437,6 +16335,180 @@
         "kind": "practice",
         "title": "Temario UNIR · Tema 4. Herramientas de seguridad. IDS/IPS y sistemas trampa",
         "page": 22
+      }
+    },
+    {
+      "id": "redes-t04-31",
+      "course": "redes",
+      "topic": 14,
+      "test": "Tema 4 · Clase",
+      "order": 31,
+      "fromClass": true,
+      "text": "¿Dónde recomendó el profesor colocar Snort respecto al cortafuegos y por qué?",
+      "options": [
+        {
+          "key": "a",
+          "text": "Delante, para detectar todos los ataques que llegan directamente desde Internet."
+        },
+        {
+          "key": "b",
+          "text": "Detrás, en una red interna, porque delante generaría alertas constantes."
+        },
+        {
+          "key": "c",
+          "text": "Da igual, porque Snort bloquea por sí solo y sustituye al cortafuegos."
+        },
+        {
+          "key": "d",
+          "text": "Solo en el router, ya que Snort no puede instalarse en otros equipos."
+        }
+      ],
+      "correct": "b",
+      "explanation": "Se aconseja colocarlo detrás del cortafuegos, en una red interna. Delante recibiría alertas constantes por los ataques que llegan a Internet.",
+      "difficulty": "media",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 3 nov · Tema 4. Herramientas de seguridad. IDS/IPS y sistemas trampa"
+      }
+    },
+    {
+      "id": "redes-t04-32",
+      "course": "redes",
+      "topic": 14,
+      "test": "Tema 4 · Clase",
+      "order": 32,
+      "fromClass": true,
+      "text": "Snort captura tráfico en bruto de la red. Antes de que el motor de detección lo compare con las reglas, ¿qué debe ocurrir según la arquitectura explicada en clase?",
+      "options": [
+        {
+          "key": "a",
+          "text": "Nada: el motor de detección analiza directamente los bytes capturados sin ninguna preparación."
+        },
+        {
+          "key": "b",
+          "text": "Se envía primero a los plugins de salida, que lo guardan para analizarlo después."
+        },
+        {
+          "key": "c",
+          "text": "Se decodifica según el protocolo y se organiza en campos mediante los preprocesadores."
+        },
+        {
+          "key": "d",
+          "text": "Se cifra el tráfico capturado para evitar que un atacante lo lea durante el análisis."
+        }
+      ],
+      "correct": "c",
+      "explanation": "El tráfico capturado se decodifica según su protocolo y los preprocesadores lo reorganizan en campos. Después el motor de detección lo compara con las reglas y los plugins de salida generan alertas o logs.",
+      "difficulty": "media",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 3 nov · Tema 4. Herramientas de seguridad. IDS/IPS y sistemas trampa"
+      }
+    },
+    {
+      "id": "redes-t04-33",
+      "course": "redes",
+      "topic": 14,
+      "test": "Tema 4 · Clase",
+      "order": 33,
+      "fromClass": true,
+      "text": "Tras un incidente se dispone de un fichero con el tráfico capturado. ¿Qué permite hacer la opción -r de Snort, que el profesor destacó para análisis forense?",
+      "options": [
+        {
+          "key": "a",
+          "text": "Guardar en disco los paquetes de la red en tiempo real para analizarlos más tarde."
+        },
+        {
+          "key": "b",
+          "text": "Leer una captura guardada y aplicarle las reglas, en vez de tráfico en vivo."
+        },
+        {
+          "key": "c",
+          "text": "Reiniciar el servicio de Snort y recargar las reglas sin detener la captura."
+        },
+        {
+          "key": "d",
+          "text": "Ejecutar Snort en segundo plano como un demonio, sin salida por pantalla."
+        }
+      ],
+      "correct": "b",
+      "explanation": "La opción -r lee paquetes de una captura guardada en vez de la red. Junto con -c permite aplicar las reglas a un ataque que ya ocurrió.",
+      "difficulty": "media",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 3 nov · Tema 4. Herramientas de seguridad. IDS/IPS y sistemas trampa"
+      }
+    },
+    {
+      "id": "redes-t04-34",
+      "course": "redes",
+      "topic": 14,
+      "test": "Tema 4 · Clase",
+      "order": 34,
+      "fromClass": true,
+      "text": "En una regla de Snort, ¿qué distingue a offset de distance al buscar un segundo patrón con content?",
+      "options": [
+        {
+          "key": "a",
+          "text": "Offset cuenta desde el inicio del paquete; distance cuenta desde la última coincidencia."
+        },
+        {
+          "key": "b",
+          "text": "Offset y distance cuentan ambos desde el inicio del paquete, pero con distinta unidad."
+        },
+        {
+          "key": "c",
+          "text": "Offset cuenta desde la última coincidencia; distance cuenta desde el inicio del paquete."
+        },
+        {
+          "key": "d",
+          "text": "Offset solo sirve con TCP y distance solo con UDP, aunque funcionan igual."
+        }
+      ],
+      "correct": "a",
+      "explanation": "Offset (y depth) son posiciones absolutas desde el inicio del paquete. Distance (y within) son relativas al último acierto, por eso solo tienen sentido si ya hubo una coincidencia previa. Siglas y términos: TCP: Transmission Control Protocol, protocolo de control de transmisión. UDP: User Datagram Protocol, protocolo de datagramas de usuario.",
+      "difficulty": "alta",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 3 nov · Tema 4. Herramientas de seguridad. IDS/IPS y sistemas trampa"
+      },
+      "glossary": {
+        "TCP": "Transmission Control Protocol, protocolo de control de transmisión.",
+        "UDP": "User Datagram Protocol, protocolo de datagramas de usuario."
+      }
+    },
+    {
+      "id": "redes-t04-35",
+      "course": "redes",
+      "topic": 14,
+      "test": "Tema 4 · Clase",
+      "order": 35,
+      "fromClass": true,
+      "text": "¿Por qué se definen variables (red interna, red externa, servidor web) al principio de un fichero de reglas de Snort en lugar de escribir las direcciones en cada regla?",
+      "options": [
+        {
+          "key": "a",
+          "text": "Porque Snort obliga a usar variables y rechaza las reglas con direcciones escritas."
+        },
+        {
+          "key": "b",
+          "text": "Porque las variables aceleran la captura de paquetes en la interfaz de red."
+        },
+        {
+          "key": "c",
+          "text": "Porque las reglas con variables se pueden marcar como dinámicas y activarse solas."
+        },
+        {
+          "key": "d",
+          "text": "Porque si la red cambia, basta cambiar la variable y las reglas se actualizan."
+        }
+      ],
+      "correct": "d",
+      "explanation": "Las variables se definen una vez y las reglas las usan por nombre. Si cambia una red, se modifica la variable y todas las reglas que la usan quedan actualizadas.",
+      "difficulty": "baja",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 3 nov · Tema 4. Herramientas de seguridad. IDS/IPS y sistemas trampa"
       }
     },
     {
@@ -22969,6 +24041,142 @@
       }
     },
     {
+      "id": "forense-t01-31",
+      "course": "forense",
+      "topic": 21,
+      "test": "Tema 1 · Clase",
+      "order": 31,
+      "fromClass": true,
+      "text": "El profesor insistió en que no hay que esperar a que ocurra un incidente para actuar. ¿Cuál de estas actividades es proactiva?",
+      "options": [
+        {
+          "key": "a",
+          "text": "Restablecer la infraestructura dañada después de que un incendio afecte al centro de datos"
+        },
+        {
+          "key": "b",
+          "text": "Redirigir el servicio a otro centro de datos mientras se arregla el principal"
+        },
+        {
+          "key": "c",
+          "text": "Practicar la caza de amenazas y la monitorización constante, sin esperar a una alarma"
+        },
+        {
+          "key": "d",
+          "text": "Redactar las lecciones aprendidas cuando el incidente ya se ha cerrado"
+        }
+      ],
+      "correct": "c",
+      "explanation": "La caza de amenazas (threat hunting) y la monitorización constante buscan problemas antes de que salte una alarma, por eso son proactivas. El resto actúa cuando el incidente ya ha ocurrido.",
+      "difficulty": "media",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 29 sep · Tema 1. Introducción a la Respuesta a Incidentes y Análisis Forense"
+      }
+    },
+    {
+      "id": "forense-t01-32",
+      "course": "forense",
+      "topic": 21,
+      "test": "Tema 1 · Clase",
+      "order": 32,
+      "fromClass": true,
+      "text": "Según la legislación española explicada en clase, ¿qué se exige para actuar como perito informático?",
+      "options": [
+        {
+          "key": "a",
+          "text": "Estar colegiado en el colegio profesional correspondiente; sin ello el dictamen no vale"
+        },
+        {
+          "key": "b",
+          "text": "Ser experto en la materia concreta; no se exige titulación ni pertenecer a un colegio"
+        },
+        {
+          "key": "c",
+          "text": "Tener una titulación universitaria oficial en ingeniería informática o similar"
+        },
+        {
+          "key": "d",
+          "text": "Haber obtenido antes una certificación internacional de análisis forense reconocida"
+        }
+      ],
+      "correct": "b",
+      "explanation": "En España el perito es un experto en una materia y no se exige titulación ni colegiación; ambas aportan credibilidad, pero no son obligatorias.",
+      "difficulty": "baja",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 29 sep · Tema 1. Introducción a la Respuesta a Incidentes y Análisis Forense"
+      }
+    },
+    {
+      "id": "forense-t01-33",
+      "course": "forense",
+      "topic": 21,
+      "test": "Tema 1 · Clase",
+      "order": 33,
+      "fromClass": true,
+      "text": "En clase se distinguió entre dolo, imprudencia y falta de celo del perito. ¿Qué es actuar con dolo?",
+      "options": [
+        {
+          "key": "a",
+          "text": "Tratar la evidencia sin el cuidado necesario, por un descuido involuntario"
+        },
+        {
+          "key": "b",
+          "text": "No hacer el análisis de forma profesional por confiar en que algo está en solo lectura"
+        },
+        {
+          "key": "c",
+          "text": "Aceptar un caso en el que el perito tiene un conflicto de interés familiar"
+        },
+        {
+          "key": "d",
+          "text": "Hacer algo a sabiendas de que es ilegal, como alterar pruebas a propósito"
+        }
+      ],
+      "correct": "d",
+      "explanation": "El dolo es actuar sabiendo que se hace algo ilegal, por ejemplo alterar pruebas a propósito. El descuido es imprudencia y no comprobar o implicarse es falta de celo.",
+      "difficulty": "media",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 29 sep · Tema 1. Introducción a la Respuesta a Incidentes y Análisis Forense"
+      }
+    },
+    {
+      "id": "forense-t01-34",
+      "course": "forense",
+      "topic": 21,
+      "test": "Tema 1 · Clase",
+      "order": 34,
+      "fromClass": true,
+      "text": "Un perito acepta analizar un caso judicial en el que está implicado un familiar suyo. Aunque podría actuar de oficio, ¿qué problema señaló el profesor?",
+      "options": [
+        {
+          "key": "a",
+          "text": "Falta de celo: hay conflicto de interés y no actúa de forma profesional"
+        },
+        {
+          "key": "b",
+          "text": "Cohecho: recibe un beneficio a cambio de favorecer a una de las partes del juicio"
+        },
+        {
+          "key": "c",
+          "text": "Falso testimonio propio: miente de forma maliciosa en su dictamen"
+        },
+        {
+          "key": "d",
+          "text": "Ninguno: al poder actuar de oficio su imparcialidad queda garantizada"
+        }
+      ],
+      "correct": "a",
+      "explanation": "Analizar un caso en el que se está implicado, por ejemplo con un familiar, es falta de celo: hay un conflicto de interés que impide actuar con profesionalidad.",
+      "difficulty": "media",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 29 sep · Tema 1. Introducción a la Respuesta a Incidentes y Análisis Forense"
+      }
+    },
+    {
       "id": "forense-t02-01",
       "course": "forense",
       "topic": 22,
@@ -24006,6 +25214,145 @@
         "kind": "practice",
         "title": "Temario UNIR · Tema 2. La evidencia digital",
         "page": 17
+      }
+    },
+    {
+      "id": "forense-t02-31",
+      "course": "forense",
+      "topic": 22,
+      "test": "Tema 2 · Clase",
+      "order": 31,
+      "fromClass": true,
+      "text": "En el registro de una habitación aparecen una consola, un ratón con memoria interna y unos auriculares con almacenamiento. ¿Cómo debe tratarlos el forense, según insistió el profesor?",
+      "options": [
+        {
+          "key": "a",
+          "text": "Como evidencias digitales, porque son los objetos que se presentarán al juez"
+        },
+        {
+          "key": "b",
+          "text": "Como objetos sin interés forense, porque solo importan ordenadores y móviles"
+        },
+        {
+          "key": "c",
+          "text": "Como contenedores de potenciales evidencias: la evidencia es su contenido"
+        },
+        {
+          "key": "d",
+          "text": "Como evidencias físicas que se analizan igual que un arma o una huella"
+        }
+      ],
+      "correct": "c",
+      "explanation": "Cualquier aparato con almacenamiento es un contenedor de potenciales evidencias digitales. La evidencia es la información que contiene, no el objeto.",
+      "difficulty": "baja",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 29 sep · Tema 2. La evidencia digital"
+      }
+    },
+    {
+      "id": "forense-t02-32",
+      "course": "forense",
+      "topic": 22,
+      "test": "Tema 2 · Clase",
+      "order": 32,
+      "fromClass": true,
+      "text": "En la lista de cinco características de una evidencia que dio el profesor, ¿cuál pide que sea clara y comprensible para cualquier juez?",
+      "options": [
+        {
+          "key": "a",
+          "text": "Admisible"
+        },
+        {
+          "key": "b",
+          "text": "Creíble"
+        },
+        {
+          "key": "c",
+          "text": "Completa"
+        },
+        {
+          "key": "d",
+          "text": "Confiable"
+        }
+      ],
+      "correct": "b",
+      "explanation": "En la lista de clase, creíble significa que la evidencia sea clara y comprensible para cualquier juez.",
+      "difficulty": "media",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 29 sep · Tema 2. La evidencia digital"
+      }
+    },
+    {
+      "id": "forense-t02-33",
+      "course": "forense",
+      "topic": 22,
+      "test": "Tema 2 · Clase",
+      "order": 33,
+      "fromClass": true,
+      "text": "El profesor explicó que una evidencia, por sí sola, es un indicio de un hecho, pero varias juntas pueden corroborar las acciones. ¿A qué característica de la lista de clase se refiere?",
+      "options": [
+        {
+          "key": "a",
+          "text": "Admisible"
+        },
+        {
+          "key": "b",
+          "text": "Auténtica"
+        },
+        {
+          "key": "c",
+          "text": "Creíble"
+        },
+        {
+          "key": "d",
+          "text": "Completa"
+        }
+      ],
+      "correct": "d",
+      "explanation": "Es la característica completa: una evidencia aislada es un indicio y, combinada con otras, ayuda a probar acciones. En la ISO 27037 se parece a la suficiencia. Siglas y términos: ISO: International Organization for Standardization, Organización Internacional de Normalización; ISO es su nombre corto internacional.",
+      "difficulty": "media",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 29 sep · Tema 2. La evidencia digital"
+      },
+      "glossary": {
+        "ISO": "International Organization for Standardization, Organización Internacional de Normalización; ISO es su nombre corto internacional."
+      }
+    },
+    {
+      "id": "forense-t02-34",
+      "course": "forense",
+      "topic": 22,
+      "test": "Tema 2 · Clase",
+      "order": 34,
+      "fromClass": true,
+      "text": "¿Cuál de estas NO es una de las cinco características de una evidencia que el profesor presentó en clase?",
+      "options": [
+        {
+          "key": "a",
+          "text": "Volátil"
+        },
+        {
+          "key": "b",
+          "text": "Admisible"
+        },
+        {
+          "key": "c",
+          "text": "Completa"
+        },
+        {
+          "key": "d",
+          "text": "Creíble"
+        }
+      ],
+      "correct": "a",
+      "explanation": "La volatilidad no es una característica de la evidencia. Describe lo rápido que cambia y sirve para ordenar la recogida.",
+      "difficulty": "baja",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 29 sep · Tema 2. La evidencia digital"
       }
     },
     {
@@ -25047,6 +26394,186 @@
         "kind": "practice",
         "title": "Temario UNIR · Tema 3. Adquisición de evidencias digitales",
         "page": 33
+      }
+    },
+    {
+      "id": "forense-t03-31",
+      "course": "forense",
+      "topic": 23,
+      "test": "Tema 3 · Clase",
+      "order": 31,
+      "fromClass": true,
+      "text": "¿Por qué a veces se prefiere borrar un soporte con datos aleatorios en lugar de con ceros?",
+      "options": [
+        {
+          "key": "a",
+          "text": "Porque los datos aleatorios se escriben más rápido que los ceros en cualquier disco"
+        },
+        {
+          "key": "b",
+          "text": "Porque los ceros no se consideran nunca un borrado seguro en ningún soporte"
+        },
+        {
+          "key": "c",
+          "text": "Porque así el hash de la copia resulta siempre idéntico al hash del origen"
+        },
+        {
+          "key": "d",
+          "text": "Porque con ceros queda un hueco del tamaño del archivo que delata lo borrado"
+        }
+      ],
+      "correct": "d",
+      "explanation": "Con ceros se ve un hueco del tamaño exacto del archivo borrado. Con datos aleatorios no se distingue dónde acaba un archivo ni dónde empieza otro.",
+      "difficulty": "media",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 19 oct · Tema 3. Adquisición de evidencias digitales"
+      }
+    },
+    {
+      "id": "forense-t03-32",
+      "course": "forense",
+      "topic": 23,
+      "test": "Tema 3 · Clase",
+      "order": 32,
+      "fromClass": true,
+      "text": "Se recomienda calcular el hash de una evidencia con al menos dos algoritmos distintos. ¿Por qué?",
+      "options": [
+        {
+          "key": "a",
+          "text": "Porque es muy raro que dos archivos distintos coincidan en ambos a la vez"
+        },
+        {
+          "key": "b",
+          "text": "Porque un algoritmo cifra la evidencia y el otro la descifra para poder comprobarla"
+        },
+        {
+          "key": "c",
+          "text": "Porque cada algoritmo protege una mitad distinta del archivo analizado"
+        },
+        {
+          "key": "d",
+          "text": "Porque la ley obliga a presentar siempre dos algoritmos concretos juntos"
+        }
+      ],
+      "correct": "a",
+      "explanation": "Se conocen colisiones en MD5 y SHA-1. Con dos algoritmos, que dos archivos distintos coincidan en ambos a la vez es extremadamente raro. Siglas y términos: MD5: Message Digest 5, función resumen criptográfica hoy inadecuada para usos que requieren resistencia a colisiones. SHA: Secure Hash Algorithm, familia de algoritmos de resumen seguro.",
+      "difficulty": "media",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 19 oct · Tema 3. Adquisición de evidencias digitales"
+      },
+      "glossary": {
+        "MD5": "Message Digest 5, función resumen criptográfica hoy inadecuada para usos que requieren resistencia a colisiones.",
+        "SHA": "Secure Hash Algorithm, familia de algoritmos de resumen seguro."
+      }
+    },
+    {
+      "id": "forense-t03-33",
+      "course": "forense",
+      "topic": 23,
+      "test": "Tema 3 · Clase",
+      "order": 33,
+      "fromClass": true,
+      "text": "Un ejercicio te da un móvil con un 5 % de batería y te pide que priorices los pasos. ¿Qué paso suele olvidarse y es clave?",
+      "options": [
+        {
+          "key": "a",
+          "text": "Apagarlo de inmediato para evitar cambios en su memoria interna"
+        },
+        {
+          "key": "b",
+          "text": "Conectarlo a una fuente de energía para que no se apague"
+        },
+        {
+          "key": "c",
+          "text": "Reiniciarlo para que el almacenamiento quede accesible"
+        },
+        {
+          "key": "d",
+          "text": "Dejar que se descargue del todo antes de adquirirlo"
+        }
+      ],
+      "correct": "b",
+      "explanation": "Hay que mantener el móvil encendido conectándolo a una fuente de energía. Si se apaga o reinicia, su almacenamiento puede quedar cifrado hasta introducir el PIN. Siglas y términos: PIN: Personal Identification Number, número de identificación personal.",
+      "difficulty": "media",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 19 oct · Tema 3. Adquisición de evidencias digitales"
+      },
+      "glossary": {
+        "PIN": "Personal Identification Number, número de identificación personal."
+      }
+    },
+    {
+      "id": "forense-t03-34",
+      "course": "forense",
+      "topic": 23,
+      "test": "Tema 3 · Clase",
+      "order": 34,
+      "fromClass": true,
+      "text": "Vas a clonar un disco de 1 TB. ¿Qué debe cumplir el disco de destino?",
+      "options": [
+        {
+          "key": "a",
+          "text": "Puede ser más pequeño si el sistema comprime los datos durante el clonado"
+        },
+        {
+          "key": "b",
+          "text": "Puede tener cualquier tamaño, porque solo se copian los sectores con archivos"
+        },
+        {
+          "key": "c",
+          "text": "Tener una capacidad igual o mayor y haber sido borrado de forma segura antes"
+        },
+        {
+          "key": "d",
+          "text": "Ser del mismo fabricante, modelo y año de fabricación que el original"
+        }
+      ],
+      "correct": "c",
+      "explanation": "El clonado es una copia bit a bit en otro disco, así que el destino debe tener capacidad igual o mayor que el origen y estar limpio mediante borrado seguro.",
+      "difficulty": "media",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 19 oct · Tema 3. Adquisición de evidencias digitales"
+      }
+    },
+    {
+      "id": "forense-t03-35",
+      "course": "forense",
+      "topic": 23,
+      "test": "Tema 3 · Clase",
+      "order": 35,
+      "fromClass": true,
+      "text": "Hay que adquirir un servidor de correo virtualizado que no se puede apagar. ¿Qué opción ofrece la virtualización?",
+      "options": [
+        {
+          "key": "a",
+          "text": "Guardar una instantánea de la máquina virtual y exportarla, con la RAM incluida"
+        },
+        {
+          "key": "b",
+          "text": "Apagar la máquina virtual, porque en un servidor virtual no hay datos volátiles"
+        },
+        {
+          "key": "c",
+          "text": "Copiar solo los asuntos de los mensajes para no tocar nada de la máquina"
+        },
+        {
+          "key": "d",
+          "text": "Adquirir únicamente el equipo del empleado, porque el servidor virtual no tiene evidencias"
+        }
+      ],
+      "correct": "a",
+      "explanation": "Las herramientas de virtualización permiten guardar una instantánea (snapshot) del estado de la máquina, a veces incluida la RAM, y exportarla sin apagar el servidor. Siglas y términos: RAM: Random Access Memory, memoria de acceso aleatorio; suele ser volátil.",
+      "difficulty": "media",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 19 oct · Tema 3. Adquisición de evidencias digitales"
+      },
+      "glossary": {
+        "RAM": "Random Access Memory, memoria de acceso aleatorio; suele ser volátil."
       }
     },
     {
@@ -26141,6 +27668,159 @@
       }
     },
     {
+      "id": "forense-t04-31",
+      "course": "forense",
+      "topic": 24,
+      "test": "Tema 4 · Clase",
+      "order": 31,
+      "fromClass": true,
+      "text": "Necesitas un disco con seis particiones y poder elegir por cuál arrancar. ¿Qué esquema de particionado encaja?",
+      "options": [
+        {
+          "key": "a",
+          "text": "MBR, que permite varias particiones arrancables a la vez sin límite"
+        },
+        {
+          "key": "b",
+          "text": "GPT: hasta 128 particiones y sin límite de arrancables"
+        },
+        {
+          "key": "c",
+          "text": "Ninguno: un disco no admite más de cuatro particiones en total"
+        },
+        {
+          "key": "d",
+          "text": "MBR, porque admite discos de hasta 8 zettabytes de capacidad"
+        }
+      ],
+      "correct": "b",
+      "explanation": "GPT admite hasta 128 particiones y no limita las arrancables. MBR llega a cuatro primarias y solo una puede ser arrancable. Siglas y términos: GPT: GUID Partition Table, tabla de particiones con identificadores globalmente únicos. MBR: Master Boot Record, registro de arranque maestro.",
+      "difficulty": "media",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 19 oct · Tema 4. Sistemas de ficheros"
+      },
+      "glossary": {
+        "GPT": "GUID Partition Table, tabla de particiones con identificadores globalmente únicos.",
+        "MBR": "Master Boot Record, registro de arranque maestro."
+      }
+    },
+    {
+      "id": "forense-t04-32",
+      "course": "forense",
+      "topic": 24,
+      "test": "Tema 4 · Clase",
+      "order": 32,
+      "fromClass": true,
+      "text": "En NTFS se crea un archivo de texto de solo 12 caracteres. ¿Dónde puede encontrarse su contenido?",
+      "options": [
+        {
+          "key": "a",
+          "text": "En el archivo $Bitmap, que guarda el contenido de los archivos pequeños"
+        },
+        {
+          "key": "b",
+          "text": "En $MFTMirr, que duplica los archivos de menos de 512 bytes"
+        },
+        {
+          "key": "c",
+          "text": "En un clúster de $BadClus reservado para archivos pequeños"
+        },
+        {
+          "key": "d",
+          "text": "Dentro de la propia $MFT, al ocupar menos de 512 bytes"
+        }
+      ],
+      "correct": "d",
+      "explanation": "En NTFS, si un archivo ocupa menos de 512 bytes, su contenido se guarda dentro de su entrada en la $MFT. Siglas y términos: NTFS: New Technology File System, sistema de archivos de nueva tecnología de Windows. MFT: Master File Table, tabla maestra de archivos de NTFS.",
+      "difficulty": "alta",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 19 oct · Tema 4. Sistemas de ficheros"
+      },
+      "glossary": {
+        "NTFS": "New Technology File System, sistema de archivos de nueva tecnología de Windows.",
+        "MFT": "Master File Table, tabla maestra de archivos de NTFS."
+      }
+    },
+    {
+      "id": "forense-t04-33",
+      "course": "forense",
+      "topic": 24,
+      "test": "Tema 4 · Clase",
+      "order": 33,
+      "fromClass": true,
+      "text": "El profesor recalcó que en NTFS borrar un archivo no es una sola marca. ¿Qué cambia?",
+      "options": [
+        {
+          "key": "a",
+          "text": "Se actualizan varias estructuras: la entrada de la $MFT y el $Bitmap"
+        },
+        {
+          "key": "b",
+          "text": "Se sobrescriben con ceros todos los clústeres del archivo para liberarlos"
+        },
+        {
+          "key": "c",
+          "text": "Solo se cambia la extensión del nombre del archivo dentro de la $MFT"
+        },
+        {
+          "key": "d",
+          "text": "Se elimina físicamente la entrada de la $MFT y esta se reduce de tamaño"
+        }
+      ],
+      "correct": "a",
+      "explanation": "Al borrar en NTFS cambian varias cosas: la entrada de la $MFT se marca como disponible y el $Bitmap se actualiza. No se sobrescriben los datos. Siglas y términos: NTFS: New Technology File System, sistema de archivos de nueva tecnología de Windows. MFT: Master File Table, tabla maestra de archivos de NTFS.",
+      "difficulty": "alta",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 19 oct · Tema 4. Sistemas de ficheros"
+      },
+      "glossary": {
+        "NTFS": "New Technology File System, sistema de archivos de nueva tecnología de Windows.",
+        "MFT": "Master File Table, tabla maestra de archivos de NTFS."
+      }
+    },
+    {
+      "id": "forense-t04-34",
+      "course": "forense",
+      "topic": 24,
+      "test": "Tema 4 · Clase",
+      "order": 34,
+      "fromClass": true,
+      "text": "Según los consejos de la clase, ¿qué sistemas de ficheros son los imprescindibles de conocer?",
+      "options": [
+        {
+          "key": "a",
+          "text": "APFS, Btrfs y HFS+, por ser los más complejos"
+        },
+        {
+          "key": "b",
+          "text": "Todos por igual, memorizando cada archivo de sus estructuras"
+        },
+        {
+          "key": "c",
+          "text": "FAT (y FAT32), NTFS y ext4, con sus archivos principales"
+        },
+        {
+          "key": "d",
+          "text": "Solo NTFS, porque los demás no aparecen en casos reales"
+        }
+      ],
+      "correct": "c",
+      "explanation": "Los imprescindibles son FAT (y FAT32), NTFS y ext4. De APFS y de los demás basta saber qué aportan. Siglas y términos: FAT: File Allocation Table, tabla de asignación de archivos. NTFS: New Technology File System, sistema de archivos de nueva tecnología de Windows. APFS: Apple File System, sistema de archivos de Apple.",
+      "difficulty": "baja",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 19 oct · Tema 4. Sistemas de ficheros"
+      },
+      "glossary": {
+        "FAT": "File Allocation Table, tabla de asignación de archivos.",
+        "NTFS": "New Technology File System, sistema de archivos de nueva tecnología de Windows.",
+        "APFS": "Apple File System, sistema de archivos de Apple."
+      }
+    },
+    {
       "id": "forense-t05-01",
       "course": "forense",
       "topic": 25,
@@ -27184,6 +28864,179 @@
       }
     },
     {
+      "id": "forense-t05-31",
+      "course": "forense",
+      "topic": 25,
+      "test": "Tema 5 · Clase",
+      "order": 31,
+      "fromClass": true,
+      "text": "¿Cómo se identifica un archivo de texto plano (por ejemplo, un .txt) cuando se busca su firma?",
+      "options": [
+        {
+          "key": "a",
+          "text": "Por una firma de final que termina en FF D9 y marca el cierre del archivo"
+        },
+        {
+          "key": "b",
+          "text": "Por los bytes iniciales %PDF seguidos de la versión del formato"
+        },
+        {
+          "key": "c",
+          "text": "Por su extensión, que es lo único que lo identifica"
+        },
+        {
+          "key": "d",
+          "text": "No tiene firma: es texto puro, sin bytes iniciales que lo identifiquen"
+        }
+      ],
+      "correct": "d",
+      "explanation": "Casi todos los formatos tienen firma, salvo los de texto plano. Un TXT es solo texto puro, sin bytes iniciales que lo identifiquen.",
+      "difficulty": "media",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 26 oct · Tema 5. Recuperación de archivos"
+      }
+    },
+    {
+      "id": "forense-t05-32",
+      "course": "forense",
+      "topic": 25,
+      "test": "Tema 5 · Clase",
+      "order": 32,
+      "fromClass": true,
+      "text": "Un atacante cambia los primeros bytes de un ejecutable para engañar a una protección que solo mira la firma. ¿Qué comprobación añade el forense?",
+      "options": [
+        {
+          "key": "a",
+          "text": "Fiarse de la extensión, que no ha cambiado"
+        },
+        {
+          "key": "b",
+          "text": "Comparar el hash del archivo con el del original"
+        },
+        {
+          "key": "c",
+          "text": "Mirar solo los últimos bytes, que no se pueden modificar"
+        },
+        {
+          "key": "d",
+          "text": "Calcular el tamaño del clúster donde está almacenado"
+        }
+      ],
+      "correct": "b",
+      "explanation": "El forense compara el hash del archivo con el del original: si los primeros bytes se han alterado, el hash será completamente distinto.",
+      "difficulty": "alta",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 26 oct · Tema 5. Recuperación de archivos"
+      }
+    },
+    {
+      "id": "forense-t05-33",
+      "course": "forense",
+      "topic": 25,
+      "test": "Tema 5 · Clase",
+      "order": 33,
+      "fromClass": true,
+      "text": "Una foto muestra una fecha de modificación sospechosamente anterior. ¿Qué actitud es correcta según la clase?",
+      "options": [
+        {
+          "key": "a",
+          "text": "Aceptarla sin más, porque los metadatos no se pueden modificar de ningún modo"
+        },
+        {
+          "key": "b",
+          "text": "Descartarla, porque los metadatos nunca valen como prueba en un juicio"
+        },
+        {
+          "key": "c",
+          "text": "Desconfiar y contrastarla con otras fuentes: puede falsearse, pero es pieza clave"
+        },
+        {
+          "key": "d",
+          "text": "Recalcular el hash de la foto para corregir su fecha de modificación"
+        }
+      ],
+      "correct": "c",
+      "explanation": "Los metadatos pueden editarse o falsearse, así que si muestran algo raro se contrastan con otras fuentes. Aun así son una pieza de prueba clave.",
+      "difficulty": "media",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 26 oct · Tema 5. Recuperación de archivos"
+      }
+    },
+    {
+      "id": "forense-t05-34",
+      "course": "forense",
+      "topic": 25,
+      "test": "Tema 5 · Clase",
+      "order": 34,
+      "fromClass": true,
+      "text": "Un archivo se ve de 1 MB en el Explorador de Windows, pero ocupa mucho más en el disco. ¿Qué característica de NTFS lo puede explicar?",
+      "options": [
+        {
+          "key": "a",
+          "text": "Un flujo de datos alternativo oculto, que no se ve ni cuenta en el tamaño"
+        },
+        {
+          "key": "b",
+          "text": "Una partición oculta que duplica el archivo en otro volumen del mismo disco"
+        },
+        {
+          "key": "c",
+          "text": "La entrada de la papelera de reciclaje, que guarda una copia comprimida"
+        },
+        {
+          "key": "d",
+          "text": "El espacio sin asignar que Windows añade al borrar el archivo"
+        }
+      ],
+      "correct": "a",
+      "explanation": "NTFS permite que una referencia apunte a varias secuencias de bytes. Los flujos alternativos no se muestran por defecto ni se cuentan en el tamaño que ve el usuario. Siglas y términos: NTFS: New Technology File System, sistema de archivos de nueva tecnología de Windows.",
+      "difficulty": "alta",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 26 oct · Tema 5. Recuperación de archivos"
+      },
+      "glossary": {
+        "NTFS": "New Technology File System, sistema de archivos de nueva tecnología de Windows."
+      }
+    },
+    {
+      "id": "forense-t05-35",
+      "course": "forense",
+      "topic": 25,
+      "test": "Tema 5 · Clase",
+      "order": 35,
+      "fromClass": true,
+      "text": "Se recupera una imagen borrada, pero sale recortada y con los colores alterados. ¿Qué valor puede tener según el profesor?",
+      "options": [
+        {
+          "key": "a",
+          "text": "Ninguno: una recuperación parcial nunca se admite como prueba"
+        },
+        {
+          "key": "b",
+          "text": "Solo vale si la ley fija un porcentaje mínimo de píxeles recuperados"
+        },
+        {
+          "key": "c",
+          "text": "Solo vale si se ha recuperado con una herramienta de pago"
+        },
+        {
+          "key": "d",
+          "text": "Puede demostrar que es la misma imagen aunque falle una zona"
+        }
+      ],
+      "correct": "d",
+      "explanation": "No hay una regla que fije cuántos píxeles hacen falta. Una imagen recuperada en parte puede servir para demostrar que es la misma, aunque falle una zona.",
+      "difficulty": "media",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 26 oct · Tema 5. Recuperación de archivos"
+      }
+    },
+    {
       "id": "forense-t06-01",
       "course": "forense",
       "topic": 26,
@@ -28215,6 +30068,145 @@
         "kind": "practice",
         "title": "Temario UNIR · Tema 6. Esquema general de análisis",
         "page": 26
+      }
+    },
+    {
+      "id": "forense-t06-31",
+      "course": "forense",
+      "topic": 26,
+      "test": "Tema 6 · Clase",
+      "order": 31,
+      "fromClass": true,
+      "text": "En el pre-análisis, ¿en qué orden se recuperan los archivos eliminados?",
+      "options": [
+        {
+          "key": "a",
+          "text": "Primero la recuperación en bruto y después la básica con FTK Imager o Autopsy"
+        },
+        {
+          "key": "b",
+          "text": "Primero con la suite forense sobre el sistema de ficheros y luego en bruto"
+        },
+        {
+          "key": "c",
+          "text": "Solo en bruto, porque la básica altera el índice del sistema de ficheros"
+        },
+        {
+          "key": "d",
+          "text": "Solo la básica, porque la recuperación en bruto no se usa en forense"
+        }
+      ],
+      "correct": "b",
+      "explanation": "Primero se sacan con la suite (FTK Imager o Autopsy) todos los archivos, borrados o no, que aún tiene el sistema de ficheros. Después se hace la recuperación en bruto.",
+      "difficulty": "media",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 5 nov · Tema 6. Esquema general de análisis"
+      }
+    },
+    {
+      "id": "forense-t06-32",
+      "course": "forense",
+      "topic": 26,
+      "test": "Tema 6 · Clase",
+      "order": 32,
+      "fromClass": true,
+      "text": "Según el profesor, ¿qué papel tiene la IA en el análisis forense?",
+      "options": [
+        {
+          "key": "a",
+          "text": "Esclarece los hechos por sí sola, de modo que sustituye al perito"
+        },
+        {
+          "key": "b",
+          "text": "Es siempre fiable, incluso al interpretar datos subjetivos"
+        },
+        {
+          "key": "c",
+          "text": "Acelera y ayuda a decidir, pero no decide; puede alucinar"
+        },
+        {
+          "key": "d",
+          "text": "Debe evitarse por completo porque no sirve en tareas forenses"
+        }
+      ],
+      "correct": "c",
+      "explanation": "La IA acelera mucho el proceso, pero ayuda a decidir, no decide. Puede alucinar y es más fiable con datos objetivos, como la hora del último arranque.",
+      "difficulty": "baja",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 5 nov · Tema 6. Esquema general de análisis"
+      }
+    },
+    {
+      "id": "forense-t06-33",
+      "course": "forense",
+      "topic": 26,
+      "test": "Tema 6 · Clase",
+      "order": 33,
+      "fromClass": true,
+      "text": "Se encuentra un archivo cifrado cuya contraseña no se conoce. ¿Cómo trata la fuerza bruta el profesor?",
+      "options": [
+        {
+          "key": "a",
+          "text": "La evita siempre, porque romper una contraseña nunca está permitido en un caso"
+        },
+        {
+          "key": "b",
+          "text": "La lanza solo al final, cuando ya no queda ninguna otra tarea pendiente"
+        },
+        {
+          "key": "c",
+          "text": "La da por buena: lo que salga se incluye en el informe sin comprobarlo"
+        },
+        {
+          "key": "d",
+          "text": "La intenta siempre y la deja en paralelo, validando a mano lo que salga"
+        }
+      ],
+      "correct": "d",
+      "explanation": "El profesor la intenta siempre y la deja corriendo en paralelo mientras trabaja o redacta el informe. Lo que salga se valida a mano.",
+      "difficulty": "media",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 5 nov · Tema 6. Esquema general de análisis"
+      }
+    },
+    {
+      "id": "forense-t06-34",
+      "course": "forense",
+      "topic": 26,
+      "test": "Tema 6 · Clase",
+      "order": 34,
+      "fromClass": true,
+      "text": "¿Por qué le interesa al forense encontrar WSL (Windows Subsystem for Linux) en un equipo Windows?",
+      "options": [
+        {
+          "key": "a",
+          "text": "Ejecuta binarios de Linux en Windows, también los de atacantes; su disco se analiza"
+        },
+        {
+          "key": "b",
+          "text": "Es un antivirus integrado que borra las pruebas de forma automática al detectarlas"
+        },
+        {
+          "key": "c",
+          "text": "Sustituye a la $MFT y cambia por completo cómo se recuperan los archivos"
+        },
+        {
+          "key": "d",
+          "text": "Cifra todo el volumen y obliga a abandonar el análisis por completo"
+        }
+      ],
+      "correct": "a",
+      "explanation": "WSL instala un Linux dentro de Windows. Los atacantes también lo usan, y su disco es un archivo dentro de Windows que se analiza como un disco duro adicional. Siglas y términos: MFT: Master File Table, tabla maestra de archivos de NTFS.",
+      "difficulty": "media",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 5 nov · Tema 6. Esquema general de análisis"
+      },
+      "glossary": {
+        "MFT": "Master File Table, tabla maestra de archivos de NTFS."
       }
     },
     {
@@ -33413,6 +35405,145 @@
       }
     },
     {
+      "id": "gobierno-t01-31",
+      "course": "gobierno",
+      "topic": 31,
+      "test": "Tema 1 · Clase",
+      "order": 31,
+      "fromClass": true,
+      "text": "Una empresa prepara una auditoría y su equipo se limita a reunir evidencias de cada control para obtener el sello de certificación. Según insistió el profesor, ¿qué idea se les está escapando?",
+      "options": [
+        {
+          "key": "a",
+          "text": "Que la certificación es lo único que valoran los clientes al elegir proveedor"
+        },
+        {
+          "key": "b",
+          "text": "Que cuantos más controles se documenten, más segura resulta la empresa"
+        },
+        {
+          "key": "c",
+          "text": "Que la seguridad es más que una lista de controles: sirve al negocio"
+        },
+        {
+          "key": "d",
+          "text": "Que los controles solo deben revisarse el día previo a la auditoría externa"
+        }
+      ],
+      "correct": "c",
+      "explanation": "El profesor advirtió que implantar o auditar un estándar es mucho más que un listado de controles con un sello: la seguridad existe para ayudar al negocio y entenderlo.",
+      "difficulty": "media",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 1 oct · Tema 1. La seguridad de la información en las organizaciones"
+      }
+    },
+    {
+      "id": "gobierno-t01-32",
+      "course": "gobierno",
+      "topic": 31,
+      "test": "Tema 1 · Clase",
+      "order": 32,
+      "fromClass": true,
+      "text": "¿Cuál de estos casos pertenece al bloque de amenazas internas al que el profesor pidió prestar atención («cuidado con esto»)?",
+      "options": [
+        {
+          "key": "a",
+          "text": "Un administrador que deja un servicio mal configurado, sin mala fe, y expone datos"
+        },
+        {
+          "key": "b",
+          "text": "Un grupo externo que cifra los archivos de la empresa y exige un rescate económico"
+        },
+        {
+          "key": "c",
+          "text": "Un atacante que rastrea desde internet los puertos abiertos de los servidores"
+        },
+        {
+          "key": "d",
+          "text": "Un competidor que intenta conseguir secretos corporativos desde fuera de la empresa"
+        }
+      ],
+      "correct": "a",
+      "explanation": "Las amenazas internas no son solo empleados descontentos o defraudadores: también incluyen negligencias y errores de configuración sin mala intención.",
+      "difficulty": "media",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 1 oct · Tema 1. La seguridad de la información en las organizaciones"
+      }
+    },
+    {
+      "id": "gobierno-t01-33",
+      "course": "gobierno",
+      "topic": 31,
+      "test": "Tema 1 · Clase",
+      "order": 33,
+      "fromClass": true,
+      "text": "¿Cuáles son los dos documentos mínimos exigibles de un cuerpo normativo, sin los cuales no se pasa una auditoría de la ISO 27001, según el profesor?",
+      "options": [
+        {
+          "key": "a",
+          "text": "Procedimiento de copias de seguridad y estándar de contraseñas de usuario"
+        },
+        {
+          "key": "b",
+          "text": "Directriz de teletrabajo y línea base de configuración de los equipos corporativos"
+        },
+        {
+          "key": "c",
+          "text": "Plan de continuidad de negocio y estándar de cifrado de datos sensibles"
+        },
+        {
+          "key": "d",
+          "text": "Política de seguridad de la información y política de clasificación"
+        }
+      ],
+      "correct": "d",
+      "explanation": "El profesor indicó que, como mínimo indispensable, hacen falta la política de seguridad de la información y la política de clasificación de la información. Siglas y términos: ISO: International Organization for Standardization, Organización Internacional de Normalización; ISO es su nombre corto internacional.",
+      "difficulty": "media",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 13 oct · Tema 1. La seguridad de la información en las organizaciones"
+      },
+      "glossary": {
+        "ISO": "International Organization for Standardization, Organización Internacional de Normalización; ISO es su nombre corto internacional."
+      }
+    },
+    {
+      "id": "gobierno-t01-34",
+      "course": "gobierno",
+      "topic": 31,
+      "test": "Tema 1 · Clase",
+      "order": 34,
+      "fromClass": true,
+      "text": "El profesor habló de una perspectiva «holística» de la seguridad. ¿Qué tres dimensiones la componen?",
+      "options": [
+        {
+          "key": "a",
+          "text": "Confidencialidad, integridad y disponibilidad de la información"
+        },
+        {
+          "key": "b",
+          "text": "Dimensión legal, dimensión técnica y dimensión organizativa"
+        },
+        {
+          "key": "c",
+          "text": "Preventiva, detectiva y correctiva según el momento de actuación"
+        },
+        {
+          "key": "d",
+          "text": "Física, lógica y humana según el tipo de medida aplicada"
+        }
+      ],
+      "correct": "b",
+      "explanation": "La perspectiva holística de la seguridad de la información se descompone en tres dimensiones: legal, técnica y organizativa.",
+      "difficulty": "baja",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 1 oct · Tema 1. La seguridad de la información en las organizaciones"
+      }
+    },
+    {
       "id": "gobierno-t02-01",
       "course": "gobierno",
       "topic": 32,
@@ -34471,6 +36602,146 @@
         "kind": "practice",
         "title": "Temario UNIR · Tema 2. Gobierno de la seguridad de la información",
         "page": 8
+      }
+    },
+    {
+      "id": "gobierno-t02-31",
+      "course": "gobierno",
+      "topic": 32,
+      "test": "Tema 2 · Clase",
+      "order": 31,
+      "fromClass": true,
+      "text": "Un compañero afirma: «el gobierno de la seguridad consiste en implantar los controles técnicos». Según el profesor, ¿cómo se matiza?",
+      "options": [
+        {
+          "key": "a",
+          "text": "Es correcto: gobernar es sobre todo configurar y desplegar controles"
+        },
+        {
+          "key": "b",
+          "text": "Es falso: el gobierno no guarda ninguna relación con los controles"
+        },
+        {
+          "key": "c",
+          "text": "Es falso: el gobierno solo fija la visión y no mide resultados"
+        },
+        {
+          "key": "d",
+          "text": "Es impreciso: vigila que los controles funcionen y mitiguen riesgos"
+        }
+      ],
+      "correct": "d",
+      "explanation": "El profesor pidió no decir que el gobierno «no son controles»: no los implanta, pero comprueba que son eficaces, que mitigan los riesgos previstos y que se miden periódicamente.",
+      "difficulty": "media",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 20 oct · Tema 2. Gobierno de la seguridad de la información"
+      }
+    },
+    {
+      "id": "gobierno-t02-32",
+      "course": "gobierno",
+      "topic": 32,
+      "test": "Tema 2 · Clase",
+      "order": 32,
+      "fromClass": true,
+      "text": "¿Qué relación debe existir entre el gobierno de la seguridad y el gobierno corporativo, según el profesor («grabaos esto a fuego»)?",
+      "options": [
+        {
+          "key": "a",
+          "text": "Son independientes, para que seguridad pueda frenar al negocio si hace falta"
+        },
+        {
+          "key": "b",
+          "text": "El corporativo se subordina siempre al de seguridad en las decisiones"
+        },
+        {
+          "key": "c",
+          "text": "Solo se coordinan cuando se produce un incidente de seguridad grave"
+        },
+        {
+          "key": "d",
+          "text": "El de seguridad debe estar siempre alineado con el corporativo"
+        }
+      ],
+      "correct": "d",
+      "explanation": "El gobierno de la seguridad debe estar siempre alineado con el gobierno corporativo: la seguridad existe para ayudar al negocio a cumplir sus objetivos.",
+      "difficulty": "baja",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 20 oct · Tema 2. Gobierno de la seguridad de la información"
+      }
+    },
+    {
+      "id": "gobierno-t02-33",
+      "course": "gobierno",
+      "topic": 32,
+      "test": "Tema 2 · Clase",
+      "order": 33,
+      "fromClass": true,
+      "text": "¿Cuál de estas descripciones de ITIL es correcta según lo que remarcó el profesor?",
+      "options": [
+        {
+          "key": "a",
+          "text": "Buenas prácticas de adopción libre, que no son estándar ni ley"
+        },
+        {
+          "key": "b",
+          "text": "Un estándar certificable que obliga a las empresas de servicios de TI"
+        },
+        {
+          "key": "c",
+          "text": "Una ley europea que exige a las empresas un proceso de gestión de servicios"
+        },
+        {
+          "key": "d",
+          "text": "Un modelo de madurez con niveles fijos que toda empresa debe alcanzar"
+        }
+      ],
+      "correct": "a",
+      "explanation": "ITIL es un conjunto de buenas prácticas (recomendaciones): no es un estándar, ni una legislación, ni un framework ni un modelo de madurez, y adoptarlo es una decisión libre. Siglas y términos: ITIL: Information Technology Infrastructure Library, biblioteca de prácticas de gestión de servicios de tecnología de la información. TI: Tecnologías de la Información.",
+      "difficulty": "media",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 20 oct · Tema 2. Gobierno de la seguridad de la información"
+      },
+      "glossary": {
+        "ITIL": "Information Technology Infrastructure Library, biblioteca de prácticas de gestión de servicios de tecnología de la información.",
+        "TI": "Tecnologías de la Información."
+      }
+    },
+    {
+      "id": "gobierno-t02-34",
+      "course": "gobierno",
+      "topic": 32,
+      "test": "Tema 2 · Clase",
+      "order": 34,
+      "fromClass": true,
+      "text": "¿Cómo distingue el temario la misión de seguridad de la visión de seguridad?",
+      "options": [
+        {
+          "key": "a",
+          "text": "Misión: meta concreta de un periodo; visión: el porqué de la seguridad"
+        },
+        {
+          "key": "b",
+          "text": "Misión: el porqué, casi invariable; visión: lo que se desea llegar a ser"
+        },
+        {
+          "key": "c",
+          "text": "Son sinónimos y solo cambian de nombre según la empresa que las use"
+        },
+        {
+          "key": "d",
+          "text": "Misión: plan de acción detallado; visión: presupuesto anual asignado"
+        }
+      ],
+      "correct": "b",
+      "explanation": "La misión de seguridad responde al porqué y casi nunca cambia; la visión describe lo que la organización desea que llegue a ser su seguridad y se revisa periódicamente.",
+      "difficulty": "media",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 20 oct · Tema 2. Gobierno de la seguridad de la información"
       }
     },
     {
@@ -35543,6 +37814,151 @@
       }
     },
     {
+      "id": "gobierno-t03-31",
+      "course": "gobierno",
+      "topic": 33,
+      "test": "Tema 3 · Clase",
+      "order": 31,
+      "fromClass": true,
+      "text": "Según el profesor, ¿cuál es el concepto «troncal» sobre el que se articula toda la ISO 27001?",
+      "options": [
+        {
+          "key": "a",
+          "text": "La mejora continua de los controles y procesos implantados"
+        },
+        {
+          "key": "b",
+          "text": "El cuerpo normativo de políticas, normas y procedimientos"
+        },
+        {
+          "key": "c",
+          "text": "La gestión de riesgos, a la que se subordina todo lo demás"
+        },
+        {
+          "key": "d",
+          "text": "La clasificación de los controles en dominios y atributos"
+        }
+      ],
+      "correct": "c",
+      "explanation": "La gestión de riesgos es el concepto troncal: sin ella no se sabe a qué se enfrenta la organización ni qué controles implantar. Siglas y términos: ISO: International Organization for Standardization, Organización Internacional de Normalización; ISO es su nombre corto internacional.",
+      "difficulty": "baja",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 27 oct · Tema 3. Estándares de Gestión de la Seguridad y Niveles de Madurez"
+      },
+      "glossary": {
+        "ISO": "International Organization for Standardization, Organización Internacional de Normalización; ISO es su nombre corto internacional."
+      }
+    },
+    {
+      "id": "gobierno-t03-32",
+      "course": "gobierno",
+      "topic": 33,
+      "test": "Tema 3 · Clase",
+      "order": 32,
+      "fromClass": true,
+      "text": "Una empresa tiene técnicos excelentes, pero la dirección solo firma la política y no participa en nada más. ¿Qué advirtió el profesor sobre el apoyo de la dirección?",
+      "options": [
+        {
+          "key": "a",
+          "text": "Que no basta con dinero: debe implicarse en comités, riesgos y formación"
+        },
+        {
+          "key": "b",
+          "text": "Que basta con asignar presupuesto y delegar todo lo demás en el equipo técnico"
+        },
+        {
+          "key": "c",
+          "text": "Que solo importa cuando se prepara la certificación de la empresa"
+        },
+        {
+          "key": "d",
+          "text": "Que es un requisito del Anexo A, no del cuerpo de la norma, y solo opera allí"
+        }
+      ],
+      "correct": "a",
+      "explanation": "El apoyo de la dirección no es solo económico: se demuestra participando en comités, interesándose por los riesgos y respaldando formación y concienciación.",
+      "difficulty": "media",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 27 oct · Tema 3. Estándares de Gestión de la Seguridad y Niveles de Madurez"
+      }
+    },
+    {
+      "id": "gobierno-t03-33",
+      "course": "gobierno",
+      "topic": 33,
+      "test": "Tema 3 · Clase",
+      "order": 33,
+      "fromClass": true,
+      "text": "¿Qué dijo el profesor sobre la obligatoriedad de implantar la ISO 27001?",
+      "options": [
+        {
+          "key": "a",
+          "text": "Que la legislación europea la exige a todas las empresas por igual"
+        },
+        {
+          "key": "b",
+          "text": "Que es una decisión voluntaria, sin ley general que la imponga"
+        },
+        {
+          "key": "c",
+          "text": "Que es obligatoria para todas las empresas del sector tecnológico"
+        },
+        {
+          "key": "d",
+          "text": "Que solo es obligatoria para pymes que tuvieran certificación previa"
+        }
+      ],
+      "correct": "b",
+      "explanation": "La ISO 27001 es un estándar internacional, no una ley: implantarla es una decisión voluntaria de cada organización. Siglas y términos: ISO: International Organization for Standardization, Organización Internacional de Normalización; ISO es su nombre corto internacional.",
+      "difficulty": "baja",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 3 nov · Tema 3. Estándares de Gestión de la Seguridad y Niveles de Madurez"
+      },
+      "glossary": {
+        "ISO": "International Organization for Standardization, Organización Internacional de Normalización; ISO es su nombre corto internacional."
+      }
+    },
+    {
+      "id": "gobierno-t03-34",
+      "course": "gobierno",
+      "topic": 33,
+      "test": "Tema 3 · Clase",
+      "order": 34,
+      "fromClass": true,
+      "text": "Una empresa acaba de implantar la ISO 27001 y quiere evaluar si sus procesos y controles son maduros. ¿Qué orden recomendó el profesor?",
+      "options": [
+        {
+          "key": "a",
+          "text": "Aplicar un modelo de madurez antes de disponer de ningún marco"
+        },
+        {
+          "key": "b",
+          "text": "Que la ley obliga a aplicar un modelo de madurez al implantar un marco"
+        },
+        {
+          "key": "c",
+          "text": "Sustituir el estándar por el modelo de madurez una vez implantado"
+        },
+        {
+          "key": "d",
+          "text": "Implantar primero el estándar y aplicar después el modelo de madurez"
+        }
+      ],
+      "correct": "d",
+      "explanation": "Lo recomendable es implantar primero el marco o estándar y después usar un modelo de madurez para valorar cómo de maduros son sus procesos y controles. Siglas y términos: ISO: International Organization for Standardization, Organización Internacional de Normalización; ISO es su nombre corto internacional.",
+      "difficulty": "media",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 3 nov · Tema 3. Estándares de Gestión de la Seguridad y Niveles de Madurez"
+      },
+      "glossary": {
+        "ISO": "International Organization for Standardization, Organización Internacional de Normalización; ISO es su nombre corto internacional."
+      }
+    },
+    {
       "id": "gobierno-t04-01",
       "course": "gobierno",
       "topic": 34,
@@ -36570,6 +38986,176 @@
         "kind": "practice",
         "title": "Temario UNIR · Tema 4. Programas, procesos y políticas de seguridad de la información",
         "page": 14
+      }
+    },
+    {
+      "id": "gobierno-t04-31",
+      "course": "gobierno",
+      "topic": 34,
+      "test": "Tema 4 · Clase",
+      "order": 31,
+      "fromClass": true,
+      "text": "Una pyme con muy pocos recursos considera que implantar 93 controles exigentes pondría en riesgo su supervivencia. ¿Qué le planteó el profesor?",
+      "options": [
+        {
+          "key": "a",
+          "text": "Renunciar a gestionar la seguridad hasta que la empresa crezca más"
+        },
+        {
+          "key": "b",
+          "text": "Un programa de gestión de seguridad a medida de su contexto"
+        },
+        {
+          "key": "c",
+          "text": "Certificarse igualmente en el estándar y asumir el riesgo de cierre"
+        },
+        {
+          "key": "d",
+          "text": "Copiar íntegramente el programa de seguridad de otra empresa"
+        }
+      ],
+      "correct": "b",
+      "explanation": "Cuando un estándar no encaja (pyme, sector específico), una opción válida es un programa de gestión de la seguridad a medida, adaptado a su situación.",
+      "difficulty": "media",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 3 nov · Tema 4. Programas, procesos y políticas de seguridad de la información"
+      }
+    },
+    {
+      "id": "gobierno-t04-32",
+      "course": "gobierno",
+      "topic": 34,
+      "test": "Tema 4 · Clase",
+      "order": 32,
+      "fromClass": true,
+      "text": "Al planificar un programa de gestión de la seguridad a medida, ¿cuáles son los dos elementos imprescindibles que remarcó el profesor?",
+      "options": [
+        {
+          "key": "a",
+          "text": "La cultura de la empresa y el sector de actividad"
+        },
+        {
+          "key": "b",
+          "text": "La misión corporativa y la visión de seguridad"
+        },
+        {
+          "key": "c",
+          "text": "El presupuesto disponible y el catálogo de roles"
+        },
+        {
+          "key": "d",
+          "text": "El análisis de riesgos y el marco legal aplicable"
+        }
+      ],
+      "correct": "d",
+      "explanation": "En la fase de planificación son imprescindibles el análisis de riesgos y la legislación, porque a partir de ellos se establecen los controles.",
+      "difficulty": "alta",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 3 nov · Tema 4. Programas, procesos y políticas de seguridad de la información"
+      }
+    },
+    {
+      "id": "gobierno-t04-33",
+      "course": "gobierno",
+      "topic": 34,
+      "test": "Tema 4 · Clase",
+      "order": 33,
+      "fromClass": true,
+      "text": "Al iniciar sesión en un equipo corporativo aparece un aviso que advierte de consecuencias legales ante un uso indebido, pero no impide el acceso. ¿Qué tipo de control, por su objetivo, es?",
+      "options": [
+        {
+          "key": "a",
+          "text": "Disuasorio"
+        },
+        {
+          "key": "b",
+          "text": "Preventivo"
+        },
+        {
+          "key": "c",
+          "text": "Correctivo"
+        },
+        {
+          "key": "d",
+          "text": "Compensatorio"
+        }
+      ],
+      "correct": "a",
+      "explanation": "Un aviso que advierte de consecuencias, pero no impide nada, es un control disuasorio: desanima, no previene.",
+      "difficulty": "media",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 3 nov · Tema 4. Programas, procesos y políticas de seguridad de la información"
+      }
+    },
+    {
+      "id": "gobierno-t04-34",
+      "course": "gobierno",
+      "topic": 34,
+      "test": "Tema 4 · Clase",
+      "order": 34,
+      "fromClass": true,
+      "text": "Cae el centro de proceso de datos principal y la empresa puede seguir trabajando desde un sitio alternativo. ¿Qué tipo de control, por su objetivo, es ese sitio?",
+      "options": [
+        {
+          "key": "a",
+          "text": "Preventivo, porque evita que caiga el principal"
+        },
+        {
+          "key": "b",
+          "text": "Correctivo, porque ataca la causa de raíz del fallo"
+        },
+        {
+          "key": "c",
+          "text": "Compensatorio, porque ofrece una alternativa para operar"
+        },
+        {
+          "key": "d",
+          "text": "Detectivo, porque identifica que el principal ha dejado de funcionar"
+        }
+      ],
+      "correct": "c",
+      "explanation": "El control compensatorio no evita el incidente, pero facilita una alternativa para seguir operando con normalidad.",
+      "difficulty": "alta",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 3 nov · Tema 4. Programas, procesos y políticas de seguridad de la información"
+      }
+    },
+    {
+      "id": "gobierno-t04-35",
+      "course": "gobierno",
+      "topic": 34,
+      "test": "Tema 4 · Clase",
+      "order": 35,
+      "fromClass": true,
+      "text": "Un control que no persigue ningún fin concreto, ¿qué problema tiene según el profesor, que insistió en que un control debe definirse con objetivo, descripción y frecuencia?",
+      "options": [
+        {
+          "key": "a",
+          "text": "Que no tiene sentido: todo control se implanta con un objetivo"
+        },
+        {
+          "key": "b",
+          "text": "Que no puede ejecutarse nunca de forma manual por personas"
+        },
+        {
+          "key": "c",
+          "text": "Que debe ser siempre obligatorio por imposición de una ley"
+        },
+        {
+          "key": "d",
+          "text": "Que solo puede ser de tipo físico y no técnico ni administrativo"
+        }
+      ],
+      "correct": "a",
+      "explanation": "Lo primero y más importante de un control es su objetivo: si no cumple ninguno, no tiene sentido implantarlo.",
+      "difficulty": "media",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 3 nov · Tema 4. Programas, procesos y políticas de seguridad de la información"
       }
     },
     {
@@ -43865,6 +46451,182 @@
       }
     },
     {
+      "id": "ciberdelitos-t01-31",
+      "course": "ciberdelitos",
+      "topic": 41,
+      "test": "Tema 1 · Clase",
+      "order": 31,
+      "fromClass": true,
+      "text": "Un compañero afirma: «mi número de cuenta bancaria es una categoría especial de datos». Según la clase, ¿qué es correcto?",
+      "options": [
+        {
+          "key": "a",
+          "text": "Es una categoría especial, porque toda información económica sensible entra automáticamente en esa lista."
+        },
+        {
+          "key": "b",
+          "text": "No es un dato personal, porque identifica una cuenta bancaria y no directamente a una persona física concreta."
+        },
+        {
+          "key": "c",
+          "text": "Es dato personal, pero no categoría especial: la lista es cerrada y no incluye los datos bancarios."
+        },
+        {
+          "key": "d",
+          "text": "Es una categoría especial, porque se asimila por analogía a los datos de salud, que sí figuran en la lista."
+        }
+      ],
+      "correct": "c",
+      "explanation": "Las categorías especiales son una lista cerrada (origen étnico, ideología, afiliación sindical, religión, datos genéticos, biométricos, de salud y orientación sexual). Un número de cuenta es dato personal, pero no figura en ella.",
+      "difficulty": "media",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 1 oct · Tema 1. Protección de datos personales"
+      }
+    },
+    {
+      "id": "ciberdelitos-t01-32",
+      "course": "ciberdelitos",
+      "topic": 41,
+      "test": "Tema 1 · Clase",
+      "order": 32,
+      "fromClass": true,
+      "text": "Una empresa contrata un servicio de alojamiento de sus datos de clientes. Firma un contrato con muchas medidas de seguridad y se desentiende, pensando que, si el proveedor incumple, será solo problema de este. Según la clase, ¿qué ocurre?",
+      "options": [
+        {
+          "key": "a",
+          "text": "Queda libre de responsabilidad, porque el contrato traslada al proveedor todas las consecuencias de cualquier incumplimiento."
+        },
+        {
+          "key": "b",
+          "text": "Solo debe comprobar sus garantías en el momento de firmar; después, la vigilancia es cosa exclusiva del proveedor."
+        },
+        {
+          "key": "c",
+          "text": "Debe escoger siempre al proveedor más barato, porque el precio es el criterio principal para elegir un encargado."
+        },
+        {
+          "key": "d",
+          "text": "Sigue siendo responsable: debe poder demostrar que eligió al proveedor con diligencia y que lo supervisa después."
+        }
+      ],
+      "correct": "d",
+      "explanation": "El responsable debe acreditar que fue diligente al elegir al encargado (garantías suficientes) y que lo supervisa después. Algunas empresas se han librado de sanciones por demostrarlo, y otras las han asumido por desentenderse.",
+      "difficulty": "media",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 1 oct · Tema 1. Protección de datos personales"
+      }
+    },
+    {
+      "id": "ciberdelitos-t01-33",
+      "course": "ciberdelitos",
+      "topic": 41,
+      "test": "Tema 1 · Clase",
+      "order": 33,
+      "fromClass": true,
+      "text": "El delegado de protección de datos (DPD) de una empresa recibe el encargo de «hacer» el análisis de riesgos y la evaluación de impacto de un nuevo tratamiento. ¿Qué función le atribuye la clase?",
+      "options": [
+        {
+          "key": "a",
+          "text": "Realizarlas él personalmente, porque son funciones propias de su cargo y de su deber de rendir cuentas."
+        },
+        {
+          "key": "b",
+          "text": "Supervisar que se hagan y asesorar sobre ellas; no ejecutarlas, porque las realizan otras personas de la organización."
+        },
+        {
+          "key": "c",
+          "text": "Decidir por sí mismo si el tratamiento se lleva a cabo, porque es quien responde ante la autoridad de control."
+        },
+        {
+          "key": "d",
+          "text": "No intervenir en absoluto, porque asesorar sobre la evaluación de impacto es competencia exclusiva de la autoridad de control."
+        }
+      ],
+      "correct": "b",
+      "explanation": "Según la clase, el DPD supervisa el cumplimiento (por ejemplo, que se hagan los análisis de riesgos y la evaluación de impacto), no los realiza. La decisión y la responsabilidad siguen siendo del responsable. Siglas y términos: DPD: Delegado de Protección de Datos.",
+      "difficulty": "media",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 14 oct · Tema 1. Protección de datos personales"
+      },
+      "glossary": {
+        "DPD": "Delegado de Protección de Datos."
+      }
+    },
+    {
+      "id": "ciberdelitos-t01-34",
+      "course": "ciberdelitos",
+      "topic": 41,
+      "test": "Tema 1 · Clase",
+      "order": 34,
+      "fromClass": true,
+      "text": "Un ayuntamiento muy pequeño trata los datos de su padrón. ¿Debe nombrar un delegado de protección de datos?",
+      "options": [
+        {
+          "key": "a",
+          "text": "No, porque solo es obligatorio cuando la actividad principal es un tratamiento a gran escala y un ayuntamiento pequeño no lo alcanza."
+        },
+        {
+          "key": "b",
+          "text": "No, porque el RGPD solo lo exige a empresas privadas que traten categorías especiales de datos a gran escala."
+        },
+        {
+          "key": "c",
+          "text": "Sí: toda autoridad u organismo público debe tenerlo, sea cual sea su tamaño, salvo los tribunales en su función judicial."
+        },
+        {
+          "key": "d",
+          "text": "Solo si supera el número de habitantes que fije el reglamento europeo para ese tipo de entidades locales."
+        }
+      ],
+      "correct": "c",
+      "explanation": "Para autoridades y organismos públicos el delegado es obligatorio con independencia del tamaño. Los otros dos supuestos obligatorios (observación sistemática y categorías especiales a gran escala) exigen actividad principal y gran escala. Siglas y términos: RGPD: Reglamento General de Protección de Datos.",
+      "difficulty": "baja",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 14 oct · Tema 1. Protección de datos personales"
+      },
+      "glossary": {
+        "RGPD": "Reglamento General de Protección de Datos."
+      }
+    },
+    {
+      "id": "ciberdelitos-t01-35",
+      "course": "ciberdelitos",
+      "topic": 41,
+      "test": "Tema 1 · Clase",
+      "order": 35,
+      "fromClass": true,
+      "text": "Una persona ejerce su derecho de supresión en España y la empresa le contesta que ha «bloqueado» sus datos. Según la clase, ¿qué significa?",
+      "options": [
+        {
+          "key": "a",
+          "text": "Que nadie en la empresa puede acceder ya a ellos; solo jueces, Fiscalía y administraciones competentes, hasta su supresión."
+        },
+        {
+          "key": "b",
+          "text": "Que se han borrado de inmediato y para siempre de todos los sistemas, sin conservar ninguna copia ni registro."
+        },
+        {
+          "key": "c",
+          "text": "Que siguen visibles para el personal de la empresa, pero marcados con un aviso de «no utilizar» hasta resolver la solicitud."
+        },
+        {
+          "key": "d",
+          "text": "Que se han cedido a otra entidad de confianza para que los conserve por su cuenta durante un tiempo indefinido."
+        }
+      ],
+      "correct": "a",
+      "explanation": "El bloqueo es una particularidad española: el dato se conserva inaccesible para la organización, solo para jueces, Fiscalía y administraciones competentes, y sirve para demostrar qué se hizo si hay reclamaciones. Pasado el plazo de posibles responsabilidades, se suprime del todo.",
+      "difficulty": "alta",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 14 oct · Tema 1. Protección de datos personales"
+      }
+    },
+    {
       "id": "ciberdelitos-t02-01",
       "course": "ciberdelitos",
       "topic": 42,
@@ -44905,6 +47667,184 @@
         "kind": "practice",
         "title": "Temario UNIR · Tema 2. Esquema Nacional de Seguridad",
         "page": 32
+      }
+    },
+    {
+      "id": "ciberdelitos-t02-31",
+      "course": "ciberdelitos",
+      "topic": 42,
+      "test": "Tema 2 · Clase",
+      "order": 31,
+      "fromClass": true,
+      "text": "Al categorizar un sistema, la confidencialidad, la integridad, la trazabilidad y la autenticidad alcanzan nivel bajo, pero la disponibilidad alcanza nivel alto. ¿Qué categoría tiene el sistema?",
+      "options": [
+        {
+          "key": "a",
+          "text": "Básica, porque cuatro de las cinco dimensiones están en nivel bajo y es lo que ocurre en la mayoría."
+        },
+        {
+          "key": "b",
+          "text": "Alta: el sistema toma la categoría del nivel más alto que alcance cualquiera de sus dimensiones."
+        },
+        {
+          "key": "c",
+          "text": "Media, porque se calcula una especie de media entre los niveles de las cinco dimensiones."
+        },
+        {
+          "key": "d",
+          "text": "Alta solo si al menos tres de las cinco dimensiones alcanzan el nivel alto en la valoración."
+        }
+      ],
+      "correct": "b",
+      "explanation": "Según la clase, basta con que una sola dimensión alcance un nivel superior para que todo el sistema adopte esa categoría y se apliquen las medidas correspondientes.",
+      "difficulty": "media",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 19 oct · Tema 2. Esquema Nacional de Seguridad"
+      }
+    },
+    {
+      "id": "ciberdelitos-t02-32",
+      "course": "ciberdelitos",
+      "topic": 42,
+      "test": "Tema 2 · Clase",
+      "order": 32,
+      "fromClass": true,
+      "text": "En el Esquema Nacional de Seguridad hay dos escalas fáciles de confundir. ¿Qué par de términos es el correcto?",
+      "options": [
+        {
+          "key": "a",
+          "text": "Cada dimensión se valora con un nivel (bajo, medio, alto) y el sistema recibe una categoría (básica, media, alta)."
+        },
+        {
+          "key": "b",
+          "text": "Cada dimensión recibe una categoría (básica, media, alta) y el sistema entero recibe un nivel (bajo, medio, alto)."
+        },
+        {
+          "key": "c",
+          "text": "Tanto las dimensiones como el sistema se valoran únicamente con categorías básica, media y alta."
+        },
+        {
+          "key": "d",
+          "text": "Las dimensiones se valoran con categorías y el sistema con la suma de los niveles de sus cinco dimensiones."
+        }
+      ],
+      "correct": "a",
+      "explanation": "Las dimensiones tienen nivel (masculino: bajo, medio, alto) y el sistema tiene categoría (femenino: básica, media, alta). La profesora lo destacó como confusión frecuente.",
+      "difficulty": "media",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 19 oct · Tema 2. Esquema Nacional de Seguridad"
+      }
+    },
+    {
+      "id": "ciberdelitos-t02-33",
+      "course": "ciberdelitos",
+      "topic": 42,
+      "test": "Tema 2 · Clase",
+      "order": 33,
+      "fromClass": true,
+      "text": "Un organismo con un sistema de categoría básica se autoevalúa y publica en su sede electrónica que cumple el ENS. ¿Cómo se llama ese resultado y en qué se diferencia de la certificación?",
+      "options": [
+        {
+          "key": "a",
+          "text": "Certificación de conformidad: la emite la propia entidad al autoevaluarse y la auditoría externa se reserva para la declaración."
+        },
+        {
+          "key": "b",
+          "text": "Declaración de conformidad: la emite la propia entidad al autoevaluarse; la certificación exige auditoría externa."
+        },
+        {
+          "key": "c",
+          "text": "Declaración de aplicabilidad: es el documento donde la entidad lista sus medidas y sustituye a la certificación."
+        },
+        {
+          "key": "d",
+          "text": "Declaración de conformidad: solo puede emitirla una empresa acreditada por ENAC tras auditar el sistema por completo."
+        }
+      ],
+      "correct": "b",
+      "explanation": "Truco de la profesora: cuando uno se autoevalúa, declara; cuando lo audita alguien externo, certifica. Categoría básica: declaración; media o alta: auditoría y certificación. Siglas y términos: ENS: Esquema Nacional de Seguridad.",
+      "difficulty": "media",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 19 oct · Tema 2. Esquema Nacional de Seguridad"
+      },
+      "glossary": {
+        "ENS": "Esquema Nacional de Seguridad."
+      }
+    },
+    {
+      "id": "ciberdelitos-t02-34",
+      "course": "ciberdelitos",
+      "topic": 42,
+      "test": "Tema 2 · Clase",
+      "order": 34,
+      "fromClass": true,
+      "text": "El responsable de seguridad cree que, para un sistema concreto, otra medida sería más eficaz que una de las obligatorias que derivan de su categoría. Según la clase, ¿qué puede hacer?",
+      "options": [
+        {
+          "key": "a",
+          "text": "Omitirla sin más, porque las medidas derivadas de la categoría solo son recomendaciones orientativas para la entidad."
+        },
+        {
+          "key": "b",
+          "text": "Nada: las medidas obligatorias nunca pueden sustituirse y solo cabe añadir refuerzos de seguridad adicionales."
+        },
+        {
+          "key": "c",
+          "text": "Sustituirla sin justificar, porque la decisión técnica del responsable de seguridad no necesita constar por escrito."
+        },
+        {
+          "key": "d",
+          "text": "Sustituirla por una medida compensatoria, solo en casos excepcionales y dejando documentado y fundamentado el motivo."
+        }
+      ],
+      "correct": "d",
+      "explanation": "Las medidas de la categoría son un mínimo obligatorio; los refuerzos se añaden según el criterio del responsable de seguridad. En casos excepcionales caben medidas compensatorias, siempre documentadas y fundamentadas en la declaración de aplicabilidad.",
+      "difficulty": "alta",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 19 oct · Tema 2. Esquema Nacional de Seguridad"
+      }
+    },
+    {
+      "id": "ciberdelitos-t02-35",
+      "course": "ciberdelitos",
+      "topic": 42,
+      "test": "Tema 2 · Clase",
+      "order": 35,
+      "fromClass": true,
+      "text": "Una empresa privada afirma que cumplir el ENS y certificarse en ISO/IEC 27001 es lo mismo. Según la clase, ¿qué diferencia es correcta?",
+      "options": [
+        {
+          "key": "a",
+          "text": "La ISO 27001 es obligatoria para toda entidad y el ENS es un estándar voluntario que adoptan algunas empresas privadas por iniciativa propia."
+        },
+        {
+          "key": "b",
+          "text": "El ENS es norma legal obligatoria en su ámbito (sector público y proveedores); la ISO 27001 es un estándar voluntario."
+        },
+        {
+          "key": "c",
+          "text": "Ambas son normas legales obligatorias, pero el ENS solo se aplica a ayuntamientos y la ISO 27001 al resto de entidades."
+        },
+        {
+          "key": "d",
+          "text": "El ENS es voluntario igual que la ISO 27001, aunque solo se pueda aplicar a las administraciones públicas españolas."
+        }
+      ],
+      "correct": "b",
+      "explanation": "El ENS tiene rango legal y es obligatorio para quienes entran en su ámbito. La ISO 27001 no es una norma legal: es un estándar que cada organización decide si certifica (aunque, si lo hace, debe cumplir sus requisitos). Además, el ENS cataloga las medidas y la ISO deja más peso al criterio del auditor. Siglas y términos: ENS: Esquema Nacional de Seguridad. IEC: International Electrotechnical Commission, Comisión Electrotécnica Internacional. ISO: International Organization for Standardization, Organización Internacional de Normalización; ISO es su nombre corto internacional.",
+      "difficulty": "media",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 14 oct · Tema 2. Esquema Nacional de Seguridad"
+      },
+      "glossary": {
+        "ENS": "Esquema Nacional de Seguridad.",
+        "IEC": "International Electrotechnical Commission, Comisión Electrotécnica Internacional.",
+        "ISO": "International Organization for Standardization, Organización Internacional de Normalización; ISO es su nombre corto internacional."
       }
     },
     {
@@ -45965,6 +48905,193 @@
         "kind": "practice",
         "title": "Temario UNIR · Tema 3. Normativa en materia de ciberseguridad",
         "page": 34
+      }
+    },
+    {
+      "id": "ciberdelitos-t03-31",
+      "course": "ciberdelitos",
+      "topic": 43,
+      "test": "Tema 3 · Clase",
+      "order": 31,
+      "fromClass": true,
+      "text": "Un prestador de servicios de confianza sufre un incidente significativo en el marco de NIS 2. ¿Qué plazo especial señaló la clase para él?",
+      "options": [
+        {
+          "key": "a",
+          "text": "Debe notificarlo siempre en 24 horas desde que tiene constancia, sin el plazo general de 72."
+        },
+        {
+          "key": "b",
+          "text": "Puede esperar un mes, porque su plazo coincide con el del informe final tras la notificación."
+        },
+        {
+          "key": "c",
+          "text": "El mismo que cualquier otra entidad: 72 horas, sin excepciones para ningún tipo de entidad."
+        },
+        {
+          "key": "d",
+          "text": "Solo 24 horas si sospecha un ataque con efectos transfronterizos; en otro caso, 72 horas."
+        }
+      ],
+      "correct": "a",
+      "explanation": "La profesora destacó una excepción: para los prestadores de servicios de confianza el plazo es siempre de 24 horas desde que se tiene constancia, sin los 72 de la regla general. Siglas y términos: NIS: Network and Information Systems, redes y sistemas de información.",
+      "difficulty": "alta",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 19 oct · Tema 3. Normativa en materia de ciberseguridad"
+      },
+      "glossary": {
+        "NIS": "Network and Information Systems, redes y sistemas de información."
+      }
+    },
+    {
+      "id": "ciberdelitos-t03-32",
+      "course": "ciberdelitos",
+      "topic": 43,
+      "test": "Tema 3 · Clase",
+      "order": 32,
+      "fromClass": true,
+      "text": "Una entidad esencial sufre un incidente significativo que además expone datos personales de sus clientes. ¿Qué obligaciones de notificación tiene según la clase?",
+      "options": [
+        {
+          "key": "a",
+          "text": "Solo la de NIS 2, porque al ser una norma específica de ciberseguridad sustituye a la de protección de datos."
+        },
+        {
+          "key": "b",
+          "text": "Solo la del RGPD, porque cuando hay datos personales NIS 2 deja de aplicarse al incidente por completo."
+        },
+        {
+          "key": "c",
+          "text": "Debe cumplir las dos: notificar según NIS 2 a su CSIRT o autoridad y comunicar la brecha a la AEPD según el RGPD."
+        },
+        {
+          "key": "d",
+          "text": "Puede esperar a que una sentencia confirme que el incidente es significativo antes de avisar a ninguna autoridad."
+        }
+      ],
+      "correct": "c",
+      "explanation": "Según la clase, NIS 2 no exime de notificar a la AEPD si hay datos personales: se aplican las dos normas a la vez (24 y 72 horas en NIS 2, 72 horas en el RGPD). Siglas y términos: CSIRT: Computer Security Incident Response Team, equipo de respuesta a incidentes de seguridad informática. NIS: Network and Information Systems, redes y sistemas de información. RGPD: Reglamento General de Protección de Datos.",
+      "difficulty": "media",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 19 oct · Tema 3. Normativa en materia de ciberseguridad"
+      },
+      "glossary": {
+        "CSIRT": "Computer Security Incident Response Team, equipo de respuesta a incidentes de seguridad informática.",
+        "NIS": "Network and Information Systems, redes y sistemas de información.",
+        "RGPD": "Reglamento General de Protección de Datos."
+      }
+    },
+    {
+      "id": "ciberdelitos-t03-33",
+      "course": "ciberdelitos",
+      "topic": 43,
+      "test": "Tema 3 · Clase",
+      "order": 33,
+      "fromClass": true,
+      "text": "Una empresa quiere usar un sistema de IA para reconocer las emociones de sus empleados durante la jornada y otro para medir el estado de ánimo de los clientes en una tienda. Según el Reglamento de IA tal como se explicó en clase, ¿qué es correcto?",
+      "options": [
+        {
+          "key": "a",
+          "text": "Ambos están prohibidos, porque el reconocimiento de emociones está vetado en cualquier contexto de uso."
+        },
+        {
+          "key": "b",
+          "text": "El primero está prohibido (ámbito laboral); el segundo no lo prohíbe este reglamento, pero necesitaría base de licitud RGPD."
+        },
+        {
+          "key": "c",
+          "text": "Ambos están permitidos, porque el reglamento solo prohíbe el reconocimiento de emociones en centros educativos concretos."
+        },
+        {
+          "key": "d",
+          "text": "El primero es válido y el segundo está prohibido, porque en el trabajo prevalece el interés legítimo del empleador sobre el empleado."
+        }
+      ],
+      "correct": "b",
+      "explanation": "Solo está prohibido reconocer emociones en el lugar de trabajo y en centros educativos. En otros contextos no lo prohíbe el Reglamento de IA, pero eso no lo hace automáticamente legal: hace falta cumplir la protección de datos. Siglas y términos: RGPD: Reglamento General de Protección de Datos.",
+      "difficulty": "alta",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 26 oct · Tema 3. Normativa en materia de ciberseguridad"
+      },
+      "glossary": {
+        "RGPD": "Reglamento General de Protección de Datos."
+      }
+    },
+    {
+      "id": "ciberdelitos-t03-34",
+      "course": "ciberdelitos",
+      "topic": 43,
+      "test": "Tema 3 · Clase",
+      "order": 34,
+      "fromClass": true,
+      "text": "Un proveedor de fuera de la Unión Europea quiere vender en Europa un sistema de IA de alto riesgo. ¿Qué afirma la clase sobre el Reglamento de IA?",
+      "options": [
+        {
+          "key": "a",
+          "text": "Solo obliga a proveedores establecidos en la UE, así que a un proveedor extranjero de sistemas de alto riesgo no le afecta."
+        },
+        {
+          "key": "b",
+          "text": "Solo debe cumplirlo si lo desarrolla una empresa española, porque el reglamento necesita una ley nacional para aplicarse."
+        },
+        {
+          "key": "c",
+          "text": "Basta con el marcado de origen de su país; el importador y el distribuidor no tienen que comprobar nada antes de venderlo."
+        },
+        {
+          "key": "d",
+          "text": "Le es aplicable igualmente: importador y distribuidor lo comprueban y debe nombrar un representante autorizado en la UE."
+        }
+      ],
+      "correct": "d",
+      "explanation": "El reglamento tiene aplicación extraterritorial: afecta a sistemas usados en la Unión aunque vengan de fuera. Hay doble control (importador y distribuidor) y el proveedor no europeo debe designar un representante autorizado. Siglas y términos: UE: Unión Europea.",
+      "difficulty": "media",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 26 oct · Tema 3. Normativa en materia de ciberseguridad"
+      },
+      "glossary": {
+        "UE": "Unión Europea."
+      }
+    },
+    {
+      "id": "ciberdelitos-t03-35",
+      "course": "ciberdelitos",
+      "topic": 43,
+      "test": "Tema 3 · Clase",
+      "order": 35,
+      "fromClass": true,
+      "text": "Una empresa mediana de mensajería y servicios postales pregunta si le afecta NIS 2. ¿Qué respuesta encaja con la clase?",
+      "options": [
+        {
+          "key": "a",
+          "text": "Sí: es un sector del anexo II (otros sectores críticos), por lo que sería entidad importante, no esencial."
+        },
+        {
+          "key": "b",
+          "text": "Sí: es un sector de alta criticidad, por lo que sería entidad esencial (anexo I) en cualquier caso."
+        },
+        {
+          "key": "c",
+          "text": "No: NIS 2 solo se aplica a unos pocos sectores muy concretos, como energía, transporte y banca."
+        },
+        {
+          "key": "d",
+          "text": "No: los servicios postales quedaron fuera de NIS 2 al desaparecer los operadores de servicios esenciales."
+        }
+      ],
+      "correct": "a",
+      "explanation": "Los servicios postales y de mensajería figuran entre los otros sectores críticos del anexo II, cuyas entidades suelen ser importantes. Los sectores de alta criticidad (energía, transporte, banca, agua, sanidad...) corresponden al anexo I. Siglas y términos: NIS: Network and Information Systems, redes y sistemas de información.",
+      "difficulty": "media",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 19 oct · Tema 3. Normativa en materia de ciberseguridad"
+      },
+      "glossary": {
+        "NIS": "Network and Information Systems, redes y sistemas de información."
       }
     },
     {
@@ -48071,6 +51198,145 @@
         "kind": "practice",
         "title": "Temario UNIR · Tema 5. Firma electrónica. Marco legal y normativo",
         "page": 6
+      }
+    },
+    {
+      "id": "ciberdelitos-t05-31",
+      "course": "ciberdelitos",
+      "topic": 45,
+      "test": "Tema 5 · Clase",
+      "order": 31,
+      "fromClass": true,
+      "text": "La directora general de una empresa firma un contrato en nombre de la sociedad con su certificado electrónico. ¿Qué es correcto según la clase?",
+      "options": [
+        {
+          "key": "a",
+          "text": "La sociedad es quien firma, porque las personas jurídicas también tienen certificados de firma electrónica."
+        },
+        {
+          "key": "b",
+          "text": "Quien firma sigue siendo persona física actuando por la empresa; la entidad como tal usa sello electrónico."
+        },
+        {
+          "key": "c",
+          "text": "Al actuar en representación, la firma deja de ser electrónica y pasa a llamarse sello electrónico."
+        },
+        {
+          "key": "d",
+          "text": "Solo los autónomos pueden firmar electrónicamente; las sociedades únicamente pueden firmar a mano o en papel."
+        }
+      ],
+      "correct": "b",
+      "explanation": "El firmante es siempre una persona física, aunque represente a una empresa. Las personas jurídicas no firman: sellan, con un sello electrónico.",
+      "difficulty": "media",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 2 nov · Tema 5. Firma electrónica. Marco legal y normativo"
+      }
+    },
+    {
+      "id": "ciberdelitos-t05-32",
+      "course": "ciberdelitos",
+      "topic": 45,
+      "test": "Tema 5 · Clase",
+      "order": 32,
+      "fromClass": true,
+      "text": "Un cliente intenta negar que firmó un presupuesto con su firma electrónica. ¿Qué propiedad de la firma electrónica impide que lo niegue con éxito?",
+      "options": [
+        {
+          "key": "a",
+          "text": "El no repudio, una de las tres propiedades: el firmante no puede negar después que firmó."
+        },
+        {
+          "key": "b",
+          "text": "La confidencialidad, porque solo el destinatario autorizado puede leer el documento firmado."
+        },
+        {
+          "key": "c",
+          "text": "La integridad, porque garantiza que el contenido no se ha modificado y por eso no se puede negar haber firmado."
+        },
+        {
+          "key": "d",
+          "text": "La interoperabilidad, porque la firma es reconocida entre los distintos países de la Unión."
+        }
+      ],
+      "correct": "a",
+      "explanation": "Las tres propiedades de la firma electrónica son integridad (el documento no ha sido alterado), autenticidad (el firmante es quien dice ser) y no repudio (nadie puede decir que no firmó).",
+      "difficulty": "baja",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 2 nov · Tema 5. Firma electrónica. Marco legal y normativo"
+      }
+    },
+    {
+      "id": "ciberdelitos-t05-33",
+      "course": "ciberdelitos",
+      "topic": 45,
+      "test": "Tema 5 · Clase",
+      "order": 33,
+      "fromClass": true,
+      "text": "Una web solo para mayores de 18 años quiere comprobar la edad con la cartera europea de identidad digital. ¿Qué ventaja destacó la clase?",
+      "options": [
+        {
+          "key": "a",
+          "text": "La web recibe automáticamente el DNI completo del usuario, lo que simplifica verificar su identidad."
+        },
+        {
+          "key": "b",
+          "text": "La cartera la emite la UE de forma centralizada y cobra una pequeña tarifa por cada uso que se haga de ella."
+        },
+        {
+          "key": "c",
+          "text": "El usuario puede mostrar solo el atributo «mayor de 18 años», sin entregar su identidad completa."
+        },
+        {
+          "key": "d",
+          "text": "Solo pueden usarla las personas jurídicas, que eligen qué atributos mostrar a cada servicio público o privado."
+        }
+      ],
+      "correct": "c",
+      "explanation": "La cartera permite que el propio usuario controle sus atributos y elija cuál mostrar en cada servicio. La emite cada Estado miembro, la pueden usar personas físicas y jurídicas, es gratuita y válida en toda la Unión. Siglas y términos: UE: Unión Europea.",
+      "difficulty": "media",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 2 nov · Tema 5. Firma electrónica. Marco legal y normativo"
+      },
+      "glossary": {
+        "UE": "Unión Europea."
+      }
+    },
+    {
+      "id": "ciberdelitos-t05-34",
+      "course": "ciberdelitos",
+      "topic": 45,
+      "test": "Tema 5 · Clase",
+      "order": 34,
+      "fromClass": true,
+      "text": "Una empresa española quiere presentarse a una licitación en otro país de la Unión con su firma electrónica. ¿Por qué se regula la firma electrónica con un reglamento (eIDAS) y no con una directiva?",
+      "options": [
+        {
+          "key": "a",
+          "text": "Porque una directiva obligaría a cada país a copiar el texto palabra por palabra, algo inviable con la firma."
+        },
+        {
+          "key": "b",
+          "text": "Porque el reglamento exige que cada país apruebe una ley propia con requisitos de firma distintos entre sí."
+        },
+        {
+          "key": "c",
+          "text": "Porque la firma electrónica es materia de seguridad nacional, que solo regulan los reglamentos europeos."
+        },
+        {
+          "key": "d",
+          "text": "Porque un reglamento se aplica directamente e igual en todos los Estados y la firma se reconoce en toda la Unión."
+        }
+      ],
+      "correct": "d",
+      "explanation": "El reglamento europeo busca una misma normativa en toda Europa para que una firma sea reconocida en cualquier Estado miembro. Una directiva solo fija objetivos y deja a cada país el modo de alcanzarlos.",
+      "difficulty": "baja",
+      "source": {
+        "kind": "practice",
+        "title": "Clase del 2 nov · Tema 5. Firma electrónica. Marco legal y normativo"
       }
     },
     {

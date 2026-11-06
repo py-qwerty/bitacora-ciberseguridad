@@ -1,0 +1,214 @@
+{
+  "topics": [
+    {
+      "number": 1,
+      "questions": [
+        {
+          "question": "Un servidor web tiene un fallo de inyección SQL que nadie ha descubierto todavía. ¿Cómo se describe esa situación según la clase?",
+          "options": [
+            "Hay un ataque en curso, aunque el atacante aún no haya obtenido ningún dato.",
+            "Hay una amenaza activa, porque el fallo existe y eso basta para que lo sea.",
+            "Hay una vulnerabilidad, pero todavía no una amenaza activa ni un ataque.",
+            "No hay nada que clasificar mientras el fallo no se explote con éxito."
+          ],
+          "correct": 2,
+          "explanation": "La vulnerabilidad existe aunque nadie la conozca. Se convierte en amenaza cuando alguien la descubre y en ataque cuando la explota.",
+          "difficulty": "media",
+          "clase": "Clase del 30 sep"
+        },
+        {
+          "question": "Un atacante se coloca entre dos equipos que creen hablar directamente y solo pretende espiar la conversación. ¿Cómo se clasifica un ataque de hombre en el medio (man in the middle)?",
+          "options": [
+            "Activo, porque para ponerse en medio hay que modificar algo, como la tabla ARP.",
+            "Pasivo, porque su objetivo final es solo escuchar la comunicación entre ambos.",
+            "Pasivo si no altera mensajes y activo únicamente si llega a modificarlos después.",
+            "Ni activo ni pasivo: es un tipo aparte que depende del protocolo atacado en cada caso."
+          ],
+          "correct": 0,
+          "explanation": "Según la regla del profesor, si el atacante modifica el flujo de la información el ataque es activo. Para situarse en medio hay que alterar tablas o rutas.",
+          "difficulty": "media",
+          "clase": "Clase del 30 sep"
+        },
+        {
+          "question": "Un libro de texto agrupa las capas de OSI en las cuatro de TCP/IP. ¿Qué capas de OSI quedan englobadas en la capa de aplicación de TCP/IP?",
+          "options": [
+            "Aplicación y transporte, porque ambas gestionan la conversación entre programas.",
+            "Presentación, sesión y red, las tres que no tienen equivalente directo.",
+            "Solo aplicación, ya que en TCP/IP las demás desaparecen por completo.",
+            "Aplicación, presentación y sesión, que son las tres capas superiores de OSI."
+          ],
+          "correct": 3,
+          "explanation": "La capa de aplicación de TCP/IP absorbe las tres capas superiores de OSI: aplicación, presentación y sesión. Red y transporte coinciden en ambos modelos.",
+          "difficulty": "baja",
+          "clase": "Clase del 30 sep"
+        },
+        {
+          "question": "¿Qué diferencia señaló el profesor entre la dirección MAC y la dirección IP de un equipo?",
+          "options": [
+            "La MAC se asigna según la red a la que se conecta el equipo y la IP viene grabada en la tarjeta.",
+            "La MAC identifica la tarjeta y es única; la IP ubica el equipo y en redes privadas puede repetirse.",
+            "Las dos son únicas en todo el mundo, pero la IP viaja cifrada y la MAC no lo hace nunca.",
+            "La IP identifica el hardware de cada equipo y la MAC identifica el programa que envía el paquete."
+          ],
+          "correct": 1,
+          "explanation": "La MAC identifica la tarjeta de red y se considera única. La IP ubica el equipo dentro de una red y no es única, porque muchas redes privadas reutilizan las mismas direcciones.",
+          "difficulty": "media",
+          "clase": "Clase del 30 sep"
+        },
+        {
+          "question": "¿Qué caracteriza al ataque Land que el profesor construyó con Scapy?",
+          "options": [
+            "Se envían SYN con IP de origen y destino de la víctima y el mismo puerto.",
+            "Se capturan mensajes legítimos y se retransmiten después para repetir una operación.",
+            "Se intercepta la conversación entre dos equipos para modificar los datos en tránsito.",
+            "Se inunda a la víctima con peticiones desde miles de equipos distintos a la vez."
+          ],
+          "correct": 0,
+          "explanation": "El ataque Land envía paquetes SYN con origen y destino iguales (la víctima), de modo que el equipo cree recibir peticiones de sí mismo. Es una suplantación de IP que busca una denegación de servicio.",
+          "difficulty": "media",
+          "clase": "Clase del 30 sep"
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "questions": [
+        {
+          "question": "Un paquete llega a la interfaz de un cortafuegos con iptables y todavía no se ha decidido hacia dónde enrutarlo. ¿Qué tablas se consultan en PREROUTING y por qué no aparece filter?",
+          "options": [
+            "Raw, mangle y nat, por ese orden; filter aún no, porque no se sabe el destino.",
+            "Filter, nat y mangle, por ese orden; filter va primero para descartar cuanto antes.",
+            "Solo nat, porque PREROUTING existe únicamente para traducir direcciones.",
+            "Raw, mangle, nat y filter, porque todas las tablas actúan en todos los puntos."
+          ],
+          "correct": 0,
+          "explanation": "En PREROUTING se consultan raw, mangle y nat, en ese orden. Filter queda para después de la decisión de enrutado (INPUT, FORWARD u OUTPUT).",
+          "difficulty": "alta",
+          "clase": "Clase del 5 oct"
+        },
+        {
+          "question": "Un administrador quiere que el tráfico entrante al puerto 80 se desvíe a otro puerto del propio equipo (por ejemplo, el de un proxy). ¿Dónde debe escribir la regla?",
+          "options": [
+            "En la tabla filter y la cadena FORWARD, porque el tráfico atraviesa el cortafuegos.",
+            "En la tabla filter y la cadena INPUT, porque el tráfico va dirigido al equipo.",
+            "En la tabla mangle y la cadena OUTPUT, porque se modifican los paquetes salientes.",
+            "En nat y la cadena PREROUTING, porque se cambia el destino antes de enrutar."
+          ],
+          "correct": 3,
+          "explanation": "Para cambiar el destino de un paquete se usa nat en PREROUTING, antes de la decisión de enrutado. Además hay que indicar siempre a qué IP y puerto se redirige.",
+          "difficulty": "alta",
+          "clase": "Clase del 5 oct"
+        },
+        {
+          "question": "Un cortafuegos con iptables debe dejar pasar una transferencia FTP. El protocolo abre una conexión de control y luego otras nuevas para los datos. ¿Cómo se clasifican esas segundas conexiones?",
+          "options": [
+            "NEW, porque son conexiones nuevas que no guardan relación con la anterior.",
+            "RELATED, porque son nuevas pero relacionadas con otra ya existente.",
+            "ESTABLISHED, igual que cualquier paquete de una conexión ya en marcha.",
+            "INVALID, porque no usan el mismo puerto que la conexión de control."
+          ],
+          "correct": 1,
+          "explanation": "Las conexiones de datos de FTP son nuevas pero relacionadas con la de control, por eso son RELATED. Ante la duda, el profesor recomendó usar ESTABLISHED y RELATED juntas.",
+          "difficulty": "media",
+          "clase": "Clase del 5 oct"
+        },
+        {
+          "question": "En un cortafuegos con la política por defecto de INPUT en ACCEPT, un alumno añade reglas ACCEPT para varios puertos y reglas DROP para los puertos privilegiados. ¿Qué reglas aportan algo según la clase?",
+          "options": [
+            "Ninguna aporta, porque la política por defecto decide siempre el resultado final.",
+            "Las ACCEPT y las DROP por igual, porque cada regla se evalúa por separado.",
+            "Solo las DROP, porque las ACCEPT son redundantes si la política ya acepta.",
+            "Solo las ACCEPT, porque las DROP nunca se aplican con una política permisiva."
+          ],
+          "correct": 2,
+          "explanation": "Con política ACCEPT, las reglas ACCEPT sobran porque ya se acepta por defecto. Solo las DROP cambian el resultado, por ejemplo al cerrar puertos privilegiados.",
+          "difficulty": "media",
+          "clase": "Clase del 5 oct"
+        },
+        {
+          "question": "Hay una regla DROP para el tráfico hacia MySQL y se decide volver a permitirlo. ¿Qué recomendó el profesor?",
+          "options": [
+            "Añadir al final una regla ACCEPT contraria, para que anule a la anterior.",
+            "Cambiar la política por defecto a ACCEPT y dejar la regla DROP como está.",
+            "Poner la regla ACCEPT antes que el resto de reglas de todas las cadenas.",
+            "Borrar la regla DROP anterior en lugar de añadir una regla contraria."
+          ],
+          "correct": 3,
+          "explanation": "Como solo se aplica la primera regla que coincide, añadir una regla contraria genera un lío. Lo correcto es borrar la regla anterior, por ejemplo con -D.",
+          "difficulty": "media",
+          "clase": "Clase del 5 oct"
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "questions": [
+        {
+          "question": "¿Dónde recomendó el profesor colocar Snort respecto al cortafuegos y por qué?",
+          "options": [
+            "Delante, para detectar todos los ataques que llegan directamente desde Internet.",
+            "Detrás, en una red interna, porque delante generaría alertas constantes.",
+            "Da igual, porque Snort bloquea por sí solo y sustituye al cortafuegos.",
+            "Solo en el router, ya que Snort no puede instalarse en otros equipos."
+          ],
+          "correct": 1,
+          "explanation": "Se aconseja colocarlo detrás del cortafuegos, en una red interna. Delante recibiría alertas constantes por los ataques que llegan a Internet.",
+          "difficulty": "media",
+          "clase": "Clase del 3 nov"
+        },
+        {
+          "question": "Snort captura tráfico en bruto de la red. Antes de que el motor de detección lo compare con las reglas, ¿qué debe ocurrir según la arquitectura explicada en clase?",
+          "options": [
+            "Nada: el motor de detección analiza directamente los bytes capturados sin ninguna preparación.",
+            "Se envía primero a los plugins de salida, que lo guardan para analizarlo después.",
+            "Se decodifica según el protocolo y se organiza en campos mediante los preprocesadores.",
+            "Se cifra el tráfico capturado para evitar que un atacante lo lea durante el análisis."
+          ],
+          "correct": 2,
+          "explanation": "El tráfico capturado se decodifica según su protocolo y los preprocesadores lo reorganizan en campos. Después el motor de detección lo compara con las reglas y los plugins de salida generan alertas o logs.",
+          "difficulty": "media",
+          "clase": "Clase del 3 nov"
+        },
+        {
+          "question": "Tras un incidente se dispone de un fichero con el tráfico capturado. ¿Qué permite hacer la opción -r de Snort, que el profesor destacó para análisis forense?",
+          "options": [
+            "Guardar en disco los paquetes de la red en tiempo real para analizarlos más tarde.",
+            "Leer una captura guardada y aplicarle las reglas, en vez de tráfico en vivo.",
+            "Reiniciar el servicio de Snort y recargar las reglas sin detener la captura.",
+            "Ejecutar Snort en segundo plano como un demonio, sin salida por pantalla."
+          ],
+          "correct": 1,
+          "explanation": "La opción -r lee paquetes de una captura guardada en vez de la red. Junto con -c permite aplicar las reglas a un ataque que ya ocurrió.",
+          "difficulty": "media",
+          "clase": "Clase del 3 nov"
+        },
+        {
+          "question": "En una regla de Snort, ¿qué distingue a offset de distance al buscar un segundo patrón con content?",
+          "options": [
+            "Offset cuenta desde el inicio del paquete; distance cuenta desde la última coincidencia.",
+            "Offset y distance cuentan ambos desde el inicio del paquete, pero con distinta unidad.",
+            "Offset cuenta desde la última coincidencia; distance cuenta desde el inicio del paquete.",
+            "Offset solo sirve con TCP y distance solo con UDP, aunque funcionan igual."
+          ],
+          "correct": 0,
+          "explanation": "Offset (y depth) son posiciones absolutas desde el inicio del paquete. Distance (y within) son relativas al último acierto, por eso solo tienen sentido si ya hubo una coincidencia previa.",
+          "difficulty": "alta",
+          "clase": "Clase del 3 nov"
+        },
+        {
+          "question": "¿Por qué se definen variables (red interna, red externa, servidor web) al principio de un fichero de reglas de Snort en lugar de escribir las direcciones en cada regla?",
+          "options": [
+            "Porque Snort obliga a usar variables y rechaza las reglas con direcciones escritas.",
+            "Porque las variables aceleran la captura de paquetes en la interfaz de red.",
+            "Porque las reglas con variables se pueden marcar como dinámicas y activarse solas.",
+            "Porque si la red cambia, basta cambiar la variable y las reglas se actualizan."
+          ],
+          "correct": 3,
+          "explanation": "Las variables se definen una vez y las reglas las usan por nombre. Si cambia una red, se modifica la variable y todas las reglas que la usan quedan actualizadas.",
+          "difficulty": "baja",
+          "clase": "Clase del 3 nov"
+        }
+      ]
+    }
+  ]
+}

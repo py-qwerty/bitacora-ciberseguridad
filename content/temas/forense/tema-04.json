@@ -1036,6 +1036,46 @@
         "c": "Correcta. El sistema de ficheros mantiene información (enlaces o referencias) que permite localizar todas sus partes.",
         "d": "Incorrecta. La extensión solo indica el tipo de archivo; no dice dónde están los fragmentos."
       }
+    },
+    "forense-t04-31": {
+      "section": "mbr-gpt",
+      "reasoning": "El salto de MBR a GPT fue enorme: más particiones, más tamaño de disco y poder arrancar desde cualquiera de ellas.",
+      "options": {
+        "a": "Incorrecta. En MBR solo una partición puede ser arrancable, así que no permite elegir libremente.",
+        "b": "Correcta. GPT admite hasta 128 particiones sin límite de arrancables: cubre seis particiones y elegir arranque.",
+        "c": "Incorrecta. Con GPT se llega a 128 particiones; el límite de cuatro es de MBR.",
+        "d": "Incorrecta. Los 8 zettabytes son un rasgo de GPT, no de MBR, cuyo límite ronda los 2 TB."
+      }
+    },
+    "forense-t04-32": {
+      "section": "ntfs",
+      "reasoning": "El profesor lo comprobó con un archivo diminuto: al leer el sistema de ficheros en bruto aparecía su texto dentro de la tabla maestra, entre caracteres sin sentido.",
+      "options": {
+        "a": "Incorrecta. $Bitmap solo indica qué clústeres están libres u ocupados; no guarda contenidos.",
+        "b": "Incorrecta. $MFTMirr copia solo los primeros registros de la $MFT para recuperación, no los archivos pequeños.",
+        "c": "Incorrecta. $BadClus registra clústeres dañados; no guarda archivos pequeños.",
+        "d": "Correcta. Es el caso especial de la $MFT: los archivos de menos de 512 bytes guardan ahí su contenido."
+      }
+    },
+    "forense-t04-33": {
+      "section": "vision-forense",
+      "reasoning": "Por eso borrar no es instantáneo ni se limita a una casilla; pero los datos siguen en el disco hasta que se sobrescriban, y eso permite recuperarlos.",
+      "options": {
+        "a": "Correcta. Son varios cambios en las estructuras de gestión (entrada de la MFT y mapa de bits), no en los datos.",
+        "b": "Incorrecta. No se sobrescribe el contenido: hacerlo sería muy costoso y por eso los archivos borrados pueden recuperarse.",
+        "c": "Incorrecta. No se cambia la extensión; la entrada se marca como disponible.",
+        "d": "Incorrecta. La entrada no se elimina físicamente: se marca como disponible para reutilizarla."
+      }
+    },
+    "forense-t04-34": {
+      "section": "vision-forense",
+      "reasoning": "El profesor aconsejó apuntar las características principales y los archivos principales de cada sistema, con un par de ideas por cada uno.",
+      "options": {
+        "a": "Incorrecta. De APFS y de los demás basta saber qué aportan; no son los imprescindibles.",
+        "b": "Incorrecta. El profesor aconsejó lo contrario: un par de ideas por sistema es suficiente.",
+        "c": "Correcta. Estos tres son los que el tema marca como imprescindibles.",
+        "d": "Incorrecta. Hay que conocer también FAT y ext4; solo NTFS se queda corto."
+      }
     }
   }
 }

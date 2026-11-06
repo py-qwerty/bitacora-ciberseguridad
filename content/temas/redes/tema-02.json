@@ -1109,6 +1109,56 @@
         "c": "Incorrecta. nat modifica direcciones de origen y destino, no otros campos como el TTL.",
         "d": "Incorrecta. raw actúa antes del seguimiento de estado y permite excluir paquetes de él."
       }
+    },
+    "redes-t02-31": {
+      "section": "iptables-cadenas",
+      "reasoning": "La tabla filter sirve para aceptar o descartar, y eso solo tiene sentido cuando ya se sabe si el paquete es para el cortafuegos o solo lo atraviesa. Por eso, antes de enrutar, solo actúan raw, mangle y nat.",
+      "options": {
+        "a": "Correcta. Antes del enrutado actúan raw, mangle y nat; filter llega después, en INPUT o FORWARD.",
+        "b": "Incorrecta. El orden dentro de un mismo punto es raw, mangle, nat, filter, y filter no está en PREROUTING.",
+        "c": "Incorrecta. En PREROUTING también están raw y mangle; nat no es la única tabla de ese punto.",
+        "d": "Incorrecta. No todas actúan en todos los puntos: filter solo aparece en INPUT, FORWARD y OUTPUT."
+      }
+    },
+    "redes-t02-32": {
+      "section": "iptables-cadenas",
+      "reasoning": "Redirigir es traducir direcciones o puertos, por tanto es trabajo de la tabla nat. Como el enrutado aún no se ha decidido, la cadena es PREROUTING; filter solo acepta o descarta.",
+      "options": {
+        "a": "Incorrecta. Filter no cambia destinos, solo acepta o descarta; además la redirección debe hacerse antes del enrutado.",
+        "b": "Incorrecta. Filter no traduce puertos; INPUT sería para filtrar paquetes que ya van al equipo.",
+        "c": "Incorrecta. Mangle altera cabeceras como el TTL, no sirve para redirigir puertos, y OUTPUT es para paquetes generados localmente.",
+        "d": "Correcta. Redirigir es una traducción (nat) y debe hacerse antes de enrutar (PREROUTING)."
+      }
+    },
+    "redes-t02-33": {
+      "section": "iptables-reglas",
+      "reasoning": "ESTABLISHED cubre paquetes de una conexión ya en marcha; RELATED cubre conexiones nuevas que dependen de otra existente, como las de datos de FTP. Si solo permites ESTABLISHED, esas conexiones secundarias no pasarían.",
+      "options": {
+        "a": "Incorrecta. NEW es el primer paquete de una conexión sin relación; aquí hay una relación con la de control.",
+        "b": "Correcta. Son conexiones nuevas pero relacionadas con otra ya existente: RELATED.",
+        "c": "Incorrecta. Son conexiones distintas de la de control, no continuación de ella; por eso no son solo ESTABLISHED.",
+        "d": "Incorrecta. El estado no depende de que el puerto coincida; INVALID se aplica a paquetes que no encajan en ninguna conexión conocida."
+      }
+    },
+    "redes-t02-34": {
+      "section": "iptables-reglas",
+      "reasoning": "El profesor señaló la redundancia como error típico: si todo lo que no coincide ya se acepta, añadir un ACCEPT no cambia nada. En cambio, un DROP sobre los puertos del 1 al 1024 sí altera el comportamiento, porque se evalúa antes de llegar a la política.",
+      "options": {
+        "a": "Incorrecta. La política solo se aplica a lo que no coincide con ninguna regla; las DROP que coinciden sí tienen efecto.",
+        "b": "Incorrecta. Las ACCEPT no cambian nada si la política ya acepta, así que no aportan lo mismo.",
+        "c": "Correcta. Las ACCEPT son redundantes con política ACCEPT; las DROP son las que restringen.",
+        "d": "Incorrecta. Las DROP se aplican con cualquier política: en cuanto un paquete coincide, se ejecuta la acción."
+      }
+    },
+    "redes-t02-35": {
+      "section": "iptables-reglas",
+      "reasoning": "En iptables las reglas se leen en orden y gana la primera coincidencia. Una ACCEPT añadida al final nunca se alcanzaría si la DROP ya coincide antes. Por eso, para deshacer una regla se elimina, no se contradice.",
+      "options": {
+        "a": "Incorrecta. Una regla ACCEPT al final nunca se evaluaría para ese tráfico, porque la DROP anterior ya coincide.",
+        "b": "Incorrecta. La política por defecto solo afecta a lo que no coincide con ninguna regla; la DROP seguiría bloqueando.",
+        "c": "Incorrecta. Reordenar reglas en todas las cadenas es innecesario y puede alterar otros comportamientos.",
+        "d": "Correcta. Se borra la regla anterior (por ejemplo con -D) en vez de acumular reglas contrarias."
+      }
     }
   }
 }

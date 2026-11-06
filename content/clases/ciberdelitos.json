@@ -1,0 +1,271 @@
+{
+  "topics": [
+    {
+      "number": 1,
+      "questions": [
+        {
+          "question": "Un compañero afirma: «mi número de cuenta bancaria es una categoría especial de datos». Según la clase, ¿qué es correcto?",
+          "options": [
+            "Es una categoría especial, porque toda información económica sensible entra automáticamente en esa lista.",
+            "No es un dato personal, porque identifica una cuenta bancaria y no directamente a una persona física concreta.",
+            "Es dato personal, pero no categoría especial: la lista es cerrada y no incluye los datos bancarios.",
+            "Es una categoría especial, porque se asimila por analogía a los datos de salud, que sí figuran en la lista."
+          ],
+          "correct": 2,
+          "explanation": "Las categorías especiales son una lista cerrada (origen étnico, ideología, afiliación sindical, religión, datos genéticos, biométricos, de salud y orientación sexual). Un número de cuenta es dato personal, pero no figura en ella.",
+          "difficulty": "media",
+          "clase": "Clase del 1 oct"
+        },
+        {
+          "question": "Una empresa contrata un servicio de alojamiento de sus datos de clientes. Firma un contrato con muchas medidas de seguridad y se desentiende, pensando que, si el proveedor incumple, será solo problema de este. Según la clase, ¿qué ocurre?",
+          "options": [
+            "Queda libre de responsabilidad, porque el contrato traslada al proveedor todas las consecuencias de cualquier incumplimiento.",
+            "Solo debe comprobar sus garantías en el momento de firmar; después, la vigilancia es cosa exclusiva del proveedor.",
+            "Debe escoger siempre al proveedor más barato, porque el precio es el criterio principal para elegir un encargado.",
+            "Sigue siendo responsable: debe poder demostrar que eligió al proveedor con diligencia y que lo supervisa después."
+          ],
+          "correct": 3,
+          "explanation": "El responsable debe acreditar que fue diligente al elegir al encargado (garantías suficientes) y que lo supervisa después. Algunas empresas se han librado de sanciones por demostrarlo, y otras las han asumido por desentenderse.",
+          "difficulty": "media",
+          "clase": "Clase del 1 oct"
+        },
+        {
+          "question": "El delegado de protección de datos (DPD) de una empresa recibe el encargo de «hacer» el análisis de riesgos y la evaluación de impacto de un nuevo tratamiento. ¿Qué función le atribuye la clase?",
+          "options": [
+            "Realizarlas él personalmente, porque son funciones propias de su cargo y de su deber de rendir cuentas.",
+            "Supervisar que se hagan y asesorar sobre ellas; no ejecutarlas, porque las realizan otras personas de la organización.",
+            "Decidir por sí mismo si el tratamiento se lleva a cabo, porque es quien responde ante la autoridad de control.",
+            "No intervenir en absoluto, porque asesorar sobre la evaluación de impacto es competencia exclusiva de la autoridad de control."
+          ],
+          "correct": 1,
+          "explanation": "Según la clase, el DPD supervisa el cumplimiento (por ejemplo, que se hagan los análisis de riesgos y la evaluación de impacto), no los realiza. La decisión y la responsabilidad siguen siendo del responsable.",
+          "difficulty": "media",
+          "clase": "Clase del 14 oct"
+        },
+        {
+          "question": "Un ayuntamiento muy pequeño trata los datos de su padrón. ¿Debe nombrar un delegado de protección de datos?",
+          "options": [
+            "No, porque solo es obligatorio cuando la actividad principal es un tratamiento a gran escala y un ayuntamiento pequeño no lo alcanza.",
+            "No, porque el RGPD solo lo exige a empresas privadas que traten categorías especiales de datos a gran escala.",
+            "Sí: toda autoridad u organismo público debe tenerlo, sea cual sea su tamaño, salvo los tribunales en su función judicial.",
+            "Solo si supera el número de habitantes que fije el reglamento europeo para ese tipo de entidades locales."
+          ],
+          "correct": 2,
+          "explanation": "Para autoridades y organismos públicos el delegado es obligatorio con independencia del tamaño. Los otros dos supuestos obligatorios (observación sistemática y categorías especiales a gran escala) exigen actividad principal y gran escala.",
+          "difficulty": "baja",
+          "clase": "Clase del 14 oct"
+        },
+        {
+          "question": "Una persona ejerce su derecho de supresión en España y la empresa le contesta que ha «bloqueado» sus datos. Según la clase, ¿qué significa?",
+          "options": [
+            "Que nadie en la empresa puede acceder ya a ellos; solo jueces, Fiscalía y administraciones competentes, hasta su supresión.",
+            "Que se han borrado de inmediato y para siempre de todos los sistemas, sin conservar ninguna copia ni registro.",
+            "Que siguen visibles para el personal de la empresa, pero marcados con un aviso de «no utilizar» hasta resolver la solicitud.",
+            "Que se han cedido a otra entidad de confianza para que los conserve por su cuenta durante un tiempo indefinido."
+          ],
+          "correct": 0,
+          "explanation": "El bloqueo es una particularidad española: el dato se conserva inaccesible para la organización, solo para jueces, Fiscalía y administraciones competentes, y sirve para demostrar qué se hizo si hay reclamaciones. Pasado el plazo de posibles responsabilidades, se suprime del todo.",
+          "difficulty": "alta",
+          "clase": "Clase del 14 oct"
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "questions": [
+        {
+          "question": "Al categorizar un sistema, la confidencialidad, la integridad, la trazabilidad y la autenticidad alcanzan nivel bajo, pero la disponibilidad alcanza nivel alto. ¿Qué categoría tiene el sistema?",
+          "options": [
+            "Básica, porque cuatro de las cinco dimensiones están en nivel bajo y es lo que ocurre en la mayoría.",
+            "Alta: el sistema toma la categoría del nivel más alto que alcance cualquiera de sus dimensiones.",
+            "Media, porque se calcula una especie de media entre los niveles de las cinco dimensiones.",
+            "Alta solo si al menos tres de las cinco dimensiones alcanzan el nivel alto en la valoración."
+          ],
+          "correct": 1,
+          "explanation": "Según la clase, basta con que una sola dimensión alcance un nivel superior para que todo el sistema adopte esa categoría y se apliquen las medidas correspondientes.",
+          "difficulty": "media",
+          "clase": "Clase del 19 oct"
+        },
+        {
+          "question": "En el Esquema Nacional de Seguridad hay dos escalas fáciles de confundir. ¿Qué par de términos es el correcto?",
+          "options": [
+            "Cada dimensión se valora con un nivel (bajo, medio, alto) y el sistema recibe una categoría (básica, media, alta).",
+            "Cada dimensión recibe una categoría (básica, media, alta) y el sistema entero recibe un nivel (bajo, medio, alto).",
+            "Tanto las dimensiones como el sistema se valoran únicamente con categorías básica, media y alta.",
+            "Las dimensiones se valoran con categorías y el sistema con la suma de los niveles de sus cinco dimensiones."
+          ],
+          "correct": 0,
+          "explanation": "Las dimensiones tienen nivel (masculino: bajo, medio, alto) y el sistema tiene categoría (femenino: básica, media, alta). La profesora lo destacó como confusión frecuente.",
+          "difficulty": "media",
+          "clase": "Clase del 19 oct"
+        },
+        {
+          "question": "Un organismo con un sistema de categoría básica se autoevalúa y publica en su sede electrónica que cumple el ENS. ¿Cómo se llama ese resultado y en qué se diferencia de la certificación?",
+          "options": [
+            "Certificación de conformidad: la emite la propia entidad al autoevaluarse y la auditoría externa se reserva para la declaración.",
+            "Declaración de conformidad: la emite la propia entidad al autoevaluarse; la certificación exige auditoría externa.",
+            "Declaración de aplicabilidad: es el documento donde la entidad lista sus medidas y sustituye a la certificación.",
+            "Declaración de conformidad: solo puede emitirla una empresa acreditada por ENAC tras auditar el sistema por completo."
+          ],
+          "correct": 1,
+          "explanation": "Truco de la profesora: cuando uno se autoevalúa, declara; cuando lo audita alguien externo, certifica. Categoría básica: declaración; media o alta: auditoría y certificación.",
+          "difficulty": "media",
+          "clase": "Clase del 19 oct"
+        },
+        {
+          "question": "El responsable de seguridad cree que, para un sistema concreto, otra medida sería más eficaz que una de las obligatorias que derivan de su categoría. Según la clase, ¿qué puede hacer?",
+          "options": [
+            "Omitirla sin más, porque las medidas derivadas de la categoría solo son recomendaciones orientativas para la entidad.",
+            "Nada: las medidas obligatorias nunca pueden sustituirse y solo cabe añadir refuerzos de seguridad adicionales.",
+            "Sustituirla sin justificar, porque la decisión técnica del responsable de seguridad no necesita constar por escrito.",
+            "Sustituirla por una medida compensatoria, solo en casos excepcionales y dejando documentado y fundamentado el motivo."
+          ],
+          "correct": 3,
+          "explanation": "Las medidas de la categoría son un mínimo obligatorio; los refuerzos se añaden según el criterio del responsable de seguridad. En casos excepcionales caben medidas compensatorias, siempre documentadas y fundamentadas en la declaración de aplicabilidad.",
+          "difficulty": "alta",
+          "clase": "Clase del 19 oct"
+        },
+        {
+          "question": "Una empresa privada afirma que cumplir el ENS y certificarse en ISO/IEC 27001 es lo mismo. Según la clase, ¿qué diferencia es correcta?",
+          "options": [
+            "La ISO 27001 es obligatoria para toda entidad y el ENS es un estándar voluntario que adoptan algunas empresas privadas por iniciativa propia.",
+            "El ENS es norma legal obligatoria en su ámbito (sector público y proveedores); la ISO 27001 es un estándar voluntario.",
+            "Ambas son normas legales obligatorias, pero el ENS solo se aplica a ayuntamientos y la ISO 27001 al resto de entidades.",
+            "El ENS es voluntario igual que la ISO 27001, aunque solo se pueda aplicar a las administraciones públicas españolas."
+          ],
+          "correct": 1,
+          "explanation": "El ENS tiene rango legal y es obligatorio para quienes entran en su ámbito. La ISO 27001 no es una norma legal: es un estándar que cada organización decide si certifica (aunque, si lo hace, debe cumplir sus requisitos). Además, el ENS cataloga las medidas y la ISO deja más peso al criterio del auditor.",
+          "difficulty": "media",
+          "clase": "Clase del 14 oct"
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "questions": [
+        {
+          "question": "Un prestador de servicios de confianza sufre un incidente significativo en el marco de NIS 2. ¿Qué plazo especial señaló la clase para él?",
+          "options": [
+            "Debe notificarlo siempre en 24 horas desde que tiene constancia, sin el plazo general de 72.",
+            "Puede esperar un mes, porque su plazo coincide con el del informe final tras la notificación.",
+            "El mismo que cualquier otra entidad: 72 horas, sin excepciones para ningún tipo de entidad.",
+            "Solo 24 horas si sospecha un ataque con efectos transfronterizos; en otro caso, 72 horas."
+          ],
+          "correct": 0,
+          "explanation": "La profesora destacó una excepción: para los prestadores de servicios de confianza el plazo es siempre de 24 horas desde que se tiene constancia, sin los 72 de la regla general.",
+          "difficulty": "alta",
+          "clase": "Clase del 19 oct"
+        },
+        {
+          "question": "Una entidad esencial sufre un incidente significativo que además expone datos personales de sus clientes. ¿Qué obligaciones de notificación tiene según la clase?",
+          "options": [
+            "Solo la de NIS 2, porque al ser una norma específica de ciberseguridad sustituye a la de protección de datos.",
+            "Solo la del RGPD, porque cuando hay datos personales NIS 2 deja de aplicarse al incidente por completo.",
+            "Debe cumplir las dos: notificar según NIS 2 a su CSIRT o autoridad y comunicar la brecha a la AEPD según el RGPD.",
+            "Puede esperar a que una sentencia confirme que el incidente es significativo antes de avisar a ninguna autoridad."
+          ],
+          "correct": 2,
+          "explanation": "Según la clase, NIS 2 no exime de notificar a la AEPD si hay datos personales: se aplican las dos normas a la vez (24 y 72 horas en NIS 2, 72 horas en el RGPD).",
+          "difficulty": "media",
+          "clase": "Clase del 19 oct"
+        },
+        {
+          "question": "Una empresa quiere usar un sistema de IA para reconocer las emociones de sus empleados durante la jornada y otro para medir el estado de ánimo de los clientes en una tienda. Según el Reglamento de IA tal como se explicó en clase, ¿qué es correcto?",
+          "options": [
+            "Ambos están prohibidos, porque el reconocimiento de emociones está vetado en cualquier contexto de uso.",
+            "El primero está prohibido (ámbito laboral); el segundo no lo prohíbe este reglamento, pero necesitaría base de licitud RGPD.",
+            "Ambos están permitidos, porque el reglamento solo prohíbe el reconocimiento de emociones en centros educativos concretos.",
+            "El primero es válido y el segundo está prohibido, porque en el trabajo prevalece el interés legítimo del empleador sobre el empleado."
+          ],
+          "correct": 1,
+          "explanation": "Solo está prohibido reconocer emociones en el lugar de trabajo y en centros educativos. En otros contextos no lo prohíbe el Reglamento de IA, pero eso no lo hace automáticamente legal: hace falta cumplir la protección de datos.",
+          "difficulty": "alta",
+          "clase": "Clase del 26 oct"
+        },
+        {
+          "question": "Un proveedor de fuera de la Unión Europea quiere vender en Europa un sistema de IA de alto riesgo. ¿Qué afirma la clase sobre el Reglamento de IA?",
+          "options": [
+            "Solo obliga a proveedores establecidos en la UE, así que a un proveedor extranjero de sistemas de alto riesgo no le afecta.",
+            "Solo debe cumplirlo si lo desarrolla una empresa española, porque el reglamento necesita una ley nacional para aplicarse.",
+            "Basta con el marcado de origen de su país; el importador y el distribuidor no tienen que comprobar nada antes de venderlo.",
+            "Le es aplicable igualmente: importador y distribuidor lo comprueban y debe nombrar un representante autorizado en la UE."
+          ],
+          "correct": 3,
+          "explanation": "El reglamento tiene aplicación extraterritorial: afecta a sistemas usados en la Unión aunque vengan de fuera. Hay doble control (importador y distribuidor) y el proveedor no europeo debe designar un representante autorizado.",
+          "difficulty": "media",
+          "clase": "Clase del 26 oct"
+        },
+        {
+          "question": "Una empresa mediana de mensajería y servicios postales pregunta si le afecta NIS 2. ¿Qué respuesta encaja con la clase?",
+          "options": [
+            "Sí: es un sector del anexo II (otros sectores críticos), por lo que sería entidad importante, no esencial.",
+            "Sí: es un sector de alta criticidad, por lo que sería entidad esencial (anexo I) en cualquier caso.",
+            "No: NIS 2 solo se aplica a unos pocos sectores muy concretos, como energía, transporte y banca.",
+            "No: los servicios postales quedaron fuera de NIS 2 al desaparecer los operadores de servicios esenciales."
+          ],
+          "correct": 0,
+          "explanation": "Los servicios postales y de mensajería figuran entre los otros sectores críticos del anexo II, cuyas entidades suelen ser importantes. Los sectores de alta criticidad (energía, transporte, banca, agua, sanidad...) corresponden al anexo I.",
+          "difficulty": "media",
+          "clase": "Clase del 19 oct"
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "questions": [
+        {
+          "question": "La directora general de una empresa firma un contrato en nombre de la sociedad con su certificado electrónico. ¿Qué es correcto según la clase?",
+          "options": [
+            "La sociedad es quien firma, porque las personas jurídicas también tienen certificados de firma electrónica.",
+            "Quien firma sigue siendo persona física actuando por la empresa; la entidad como tal usa sello electrónico.",
+            "Al actuar en representación, la firma deja de ser electrónica y pasa a llamarse sello electrónico.",
+            "Solo los autónomos pueden firmar electrónicamente; las sociedades únicamente pueden firmar a mano o en papel."
+          ],
+          "correct": 1,
+          "explanation": "El firmante es siempre una persona física, aunque represente a una empresa. Las personas jurídicas no firman: sellan, con un sello electrónico.",
+          "difficulty": "media",
+          "clase": "Clase del 2 nov"
+        },
+        {
+          "question": "Un cliente intenta negar que firmó un presupuesto con su firma electrónica. ¿Qué propiedad de la firma electrónica impide que lo niegue con éxito?",
+          "options": [
+            "El no repudio, una de las tres propiedades: el firmante no puede negar después que firmó.",
+            "La confidencialidad, porque solo el destinatario autorizado puede leer el documento firmado.",
+            "La integridad, porque garantiza que el contenido no se ha modificado y por eso no se puede negar haber firmado.",
+            "La interoperabilidad, porque la firma es reconocida entre los distintos países de la Unión."
+          ],
+          "correct": 0,
+          "explanation": "Las tres propiedades de la firma electrónica son integridad (el documento no ha sido alterado), autenticidad (el firmante es quien dice ser) y no repudio (nadie puede decir que no firmó).",
+          "difficulty": "baja",
+          "clase": "Clase del 2 nov"
+        },
+        {
+          "question": "Una web solo para mayores de 18 años quiere comprobar la edad con la cartera europea de identidad digital. ¿Qué ventaja destacó la clase?",
+          "options": [
+            "La web recibe automáticamente el DNI completo del usuario, lo que simplifica verificar su identidad.",
+            "La cartera la emite la UE de forma centralizada y cobra una pequeña tarifa por cada uso que se haga de ella.",
+            "El usuario puede mostrar solo el atributo «mayor de 18 años», sin entregar su identidad completa.",
+            "Solo pueden usarla las personas jurídicas, que eligen qué atributos mostrar a cada servicio público o privado."
+          ],
+          "correct": 2,
+          "explanation": "La cartera permite que el propio usuario controle sus atributos y elija cuál mostrar en cada servicio. La emite cada Estado miembro, la pueden usar personas físicas y jurídicas, es gratuita y válida en toda la Unión.",
+          "difficulty": "media",
+          "clase": "Clase del 2 nov"
+        },
+        {
+          "question": "Una empresa española quiere presentarse a una licitación en otro país de la Unión con su firma electrónica. ¿Por qué se regula la firma electrónica con un reglamento (eIDAS) y no con una directiva?",
+          "options": [
+            "Porque una directiva obligaría a cada país a copiar el texto palabra por palabra, algo inviable con la firma.",
+            "Porque el reglamento exige que cada país apruebe una ley propia con requisitos de firma distintos entre sí.",
+            "Porque la firma electrónica es materia de seguridad nacional, que solo regulan los reglamentos europeos.",
+            "Porque un reglamento se aplica directamente e igual en todos los Estados y la firma se reconoce en toda la Unión."
+          ],
+          "correct": 3,
+          "explanation": "El reglamento europeo busca una misma normativa en toda Europa para que una firma sea reconocida en cualquier Estado miembro. Una directiva solo fija objetivos y deja a cada país el modo de alcanzarlos.",
+          "difficulty": "baja",
+          "clase": "Clase del 2 nov"
+        }
+      ]
+    }
+  ]
+}

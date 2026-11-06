@@ -12,11 +12,12 @@ test('all fifty topics have thirty distinct questions with valid source pages', 
     const qs = bank.questions.filter(q => q.topic === topic.id);
     const source = sources.find(s => s.course === topic.course && s.topic === topic.number);
     assert.ok(source, `Missing source: ${topic.course}/${topic.number}`);
-    assert.equal(qs.length, 30);
+    assert.equal(qs.filter(q => !q.fromClass).length, 30);
+    assert.ok(qs.filter(q => q.fromClass).length <= 10);
     const signatures = qs.map(q => JSON.stringify([q.text.toLocaleLowerCase('es'), q.options.map(o => o.text.toLocaleLowerCase('es'))]));
-    assert.equal(new Set(signatures).size, 30, `Duplicate: ${topic.course}/${topic.number}`);
+    assert.equal(new Set(signatures).size, qs.length, `Duplicate: ${topic.course}/${topic.number}`);
     for (const q of qs) {
-      assert.ok(Number.isInteger(q.source.page) && q.source.page > 0 && q.source.page <= source.pages, q.id);
+      assert.ok(q.fromClass || (Number.isInteger(q.source.page) && q.source.page > 0 && q.source.page <= source.pages), q.id);
       assert.equal(new Set(q.options.map(o => o.text.toLowerCase())).size, 4, q.id);
       assert.ok(q.explanation.length >= 35, `Feedback too short: ${q.id}`);
       assert.ok(!q.source.adaptation || q.source.kind === 'practice', `Adaptation provenance: ${q.id}`);

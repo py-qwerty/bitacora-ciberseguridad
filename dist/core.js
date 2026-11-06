@@ -41,9 +41,12 @@ export function isValidSession(s,map) {
   return !!(s&&typeof s.id==='string'&&Array.isArray(s.ids)&&s.ids.length===EXAM_SIZE&&new Set(s.ids).size===EXAM_SIZE&&s.ids.every(id=>map.has(id))&&validTime(s.deadline)&&validTime(s.startedAt)&&s.deadline>=s.startedAt&&Array.isArray(s.flags)&&s.flags.every(id=>s.ids.includes(id))&&Number.isInteger(s.index)&&s.index>=0&&s.index<s.ids.length&&validAnswers(s.answers,s.ids,map)&&(!s.finishedAt||(validTime(s.finishedAt)&&s.finishedAt>=s.startedAt&&s.finishedAt<=s.deadline)));
 }
 export function topicQuestions(questions,topic){return questions.filter(q=>q.topic===topic).sort((a,b)=>a.test.localeCompare(b.test,'es',{numeric:true})||a.order-b.order||a.id.localeCompare(b.id));}
+export function baseQuestions(questions,topic){return topicQuestions(questions,topic).filter(q=>!q.fromClass);}
+export function classQuestions(questions,topic){return topicQuestions(questions,topic).filter(q=>q.fromClass);}
 export function practiceBlocks(questions,topic){
-  const list=topicQuestions(questions,topic);const blocks=[];
+  const list=baseQuestions(questions,topic);const blocks=[];
   for(let i=0;i<list.length;i+=10){const block=list.slice(i,i+10);if(block.length!==10)throw Error('El tema debe contener bloques completos de diez preguntas.');blocks.push(block);}
+  const extra=classQuestions(questions,topic);if(extra.length)blocks.push(extra);
   return blocks;
 }
 export function validPractice(p,ids,map){
@@ -58,7 +61,7 @@ export function validateBank(data){
     if(!q||typeof q.id!=='string'||ids.has(q.id)||!topics.has(q.topic)||topics.get(q.topic).course!==q.course||typeof q.text!=='string'||!q.text.trim()||!Array.isArray(q.options)||q.options.length!==4||q.options.some((o,i)=>o?.key!=='abcd'[i]||typeof o.text!=='string'||!o.text.trim())||!q.options.some(o=>o.key===q.correct)||typeof q.explanation!=='string'||!q.explanation.trim()||!q.source||!['practice','temario-test','campus-confirmed'].includes(q.source.kind)||typeof q.source.title!=='string'||!q.source.title.trim()||typeof q.test!=='string'||!Number.isFinite(q.order))throw Error('Pregunta no válida');
     ids.add(q.id);
   }
-  for(const t of data.topics)if(data.questions.filter(q=>q.topic===t.id).length!==30)throw Error('Cada tema debe contener treinta preguntas.');
+  for(const t of data.topics){const own=data.questions.filter(q=>q.topic===t.id);const extra=own.filter(q=>q.fromClass).length;if(own.length-extra!==30||extra>10)throw Error('Cada tema debe contener treinta preguntas y, como mucho, diez de clase.');}
   return true;
 }
 export const TEMA_BLOCKS = ['p','analogy','term','list','steps','table','example','exam','key','code'];

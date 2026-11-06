@@ -816,6 +816,56 @@
         "c": "Correcta. Hay que neutralizar los caracteres (CR y LF) que pueden alterar la estructura de las cabeceras.",
         "d": "Incorrecta. El nombre visible del recurso no tiene que ver con la estructura de las cabeceras."
       }
+    },
+    "sistemas-t03-31": {
+      "section": "raiz-comun",
+      "reasoning": "El profesor lo dijo claramente: quedaos con que solo hay que usar lista blanca. Enumerar lo bueno es posible; enumerar todo lo malo no lo es.",
+      "options": {
+        "a": "Incorrecta. La lista blanca rechaza todo lo que no esté en ella, incluidas las entradas maliciosas. No necesita ayuda para eso.",
+        "b": "Incorrecta. La regla es válida para cualquier tipo de entrada, no solo para SQL.",
+        "c": "Correcta. Si la lista blanca es adecuada, todo lo que no figure en ella se descarta. La lista negra solo añade trabajo sin más protección.",
+        "d": "Incorrecta. La lista negra es la más débil: es imposible prever todas las cadenas maliciosas."
+      }
+    },
+    "sistemas-t03-32": {
+      "section": "proxy-burp",
+      "reasoning": "El profesor lo demostró con Burp Suite: cualquier comprobación del lado cliente se salta interceptando. La del cliente sirve como comodidad, pero la seguridad real va en el servidor.",
+      "options": {
+        "a": "Incorrecta. Da igual lo bien programado que esté: el atacante controla lo que viaja y puede alterarlo tras la validación.",
+        "b": "Incorrecta. La base de datos recibe lo que la aplicación deja pasar. El fallo está en la aplicación, por eso se valida en el servidor, antes.",
+        "c": "Incorrecta. El atacante no depende del navegador de la víctima; usa su propio proxy. Desactivar JavaScript no arregla nada.",
+        "d": "Correcta. Lo que hace el navegador puede saltarse, por lo que toda validación importante debe repetirse en el lado servidor."
+      }
+    },
+    "sistemas-t03-33": {
+      "section": "xss",
+      "reasoning": "El profesor lo señaló como detalle clave de la demo. HttpOnly, junto con SameSite y Secure, son atributos de la cookie que reducen el impacto de ataques como XSS.",
+      "options": {
+        "a": "Correcta. HttpOnly impide que el código JavaScript acceda al contenido de la cookie. En PHP estaba a falso, por eso salió.",
+        "b": "Incorrecta. El lenguaje del servidor no decide si el navegador ejecuta un script inyectado. El script se ejecuta en el navegador.",
+        "c": "Incorrecta. TLS mutuo no interviene en lo que lee un script dentro del navegador, y no se usó en esa demo.",
+        "d": "Incorrecta. El script lee el valor tal como está en el navegador. Lo que protege es el atributo HttpOnly, no el cifrado."
+      }
+    },
+    "sistemas-t03-34": {
+      "section": "csrf",
+      "reasoning": "El tema avisa de no confundir estos «cross-site»: CSRF hace que el navegador envíe una petición no querida, clickjacking engaña con una capa transparente, y XST abusa de TRACE. La cabecera X-Frame-Options con DENY impide abrir la página en un marco.",
+      "options": {
+        "a": "Incorrecta. CSRF fuerza una petición con la sesión de la víctima; no usa un marco transparente. Y Cache-Control no lo frena.",
+        "b": "Incorrecta. XST abusa del método TRACE. HttpOnly no tiene relación con el marco transparente.",
+        "c": "Correcta. Es clickjacking, y la defensa es X-Frame-Options (DENY, o SAMEORIGIN para permitir solo el mismo sitio).",
+        "d": "Incorrecta. SSRF hace que el servidor haga una petición, y Content-Length solo indica el tamaño del mensaje."
+      }
+    },
+    "sistemas-t03-35": {
+      "section": "catalogos",
+      "reasoning": "El profesor usó la analogía de clase e instancia: el tipo de fallo es el CWE y el caso real publicado, con matrícula de año y número, es el CVE. Las listas «Top» son otra cosa.",
+      "options": {
+        "a": "Incorrecta. Son catálogos distintos: uno clasifica tipos de fallo y el otro numera casos reales.",
+        "b": "Correcta. CWE es la clase de fallo (por ejemplo, inyección SQL) y CVE es una instancia concreta publicada (por ejemplo, en WordPress).",
+        "c": "Incorrecta. Está invertido: la categoría general es el CWE y el caso concreto es el CVE.",
+        "d": "Incorrecta. Esas listas son el OWASP Top Ten y el CWE Top 25, no la definición de CWE y CVE."
+      }
     }
   }
 }

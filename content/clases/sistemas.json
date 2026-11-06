@@ -1,0 +1,201 @@
+{
+  "topics": [
+    {
+      "number": 1,
+      "questions": [
+        {
+          "question": "Un ajuste de seguridad está configurado de forma distinta en la directiva local de un servidor miembro (editada con gpedit.msc) y en una GPO del dominio que le llega desde el controlador de dominio. ¿Cuál se aplica?",
+          "options": [
+            "La directiva local, porque está en la propia máquina y es la más cercana.",
+            "La GPO del dominio, porque prevalece sobre las directivas locales.",
+            "Ninguna de las dos: se deja el valor predeterminado hasta que un administrador elija.",
+            "La que se haya modificado más recientemente, sin importar dónde esté definida."
+          ],
+          "correct": 1,
+          "explanation": "Las GPO que se propagan desde el controlador de dominio tienen prioridad sobre la directiva local del equipo. El orden es local, sitio, dominio y OU concreta, de menor a mayor prioridad.",
+          "difficulty": "media",
+          "clase": "Clase del 2 oct"
+        },
+        {
+          "question": "En una GPO, un parámetro de seguridad aparece como «No definido». ¿Qué significa realmente?",
+          "options": [
+            "Que ese ajuste está desactivado y, por tanto, bloqueado para todos los usuarios.",
+            "Que no hay ningún valor configurado en el equipo y el comportamiento queda vacío.",
+            "Que ese ajuste queda habilitado automáticamente con el valor más restrictivo posible.",
+            "Que esa GPO no toca el ajuste, así que se aplica el valor predeterminado de Windows."
+          ],
+          "correct": 3,
+          "explanation": "«No definido» no es «nada configurado»: la GPO no modifica ese ajuste y se aplica el valor predeterminado de Windows, que puede ser permisivo. Por eso conviene leer la explicación de cada directiva.",
+          "difficulty": "media",
+          "clase": "Clase del 2 oct"
+        },
+        {
+          "question": "Acabas de unir un equipo con Windows 11 al dominio, pero no recibe la GPO diseñada para los clientes. ¿Cuál es la causa más probable?",
+          "options": [
+            "Está en el contenedor Computers por defecto y hay que moverlo a la OU de esa GPO.",
+            "La GPO de clientes solo se aplica tras reiniciar el controlador de dominio al menos una vez.",
+            "El perfil del firewall es Público y bloquea la descarga de cualquier directiva de grupo.",
+            "Windows 11 no admite GPO del dominio y hay que configurarlo siempre con directivas locales."
+          ],
+          "correct": 0,
+          "explanation": "Al unirse al dominio, el equipo cae por defecto en el contenedor Computers, al que no llega la GPO de los clientes. Hay que moverlo a la OU creada para ellos.",
+          "difficulty": "baja",
+          "clase": "Clase del 2 oct"
+        },
+        {
+          "question": "Según la clase, ¿qué efecto tiene reducir la vigencia de los tickets de Kerberos?",
+          "options": [
+            "Se acelera el inicio de sesión porque los tickets caducan antes y son más ligeros para el servidor.",
+            "Los usuarios dejan de necesitar contraseña, porque el ticket sustituye por completo a la autenticación.",
+            "Un ticket robado solo sirve poco tiempo, aunque se deba autenticar más a menudo.",
+            "Se deshabilita el cifrado de Kerberos, que ya no es necesario cuando los tickets son tan cortos."
+          ],
+          "correct": 2,
+          "explanation": "Con tickets más cortos, un atacante que robe uno dispone de menos tiempo para suplantar al usuario. A cambio, los usuarios deben autenticarse más a menudo.",
+          "difficulty": "media",
+          "clase": "Clase del 2 oct"
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "questions": [
+        {
+          "question": "Un usuario con una sesión válida intenta abrir un recurso para el que su rol no tiene permiso. ¿Qué código HTTP recibe lo más probable, y cómo se distingue del 401?",
+          "options": [
+            "401: significa que el usuario está autenticado pero no tiene permiso para ese recurso.",
+            "404: el servidor oculta siempre con este código los recursos que están prohibidos.",
+            "403: está autenticado pero sin permiso; el 401 indica que falta autenticación.",
+            "400: la petición está mal formada porque el rol del usuario no encaja con el recurso."
+          ],
+          "correct": 2,
+          "explanation": "403 significa que el usuario está identificado pero su rol no permite acceder al recurso. El 401 se da cuando la petición no incluye la autenticación que la aplicación exige.",
+          "difficulty": "media",
+          "clase": "Clase del 23 oct"
+        },
+        {
+          "question": "Un compañero dice que su aplicación tiene «trazabilidad» porque genera logs en el servidor. Según la clase, ¿qué le falta?",
+          "options": [
+            "Registros diseñados para lo que interesa y monitorización continua de ellos.",
+            "Una firma digital en cada mensaje, que es lo único que garantiza la trazabilidad.",
+            "Cifrar los logs en reposo; con eso ya se sabe con certeza quién hizo qué y cuándo.",
+            "Redundancia de servidores en clúster, que asegura que siempre haya registros disponibles."
+          ],
+          "correct": 0,
+          "explanation": "La trazabilidad exige dos cosas a la vez: un registro bien diseñado (qué se guarda) y su monitorización continua. Con solo una de ellas, no se cumple.",
+          "difficulty": "media",
+          "clase": "Clase del 16 oct"
+        },
+        {
+          "question": "Un atacante quiere robar la cookie de sesión, pero esta tiene el atributo HttpOnly. ¿Cómo puede saltarse esa defensa el ataque XST (Cross-Site Tracing)?",
+          "options": [
+            "Desactivando el atributo HttpOnly de la cookie en el servidor mediante el método OPTIONS del protocolo.",
+            "Enviando la cookie por GET, para que viaje visible en la dirección y el JavaScript pueda leerla en la barra.",
+            "Cifrando la petición con TLS mutuo, de modo que el navegador deje de bloquear la lectura de la cookie.",
+            "Con TRACE: el servidor copia las cookies de la petición en el cuerpo de la respuesta, legible por JavaScript."
+          ],
+          "correct": 3,
+          "explanation": "TRACE devuelve las cabeceras de la petición en el cuerpo de la respuesta. La cookie, que viaja en una cabecera, aparece copiada en el cuerpo y HttpOnly deja de protegerla.",
+          "difficulty": "alta",
+          "clase": "Clase del 23 oct"
+        },
+        {
+          "question": "Con un proxy interceptor como Burp Suite, ¿en qué se diferencia interceptar una aplicación protegida con TLS normal de otra con TLS mutuo?",
+          "options": [
+            "Con TLS normal el proxy no puede ver nada, porque todo va cifrado de extremo a extremo entre cliente y servidor.",
+            "TLS normal: el proxy acepta el certificado del servidor y descifra. TLS mutuo: exige además certificado de cliente.",
+            "Con TLS mutuo no hay cifrado, así que cualquier proxy puede leer el tráfico sin necesitar ningún certificado.",
+            "No hay ninguna diferencia: en ambos casos el proxy descifra el tráfico porque acepta cualquier certificado."
+          ],
+          "correct": 1,
+          "explanation": "Con TLS normal, solo el servidor presenta certificado y el proxy lo acepta y descifra. Con TLS mutuo el servidor exige además un certificado de cliente, y sin uno válido el atacante no puede interceptar.",
+          "difficulty": "alta",
+          "clase": "Clase del 23 oct"
+        },
+        {
+          "question": "IAST y RASP usan el mismo agente instalado en el servidor de aplicaciones. ¿Qué los diferencia según el profesor?",
+          "options": [
+            "IAST es una herramienta de caja negra y RASP una de caja blanca, porque RASP ve el código.",
+            "IAST informa de posibles vulnerabilidades en despliegue; RASP bloquea el ataque en producción.",
+            "IAST analiza el código sin ejecutarlo en la fase de desarrollo y RASP solo revisa dependencias de terceros.",
+            "RASP se usa antes de programar para derivar requisitos y IAST después de la puesta en producción del sistema."
+          ],
+          "correct": 1,
+          "explanation": "Es la misma herramienta en dos modos y fases: IAST (en despliegue) emite un informe de posibles vulnerabilidades; RASP (en producción) bloquea el ataque cuando detecta una explotación.",
+          "difficulty": "alta",
+          "clase": "Clase del 16 oct"
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "questions": [
+        {
+          "question": "Una aplicación valida una entrada contra un conjunto de valores buenos conocidos y rechaza todo lo demás. ¿Es necesario añadir además una lista negra de cadenas maliciosas?",
+          "options": [
+            "Sí, porque la lista blanca no detecta por sí sola las entradas maliciosas.",
+            "Sí, pero solo para la inyección SQL; en el resto de ataques no hace falta.",
+            "No, si la lista blanca es correcta: lo que no está en ella se rechaza.",
+            "No, porque la lista negra es más segura y hace innecesaria la lista blanca."
+          ],
+          "correct": 2,
+          "explanation": "Una lista blanca correcta basta: cualquier entrada que no esté en ella se rechaza. Añadir una lista negra no aporta nada, y por sí sola sería débil porque las cadenas maliciosas posibles son casi infinitas.",
+          "difficulty": "media",
+          "clase": "Clase del 30 oct"
+        },
+        {
+          "question": "Un formulario web comprueba con JavaScript que un campo no contenga caracteres peligrosos. Un atacante usa un proxy interceptor y modifica la petición antes de que salga. ¿Qué enseña esto sobre dónde validar?",
+          "options": [
+            "Que la validación del navegador es suficiente si el JavaScript está bien programado y es robusto.",
+            "Que hay que validar solo en la base de datos, que es donde finalmente se ejecuta el ataque.",
+            "Que conviene desactivar JavaScript en el navegador de todos los usuarios de la aplicación.",
+            "Que las validaciones importantes van siempre en el servidor, porque las del cliente se saltan."
+          ],
+          "correct": 3,
+          "explanation": "El proxy modifica la petición después de que el navegador la haya validado, así que la validación del cliente no protege nada. Las validaciones que importan se hacen siempre en el servidor.",
+          "difficulty": "media",
+          "clase": "Clase del 30 oct"
+        },
+        {
+          "question": "En la demo de XSS, el script leyó la cookie de sesión de la aplicación PHP, pero no la de la aplicación Java. ¿Por qué?",
+          "options": [
+            "La cookie de Java tenía HttpOnly activado y la de PHP no, así que el script solo leyó la de PHP.",
+            "Porque Java es un lenguaje compilado y por ello no permite ejecutar scripts inyectados en el navegador.",
+            "Porque la aplicación Java usaba TLS mutuo y esa configuración bloqueó el script del atacante.",
+            "Porque la cookie de PHP estaba cifrada y la de Java no, y el script solo lee las cifradas."
+          ],
+          "correct": 0,
+          "explanation": "La diferencia estaba en el atributo HttpOnly de la cookie: en la de PHP estaba en falso (el script la leía) y en la de Java en verdadero (el script no podía leerla).",
+          "difficulty": "media",
+          "clase": "Clase del 30 oct"
+        },
+        {
+          "question": "Una página maliciosa carga la web del banco en un marco transparente por delante de la suya, para que la víctima pulse sin saberlo en el banco. ¿Qué ataque es y qué cabecera lo frena?",
+          "options": [
+            "CSRF, que se frena con la cabecera de caché Cache-Control con el valor no-store.",
+            "XST, que se frena con el atributo HttpOnly en la cabecera Set-Cookie de la respuesta.",
+            "Clickjacking, que se frena con la cabecera X-Frame-Options (por ejemplo DENY).",
+            "SSRF, que se frena con la cabecera Content-Length del mensaje de respuesta."
+          ],
+          "correct": 2,
+          "explanation": "Es clickjacking: la víctima pulsa sin saberlo en una página transparente. Se evita con X-Frame-Options, que impide que la página se abra dentro de un marco ajeno.",
+          "difficulty": "media",
+          "clase": "Clase del 30 oct"
+        },
+        {
+          "question": "CWE-89 describe la inyección SQL en general, mientras que un identificador CVE señala una inyección SQL concreta encontrada en una versión de WordPress. ¿Cuál es la relación entre CWE y CVE?",
+          "options": [
+            "CWE y CVE son sinónimos: dos nombres distintos para el mismo catálogo de vulnerabilidades.",
+            "CWE es el tipo de fallo (la clase) y CVE es un caso real concreto de ese tipo (la instancia).",
+            "CVE es el tipo general de fallo (la clase) y CWE es cada caso real publicado en un programa.",
+            "CWE es la lista de las diez categorías más frecuentes y CVE es la de las veinticinco más graves."
+          ],
+          "correct": 1,
+          "explanation": "CWE cataloga los tipos de fallo (clase) y CVE identifica una vulnerabilidad concreta y pública en un software (instancia). Un CVE suele asociarse a un CWE.",
+          "difficulty": "media",
+          "clase": "Clase del 30 oct"
+        }
+      ]
+    }
+  ]
+}

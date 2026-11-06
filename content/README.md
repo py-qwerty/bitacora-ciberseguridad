@@ -22,3 +22,5 @@ Los ejercicios de normativa se interpretan en el contexto y versión citados. Se
 - [Ley de Enjuiciamiento Criminal, artículo 266](https://www.boe.es/buscar/act.php?id=BOE-A-1882-6036#a266).
 
 Las claves de práctica están razonadas para el aprendizaje. La revisión editorial y las pruebas de integridad no equivalen a validación independiente de cada respuesta por el profesorado. El banco no es un examen oficial.
+
+`clases/` contiene las «preguntas de clase»: hasta diez por tema, basadas en lo que los profesores remarcaron en las clases grabadas. No cuentan en las 1.500 del banco base ni en el test completo de 30; forman un test aparte por tema (`fromClass: true`).

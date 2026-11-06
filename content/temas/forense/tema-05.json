@@ -1004,6 +1004,56 @@
         "c": "Incorrecta. La protección actúa hacia delante; no garantiza recuperar lo borrado antes.",
         "d": "Correcta. Bloquear el dispositivo ahora no reconstruye los datos que ya se borraron físicamente."
       }
+    },
+    "forense-t05-31": {
+      "section": "firmas",
+      "reasoning": "El profesor lo señaló como curiosidad: la excepción son los archivos de texto plano, que no llevan firma.",
+      "options": {
+        "a": "Incorrecta. FF D9 es la firma de final de una imagen JPG, no de un texto plano.",
+        "b": "Incorrecta. %PDF son los bytes iniciales de un PDF.",
+        "c": "Incorrecta. La extensión es solo un dato declarativo y se puede cambiar; además no es la firma.",
+        "d": "Correcta. Es la excepción: texto plano no lleva bytes iniciales de identificación."
+      }
+    },
+    "forense-t05-32": {
+      "section": "firmas",
+      "reasoning": "El profesor remarcó que en forense hay dos «firmas» que se mezclan: la firma de archivo, que indica el tipo, y el hash, que identifica el contenido exacto.",
+      "options": {
+        "a": "Incorrecta. La extensión es un dato declarativo y se cambia sin tocar el contenido.",
+        "b": "Correcta. El hash cambia por completo con una mínima variación, así que delata el cambio.",
+        "c": "Incorrecta. Los últimos bytes también se pueden modificar; no es una comprobación fiable.",
+        "d": "Incorrecta. El tamaño del clúster no dice si el contenido ha sido modificado."
+      }
+    },
+    "forense-t05-33": {
+      "section": "metadatos",
+      "reasoning": "El profesor contó que él mismo podía cambiar la fecha de modificación de un archivo. Por eso se desconfía de lo raro, sin descartar el valor probatorio.",
+      "options": {
+        "a": "Incorrecta. Con herramientas adecuadas se puede cambiar, por ejemplo, la fecha de modificación.",
+        "b": "Incorrecta. Los metadatos sirven como prueba forense, aunque deben valorarse con cautela.",
+        "c": "Correcta. Desconfiar y contrastar es la actitud correcta que recomendó el profesor.",
+        "d": "Incorrecta. Un hash no corrige fechas; solo detecta si el contenido ha cambiado."
+      }
+    },
+    "forense-t05-34": {
+      "section": "flujos-alternativos",
+      "reasoning": "El profesor lo señaló como cara oculta del archivo: se usa más con malicia que de forma legítima. Se ven con herramientas específicas o con «dir /r».",
+      "options": {
+        "a": "Correcta. Es un ADS: Windows muestra el flujo principal y oculta los alternativos, que no cuentan en el tamaño.",
+        "b": "Incorrecta. Un archivo con flujos ocultos no necesita ninguna partición adicional.",
+        "c": "Incorrecta. La papelera mueve el archivo, no oculta datos extra dentro de él.",
+        "d": "Incorrecta. El espacio sin asignar no se suma al archivo; el tamaño oculto está dentro de él."
+      }
+    },
+    "forense-t05-35": {
+      "section": "basica-bruto",
+      "reasoning": "La recuperación parcial no impide trabajar: se pueden comparar los trozos recuperados con otra imagen y demostrar que son la misma.",
+      "options": {
+        "a": "Incorrecta. No es cierto: una recuperación parcial puede aceptarse y servir como prueba.",
+        "b": "Incorrecta. El profesor dijo que no hay una ley que establezca ese porcentaje.",
+        "c": "Incorrecta. El valor no depende de que la herramienta sea de pago o gratuita.",
+        "d": "Correcta. Sirve para demostrar que es la misma imagen aunque haya una zona dañada."
+      }
     }
   }
 }

@@ -2692,6 +2692,56 @@
         "c": "Incorrecta. Esperar a ver una explotación es reaccionar tarde; el mantenimiento exige actuar antes.",
         "d": "Correcta. Evaluar y actualizar el componente forma parte del mantenimiento seguro."
       }
+    },
+    "sistemas-t02-31": {
+      "section": "http-mensajes",
+      "reasoning": "El profesor avisó: «cuidado con el 401». 401 es no autenticado (sin credenciales o sesión), 403 es prohibido (autenticado, pero sin derechos con ese rol).",
+      "options": {
+        "a": "Incorrecta. Es justo al revés: 401 es falta de autenticación. Aquí el usuario ya está autenticado.",
+        "b": "Incorrecta. 404 indica que el recurso no existe. Aunque algunas aplicaciones lo usen para ocultar recursos, no es el significado general.",
+        "c": "Correcta. 403 es autenticado pero sin permiso para ese recurso; 401 es no autenticado, porque no se aporta la información de autenticación requerida.",
+        "d": "Incorrecta. 400 se refiere a una petición mal formada, no a un problema de permisos del rol."
+      }
+    },
+    "sistemas-t02-32": {
+      "section": "anatomia-objetivos",
+      "reasoning": "El profesor remarcó que los logs por defecto de un servidor no bastan: hay que diseñarlos en análisis y diseño, y además vigilarlos 24 horas todos los días. Por eso trazabilidad implica ambos elementos.",
+      "options": {
+        "a": "Correcta. Trazabilidad es saber quién hizo qué y cuándo: requiere un log diseñado con los mensajes que importan y una monitorización continua.",
+        "b": "Incorrecta. La firma digital sirve para el no repudio y la integridad, no es el requisito de la trazabilidad.",
+        "c": "Incorrecta. Cifrar logs protege su confidencialidad, pero no garantiza que contengan lo necesario ni que alguien los vigile.",
+        "d": "Incorrecta. La redundancia en clúster pertenece a la disponibilidad, otro objetivo distinto."
+      }
+    },
+    "sistemas-t02-33": {
+      "section": "http-riesgos",
+      "reasoning": "HttpOnly solo impide que el JavaScript lea la cabecera de la cookie. Si TRACE la copia en el cuerpo, el script lee ese cuerpo sin problema. Por eso el ataque «se salta» la defensa. La medida es deshabilitar TRACE.",
+      "options": {
+        "a": "Incorrecta. OPTIONS solo informa de los métodos que admite el servidor; no puede cambiar atributos de una cookie.",
+        "b": "Incorrecta. Mandar datos por GET los deja en la dirección, pero no es el mecanismo de XST y no anula HttpOnly.",
+        "c": "Incorrecta. TLS mutuo autentica a cliente y servidor; no tiene relación con saltarse HttpOnly.",
+        "d": "Correcta. TRACE copia las cabeceras de la petición en el cuerpo de la respuesta; ahí la cookie sí es legible por JavaScript y HttpOnly queda anulado."
+      }
+    },
+    "sistemas-t02-34": {
+      "section": "http-riesgos",
+      "reasoning": "El profesor lo explicó a raíz de una pregunta: HTTPS «a secas» no impide que una herramienta de pruebas lea las peticiones, porque acepta el certificado del servidor. TLS mutuo añade el certificado del cliente como barrera.",
+      "options": {
+        "a": "Incorrecta. En TLS normal el proxy se coloca en medio, acepta el certificado del servidor y descifra el tráfico, por lo que sí puede ver el contenido.",
+        "b": "Correcta. TLS mutuo exige certificado también al cliente, firmado por la misma autoridad de certificación. Sin él, no se puede interceptar.",
+        "c": "Incorrecta. TLS mutuo también cifra; además autentica a ambos lados.",
+        "d": "Incorrecta. Justo la diferencia está en que TLS mutuo exige un certificado de cliente que un atacante sin él no puede presentar."
+      }
+    },
+    "sistemas-t02-35": {
+      "section": "desarrollo-pruebas",
+      "reasoning": "El profesor las llamó «primas hermanas»: el trabajo de la herramienta es el mismo y la carga en el servidor también. La diferencia es que en producción se configura para actuar y bloquear.",
+      "options": {
+        "a": "Incorrecta. Las dos son de caja blanca, porque ven el interior de la aplicación desde el agente. La de caja negra es DAST.",
+        "b": "Correcta. Mismo agente: IAST informa en la fase de despliegue y RASP bloquea el ataque cuando la aplicación ya está en producción.",
+        "c": "Incorrecta. Analizar el código sin ejecutarlo es SAST, y comprobar dependencias de terceros es SCA.",
+        "d": "Incorrecta. Los requisitos se derivan del modelado de amenazas y del análisis de riesgos; ni IAST ni RASP sirven para eso."
+      }
     }
   }
 }

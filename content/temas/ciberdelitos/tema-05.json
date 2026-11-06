@@ -1045,6 +1045,46 @@
         "c": "Correcta. Falta validar la cadena de confianza y las condiciones de la política aplicable.",
         "d": "Incorrecta. La matemática es necesaria, pero no basta para todos los efectos jurídicos."
       }
+    },
+    "ciberdelitos-t05-31": {
+      "section": "actores-validez",
+      "reasoning": "La profesora insistió en que las personas firman y las empresas sellan. En un caso práctico que diga «la empresa ha firmado», hay que corregir que la entidad debería usar sello electrónico. Una persona física puede firmar en nombre propio o en el de una empresa, pero sigue siendo una persona física.",
+      "options": {
+        "a": "Incorrecta. Las personas jurídicas no firman; para ellas existe el sello electrónico.",
+        "b": "Correcta. El firmante es siempre persona física, aunque represente a una empresa; la entidad como tal usa sello.",
+        "c": "Incorrecta. La firma de quien representa a la empresa sigue siendo firma de una persona física; el sello es lo que usa la entidad misma.",
+        "d": "Incorrecta. Una sociedad puede actuar electrónicamente mediante sello, y sus representantes pueden firmar electrónicamente."
+      }
+    },
+    "ciberdelitos-t05-32": {
+      "section": "firma-concepto",
+      "reasoning": "La profesora pidió saber muy bien las tres propiedades: integridad, autenticidad y no repudio. Negar haber firmado es justo lo que impide el no repudio. La integridad se refiere a que el contenido no cambie, y la confidencialidad no es una propiedad de la firma (para ocultar el contenido hay que cifrar).",
+      "options": {
+        "a": "Correcta. Ese es el significado de no repudio: el firmante no puede negar que firmó.",
+        "b": "Incorrecta. La firma no oculta el contenido: la confidencialidad corresponde al cifrado, no a la firma.",
+        "c": "Incorrecta. La integridad protege el contenido frente a cambios; lo que impide negar la firma es el no repudio.",
+        "d": "Incorrecta. La interoperabilidad es un objetivo de eIDAS, no una propiedad de la firma."
+      }
+    },
+    "ciberdelitos-t05-33": {
+      "section": "eidas-2-cartera",
+      "reasoning": "La actualización de 2024 de eIDAS se debe sobre todo a esta cartera. Su gran ventaja de privacidad es mostrar solo lo necesario (por ejemplo, la mayoría de edad) sin recoger datos como la edad exacta, el sexo o la dirección, lo que encaja con la minimización de datos.",
+      "options": {
+        "a": "Incorrecta. Justo lo contrario: la cartera evita entregar la identidad completa cuando basta un atributo.",
+        "b": "Incorrecta. La emite cada Estado miembro y su uso es gratuito.",
+        "c": "Correcta. El usuario controla sus atributos y puede mostrar solo el necesario, sin revelar toda su identidad.",
+        "d": "Incorrecta. La pueden usar tanto personas físicas como jurídicas."
+      }
+    },
+    "ciberdelitos-t05-34": {
+      "section": "eidas",
+      "reasoning": "Antes de eIDAS, cada país tenía su ley y un certificado español podía no servir en Francia. Al pasar de directiva a reglamento se consiguió uniformidad e interoperabilidad: la misma norma en toda la Unión, sin leyes nacionales que difieran.",
+      "options": {
+        "a": "Incorrecta. Una directiva no obliga a copiar el texto: fija objetivos y cada país elige cómo alcanzarlos, y eso es lo que genera diferencias.",
+        "b": "Incorrecta. Un reglamento no necesita ley nacional que lo incorpore; precisamente se busca evitar normas distintas.",
+        "c": "Incorrecta. Las materias de soberanía nacional suelen regularse con directivas, no con reglamentos.",
+        "d": "Correcta. El reglamento da una norma común que se aplica directamente y permite reconocer la firma en toda la Unión."
+      }
     }
   }
 }
