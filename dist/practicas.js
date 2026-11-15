@@ -2,7 +2,7 @@
 // y el simulacro con la estructura real del examen (10 de test + redacción).
 // app.js llama a setupPracticas(ctx) y delega en practicasRoute / practicasClick / practicasInput.
 import { shuffle, formatTime } from './core.js?v=9';
-import { hasKey, MODELS, currentModel, maskedKey, saveSettings, clearKey, gradeWithClaude } from './corrector.js?v=1';
+import { hasKey, MODELS, currentModel, maskedKey, saveSettings, clearKey, gradeWithClaude, verifyKey } from './corrector.js?v=2';
 
 let ctx, index = new Map(), cache = new Map(), temaData = new Map(), ticker = null;
 const VERSION = () => encodeURIComponent(ctx.bank.version);
@@ -178,8 +178,8 @@ ${s.revealed
 // ---------- Corrección con Claude ----------
 let aiSetupOpen = false, aiBusy = false;
 function aiSetup() {
-  return `<div class="rd-ai-setup"><h3>Conectar Claude</h3><p>Pega tu <b>API key de Console</b> (empieza por <code>sk-ant-api</code>; se crea en platform.claude.com → API keys). Se guarda <b>solo en este navegador</b>: no se sube a ningún sitio y las correcciones van directamente de aquí a Anthropic. Cada corrección se cobra en tu cuenta de Console.</p>
-<label class="field-label" for="rd-ai-key">API key</label><input id="rd-ai-key" class="rd-input" type="password" autocomplete="off" spellcheck="false" placeholder="${hasKey() ? esc(maskedKey()) + ' (guardada; pega otra para cambiarla)' : 'sk-ant-api…'}">
+  return `<div class="rd-ai-setup"><h3>Conectar Claude</h3><p>Pega tu <b>API key de Console</b> (empieza por <code>sk-ant-</code>; se crea en platform.claude.com → API keys). Se guarda <b>solo en este navegador</b>: no se sube a ningún sitio y las correcciones van directamente de aquí a Anthropic. Cada corrección se cobra en tu cuenta de Console.</p>
+<label class="field-label" for="rd-ai-key">API key</label><input id="rd-ai-key" class="rd-input" type="password" autocomplete="off" spellcheck="false" placeholder="${hasKey() ? esc(maskedKey()) + ' (guardada; pega otra para cambiarla)' : 'sk-ant-…'}">
 <label class="field-label" for="rd-ai-model">Modelo</label><select id="rd-ai-model" class="rd-input">${MODELS.map(m => `<option value="${m.id}" ${m.id === currentModel() ? 'selected' : ''}>${esc(m.label)}</option>`).join('')}</select>
 <div class="actions"><button class="btn" data-action="rd-ai-save">Guardar</button>${hasKey() ? '<button class="btn secondary" data-action="rd-ai-clear">Borrar la API key de este navegador</button>' : ''}</div><p class="rd-ai-status small" role="status"></p></div>`;
 }
@@ -396,7 +396,7 @@ export function practicasClick(e, button) {
   if (a === 'rd-check') { const id = currentItemId(); const s = state(id); const i = Number(button.dataset.i), j = Number(button.dataset.j); s.checks = s.checks || []; s.checks[i] = s.checks[i] || []; s.checks[i][j] = button.checked; saveState(id, s); const e2 = loadPrac(n); const item = e2.data && findItem(e2.data, id); if (item) { const sc = selfScore(item, s.checks); const box = document.querySelector('.rd-score .practice-score'); if (box) box.innerHTML = `${pts(sc)}<small>/${item.points}</small>`; } return true; }
   if (a === 'rd-reset') ctx.ask('¿Volver a intentarlo?', 'Se borrará lo que escribiste y lo que marcaste en esta práctica.', 'Borrar y empezar', () => { ctx.write('red:' + button.dataset.item, null); ctx.render(); }, 'Cancelar');
   if (a === 'rd-ai-toggle') { aiSetupOpen = !aiSetupOpen; ctx.render(false); }
-  if (a === 'rd-ai-save') { const st = button.closest('.rd-ai').querySelector('.rd-ai-status'); try { saveSettings(document.getElementById('rd-ai-key').value, document.getElementById('rd-ai-model').value); if (!hasKey()) throw Error('Pega tu API key para empezar.'); aiSetupOpen = false; ctx.render(false); } catch (err) { st.textContent = err.message; st.classList.add('is-error'); } }
+  if (a === 'rd-ai-save') { saveAi(button); }
   if (a === 'rd-ai-clear') { clearKey(); aiSetupOpen = false; ctx.render(false); }
   if (a === 'rd-ai-grade' && !aiBusy) { const id = button.dataset.item; const item = findItem(loadPrac(n).data, id); if (item) runAi(button, () => gradeWithClaude({ item, texts: state(id).texts, course: ctx.courseTitle(ctx.topicInfo(n).course) }), ai => { const s = state(id); s.ai = ai; s.checks = ai.parts.map(p => p.covered); saveState(id, s); }); }
   if (a === 'rd-ai-grade-exam' && !aiBusy) { const exam = ctx.read('realExam:' + button.dataset.exam, null); const items = exam && examItems(exam); const item = items?.[Number(button.dataset.w)]; if (item) { const parts = item.questions || [item]; runAi(button, () => gradeWithClaude({ item, texts: parts.map((_, i) => exam.texts[`${item.id}:${i}`] || ''), course: ctx.courseTitle(exam.course) }), ai => { const cur = ctx.read('realExam:' + exam.id, null); cur.ai = { ...(cur.ai || {}), [item.id]: ai }; cur.checks = cur.checks || {}; ai.parts.forEach((p, i) => { cur.checks[`${item.id}:${i}`] = p.covered; }); ctx.write('realExam:' + exam.id, cur); }); } }
@@ -411,6 +411,16 @@ export function practicasClick(e, button) {
   if (a === 'rx-check') { const id = button.dataset.exam; const exam = ctx.read('realExam:' + id, null); if (!exam) return true; exam.checks = exam.checks || {}; const arr = exam.checks[button.dataset.key] || []; arr[Number(button.dataset.j)] = button.checked; exam.checks[button.dataset.key] = arr; ctx.write('realExam:' + id, exam); const items = examItems(exam); if (items) { const r = examScore(exam, items); document.getElementById('rd-total').innerHTML = `${pts(r.total)}<small>/10</small>`; document.getElementById('rd-wtotal').textContent = pts(r.writing.reduce((x, y) => x + y, 0)); r.writing.forEach((w, i) => { const el = document.querySelector(`[data-rd-wscore="${i}"]`); if (el) el.textContent = pts(w); }); const list = ctx.read('realExam:list', []) || []; const row = list.find(x => x.id === id); if (row) { row.score = r.total; ctx.write('realExam:list', list); } } return true; }
   if (a === 'rd-copy-exam') { const exam = ctx.read('realExam:' + button.dataset.exam, null); const items = exam && examItems(exam); const item = items?.[Number(button.dataset.w)]; if (item) { const parts = item.questions || [item]; copy(aiPrompt(item, exam.course, parts.map((_, i) => exam.texts[`${item.id}:${i}`] || '')), button); } }
   return true;
+}
+async function saveAi(button) {
+  const st = button.closest('.rd-ai').querySelector('.rd-ai-status');
+  const say = (msg, error) => { st.textContent = msg; st.classList.toggle('is-error', !!error); };
+  const input = document.getElementById('rd-ai-key'); const typed = input.value.trim();
+  try { saveSettings(typed, document.getElementById('rd-ai-model').value); } catch (err) { say(err.message, true); return; }
+  if (!hasKey()) { say('Pega tu API key para empezar.', true); return; }
+  button.disabled = true; say('Comprobando la key con Anthropic…');
+  try { await verifyKey(); aiSetupOpen = false; ctx.render(false); document.querySelector('.rd-ai-status')?.replaceChildren('✓ Conectado. Ya puedes corregir con Claude.'); }
+  catch (err) { if (typed && /no reconoce/.test(err.message)) clearKey(); button.disabled = false; say(err.message, true); }
 }
 async function runAi(button, call, save) {
   const hash = location.hash; aiBusy = true; button.disabled = true; button.textContent = 'Corrigiendo… (unos segundos)';

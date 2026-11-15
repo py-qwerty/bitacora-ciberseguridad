@@ -15,13 +15,29 @@ export const currentModel = () => MODELS.some(m => m.id === safeGet(MODEL)) ? sa
 export const maskedKey = () => { const k = safeGet(KEY); return k ? `${k.slice(0, 10)}…${k.slice(-4)}` : ''; };
 export function saveSettings(key, model) {
   key = String(key || '').trim();
-  if (key && !/^sk-ant-api/.test(key)) throw Error(key.startsWith('sk-ant-oat') ? 'Ese es un token de suscripción. Aquí hace falta una API key de Console (empieza por sk-ant-api).' : 'La API key debe empezar por sk-ant-api.');
+  if (key) {
+    if (/\s/.test(key)) throw Error('La API key no puede tener espacios. Cópiala de nuevo desde Console.');
+    if (key.startsWith('sk-ant-oat')) throw Error('Ese es un token de suscripción de Claude (sk-ant-oat…). Aquí hace falta una API key de Console.');
+    if (key.startsWith('sk-ant-admin')) throw Error('Esa es una clave de administración (sk-ant-admin…), que no sirve para pedir correcciones. Crea una API key normal en Console.');
+    if (!/^sk-ant-[a-z0-9]+-[A-Za-z0-9_-]{8,}$/.test(key)) throw Error('Eso no parece una API key de Anthropic: debe empezar por sk-ant-.');
+  }
   if (key && !safeSet(KEY, key)) throw Error('Este navegador no permite guardar datos (¿modo privado?).');
   if (model) safeSet(MODEL, model);
 }
 export const clearKey = () => safeSet(KEY, '');
 
 let sdk = null;
+// Comprueba la key sin coste: consulta el modelo elegido en la API de modelos (no genera texto).
+export async function verifyKey() {
+  const { Anthropic, api } = await client();
+  try { await api.models.retrieve(currentModel()); }
+  catch (e) {
+    if (e instanceof Anthropic.AuthenticationError) throw Error('Anthropic no reconoce esta API key. Comprueba que la has copiado entera y que no está revocada.');
+    if (e instanceof Anthropic.PermissionDeniedError || e instanceof Anthropic.NotFoundError) throw Error('La key funciona, pero no tiene acceso a este modelo. Prueba con el otro modelo.');
+    if (e instanceof Anthropic.APIConnectionError) throw Error('No se ha podido conectar con Anthropic para comprobar la key. Revisa tu conexión.');
+    throw Error('No se ha podido comprobar la key ahora mismo; se ha guardado igualmente.');
+  }
+}
 async function client() {
   if (!hasKey()) throw Error('Falta la API key.');
   sdk ||= import('./vendor/anthropic-sdk-1.8.0.js');
