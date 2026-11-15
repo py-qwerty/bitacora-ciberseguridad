@@ -1,4 +1,4 @@
-import { DURATION, EXAM_SIZE, generateExam, gradeExam, remaining, formatTime, isValidSession, practiceBlocks, topicQuestions, baseQuestions, validPractice, swipeDirection, validateBank, validateTema, ICONS } from './core.js?v=7'; import { setupPracticas, loadPracticasIndex, practicasRoute, isPracticasPath, practicasCard, courseExamLink, simulacroExamLink } from './practicas.js?v=1';
+import { DURATION, EXAM_SIZE, generateExam, gradeExam, remaining, formatTime, isValidSession, practiceBlocks, topicQuestions, baseQuestions, validPractice, swipeDirection, validateBank, validateTema, ICONS } from './core.js?v=7'; import { setupPracticas, loadPracticasIndex, practicasRoute, isPracticasPath, practicasCard, courseExamLink, simulacroExamLink } from './practicas.js?v=2';
 const $ = s => document.querySelector(s);
 const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const number = n => n.toLocaleString('es-ES');

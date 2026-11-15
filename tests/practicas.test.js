@@ -38,3 +38,8 @@ test('real exam writing part adds up to 6 points and follows each subject struct
     }
   }
 });
+test('Claude corrector only accepts Console API keys, never subscription tokens', async () => {
+  const { saveSettings } = await import('../dist/corrector.js');
+  assert.throws(() => saveSettings('sk-ant-oat01-abc'), /suscripción/);
+  assert.throws(() => saveSettings('hola'), /sk-ant-api/);
+});

@@ -84,3 +84,18 @@
 .rd-lines{display:grid;gap:4px;margin:12px 0 4px;padding:12px 14px;border-radius:var(--radius-control);background:var(--color-primary);color:#e8f2f1;font:500 12px/1.6 var(--font-mono);overflow-x:auto}
 .rd-lines span{white-space:pre-wrap;overflow-wrap:anywhere}.rd-lines code{background:transparent;padding:0;color:inherit}
 @media(min-width:1024px){.rd-title.is-long{font-size:19px}}
+/* Corrección con Claude */
+.rd-ai{margin:18px 0;padding:16px;border:1px solid var(--color-primary);border-radius:var(--radius-panel);background:var(--color-surface)}
+.rd-ai-head{display:flex;flex-wrap:wrap;align-items:center;gap:10px}.rd-ai-btn{flex:1;min-width:200px}
+.rd-ai-status{margin-top:8px}.rd-ai-status:empty{display:none}.rd-ai-status.is-error{color:var(--color-danger);font-weight:600}
+.rd-ai-setup h3{font-size:14px}.rd-ai-setup>p{font-size:12px;line-height:1.7;margin:6px 0 12px}
+.rd-input{display:block;width:100%;min-height:46px;padding:10px 12px;border:1px solid var(--color-border);border-radius:var(--radius-control);background:var(--color-surface);font:13px var(--font-body);color:var(--color-text);margin-bottom:12px}
+.rd-input:focus-visible{outline:3px solid var(--color-focus);outline-offset:2px}
+.rd-ai-setup .actions{margin-top:4px}
+.rd-ai-summary{display:flex;gap:14px;align-items:flex-start;margin-top:14px;padding-top:14px;border-top:1px solid var(--color-border)}
+.rd-ai-score{font:700 34px/1 var(--font-body);letter-spacing:-1px;color:var(--color-primary);white-space:nowrap}.rd-ai-score small{font-size:15px;color:var(--color-muted);font-weight:400}
+.rd-ai-summary b{font-size:13px}.rd-ai-summary p{font-size:12px;line-height:1.7;margin-top:4px}
+.rd-ai-part{display:grid;gap:10px;margin-top:14px;padding:14px;border-radius:var(--radius-control);background:var(--color-background);font-size:12px;line-height:1.7}
+.rd-ai-part b{font-size:11px;text-transform:uppercase;letter-spacing:.4px}.rd-ai-part ul{margin:4px 0 0;padding-left:18px}.rd-ai-part p{margin-top:2px}
+.rd-ai-good b{color:var(--color-success)}.rd-ai-missing b{color:var(--color-warning)}.rd-ai-errors b{color:var(--color-danger)}
+.rd-ai-part .rd-model{margin-top:0}
