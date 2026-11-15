@@ -116,6 +116,29 @@
       "tip": "El profesor dijo que las opciones avanzadas no se piden de memoria, salvo las básicas como msg, sid o rev. La diferencia offset/depth (absolutas) frente a distance/within (relativas) es donde más se falla.",
       "fromClass": true,
       "sections": ["snort-reglas"]
+    },
+    {
+      "id": "redes-t04-d6",
+      "kind": "corta",
+      "points": 2,
+      "minutes": 8,
+      "prompt": "Además del IDS combinado con un cortafuegos, el temario presenta tres dispositivos con funciones de IPS: el switch de nivel de aplicación, el IPS de host a nivel de aplicación y el conmutador híbrido. Explica dónde se instala cada uno, cómo decide y para qué destaca.",
+      "keyPoints": [
+        "Explica que el switch de aplicación trabaja en la capa 7 (no en la 2 como un switch normal) y se instala en la red",
+        "Indica que el switch de aplicación nace para manejar grandes anchos de banda, reparte la carga entre servidores y algunos protegen frente a DoS y DDoS",
+        "Explica que el IPS de host de aplicación se instala en el propio sistema y vigila memoria, llamadas al sistema e intentos de conexión",
+        "Describe su funcionamiento por perfiles con fase de entrenamiento (basado en anomalías): lo que se sale del perfil se bloquea",
+        "Explica que el conmutador híbrido se instala en la red como un switch pero decide con políticas de seguridad",
+        "Menciona que el conmutador híbrido se configura importando los resultados de un escáner de vulnerabilidades"
+      ],
+      "model": [
+        "El **switch de nivel de aplicación** se instala **en la red**. A diferencia de un switch normal (capa 2), mira la información de **capa 7** (DNS, HTTP, FTP). Nació para manejar **grandes volúmenes de tráfico**: reparte la carga entre varios servidores (balanceo) y algunos modelos protegen frente a ataques **DoS y DDoS**.",
+        "El **IPS de host a nivel de aplicación** se instala **en el propio sistema que protege**. Vigila la gestión de memoria, las llamadas al sistema y los intentos de conexión de cada aplicación. El administrador define perfiles, hay una **fase de entrenamiento** en la que aprende el comportamiento normal y después **bloquea** todo lo que se salga del perfil; es, por tanto, un IPS basado en **anomalías**.",
+        "El **conmutador híbrido** mezcla los dos: se **instala en la red como un switch de aplicación**, pero **decide con políticas de seguridad** como el IPS de host, porque conoce el servidor y las aplicaciones que protege. Su gran ventaja es que se configura **importando los resultados de un escáner de vulnerabilidades**: si el escáner dice que el servidor web tiene un fallo, el conmutador sabe qué vigilar. Además, un switch de aplicación puede enviarle solo el tráfico sospechoso para aliviar su carga."
+      ],
+      "tip": "Una tabla de tres filas (dónde se instala, cómo decide, para qué destaca) es una forma rápida y clara de contestar.",
+      "fromClass": false,
+      "sections": ["dispositivos-ips"]
     }
   ],
   "cases": [

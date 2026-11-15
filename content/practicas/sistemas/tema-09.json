@@ -94,6 +94,27 @@
       ],
       "fromClass": false,
       "sections": ["entra-id", "ad-connect", "usuarios-grupos"]
+    },
+    {
+      "id": "sistemas-t09-d5",
+      "kind": "corta",
+      "points": 2,
+      "minutes": 6,
+      "prompt": "Explica las diferencias entre nube pública, privada e híbrida con un ejemplo de cada una. Describe además tres ventajas de la nube y distingue escalado vertical, horizontal y elasticidad.",
+      "keyPoints": [
+        "Define nube pública: recursos del proveedor compartidos entre clientes y ofrecidos por Internet",
+        "Define nube privada: recursos de uso exclusivo de una organización, en su centro de datos o en un proveedor",
+        "Define nube híbrida: combina pública y privada compartiendo datos y aplicaciones",
+        "Pone un ejemplo adecuado de cada modelo",
+        "Distingue escalado vertical (más potencia a una máquina), horizontal (más máquinas) y elasticidad (escalado automático según la demanda)",
+        "Cita otras ventajas como alta disponibilidad según el SLA, agilidad, distribución geográfica o recuperación ante desastres"
+      ],
+      "model": [
+        "En la **nube pública** los servidores son del proveedor, que los reparte entre sus clientes y los ofrece por Internet (una tienda online en Azure o AWS). En la **nube privada** los recursos son de **uso exclusivo** de una organización, en su centro de datos o alojados por un proveedor (un banco con su propia nube). La **nube híbrida** **combina** ambas y comparte datos y aplicaciones entre ellas (un hospital con historiales en la privada y la web de citas en la pública).",
+        "Ventajas: **alta disponibilidad** según el SLA contratado, **agilidad** para crear recursos en minutos, **distribución geográfica** y **recuperación ante desastres** con réplicas en otras zonas. En cuanto al escalado: el **vertical** da más potencia a una máquina (más RAM o CPU); el **horizontal** añade más máquinas iguales; y la **elasticidad** es que ese escalado ocurra **solo**, según la demanda. Aun así, la seguridad de identidades y secretos sigue siendo responsabilidad del cliente."
+      ],
+      "fromClass": false,
+      "sections": ["nube-modelos"]
     }
   ],
   "cases": [

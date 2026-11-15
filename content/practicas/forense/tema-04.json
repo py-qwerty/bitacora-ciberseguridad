@@ -93,6 +93,35 @@
       ],
       "fromClass": true,
       "sections": ["sistema-ficheros", "indice", "vision-forense"]
+    },
+    {
+      "id": "forense-t04-d5",
+      "kind": "corta",
+      "points": 2,
+      "minutes": 7,
+      "prompt": "Compara APFS y Btrfs: a qué sistema pertenece cada uno y cuál es su característica más destacada. Explica la diferencia entre un clon de APFS y el copy-on-write de Btrfs y qué interés puede tener para el forense.",
+      "keyPoints": [
+        "Indica que APFS es el sistema de ficheros de Apple (desde 2016, sustituye a HFS+) y Btrfs es de Linux",
+        "Menciona las características de APFS: clones, cifrado del disco completo y espacio libre compartido",
+        "Explica que un clon de APFS comparte los bloques del original y solo guarda aparte los cambios",
+        "Explica que el copy-on-write escribe la versión nueva en otro sitio sin pisar el original y luego actualiza la referencia",
+        "Relaciona el copy-on-write con las instantáneas (snapshots) y con que el dato no se corrompe si se va la luz",
+        "Indica que ambos se basan en árboles B y menciona Catalog (jerarquía) y Bitmap (bloques libres) en APFS",
+        "Indica que las versiones anteriores pueden abrir posibilidades de recuperación, según el caso",
+        "Distingue el clon de APFS del clonado forense (copia bit a bit de un disco)"
+      ],
+      "model": [
+        "**APFS** (Apple File System) es el sistema de ficheros de **Apple** para macOS e iOS, anunciado en **2016** para sustituir a HFS+. **Btrfs** es un sistema de ficheros de **Linux**, más moderno que la familia ext. Los dos organizan su información con **árboles B**, un índice por niveles para encontrar rápido cualquier elemento; en APFS, el **Catalog** guarda la jerarquía de archivos y carpetas y el **Bitmap**, los bloques libres y usados.",
+        "La característica estrella de APFS son los **clones**: al duplicar un archivo, la copia **comparte los mismos bloques** que el original y solo se guardan aparte **los cambios**, así que no ocupa espacio extra. También ofrece cifrado del disco completo y espacio libre compartido entre volúmenes.",
+        "La de Btrfs es el **copy-on-write** («copiar al escribir»): al modificar un dato **no se pisa el original**; la versión nueva se escribe en otro sitio y después se actualiza la referencia. Si se va la luz a mitad, el original sigue intacto. Eso permite hacer **instantáneas** (snapshots) del sistema.",
+        "Para el forense, que haya **versiones anteriores** de los datos puede abrir posibilidades de recuperación, aunque depende de cada caso. Ojo: el clon de APFS no tiene nada que ver con el **clonado forense**, que es la copia bit a bit de un disco entero."
+      ],
+      "tip": "El profesor avisó de que Btrfs y el copy-on-write pueden caer aunque no estén bien en el temario. Quédate con las parejas: APFS = clones; Btrfs = copy-on-write + instantáneas.",
+      "fromClass": true,
+      "sections": [
+        "apfs",
+        "btrfs"
+      ]
     }
   ],
   "cases": [

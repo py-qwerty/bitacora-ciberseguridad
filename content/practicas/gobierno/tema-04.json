@@ -27,7 +27,10 @@
       ],
       "tip": "Los programas de gestión de la seguridad están en la lista de temas de desarrollo del profesor, que insistió en la alternativa del programa a medida y en sus dos elementos clave: riesgos y legislación.",
       "fromClass": true,
-      "sections": ["programa", "programa-a-medida"]
+      "sections": [
+        "programa",
+        "programa-a-medida"
+      ]
     },
     {
       "id": "gobierno-t04-d2",
@@ -55,7 +58,10 @@
       ],
       "tip": "Pregunta citada por el profesor como típica de desarrollo («si os pregunto tipos de controles, tendréis que poner los controles»). Fíjate en el verbo: impide = preventivo, desanima = disuasorio, identifica = detectivo, repara = correctivo, ofrece alternativa = compensatorio.",
       "fromClass": true,
-      "sections": ["clasificar-controles", "controles-procesos"]
+      "sections": [
+        "clasificar-controles",
+        "controles-procesos"
+      ]
     },
     {
       "id": "gobierno-t04-d3",
@@ -81,7 +87,11 @@
       ],
       "tip": "El cuerpo normativo es uno de los temas de desarrollo del profesor. En clase resumió: la política dice el porqué, la norma el qué (lo que se puede y no se puede hacer) y el procedimiento el cómo.",
       "fromClass": true,
-      "sections": ["politicas", "documentos", "estructura-politica"]
+      "sections": [
+        "politicas",
+        "documentos",
+        "estructura-politica"
+      ]
     },
     {
       "id": "gobierno-t04-d4",
@@ -106,7 +116,11 @@
       ],
       "tip": "El profesor citó el cumplimiento normativo como posible tema de desarrollo. No se piden nombres de leyes ni artículos: céntrate en cómo la legislación condiciona los controles y en que la ISO 27001 es voluntaria.",
       "fromClass": true,
-      "sections": ["programa-a-medida", "clasificar-controles", "politicas"]
+      "sections": [
+        "programa-a-medida",
+        "clasificar-controles",
+        "politicas"
+      ]
     },
     {
       "id": "gobierno-t04-d5",
@@ -127,7 +141,64 @@
         "**Evitar**: dejar de usar el recurso o abandonar la actividad cuando el riesgo supera claramente al beneficio, por ejemplo dejar de vender en un país con requisitos imposibles de cumplir; su coste es perder ese beneficio (coste de oportunidad)."
       ],
       "fromClass": false,
-      "sections": ["decisiones-riesgo"]
+      "sections": [
+        "decisiones-riesgo"
+      ]
+    },
+    {
+      "id": "gobierno-t04-d6",
+      "kind": "corta",
+      "points": 2,
+      "minutes": 6,
+      "prompt": "Define y diferencia amenaza, agente de la amenaza, vulnerabilidad y exposición. Explica cómo se relacionan con un ejemplo informático.",
+      "keyPoints": [
+        "Define amenaza como un peligro potencial para un recurso",
+        "Define agente o fuente de la amenaza como algo o alguien con capacidad de materializarla (delincuentes, empleado descontento, inundación)",
+        "Define vulnerabilidad como una debilidad o fallo en un recurso",
+        "Define exposición como una oportunidad concreta para que la amenaza cause daño",
+        "Explica la cadena: el agente aprovecha una vulnerabilidad en una situación de exposición para materializar la amenaza",
+        "Aclara que el origen de la amenaza es el agente y no la vulnerabilidad"
+      ],
+      "model": [
+        "Son cuatro términos que parecen sinónimos y no lo son. La **amenaza** es un **peligro potencial** para un recurso, por ejemplo el robo de la base de datos de clientes. El **agente o fuente de la amenaza** es **algo o alguien con capacidad** para materializarla: un grupo de ciberdelincuentes, un empleado descontento o una inundación. La **vulnerabilidad** es una **debilidad o fallo** del recurso, como un servidor sin parchear o una contraseña por defecto. La **exposición** es la **oportunidad concreta** de que la amenaza cause daño: ese servidor sin parchear publicado en internet.",
+        "Se relacionan en cadena: un **agente** aprovecha una **vulnerabilidad** en una situación de **exposición** para materializar una **amenaza**. Con una casa: el robo es la amenaza, el ladrón el agente, la ventana sin cerrar la vulnerabilidad, y dejarla abierta cuando no hay nadie, la exposición.",
+        "Importante: el **origen de la amenaza es el agente**, no la vulnerabilidad. La ventana abierta no roba nada; el ladrón sí. Tampoco hay que confundir el agente con el impacto (la pérdida económica)."
+      ],
+      "tip": "Trampa del test y del desarrollo: decir que el origen de la amenaza es la vulnerabilidad.",
+      "fromClass": false,
+      "sections": [
+        "terminologia"
+      ]
+    },
+    {
+      "id": "gobierno-t04-d7",
+      "kind": "larga",
+      "points": 3,
+      "minutes": 14,
+      "prompt": "Explica en qué consiste el análisis de riesgos cuantitativo: qué miden el factor de exposición (FE), la expectativa de pérdida única (SLE), la tasa anual de ocurrencia (ARO) y la expectativa de pérdida anual (ALE), cómo se calculan y cómo se usan para decidir si un control compensa. Explica también cómo puede valorarse un recurso que no tiene precio de mercado.",
+      "keyPoints": [
+        "Explica que el análisis cuantitativo asigna valores numéricos con significado (normalmente euros) y parte de la valoración económica de los recursos",
+        "Define FE como el porcentaje del valor que se perdería en un incidente y aclara que depende del impacto, no del valor ni de la probabilidad",
+        "Define SLE como la pérdida en un solo incidente: valor del recurso × FE",
+        "Define ARO como las veces al año que se espera la amenaza, estimable con históricos si hay datos",
+        "Define ALE como la pérdida anual esperada: SLE × ARO",
+        "Explica que un control compensa si la reducción del ALE supera su coste anual, y que el ALE tras el control es el riesgo residual",
+        "Describe los tres criterios de valoración no excluyentes: coste inicial y continuo, valor para el negocio y valor de mercado",
+        "Explica que un recurso puede valer más de lo que costó (valor estratégico) y que también puede estimarse por lo que costaría perderlo"
+      ],
+      "model": [
+        "El **análisis de riesgos cuantitativo** asigna **valores numéricos con significado**, normalmente euros, a los elementos del riesgo: no etiquetas «1, 2, 3», sino cantidades que se pueden sumar y comparar. Todo empieza por la **valoración económica de los recursos**, y a partir de ella se calculan cuatro medidas.",
+        "El **factor de exposición (FE)** es el **porcentaje del valor** del recurso que se perdería si ocurre una amenaza concreta (de 0 % a 100 %). Depende del **impacto** de esa amenaza, no del valor del recurso ni de la probabilidad: un incendio puede destruir el 100 % de un servidor y un corte de luz solo el 5 %. La **expectativa de pérdida única (SLE)** es lo que se pierde en **un solo incidente**: **SLE = valor × FE**. La **tasa anual de ocurrencia (ARO)** es cuántas veces al año se espera la amenaza; si hay datos, se estima con históricos propios o del sector. La **expectativa de pérdida anual (ALE)** es lo que se espera perder al año: **ALE = SLE × ARO**.",
+        "El ALE se compara con el **coste anual de los controles** (análisis coste-beneficio): un control **compensa si lo que reduce el ALE es mayor que lo que cuesta al año**. Ejemplo del tema: servidor de 200.000 €, incendio con FE del 50 % → SLE = 100.000 €; un incendio cada 10 años (ARO = 0,1) → ALE = 10.000 €/año. Un sistema de extinción de 3.000 €/año baja el ARO a 0,02 → nuevo ALE = 2.000 € (**riesgo residual**). Ahorra 8.000 € al año y cuesta 3.000 €: es rentable.",
+        "El gran problema es **valorar los recursos**: un portátil tiene factura, la base de datos de clientes no. Hay tres criterios **no excluyentes**: el **coste inicial y continuo** (compra, desarrollo, mantenimiento), el **valor para el negocio** (lo que aporta a las ventas o a la ventaja competitiva) y el **valor de mercado** (lo que pagaría alguien, si se puede evaluar). Un recurso puede valer mucho **más de lo que costó**: la receta secreta de un refresco costó poco escribirla y sostiene toda la marca. Y, cuando es medible, también puede estimarse por **lo que costaría perderlo** (multas, clientes perdidos, días sin vender).",
+        "La valoración evita errores como gastar todo el presupuesto en un sistema de 50.000 € que protege frente a un riesgo con un ALE de 4.000 €: sin comparar coste y reducción esperada, la inversión no está justificada."
+      ],
+      "tip": "Escribe siempre las fórmulas (SLE = valor × FE; ALE = SLE × ARO) y un mini ejemplo numérico: es lo que demuestra que lo entiendes. El PDF escribe «ALO», pero la sigla estándar es ALE.",
+      "fromClass": false,
+      "sections": [
+        "cuantitativo",
+        "valoracion"
+      ]
     }
   ],
   "cases": [
@@ -189,7 +260,70 @@
         }
       ],
       "tip": "En un caso de pyme, justifica cada decisión con sus recursos y sus riesgos reales: el corrector valora que razones, no que copies la lista de la ISO.",
-      "sections": ["programa-a-medida", "clasificar-controles", "estructura-politica", "politicas"]
+      "sections": [
+        "programa-a-medida",
+        "clasificar-controles",
+        "estructura-politica",
+        "politicas"
+      ]
+    },
+    {
+      "id": "gobierno-t04-c2",
+      "title": "¿Compensan los controles de una tienda de deportes online?",
+      "scenario": [
+        "DeporNorte es una tienda online ficticia de material deportivo. Su base de datos de clientes y pedidos costó 40.000 € desarrollarla y cuesta 5.000 € al año mantenerla. Sin embargo, la dirección estima que, contando las ventas que dependen de ella y lo que pagaría un competidor por esos datos, su valor para el negocio es de **300.000 €**.",
+        "Riesgo 1: un ransomware que cifre la base de datos. Con las copias actuales, se perdería un **40 %** de su valor (pedidos perdidos, días sin vender) y se espera que ocurra **una vez cada cuatro años**. Un proveedor ofrece copias inmutables y un sistema de recuperación rápida por **12.000 € al año**, que dejaría la pérdida por incidente en un **10 %** del valor.",
+        "Riesgo 2: el robo de portátiles de los comerciales, valorados en **1.500 €** cada uno (se pierde el equipo entero). Se roban unos **dos portátiles al año**. Una empresa ofrece un servicio de vigilancia y anclajes por **5.000 € al año** que reduciría los robos a **uno al año**. Los portátiles ya van cifrados."
+      ],
+      "minutes": 15,
+      "points": 3,
+      "questions": [
+        {
+          "prompt": "¿Por qué la dirección valora la base de datos en 300.000 € y no en lo que costó? ¿Es correcto?",
+          "keyPoints": [
+            "Explica que el coste de desarrollo y mantenimiento es solo uno de los criterios de valoración",
+            "Indica que la dirección combina el valor para el negocio y el valor de mercado, lo que es correcto porque los criterios no son excluyentes",
+            "Explica que un recurso puede tener un valor estratégico superior a lo que costó obtenerlo"
+          ],
+          "model": [
+            "Es correcto. El **coste inicial y continuo** (40.000 € más 5.000 € al año) es solo uno de los tres criterios. La dirección añade el **valor para el negocio** (las ventas que dependen de la base de datos) y el **valor de mercado** (lo que pagaría un competidor). Los criterios **no son excluyentes** y un recurso puede valer **mucho más de lo que costó**, como ocurre con los datos de clientes."
+          ]
+        },
+        {
+          "prompt": "Calcula la SLE y el ALE de cada riesgo antes y después del control propuesto.",
+          "keyPoints": [
+            "Riesgo 1 antes: SLE = 300.000 × 0,40 = 120.000 €; ARO = 0,25; ALE = 30.000 €",
+            "Riesgo 1 después: SLE = 300.000 × 0,10 = 30.000 €; ALE = 30.000 × 0,25 = 7.500 €",
+            "Riesgo 2 antes: SLE = 1.500 € (FE 100 %); ARO = 2; ALE = 3.000 €",
+            "Riesgo 2 después: ARO = 1; ALE = 1.500 €",
+            "Explica que en el riesgo 1 el control reduce el impacto (FE) y en el 2 la frecuencia (ARO)"
+          ],
+          "model": [
+            "**Riesgo 1 (ransomware)**. Antes: SLE = 300.000 × 0,40 = **120.000 €**; una vez cada cuatro años es ARO = **0,25**; ALE = 120.000 × 0,25 = **30.000 €/año**. Después: el control baja el FE al 10 %, así que SLE = 300.000 × 0,10 = **30.000 €** y ALE = 30.000 × 0,25 = **7.500 €/año**. Aquí el control reduce el **impacto**, no la frecuencia.",
+            "**Riesgo 2 (robo de portátiles)**. Antes: FE = 100 %, SLE = **1.500 €**; ARO = **2**; ALE = **3.000 €/año**. Después: ARO = 1, ALE = **1.500 €/año**. Aquí el control reduce la **frecuencia**."
+          ]
+        },
+        {
+          "prompt": "¿Compensa cada control? ¿Qué harías con cada riesgo?",
+          "keyPoints": [
+            "Riesgo 1: el ahorro es 30.000 − 7.500 = 22.500 €/año, mayor que 12.000 €: compensa (beneficio neto 10.500 €)",
+            "Identifica 7.500 €/año como riesgo residual del riesgo 1",
+            "Riesgo 2: el ahorro es 1.500 €/año, menor que 5.000 €: no compensa",
+            "Propone para el riesgo 2 aceptarlo de forma fundamentada o buscar otra opción más barata (por ejemplo, transferirlo con un seguro), recordando que el cifrado ya protege los datos",
+            "Concluye que la decisión se basa en comparar la reducción del ALE con el coste anual del control"
+          ],
+          "model": [
+            "**Riesgo 1**: el control ahorra 30.000 − 7.500 = **22.500 € al año** y cuesta 12.000 €: **compensa**, con un beneficio neto de 10.500 € anuales. Los 7.500 €/año que quedan son el **riesgo residual**, que la dirección debe conocer y aceptar.",
+            "**Riesgo 2**: el servicio ahorra 3.000 − 1.500 = **1.500 € al año** y cuesta 5.000 €: **no compensa**; se gastaría más en protegerse de lo que se pierde. Lo razonable es **aceptar** el riesgo de forma documentada (los portátiles van cifrados, así que lo que se pierde es sobre todo el equipo) o buscar una opción más barata, como **transferirlo** con un seguro si su prima es menor que la pérdida evitada. La regla es siempre la misma: el control compensa si la reducción del ALE supera su coste anual."
+          ]
+        }
+      ],
+      "tip": "Ordena el cálculo en una tablita (valor, FE, SLE, ARO, ALE antes y después). Fíjate en que un control puede actuar sobre el impacto (FE) o sobre la frecuencia (ARO).",
+      "sections": [
+        "cuantitativo",
+        "valoracion",
+        "decisiones-riesgo"
+      ]
     }
   ],
   "order": [
@@ -206,7 +340,9 @@
         "¿Es rentable?"
       ],
       "why": "Primero se analiza el riesgo (amenaza, impacto, frecuencia e incertidumbre) y solo después se gestiona: opciones, coste y análisis coste-beneficio.",
-      "sections": ["preguntas-clave"]
+      "sections": [
+        "preguntas-clave"
+      ]
     },
     {
       "id": "gobierno-t04-o2",
@@ -218,7 +354,9 @@
         "Monitorizar para mantener y mejorar el programa"
       ],
       "why": "Sin conocer riesgos y legislación no se pueden definir los controles; una vez definidos se implantan y después se miden para mejorar, igual que en el PDCA.",
-      "sections": ["programa-a-medida"]
+      "sections": [
+        "programa-a-medida"
+      ]
     },
     {
       "id": "gobierno-t04-o3",
@@ -230,7 +368,9 @@
         "Procedimiento: guía paso a paso del día a día"
       ],
       "why": "La política fija el objetivo, el estándar elige con qué se cumple, la línea base fija los valores y el procedimiento dice cómo ejecutarlo. La directriz queda aparte porque es una recomendación.",
-      "sections": ["documentos"]
+      "sections": [
+        "documentos"
+      ]
     }
   ]
 }

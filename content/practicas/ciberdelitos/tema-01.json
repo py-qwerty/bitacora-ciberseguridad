@@ -115,6 +115,72 @@
         "En todo caso, el responsable **documenta todas las brechas**, también las que no notifica."
       ],
       "sections": ["brechas"]
+    },
+    {
+      "id": "ciberdelitos-t01-d6",
+      "kind": "corta",
+      "points": 2,
+      "minutes": 6,
+      "prompt": "Una tienda online con sede solo en Estados Unidos vende en euros a clientes españoles y les envía publicidad sin haberles pedido permiso. La empresa alega que no tiene oficinas en Europa y que ninguna norma europea ni española le afecta. ¿Tiene razón? ¿Ante quién puede reclamar un cliente afectado?",
+      "keyPoints": [
+        "Afirma que no tiene razón: debe cumplir el RGPD porque ofrece bienes o servicios a personas que están en la Unión, aunque no tenga establecimiento en ella",
+        "Explica que el RGPD es un reglamento europeo y se aplica directamente en todos los Estados, sin necesidad de una ley nacional",
+        "Explica que la ley española de protección de datos solo completa el reglamento en lo que este deja a cada país (y añade los derechos digitales)",
+        "Indica que el cliente puede reclamar ante la AEPD, autoridad de control independiente que tramita reclamaciones, investiga y puede sancionar",
+        "Distingue la vía administrativa (sanción de la AEPD) de la vía penal, que solo procede si la conducta es delito"
+      ],
+      "model": [
+        "**No tiene razón.** El Reglamento General de Protección de Datos (**RGPD**) se aplica también a empresas **no establecidas en la Unión** cuando ofrecen bienes o servicios a personas que están en ella, paguen o no. Vender en euros y enviar a España es dirigir la oferta a clientes europeos, así que debe cumplirlo con ellos.",
+        "Además, el RGPD es un **reglamento**, no una directiva: se aplica **directamente** en todos los Estados, sin que cada país tenga que convertirlo en una ley propia. La ley orgánica española de protección de datos (LOPDGDD) solo concreta lo que el reglamento deja a cada país. Por eso la empresa no puede escudarse en que desconoce la ley española: el reglamento la obliga por sí mismo.",
+        "El cliente puede presentar una **reclamación ante la AEPD** (Agencia Española de Protección de Datos), la autoridad de control española. Es un organismo **independiente** que atiende reclamaciones, investiga y puede **sancionar** con multas que buscan disuadir. Es una vía **administrativa**: los tribunales penales solo intervendrían si la conducta fuera además un delito."
+      ],
+      "tip": "La clave es el ámbito territorial: cuenta a quién se dirige la oferta, no dónde está la sede. La profesora animó a usar la reclamación ante la AEPD cuando una empresa no demuestra de dónde sacó tu consentimiento.",
+      "fromClass": true,
+      "sections": ["marco-normativo", "aepd"]
+    },
+    {
+      "id": "ciberdelitos-t01-d7",
+      "kind": "corta",
+      "points": 2,
+      "minutes": 7,
+      "prompt": "Una clínica dental con 12 empleados trata a diario los historiales de sus pacientes y recibe además, de una aseguradora con la que tiene convenio, los datos de asegurados que pueden acudir a ella. ¿Debe llevar un registro de actividades de tratamiento aunque tenga menos de 250 trabajadores? ¿Qué y cuándo debe informar a los asegurados cuyos datos le llegan de la aseguradora?",
+      "keyPoints": [
+        "Afirma que sí necesita el registro: la excepción de menos de 250 personas no se aplica porque trata datos de salud (categoría especial) y de forma habitual, no ocasional",
+        "Explica que el registro es un inventario interno de los tratamientos (fines, categorías de datos e interesados, destinatarios, plazos de supresión, medidas de seguridad), no una copia de los datos",
+        "Indica que el registro sirve para demostrar la responsabilidad proactiva y se pone a disposición de la autoridad de control si lo pide",
+        "Explica que, como los datos vienen de un tercero, debe informar en un plazo razonable de como máximo un mes, o en la primera comunicación con el interesado",
+        "Indica que debe añadir las categorías de datos y la fuente de la que proceden, además de la información común (responsable, fines, base jurídica, derechos, reclamación ante la autoridad…)",
+        "Menciona que puede informar por capas: una información básica y una remisión sencilla al resto"
+      ],
+      "model": [
+        "**Sí debe llevar el registro.** Las organizaciones con menos de 250 personas están exentas, pero la excepción no se aplica si el tratamiento no es ocasional, puede suponer un riesgo o incluye **categorías especiales de datos**. Una clínica trata **datos de salud** todos los días, así que cumple de sobra las condiciones para necesitarlo.",
+        "El **registro de actividades de tratamiento** es un inventario interno: no contiene los datos, sino los **tipos de tratamiento** (pacientes, empleados, proveedores) con sus fines, las categorías de datos e interesados, los destinatarios, los plazos de supresión y, si es posible, las medidas de seguridad. Se pone a disposición de la autoridad de control si lo pide y ayuda a demostrar la **responsabilidad proactiva**.",
+        "Con los datos que llegan de la aseguradora, la clínica los obtiene **de un tercero**. Debe informar en un plazo razonable, **como máximo un mes**, o en la primera comunicación con el asegurado. Además de la información común (quién es el responsable, para qué y con qué base trata los datos, derechos, posibilidad de reclamar ante la autoridad), debe indicar **qué categorías de datos** trata y **de dónde proceden**.",
+        "Puede hacerlo **por capas**: una primera capa con lo básico (responsable, finalidad, derechos, categorías y fuente) y un enlace o código QR al resto."
+      ],
+      "fromClass": false,
+      "sections": ["registro-e-informacion"]
+    },
+    {
+      "id": "ciberdelitos-t01-d8",
+      "kind": "corta",
+      "points": 2,
+      "minutes": 5,
+      "prompt": "Una empresa abre un expediente a una trabajadora por no contestar los correos de su jefe un domingo. Otra persona quiere que, al buscar su nombre en un buscador, deje de aparecer una noticia de hace quince años que ya es irrelevante. ¿Qué derecho puede invocar cada una? ¿Proceden del reglamento europeo o son una aportación de la ley española?",
+      "keyPoints": [
+        "Identifica el derecho a la desconexión digital en el caso de la trabajadora: no se la puede sancionar por no responder fuera de su tiempo de trabajo",
+        "Identifica el derecho al olvido en las búsquedas de Internet para la noticia antigua e irrelevante",
+        "Explica que los derechos digitales son una aportación propia de la ley española, no del RGPD",
+        "Explica que van más allá de los datos personales: tocan Internet, el trabajo y la vida digital",
+        "Pone otro ejemplo de derecho digital (testamento digital, neutralidad de Internet, protección de los menores, geolocalización o videovigilancia en el trabajo)"
+      ],
+      "model": [
+        "La trabajadora puede invocar el **derecho a la desconexión digital**: la empresa no puede sancionarla por no contestar correos en domingo, fuera de su tiempo de trabajo. La segunda persona puede ejercer el **derecho al olvido en búsquedas de Internet**: pedir al buscador que, al buscar su nombre, deje de mostrar una noticia antigua que ya no es relevante.",
+        "Ambos son **derechos digitales**, y son una **aportación propia de la ley española** de protección de datos (LOPDGDD), no del RGPD. La ley los añadió para cumplir el mandato constitucional de limitar el uso de la informática, y van más allá de los datos personales: tocan Internet, las relaciones laborales y la vida digital.",
+        "Otros ejemplos son el **testamento digital** (dejar indicado quién gestionará tus cuentas cuando mueras), la neutralidad de Internet o la protección de los menores en la red."
+      ],
+      "fromClass": false,
+      "sections": ["derechos-digitales"]
     }
   ],
   "cases": [
@@ -233,6 +299,64 @@
       ],
       "tip": "Distingue siempre los dos umbrales: a la autoridad «salvo que sea improbable el riesgo»; a los afectados «cuando haya probable alto riesgo». Notificar a la AEPD no implica automáticamente avisar a los afectados.",
       "sections": ["brechas", "principios", "delegado", "conceptos-y-actores"]
+    },
+    {
+      "id": "ciberdelitos-t01-c3",
+      "title": "Las peticiones de los socios de un gimnasio",
+      "scenario": [
+        "FitBarrio, S. L. es una cadena de gimnasios con 3.000 socios. Su aplicación registra los entrenamientos de cada socio. En un mismo mes recibe varias peticiones y la responsable de atención al socio no sabe cómo actuar.",
+        "Marta se da de baja, pide que borren todos sus datos y que dejen de enviarle publicidad. Luis, que ha demandado a FitBarrio por una lesión sufrida en una máquina, exige que borren todos los correos que intercambió con el gimnasio. Elena se cambia a otra cadena y pide un archivo con su historial de entrenamientos que pueda cargar en la aplicación de la nueva.",
+        "FitBarrio decide cobrar 20 euros por cada petición «por gastos de gestión» y contestar «en unos tres meses, cuando haya tiempo». Dos meses después, Elena no ha recibido ninguna respuesta."
+      ],
+      "minutes": 15,
+      "points": 3,
+      "questions": [
+        {
+          "prompt": "¿Qué derecho ejerce cada uno de los tres socios? ¿Debe FitBarrio borrar los correos de Luis?",
+          "keyPoints": [
+            "Identifica que Marta ejerce el derecho de supresión y el de oposición a la publicidad (marketing directo), que puede ejercerse en cualquier momento y sin dar motivos",
+            "Identifica que Elena ejerce el derecho de portabilidad: recibir en formato estructurado y legible por máquina los datos que facilitó para llevarlos a otro responsable",
+            "Explica que la portabilidad procede porque el tratamiento se basa en un contrato o consentimiento y se hace por medios automatizados",
+            "Explica que Luis ejerce la supresión, pero que no es absoluta: FitBarrio puede conservar los correos porque los necesita para defenderse en la reclamación judicial",
+            "Menciona que FitBarrio puede conservar los datos mínimos de Marta para no volver a enviarle publicidad"
+          ],
+          "model": [
+            "**Marta** ejerce el **derecho de supresión** (el antiguo «derecho al olvido») y el de **oposición** a la publicidad: frente al marketing directo puede oponerse en cualquier momento y sin dar motivos. FitBarrio puede conservar sus datos identificativos mínimos solo para no volver a enviarle publicidad.",
+            "**Elena** ejerce el **derecho de portabilidad**: recibir los datos que facilitó en un formato estructurado, de uso habitual y legible por máquina para llevarlos a otro gimnasio. Procede porque el tratamiento se basa en el contrato con el socio y se hace por medios automatizados (la aplicación).",
+            "**Luis** ejerce la supresión, pero **no hay que borrar sus correos**: la supresión tiene límites, y uno de ellos es que los datos sean necesarios para **formular, ejercer o defender reclamaciones judiciales**. Luis ha demandado al gimnasio y esos correos son parte de su defensa."
+          ]
+        },
+        {
+          "prompt": "¿Es correcto cobrar 20 euros por petición y responder en tres meses? ¿Qué pasa en España con los datos de Marta cuando se suprimen?",
+          "keyPoints": [
+            "Afirma que ejercer los derechos es gratuito y que solo cabe cobrar un canon razonable o negarse ante peticiones manifiestamente infundadas o excesivas, que el responsable debe demostrar",
+            "Indica que el plazo de respuesta es de un mes, prorrogable dos meses más si es complejo o hay muchas solicitudes, avisando dentro del primer mes",
+            "Concluye que responder «cuando haya tiempo» en tres meses sin aviso ni justificación incumple el plazo",
+            "Explica el bloqueo: los datos suprimidos no se borran de inmediato sino que se bloquean, sin que nadie de la organización pueda acceder a ellos",
+            "Indica que solo pueden acceder jueces y tribunales, Ministerio Fiscal y administraciones competentes, y que se borran definitivamente cuando pasa el plazo de posibles responsabilidades"
+          ],
+          "model": [
+            "**No es correcto.** Ejercer los derechos es **gratuito**. Solo ante peticiones manifiestamente infundadas o excesivas (por ejemplo, repetitivas) podría cobrar un canon razonable o negarse, y tendría que demostrarlo. Unas peticiones normales de tres socios no lo son.",
+            "El plazo de respuesta es de **un mes** desde la solicitud, prorrogable **dos meses más** solo si es complejo o hay muchas solicitudes, y avisando al interesado dentro del primer mes. Decidir sin más contestar «en unos tres meses, cuando haya tiempo» incumple la norma.",
+            "En España, al ejercer la supresión los datos de Marta se **bloquean**: quedan guardados bajo llave y **nadie en el gimnasio puede acceder a ellos**; solo los jueces, el Ministerio Fiscal y las administraciones competentes, como la AEPD. Cuando pasa el plazo en que podrían exigirse responsabilidades, se borran definitivamente."
+          ]
+        },
+        {
+          "prompt": "¿Qué puede hacer Elena ante la falta de respuesta?",
+          "keyPoints": [
+            "Indica que puede presentar una reclamación ante la AEPD, la autoridad de control española",
+            "Explica que la AEPD es una autoridad independiente que tramita e investiga las reclamaciones y ejerce la potestad sancionadora",
+            "Explica que es una vía administrativa y no penal, porque no hay un delito",
+            "Menciona que también puede acudir a los tribunales"
+          ],
+          "model": [
+            "Han pasado dos meses sin respuesta ni aviso de prórroga, así que FitBarrio ha incumplido el plazo. Elena puede presentar una **reclamación ante la AEPD** (Agencia Española de Protección de Datos), la autoridad de control española, y también acudir a los tribunales.",
+            "La AEPD es una autoridad **independiente**: tramita e investiga la reclamación, puede ordenar que se atienda el derecho y puede **sancionar** al gimnasio. Es una **vía administrativa**, no penal: no atender un derecho incumple la normativa de protección de datos, pero no es un delito."
+          ]
+        }
+      ],
+      "tip": "Ante una petición de borrado, comprueba siempre si hay un límite a la supresión. La profesora remarcó el bloqueo como una particularidad española.",
+      "sections": ["derechos", "aepd"]
     }
   ],
   "order": [

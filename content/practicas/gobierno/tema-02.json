@@ -28,7 +28,12 @@
       ],
       "tip": "El profesor avisó: si contestas solo «ITIL es un conjunto de buenas prácticas de servicios de TI», es muy poco. Quiere origen, características, prácticas y versiones. No pedirá de memoria los diagramas de ITIL 4.",
       "fromClass": true,
-      "sections": ["itil-origen", "itil-caracteristicas", "itil-practicas", "itil-seguridad"]
+      "sections": [
+        "itil-origen",
+        "itil-caracteristicas",
+        "itil-practicas",
+        "itil-seguridad"
+      ]
     },
     {
       "id": "gobierno-t02-d2",
@@ -54,7 +59,9 @@
       ],
       "tip": "El profesor pidió «grabarse» la alineación entre gobierno corporativo y gobierno de la seguridad. Trampa típica: «lograr siempre el mínimo coste» no es un objetivo del gobierno.",
       "fromClass": true,
-      "sections": ["gobierno"]
+      "sections": [
+        "gobierno"
+      ]
     },
     {
       "id": "gobierno-t02-d3",
@@ -79,7 +86,10 @@
         "Ideas clave: primero se fijan objetivos y riesgos y **después** los controles (nunca «cumplir todos los controles de la ISO 27001» sin elegir). El PDS está en el **nivel estratégico**, **no es obligatorio** (ni la ley ni la ISO 27001 lo exigen) pero demuestra madurez, y al acabar el periodo se hace otro con objetivos más exigentes. Ejemplo: una gestoría sin copias fiables planifica copias y formación el año 1, control de accesos el año 2 y continuidad el año 3."
       ],
       "fromClass": true,
-      "sections": ["plan-director", "fases-pds"]
+      "sections": [
+        "plan-director",
+        "fases-pds"
+      ]
     },
     {
       "id": "gobierno-t02-d4",
@@ -100,7 +110,10 @@
         "Una cláusula de disponibilidad debe concretar **cómo se mide**, por ejemplo D = (T − Td) / T; **cuándo empieza** la caída (al avisar al proveedor) y **cuándo termina** (al comprobar que el servicio está restaurado); **qué no cuenta** (fallos por mal uso del cliente) y **qué penalización** corresponde a cada tramo. Prometer «alta disponibilidad» sin esto no permite reclamar nada."
       ],
       "fromClass": false,
-      "sections": ["sla", "disponibilidad"]
+      "sections": [
+        "sla",
+        "disponibilidad"
+      ]
     },
     {
       "id": "gobierno-t02-d5",
@@ -120,7 +133,39 @@
         "La estrategia es el puente entre la misión y los objetivos, y explica cómo aporta valor la seguridad al negocio. Si fuera independiente podría ir contra él: una tienda online que quiere vender más en Navidad necesita una estrategia que proteja la web y los pagos con el presupuesto disponible, no una que bloquee la web por exceso de controles justo en campaña."
       ],
       "fromClass": false,
-      "sections": ["mision-vision"]
+      "sections": [
+        "mision-vision"
+      ]
+    },
+    {
+      "id": "gobierno-t02-d6",
+      "kind": "larga",
+      "points": 3,
+      "minutes": 12,
+      "prompt": "Explica qué es un servicio de TI y qué tres ideas recoge su definición. Después, usando como ejemplo la gestión de la capacidad, explica cómo se aplican en ella las cuatro características que comparten las prácticas de ITIL.",
+      "keyPoints": [
+        "Define el servicio de TI como lo que un proveedor presta a clientes usando tecnologías de la información para apoyar sus procesos de negocio",
+        "Explica que combina personas, procesos y tecnología, y que falla si falta cualquiera de los tres",
+        "Indica que la vara de medir es el apoyo al cliente y que debe definirse en un acuerdo de nivel de servicio (SLA)",
+        "Pone un ejemplo de servicio que no es solo infraestructura (correo con su equipo, procedimientos y mesa de ayuda)",
+        "Define la gestión de la capacidad: infraestructura cuando se necesita, en el volumen necesario y al precio adecuado",
+        "Aplica las cuatro características: predictiva (previsiones de demanda), consistente (políticas y procedimientos), medible (KPI) y adaptable (implementar cambios)",
+        "Menciona los KPI de capacidad: dinero gastado en capacidad no utilizada e incumplimientos del SLA debidos a la capacidad"
+      ],
+      "model": [
+        "Un **servicio de TI** es lo que un **proveedor** presta a uno o más **clientes** usando tecnologías de la información para **apoyarles en sus procesos de negocio**. Hoy la informática no se ve como un montón de máquinas, sino como un servicio que integra aspectos humanos, sociales y tecnológicos.",
+        "La definición recoge tres ideas. **Apoyo al cliente**: si el servicio falla, hay usuarios que no pueden trabajar, y esa es la vara de medir. **Tres componentes**: **personas, procesos y tecnología**; como en un restaurante, si faltan cocineros, recetas o cocina, el cliente no cena aunque el horno sea excelente. **Acuerdo de nivel de servicio (SLA)**: el compromiso escrito que hace el servicio predecible y evaluable. Por ejemplo, el servicio de correo no es «el servidor»: incluye al equipo que lo administra, el procedimiento de alta de empleados, la mesa de ayuda y el compromiso de que funcione el 99 % del tiempo.",
+        "La **gestión de la capacidad** asegura que la infraestructura de TI se proporciona **cuando se necesita, en el volumen necesario y al precio adecuado**, usándola de forma eficiente. Es como la pizzería que mira los pedidos de los viernes anteriores y contrata repartidores extra solo para esos días.",
+        "En ella se ven las cuatro características de las prácticas ITIL. Es **predictiva**: su factor crítico de éxito es dar **previsiones precisas de la demanda**. Es **consistente**: se implantan políticas, procesos y procedimientos de capacidad. Es **medible**, con KPI como el **dinero gastado en capacidad no utilizada** y el **número de incidentes o violaciones del SLA debidos a la capacidad**. Y es **adaptable**: implementa los cambios necesarios.",
+        "Ejemplo: si el almacenamiento crece un 15 % cada trimestre, lo correcto es **prever y ampliar antes de llenarse**, no esperar a la saturación ni comprar según las ofertas del fabricante. Y si aumentan las incidencias por falta de espacio, el indicador útil son los incumplimientos del SLA por capacidad, no el total de incidencias mezcladas."
+      ],
+      "tip": "Une las dos partes: la capacidad es un buen ejemplo porque sus KPI enlazan con el SLA, que es justo lo que define al servicio.",
+      "fromClass": false,
+      "sections": [
+        "servicio-ti",
+        "capacidad",
+        "itil-practicas"
+      ]
     }
   ],
   "cases": [
@@ -180,7 +225,12 @@
         }
       ],
       "tip": "Conecta cada fallo con un concepto del tema (gobierno, PDS, SLA) y nómbralo: el corrector busca el vocabulario además de la idea.",
-      "sections": ["gobierno", "fases-pds", "sla", "disponibilidad"]
+      "sections": [
+        "gobierno",
+        "fases-pds",
+        "sla",
+        "disponibilidad"
+      ]
     }
   ],
   "order": [
@@ -196,7 +246,9 @@
         "Seguimiento del plan y de los objetivos"
       ],
       "why": "Primero se decide qué se quiere proteger y con qué criterios, después se mira cómo se está y se mide el hueco; con ese hueco se priorizan proyectos, la dirección los aprueba y se ejecutan, y por último se vigila el avance.",
-      "sections": ["fases-pds"]
+      "sections": [
+        "fases-pds"
+      ]
     },
     {
       "id": "gobierno-t02-o2",
@@ -207,7 +259,9 @@
         "¿Cómo llegamos?"
       ],
       "why": "Sin conocer la situación actual no se puede medir la distancia al objetivo, y sin objetivo no se puede diseñar el plan de proyectos.",
-      "sections": ["plan-director"]
+      "sections": [
+        "plan-director"
+      ]
     }
   ]
 }

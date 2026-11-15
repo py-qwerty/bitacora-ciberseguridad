@@ -119,6 +119,31 @@
       "tip": "La trampa típica es redondear hacia abajo: si sobra un solo byte, hace falta otro clúster entero.",
       "fromClass": false,
       "sections": ["fat-ejemplo"]
+    },
+    {
+      "id": "forense-t05-d6",
+      "kind": "corta",
+      "points": 2,
+      "minutes": 6,
+      "prompt": "¿Qué es un flujo de datos alternativo (ADS) en NTFS? Explica por qué interesa al forense y cómo lo detectarías en un análisis.",
+      "keyPoints": [
+        "Define el ADS como una característica de NTFS por la que un archivo (o carpeta) puede tener varias secuencias de bytes",
+        "Distingue el flujo principal, que es el que se ve al abrir el archivo, de los flujos alternativos ocultos",
+        "Indica que los flujos alternativos no se muestran por defecto ni cuentan en el tamaño que muestra Windows",
+        "Explica que se han usado para esconder datos o malware dentro de un archivo aparentemente normal",
+        "Propone comparar el tamaño mostrado con el tamaño real en disco como rutina de detección",
+        "Menciona herramientas para verlos: dir /r o AlternateStreamView"
+      ],
+      "model": [
+        "Un **flujo de datos alternativo** (ADS, Alternate Data Stream) es una característica de **NTFS**, el sistema de ficheros de Windows, por la que un mismo archivo (o carpeta) puede apuntar a **varias secuencias de bytes**. La que ves al abrirlo es el **flujo principal**; las demás son flujos alternativos y el sistema **no las muestra** si no se piden expresamente.",
+        "Interesa al forense porque sirven para **ocultar**: un archivo puede esconder en otro flujo un texto, una imagen o un **ejecutable**. Se han usado para meter malware dentro de un PDF aparentemente normal. Además, **el tamaño engaña**: los flujos alternativos no cuentan en el tamaño que muestra Windows. Tienen algún uso legítimo, pero pocos.",
+        "Para detectarlos incluiría en el análisis una **comparación entre el tamaño mostrado y el tamaño real** en disco: si un PDF dice ocupar 1 MB y ocupa 500 MB, es sospechoso. Y los listaría con el comando **dir /r**, que muestra debajo de cada archivo líneas como «informe.pdf:oculto.txt:$DATA», o con **AlternateStreamView** de NirSoft."
+      ],
+      "tip": "El profesor dijo que esto no se pregunta con detalle; basta con tener claro que es de NTFS, que el flujo principal es el visible y que los alternativos no se ven ni suman al tamaño.",
+      "fromClass": true,
+      "sections": [
+        "flujos-alternativos"
+      ]
     }
   ],
   "cases": [

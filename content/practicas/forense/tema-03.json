@@ -115,6 +115,60 @@
       ],
       "fromClass": false,
       "sections": ["escena"]
+    },
+    {
+      "id": "forense-t03-d6",
+      "kind": "corta",
+      "points": 2,
+      "minutes": 6,
+      "prompt": "¿Por qué se dice que la adquisición es el momento más delicado de una investigación forense? Explica qué papel tienen la norma ISO/IEC 27037, la cadena de custodia y el fedatario público.",
+      "keyPoints": [
+        "Explica que la adquisición es el momento en que se obtiene la copia que servirá de prueba",
+        "Indica que la parte contraria suele intentar invalidar la prueba por cuestiones de procedimiento",
+        "Explica que los datos digitales se modifican con facilidad y sin rastro visible",
+        "Indica que la ISO/IEC 27037 da directrices para identificar, recolectar, adquirir y preservar evidencias",
+        "Distingue norma técnica (buena práctica, no obligatoria) de ley",
+        "Define la cadena de custodia como el registro de quién tuvo la evidencia, cuándo, dónde y qué hizo",
+        "Explica que un fedatario (notario o letrado de la Administración de Justicia) o testigos refuerzan el valor de lo actuado"
+      ],
+      "model": [
+        "La **adquisición** es el momento en que el perito obtiene la copia de la información que servirá de **prueba**. Como la prueba es la base del juicio, la parte contraria intenta muchas veces **invalidarla por el procedimiento**: si la copia se hizo mal, da igual lo que contenga. Además, los datos digitales **se modifican con muchísima facilidad y sin dejar rastro visible**. Por eso hay que copiar **sin alterar** el original y **poder demostrarlo**.",
+        "La **ISO/IEC 27037** da directrices para **identificar, recolectar, adquirir y preservar** evidencias digitales. No es una ley y nadie multa por no seguirla, pero es la **buena práctica** reconocida: un perito que la ha seguido paso a paso es mucho más difícil de rebatir.",
+        "La **cadena de custodia** registra todo lo que le pasa a la evidencia hasta el juicio: **quién** la tuvo, **cuándo**, **dónde** y **qué hizo** con ella. Demuestra que lo analizado es exactamente lo que se encontró.",
+        "Un **fedatario público** (un notario o un letrado de la Administración de Justicia) da fe de que la adquisición ocurrió como se cuenta; si no lo hay, al menos conviene contar con **testigos**. Es como la policía científica que fotografía y precinta todo antes de tocar nada."
+      ],
+      "tip": "Idea central para empezar la respuesta: en forense digital una prueba vale tanto como el procedimiento con el que se obtuvo.",
+      "fromClass": false,
+      "sections": [
+        "por-que-importa"
+      ]
+    },
+    {
+      "id": "forense-t03-d7",
+      "kind": "corta",
+      "points": 2,
+      "minutes": 6,
+      "prompt": "Además de demostrar la integridad de una evidencia, ¿para qué más usa el perito los hash? Nombra los algoritmos hash más típicos con su tamaño de salida y alguna herramienta para calcularlos.",
+      "keyPoints": [
+        "Explica la idea base: si dos hash coinciden los elementos son idénticos; la mínima variación da un hash totalmente distinto",
+        "Menciona descartar archivos conocidos (por ejemplo los estándar de Windows) o señalar herramientas de hacking conocidas",
+        "Menciona buscar un archivo concreto cuyo hash ya se conoce",
+        "Menciona buscar duplicados",
+        "Nombra MD5 (128 bits), SHA-1 (160 bits), SHA-2 y SHA-3 como algoritmos hash",
+        "Indica que MD5 y SHA-1 tienen colisiones conocidas y que se prefiere SHA-256 o superior, aunque siguen siendo funciones hash",
+        "Nombra alguna herramienta: FTK Imager, HashMyFiles, md5sum o sha1sum"
+      ],
+      "model": [
+        "La idea básica es **comparar**: si los hash de dos elementos coinciden, son idénticos; si hay la mínima variación (aunque sea una mayúscula), el hash es completamente distinto.",
+        "Con eso el perito puede: **descartar archivos conocidos** (ignorar los miles de archivos estándar de Windows comparándolos con una lista) o **señalar** al instante una herramienta de hacking conocida; **localizar un archivo concreto** cuyo hash ya conoce, por ejemplo un documento robado; y **buscar duplicados**. El uso estrella sigue siendo garantizar que la evidencia no se ha modificado.",
+        "Los algoritmos más típicos son **MD5** (128 bits, 32 caracteres hexadecimales), **SHA-1** (160 bits, 40 caracteres), **SHA-2** (SHA-224, SHA-256, SHA-384, SHA-512) y **SHA-3** (224 a 512 bits). En MD5 y SHA-1 se conocen formas de fabricar colisiones, así que se prefiere SHA-256 o superior, y muchos peritos calculan dos a la vez.",
+        "Herramientas: **FTK Imager**, que calcula el hash al adquirir, y **HashMyFiles** en Windows; los comandos **md5sum** y **sha1sum** en Linux, y **md5** y **shasum** en macOS."
+      ],
+      "tip": "Si te preguntan si MD5 es un algoritmo hash, la respuesta es sí aunque esté «roto» criptográficamente.",
+      "fromClass": true,
+      "sections": [
+        "hash-usos"
+      ]
     }
   ],
   "cases": [

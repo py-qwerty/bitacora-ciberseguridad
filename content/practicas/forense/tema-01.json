@@ -126,6 +126,86 @@
       "tip": "El profesor dijo que el detalle de los artículos del Código Penal no entra en el examen; lo que puntúa es distinguir dolo, imprudencia y falta de celo con un ejemplo de cada uno.",
       "fromClass": true,
       "sections": ["perito-responsabilidad", "forense-objetivos"]
+    },
+    {
+      "id": "forense-t01-d6",
+      "kind": "corta",
+      "points": 2,
+      "minutes": 7,
+      "prompt": "Define incidente de seguridad y ciberataque, y explica en qué se diferencian. Indica los cuatro orígenes más habituales de los incidentes y cómo se combate cada uno.",
+      "keyPoints": [
+        "Define el incidente como un evento no deseado con alta probabilidad de comprometer las operaciones",
+        "Relaciona el incidente con el daño a la confidencialidad, la integridad o la disponibilidad",
+        "Define el ciberataque como un incidente provocado a propósito a través del ciberespacio",
+        "Explica que todo ciberataque es un incidente, pero no todo incidente es un ataque",
+        "Enumera los cuatro orígenes: desastres naturales, ataques externos, ataques internos (insider) y errores humanos",
+        "Asocia cada origen con su defensa: plan de contingencias, defensas técnicas y detección, control de accesos y formación",
+        "Pone un ejemplo que distingue error humano (sin mala intención) de ataque interno (malicioso)"
+      ],
+      "model": [
+        "Un **incidente de seguridad** es un evento **no deseado** con **alta probabilidad** de comprometer las operaciones de una organización y de dañar alguna de las tres dimensiones de la seguridad: **confidencialidad** (que solo acceda quien debe), **integridad** (que no se altere sin permiso) o **disponibilidad** (que se pueda usar cuando hace falta). Puede surgir solo, como un fallo eléctrico, o ser provocado.",
+        "Un **ciberataque** es un incidente **provocado a propósito** a través del ciberespacio para interrumpir, destruir o controlar sistemas, o para robar información. Por tanto, todo ataque es un incidente, pero no todo incidente es un ataque: una caída por un fallo de luz es un incidente que daña la disponibilidad sin que haya atacante.",
+        "Los cuatro orígenes más comunes son: **desastres naturales** (inundaciones, incendios; se combaten con un plan de contingencias), **ataques externos** (vienen de fuera por dinero, espionaje o activismo; defensas técnicas, detección y respuesta), **ataques internos** o *insider* (un empleado o proveedor con acceso; difíciles de detectar, se limitan con políticas de control de acceso) y **errores humanos** (sin mala intención, a veces inducidos por ingeniería social; se combaten con formación).",
+        "Ejemplo: una administrativa que envía las nóminas a una dirección equivocada comete un **error humano**; un empleado despechado que copia la base de clientes antes de irse es un **ataque interno**."
+      ],
+      "tip": "Trampas típicas: el incidente no es «planificado» ni de «baja» probabilidad, y no todo incidente es un ataque. El error humano es el origen de los empleados bienintencionados.",
+      "fromClass": false,
+      "sections": [
+        "incidente",
+        "tipos-incidente"
+      ]
+    },
+    {
+      "id": "forense-t01-d7",
+      "kind": "corta",
+      "points": 2,
+      "minutes": 6,
+      "prompt": "¿Qué es un CSIRT y en qué se diferencia de un CERT? Explica los cuatro tipos de servicios que presta y pon un ejemplo de cada uno.",
+      "keyPoints": [
+        "Define el CSIRT como un equipo que vigila, analiza y asiste ante incidentes para una comunidad concreta",
+        "Explica que CSIRT y CERT designan lo mismo y que CERT es una marca registrada de la Universidad Carnegie Mellon",
+        "Distingue CSIRT públicos (por ejemplo CCN-CERT o INCIBE-CERT) y privados",
+        "Identifica la gestión de incidentes como el servicio principal",
+        "Explica los servicios proactivos (prevenir) con un ejemplo como avisos preventivos o vigilancia tecnológica",
+        "Explica los servicios reactivos (a demanda) con un ejemplo como gestión de alertas o tratamiento de artefactos",
+        "Explica los servicios de control de calidad con un ejemplo como análisis de riesgos o campañas de sensibilización"
+      ],
+      "model": [
+        "Un **CSIRT** (Computer Security Incident Response Team, equipo de respuesta a incidentes de seguridad) es un equipo especializado que **vigila, analiza y asiste** ante incidentes para una comunidad concreta de «clientes». **CERT** (Computer Emergency Response Team) designa lo mismo, pero es una **marca registrada** de la Universidad Carnegie Mellon; por eso muchos equipos se llaman CSIRT. Los hay **públicos**, creados por gobiernos (en España, el CCN-CERT o INCIBE-CERT), y **privados**, que atienden a las empresas que los sostienen.",
+        "Sus servicios son de cuatro tipos: **gestión de incidentes**, el principal y su razón de ser (recibir el aviso, establecer gravedad y prioridad y atenderlo); **proactivos**, por iniciativa propia para reducir incidentes antes de que ocurran (publicar avisos preventivos, vigilancia tecnológica, auditorías); **reactivos**, a demanda cuando el cliente detecta un problema (gestión de alertas, tratamiento de vulnerabilidades o de artefactos, como un malware encontrado en un equipo); y de **control de calidad**, para evaluar y mejorar la seguridad de su comunidad (análisis de riesgos, consultoría, campañas de sensibilización, certificación de productos).",
+        "Se parece a un servicio médico de empresa: atiende urgencias (reactivo), da charlas y revisiones (proactivo) y certifica que las instalaciones son seguras (calidad)."
+      ],
+      "tip": "Publicar avisos preventivos es un servicio proactivo, no reactivo: no hace falta un incidente previo.",
+      "fromClass": false,
+      "sections": [
+        "csirt"
+      ]
+    },
+    {
+      "id": "forense-t01-d8",
+      "kind": "corta",
+      "points": 2,
+      "minutes": 7,
+      "prompt": "La nube y la movilidad complican la gestión de incidentes. Explica qué problema plantea cada una y qué medidas propone el temario. ¿Qué es el DRaaS?",
+      "keyPoints": [
+        "Explica que al llevar la infraestructura a la nube se pierde control sobre parte de la seguridad",
+        "Define el SLA como requisitos pactados con el proveedor que se pueden exigir y verificar",
+        "Menciona la implicación del departamento legal o de cumplimiento y el uso de un CASB",
+        "Identifica los dos problemas de la movilidad: el acceso remoto y el propio terminal",
+        "Explica que con BYOD el dispositivo mezcla uso personal y profesional y no es de la empresa",
+        "Menciona el MDM como herramienta para controlar los móviles de forma centralizada",
+        "Define el DRaaS como usar la nube como sede de recuperación, ajustada a los tiempos del BIA (RTO, RPO, MTD)"
+      ],
+      "model": [
+        "En la **nube**, al externalizar la infraestructura también se externaliza parte de la seguridad y **se pierde control**: aparecen nuevos puntos de fallo, como el acceso de terceros o el aislamiento entre clientes. El protocolo de incidentes debe fijar en los **SLA** (acuerdos de nivel de servicio) los requisitos mínimos de seguridad, **verificar** que el proveedor los cumple, implicar al departamento **legal o de cumplimiento** y añadir controles propios como un **CASB** (Cloud Access Security Broker), que vigila el acceso a los servicios en la nube. Un SLA no garantiza por sí solo que no habrá brechas.",
+        "En la **movilidad** hay dos problemas: el **acceso remoto**, que complica saber quién entra, y el **propio terminal**, que la empresa no controla de extremo a extremo. Con **BYOD** (trae tu propio dispositivo) el móvil ni siquiera es de la empresa y mezcla uso personal y profesional. Se compensa con un **MDM** (gestión de dispositivos móviles), que permite exigir bloqueo y cifrado o borrar los datos de empresa si se roba.",
+        "El **DRaaS** (recuperación ante desastres como servicio) consiste en usar la **nube como sede de respaldo** para seguir operando en una crisis; hay que definir cómo se replican los datos según los tiempos del BIA: RTO, RPO y MTD."
+      ],
+      "tip": "Sobre el SLA, la clave es «se puede exigir y comprobar»; sobre BYOD, «uso mixto y menos control corporativo».",
+      "fromClass": false,
+      "sections": [
+        "nuevos-retos"
+      ]
     }
   ],
   "cases": [

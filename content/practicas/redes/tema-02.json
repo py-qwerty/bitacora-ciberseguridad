@@ -116,6 +116,53 @@
       "tip": "El profesor dijo que en el examen no se piden comandos complicados de memoria, pero sí «dada esta regla iptables, ¿qué significa?» o escribir una regla sencilla. Lee siempre primero origen y destino para saber si es INPUT, FORWARD u OUTPUT.",
       "fromClass": true,
       "sections": ["iptables-cadenas", "iptables-reglas"]
+    },
+    {
+      "id": "redes-t02-d6",
+      "kind": "corta",
+      "points": 2,
+      "minutes": 7,
+      "prompt": "¿Por qué necesita un cortafuegos un equipo conectado a una red? Explica qué es un cortafuegos, dónde se coloca y qué tráfico filtra.",
+      "keyPoints": [
+        "Explica que un equipo aislado solo se puede atacar con acceso físico",
+        "Explica que al conectarlo se le puede atacar en remoto y el ataque puede extenderse al resto de la red",
+        "Indica que el tráfico que llega por la red no siempre es fiable y que no se puede cerrar todo porque hay servicios que deben ser accesibles (web, DNS)",
+        "Define el cortafuegos como un sistema situado normalmente entre Internet y la red local que deja pasar solo el tráfico legítimo",
+        "Destaca que filtra en los dos sentidos, entrante y saliente, y explica por qué importa el saliente (un equipo infectado que contacta con el atacante)"
+      ],
+      "model": [
+        "Un equipo **aislado** tiene una defensa natural: para atacarlo hay que tener **acceso físico** a él. En cuanto se **conecta a una red**, pierde esa ventaja: se le puede atacar **en remoto**, desde cualquier sitio, y un ataque contra él puede **extenderse** a los demás equipos de la misma red. Además, el tráfico que llega por la red no siempre es fiable.",
+        "Tampoco se puede cerrar todo, porque muchas organizaciones necesitan que ciertos servicios, como la web (HTTP) o el DNS, sean accesibles desde fuera, y cada servicio abierto es una puerta por la que puede entrar un atacante.",
+        "Por eso se usa un **cortafuegos** (firewall): un sistema que se coloca normalmente **entre Internet y la red local** para que solo pase el tráfico legítimo y evitar que usuarios no autorizados de Internet accedan a la red privada (la intranet).",
+        "Filtra en **los dos sentidos**: el tráfico que entra desde Internet y el que sale desde la red interna. El saliente también importa: si un equipo interno está infectado, el cortafuegos puede impedir que se conecte hacia fuera para hablar con el atacante."
+      ],
+      "tip": "La trampa típica es decir que el cortafuegos solo controla lo que entra. Controla ambos sentidos.",
+      "fromClass": false,
+      "sections": ["exposicion"]
+    },
+    {
+      "id": "redes-t02-d7",
+      "kind": "corta",
+      "points": 2,
+      "minutes": 8,
+      "prompt": "Explica cómo organiza iptables su trabajo en tablas, cadenas y reglas. Describe para qué sirve cada tabla e indica cuál usarías para: (a) bloquear el acceso al puerto 22 desde Internet; (b) que toda la red local salga a Internet con una única IP pública; (c) cambiar el TTL de los paquetes.",
+      "keyPoints": [
+        "Explica que iptables es la herramienta de usuario para configurar Netfilter, la parte del núcleo de Linux que procesa los paquetes, y que es un cortafuegos de estado",
+        "Describe la jerarquía tablas, cadenas y reglas (las tablas agrupan una función, contienen cadenas y estas contienen reglas)",
+        "Explica filter como la tabla por defecto, que acepta o descarta paquetes",
+        "Explica nat (cambiar direcciones de origen o destino) y mangle (modificar cabeceras como el TTL)",
+        "Menciona raw (excluir paquetes del seguimiento de conexiones) y security (para SELinux) como tablas de uso raro",
+        "Asigna correctamente: (a) filter, (b) nat, (c) mangle"
+      ],
+      "model": [
+        "En Linux, la parte del núcleo que procesa los paquetes de red se llama **Netfilter**, e **iptables** es la herramienta con la que el usuario escribe las reglas. Es un **cortafuegos de estado** (recuerda las conexiones en curso).",
+        "Trabaja con tres niveles: las **tablas** agrupan una función (filtrar, traducir direcciones, modificar paquetes); dentro de cada tabla hay **cadenas**, que son los puntos del recorrido donde se evalúan los paquetes que llegan (INPUT), salen (OUTPUT) o atraviesan (FORWARD) el equipo; y cada cadena contiene **reglas**: una condición y la acción que se aplica si el paquete la cumple.",
+        "Las tablas son: **filter**, la tabla por defecto (la que se usa si no se indica otra), que decide si un paquete se **acepta o se descarta**; **nat**, que **cambia direcciones** de origen o destino; **mangle**, que **modifica campos de la cabecera**, como el TTL; **raw**, que actúa antes del seguimiento de estado y permite sacar paquetes de él; y **security**, solo para sistemas con SELinux. En la práctica casi siempre se usan filter y nat.",
+        "Respuestas: (a) bloquear el puerto 22 es aceptar o descartar, así que **filter**; (b) salir con una única IP pública es traducir direcciones, así que **nat**; (c) cambiar el TTL es modificar una cabecera, así que **mangle**."
+      ],
+      "tip": "El profesor insistió en que no hay que memorizar comandos, pero sí entender la lógica. Asocia verbo y tabla: aceptar/descartar es filter, cambiar direcciones es nat, cambiar cabeceras es mangle.",
+      "fromClass": true,
+      "sections": ["iptables-tablas"]
     }
   ],
   "cases": [
@@ -205,7 +252,12 @@
     {
       "id": "redes-t02-o3",
       "title": "Ordena las tablas de iptables tal como se consultan en un mismo punto",
-      "items": ["raw", "mangle", "nat", "filter"],
+      "items": [
+        "raw",
+        "mangle",
+        "nat",
+        "filter"
+      ],
       "why": "Dentro de un mismo punto del recorrido el orden es siempre raw, mangle, nat y filter. Por ejemplo, en PREROUTING se consultan raw, mangle y nat, y filter no aparece hasta INPUT o FORWARD, cuando ya se ha decidido adónde va el paquete.",
       "sections": ["iptables-cadenas"]
     }

@@ -116,6 +116,49 @@
       ],
       "fromClass": false,
       "sections": ["evidencia-digital", "recogida-adquisicion"]
+    },
+    {
+      "id": "ciberdelitos-t10-d6",
+      "kind": "corta",
+      "points": 2,
+      "minutes": 6,
+      "prompt": "Un proveedor ofrece a una empresa una herramienta forense con el lema «con nuestro software ya cumples la ISO/IEC 27037». ¿Es cierto? Explica qué es esa norma y qué cubre.",
+      "keyPoints": [
+        "Afirma que no: la norma no exige herramientas concretas; la clave es la metodología, junto con personal competente y documentación",
+        "Explica que es una norma técnica internacional de cumplimiento voluntario, no una ley, útil para demostrar que se actuó con rigor",
+        "Indica que da directrices para identificar, recoger, adquirir y preservar evidencias digitales",
+        "Explica que busca garantizar la integridad y la autenticidad de las evidencias para compensar su fragilidad",
+        "Indica que no cubre el análisis ni las cuestiones judiciales",
+        "Menciona algún componente clave, como la cadena de custodia, la asignación de papeles y responsabilidades o la documentación"
+      ],
+      "model": [
+        "**No es cierto.** La ISO/IEC 27037 **no exige herramientas concretas**: lo que da credibilidad al profesional es la **metodología**. Ningún software sustituye la cadena de custodia, la competencia del personal ni la documentación de lo que se hace.",
+        "Es una **norma técnica internacional**, de cumplimiento voluntario (no es una ley), que da directrices para **identificar, recoger, adquirir y preservar** evidencias digitales. Busca garantizar su **integridad** y su **autenticidad**, porque la evidencia digital es frágil y se altera con facilidad. Se ocupa de los pasos **previos al análisis**: no trata el análisis ni las cuestiones judiciales.",
+        "Entre sus componentes clave están la **cadena de custodia**, la **asignación de papeles y responsabilidades** (quién autoriza, quién adquiere, quién custodia), la documentación y la priorización de lo que se adquiere. Está pensada para quien llega primero al incidente, para los especialistas y para los analistas forenses."
+      ],
+      "fromClass": false,
+      "sections": ["iso-27037"]
+    },
+    {
+      "id": "ciberdelitos-t10-d7",
+      "kind": "corta",
+      "points": 2,
+      "minutes": 6,
+      "prompt": "Un informe forense sobre el portátil de un empleado encuentra un archivo que pudo crear el propio usuario o alguien mediante un acceso remoto, y concluye: «Lo hizo el empleado». Además, el perito revisó todo el portátil, incluidas fotos y conversaciones personales, sin ninguna garantía. ¿Qué problemas ves para que ese informe sirva como prueba?",
+      "keyPoints": [
+        "Explica que la conclusión presenta una hipótesis como si fuera un hecho probado",
+        "Indica que el informe debe separar lo observado, lo inferido y las limitaciones, para que el juez y las partes puedan contrastar las conclusiones",
+        "Explica que la validez depende de que el dispositivo se haya identificado, preservado y analizado correctamente y de forma individual",
+        "Indica que hay que probar la relación directa entre lo encontrado y los hechos investigados",
+        "Explica que el dispositivo guarda información de la intimidad de su titular, por lo que el análisis debe hacerse legalmente y con garantías jurídicas"
+      ],
+      "model": [
+        "El informe tiene dos problemas. El primero es de **razonamiento**: hay dos explicaciones posibles para el archivo, pero concluye «lo hizo el empleado», es decir, presenta una **hipótesis como hecho probado**. Un buen informe separa **lo observado** (el archivo existe, con esta fecha), **lo inferido** (pudo crearlo el usuario o un acceso remoto) y **las limitaciones** que impiden asegurarlo. Así el juez y las partes pueden contrastar las conclusiones.",
+        "El segundo es **legal**: el portátil guarda información de la **intimidad y privacidad** de su titular. Revisar fotos y conversaciones personales sin garantías puede invalidar lo obtenido, porque el análisis debe hacerse **legalmente** y extremando las garantías jurídicas.",
+        "Además, para que la prueba valga hay que demostrar que el dispositivo se **identificó, preservó y analizó correctamente** y que lo encontrado tiene **relación directa** con los hechos investigados."
+      ],
+      "fromClass": false,
+      "sections": ["informes-privacidad"]
     }
   ],
   "cases": [

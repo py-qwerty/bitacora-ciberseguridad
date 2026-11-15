@@ -116,6 +116,30 @@
       ],
       "fromClass": false,
       "sections": ["mecanismos"]
+    },
+    {
+      "id": "redes-t01-d6",
+      "kind": "corta",
+      "points": 2,
+      "minutes": 7,
+      "prompt": "¿Qué es la recomendación X.800 de la ITU y para qué sirve? Explica los tres conceptos en los que organiza la seguridad y relaciónalos con un ejemplo.",
+      "keyPoints": [
+        "Define X.800 como la arquitectura de seguridad OSI publicada por la ITU (Unión Internacional de Telecomunicaciones)",
+        "Explica que es un marco descriptivo y no una especificación de implementación: no dice cómo programar nada",
+        "Indica que sirve como vocabulario común para analizar necesidades de seguridad y evaluar productos y políticas",
+        "Define ataque a la seguridad, servicio de seguridad y mecanismo de seguridad",
+        "Relaciona los tres conceptos: el servicio frena ataques y se consigue mediante mecanismos",
+        "Pone un ejemplo que encadene ataque, servicio y mecanismo (por ejemplo, escucha, confidencialidad y cifrado)"
+      ],
+      "model": [
+        "La **X.800** es una recomendación de la **ITU** (Unión Internacional de Telecomunicaciones, organismo de Naciones Unidas) llamada «Arquitectura de seguridad OSI». Describe de forma sistemática qué hace falta para proteger la comunicación entre sistemas: qué servicios de seguridad existen, en qué capa OSI se puede aplicar cada uno y con qué mecanismos se consiguen.",
+        "**No es una especificación de implementación**: no explica cómo programar nada. Es un **marco descriptivo**, un vocabulario común que ayuda a los responsables de seguridad a analizar qué necesitan y a evaluar productos y políticas.",
+        "Organiza la seguridad en tres ideas: el **ataque** (intento de destruir, exponer, alterar, robar o acceder sin permiso a información o servicios: «¿qué me pueden hacer?»), el **servicio de seguridad** (la propiedad que quiero garantizar para frenar esos ataques: «¿qué quiero proteger?») y el **mecanismo de seguridad** (la técnica concreta que previene, detecta o recupera: «¿con qué lo consigo?»).",
+        "Ejemplo: un atacante escucha la wifi de una cafetería para leer un correo (**ataque** pasivo). Para frenarlo necesito **confidencialidad** (servicio), y la consigo con **cifrado** (mecanismo)."
+      ],
+      "tip": "No te quedes en la definición: el corrector busca que digas que X.800 es descriptiva y que enlaces ataque, servicio y mecanismo con un ejemplo.",
+      "fromClass": false,
+      "sections": ["arquitectura-x800"]
     }
   ],
   "cases": [

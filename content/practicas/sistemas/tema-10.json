@@ -91,6 +91,28 @@
       "tip": "Las asociaciones más preguntadas: HDFS almacena, YARN gestiona recursos, Kerberos autentica, Ranger aplica políticas, Knox es la puerta única y KMS gestiona claves.",
       "fromClass": false,
       "sections": ["arquitectura-hadoop", "seguridad-hadoop"]
+    },
+    {
+      "id": "sistemas-t10-d5",
+      "kind": "corta",
+      "points": 2,
+      "minutes": 6,
+      "prompt": "¿Por qué la seguridad del big data es distinta de la de un sistema tradicional? Explica qué es la superficie de ataque y describe cuatro amenazas típicas de un ecosistema big data.",
+      "keyPoints": [
+        "Explica que los objetivos de seguridad son los mismos pero cambia la escala: mucho volumen, variedad de tipos, gran velocidad y un ecosistema heterogéneo",
+        "Concluye que los controles tradicionales deben adaptarse y extenderse a un entorno distribuido",
+        "Define superficie de ataque y explica que crece al repartir el sistema entre muchos nodos y servicios",
+        "Describe al menos cuatro amenazas de la lista (acceso no autorizado, suplantación, intercepción, manipulación, exposición de metadatos, código malicioso en MapReduce o UDF, insiders, fallos de configuración, incumplimiento normativo, DoS)",
+        "Pone un ejemplo, como metadatos que revelan información o un ataque de inferencia"
+      ],
+      "model": [
+        "En big data los **objetivos** de seguridad son los mismos, pero cambia la **escala**: hay muchísimos datos, de **tipos muy distintos**, que llegan y se consumen a **gran velocidad**, dentro de un **ecosistema heterogéneo** con muchas fuentes, plataformas y consumidores. Por eso los controles de siempre no bastan: hay que **adaptarlos y extenderlos** a un entorno distribuido.",
+        "La **superficie de ataque** es el conjunto de puntos por los que un atacante puede entrar: interfaces, identidades, conexiones y servicios. Al repartir datos y trabajo entre muchos nodos, crece mucho, igual que un centro comercial tiene más puertas que un piso.",
+        "Amenazas típicas: **acceso no autorizado** de usuarios o servicios; **suplantación** de un nodo legítimo por uno falso; **intercepción** de los datos en tránsito; **exposición de metadatos**, como una columna llamada «diagnostico_vih», que facilita ataques de inferencia; **código malicioso** en trabajos MapReduce o UDF; y **fallos de configuración** con permisos excesivos."
+      ],
+      "tip": "Ante «¿cuál es un riesgo común en big data?», la respuesta es la superficie de ataque amplia por la distribución. La escalabilidad es una ventaja, no un riesgo.",
+      "fromClass": false,
+      "sections": ["que-es-big-data", "amenazas"]
     }
   ],
   "cases": [

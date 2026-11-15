@@ -110,6 +110,75 @@
       ],
       "fromClass": true,
       "sections": ["reglamento-ia"]
+    },
+    {
+      "id": "ciberdelitos-t03-d6",
+      "kind": "corta",
+      "points": 2,
+      "minutes": 6,
+      "prompt": "NIS 2 no fue la primera directiva europea de ciberseguridad. Explica qué aportó la Directiva NIS original de 2016 y en qué marco político se propuso después su sustituta.",
+      "keyPoints": [
+        "Explica que la Directiva NIS buscaba un nivel común elevado de seguridad de las redes y sistemas de información en toda la Unión",
+        "Indica a quién se dirigía: operadores de servicios esenciales (energía, transporte, banca, salud, agua…) y proveedores de servicios digitales (mercados en línea, buscadores, nube)",
+        "Menciona lo que cada Estado debía crear: estrategia nacional, autoridades competentes, punto de contacto único y uno o varios CSIRT",
+        "Menciona la cooperación europea: un Grupo de cooperación (estratégica) y una red de CSIRT (operativa)",
+        "Explica que NIS 2 se propuso dentro de la estrategia de ciberseguridad de la UE de 2020 para la década digital, junto con la revisión de las infraestructuras críticas",
+        "Indica el motivo: los servicios esenciales dependen cada vez más de las redes y la UE carecía de una conciencia colectiva de las amenazas"
+      ],
+      "model": [
+        "La **Directiva NIS** (2016) fue el primer **suelo común europeo** de ciberseguridad. Su objetivo era un **nivel común elevado de seguridad** de las redes y sistemas de información, porque los incidentes crecían y amenazaban el mercado interior. Se dirigía a los **operadores de servicios esenciales** (energía, transporte, banca, salud, agua…) y a los **proveedores de servicios digitales** (mercados en línea, buscadores y nube), con requisitos de seguridad y de notificación de incidentes.",
+        "Obligaba a cada Estado a tener una **estrategia nacional**, **autoridades competentes**, un **punto de contacto único** y **uno o varios CSIRT** (equipos de respuesta a incidentes). Y creaba dos vías de cooperación: un **Grupo de cooperación** para lo estratégico y una **red de CSIRT** para lo operativo.",
+        "Su sustituta, NIS 2, se propuso en el marco de la **Estrategia de Ciberseguridad de la UE para la Década Digital** (2020), junto con la revisión de las infraestructuras críticas. El diagnóstico era que los servicios esenciales dependen cada vez más de las redes y que la UE no tenía una **conciencia colectiva** de las amenazas, porque los Estados no compartían la información de forma sistemática."
+      ],
+      "tip": "La profesora dijo que la Directiva NIS original puede preguntarse como antecedente de NIS 2. Trampa típica: cada Estado designa uno o varios CSIRT, no uno solo.",
+      "fromClass": true,
+      "sections": ["directiva-nis", "estrategia-ue"]
+    },
+    {
+      "id": "ciberdelitos-t03-d7",
+      "kind": "corta",
+      "points": 2,
+      "minutes": 6,
+      "prompt": "Una compañía eléctrica ya cumple NIS 2 y pregunta si también le afecta la directiva europea de resiliencia de las entidades críticas. ¿Qué protege cada norma? ¿Pueden aplicársele las dos?",
+      "keyPoints": [
+        "Explica que la directiva de entidades críticas protege sobre todo la resiliencia física (instalaciones, transformadores, tuberías) frente a sabotajes, catástrofes naturales o atentados",
+        "Explica que NIS 2 protege las redes y sistemas de información, la parte digital",
+        "Indica que se aplican de forma coordinada y que la directiva de entidades críticas no regula lo que ya regula NIS 2",
+        "Explica que es entidad crítica la que el Estado identifica porque presta un servicio esencial en su territorio y un incidente tendría efectos perturbadores significativos",
+        "Menciona sus obligaciones: evaluación de riesgos y notificación de incidentes en 24 horas, con informe detallado en un mes",
+        "Indica que una entidad crítica es automáticamente entidad esencial en NIS 2"
+      ],
+      "model": [
+        "**Pueden aplicársele las dos**, porque protegen cosas distintas. NIS 2 protege el «sistema nervioso» digital: las **redes y sistemas de información**. La directiva de **resiliencia de las entidades críticas** protege sobre todo el «cuerpo» físico: transformadores, líneas, instalaciones, frente a sabotajes, catástrofes naturales o atentados. Se aplican **de forma coordinada** y la segunda no regula lo que ya regula NIS 2.",
+        "Será **entidad crítica** si el Estado la identifica como tal: presta un **servicio esencial** (la electricidad lo es), opera en su territorio y un incidente tendría **efectos perturbadores significativos**. En ese caso debe hacer una **evaluación de riesgos** y notificar los incidentes en **24 horas**, con un informe detallado en un mes como máximo.",
+        "Además, una entidad crítica pasa a ser automáticamente **entidad esencial** en NIS 2, con las obligaciones más exigentes de esa directiva."
+      ],
+      "tip": "No mezcles plazos: la directiva de entidades críticas pide 24 horas y un mes; NIS 2, 24 horas, 72 horas y un mes.",
+      "fromClass": false,
+      "sections": ["entidades-criticas"]
+    },
+    {
+      "id": "ciberdelitos-t03-d8",
+      "kind": "corta",
+      "points": 2,
+      "minutes": 7,
+      "prompt": "Un fabricante de cámaras IP quiere vender en toda la Unión Europea. Prueba la seguridad de las cámaras solo antes de lanzarlas, nunca publica actualizaciones y quiere conseguir el nivel más alto de la certificación europea de ciberseguridad mediante una autoevaluación. ¿Qué le dirías según la normativa europea estudiada?",
+      "keyPoints": [
+        "Explica que la UE ha creado un marco común de certificación de ciberseguridad de productos, servicios y procesos TIC para evitar que cada país tenga su propio sello, con ENISA como agencia de apoyo",
+        "Indica que la certificación es voluntaria, salvo que una norma la exija",
+        "Distingue los tres niveles de garantía (básico, sustancial y elevado) según el tipo de atacante frente al que se evalúa el producto",
+        "Explica que la autoevaluación solo cabe en el nivel básico y para productos de bajo riesgo, nunca en el elevado",
+        "Explica que la ley de ciberresiliencia (CRA) exige seguridad desde el diseño y gestión de vulnerabilidades durante todo el ciclo de vida, no solo al vender",
+        "Menciona la documentación técnica, la evaluación de la conformidad y la vigilancia del mercado (parches, notificación de incidentes)"
+      ],
+      "model": [
+        "Sobre la certificación: la UE ha creado un **marco europeo de certificación de la ciberseguridad** para que un producto no necesite un sello distinto en cada país. **ENISA**, la agencia europea de ciberseguridad, lo impulsa. La certificación es **voluntaria**, salvo que una norma la exija.",
+        "Hay tres **niveles de garantía**: **básico** (riesgos conocidos), **sustancial** (atacantes con recursos limitados) y **elevado** (atacantes sofisticados con muchos recursos). La **autoevaluación** del fabricante solo se admite en el nivel **básico** y para productos de bajo riesgo, así que **no puede obtener el nivel elevado evaluándose a sí mismo**.",
+        "Además, su forma de trabajar choca con la **ley de ciberresiliencia** (CRA) para productos con elementos digitales, como una cámara conectada: exige **seguridad desde el diseño** y **gestión de vulnerabilidades durante todo el ciclo de vida**, no solo el día de la venta. Debe tener **documentación técnica**, pasar la **evaluación de la conformidad** y, ya en el mercado, publicar parches y notificar incidentes graves."
+      ],
+      "tip": "El temario estudia la CRA como propuesta: contesta según su lógica (ciclo de vida) sin entrar en fechas de vigencia.",
+      "fromClass": false,
+      "sections": ["reglamento-ciberseguridad", "cra-y-otras"]
     }
   ],
   "cases": [

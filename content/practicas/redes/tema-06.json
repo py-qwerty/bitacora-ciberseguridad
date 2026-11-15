@@ -119,6 +119,53 @@
       ],
       "fromClass": false,
       "sections": ["diffie-hellman", "rsa"]
+    },
+    {
+      "id": "redes-t06-d6",
+      "kind": "corta",
+      "points": 2,
+      "minutes": 7,
+      "prompt": "Explica cómo funciona la cifra en flujo. ¿Qué papel tienen la secuencia cifrante y la operación XOR? ¿Por qué la misma operación sirve para cifrar y descifrar? Pon RC4 como ejemplo.",
+      "keyPoints": [
+        "Explica que la cifra en flujo cifra bit a bit o byte a byte",
+        "Explica que no usa la clave directamente sino una secuencia cifrante pseudoaleatoria generada a partir de la clave secreta",
+        "Define XOR (1 si los bits son distintos, 0 si son iguales)",
+        "Explica que XOR es involutiva: aplicarla dos veces con la misma secuencia devuelve el dato original, por eso cifrar y descifrar son la misma operación",
+        "Describe RC4 como cifrador en flujo byte a byte, muy rápido y sencillo, usado en SSL/TLS, WEP y WPA",
+        "Indica que RC4 hoy se considera inseguro"
+      ],
+      "model": [
+        "En la **cifra en flujo** el mensaje se cifra **bit a bit o byte a byte**. No se usa la clave tal cual: a partir de la clave secreta K, un algoritmo generador produce una **secuencia cifrante** pseudoaleatoria (parece azar, pero el receptor con la misma clave genera exactamente la misma). Cada bit del mensaje se combina con un bit distinto de esa secuencia.",
+        "La combinación se hace con **XOR** (o exclusivo), que da 1 si los dos bits son distintos y 0 si son iguales. XOR es **involutiva**: si aplicas XOR dos veces con el mismo valor, recuperas el dato original. El emisor calcula C = M ⊕ S y el receptor calcula C ⊕ S = M. Por eso **cifrar y descifrar son la misma operación**.",
+        "Ejemplo: **RC4**, diseñado por Ron Rivest, cifra **byte a byte**. Una rutina prepara su estado interno a partir de la clave y otra genera un byte de secuencia por cada byte de texto. Fue muy popular por ser **muy rápido** y sencillo, y se usó en SSL/TLS y en el cifrado wifi WEP y WPA, pero hoy se considera **inseguro**."
+      ],
+      "tip": "Trampa típica: aplicar XOR dos veces con la misma secuencia no da cero (eso es X ⊕ X); devuelve el dato original.",
+      "fromClass": false,
+      "sections": ["cifra-flujo"]
+    },
+    {
+      "id": "redes-t06-d7",
+      "kind": "corta",
+      "points": 2,
+      "minutes": 7,
+      "prompt": "Explica cómo funciona un cifrador en bloque: qué es un bloque, qué son las rondas y las subclaves, y qué es el efecto avalancha. ¿Por qué es importante este efecto?",
+      "keyPoints": [
+        "Explica que el texto se divide en bloques de tamaño fijo (típicamente 128 bits) y que cada bloque cifrado tiene el mismo tamaño",
+        "Indica que se usa una única clave compartida por emisor y receptor (cifrado simétrico) y que se añade relleno si el último bloque no está completo",
+        "Explica que combina sustituciones y permutaciones (cifrador de producto)",
+        "Explica que esas operaciones se repiten en rondas, cada una con una subclave distinta obtenida de la clave por expansión de clave",
+        "Define el efecto avalancha: cambiar un bit de la entrada o de la clave cambia aproximadamente el 50 % de los bits de salida",
+        "Explica que así no quedan patrones visibles y un espía no puede deducir qué ha cambiado, con un ejemplo"
+      ],
+      "model": [
+        "Un **cifrador en bloque** trocea el mensaje en **bloques de tamaño fijo**, típicamente de **128 bits** (16 octetos), y cada bloque en claro produce un bloque cifrado del mismo tamaño. Si el último bloque no se completa, se añade **relleno** (padding). Usa **una única clave**, compartida por emisor y receptor.",
+        "Para mezclar el texto con la clave combina **sustituciones** (cambiar unos valores por otros) y **permutaciones** (cambiar de sitio los bits); por eso se llaman cifradores de producto. Estas operaciones se repiten varias veces, en **rondas**, y en cada ronda se usa una **subclave** distinta, calculada a partir de la clave mediante la **expansión de clave**.",
+        "El objetivo de las rondas es el **efecto avalancha**: cambiar **un solo bit** de la entrada o de la clave debe cambiar **aproximadamente la mitad** de los bits de salida. Por ejemplo, si cifro con AES «Pago 100 €» y «Pago 900 €», los dos resultados no se parecen en nada.",
+        "Es importante porque así **no quedan patrones**: un espía que compara dos mensajes cifrados no puede deducir que solo ha cambiado una cifra ni sacar pistas sobre la clave."
+      ],
+      "tip": "No confundas bloque con flujo (bit a bit), con asimétrico (dos claves) ni con hash (huella irreversible).",
+      "fromClass": false,
+      "sections": ["cifra-bloque"]
     }
   ],
   "cases": [

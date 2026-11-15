@@ -117,6 +117,30 @@
       ],
       "fromClass": false,
       "sections": ["squid-acl", "squid-auth", "squid-filtros"]
+    },
+    {
+      "id": "redes-t05-d6",
+      "kind": "corta",
+      "points": 2,
+      "minutes": 7,
+      "prompt": "¿Qué es Squid? Explica qué ocurre cuando un cliente le pide una página que ya está en su caché y cuando no lo está, qué ventajas aporta y por qué sirve también para controlar el acceso.",
+      "keyPoints": [
+        "Define Squid como un proxy web con caché de software libre, muy usado en Linux",
+        "Explica que si el objeto está en la caché responde directamente con la copia guardada",
+        "Explica que si no lo está lo pide a Internet, lo entrega al cliente y guarda una copia",
+        "Indica las ventajas de la caché: navegación más rápida y menos consumo de ancho de banda",
+        "Explica que, como todo el tráfico web pasa por él, puede aplicar políticas de control de acceso",
+        "Menciona alguna otra característica del temario (soporte SSL/TLS, integración con Directorio Activo, caché DNS) o que se configura en /etc/squid/squid.conf",
+        "No lo confunde con un IDS ni con un cortafuegos de red"
+      ],
+      "model": [
+        "**Squid** es un **proxy web con caché**, de software libre y muy usado en Linux. Los navegadores de la organización no van directamente a Internet: le mandan sus peticiones a él.",
+        "Si un cliente pide una página que **ya está en la caché** (porque alguien la pidió antes), Squid responde directamente con la **copia guardada**. Si **no está**, la pide a Internet, se la entrega al cliente y **guarda una copia** para la próxima vez. Así la navegación es **más rápida** y se gasta **menos ancho de banda**.",
+        "Como **todo el tráfico web pasa por él**, también sirve para **controlar el acceso**: decidir qué usuarios pueden navegar, a qué sitios y en qué horario. Además soporta SSL/TLS, cachea las consultas DNS y se integra con el Directorio Activo de Microsoft para autenticar a los usuarios. Toda su configuración está en un único fichero, **/etc/squid/squid.conf**.",
+        "Ojo: Squid es un proxy, **no un IDS ni un cortafuegos de red**, y la caché no se salta la política de acceso."
+      ],
+      "fromClass": false,
+      "sections": ["squid"]
     }
   ],
   "cases": [

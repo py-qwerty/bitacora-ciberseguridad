@@ -26,7 +26,10 @@
       ],
       "tip": "Trampa clásica: el impacto no incluye la frecuencia; el riesgo sí. Y Magerit está centrada en el activo, no en la amenaza ni en la vulnerabilidad.",
       "fromClass": false,
-      "sections": ["magerit-que-es", "magerit-conceptos"]
+      "sections": [
+        "magerit-que-es",
+        "magerit-conceptos"
+      ]
     },
     {
       "id": "gobierno-t08-d2",
@@ -51,7 +54,9 @@
         "En la práctica, MAR.1, MAR.2 y MAR.3 se hacen **a la vez**, porque se entrevista a las mismas personas, que cuentan todo de un activo antes de pasar al siguiente."
       ],
       "fromClass": false,
-      "sections": ["magerit-mar"]
+      "sections": [
+        "magerit-mar"
+      ]
     },
     {
       "id": "gobierno-t08-d3",
@@ -76,7 +81,14 @@
       ],
       "tip": "Una tabla de tres columnas (Magerit, 27005, NIST) con las filas origen, naturaleza, fases y punto fuerte se escribe rápido y deja todo claro al corrector.",
       "fromClass": false,
-      "sections": ["por-que-metodologia", "magerit-que-es", "iso-27005", "iso-apreciacion", "nist-gestion", "nist-proceso"]
+      "sections": [
+        "por-que-metodologia",
+        "magerit-que-es",
+        "iso-27005",
+        "iso-apreciacion",
+        "nist-gestion",
+        "nist-proceso"
+      ]
     },
     {
       "id": "gobierno-t08-d4",
@@ -101,7 +113,9 @@
       ],
       "tip": "En clase se presentaron sobre todo el cuantitativo y el cualitativo como los habituales, y se dijo que el cualitativo es más rápido para empezar y el cuantitativo más preciso con experiencia. El tema añade el semicuantitativo: inclúyelo.",
       "fromClass": true,
-      "sections": ["nist-enfoques"]
+      "sections": [
+        "nist-enfoques"
+      ]
     },
     {
       "id": "gobierno-t08-d5",
@@ -124,7 +138,38 @@
         "Todas usan los mismos factores, pero en distinto orden. Como el punto de partida **sesga** los resultados, NIST recomienda repetir la identificación desde **una segunda aproximación**. Por ejemplo, un equipo que solo mira amenazas conocidas puede no ver un servidor FTP antiguo abierto a Internet, que aparecería al analizar desde la vulnerabilidad."
       ],
       "fromClass": false,
-      "sections": ["nist-proceso", "nist-aproximaciones"]
+      "sections": [
+        "nist-proceso",
+        "nist-aproximaciones"
+      ]
+    },
+    {
+      "id": "gobierno-t08-d6",
+      "kind": "larga",
+      "points": 3,
+      "minutes": 13,
+      "prompt": "Enumera y describe las actividades del proceso de gestión del riesgo en Magerit. Explica la diferencia entre el análisis y la valoración de los riesgos y por qué son necesarias la comunicación y consulta y el seguimiento y revisión.",
+      "keyPoints": [
+        "Indica que Magerit está alineada con la UNE-ISO 31000 y por eso reproduce sus actividades",
+        "Describe la determinación del contexto: condicionantes externos e internos, alcance, obligaciones legales y contractuales, y fijación de criterios",
+        "Explica que lo que no se identifica no se analiza y queda como riesgo oculto",
+        "Describe el análisis como calificar los riesgos de forma cuantitativa o cualitativa, hecho sobre todo por técnicos",
+        "Describe la valoración como traducir las consecuencias a términos de negocio y decidir qué se trata y qué se acepta, tarea de la dirección",
+        "Describe el tratamiento como elegir e implantar opciones que modifican el riesgo",
+        "Explica la comunicación y consulta con usuarios, proveedores (instrucciones claras y niveles de servicio) y órganos de gobierno, para equilibrar seguridad y productividad",
+        "Explica que el seguimiento contrasta el análisis con la realidad y permite mejorar de forma continua"
+      ],
+      "model": [
+        "Magerit está **alineada con la UNE-ISO 31000**, la norma general de gestión del riesgo, así que su proceso reproduce las mismas actividades. Primero, la **determinación del contexto**: se estudian los condicionantes **externos e internos**, el **alcance**, las obligaciones legales, los compromisos contractuales y las relaciones con otras organizaciones; con ello se fijan los **criterios**. Después, la **identificación**: una lista de los riesgos posibles. Es clave porque **lo que no se identifica no se analiza** y queda como **riesgo oculto**.",
+        "El **análisis** califica los riesgos, cuantificando sus consecuencias (análisis cuantitativo) u ordenando su importancia relativa (cualitativo); lo hacen sobre todo **técnicos y analistas** y produce cifras o un orden de importancia. La **valoración** va más allá de lo técnico: traduce las consecuencias a **términos de negocio** (estrategia, percepción, política) y decide **qué riesgos se tratan y cuáles se aceptan**; es tarea de la **dirección**. Luego viene el **tratamiento**: elegir e implantar las opciones que modifican la situación de riesgo.",
+        "Acompañan a todo el proceso dos actividades. La **comunicación y consulta** existe porque un sistema muy seguro que entorpece el trabajo es absurdo: hay que equilibrar seguridad y productividad. Se tiene en cuenta a los **usuarios** (sus necesidades, y se les informa para que colaboren), a los **proveedores externos** (se les dan **instrucciones claras** para poder exigirles los niveles de servicio y una buena gestión de incidentes) y a los **órganos de gobierno** (canales que den confianza en que los incidentes se afrontarán según el plan).",
+        "Ejemplo: una empresa externaliza sus copias sin decir al proveedor que necesita recuperar los datos en menos de 4 horas; tras un incidente tarda dos días y no puede reclamar nada. Faltó comunicación. Por último, el **seguimiento y revisión** recuerda que el análisis es una actividad «de despacho»: hay que contrastarlo con la realidad, reaccionar rápido ante incidentes y **mejorar de forma continua**."
+      ],
+      "tip": "Si preguntan qué se hace primero al fijar el contexto: alcance y condicionantes internos y externos, no elegir la herramienta ni la escala. La pareja análisis (técnico) y valoración (negocio) es lo que da profundidad.",
+      "fromClass": false,
+      "sections": [
+        "magerit-proceso"
+      ]
     }
   ],
   "cases": [
@@ -181,7 +226,12 @@
         }
       ],
       "tip": "Los números son sencillos a propósito: lo que puntúa es explicar por qué el riesgo y el impacto no ordenan igual las amenazas.",
-      "sections": ["magerit-que-es", "magerit-conceptos", "magerit-mar", "magerit-decisiones"]
+      "sections": [
+        "magerit-que-es",
+        "magerit-conceptos",
+        "magerit-mar",
+        "magerit-decisiones"
+      ]
     },
     {
       "id": "gobierno-t08-c2",
@@ -221,30 +271,56 @@
           ]
         }
       ],
-      "sections": ["iso-27005", "iso-apreciacion", "nist-aproximaciones"]
+      "sections": [
+        "iso-27005",
+        "iso-apreciacion",
+        "nist-aproximaciones"
+      ]
     }
   ],
   "order": [
     {
       "id": "gobierno-t08-o1",
       "title": "Ordena la aproximación metódica de Magerit para determinar el riesgo",
-      "items": ["Determinar los activos, sus dependencias y su valor", "Determinar las amenazas a las que están expuestos", "Determinar las salvaguardas y su eficacia", "Estimar el impacto", "Estimar el riesgo"],
+      "items": [
+        "Determinar los activos, sus dependencias y su valor",
+        "Determinar las amenazas a las que están expuestos",
+        "Determinar las salvaguardas y su eficacia",
+        "Estimar el impacto",
+        "Estimar el riesgo"
+      ],
       "why": "Magerit está centrada en el activo: primero se sabe qué se tiene y cuánto vale, luego qué lo amenaza y qué lo protege. Con eso se calcula el daño si ocurre (impacto) y, ponderándolo por la probabilidad, el riesgo.",
-      "sections": ["magerit-conceptos"]
+      "sections": [
+        "magerit-conceptos"
+      ]
     },
     {
       "id": "gobierno-t08-o2",
       "title": "Ordena las actividades del análisis de riesgos de Magerit",
-      "items": ["MAR.1 Caracterización de los activos", "MAR.2 Caracterización de las amenazas", "MAR.3 Caracterización de las salvaguardas", "MAR.4 Estimación del estado de riesgo"],
+      "items": [
+        "MAR.1 Caracterización de los activos",
+        "MAR.2 Caracterización de las amenazas",
+        "MAR.3 Caracterización de las salvaguardas",
+        "MAR.4 Estimación del estado de riesgo"
+      ],
       "why": "Se caracterizan activos (modelo de valor), amenazas (mapa de riesgos) y salvaguardas (aplicabilidad e insuficiencias), y al final se procesa todo para estimar impacto y riesgo. En la práctica las tres primeras se hacen a la vez, pero la cuarta necesita las anteriores.",
-      "sections": ["magerit-mar"]
+      "sections": [
+        "magerit-mar"
+      ]
     },
     {
       "id": "gobierno-t08-o3",
       "title": "Ordena las fases de la evaluación de riesgos según NIST SP 800-30",
-      "items": ["Preparación", "Ejecución", "Comunicación de resultados", "Mantenimiento"],
+      "items": [
+        "Preparación",
+        "Ejecución",
+        "Comunicación de resultados",
+        "Mantenimiento"
+      ],
       "why": "Primero se establece el contexto (propósito, alcance, supuestos, fuentes, modelo); después se identifican amenazas y vulnerabilidades y se estiman probabilidad, impacto y riesgo; se comunican los resultados a quien decide; y se mantiene la evaluación al día monitorizando los cambios.",
-      "sections": ["nist-proceso"]
+      "sections": [
+        "nist-proceso"
+      ]
     }
   ]
 }

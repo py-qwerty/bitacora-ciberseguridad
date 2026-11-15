@@ -91,6 +91,27 @@
       "tip": "El profesor insistió en clase en que el registro debe estar «perfectamente diseñado», con los mensajes que interesan para detectar ataques y sin mensajes superfluos.",
       "fromClass": true,
       "sections": ["monitorizacion"]
+    },
+    {
+      "id": "sistemas-t08-d5",
+      "kind": "corta",
+      "points": 2,
+      "minutes": 6,
+      "prompt": "Una vez desplegada la aplicación, ¿qué operaciones de seguridad hay que mantener en producción? Enuméralas y explica por qué la tecnología sola no basta.",
+      "keyPoints": [
+        "Explica que en producción la seguridad se opera de forma continua y no termina nunca",
+        "Enumera la mayoría de operaciones: medidas de protección (balanceo, WAF, RASP), auditoría y monitorización continua, backup y recuperación, gestión de incidentes, formación del personal, concienciación de usuarios y seguridad física",
+        "Explica que hay que detectar y responder con un procedimiento diseñado y ensayado porque el impacto es proporcional al coste",
+        "Explica que un cortafuegos o un IDS mal configurado, o un empleado descuidado, anulan la inversión",
+        "Indica que la concienciación funciona cuando se explica por qué importa cada medida y que todo debe recogerse en la política de seguridad"
+      ],
+      "model": [
+        "Desplegar no es terminar: en producción la seguridad se **opera a diario**. Las operaciones son: aplicar y supervisar **medidas de protección** (balanceo de carga, WAF y RASP); **auditoría y monitorización continua**; **copias de seguridad y recuperación**, con un centro de respaldo; **gestión de incidentes**; **formación continua** del personal técnico; **concienciación** de los usuarios; y **seguridad física**, del personal y de la documentación.",
+        "La tecnología sola no basta. Cuando una amenaza se materializa hay que **detectarla** y responder rápido, porque el **impacto es proporcional al coste económico**: hace falta un procedimiento de respuesta diseñado y ensayado. De nada sirve comprar un cortafuegos o un IDS si se configura mal o si un empleado regala información por descuido. La concienciación funciona cuando cada persona entiende **por qué** importa una medida, y todo ello debe constar en la **política de seguridad** de la organización."
+      ],
+      "tip": "La actividad que sigue viva en producción es la auditoría y monitorización continua; desconfía de las opciones con «solo» y tareas de fases anteriores.",
+      "fromClass": false,
+      "sections": ["operaciones-produccion"]
     }
   ],
   "cases": [

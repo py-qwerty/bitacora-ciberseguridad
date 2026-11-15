@@ -27,7 +27,9 @@
       ],
       "tip": "No te quedes en tres definiciones de una línea: añade el «opuesto» de cada propiedad y un ejemplo propio. Ojo con la trampa de igualar confidencialidad y privacidad.",
       "fromClass": false,
-      "sections": ["cid"]
+      "sections": [
+        "cid"
+      ]
     },
     {
       "id": "gobierno-t01-d2",
@@ -56,7 +58,9 @@
       ],
       "tip": "El profesor citó el cuerpo normativo como posible pregunta de desarrollo. Pon un ejemplo encadenado (antivirus, contraseñas) para demostrar que entiendes la diferencia entre niveles.",
       "fromClass": true,
-      "sections": ["jerarquia-documental"]
+      "sections": [
+        "jerarquia-documental"
+      ]
     },
     {
       "id": "gobierno-t01-d3",
@@ -82,7 +86,9 @@
       ],
       "tip": "La trampa clásica es invertir los papeles: el propietario decide y el custodio aplica, nunca al revés.",
       "fromClass": false,
-      "sections": ["clasificacion"]
+      "sections": [
+        "clasificacion"
+      ]
     },
     {
       "id": "gobierno-t01-d4",
@@ -103,7 +109,10 @@
         "Además de **mitigar** (aplicar controles), un riesgo se puede **aceptar** (convivir con él porque su coste es pequeño), **evitar** (dejar la actividad que lo genera, como dejar de guardar números de tarjeta) o **transferir** (un ciberseguro compensa parte de las pérdidas; no elimina la amenaza, solo comparte las consecuencias económicas)."
       ],
       "fromClass": false,
-      "sections": ["controles", "gestion-riesgos"]
+      "sections": [
+        "controles",
+        "gestion-riesgos"
+      ]
     },
     {
       "id": "gobierno-t01-d5",
@@ -124,7 +133,67 @@
         "Por último, la seguridad **no es una lista de comprobación con un sello**: certificarse en ISO 27001 o en el ENS está bien, pero no significa «ya estoy seguro». Lo importante es ayudar al negocio, gestionar vulnerabilidades e incidentes y diseñar con requisitos de seguridad."
       ],
       "fromClass": true,
-      "sections": ["negocio-activos-amenazas"]
+      "sections": [
+        "negocio-activos-amenazas"
+      ]
+    },
+    {
+      "id": "gobierno-t01-d6",
+      "kind": "larga",
+      "points": 3,
+      "minutes": 13,
+      "prompt": "Explica qué es la seguridad de la información y en qué se diferencia de la seguridad informática. Describe las tres perspectivas desde las que se aborda y justifica por qué se dice que la seguridad es un proceso y no un producto.",
+      "keyPoints": [
+        "Define la seguridad de la información como decidir qué proteger y por qué, de qué y cómo, en cualquier soporte (digital, papel, conversación)",
+        "Distingue la seguridad informática como la parte técnica, más restringida, centrada en los sistemas informáticos",
+        "Describe las tres perspectivas: legal (qué proteger y por qué, leyes de privacidad y propiedad intelectual), organizativa (la seguridad como parte del negocio, apoyada en el análisis de riesgos) y técnica (cómo proteger)",
+        "Explica que un sistema de información incluye personas, procedimientos y estructuras, no solo máquinas, y que por eso se estudia con un enfoque sociotécnico",
+        "Explica que no existe la seguridad perfecta y que decidir cuánta seguridad y a qué coste es una decisión de la dirección",
+        "Explica que la seguridad es un conjunto de actividades continuas que se revisan porque cambian las amenazas y la propia organización",
+        "Describe el ciclo: identificar activos, implantar políticas y normas, usar herramientas de gestión (clasificación, concienciación, análisis de riesgos), establecer controles y revisar",
+        "Pone un ejemplo de reevaluar riesgos ante un cambio (nueva aplicación, nuevos datos)"
+      ],
+      "model": [
+        "La **seguridad de la información** consiste en decidir **qué hay que proteger y por qué, de qué hay que protegerlo y cómo**. Protege la confidencialidad, integridad y disponibilidad de la información **en cualquier soporte**: un fichero, un contrato impreso o una conversación. La **seguridad informática** es un concepto más restringido: solo la parte **técnica** de los sistemas informáticos, como configurar un cortafuegos. Una norma que prohíbe dejar contratos sobre la mesa es seguridad de la información, pero no seguridad informática.",
+        "Se aborda desde **tres perspectivas**. La **legal** se ocupa de las leyes (sobre todo de privacidad y propiedad intelectual) y responde a qué hay que proteger y por qué. La **organizativa** ve la seguridad como parte del negocio: que los procesos funcionen sin interrupciones; se apoya en el **análisis de riesgos** y responde a qué proteger y de qué (robo, espionaje industrial). La **técnica** trata el diseño y configuración de hardware, software y redes, y responde a **cómo** proteger (parches, IDS, honeypots).",
+        "La tecnología sola no basta: un sistema muy sofisticado puede caer porque un empleado descuida su contraseña. Un **sistema de información** incluye **personas, procedimientos y estructuras organizativas**, no solo máquinas, y por eso se estudia con un enfoque **sociotécnico**. Además, **no existe un sistema perfectamente seguro**, así que decidir cuánta seguridad y a qué coste es una decisión de la **dirección**.",
+        "Por eso la seguridad es un **proceso y no un producto**: no se compra una vez y se tiene para siempre. Es un conjunto de actividades continuas: **identificar los activos** (la base de todo), desarrollar e implantar **políticas, normas y procedimientos**, usar **herramientas de gestión** (clasificación de datos, formación y concienciación, análisis de riesgos), establecer **controles** y **revisar** cuando algo cambia, porque evolucionan las amenazas y también la organización.",
+        "Ejemplo: una clínica con políticas aprobadas hace tres años abre una aplicación de citas en línea. No basta con mantener las políticas «porque ya se aprobaron»: hay que **reevaluar los riesgos** (ahora hay datos de salud expuestos en internet) y **adecuar** políticas y controles. Comprar un antivirus es como comprar una bicicleta estática: necesario, pero no te pone en forma por sí solo."
+      ],
+      "tip": "No te quedes en la definición: el corrector busca las tres perspectivas, la idea sociotécnica (personas y procedimientos) y el ciclo de revisión continua con un ejemplo.",
+      "fromClass": false,
+      "sections": [
+        "que-es-seguridad",
+        "proceso"
+      ]
+    },
+    {
+      "id": "gobierno-t01-d7",
+      "kind": "larga",
+      "points": 3,
+      "minutes": 13,
+      "prompt": "«La seguridad es un asunto económico». Explica esta afirmación: qué equilibrio debe buscar una organización, qué costes de la seguridad no aparecen en la factura y qué costes distingue el marco de Mizzi para estimar el retorno de la inversión en seguridad (ROSI).",
+      "keyPoints": [
+        "Explica que el problema central es equilibrar el coste de la seguridad con el impacto económico de los riesgos probables",
+        "Indica la regla general de no gastar en proteger un activo más de lo que costaría perderlo",
+        "Explica que no basta con la frecuencia de los ataques: hay que estimar el impacto, incluidas las pérdidas indirectas",
+        "Menciona costes ocultos: frustración de los empleados, software protegido más caro y lento de desarrollar, y que pocas intrusiones han cerrado empresas",
+        "Explica que las tecnologías se generalizan cuando son fáciles de implantar y los auditores las exigen (ejemplo de los cortafuegos)",
+        "Define el ROSI como el retorno de la inversión en seguridad en forma de pérdidas evitadas",
+        "Describe los costes de Mizzi: coste de ruptura del atacante, construcción, reparación, pérdida de beneficio y reconstrucción",
+        "Explica que los motivos del atacante pueden no ser económicos, por lo que la probabilidad de ataque no depende solo del dinero"
+      ],
+      "model": [
+        "Como la seguridad cuesta dinero, el problema central es **equilibrar el coste de la seguridad con el impacto económico de los riesgos probables**. La regla general es que **no tiene sentido gastar en proteger un activo más de lo que costaría perderlo**: nadie pone una caja fuerte de 5.000 euros para guardar una bicicleta de 200. Para valorar esa pérdida no basta con saber cada cuánto hay ataques; hay que estimar su **impacto**, incluidas las **pérdidas indirectas** (días sin vender, clientes que se van).",
+        "La seguridad tiene además **costes que no salen en la factura**: la **resistencia o frustración** de los empleados, que ven las medidas como un estorbo; el **software bien protegido es más caro** y tarda más en desarrollarse; y, como pocas intrusiones han llevado a cerrar una empresa, muchas empresas, de forma racional, no invierten demasiado. Por eso muchas tecnologías solo se generalizan cuando **son fáciles de implantar** y **los auditores empiezan a exigirlas**, como pasó con los cortafuegos.",
+        "Para justificar la inversión se habla del **ROSI** (Return on Security Investment): cuánto devuelve lo gastado en seguridad en forma de **pérdidas evitadas**. Adrian Mizzi propuso un marco que distingue varios costes. El **coste de ruptura (CTB)** lo soporta el **atacante**: lo que le cuesta romper las defensas; solo ataca si espera ganar más, y se puede estimar con un **pentesting**. Los demás los soporta la organización: **coste de construcción** (montar defensas como cortafuegos o sistemas redundantes), **coste de reparación** (parches y búsqueda proactiva de fallos), **pérdida de beneficio inmediata** tras el incidente y **coste de reconstrucción** (rehacer sistemas y recuperar datos).",
+        "El marco tiene límites: el beneficio del atacante es difícil de estimar y sus motivos pueden **no ser económicos** (venganza, ideología), así que puede asumir un coste de ruptura mayor que cualquier ganancia. Además, medir amenazas y vulnerabilidades es difícil. Aun así, la idea de fondo es útil: la decisión de invertir en seguridad es un **análisis coste-beneficio** que depende del análisis de riesgos."
+      ],
+      "tip": "Trampa típica: el coste de ruptura no lo paga la empresa, sino el atacante. Y decidir solo por la frecuencia de ataques es un error: falta el impacto.",
+      "fromClass": false,
+      "sections": [
+        "economia"
+      ]
     }
   ],
   "cases": [
@@ -185,7 +254,12 @@
         }
       ],
       "tip": "En los casos, nombra siempre la propiedad CID afectada y justifica cada medida con el riesgo que reduce.",
-      "sections": ["cid", "factor-humano", "seguridad-fisica", "clasificacion"]
+      "sections": [
+        "cid",
+        "factor-humano",
+        "seguridad-fisica",
+        "clasificacion"
+      ]
     }
   ],
   "order": [
@@ -202,7 +276,9 @@
         "Crear un programa de concienciación sobre la clasificación"
       ],
       "why": "Primero se sabe quién decide y con qué criterios; después se clasifica, se documentan las excepciones y se asignan controles a cada nivel; al final se prevé cómo termina la clasificación y se explica a la plantilla.",
-      "sections": ["clasificacion"]
+      "sections": [
+        "clasificacion"
+      ]
     },
     {
       "id": "gobierno-t01-o2",
@@ -214,7 +290,9 @@
         "Rendición de cuentas: la acción queda registrada y atribuida al usuario"
       ],
       "why": "Primero digo quién soy, luego lo pruebo; solo entonces el sistema sabe qué puedo hacer y puede atribuirme lo que hice.",
-      "sections": ["otros-conceptos"]
+      "sections": [
+        "otros-conceptos"
+      ]
     }
   ]
 }

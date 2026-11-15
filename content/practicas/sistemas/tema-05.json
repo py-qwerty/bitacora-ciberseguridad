@@ -114,6 +114,53 @@
       ],
       "fromClass": false,
       "sections": ["toctou"]
+    },
+    {
+      "id": "sistemas-t05-d6",
+      "kind": "corta",
+      "points": 2,
+      "minutes": 6,
+      "prompt": "Explica cómo funciona un ataque CSRF con un ejemplo. ¿Por qué el atacante no necesita conocer el identificador de sesión? ¿Cómo lo frena un token anti-CSRF y por qué una API que usa JWT en una cabecera no lo necesita?",
+      "keyPoints": [
+        "Explica que una web maliciosa hace que el navegador de la víctima envíe una petición a un sitio donde tiene la sesión abierta",
+        "Explica que el navegador adjunta la cookie de sesión automáticamente, por eso el atacante no necesita conocerla",
+        "Pone un ejemplo (formulario oculto que crea una cuenta al visitarlo un administrador)",
+        "Explica que el token anti-CSRF es un valor aleatorio, secreto y único que el servidor comprueba antes de procesar, y que si falta o es incorrecto rechaza la petición",
+        "Explica que con JWT en una cabecera no hay cookie que el navegador adjunte solo, así que otra web no puede hacer que se envíe"
+      ],
+      "model": [
+        "En un **CSRF** (Cross-Site Request Forgery) una web maliciosa hace que tu navegador envíe una petición a otro sitio donde **tienes la sesión abierta**. Por ejemplo, un administrador de sitio.com visita una página con un formulario oculto que apunta a sitio.com y se envía solo: sin darse cuenta, **crea una cuenta para el atacante**.",
+        "El atacante **no necesita tu identificador de sesión** porque el navegador **adjunta la cookie automáticamente** a cualquier petición hacia ese sitio, la haya provocado quien la haya provocado. La aplicación no puede distinguirla de una petición legítima.",
+        "El **token anti-CSRF** es un valor **aleatorio, secreto y único** que la aplicación mete en cada formulario y que el servidor **comprueba antes de procesar** nada. La web del atacante no puede conocerlo, así que su petición llega sin token o con uno incorrecto y se **rechaza**. Una **API con JWT en una cabecera** no lo necesita: el token no va en una cookie que el navegador envíe solo, y otra web no puede añadirlo."
+      ],
+      "tip": "Si llega un formulario con el token incorrecto, se rechaza: que haya cookie o que sea POST no prueba nada, y un token fijo para todos los formularios se podría averiguar.",
+      "fromClass": false,
+      "sections": ["csrf"]
+    },
+    {
+      "id": "sistemas-t05-d7",
+      "kind": "larga",
+      "points": 3,
+      "minutes": 12,
+      "prompt": "Explica para qué sirven OAuth 2.0 y OpenID Connect y describe los códigos temporales que usa OAuth 2.0. Si un atacante intercepta un token de acceso, ¿puede usarlo? Enumera las medidas de seguridad que reducen ese riesgo.",
+      "keyPoints": [
+        "Explica que OAuth 2.0 permite que una aplicación B acceda de forma limitada a datos del usuario en A sin conocer su contraseña de A",
+        "Explica que OpenID Connect añade la identidad sobre OAuth 2.0 y se usa para SSO con proveedores de identidad",
+        "Describe código de autorización, token de acceso y token de refresco",
+        "Responde que sí: el token de acceso es al portador y lo puede usar quien lo tenga mientras sea válido",
+        "Menciona TLS en todos los intercambios y validación del certificado por el cliente",
+        "Menciona alcance mínimo, vida corta y un solo uso de los códigos (revocar todo si se reutiliza un código de autorización)",
+        "Menciona que los tokens no deben poder adivinarse y que la URI de redirección debe estar registrada y coincidir"
+      ],
+      "model": [
+        "**OAuth 2.0** es un marco para delegar acceso: permite que una aplicación B (consumidor) obtenga un acceso **limitado y temporal** a tus datos en A (proveedor) **sin conocer nunca tu contraseña de A**, como la llave de aparcacoches. **OpenID Connect** es una capa sobre OAuth 2.0 que añade la **identidad**: los proveedores de identidad la usan para decir a otras aplicaciones quién es el usuario, y así se construye el SSO («Iniciar sesión con Google»).",
+        "OAuth 2.0 usa tres códigos temporales. El **código de autorización** prueba que diste permiso, y B lo canjea por un **token de acceso**, que es lo que presenta para pedir los datos, con alcance y tiempo limitados. El **token de refresco** sirve para conseguir un token de acceso nuevo cuando el anterior caduca, sin molestar al usuario.",
+        "Si alguien **intercepta un token de acceso**, **sí puede usarlo** mientras sea válido: es un token **al portador**, como un billete. La firma impide modificarlo, no copiarlo.",
+        "Por eso la especificación exige: **TLS** en todos los intercambios y que el cliente **valide el certificado** del servidor; **alcance lo más limitado posible**; códigos de **vida corta y un solo uso** (si un código de autorización se intenta canjear dos veces, se **revocan todos los tokens** emitidos con él); tokens imposibles de generar o adivinar; una **URI de redirección** registrada que coincida al pedir y canjear el código; y no guardar los tokens en lugares vulnerables."
+      ],
+      "tip": "Ante «¿qué diseño limita el robo de un token?», la respuesta es vigencia corta y alcance limitado.",
+      "fromClass": false,
+      "sections": ["oauth-oidc"]
     }
   ],
   "cases": [

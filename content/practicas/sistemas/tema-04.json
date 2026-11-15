@@ -117,6 +117,51 @@
       "tip": "En clase el profesor dijo que los algoritmos y longitudes de clave recomendados para TLS mutuo «suelen ser preguntas de examen habituales».",
       "fromClass": true,
       "sections": ["mtls"]
+    },
+    {
+      "id": "sistemas-t04-d6",
+      "kind": "corta",
+      "points": 2,
+      "minutes": 5,
+      "prompt": "Diferencia autenticación y autorización con un ejemplo. ¿Qué es el inicio de sesión único (SSO)? Cita dos métodos de autenticación que lo permitan.",
+      "keyPoints": [
+        "Define autenticación como verificar la identidad del usuario (identificador más credencial)",
+        "Define autorización como decidir qué puede hacer un usuario ya identificado",
+        "Pone un ejemplo que separa los dos pasos (DNI en recepción frente a tarjeta que abre solo tu habitación)",
+        "Define SSO como identificarse una vez y acceder a varias aplicaciones sin repetir la contraseña",
+        "Cita Kerberos y OAuth 2.0/OpenID Connect como ejemplos de SSO"
+      ],
+      "model": [
+        "**Autenticar** es comprobar **quién eres**: la aplicación combina un identificador (usuario o correo) con una credencial (contraseña, token, certificado). **Autorizar** es decidir **qué puedes hacer** una vez identificado: qué datos ves y qué acciones ejecutas. En un hotel, enseñar el DNI en recepción es autenticarte; la tarjeta que abre tu habitación y el gimnasio, pero no la cocina, es la autorización.",
+        "El **SSO** (Single Sign-On, inicio de sesión único) permite identificarse **una sola vez** y acceder a varias aplicaciones sin volver a escribir la contraseña. Ejemplos: **Kerberos** en un dominio de Active Directory y **OAuth 2.0 con OpenID Connect** («Inicia sesión con Google»)."
+      ],
+      "tip": "El test juega a mezclarlos: si se habla de permisos sobre un recurso, es autorización; si se habla de comprobar la identidad, es autenticación.",
+      "fromClass": false,
+      "sections": ["panorama"]
+    },
+    {
+      "id": "sistemas-t04-d7",
+      "kind": "corta",
+      "points": 2,
+      "minutes": 8,
+      "prompt": "Describe cómo funciona la autenticación NTLMv2 en un dominio Windows (sus tres mensajes y quién verifica la respuesta) y explica dos ataques contra ella. ¿Por qué se recomienda Kerberos?",
+      "keyPoints": [
+        "Explica que es un protocolo de desafío-respuesta: la contraseña no viaja, se usa su hash para responder",
+        "Describe los mensajes: NEGOTIATE (versiones soportadas), CHALLENGE (desafío aleatorio del servidor) y AUTHENTICATE (respuesta con HMAC-MD5 y desafío del cliente con marca de tiempo)",
+        "Indica que verifica el controlador de dominio, que tiene el hash y repite el cálculo (el servidor le reenvía los datos si no es el DC)",
+        "Explica pass-the-hash: usar el hash robado sin conocer la contraseña",
+        "Explica NTLM relay o la repetición activa (reenviar o reutilizar desafíos y respuestas)",
+        "Indica que NTLM está obsoleto y se mantiene por compatibilidad; Microsoft recomienda Kerberos"
+      ],
+      "model": [
+        "**NTLMv2** es el protocolo de **desafío-respuesta** de Microsoft para redes Windows con dominio. La contraseña **no viaja**: el cliente demuestra que la conoce usando su hash. Tiene tres mensajes: **NEGOTIATE**, en el que el cliente indica qué versiones soporta; **CHALLENGE**, en el que el servidor envía un **desafío aleatorio** de 8 bytes; y **AUTHENTICATE**, en el que el cliente añade su propio desafío (con una **marca de tiempo**) y calcula la respuesta con **HMAC-MD5** a partir del hash NTLM.",
+        "Verifica el **controlador de dominio (DC)**: si el servidor no es el DC, le reenvía desafío, respuesta y usuario, y el DC, que guarda el hash, repite el cálculo.",
+        "Ataques: en el **pass-the-hash** el atacante roba el hash NTLM y lo usa directamente para autenticarse, sin saber la contraseña. En el **NTLM relay** se pone en medio y reenvía el desafío y la respuesta de la víctima a otro servidor para entrar en su nombre. También existe la **repetición activa**, que aprovecha desafíos que se repiten.",
+        "Por todo ello NTLM se considera **obsoleto** y sigue presente solo por compatibilidad: Microsoft recomienda **Kerberos**."
+      ],
+      "tip": "En Active Directory se usan NTLM y Kerberos; digest es de HTTP, no del dominio.",
+      "fromClass": false,
+      "sections": ["ntlmv2"]
     }
   ],
   "cases": [

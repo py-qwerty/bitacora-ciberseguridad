@@ -114,6 +114,70 @@
       ],
       "fromClass": false,
       "sections": ["apt", "danos-y-triada", "articulo-197"]
+    },
+    {
+      "id": "ciberdelitos-t09-d6",
+      "kind": "corta",
+      "points": 2,
+      "minutes": 6,
+      "prompt": "Un usuario instala una aplicación de linterna gratuita y a fin de mes encuentra en su factura 40 euros en mensajes a un número de pago que nunca envió. Explica qué ha ocurrido y cómo ha cambiado el objetivo del malware desde los primeros virus. ¿Por qué el malware polimórfico es un problema para los antivirus clásicos?",
+      "keyPoints": [
+        "Identifica malware móvil que envía SMS a servicios de tarificación adicional, cuyo cobro acaba en parte en manos del atacante",
+        "Explica que el malware pasó de causar daños visibles para presumir a buscar lucro y pasar desapercibido el mayor tiempo posible",
+        "Menciona otros objetivos del malware móvil: capturar datos bancarios, robar credenciales, secuestrar el dispositivo o integrarlo en una botnet",
+        "Explica que el malware polimórfico cambia su propia estructura y puede generar una variante distinta para cada equipo",
+        "Explica que los antivirus basados en firmas no lo reconocen porque la firma de la muestra antigua deja de coincidir"
+      ],
+      "model": [
+        "La linterna era **malware para móviles** que enviaba en segundo plano **SMS a números de tarificación adicional**: números de pago cuyo cobro acaba, en parte, en el bolsillo del atacante. La víctima solo lo nota en la factura.",
+        "Es un buen ejemplo de cómo ha cambiado el malware. Los primeros virus (como Melissa o LoveLetter) causaban **daños visibles** para presumir. Hoy el malware busca **lucro** y **pasar desapercibido** el mayor tiempo posible: robar datos bancarios y credenciales, secuestrar el dispositivo para extorsionar o controlarlo como parte de una **botnet**.",
+        "El **malware polimórfico** cambia su propia estructura cada vez que se copia, de modo que puede haber una variante distinta para cada equipo. Los antivirus clásicos lo detectan por **firmas** (huellas de muestras conocidas); si el código cambia, la firma ya no coincide. Por eso el temario lo considera el gran salto cualitativo del malware."
+      ],
+      "fromClass": false,
+      "sections": ["malware"]
+    },
+    {
+      "id": "ciberdelitos-t09-d7",
+      "kind": "corta",
+      "points": 2,
+      "minutes": 6,
+      "prompt": "Una investigación sobre material de abusos sexuales a menores no encuentra ninguna web pública con ese contenido. El sospechoso alega además que parte de sus imágenes están generadas por ordenador y no muestran a ningún menor real. ¿Descartan estos dos hechos el delito? Razónalo.",
+      "keyPoints": [
+        "Afirma que no encontrar una web pública no descarta la difusión: el material circula también por webs de acceso condicionado, deep web, mensajería, foros, correo y redes P2P",
+        "Concluye que la investigación debe incluir canales privados y no indexados",
+        "Explica que el Código Penal castiga también las imágenes realistas de menores creadas o manipuladas (pseudopornografía), aunque no se haya usado a un menor real",
+        "Indica que se castiga producir, distribuir, ofrecer o facilitar el material, y también poseerlo para esos fines",
+        "Menciona alguna circunstancia que agrava la pena, como víctimas menores de 16 años, material de notoria importancia o pertenecer a una organización"
+      ],
+      "model": [
+        "**Ninguno de los dos hechos descarta el delito.**",
+        "Que no haya una web pública no demuestra que no haya difusión. Este material circula por webs de acceso condicionado (hay que pagar o aportar archivos), por la **deep web** (páginas que los buscadores no indexan), por mensajería instantánea, foros, correo y **redes P2P**, donde los usuarios se pasan archivos sin servidor central. La investigación debe revisar esos canales privados.",
+        "Tampoco le salva que las imágenes estén generadas por ordenador: el Código Penal castiga también las **imágenes realistas** de menores creadas o manipuladas (la llamada **pseudopornografía**), aunque no se haya usado a un menor real. Se castiga producir, distribuir, ofrecer o facilitar el material, y poseerlo para esos fines. La pena se agrava, por ejemplo, si las víctimas son menores de 16 años, si el material es de notoria importancia o si actúa una organización."
+      ],
+      "tip": "El temario prefiere decir «contenidos de abusos a menores» en lugar de «pornografía infantil»: detrás de cada imagen hay un menor abusado.",
+      "fromClass": false,
+      "sections": ["abusos-menores"]
+    },
+    {
+      "id": "ciberdelitos-t09-d8",
+      "kind": "corta",
+      "points": 2,
+      "minutes": 5,
+      "prompt": "Una supuesta ONG recauda donaciones online que desvía a un grupo terrorista; el grupo difunde vídeos en redes sociales y capta jóvenes en foros. Nadie ha atacado ningún sistema informático. ¿Puede decirse que el grupo usa Internet al servicio del terrorismo? Explica qué usos hacen estos grupos de la red.",
+      "keyPoints": [
+        "Afirma que sí: la red se usa como herramienta con fines organizativos y de difusión, sin necesidad de atacar sistemas",
+        "Identifica la propaganda en los vídeos, que llega sin intermediarios que recorten el mensaje",
+        "Identifica el proselitismo: captar simpatizantes y, tras un periodo de radicalización, convertirlos en miembros",
+        "Identifica la financiación mediante donaciones a asociaciones pantalla, ventas online o pagos electrónicos",
+        "Menciona los otros usos: comunicaciones anónimas y cifradas (por ejemplo con TOR) y preparación de atentados con información abierta"
+      ],
+      "model": [
+        "**Sí.** Para usar Internet al servicio del terrorismo **no hace falta atacar ningún sistema**: la red es la **herramienta**, no el objetivo, y se usa con fines organizativos y de difusión.",
+        "En el caso aparecen tres de los usos típicos. **Propaganda**: los vídeos difunden su mensaje cuando quieren y sin que un periodista lo recorte. **Proselitismo**: en los foros atraen simpatizantes y, tras un periodo de **radicalización** (del adoctrinamiento a estar decidido a cometer atentados), los captan como miembros. **Financiación**: la ONG ficticia es una asociación pantalla que desvía donaciones.",
+        "Los otros dos usos son las **comunicaciones** entre células, con anonimato (por ejemplo, la red TOR) y cifrado, y la **preparación de atentados** con información abierta, como redes sociales, prensa o mapas en línea."
+      ],
+      "fromClass": false,
+      "sections": ["terrorismo"]
     }
   ],
   "cases": [

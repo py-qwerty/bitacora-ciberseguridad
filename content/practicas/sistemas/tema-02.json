@@ -74,7 +74,7 @@
       ],
       "tip": "No hace falta dar la cifra exacta del coste; basta con la idea de que crece fase a fase.",
       "fromClass": true,
-      "sections": ["ssdlc", "ssdlc-normas-madurez", "desarrollo-pruebas"]
+      "sections": ["ssdlc", "ssdlc-normas-madurez", "desarrollo-pruebas", "punto-de-partida"]
     },
     {
       "id": "sistemas-t02-d4",
@@ -117,6 +117,75 @@
       ],
       "fromClass": true,
       "sections": ["http-metodos", "http-riesgos"]
+    },
+    {
+      "id": "sistemas-t02-d6",
+      "kind": "larga",
+      "points": 3,
+      "minutes": 12,
+      "prompt": "¿Por qué se dice que la web es un modelo «débilmente acoplado»? Enumera las arquitecturas de aplicaciones web que estudia el tema y describe la arquitectura clásica monolítica: sus capas y cómo atiende una petición el patrón MVC.",
+      "keyPoints": [
+        "Explica que en la web cliente y servidor apenas saben nada el uno del otro: intercambian mensajes simples con URL, cabeceras y tipos MIME",
+        "Indica que, como el destino se da con una URL, se pueden intercalar piezas (balanceador, caché) sin que nadie lo note",
+        "Enumera las arquitecturas: clásica monolítica (MPA), SPA, PWA, microservicios y servicios web",
+        "Define monolito como una sola unidad que se despliega entera",
+        "Nombra y describe las tres capas: presentación, lógica de negocio y acceso a datos",
+        "Explica el MVC: el controlador recibe la petición, el modelo consulta la base de datos y la vista se rellena y se envía al navegador",
+        "Menciona algún control de seguridad de esta arquitectura (TLS, validación de entrada y salida, sesiones, WAF delante del servidor)"
+      ],
+      "model": [
+        "La web es **débilmente acoplada** porque cliente y servidor apenas necesitan conocerse: se limitan a intercambiar mensajes sencillos dirigidos a una **URL**, con **cabeceras** que matizan el mensaje y un **tipo MIME** que dice qué contenido viaja (por ejemplo, text/html). Los modelos anteriores (RPC, RMI, CORBA) obligaban a compartir muchos detalles internos. Además, como el destino se indica con una URL, se pueden poner en medio un balanceador de carga o una caché sin que el cliente lo note.",
+        "Sobre esa base hay varias arquitecturas: la **clásica monolítica (MPA)**, en la que cada clic recarga toda la página; la **SPA**, que carga una página y solo intercambia datos; la **PWA**, una web que se instala y funciona sin conexión; los **microservicios**, servicios pequeños que se hablan por API; y los **servicios web** (REST, SOAP), pensados para que hablen programas.",
+        "Un **monolito** es una aplicación que se construye y despliega como **una sola pieza**: si cambias una línea, despliegas todo. Por dentro se organiza en **tres capas**: **presentación** (la interfaz que ve el usuario), **lógica de negocio** (las reglas y decisiones, el corazón) y **acceso a datos** (lee y escribe en la base de datos). Separar en capas reparte responsabilidades y permite repartirlas entre servidores, a cambio de más complejidad.",
+        "El patrón típico es **MVC**. Por ejemplo, en Java: la petición llega al **Controlador** (un servlet), que pide los datos al **Modelo** (clases que consultan la base de datos); después elige la **Vista** (una JSP), la rellena con los datos y la envía al navegador. En esta arquitectura la comunicación va cifrada con **TLS** y en el servidor se aplican validación de entrada y salida, gestión de sesiones, autenticación y autorización, con un WAF delante."
+      ],
+      "tip": "Si el enunciado dice «recarga toda la página tras cada interacción», es la arquitectura clásica (MPA). En las capas, no confundas la de lógica de negocio (reglas) con la de acceso a datos (base de datos).",
+      "fromClass": false,
+      "sections": ["modelo-web", "monolitica-capas"]
+    },
+    {
+      "id": "sistemas-t02-d7",
+      "kind": "corta",
+      "points": 2,
+      "minutes": 6,
+      "prompt": "¿Qué es una PWA (aplicación web progresiva)? Indica sus características principales y explica qué papel tienen el service worker, el manifiesto y HTTPS.",
+      "keyPoints": [
+        "Define PWA como una web que se comporta como una app: se instala, funciona sin conexión y envía notificaciones",
+        "Enumera varias características: responsiva, independiente de la conectividad, instalable, actualizable, descubrible, reenganchable",
+        "Explica que el service worker es un script en segundo plano que actúa de proxy entre navegador y red, guarda en caché y gestiona las notificaciones push",
+        "Explica que el manifiesto solo la hace instalable (nombre, iconos) y no da funcionamiento sin conexión",
+        "Indica que HTTPS es obligatorio para activar los service workers y evitar la manipulación de los datos"
+      ],
+      "model": [
+        "Una **PWA** es una aplicación web que se comporta como una app del móvil: se abre desde el navegador, pero se puede **instalar** en la pantalla de inicio, **funciona sin conexión** y envía **notificaciones push**. Es **responsiva**, se **actualiza** sola, los buscadores la encuentran (**descubrible**) y exige **transporte seguro**.",
+        "Tres piezas lo hacen posible. El **service worker** es un script que corre en segundo plano y actúa como un **proxy programable** entre el navegador y la red: decide si responde desde la **caché** o va a Internet, y gestiona las notificaciones; es lo que permite trabajar con mala conexión. El **manifiesto** es un archivo JSON con nombre, iconos y colores: solo la hace **instalable**. Y **HTTPS** es obligatorio para activar los service workers y que nadie manipule los datos por el camino."
+      ],
+      "tip": "Trampa típica: atribuir el funcionamiento sin conexión al manifiesto. Lo da el service worker con su caché.",
+      "fromClass": false,
+      "sections": ["pwa"]
+    },
+    {
+      "id": "sistemas-t02-d8",
+      "kind": "corta",
+      "points": 2,
+      "minutes": 7,
+      "prompt": "HTTP es un protocolo sin estado. Explica qué significa, cómo resuelve el problema el identificador de sesión y en qué se diferencia de un JWT. ¿Qué pasa si un atacante roba cualquiera de los dos?",
+      "keyPoints": [
+        "Explica que sin estado significa que cada petición es independiente y el servidor no recuerda las anteriores",
+        "Explica que el identificador de sesión asocia cada petición con el contexto del usuario guardado en el servidor, normalmente viajando en una cookie",
+        "Pone un ejemplo, como el carrito de la compra o no repetir la contraseña en cada página",
+        "Distingue que con identificador de sesión el servidor guarda la sesión y con JWT el contexto va en el token que guarda el cliente",
+        "Explica que quien roba el identificador o el JWT suplanta al usuario mientras sea válido, por eso debe ser fuerte y caducar o revocarse",
+        "Indica que el identificador no sustituye a la autenticación inicial ni a la comprobación de permisos"
+      ],
+      "model": [
+        "Que HTTP sea **sin estado** significa que cada petición es independiente: el servidor no recuerda nada de las anteriores del mismo cliente. Por ejemplo, añadir unas zapatillas al carrito y luego abrir la página del carrito son dos peticiones sin relación.",
+        "Para darle memoria, la aplicación crea una **sesión** (el contexto del usuario, guardado en el **servidor**) y entrega al navegador un **identificador de sesión**, normalmente en una **cookie**. El navegador lo envía en cada petición y el servidor encuentra su contexto: así el usuario se autentica una vez y sigue trabajando. El identificador no sustituye a la autenticación ni decide los permisos, que se siguen comprobando.",
+        "Con un **JWT** el servidor **no guarda sesión**: el contexto va dentro de un token firmado que se guarda en el **cliente**. En ambos casos el riesgo es el mismo: **quien lo robe es tú** para la aplicación hasta que caduque. Por eso deben ser fuertes (largos y aleatorios), viajar protegidos y caducar o revocarse a tiempo."
+      ],
+      "tip": "No confundas los dos «sin estado»: HTTP no recuerda peticiones; un JWT evita que el servidor guarde la sesión.",
+      "fromClass": false,
+      "sections": ["sesiones"]
     }
   ],
   "cases": [

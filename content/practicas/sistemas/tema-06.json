@@ -119,6 +119,50 @@
       ],
       "fromClass": false,
       "sections": ["credenciales-recursos"]
+    },
+    {
+      "id": "sistemas-t06-d6",
+      "kind": "corta",
+      "points": 2,
+      "minutes": 6,
+      "prompt": "¿Qué significa «seguridad desde el diseño» (security by design)? Explica por qué conviene encontrar los fallos pronto, qué actividad considera McGraw la más importante en la fase de implementación y para qué sirve el catálogo CWE.",
+      "keyPoints": [
+        "Define security by design como meter la seguridad en todas las etapas (diseño, programación, pruebas y despliegue) y no añadirla al final",
+        "Explica que encontrar los fallos pronto reduce el coste en varios órdenes de magnitud frente a descubrirlos en producción",
+        "Identifica la revisión estática de código (analizar el código sin ejecutarlo) como la actividad más importante según McGraw",
+        "Explica que CWE da un número a cada tipo de error de programación (por ejemplo CWE-89 es inyección SQL) y que el CWE Top 25 recoge los más peligrosos",
+        "Menciona alguna de las familias de codificación segura (validación de entrada, codificación de salida, criptografía, errores, registros, archivos)"
+      ],
+      "model": [
+        "**Seguridad desde el diseño** significa meter la seguridad en **todas las etapas** del ciclo de vida del software (diseño, programación, pruebas y despliegue) en lugar de añadirla al final. Es como poner los cimientos antisísmicos en el plano: casi no cuesta, mientras que reforzar la casa terminada es carísimo.",
+        "Encontrar un fallo pronto **reduce el coste en varios órdenes de magnitud**: en diseño o programación se corrige fácil; en producción exige parches urgentes y daña la reputación. Según **McGraw**, la actividad más importante en la implementación es la **revisión estática de código**: analizar el código fuente **sin ejecutarlo**, a mano o con herramientas.",
+        "El catálogo **CWE** (Common Weakness Enumeration) da un número a cada tipo de error de programación que puede causar una vulnerabilidad, como CWE-89 (inyección SQL) o CWE-79 (XSS); el **CWE Top 25** reúne los más peligrosos. Las recomendaciones de codificación segura se agrupan en validación de entrada, codificación de salida, criptografía, gestión de errores, registros y gestión de archivos."
+      ],
+      "tip": "Si preguntan cuándo es más barato corregir un fallo: lo antes posible, nunca en producción.",
+      "fromClass": false,
+      "sections": ["desarrollo-seguro"]
+    },
+    {
+      "id": "sistemas-t06-d7",
+      "kind": "corta",
+      "points": 2,
+      "minutes": 7,
+      "prompt": "Un Servlet crea una cookie con el valor del parámetro user_setting tal como llega: response.addCookie(new Cookie(\"user_setting\", userSetting)). Explica qué vulnerabilidad tiene, cómo la explotaría un atacante y cómo corregirías el código.",
+      "keyPoints": [
+        "Identifica HTTP response splitting (CWE-113) por meter entrada sin sanear en una cabecera de respuesta",
+        "Explica que el atacante envía CR LF codificados (%0d%0a) para cortar la cabecera",
+        "Pone un ejemplo de explotación, como añadir una cabecera Set-Cookie: admin=true",
+        "Indica impactos: cabeceras o cuerpo inyectados, XSS o envenenamiento de caché",
+        "Propone eliminar o reemplazar \\r y \\n antes de crear la cookie (por ejemplo con replaceAll) o usar una librería como OWASP Java Encoder"
+      ],
+      "model": [
+        "El código tiene **HTTP response splitting (CWE-113)**: copia la entrada del usuario sin sanear en una **cabecera** de la respuesta (Set-Cookie). En HTTP cada cabecera termina con **CR LF** (\\r\\n, que en una URL se escribe %0d%0a).",
+        "El atacante envía, por ejemplo, user_setting=oscuro%0d%0aSet-Cookie:%20admin=true. La respuesta lleva entonces dos cabeceras: la cookie legítima y una **Set-Cookie: admin=true** añadida por él. Del mismo modo podría inyectar más cabeceras o un **cuerpo de respuesta nuevo**, lo que permite **XSS** o **envenenamiento de caché** (que un servidor intermedio guarde la respuesta falsa y la sirva a otros).",
+        "Se corrige **eliminando CR y LF** antes de crear la cookie, por ejemplo con String limpio = userSetting.replaceAll(\"[\\r\\n]\", \"\") y usando limpio en new Cookie(...), o con una librería de codificación probada como **OWASP Java Encoder**."
+      ],
+      "tip": "Si ves «manipular cabeceras» o «%0d%0a», piensa en CWE-113, no en inyección SQL.",
+      "fromClass": false,
+      "sections": ["response-splitting", "validacion-entrada"]
     }
   ],
   "cases": [

@@ -114,6 +114,29 @@
       ],
       "fromClass": false,
       "sections": ["app7-pasarela-diodo"]
+    },
+    {
+      "id": "redes-t03-d6",
+      "kind": "corta",
+      "points": 2,
+      "minutes": 7,
+      "prompt": "Describe las arquitecturas APP-1 y APP-2 de la guía CCN-STIC 811 del ENS. ¿Qué debilidad tienen en común? ¿Es cierto que el ENS no permite arquitecturas con un único cortafuegos?",
+      "keyPoints": [
+        "Sitúa las APP como arquitecturas de protección de perímetro de la guía CCN-STIC 811 para interconectar sistemas sujetos al ENS, de la APP-1 a la APP-7 cada vez más robustas",
+        "Describe APP-1 como un único cortafuegos expuesto a Internet entre la red interior y la exterior",
+        "Describe APP-2 como un proxy en lugar del cortafuegos, que permite monitorizar el tráfico y aplicar reglas de autorización y registro",
+        "Identifica la debilidad común: un único control directamente expuesto a Internet; si tiene una vulnerabilidad, toda la infraestructura queda expuesta",
+        "Responde que es falso: APP-1 usa un único cortafuegos y es una de las arquitecturas que recoge la guía"
+      ],
+      "model": [
+        "El **ENS** (Esquema Nacional de Seguridad) fija los requisitos mínimos de seguridad del sector público. Su guía **CCN-STIC 811** explica cómo conectar un sistema sujeto al ENS con otras redes y define siete **arquitecturas de protección de perímetro** (APP), de la APP-1 a la APP-7, cada vez más robustas.",
+        "**APP-1** es la más básica: **un único cortafuegos** expuesto a Internet entre la red interior y la exterior. **APP-2** sustituye ese cortafuegos por un **proxy**, que además permite **monitorizar** la información intercambiada y aplicar **reglas de autorización y registro**.",
+        "Su **debilidad común** es que tienen **un único control directamente expuesto a Internet**: si el cortafuegos (APP-1) o el proxy (APP-2) tiene una vulnerabilidad y se compromete, el atacante llega a **toda la infraestructura**. El proxy controla mejor, pero no elimina ese punto único de fallo; por eso las arquitecturas siguientes añaden más capas.",
+        "No es cierto que el ENS prohíba un único cortafuegos: APP-1 es precisamente una de las arquitecturas que recoge la guía, aunque sea la menos robusta."
+      ],
+      "tip": "Trampa de test que también sirve aquí: con un único cortafuegos comprometido el atacante sí llega a la red, y aun así APP-1 está admitida por la guía.",
+      "fromClass": false,
+      "sections": ["ens-app1-app2"]
     }
   ],
   "cases": [

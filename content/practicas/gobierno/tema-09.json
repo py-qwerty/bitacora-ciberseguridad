@@ -24,7 +24,10 @@
       ],
       "tip": "La trampa del test es meter contexto, tratamiento o aceptación dentro de la evaluación. En desarrollo, deja claro qué hay antes y qué hay después.",
       "fromClass": false,
-      "sections": ["ciclo-vida", "proceso-iso"]
+      "sections": [
+        "ciclo-vida",
+        "proceso-iso"
+      ]
     },
     {
       "id": "gobierno-t09-d2",
@@ -48,7 +51,12 @@
       ],
       "tip": "No existe la categoría «desconocido-conocido». Y en el test, Markov no es técnica de identificación (es de análisis).",
       "fromClass": false,
-      "sections": ["identificacion", "conocimiento-riesgo", "emergentes", "tecnicas-identificacion"]
+      "sections": [
+        "identificacion",
+        "conocimiento-riesgo",
+        "emergentes",
+        "tecnicas-identificacion"
+      ]
     },
     {
       "id": "gobierno-t09-d3",
@@ -73,7 +81,10 @@
         "El impacto puede crecer por **acumulación** de muchos incidentes pequeños o por **efecto en cascada**: si cae el servidor DNS, dejan de funcionar el correo, la web y la aplicación de ventas a la vez. Por eso es falso que el impacto sea independiente del número de eventos."
       ],
       "fromClass": true,
-      "sections": ["probabilidad-impacto", "identificacion"]
+      "sections": [
+        "probabilidad-impacto",
+        "identificacion"
+      ]
     },
     {
       "id": "gobierno-t09-d4",
@@ -97,7 +108,10 @@
       ],
       "tip": "Las trampas intercambian los nombres. Memoriza las parejas: inherente = potencial = sin controles; real = residual = con controles.",
       "fromClass": false,
-      "sections": ["inherente-real", "analisis"]
+      "sections": [
+        "inherente-real",
+        "analisis"
+      ]
     },
     {
       "id": "gobierno-t09-d5",
@@ -122,7 +136,31 @@
       ],
       "tip": "En clase se dijo que el cualitativo es más sencillo y rápido para empezar y el cuantitativo, con experiencia, el más preciso. Puedes usarlo como cierre de la comparación.",
       "fromClass": true,
-      "sections": ["metodos"]
+      "sections": [
+        "metodos"
+      ]
+    },
+    {
+      "id": "gobierno-t09-d6",
+      "kind": "corta",
+      "points": 2,
+      "minutes": 7,
+      "prompt": "Describe brevemente cuatro técnicas de análisis de riesgos que no se usan para identificarlos. Explica además cómo deben comunicarse los niveles de riesgo a la dirección.",
+      "keyPoints": [
+        "Describe correctamente al menos cuatro técnicas propias del análisis (Markov, árbol de fallos o de sucesos, pajarita, redes bayesianas, curvas FN, coste-beneficio, MCDA)",
+        "No incluye como técnicas de análisis las que son solo de identificación (tormenta de ideas, Delphi, entrevistas, listas de verificación)",
+        "Explica que los niveles de riesgo deben comunicarse en el lenguaje del negocio",
+        "Describe el mapa de probabilidad e impacto por cuadrantes y cómo se lee"
+      ],
+      "model": [
+        "Algunas técnicas que el tema sitúa **solo en el análisis**: el **análisis de Markov** modela un sistema que pasa de un estado a otro (funciona, degradado, caído) con ciertas probabilidades; el **árbol de fallos** parte del suceso indeseado y baja hacia sus causas combinadas con «Y» y «O», mientras que el **árbol de sucesos** parte de un suceso inicial y sube hacia sus posibles desenlaces; la **pajarita (bow-tie)** dibuja las causas a la izquierda y las consecuencias a la derecha de un mismo suceso, con los controles en medio; y el **análisis de costes y beneficios** compara lo que cuesta un control con el daño que evita. Otras son las redes bayesianas, las curvas FN y el MCDA. En cambio, la tormenta de ideas, Delphi, las entrevistas y las listas de verificación son de **identificación**.",
+        "Los niveles de riesgo deben comunicarse **en el lenguaje del negocio**, para que sirvan a quien decide. Una forma es un **mapa de cuadrantes**: probabilidad en un eje, impacto en el otro y cada riesgo como un punto. Arriba a la derecha están los urgentes; abajo a la izquierda, los menores; arriba a la izquierda (poco probables pero graves), los que no se deben ignorar. Un director lo entiende en segundos; una tabla de 200 filas, no."
+      ],
+      "tip": "Lo que más se pregunta es qué técnica está solo en una de las dos listas: tormenta de ideas solo identifica; Markov solo analiza.",
+      "fromClass": false,
+      "sections": [
+        "tecnicas-analisis"
+      ]
     }
   ],
   "cases": [
@@ -186,7 +224,13 @@
         }
       ],
       "tip": "En un caso así no hay una única respuesta correcta: lo que puntúa es justificar cada valor con datos del enunciado y seguir el orden identificar, analizar, valorar y tratar.",
-      "sections": ["identificacion", "probabilidad-impacto", "metodos", "inherente-real", "tratamiento"]
+      "sections": [
+        "identificacion",
+        "probabilidad-impacto",
+        "metodos",
+        "inherente-real",
+        "tratamiento"
+      ]
     },
     {
       "id": "gobierno-t09-c2",
@@ -216,23 +260,45 @@
           ]
         }
       ],
-      "sections": ["metodos", "inherente-real", "analisis", "conocimiento-riesgo", "emergentes"]
+      "sections": [
+        "metodos",
+        "inherente-real",
+        "analisis",
+        "conocimiento-riesgo",
+        "emergentes"
+      ]
     }
   ],
   "order": [
     {
       "id": "gobierno-t09-o1",
       "title": "Ordena el proceso para identificar riesgos emergentes",
-      "items": ["Recopilación de datos de muchas fuentes", "Análisis de los datos para detectar señales", "Intercambio de información con otras organizaciones"],
+      "items": [
+        "Recopilación de datos de muchas fuentes",
+        "Análisis de los datos para detectar señales",
+        "Intercambio de información con otras organizaciones"
+      ],
       "why": "Primero se reúnen datos de reguladores, medios, supervisión de sistemas y expertos; luego se filtran para encontrar indicios de riesgos nuevos; y se comparten con otras organizaciones para detectarlos pronto y responder con eficacia.",
-      "sections": ["emergentes"]
+      "sections": [
+        "emergentes"
+      ]
     },
     {
       "id": "gobierno-t09-o2",
       "title": "Ordena el flujo de la gestión del riesgo hasta la aceptación",
-      "items": ["Establecer alcance, contexto y criterios", "Identificar el riesgo", "Analizar el riesgo", "Valorar el riesgo", "Tratar el riesgo", "Aceptar el riesgo residual"],
+      "items": [
+        "Establecer alcance, contexto y criterios",
+        "Identificar el riesgo",
+        "Analizar el riesgo",
+        "Valorar el riesgo",
+        "Tratar el riesgo",
+        "Aceptar el riesgo residual"
+      ],
       "why": "Con los criterios fijados se evalúa (identificar, analizar, valorar). Si la evaluación no es satisfactoria se repite; luego se trata y, si el tratamiento es satisfactorio, se acepta el riesgo residual. El seguimiento y la revisión mantienen todo al día.",
-      "sections": ["proceso-iso", "tratamiento"]
+      "sections": [
+        "proceso-iso",
+        "tratamiento"
+      ]
     }
   ]
 }

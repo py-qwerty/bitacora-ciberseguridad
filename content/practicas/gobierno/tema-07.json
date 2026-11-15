@@ -27,7 +27,14 @@
       ],
       "tip": "Dibujar el esquema de la figura (caja central con contexto, evaluación y tratamiento, y a los lados las actividades transversales) ayuda mucho y se corrige rápido.",
       "fromClass": false,
-      "sections": ["que-es-riesgo", "proceso-comunicacion", "alcance-contexto-criterios", "evaluacion", "tratamiento", "seguimiento-registro"]
+      "sections": [
+        "que-es-riesgo",
+        "proceso-comunicacion",
+        "alcance-contexto-criterios",
+        "evaluacion",
+        "tratamiento",
+        "seguimiento-registro"
+      ]
     },
     {
       "id": "gobierno-t07-d2",
@@ -53,7 +60,10 @@
       ],
       "tip": "Cuidado con la trampa «sistemática, irrepetible, ortodoxa»: no son principios. Y «inclusiva» no significa unanimidad, sino participación oportuna de las partes pertinentes.",
       "fromClass": false,
-      "sections": ["principios-valor", "principios-dinamica"]
+      "sections": [
+        "principios-valor",
+        "principios-dinamica"
+      ]
     },
     {
       "id": "gobierno-t07-d3",
@@ -77,7 +87,12 @@
         "El marco no se copia: una pequeña empresa de logística que copia el de un banco tendrá comités y umbrales que no existen en ella. Cada organización valora sus prácticas, detecta **brechas** y lo **adapta**."
       ],
       "fromClass": false,
-      "sections": ["beneficios", "marco-liderazgo", "integracion-diseno", "implementacion-valoracion-mejora"]
+      "sections": [
+        "beneficios",
+        "marco-liderazgo",
+        "integracion-diseno",
+        "implementacion-valoracion-mejora"
+      ]
     },
     {
       "id": "gobierno-t07-d4",
@@ -102,7 +117,10 @@
       ],
       "tip": "Analogía que funciona bien en el examen: el médico identifica los síntomas, analiza con pruebas y valora comparando con valores de referencia. El tratamiento viene después.",
       "fromClass": false,
-      "sections": ["evaluacion", "alcance-contexto-criterios"]
+      "sections": [
+        "evaluacion",
+        "alcance-contexto-criterios"
+      ]
     },
     {
       "id": "gobierno-t07-d5",
@@ -126,7 +144,33 @@
       ],
       "tip": "En clase se explicó una regla orientativa con la matriz probabilidad-impacto: bajo impacto y baja probabilidad, aceptar; alto impacto y baja probabilidad, transferir; bajo impacto y alta probabilidad, mitigar; alto impacto y alta probabilidad, evitar. Úsala como ejemplo, no como regla fija.",
       "fromClass": true,
-      "sections": ["tratamiento"]
+      "sections": [
+        "tratamiento"
+      ]
+    },
+    {
+      "id": "gobierno-t07-d6",
+      "kind": "corta",
+      "points": 2,
+      "minutes": 7,
+      "prompt": "Dentro del diseño del marco de la ISO 31000, explica qué implican la articulación del compromiso, la asignación de roles, la asignación de recursos y la comunicación y consulta. Distingue comunicación de consulta.",
+      "keyPoints": [
+        "Explica que el compromiso se plasma en una política o declaración que incluye el propósito, la integración en la cultura, las responsabilidades, los objetivos en conflicto, la medición y la mejora",
+        "Define el dueño del riesgo como quien tiene la autoridad y la obligación de rendir cuentas sobre un riesgo concreto",
+        "Explica que la alta dirección asigna y comunica autoridades y responsabilidades a todos los niveles, como responsabilidad principal y no un extra",
+        "Enumera recursos: personas y competencias, métodos y herramientas, procedimientos documentados, sistemas de información y formación",
+        "Distingue comunicación (compartir información) de consulta (los participantes dan retroalimentación que influye en las decisiones)"
+      ],
+      "model": [
+        "Estas cuatro actividades del diseño convierten las buenas intenciones en algo concreto. La **articulación del compromiso** se plasma en una **política o declaración** que recoge, entre otros, el propósito de gestionar el riesgo y su vínculo con los objetivos, la integración en toda la cultura, las autoridades y responsabilidades, cómo resolver los **objetivos en conflicto**, la medición dentro de los indicadores de desempeño y la revisión y mejora.",
+        "En la **asignación de roles**, la alta dirección asegura que autoridades, responsabilidades y rendición de cuentas se asignan y comunican a todos los niveles, dejando claro que gestionar riesgos es una **responsabilidad principal**. Aparece el **dueño del riesgo**: la persona con autoridad y obligación de rendir cuentas sobre un riesgo concreto, por ejemplo la directora financiera para el fraude en pagos. La **asignación de recursos** incluye personas y competencias, métodos y herramientas, procedimientos documentados, sistemas de información y conocimiento, y formación, teniendo en cuenta las limitaciones de lo que ya existe.",
+        "Por último, se aprueba un enfoque de **comunicación y consulta**. **Comunicar** es compartir información con el público objetivo (enviar a la plantilla la nueva política de contraseñas). **Consultar** va más allá: los participantes dan **retroalimentación** que se espera que influya en la decisión (preguntar a los equipos qué impacto tendría antes de aprobarla)."
+      ],
+      "tip": "Lo que más diferencia una buena respuesta: el concepto de dueño del riesgo y la distinción comunicación frente a consulta con un ejemplo.",
+      "fromClass": false,
+      "sections": [
+        "compromiso-roles-recursos"
+      ]
     }
   ],
   "cases": [
@@ -185,23 +229,48 @@
         }
       ],
       "tip": "Cada dato del enunciado está pensado para una idea: contexto externo frente a interno, principios (inclusiva, estructurada), criterios definidos al principio y combinación de opciones de tratamiento.",
-      "sections": ["integracion-diseno", "principios-valor", "alcance-contexto-criterios", "tratamiento", "proceso-comunicacion"]
+      "sections": [
+        "integracion-diseno",
+        "principios-valor",
+        "alcance-contexto-criterios",
+        "tratamiento",
+        "proceso-comunicacion"
+      ]
     }
   ],
   "order": [
     {
       "id": "gobierno-t07-o1",
       "title": "Ordena las actividades secuenciales del proceso de gestión del riesgo (ISO 31000)",
-      "items": ["Alcance, contexto y criterios", "Identificación del riesgo", "Análisis del riesgo", "Valoración del riesgo", "Tratamiento del riesgo"],
+      "items": [
+        "Alcance, contexto y criterios",
+        "Identificación del riesgo",
+        "Análisis del riesgo",
+        "Valoración del riesgo",
+        "Tratamiento del riesgo"
+      ],
       "why": "Primero se acota qué se analiza y con qué criterios; luego se evalúa (identificar, analizar y valorar comparando con esos criterios) y, con esa decisión, se trata. Comunicación y consulta, seguimiento y revisión, y registro e informe acompañan a todas las etapas, y el proceso se repite de forma iterativa.",
-      "sections": ["proceso-comunicacion", "alcance-contexto-criterios", "evaluacion", "tratamiento"]
+      "sections": [
+        "proceso-comunicacion",
+        "alcance-contexto-criterios",
+        "evaluacion",
+        "tratamiento"
+      ]
     },
     {
       "id": "gobierno-t07-o2",
       "title": "Ordena el ciclo del tratamiento del riesgo",
-      "items": ["Formular y seleccionar opciones", "Planificar e implementar el tratamiento", "Evaluar su eficacia", "Decidir si el riesgo residual es tolerable", "Si no lo es, aplicar un tratamiento adicional"],
+      "items": [
+        "Formular y seleccionar opciones",
+        "Planificar e implementar el tratamiento",
+        "Evaluar su eficacia",
+        "Decidir si el riesgo residual es tolerable",
+        "Si no lo es, aplicar un tratamiento adicional"
+      ],
       "why": "El tratamiento es un ciclo: se eligen opciones, se ponen en marcha, se comprueba si funcionan y se mira lo que queda. Si el riesgo residual no es tolerable, se vuelve a tratar.",
-      "sections": ["tratamiento"]
+      "sections": [
+        "tratamiento"
+      ]
     }
   ]
 }

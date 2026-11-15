@@ -84,7 +84,7 @@
         "La **ley española** sobre servicios electrónicos de confianza no sustituye al reglamento ni lo traspone: lo **complementa** en lo que el reglamento deja a cada Estado, como la duración de los certificados, los requisitos de los prestadores o las sanciones. Igual que la ley española de protección de datos complementa al RGPD."
       ],
       "fromClass": true,
-      "sections": ["normas", "eidas", "ley-6-2020"]
+      "sections": ["normas", "eidas", "ley-6-2020", "otras-normas"]
     },
     {
       "id": "ciberdelitos-t05-d5",
@@ -106,6 +106,27 @@
       ],
       "fromClass": true,
       "sections": ["eidas-2-cartera"]
+    },
+    {
+      "id": "ciberdelitos-t05-d6",
+      "kind": "corta",
+      "points": 2,
+      "minutes": 5,
+      "prompt": "Pierdes tu DNI electrónico en la calle. ¿Puede quien lo encuentre firmar documentos en tu nombre? Explica qué certificados lleva el chip y para qué sirve cada uno.",
+      "keyPoints": [
+        "Explica que el chip contiene dos certificados: uno de autenticación y otro de firma",
+        "Indica que el de autenticación prueba la identidad del titular (por ejemplo, para entrar en una sede electrónica o en el banco)",
+        "Indica que el de firma garantiza la integridad y el no repudio, con la misma validez jurídica que la firma manuscrita",
+        "Explica que cada uso exige el PIN secreto, de modo que quien encuentre el DNIe no puede usarlo sin conocerlo (algo que tienes y algo que sabes)",
+        "Indica que el PIN nunca se envía al destinatario y que la validez del certificado se comprueba (caducidad o revocación mediante CRL u OCSP)"
+      ],
+      "model": [
+        "**En principio, no.** El chip del DNIe protege sus claves con un **PIN** secreto que se pide en **cada** autenticación o firma. Quien encuentra la tarjeta tiene «algo que tienes», pero le falta «algo que sabes»: es un doble factor, como la tarjeta del banco y su número secreto. Por eso el PIN nunca se apunta junto al DNI ni se envía a nadie.",
+        "El chip lleva **dos certificados**. El de **autenticación** prueba que eres tú quien se conecta, por ejemplo para entrar en la sede electrónica de Hacienda o en tu banco. El de **firma** sirve para firmar documentos con **integridad y no repudio**, y tiene la misma validez jurídica que la firma manuscrita.",
+        "Si sospechas que alguien conoce tu PIN, conviene **revocar** los certificados: antes de aceptar una firma, el sistema comprueba que el certificado no esté caducado ni revocado mediante listas de revocación (CRL) u OCSP."
+      ],
+      "fromClass": false,
+      "sections": ["dnie"]
     }
   ],
   "cases": [

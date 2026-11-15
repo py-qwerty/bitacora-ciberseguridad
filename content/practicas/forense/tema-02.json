@@ -113,6 +113,32 @@
       ],
       "fromClass": false,
       "sections": ["prueba-legal", "presuncion-inocencia"]
+    },
+    {
+      "id": "forense-t02-d6",
+      "kind": "corta",
+      "points": 2,
+      "minutes": 6,
+      "prompt": "¿Qué ventajas tienen las evidencias digitales frente a una huella dactilar o una muestra de ADN a la hora de adquirirlas y analizarlas? ¿Qué es adquirir una evidencia digital y cómo se demuestra que la copia es fiel?",
+      "keyPoints": [
+        "Indica que muchas veces se pueden adquirir sin alterar la escena",
+        "Indica que se pueden analizar sin modificarlas ni destruirlas",
+        "Explica que ambas ventajas se deben a que la información digital se puede duplicar con total exactitud (bit a bit)",
+        "Define la adquisición como hacer copias exactas del original alterando la escena lo menos posible",
+        "Explica que el análisis se hace sobre las copias y el original se preserva",
+        "Menciona el hash: calcularlo en original y copia y comprobar que coincide demuestra la integridad"
+      ],
+      "model": [
+        "Las evidencias digitales tienen dos ventajas: para **adquirirlas** muchas veces **no hace falta alterar la escena**, y para **analizarlas** no hace falta modificarlas ni destruirlas. Un análisis de ADN puede gastar la muestra; un disco, en cambio, se puede copiar.",
+        "Ambas cosas son posibles porque la información digital **se puede duplicar con total exactitud**: una copia bien hecha es idéntica bit a bit al original.",
+        "**Adquirir** una evidencia digital es hacer **copias exactas** de la información original **alterando la escena lo menos posible**. Después se trabaja sobre las copias y el original se guarda intacto.",
+        "Para demostrar que la copia es fiel se calcula su **hash** (por ejemplo SHA-256), un valor que cambia por completo si cambia un solo bit. Si el hash del original y el de la copia coinciden, son idénticos. Ejemplo: si dos peritos deben estudiar el mismo disco, cada uno trabaja sobre su copia verificada, nunca por turnos sobre el original."
+      ],
+      "tip": "Lo que permite analizar sin «gastar» el original es la posibilidad de reproducir exactamente la información; desconfía de cualquier respuesta que hable de modificar el original o reconstruirlo «aproximadamente».",
+      "fromClass": false,
+      "sections": [
+        "adquisicion"
+      ]
     }
   ],
   "cases": [

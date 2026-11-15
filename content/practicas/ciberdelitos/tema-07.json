@@ -92,6 +92,48 @@
       ],
       "fromClass": false,
       "sections": ["malware-captura", "troyanos-bancarios", "pharming"]
+    },
+    {
+      "id": "ciberdelitos-t07-d5",
+      "kind": "corta",
+      "points": 2,
+      "minutes": 5,
+      "prompt": "¿Por qué la estafa es uno de los delitos que mejor se ha adaptado a Internet? Compara al estafador tradicional, el del timo de la estampita, con el ciberestafador.",
+      "keyPoints": [
+        "Explica que el estafador tradicional necesitaba dotes teatrales para interpretar un papel en persona",
+        "Indica que el tradicional necesitaba una mínima inversión previa y asumía un riesgo físico frente a la víctima",
+        "Explica que el ciberestafador no necesita dotes teatrales: el engaño va escrito en un correo o en una web",
+        "Indica que su inversión es casi nula y que no asume riesgo físico porque actúa a distancia y protegido por el anonimato",
+        "Explica que el ciberestafador alcanza a miles de víctimas a la vez y menciona el phishing como ejemplo más representativo"
+      ],
+      "model": [
+        "La estafa se ha mudado a Internet con mucho éxito porque la red **elimina casi todos los riesgos** del timo cara a cara y ofrece **anonimato**.",
+        "El estafador de la estampita necesitaba **dotes teatrales** para hacer su papel en plena calle, una mínima **inversión previa** (un cómplice, una puesta en escena) y asumía un **riesgo físico**: podían reconocerle, detenerle o agredirle. Y engañaba a una víctima cada vez.",
+        "El ciberestafador no necesita nada de eso: el engaño va escrito en un correo o en una web copiada, la inversión es **casi nula** y actúa **a distancia**, escondido. Además llega a **miles de víctimas a la vez**. El ejemplo más representativo es el **phishing**."
+      ],
+      "fromClass": false,
+      "sections": ["estafa-digital"]
+    },
+    {
+      "id": "ciberdelitos-t07-d6",
+      "kind": "corta",
+      "points": 2,
+      "minutes": 6,
+      "prompt": "Lucía pulsa el enlace de un correo que suplanta a su tarjeta de crédito. Rellena un primer formulario con su nombre, DNI y dirección, pero cuando el segundo le pide los datos de la tarjeta, sospecha y cierra la ventana. Su hermano completó todos los formularios y cree que la web era legítima porque terminó en la página auténtica de VISA. ¿Están a salvo?",
+      "keyPoints": [
+        "Afirma que Lucía no está necesariamente a salvo: cada formulario envía los datos al servidor de los atacantes al pulsar continuar",
+        "Explica que cerrar la ventana no anula los datos ya enviados",
+        "Explica que la redirección final a la web auténtica es una maniobra para no levantar sospechas y no prueba que el formulario fuera legítimo",
+        "Indica qué pueden hacer los delincuentes con los datos: usar la tarjeta en compras online, clonarla y, lo más grave, suplantar la identidad completa",
+        "Menciona alguna señal de la web falsa: errores de traducción en los campos o un enlace que apunta a un dominio ajeno al pasar el puntero"
+      ],
+      "model": [
+        "**Ninguno de los dos está a salvo.** Los datos no se envían al final: **cada formulario los manda** al servidor de los delincuentes al pulsar «Continuar». Lucía ya ha entregado su nombre, DNI y dirección, y cerrar la ventana no los recupera.",
+        "El hermano ha caído en una maniobra habitual: al terminar, la web falsa **redirige a la web auténtica** para que nada parezca raro. Acabar en la página real no demuestra que el formulario anterior fuera legítimo; lo que importa es por dónde pasó, no dónde acabó.",
+        "Con esos datos pueden **usar la tarjeta en compras online**, **clonarla** para comprar en tiendas o sacar dinero y, lo más grave, **suplantar la identidad** de la víctima. Algunas señales que habrían ayudado: campos mal traducidos (como «code postal») o un enlace que, al pasar el puntero, apuntaba a un dominio ajeno."
+      ],
+      "fromClass": false,
+      "sections": ["formularios-falsos"]
     }
   ],
   "cases": [
