@@ -1,0 +1,233 @@
+{
+  "course": "forense",
+  "number": 2,
+  "open": [
+    {
+      "id": "forense-t02-d1",
+      "kind": "corta",
+      "points": 2,
+      "minutes": 5,
+      "prompt": "Enuncia el principio de intercambio de Locard, explica cómo se aplica en el mundo digital e indica su límite.",
+      "keyPoints": [
+        "Enuncia que quien actúa deja señales en la escena y se lleva indicios de ella (toda acción deja algún indicio)",
+        "Pone un ejemplo digital en los dos sentidos (rastro en el sistema atacado y en el equipo del autor)",
+        "Indica que el principio garantiza que habrá indicios, no que identifiquen automáticamente al autor",
+        "Menciona que es la base de las ciencias forenses"
+      ],
+      "model": [
+        "El **principio de intercambio de Locard**, base de todas las ciencias forenses, dice que quien comete un delito **deja señales de su presencia** en la escena y a la vez **se lleva indicios** del lugar. En general: cuando se actúa sobre algo, **siempre queda algún indicio** de esa acción.",
+        "En lo digital, un intruso que entra en un servidor deja entradas en los registros, archivos temporales y conexiones de red, y su propio equipo guarda rastros del servidor (historial, direcciones IP). Si un empleado copia una base de datos a un pendrive, el ordenador registra que se conectó un USB y el pendrive guarda los archivos con sus fechas.",
+        "Su **límite**: garantiza que habrá indicios, pero **no que esos indicios identifiquen al autor**. Que quede rastro de una copia no dice por sí solo quién la hizo."
+      ],
+      "fromClass": false,
+      "sections": ["locard"]
+    },
+    {
+      "id": "forense-t02-d2",
+      "kind": "larga",
+      "points": 3,
+      "minutes": 12,
+      "prompt": "Explica las tres características que debe tener una evidencia digital según la ISO/IEC 27037. Pon un ejemplo de evidencia que falle en cada una e indica por qué la volatilidad no es una de ellas.",
+      "keyPoints": [
+        "Define la evidencia digital como información almacenada o transmitida digitalmente que puede usarse como prueba",
+        "Explica la relevancia: relacionada con el hecho a probar (también para demostrar la inocencia) y comprensible para el juez",
+        "Explica la confianza: auténtica, de origen contrastable y sin alteraciones",
+        "Explica la suficiencia: contiene toda la información necesaria para constatar el hecho, ni de menos ni de más",
+        "Pone un ejemplo de fallo para cada característica",
+        "Explica que la volatilidad mide lo rápido que cambia una fuente y sirve para ordenar la recogida, no para valorar la evidencia"
+      ],
+      "model": [
+        "Según la ISO/IEC 27037, una **evidencia digital** es información almacenada o transmitida de forma digital que puede usarse como prueba. Para que sirva debe cumplir tres requisitos: **relevancia, confianza y suficiencia**.",
+        "**Relevancia**: debe estar relacionada con el hecho que se quiere probar, tanto para demostrar las acciones del atacante como su inocencia, y ser comprensible para el juez. Falla, por ejemplo, con las fotos de vacaciones de un portátil en un caso de filtración de un contrato: están en el equipo, pero no tienen que ver con el hecho.",
+        "**Confianza**: debe ser auténtica, con un origen que se pueda contrastar y sin alteraciones. Falla con un correo impreso que alguien aporta sin saber de qué cuenta procede ni cómo lo obtuvo.",
+        "**Suficiencia**: debe contener toda la información necesaria para constatar el hecho, ni de menos ni de más. Falla en el caso del perito que copia bien unos archivos para fijar su fecha de creación, pero no recoge los registros que muestran si se cambió el reloj del sistema; una contrapericial le tumba el informe.",
+        "La **volatilidad** no es una característica de la evidencia: describe lo rápido que cambia una fuente (la RAM más que el disco) y sirve para **ordenar la recogida**, no para decidir si una evidencia vale.",
+        "En clase se dio también una lista clásica de cinco características (admisible, auténtica, completa, confiable y creíble), que equivale a grandes rasgos a estas tres."
+      ],
+      "tip": "Si la pregunta dice «según la ISO/IEC 27037», son tres. Mencionar la lista de cinco del profesor como complemento suma, pero no la mezcles con las tres.",
+      "fromClass": true,
+      "sections": ["evidencia-digital", "caracteristicas", "caso-suficiencia"]
+    },
+    {
+      "id": "forense-t02-d3",
+      "kind": "corta",
+      "points": 2,
+      "minutes": 5,
+      "prompt": "Un informe dice: «Las evidencias fueron un USB y un disco duro». ¿Qué error contiene? Explica la diferencia entre evidencia digital y contenedor.",
+      "keyPoints": [
+        "Señala que el USB y el disco son contenedores, no evidencias",
+        "Define la evidencia como la información digital que hay dentro y que puede servir de prueba",
+        "Define el contenedor como el dispositivo que almacena o transmite la información",
+        "Pone un ejemplo o símil (la carta y el sobre)",
+        "Indica que un dispositivo vacío sigue siendo un contenedor de potenciales evidencias"
+      ],
+      "model": [
+        "La frase es imprecisa: el USB y el disco duro son **contenedores**, no evidencias. La **evidencia digital** es la **información** que contienen (un documento, un log, una foto) y que puede servir para probar un hecho.",
+        "El **contenedor** es el dispositivo físico que almacena o transmite esa información: un disco, un pendrive, un móvil. Es como una carta amenazante dentro de un sobre: la prueba es lo que dice la carta, no el sobre.",
+        "Lo correcto sería decir, por ejemplo: «las evidencias fueron la hoja de cálculo con la contabilidad paralela guardada en el disco y los registros de conexión del USB»."
+      ],
+      "fromClass": false,
+      "sections": ["evidencia-digital", "ejemplos"]
+    },
+    {
+      "id": "forense-t02-d4",
+      "kind": "larga",
+      "points": 3,
+      "minutes": 12,
+      "prompt": "Explica qué es la volatilidad de una evidencia y el orden en que deben recogerse las evidencias según el RFC 3227. Justifica por qué ese orden.",
+      "keyPoints": [
+        "Define la volatilidad como la facilidad con que una evidencia cambia con el tiempo y distingue volátiles de no volátiles",
+        "Enuncia la regla: recoger de mayor a menor volatilidad",
+        "Ordena correctamente: registros y caché del procesador, RAM, archivos temporales, discos, datos remotos, configuración física y de red, almacenamiento removible",
+        "Indica que la caché y los registros del procesador no se pueden adquirir",
+        "Explica que el disco es no volátil aunque pueda modificarse si el equipo está encendido",
+        "Indica que la comodidad o el tamaño del soporte no deciden la prioridad"
+      ],
+      "model": [
+        "La **volatilidad** es la facilidad con la que una evidencia se modifica con el paso del tiempo. Las **volátiles** (RAM, procesos, temporales) cambian muy rápido y desaparecen al cortar la corriente; las **no volátiles** (disco, pendrive) se conservan sin energía.",
+        "El RFC 3227 establece la regla de oro: **recoger de mayor a menor volatilidad**, porque lo volátil se puede perder en cualquier momento y lo estable seguirá ahí después. Por eso también hay que evitar cortes de corriente durante la adquisición.",
+        "El orden es: **registros y caché del procesador** (los más volátiles, pero no se pueden adquirir y aportan poco); **memoria RAM** (procesos en ejecución, tablas de enrutamiento, archivos abiertos, usuarios conectados); **archivos temporales**; **discos duros**; **datos almacenados en remoto** (servidores, nube); **configuración física y de red**; y por último el **almacenamiento removible** desconectado (pendrives, discos externos, tarjetas).",
+        "Ojo con el disco: si el equipo está encendido, el sistema escribe en él, pero sigue siendo **no volátil** porque la información permanece al apagar. No volátil no significa inmutable.",
+        "Ejemplo: si una analista quiere empezar por un disco externo desconectado y dejar para mañana la RAM de un equipo encendido, se equivoca: el disco seguirá igual mañana y la memoria puede desaparecer esta noche. Ni la comodidad ni el tamaño deciden la prioridad."
+      ],
+      "fromClass": false,
+      "sections": ["volatilidad", "orden-volatilidad"]
+    },
+    {
+      "id": "forense-t02-d5",
+      "kind": "corta",
+      "points": 2,
+      "minutes": 6,
+      "prompt": "¿Por qué un dato técnicamente brillante puede no servir como prueba en un juicio? Relaciónalo con la libre valoración de la prueba y con las estrategias de la defensa.",
+      "keyPoints": [
+        "Explica que una prueba debe haberse obtenido por medios legales",
+        "Distingue la defensa sobre el fondo (lo que dice la prueba) de la defensa sobre la forma (cómo se obtuvo)",
+        "Indica que muchas defensas atacan la forma y que por eso el perito documenta y justifica cada paso",
+        "Explica que el juez valora libremente si la prueba basta y que el perito ayuda pero no decide",
+        "Relaciona la necesidad de pruebas con la presunción de inocencia o la carga de la prueba"
+      ],
+      "model": [
+        "Por la **presunción de inocencia**, quien acusa debe aportar pruebas (carga de la prueba). Pero una prueba solo lo es si se ha **obtenido por medios legales**: un dato conseguido entrando sin autorización en el correo de alguien puede no valer, igual que un gol marcado con la mano no sube al marcador.",
+        "La defensa puede atacar el **fondo** («ese registro no demuestra que mi cliente estuviera conectado») o la **forma** («el disco se copió sin autorización y sin garantizar que no se alteró»). Muchas atacan la forma, así que el perito debe **documentar y justificar cada paso**.",
+        "Además rige la **libre valoración de la prueba**: presentar una prueba no obliga a dar el hecho por probado. Es el **juez** quien decide si basta; el perito le ayuda a entenderla, pero no decide."
+      ],
+      "fromClass": false,
+      "sections": ["prueba-legal", "presuncion-inocencia"]
+    }
+  ],
+  "cases": [
+    {
+      "id": "forense-t02-c1",
+      "title": "Llegada a un despacho con todo encendido",
+      "scenario": [
+        "Te llaman de la gestoría Ribas y Asociados porque sospechan que un empleado está vendiendo datos de clientes. Llegas a su puesto a las 18:00 acompañado de un notario.",
+        "Encuentras: su ordenador de sobremesa **encendido**, con una videollamada abierta, un documento de texto sin guardar y una conexión activa a un servidor externo; un **pendrive conectado** al ordenador; un **disco duro externo desconectado** en un cajón; y te dicen que el empleado también usa una carpeta compartida en la **nube** de la empresa.",
+        "El responsable de informática propone apagar el ordenador «para que no toque nada más» y llevárselo todo al laboratorio."
+      ],
+      "minutes": 18,
+      "points": 3,
+      "questions": [
+        {
+          "prompt": "Prioriza la recogida de las evidencias que encuentras y justifica el orden.",
+          "keyPoints": [
+            "Aplica el criterio de mayor a menor volatilidad (RFC 3227)",
+            "Coloca primero la memoria RAM del equipo encendido (videollamada, procesos, conexión activa)",
+            "Coloca después los archivos temporales (documento sin guardar) y luego el disco del ordenador",
+            "Coloca los datos en la nube después del disco local, porque las acciones en el equipo no deberían cambiarlos",
+            "Deja el disco externo desconectado para el final por ser lo menos volátil",
+            "Justifica cada posición con lo que se perdería si se esperara"
+          ],
+          "model": [
+            "Sigo el **orden de volatilidad** del RFC 3227: primero lo que puede desaparecer antes.",
+            "1) **Memoria RAM** del ordenador encendido: ahí están la videollamada, los procesos en ejecución y la **conexión activa** al servidor externo, que es justo lo que puede probar la venta de datos. Si se apaga, se pierde. 2) **Archivos temporales**, como el documento sin guardar. 3) **Disco duro** del ordenador, que conserva los datos aunque se apague. 4) La **carpeta en la nube**, que es no volátil y no debería cambiar por lo que haga yo en el equipo; se obtiene por otros medios. 5) El **pendrive** y el **disco externo desconectado**, los menos volátiles: el disco del cajón seguirá igual dentro de unas horas.",
+            "Puede discutirse la posición del pendrive conectado: al estar enchufado a un equipo encendido podría modificarse, así que es razonable recogerlo justo después del disco. Lo importante es justificarlo."
+          ]
+        },
+        {
+          "prompt": "¿Qué le contestarías al responsable de informática que quiere apagar el ordenador?",
+          "keyPoints": [
+            "Explica que apagar borra la RAM y con ella los procesos, la conexión activa y la videollamada",
+            "Indica que el documento sin guardar se perdería",
+            "Explica que lo volátil hay que adquirirlo primero, con el equipo encendido",
+            "Indica que nadie debe tocar el equipo salvo el perito y que todo se documenta"
+          ],
+          "model": [
+            "Que todavía no. Si se apaga, se **borra la memoria RAM**: perderíamos la conexión activa al servidor externo, los procesos y la videollamada, y también el documento sin guardar. Lo volátil se adquiere **primero y con el equipo encendido**; después se decide qué hacer con el disco.",
+            "Además, desde que empieza la intervención nadie más debe tocar el equipo, y todo lo que hagamos se documenta ante el notario."
+          ]
+        },
+        {
+          "prompt": "La gestoría también quiere demostrar que el empleado visitó una web de venta de datos y que copió archivos a un USB. ¿Qué fuente de evidencia usarías para cada hecho?",
+          "keyPoints": [
+            "Propone el historial y las cookies del navegador para la navegación web",
+            "Propone los registros del sistema operativo para la conexión del USB",
+            "Menciona el tráfico de red para conexiones fuera del navegador (como la conexión al servidor externo)",
+            "Indica que cada fuente se elige según la pregunta que se quiere responder"
+          ],
+          "model": [
+            "Para la **navegación**, el **historial y las cookies del navegador**. Para la **conexión del USB**, los **registros del sistema operativo**, que anotan qué dispositivos se conectaron y cuándo. Para la conexión al servidor externo, si no pasa por el navegador, los **registros de tráfico de red**.",
+            "Cada fuente responde a una pregunta distinta; ninguna vale siempre más que otra."
+          ]
+        }
+      ],
+      "tip": "Ejercicio típico de priorizar sin única respuesta: el corrector premia que apliques el orden de volatilidad y lo justifiques, más que el orden exacto de dos elementos dudosos.",
+      "sections": ["orden-volatilidad", "volatilidad", "ejemplos"]
+    },
+    {
+      "id": "forense-t02-c2",
+      "title": "La fecha de unos contratos discutidos",
+      "scenario": [
+        "En un pleito entre dos socios de Talleres Duero SL, el juez pide a un perito que determine **la fecha y hora de creación** de unos contratos guardados en el ordenador de uno de ellos.",
+        "El perito copia correctamente los archivos, comprueba que la hora del equipo coincide hoy con la hora real y entrega su informe con las fechas obtenidas. La otra parte aporta además un correo impreso que, según dice, demuestra que los contratos se firmaron antes, pero no sabe explicar de qué cuenta procede."
+      ],
+      "minutes": 15,
+      "points": 3,
+      "questions": [
+        {
+          "prompt": "¿Qué argumento usará la contrapericial contra el informe y qué debería haber recogido el perito?",
+          "keyPoints": [
+            "Explica que la fecha de creación depende del reloj del sistema y que ese reloj se puede cambiar",
+            "Indica que comprobar la hora actual no demuestra que fuera correcta cuando se crearon los archivos",
+            "Propone recoger los registros del sistema operativo que anotan los cambios de fecha y hora",
+            "Relaciona el fallo con la característica de suficiencia"
+          ],
+          "model": [
+            "La contrapericial dirá que la fecha de creación depende del **reloj del sistema** y que ese reloj se puede cambiar fácilmente: que hoy esté en hora no demuestra que lo estuviera el día que se crearon los contratos.",
+            "El perito debería haber recogido los **registros del sistema operativo** que anotan si alguien cambió la fecha y hora del equipo. La adquisición fue correcta, pero **no suficiente**: le faltó el contexto necesario para que la conclusión resistiera."
+          ]
+        },
+        {
+          "prompt": "¿Qué valor tiene el correo impreso aportado por la otra parte? Razónalo con las características de la evidencia.",
+          "keyPoints": [
+            "Reconoce que puede ser relevante porque trata del hecho discutido",
+            "Señala que falla la confianza: no se puede contrastar su origen ni descartar alteraciones",
+            "Indica que quien lo valora finalmente es el juez",
+            "Propone cómo reforzarlo (obtener el correo original de la cuenta con un procedimiento documentado)"
+          ],
+          "model": [
+            "Puede ser **relevante**, porque habla justo del hecho discutido. Pero falla la **confianza**: no se puede contrastar su origen ni descartar que se haya modificado, y un papel impreso no permite comprobar nada técnico.",
+            "Para reforzarlo habría que obtener el correo original desde la cuenta, con un procedimiento documentado. En todo caso, quien decide su valor es el **juez** (libre valoración de la prueba)."
+          ]
+        }
+      ],
+      "sections": ["caso-suficiencia", "caracteristicas", "prueba-legal"]
+    }
+  ],
+  "order": [
+    {
+      "id": "forense-t02-o1",
+      "title": "Ordena las evidencias de más a menos volátil según el RFC 3227",
+      "items": [
+        "Registros y caché del procesador",
+        "Memoria RAM (procesos, tablas de enrutamiento, usuarios conectados)",
+        "Archivos temporales",
+        "Discos duros",
+        "Datos almacenados en remoto",
+        "Configuración física y de red",
+        "Almacenamiento removible (pendrives, discos externos, tarjetas)"
+      ],
+      "why": "Se recoge de mayor a menor volatilidad: lo que vive en el procesador y en la RAM cambia o desaparece en cuanto se actúa o se corta la corriente; los discos y los datos remotos se conservan, y un soporte removible desconectado no cambia mientras no se conecte. La caché del procesador encabeza la lista, pero no se puede adquirir.",
+      "sections": ["orden-volatilidad"]
+    }
+  ]
+}

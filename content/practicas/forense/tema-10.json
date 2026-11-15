@@ -1,0 +1,275 @@
+{
+  "course": "forense",
+  "number": 10,
+  "open": [
+    {
+      "id": "forense-t10-d1",
+      "kind": "corta",
+      "points": 2,
+      "minutes": 5,
+      "prompt": "¿Para quién se escribe un informe pericial informático y cómo debe estar redactado? Explica qué significa que el juez lo valora según la «sana crítica».",
+      "keyPoints": [
+        "Indica que ayuda a juez, fiscal, abogados, jurado y demás interesados, incluidos lectores sin conocimientos técnicos",
+        "Indica que lo pueden pedir una parte, el Ministerio Fiscal o el juez, y que siempre debe ser imparcial y objetivo",
+        "Afirma que debe ser riguroso y didáctico a la vez",
+        "Explica que debe responder a las cuestiones planteadas",
+        "Explica que la sana crítica significa que el juez valora el informe con lógica y experiencia, sin estar obligado a aceptarlo",
+        "Pone un ejemplo de cómo explicar un término técnico sin perder rigor"
+      ],
+      "model": [
+        "El informe pericial ayuda a entender un hecho tecnológico que escapa al conocimiento de los juristas. Lo leen **el juez, el fiscal, los abogados, el jurado** y cualquier interesado, muchos **sin conocimientos técnicos**. Lo puede pedir una parte, el Ministerio Fiscal o el propio juez, pero en todos los casos debe ser **imparcial y objetivo** y **responder a las cuestiones planteadas**.",
+        "Por eso tiene que ser **riguroso, pero a la vez didáctico**: exacto para otro perito y comprensible para un profano. Ejemplo: en lugar de «se verificó el hash SHA-256», escribir que el hash funciona como una huella dactilar del contenido y que la de la copia coincide con la del original, lo que demuestra que la copia es idéntica.",
+        "El juez valora el informe según la **sana crítica**: con lógica, experiencia y sentido común, sin estar obligado a aceptar lo que dice el perito. El perito no prueba nada por sí mismo; aporta una base técnica y el tribunal decide cuánto vale."
+      ],
+      "fromClass": false,
+      "sections": ["audiencia"]
+    },
+    {
+      "id": "forense-t10-d2",
+      "kind": "corta",
+      "points": 2,
+      "minutes": 6,
+      "prompt": "Enumera y explica las cuatro cualidades de un buen informe pericial, indicando qué error evita cada una.",
+      "keyPoints": [
+        "Explica la claridad: que lo entienda cualquiera, explicando términos o con glosario, sin caer en un texto infantil",
+        "Explica la concisión: ninguna línea innecesaria, lo que amplía va a anexos",
+        "Explica la fundamentación: cada acción respaldada por la experiencia o por fuentes de prestigio",
+        "Explica la justificación: conclusiones basadas en hechos del trabajo, sin juicios de valor",
+        "Indica el error que evita cada una"
+      ],
+      "model": [
+        "1) **Claridad**: que lo entienda cualquiera, sea cual sea su nivel técnico: lenguaje sencillo, explicar los términos complejos y, si hace falta, un glosario. Evita usar tecnicismos sin explicar, pero también el otro extremo, un texto infantil perdido en ejemplos. 2) **Concisión**: ni una línea innecesaria; lo que amplía información va a los **anexos**. Evita informes enormes y repetitivos, como copiar todos los logs en el cuerpo.",
+        "3) **Fundamentación**: cada acción se respalda en la experiencia del perito o en **referencias de prestigio**. Evita hacer las cosas «porque sí» o citar fuentes dudosas. 4) **Justificación**: explicar en qué hechos se basan las conclusiones, que siempre salen del trabajo realizado, con tono imparcial. Evita las opiniones personales y las conclusiones sin hallazgos que las apoyen."
+      ],
+      "fromClass": false,
+      "sections": ["caracteristicas"]
+    },
+    {
+      "id": "forense-t10-d3",
+      "kind": "larga",
+      "points": 3,
+      "minutes": 12,
+      "prompt": "¿Es obligatorio seguir una estructura concreta en un informe pericial? Explica qué es la norma UNE 197010:2015, por qué conviene seguirla, qué contenidos pide y cómo suele quedar la estructura del informe.",
+      "keyPoints": [
+        "Afirma que la ley no impone una estructura y que queda a criterio del perito",
+        "Define la UNE 197010:2015 como norma técnica española voluntaria con una estructura tipo para informes periciales TIC",
+        "Da ventajas: profesionalidad, no olvidar nada, trabajo en equipo y formato similar para los lectores",
+        "Enumera los ocho contenidos: identificación, declaración de imparcialidad, juramento o promesa, índice, cuerpo, conclusiones, firma y anexos",
+        "Explica que la norma pide un código único de identificación y anexos mínimos según el tipo de evidencias",
+        "Describe la estructura habitual: portada, firma y declaraciones, índice, cuerpo (resumen ejecutivo, objeto, antecedentes, fuentes, procedimiento, análisis), conclusiones y anexos",
+        "Indica que seguirla no garantiza que el tribunal acepte las conclusiones ni no seguirla invalida el informe"
+      ],
+      "model": [
+        "La **legislación no impone una estructura concreta**: queda a criterio del perito. Aun así conviene seguir una estructura habitual, porque el informe es un documento de consulta y cada lector debe encontrar rápido lo que busca.",
+        "La **UNE 197010:2015** es una norma técnica española (no una ley) de criterios para elaborar informes periciales sobre tecnologías de la información. Es **voluntaria pero aconsejable**: da imagen de **profesionalidad**, ayuda a **no olvidar nada**, facilita el **trabajo en equipo** y hace que todos los interesados manejen documentos de **formato parecido**. Seguirla no garantiza que el juez acepte las conclusiones, y no seguirla no invalida el informe.",
+        "Pide **ocho contenidos**: **identificación** (título, código único, destinatario, procedimiento, cliente, perito, fecha), **declaración de imparcialidad**, **juramento o promesa**, **índice**, **cuerpo del informe**, **conclusiones**, **firma** y **anexos**. No tienen por qué ser apartados separados. Además pide un **código único** que identifique el trabajo y unos anexos mínimos según el tipo de evidencias.",
+        "Una estructura habitual sería: portada con la identificación; firma con la declaración de imparcialidad y el juramento; índice; cuerpo con **resumen ejecutivo, objeto del encargo, antecedentes, fuentes de información, procedimiento y fundamentación y análisis**; conclusiones; y anexos (logs, listados, glosario, CV del perito)."
+      ],
+      "fromClass": false,
+      "sections": ["une-197010", "anexos-estructura", "cuerpo-inicio"]
+    },
+    {
+      "id": "forense-t10-d4",
+      "kind": "corta",
+      "points": 2,
+      "minutes": 6,
+      "prompt": "Explica qué son la declaración de imparcialidad y el juramento o promesa del perito. Pon dos ejemplos de circunstancias que impedirían actuar con independencia y uno que no.",
+      "keyPoints": [
+        "Explica que en la declaración de imparcialidad el perito declara conocer las tachas y no estar incurso en ellas",
+        "Cita ejemplos de tachas: parentesco, interés en el asunto, dependencia (relación laboral), amistad íntima o enemistad, desmerecimiento profesional",
+        "Indica que vivir cerca de una parte no es tacha",
+        "Explica que en el juramento o promesa se compromete a actuar con objetividad considerando lo que favorezca y lo que perjudique a cualquier parte",
+        "Indica que conoce las sanciones penales y responsabilidades si incumple"
+      ],
+      "model": [
+        "Son dos formalidades que suelen ir juntas al principio o al final del informe. En la **declaración de imparcialidad** el perito declara que conoce las **tachas** (las circunstancias que, según la Ley de Enjuiciamiento Civil, le impedirían trabajar con independencia) y que no está incurso en ellas. Ejemplos de tacha: ser **pariente** de una parte o de su abogado, tener **interés** en el asunto (ser socio de la empresa que reclama), estar en **dependencia** de una parte (ser su empleado) o tener **amistad íntima o enemistad** con ella. En cambio, **vivir cerca** de una parte no es tacha.",
+        "En el **juramento o promesa** (fórmula religiosa o laica), el perito manifiesta que ha actuado y actuará **con la mayor objetividad posible**, teniendo en cuenta **tanto lo que pueda favorecer como lo que pueda perjudicar a cualquiera de las partes**, y que conoce las **sanciones penales** en que podría incurrir si incumple su deber."
+      ],
+      "tip": "No hace falta recordar los números de artículo de la LEC; lo que puntúa es saber qué es una tacha y qué implica la imparcialidad.",
+      "fromClass": false,
+      "sections": ["imparcialidad"]
+    },
+    {
+      "id": "forense-t10-d5",
+      "kind": "corta",
+      "points": 2,
+      "minutes": 7,
+      "prompt": "Distingue entre los resultados y las conclusiones de un informe pericial. Explica qué cualidades deben tener las conclusiones y qué hacer si una pregunta no se puede contestar.",
+      "keyPoints": [
+        "Define los resultados como hallazgos objetivos de lo observado y las conclusiones como la interpretación experta para responder a las preguntas",
+        "Indica que las conclusiones responden a cada pregunta del objeto en el mismo orden y numeración, con una conclusión final",
+        "Cita las cualidades: claras y rotundas, ajustadas a lo solicitado, ajustadas al hecho tecnológico e imparciales",
+        "Explica que el perito no determina culpabilidad ni consecuencias jurídicas, y que identifica una cuenta o un equipo, no a una persona física",
+        "Explica que si una pregunta no se puede contestar se documenta la limitación y cómo afecta, sin suponer"
+      ],
+      "model": [
+        "Los **resultados** son los hallazgos objetivos: «el registro USBSTOR muestra un dispositivo con número de serie Z conectado el 12/03 a las 18:02». Las **conclusiones** son la **interpretación experta** de esos resultados para responder a las preguntas del encargo: «se acredita que el 12/03 se conectó un dispositivo externo y se accedió a las carpetas objeto de la pericia». Las conclusiones no pueden introducir hechos que no se hayan examinado.",
+        "Se responde a **cada pregunta en el mismo orden y numeración** en que se planteó, y se cierra con una **conclusión final**. Deben ser **claras y rotundas**, **ajustadas a lo solicitado** (ni quedarse corto ni pasarse), **ajustadas al hecho tecnológico** (si de ellas se deriva una responsabilidad jurídica, solo se señala; valorarla es cosa de los juristas) e **imparciales**. El perito identifica una cuenta de usuario o una IP, no puede afirmar qué persona física estaba delante.",
+        "Si una pregunta no se puede contestar, por ejemplo porque un disco estaba cifrado, se **documenta la limitación** y se explica cómo afecta a lo que se puede afirmar, sin suponer lo que «probablemente» contenía."
+      ],
+      "tip": "El profesor recordó en clase que la investigación busca responder qué ha ocurrido, cómo y quién, y que en el «quién» se llega a una identidad digital (cuenta, IP), no a la persona física.",
+      "fromClass": true,
+      "sections": ["conclusiones", "procedimiento-analisis"]
+    }
+  ],
+  "cases": [
+    {
+      "id": "forense-t10-c1",
+      "title": "El informe de la fuga por USB en una aseguradora",
+      "scenario": [
+        "Seguros Cierzo S.A. te encarga un informe pericial de parte. Sospecha que un empleado, que causó baja el 13 de marzo y se fue a la competencia, copió la cartera de clientes a un pendrive. Te entregan precintados su portátil corporativo (E1) y su PC de sobremesa (E2). Las preguntas del cliente son: 1) ¿se conectó algún dispositivo externo a los equipos en sus últimos días?; 2) ¿se accedió a la carpeta de clientes?; 3) ¿se copiaron los archivos al dispositivo?",
+        "En E1 encuentras: el pendrive con número de serie Z conectado el 12/03 a las 18:02 (USBSTOR), accesos a la carpeta \\Clientes a las 18:05 y el borrado de «clientes.xlsx» a las 18:15. E2 tiene el disco cifrado y nadie facilita la clave. El pendrive no se ha encontrado."
+      ],
+      "minutes": 25,
+      "points": 3,
+      "questions": [
+        {
+          "prompt": "Propón la estructura del informe e indica brevemente qué pondrías en cada apartado para este caso.",
+          "keyPoints": [
+            "Incluye identificación con título, código único en todas las páginas, destinatario, cliente, perito y fecha",
+            "Incluye la declaración de imparcialidad y el juramento o promesa, y la firma",
+            "Incluye índice y resumen ejecutivo",
+            "Redacta el objeto del encargo con las tres preguntas del cliente",
+            "Incluye antecedentes (baja y marcha a la competencia) y fuentes de información identificadas (E1, E2, con cadena de custodia)",
+            "Incluye procedimiento y fundamentación, y análisis con entorno, herramientas, pasos cronológicos y resultados",
+            "Incluye conclusiones y anexos pertinentes"
+          ],
+          "model": [
+            "**Portada e identificación**: título descriptivo, código único (por ejemplo PER-2026-014) que irá en todas las páginas, destinatario, cliente (Seguros Cierzo), perito y fecha. **Declaración de imparcialidad y juramento o promesa**, con la **firma**. **Índice**.",
+            "**Resumen ejecutivo**: en pocas líneas, qué se analizó y qué se concluyó. **Objeto del encargo**: las tres preguntas del cliente, numeradas. **Antecedentes**: el empleado causó baja el 13/03 y se incorporó a una empresa competidora. **Fuentes de información**: E1 y E2 con marca, modelo y número de serie, fotografías y la **cadena de custodia** con la que se recibieron precintados.",
+            "**Procedimiento y fundamentación**: adquisición con bloqueador de escritura, verificación de hashes y por qué los métodos son adecuados. **Análisis**: entorno de trabajo y herramientas, pasos por evidencia en orden cronológico y resultados (USBSTOR, accesos a la carpeta, borrado), con una **tabla de tiempos**. **Conclusiones** en el orden de las preguntas. **Anexos**: exportaciones del registro y logs, listados de archivos, especificaciones de las herramientas, glosario y CV del perito."
+          ]
+        },
+        {
+          "prompt": "Redacta las conclusiones del informe para las tres preguntas.",
+          "keyPoints": [
+            "Responde en el mismo orden y numeración que las preguntas",
+            "Afirma que se conectó el pendrive a E1 en la fecha indicada y que se accedió a la carpeta",
+            "No afirma que se copiaron los archivos, porque conectar no es copiar y el pendrive no se ha analizado",
+            "Documenta la limitación de E2 cifrado y explica que no afecta a lo concluido sobre E1",
+            "Se refiere a la cuenta de usuario y no atribuye la acción a la persona física ni valora consecuencias jurídicas",
+            "Usa redacción clara y rotunda, con una conclusión final"
+          ],
+          "model": [
+            "«Conforme a los resultados expuestos, este perito llega a las siguientes conclusiones: **1)** El 12/03 a las 18:02 se conectó al equipo E1 un dispositivo de almacenamiento USB con número de serie Z. **2)** A las 18:05 de ese mismo día, desde la cuenta del usuario investigado en E1, se accedió a la carpeta \\Clientes, y a las 18:15 se borró el archivo clientes.xlsx. **3)** Con las evidencias disponibles no puede determinarse si los archivos se copiaron al dispositivo: el registro acredita la conexión, pero no su contenido, y el dispositivo no ha sido entregado para su análisis.»",
+            "«No ha sido posible examinar el equipo E2 por estar cifrado y no haberse facilitado la clave, por lo que no puede determinarse si contiene información relacionada. Esta limitación no afecta a lo concluido sobre E1.» Y una conclusión final indicando que las evidencias de E1 se adquirieron correctamente y que la falta del pendrive y de la clave de E2 impidió responder por completo a la pregunta 3.",
+            "Hablo de **la cuenta** del usuario y no digo que «el empleado robó la cartera»: eso sería atribuir a una persona y entrar en valoraciones jurídicas que no me corresponden."
+          ]
+        },
+        {
+          "prompt": "¿Qué recursos visuales y anexos incluirías para que el juez entienda la secuencia de hechos?",
+          "keyPoints": [
+            "Propone una tabla o línea de tiempos con fecha, equipo, hecho y fuente",
+            "Propone fichas de análisis de artefacto con nombre, ubicación, estado, herramienta, procedimiento y resultados",
+            "Indica que los recursos visuales son útiles pero no obligatorios",
+            "Pone en anexos material pertinente (logs, listados, glosario, CV) y no relleno",
+            "Indica formato: páginas numeradas con total y código, entrega en soporte no alterable con firma digital y hash"
+          ],
+          "model": [
+            "Incluiría una **tabla de tiempos** con columnas de fecha y hora, equipo, hecho y fuente (inicio de sesión, conexión USB, acceso a la carpeta, borrado, baja de la cuenta) y quizá una línea de tiempos gráfica para verlo de un vistazo. Para cada artefacto, una **ficha de análisis** con nombre, ubicación, estado, herramienta, procedimiento y resultados. No son obligatorios, pero aclaran mucho.",
+            "En **anexos**: las exportaciones del registro y los logs completos, los listados de archivos, las especificaciones de las herramientas, un glosario y mi CV resumido; nada de relleno ni de conversaciones con el cliente. Todas las páginas numeradas («página 12 de 40») con el código del informe, y entrega en PDF con **firma digital** y su **hash**."
+          ]
+        }
+      ],
+      "fromClass": true,
+      "tip": "El caso evalúa sobre todo las conclusiones: conectar un USB no es copiar, y una evidencia no examinada se declara como limitación.",
+      "sections": ["identificacion", "cuerpo-inicio", "procedimiento-analisis", "conclusiones", "anexos-estructura", "formato-recursos"]
+    },
+    {
+      "id": "forense-t10-c2",
+      "title": "Presiones y dudas de una perita",
+      "scenario": [
+        "Laura es perita informática. La empresa Talleres Jalón la contrata para demostrar que un exempleado borró correos antes de irse. Durante el análisis, Laura encuentra un correo en el que el propio director de la empresa autoriza al empleado a borrar esos correos. El director le pide que «no lo incluya, porque no ayuda».",
+        "Además, Laura trabajó como empleada en Talleres Jalón hasta hace seis meses, y vive en el mismo barrio que el exempleado. Meses después, el exempleado contrata a otro perito para revisar el informe de Laura."
+      ],
+      "minutes": 20,
+      "points": 3,
+      "questions": [
+        {
+          "prompt": "¿Puede Laura aceptar el encargo? Analiza sus dos circunstancias personales.",
+          "keyPoints": [
+            "Identifica que haber trabajado para la empresa puede ser una situación de dependencia, que es tacha",
+            "Indica que vivir cerca del exempleado no es tacha",
+            "Explica que no debe ocultar la relación y debe explicar de qué tipo es en la declaración de imparcialidad",
+            "Valora que la otra parte podría alegar la tacha para restar crédito al informe y razona si conviene rechazar el encargo"
+          ],
+          "model": [
+            "**Vivir en el mismo barrio** que el exempleado **no es tacha**: la proximidad del domicilio por sí sola no impide la independencia.",
+            "**Haber sido empleada** de la empresa hasta hace seis meses sí es delicado: estar o **haber estado en situación de dependencia** con una parte es una de las tachas. No puede ocultarlo; tendría que explicarlo en la declaración de imparcialidad, y la otra parte podría usarlo para restar crédito a su informe. Lo más prudente sería **no aceptar el encargo** o, como mínimo, declararlo con claridad sabiendo que debilita su informe."
+          ]
+        },
+        {
+          "prompt": "¿Qué debe hacer con el correo que el director le pide omitir?",
+          "keyPoints": [
+            "Indica que no puede omitirlo",
+            "Explica que el juramento o promesa obliga a considerar lo que favorece y lo que perjudica a cualquier parte",
+            "Explica que los resultados incluyen todo lo pertinente, favorezca a quien favorezca, y que debe reflejar su efecto en las conclusiones",
+            "Menciona las responsabilidades (incluso penales) si falta a la verdad a sabiendas"
+          ],
+          "model": [
+            "No puede omitirlo. Aunque trabaje para una parte, el perito **se debe a la verdad y a las evidencias**: en el juramento o promesa se compromete a considerar **tanto lo que favorece como lo que perjudica** a cualquiera de las partes, y los resultados incluyen todo lo pertinente. Debe incluir el correo y reflejar en las conclusiones que el borrado estaba autorizado por el director. Si lo ocultara a sabiendas, podría incurrir en responsabilidades, incluso penales como el falso testimonio."
+          ]
+        },
+        {
+          "prompt": "¿Qué es lo que encarga el exempleado al segundo perito y cómo debe enfocarlo?",
+          "keyPoints": [
+            "Identifica el encargo como una contrapericial",
+            "Explica que revisa críticamente método, fuentes y conclusiones del informe contrario",
+            "Indica que debe apoyarse en análisis y fundamentos propios, como cualquier informe",
+            "Indica que no decide la validez del informe, que es tarea del juez",
+            "Pone un ejemplo de error que podría detectar (zona horaria UTC frente a hora española)"
+          ],
+          "model": [
+            "Es una **contrapericial**: un encargo para **revisar críticamente el informe del perito de la otra parte** y comprobar si su método, sus fuentes y sus conclusiones se sostienen. No es una sentencia sobre su validez (eso lo decide el juez) ni una simple repetición: tiene que apoyarse en análisis y fundamentos propios. Por ejemplo, podría detectar que las horas se interpretaron en UTC sin convertirlas a la hora española, lo que cambia el orden de los hechos, y demostrarlo con los propios datos."
+          ]
+        }
+      ],
+      "sections": ["imparcialidad", "identificacion", "procedimiento-analisis", "conclusiones"]
+    }
+  ],
+  "order": [
+    {
+      "id": "forense-t10-o1",
+      "title": "Ordena el recorrido del cuerpo del informe pericial",
+      "items": [
+        "Resumen ejecutivo",
+        "Objeto del encargo",
+        "Antecedentes",
+        "Fuentes de información",
+        "Procedimiento de trabajo y fundamentación",
+        "Análisis"
+      ],
+      "why": "Primero un compendio para quien tiene poco tiempo; luego qué se pregunta y el contexto previo; después con qué elementos se trabaja y cómo y por qué se trabaja así; y por último el análisis con sus resultados, que da paso a las conclusiones.",
+      "sections": ["cuerpo-inicio"]
+    },
+    {
+      "id": "forense-t10-o2",
+      "title": "Ordena la estructura habitual de un informe pericial",
+      "items": [
+        "Portada con la identificación",
+        "Firma con la declaración de imparcialidad y el juramento o promesa",
+        "Índice",
+        "Resumen ejecutivo",
+        "Objeto del encargo",
+        "Fuentes de información",
+        "Análisis",
+        "Conclusiones",
+        "Anexos"
+      ],
+      "why": "Es la estructura habitual que recoge el tema: lo que identifica el documento y al perito va al principio, el cuerpo avanza de la pregunta a los hallazgos, las conclusiones responden y los anexos guardan el material complementario.",
+      "sections": ["anexos-estructura"]
+    },
+    {
+      "id": "forense-t10-o3",
+      "title": "Ordena cómo se redacta el apartado de análisis",
+      "items": [
+        "Describir el entorno de trabajo y las herramientas",
+        "Explicar los pasos con cada evidencia en orden cronológico",
+        "Justificar la elección cuando había varias alternativas",
+        "Exponer los resultados obtenidos"
+      ],
+      "why": "Para que otro perito pueda repetir el trabajo, primero se dice con qué se trabajó, después qué se hizo y en qué orden, por qué se eligió ese camino y, al final, qué se obtuvo.",
+      "sections": ["procedimiento-analisis"]
+    }
+  ]
+}

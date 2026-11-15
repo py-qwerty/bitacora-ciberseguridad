@@ -1,0 +1,299 @@
+{
+  "course": "forense",
+  "number": 3,
+  "open": [
+    {
+      "id": "forense-t03-d1",
+      "kind": "larga",
+      "points": 3,
+      "minutes": 12,
+      "prompt": "Explica la diferencia entre adquisición en caliente y en frío. Indica en qué situaciones es obligatorio o recomendable adquirir en caliente y por qué.",
+      "keyPoints": [
+        "Define la adquisición en frío como la realizada con el equipo apagado o desconectado, que se mantiene así",
+        "Define la adquisición en caliente como la realizada con el equipo encendido",
+        "Explica que las evidencias volátiles solo se pueden adquirir en caliente y las no volátiles en frío o en caliente",
+        "Enumera los tres casos de caliente: evidencias volátiles, equipo que no se puede apagar y disco o volumen cifrado desbloqueado",
+        "Explica el riesgo del cifrado: al apagar se puede perder el acceso a los datos descifrados",
+        "Menciona que el caliente se hace in situ y el frío normalmente en el laboratorio",
+        "Indica que en caliente se usa software propio y portable y se documenta todo"
+      ],
+      "model": [
+        "La **adquisición en frío** (post-mortem) se hace con el dispositivo **apagado o desconectado**, y se mantiene así: un pendrive que conectamos con bloqueo, un disco extraído o un ordenador apagado que arrancamos con una distribución Linux forense. Solo permite obtener datos **no volátiles** y suele hacerse en el laboratorio.",
+        "La **adquisición en caliente** (live response) se hace con el dispositivo **encendido**: volcar la RAM, copiar el disco de un servidor que no se apaga. Permite obtener datos **volátiles y no volátiles** y se hace **in situ**.",
+        "Regla de oro: las evidencias **volátiles** (RAM, procesos, conexiones abiertas) **solo** se pueden adquirir en caliente, porque desaparecen al apagar; las no volátiles, en frío o en caliente según cómo encontremos el equipo.",
+        "Hay que adquirir en caliente cuando: 1) hay **evidencias volátiles** que conservar; 2) el equipo **no se puede apagar**, como un servidor crítico o un sistema médico; 3) hay un **disco o volumen cifrado** que ahora está desbloqueado: si apagamos, puede que no volvamos a acceder a él sin la clave.",
+        "Por eso el profesor recomienda adquirir en caliente **siempre que se pueda**, incluso discos: con un cifrado como BitLocker, lo que se ve con el equipo encendido no es lo mismo que al sacar el disco apagado.",
+        "En caliente se usa **software forense propio y portable**, porque las herramientas del sistema pueden estar manipuladas, y se documenta qué herramienta y versión se usó, sabiendo que cualquier programa deja algo de huella."
+      ],
+      "tip": "El profesor lo remarcó en clase: «las evidencias volátiles solo las podemos adquirir en caliente» y, siempre que podáis, discos también en caliente.",
+      "fromClass": true,
+      "sections": ["caliente-frio", "adquisicion-campo"]
+    },
+    {
+      "id": "forense-t03-d2",
+      "kind": "corta",
+      "points": 2,
+      "minutes": 6,
+      "prompt": "Distingue imagen forense y clonado. ¿Qué ventajas tiene cada uno y cuándo elegirías el clonado?",
+      "keyPoints": [
+        "Define la imagen forense como copia exacta guardada en un archivo",
+        "Define el clonado como copia bit a bit en otro dispositivo físico",
+        "Indica ventajas de la imagen: varias en un mismo disco, metadatos, compresión, fácil de distribuir",
+        "Indica ventajas del clonado: no necesita programas para usarse, incluso en el hardware original",
+        "Señala que el clonado exige un disco de igual o mayor tamaño y borrado seguro previo",
+        "Pone un caso de uso del clonado (hardware muy específico, como un sistema de CCTV)"
+      ],
+      "model": [
+        "Ambas son copias exactas; lo que las distingue es **cómo se almacenan**. La **imagen forense** guarda la copia **en un archivo** (formatos RAW/DD o E01) dentro de cualquier soporte. El **clonado** copia bit a bit el dispositivo **en otro dispositivo físico**, que queda como un gemelo.",
+        "La imagen permite guardar **varias en un mismo disco**, añadir **metadatos, compresión y redundancia** y enviarla con facilidad, pero necesita un programa que la lea. El clonado **no necesita ningún programa**: se conecta y funciona, incluso en el hardware original; a cambio exige **un disco por copia**, de **igual o mayor tamaño**, con **borrado seguro** previo.",
+        "Elegiría el clonado con hardware muy específico, como un sistema de **CCTV**, donde conviene poder conectar la copia al propio equipo. En la mayoría de casos, imagen."
+      ],
+      "fromClass": false,
+      "sections": ["imagen-clonado"]
+    },
+    {
+      "id": "forense-t03-d3",
+      "kind": "corta",
+      "points": 2,
+      "minutes": 7,
+      "prompt": "¿Cómo se demuestra la integridad de una evidencia adquirida en frío y de un volcado de memoria RAM adquirido en caliente?",
+      "keyPoints": [
+        "Explica en frío los tres hashes: origen antes (HA1), origen después (HA2) y copia (HB)",
+        "Indica que si los tres coinciden el origen no se alteró y la copia es idéntica",
+        "Indica que se usa el mismo algoritmo y el mismo alcance",
+        "Explica que en caliente no se puede bloquear ni comparar con el origen porque la RAM cambia sin parar",
+        "Indica que en caliente solo se calcula el hash del resultado, que protege la copia desde ese momento",
+        "Menciona el tercero de confianza (notario, letrado de la Administración de Justicia) para avalar el origen"
+      ],
+      "model": [
+        "En **frío** se calculan **tres hashes** con el mismo algoritmo y el mismo alcance: **HA1**, del origen antes de adquirir; **HA2**, del origen después; y **HB**, de la copia. Si **HA1 = HA2 = HB**, el original no se ha alterado y la copia es idéntica. Más tarde basta recalcular el hash de la copia y compararlo con HA1.",
+        "En **caliente**, con la RAM, no se puede bloquear la escritura y la memoria cambia incluso mientras se copia, así que el hash del origen no tendría sentido. Solo se calcula el **hash del resultado**, que demuestra que el archivo adquirido **no ha cambiado después**, pero no que sea igual a lo que había en memoria.",
+        "Para cubrir ese hueco se recurre a un **tercero de confianza** que dé fe del proceso: un notario o un letrado de la Administración de Justicia."
+      ],
+      "fromClass": false,
+      "sections": ["preservacion", "hash-concepto"]
+    },
+    {
+      "id": "forense-t03-d4",
+      "kind": "corta",
+      "points": 2,
+      "minutes": 6,
+      "prompt": "Explica las dos tareas de preparación antes de copiar un disco en frío: qué se hace sobre el original y qué sobre el disco de destino, y por qué.",
+      "keyPoints": [
+        "Indica que el original se protege con bloqueo contra escritura porque el sistema operativo escribe en los discos conectados",
+        "Enumera los tres tipos de bloqueo: hardware, software y distribución Linux forense",
+        "Señala que el hardware es el más fiable y que el software no impide escrituras a bajo nivel",
+        "Indica que el destino se prepara con borrado seguro (sobrescribir, normalmente con ceros)",
+        "Explica que el borrado seguro evita que restos previos se confundan con datos del caso, sobre todo en un clonado",
+        "Insiste en que el borrado seguro nunca se aplica al original"
+      ],
+      "model": [
+        "Sobre el **original**, **bloqueo contra escritura**: al conectar un disco, el sistema operativo escribe en él por su cuenta (índices, fechas de acceso) y además podemos equivocarnos. El bloqueador deja leer pero no escribir. Puede ser **hardware** (un aparato puente, lo más fiable), **software** (programas o scripts; barato, pero no frena escrituras a bajo nivel, solo para entornos controlados) o una **distribución Linux forense** que arranca sin montar los discos.",
+        "Sobre el **destino**, **borrado seguro**: sobrescribir todo el soporte, normalmente con ceros, para que no quede nada anterior. Así nadie puede decir que un archivo de la copia venía de otro caso y no del equipo investigado. Es aún más importante en un **clonado**, porque el clon ocupa el disco entero.",
+        "Resumen: bloqueo para el original, borrado seguro para el destino. Nunca se borra el original."
+      ],
+      "fromClass": false,
+      "sections": ["bloqueo-escritura", "borrado-seguro"]
+    },
+    {
+      "id": "forense-t03-d5",
+      "kind": "corta",
+      "points": 2,
+      "minutes": 6,
+      "prompt": "¿Qué significa acotar la escena del crimen en un caso de informática forense? Explícalo con un ejemplo.",
+      "keyPoints": [
+        "Define acotar como decidir con criterio qué hay que adquirir y qué no antes de empezar",
+        "Enuncia las dos preguntas: equipos afectados directamente y equipos relacionados sin estar afectados",
+        "Pone un ejemplo con equipos afectados y relacionados (por ejemplo, malware por correo: equipos infectados y servidor de correo o antivirus)",
+        "Indica que no se recoge todo indiscriminadamente ni solo lo afectado",
+        "Menciona controlar quién accede o inventariar y etiquetar todo contenedor posible"
+      ],
+      "model": [
+        "**Acotar la escena** es decidir con criterio **qué hay que adquirir y qué no** antes de empezar a copiar. Se responden dos preguntas: ¿qué equipos han sufrido **directamente** el incidente? y ¿qué otros, **sin sufrirlo**, pueden estar **relacionados** con él?",
+        "Ejemplo: un malware entra por correo. Afectados directamente: los equipos infectados y los pendrives o discos externos a los que pudo propagarse. Relacionados: el **servidor de correo** por el que entró y los equipos de seguridad que lo analizaron (antivirus, IDS); no están infectados, pero «vieron pasar al ladrón».",
+        "No se trata de llevarse todo «por si acaso» ni solo lo afectado. Acotar también es **controlar quién accede** (nadie toca nada hasta que el forense tenga copia) e **inventariar y etiquetar** todo contenedor posible, incluso los que parecen vacíos."
+      ],
+      "fromClass": false,
+      "sections": ["escena"]
+    }
+  ],
+  "cases": [
+    {
+      "id": "forense-t03-c1",
+      "title": "Un móvil al 5 % y un portátil cifrado encendido",
+      "scenario": [
+        "Un juzgado te encarga intervenir en el domicilio de un investigado por estafa. Llegas con un letrado de la Administración de Justicia.",
+        "Sobre la mesa hay un **móvil encendido y desbloqueado con un 5 % de batería**, que lleva días sin reiniciarse, y un **portátil encendido** con la sesión abierta y el disco cifrado con BitLocker. En una estantería hay **tres pendrives** y una **tarjeta SD**."
+      ],
+      "minutes": 20,
+      "points": 3,
+      "questions": [
+        {
+          "prompt": "Prioriza los pasos que darías con el móvil y justifica cada uno.",
+          "keyPoints": [
+            "Coloca como primer paso conectar el móvil a una fuente de energía (por ejemplo, una batería externa)",
+            "Justifica que si se apaga, al reiniciar el almacenamiento quedará cifrado hasta introducir el PIN",
+            "Indica no apagarlo ni reiniciarlo y mantenerlo encendido",
+            "Propone adquirir en caliente e in situ lo que se pueda mientras está accesible",
+            "Indica documentar, fotografiar y etiquetar el dispositivo y todo lo que se haga",
+            "Reconoce que no hay una única secuencia válida y razona las prioridades"
+          ],
+          "model": [
+            "1) **Darle energía** inmediatamente, por ejemplo con una batería externa. Es lo que más se olvida y es lo más urgente: si se apaga, al volver a arrancar el almacenamiento quedará **cifrado** hasta que se introduzca el PIN, y podríamos perder los datos.",
+            "2) **No apagarlo ni reiniciarlo**, y evitar que nadie lo manipule. 3) **Documentar** su estado: fotografiar la pantalla, anotar hora y nivel de batería, etiquetarlo.",
+            "4) **Adquirir en caliente e in situ** la información mientras está accesible, con herramientas forenses y documentando qué herramienta y versión se usa, y calcular el hash del resultado. 5) Sellar, documentar y custodiar.",
+            "No hay una única respuesta correcta: alguien podría documentar antes de conectar la energía si la batería lo permite. Lo importante es que **la energía y el no apagar vayan antes que cualquier análisis**, y justificarlo por el riesgo de cifrado."
+          ]
+        },
+        {
+          "prompt": "¿Qué harías con el portátil encendido y cifrado? Razona por qué no lo apagarías sin más.",
+          "keyPoints": [
+            "Explica que apagar puede hacer perder el acceso a los datos descifrados de BitLocker",
+            "Propone adquirir primero los datos volátiles (RAM) en caliente",
+            "Propone adquirir en caliente también los datos cifrados no volátiles (el disco mientras está descifrado)",
+            "Indica usar software forense propio y portable desde un USB, no las herramientas del equipo",
+            "Menciona que, si ya estuviera apagado, habría que conseguir la clave de recuperación",
+            "Indica decidir después entre apagado forense o limpio y documentar todo"
+          ],
+          "model": [
+            "No lo apago: con la sesión abierta, BitLocker descifra al vuelo. Si lo apago, el disco vuelve a quedar protegido y quizá no pueda volver a acceder sin la clave. Por eso es un caso claro de **adquisición en caliente**.",
+            "Según la ISO/IEC 27037, si hay datos cifrados, primero adquiero los **cifrados volátiles** (volcado de la RAM) y después los **cifrados no volátiles** (copia del disco mientras está accesible), con **software forense propio y portable** ejecutado desde mi USB, porque las herramientas del sistema pueden estar manipuladas. Anoto herramienta y versión y calculo el hash de cada resultado.",
+            "Después decido si me llevo el equipo: si no hay riesgo de corromper datos, apagado forense (cortar la corriente); si lo hay, apagado limpio. Si me lo hubiera encontrado apagado, no sería el fin: habría que conseguir la **clave de recuperación**."
+          ]
+        },
+        {
+          "prompt": "¿Cómo garantizarías la integridad del volcado de la RAM y qué harías con los pendrives y la tarjeta SD?",
+          "keyPoints": [
+            "Indica calcular el hash del volcado de RAM como referencia para cambios posteriores",
+            "Explica que ese hash no prueba que la copia sea igual a la memoria original",
+            "Indica que el letrado de la Administración de Justicia actúa como tercero de confianza que da fe",
+            "Indica que los pendrives y la SD son los menos volátiles y tienen la menor prioridad, sin dejar de ser importantes",
+            "Propone documentar ubicación, marca, modelo y número de serie, etiquetarlos y recolectarlos para adquirirlos en frío con bloqueo"
+          ],
+          "model": [
+            "Del volcado de la RAM calculo el **hash del resultado**: servirá para demostrar que el archivo no cambia a partir de ahora. Pero no prueba que sea igual a lo que había en memoria, porque la RAM cambia mientras se copia. Eso lo avala el **tercero de confianza**: el letrado de la Administración de Justicia que da fe del proceso.",
+            "Los **pendrives y la tarjeta SD** son los menos volátiles: tienen la **menor prioridad**, pero no son menos importantes. Documento su ubicación, marca, modelo y número de serie, los etiqueto y los recolecto para adquirirlos **en frío** en el laboratorio con bloqueador de escritura y los tres hashes."
+          ]
+        }
+      ],
+      "tip": "El profesor contó que en el ejercicio teórico-práctico «a veces se pone un móvil con un 5 % de batería» y se pide priorizar sin dar los pasos, y que la gente suele olvidar darle energía. No hay respuesta 100 % correcta: ordena y justifica.",
+      "sections": ["caliente-frio", "adquisicion-campo", "preservacion", "supuestos-especiales"]
+    },
+    {
+      "id": "forense-t03-c2",
+      "title": "Un ordenador apagado y un servidor de correo que no se puede parar",
+      "scenario": [
+        "Logística Meseta SA sospecha que un directivo ha filtrado ofertas a la competencia. Llegas con un notario a su despacho: el **ordenador de sobremesa está apagado**. Hay un **disco duro externo** en el cajón.",
+        "El directivo usa un **servidor de correo de la empresa** que da servicio a 1.500 empleados y no puede apagarse. El juez solo ha autorizado adquirir **los correos de la cuenta del directivo**. La empresa tiene una granja de servidores virtualizados y nadie del equipo de investigación conoce la infraestructura."
+      ],
+      "minutes": 20,
+      "points": 3,
+      "questions": [
+        {
+          "prompt": "El ordenador está apagado. ¿Qué haces con él en el despacho y por qué?",
+          "keyPoints": [
+            "Indica no encenderlo para ver la sesión, no conectarlo a la red ni cambiar su configuración",
+            "Propone desconectar la alimentación y la batería si la hubiera para conservar el estado",
+            "Propone fotografiar y etiquetar cada cable antes de desconectarlo",
+            "Propone tapar el botón de encendido con cinta y documentarlo todo en el acta",
+            "Propone buscar otros medios relacionados (disco externo, pendrives, un CD en el lector)",
+            "Menciona que si el disco está cifrado no es el fin: se pide la clave de recuperación a TI"
+          ],
+          "model": [
+            "Hago una **recolección en frío**: el objetivo es que siga apagado y sin cambios. **No lo enciendo** «para echar un vistazo», no lo conecto a la red ni toco su configuración: cualquiera de esas cosas escribe en el disco y daría a la defensa un motivo para atacar la prueba.",
+            "Desconecto el **cable de alimentación** (y la batería, si la tuviera), **fotografío y etiqueto cada cable** antes de quitarlo para poder reconstruir la configuración, pongo **cinta sobre el botón** de encendido y anoto todo en el acta ante el notario.",
+            "Busco **otros medios relacionados**: el disco externo del cajón, pendrives, un CD olvidado en el lector. Los etiqueto y los trato igual.",
+            "Si el disco resultara estar cifrado, no se acaba el mundo: en una empresa, el departamento de TI suele gestionar la **clave de recuperación**."
+          ]
+        },
+        {
+          "prompt": "Ya en el laboratorio, describe cómo adquieres el disco del ordenador.",
+          "keyPoints": [
+            "Propone extraer el disco del equipo",
+            "Propone preparar el destino con borrado seguro y con capacidad suficiente",
+            "Propone copiar con una clonadora forense o con bloqueador de escritura hardware",
+            "Elige imagen forense o clonado y lo justifica",
+            "Propone calcular HA1, HA2 y HB y comprobar que coinciden",
+            "Propone sellar, documentar y custodiar, manteniendo la cadena de custodia"
+          ],
+          "model": [
+            "Sigo la **adquisición en frío** de la ISO/IEC 27037. 1) **Extraigo** el disco del ordenador. 2) **Preparo el destino** con borrado seguro y capacidad igual o mayor. 3) **Copio** con una clonadora forense o conectando el disco a mi equipo mediante un **bloqueador de escritura hardware**.",
+            "Haría una **adquisición física** en formato **imagen forense** (por ejemplo E01): copia todo el disco, incluido el espacio libre, y puedo guardarla junto a otras en un mismo disco del laboratorio.",
+            "Calculo **HA1** (origen antes), **HA2** (origen después) y **HB** (imagen); si coinciden, el original está intacto y la copia es exacta. 4) **Sello, documento y custodio** el soporte con su documentación, manteniendo la cadena de custodia."
+          ]
+        },
+        {
+          "prompt": "¿Cómo adquieres los correos del servidor? Justifica el tipo de adquisición.",
+          "keyPoints": [
+            "Identifica el servidor como dispositivo crítico que no se puede apagar",
+            "Justifica una adquisición parcial porque el juez limita el alcance y solo una parte es relevante",
+            "Propone una adquisición lógica en caliente de la cuenta del directivo",
+            "Propone documentar alcance, límites, lo excluido y el procedimiento",
+            "Propone apoyarse en contactos de la empresa (redes, CPD, TI) para localizar y verificar el servidor",
+            "Menciona como alternativa una instantánea si el servidor es virtual, dentro del alcance autorizado"
+          ],
+          "model": [
+            "El servidor es un **dispositivo crítico**: apagarlo dejaría sin correo a 1.500 personas ajenas a la investigación. Además, el juez **limita el alcance** a una cuenta. Es un **supuesto especial** de la ISO/IEC 27037 y justifica una **adquisición parcial**.",
+            "Haría una **adquisición lógica en caliente** limitada a los correos de esa cuenta, y documentaría el **alcance, los límites, lo que se excluye y por qué**. No apagaría el servidor «para que no sea parcial» ni clonaría todos sus discos sin autorización.",
+            "Como no conozco la infraestructura, primero pediría **contactos de apoyo** de redes, CPD y TI para localizar el servidor y comprobar que es de verdad el de correo. Si fuera una máquina virtual, una **instantánea** podría ser otra opción, siempre dentro de lo que autoriza el juez."
+          ]
+        }
+      ],
+      "tip": "El profesor puso este ejemplo: «imaginaos que en el examen os cae un ejercicio teórico-práctico donde se dice que está apagado el ordenador». Apagado no significa que el trabajo haya terminado: recolección en frío y, si hay cifrado, clave de recuperación.",
+      "sections": ["recoleccion", "adquisicion-campo", "preservacion", "supuestos-especiales", "escena", "fisica-logica"]
+    }
+  ],
+  "order": [
+    {
+      "id": "forense-t03-o1",
+      "title": "Ordena los pasos de la adquisición en frío según la ISO/IEC 27037",
+      "items": [
+        "Extraer el dispositivo de almacenamiento del equipo",
+        "Preparar el disco de destino con borrado seguro",
+        "Copiar con clonadora forense o con bloqueador de escritura",
+        "Documentar, sellar el destino y custodiarlo"
+      ],
+      "why": "Primero se saca el disco, luego se deja el destino limpio para que nada previo se confunda con la evidencia, después se copia sin poder escribir en el original y al final se cierra la cadena de custodia.",
+      "sections": ["adquisicion-campo"]
+    },
+    {
+      "id": "forense-t03-o2",
+      "title": "Ordena la recolección en frío de un equipo apagado",
+      "items": [
+        "Comprobar si tiene batería y desconectarla",
+        "Desconectar el cable de alimentación",
+        "Fotografiar, identificar y desconectar los demás cables",
+        "Poner cinta sobre el botón de encendido y documentarlo",
+        "Buscar otros medios relacionados y tratarlos igual"
+      ],
+      "why": "Lo primero es cortar cualquier fuente de energía que pueda arrancar el equipo o cambiar su estado; después se desmonta documentando para poder reconstruirlo, se evita un encendido accidental y se amplía la búsqueda a otros soportes.",
+      "sections": ["recoleccion"]
+    },
+    {
+      "id": "forense-t03-o3",
+      "title": "Ordena la recolección en caliente de un equipo encendido",
+      "items": [
+        "Adquirir primero los datos volátiles (RAM, procesos)",
+        "Valorar si los datos del disco se corromperían al cortar la corriente",
+        "Hacer apagado forense, o apagado limpio si hay riesgo de corrupción",
+        "Desconectar, etiquetar, fotografiar y documentar",
+        "Buscar otros medios asociados"
+      ],
+      "why": "Lo volátil se pierde al apagar, así que va primero; luego se decide cómo apagar según el riesgo para los datos (sistemas transaccionales) y, con el equipo ya apagado, se procede como en frío.",
+      "sections": ["recoleccion"]
+    },
+    {
+      "id": "forense-t03-o4",
+      "title": "Ordena los tres hashes de la preservación en frío",
+      "items": [
+        "Hash del origen antes de la adquisición (HA1)",
+        "Adquisición de la copia con bloqueo contra escritura",
+        "Hash del origen después de la adquisición (HA2)",
+        "Hash de la copia adquirida (HB)",
+        "Comparar: si HA1 = HA2 = HB, origen intacto y copia exacta"
+      ],
+      "why": "El hash previo fija cómo estaba el original; el posterior demuestra que la copia no lo alteró; el de la copia demuestra que es idéntica. Solo al tener los tres se puede comparar.",
+      "sections": ["preservacion"]
+    }
+  ]
+}

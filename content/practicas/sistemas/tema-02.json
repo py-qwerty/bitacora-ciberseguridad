@@ -1,0 +1,259 @@
+{
+  "course": "sistemas",
+  "number": 2,
+  "open": [
+    {
+      "id": "sistemas-t02-d1",
+      "kind": "larga",
+      "points": 3,
+      "minutes": 14,
+      "prompt": "Enumera los objetivos de seguridad que debe garantizar una aplicación web y explica brevemente cómo se consigue cada uno. Detente especialmente en la trazabilidad.",
+      "keyPoints": [
+        "Enumera los siete objetivos: autenticación, autorización, confidencialidad, integridad, disponibilidad, no repudio y trazabilidad",
+        "Explica autenticación (quién eres) y autorización (qué puedes hacer, por roles)",
+        "Explica confidencialidad con cifrado en reposo y en tránsito (TLS)",
+        "Explica integridad (roles, hash, firma digital) y no repudio (firma digital), distinguiéndolos",
+        "Explica disponibilidad con redundancia o clústeres",
+        "Explica que la trazabilidad necesita registros diseñados en análisis y diseño y además monitorización continua",
+        "Menciona el papel de un SIEM o de alguien que vigile los registros"
+      ],
+      "model": [
+        "Una aplicación web debe cumplir siete objetivos de seguridad:",
+        "**Autenticación**: saber quién es el usuario; mejor con varios factores (formulario con contraseña, código por SMS o correo, TLS mutuo con certificado de cliente). **Autorización**: decidir qué puede hacer, normalmente con **roles** (invitado, usuario, administrador…); un usuario puede tener varios y sus derechos se suman.",
+        "**Confidencialidad**: que solo lo vea quien debe. Se cifra en **tránsito** con TLS y en **reposo** (base de datos, ficheros) cuando la normativa de protección de datos lo exige. **Integridad**: que nadie altere lo que no le corresponde, con roles y niveles de acceso, funciones hash y firma digital.",
+        "**Disponibilidad**: que el servicio funcione cuando se necesita, con redundancia de servicios y clústeres. **No repudio**: que nadie pueda negar haber hecho algo, gracias a la **firma digital**.",
+        "**Trazabilidad**: saber quién hizo qué y cuándo. Necesita **dos cosas**. Primero, registros (logs) **diseñados** en la fase de análisis y diseño para guardar lo útil y descartar el ruido; no vale el registro que trae por defecto el servidor. Segundo, **monitorización continua**, 24 horas los 7 días: un registro que nadie mira no sirve. Un **SIEM** ayuda porque recoge y correlaciona los registros de varias fuentes (IDS, WAF, firewall)."
+      ],
+      "tip": "El profesor insistió en que la trazabilidad es muy importante y se descuida a menudo por falta de tiempo. No confundas integridad (no alterar) con no repudio (no poder negar).",
+      "fromClass": true,
+      "sections": ["anatomia-objetivos"]
+    },
+    {
+      "id": "sistemas-t02-d2",
+      "kind": "corta",
+      "points": 2,
+      "minutes": 6,
+      "prompt": "Explica la diferencia entre los códigos de estado HTTP 401 y 403. ¿Por qué hay que reconfigurar las páginas de error 400 y 500 que trae por defecto un servidor?",
+      "keyPoints": [
+        "Explica que 401 significa que la petición no trae credenciales válidas: no estás autenticado",
+        "Explica que 403 significa que estás autenticado pero tu rol no tiene permiso sobre el recurso",
+        "Advierte que el nombre en inglés del 401 (Unauthorized) confunde",
+        "Explica que las páginas de error por defecto muestran la traza completa (rutas, ficheros, lenguaje, IP), útil para un atacante",
+        "Propone mensajes genéricos para el usuario y el detalle solo para administradores y auditores"
+      ],
+      "model": [
+        "El **401** indica que la petición **no está autenticada**: no trae credenciales válidas. Su nombre en inglés, «Unauthorized», engaña. El **403** (Forbidden) indica que **sí estás autenticado**, pero **tu rol no tiene permiso** sobre ese recurso. Pista: sin sesión es 401; con sesión pero sin derechos es 403.",
+        "Si no se reconfigura el servidor, sus páginas de error 400 y 500 muestran **la traza completa**: rutas de ficheros, nombres de archivos, lenguaje, dominios y direcciones IP. Al usuario no le sirve de nada, pero al atacante le da pistas; un error 500 puede incluso confirmarle que su payload ha llegado a la base de datos. Hay que mostrar mensajes **genéricos** y guardar el detalle solo para administradores y auditores."
+      ],
+      "tip": "En clase el profesor avisó: «cuidado con el 401 y el 403».",
+      "fromClass": true,
+      "sections": ["http-mensajes", "mvvm"]
+    },
+    {
+      "id": "sistemas-t02-d3",
+      "kind": "larga",
+      "points": 3,
+      "minutes": 14,
+      "prompt": "¿Qué es el SSDLC? Explica qué actividad de seguridad se hace en cada fase del ciclo de vida y por qué conviene empezar la seguridad desde las primeras fases.",
+      "keyPoints": [
+        "Define SSDLC como el ciclo de vida de desarrollo de software con actividades de seguridad en cada fase",
+        "Requisitos y diseño: requisitos de seguridad derivados del modelado de amenazas (o casos de abuso) y del análisis de riesgos; planificación de las pruebas",
+        "Desarrollo: formación y codificación segura, análisis estático (SAST) y de dependencias (SCA)",
+        "Pruebas: DAST, IAST, pruebas funcionales de seguridad y prueba de penetración",
+        "Producción: monitorización, parches, respuesta a incidentes y protecciones como WAF o RASP",
+        "Justifica empezar pronto: corregir un fallo cuesta mucho más cuanto más tarde se detecta",
+        "Menciona algún modelo de SSDLC (OWASP SAMM, NIST SSDF, BSIMM) o los siete puntos de contacto de McGraw"
+      ],
+      "model": [
+        "El **SSDLC** (Secure Software Development Life Cycle, ciclo de vida de desarrollo seguro) es el ciclo de vida normal del software con **actividades de seguridad en cada fase**, para que la seguridad esté desde el principio y no se añada al final.",
+        "**Requisitos y diseño.** Se definen los **requisitos de seguridad**, que se derivan del **modelado de amenazas** (preguntarse qué puede salir mal en cada capa, o escribir **casos de abuso** desde el punto de vista del atacante) y del **análisis de riesgos** de los activos. También se planifican las pruebas funcionales de seguridad.",
+        "**Desarrollo.** Formación del programador y codificación segura: validar entradas, consultas parametrizadas, codificar salidas. Se revisa el código con **SAST** (análisis estático, sin ejecutar) y las dependencias con **SCA** (busca CVE en bibliotecas de terceros).",
+        "**Pruebas y despliegue.** Se ejecutan los tests funcionales de seguridad, **DAST** (ataque desde fuera, caja negra) e **IAST** (agente dentro de la aplicación) y la **prueba de penetración**.",
+        "**Producción.** Monitorización continua, parches, respuesta a incidentes, copias probadas y protecciones como el **WAF** o el **RASP**. El análisis de riesgos se rehace cada vez que cambia la arquitectura, y el ciclo no termina nunca.",
+        "Conviene empezar pronto porque **cuanto más tarde se detecta un fallo, más cuesta corregirlo**: según una cita que mostró el profesor, puede costar decenas de veces más en producción que en diseño. Modelos como **OWASP SAMM** o **NIST SSDF** (gratuitos) y **BSIMM** (de pago) dicen qué hacer en cada fase."
+      ],
+      "tip": "No hace falta dar la cifra exacta del coste; basta con la idea de que crece fase a fase.",
+      "fromClass": true,
+      "sections": ["ssdlc", "ssdlc-normas-madurez", "desarrollo-pruebas"]
+    },
+    {
+      "id": "sistemas-t02-d4",
+      "kind": "corta",
+      "points": 2,
+      "minutes": 7,
+      "prompt": "Compara SAST, DAST, IAST y RASP: qué ve cada herramienta (caja blanca o negra), si necesita la aplicación en marcha y en qué fase se usa.",
+      "keyPoints": [
+        "SAST: caja blanca, analiza el código fuente sin ejecutar la aplicación, en desarrollo",
+        "DAST: caja negra, ataca desde fuera la aplicación en ejecución, en pruebas",
+        "IAST: caja blanca, agente embebido que observa la aplicación en ejecución, en pruebas o despliegue, a la vez que el DAST",
+        "RASP: el mismo agente que IAST, pero bloquea ataques en producción",
+        "Concluye que son complementarias y que ninguna encuentra el 100 % (falsos negativos)"
+      ],
+      "model": [
+        "**SAST** (análisis estático) es de **caja blanca**: examina el código fuente y la configuración **sin ejecutar** la aplicación, en la fase de **desarrollo**. **DAST** (análisis dinámico) es de **caja negra**: ataca desde fuera la aplicación **en ejecución** y solo ve peticiones y respuestas; se usa en **pruebas**.",
+        "**IAST** (análisis interactivo) es de **caja blanca**: un **agente embebido** en el servidor de aplicaciones observa el código mientras le llegan peticiones; por eso se ejecuta **a la vez que el DAST**, en pruebas y despliegue, y genera un informe. **RASP** usa el **mismo agente**, pero en **producción** y configurado para **bloquear** los ataques reales.",
+        "Ninguna es «la mejor»: son **complementarias**, porque todas tienen falsos positivos y, sobre todo, **falsos negativos** (vulnerabilidades que no ven)."
+      ],
+      "fromClass": true,
+      "sections": ["desarrollo-pruebas"]
+    },
+    {
+      "id": "sistemas-t02-d5",
+      "kind": "corta",
+      "points": 2,
+      "minutes": 7,
+      "prompt": "¿Qué métodos HTTP necesita una aplicación web normal y cuáles conviene deshabilitar? Explica por qué y describe el riesgo concreto del método TRACE.",
+      "keyPoints": [
+        "Aplica el principio de mínimos privilegios a los métodos: basta con GET y POST",
+        "Da motivos para deshabilitar HEAD, OPTIONS (información para el atacante), PUT (subir ficheros) y CONNECT (explorar servicios tras un proxy)",
+        "Explica que TRACE devuelve la petición, con sus cabeceras, en el cuerpo de la respuesta",
+        "Explica que así la cookie de sesión queda legible por JavaScript y se salta HttpOnly (XST)",
+        "Indica que la defensa es deshabilitar TRACE"
+      ],
+      "model": [
+        "Igual que un usuario debe tener solo los permisos que necesita, un servidor debe aceptar solo los métodos necesarios. Para una aplicación normal **basta con GET** (cargar páginas) **y POST** (enviar datos en el cuerpo).",
+        "El resto se deshabilita: **HEAD** y **OPTIONS** dan información al atacante (cabeceras y métodos admitidos), **PUT** permite subir ficheros al servidor y **CONNECT** permite abrir un túnel a servicios internos que están detrás de un proxy.",
+        "**TRACE** devuelve en el cuerpo de la respuesta la propia petición, con sus cabeceras. Como la cookie de sesión viaja en una cabecera, aparece copiada en el cuerpo, donde el JavaScript sí puede leerla: se anula la protección **HttpOnly**. Es el ataque **XST** (Cross-Site Tracing), que combinado con un script permite robar la sesión. La defensa es **deshabilitar TRACE**."
+      ],
+      "fromClass": true,
+      "sections": ["http-metodos", "http-riesgos"]
+    }
+  ],
+  "cases": [
+    {
+      "id": "sistemas-t02-c1",
+      "title": "La tienda online que se prepara para el Black Friday",
+      "scenario": [
+        "ModaVerde vende ropa por Internet con una aplicación monolítica en PHP. Cada año, en el Black Friday, el módulo de pagos se satura y hay que replicar la aplicación entera. El equipo plantea rehacerla como una SPA en Angular con un backend de microservicios.",
+        "Una auditoría previa ha encontrado esto: el formulario de acceso envía usuario y contraseña con GET, el servidor tiene habilitado TRACE, el identificador de sesión se guarda en localStorage y la comprobación de que el usuario es administrador solo se hace en el JavaScript del navegador."
+      ],
+      "minutes": 18,
+      "points": 3,
+      "questions": [
+        {
+          "prompt": "¿Qué ventajas e inconvenientes tendría pasar a microservicios en este caso?",
+          "keyPoints": [
+            "Define microservicios como servicios pequeños e independientes que se comunican por API",
+            "Explica la ventaja clave: escalar solo el servicio de pagos",
+            "Menciona otras ventajas: despliegue independiente, agilidad y resiliencia",
+            "Menciona los inconvenientes: complejidad, coste operacional (contenedores, Kubernetes) y latencia de red"
+          ],
+          "model": [
+            "Con **microservicios** la aplicación se trocea en servicios pequeños e independientes (catálogo, carrito, pagos) que se hablan por API. La gran ventaja para ModaVerde es que en el Black Friday podría lanzar más instancias **solo del servicio de pagos**, en vez de replicar todo el monolito. Además cada servicio se despliega por separado y, si uno falla, el resto sigue.",
+            "A cambio, aparece **complejidad** (gestionar y vigilar muchas piezas), **coste** (contenedores y orquestadores como Kubernetes) y **latencia**, porque cada compra implica varias llamadas por red entre servicios."
+          ]
+        },
+        {
+          "prompt": "Explica qué riesgo supone cada hallazgo de la auditoría y cómo lo corregirías.",
+          "keyPoints": [
+            "Login por GET: las credenciales quedan en la URL, el historial y los registros; usar POST y TLS",
+            "Precisa que POST no cifra: lo que protege el viaje es TLS (HTTPS)",
+            "TRACE habilitado: permite XST y robar la cookie pese a HttpOnly; deshabilitarlo",
+            "Sesión en localStorage: la lee cualquier JavaScript (XSS); guardarla en una cookie con HttpOnly, Secure y SameSite=Strict",
+            "Control de administrador solo en el navegador: el atacante lo salta; comprobar el rol en el backend en cada petición"
+          ],
+          "model": [
+            "**Login con GET.** Los parámetros van en la URL, que queda en el historial, la caché y los registros de servidores y proxies. Las credenciales se envían con **POST**, y todo el tráfico con **TLS**, porque POST solo saca los datos de la URL: no los cifra.",
+            "**TRACE habilitado.** Permite el ataque XST: la respuesta copia la cookie de sesión en el cuerpo, donde un script puede leerla aunque tenga HttpOnly. Se **deshabilita TRACE** y se dejan solo GET y POST.",
+            "**Sesión en localStorage.** Cualquier JavaScript de la página puede leerla, así que un XSS la roba. Debe ir en una **cookie con HttpOnly, Secure y SameSite=Strict**.",
+            "**Control de administrador en el navegador.** El atacante controla su navegador y puede saltarse ese JavaScript. La autenticación y la autorización se comprueban en el **backend**, en cada petición; en el cliente solo como complemento."
+          ]
+        }
+      ],
+      "tip": "En una SPA la regla es clara: la seguridad de verdad vive en el backend.",
+      "sections": ["microservicios", "spa-ajax", "http-riesgos", "mismo-origen", "http-metodos"]
+    },
+    {
+      "id": "sistemas-t02-c2",
+      "title": "Una app de citas médicas, desde el diseño",
+      "scenario": [
+        "SaludCerca va a desarrollar una aplicación web para pedir citas en sus 12 centros médicos. Los pacientes verán su historial de citas y los médicos, su agenda. De momento solo existe el diseño: no hay ni una línea de código.",
+        "La dirección quiere un proceso de desarrollo seguro y pregunta qué hacer ahora, qué hacer después y qué pasará cuando la aplicación ya esté en producción."
+      ],
+      "minutes": 18,
+      "points": 3,
+      "questions": [
+        {
+          "prompt": "¿Qué actividades de seguridad harías ahora, en la fase de diseño? Pon un ejemplo de requisito que saldría de ellas.",
+          "keyPoints": [
+            "Propone el modelado de amenazas (o casos de abuso) de la aplicación capa por capa",
+            "Propone el análisis de riesgos de los activos, destacando que los datos de salud son muy sensibles",
+            "Explica que los requisitos de seguridad se derivan de ambas actividades",
+            "Da un requisito concreto (por ejemplo, el servidor comprueba en cada petición que la cita pertenece al usuario autenticado)",
+            "Descarta herramientas dinámicas ahora, porque necesitan una aplicación en ejecución"
+          ],
+          "model": [
+            "Como aún no hay código, toca el **modelado de amenazas**: revisar el diseño capa por capa y preguntarse quién atacaría, por dónde y para qué. Se pueden escribir **casos de abuso**, por ejemplo «un paciente cambia el número de cita en la petición para ver la de otro». A la vez se hace el **análisis de riesgos** de los activos: los datos de salud son muy sensibles.",
+            "De ambas actividades se **derivan los requisitos de seguridad**. Ejemplo: «el servidor comprobará en cada petición que la cita pertenece al usuario autenticado». Un escáner dinámico no sirve ahora porque necesita la aplicación funcionando."
+          ]
+        },
+        {
+          "prompt": "¿Qué pruebas de seguridad harías durante el desarrollo y antes de publicar?",
+          "keyPoints": [
+            "En desarrollo: SAST sobre el código y SCA sobre las dependencias",
+            "Antes de publicar: pruebas funcionales de seguridad planificadas en diseño",
+            "DAST e IAST a la vez sobre la aplicación en marcha",
+            "Prueba de penetración en la fase de pruebas, como complemento y no sustituto"
+          ],
+          "model": [
+            "Durante el **desarrollo**, formación en codificación segura, **SAST** sobre el código fuente y **SCA** sobre las bibliotecas de terceros para detectar CVE conocidos.",
+            "En **pruebas**, ejecutaría los tests funcionales de seguridad planificados en el diseño, un **DAST** junto con un **IAST** sobre la aplicación en marcha y, al final, una **prueba de penetración**, que complementa lo anterior pero no lo sustituye."
+          ]
+        },
+        {
+          "prompt": "Seis meses después de publicar, se anuncia un CVE crítico en una biblioteca que usa la aplicación. ¿Qué hay que hacer?",
+          "keyPoints": [
+            "Evaluar si la versión usada está afectada",
+            "Actualizar o parchear la biblioteca",
+            "Vigilar los registros por si ya hubo un ataque y activar la respuesta a incidentes si procede",
+            "Explica que la seguridad continúa en producción (monitorización, parches) y que hay exploits públicos tras un CVE"
+          ],
+          "model": [
+            "Hay que **evaluar si la versión afectada es la que se usa**, **actualizar** la biblioteca cuanto antes y **revisar los registros** por si alguien ya lo explotó, activando el plan de respuesta a incidentes si hace falta. Una vez publicado un CVE suelen aparecer exploits públicos, así que esperar es peligroso. Es la fase de producción del SSDLC: monitorizar, parchear y responder."
+          ]
+        }
+      ],
+      "sections": ["ssdlc", "desarrollo-pruebas", "ssdlc-normas-madurez"]
+    }
+  ],
+  "order": [
+    {
+      "id": "sistemas-t02-o1",
+      "title": "Ordena las fases del SSDLC",
+      "items": [
+        "Requisitos y planificación: requisitos de seguridad",
+        "Diseño: modelado de amenazas",
+        "Desarrollo: codificación segura, SAST y SCA",
+        "Pruebas: DAST, IAST y prueba de penetración",
+        "Despliegue y mantenimiento: monitorización, parches y respuesta a incidentes"
+      ],
+      "why": "Es el ciclo de vida del software con una actividad de seguridad en cada fase: lo que se planifica al principio se verifica después, y en producción el ciclo vuelve a empezar.",
+      "sections": ["ssdlc"]
+    },
+    {
+      "id": "sistemas-t02-o2",
+      "title": "Ordena las partes de un mensaje HTTP",
+      "items": [
+        "Línea inicial (método, URL y versión, o versión y código de estado)",
+        "Cabeceras, una por línea",
+        "Línea vacía (dos parejas CR LF seguidas)",
+        "Cuerpo"
+      ],
+      "why": "La línea vacía separa las cabeceras del cuerpo; inyectar esos caracteres es lo que aprovecha el response splitting.",
+      "sections": ["http-mensajes"]
+    },
+    {
+      "id": "sistemas-t02-o3",
+      "title": "Ordena los pasos del ataque XST",
+      "items": [
+        "La víctima inicia sesión y su navegador guarda la cookie de sesión",
+        "Sin cerrar sesión, visita una web del atacante",
+        "Un script lanza una petición TRACE contra la aplicación legítima",
+        "El servidor devuelve las cabeceras, con la cookie, copiadas en el cuerpo",
+        "El script lee el cuerpo y envía la cookie al atacante"
+      ],
+      "why": "El ataque necesita una sesión viva y TRACE habilitado; HttpOnly no ayuda porque la cookie se lee del cuerpo, no de la cabecera.",
+      "sections": ["http-riesgos"]
+    }
+  ]
+}

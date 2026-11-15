@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import vm from 'node:vm';
 import * as core from '../dist/core.js';
+import * as practicas from '../dist/practicas.js';
 function fixture(){const courses=[{id:'sistemas',title:'Sistemas',shortTitle:'Sistemas'},{id:'redes',title:'Redes',shortTitle:'Redes'}];const topics=[{id:11,course:'sistemas',number:1,title:'Windows Server'},{id:12,course:'sistemas',number:2,title:'Linux'},{id:21,course:'redes',number:1,title:'Redes'}];const questions=topics.flatMap(t=>Array.from({length:30},(_,i)=>({id:`${t.course}-${t.number}-${i}`,course:t.course,topic:t.id,test:'Tema '+t.number,order:i+1,text:`Caso ${t.id}/${i}`,options:['a','b','c','d'].map(key=>({key,text:'Opción '+key})),correct:'abcd'[i%4],explanation:'La razón de la respuesta <debe> explicarse.',difficulty:'media',source:{kind:'practice',title:t.title,page:5}})));return {version:'test',courses,topics,questions};}
 function runtime(){
  const elements=new Map();const events={};let ctx;
@@ -11,7 +12,7 @@ function runtime(){
  const storage=new Map();const document={querySelector:get,querySelectorAll:()=>[],addEventListener:(k,fn)=>{(events[k]??=[]).push(fn)},activeElement:get('focus'),hidden:false};
  document.body=element();
  const window={addEventListener(){},scrollX:0,scrollY:0,scrollTo(){},innerHeight:700};
- const sandbox={...core,document,window,localStorage:{getItem:k=>storage.get(k)||null,setItem:(k,v)=>storage.set(k,v),key:i=>[...storage.keys()][i],get length(){return storage.size}},location:{hash:'#/temas'},setInterval:()=>1,clearInterval(){},setTimeout,clearTimeout,URLSearchParams,Map,Set,Date,Math,JSON,Number,String,Object,Array,performance:{now:()=>0},crypto:{randomUUID:()=> 'simulation-1'},matchMedia:()=>({matches:true}),innerWidth:390};
+ const sandbox={...core,...practicas,document,window,localStorage:{getItem:k=>storage.get(k)||null,setItem:(k,v)=>storage.set(k,v),key:i=>[...storage.keys()][i],get length(){return storage.size}},location:{hash:'#/temas'},setInterval:()=>1,clearInterval(){},setTimeout,clearTimeout,URLSearchParams,Map,Set,Date,Math,JSON,Number,String,Object,Array,performance:{now:()=>0},crypto:{randomUUID:()=> 'simulation-1'},matchMedia:()=>({matches:true}),innerWidth:390};
  ctx=vm.createContext(sandbox);const script=readFileSync(new URL('../dist/app.js',import.meta.url),'utf8').replace(/^import .*?;\n/,'').replace(/init\(\);\s*$/,'');
  vm.runInContext(script+`\nglobalThis.api={seed(data){bank=data;questionMap=new Map(bank.questions.map(q=>[q.id,q]));practiceMap=new Map(bank.topics.map(t=>[t.id,practiceBlocks(bank.questions,t.id)]));},home,coursePage,topicPage,practicePage,setup,resultsPage,historyPage,explanation,read,write,getPractice,savePractice,autoAdvanceEnabled,navigationContext,render,startExam,session:()=>session,temaPage,diagramBlock,temaQuestion,tqPicked,tqCount,toggleStudied,temaProgress,seedTema(n,data){temaIndex.set(n,{topic:n,sections:data.sections.length,minutes:data.minutes});temaCache.set(n,{status:'ready',data});}};`,ctx);
  ctx.api.seed(fixture());return {api:ctx.api,ctx,elements,get,events,storage};

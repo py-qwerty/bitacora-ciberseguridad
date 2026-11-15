@@ -1,4 +1,4 @@
-import { DURATION, EXAM_SIZE, generateExam, gradeExam, remaining, formatTime, isValidSession, practiceBlocks, topicQuestions, baseQuestions, validPractice, swipeDirection, validateBank, validateTema, ICONS } from './core.js?v=7';
+import { DURATION, EXAM_SIZE, generateExam, gradeExam, remaining, formatTime, isValidSession, practiceBlocks, topicQuestions, baseQuestions, validPractice, swipeDirection, validateBank, validateTema, ICONS } from './core.js?v=7'; import { setupPracticas, loadPracticasIndex, practicasRoute, isPracticasPath, practicasCard, courseExamLink, simulacroExamLink } from './practicas.js?v=1';
 const $ = s => document.querySelector(s);
 const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const number = n => n.toLocaleString('es-ES');
@@ -240,13 +240,13 @@ function home() {
 function coursePage(id){
   const course=bank.courses.find(c=>c.id===id);if(!course)return notFound();
   const topics=bank.topics.filter(t=>t.course===id).sort((a,b)=>a.number-b.number);
-  return `<a class="back-link" href="#/temas">← Asignaturas</a>${heading(esc(course.shortTitle||course.title),'30 preguntas por tema · Explicaciones y fuente al comprobar')}<section class="topic-list" aria-label="Temas de la asignatura">${topics.map(t=>{const done=practiceMap.get(t.id).filter((_,i)=>getPractice(t.id,i+1).finishedAt).length;const extraN=(practiceMap.get(t.id)[3]||[]).length;return `<a class="topic-card" href="#/tema/${t.id}"><span class="unit-number">${String(t.number).padStart(2,'0')}</span><div><h2>${esc(topicTitle(t.id))}</h2><p>${temaIndex.has(t.id)?`<span class="tema-pill">Tema digital${studiedTotal(t.id,temaIndex.get(t.id).sections)?` · ${studiedTotal(t.id,temaIndex.get(t.id).sections)}/${temaIndex.get(t.id).sections}`:''}</span> `:''}3 tests de 10 · Test completo de 30${extraN?' · +'+extraN+' de clase':''}${done?' · '+done+' terminados':''}</p></div><span class="row-arrow" aria-hidden="true">›</span></a>`;}).join('')}</section><a class="btn secondary full course-sim" href="#/simulacro?asignatura=${esc(id)}">Simulacro de esta asignatura →</a>`;
+  return `<a class="back-link" href="#/temas">← Asignaturas</a>${heading(esc(course.shortTitle||course.title),'30 preguntas por tema · Explicaciones y fuente al comprobar')}<section class="topic-list" aria-label="Temas de la asignatura">${topics.map(t=>{const done=practiceMap.get(t.id).filter((_,i)=>getPractice(t.id,i+1).finishedAt).length;const extraN=(practiceMap.get(t.id)[3]||[]).length;return `<a class="topic-card" href="#/tema/${t.id}"><span class="unit-number">${String(t.number).padStart(2,'0')}</span><div><h2>${esc(topicTitle(t.id))}</h2><p>${temaIndex.has(t.id)?`<span class="tema-pill">Tema digital${studiedTotal(t.id,temaIndex.get(t.id).sections)?` · ${studiedTotal(t.id,temaIndex.get(t.id).sections)}/${temaIndex.get(t.id).sections}`:''}</span> `:''}3 tests de 10 · Test completo de 30${extraN?' · +'+extraN+' de clase':''}${done?' · '+done+' terminados':''}</p></div><span class="row-arrow" aria-hidden="true">›</span></a>`;}).join('')}</section><a class="btn secondary full course-sim" href="#/simulacro?asignatura=${esc(id)}">Simulacro de esta asignatura →</a>${courseExamLink(id)}`;
 }
 function topicPage(n,params){
   const topic=topicInfo(n);if(!topic)return notFound();
   const blocks=practiceMap.get(n);const completed=blocks.slice(0,3).filter((_,i)=>getPractice(n,i+1).finishedAt).length;
   const row=(qs,b)=>{const p=getPractice(n,b);const count=Object.keys(p.answers).length;const correct=p.ids.filter(id=>p.answers[id]===questionMap.get(id).correct).length;return `<a class="test-row" href="#/practica/${n}/${b}"><span class="test-number">${b===0?'30':b===4?'+':b}</span><div><h2>${blockLabel(b)}</h2><p>${p.finishedAt?`${correct}/${qs.length} aciertos · Terminado`:count?`${count}/${qs.length} respondidas · Continuar`:qs.length+' preguntas'}</p></div><span class="test-state">${p.finishedAt?'✓':count?'Continuar':'›'}</span></a>`;};
-  return `<a class="back-link" href="#/asignatura/${esc(topic.course)}">← Temas de ${esc(courseTitle(topic.course))}</a>${heading(esc(topicTitle(n)),'30 preguntas con explicación')}<div class="topic-columns"><div class="topic-study">${temaCard(topic)}${materialBlock(topic)}</div><div class="topic-tests"><div class="progress-summary"><span>${completed} de 3 bloques terminados</span><span>Avance guardado</span></div><section class="test-list" aria-label="Tests del tema">${blocks.slice(0,3).map((qs,i)=>row(qs,i+1)).join('')}${row(baseQuestions(bank.questions,n),0)}${blocks[3]?row(blocks[3],4):''}</section><p class="local-note">El test completo contiene las mismas 30 preguntas de los tres bloques, con progreso independiente.${blocks[3]?' «Preguntas de clase» reúne lo que los profesores remarcaron en clase como importante o trampa de examen.':''} Pulsa «Comprobar respuesta» para entender cada solución.</p></div></div>`;
+  return `<a class="back-link" href="#/asignatura/${esc(topic.course)}">← Temas de ${esc(courseTitle(topic.course))}</a>${heading(esc(topicTitle(n)),'30 preguntas con explicación')}<div class="topic-columns"><div class="topic-study">${temaCard(topic)}${practicasCard(topic)}${materialBlock(topic)}</div><div class="topic-tests"><div class="progress-summary"><span>${completed} de 3 bloques terminados</span><span>Avance guardado</span></div><section class="test-list" aria-label="Tests del tema">${blocks.slice(0,3).map((qs,i)=>row(qs,i+1)).join('')}${row(baseQuestions(bank.questions,n),0)}${blocks[3]?row(blocks[3],4):''}</section><p class="local-note">El test completo contiene las mismas 30 preguntas de los tres bloques, con progreso independiente.${blocks[3]?' «Preguntas de clase» reúne lo que los profesores remarcaron en clase como importante o trampa de examen.':''} Pulsa «Comprobar respuesta» para entender cada solución.</p></div></div>`;
 }
 function distributionTable(result){
   if(!result)return '';
@@ -254,7 +254,7 @@ function distributionTable(result){
 }
 function setup(){
  const active=activeSession();const selected=currentRoute().params.get('asignatura')||read('simulationCourse','');
- return `${heading('Simulacro','30 preguntas mezcladas para comprobar lo aprendido.')} ${active?`<aside class="resume-panel"><strong>Simulacro en curso</strong><p>${Object.keys(active.answers).length} de ${active.ids.length} respondidas. El reloj sigue corriendo.</p><a class="btn" href="#/examen">Continuar simulacro →</a></aside>`:''}<section class="exam-brief"><form id="simulation-settings" novalidate><label class="field-label" for="simulation-course">Asignatura</label><select id="simulation-course" name="course"><option value="">Todas las asignaturas</option>${bank.courses.map(c=>`<option value="${esc(c.id)}" ${c.id===selected?'selected':''}>${esc(c.shortTitle||c.title)}</option>`).join('')}</select><div class="exam-numbers"><div><b>30</b><span>preguntas</span></div><div><b>45</b><span>minutos de práctica</span></div></div><h2>Practica sin pistas</h2><p class="brief-text">Responde, cambia tu elección o marca las preguntas que quieras revisar. Las explicaciones aparecen al entregar.</p><p class="small">Es una práctica personal: no reproduce un examen oficial ni establece la nota del campus. Sin penalización por error. La duración de 45 minutos es orientativa.</p><p class="small">El reloj no se pausa. Si cierras o recargas, se pierde el intento. Solo se guarda el resultado final.</p><button type="button" class="btn full start-exam" data-action="start">${active?'Empezar otro simulacro':'Empezar simulacro'} →</button><p class="small start-note">${active?'Se entregará el actual antes de empezar otro.':'El tiempo empieza al pulsar.'}</p></form></section>`;
+ return `${heading('Simulacro','30 preguntas mezcladas para comprobar lo aprendido.')}${simulacroExamLink()} ${active?`<aside class="resume-panel"><strong>Simulacro en curso</strong><p>${Object.keys(active.answers).length} de ${active.ids.length} respondidas. El reloj sigue corriendo.</p><a class="btn" href="#/examen">Continuar simulacro →</a></aside>`:''}<section class="exam-brief"><form id="simulation-settings" novalidate><label class="field-label" for="simulation-course">Asignatura</label><select id="simulation-course" name="course"><option value="">Todas las asignaturas</option>${bank.courses.map(c=>`<option value="${esc(c.id)}" ${c.id===selected?'selected':''}>${esc(c.shortTitle||c.title)}</option>`).join('')}</select><div class="exam-numbers"><div><b>30</b><span>preguntas</span></div><div><b>45</b><span>minutos de práctica</span></div></div><h2>Practica sin pistas</h2><p class="brief-text">Responde, cambia tu elección o marca las preguntas que quieras revisar. Las explicaciones aparecen al entregar.</p><p class="small">Es una práctica personal: no reproduce un examen oficial ni establece la nota del campus. Sin penalización por error. La duración de 45 minutos es orientativa.</p><p class="small">El reloj no se pausa. Si cierras o recargas, se pierde el intento. Solo se guarda el resultado final.</p><button type="button" class="btn full start-exam" data-action="start">${active?'Empezar otro simulacro':'Empezar simulacro'} →</button><p class="small start-note">${active?'Se entregará el actual antes de empezar otro.':'El tiempo empieza al pulsar.'}</p></form></section>`;
 }
 function renderExam() {
   session = activeSession();
@@ -336,12 +336,12 @@ function render(focus=true) {
   cancelQuestionTransition();
   clearInterval(timer);timer=null;
   const {path,params}=currentRoute();
-  const nav=path.startsWith('/tema')||path.startsWith('/asignatura')||path.startsWith('/practica')?'temas':path.startsWith('/simulacro')||path==='/examen'?'simulacro':path.startsWith('/historial')||path.startsWith('/resultado')?'historial':path==='/tfm'?'tfm':'';
+  const nav=path.startsWith('/tema')||path.startsWith('/asignatura')||path.startsWith('/practica')||path.startsWith('/redaccion')?'temas':path.startsWith('/simulacro')||path==='/examen'||path.startsWith('/examen-real')?'simulacro':path.startsWith('/historial')||path.startsWith('/resultado')?'historial':path==='/tfm'?'tfm':'';
   document.querySelectorAll('[data-nav]').forEach(a=>{if(a.dataset.nav===nav)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});
   const wide=/^\/tema\/\d+\/estudio$/.test(path)||path==='/tfm';
   main.className=path==='/examen'?'exam-main':wide?'wide-main':'';
   document.body.classList.toggle('route-wide',wide);
-  document.body.classList.toggle('in-exam',path==='/examen');
+  document.body.classList.toggle('in-exam',path==='/examen'||path==='/examen-real/en-curso');
   if(path==='/examen')renderExam();
   else if(path==='/temas'||path==='/')main.innerHTML=home();
   else if(/^\/asignatura\/[a-z0-9-]+$/.test(path))main.innerHTML=coursePage(path.split('/')[2]);
@@ -353,6 +353,7 @@ function render(focus=true) {
   else if(path.startsWith('/resultado/'))main.innerHTML=resultsPage(path.split('/')[2]);
   else if(path==='/tfm')main.innerHTML=tfmPage();
   else if(path==='/reglas')main.innerHTML=rulesPage();
+  else if(isPracticasPath(path))main.innerHTML=practicasRoute(path,params)??notFound();
   else main.innerHTML=notFound();
   document.title=(main.querySelector('h1')?.innerText.replace(/\s+/g,' ')||'Estudiar')+' · Bitácora Ciber';
   if(focus){main.style?.removeProperty('min-height');window.scrollTo(0,0);main.focus({preventScroll:true});}
@@ -574,6 +575,7 @@ document.addEventListener('click',e=>{
 window.addEventListener('hashchange',()=>render());
 window.addEventListener('storage',e=>{const path=currentRoute().path;if(e.key?.startsWith(PREFIX)&&(path.startsWith('/practica/')||(e.key===PREFIX+'autoAdvance'&&path==='/examen')))render(false);});
 document.addEventListener('visibilitychange',()=>{if(!document.hidden&&currentRoute().path==='/examen')render(false);});
+setupPracticas({get bank(){return bank;},get questionMap(){return questionMap;},read,write,esc,rich,heading,topicTitle,topicInfo,courseTitle,notFound,render,ask,sectionHref});
 async function init() {
   try {
     const response=await fetch('bank.json?v=4',{signal:AbortSignal.timeout(15000)});
@@ -582,6 +584,7 @@ async function init() {
     validateBank(data);
     try{const idx=await fetch(`temas/index.json?v=${encodeURIComponent(data.version)}`,{signal:AbortSignal.timeout(15000)}).then(r=>r.ok?r.json():null);if(Array.isArray(idx?.temas))temaIndex=new Map(idx.temas.filter(t=>Number.isInteger(t.topic)).map(t=>[t.topic,t]));}catch{temaIndex=new Map();}
     bank=data;questionMap=new Map(bank.questions.map(q=>[q.id,q]));practiceMap=new Map(bank.topics.map(t=>[t.id,practiceBlocks(bank.questions,t.id)]));
+    await loadPracticasIndex();
     const saved=activeSession();if(saved&&remaining(saved.deadline)===0){finish(true);return;}
     render(false);
   } catch {

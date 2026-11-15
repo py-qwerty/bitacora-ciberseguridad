@@ -1,0 +1,201 @@
+{
+  "course": "gobierno",
+  "number": 6,
+  "open": [
+    {
+      "id": "gobierno-t06-d1",
+      "kind": "larga",
+      "points": 3,
+      "minutes": 12,
+      "prompt": "Enumera y describe brevemente las cinco dimensiones de la seguridad de la información. Para cada una, pon un ejemplo de ataque o incidente que la rompa.",
+      "keyPoints": [
+        "Enumera exactamente las cinco: confidencialidad, integridad, disponibilidad, autenticidad y trazabilidad",
+        "Define la confidencialidad como que la información no la conozcan personas, organizaciones o procesos no autorizados",
+        "Define la integridad como que no se modifique sin autorización y que, si se modifica, se pueda detectar",
+        "Define la disponibilidad como que esté accesible cuando los usuarios autorizados la necesitan",
+        "Define la autenticidad como la garantía de la identidad de quien origina la información (su procedencia)",
+        "Define la trazabilidad como poder saber en todo momento quién hizo qué y cuándo",
+        "Pone un ejemplo de ataque coherente para cada dimensión (robo de datos, factura alterada, ransomware, phishing, borrado de logs)",
+        "Indica que cumplir una dimensión no asegura las demás, o no mezcla términos ajenos a la lista como privacidad o no repudio"
+      ],
+      "model": [
+        "La seguridad de la información se descompone en **cinco dimensiones**, que son garantías distintas: cumplir una no asegura las demás.",
+        "**Confidencialidad**: la información no la conocen personas, organizaciones o procesos sin autorización. Ejemplo: solo Recursos Humanos ve las nóminas. La rompe el robo de una base de datos de clientes.",
+        "**Integridad**: la información no se modifica sin autorización mientras se procesa, se transporta o se almacena, y si cambia, el cambio se detecta. La rompe, por ejemplo, alterar el número de cuenta o el importe de una transferencia mientras viaja por la red.",
+        "**Disponibilidad**: la información está accesible en el momento en que la necesitan los usuarios autorizados. La rompe un ransomware que cifra los servidores o una caída del servicio, como un hospital que no puede abrir las historias clínicas.",
+        "**Autenticidad**: garantiza la identidad de quien origina la información, es decir, su procedencia. La rompe un correo de phishing que suplanta al banco. Un correo firmado digitalmente, en cambio, demuestra quién lo envió.",
+        "**Trazabilidad**: permite saber en todo momento quién hizo qué y cuándo, relacionando cada acción con su responsable. La rompe un intruso que borra los registros (logs) para ocultar lo que ha hecho.",
+        "Términos como privacidad o no repudio existen en seguridad, pero no forman parte de esta lista de cinco dimensiones."
+      ],
+      "tip": "Truco para recordarlas: el «triángulo CID» clásico más «A» y «T». Fíjate en el verbo de cada definición: conocida, modificada, accesible, procedencia, quién hizo qué.",
+      "fromClass": false,
+      "sections": ["dimensiones"]
+    },
+    {
+      "id": "gobierno-t06-d2",
+      "kind": "larga",
+      "points": 3,
+      "minutes": 12,
+      "prompt": "Explica cómo debe protegerse la información de una organización respondiendo a cuatro preguntas: qué hay que garantizar, dónde, cómo y cuándo.",
+      "keyPoints": [
+        "Qué: las cinco dimensiones de la seguridad, más el acceso y la conservación de la información",
+        "Dónde: en los Sistemas de Información y Comunicaciones (SIC), donde la información se almacena, procesa y transmite",
+        "Enumera los elementos del SIC (personas, datos, procedimientos y recursos técnicos) y dice que hay que protegerlos todos de forma global",
+        "Cómo: implantando salvaguardas o controles (técnicos, organizativos o físicos)",
+        "Describe las cuatro formas de actuar de una salvaguarda: reducir probabilidad, reducir impacto, recuperar y mejorar con la experiencia",
+        "Cuándo: durante todo el ciclo de vida, desde que el dato entra hasta que se destruye",
+        "Pone algún ejemplo concreto que ilustre al menos una de las respuestas"
+      ],
+      "model": [
+        "La información es un activo **inmaterial** que siempre vive en algún soporte: personas, papel y sistemas. Para protegerla hay que responder cuatro preguntas.",
+        "**¿Qué hay que garantizar?** Las cinco dimensiones (confidencialidad, integridad, disponibilidad, autenticidad y trazabilidad) y, además, el **acceso** (la capacidad de usar los recursos que permiten llegar a la información) y la **conservación** (cuidar soportes y formatos, incluida su destrucción segura).",
+        "**¿Dónde?** En los **SIC** (Sistemas de Información y Comunicaciones), que es donde la información se almacena, procesa y transmite. Un SIC está formado por **personas, datos, procedimientos y recursos técnicos**, y hay que protegerlos todos de forma global: olvidar a las personas, por ejemplo, abre la puerta a la ingeniería social.",
+        "**¿Cómo?** Implantando **salvaguardas** (controles), que pueden ser técnicas, organizativas o físicas. Actúan de cuatro maneras: **reducen la probabilidad** de que la amenaza ocurra (un cortafuegos, formación antiphishing), **reducen el impacto** si ocurre (cifrar los portátiles), permiten **recuperarse** rápido (copias de seguridad, plan de continuidad) y se **modifican con la experiencia** de incidentes anteriores (añadir doble factor tras un robo de contraseñas).",
+        "**¿Cuándo?** Durante **todo el ciclo de vida** de la información: entrada, almacenamiento, proceso, transmisión, utilización y destrucción. Si una empresa cifra sus servidores pero envía los datos a la gestoría por correo sin cifrar, deja sin proteger la transmisión."
+      ],
+      "tip": "En el test las trampas recortan el ámbito («solo los sistemas conectados a Internet», «solo mientras viaja por la red»). En desarrollo, demuestra lo contrario: protección global y en todo el ciclo de vida.",
+      "fromClass": false,
+      "sections": ["informacion-activo", "acceso-conservacion", "donde-sic", "salvaguardas", "ciclo-vida"]
+    },
+    {
+      "id": "gobierno-t06-d3",
+      "kind": "larga",
+      "points": 3,
+      "minutes": 12,
+      "prompt": "Explica para qué sirve el análisis de riesgos, qué fuentes de información utiliza y qué diferencia hay entre riesgo inherente y riesgo residual. ¿Cuál es el objetivo realista de la gestión de riesgos?",
+      "keyPoints": [
+        "Define el riesgo como la posibilidad de que una amenaza aproveche una vulnerabilidad y cause daño, combinando probabilidad e impacto",
+        "Explica que el análisis permite saber a qué está expuesta la organización e identificar lo que impide lograr sus objetivos de negocio",
+        "Indica que sirve para identificar dónde hacen falta salvaguardas y para decidir con criterios objetivos, no por intuición o moda",
+        "Distingue fuentes externas (informes de INCIBE, ENISA…) e internas, destacando el histórico de incidentes",
+        "Define el riesgo inherente como el que existe antes de aplicar controles",
+        "Define el riesgo residual como el que queda después de aplicar las salvaguardas",
+        "Explica que el riesgo cero no existe y que el objetivo es reducir el riesgo residual a niveles asumibles por la alta dirección"
+      ],
+      "model": [
+        "El **riesgo** es la posibilidad de que una **amenaza** (un ciberdelincuente, un incendio, un error) aproveche una **vulnerabilidad** (un programa sin actualizar, una contraseña débil) y cause un daño. Se estima combinando **lo probable** que es con el **impacto** que causaría.",
+        "El **análisis de riesgos** sirve para saber a qué está expuesta la organización, identificar los riesgos que pueden impedirle lograr sus objetivos de negocio y su magnitud, y localizar las áreas que necesitan salvaguardas. Así las decisiones de seguridad son más **objetivas**: se basan en los riesgos propios, no en la intuición o la moda.",
+        "Para conocer sus riesgos la organización usa **fuentes externas**, que informan de los riesgos generales del sector (informes de INCIBE o ENISA, alertas de campañas de ransomware), y **fuentes internas**, que dicen en qué medida esos riesgos le afectan a ella. La fuente interna más importante es el **histórico de incidentes**. Las amenazas pueden ser externas, internas (un empleado descontento, un fallo de configuración) o sin agente humano, como un desastre natural.",
+        "El **riesgo inherente** es el riesgo «en bruto», antes de aplicar controles: sin copias ni antivirus, un ransomware pararía la empresa semanas. El **riesgo residual** es el que queda tras aplicar las salvaguardas: con copias aisladas, el parón sería de uno o dos días.",
+        "Como la mitigación total es imposible, el objetivo realista de la gestión de riesgos es **tratar el riesgo hasta que el residual baje a un nivel asumible por la alta dirección**. Ese nivel lo fija la dirección, no el departamento técnico."
+      ],
+      "tip": "El profesor insistió en que la gestión de riesgos es la piedra angular de toda la gestión de la seguridad: sin ella se ponen controles, pero no de forma adecuada. Y recuerda la trampa: el objetivo es el riesgo residual, no el inherente.",
+      "fromClass": true,
+      "sections": ["analisis-riesgos", "gestion-riesgos"]
+    },
+    {
+      "id": "gobierno-t06-d4",
+      "kind": "larga",
+      "points": 3,
+      "minutes": 10,
+      "prompt": "Enumera al menos seis principios que debe cumplir la gestión de riesgos y explica por qué se dice que no es un trámite técnico aislado.",
+      "keyPoints": [
+        "Enumera correctamente al menos seis principios de la lista del tema",
+        "Incluye que forma parte de todos los procesos de negocio y de la toma de decisiones",
+        "Incluye que trata explícitamente la incertidumbre (no la certidumbre)",
+        "Incluye que crea y protege valor",
+        "Incluye que es dinámica, iterativa y facilita la mejora continua",
+        "Relaciona estos principios con la norma ISO 31000",
+        "Explica que los riesgos condicionan los objetivos y las decisiones, por eso la gestión está integrada en el negocio y no es una reunión técnica anual"
+      ],
+      "model": [
+        "Según el tema, la gestión de riesgos debe: ser parte integral de **todos los procesos de negocio**; **crear y proteger el valor**; formar parte de la **toma de decisiones**; tratar explícitamente la **incertidumbre**; ser **sistemática, estructurada y oportuna**; basarse en la **mejor información posible**; ser **adaptable**; integrar **factores humanos y culturales**; ser **transparente** y contar con las partes interesadas; ser **dinámica e iterativa**, respondiendo a los cambios; y facilitar la **mejora continua**.",
+        "Estos principios coinciden con los de la norma internacional **ISO 31000** de gestión del riesgo.",
+        "La idea que los une es que la gestión de riesgos **no es un trámite técnico aislado**. Los riesgos condicionan los objetivos de la organización y las decisiones que toma, así que su gestión debe estar dentro del negocio: cuando se aprueba un proyecto, un presupuesto o un cambio.",
+        "Por ejemplo, si una empresa se limita a una reunión técnica al año para revisar riesgos, no cumple estos principios. Lo que necesita no son más reuniones ni una herramienta nueva, sino **integrar los riesgos en sus decisiones y procesos**, con responsables claros y revisándolos cuando cambia el contexto."
+      ],
+      "tip": "Trampa conocida del test: «tratar explícitamente la certidumbre». Es incertidumbre. En desarrollo no hace falta recitar los once: con seis bien explicados y la idea de integración basta.",
+      "fromClass": false,
+      "sections": ["gestion-riesgos"]
+    },
+    {
+      "id": "gobierno-t06-d5",
+      "kind": "corta",
+      "points": 2,
+      "minutes": 7,
+      "prompt": "¿Qué es una política de seguridad de la información y qué requisitos debe cumplir?",
+      "keyPoints": [
+        "La define como un documento de alto nivel con directrices, principios, objetivos y responsabilidades de seguridad",
+        "Indica que de ella derivan las normas y los procedimientos (cuerpo normativo)",
+        "Menciona que debe redactarse en términos de negocio y reflejar las obligaciones legales y contractuales",
+        "Menciona que debe estar alineada con la gestión de riesgos y fijar criterios para valorarlos",
+        "Menciona que debe aprobarla la alta dirección como muestra de compromiso"
+      ],
+      "model": [
+        "La **política de seguridad de la información** es el documento que recoge las **directrices y principios de alto nivel** de la seguridad, sus **objetivos** y las **responsabilidades** de cada participante. Es como la Constitución: de ella salen las **normas** (reglas obligatorias) y de estas los **procedimientos** (pasos concretos).",
+        "Debe: estar escrita **en términos de negocio**, comprensible para todos; identificar las características de la organización; reflejar los objetivos de seguridad y las **obligaciones legales y contractuales**; estar **alineada con la estrategia de gestión de riesgos** y fijar los criterios para valorarlos; ser robusta y precisa para aplicarse a toda la organización; y estar **aprobada por la alta dirección**.",
+        "No es una guía de configuración de un producto: por eso sigue vigente aunque cambie la tecnología."
+      ],
+      "fromClass": false,
+      "sections": ["politica"]
+    }
+  ],
+  "cases": [
+    {
+      "id": "gobierno-t06-c1",
+      "title": "Una clínica de fisioterapia que quiere «riesgo cero»",
+      "scenario": [
+        "FisioNorte es una clínica con 3 sedes y 25 empleados. Guarda las historias de los pacientes en un servidor en la sede central y las envía a una mutua por correo electrónico, sin cifrar. Los portátiles de los fisioterapeutas no están cifrados.",
+        "En el último año ha sufrido tres incidentes: un ransomware dejó el servidor inutilizado dos días; alguien llamó haciéndose pasar por la mutua y consiguió datos de un paciente; y, al vender ordenadores viejos sin borrarlos, un comprador recuperó historias clínicas.",
+        "Tras el ransomware, la dirección renovó la licencia del antivirus sin estudiar qué falló y pide ahora al responsable de informática que «elimine todo el riesgo» con un presupuesto limitado."
+      ],
+      "minutes": 15,
+      "points": 3,
+      "questions": [
+        {
+          "prompt": "¿Qué dimensiones de la seguridad, o qué otros aspectos que hay que garantizar, han fallado en cada incidente?",
+          "keyPoints": [
+            "El ransomware afecta sobre todo a la disponibilidad",
+            "La llamada que suplanta a la mutua afecta a la confidencialidad y tiene que ver con la autenticidad (no se verificó la identidad)",
+            "La venta de equipos sin borrar es un fallo de conservación en su fase final (destrucción o reutilización de soportes) y rompe la confidencialidad",
+            "Justifica cada respuesta con la definición de la dimensión"
+          ],
+          "model": [
+            "El **ransomware** dejó las historias inaccesibles dos días: falló la **disponibilidad**, porque la información no estaba accesible cuando el personal la necesitaba.",
+            "La **llamada falsa** rompió la **confidencialidad** (alguien no autorizado conoció datos de un paciente) y muestra un fallo de **autenticidad**: nadie comprobó que quien llamaba fuera de verdad la mutua. Es un engaño a las **personas**, uno de los elementos del SIC.",
+            "La **venta de ordenadores sin borrar** es un fallo de **conservación** en su fase final: faltaban procedimientos de destrucción o borrado seguro de soportes. La consecuencia es, de nuevo, una pérdida de **confidencialidad**."
+          ]
+        },
+        {
+          "prompt": "¿Qué fases del ciclo de vida de la información están desprotegidas y qué salvaguardas propondrías? Clasifícalas según su forma de actuar.",
+          "keyPoints": [
+            "Detecta la transmisión sin cifrar a la mutua y la destrucción de soportes como fases desprotegidas",
+            "Propone alguna salvaguarda que reduzca la probabilidad (formación contra la ingeniería social, verificar la identidad de quien llama)",
+            "Propone alguna salvaguarda que reduzca el impacto (cifrar portátiles y envíos)",
+            "Propone alguna salvaguarda de recuperación (copias de seguridad aisladas, plan de continuidad)",
+            "Señala que tras el ransomware había que aprender del incidente y modificar los controles, no solo renovar la licencia"
+          ],
+          "model": [
+            "Están desprotegidas la **transmisión** (las historias viajan por correo sin cifrar) y la **destrucción** (los equipos se venden sin borrado seguro). Los portátiles sin cifrar exponen además el **almacenamiento** fuera de la sede.",
+            "Propondría salvaguardas de las cuatro formas de actuar: para **reducir la probabilidad**, formación contra la ingeniería social y un procedimiento para verificar la identidad de quien pide datos; para **reducir el impacto**, cifrar los portátiles y los envíos a la mutua, de modo que un robo no permita leer los datos; para **recuperarse**, copias de seguridad aisladas del servidor y un plan para restaurar en horas; y un procedimiento de **borrado seguro o trituración** antes de vender o tirar soportes.",
+            "Por último, tras el ransomware la clínica debía **aprender del incidente y modificar sus controles**: renovar la licencia del antivirus sin estudiar las causas no corrige nada."
+          ]
+        },
+        {
+          "prompt": "¿Qué le responderías a la dirección cuando pide «eliminar todo el riesgo»?",
+          "keyPoints": [
+            "Explica que el riesgo cero no existe porque la mitigación total es imposible",
+            "Explica que siempre queda un riesgo residual tras aplicar salvaguardas",
+            "Indica que el objetivo es reducir el riesgo residual hasta el nivel que la dirección decida asumir",
+            "Indica que es la dirección quien fija ese nivel y que debe basarse en un análisis de riesgos que priorice el presupuesto"
+          ],
+          "model": [
+            "Le explicaría que **el riesgo cero no existe**: aunque apliquemos todas las salvaguardas, siempre queda un **riesgo residual**.",
+            "Lo realista es hacer un **análisis de riesgos** (usando su propio histórico de incidentes como fuente interna) para decidir dónde poner el presupuesto, y **tratar los riesgos hasta que el residual baje a un nivel que la propia dirección considere asumible**. Ese nivel lo decide la dirección, no informática; por ejemplo, aceptar como máximo medio día sin acceso a las historias."
+          ]
+        }
+      ],
+      "tip": "Organiza la respuesta con las preguntas del tema (qué, dónde, cómo, cuándo). Cada incidente del enunciado está puesto para que lo relaciones con un concepto concreto.",
+      "sections": ["dimensiones", "acceso-conservacion", "salvaguardas", "ciclo-vida", "gestion-riesgos"]
+    }
+  ],
+  "order": [
+    {
+      "id": "gobierno-t06-o1",
+      "title": "Ordena las fases del ciclo de vida de la información",
+      "items": ["Entrada", "Almacenamiento", "Proceso", "Transmisión", "Utilización", "Destrucción"],
+      "why": "El dato entra en el sistema (se crea o se recoge), se guarda, un programa lo trata, viaja por la red, alguien lo usa y, cuando deja de ser útil, se destruye de forma segura. Hay que protegerlo en todas las fases.",
+      "sections": ["ciclo-vida"]
+    }
+  ]
+}

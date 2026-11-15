@@ -1,0 +1,227 @@
+{
+  "course": "sistemas",
+  "number": 6,
+  "open": [
+    {
+      "id": "sistemas-t06-d1",
+      "kind": "larga",
+      "points": 3,
+      "minutes": 12,
+      "prompt": "Un Servlet construye la consulta SQL concatenando el parámetro user_id que escribe el usuario. Explica qué vulnerabilidad tiene, cómo la explotaría un atacante y cómo se corrige en Java. Indica también por qué otras «soluciones» habituales no sirven.",
+      "keyPoints": [
+        "Identifica la vulnerabilidad como inyección SQL (SQLi, CWE-89)",
+        "Explica que el dato del usuario se pega en el texto de la consulta y la base de datos lo ejecuta como parte del código",
+        "Pone un ejemplo de explotación como ' OR '1'='1 y explica que la condición siempre es verdadera y devuelve todos los usuarios",
+        "Propone como solución principal PreparedStatement (consulta parametrizada con huecos ?)",
+        "Explica que PreparedStatement envía primero la estructura y después los valores por separado, que se tratan siempre como datos",
+        "Descarta pasar de GET a POST o validar solo en JavaScript porque no cambian cómo se usa el dato o se pueden eludir",
+        "Menciona la validación de entrada en el servidor como defensa complementaria"
+      ],
+      "model": [
+        "El Servlet es vulnerable a **inyección SQL** (SQLi, CWE-89). Al **concatenar** el parámetro dentro del texto de la consulta (`\"SELECT * FROM users WHERE id = '\" + userId + \"'\"`), lo que escribe el usuario deja de ser un simple dato y pasa a formar parte de la orden que ejecuta la base de datos.",
+        "**Explotación:** el atacante escribe como user_id `' OR '1'='1`. La consulta final queda `SELECT * FROM users WHERE id = '' OR '1'='1'`. Como '1'='1' siempre es verdad, la condición se cumple en todas las filas y el atacante obtiene los datos de **todos** los usuarios.",
+        "**Corrección:** usar **PreparedStatement** (sentencia preparada). Primero se envía la estructura con huecos (`SELECT * FROM users WHERE id = ?`) y después, por separado, el valor con `setString`. La base de datos ya tiene la consulta precompilada y trata lo que llega en el hueco **siempre como dato**: buscaría un usuario cuyo id sea literalmente ese texto raro, no encontraría ninguno y no pasaría nada. Es la solución estándar que recomienda OWASP.",
+        "**Lo que no sirve:** cambiar el formulario de GET a POST solo cambia cómo viajan los datos, no cómo se usan; validar solo en JavaScript se elude porque el navegador lo controla el usuario; escapar el mensaje de error no toca la consulta.",
+        "Como refuerzo, conviene **validar la entrada en el servidor** con lista de permitidos (por ejemplo, que el id solo tenga dígitos), pero la defensa principal es separar estructura y valores."
+      ],
+      "tip": "El profesor insistió en clase en la diferencia entre la clase insegura (Statement, concatenando) y la segura (PreparedStatement), y en que la validación se hace siempre en el lado servidor. Para la asignatura hay batería de ejemplos de código Java vulnerable y su solución: practica este esquema (vulnerabilidad, explotación, corrección).",
+      "fromClass": true,
+      "sections": ["inyeccion-sql", "validacion-entrada"]
+    },
+    {
+      "id": "sistemas-t06-d2",
+      "kind": "corta",
+      "points": 2,
+      "minutes": 7,
+      "prompt": "Explica qué es la validación de entrada y enumera sus reglas principales. ¿Qué es la canonicalización y por qué se hace antes de validar?",
+      "keyPoints": [
+        "Define validar como comprobar que el dato es lo esperado (tipo, longitud, rango, formato) antes de usarlo",
+        "Indica que se valida en el servidor, no en el navegador, porque el cliente se puede eludir",
+        "Prefiere la lista de permitidos (lista blanca) frente a la de denegados y explica por qué",
+        "Indica que si falla la validación se rechaza la entrada en vez de intentar arreglarla",
+        "Define canonicalización como convertir el dato a su forma única y estándar deshaciendo codificaciones",
+        "Pone un ejemplo como %2E%2E%2F que tras decodificar es ../ y se bloquea"
+      ],
+      "model": [
+        "**Validar** una entrada es comprobar que el dato que llega es exactamente lo que se espera (tipo, longitud, rango y formato) antes de usarlo.",
+        "Reglas principales: validar **en el servidor**, que es el sistema de confianza (el JavaScript del navegador lo puede desactivar o saltar el usuario); usar una **rutina centralizada**; fijar un juego de caracteres (UTF-8); validar contra una **lista de permitidos** (lista blanca), porque la lista de denegados siempre se queda corta ante variantes nuevas; y si algo no encaja, **rechazarlo**, no intentar arreglarlo.",
+        "La **canonicalización** convierte el dato a su forma única y estándar, deshaciendo codificaciones. Se hace antes de validar porque el atacante disfraza el ataque. Por ejemplo, `%2E%2E%2Fetc%2Fpasswd` no contiene «../» a simple vista y un filtro ingenuo lo deja pasar; tras decodificarlo queda `../etc/passwd` y el filtro lo bloquea. No hay que confundirla con cifrar: no oculta nada, al contrario."
+      ],
+      "fromClass": false,
+      "sections": ["validacion-entrada"]
+    },
+    {
+      "id": "sistemas-t06-d3",
+      "kind": "larga",
+      "points": 3,
+      "minutes": 12,
+      "prompt": "Compara XSS (CWE-79) y CSRF (CWE-352): qué es cada uno, qué necesita el atacante, cuál es su impacto y cuál es la defensa principal de cada uno.",
+      "keyPoints": [
+        "Define XSS como que la página incluye contenido del atacante sin codificar y el navegador de la víctima ejecuta su JavaScript",
+        "Indica que el impacto del XSS es ejecutar scripts en el navegador de la víctima (robo de cookie de sesión, phishing)",
+        "Da como defensa del XSS la codificación de salida según el contexto (por ejemplo, OWASP Java Encoder con Encode.forHtml), reforzada con validación y CSP",
+        "Define CSRF como una acción sensible que el servidor acepta confiando solo en la cookie de sesión, enviada desde otro sitio",
+        "Indica que el CSRF necesita que la víctima tenga una sesión válida abierta",
+        "Da como defensa del CSRF un token aleatorio, secreto y único ligado a la sesión, comprobado en el servidor, con cookies SameSite como refuerzo",
+        "Descarta defensas falsas como usar solo POST o un campo oculto de valor fijo"
+      ],
+      "model": [
+        "**XSS** (Cross-Site Scripting): la aplicación incluye en la página contenido controlado por el atacante **sin codificarlo**, y el **navegador de la víctima** ejecuta ese JavaScript como si fuera de la propia web. Ejemplo: un ErrorServlet que muestra el parámetro mensaje tal cual; el atacante envía un enlace con `<script>` en ese parámetro. Impacto: robar la cookie de sesión, registrar pulsaciones o redirigir a phishing.",
+        "Defensa del XSS: **codificación de salida según el contexto**, convirtiendo <, >, comillas y & en entidades HTML (&lt;, &gt;…) para que se muestren como texto. En Java se usa OWASP Java Encoder (`Encode.forHtml(mensaje)`). Se refuerza con validación estricta de entrada y con la cabecera **CSP** (Content Security Policy), que limita de dónde se cargan scripts.",
+        "**CSRF** (Cross-Site Request Forgery): un Servlet hace una acción sensible (borrar una cuenta) confiando **solo en la cookie de sesión**. El atacante prepara una página con un formulario invisible que se envía solo; si la víctima la visita con la sesión abierta, su navegador adjunta la cookie válida y la acción se ejecuta sin su consentimiento. Requisito imprescindible: que la víctima esté **autenticada**.",
+        "Defensa del CSRF: un **token anti-CSRF** secreto, aleatorio y único, guardado en la sesión e incluido como campo oculto del formulario; al procesar, el servidor comprueba que coincide. El atacante no puede leerlo por la política de mismo origen. Se refuerza con **cookies SameSite**. No sirven «usar solo POST» (el formulario falso también hace POST) ni un campo oculto de valor fijo (se copiaría).",
+        "En resumen: en XSS el problema es lo que la web **muestra**; en CSRF, que la web **se fía** de cualquier petición que lleve la cookie."
+      ],
+      "tip": "En clase se mostró también el atributo HttpOnly de la cookie (impide que el JavaScript lea la cookie de sesión) y SameSite. Puedes citarlos como refuerzo, pero la defensa principal del XSS sigue siendo codificar la salida.",
+      "fromClass": true,
+      "sections": ["xss", "csrf", "salida-cripto"]
+    },
+    {
+      "id": "sistemas-t06-d4",
+      "kind": "corta",
+      "points": 2,
+      "minutes": 6,
+      "prompt": "¿Qué información no debe aparecer en un mensaje de error mostrado al usuario y qué información no debe guardarse en los logs? Justifícalo.",
+      "keyPoints": [
+        "Indica que el error al usuario no debe mostrar trazas de pila, información de depuración ni detalles del sistema",
+        "Recomienda mensajes genéricos y páginas de error personalizadas",
+        "Indica que los controles de seguridad que fallan deben denegar el acceso por defecto",
+        "Indica que en los logs no se guardan contraseñas ni identificadores o tokens de sesión",
+        "Menciona lo que sí se registra: fallos de autenticación, errores de validación, fallos de control de acceso",
+        "Menciona proteger los logs con acceso restringido o hash para detectar alteraciones"
+      ],
+      "model": [
+        "Al **usuario** no se le debe mostrar información confidencial: detalles del sistema, identificadores de sesión, datos de cuentas, información de **depuración** ni la **traza de la pila** (stack trace), que revela clases, rutas y versiones útiles para un atacante. Se usan **mensajes genéricos** y páginas de error personalizadas, y si un control de seguridad falla debe **denegar el acceso por defecto**.",
+        "En los **logs** no se guardan **contraseñas** ni **identificadores o tokens de sesión** utilizables, ni detalles innecesarios: quien lea el log podría usarlos para entrar. Sí se registran los intentos de autenticación (sobre todo los fallidos), los errores de validación, los fallos de control de acceso y los cambios de configuración de seguridad.",
+        "Además, el acceso a los logs se restringe a personas autorizadas y se usa una función **hash** para comprobar que nadie ha alterado las entradas."
+      ],
+      "fromClass": false,
+      "sections": ["errores-registros"]
+    },
+    {
+      "id": "sistemas-t06-d5",
+      "kind": "corta",
+      "points": 2,
+      "minutes": 7,
+      "prompt": "Explica la vulnerabilidad de credenciales incrustadas en el código (CWE-798): por qué es grave, cómo se corrige y por qué no basta con codificar la contraseña en Base64.",
+      "keyPoints": [
+        "Define CWE-798 como contraseñas, claves API o secretos escritos directamente en el código fuente",
+        "Explica que cualquiera con acceso al código (repositorio público, fuga, descompilación) obtiene las credenciales",
+        "Indica que la consecuencia es un acceso privilegiado fácil a los sistemas",
+        "Propone cargar los secretos en tiempo de ejecución desde una fuente protegida, como variables de entorno",
+        "Explica que Base64, partir la contraseña o renombrar la variable no sirve porque el secreto sigue en el código"
+      ],
+      "model": [
+        "CWE-798 consiste en escribir **contraseñas, claves API o secretos criptográficos directamente en el código fuente** (por ejemplo, `String password = \"Contraseña123\";`).",
+        "Es grave porque cualquiera que acceda al código lo obtiene: un **repositorio público**, una fuga o **descompilando** el bytecode de Java. Con esas credenciales el atacante entra con los privilegios de esa cuenta, a menudo de administrador.",
+        "Se corrige **externalizando los secretos**: el código los carga **en tiempo de ejecución** desde una fuente protegida, como una **variable de entorno** (`System.getenv(\"DB_PASSWORD\")`) o un fichero de propiedades fuera del código. La gestión pasa al entorno de despliegue, más controlado.",
+        "Codificar en **Base64** no es cifrar: se decodifica en un segundo. Partir el secreto en varias constantes o renombrar la variable tampoco sirve: el secreto sigue estando en el código."
+      ],
+      "fromClass": false,
+      "sections": ["credenciales-recursos"]
+    }
+  ],
+  "cases": [
+    {
+      "id": "sistemas-t06-c1",
+      "title": "Revisión de código en una intranet de documentos",
+      "scenario": [
+        "La empresa ficticia Archivos Norte tiene una intranet en Java con varios Servlets. En una revisión de código se encuentran estos fragmentos:",
+        "1) DescargaServlet: recibe el parámetro filename y abre el fichero `\"/var/www/data/docs/\" + filename`. 2) PingServlet: ejecuta `Runtime.getRuntime().exec(new String[]{\"sh\", \"-c\", \"ping -c 4 \" + host})` con el host que escribe el usuario. 3) SubidaServlet: guarda cualquier archivo que suba el usuario en `/var/www/html/uploads/` con su nombre original.",
+        "4) BorrarUsuarioServlet (en /app/admin/deleteUser): comprueba que hay sesión iniciada y borra la cuenta indicada. El botón solo aparece en el menú de los administradores."
+      ],
+      "minutes": 18,
+      "points": 3,
+      "questions": [
+        {
+          "prompt": "Identifica la vulnerabilidad de DescargaServlet y de PingServlet, cómo se explotaría cada una y cómo se corrigen.",
+          "keyPoints": [
+            "Identifica path traversal (CWE-22) en DescargaServlet",
+            "Pone un ejemplo de explotación con ../../../../etc/passwd",
+            "Propone lista blanca de nombres, normalizar la ruta y comprobar que empieza por la carpeta base",
+            "Identifica inyección de comandos (CWE-78) en PingServlet",
+            "Pone un ejemplo con metacaracteres del shell como 127.0.0.1; cat /etc/passwd",
+            "Propone evitar el shell pasando los argumentos por separado (ProcessBuilder) y validar con lista blanca"
+          ],
+          "model": [
+            "**DescargaServlet: path traversal (CWE-22).** El atacante pide `filename=../../../../etc/passwd`; la ruta construida se resuelve como `/etc/passwd` y lee ficheros del sistema fuera de la carpeta permitida. Corrección: **lista blanca** de nombres permitidos; si no es posible, **normalizar** la ruta (`normalize()`, `toRealPath()`) para quitar los `..` y **comprobar el prefijo** (`startsWith`) de la carpeta base; si no empieza por ella, devolver 403.",
+            "**PingServlet: inyección de comandos (CWE-78).** Como pasa por el shell (`sh -c`), el atacante envía `127.0.0.1; cat /etc/passwd` y el `;` encadena una segunda orden que muestra el fichero de usuarios. Corrección: no ejecutar comandos del sistema si se puede evitar; si es imprescindible, **evitar el shell** con `new ProcessBuilder(\"ping\", \"-c\", \"4\", host)`, de modo que la entrada llegue como un único argumento literal; y además validar el host con **lista blanca** (solo letras, números, puntos y guiones)."
+          ]
+        },
+        {
+          "prompt": "¿Qué problemas tienen SubidaServlet y BorrarUsuarioServlet? Propón las medidas correctas.",
+          "keyPoints": [
+            "Identifica subida sin restricciones de archivos peligrosos (CWE-434) y el riesgo de subir un webshell .jsp que el servidor ejecute",
+            "Propone lista blanca de extensiones, validar el contenido real (tipo MIME, magic bytes), guardar fuera de la raíz web y renombrar con UUID",
+            "Identifica falta de autorización (CWE-862): comprobar sesión es autenticación, no autorización",
+            "Explica que ocultar el botón no sirve porque la petición se puede escribir a mano",
+            "Propone verificar el rol en el servidor, denegar por defecto y devolver 403 Forbidden"
+          ],
+          "model": [
+            "**SubidaServlet: CWE-434.** Un atacante sube `shell.jsp` (un webshell) y, como queda en la carpeta pública, lo pide por URL (`/uploads/shell.jsp`); el servidor lo ejecuta y le da control remoto. Medidas: **lista blanca de extensiones** (solo .jpg, .pdf…), comprobar el **contenido real** (tipo MIME y magic bytes, porque el nombre puede mentir), **guardar fuera de la raíz web** (por ejemplo, /opt/appdata/) y **renombrar** el archivo con un UUID. Exigir además autenticación para subir.",
+            "**BorrarUsuarioServlet: CWE-862, falta de autorización.** Comprobar que hay sesión es **autenticación** (¿quién eres?), pero no **autorización** (¿qué puedes hacer?). Un usuario normal puede enviar a mano `POST /app/admin/deleteUser?id=…` con su cookie válida; esconder el botón no sirve. Medida: comprobar **en el servidor** que el rol de la sesión es ADMIN (lista blanca de roles), **denegar por defecto** y devolver **403 Forbidden** si no; en Jakarta EE puede hacerse en web.xml o con `@RolesAllowed`."
+          ]
+        }
+      ],
+      "tip": "Estructura cada respuesta igual: nombre y CWE, cómo se explota con un ejemplo, y corrección principal más refuerzo. El profesor anunció ejercicios de código Java vulnerable con su solución.",
+      "sections": ["rutas-comandos", "autorizacion-subidas"]
+    },
+    {
+      "id": "sistemas-t06-c2",
+      "title": "Un servicio que recibe XML y URL",
+      "scenario": [
+        "La startup ficticia MeteoDatos expone dos Servlets. ImportarServlet recibe un documento XML con los datos de un usuario y lo procesa con DocumentBuilderFactory con la configuración por defecto; después muestra «Procesado XML para usuario: » seguido del contenido de la etiqueta username.",
+        "PrevisualizarServlet recibe un parámetro url, descarga el contenido de esa dirección desde el servidor y lo devuelve al usuario. Los servidores están alojados en una nube pública."
+      ],
+      "minutes": 14,
+      "points": 3,
+      "questions": [
+        {
+          "prompt": "Explica qué vulnerabilidad tiene cada Servlet, pon un ejemplo de ataque y propone la corrección.",
+          "keyPoints": [
+            "Identifica XXE (CWE-611) en ImportarServlet porque el parser resuelve entidades externas",
+            "Pone un ejemplo de entidad externa que apunta a file:///etc/passwd y se muestra en username",
+            "Propone deshabilitar las DTD (disallow-doctype-decl) y las entidades externas antes de crear el parser",
+            "Identifica SSRF (CWE-918) en PrevisualizarServlet",
+            "Pone un ejemplo con 127.0.0.1/admin o la dirección de metadatos de la nube 169.254.169.254",
+            "Propone lista blanca de URL, protocolos y hosts y bloquear direcciones internas"
+          ],
+          "model": [
+            "**ImportarServlet: XXE (XML External Entity, CWE-611).** DocumentBuilderFactory procesa por defecto las entidades externas. El atacante envía un XML con una DTD que define `<!ENTITY xxe SYSTEM \"file:///etc/passwd\">` y usa `&xxe;` dentro de `<username>`; el parser lee el archivo y la respuesta muestra su contenido. También permitiría peticiones internas (SSRF) o denegación de servicio.",
+            "Corrección XXE: configurar el parser **antes de crearlo** para **deshabilitar las DTD** (`disallow-doctype-decl` a true, la opción más fuerte) y las **entidades externas** generales y de parámetros, como recomienda OWASP. Validar el tamaño o mirar que el fichero termine en .xml no resuelve nada.",
+            "**PrevisualizarServlet: SSRF (Server-Side Request Forgery, CWE-918).** El servidor hace peticiones a cualquier URL que le den. El atacante envía `url=http://127.0.0.1/admin` (panel de administración local) o `url=http://169.254.169.254/latest/meta-data/` (metadatos de la nube, a veces con credenciales): el servidor llega a recursos internos que desde fuera no se ven.",
+            "Corrección SSRF: **lista blanca estricta** de URL, protocolos y hosts permitidos y, a la vez, **bloquear direcciones internas** (localhost, IP privadas). Comprobar solo que la URL empieza por http no basta."
+          ]
+        }
+      ],
+      "sections": ["xxe-ssrf"]
+    }
+  ],
+  "order": [
+    {
+      "id": "sistemas-t06-o1",
+      "title": "Ordena cómo se explota un CSRF contra el banco de Alice",
+      "items": [
+        "Alice inicia sesión en el banco y su navegador guarda la cookie de sesión",
+        "Bob crea una página con un formulario invisible que hace POST a la URL vulnerable",
+        "Bob engaña a Alice para que visite su página con la sesión aún abierta",
+        "El navegador de Alice envía la petición adjuntando automáticamente la cookie válida",
+        "El Servlet ve una sesión correcta y borra la cuenta sin consentimiento de Alice"
+      ],
+      "why": "El ataque solo funciona si primero existe una sesión válida de la víctima; después el atacante prepara la trampa, consigue la visita y el navegador hace el resto porque adjunta la cookie a cualquier petición hacia el banco.",
+      "sections": ["csrf"]
+    },
+    {
+      "id": "sistemas-t06-o2",
+      "title": "Ordena la defensa con token anti-CSRF",
+      "items": [
+        "Al mostrar el formulario (doGet) se genera un token aleatorio y se guarda en la sesión",
+        "El token se incluye en el formulario de la JSP como campo oculto",
+        "Al procesar la acción (doPost) se compara el token recibido con el de la sesión",
+        "Si no coincide, la petición se rechaza"
+      ],
+      "why": "El token tiene que existir en la sesión antes de enviarse al formulario, y solo se puede comprobar cuando llega la petición que cambia algo.",
+      "sections": ["csrf"]
+    }
+  ]
+}

@@ -1,0 +1,221 @@
+{
+  "course": "redes",
+  "number": 8,
+  "open": [
+    {
+      "id": "redes-t08-d1",
+      "kind": "larga",
+      "points": 3,
+      "minutes": 12,
+      "prompt": "Explica los protocolos AH y ESP de IPsec: qué servicios de seguridad ofrece cada uno, qué protegen del paquete y cuándo elegirías uno u otro.",
+      "keyPoints": [
+        "Explica que IPsec protege la capa de red y que sus servicios dependen de la configuración",
+        "AH: autenticación e integridad sin cifrado; el contenido sigue legible",
+        "AH autentica todo el paquete, incluida la cabecera IP salvo campos mutables como el TTL",
+        "ESP: cifra (confidencialidad) y opcionalmente da autenticación e integridad; no protege la cabecera IP externa",
+        "Menciona el SPI (identifica la SA) y el número de secuencia (evita ataques de repetición) presentes en ambos",
+        "Indica que ESP es más costoso que AH",
+        "Concluye: si se necesita confidencialidad, ESP con cifrado; ninguno garantiza la disponibilidad"
+      ],
+      "model": [
+        "**IPsec** (Internet Protocol Security) añade seguridad en la **capa de red**, tanto en IPv4 como en IPv6. No ofrece siempre lo mismo: depende de si se configura **AH**, **ESP** o ambos. Y ninguno garantiza la **disponibilidad**.",
+        "**AH** (Authentication Header) añade una cabecera con un código de autenticación (normalmente un **HMAC**, un hash calculado con clave secreta). Da **autenticación** del origen e **integridad**, pero **no cifra**: es como un precinto en una caja transparente. Calcula el código sobre **todo el paquete**, incluida la cabecera IP, salvo los campos que cambian por el camino, como el **TTL**.",
+        "**ESP** (Encapsulating Security Payload) **cifra** la carga del paquete y da **confidencialidad**; además puede dar **autenticación e integridad**. Admite solo cifrado, solo autenticación o ambos. Su autenticación **no cubre la cabecera IP externa**. Es más costoso que AH porque cifra y descifra cada paquete.",
+        "Los dos llevan un **SPI** (índice de parámetros de seguridad), que indica qué asociación de seguridad (SA) aplicar, y un **número de secuencia**, que permite descartar **ataques de repetición** (un paquete válido reenviado más tarde).",
+        "Elegiría **AH** si solo necesito saber que el paquete viene de quien dice y no se ha modificado, y **ESP con cifrado** si además nadie debe poder leerlo, por ejemplo al enviar historias clínicas entre dos sedes."
+      ],
+      "tip": "Frase clave: autenticar no es cifrar. AH = precinto en caja transparente; ESP = sobre opaco y precintado.",
+      "fromClass": false,
+      "sections": ["ah", "esp", "ipsec-sa", "servicios-seguridad"]
+    },
+    {
+      "id": "redes-t08-d2",
+      "kind": "corta",
+      "points": 2,
+      "minutes": 6,
+      "prompt": "Explica la diferencia entre el modo túnel y el modo transporte de IPsec e indica un uso típico de cada uno.",
+      "keyPoints": [
+        "Modo túnel: encapsula el paquete IP entero dentro de otro, con dos cabeceras IP (interna y externa)",
+        "Modo túnel: lo usan normalmente pasarelas; uso típico VPN entre redes",
+        "Modo transporte: inserta AH o ESP entre la capa de transporte y la de red; una sola cabecera IP",
+        "Modo transporte: lo usan los propios extremos; uso típico comunicación extremo a extremo entre dos hosts",
+        "Indica que el modo túnel es más costoso por la cabecera extra"
+      ],
+      "model": [
+        "En **modo túnel** se mete el **paquete IP entero** dentro de otro paquete con cabeceras IPsec. Hay **dos cabeceras IP**: la interna (la original del equipo) y la externa (la pone el dispositivo IPsec). Lo usan normalmente **pasarelas** (el router o cortafuegos de cada oficina), y su uso típico es la **VPN entre sedes**: los equipos de la oficina no saben nada de IPsec, y quien ve el paquete por Internet solo sabe que va de una pasarela a otra.",
+        "En **modo transporte** se insertan AH o ESP entre la capa de transporte y la de red, y queda **una sola cabecera IP**, la original. Lo usan los **propios extremos**, y su uso típico es la comunicación **extremo a extremo entre dos hosts**. Es más barato, porque no añade otra cabecera IP."
+      ],
+      "fromClass": false,
+      "sections": ["modos-ipsec"]
+    },
+    {
+      "id": "redes-t08-d3",
+      "kind": "larga",
+      "points": 3,
+      "minutes": 12,
+      "prompt": "¿Qué es IKE y por qué es necesario en IPsec? Describe sus dos fases.",
+      "keyPoints": [
+        "Explica que las SA necesitan claves y que configurarlas a mano no escala ni permite renovarlas",
+        "Define IKE como la implementación de ISAKMP que negocia y gestiona las SA y sus claves automáticamente",
+        "Indica que IKE no transporta datos: después AH o ESP protegen el tráfico",
+        "Fase 1: autenticación mutua y creación de un canal protegido (SA ISAKMP), con Diffie-Hellman",
+        "Fase 1: modo principal (6 mensajes, identidades protegidas) o agresivo (3 mensajes, menos seguro); los primeros mensajes van en claro",
+        "Fase 2 (modo rápido): negocia las SA IPsec con todos los mensajes cifrados",
+        "Explica que las fases dependen entre sí: la fase 2 necesita la fase 1 y la fase 1 sola no basta"
+      ],
+      "model": [
+        "En IPsec todo se apoya en las **SA** (asociaciones de seguridad): acuerdos **unidireccionales** que fijan algoritmos, claves y duración. Esas claves podrían configurarse **a mano**, pero con muchas sedes es inmanejable y no se renovarían nunca.",
+        "**IKE** (Internet Key Exchange) es la implementación de **ISAKMP** que **negocia y gestiona automáticamente** las SA y sus claves. IKE no lleva los datos de la aplicación: solo los prepara; después **AH o ESP** protegen el tráfico.",
+        "**Fase 1**: los dos extremos se **autentican mutuamente** y crean un canal protegido para la propia negociación (la **SA ISAKMP**). En el **modo principal** hay seis mensajes: los dos primeros acuerdan parámetros, los dos siguientes intercambian material con **Diffie-Hellman** (van en claro, pero no permiten deducir el secreto) y los dos últimos autentican a los extremos, ya **cifrados**. El **modo agresivo** usa solo tres mensajes y es más rápido, pero menos seguro, porque parte de la autenticación viaja en claro.",
+        "**Fase 2** (modo **rápido**): protegida por la clave de la fase 1, con **todos sus mensajes cifrados**, negocia las **SA IPsec** que usarán AH o ESP y las renueva periódicamente.",
+        "Las fases dependen entre sí: la fase 2 no puede hacerse sin la clave de la fase 1, y la fase 1 sola no basta porque no crea las SA que protegen los datos."
+      ],
+      "tip": "Trampa frecuente: no es cierto que las dos fases vayan totalmente cifradas; los primeros mensajes de la fase 1 van en claro.",
+      "fromClass": false,
+      "sections": ["ike", "ipsec-sa"]
+    },
+    {
+      "id": "redes-t08-d4",
+      "kind": "larga",
+      "points": 3,
+      "minutes": 12,
+      "prompt": "Explica qué servicios de seguridad ofrece SSL/TLS, quién se autentica normalmente y cuáles son sus subprotocolos. ¿Por qué no proporciona no repudio?",
+      "keyPoints": [
+        "Indica que SSL/TLS da autenticación, integridad y confidencialidad sobre TCP, entre transporte y aplicación",
+        "Explica que normalmente solo se autentica el servidor con un certificado X.509 que el cliente debe validar; el certificado de cliente es opcional",
+        "Describe Record: fragmenta, comprime opcionalmente, añade MAC, cifra y envía por TCP",
+        "Describe Handshake: autentica y acuerda algoritmos y claves antes de enviar datos",
+        "Describe Change Cipher Spec (activa lo negociado) y Alert (errores y avisos)",
+        "Explica que no hay no repudio porque se usan claves simétricas que conocen los dos extremos",
+        "Menciona que hoy se recomiendan TLS 1.2 y 1.3"
+      ],
+      "model": [
+        "**SSL/TLS** (Secure Sockets Layer / Transport Layer Security) crea un canal seguro entre cliente y servidor sobre **TCP**, entre la capa de transporte y la de aplicación, por lo que HTTP, IMAP o FTP lo usan sin cambios. Da **autenticación, integridad y confidencialidad**. Hoy se recomiendan **TLS 1.2 y 1.3**.",
+        "Lo habitual es que **solo se autentique el servidor**, con un **certificado X.509** firmado por una autoridad de certificación (CA). El cliente **debe validarlo** (CA de confianza, no caducado ni revocado, nombre correcto); si no, el cifrado sigue, pero ya no sabe con quién habla. El certificado del cliente es **opcional**.",
+        "Tiene dos niveles. Abajo, el **Record Protocol**: fragmenta los datos, opcionalmente los comprime, añade un **MAC**, cifra y los envía por TCP. Encima, el **Handshake**, que antes de enviar datos autentica al servidor, acuerda algoritmos y genera las claves; **Change Cipher Spec**, un mensaje que dice «a partir de ahora uso lo negociado»; y **Alert**, que comunica errores y avisos (warning, critical, fatal).",
+        "**No da no repudio** porque los datos se protegen con **claves simétricas que conocen los dos extremos**: cualquiera de ellos pudo generar un mensaje, así que no se puede probar ante un tercero quién lo hizo. El no repudio exige una firma con una clave privada personal."
+      ],
+      "fromClass": false,
+      "sections": ["ssl-arquitectura", "record", "handshake", "ccs-alert"]
+    },
+    {
+      "id": "redes-t08-d5",
+      "kind": "corta",
+      "points": 2,
+      "minutes": 6,
+      "prompt": "IPsec y TLS trabajan en capas distintas. Explica en qué capa trabaja cada uno, qué protege cada uno y cuándo usarías DTLS en lugar de TLS.",
+      "keyPoints": [
+        "IPsec trabaja en la capa de red y protege todos los paquetes IP entre dos equipos o redes sin que las aplicaciones se enteren",
+        "TLS trabaja entre transporte (TCP) y aplicación y protege una conexión concreta de una aplicación",
+        "Relaciona la capa con lo que se puede proteger del mensaje",
+        "Explica que DTLS es TLS sobre UDP para aplicaciones de datagramas (videollamadas, voz, juegos, IoT)",
+        "Menciona algo que DTLS añade: retransmisiones, numeración con ventana antirrepetición o cookies contra DoS"
+      ],
+      "model": [
+        "**IPsec** trabaja en la **capa de red**: protege **todos los paquetes IP** entre dos equipos o dos redes, sea cual sea la aplicación, y las aplicaciones no tienen que enterarse. Por eso encaja para unir sedes.",
+        "**TLS** trabaja **entre la capa de transporte (TCP) y la de aplicación**: protege **una conexión concreta** de una aplicación, por ejemplo la del navegador con una web HTTPS. Las cabeceras IP y TCP quedan fuera de su protección.",
+        "TLS necesita TCP. Si la aplicación usa **UDP** (videollamadas, voz sobre IP, juegos, IoT), se usa **DTLS**, que da los mismos servicios sobre datagramas y añade lo que TCP daba gratis: **retransmisiones** durante la negociación, **numeración explícita con ventana antirrepetición** y **cookies** contra la denegación de servicio."
+      ],
+      "tip": "En la presentación el profesor insistió en saber las capas de memoria, porque de la capa en que trabaja un protocolo depende qué parte del mensaje puede proteger.",
+      "fromClass": true,
+      "sections": ["servicios-seguridad", "dtls"]
+    }
+  ],
+  "cases": [
+    {
+      "id": "redes-t08-c1",
+      "title": "Un grupo hospitalario con tres necesidades",
+      "scenario": [
+        "Grupo Salud Norte tiene dos hospitales, en Oviedo y en Gijón. Los ordenadores de ambos deben intercambiar historias clínicas a través de Internet como si estuvieran en la misma red, y no se quiere instalar nada en cada puesto.",
+        "Además, los pacientes piden cita desde una web pública, introduciendo su DNI y sus datos de salud.",
+        "Por último, el hospital lanza una aplicación de videoconsulta que envía el audio y el vídeo por UDP, porque un retraso es peor que perder un trozo de sonido."
+      ],
+      "minutes": 15,
+      "points": 3,
+      "questions": [
+        {
+          "prompt": "¿Qué protocolo, qué componente y qué modo usarías para unir los dos hospitales? Justifícalo.",
+          "keyPoints": [
+            "Elige IPsec, que protege la capa de red y es transparente para los puestos",
+            "Elige ESP con cifrado, porque se necesita confidencialidad de las historias clínicas",
+            "Elige modo túnel entre las pasarelas de cada hospital",
+            "Propone IKE para negociar y renovar automáticamente las SA y sus claves"
+          ],
+          "model": [
+            "Usaría **IPsec**, que trabaja en la capa de red y protege todo el tráfico entre los dos hospitales sin que los puestos se enteren.",
+            "Como las historias clínicas no deben poder leerse, usaría **ESP con cifrado** (y autenticación); AH solo no ocultaría nada. Lo configuraría en **modo túnel** entre las **pasarelas** de Oviedo y Gijón: cada paquete interno viaja dentro de otro con cabecera externa de pasarela a pasarela. Las SA y sus claves las negociaría y renovaría automáticamente **IKE**."
+          ]
+        },
+        {
+          "prompt": "¿Cómo protegerías la web de citas?",
+          "keyPoints": [
+            "Propone TLS (HTTPS), versiones 1.2 o 1.3",
+            "Indica que el servidor se autentica con un certificado X.509 emitido por una CA",
+            "Explica que el navegador del paciente debe validar el certificado para evitar un intermediario",
+            "Indica que TLS da confidencialidad e integridad a los datos enviados"
+          ],
+          "model": [
+            "Con **TLS** (HTTPS), en sus versiones **1.2 o 1.3**. El servidor presentaría un **certificado X.509** emitido por una CA de confianza, y el navegador del paciente lo validaría: así sabe que habla con el hospital y no con un intermediario.",
+            "Tras el Handshake, el Record Protocol **cifra** los datos (confidencialidad) y les añade un **MAC** (integridad), de modo que nadie puede leer ni modificar el DNI o los datos de salud por el camino."
+          ]
+        },
+        {
+          "prompt": "¿Qué usarías para proteger la videoconsulta?",
+          "keyPoints": [
+            "Indica que TLS no es adecuado porque necesita TCP",
+            "Elige DTLS, que ofrece los servicios de TLS sobre UDP",
+            "Menciona alguna adaptación de DTLS (retransmisiones, ventana antirrepetición, cookies contra DoS)"
+          ],
+          "model": [
+            "TLS no sirve porque necesita **TCP**, y la aplicación usa **UDP**. Usaría **DTLS**, que ofrece los mismos servicios que TLS (confidencialidad, integridad y autenticación) sobre datagramas.",
+            "DTLS añade lo que UDP no da: **retransmisiones** durante la negociación, **numeración con ventana antirrepetición** y **cookies** para evitar la denegación de servicio. De hecho, WebRTC, la tecnología de videollamadas del navegador, lo usa."
+          ]
+        }
+      ],
+      "tip": "Elige el protocolo por la capa y el tipo de tráfico: redes enteras, IPsec; una aplicación sobre TCP, TLS; una aplicación sobre UDP, DTLS.",
+      "sections": ["esp", "modos-ipsec", "ike", "ssl-arquitectura", "dtls"]
+    }
+  ],
+  "order": [
+    {
+      "id": "redes-t08-o1",
+      "title": "Ordena el Handshake de SSL/TLS",
+      "items": [
+        "ClientHello con los algoritmos que soporta el cliente y su número aleatorio",
+        "ServerHello con los algoritmos elegidos y otro número aleatorio",
+        "El servidor envía su certificado y ServerHelloDone",
+        "ClientKeyExchange con el secreto premaestro cifrado con la clave pública del servidor",
+        "ChangeCipherSpec y Finished del cliente",
+        "ChangeCipherSpec y Finished del servidor"
+      ],
+      "why": "Primero se negocian capacidades, luego el servidor se autentica, después el cliente envía la semilla de las claves y, por último, ambos activan lo negociado y cierran con un Finished cifrado.",
+      "sections": ["handshake"]
+    },
+    {
+      "id": "redes-t08-o2",
+      "title": "Ordena lo que hace el Record Protocol con cada mensaje",
+      "items": [
+        "Fragmenta el mensaje en bloques",
+        "Comprime los bloques (opcional)",
+        "Añade un MAC a cada bloque",
+        "Cifra el bloque con su MAC",
+        "Añade la cabecera de registro",
+        "Lo transmite en un segmento TCP"
+      ],
+      "why": "El MAC se calcula sobre los datos antes de cifrar, de modo que queda protegido dentro del cifrado; la cabecera se añade al final para que el receptor sepa cómo procesar el registro.",
+      "sections": ["record"]
+    },
+    {
+      "id": "redes-t08-o3",
+      "title": "Ordena la fase 1 de IKE en modo principal",
+      "items": [
+        "Propuesta y selección de parámetros de la SA ISAKMP (en claro)",
+        "Intercambio Diffie-Hellman de material criptográfico (en claro)",
+        "Derivación de las claves de sesión IKE",
+        "Autenticación mutua de los extremos, ya cifrada"
+      ],
+      "why": "Solo cuando ya hay parámetros acordados y un secreto Diffie-Hellman se pueden derivar claves; con ellas se cifra la autenticación de las identidades.",
+      "sections": ["ike"]
+    }
+  ]
+}

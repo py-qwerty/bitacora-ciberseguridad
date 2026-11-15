@@ -1,0 +1,246 @@
+{
+  "course": "gobierno",
+  "number": 10,
+  "open": [
+    {
+      "id": "gobierno-t10-d1",
+      "kind": "larga",
+      "points": 3,
+      "minutes": 12,
+      "prompt": "Explica el ciclo de tratamiento del riesgo según la ISO 31000 y enumera y describe las opciones de tratamiento, con un ejemplo de TI para cada una.",
+      "keyPoints": [
+        "Define el tratamiento como seleccionar e implantar una o varias opciones para modificar los riesgos ya evaluados",
+        "Describe el ciclo: evaluación, estudio de opciones con análisis coste/beneficio, aceptar (monitorizar) o tratar, y volver a evaluar",
+        "Enumera las opciones: evitar, aceptar o aumentar, eliminar la fuente, modificar la probabilidad, modificar las consecuencias, compartir y retener",
+        "Pone un ejemplo de TI coherente para cada opción",
+        "Explica que las opciones no se excluyen y no son apropiadas en todas las circunstancias",
+        "Explica que si el riesgo residual sigue por encima de lo tolerable hay que revisar y mejorar las salvaguardas, aunque ya se haya invertido"
+      ],
+      "model": [
+        "Según la ISO 31000, **tratar** un riesgo es seleccionar e implantar **una o varias** opciones para modificar los riesgos ya identificados, analizados y valorados.",
+        "Es un **ciclo**: se parte de la **evaluación**; se estudian las opciones con un **análisis coste/beneficio**; si el riesgo **se acepta**, no desaparece y pasa a **monitorización continua**; si **se trata**, se elige una opción; y en ambos casos se **vuelve a evaluar** para comprobar el efecto y calcular el **riesgo residual**. Si este sigue por encima de lo tolerable, hay que revisar el tratamiento: haber pagado un antivirus no convierte el riesgo en aceptable.",
+        "Opciones: **evitar** (no iniciar o abandonar la actividad: no ofrecer pagos online para no custodiar tarjetas); **aceptar o aumentar** para aprovechar una oportunidad (lanzar una app antes que la competencia); **eliminar la fuente** (desinstalar un servidor obsoleto); **modificar la probabilidad** (parchear, doble factor); **modificar las consecuencias** (copias de seguridad, plan de recuperación); **compartir** (ciberseguro o proveedor con penalizaciones); y **retener** de forma informada (aceptar que falle el PC de la sala de espera).",
+        "Las opciones **no se excluyen** (candado y seguro a la vez) y **no sirven en todas las circunstancias**: evitar es imposible si la actividad es el núcleo del negocio. Compartir no es evitar: con un seguro se sigue haciendo la actividad y solo se traslada la parte económica, no la reputación."
+      ],
+      "tip": "En clase se explicó una matriz orientativa: bajo impacto y baja probabilidad, aceptar; alto impacto y baja probabilidad, transferir; bajo impacto y alta probabilidad, mitigar; alto impacto y alta probabilidad, evitar. Mencionarla como ejemplo suma.",
+      "fromClass": true,
+      "sections": ["ciclo-tratamiento", "opciones-tratamiento"]
+    },
+    {
+      "id": "gobierno-t10-d2",
+      "kind": "larga",
+      "points": 3,
+      "minutes": 12,
+      "prompt": "Explica qué significa mitigar un riesgo. Distingue las salvaguardas preventivas de las reactivas y explica cómo deben seleccionarse las salvaguardas.",
+      "keyPoints": [
+        "Define mitigar como minimizar la probabilidad, el impacto o ambos",
+        "Distingue las dos formas de reducir el impacto: menor degradación del activo y menores consecuencias para la organización",
+        "Explica que se mitiga ampliando o mejorando las salvaguardas o subiendo su madurez",
+        "Define las preventivas: actúan antes y reducen la probabilidad de materialización, con ejemplos",
+        "Define las reactivas: actúan durante o después y limitan el impacto, con ejemplos",
+        "Explica que hace falta una combinación equilibrada según el tipo y valor del activo, sus dependencias y las amenazas",
+        "Menciona que el catálogo de salvaguardas es genérico y que las salvaguardas técnicas caducan"
+      ],
+      "model": [
+        "**Mitigar** es reducir el riesgo **minimizando la probabilidad** (que ocurra menos), **minimizando el impacto** (que haga menos daño) o ambas cosas. El impacto se reduce de dos formas: con menos **degradación del activo** (un sistema de extinción que actúa en segundos) o con menos **consecuencias para la organización** (un servidor de respaldo en otra sede). La herramienta siempre es **ampliar o mejorar las salvaguardas**, o subir su nivel de madurez.",
+        "Según cómo actúan, las salvaguardas son **preventivas** o **reactivas**. Las **preventivas** actúan **antes** del incidente y **reducen la probabilidad** de que la amenaza se materialice: parches, control de accesos, formación, cortafuegos. Las **reactivas** actúan **durante o después** y **limitan el impacto**: copias de seguridad, plan de recuperación, extinción de incendios. Ojo: la preventiva no reduce el número de amenazas, que siguen existiendo; reduce la probabilidad de que tengan éxito.",
+        "Para seleccionarlas hace falta una **combinación** de distintos tipos, porque ninguna basta sola y ninguna prevención es perfecta. La selección debe ser **equilibrada** y tener en cuenta el **tipo de activo**, su **valor**, el de los activos que **dependen** de él y las **amenazas**.",
+        "El **catálogo de salvaguardas** del tema es **genérico** (tipos de protección por activo, no productos), porque las salvaguardas técnicas **caducan**: con el teletrabajo y la nube, el cortafuegos perimetral ya no basta y se han añadido VPN y doble factor."
+      ],
+      "fromClass": false,
+      "sections": ["mitigacion", "catalogo-salvaguardas", "preventivas-reactivas"]
+    },
+    {
+      "id": "gobierno-t10-d3",
+      "kind": "larga",
+      "points": 3,
+      "minutes": 10,
+      "prompt": "Explica cómo se determina la eficacia real de una salvaguarda. Define eficacia intrínseca y grado de implantación y describe el modelo de madurez de 0 a 5.",
+      "keyPoints": [
+        "Define la eficacia intrínseca como la protección que daría la salvaguarda implantada al 100 % y funcionando al máximo",
+        "Define el grado de implantación como cómo está realmente desplegada, configurada y conocida",
+        "Explica que la eficacia real combina ambas y es lo que reduce de verdad el riesgo inherente",
+        "Indica que el grado de implantación se valora en porcentaje o con un modelo de madurez",
+        "Describe los niveles de madurez, al menos 0 (no implantada), un nivel intermedio y 5 (desplegada, probada y conocida por todos)",
+        "Indica que la eficacia no depende de la marca, el precio, el contrato o de figurar en la política"
+      ],
+      "model": [
+        "La **eficacia intrínseca** es la protección que daría una salvaguarda contra una amenaza si estuviera implantada al 100 % y funcionara al máximo que permite su diseño. El **grado de implantación** es cómo está **realmente** desplegada hoy: su alcance, lo bien configurada que está y cuánto la conocen quienes la usan o mantienen.",
+        "La **eficacia real** combina ambas, y es lo que de verdad reduce el **riesgo inherente**. Un casco homologado es muy eficaz, pero si va colgado del codo no protege. Por eso, para determinar la eficacia **es imprescindible conocer el grado de implantación**, que se valora en **porcentaje** («antivirus en el 80 % de los equipos») o con un **modelo de madurez**.",
+        "Niveles de madurez: **0**, no implantada; **1**, implantada con graves deficiencias por obsolescencia o falta de mantenimiento; **2**, instalada pero sin actualización o mantenimiento adecuados; **3**, instalada en la mayor parte de la infraestructura pero no en toda, y el desconocimiento de algunas personas reduce su eficacia; **4**, completamente desplegada, aunque quienes la aplican no la conocen lo suficiente; **5**, completamente desplegada, implantada y **probada**, con todos los implicados informados.",
+        "Así, un sistema de detección de intrusos comprado y pagado pero sin configurar tiene madurez 0 o 1 y su eficacia real es casi nula. La eficacia no depende de la marca, del precio, de un contrato de mantenimiento ni de que aparezca en la política."
+      ],
+      "fromClass": false,
+      "sections": ["eficacia-madurez"]
+    },
+    {
+      "id": "gobierno-t10-d4",
+      "kind": "larga",
+      "points": 3,
+      "minutes": 12,
+      "prompt": "¿Por qué hay que monitorizar los riesgos? Distingue medida, métrica e indicador de riesgo, explica las características SMART de un buen indicador y qué es un KRI.",
+      "keyPoints": [
+        "Explica que la evaluación se basa en estimaciones que se alejan de la realidad, por lo que hay que monitorizar de forma permanente cambios externos, internos y del comportamiento humano",
+        "Define medida como indicación cuantitativa de la cantidad o tamaño de un atributo",
+        "Define métrica como medida cuantitativa del grado en que algo posee un atributo, que permite comparar",
+        "Define indicador como métrica o combinación de métricas con un criterio de interpretación sobre el riesgo",
+        "Enumera SMART: específico, medible, alcanzable, realista y a tiempo",
+        "Define KRI e indica que necesita medidas, algoritmo de cálculo, periodicidad y umbrales de aviso y alarma",
+        "Menciona el cuadro de mando en lenguaje de negocio y que los indicadores apoyan las decisiones, no las sustituyen"
+      ],
+      "model": [
+        "La evaluación de riesgos se basa en **estimaciones** que, con el tiempo, **se alejan de la realidad**. Por eso hay que **monitorizar de forma permanente** para detectar cambios en el contexto externo (amenazas, leyes), interno (sistemas, reorganizaciones) y en el comportamiento humano. Un informe con datos de hace tres años ya no sirve.",
+        "Una **medida** es una indicación cuantitativa de la cantidad o tamaño de un atributo: «hay 340 equipos y 12 no tienen el parche». Una **métrica** es una medida **cuantitativa** del **grado** en que algo posee un atributo, y permite comparar: «96,5 % de equipos parcheados». Un **indicador de riesgo** es una métrica o combinación de métricas con un **criterio de interpretación**: «si el parcheo baja del 95 %, alerta».",
+        "Un buen indicador es **SMART**: **específico** (mide algo concreto), **medible** (se puede comprobar si alcanza un umbral), **alcanzable**, **realista** con los recursos de la organización y **a tiempo** (con un plazo o periodo definido).",
+        "Un **KRI** (Key Risk Indicator, indicador clave de riesgo) es uno de los pocos indicadores más importantes para vigilar un riesgo. Para cada uno se define en qué **medidas** se basa, su **algoritmo** de cálculo, su **periodicidad** y sus **umbrales de aviso y de alarma**. Con ellos se monta un **cuadro de mando** en **lenguaje de negocio**, como el salpicadero de un coche.",
+        "Los indicadores **apoyan** las decisiones y mejoran el conocimiento del riesgo; no las sustituyen ni eliminan la incertidumbre. Como se comentó en clase, un indicador al que nadie hace caso sobra: hay que quedarse con los que de verdad sirven."
+      ],
+      "tip": "El profesor de la parte de gobierno mencionó los KPI y KRI como forma de medir que los controles son eficaces (reducen el riesgo) y eficientes (no malgastan recursos).",
+      "fromClass": true,
+      "sections": ["monitorizar-medir", "indicadores-riesgo"]
+    },
+    {
+      "id": "gobierno-t10-d5",
+      "kind": "larga",
+      "points": 3,
+      "minutes": 12,
+      "prompt": "Explica cómo se diseña un sistema de medición de riesgos: las tareas para diseñar métricas e indicadores, los tipos de métricas y qué debe recoger la ficha de una métrica.",
+      "keyPoints": [
+        "Enumera las tareas en orden: entidades, atributos, conceptos medibles y métricas",
+        "Explica que primero se decide qué y para qué se mide y después cómo",
+        "Distingue métricas directas (no dependen de otras) e indirectas (se calculan a partir de otras con una función de medición), con ejemplo",
+        "Menciona que hay que definir métodos de medición (subjetivos u objetivos), escala e indicadores",
+        "Enumera campos de la ficha: metas, objetivos, métrica, propósito, evidencia, frecuencia, fórmula, origen de datos e indicadores",
+        "Distingue meta (resultado deseado) de objetivos (acciones para alcanzarla)",
+        "Indica que cada indicador necesita responsable, periodicidad, umbral y valor objetivo, y debe ser comparable y reproducible"
+      ],
+      "model": [
+        "El diseño sigue cuatro tareas en orden: 1) **entidades** a medir, el objeto que se caracteriza, tangible (una salvaguarda) o intangible (un riesgo); 2) **atributos**, la propiedad que se mide de esa entidad; 3) **conceptos medibles**, que relacionan los atributos con una **necesidad de información** de la dirección; y 4) **métricas**, el método y la escala que convierten el mundo real en números. Primero se decide **qué y para qué**, y después **cómo**.",
+        "Para elaborar métricas hay que definir los **métodos de medición** (subjetivos, si dependen del juicio de una persona, u objetivos, si se basan en métodos numéricos), la **escala** (que decide qué operaciones son válidas: no se puede sumar «alto» con euros) y los **indicadores**. Las métricas son **directas** si no dependen de otras (número de incidentes del mes) o **indirectas** si se calculan a partir de otras (incidentes por cada 100 empleados).",
+        "La **ficha de una métrica** recoge: **metas** (el resultado deseado), **objetivos** (las acciones para lograrlo), la **métrica**, el **propósito**, la **evidencia** de implantación, la **frecuencia** (cada cuánto se toman datos), la **fórmula**, el **origen de los datos** y los **indicadores** asociados. Por ejemplo: meta, equipos protegidos frente a vulnerabilidades conocidas; objetivo, aplicar parches críticos en menos de 15 días; fórmula, equipos parcheados / equipos totales × 100; frecuencia semanal; origen, la CMDB y la consola de parches.",
+        "Cada indicador necesita además un **responsable** del análisis, una **periodicidad**, un **umbral** y un **valor objetivo**, y debe dar resultados **comparables y reproducibles**. La responsabilidad de monitorizar un riesgo es de su **propietario**."
+      ],
+      "fromClass": false,
+      "sections": ["diseno-medicion", "elaboracion-metricas", "ficha-metrica"]
+    }
+  ],
+  "cases": [
+    {
+      "id": "gobierno-t10-c1",
+      "title": "Plan de respuesta para una gestoría",
+      "scenario": [
+        "Gestoría Larrea tiene 20 empleados y lleva la contabilidad de 300 pymes. Tras su análisis de riesgos tiene estos resultados: (1) ransomware en el servidor de ficheros: probabilidad alta e impacto alto; (2) robo de un portátil con datos de clientes: probabilidad media e impacto alto; (3) inundación en la sede, que está en un bajo junto a un río: probabilidad baja e impacto muy alto; (4) avería de la impresora de recepción: probabilidad alta e impacto bajo.",
+        "Hace seis meses compró un antivirus avanzado. La revisión muestra que el riesgo de ransomware sigue alto porque los empleados abren adjuntos maliciosos y el antivirus solo está instalado en el 60 % de los equipos.",
+        "El socio director propone contratar un ciberseguro para el ransomware y olvidarse del tema."
+      ],
+      "minutes": 18,
+      "points": 3,
+      "questions": [
+        {
+          "prompt": "Propón una opción de tratamiento (o una combinación) para cada uno de los cuatro riesgos y justifícala.",
+          "keyPoints": [
+            "Para el ransomware propone mitigar combinando medidas preventivas y reactivas, ya que probabilidad e impacto son altos",
+            "Para el portátil propone modificar las consecuencias (cifrado) y la probabilidad (normas de custodia)",
+            "Para la inundación propone compartir (seguro) y modificar consecuencias (copias o respaldo fuera de la sede), por ser poco probable pero muy grave",
+            "Para la impresora propone retener o aceptar el riesgo de forma informada por su bajo impacto",
+            "Justifica las elecciones con la probabilidad, el impacto y el coste/beneficio, y recuerda que las opciones se combinan"
+          ],
+          "model": [
+            "**Ransomware** (alta probabilidad, alto impacto): no se puede evitar porque los ficheros son el núcleo del negocio, así que hay que **mitigar** combinando medidas que reduzcan la **probabilidad** (formación, filtrado de correo, antivirus en todos los equipos) y el **impacto** (copias de seguridad desconectadas y un plan de recuperación).",
+            "**Robo del portátil** (probabilidad media, impacto alto): **modificar las consecuencias** cifrando los discos, para que un robo no permita leer los datos, y la **probabilidad** con normas de custodia.",
+            "**Inundación** (baja probabilidad, impacto muy alto): **compartir** con un seguro y **modificar las consecuencias** con copias fuera de la sede, para seguir trabajando si se inunda. Es el caso típico, visto en clase, en que conviene transferir.",
+            "**Impresora** (alta probabilidad, impacto bajo): **retener** el riesgo de forma informada; reponerla cuesta poco y un control costaría más que el daño que evita."
+          ]
+        },
+        {
+          "prompt": "¿Qué conclusión sacas de la revisión del antivirus? Valora su eficacia real y clasifica las medidas que propongas como preventivas o reactivas.",
+          "keyPoints": [
+            "Explica que el riesgo residual sigue por encima de lo tolerable y hay que volver al estudio de opciones, no darlo por bueno porque ya se pagó",
+            "Indica que la eficacia real es baja porque el grado de implantación es incompleto (60 %, madurez de nivel 3 como mucho)",
+            "Propone completar el despliegue y subir la madurez del antivirus",
+            "Clasifica como preventivas la formación, el filtrado de correo y el antivirus",
+            "Clasifica como reactivas las copias de seguridad desconectadas y el plan de recuperación"
+          ],
+          "model": [
+            "La revisión muestra que el **riesgo residual** sigue alto, así que el ciclo obliga a **volver al estudio de opciones** y mejorar las salvaguardas. Haber invertido en el antivirus no convierte el riesgo en aceptable.",
+            "Su **eficacia real** es baja aunque su eficacia intrínseca sea buena, porque el **grado de implantación** es incompleto: solo está en el 60 % de los equipos (como mucho un nivel 3 de madurez). Hay que desplegarlo en todos los equipos y mantenerlo actualizado.",
+            "Medidas **preventivas** (reducen la probabilidad): antivirus en todos los equipos, formación para no abrir adjuntos sospechosos y filtrado de correo. Medidas **reactivas** (limitan el impacto): copias de seguridad desconectadas y un plan de recuperación probado."
+          ]
+        },
+        {
+          "prompt": "¿Qué le dirías al socio director sobre contratar un ciberseguro y «olvidarse del tema»?",
+          "keyPoints": [
+            "Explica que el seguro es compartir el riesgo y normalmente solo traslada la parte económica, no la reputación ni la responsabilidad",
+            "Indica que compartir se combina con mitigar, no lo sustituye",
+            "Menciona que la aseguradora puede no cubrir el incidente si no se pusieron las medidas adecuadas",
+            "Indica que el riesgo residual tiene que seguir monitorizándose"
+          ],
+          "model": [
+            "El seguro es una forma de **compartir** el riesgo: la gestoría seguiría haciendo la actividad y normalmente solo trasladaría la parte **económica** del daño, no la pérdida de confianza de sus 300 clientes ni su responsabilidad.",
+            "Como se comentó en clase, las pólizas tienen letra pequeña: la aseguradora puede negarse a pagar si el ransomware se debe a no haber puesto las medidas adecuadas. Por eso el seguro **se combina** con la mitigación, no la sustituye, y el riesgo residual debe seguir **monitorizándose**."
+          ]
+        }
+      ],
+      "tip": "La matriz probabilidad-impacto vista en clase te da una primera opción para cada riesgo, pero justifica siempre con el contexto: un riesgo del núcleo del negocio no se puede evitar.",
+      "sections": ["ciclo-tratamiento", "opciones-tratamiento", "preventivas-reactivas", "eficacia-madurez"]
+    },
+    {
+      "id": "gobierno-t10-c2",
+      "title": "Un indicador que sube y nadie mira",
+      "scenario": [
+        "En la empresa de transportes TransAlba, el informe mensual de seguridad incluye el indicador «intentos de acceso fallidos». Lleva tres meses subiendo, pero nadie reacciona: no tiene umbral, ni valor objetivo, ni responsable.",
+        "Además, cada mes se calcula de una forma distinta: un mes se cuentan los intentos de la VPN y otro los del correo. La dirección pide un indicador clave de riesgo (KRI) sobre la exposición a vulnerabilidades conocidas para su cuadro de mando."
+      ],
+      "minutes": 15,
+      "points": 3,
+      "questions": [
+        {
+          "prompt": "¿Qué falla en el indicador actual y cómo lo corregirías?",
+          "keyPoints": [
+            "Indica que le falta umbral o valor mínimo admisible, valor objetivo y responsable del análisis",
+            "Indica que no es comparable ni reproducible porque cambia el método de un mes a otro",
+            "Propone fijar entidad, atributo, método, escala, periodicidad y criterio de interpretación estables",
+            "Menciona que la monitorización corresponde al propietario del riesgo, que retoma el control al salirse de los márgenes"
+          ],
+          "model": [
+            "Le faltan los elementos que todo indicador debe especificar: **umbral** (valor mínimo o límite admisible), **valor objetivo**, **responsable** del análisis y **periodicidad**. Además, no es **comparable ni reproducible**: si un mes mide la VPN y otro el correo, la tendencia no significa nada.",
+            "Lo corregiría fijando de forma estable qué se mide (entidad y atributo: los intentos fallidos en la VPN), el **método** y la **escala**, la periodicidad (mensual) y el criterio de interpretación (aviso y alarma). El responsable sería el **propietario del riesgo**, que puede delegar el seguimiento diario pero retoma el control cuando el indicador se sale de los márgenes, y entonces se revisan el análisis y el tratamiento."
+          ]
+        },
+        {
+          "prompt": "Diseña el KRI que pide la dirección: medidas, algoritmo, periodicidad, umbrales y cómo aparecería en el cuadro de mando. Indica si es una métrica directa o indirecta.",
+          "keyPoints": [
+            "Define las medidas en que se basa (inventario de equipos y estado de parcheo)",
+            "Define un algoritmo de cálculo coherente (equipos sin parche crítico de más de X días / total × 100)",
+            "Fija una periodicidad y umbrales de aviso y de alarma",
+            "Explica que se presenta en lenguaje de negocio en el cuadro de mando",
+            "Identifica que es una métrica indirecta porque se calcula a partir de otras",
+            "Comprueba que cumple las características SMART"
+          ],
+          "model": [
+            "**KRI «Equipos sin parches críticos»**. **Medidas**: inventario de equipos (por ejemplo, de la CMDB) y estado de parcheo de la consola de gestión. **Algoritmo**: equipos sin un parche crítico de más de 15 días / total de equipos × 100. **Periodicidad**: semanal. **Umbral de aviso**: 5 %. **Umbral de alarma**: 10 %. **Responsable**: el propietario del riesgo.",
+            "En el cuadro de mando se presenta en **lenguaje de negocio**: «Exposición a vulnerabilidades conocidas: 3 % (verde)».",
+            "Es una métrica **indirecta**, porque se obtiene combinando dos métricas directas (equipos sin parche y equipos totales) con una función de medición. Además es **SMART**: específica (solo parches críticos), medible, alcanzable, realista y con un periodo definido."
+          ]
+        }
+      ],
+      "sections": ["indicadores-riesgo", "diseno-medicion", "elaboracion-metricas"]
+    }
+  ],
+  "order": [
+    {
+      "id": "gobierno-t10-o1",
+      "title": "Ordena las tareas para diseñar métricas e indicadores de riesgos",
+      "items": ["Determinar las entidades a medir", "Determinar los atributos a medir", "Determinar los conceptos medibles", "Definir las métricas"],
+      "why": "Primero se decide qué objeto se mide (entidad), qué propiedad suya (atributo) y para qué necesidad de información (concepto medible). Solo entonces se define cómo medirlo (la métrica, con su método y su escala).",
+      "sections": ["diseno-medicion"]
+    },
+    {
+      "id": "gobierno-t10-o2",
+      "title": "Ordena los niveles de madurez de una salvaguarda, de menor a mayor",
+      "items": ["No está implantada", "Implantada con graves deficiencias por obsolescencia o falta de mantenimiento", "Instalada, pero sin actualización o mantenimiento adecuados", "Instalada en la mayor parte de la infraestructura, pero no en toda", "Completamente desplegada, pero quienes la aplican no la conocen lo suficiente", "Completamente desplegada, implantada, probada y conocida por todos los implicados"],
+      "why": "Los niveles van del 0 al 5: de no existir, a existir con fallos graves, a estar mal mantenida, a cubrir solo parte de la infraestructura, a estar completa pero poco conocida y, por último, completa, probada y conocida. Solo con madurez alta la eficacia real se acerca a la intrínseca.",
+      "sections": ["eficacia-madurez"]
+    }
+  ]
+}

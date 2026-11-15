@@ -1,0 +1,213 @@
+{
+  "course": "gobierno",
+  "number": 2,
+  "open": [
+    {
+      "id": "gobierno-t02-d1",
+      "kind": "larga",
+      "points": 3,
+      "minutes": 14,
+      "prompt": "Explica qué es ITIL: su origen, sus características y los rasgos que comparten sus prácticas. Indica también cómo ha evolucionado y qué certifica.",
+      "keyPoints": [
+        "Define ITIL como un conjunto de buenas prácticas para gestionar servicios de TI, no un estándar, ni un framework, ni un modelo de madurez",
+        "Explica su origen: el gobierno británico recopiló a finales de los ochenta las prácticas de las organizaciones con más éxito",
+        "Describe las cuatro características: no propietario, no prescriptivo, mejores prácticas y buenas prácticas",
+        "Explica que sus prácticas son predictivas en lugar de reactivas, consistentes y medibles, y adaptables (mejora continua)",
+        "Menciona los dos bloques de prácticas (soporte de servicios y entrega del servicio) con algún ejemplo",
+        "Resume la evolución: ITIL 3 con procesos y ciclo de vida, ITIL 4 con prácticas y valor, ITIL 5 con IA, nube y cadena de suministro",
+        "Indica que ITIL certifica personas, no empresas (las empresas usan ISO/IEC 20000 o ISO 27001)",
+        "Indica que su proceso de seguridad se basa en ISO 27001 y se compromete en la sección de seguridad del SLA"
+      ],
+      "model": [
+        "**ITIL** es una colección de **buenas prácticas** para gestionar servicios de TI. No es un estándar, ni una ley, ni un modelo de madurez: son recomendaciones que una empresa adopta libremente. Nació a finales de los ochenta, cuando el **gobierno británico** recopiló cómo gestionaban sus servicios las organizaciones con más éxito y lo publicó en una serie de libros.",
+        "Tiene cuatro características. Es **no propietario**: no depende de ninguna tecnología, sector ni fabricante. Es **no prescriptivo**: propone prácticas maduras y probadas, pero no obliga a nada ni impone herramientas; cada entidad las adapta. Recoge las **mejores prácticas** fruto de la experiencia mundial, y a la vez son **buenas prácticas**, porque lo que hoy es lo mejor mañana será solo bueno o común.",
+        "Sus prácticas comparten tres rasgos: son **predictivas en lugar de reactivas** (estudian los patrones de uso para anticiparse), **consistentes y medibles** (estables y evaluadas con indicadores) y **adaptables** (permiten optimizarlas y aplicar mejora continua). Por ejemplo, la gestión de la capacidad prevé la demanda y se mide con indicadores como el dinero gastado en capacidad no utilizada.",
+        "En el esquema clásico las prácticas se agrupan en **soporte de servicios** (mesa de servicio, incidentes, problemas, cambios…) y **entrega del servicio** (niveles de servicio, disponibilidad, capacidad, gestión financiera).",
+        "Ha evolucionado: **ITIL 3** organizaba procesos dentro de las etapas del ciclo de vida del servicio; **ITIL 4** (2019) habla de **prácticas** y gira en torno al **valor** del servicio; e **ITIL 5**, según la clase, añade inteligencia artificial, automatización, nube y cadena de suministro.",
+        "ITIL **certifica personas** (por ejemplo, ITIL Foundation), no empresas: una organización que quiere certificar su gestión de servicios usa ISO/IEC 20000, y para su seguridad, ISO 27001. Su proceso de seguridad se **basa en ISO 27001** y la calidad de seguridad comprometida se recoge en la **sección de seguridad del SLA**, aunque ve la seguridad de forma limitada, como un área más de la calidad del servicio."
+      ],
+      "tip": "El profesor avisó: si contestas solo «ITIL es un conjunto de buenas prácticas de servicios de TI», es muy poco. Quiere origen, características, prácticas y versiones. No pedirá de memoria los diagramas de ITIL 4.",
+      "fromClass": true,
+      "sections": ["itil-origen", "itil-caracteristicas", "itil-practicas", "itil-seguridad"]
+    },
+    {
+      "id": "gobierno-t02-d2",
+      "kind": "larga",
+      "points": 3,
+      "minutes": 12,
+      "prompt": "Explica qué es el gobierno de la seguridad de la información, cuáles son sus objetivos y cómo se traduce en la práctica en una organización.",
+      "keyPoints": [
+        "Define el gobierno como las responsabilidades y prácticas que ejerce la Dirección para dar dirección estratégica, lograr objetivos, gestionar riesgos y vigilar los recursos",
+        "Enumera los tres objetivos: dirección estratégica alineada con el negocio, gestión del riesgo hasta un nivel aceptable y uso responsable y supervisado de los recursos",
+        "Aclara que se busca optimizar la inversión, no gastar lo mínimo",
+        "Explica que el gobierno de la seguridad debe estar alineado con el gobierno corporativo",
+        "Da ejemplos prácticos: indicadores, líneas de defensa, estructura de roles, comités de seguimiento, planificación reglada",
+        "Menciona el apetito de riesgo como límite del riesgo que queda tras los controles",
+        "Explica que la responsabilidad de dirigir y supervisar no se delega, aunque sí la ejecución"
+      ],
+      "model": [
+        "El **gobierno de la seguridad de la información** es el conjunto de responsabilidades y prácticas que ejerce la **Dirección** (consejo, CEO, directivos) para fijar el rumbo de la seguridad: para qué sirve, cuánto riesgo se acepta y cómo se invierte. No es una tarea técnica del día a día, sino de dirección y supervisión.",
+        "Tiene tres grandes objetivos. **Dar dirección estratégica**: alinear la seguridad con la estrategia de negocio y **optimizar** las inversiones (gastar bien, no gastar lo mínimo). **Gestionar los riesgos**: identificarlos, valorarlos y reducirlos hasta un **nivel aceptable**, no a cero. **Verificar el uso responsable de los recursos**: aprovechar conocimiento e infraestructura y controlar la **eficacia y eficiencia** de los controles implantados.",
+        "Hay dos gobiernos que deben ir de la mano: el **gobierno corporativo** (cómo se organiza la empresa para lograr sus objetivos de negocio) y el **gobierno de la seguridad**, que siempre debe estar **alineado** con el primero. La seguridad está para facilitar el negocio, no para frenarlo.",
+        "En la práctica se traduce en **indicadores** medidos con regularidad, varias **líneas de defensa** (controles, auditorías internas), una **estructura clara de roles y responsabilidades**, **comités de seguimiento** que comprueban que los riesgos siguen por debajo del **apetito de riesgo** (cuánto riesgo acepta la organización) y una **planificación reglada** de las actividades. El gobierno no implanta controles, pero vigila que funcionen y mitiguen los riesgos para los que se pusieron.",
+        "Por ejemplo, si la dirección contrata a un responsable de seguridad y le dice «encárgate tú de todo» sin revisar nunca objetivos ni presupuesto, falla el gobierno: delegar la ejecución es normal, pero **la responsabilidad de dirigir y supervisar no se delega**."
+      ],
+      "tip": "El profesor pidió «grabarse» la alineación entre gobierno corporativo y gobierno de la seguridad. Trampa típica: «lograr siempre el mínimo coste» no es un objetivo del gobierno.",
+      "fromClass": true,
+      "sections": ["gobierno"]
+    },
+    {
+      "id": "gobierno-t02-d3",
+      "kind": "larga",
+      "points": 3,
+      "minutes": 13,
+      "prompt": "Explica qué es un Plan Director de Seguridad (PDS), qué preguntas responde y enumera y describe brevemente sus fases.",
+      "keyPoints": [
+        "Define el PDS como la herramienta que implanta la estrategia de seguridad en un plazo de 2 a 5 años",
+        "Enumera las tres preguntas: dónde estamos, dónde queremos llegar y cómo llegamos",
+        "Enumera las seis fases en orden: modelo de seguridad, situación actual, análisis GAP, plan de acción, aprobación y desarrollo, seguimiento",
+        "Explica el análisis GAP como la diferencia entre la madurez actual y la deseada",
+        "Explica que en el plan de acción se definen proyectos, alcance, recursos y prioridades (no se implantan controles)",
+        "Indica que primero se fijan objetivos y riesgos y después los controles, sin aplicar toda la ISO 27001 a ciegas",
+        "Menciona que no es obligatorio, está en el nivel estratégico y se revisa al menos cada año"
+      ],
+      "model": [
+        "El **Plan Director de Seguridad (PDS)** es la herramienta que convierte la estrategia de seguridad en un plan de proyectos con fechas y presupuesto, para un periodo de **2 a 5 años**. Responde a tres preguntas: **dónde estamos** (estado actual de la seguridad), **dónde queremos llegar** (objetivos coherentes, medibles y alcanzables) y **cómo llegamos** (el plan de proyectos).",
+        "Se elabora en seis fases. 1) **Definición del modelo de seguridad**: qué se quiere proteger y con qué criterios, teniendo en cuenta los objetivos corporativos, los riesgos, las necesidades del negocio, los estándares del sector y las circunstancias tecnológicas. 2) **Análisis de la situación actual**: un diagnóstico realista, sobre todo de las debilidades.",
+        "3) **Análisis GAP**: medir el hueco entre la madurez actual y la deseada; suele dibujarse en un gráfico de radar por dominios. 4) **Definición del plan de acción**: proyectos, alcance, recursos humanos y económicos, y **priorización** según riesgos, estado actual y objetivos de negocio. Aquí todavía no se implantan controles.",
+        "5) **Aprobación y desarrollo**: la dirección lo aprueba, se implica y aporta los recursos, y se ejecutan los proyectos. 6) **Seguimiento**: comprobar al menos una vez al año que se avanza y corregir desviaciones.",
+        "Ideas clave: primero se fijan objetivos y riesgos y **después** los controles (nunca «cumplir todos los controles de la ISO 27001» sin elegir). El PDS está en el **nivel estratégico**, **no es obligatorio** (ni la ley ni la ISO 27001 lo exigen) pero demuestra madurez, y al acabar el periodo se hace otro con objetivos más exigentes. Ejemplo: una gestoría sin copias fiables planifica copias y formación el año 1, control de accesos el año 2 y continuidad el año 3."
+      ],
+      "fromClass": true,
+      "sections": ["plan-director", "fases-pds"]
+    },
+    {
+      "id": "gobierno-t02-d4",
+      "kind": "corta",
+      "points": 2,
+      "minutes": 7,
+      "prompt": "¿Qué es un acuerdo de nivel de servicio (SLA)? Indica qué recursos abarca, qué ventajas tiene y qué debe concretar una cláusula de disponibilidad.",
+      "keyPoints": [
+        "Define el SLA como un acuerdo formal, casi un contrato, que reparte responsabilidades entre proveedor y cliente con prestaciones mínimas",
+        "Indica que abarca hardware, software, personal, datos, redes y procedimientos",
+        "Menciona que se usa en cualquier prestación de servicios, sobre todo en outsourcing",
+        "Explica sus ventajas: responsabilidades claras y servicio evaluable sin ambigüedad",
+        "Indica que una cláusula de disponibilidad debe fijar la fórmula, cuándo empieza y acaba la caída, qué no cuenta y las penalizaciones"
+      ],
+      "model": [
+        "Un **SLA** es un acuerdo formal, que puede considerarse un contrato, por el que un proveedor se compromete a prestar un servicio con unas **prestaciones mínimas** y que reparte las responsabilidades entre el proveedor (por ejemplo, el departamento de sistemas) y el cliente. Abarca todos los recursos, no solo los técnicos: **hardware, software, personal, datos, redes y procedimientos**. Se usa en cualquier prestación de servicios y es muy habitual en el **outsourcing**.",
+        "Sus ventajas: las **responsabilidades quedan claras** y, como los niveles de calidad son explícitos, el servicio se puede **evaluar sin ambigüedad** (disponibilidad, tiempo de respuesta, seguridad).",
+        "Una cláusula de disponibilidad debe concretar **cómo se mide**, por ejemplo D = (T − Td) / T; **cuándo empieza** la caída (al avisar al proveedor) y **cuándo termina** (al comprobar que el servicio está restaurado); **qué no cuenta** (fallos por mal uso del cliente) y **qué penalización** corresponde a cada tramo. Prometer «alta disponibilidad» sin esto no permite reclamar nada."
+      ],
+      "fromClass": false,
+      "sections": ["sla", "disponibilidad"]
+    },
+    {
+      "id": "gobierno-t02-d5",
+      "kind": "corta",
+      "points": 2,
+      "minutes": 6,
+      "prompt": "Distingue misión, visión, objetivos y estrategia de seguridad. ¿Por qué la estrategia de seguridad no puede ser independiente de la de negocio?",
+      "keyPoints": [
+        "Define la misión como por qué importa la seguridad, casi invariable",
+        "Define la visión como lo que se aspira a que llegue a ser la seguridad, revisada periódicamente",
+        "Define los objetivos como metas concretas ligadas a las de la empresa",
+        "Define la estrategia como el cómo llegar, revisada a menudo porque el entorno cambia",
+        "Explica que la estrategia debe alinearse con el negocio y aportarle valor, con un ejemplo"
+      ],
+      "model": [
+        "La **misión de seguridad** explica **por qué** la seguridad es relevante para la organización; casi nunca cambia. La **visión** describe lo que la entidad **desea que llegue a ser** su seguridad y se revisa periódicamente. Los **objetivos** son metas concretas para un periodo, ligadas a los de la empresa. La **estrategia** dice **cómo** alcanzarlas y se revisa a menudo porque el entorno cambia.",
+        "La estrategia es el puente entre la misión y los objetivos, y explica cómo aporta valor la seguridad al negocio. Si fuera independiente podría ir contra él: una tienda online que quiere vender más en Navidad necesita una estrategia que proteja la web y los pagos con el presupuesto disponible, no una que bloquee la web por exceso de controles justo en campaña."
+      ],
+      "fromClass": false,
+      "sections": ["mision-vision"]
+    }
+  ],
+  "cases": [
+    {
+      "id": "gobierno-t02-c1",
+      "title": "Una empresa de logística sin rumbo en seguridad",
+      "scenario": [
+        "Transportes Ebro Norte tiene 250 empleados y vive de su plataforma web de seguimiento de envíos. Hace un año contrató a una responsable de seguridad y el consejero delegado le dijo: «encárgate tú de todo». Desde entonces nadie en la dirección ha revisado objetivos, presupuesto ni resultados.",
+        "La responsable descubrió que el año anterior se compró un sistema muy caro de prevención de fugas de datos «porque lo tenía todo el mundo», mientras las copias de seguridad fallaban con frecuencia. No hay indicadores ni comité de seguridad.",
+        "La plataforma está alojada en un proveedor externo cuyo contrato solo dice «alta disponibilidad». El mes pasado (30 días) la plataforma estuvo caída 18 horas en total, sin que la empresa pudiera reclamar nada."
+      ],
+      "minutes": 18,
+      "points": 3,
+      "questions": [
+        {
+          "prompt": "¿Qué falla en el gobierno de la seguridad de esta empresa? Propón tres medidas de gobierno concretas.",
+          "keyPoints": [
+            "Identifica que la dirección ha delegado también la responsabilidad de dirigir y supervisar, que no se delega",
+            "Señala que la inversión no se alineó con los riesgos ni con el negocio (DLP comprado mientras fallaban las copias)",
+            "Propone indicadores medidos con regularidad",
+            "Propone un comité de seguimiento con la dirección que vigile el riesgo frente al apetito de riesgo",
+            "Propone roles y responsabilidades definidos o una planificación reglada (PDS)"
+          ],
+          "model": [
+            "Falla el **gobierno**: la dirección ha delegado no solo la ejecución, sino también la **responsabilidad de dirigir y supervisar**, que no se puede delegar. Nadie fija prioridades ni comprueba si el dinero se usa bien. La prueba es la compra del sistema de fugas de datos sin saber si hacía falta, mientras el riesgo real (copias que fallan) quedaba sin tratar: la inversión no se **optimizó** ni se alineó con los riesgos del negocio.",
+            "Propuestas: 1) un **comité de seguridad** con participación de la dirección que revise periódicamente los riesgos y compruebe que siguen por debajo del **apetito de riesgo**; 2) **indicadores** medidos con regularidad (por ejemplo, porcentaje de copias correctas o disponibilidad de la plataforma); 3) una **estructura clara de roles y responsabilidades** y una **planificación reglada**, idealmente con un Plan Director de Seguridad aprobado por la dirección."
+          ]
+        },
+        {
+          "prompt": "La responsable propone elaborar un Plan Director de Seguridad. Explica cómo aplicaría sus fases en esta empresa.",
+          "keyPoints": [
+            "Define el modelo de seguridad a partir de los objetivos del negocio (la plataforma de envíos) y los riesgos",
+            "Hace un análisis realista de la situación actual destacando las debilidades (copias, ausencia de indicadores, SLA vacío)",
+            "Mide el GAP entre lo actual y lo deseado",
+            "Prioriza en el plan de acción proyectos según riesgos (copias antes que nuevas compras)",
+            "Indica que la dirección debe aprobarlo y aportar recursos, y que se hace seguimiento al menos anual"
+          ],
+          "model": [
+            "1) **Modelo de seguridad**: partir del negocio, que vive de la plataforma de envíos, y de sus riesgos; fijar objetivos retadores pero alcanzables a tres años. 2) **Situación actual**: un diagnóstico realista que destaque las debilidades: copias que fallan, ningún indicador, contrato de alojamiento sin compromisos medibles.",
+            "3) **Análisis GAP**: comparar esa foto con la situación deseada, por dominios, para ver el hueco. 4) **Plan de acción**: definir proyectos, recursos y **prioridades** según el riesgo; por ejemplo, año 1 copias fiables y renegociar el SLA, año 2 control de accesos y formación, año 3 continuidad.",
+            "5) **Aprobación y desarrollo**: el consejero delegado debe aprobar el plan, implicarse y dotar el presupuesto; después se ejecutan los proyectos. 6) **Seguimiento**: revisar al menos una vez al año si se cumplen los objetivos y corregir desviaciones."
+          ]
+        },
+        {
+          "prompt": "Calcula la disponibilidad del último mes y explica qué debería incluir un nuevo SLA con el proveedor.",
+          "keyPoints": [
+            "Aplica la fórmula D = (T − Td) / T con T = 720 horas y Td = 18 horas",
+            "Obtiene D = 97,5 % y lo sitúa en un tramo de penalización si usa la tabla del temario (nivel B)",
+            "Indica que el SLA debe fijar la fórmula y el nivel comprometido",
+            "Indica que debe fijar cuándo empieza y termina la caída y qué no cuenta",
+            "Indica que debe fijar penalizaciones y que las cifras se comparen con lo pactado para mejorar"
+          ],
+          "model": [
+            "Un mes de 30 días tiene T = 720 horas. Con Td = 18 horas: D = (720 − 18) / 720 = 702 / 720 = **0,975, es decir, 97,5 %**. Con la tabla de ejemplo del temario caería en el tramo «98 % > D ≥ 96 %», nivel de penalización B.",
+            "El problema es que el contrato solo dice «alta disponibilidad», y sin definiciones no hay nada que reclamar. El nuevo **SLA** debe fijar: el **nivel comprometido** y la **fórmula** de cálculo; **cuándo empieza** a contar la caída (al avisar al proveedor) y **cuándo termina** (al comprobar que el servicio está restaurado); **qué no cuenta** (fallos por mal uso del cliente); y las **penalizaciones** por tramos. Además, la empresa debe comparar cada mes las cifras con lo pactado y usarlas para mejorar, no solo archivarlas."
+          ]
+        }
+      ],
+      "tip": "Conecta cada fallo con un concepto del tema (gobierno, PDS, SLA) y nómbralo: el corrector busca el vocabulario además de la idea.",
+      "sections": ["gobierno", "fases-pds", "sla", "disponibilidad"]
+    }
+  ],
+  "order": [
+    {
+      "id": "gobierno-t02-o1",
+      "title": "Ordena las fases de un Plan Director de Seguridad",
+      "items": [
+        "Definición del modelo de seguridad",
+        "Análisis de la situación actual",
+        "Realización del análisis GAP",
+        "Definición del plan de acción y priorización",
+        "Aprobación y desarrollo del PDS",
+        "Seguimiento del plan y de los objetivos"
+      ],
+      "why": "Primero se decide qué se quiere proteger y con qué criterios, después se mira cómo se está y se mide el hueco; con ese hueco se priorizan proyectos, la dirección los aprueba y se ejecutan, y por último se vigila el avance.",
+      "sections": ["fases-pds"]
+    },
+    {
+      "id": "gobierno-t02-o2",
+      "title": "Ordena las preguntas que responde un Plan Director",
+      "items": [
+        "¿Dónde estamos?",
+        "¿Dónde queremos llegar?",
+        "¿Cómo llegamos?"
+      ],
+      "why": "Sin conocer la situación actual no se puede medir la distancia al objetivo, y sin objetivo no se puede diseñar el plan de proyectos.",
+      "sections": ["plan-director"]
+    }
+  ]
+}

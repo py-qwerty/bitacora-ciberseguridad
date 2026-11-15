@@ -1,0 +1,186 @@
+{
+  "course": "sistemas",
+  "number": 10,
+  "open": [
+    {
+      "id": "sistemas-t10-d1",
+      "kind": "corta",
+      "points": 2,
+      "minutes": 7,
+      "prompt": "Enumera las 5 V del big data y explica qué reto de seguridad plantea cada una.",
+      "keyPoints": [
+        "Enumera las cinco: volumen, variedad, velocidad, veracidad y valor",
+        "Relaciona el volumen con la imposibilidad de revisar a mano y el coste del análisis forense",
+        "Relaciona la variedad con la necesidad de controles para muchos formatos (estructurados, semiestructurados, no estructurados)",
+        "Relaciona la velocidad con que los controles deben añadir poca latencia",
+        "Relaciona la veracidad con la integridad de los datos y el valor con la privacidad"
+      ],
+      "model": [
+        "Las **5 V** son volumen, variedad, velocidad, veracidad y valor. Cada una es una característica de los datos y a la vez un reto de seguridad:",
+        "**Volumen**: cantidades enormes que no se pueden revisar a mano; el control fino y el análisis forense se vuelven muy costosos. **Variedad**: conviven datos estructurados (tablas), semiestructurados (JSON, XML) y no estructurados (texto, imágenes, vídeo); lo que protege una tabla no protege un vídeo, así que hacen falta controles para cada formato. **Velocidad**: los datos llegan en flujo continuo (streaming), así que cifrado, autenticación y autorización deben añadir muy poca **latencia**.",
+        "**Veracidad**: hay que confiar en que los datos son correctos y preservar su **integridad** frente a manipulaciones. **Valor**: los datos son valiosos y a menudo personales, por lo que los controles de **privacidad** son críticos."
+      ],
+      "tip": "Trampa típica: colar «validación», «disponibilidad» o «escalabilidad» como si fueran una de las V.",
+      "fromClass": false,
+      "sections": ["cinco-v"]
+    },
+    {
+      "id": "sistemas-t10-d2",
+      "kind": "larga",
+      "points": 3,
+      "minutes": 12,
+      "prompt": "Explica la arquitectura de referencia de big data del NIST (NBDRA): para qué sirve, qué roles define y qué es el tejido de seguridad y privacidad. ¿Qué controles cubre ese tejido?",
+      "keyPoints": [
+        "Explica que el NBDRA es un modelo conceptual que da una base común para diseñar y analizar arquitecturas big data seguras",
+        "Enumera los roles: proveedor de datos, proveedor de la plataforma, proveedor de aplicaciones, consumidor de datos y orquestador del sistema",
+        "Identifica al proveedor de la plataforma (framework provider) como la infraestructura tecnológica subyacente",
+        "Explica que el tejido de seguridad y privacidad es transversal y atraviesa todas las funciones, no es un añadido al final",
+        "Menciona también el tejido de gestión",
+        "Enumera controles del tejido: autenticación y autorización distribuidas, cifrado en tránsito y en reposo con gestión de claves, auditoría, privacidad, linaje y cumplimiento"
+      ],
+      "model": [
+        "El **NBDRA** (NIST Big Data Reference Architecture) es un **modelo conceptual**, no un programa: da una **base común** y un lenguaje compartido para diseñar y analizar arquitecturas big data, incluida su seguridad. El NIST lo desarrolla en su serie SP 1500 (volumen 6 de arquitectura y volumen 4 de seguridad y privacidad).",
+        "**Roles:** el **proveedor de datos** (aporta los datos, por ejemplo sensores); el **proveedor de la plataforma** (framework provider: la **infraestructura tecnológica subyacente** de almacenamiento y procesamiento, como un clúster Hadoop); el **proveedor de aplicaciones** (ejecuta el análisis); el **consumidor de datos** (usa los resultados) y el **orquestador del sistema** (define requisitos y coordina).",
+        "Sobre las funciones (ingesta, almacenamiento, procesamiento, análisis, presentación) actúan dos **tejidos** transversales: el de **gestión** y el de **seguridad y privacidad**. La idea central es que la seguridad **no es una capa al final**: debe atravesar cada función, desde la ingesta hasta la presentación, como la instalación eléctrica recorre todas las habitaciones de un edificio.",
+        "El tejido de seguridad y privacidad cubre: **autenticación y autorización distribuidas**; control de acceso en varios niveles (datos, metadatos, API); **cifrado en tránsito y en reposo** con gestión segura de claves; **auditoría** y registro; **privacidad** (anonimización); **linaje** de los datos y forense; y gestión de riesgos y **cumplimiento** normativo."
+      ],
+      "fromClass": false,
+      "sections": ["modelo-nist"]
+    },
+    {
+      "id": "sistemas-t10-d3",
+      "kind": "corta",
+      "points": 2,
+      "minutes": 7,
+      "prompt": "Diferencia cifrado en tránsito y cifrado en reposo en un clúster big data. ¿Por qué un algoritmo fuerte no basta si las claves están mal gestionadas?",
+      "keyPoints": [
+        "Define cifrado en tránsito como la protección de los datos que viajan por la red, con TLS en RPC y HTTP/REST",
+        "Define cifrado en reposo como la protección de los datos almacenados (disco, columna o zonas de cifrado)",
+        "Indica que hacen falta los dos porque protegen momentos distintos",
+        "Explica que con claves mal controladas cualquiera puede descifrar aunque el algoritmo sea AES-256",
+        "Enumera buenas prácticas de claves: separadas de los datos, rotación, acceso controlado con separación de funciones y auditoría"
+      ],
+      "model": [
+        "El **cifrado en tránsito** protege los datos **mientras viajan por la red** entre nodos, clientes y API, con **TLS** en todas las comunicaciones (también RPC y HTTP/REST), configurado para evitar ataques de degradación (downgrade) y cifrados débiles. El **cifrado en reposo** protege los datos **almacenados**: cifrado de disco, de columna o por **zonas de cifrado**. Hacen falta **los dos**: si se cifran los discos pero los nodos se pasan los datos en claro, cualquiera que escuche la red los lee.",
+        "Un algoritmo fuerte (por ejemplo, AES de 256 bits) no sirve si **medio departamento puede usar la clave** sin control: quien tiene la clave descifra. La solución no es alargar la clave, sino **gestionarla**: guardarla **separada** de los datos, **rotarla**, limitar quién puede usarla con **separación de funciones** (quien administra las claves no es quien lee los datos) y **auditar** cada uso. En Hadoop esto lo hace el **KMS** (servidor de gestión de claves)."
+      ],
+      "fromClass": false,
+      "sections": ["cifrado-y-claves"]
+    },
+    {
+      "id": "sistemas-t10-d4",
+      "kind": "larga",
+      "points": 3,
+      "minutes": 12,
+      "prompt": "Describe los componentes principales de Hadoop (HDFS, NameNode, DataNode, YARN y MapReduce) y las herramientas que protegen un clúster Hadoop: Kerberos, Apache Ranger, Apache Knox y KMS con zonas de cifrado.",
+      "keyPoints": [
+        "Explica que HDFS es el almacenamiento distribuido que trocea, reparte y replica los archivos en bloques",
+        "Distingue NameNode (metadatos: dónde está cada bloque) y DataNode (guardan los bloques)",
+        "Explica que YARN gestiona los recursos del clúster y MapReduce es el modelo de procesamiento en paralelo",
+        "Indica que Kerberos autentica usuarios y servicios en el modo seguro de Hadoop con tiques y keytabs",
+        "Indica que Ranger centraliza las políticas de control de acceso y la auditoría",
+        "Indica que Knox es el punto único de entrada REST al clúster",
+        "Explica que las zonas de cifrado cifran de forma transparente directorios de HDFS con claves gestionadas por el KMS"
+      ],
+      "model": [
+        "**Componentes:** **HDFS** (Hadoop Distributed File System) es el **almacenamiento distribuido**: trocea los archivos en bloques, los reparte entre nodos y los replica. Su nodo maestro, el **NameNode**, guarda los **metadatos** (qué bloques forman cada archivo y dónde están), y los **DataNodes** guardan físicamente los bloques. **YARN** **gestiona los recursos** (CPU y memoria) del clúster y coordina las aplicaciones. **MapReduce** es el **modelo de programación** en paralelo: «map» procesa cada trozo en su nodo y «reduce» junta los resultados. Encima hay herramientas como Hive (consultas tipo SQL) o Pig (scripts).",
+        "**Autenticación:** el **modo seguro de Hadoop requiere Kerberos**, un protocolo con **tiques** emitidos por un servidor central de confianza. Autentica a usuarios y a servicios (NameNode, DataNode…), que usan **keytabs** para obtener tiques sin intervención humana; así los nodos se autentican mutuamente.",
+        "**Autorización y auditoría:** además de los permisos POSIX y ACL de HDFS, **Apache Ranger** es el marco **centralizado de políticas de control de acceso** (tablas, columnas, filas) con **auditoría** centralizada. **Apache Knox** es una pasarela que actúa como **punto único de entrada** seguro para las peticiones REST al clúster.",
+        "**Cifrado:** las **zonas de cifrado** son directorios de HDFS cuyo contenido se cifra al escribir y se descifra al leer de forma **transparente**, sin cambiar la aplicación, con claves gestionadas por el **KMS** (versiones y permisos de uso). El tránsito se protege con TLS. Toda esta arquitectura distribuida amplía la superficie de ataque, por eso hay que proteger el ecosistema completo."
+      ],
+      "tip": "Las asociaciones más preguntadas: HDFS almacena, YARN gestiona recursos, Kerberos autentica, Ranger aplica políticas, Knox es la puerta única y KMS gestiona claves.",
+      "fromClass": false,
+      "sections": ["arquitectura-hadoop", "seguridad-hadoop"]
+    }
+  ],
+  "cases": [
+    {
+      "id": "sistemas-t10-c1",
+      "title": "La plataforma de análisis de una aseguradora",
+      "scenario": [
+        "La aseguradora ficticia Seguros Aurora monta un clúster Hadoop para analizar pólizas (tablas con nombre, DNI, teléfono e importe), partes escaneados en PDF, fotos de vehículos y datos de un proveedor externo de meteorología que llegan cada noche.",
+        "Situación actual: el clúster acepta cualquier nodo que se conecte desde una IP privada; los analistas de ventas, una vez autenticados, pueden leer la tabla de pólizas completa; los ficheros del proveedor se aceptan si tienen el formato esperado; y una herramienta de ingesta usa una cuenta de servicio con lectura y escritura sobre todo HDFS «para que no dé problemas».",
+        "Un analista solo necesita estudiar las ventas por provincia."
+      ],
+      "minutes": 18,
+      "points": 3,
+      "questions": [
+        {
+          "prompt": "Identifica los riesgos de la situación actual y propone medidas concretas de autenticación y autorización.",
+          "keyPoints": [
+            "Identifica el riesgo de suplantación de nodos y propone autenticación mutua de servicios (Kerberos o certificados con TLS mutuo)",
+            "Indica que la IP privada o el nombre declarado no prueban la identidad de un nodo",
+            "Identifica la violación del mínimo privilegio en el acceso a la tabla completa",
+            "Propone autorización granular por columnas en el motor de datos (por ejemplo, con Ranger) para negar los datos personales al analista",
+            "Explica que cifrar el disco u ocultar columnas solo en pantalla no resuelve el acceso del analista",
+            "Identifica la cuenta de servicio con permisos excesivos como eslabón débil y propone mínimo privilegio"
+          ],
+          "model": [
+            "**Nodos:** aceptar cualquier nodo con IP privada permite la **suplantación**: un atacante conecta un falso «worker» que roba o falsea resultados. Ni la IP, ni el nombre declarado, ni el formato de los mensajes prueban la identidad. Medida: **autenticación mutua** de servicios con **Kerberos** (modo seguro de Hadoop, con keytabs) o certificados con **TLS mutuo**.",
+            "**Analistas:** darles la tabla completa porque «ya están autenticados» viola el **mínimo privilegio**: autenticar no es autorizar. Medida: **autorización granular** por tabla, columna y fila aplicada **en el motor de datos**, con políticas centralizadas como **Apache Ranger**; el analista lee importes y provincias pero no nombre, DNI ni teléfono. Cifrar el disco no ayuda (al leer se descifra) y ocultar columnas en pantalla tampoco (con una consulta directa las vería). Podría basarse en roles (**RBAC**) o en atributos (**ABAC**).",
+            "**Cuenta de ingesta:** con permisos sobre todo HDFS es un **eslabón débil**: si se compromete la herramienta, el atacante hereda esos permisos y el resto del blindaje sirve de poco. Medida: **mínimo privilegio**, solo escritura en su directorio de entrada, y **segregación de roles**."
+          ]
+        },
+        {
+          "prompt": "¿Qué controles aplicarías a los datos del proveedor externo y a la privacidad y auditoría de la plataforma?",
+          "keyPoints": [
+            "Propone autenticar el origen y validar los datos desde la ingesta, no solo por el formato ni al final",
+            "Propone cifrado en tránsito con TLS y en reposo con zonas de cifrado y KMS",
+            "Propone técnicas de privacidad como anonimización, generalización o privacidad diferencial",
+            "Propone registrar accesos exitosos y denegados y conservar el linaje de los datos",
+            "Menciona el compromiso entre seguridad y rendimiento sin suprimir los controles"
+          ],
+          "model": [
+            "**Proveedor externo:** desde la **ingesta** hay que **autenticar el origen** (por ejemplo, con certificados) y **validar los datos** recibidos. Que el fichero tenga el formato esperado no prueba nada (un atacante puede imitarlo), y validar al final, cuando el consumidor ya los ve, llega tarde. La transferencia debe ir cifrada con **TLS**.",
+            "**Reposo:** guardar los datos sensibles en **zonas de cifrado** de HDFS con claves en el **KMS**, con rotación y separación de funciones.",
+            "**Privacidad:** aplicar **anonimización** o **desidentificación**, **generalización** (edad 37 → «30-40») o **privacidad diferencial** en las consultas agregadas, según el uso; y cumplir el **RGPD**, que se aplica directamente en toda la UE.",
+            "**Auditoría:** registrar accesos **exitosos y denegados** (los rechazos pueden revelar intentos de intrusión) con acceso a los registros solo para el auditor, y conservar el **linaje** con Apache Atlas para saber de dónde sale cada cifra. Todo esto añade latencia y consumo: hay que **equilibrar** seguridad y rendimiento, nunca suprimir los controles."
+          ]
+        }
+      ],
+      "sections": ["autenticacion", "autorizacion", "seguridad-hadoop", "nist-en-la-practica", "auditoria-privacidad-gobernanza"]
+    },
+    {
+      "id": "sistemas-t10-c2",
+      "title": "Un informe de ventas con cifras extrañas",
+      "scenario": [
+        "En la cadena ficticia SuperNova, el informe mensual de ventas generado por su plataforma big data muestra que una tienda pequeña ha vendido diez veces más que la central. Nadie sabe si es un error de cálculo o una manipulación.",
+        "La misma semana, la cuenta de un becario acumula 300 «acceso denegado» en una noche al intentar abrir tablas de nóminas. La plataforma solo guarda registro de los accesos exitosos."
+      ],
+      "minutes": 12,
+      "points": 3,
+      "questions": [
+        {
+          "prompt": "¿Qué evidencias permitirían investigar el informe extraño? ¿Qué falla en el registro de la plataforma y qué debería registrarse?",
+          "keyPoints": [
+            "Define el linaje de datos como la trazabilidad del origen de un dato y de sus transformaciones",
+            "Indica que el linaje y los registros de transformaciones muestran qué fuentes, procesos, quién y cuándo produjeron la cifra",
+            "Señala que no registrar los accesos denegados impide detectar intentos de intrusión como el del becario",
+            "Matiza que una denegación aislada no demuestra un ataque y que registrar no sustituye a comprobar permisos",
+            "Enumera qué registrar: accesos exitosos y fallidos, cambios de políticas, modificaciones de datos, accesos de administradores y anomalías"
+          ],
+          "model": [
+            "Para el informe, la evidencia útil es el **linaje de datos** (data lineage): la **trazabilidad del origen** de cada dato y de todas las **transformaciones** que ha sufrido. Junto con los registros de transformaciones muestra de qué fuentes salió la cifra, qué procesos la calcularon, **quién** los lanzó y **cuándo**, hasta encontrar el paso donde se torció. El inventario de servidores o la política de contraseñas no aclaran nada. Una herramienta como Apache Atlas gestiona ese linaje.",
+            "El fallo del registro es que **solo guarda los accesos exitosos**: los 300 rechazos del becario pasan inadvertidos, y **los accesos denegados pueden revelar intentos de acceso indebido**. Ojo: una denegación aislada no demuestra un ataque, y registrarlas no sustituye a la comprobación de permisos ni exime de revisar los accesos exitosos.",
+            "Debería registrarse: accesos **exitosos y fallidos**, cambios en políticas, modificaciones de datos, accesos de administradores, el **linaje** y las **anomalías** (uso excesivo de recursos, patrones raros). Los registros solo los consulta el **auditor**, se conservan mucho tiempo y se protegen frente a alteraciones para servir en un análisis **forense**."
+          ]
+        }
+      ],
+      "sections": ["auditoria-privacidad-gobernanza"]
+    }
+  ],
+  "order": [
+    {
+      "id": "sistemas-t10-o1",
+      "title": "Ordena las fases del flujo de datos en big data según el NIST",
+      "items": [
+        "Ingesta: autenticar al proveedor y validar el origen",
+        "Almacenamiento: cifrado y control de acceso granular",
+        "Procesamiento y análisis: políticas en los motores y control del código ejecutado",
+        "Presentación: mostrar solo lo permitido y anonimizar si hace falta"
+      ],
+      "why": "Es el recorrido de los datos desde que entran en la plataforma hasta que llegan al consumidor; en todo el flujo se añaden auditoría, monitorización y gestión de claves.",
+      "sections": ["nist-en-la-practica"]
+    }
+  ]
+}

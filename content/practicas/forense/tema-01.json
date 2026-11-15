@@ -1,0 +1,267 @@
+{
+  "course": "forense",
+  "number": 1,
+  "open": [
+    {
+      "id": "forense-t01-d1",
+      "kind": "corta",
+      "points": 2,
+      "minutes": 6,
+      "prompt": "¿Cuál es el fin último de una investigación forense digital? Enumera y explica las tres preguntas que debe responder e indica qué pregunta no forma parte de sus objetivos.",
+      "keyPoints": [
+        "Indica que el fin último es esclarecer los hechos a partir de las evidencias, con resultados válidos como prueba",
+        "Enumera las tres preguntas: qué ha ocurrido (qué se ha alterado), cómo y quién",
+        "Explica que el «qué» incluye accesos o simples lecturas y copias, no solo modificaciones",
+        "Explica que el «quién» llega al usuario del sistema y a la IP o MAC, no a la persona física por sí solo",
+        "Señala que el porqué (el motivo) no es objetivo del análisis forense",
+        "Pone un ejemplo que aplique las tres preguntas"
+      ],
+      "model": [
+        "El fin último del análisis forense digital es **esclarecer unos hechos** a partir de las evidencias, de forma que los resultados puedan presentarse como prueba en un procedimiento judicial.",
+        "Para ello responde a **tres preguntas**. **¿Qué ha ocurrido?**: detectar accesos o cambios no autorizados, incluidas simples lecturas o copias (leer un archivo no es lo mismo que modificarlo y tiene implicaciones legales distintas). **¿Cómo ha ocurrido?**: reconstruir los pasos del autor para entender su método y evitar que se repita. **¿Quién lo ha hecho?**: identificar al autor dentro de los límites técnicos.",
+        "Ese límite es importante: en lo digital se llega como mucho al **usuario** del sistema y a la **dirección IP o MAC** del equipo. Para llegar a la persona física hacen falta otras pruebas (cámaras, testigos, registros de acceso al edificio).",
+        "Lo que **no** es objetivo es el **porqué**: las huellas digitales muestran qué, cómo y desde dónde, pero no lo que pensaba el autor.",
+        "Ejemplo: sale un paquete de red hacia un servidor en Rusia. Qué: hay una conexión saliente a esa dirección. Cómo: por el contenido, parece una navegación web. Quién: se mira qué cuenta de usuario tenía abierto el navegador en ese momento."
+      ],
+      "tip": "El profesor dijo que estas tres preguntas «muchos me las ponéis en el examen». Añade siempre el matiz del límite de la atribución: es lo que separa una respuesta de notable de una de aprobado.",
+      "fromClass": true,
+      "sections": ["forense-objetivos"]
+    },
+    {
+      "id": "forense-t01-d2",
+      "kind": "larga",
+      "points": 3,
+      "minutes": 12,
+      "prompt": "Explica la diferencia entre continuidad de negocio (BCM) y recuperación ante desastres (DRP). Indica cómo se relacionan entre sí y qué papel tiene el análisis de impacto (BIA) con sus tiempos RTO, RPO y MTD.",
+      "keyPoints": [
+        "Define la continuidad de negocio como mantener los procesos y un servicio mínimo ante cualquier eventualidad, también no tecnológica",
+        "Define la recuperación ante desastres como restablecer la infraestructura tecnológica tras el desastre",
+        "Explica que trabajan a la vez y que el DRP debe estar alineado con el plan de continuidad",
+        "Usa un símil o ejemplo que distinga las dos perspectivas (negocio frente a tecnología)",
+        "Explica que el BIA estudia el impacto de una interrupción y fija tiempos máximos asumibles",
+        "Define correctamente RTO (tiempo hasta volver a operar), RPO (punto anterior al que vuelven los datos) y MTD (caída máxima tolerable)",
+        "Menciona que la pérdida real es aproximadamente RTO + RPO"
+      ],
+      "model": [
+        "La respuesta a incidentes tiene dos perspectivas. La **continuidad de negocio** (BC, y su gestión, BCM) es la perspectiva de **negocio**: mantener los procesos productivos y unos **niveles mínimos de servicio** ante cualquier eventualidad, no solo tecnológica (una huelga, una pandemia, un incendio). Se sistematiza identificando los procesos críticos, evaluando sus riesgos, planificando el intervalo de recuperación con modos de operación alternativos y entrenando al personal.",
+        "La **recuperación ante desastres** (DR, y su plan, DRP) es la perspectiva **tecnológica**: volver a levantar servidores, redes y aplicaciones tras un desastre natural o humano, como un ciberataque.",
+        "Un símil: si hay un incendio en una ciudad, la continuidad es desviar el tráfico por otras carreteras para que la ciudad siga moviéndose; la recuperación son los bomberos apagando el fuego y reparando. Trabajan **a la vez** y deben estar **alineados**: el DRP se alinea con el plan de continuidad.",
+        "Ambos se apoyan en el **BIA** (análisis de impacto de negocio), que estudia cómo afectaría una interrupción a cada proceso y fija **tiempos máximos** en los que el impacto aún es asumible:",
+        "El **RTO** (tiempo de recuperación objetivo) es cuánto se tarda en volver a operar; mira hacia delante. El **RPO** (punto de recuperación objetivo) es el estado anterior al que vuelven los datos, por ejemplo la última copia; mira hacia atrás. El **MTD** es el tiempo máximo que el sistema puede estar caído sin daño inasumible.",
+        "Por ejemplo, si una tienda hace copia cada hora, cae a las 10:00 con copia de las 9:00 y vuelve a las 14:00, el RPO es 1 hora, el RTO 4 horas y la pérdida real equivale a unas 5 horas (RTO + RPO). Si el MTD fuera 3 horas, el plan no bastaría."
+      ],
+      "tip": "El símil del incendio en la ciudad (desviar el tráfico frente a los bomberos) es el que usó el profesor en clase. No cruces las siglas: RTO es tiempo, RPO es punto.",
+      "fromClass": true,
+      "sections": ["continuidad-negocio", "recuperacion-desastres", "bia-rto-rpo"]
+    },
+    {
+      "id": "forense-t01-d3",
+      "kind": "corta",
+      "points": 2,
+      "minutes": 7,
+      "prompt": "Enumera las cuatro etapas del análisis forense según el NIST y explica qué exige la ley española al perito durante la recolección de evidencias.",
+      "keyPoints": [
+        "Enumera las cuatro etapas en orden: recolección, examen, análisis e informe",
+        "Explica brevemente qué se hace en cada etapa",
+        "Indica que hay que evitar cualquier alteración del material analizado (por ejemplo con bloqueadores de escritura)",
+        "Indica que se trabaja sobre copias y el original queda a disposición del juez para que el análisis pueda repetirse",
+        "Indica que si una actuación inevitable modifica el equipo hay que documentarla"
+      ],
+      "model": [
+        "Según el NIST, el análisis forense tiene **cuatro etapas**: **recolección** (identificar dónde hay evidencias y adquirirlas), **examen** (evaluar los datos recogidos y quedarse con lo relevante), **análisis** (responder a las preguntas del caso: qué, cómo y quién) e **informe** (redactar el informe pericial con lo realizado, los resultados y las conclusiones).",
+        "En la recolección, la Ley de Enjuiciamiento Criminal exige tomar las precauciones necesarias para **evitar cualquier alteración** del material; por eso se usan medios como los bloqueadores de escritura.",
+        "También exige que, si el análisis puede alterar lo analizado, se conserve una parte **a disposición del juez** para que pueda repetirse. En lo digital eso significa **trabajar sobre copias** idénticas (verificadas con hash) y guardar el original intacto.",
+        "Por último, si alguna actuación inevitable modifica el equipo (por ejemplo, trabajar con un servidor encendido), hay que **documentarla**."
+      ],
+      "tip": "No hace falta citar números de artículo: basta con la idea (no alterar, trabajar con copias, dejar el original al juez, documentar lo inevitable).",
+      "fromClass": false,
+      "sections": ["etapas-forense"]
+    },
+    {
+      "id": "forense-t01-d4",
+      "kind": "corta",
+      "points": 2,
+      "minutes": 6,
+      "prompt": "¿Qué es la cadena de custodia, qué garantiza y cómo se mantiene en el caso de una evidencia digital?",
+      "keyPoints": [
+        "Define la cadena de custodia como la transmisión de la evidencia sin modificaciones desde quien la recoge hasta quien la analiza y la presenta en juicio",
+        "Menciona al menos tres garantías: integridad, autenticidad, localización, trazabilidad de los accesos y preservación",
+        "Indica que se documentan los custodios que han tenido la evidencia en cada momento",
+        "Indica que se usan funciones hash para demostrar que no ha cambiado",
+        "Indica que se registra cada operación con qué se hizo, quién y fecha y hora de inicio y fin",
+        "Explica que ninguna medida basta sola (el hash no dice quién la tuvo)"
+      ],
+      "model": [
+        "La **cadena de custodia** es el proceso por el que una evidencia pasa **sin ninguna modificación** desde quien la recoge hasta quien la analiza, y que permite demostrar en el juicio que lo presentado es exactamente lo que se recogió.",
+        "Garantiza la **integridad** (no ha cambiado), la **autenticidad** (se puede contrastar su origen), la **localización** (se sabe dónde está), la **trazabilidad** de quién la ha tocado y su **preservación** a largo plazo.",
+        "En lo digital se mantiene con tres herramientas a la vez: la **documentación de los custodios** (quién la ha tenido en cada momento), las **funciones hash** (prueba matemática de que no ha cambiado: si cambia un bit, cambia el hash) y un **registro de operaciones** con qué se hizo, quién lo hizo y la fecha y hora de inicio y de fin.",
+        "Ninguna basta sola: el hash demuestra que no ha cambiado, pero no dice quién la tuvo; el nombre del custodio sin fechas ni operación tampoco sirve."
+      ],
+      "fromClass": false,
+      "sections": ["cadena-custodia"]
+    },
+    {
+      "id": "forense-t01-d5",
+      "kind": "larga",
+      "points": 3,
+      "minutes": 12,
+      "prompt": "El perito informático es «un invitado en el mundo legal». Explica qué se espera de él en un juicio y qué responsabilidades puede tener si actúa con dolo, imprudencia o falta de celo.",
+      "keyPoints": [
+        "Explica que el perito es un experto que explica al juez lo técnico y que en España no necesita titulación ni colegiación",
+        "Indica que debe ser imparcial y objetivo aunque le pague una de las partes",
+        "Distingue dolo (actuar sabiendo que no es legal), imprudencia (no tratar la evidencia con cuidado) y falta de celo (no actuar de forma profesional o con conflicto de interés)",
+        "Explica que mentir a sabiendas es falso testimonio y que callar datos relevantes sin mentir también puede serlo",
+        "Señala que un error honesto no es delito",
+        "Menciona los tres tipos de responsabilidad: penal, civil y disciplinaria",
+        "Indica que trabajar con copias protege al perito de alterar el original"
+      ],
+      "model": [
+        "El **perito** es un experto en una materia que el juez no domina y que le explica lo que no es fácil de entender. En España no se exige titulación ni colegiación, aunque aportan credibilidad; al juez le pesa mucho la experiencia. Somos **invitados en el mundo legal**: hay que hablar el idioma de jueces y abogados (prueba, litigio, cadena de custodia) y respetar sus reglas.",
+        "Se espera que sea **imparcial**, le haya contratado quien le haya contratado: jura o promete decir verdad y actuar con objetividad, teniendo en cuenta lo que favorece y lo que perjudica a cualquiera de las partes.",
+        "Hay tres formas de fallar. **Dolo**: actuar sabiendo que no es legal, por ejemplo alterar pruebas o mentir a sabiendas en el dictamen (falso testimonio del perito, con prisión e inhabilitación). **Imprudencia**: no tratar la evidencia con cuidado, como guardar un archivo sobre el original mientras se analiza. **Falta de celo**: no trabajar de forma profesional, como fiarse de que algo «está en solo lectura» sin comprobarlo o actuar en un caso donde hay conflicto de interés (un familiar implicado).",
+        "Además, el perito que **no miente pero calla** datos relevantes que conocía, o los presenta con inexactitudes, también comete una forma de falso testimonio (la llamada impropia). En cambio, un **error honesto no es delito**: hace falta actuar maliciosamente.",
+        "Las responsabilidades pueden ser **penales** (falso testimonio o cohecho), **civiles** (reparar los perjuicios de un dictamen inexacto, sin cambiar la sentencia original) y **disciplinarias** (ante el tribunal o su colegio profesional).",
+        "Por eso se trabaja siempre con **copias, o copias de las copias**: si tocas el original, puedes acabar señalado tú."
+      ],
+      "tip": "El profesor dijo que el detalle de los artículos del Código Penal no entra en el examen; lo que puntúa es distinguir dolo, imprudencia y falta de celo con un ejemplo de cada uno.",
+      "fromClass": true,
+      "sections": ["perito-responsabilidad", "forense-objetivos"]
+    }
+  ],
+  "cases": [
+    {
+      "id": "forense-t01-c1",
+      "title": "Ransomware en una clínica un lunes por la mañana",
+      "scenario": [
+        "La Clínica Arboleda, con 120 empleados, descubre a las 8:00 del lunes que los equipos de admisión muestran un mensaje: los datos están cifrados y piden un rescate. La última copia de seguridad válida es del domingo a las 23:00.",
+        "El director quiere «formatear todo y restaurar ya». El departamento de comunicación ha empezado a decir a los pacientes que «no pasa nada», mientras un técnico ha publicado en una red social que hay una fuga de datos. Según el plan, el sistema de citas debería estar operativo en 6 horas como máximo y el negocio no aguanta más de 8 horas sin él."
+      ],
+      "minutes": 18,
+      "points": 3,
+      "questions": [
+        {
+          "prompt": "Identifica el RPO, el RTO objetivo y el MTD del caso. Si el sistema vuelve a las 14:00, ¿cuál es la pérdida real aproximada y se cumple el plan?",
+          "keyPoints": [
+            "Identifica el RPO como unas 9 horas (de las 23:00 del domingo a las 8:00 del lunes)",
+            "Identifica el RTO objetivo como 6 horas y el MTD como 8 horas",
+            "Calcula que volver a las 14:00 supone un RTO real de 6 horas, dentro del objetivo y del MTD",
+            "Calcula la pérdida real como RTO + RPO, unas 15 horas de actividad",
+            "Comenta que el RPO es alto y que copias más frecuentes reducirían la pérdida"
+          ],
+          "model": [
+            "El **RPO** es el punto al que vuelven los datos: la copia del domingo a las 23:00. Si el incidente se detecta a las 8:00, se pierden unas **9 horas** de datos. El **RTO** objetivo es de **6 horas** y el **MTD** (caída máxima tolerable) de **8 horas**.",
+            "Si el sistema vuelve a las 14:00, ha estado parado 6 horas: se cumple el RTO y no se supera el MTD. Pero la **pérdida real** es RTO + RPO, unas **15 horas** de actividad, porque hay que sumar los datos perdidos hacia atrás. Copias más frecuentes reducirían el RPO."
+          ]
+        },
+        {
+          "prompt": "¿Es correcto «formatear todo y restaurar ya»? Razona cómo combinarías la recuperación del servicio con el análisis forense.",
+          "keyPoints": [
+            "Explica que formatear sin más destruye las evidencias necesarias para saber qué pasó, cómo y quién",
+            "Propone activar la continuidad (servicio mínimo alternativo, por ejemplo citas en papel o por teléfono) mientras se recupera",
+            "Propone preservar antes evidencias de los equipos afectados (copias exactas, documentación) para el análisis",
+            "Indica que la recuperación y la investigación trabajan a la vez y alineadas",
+            "Menciona que la investigación sirve para aprender lecciones y evitar que se repita"
+          ],
+          "model": [
+            "No del todo. Restaurar es necesario, pero si se formatea sin pensar **se borran las huellas** y nunca se sabrá qué ocurrió, cómo entró el atacante ni quién fue; además, la vulnerabilidad podría seguir abierta y el ataque repetirse.",
+            "Lo razonable es trabajar a dos bandas. Por un lado, la **continuidad de negocio**: un modo alternativo para mantener un servicio mínimo (citas en papel y por teléfono) mientras dure la caída. Por otro, antes de formatear, **preservar evidencias** de los equipos afectados (copias exactas, documentando lo que se hace) para el análisis forense, y luego restaurar desde la copia.",
+            "No hay una única respuesta: si la presión del negocio es enorme, se puede priorizar preservar solo algunos equipos representativos, pero siempre **documentando** la decisión. La investigación posterior sirve para aprender lecciones y que el siguiente incidente cueste menos."
+          ]
+        },
+        {
+          "prompt": "¿Qué proceso clave de la gestión de incidentes está fallando con los mensajes a los pacientes y cómo lo corregirías?",
+          "keyPoints": [
+            "Identifica el fallo en la estrategia de comunicación",
+            "Propone un punto central de comunicación por el que pase toda la información antes de salir",
+            "Descarta tanto ocultarlo todo como que cada área publique sus conclusiones",
+            "Menciona algún otro proceso clave (detección, procedimientos con responsables, investigación)"
+          ],
+          "model": [
+            "Falla la **estrategia de comunicación**, uno de los cuatro procesos clave junto con la detección, los procedimientos de respuesta (qué hacer y quién es responsable) y la investigación.",
+            "La solución es un **punto central de comunicación** que reciba la información y la difunda a terceros con un único mensaje coherente. Ni ocultarlo todo ni dejar que cada área publique sus conclusiones: en un incidente hay mucha gente preocupada y mucho en juego."
+          ]
+        }
+      ],
+      "tip": "En los casos con horas, escribe el cálculo paso a paso. El corrector valora que razones la tensión entre volver a funcionar y conservar las pruebas, no una respuesta única.",
+      "sections": ["bia-rto-rpo", "continuidad-negocio", "procesos-clave", "forense-objetivos"]
+    },
+    {
+      "id": "forense-t01-c2",
+      "title": "El perito de parte y el dato incómodo",
+      "scenario": [
+        "Distribuciones Norte SL contrata a un perito para demostrar que un ex empleado, Jorge, se llevó la base de datos de clientes antes de irse a la competencia. La empresa entrega al perito el portátil que usaba Jorge.",
+        "En los registros del servidor, el perito encuentra que la cuenta «jorge.r» descargó el archivo de clientes desde el portátil de Jorge. Pero también encuentra que, ese mismo día, Jorge estaba de vacaciones fuera del país según el registro de accesos al edificio y el calendario de la empresa. El gerente le pide que «no complique el informe» con ese detalle."
+      ],
+      "minutes": 16,
+      "points": 3,
+      "questions": [
+        {
+          "prompt": "¿Qué puede afirmar el perito sobre quién descargó el archivo?",
+          "keyPoints": [
+            "Indica que la actividad se asocia a la cuenta «jorge.r» y al portátil, no necesariamente a Jorge como persona",
+            "Explica el límite de la atribución: usuario e IP o MAC, no la persona física",
+            "Señala posibilidades alternativas (alguien usó su sesión o le robó la contraseña)",
+            "Indica que hacen falta otras pruebas para atribuirlo a una persona"
+          ],
+          "model": [
+            "Solo puede afirmar que la descarga se hizo **con la cuenta «jorge.r» desde ese portátil**. El análisis forense llega al usuario del sistema y a la IP o MAC del equipo, **no a la persona física**.",
+            "Que Jorge estuviera fuera del país apunta a que otra persona pudo usar su cuenta o su contraseña. Para atribuirlo a alguien concreto harían falta otras pruebas (cámaras, testigos, horarios)."
+          ]
+        },
+        {
+          "prompt": "¿Debe incluir el perito el dato de las vacaciones en su informe? ¿Qué consecuencias tendría omitirlo?",
+          "keyPoints": [
+            "Afirma que debe incluirlo porque el perito debe ser imparcial y considerar lo que favorece y lo que perjudica a cada parte",
+            "Explica que callar un dato relevante que conoce, aunque no mienta, puede ser falso testimonio (impropio)",
+            "Menciona que podría responder también civil y disciplinariamente",
+            "Indica que el informe debe recoger procedimiento, resultados y conclusiones fundamentadas, no la preferencia del cliente"
+          ],
+          "model": [
+            "Sí. El perito jura actuar con **objetividad**, teniendo en cuenta lo que favorece y lo que perjudica a cualquiera de las partes, aunque le pague una de ellas.",
+            "Si lo omite, no ha escrito ninguna mentira, pero ha **callado un dato relevante que conocía**: eso encaja en el falso testimonio **impropio**. Además podría responder **civilmente** ante el perjudicado y **disciplinariamente** ante el tribunal o su colegio.",
+            "El informe debe contener el **procedimiento**, los **resultados** y unas **conclusiones fundamentadas** en ellos, escrito de forma clara para el juez; nunca lo que el cliente prefiere oír."
+          ]
+        },
+        {
+          "prompt": "¿Cómo debe tratar el perito el portátil para que la prueba no se pueda atacar por la forma?",
+          "keyPoints": [
+            "Propone trabajar sobre copias exactas y no sobre el original",
+            "Propone calcular hashes del original y de la copia para demostrar integridad",
+            "Propone documentar la cadena de custodia: custodios, operaciones, fechas y horas",
+            "Menciona documentar cualquier actuación inevitable que modifique el equipo"
+          ],
+          "model": [
+            "Debe hacer una **copia exacta** del disco, sin alterar el original (por ejemplo con un bloqueador de escritura), calcular el **hash** del original y de la copia para demostrar que coinciden y analizar solo la copia, dejando el original a disposición del juez.",
+            "Debe abrir y mantener la **cadena de custodia**: quién recibe el portátil y cuándo, qué operaciones se hacen, con fecha y hora de inicio y fin, y documentar cualquier actuación inevitable que lo modifique."
+          ]
+        }
+      ],
+      "tip": "Este tipo de caso no tiene una única respuesta, pero hay un error que suspende: concluir «Jorge robó los datos» solo porque se usó su cuenta.",
+      "sections": ["forense-objetivos", "perito-responsabilidad", "informe-pericial", "cadena-custodia"]
+    }
+  ],
+  "order": [
+    {
+      "id": "forense-t01-o1",
+      "title": "Ordena las etapas del análisis forense según el NIST",
+      "items": ["Recolección", "Examen", "Análisis", "Informe"],
+      "why": "Cada etapa transforma lo que recibe: primero se obtienen los dispositivos y datos (recolección), luego se filtra lo relevante (examen), después se responden las preguntas del caso (análisis) y al final se plasma todo en el informe pericial.",
+      "sections": ["etapas-forense"]
+    },
+    {
+      "id": "forense-t01-o2",
+      "title": "Ordena las fases de un plan de recuperación ante desastres según el INCIBE",
+      "items": [
+        "Alinearlo con el plan de continuidad de negocio",
+        "Evaluar los riesgos para conocer las actividades críticas",
+        "Hacer el análisis de impacto de negocio (BIA)",
+        "Desarrollar las medidas de recuperación de los servicios prioritarios",
+        "Hacer pruebas periódicas del plan",
+        "Actualizar y mejorar el plan con lo aprendido",
+        "Capacitar a los responsables, concienciar y difundir el plan"
+      ],
+      "why": "Primero se encaja el plan en la continuidad del negocio, después se averigua qué es crítico y cuánto tiempo puede estar parado (riesgos y BIA), con eso se diseñan las medidas, se prueban, se mejoran y se difunden.",
+      "sections": ["recuperacion-desastres"]
+    }
+  ]
+}

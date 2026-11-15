@@ -1,0 +1,258 @@
+{
+  "course": "sistemas",
+  "number": 1,
+  "open": [
+    {
+      "id": "sistemas-t01-d1",
+      "kind": "larga",
+      "points": 3,
+      "minutes": 12,
+      "prompt": "La guía CCN-STIC 570A organiza las directivas de grupo (GPO) de un dominio Windows en tres niveles. Explica cuáles son, para qué sirve cada uno y cómo se combinan. Indica también dónde quedan los controladores de dominio.",
+      "keyPoints": [
+        "Define GPO como un paquete de ajustes que se vincula a un dominio o a una unidad organizativa (OU) y se aplica a lo que cuelga de ella",
+        "Explica el nivel de dominio: requisitos comunes a todos los servidores (por ejemplo, directivas de cuenta y contraseñas)",
+        "Explica el nivel de referencia: base de seguridad común a todos los servidores miembros (OU Servidores Miembro con la plantilla incremental de servidores)",
+        "Explica el nivel de rol: ajustes propios de cada función (archivos, web, impresión…) en OU hijas",
+        "Indica que las capas son acumulativas: cada servidor recibe dominio + referencia + su rol",
+        "Indica que los controladores de dominio están en su propio contenedor (Domain Controllers) y reciben una GPO incremental específica de DC",
+        "Justifica el diseño: coherencia en todos los servidores y ajustes específicos solo donde hacen falta"
+      ],
+      "model": [
+        "Una **GPO** (Group Policy Object, objeto de directiva de grupo) es un paquete de ajustes de seguridad que se vincula a un dominio o a una **OU** (unidad organizativa, una «carpeta» de Active Directory) y se aplica automáticamente a los equipos que cuelgan de ella. La guía CCN-STIC 570A propone tres niveles:",
+        "**1. Nivel de dominio.** Recoge los requisitos **comunes** que deben cumplir todos los servidores del dominio. El ejemplo típico son las directivas de cuenta: contraseñas, bloqueo y Kerberos.",
+        "**2. Nivel de referencia.** Recoge los requisitos específicos de servidor que son comunes a **todos los servidores miembros**. Se crea una OU «Servidores Miembro» y se le vincula la plantilla incremental de servidores, lo más restrictiva posible.",
+        "**3. Nivel de rol.** Dentro de Servidores Miembro se crean OU hijas por función (archivos, web, impresión…). Cada una recibe además los ajustes de su **rol**, porque un servidor web no necesita lo mismo que uno de archivos.",
+        "Los niveles son **acumulativos**: un servidor de archivos recibe la capa de dominio, la de referencia y la de su rol. Así todos quedan configurados de forma coherente y solo se añade lo específico donde hace falta. Si llega un servidor nuevo, basta con crear su OU de rol.",
+        "Los **controladores de dominio** no van en esas OU: viven en su propio contenedor, Domain Controllers, y reciben una GPO incremental propia de DC, que debe ser igual o más restrictiva que la predeterminada."
+      ],
+      "tip": "Repite la fórmula corta: dominio = común; referencia = base de los miembros; rol = lo propio de cada función. Y no olvides a los DC, que van aparte.",
+      "fromClass": false,
+      "sections": ["niveles-ou", "active-directory", "controladores-dominio"]
+    },
+    {
+      "id": "sistemas-t01-d2",
+      "kind": "corta",
+      "points": 2,
+      "minutes": 7,
+      "prompt": "Un mismo ajuste aparece en varias GPO. Explica qué orden de prioridad siguen las directivas en un dominio Windows y qué significa que un ajuste figure como «No definido».",
+      "keyPoints": [
+        "Da el orden de menor a mayor prioridad: local, sitio, dominio, OU",
+        "Indica que gana la GPO más cercana al equipo; entre OU anidadas, la más específica",
+        "Explica que la directiva local de la máquina es la de menor prioridad frente a las del dominio",
+        "Explica que «No definido» significa que esa GPO no toca el ajuste y se aplica el valor predeterminado de Windows, no «nada configurado»",
+        "Pone un ejemplo o menciona que hay que leer la pestaña de explicación para conocer el valor por defecto"
+      ],
+      "model": [
+        "Las directivas se aplican de menor a mayor prioridad en este orden: **local** (solo esa máquina, con gpedit.msc), **sitio**, **dominio** y **OU concreta**. Gana la GPO más cercana al equipo y, entre OU anidadas, la más específica (por ejemplo, la de rol). Por eso las GPO del dominio mandan sobre la directiva local.",
+        "Las GPO incrementales del CCN se vinculan con más prioridad que las que trae Windows por defecto: lo que definen manda y lo que no definen sigue viniendo de la anterior. La regla es robustecer, nunca debilitar.",
+        "**«No definido» no significa «vacío».** Significa que esa GPO no toca el ajuste y, por tanto, se aplica el **valor predeterminado** de Windows. Por ejemplo, «Agregar estaciones de trabajo al dominio» sin definir permite hacerlo a cualquier usuario autenticado; si la defino solo para Administradores, el valor por defecto desaparece. Antes de decidir hay que leer la pestaña de **explicación** de cada directiva."
+      ],
+      "tip": "El profesor lo calificó de «muy importante»: las directivas que vienen del dominio tienen prioridad sobre la directiva local del equipo.",
+      "fromClass": true,
+      "sections": ["gpo-prioridad"]
+    },
+    {
+      "id": "sistemas-t01-d3",
+      "kind": "corta",
+      "points": 2,
+      "minutes": 7,
+      "prompt": "Distingue las «Directivas de cuenta» de las «Directivas locales» en la plantilla de seguridad de una GPO. ¿Dónde se configura la duración de los tiques de Kerberos y dónde los tipos de cifrado que puede usar Kerberos?",
+      "keyPoints": [
+        "Indica que las directivas de cuenta incluyen contraseñas, bloqueo de cuenta y Kerberos, y afectan a usuarios, servicios y administradores",
+        "Indica que las directivas locales incluyen auditoría, asignación de derechos de usuario y opciones de seguridad",
+        "Sitúa la duración (vigencia) de los tiques en Directivas de cuenta → Directiva Kerberos",
+        "Sitúa los tipos de cifrado de Kerberos en Directivas locales → Opciones de seguridad",
+        "Menciona que lo recomendable es dejar solo AES (de 256 bits) y retirar DES y RC4, que son antiguos"
+      ],
+      "model": [
+        "Las **directivas de cuenta** controlan las cuentas del dominio (de usuarios, de servicios y de administradores) y tienen tres apartados: **contraseñas** (solidez y vigencia), **bloqueo de cuenta** (intentos fallidos permitidos) y **Kerberos** (parámetros del protocolo, como la vigencia de los tiques).",
+        "Las **directivas locales** son ajustes que se aplican en cada equipo, aunque se repartan con una GPO: **directiva de auditoría** (qué eventos se registran), **asignación de derechos de usuario** (quién puede hacer qué) y **opciones de seguridad** (un cajón con muchos ajustes variados).",
+        "La **duración de los tiques** está en Directivas de cuenta → Directiva Kerberos. En cambio, los **tipos de cifrado permitidos para Kerberos** están en Directivas locales → **Opciones de seguridad** («Seguridad de red: configurar tipos de cifrado permitidos para Kerberos»). Ahí se deja solo **AES de 256 bits** y se retiran DES y RC4, que son débiles y solo se mantienen por compatibilidad."
+      ],
+      "tip": "Es la trampa favorita: «podría estar en la directiva Kerberos, pero no está», dijo el profesor. Los cifrados viven en Opciones de seguridad.",
+      "fromClass": true,
+      "sections": ["directivas-locales", "bloqueo-kerberos", "contrasenas"]
+    },
+    {
+      "id": "sistemas-t01-d4",
+      "kind": "larga",
+      "points": 3,
+      "minutes": 12,
+      "prompt": "Explica la principal novedad de seguridad de Windows Server 2022 (Secured-core server) y la de Windows Server 2025 (Credential Guard activado por defecto). Para la segunda, describe el ataque pass-the-hash y cómo lo frena.",
+      "keyPoints": [
+        "Define Secured-core server como la combinación de hardware, firmware y sistema operativo para proteger el servidor, introducida en 2022",
+        "Menciona sus piezas: TPM 2.0 como raíz de confianza, protección del firmware (DRTM, protección DMA) y VBS/HVCI",
+        "Explica qué ataque frena: código malicioso en el firmware que arranca antes que Windows y que el antivirus no ve",
+        "Define pass-the-hash: robar el hash de la contraseña de la memoria y presentarlo como si fuera la contraseña",
+        "Explica que Credential Guard guarda hashes y tiques en la zona aislada de VBS, de modo que no hay nada que robar",
+        "Precisa que Credential Guard ya existía, pero en 2025 pasa a estar activado por defecto (y que en 2025 Secured-core solo se refuerza)"
+      ],
+      "model": [
+        "**Windows Server 2022: Secured-core server.** Es un servidor que **combina hardware, firmware y sistema operativo** como un solo bloque de seguridad. No es un programa: es un conjunto de requisitos. Se apoya en el chip **TPM 2.0** (Trusted Platform Module), una «caja fuerte» que guarda claves y mide qué se carga al arrancar; en la **protección del firmware** (el procesador vuelve a comprobar el arranque con DRTM y la protección DMA impide que un dispositivo lea la memoria), y en **VBS** (seguridad basada en virtualización, una zona de memoria aislada) junto con **HVCI** (solo deja entrar en el núcleo código firmado).",
+        "Frena los ataques que se instalan **por debajo de Windows**: si un atacante cambia el firmware, su código arrancaría antes que el sistema y que cualquier antivirus. Con Secured-core el TPM nota que el arranque no es el esperado y se detecta la manipulación.",
+        "**Windows Server 2025: Credential Guard por defecto.** En el ataque **pass-the-hash** el atacante roba de la memoria el **hash** (la huella) de una contraseña y lo presenta directamente al sistema: no necesita conocer la contraseña. Con el hash de un administrador puede saltar de servidor en servidor.",
+        "**Credential Guard** guarda los hashes y los tiques de inicio de sesión dentro de la zona aislada de VBS. Aunque el atacante controle el resto del servidor, no puede leerlos: no hay nada que robar y el ataque se queda en un solo equipo. La función ya existía, pero era opcional; lo nuevo de 2025 es que viene **activada por defecto**.",
+        "Para no confundirse: **introducir** Secured-core es de 2022; en 2025 solo se **refuerza**. Core-to-cloud y Credential Guard por defecto son de 2025."
+      ],
+      "fromClass": false,
+      "sections": ["novedades-2022", "novedades-2025"]
+    },
+    {
+      "id": "sistemas-t01-d5",
+      "kind": "corta",
+      "points": 2,
+      "minutes": 6,
+      "prompt": "¿Por qué no se recomienda ejecutar un servicio de Windows Server con una cuenta de dominio? ¿Qué alternativa se propone si el servicio necesita identidad de dominio?",
+      "keyPoints": [
+        "Explica que la LSA guarda en el equipo los secretos de las cuentas con que arrancan los servicios",
+        "Explica que si el servidor se compromete, se puede extraer la contraseña de esa cuenta y moverse por el dominio",
+        "Propone la cuenta de servicio administrada (MSA o gMSA), con contraseña larga, aleatoria y rotada por Windows",
+        "Descarta cuentas de personas, de administrador o compartidas entre servicios, por privilegios excesivos o alcance amplio",
+        "Relaciona la medida con el principio de mínimos privilegios"
+      ],
+      "model": [
+        "La **LSA** (Local Security Authority) guarda en el propio servidor los secretos de las cuentas con las que arrancan los servicios. Si alguien compromete el servidor, puede extraer esos secretos y obtener la contraseña de la cuenta de dominio. Con ella podría moverse por toda la red, así que el daño ya no se queda en una máquina.",
+        "Por eso, si basta, se usa una **cuenta local del sistema**, cuyo alcance se queda en el servidor. Si el servicio necesita de verdad identidad de dominio, se usa una **cuenta de servicio administrada** (MSA, o gMSA si la comparten varios servidores): Windows genera y cambia su contraseña automáticamente, es larga y aleatoria, y nadie la conoce.",
+        "Nunca se usa la cuenta de una persona, de un administrador o una cuenta compartida entre servicios: es aplicar el **principio de mínimos privilegios**."
+      ],
+      "fromClass": false,
+      "sections": ["servicios-cuentas"]
+    }
+  ],
+  "cases": [
+    {
+      "id": "sistemas-t01-c1",
+      "title": "La clínica dental que monta su dominio",
+      "scenario": [
+        "La Clínica Dental Sonrisa tiene 3 sedes y 40 empleados. Ha instalado Windows Server 2022 como controlador de dominio, dos servidores de archivos, un servidor web interno y 35 equipos con Windows 11 repartidos entre recepción y gabinetes.",
+        "El responsable de informática ha aplicado las guías del CCN, pero tiene dudas. Además, un equipo de recepción recién unido al dominio no recibe la configuración que se definió para los clientes."
+      ],
+      "minutes": 18,
+      "points": 3,
+      "questions": [
+        {
+          "prompt": "Propón una estructura de unidades organizativas y de GPO para este dominio, siguiendo los niveles de la guía CCN-STIC 570A.",
+          "keyPoints": [
+            "Pone las directivas de cuenta (contraseñas, bloqueo, Kerberos) en la GPO del dominio",
+            "Crea una OU Servidores Miembro con la GPO de referencia y OU hijas por rol (Archivos y Web)",
+            "Deja el controlador de dominio en Domain Controllers con su GPO incremental de DC",
+            "Crea una OU para los clientes Windows 11 (por ejemplo, por departamento) con su GPO de clientes (guía 599A23)",
+            "Indica que las GPO incrementales tienen más prioridad que las predeterminadas y solo robustecen"
+          ],
+          "model": [
+            "En la **GPO del dominio** pondría lo común a todos: directivas de contraseñas, de bloqueo y de Kerberos, y la base del registro de eventos.",
+            "Crearía una OU **Servidores Miembro** con la GPO de referencia (plantilla incremental de servidores) y, dentro, dos OU de rol: **Archivos** (los dos servidores de archivos) y **Web** (el servidor web), cada una con sus ajustes propios. El **controlador de dominio** se queda en **Domain Controllers** con su GPO incremental de DC, más restrictiva que la predeterminada.",
+            "Para los clientes, una OU «Clientes Windows 11», o una por departamento (Recepción, Gabinetes), con la GPO de la guía de equipos cliente. Todas las GPO incrementales se vinculan con más prioridad que las que trae Windows y solo endurecen la configuración."
+          ]
+        },
+        {
+          "prompt": "¿Por qué el equipo de recepción recién unido no recibe la GPO de clientes y cómo se soluciona?",
+          "keyPoints": [
+            "Explica que al unirse al dominio el equipo cae en el contenedor genérico Computers",
+            "Indica que a Computers no le llega la GPO vinculada a la OU de clientes",
+            "Propone moverlo a la OU de clientes con «Usuarios y equipos de Active Directory»",
+            "Menciona comprobar después que la directiva se aplica (por ejemplo, con gpresult)"
+          ],
+          "model": [
+            "Cuando un equipo se une al dominio aparece por defecto en el contenedor **Computers**, y la GPO de clientes está vinculada a otra OU, así que no le llega. La solución es **mover el equipo** a la OU de clientes desde «Usuarios y equipos de Active Directory». Después se comprueba en el cliente que la directiva se aplica, por ejemplo con el comando de resultado de directivas (gpresult)."
+          ]
+        },
+        {
+          "prompt": "Elige dos ajustes de seguridad adaptados a la clínica y explica cómo comprobarías que funcionan.",
+          "keyPoints": [
+            "Propone ajustes coherentes con el tema (bloqueo tras varios intentos, longitud o complejidad de contraseña, bloqueo por inactividad, auditoría de inicio de sesión…)",
+            "Justifica cada ajuste con el riesgo de una clínica (datos de pacientes, equipos compartidos en recepción)",
+            "Describe una evidencia de comprobación concreta para cada ajuste",
+            "Relaciona los ajustes con el principio de mínimos privilegios o con el alcance de la GPO donde se ponen"
+          ],
+          "model": [
+            "**1. Bloqueo de cuenta tras 5 intentos fallidos** (GPO del dominio). Frena a quien intente adivinar contraseñas de los historiales de pacientes. Comprobación: fallar la contraseña 5 veces con un usuario de prueba y ver que la cuenta queda bloqueada.",
+            "**2. Bloqueo de pantalla por inactividad** en los equipos de recepción (GPO de clientes). Allí pasan pacientes y los equipos quedan desatendidos. Comprobación: dejar el equipo sin tocar el tiempo fijado y ver que se bloquea y pide contraseña.",
+            "Cada ajuste se pone en la GPO cuyo alcance corresponde: el bloqueo de cuentas afecta a todo el dominio y el de pantalla solo a los clientes."
+          ]
+        }
+      ],
+      "tip": "Piensa siempre en el alcance: lo que pones en la GPO del dominio llega a todos; lo de la OU de clientes, solo a esos equipos.",
+      "sections": ["niveles-ou", "active-directory", "gpo-prioridad", "practica-act1"]
+    },
+    {
+      "id": "sistemas-t01-c2",
+      "title": "El ayuntamiento que aplicó la plantilla tal cual",
+      "scenario": [
+        "El Ayuntamiento de Villaverde del Río, sujeto al Esquema Nacional de Seguridad (ENS), ha importado en su dominio las plantillas CCN-STIC sin tocarlas. Desde entonces, su aplicación de padrón ha dejado de funcionar en uno de los servidores.",
+        "Al revisar, el técnico descubre además que el servicio de copias de seguridad arranca con la cuenta del administrador del dominio y que el firewall del servidor de padrón conserva reglas de IPv6 y de DHCP, que no se usan. La alcaldía pide demostrar que el sistema cumple el ENS."
+      ],
+      "minutes": 18,
+      "points": 3,
+      "questions": [
+        {
+          "prompt": "¿Fue correcto aplicar las plantillas sin cambios? ¿Qué debería haberse hecho?",
+          "keyPoints": [
+            "Explica que las plantillas CCN-STIC son un punto de referencia muy restrictivo, no una receta",
+            "Indica que deben adaptarse a los servicios y necesidades de la organización",
+            "Propone modificar la plantilla incremental correspondiente para habilitar lo que necesita el padrón, evaluando el impacto",
+            "Menciona mantener actualizado el servicio que se habilite"
+          ],
+          "model": [
+            "No. Las guías CCN-STIC dan una configuración **lo más restrictiva posible** que sirve de **punto de referencia**; cada organización debe **adaptarla** a sus aplicaciones. Lo correcto es identificar qué necesita la aplicación de padrón (un servicio, un puerto) y habilitarlo modificando la plantilla incremental de su rol, después de evaluar el impacto y asegurándose de mantener ese servicio actualizado."
+          ]
+        },
+        {
+          "prompt": "Señala qué está mal en el servicio de copias y en el firewall, y cómo lo corregirías.",
+          "keyPoints": [
+            "Explica que una cuenta de administrador de dominio en un servicio da privilegios excesivos y su robo compromete el dominio",
+            "Propone una cuenta local o una cuenta de servicio administrada (MSA/gMSA)",
+            "Indica que el firewall debe bloquear lo entrante por defecto y abrir solo lo necesario",
+            "Indica que las reglas que no se usan (IPv6, DHCP) se revisan y se deshabilitan"
+          ],
+          "model": [
+            "**Copias de seguridad.** Si alguien compromete ese servidor, puede extraer de la LSA la contraseña del administrador del dominio y controlar toda la red. Hay que pasar el servicio a una cuenta local, si basta, o a una **cuenta de servicio administrada**, con contraseña automática y rotada.",
+            "**Firewall.** La recomendación es bloquear las conexiones entrantes que no coincidan con ninguna regla y abrir solo lo necesario. Las reglas que Windows creó al instalar roles se revisan: si no se usa IPv6 ni DHCP, sus reglas se **deshabilitan**, no se dejan «por si acaso»."
+          ]
+        },
+        {
+          "prompt": "¿Con qué herramientas comprobarías la configuración y el cumplimiento del ENS?",
+          "keyPoints": [
+            "Menciona CLARA, del CCN-CERT, para medir el cumplimiento del ENS",
+            "Menciona Security Compliance Toolkit y Policy Analyzer para comparar las GPO con líneas base",
+            "Indica que los resultados se interpretan según el entorno, porque las plantillas se han adaptado"
+          ],
+          "model": [
+            "Para el ENS usaría **CLARA**, la herramienta del CCN-CERT que comprueba las medidas técnicas del ENS en Windows y Linux tomando como referencia las guías CCN-STIC. Para comparar las GPO aplicadas con una referencia usaría el **Security Compliance Toolkit** de Microsoft y su utilidad **Policy Analyzer**, que detecta ajustes contradictorios o diferencias. Los resultados se interpretan teniendo en cuenta que las plantillas se han adaptado al ayuntamiento."
+          ]
+        }
+      ],
+      "sections": ["punto-de-partida", "servicios-cuentas", "firewall", "herramientas"]
+    }
+  ],
+  "order": [
+    {
+      "id": "sistemas-t01-o1",
+      "title": "Ordena las directivas de menor a mayor prioridad",
+      "items": [
+        "Directiva local del equipo",
+        "GPO del sitio",
+        "GPO del dominio",
+        "GPO de la OU concreta (referencia o rol)"
+      ],
+      "why": "Gana la GPO más cercana al equipo: la local es la más débil y la de la OU concreta, la más fuerte. Entre OU anidadas, gana la más específica.",
+      "sections": ["gpo-prioridad"]
+    },
+    {
+      "id": "sistemas-t01-o2",
+      "title": "Ordena los pasos para montar el laboratorio de la ACT1",
+      "items": [
+        "Instalar Windows Server 2022 con experiencia de escritorio y dos adaptadores (NAT y red interna)",
+        "Asignar una IP fija al adaptador de red interna del servidor",
+        "Instalar los roles Active Directory (con DNS) y DHCP",
+        "Crear el ámbito DHCP, dejarlo activo y comprobar que está autorizado",
+        "Unir el cliente Windows 11 al dominio",
+        "Crear la OU «Clientes Windows 11» y mover el cliente desde Computers",
+        "Aplicar las GPO incrementales del CCN con prioridad sobre las de por defecto",
+        "Adaptar unos ajustes a la pyme y comprobar que funcionan"
+      ],
+      "why": "Primero el servidor y su red, después los servicios del dominio, luego el cliente y su OU, y por último las directivas y su adaptación: sin OU no hay dónde vincular la GPO de clientes.",
+      "sections": ["practica-act1"]
+    }
+  ]
+}

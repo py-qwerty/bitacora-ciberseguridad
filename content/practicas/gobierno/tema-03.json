@@ -1,0 +1,242 @@
+{
+  "course": "gobierno",
+  "number": 3,
+  "open": [
+    {
+      "id": "gobierno-t03-d1",
+      "kind": "larga",
+      "points": 3,
+      "minutes": 13,
+      "prompt": "Explica qué es la familia de normas ISO 27000: su origen, qué aporta cada una de las normas principales y por qué una organización decide implantar la ISO 27001.",
+      "keyPoints": [
+        "Explica que la familia da una lista común de requisitos para gestionar la seguridad y que un tercero pueda comprobarla",
+        "Sitúa su origen en la norma británica BS 7799 (1995), cuya parte 2 tenía los requisitos certificables",
+        "Explica que la ISO 27001 fija los requisitos del SGSI y es la única certificable",
+        "Explica que la ISO 27002 es la guía de buenas prácticas con el detalle de los controles",
+        "Menciona la 27003 (implantación), la 27004 (métricas) y la 27005 (gestión del riesgo)",
+        "Define el SGSI como una forma de organizarse, no un programa informático",
+        "Indica que es voluntaria, la elabora un panel de expertos y da credibilidad, pero no garantiza que no haya incidentes",
+        "Distingue la certificación de la empresa (auditoría del SGSI) de la de una persona (auditor o implantador)"
+      ],
+      "model": [
+        "La **familia ISO 27000** es un conjunto de normas internacionales, elaboradas por ISO junto con la IEC, que da a las organizaciones una **lista común de requisitos** para gestionar la seguridad de la información y permite que un tercero compruebe que se cumplen. Nace de la norma británica **BS 7799**, publicada en 1995 como código de buenas prácticas; su segunda parte contenía los requisitos certificables, y la ISO 27001 puede verse como su última revisión.",
+        "Las normas principales son: la **ISO 27001**, que fija los **requisitos** de un **SGSI** (sistema de gestión de la seguridad de la información: políticas, procedimientos, responsables, recursos y controles con los que la organización protege su información de forma ordenada y continua) y es la única **certificable**; la **ISO 27002**, una **guía de buenas prácticas** que describe con detalle los objetivos de control y los controles; la **27003**, guía para implantar un SGSI; la **27004**, sobre métricas y mediciones; y la **27005**, sobre gestión del riesgo.",
+        "Resumen: la 27001 dice **qué** debe tener un SGSI; la 27002 explica **cómo** pueden ser los controles. A medida que sube la numeración, las normas tratan aspectos o sectores más específicos (nube, entornos industriales…).",
+        "Implantarla es una decisión **voluntaria**: es un estándar, no una ley, y en general ninguna empresa está obligada (con alguna excepción según el país). Se implanta porque la elabora un **panel de expertos reconocidos**, lo que da **credibilidad** ante clientes, proveedores y terceros. Pero **no es la panacea**: tenerla no impide sufrir incidentes, igual que el carné de conducir no impide tener un accidente.",
+        "Hay que distinguir dos certificaciones: la **empresa** se certifica cuando una entidad certificadora audita su SGSI; una **persona** se certifica como auditor o implantador de la norma. Además, los controles se eligen según el contexto: «medios físicos en tránsito» solo tiene sentido si la organización transporta discos o papeles."
+      ],
+      "tip": "La ISO 27000 está en la lista de temas de desarrollo que dio el profesor. Trampa típica: atribuir a la 27001 el detalle de la gestión del riesgo (eso es la 27005) o confundir 27001 (certificable) con 27002 (guía).",
+      "fromClass": true,
+      "sections": ["familia-27000"]
+    },
+    {
+      "id": "gobierno-t03-d2",
+      "kind": "larga",
+      "points": 3,
+      "minutes": 13,
+      "prompt": "Describe la estructura de la ISO 27001 (capítulos y Anexo A), los cuatro conceptos en los que se apoya y cómo se organizan los controles en su versión de 2022.",
+      "keyPoints": [
+        "Explica que los capítulos son requisitos de gestión y el Anexo A es el catálogo de controles",
+        "Nombra los capítulos con contenido (4 Contexto, 5 Liderazgo, 6 Planificación, 7 Soporte, 8 Operación, 9 Evaluación del desempeño, 10 Mejora)",
+        "Explica la gestión de riesgos como concepto troncal (identificar y analizar escenarios y tratarlos)",
+        "Explica el apoyo de la dirección como algo más que dinero (comités, presupuesto, formación)",
+        "Explica la mejora continua (implantar, monitorizar y mejorar los controles)",
+        "Menciona el cuerpo normativo como cuarto pilar",
+        "Indica que en 2022 hay 93 controles en 4 grupos: organizacionales, personas, físicos y tecnológicos",
+        "Compara con la versión 2013 (114 controles en 14 dominios) o menciona los atributos de los controles"
+      ],
+      "model": [
+        "La **ISO 27001** describe los requisitos de un SGSI y tiene dos partes. Los **capítulos** son requisitos de gestión: cómo se organiza el sistema. Los tres primeros son introductorios (alcance, referencias y términos); el contenido empieza en el 4: **Contexto** de la organización y alcance, **Liderazgo** (compromiso de la dirección), **Planificación** (objetivos y riesgos), **Soporte** (recursos, formación, documentación), **Operación**, **Evaluación del desempeño** (auditorías internas y revisiones) y **Mejora** (no conformidades y acciones correctivas). El **Anexo A** es el catálogo de **controles**, que solo da su nombre y una descripción general; la ISO 27002 los desarrolla.",
+        "Según el profesor, la norma se apoya en cuatro conceptos. La **gestión de riesgos** es el concepto **troncal**: identificar y analizar escenarios de riesgo (impacto y probabilidad) y tratarlos; sin ella no sabes qué controles necesitas. El **apoyo de la dirección** no es solo dinero: participar en comités, interesarse por los riesgos, dotar presupuesto y formación. La **mejora continua**: implantar los controles, monitorizarlos y mejorarlos porque las amenazas evolucionan. Y el **cuerpo normativo**: políticas, normas y procedimientos documentados.",
+        "En la versión de **2022**, el Anexo A tiene **93 controles** agrupados en **4 grupos**: **organizacionales** (37), **relativos a personas** (8), **físicos** (14) y **tecnológicos** (34). En la versión de 2013 eran 114 controles en 14 dominios. Además, cada control lleva **5 atributos** (tipo de control, propiedades de la seguridad, conceptos de ciberseguridad, capacidad operativa y dominios de seguridad) que permiten filtrarlos, por ejemplo para mapearlos con el NIST.",
+        "Los controles no se aplican todos a ciegas: se **seleccionan según los riesgos**, y la declaración de aplicabilidad justifica cuáles se aplican y cuáles no."
+      ],
+      "tip": "El profesor dijo que, al ser solo 4, los grupos de controles de 2022 sí se pueden preguntar. No mezcles capítulos (cómo se gestiona) con dominios o grupos de controles (qué se protege).",
+      "fromClass": true,
+      "sections": ["norma-27001", "iso-2022", "versiones"]
+    },
+    {
+      "id": "gobierno-t03-d3",
+      "kind": "larga",
+      "points": 3,
+      "minutes": 12,
+      "prompt": "Explica el ciclo PDCA aplicado a un SGSI: qué se hace en cada fase y por qué se dice que es un ciclo de mejora continua.",
+      "keyPoints": [
+        "Define el PDCA (ciclo de Deming) como modelo de mejora continua: requisitos de las partes interesadas a la entrada y seguridad gestionada a la salida",
+        "Describe Planificar: alcance, política, identificar y gestionar riesgos, seleccionar controles",
+        "Describe Hacer: plan de gestión de riesgos, implantar los controles y sus indicadores",
+        "Describe Comprobar: monitorizar, revisar el SGSI y los niveles de riesgo, auditar",
+        "Describe Actuar: implantar mejoras, acciones preventivas y correctivas, comunicar y verificar",
+        "Explica que el ciclo nunca termina y se dan varias vueltas",
+        "Pone un ejemplo que recorra las cuatro fases"
+      ],
+      "model": [
+        "El **ciclo PDCA** (Plan, Do, Check, Act), también llamado ciclo de Deming, es el modelo de **mejora continua** que sigue el SGSI. A la entrada, las partes interesadas (clientes, empleados, reguladores…) aportan sus requisitos de seguridad; a la salida reciben una seguridad de la información gestionada.",
+        "**Planificar (establecer el SGSI)**: definir el **alcance**, aprobar la **política**, **identificar y gestionar los riesgos** y **seleccionar los controles**. Para el profesor es la fase más crítica.",
+        "**Hacer (implantar y operar)**: definir e implantar el plan de gestión de riesgos, poner en marcha los controles seleccionados con sus **indicadores**. Suele ser la que más tiempo lleva.",
+        "**Comprobar (seguimiento y revisión)**: monitorizar, revisar regularmente el SGSI y los **niveles de riesgo** y **auditar** (auditorías internas o externas). **Actuar (mantener y mejorar)**: implantar mejoras, adoptar **acciones preventivas y correctivas**, comunicar los resultados y verificar que las mejoras funcionan.",
+        "Ejemplo: una empresa de logística fija como alcance su plataforma de envíos y selecciona copias diarias (Planificar); las implanta con un indicador de copias correctas (Hacer); una auditoría interna detecta que el 20 % fallan (Comprobar); corrige la causa, un disco lleno, y verifica que el fallo desaparece (Actuar). Ese aprendizaje vuelve a la planificación: el ciclo **nunca termina**, porque las amenazas y la organización cambian."
+      ],
+      "fromClass": true,
+      "sections": ["pdca"]
+    },
+    {
+      "id": "gobierno-t03-d4",
+      "kind": "larga",
+      "points": 3,
+      "minutes": 12,
+      "prompt": "¿Qué es un modelo de madurez? Describe los niveles de CMMI y explica en qué se diferencia un modelo de madurez de una norma como la ISO 27001.",
+      "keyPoints": [
+        "Define el modelo de madurez como una escala para situar el grado de desarrollo de una gestión y saber el siguiente paso de mejora",
+        "Explica el origen de CMMI (SEI de Carnegie Mellon, para evaluar proveedores de software del gobierno de EE. UU.) y que es una guía, no un proceso de desarrollo",
+        "Enumera los cinco niveles en orden: inicial, gestionado, definido, gestionado cuantitativamente, optimizado",
+        "Describe correctamente al menos los niveles 1, 4 y 5 (caótico; datos cuantitativos y procesos predecibles; métricas intensivas, innovación y mejora continua)",
+        "Distingue capacidad (por área de proceso) y madurez (organización entera)",
+        "Explica que la norma da requisitos (cumple o no) y el modelo de madurez dice qué tal de bien se ejecuta",
+        "Indica que se recomienda implantar primero el estándar y después aplicar el modelo de madurez, o menciona O-ISM3"
+      ],
+      "model": [
+        "Un **modelo de madurez** es una escala que sirve para **situar y evaluar el grado de desarrollo** de una gestión que se quiere sistemática, predecible y optimizable, y para saber cuál es el **siguiente paso de mejora**. Nació en el desarrollo de software y se ha adaptado a la seguridad.",
+        "**CMMI** es la evolución del CMM, creado por el SEI de la Universidad Carnegie Mellon por encargo del gobierno de EE. UU. para evaluar a sus proveedores de software. No es un proceso de desarrollo, sino una **guía que describe qué hace efectivo a un proceso** y ayuda a fijar prioridades de mejora.",
+        "Tiene cinco niveles de madurez: **1 Inicial** (procesos impredecibles y reactivos; el éxito depende de héroes individuales), **2 Gestionado** (los proyectos se planifican y controlan; lo que funcionó se puede repetir), **3 Definido** (procesos estándar documentados para toda la organización), **4 Gestionado cuantitativamente** (se trabaja con datos cuantitativos y estadísticos para que los procesos sean predecibles) y **5 Optimizado** (uso intensivo de métricas, gestión de la innovación y mejora continua). La **capacidad** se mide por área de proceso y la **madurez**, para la organización entera.",
+        "La diferencia con la **ISO 27001** es que la norma da **requisitos** que se cumplen o no y llevan a una certificación, mientras que el modelo de madurez da un **nivel** y una hoja de ruta: la norma dice **qué** hay que tener y el modelo, **qué tal de bien** lo ejecutas. Por ejemplo, dos empresas cumplen el control de copias, pero la que lo automatiza y lo mide cada mes es más madura.",
+        "El profesor recomienda implantar **primero** el estándar y **después** aplicar un modelo de madurez. Ninguna ley obliga a usarlo. En seguridad existe además **O-ISM3**, de The Open Group, que se apoya en gestión de riesgos, controles y gestión de la seguridad."
+      ],
+      "tip": "Trampa clásica del test: los datos cuantitativos y los procesos predecibles son el nivel 4, no el 3. En desarrollo, ordena bien los cinco niveles.",
+      "fromClass": false,
+      "sections": ["madurez-cmmi", "oism3-otros"]
+    },
+    {
+      "id": "gobierno-t03-d5",
+      "kind": "corta",
+      "points": 2,
+      "minutes": 7,
+      "prompt": "¿Por qué la ISO 27001 considera fundamental el compromiso de la dirección? Indica dónde debe demostrarse y qué evidencias lo prueban.",
+      "keyPoints": [
+        "Explica que sin la dirección no hay presupuesto ni se cumplen las normas, y que es siempre necesario",
+        "Enumera dónde se demuestra: comunicación interna, política y objetivos, revisión periódica del desempeño, recursos",
+        "Pone ejemplos de evidencias válidas: actas del comité con la dirección, partida presupuestaria, política aprobada y difundida",
+        "Explica que una firma sin recursos ni revisión no es compromiso efectivo",
+        "Menciona que las responsabilidades deben estar definidas y comunicadas"
+      ],
+      "model": [
+        "Sin el apoyo de quien manda, la seguridad se queda en buenas intenciones: no hay presupuesto y nadie hace caso a las normas. Por eso la ISO 27001 exige el **compromiso de la dirección** y que se aporten **evidencias**, tenga la organización mucha o poca madurez.",
+        "Debe demostrarse en la **comunicación interna** al personal, en el **establecimiento de la política y los objetivos**, en la **revisión periódica del desempeño** del SGSI y en **asegurar los recursos**. Además, las responsabilidades deben estar **definidas y comunicadas**.",
+        "Son evidencias válidas las **actas del comité de seguridad** con participación de la dirección y seguimiento de acuerdos, una **partida presupuestaria** específica y una **política aprobada y difundida**. Una dirección que firma la política pero no asigna presupuesto ni revisa resultados no demuestra un compromiso efectivo."
+      ],
+      "fromClass": true,
+      "sections": ["direccion"]
+    }
+  ],
+  "cases": [
+    {
+      "id": "gobierno-t03-c1",
+      "title": "Una empresa de nóminas que quiere la ISO 27001",
+      "scenario": [
+        "Nómina Clara es una empresa de 90 empleados con dos líneas de negocio: un servicio en la nube de gestión de nóminas para pymes y una pequeña tienda de material de oficina que funciona de forma tradicional, sin conexión a internet. Un cliente importante le exige estar certificada en ISO 27001 en un plazo de dos años.",
+        "La empresa trabaja solo en la nube y nunca envía discos ni papeles fuera de su oficina. El responsable de sistemas ha redactado una política de contraseñas y la ha enviado por correo a toda la plantilla sin pasarla por la dirección. La gerencia dice que «firmará lo que haga falta» pero no ha previsto presupuesto."
+      ],
+      "minutes": 18,
+      "points": 3,
+      "questions": [
+        {
+          "prompt": "¿Qué alcance le recomendarías para su SGSI y qué debe indicar al definirlo?",
+          "keyPoints": [
+            "Recomienda un alcance centrado en el servicio de nóminas en la nube, que es lo que pide el cliente",
+            "Explica que el alcance puede ser parcial y que la tienda tradicional puede quedar fuera",
+            "Indica que el alcance es lo primero que se define",
+            "Menciona que hay que indicar localizaciones, funciones y elementos tecnológicos (diagrama de red)"
+          ],
+          "model": [
+            "El **alcance** es lo primero que se define y puede ser **parcial**: no hace falta incluir toda la empresa. Le recomendaría centrarlo en el **servicio de nóminas en la nube**, que es lo que exige el cliente, y dejar fuera la tienda de material, que funciona sin conexión a internet.",
+            "Al definirlo debe indicar las **localizaciones físicas** (oficinas y departamentos afectados), las **funciones** incluidas (desarrollo, operación y soporte del servicio de nóminas) y los **elementos tecnológicos** cubiertos, que puede describir con un diagrama de red. El cliente deberá comprobar luego que el certificado cubre precisamente ese servicio."
+          ]
+        },
+        {
+          "prompt": "Explica cómo aplicaría el ciclo PDCA para llegar a la certificación.",
+          "keyPoints": [
+            "Planificar: alcance, política aprobada por la dirección, análisis de riesgos y selección de controles",
+            "Hacer: implantar los controles y sus indicadores",
+            "Comprobar: monitorizar, revisar riesgos y hacer una auditoría interna antes de la externa",
+            "Actuar: corregir las desviaciones con acciones correctivas y mejorar",
+            "Indica que tras certificarse el ciclo continúa y la certificación se renueva"
+          ],
+          "model": [
+            "**Planificar**: fijar el alcance, que la dirección apruebe la **política**, analizar los riesgos del servicio de nóminas y **seleccionar los controles** necesarios, justificándolos en la declaración de aplicabilidad. **Hacer**: implantar esos controles (por ejemplo, doble factor y copias) con sus **indicadores**.",
+            "**Comprobar**: monitorizar los indicadores, revisar los niveles de riesgo y hacer una **auditoría interna** (o una pre-auditoría) para detectar huecos antes de que llegue el auditor externo. **Actuar**: corregir las desviaciones con **acciones correctivas** y verificar que funcionan.",
+            "Con esa primera vuelta se puede pasar la auditoría de certificación, pero el ciclo **no termina**: hay que seguir mejorando y renovar la certificación cada cierto tiempo."
+          ]
+        },
+        {
+          "prompt": "Señala los tres problemas del enunciado relacionados con controles, documentación y dirección, y cómo los resolverías.",
+          "keyPoints": [
+            "Explica que el control de medios físicos en tránsito no aplica porque no hay transporte y se justifica en la declaración de aplicabilidad",
+            "Señala que la política de contraseñas debía aprobarse antes de distribuirse (control documental)",
+            "Señala que la dirección debe demostrar compromiso efectivo con recursos, no solo con firmas",
+            "Propone evidencias como presupuesto específico o actas de comité con la dirección"
+          ],
+          "model": [
+            "**Controles**: el control de **medios físicos en tránsito** no tiene sentido porque la empresa no transporta discos ni papeles. No se aplica a ciegas: se analiza su pertinencia y se justifica en la **declaración de aplicabilidad**. Si algún día empieza a enviar copias en disco, pasará a ser pertinente.",
+            "**Documentación**: la política de contraseñas se ha distribuido sin aprobación. El control documental exige que un documento se **apruebe antes de distribuirlo** y después se revise y actualice. Hay que pasarla por la dirección y volver a publicarla.",
+            "**Dirección**: «firmar lo que haga falta» no es compromiso efectivo. La ISO 27001 exige que la dirección aporte **recursos**, fije objetivos, comunique y revise el sistema, y que lo demuestre con **evidencias**: una partida presupuestaria para el proyecto y actas de un comité de seguridad en el que participe."
+          ]
+        }
+      ],
+      "tip": "En un caso de ISO 27001, recorre siempre alcance, riesgos y controles, documentación y dirección: son los puntos que un auditor revisaría.",
+      "sections": ["alcance", "pdca", "documentacion", "direccion", "familia-27000"]
+    }
+  ],
+  "order": [
+    {
+      "id": "gobierno-t03-o1",
+      "title": "Ordena las fases del ciclo PDCA en un SGSI",
+      "items": [
+        "Planificar: alcance, política, riesgos y selección de controles",
+        "Hacer: implantar los controles y sus indicadores",
+        "Comprobar: monitorizar, revisar riesgos y auditar",
+        "Actuar: mejoras y acciones correctivas"
+      ],
+      "why": "No se puede implantar lo que no se ha planificado, ni comprobar lo que no está implantado, ni corregir sin haber comprobado. Después se vuelve a planificar.",
+      "sections": ["pdca"]
+    },
+    {
+      "id": "gobierno-t03-o2",
+      "title": "Ordena los niveles de madurez de CMMI, del más bajo al más alto",
+      "items": [
+        "Inicial",
+        "Gestionado",
+        "Definido",
+        "Gestionado cuantitativamente",
+        "Optimizado"
+      ],
+      "why": "Se pasa de improvisar a repetir lo que funciona, después a procesos estándar documentados, luego a gestionarlos con datos y, al final, a mejorarlos de forma continua.",
+      "sections": ["madurez-cmmi"]
+    },
+    {
+      "id": "gobierno-t03-o3",
+      "title": "Ordena la pirámide documental del SGSI, de la cima a la base",
+      "items": [
+        "Manual de seguridad (política, alcance, riesgos, declaración de aplicabilidad)",
+        "Procedimientos (quién, qué, cuándo y dónde)",
+        "Instrucciones (cómo se hace cada actividad)",
+        "Registros (evidencia objetiva de cumplimiento)"
+      ],
+      "why": "Se baja de lo más general a lo más concreto, y en la base quedan los registros que demuestran que todo lo anterior se ha cumplido.",
+      "sections": ["documentacion"]
+    },
+    {
+      "id": "gobierno-t03-o4",
+      "title": "Ordena la historia de la ISO 27001",
+      "items": [
+        "BS 7799-1, código de buenas prácticas británico (1995)",
+        "BS 7799-2, requisitos certificables (1999)",
+        "ISO 17799:2000",
+        "ISO 27001:2005, con 133 controles en 11 dominios",
+        "ISO 27001:2013, con 114 controles en 14 dominios",
+        "ISO 27001:2022, con 93 controles en 4 grupos"
+      ],
+      "why": "La norma nace en el Reino Unido, pasa a ser internacional y se revisa para adaptarse a la tecnología; en cada gran revisión cambia la agrupación de los controles.",
+      "sections": ["versiones"]
+    }
+  ]
+}

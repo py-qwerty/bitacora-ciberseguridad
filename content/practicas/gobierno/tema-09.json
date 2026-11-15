@@ -1,0 +1,238 @@
+{
+  "course": "gobierno",
+  "number": 9,
+  "open": [
+    {
+      "id": "gobierno-t09-d1",
+      "kind": "larga",
+      "points": 3,
+      "minutes": 12,
+      "prompt": "Explica los tres procesos que componen la evaluación del riesgo según la ISO 31000, cómo debe realizarse y por qué la evaluación de riesgos de TI debe revisarse de forma continua.",
+      "keyPoints": [
+        "Enumera los tres procesos: identificación, análisis y valoración, y sitúa la evaluación entre el contexto y el tratamiento",
+        "Describe la identificación como detectar, identificar y registrar qué puede pasar, por qué y a qué afectaría",
+        "Describe el análisis como estimar probabilidad y consecuencias para obtener el nivel de riesgo",
+        "Describe la valoración como comparar con los criterios para decidir si el riesgo es aceptable o hay que tratarlo",
+        "Indica que debe ser sistemática, iterativa y colaborativa, con las partes interesadas y la mejor información disponible",
+        "Explica que el riesgo cambia (entorno externo, interno y eficacia de los controles), por lo que hay que revisar la evaluación en un ciclo de mejora continua"
+      ],
+      "model": [
+        "En el proceso de la ISO 31000, la **evaluación del riesgo** está entre el establecimiento del alcance, contexto y criterios y el tratamiento. Está formada por tres procesos.",
+        "**Identificación**: responde a «¿qué puede pasar, por qué y a qué afectaría?». Consiste en detectar, identificar y registrar los riesgos, con sus causas, su origen y la naturaleza de su impacto. Ejemplo: un empleado puede caer en un correo de phishing. **Análisis**: responde a «¿qué probabilidad tiene y qué consecuencias causaría?», y da el nivel de riesgo, por ejemplo «muy alto». **Valoración**: compara ese nivel con los criterios de la organización para decidir si es aceptable o hay que tratarlo.",
+        "Debe hacerse de forma **sistemática** (con método), **iterativa** (repitiendo) y **colaborativa**, con la participación de las **partes interesadas** (dirección, usuarios, técnicos, proveedores) y con la **mejor información disponible**.",
+        "El riesgo **caduca**: cambian el entorno externo (nuevas amenazas, leyes), el interno (sistemas, procesos, personas) y la **eficacia de los controles** (un antivirus sin actualizar protege cada vez menos). Por eso la gestión es un ciclo de **mejora continua** con seguimiento y revisión. Si un hospital migra su historia clínica a la nube, no basta con añadirla al inventario: hay que **revisar la evaluación**."
+      ],
+      "tip": "La trampa del test es meter contexto, tratamiento o aceptación dentro de la evaluación. En desarrollo, deja claro qué hay antes y qué hay después.",
+      "fromClass": false,
+      "sections": ["ciclo-vida", "proceso-iso"]
+    },
+    {
+      "id": "gobierno-t09-d2",
+      "kind": "larga",
+      "points": 3,
+      "minutes": 12,
+      "prompt": "Explica en qué consiste la identificación del riesgo de TI: qué enfoques y técnicas pueden usarse, qué categorías de riesgo existen según cuánto sabemos de ellos y cómo se detectan los riesgos emergentes.",
+      "keyPoints": [
+        "Define la identificación como detectar, identificar y registrar los riesgos de la información y los SIC, incluyendo causas, origen e impacto",
+        "Menciona enfoques: basados en evidencias, sistemáticos, razonamiento inductivo y técnicas de apoyo",
+        "Menciona algunas técnicas de identificación (tormenta de ideas, entrevistas, Delphi, listas de verificación, SWIFT)",
+        "Enumera las tres categorías: conocido-conocido, conocido-desconocido y desconocido-desconocido, con su significado",
+        "Define amenaza y riesgo emergente",
+        "Describe el proceso de riesgos emergentes: recopilación de datos de muchas fuentes, análisis de señales e intercambio de información"
+      ],
+      "model": [
+        "Identificar el riesgo de TI es **detectar, identificar y registrar** los riesgos a los que están expuestos la información y los sistemas de la organización. No basta con nombrar el suceso: hay que recoger sus **causas**, el **origen** de la amenaza y la **naturaleza del impacto**, teniendo en cuenta los factores humanos y culturales y el contexto.",
+        "Hay varios **enfoques**: basados en **evidencias** (listas de verificación, histórico de incidentes), **sistemáticos** (expertos que siguen un cuestionario estructurado), de **razonamiento inductivo** (de un fallo concreto a todos los similares) y **técnicas de apoyo**. Entre las técnicas están la tormenta de ideas, las entrevistas, el método **Delphi** (rondas anónimas de expertos hasta el consenso), las listas de verificación y **SWIFT** («¿y si falla esto?»).",
+        "Según cuánto sabemos, hay tres categorías: **conocido-conocido** (el riesgo es perfectamente conocido, como perder un portátil), **conocido-desconocido** (no sabemos cuál, pero sabemos que puede existir, como vulnerabilidades aún no descubiertas) y **desconocido-desconocido** (ni siquiera imaginamos que pueda existir). Por eso hay que contar con los riesgos desconocidos.",
+        "Una **amenaza emergente** es una nueva, o una existente que ocurre más o cambia aumentando su impacto (el ransomware que además roba datos). Los riesgos de TI se tratan como **emergentes** y se detectan en tres pasos: **recopilar datos** de muchas fuentes (reguladores, medios, literatura, supervisión de sistemas, expertos), **analizarlos** para detectar señales e **intercambiar información** con otras organizaciones."
+      ],
+      "tip": "No existe la categoría «desconocido-conocido». Y en el test, Markov no es técnica de identificación (es de análisis).",
+      "fromClass": false,
+      "sections": ["identificacion", "conocimiento-riesgo", "emergentes", "tecnicas-identificacion"]
+    },
+    {
+      "id": "gobierno-t09-d3",
+      "kind": "larga",
+      "points": 3,
+      "minutes": 12,
+      "prompt": "Explica de qué depende el valor de un riesgo: qué factores influyen en la probabilidad, qué papel tienen las vulnerabilidades y cómo se mide y puede crecer el impacto.",
+      "keyPoints": [
+        "Indica que el riesgo es función de la probabilidad y del impacto",
+        "Explica que la probabilidad depende del origen de la amenaza, del atacante (motivación, medios, habilidad) y de las características y vulnerabilidades de la organización",
+        "Define vulnerabilidad y explica que, cuanto más vulnerable es un sistema, más probable es que la amenaza tenga éxito",
+        "Define impacto como la consecuencia sobre los objetivos al comprometerse la confidencialidad, integridad o disponibilidad",
+        "Indica que el impacto debe cuantificarse, de forma cualitativa o cuantitativa, y puede ser financiero o no financiero",
+        "Explica que el impacto crece por acumulación de eventos o por efecto en cascada, con un ejemplo",
+        "Menciona que las amenazas pueden ser naturales, accidentales o deliberadas"
+      ],
+      "model": [
+        "El valor del riesgo es **función de la probabilidad y del impacto**: Riesgo = f(probabilidad, impacto). Se suele representar en una matriz con la probabilidad en un eje y el impacto en el otro.",
+        "La **probabilidad** de que una amenaza se materialice depende del **origen** de la amenaza (natural, accidental o deliberada), del **atacante** si es intencionada (su motivación, medios y habilidad) y de las **características de la organización**: el sistema, el activo atacado y sus **vulnerabilidades**.",
+        "Una **vulnerabilidad** es una debilidad que permite o facilita comprometer la información. Las amenazas se materializan aprovechándolas: el ladrón es la amenaza y la ventana mal cerrada, la vulnerabilidad. Cuantas más vulnerabilidades, más probable es el éxito.",
+        "El **impacto** es la consecuencia del evento sobre los objetivos al comprometerse la confidencialidad, la integridad o la disponibilidad. **Debe cuantificarse**, de forma cualitativa (alto, medio, bajo) o cuantitativa (euros, horas). Como se explicó en clase, puede ser **financiero** (pérdidas, lo que se deja de ganar) o **no financiero** (daño reputacional, legal, pérdida de confianza de los clientes).",
+        "El impacto puede crecer por **acumulación** de muchos incidentes pequeños o por **efecto en cascada**: si cae el servidor DNS, dejan de funcionar el correo, la web y la aplicación de ventas a la vez. Por eso es falso que el impacto sea independiente del número de eventos."
+      ],
+      "fromClass": true,
+      "sections": ["probabilidad-impacto", "identificacion"]
+    },
+    {
+      "id": "gobierno-t09-d4",
+      "kind": "larga",
+      "points": 3,
+      "minutes": 10,
+      "prompt": "Diferencia el riesgo inherente del riesgo real o residual. ¿Para qué sirve compararlos y qué hay que tener en cuenta de los controles al calcular el riesgo real?",
+      "keyPoints": [
+        "Define el riesgo inherente o potencial como el que se calcula sin considerar los controles implantados",
+        "Define el riesgo real o residual como el que tiene en cuenta los controles, según su eficacia y madurez",
+        "Explica que compararlos indica cuánto aportan las salvaguardas",
+        "Explica que hay que valorar la eficacia y madurez reales de cada control, no suponer que funcionan perfectamente",
+        "Distingue salvaguardas preventivas (antes, reducen la probabilidad) y las que actúan después (limitan el impacto)",
+        "Recuerda que los sucesos poco probables pero catastróficos no se desechan"
+      ],
+      "model": [
+        "Al analizar se calculan dos valores. El **riesgo inherente** (o **potencial**) se calcula **sin** tener en cuenta los controles implantados: depende del impacto, la vulnerabilidad y la probabilidad. El **riesgo real** (que muchas normas llaman **residual**) se calcula **con** los controles, valorando su **eficacia** y su **madurez**.",
+        "**Compararlos** dice cuánto aportan las salvaguardas: si el inherente es «muy alto» y el real «bajo», los controles funcionan; si apenas cambian, algo falla.",
+        "Para calcular el riesgo real no vale suponer que los controles funcionan perfectamente porque lo diga el folleto del fabricante. Hay que mirar su **eficacia y madurez reales**: ¿está bien configurado?, ¿se revisa?, ¿se ha probado? No es lo mismo una política escrita en papel que una que se aplica, se mide y se mejora.",
+        "Las salvaguardas pueden ser **preventivas**, que actúan antes del incidente y **reducen la probabilidad** (reforzar la autenticación, parchear), o actuar **después** para **limitar el impacto** y recuperar (copias de seguridad, planes de restauración). Y aunque los controles reduzcan mucho la probabilidad, un suceso muy improbable pero catastrófico no se desecha: en la decisión debe pesar más el impacto."
+      ],
+      "tip": "Las trampas intercambian los nombres. Memoriza las parejas: inherente = potencial = sin controles; real = residual = con controles.",
+      "fromClass": false,
+      "sections": ["inherente-real", "analisis"]
+    },
+    {
+      "id": "gobierno-t09-d5",
+      "kind": "larga",
+      "points": 3,
+      "minutes": 12,
+      "prompt": "Compara los métodos cualitativo, semicuantitativo y cuantitativo para analizar riesgos. ¿De qué depende el grado de detalle y qué reglas deben respetarse en cualquier caso?",
+      "keyPoints": [
+        "Describe el cualitativo: niveles verbales combinados con tablas o matrices, útil con pocos datos y valoración experta",
+        "Describe el semicuantitativo: escalas numéricas (por ejemplo, 0 a 5) combinadas con una función",
+        "Describe el cuantitativo: valores reales en unidades específicas, normalmente económicas, cuando hay datos fiables",
+        "Indica que el detalle depende del caso, de los datos fiables, de las necesidades de decisión y a veces de la ley (ENS)",
+        "Explica que hay que definir y registrar criterios y términos desde el principio (qué significa «alto»)",
+        "Explica que todos los niveles de riesgo son estimaciones y que hay que declarar su exactitud y precisión",
+        "Indica que poner números a categorías no convierte el análisis en cuantitativo"
+      ],
+      "model": [
+        "El **cualitativo** expresa el riesgo con **niveles verbales** (muy bajo a muy alto) combinados en una matriz de impacto y probabilidad: por ejemplo, impacto muy alto con probabilidad media da riesgo «alto». Conviene cuando hay pocos datos y lo valoran expertos. El **semicuantitativo** usa **escalas numéricas** (de 0 a 5) para consecuencias y probabilidad, combinadas con una función matemática; da más objetividad sin cifras reales. El **cuantitativo** usa **valores reales** en unidades específicas, normalmente **euros**, y solo es posible con datos fiables suficientes.",
+        "El **grado de detalle** depende del **caso concreto**, de que haya **datos fiables** y de lo que la organización necesite para **decidir**. A veces lo fija la **ley**, como el ENS para el sector público. Si no hay datos suficientes, puede ser más eficaz un análisis cualitativo o semicuantitativo hecho por expertos.",
+        "Reglas comunes: hay que **definir y registrar los criterios y todos los términos** al establecer el contexto (si para una analista «alto» es más de 10.000 € y para otro más de 100.000 €, sus matrices no se pueden comparar); en el cuantitativo, las **unidades se fijan al principio**; y **todos los niveles son estimaciones**, incluso los cuantitativos, por lo que al informar hay que declarar su exactitud y precisión.",
+        "Por último, decir «alto = 4» no hace cuantitativo un análisis: sigue siendo semicuantitativo, porque el 4 es una posición en una escala, no 40.000 €."
+      ],
+      "tip": "En clase se dijo que el cualitativo es más sencillo y rápido para empezar y el cuantitativo, con experiencia, el más preciso. Puedes usarlo como cierre de la comparación.",
+      "fromClass": true,
+      "sections": ["metodos"]
+    }
+  ],
+  "cases": [
+    {
+      "id": "gobierno-t09-c1",
+      "title": "Mini análisis de riesgos de una tienda online",
+      "scenario": [
+        "Café Origen, S. L. es una pyme de 12 empleados que vende café por Internet. Sus activos principales son la tienda web (alojada en un proveedor), la base de datos de clientes con direcciones y teléfonos, y los portátiles de los empleados. Los pagos con tarjeta los gestiona una pasarela externa.",
+        "Datos conocidos: el año pasado dos empleados cayeron en correos de phishing; la web usa un complemento sin actualizar desde hace un año; la tienda nunca ha sufrido una caída larga, pero el 60 % de las ventas llegan en noviembre y diciembre; las copias de la base de datos se hacen a mano «cuando alguien se acuerda».",
+        "La gerente quiere saber qué riesgos son prioritarios. La empresa usará una matriz cualitativa con los niveles muy bajo, medio y muy alto para probabilidad e impacto."
+      ],
+      "minutes": 20,
+      "points": 3,
+      "questions": [
+        {
+          "prompt": "Identifica tres riesgos indicando para cada uno el activo, la amenaza y la vulnerabilidad que aprovecha.",
+          "keyPoints": [
+            "Identifica un riesgo de robo de credenciales por phishing (activo: cuentas o base de datos; vulnerabilidad: falta de formación)",
+            "Identifica un riesgo de intrusión en la web por el complemento sin actualizar",
+            "Identifica un riesgo de pérdida de datos o indisponibilidad por copias irregulares (ransomware, fallo)",
+            "Distingue correctamente amenaza (lo que causa el daño) de vulnerabilidad (la debilidad que aprovecha)"
+          ],
+          "model": [
+            "**Riesgo 1 – Phishing**: activo, las cuentas de correo y, a través de ellas, la base de datos de clientes; amenaza, un atacante que envía correos fraudulentos para robar credenciales; vulnerabilidad, la falta de formación (ya cayeron dos empleados).",
+            "**Riesgo 2 – Intrusión en la web**: activo, la tienda web y los datos de clientes; amenaza, un atacante que explota un fallo conocido; vulnerabilidad, el complemento sin actualizar desde hace un año.",
+            "**Riesgo 3 – Pérdida de la base de datos**: activo, la base de datos de clientes y pedidos; amenaza, un ransomware o un fallo técnico; vulnerabilidad, las copias manuales e irregulares."
+          ]
+        },
+        {
+          "prompt": "Analiza los tres riesgos con la matriz cualitativa (probabilidad, impacto y nivel de riesgo), justificando los valores.",
+          "keyPoints": [
+            "Asigna probabilidad e impacto a cada riesgo con una justificación basada en los datos del enunciado (histórico, vulnerabilidades)",
+            "Usa el histórico de phishing para justificar una probabilidad muy alta",
+            "Tiene en cuenta la estacionalidad de las ventas al valorar el impacto de una caída o pérdida de datos",
+            "Obtiene el nivel de riesgo combinando probabilidad e impacto de forma coherente con la matriz",
+            "Indica que son estimaciones y que los términos de la escala deben estar definidos"
+          ],
+          "model": [
+            "Uso la matriz del tema (por ejemplo: probabilidad muy alta e impacto medio = riesgo alto; probabilidad media e impacto muy alto = riesgo alto; probabilidad muy alta e impacto muy alto = riesgo muy alto).",
+            "**Phishing**: probabilidad **muy alta** (ya ha ocurrido dos veces y no se ha formado a nadie); impacto **medio** (acceso a un buzón y posible robo de datos de clientes). Riesgo **alto**.",
+            "**Intrusión web**: probabilidad **media** (el fallo es conocido, aunque aún no se ha explotado); impacto **muy alto** (robo de datos personales y web parada, peor aún en campaña de Navidad). Riesgo **alto**.",
+            "**Pérdida de la base de datos**: probabilidad **media**; impacto **muy alto**, porque sin copias fiables se perderían clientes y pedidos, y en noviembre o diciembre supondría perder buena parte de las ventas del año. Riesgo **alto**, y **muy alto** en temporada alta.",
+            "Son **estimaciones**: antes de empezar hay que definir y registrar qué significa cada nivel (por ejemplo, impacto «muy alto» = más de una semana sin vender o pérdida de datos de clientes)."
+          ]
+        },
+        {
+          "prompt": "Explica qué cambiaría entre el riesgo inherente y el residual al aplicar controles, valora los riesgos y propón un tratamiento para cada uno.",
+          "keyPoints": [
+            "Explica que el análisis anterior se ha hecho prácticamente sin controles eficaces (cercano al riesgo inherente) y que el residual se calcula tras aplicarlos según su eficacia real",
+            "Valora: compara los niveles con un criterio de aceptación y concluye que los tres requieren tratamiento",
+            "Propone medidas que reducen la probabilidad (formación, doble factor, actualizar el complemento)",
+            "Propone medidas que reducen el impacto (copias automáticas y aisladas, probadas)",
+            "Menciona alguna opción de compartir o aceptar el residual de forma informada"
+          ],
+          "model": [
+            "El análisis anterior se ha hecho casi sin controles eficaces, así que se parece al **riesgo inherente**. El **riesgo residual** se recalcula tras aplicar las medidas, valorando su **eficacia y madurez reales** (una copia que nunca se ha probado no cuenta igual que una probada).",
+            "**Valoración**: si la gerente fija como criterio que solo se aceptan riesgos medios o inferiores, los tres riesgos «altos» **requieren tratamiento**, y la pérdida de datos es la prioridad antes de noviembre.",
+            "**Tratamiento**: para el phishing, formación y doble factor de autenticación (reducen la **probabilidad**); para la web, actualizar o eliminar el complemento y pedir al proveedor un mantenimiento regular (eliminar la fuente o reducir la probabilidad); para la base de datos, copias **automáticas, aisladas y probadas** (reducen el **impacto**). Se podría **compartir** parte del riesgo económico con un ciberseguro.",
+            "Después se recalcula el residual: si queda en «medio» o menos, la gerente lo **acepta de forma informada** y se revisa cuando cambie algo, por ejemplo antes de cada campaña de Navidad."
+          ]
+        }
+      ],
+      "tip": "En un caso así no hay una única respuesta correcta: lo que puntúa es justificar cada valor con datos del enunciado y seguir el orden identificar, analizar, valorar y tratar.",
+      "sections": ["identificacion", "probabilidad-impacto", "metodos", "inherente-real", "tratamiento"]
+    },
+    {
+      "id": "gobierno-t09-c2",
+      "title": "Revisar un informe de riesgos mal planteado",
+      "scenario": [
+        "La consultora RiesgoCero ha entregado a una cadena de gimnasios un informe de riesgos con estos rasgos: dos analistas han usado «alto» con significados distintos; se suman riesgos en euros con riesgos en etiquetas; el riesgo residual se ha calculado suponiendo que todos los controles funcionan al 100 % porque así lo indican los fabricantes.",
+        "Además, se ha descartado el riesgo de que un incendio destruya el único centro de datos «porque es muy poco probable», y se ha excluido el fraude con voz clonada por inteligencia artificial «porque no estaba en el catálogo del año pasado»."
+      ],
+      "minutes": 15,
+      "points": 3,
+      "questions": [
+        {
+          "prompt": "Señala los errores del informe y explica cómo debería corregirse cada uno según el tema.",
+          "keyPoints": [
+            "Indica que hay que definir y registrar términos y criterios comunes desde el principio para que los niveles sean comparables",
+            "Indica que no se pueden mezclar escalas: hay que expresarlo todo con el mismo método o criterios coherentes",
+            "Indica que el riesgo residual o real exige valorar la eficacia y madurez reales de los controles",
+            "Indica que un suceso de probabilidad muy baja pero impacto muy alto no se desecha y en él pesa más el impacto",
+            "Indica que hay que contar con riesgos desconocidos y emergentes: que no estuviera en el catálogo no lo hace inexistente",
+            "Propone alguna vía para detectar riesgos emergentes (reguladores, supervisión propia, intercambio de información)"
+          ],
+          "model": [
+            "**Dos «altos» distintos**: al establecer el contexto hay que **definir y registrar los criterios y todos los términos**; sin eso, las matrices no se pueden comparar. **Euros mezclados con etiquetas**: no se pueden sumar escalas distintas; hay que usar un método coherente (cualitativo, semicuantitativo o cuantitativo) con criterios comunes.",
+            "**Residual con controles al 100 %**: el riesgo real o residual exige valorar la **eficacia y madurez reales** de cada control (configuración, revisión, pruebas), no lo que promete el fabricante.",
+            "**Incendio descartado**: un suceso de probabilidad muy baja pero **impacto muy alto** no se desecha; en el cálculo y en la decisión debe **pesar más el impacto** (un centro de respaldo puede estar justificado).",
+            "**Fraude con voz clonada excluido**: es un riesgo **emergente**. Hay que contar con los riesgos **conocidos-desconocidos** y nuevos escenarios, y detectarlos recopilando datos de muchas fuentes (avisos de reguladores, registros propios, expertos), analizándolos e **intercambiando información** con otras organizaciones."
+          ]
+        }
+      ],
+      "sections": ["metodos", "inherente-real", "analisis", "conocimiento-riesgo", "emergentes"]
+    }
+  ],
+  "order": [
+    {
+      "id": "gobierno-t09-o1",
+      "title": "Ordena el proceso para identificar riesgos emergentes",
+      "items": ["Recopilación de datos de muchas fuentes", "Análisis de los datos para detectar señales", "Intercambio de información con otras organizaciones"],
+      "why": "Primero se reúnen datos de reguladores, medios, supervisión de sistemas y expertos; luego se filtran para encontrar indicios de riesgos nuevos; y se comparten con otras organizaciones para detectarlos pronto y responder con eficacia.",
+      "sections": ["emergentes"]
+    },
+    {
+      "id": "gobierno-t09-o2",
+      "title": "Ordena el flujo de la gestión del riesgo hasta la aceptación",
+      "items": ["Establecer alcance, contexto y criterios", "Identificar el riesgo", "Analizar el riesgo", "Valorar el riesgo", "Tratar el riesgo", "Aceptar el riesgo residual"],
+      "why": "Con los criterios fijados se evalúa (identificar, analizar, valorar). Si la evaluación no es satisfactoria se repite; luego se trata y, si el tratamiento es satisfactorio, se acepta el riesgo residual. El seguimiento y la revisión mantienen todo al día.",
+      "sections": ["proceso-iso", "tratamiento"]
+    }
+  ]
+}

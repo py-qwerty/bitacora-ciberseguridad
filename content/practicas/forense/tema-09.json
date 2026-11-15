@@ -1,0 +1,287 @@
+{
+  "course": "forense",
+  "number": 9,
+  "open": [
+    {
+      "id": "forense-t09-d1",
+      "kind": "corta",
+      "points": 2,
+      "minutes": 5,
+      "prompt": "Define la respuesta a incidentes y explica las piezas clave de la definición. Enumera algunas de las labores que incluye.",
+      "keyPoints": [
+        "Define la respuesta a incidentes como la concepción y ejecución de un procedimiento estructurado",
+        "Indica que abarca desde la detección hasta la resolución del incidente",
+        "Explica que hay que diseñar antes y ejecutar el día del incidente, sin improvisar",
+        "Enumera al menos cuatro labores (detección temprana, confirmación, alcance, contención, coordinación, reducción del impacto, comunicación, restauración, concienciación, apoyo judicial)",
+        "Menciona que busca reducir el impacto en el negocio"
+      ],
+      "model": [
+        "La **respuesta a incidentes** es la **concepción y ejecución de un procedimiento estructurado** para manejar un incidente **desde que se detecta hasta que se resuelve**. Cada pieza importa: hay que **diseñar** el plan antes y **ejecutarlo** cuando llega el incidente; es **estructurado**, con pasos, responsables y decisiones previstas, no improvisado; y no termina cuando desaparece la alerta, sino con la resolución verificada.",
+        "Incluye labores como la **detección temprana**, la **confirmación** de qué ha pasado de verdad, el **análisis del alcance**, la **contención temprana**, la **coordinación** entre áreas, la **reducción del impacto en el negocio**, la **comunicación** interna y externa, la **restauración**, la **concienciación** para que no se repita y la **asistencia en demandas**. Es como el plan contra incendios de un hotel, pero para ataques informáticos."
+      ],
+      "fromClass": false,
+      "sections": ["respuesta-incidentes"]
+    },
+    {
+      "id": "forense-t09-d2",
+      "kind": "larga",
+      "points": 3,
+      "minutes": 12,
+      "prompt": "Enumera y explica las seis fases de un plan de contingencia. Indica en qué momento se toman las medidas de contención y de erradicación y por qué.",
+      "keyPoints": [
+        "Enumera las seis fases en orden: preparación, toma de posición, contención, erradicación, mejora tras la recuperación y documentación",
+        "Explica la preparación: crear el equipo, acordar el tiempo disponible y elegir la postura de actuación",
+        "Explica la toma de posición: acciones con el incidente en curso (monitorización, reforzar lo más crítico, preparar medidas masivas)",
+        "Explica que la contención son acciones breves y agresivas tomadas en el momento justo: incidente caracterizado pero antes de que avance",
+        "Explica que la erradicación es rápida y quirúrgica, cuando la investigación está a punto de terminar, y que después se sigue vigilando",
+        "Explica que la mejora implanta recomendaciones porque volver a lo anterior es volver a lo vulnerable",
+        "Explica que la documentación sirve de archivo y de lecciones aprendidas"
+      ],
+      "model": [
+        "1) **Preparación**: se crea el equipo y se acuerda entre negocio y tecnología el tiempo disponible; aquí se elige la postura (acción inmediata, retardada o combinada). 2) **Toma de posición**: acciones mientras el incidente sigue en curso: gestionar alertas y monitorizar, reforzar las vulnerabilidades más críticas y preparar medidas masivas posteriores, como el cambio de contraseñas o de direcciones IP.",
+        "3) **Contención**: acciones **breves y agresivas**, como desconectar máquinas de la red, apagar dispositivos o cerrar puertos. Se toman **en el momento justo**: cuando el incidente está bien caracterizado, pero antes de que avance demasiado. Se acuerdan con negocio, porque pueden provocar la reacción del atacante. 4) **Erradicación**: eliminar los accesos del atacante y su control sobre los recursos con medidas **coordinadas, rápidas y quirúrgicas**, ejecutadas cuando la investigación está **a punto de terminar** para no interferir con ella (limpieza paso a paso o reinstalar). Después se sigue vigilando para confirmar que funcionó.",
+        "5) **Mejora tras la recuperación**: no basta con volver a la situación anterior, que era vulnerable; se implantan cuanto antes las recomendaciones surgidas. 6) **Documentación** de lo ocurrido, como archivo, referencia y fuente de **lecciones aprendidas**.",
+        "Ejemplo: ante un intruso en un servidor, primero se vigila y se refuerza lo crítico, después se le aísla en el momento oportuno y, cuando ya se sabe por dónde entró y qué tocó, se cierran todos sus accesos a la vez."
+      ],
+      "fromClass": false,
+      "sections": ["fases-plan", "plan-contingencia"]
+    },
+    {
+      "id": "forense-t09-d3",
+      "kind": "corta",
+      "points": 2,
+      "minutes": 6,
+      "prompt": "¿Cómo se debe reaccionar en los momentos iniciales de un incidente? Explica las tres posturas posibles con un ejemplo de cuándo usar cada una.",
+      "keyPoints": [
+        "Afirma que depende del objetivo de la acción (detener, investigar o ambas), no de una regla absoluta",
+        "Explica la acción inmediata: prioridad detener, pero alerta al atacante",
+        "Explica la acción retardada: prioridad conocer el ataque o identificar al atacante, a menudo a petición de las fuerzas de seguridad, con el atacante aún activo",
+        "Explica la acción combinada: se contienen algunos aspectos y el resto se retrasa",
+        "Pone un ejemplo de cada una o al menos de la combinada"
+      ],
+      "model": [
+        "Depende **siempre del objetivo** de la acción: no vale «siempre lo antes posible» ni «siempre esperar».",
+        "**Acción inmediata**: la prioridad es detener al atacante y el ataque, por ejemplo un ransomware que está cifrando servidores. Inconveniente: alerta al atacante, que puede borrar huellas o cambiar de táctica. **Acción retardada**: importa más conocer el ataque o identificar al atacante, por ejemplo en un robo de información reservada en el que la policía pide observar. Inconveniente: el atacante sigue activo mientras tanto. **Acción combinada**: se contienen solo algunos aspectos y el resto se retrasa. Ejemplo: se bloquea el acceso a la base de clientes y se deja el servidor de I+D monitorizado, con documentos señuelo, para seguir el rastro."
+      ],
+      "fromClass": false,
+      "sections": ["fases-plan"]
+    },
+    {
+      "id": "forense-t09-d4",
+      "kind": "larga",
+      "points": 3,
+      "minutes": 13,
+      "prompt": "Durante una respuesta a incidentes chocan la recuperación del servicio y la investigación forense. Explica ese conflicto y cómo se puede conciliar, citando los modelos y factores que propone el tema.",
+      "keyPoints": [
+        "Explica el conflicto: recuperar cuanto antes frente a conservar las evidencias inalteradas (reinstalar borra rastros)",
+        "Menciona el proceso de cuatro pasos del NIST (recolección, examen, análisis e informe) como base del forense corporativo",
+        "Cita los tres factores: coste del esfuerzo de adquirir, coste del aumento del tiempo de respuesta y riesgo según la sensibilidad de los datos",
+        "Explica el modelo de Forrester e Irwin: preservar primero la escena y luego investigación y restauración en paralelo",
+        "Explica el análisis forense por capas (tier 1, 2 y 3) según el riesgo de cada activo",
+        "Menciona herramientas que agilizan, como el triage o la adquisición rápida",
+        "Pone un ejemplo concreto"
+      ],
+      "model": [
+        "Mientras se responde al incidente hay que hacer el forense en paralelo, y aparece una **contraposición de intereses**: la recuperación quiere volver a funcionar **lo antes posible** para reducir el impacto, y la investigación necesita **conservar las evidencias inalteradas** hasta adquirirlas. La tentación es reinstalar el servidor ya, pero al reinstalar se borran los rastros del atacante y nunca se sabrá qué pasó.",
+        "Muchos autores adaptan el proceso del **NIST** (recolección, examen, análisis e informe) al forense corporativo y proponen valorar **tres factores**: el **coste del esfuerzo** de adquirir las evidencias, el **coste del aumento del tiempo de respuesta** (cada hora adquiriendo es una hora sin servicio) y el **riesgo** según la **sensibilidad de los datos**.",
+        "El modelo de **Forrester e Irwin** da la clave: tras la preparación, el despliegue y la evaluación del incidente, **se preserva la escena** y después la **investigación y la restauración avanzan en paralelo**, seguidas del reporting, la toma de decisiones y la revisión. Es como un accidente en la autopista: se fotografían las marcas de frenada y luego se retiran los coches.",
+        "Además, no hace falta analizarlo todo igual: con un enfoque de **gestión de riesgos** se aplica un **análisis por capas**: tier 1 (triage, logs, monitorización; rápido, para muchos equipos), tier 2 (análisis de artefactos) y tier 3 (ingeniería inversa y descifrado, solo para los recursos más importantes). Ejemplo: se adquiere rápido la memoria y el disco del servidor de nóminas antes de restaurarlo, y a los 200 portátiles solo se les hace triage."
+      ],
+      "tip": "En la primera clase el profesor insistió en memorizar los cuatro procesos del NIST para integrar el forense en la respuesta a incidentes: recolectar, examinar (procesar), analizar y presentar (informe).",
+      "fromClass": true,
+      "sections": ["forense-en-ir", "herramientas-corporativas"]
+    },
+    {
+      "id": "forense-t09-d5",
+      "kind": "corta",
+      "points": 2,
+      "minutes": 6,
+      "prompt": "¿Qué es «forensic by design»? Indica al menos cuatro medidas concretas y por qué ayudan cuando llega un incidente.",
+      "keyPoints": [
+        "Define forensic by design como prever al diseñar la arquitectura que habrá que hacer un análisis forense y facilitarlo",
+        "Cita el inventario completo y actualizado de activos",
+        "Cita centralizar los logs (mejor fuera del alcance del atacante) y las copias de seguridad",
+        "Cita la base de hashes conocidos para acelerar el triage o la política de almacenamiento y borrado",
+        "Cita procedimientos y herramientas forenses documentados",
+        "Explica por qué cada medida ayuda"
+      ],
+      "model": [
+        "**Forensic by design** significa que el trabajo forense empieza **mucho antes del incidente**: al diseñar la arquitectura de seguridad se prevé que algún día habrá que hacer un análisis forense y se facilita. Es como construir un edificio con cámaras, registro de entradas y planos en conserjería.",
+        "Medidas: 1) **Inventario completo y actualizado** de equipos, usuarios y roles: sin él no se sabe qué se ha comprometido. 2) **Logs centralizados**, a ser posible fuera del alcance del atacante (por ejemplo en la nube), para que no pueda borrar sus huellas. 3) **Copias de seguridad** regulares para recuperar sin perder evidencias. 4) Una **base de hashes conocidos** de la organización, que acelera el triage descartando archivos legítimos. 5) Una **política de almacenamiento, borrado y archivado**, para tener menos información viva que analizar. 6) **Procedimientos y herramientas forenses documentados**, porque en un incidente harán falta manos de IT además del equipo forense."
+      ],
+      "fromClass": false,
+      "sections": ["forensic-by-design"]
+    }
+  ],
+  "cases": [
+    {
+      "id": "forense-t09-c1",
+      "title": "Ransomware un lunes por la mañana en una distribuidora",
+      "scenario": [
+        "Distribuciones Moncayo S.A. tiene 250 empleados y vende a supermercados. El lunes a las 8:00 varios empleados ven sus archivos renombrados y una nota de rescate. A las 9:00 el servidor del ERP (gestión de pedidos y facturación) y dos servidores de ficheros están cifrados; el resto de servidores parece funcionar.",
+        "La dirección comercial exige restaurar el ERP desde las copias «en una hora» porque hay camiones esperando. El responsable de IT quiere apagarlo todo. La empresa tiene un inventario de activos desactualizado y la red no está segmentada."
+      ],
+      "minutes": 25,
+      "points": 3,
+      "questions": [
+        {
+          "prompt": "¿Qué postura de actuación adoptarías y qué medidas de contención tomarías? Razona las alternativas.",
+          "keyPoints": [
+            "Justifica la postura según el objetivo: aquí detener el cifrado tiene prioridad (acción inmediata o combinada)",
+            "Plantea alternativas (apagar todo, aislar solo lo afectado, esperar a observar) con sus inconvenientes",
+            "Propone contención breve y agresiva: aislar de la red los equipos y servidores afectados, cerrar puertos o desconectar segmentos",
+            "Recoge antes o en paralelo la información volátil de algún equipo afectado si es posible",
+            "Explica que la falta de segmentación dificulta contener",
+            "Acuerda las medidas con negocio y la dirección"
+          ],
+          "model": [
+            "El objetivo principal es **detener el cifrado**, porque cada minuto se pierden más datos, así que me inclinaría por una **acción inmediata**, o **combinada** si se puede: aislar ya lo afectado y vigilar el resto. Una acción retardada, para observar al atacante, no tiene sentido aquí.",
+            "Alternativas: **apagar todo**, como quiere IT, para el cifrado de golpe, pero para todo el negocio y se pierde la información volátil; **aislar solo lo afectado** desconectándolo de la red, que es más quirúrgico pero arriesga que el ransomware siga extendiéndose por equipos aún no detectados. Como la red **no está segmentada** y el inventario está desactualizado, no puedo estar seguro de qué está afectado, así que desconectaría de la red los servidores y equipos afectados y cortaría las conexiones entre zonas que se pueda, y antes de apagar nada intentaría adquirir rápido la memoria de un equipo afectado.",
+            "Estas medidas son de **contención**: breves y agresivas, y las acordaría con la dirección, que es quien decide entre lo que pide negocio y lo que pide IT."
+          ]
+        },
+        {
+          "prompt": "¿Cómo concilias la presión por restaurar el ERP con la necesidad de investigar?",
+          "keyPoints": [
+            "Explica que restaurar sin más borra las evidencias y puede volver a dejar entrar al atacante",
+            "Propone preservar la escena primero (adquirir el servidor o al menos sus discos y memoria) y luego investigar y restaurar en paralelo",
+            "Propone restaurar en otro equipo o desde copias verificadas mientras se conserva el original",
+            "Aplica el análisis por capas: profundidad máxima en los servidores clave y triage en el resto",
+            "Indica que hay que saber por dónde entró antes de erradicar para no volver a lo vulnerable"
+          ],
+          "model": [
+            "Siguiendo la idea de Forrester e Irwin, **primero preservo la escena**: adquiero el disco (o una instantánea si es virtual) y la memoria del servidor del ERP antes de tocarlo. Después la **restauración y la investigación avanzan en paralelo**: el ERP se restaura desde copias verificadas en otro equipo mientras el original queda guardado para el análisis.",
+            "Para no tardar días aplico el **análisis por capas**: tier 3 o 2 para el ERP y los servidores de ficheros, y tier 1 (triage, logs) para los 250 puestos. Y explico a dirección que restaurar sin saber **por dónde entró** el atacante es volver a la misma situación vulnerable: la erradicación se hace cuando la investigación esté a punto de terminar."
+          ]
+        },
+        {
+          "prompt": "¿Quién debe participar en la gestión del incidente y qué papel tiene cada uno?",
+          "keyPoints": [
+            "Indica que el equipo de DFIR es multidisciplinar y toma el control durante la crisis",
+            "Responsable de equipo: CIO o CISO, que dirige",
+            "Responsable de recuperación: perfil técnico que coordina el restablecimiento de sistemas",
+            "Equipo de investigación: forense y triage, coordinado con legal para fijar límites",
+            "Implica a legal y cumplimiento, RRHH, negocio y comunicación, informando a clientes de forma medida"
+          ],
+          "model": [
+            "El **equipo de DFIR** es multidisciplinar y, durante la crisis, toma el control y coordina al resto. El **responsable de equipo** (el CIO o el CISO) dirige y puede reunir rápido información de toda la empresa. El **responsable de recuperación**, un perfil de IT con mucho conocimiento técnico, coordina la restauración de los sistemas. El **equipo de investigación** hace el forense y el triage y se coordina con **legal** para fijar los límites de la investigación.",
+            "Además participan **legal y cumplimiento** (legislación como la protección de datos y normativa a la que se ha comprometido la empresa), **infraestructura y soporte IT**, **RRHH** si estuviera implicado un empleado y los **responsables de negocio**, que dicen qué procesos son críticos. Y hay que cuidar la **comunicación**: informar a los supermercados afectados de forma clara y útil, sin dar detalles técnicos que ayuden al atacante."
+          ]
+        }
+      ],
+      "sections": ["fases-plan", "forense-en-ir", "equipo-dfir", "factores-planificacion", "politicas-red", "politicas-equipos"]
+    },
+    {
+      "id": "forense-t09-c2",
+      "title": "Una cuenta de copias de seguridad que lee de madrugada",
+      "scenario": [
+        "En la ingeniería Aragón Diseño, el SIEM muestra que la cuenta privilegiada «admin.backup» inició sesión a las 03:14 desde el equipo de recepción y, un minuto después, desde una IP de otro país; a las 03:16 leyó más de un millón de filas de la base de datos de proyectos. Nadie de IT trabajaba a esa hora.",
+        "La empresa usa un CRM en la nube (SaaS) y los comerciales leen el correo corporativo en sus móviles personales (BYOD). La Guardia Civil, avisada, pide no cortar el acceso del atacante durante unos días para identificar adónde van los datos."
+      ],
+      "minutes": 25,
+      "points": 3,
+      "questions": [
+        {
+          "prompt": "¿Qué indicadores de compromiso ves y cómo los usarías para organizar la investigación?",
+          "keyPoints": [
+            "Identifica los IOC: cuenta privilegiada activa de madrugada, incoherencia geográfica y pico de lecturas en la base de datos",
+            "Explica que un IOC orienta y prioriza, pero no prueba quién actuó",
+            "Usa los IOC para empezar por los recursos con indicios (equipo de recepción, base de datos) mediante triage",
+            "Propone un informe de situación vivo con evidencias, sistemas afectados, cuentas comprometidas, IOC y tareas",
+            "Propone una superlínea de tiempo con eventos de varios equipos, comprobando los relojes"
+          ],
+          "model": [
+            "Hay tres **IOC**: una **cuenta privilegiada activa de madrugada**, una **incoherencia geográfica** (la misma cuenta desde recepción y desde otro país en un minuto) y un **aumento anormal de lecturas** en la base de datos. Son indicios que **orientan y priorizan**; no demuestran quién estaba tecleando.",
+            "Con ellos empezaría por los recursos que muestran indicios, mediante **triage**: el equipo de recepción (posible puerta de entrada, porque los atacantes suelen entrar por un equipo no crítico), el servidor de base de datos y la cuenta admin.backup. Todo lo iría volcando en un **informe de situación** vivo: evidencias con su fecha de recogida y cadena de custodia, sistemas afectados, cuentas comprometidas, IOC de red (la IP extranjera) y de host, datos posiblemente robados y tareas pendientes. Y uniría los eventos de los distintos equipos en una **superlínea de tiempo**, comprobando antes que los relojes estaban sincronizados."
+          ]
+        },
+        {
+          "prompt": "La Guardia Civil pide no cortar el acceso. ¿Qué postura adoptarías y qué riesgos asumes?",
+          "keyPoints": [
+            "Identifica que lo pedido es una acción retardada y valora la combinada como alternativa",
+            "Explica el riesgo de que el atacante siga robando datos",
+            "Propone contener solo parte (proteger lo más sensible, señuelos, monitorización reforzada)",
+            "Indica que la decisión se acuerda con la dirección y legal y se documenta"
+          ],
+          "model": [
+            "Lo que pide la Guardia Civil es una **acción retardada**: priorizar conocer el ataque e identificar al atacante. El riesgo es que el atacante **siga llevándose datos** mientras tanto. Por eso propondría una **acción combinada**: mantener su acceso a la base de proyectos, pero con **monitorización reforzada** y documentos señuelo, y proteger lo más sensible (por ejemplo, las copias de seguridad y los datos personales) y preparar el cambio masivo de credenciales para el momento de la contención. La decisión la tomaría la dirección con legal y quedaría documentada."
+          ]
+        },
+        {
+          "prompt": "¿Qué tendrías en cuenta para obtener evidencias del CRM en la nube y de los móviles de los comerciales?",
+          "keyPoints": [
+            "En la nube, considera la ubicación física de los datos (leyes aplicables) y el tipo de nube",
+            "Indica que en SaaS las evidencias típicas son logs de la aplicación y depende de la colaboración del proveedor",
+            "En BYOD, resuelve antes el alcance y las implicaciones legales porque el móvil es personal",
+            "Propone adquirir solo el perfil o datos corporativos, idealmente separados con un MDM",
+            "Indica que todo puede acabar en un juicio y hay que actuar dentro de la legalidad"
+          ],
+          "model": [
+            "En el **CRM en la nube** importan la **ubicación** del centro de datos (determina qué leyes se aplican), si la nube es pública, privada o híbrida y el **modelo de servicio**: al ser **SaaS**, las evidencias serán sobre todo los **logs de la aplicación**, y dependo de lo que el proveedor me deje obtener.",
+            "En los **móviles BYOD**, el teléfono es propiedad del empleado y lo usa para su vida personal, así que antes de tocarlo hay que resolver con legal el **alcance** (solo el correo y las apps corporativas, no sus fotos ni su WhatsApp) y la base legal o su consentimiento. Si la empresa tuviera un **MDM** que separa el perfil de trabajo, adquiriría solo ese perfil. Todo esto puede acabar en un juicio, así que debe hacerse dentro de la legalidad."
+          ]
+        }
+      ],
+      "sections": ["herramientas-corporativas", "fases-plan", "cloud-movil", "politicas-equipos"]
+    }
+  ],
+  "order": [
+    {
+      "id": "forense-t09-o1",
+      "title": "Ordena las seis fases de un plan de contingencia",
+      "items": [
+        "Preparación",
+        "Toma de posición",
+        "Contención",
+        "Erradicación",
+        "Mejora tras la recuperación",
+        "Documentación"
+      ],
+      "why": "Primero se organiza el equipo y la postura; con el incidente en curso se toman posiciones y se contiene en el momento justo; se erradica cuando la investigación está casi terminada; después se mejora para no volver a lo vulnerable y se documentan las lecciones aprendidas.",
+      "sections": ["fases-plan"]
+    },
+    {
+      "id": "forense-t09-o2",
+      "title": "Ordena los cuatro pasos del proceso forense del NIST",
+      "items": [
+        "Recolección",
+        "Examen",
+        "Análisis",
+        "Informe"
+      ],
+      "why": "Primero se recogen las evidencias, luego se examinan y procesan para extraer los datos útiles, después se analizan para responder a las preguntas y, por último, se presentan los resultados en un informe.",
+      "sections": ["forense-en-ir"]
+    },
+    {
+      "id": "forense-t09-o3",
+      "title": "Ordena el modelo de Forrester e Irwin",
+      "items": [
+        "Preparación",
+        "Despliegue",
+        "Evaluación del incidente",
+        "Preservación de la escena",
+        "Investigación y restauración de servicios en paralelo",
+        "Reporting (elaboración de informes)",
+        "Toma de decisiones",
+        "Revisión del incidente"
+      ],
+      "why": "La clave del modelo es preservar la escena antes de tocar nada y, a partir de ahí, investigar y restaurar a la vez, en lugar de una cosa detrás de otra; después se informa, se decide y se revisa.",
+      "sections": ["forense-en-ir"]
+    },
+    {
+      "id": "forense-t09-o4",
+      "title": "Ordena los estados de la amenaza de la matriz estado-acción",
+      "items": [
+        "Intrusión inicial",
+        "Explotación de vulnerabilidad",
+        "Escalado de privilegios",
+        "Reconocimiento interno",
+        "Movimiento lateral",
+        "Mantenimiento de presencia",
+        "Brecha completada"
+      ],
+      "why": "Es el avance típico de un ataque: el atacante entra, ejecuta su código aprovechando un fallo, consigue permisos, explora la red, salta a otros equipos, deja puertas traseras y finalmente logra su objetivo.",
+      "sections": ["plan-contingencia"]
+    }
+  ]
+}

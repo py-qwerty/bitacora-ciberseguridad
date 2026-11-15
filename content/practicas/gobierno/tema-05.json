@@ -1,0 +1,71 @@
+{
+  "course": "gobierno",
+  "number": 5,
+  "open": [
+    {
+      "id": "gobierno-t05-d1",
+      "kind": "corta",
+      "points": 2,
+      "minutes": 6,
+      "prompt": "Describe las fases de la respuesta a incidentes de seguridad e indica qué se hace en cada una.",
+      "keyPoints": [
+        "Describe la fase de plan: taxonomía, estrategia por tipo de incidente, roles y responsabilidades y plan de comunicación",
+        "Describe la detección, análisis e investigación: validar si es real, asignar criticidad y escalar rápido si hace falta",
+        "Describe la mitigación y contención: frenar el daño y volver a la normalidad cuanto antes",
+        "Describe la investigación posterior y mejora: informe, causas, acciones de mejora y seguimiento",
+        "Aclara que recuperar el servicio no cierra el incidente"
+      ],
+      "model": [
+        "La respuesta a incidentes tiene cuatro fases. **Plan**: definir cómo se gestiona cada tipo de incidente según su criticidad, con una **taxonomía**, una estrategia para cada tipo, **roles y responsabilidades** y un **plan de comunicación**. **Detección, análisis e investigación**: identificar pronto los posibles incidentes, **validar** si son reales o falsos positivos, **asignarles criticidad** y **escalarlos** rápidamente si su gravedad lo exige.",
+        "**Mitigación y contención**: aplicar los procedimientos para frenar el daño (bloquear una cuenta, aislar un servidor) y volver a la normalidad cuanto antes. **Investigación posterior y mejora**: elaborar un **informe**, analizar las causas, proponer **acciones de mejora**, enviarlo a las partes interesadas y hacer **seguimiento** de las nuevas medidas. Que el servicio vuelva a funcionar no demuestra que el atacante se haya ido, así que el caso no se cierra al restaurar."
+      ],
+      "tip": "En el examen, el tema 5 solo aparece en el test, no en las preguntas de desarrollo. Esta práctica te sirve para fijar las ideas que el test suele preguntar.",
+      "fromClass": false,
+      "sections": [
+        "incidentes"
+      ]
+    },
+    {
+      "id": "gobierno-t05-d2",
+      "kind": "corta",
+      "points": 2,
+      "minutes": 6,
+      "prompt": "¿Qué es una certificación profesional de seguridad? Compara CISSP y CISM: quién las emite, a qué se orientan y qué exigen para obtenerlas y mantenerlas.",
+      "keyPoints": [
+        "Explica que una certificación la otorga una organización tras un examen, no es un título académico ni una licencia obligatoria y suele exigir renovación",
+        "Asocia CISSP a (ISC)2 y la describe como generalista (técnica y gestión) con ocho dominios",
+        "Asocia CISM a ISACA y la describe como orientada a la gestión y el gobierno de la seguridad",
+        "Indica los requisitos comunes: examen, experiencia profesional, código ético y formación continua",
+        "Menciona el mantenimiento del CISSP con 120 CPE cada tres años"
+      ],
+      "model": [
+        "Una **certificación profesional** es una acreditación que otorga una organización (no una universidad) tras un examen y, a menudo, requisitos de experiencia y ética. No es un título académico ni una licencia obligatoria para ejercer, y suele exigir **renovación** porque la tecnología y las amenazas cambian.",
+        "El **CISSP** lo emite **(ISC)2**: es una certificación **generalista** muy amplia, con **ocho dominios** que van de la gestión del riesgo al desarrollo seguro. Exige aprobar el examen, acreditar **cinco años de experiencia** en al menos dos dominios y adherirse al código ético, y se mantiene con **120 CPE cada tres años**. El **CISM** lo emite **ISACA** y está orientado a la **gestión y el gobierno** de la seguridad. Su proceso es parecido: examen, código ético de ISACA, política de educación continua y experiencia laboral en seguridad."
+      ],
+      "tip": "En el examen, el tema 5 solo aparece en el test, no en las preguntas de desarrollo. Truco para el test: CISSP, CAP, SSCP y CSSLP son de (ISC)2; CISA, CISM, CGEIT y CRISC son de ISACA.",
+      "fromClass": true,
+      "sections": [
+        "certificaciones",
+        "cissp-cap",
+        "isaca-cism"
+      ]
+    }
+  ],
+  "cases": [],
+  "order": [
+    {
+      "id": "gobierno-t05-o1",
+      "title": "Ordena las fases de la respuesta a incidentes",
+      "items": [
+        "Plan",
+        "Detección, análisis e investigación",
+        "Mitigación y contención",
+        "Investigación posterior y mejora"
+      ],
+      "why": "Hay que estar preparado antes del incidente; cuando llega, se valida y se le da criticidad, se contiene el daño y, ya controlado, se investigan las causas para que no se repita.",
+      "sections": [
+        "incidentes"
+      ]
+    }
+  ]
+}
