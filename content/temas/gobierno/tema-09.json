@@ -249,6 +249,7 @@
           "term": "Impacto",
           "text": "La **consecuencia** de un evento: la materialización de una amenaza que compromete la confidencialidad, integridad o disponibilidad de la información y, por tanto, afecta negativamente a los objetivos de la organización. No es la frecuencia de ataques ni la debilidad técnica: es el daño."
         },
+        {"type":"diagram","kind":"flow","title":"De la amenaza al impacto","caption":"Riesgo = f(probabilidad, impacto): cuanto más vulnerable el sistema, más probable que el atacante tenga éxito.","items":[{"icon":"spy","title":"Amenaza","text":"Algo que puede causar daño"},{"icon":"lock-open","title":"Vulnerabilidad","text":"Debilidad que la facilita","tone":"warn"},{"icon":"bolt","title":"Materialización","text":"La amenaza ocurre de verdad"},{"icon":"target","title":"Impacto","text":"Daño a los objetivos","tone":"bad"}],"links":["aprovecha","sube la probabilidad","causa"]},
         {
           "type": "list",
           "title": "Qué hay que saber del impacto",
@@ -447,6 +448,7 @@
           "type": "p",
           "text": "**Comparar ambos** dice cuánto están aportando las salvaguardas: si el inherente es «muy alto» y el real «bajo», los controles funcionan; si apenas cambian, algo falla. La comparación sirve para **evaluar cómo actúan las salvaguardas**, no para demostrar que nunca fallarán ni para sustituir la valoración de las consecuencias."
         },
+        {"type":"diagram","kind":"compare","title":"Riesgo inherente frente a riesgo real (residual)","caption":"Comparar los dos dice cuánto aportan las salvaguardas.","columns":[{"icon":"alert-triangle","title":"Riesgo inherente","text":"También llamado potencial","tone":"bad","items":["**Sin** considerar los controles","f(impacto, vulnerabilidad, probabilidad)"]},{"icon":"shield-check","title":"Riesgo real","text":"En el test: riesgo residual","tone":"warn","items":["**Con** los controles implantados","Valora su eficacia y madurez reales","f(impacto, vulnerabilidad, probabilidad, controles)"]}]},
         {
           "type": "example",
           "title": "Error típico",
@@ -495,6 +497,7 @@
             ["Muy bajo", "Muy bajo", "Muy bajo", "Bajo"]
           ]
         },
+        {"type":"diagram","kind":"matrix","title":"Matriz cualitativa de riesgo: impacto × probabilidad","caption":"Arriba a la izquierda, poco probable pero grave: no se desecha, en la decisión pesa más el impacto.","rows":{"label":"Impacto","items":["Muy alto","Medio","Muy bajo"]},"cols":{"label":"Probabilidad","items":["Muy baja","Media","Muy alta"]},"cells":[["good","bad","bad"],["good","warn","bad"],["good","good","good"]],"marks":[{"row":0,"col":2,"text":"Urgente"},{"row":0,"col":0,"text":"No ignorar"}],"legend":[{"tone":"good","text":"Muy bajo o bajo: riesgo menor, aceptar si es tolerable"},{"tone":"warn","text":"Medio: valorar con los criterios si se trata"},{"tone":"bad","text":"Alto o muy alto: no aceptable, hay que tratarlo"}]},
         {
           "type": "p",
           "text": "Para el semicuantitativo el tema da tres tablas de valoración del impacto de 0 a 5, una por dimensión. En integridad y disponibilidad, el 5 es un activo imprescindible para el servicio sin alternativa y difícil de sustituir, y el 0 una degradación que no afecta al servicio. En confidencialidad, el 5 son consecuencias muy graves con impacto económico y legal, y el 0, sin consecuencias. La idea es **definir criterios objetivos** para que todos puntúen igual."
@@ -960,6 +963,36 @@
         "b": "Incorrecta. El precio de los equipos no refleja el cambio en el riesgo.",
         "c": "Incorrecta. Los números de serie del inventario no dicen nada del riesgo del proceso.",
         "d": "Incorrecta. Una evaluación aprobada no sigue siendo válida automáticamente si cambia el contexto."
+      }
+    },
+    "gobierno-t09-c06": {
+      "section": "tratamiento",
+      "reasoning": "Una salvaguarda es una medida de protección frente a un riesgo. Hay dos momentos en los que puede actuar: **antes** del incidente o **después**. Si actúa antes, reduce las oportunidades de que ocurra, es decir, baja la **probabilidad**: es **preventiva** (por ejemplo, un parche o un control de acceso). Si actúa después, acota las consecuencias, es decir, reduce el **impacto**: es **reactiva** (por ejemplo, una copia de seguridad o un plan de recuperación). Esto encaja con las dos formas de mitigar un riesgo: bajar la probabilidad o bajar las consecuencias. El tema 10 nombra exactamente esos dos tipos. Trampa típica: «correctivas» o «anticipativas» suenan bien, pero no son la pareja que usa el temario.",
+      "options": {
+        "a": "Incorrecta. «Adaptativas» no es un tipo de salvaguarda en el temario. La pareja correcta es preventivas y **reactivas**.",
+        "b": "Incorrecta. «Correctivas» se parece, pero el temario usa **reactivas**: las que limitan el impacto cuando la amenaza ya se ha materializado.",
+        "c": "Incorrecta. «Anticipativas» no es el término del temario; lo que actúa antes del incidente se llama **preventiva**.",
+        "d": "Correcta. **Preventivas** (bajan la probabilidad) y **reactivas** (bajan el impacto) son los dos tipos según su forma de actuación."
+      }
+    },
+    "gobierno-t09-c08": {
+      "section": "conocimiento-riesgo",
+      "reasoning": "El temario clasifica los riesgos según cuánto sabemos de ellos. **Conocido-Conocido**: el riesgo es perfectamente conocido (sabemos que existe y cómo es). **Conocido-Desconocido**: sabemos que podría existir, pero no lo conocemos bien. **Desconocido-Desconocido**: no sabemos nada, ni siquiera que pueda existir. Fíjate en la lógica: la primera palabra dice si sabemos que el riesgo existe y la segunda si lo conocemos en detalle. «Desconocido-Conocido» no tiene sentido: no puedes conocer en detalle algo de cuya existencia no sabes nada. Trampa típica: invertir el orden de las palabras de una categoría real.",
+      "options": {
+        "a": "Incorrecta. **Conocido-Conocido** sí existe: es el riesgo perfectamente conocido.",
+        "b": "Incorrecta. **Conocido-Desconocido** sí existe: sabemos que el riesgo podría existir, pero lo desconocemos.",
+        "c": "Incorrecta. **Desconocido-Desconocido** sí existe: no sabemos nada, ni siquiera que el riesgo pueda existir.",
+        "d": "Correcta. «Desconocido-Conocido» **no figura** en la clasificación. Es la inversión de una categoría real y no tiene sentido lógico."
+      }
+    },
+    "gobierno-t09-c10": {
+      "section": "tecnicas-analisis",
+      "reasoning": "El temario da dos listas distintas: técnicas para **identificar** riesgos (hacer la lista de lo que puede ir mal) y técnicas para **analizarlos** (ponerles probabilidad e impacto). Muchas técnicas están en las dos, por eso hay que comparar con cuidado. La lista de análisis incluye **SWIFT** (Structured What-If Technique, estructura «y si…»), **HACCP** (Hazard Analysis and Critical Control Points, análisis de peligros y puntos de control críticos) y el **análisis de causa y efecto**. Las **listas de verificación** solo aparecen en la de identificación, como método basado en evidencias. Por tanto, para analizar no es una técnica válida según el temario. Trampa típica: pensar que todo lo que sirve para identificar sirve también para analizar.",
+      "options": {
+        "a": "Correcta. Las **listas de verificación** son un método de **identificación** basado en evidencias. No están en la lista de técnicas de análisis.",
+        "b": "Incorrecta. **SWIFT** (estructura «y si…») aparece en las dos listas, también en la de técnicas de análisis.",
+        "c": "Incorrecta. **HACCP** (análisis de peligros y puntos de control críticos) figura en la lista de técnicas de análisis.",
+        "d": "Incorrecta. El **análisis de causa y efecto** está en la lista de técnicas de análisis del temario."
       }
     }
   }

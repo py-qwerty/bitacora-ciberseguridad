@@ -266,6 +266,7 @@
           "title": "Caso práctico con números",
           "text": "Una tienda online hace copia cada hora y se compromete a volver a vender en cuatro horas. Cae a las 10:00. La última copia es de las 9:00, así que el **RPO es de una hora** (se pierden los pedidos entre 9:00 y 10:00). El servicio vuelve a las 14:00, así que el **RTO es de cuatro horas**. La pérdida real equivale a 1 + 4 = 5 horas de actividad. Si el MTD fuese de tres horas, el plan no sería suficiente."
         },
+        {"type":"diagram","kind":"compare","title":"RTO, RPO y MTD: los tres tiempos del BIA","caption":"Pérdida real ≈ RTO + RPO; si supera el MTD, el plan no basta.","columns":[{"icon":"history","title":"RPO","text":"Punto de recuperación objetivo","tone":"accent","items":["Mira **hacia atrás** desde el desastre","A qué estado vuelven los datos","Último backup o transacción consolidada","Copia 9:00, caída 10:00 → 1 hora"]},{"icon":"clock","title":"RTO","text":"Tiempo de recuperación objetivo","tone":"good","items":["Mira **hacia delante** desde el desastre","Cuánto se tarda en volver a operar","Caída 10:00, vuelve 14:00 → 4 horas"]},{"icon":"alert-triangle","title":"MTD","text":"Tiempo máximo de caída tolerable","tone":"warn","items":["Límite global","Más tiempo caído = daño inasumible","MTD de 3 horas → plan insuficiente"]}]},
         {
           "type": "exam",
           "text": "La trampa clásica es cruzar las siglas: «RTO = punto de recuperación objetivo» o «tiempo de recuperación al origen» son falsas. RTO es **tiempo** de recuperación **objetivo**; RPO es **punto** de recuperación **objetivo**. En los casos con cifras, el plazo para volver a funcionar es el RTO y la antigüedad admisible de los datos es el RPO."
@@ -530,6 +531,7 @@
             "**Informe (Reporting)**: redactar el informe pericial con los análisis realizados, los resultados y las conclusiones basadas en ellos."
           ]
         },
+        {"type":"diagram","kind":"flow","title":"Las cuatro etapas del análisis forense (NIST)","caption":"Cada etapa transforma lo que recibe: dispositivos → datos → información → evidencias.","items":[{"icon":"archive","title":"Recolección","text":"Identificar y adquirir sin alterar"},{"icon":"filter","title":"Examen","text":"Extraer lo relevante, descartar el resto"},{"icon":"microscope","title":"Análisis","text":"Responder qué, cómo y quién"},{"icon":"report-analytics","title":"Informe","text":"Análisis, resultados y conclusiones","tone":"good"}],"links":["datos","información","evidencias"]},
         {
           "type": "term",
           "term": "ISO/IEC 27037",
@@ -614,6 +616,7 @@
           "title": "Ejemplo de entrada en el registro de custodia",
           "text": "Evidencia: EV-2026-014 (disco SATA 1 TB, n.º serie WX12...)\nSHA-256: 9f2c...e71a\nOperación: entrega de la investigadora L. Martín al custodio R. Gil\nInicio: 03/11/2026 09:15  Fin: 03/11/2026 09:20\nFirma entrega: L. Martín   Firma recepción: R. Gil"
         },
+        {"type":"diagram","kind":"flow","title":"La cadena de custodia, de la recogida al juicio","caption":"En cada operación se anota qué se hizo, quién, y la fecha y hora de inicio y fin.","items":[{"icon":"archive","title":"Recogida","text":"Se calcula el hash del original"},{"icon":"users","title":"Custodios","text":"Cada entrega queda documentada y firmada"},{"icon":"microscope","title":"Análisis","text":"El hash coincide: sin alteraciones"},{"icon":"gavel","title":"Juicio","text":"Lo presentado es lo recogido","tone":"good"}],"links":["entrega registrada","entrega registrada","informe"]},
         {
           "type": "exam",
           "text": "Si preguntan cómo se mantiene la cadena de custodia, la respuesta es **todas**: documentar custodios, usar hash y registrar operaciones. El hash solo no basta (no dice quién la tuvo) y el nombre del custodio solo tampoco (falta fecha y operación). La finalidad principal es la **trazabilidad desde la recogida hasta la presentación**, no identificar al autor del delito."
@@ -1137,6 +1140,27 @@
         "c": "Incorrecta. No hay mentira en el dictamen; el problema está en actuar con conflicto de interés.",
         "d": "Incorrecta. Poder actuar de oficio no quita el conflicto de interés: el problema sigue ahí."
       }
+    },
+    "forense-t01-c02": {
+      "section": "tipos-incidente",
+      "reasoning": "Un incidente es un evento no deseado que puede comprometer las operaciones de una organización. No tiene por qué ser un ataque: también lo es una inundación que deja sin servicio el centro de datos o un empleado que borra por error una base de datos. El temario lista cuatro orígenes habituales: desastres naturales, ataques externos, ataques internos (los llamados insiders, personas de dentro de la organización) y errores humanos. Las opciones A, B y C son tres ejemplos de esa lista, así que ninguna de ellas por sí sola es la respuesta completa. La trampa típica es pensar solo en atacantes: si ves «Todas las anteriores» y cada opción es un origen real de incidentes, esa es la buena.",
+      "options": {
+        "a": "Incorrecta. Los desastres naturales (terremotos, incendios, inundaciones) sí son incidentes, y el temario los cita como imposibles de evitar y predecir. Pero no son los únicos de la lista, así que como respuesta única se queda corta.",
+        "b": "Incorrecta. Los ataques son incidentes: los externos vienen de fuera de la organización y los internos, de los propios empleados o colaboradores (insiders). La opción tiene una errata («externos y/o externos») que viene del temario, pero el problema es que no es el único tipo de incidente.",
+        "c": "Incorrecta. Los errores humanos son inherentes a cualquier actividad y a menudo los provoca la **ingeniería social** (engañar a una persona para que haga algo que no debe). Son incidentes, pero no excluyen a los demás.",
+        "d": "Correcta. Desastres naturales, ataques (externos e internos) y errores humanos son los incidentes más comunes según el temario. Por eso la opción que los engloba a todos es la correcta."
+      }
+    },
+    "forense-t01-c04": {
+      "section": "procesos-clave",
+      "reasoning": "El temario dice que todas las metodologías de gestión de incidentes coinciden en cuatro procesos clave. Primero, **sistemas de detección**: alertas tempranas para saber cuanto antes que hay un ataque. Segundo, **procedimientos de respuesta**: un plan que dice qué hacer en cada escenario y quién es responsable. Tercero, **estrategia de comunicación**: un punto central que recibe la información y la difunde. Cuarto, **investigación y análisis**: estudiar el incidente, con ayuda del análisis forense, para aprender lecciones. Comparando con las opciones, A, C y D aparecen tal cual; la B cambia «respuesta» por «acción». La trampa es que las cuatro suenan razonables: aquí hay que fijarse en el nombre exacto que usa el temario.",
+      "options": {
+        "a": "Incorrecta. Los **sistemas de detección** son el primer proceso clave: mecanismos de alerta temprana que recogen eventos y gestionan alertas de seguridad para reaccionar con prontitud. Sí forman parte de la gestión de incidentes.",
+        "b": "Correcta. El temario no habla de «procedimientos de acción», sino de **procedimientos de respuesta**: el plan con las acciones para cada escenario y sus responsables. Es la única opción cuyo nombre no coincide con los cuatro procesos clave.",
+        "c": "Incorrecta. La **estrategia de comunicación** es un proceso clave: en plena crisis se fija un punto central que recibe la información y la difunde a terceros, para evitar mensajes contradictorios.",
+        "d": "Incorrecta. La **investigación y análisis** es el cuarto proceso clave: estudiar a fondo el incidente, con técnicas forenses, para extraer lecciones para el futuro."
+      },
+      "doubt": "La pregunta está mal planteada: «procedimientos de acción» es casi un sinónimo de «procedimientos de respuesta», el nombre que da el temario, así que la diferencia es solo de vocabulario. Se marca la B porque es la única que no coincide literalmente con los cuatro procesos clave, pero el temario no incluye soluciones del test que lo confirmen."
     }
   }
 }

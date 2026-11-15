@@ -520,6 +520,7 @@
             ]
           ]
         },
+        {"type":"diagram","kind":"tree","title":"¿Tiempo de inactividad o tiempo absoluto?","caption":"Una sesión robusta usa los dos a la vez.","question":{"icon":"clock","title":"¿La actividad del usuario reinicia el reloj?"},"branches":[{"label":"Sí, cada petición","result":{"icon":"refresh","title":"Tiempo de inactividad","text":"Cierra sesiones abandonadas"}},{"label":"No, vence aunque siga activo","result":{"icon":"door-exit","title":"Tiempo absoluto","text":"Techo total: limita un ID robado"}}]},
         {
           "type": "list",
           "title": "Lista de comprobación para una sesión robusta",
@@ -1394,6 +1395,28 @@
         "c": "Incorrecta. Con todos los permisos, el robo daría acceso a todo; usarlo poco no reduce lo que permite.",
         "d": "Incorrecta. Sin caducidad, el token robado serviría indefinidamente."
       }
+    },
+    "sistemas-t05-c02": {
+      "section": "cookies",
+      "reasoning": "Una cookie de sesión es como la pulsera de un festival: quien la lleva entra como si fuera tú. Por eso hay que protegerla frente a tres formas de robo o abuso. Secure hace que el navegador solo la envíe por HTTPS (HTTP cifrado), así no se puede leer espiando la red. HttpOnly prohíbe que los scripts de la página accedan a ella, lo que frena el robo mediante XSS. Expires fija una fecha de caducidad, de modo que una cookie robada deja de servir pronto en vez de valer indefinidamente. La lista de comprobación del tema recomienda las cookies Secure y HttpOnly y los tiempos de sesión limitados. Como las tres suman protección, la respuesta es D. La trampa es quedarse con una sola opción porque «suena» a seguridad.",
+      "options": {
+        "a": "Incorrecta. Secure ayuda, porque la cookie solo viaja por HTTPS, pero no es el único parámetro que la hace más segura.",
+        "b": "Incorrecta. HttpOnly ayuda, porque impide que un script la lea en un ataque XSS, pero tampoco es el único.",
+        "c": "Incorrecta. Expires ayuda, porque limita el tiempo durante el que una cookie robada sigue siendo útil, pero solo es una de las tres medidas.",
+        "d": "Correcta. Secure, HttpOnly y Expires protegen frente a riesgos distintos (espionaje en la red, robo por scripts y uso prolongado), así que las tres hacen la cookie más segura."
+      },
+      "doubt": "El temario nombra expresamente Secure, HttpOnly y SameSite, y habla de tiempos de sesión, pero no cita el atributo Expires como tal. Se considera parte de la defensa por limitar la vida de la cookie, como también hace la pregunta del banco sobre cookies del mismo tema."
+    },
+    "sistemas-t05-c09": {
+      "section": "administracion-defensas",
+      "reasoning": "Autenticar es comprobar quién eres; autorizar es decidir qué puedes hacer una vez dentro. La separación de roles y tareas reparte las funciones para que nadie acumule demasiado poder, en línea con el principio de mínimos privilegios. La administración robusta de permisos asigna a cada rol solo lo que necesita y lo revisa, por ejemplo con modelos como MAC (Mandatory Access Control, control de acceso obligatorio) o DAC (Discretionary Access Control, control de acceso discrecional). La política de contraseñas pertenece a la autenticación, pero si un atacante adivina la contraseña de un administrador, todos los permisos de ese rol quedan en sus manos. Por eso el test la incluye y la respuesta esperada es «Todas las anteriores». Para reconocerla: si aparecen varias medidas razonables de control de acceso y una opción que las reúne, suele ser esa.",
+      "options": {
+        "a": "Incorrecta. La política robusta de contraseñas protege sobre todo la autenticación; por sí sola no decide qué puede hacer cada usuario, aunque contribuye a que los permisos no caigan en manos ajenas.",
+        "b": "Incorrecta. Separar roles y tareas es una defensa de autorización clave, porque evita que una sola persona acumule permisos críticos, pero no es la única que propone la pregunta.",
+        "c": "Incorrecta. Administrar con rigor los permisos (asignar, revisar y retirar) es fundamental, pero tampoco es la única medida de la lista.",
+        "d": "Correcta. Las tres medidas suman a un control de acceso sólido: credenciales difíciles de robar, funciones separadas y permisos bien gestionados."
+      },
+      "doubt": "El temario no recoge esta lista tal cual. Su resumen de defensas de autorización habla de mínimos privilegios, roles bien definidos y comprobación en el servidor, y la política de contraseñas es en rigor una medida de autenticación. Se elige «Todas las anteriores» porque las tres opciones contribuyen al control de acceso y es la respuesta que pretende el test."
     }
   }
 }

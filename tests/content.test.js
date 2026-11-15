@@ -12,7 +12,8 @@ test('all fifty topics have thirty distinct questions with valid source pages', 
     const qs = bank.questions.filter(q => q.topic === topic.id);
     const source = sources.find(s => s.course === topic.course && s.topic === topic.number);
     assert.ok(source, `Missing source: ${topic.course}/${topic.number}`);
-    assert.equal(qs.filter(q => !q.fromClass).length, 30);
+    assert.equal(qs.filter(q => !q.fromClass && !q.fromCampus).length, 30);
+    assert.ok(qs.filter(q => q.fromCampus).length <= 10);
     assert.ok(qs.filter(q => q.fromClass).length <= 10);
     const signatures = qs.map(q => JSON.stringify([q.text.toLocaleLowerCase('es'), q.options.map(o => o.text.toLocaleLowerCase('es'))]));
     assert.equal(new Set(signatures).size, qs.length, `Duplicate: ${topic.course}/${topic.number}`);
@@ -36,4 +37,18 @@ test('distributed data excludes private campus attempts and host source paths', 
   const text = JSON.stringify(bank);
   assert.doesNotMatch(text, /\/Users\/(?!\[USUARIO\])/);
   assert.doesNotMatch(text, /quiz\/review\.php\?attempt=|source_pdf|MoodleSession|access_token|refresh_token/);
+});
+
+test('campus tests keep the campus order and only reference questions of their own course', () => {
+  const byId = new Map(bank.questions.map(q => [q.id, q]));
+  for (const [topicId, ids] of Object.entries(bank.campus || {})) {
+    const topic = bank.topics.find(t => t.id === Number(topicId));
+    assert.ok(topic && ids.length >= 1 && ids.length <= 10, topicId);
+    for (const id of ids) assert.equal(byId.get(id)?.course, topic.course, id);
+  }
+  for (const q of bank.questions.filter(q => q.fromCampus)) {
+    assert.equal(q.source.kind, 'campus-reasoned', q.id);
+    assert.match(q.id, /-t\d{2}-c\d{2}$/);
+    assert.ok(Object.values(bank.campus).some(ids => ids.includes(q.id)), `Huérfana: ${q.id}`);
+  }
 });

@@ -103,6 +103,7 @@
             ["Fuera de la UE/EEE", "Se le aplica la LSSI cuando dirija sus servicios específicamente al territorio español"]
           ]
         },
+        {"type":"diagram","kind":"tree","title":"¿Se le aplica la LSSI?","caption":"A las Administraciones públicas, en general no, salvo si hacen algo económico.","question":{"icon":"coin","title":"¿Obtiene ingresos con su actividad en Internet?","text":"Directos (ventas) o indirectos (publicidad)"},"branches":[{"label":"No","result":{"icon":"x","title":"Fuera de la LSSI","text":"Ej.: web personal sin anuncios ni ventas"}},{"label":"Sí","tree":{"question":{"icon":"map-pin","title":"¿Dónde está establecido el prestador?"},"branches":[{"label":"España","result":{"icon":"check","title":"Se le aplica plenamente","tone":"accent"}},{"label":"Otro país UE/EEE","result":{"icon":"flag","title":"Ley de su país","text":"España solo restringe en casos concretos"}},{"label":"Fuera de UE/EEE","tree":{"question":{"icon":"target","title":"¿Dirige sus servicios a España?","text":"De forma específica"},"branches":[{"label":"Sí","result":{"icon":"check","title":"Se le aplica la LSSI","tone":"accent"}},{"label":"No","result":{"icon":"x","title":"No se le aplica la LSSI"}}]}}]}}]},
         {
           "type": "term",
           "term": "Principio de libre prestación",
@@ -258,6 +259,7 @@
           "title": "Caso real: alasbarricadas.org contra Ramoncín (STS 72/2011)",
           "text": "Un foro alojaba comentarios injuriosos contra el cantante Ramoncín. El Supremo condenó al foro por **falta de diligencia**: tenía desactualizados los datos de registro del dominio, no probó que su correo de contacto funcionara, no tenía moderador ni filtros y no revisaba periódicamente los contenidos. Moraleja: si dificultas que la víctima te avise, no puedes escudarte en que no lo sabías."
         },
+        {"type":"diagram","kind":"tree","title":"¿Responde el alojamiento o el buscador por un contenido ajeno?","caption":"El conocimiento efectivo no exige resolución previa: basta, por ejemplo, una denuncia clara.","question":{"icon":"eye","title":"¿Tiene conocimiento efectivo de la ilicitud?","text":"Sabe de verdad que el contenido es ilícito"},"branches":[{"label":"No","result":{"icon":"shield-check","title":"No responde","text":"Exento mientras no lo sepa","tone":"good"}},{"label":"Sí","tree":{"question":{"icon":"clock","title":"¿Retira el contenido o el enlace con diligencia?"},"branches":[{"label":"Sí","result":{"icon":"shield-check","title":"No responde","tone":"good"}},{"label":"No","result":{"icon":"gavel","title":"Responde","text":"Ej.: foro condenado por falta de diligencia","tone":"bad"}}]}}]},
         {
           "type": "exam",
           "text": "Pregunta clásica: ¿se requiere conocimiento efectivo y quién debe comunicarlo? Respuesta: **sí** se requiere conocimiento efectivo, pero **no** hace falta resolución previa de un órgano competente (ni judicial ni administrativo); puede llegar por otra vía. Las trampas dicen «no se requiere conocimiento efectivo» o «tiene que comunicarlo una autoridad judicial / administrativa»."
@@ -370,6 +372,7 @@
           "title": "Caso práctico",
           "text": "Una academia vendió a Marta un curso de Excel y guardó su correo. Puede enviarle, sin pedirle permiso expreso, ofertas de **otros cursos propios** de ofimática, siempre que cada correo incluya un enlace sencillo y gratuito para darse de baja. No puede ceder su correo a una empresa de seguros ni anunciarle productos de otras empresas del grupo. Y si Marta pide la baja, debe atenderse sin exigirle nada a cambio ni cambiar de remitente para «esquivar» su petición."
         },
+        {"type":"diagram","kind":"tree","title":"¿Puedo enviarle publicidad por correo electrónico?","caption":"En todos los casos debe poder darse de baja de forma sencilla y gratuita.","question":{"icon":"mail","title":"¿Dio su consentimiento expreso previo?","text":"Por ejemplo, marcó «quiero recibir ofertas»"},"branches":[{"label":"Sí","result":{"icon":"check","title":"Sí, puedes enviarla","tone":"good"}},{"label":"No","tree":{"question":{"icon":"user-check","title":"¿Es cliente y sus datos se obtuvieron lícitamente?"},"branches":[{"label":"No","result":{"icon":"x","title":"No: sería spam","tone":"bad"}},{"label":"Sí","tree":{"question":{"icon":"packages","title":"¿Anuncias productos propios similares a lo contratado?"},"branches":[{"label":"Sí","result":{"icon":"check","title":"Sí, por la excepción del cliente","text":"Con baja sencilla y gratuita en cada mensaje","tone":"good"}},{"label":"No","result":{"icon":"x","title":"No puedes","text":"Ni productos ajenos ni de otras empresas","tone":"bad"}}]}}]}}]},
         {
           "type": "term",
           "term": "Identificación de la comunicación comercial (art. 20 LSSI)",
@@ -1094,6 +1097,27 @@
         "c": "Incorrecta. Un sello no hace irrebatible un contrato; su validez y su prueba siguen las reglas generales.",
         "d": "Incorrecta. La oposición a la publicidad debe atenderse siempre."
       }
+    },
+    "ciberdelitos-t04-c01": {
+      "section": "ambito",
+      "reasoning": "La LSSI se aplica a los servicios de la sociedad de la información que son una actividad económica para quien los presta. La pregunta es qué se entiende por «actividad económica». El temario lo precisa: existe cuando el responsable recibe ingresos **directos**, por ejemplo por vender en una tienda en línea, o **indirectos**, por ejemplo por publicidad o patrocinio. Así, un blog gratuito que vive de anuncios también queda dentro de la ley. El temario no añade ninguna restricción por tipo de cliente, ni empresa-consumidor ni empresa-empresa. La trampa típica es añadir la palabra «solo» para recortar el concepto.",
+      "options": {
+        "a": "Correcta. Recoge la idea del temario: hay actividad económica con **ingresos directos o indirectos** derivados de la actividad electrónica, sin más requisitos.",
+        "b": "Incorrecta. Excluye los ingresos indirectos. Una web gratuita para el usuario pero financiada con publicidad también es actividad económica para la LSSI.",
+        "c": "Incorrecta. Añade una limitación que la ley no recoge: la actividad económica no depende de que la relación sea entre empresa y consumidor.",
+        "d": "Incorrecta. Tampoco se limita a relaciones entre empresas. Además, olvida los ingresos indirectos."
+      }
+    },
+    "ciberdelitos-t04-c04": {
+      "section": "cookies-obligaciones",
+      "reasoning": "Una **cookie** es un pequeño archivo que una web guarda en el navegador para recordar datos, como la sesión o los hábitos de navegación. El artículo 22.2 de la LSSI permite usarlas solo si el usuario ha dado su consentimiento después de recibir información clara y completa. El temario lo resume en dos obligaciones: el **deber de información** y la **obtención del consentimiento**. Según la guía de la AEPD, el consentimiento puede darse con un clic en «acepto» o con una acción inequívoca, pero nunca se deduce de la simple inactividad. No hace falta pedir ninguna autorización a la AEPD. La trampa típica es quedarse con una sola de las dos obligaciones o inventar una autorización administrativa previa.",
+      "options": {
+        "a": "Incorrecta. El consentimiento no se presume por navegar sin más. La guía de la AEPD exige una acción inequívoca tras recibir información clara, y precisa que la inactividad nunca vale como consentimiento.",
+        "b": "Incorrecta. Informar no basta. La LSSI exige **las dos cosas**: informar y obtener el consentimiento.",
+        "c": "Correcta. Son las dos obligaciones del artículo 22.2 de la LSSI: **informar** sobre el uso y los fines de las cookies y **obtener el consentimiento** del usuario.",
+        "d": "Incorrecta. No existe una autorización previa de la AEPD para usar cookies. La AEPD publica una guía y sanciona los incumplimientos, pero no autoriza cada web."
+      },
+      "doubt": "Hay cookies exentas de consentimiento: las estrictamente necesarias para transmitir una comunicación o prestar un servicio pedido por el usuario. La opción C describe la regla general, que es lo que pregunta el test."
     }
   }
 }

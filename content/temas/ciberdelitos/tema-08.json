@@ -87,6 +87,7 @@
           "type": "p",
           "text": "La **estafa clásica** tiene cuatro piezas que conviene memorizar: **ánimo de lucro** (buscar un beneficio económico), **engaño bastante** (suficiente para que caiga una persona normal), que provoca un **error** en la víctima, y que la lleva a hacer un **acto de disposición** (pagar, transferir, entregar) en **perjuicio** propio o de otro."
         },
+        {"type":"diagram","kind":"flow","title":"Las piezas de la estafa clásica","caption":"El engaño provoca el error, y el error lleva a la víctima a pagar.","items":[{"icon":"coin","title":"Ánimo de lucro","text":"Busca un beneficio económico"},{"icon":"ghost","title":"Engaño bastante","text":"Suficiente para una persona normal"},{"icon":"alert-circle","title":"Error","text":"La víctima cree algo falso"},{"icon":"transfer-out","title":"Acto de disposición","text":"Paga, transfiere o entrega"},{"icon":"thumb-down","title":"Perjuicio","text":"Propio o de otra persona","tone":"bad"}],"links":["mueve al","provoca un","lleva a un","causa un"]},
         {
           "type": "analogy",
           "text": "Piensa en dos ladrones. El primero te convence con una historia de que le prestes 500 €: tú mismo le das el dinero (engaño a una persona). El segundo no habla contigo: entra en tu banca online con tus claves y se hace una transferencia (engaña a una máquina). El primero es la **estafa clásica**, aunque use el correo electrónico; el segundo es la **estafa informática**."
@@ -114,6 +115,7 @@
           "type": "p",
           "text": "Las estafas por Internet van desde las muy sencillas (sin planificación ni conocimientos técnicos) hasta las muy sofisticadas (preparación detallada, autores muy cualificados y medios técnicos avanzados, en varias fases). El tema no puede recogerlas todas y elige las más representativas."
         },
+        {"type":"diagram","kind":"tree","title":"¿Qué modalidad de estafa es?","caption":"Copiar o falsificar la tarjeta ya es otro delito: la falsificación de tarjetas.","question":{"icon":"help-circle","title":"¿Cómo se consigue el dinero?"},"branches":[{"label":"Engañando a una persona","result":{"icon":"user","title":"Estafa clásica","text":"Internet solo es el medio facilitador","tone":"accent"}},{"label":"Manipulando un sistema","result":{"icon":"terminal-2","title":"Estafa informática","text":"Transferencia no consentida por el dueño","tone":"accent"}},{"label":"Con una tarjeta ajena","tree":{"question":{"icon":"wallet","title":"¿Se copia o falsifica la tarjeta?"},"branches":[{"label":"No, usa la tarjeta o sus datos","result":{"icon":"click","title":"Uso fraudulento de tarjetas","text":"Es estafa; p. ej., el carding","tone":"accent"}},{"label":"Sí, la clona","result":{"icon":"replace","title":"Falsificación de tarjetas","text":"P. ej., el skimming","tone":"accent"}}]}},{"label":"Creando o vendiendo programas","result":{"icon":"code","title":"Programas para estafar","text":"P. ej., vender un kit de phishing","tone":"accent"}}]},
         {
           "type": "exam",
           "text": "Pregunta típica: «¿qué dos tipos de fraude relacionados con Internet distingue el Código Penal?». Respuesta: los que usan **Internet como elemento facilitador** (estafa clásica, por ejemplo en el comercio electrónico) y las **estafas informáticas** (manipulación informática). Trampas: dividirlas por cuantía («graves y menos graves»), por canal («correo y web») o inventar parejas como «informáticas y tecnológicas»."
@@ -644,6 +646,7 @@
           "type": "analogy",
           "text": "La banda magnética es como una cinta de casete: cualquiera con el aparato adecuado la copia. El chip EMV es como un portero que responde a cada pregunta con una contraseña distinta cada vez: escuchar una respuesta no sirve para la siguiente."
         },
+        {"type":"diagram","kind":"flow","title":"El ciclo del skimming","caption":"El chip EMV cifra la operación: es la gran barrera contra este ciclo.","items":[{"icon":"camera","title":"Obtención","text":"Banda y PIN: cajero trucado o empleado"},{"icon":"packages","title":"Distribución","text":"Venta de dumps en foros y darknet"},{"icon":"replace","title":"Clonación","text":"Impresora, hologramas, grabador y troqueladora"},{"icon":"id","title":"Uso","text":"En otro país, con documento falso","tone":"bad"}],"links":["datos copiados","dumps comprados","tarjeta clonada"]},
         {
           "type": "exam",
           "text": "«Uno de los principales mercados negros de tarjetas» → **darknet**. Trampa: «aplicaciones de mensajería instantánea» (ICQ era la vía de contacto, no el mercado). En casos: la rapidez de compras en otro país se explica por la **distribución electrónica** y por **actores en lugares distintos**, sin mover el plástico original; la ventana de uso depende de **límites, detección del titular y controles antifraude**, no del color del plástico ni de la nacionalidad sola."
@@ -991,6 +994,27 @@
         "b": "Correcta. Refuerzan una apariencia de autoridad y reducen la consulta a terceros que podrían cuestionar el pago.",
         "c": "Incorrecta. Los documentos son falsos y no acreditan que exista el dinero.",
         "d": "Incorrecta. No hay verificación independiente: todo procede del propio remitente."
+      }
+    },
+    "ciberdelitos-t08-c03": {
+      "section": "carding",
+      "reasoning": "En el carding, el delincuente no tiene la tarjeta en la mano: compra por Internet o por teléfono con los datos de una tarjeta ajena. El temario dice que esos datos son los grabados físicamente en la tarjeta: la **numeración**, la **fecha de caducidad** y el **código de verificación** (CVC, CVC2 o CID), un número de tres o cuatro cifras que sirve para comprobar que se tiene la tarjeta. De las cuatro opciones, solo la numeración forma parte de esa lista. La entidad bancaria y el nombre del cliente no son los datos que permiten pagar. La trampa es elegir «Ninguna» porque falta la caducidad y el CVC; pero la numeración sí es uno de los datos concretos.",
+      "options": {
+        "a": "Correcta. La **numeración de la tarjeta** es el dato principal del carding, junto con la fecha de caducidad y el código CVC, que el temario cita como datos grabados en la tarjeta.",
+        "b": "Incorrecta. La entidad bancaria no es un dato que se use para pagar: se deduce de la propia numeración y no permite hacer compras.",
+        "c": "Incorrecta. El nombre del titular no figura entre los datos que el temario cita para el carding (numeración, caducidad y CVC).",
+        "d": "Incorrecta. La numeración sí es uno de los datos concretos del carding, así que «ninguna» no es adecuada."
+      },
+      "doubt": "La pregunta pide «esos datos concretos» y la opción A solo da uno de los tres que cita el temario (numeración, caducidad y CVC). Se elige A por ser el único dato correcto entre las opciones, pero podría defenderse «Ninguna» si se exige la lista completa."
+    },
+    "ciberdelitos-t08-c10": {
+      "section": "rogue",
+      "reasoning": "El temario define el **rogue** como un tipo de malware que, generalmente, se instala **de manera oculta** durante la navegación por webs poco seguras o a través de descargas directas o redes P2P (de igual a igual). Una vez dentro, lanza ventanas emergentes (pop-ups) que avisan de un virus peligroso. La víctima descarga el supuesto antivirus, que «confirma» la infección y le pide pagar una licencia con tarjeta. El fraude está en que ni el virus ni el antivirus existen. La opción C reproduce la definición. La trampa está en los detalles añadidos: «en dispositivos USB» o «solo en la darknet».",
+      "options": {
+        "a": "Incorrecta. No se instala «en dispositivos USB»: se instala en el equipo de la víctima mientras navega. El USB es un detalle inventado.",
+        "b": "Incorrecta. No hace falta entrar en la **darknet** (la parte de Internet accesible solo con herramientas especiales). Basta con webs poco seguras o descargas de origen dudoso.",
+        "c": "Correcta. Es la definición del temario: se instala **de manera oculta** durante la navegación por webs poco seguras o mediante descargas.",
+        "d": "Incorrecta. La opción C coincide con la definición del temario, así que «ninguna» no procede."
       }
     }
   }

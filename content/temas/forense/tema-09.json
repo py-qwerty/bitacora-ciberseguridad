@@ -256,6 +256,7 @@
             ["Nivel de seguridad crítico", "Controlador de dominio, base de datos de clientes, copias de seguridad."]
           ]
         },
+        {"type":"diagram","kind":"layers","title":"Anillos de seguridad, de fuera hacia dentro","caption":"Si hay que contener, se limita el paso entre anillos y se aísla el afectado.","items":[{"icon":"wifi","title":"Nivel bajo","text":"Wifi de invitados, web pública"},{"icon":"device-desktop","title":"Nivel medio","text":"Ordenadores de oficina"},{"icon":"server","title":"Nivel alto","text":"Servidores de aplicaciones internas"},{"icon":"shield-lock","title":"Nivel crítico","text":"Controlador de dominio, datos de clientes, copias","tone":"accent"}]},
         {
           "type": "list",
           "title": "Otras políticas de red",
@@ -346,6 +347,7 @@
             "**Documentación** de lo ocurrido, como archivo, referencia y fuente de **lecciones aprendidas**."
           ]
         },
+        {"type":"diagram","kind":"flow","title":"Las seis fases del plan de contingencia","caption":"La contención llega en el momento justo; la erradicación, cuando la investigación casi termina.","items":[{"icon":"users","title":"Preparación","text":"Equipo, tiempos y postura de actuación"},{"icon":"radar","title":"Toma de posición","text":"Alertas, monitorización y reforzar lo crítico"},{"icon":"shield-half","title":"Contención","text":"Breve y agresiva: desconectar, apagar, cerrar puertos","tone":"warn"},{"icon":"user-x","title":"Erradicación","text":"Quitar los accesos del atacante, de forma quirúrgica"},{"icon":"stairs","title":"Mejora","text":"Aplicar recomendaciones; no volver a lo vulnerable"},{"icon":"book-2","title":"Documentación","text":"Archivo y lecciones aprendidas"}]},
         {
           "type": "analogy",
           "text": "Imagina que descubres a un ladrón que entra cada noche en tu almacén. Si cambias la cerradura ya, se acaba el robo, pero él sabe que lo has descubierto y no sabrás quién es ni qué se llevó. Si esperas con cámaras ocultas, puedes identificarlo, pero sigue robando unos días. O puedes poner candado al cuarto de lo más valioso y dejar el resto vigilado. Son las tres posturas del tema."
@@ -360,6 +362,7 @@
             ["Acción combinada", "Punto intermedio: se **contienen solo algunos aspectos** y el resto se retrasa para facilitar la investigación.", "Exige coordinar bien qué se toca y qué no."]
           ]
         },
+        {"type":"diagram","kind":"tree","title":"¿Cuándo actúo contra el atacante?","caption":"Depende siempre del objetivo de la acción.","question":{"icon":"target","title":"¿Cuál es el objetivo?"},"branches":[{"label":"Detenerlo ya","result":{"icon":"bolt","title":"Acción inmediata","text":"Pero alerta al atacante","tone":"warn"}},{"label":"Investigarlo","result":{"icon":"eye","title":"Acción retardada","text":"Sigue activo mientras se investiga","tone":"warn"}},{"label":"Las dos cosas","result":{"icon":"adjustments","title":"Acción combinada","text":"Se contienen solo algunos aspectos","tone":"accent"}}]},
         {
           "type": "example",
           "title": "Caso práctico: acción combinada",
@@ -1007,6 +1010,27 @@
         "b": "Incorrecta. Desactivar los registros elimina la principal fuente de evidencias.",
         "c": "Correcta. Inventario actualizado, registros centralizados, copias y procedimientos documentados.",
         "d": "Incorrecta. Una lista de herramientas sin procedimientos no basta; el tema insiste en documentarlos."
+      }
+    },
+    "forense-t09-c04": {
+      "section": "herramientas-corporativas",
+      "reasoning": "Durante una respuesta a incidentes trabajan muchas personas a la vez, y el orden es vital. El informe de situación es la foto común y actualizada de la investigación, como la pizarra de una sala de crisis. El temario enumera lo que contiene: evidencias con fecha y hora de recolección, sistemas afectados, archivos de interés, datos accedidos o robados, actividad del atacante, IOC (indicadores de compromiso) de red y de host, **cuentas comprometidas** y tareas pendientes. Las opciones A y C están literalmente en esa lista. La B («cuando se trata de un equipo que no se puede apagar») no es un contenido, sino un fragmento de otra pregunta. Como el test solo admite una respuesta y A y C son ambas verdaderas, la intención es la D. La trampa es quedarse con una sola opción verdadera cuando hay dos.",
+      "options": {
+        "a": "Incorrecta. La lista de **cuentas comprometidas**, tanto locales como de dominio, sí forma parte del informe de situación. Pero no es lo único: la C también lo es, así que como respuesta única se queda corta.",
+        "b": "Incorrecta. «Cuando se trata de un equipo que no se puede apagar» no es un contenido del informe, sino una frase sin relación que parece copiada de otra pregunta (la de los equipos críticos que no se pueden detener).",
+        "c": "Incorrecta. La **lista de evidencias** con fecha y hora de recolección, asegurando la cadena de custodia, sí es parte del informe. Pero la A también lo es, así que no es la única respuesta.",
+        "d": "Correcta. Es la respuesta que pretende el test, porque las dos opciones con sentido (A y C) son contenidos del informe de situación según el temario. Se marca a pesar de la errata de la B."
+      },
+      "doubt": "La pregunta está mal construida. A y C son contenidos literales del informe de situación, pero la B es una frase sin sentido aquí, así que «Todas las anteriores» no es cierta en sentido estricto. Se marca la D porque es la única forma de recoger A y C a la vez, pero podría tratarse de una pregunta de respuesta múltiple (A y C) mal pasada al campus."
+    },
+    "forense-t09-c06": {
+      "section": "equipo-dfir",
+      "reasoning": "Responder a un incidente no es solo cosa de informáticos. El temario explica que el equipo de DFIR es multidisciplinar y, durante la crisis, toma el control y coordina a otras áreas de la empresa. Según la figura del tema, esas áreas son legal y cumplimiento normativo, RRHH (Recursos Humanos), infraestructura de red, soporte IT (tecnologías de la información) y responsables de negocio. Legal es imprescindible porque marca los límites de la investigación. RRHH interviene, por ejemplo, si el incidente lo causó un empleado. IT aporta la mayor parte del personal. El departamento de calidad no aparece entre ellas. La trampa es que «calidad» sale en el temario, pero dentro de legal: los estándares de calidad son normativa que legal vigila, no un área del equipo.",
+      "options": {
+        "a": "Incorrecta. **RRHH** (Recursos Humanos) sí forma parte del equipo: interviene cuando el incidente implica a empleados, por ejemplo un trabajador que filtra información o que debe ser sancionado.",
+        "b": "Incorrecta. **Legal** es un área clave: el equipo de investigación debe coordinarse con ella para fijar los límites de la investigación y cumplir la legislación y la normativa aplicable.",
+        "c": "Correcta. **Calidad** no figura entre las áreas que coordina el equipo de DFIR. Los estándares de calidad solo aparecen como normativa de la que se ocupa legal y cumplimiento.",
+        "d": "Incorrecta. **IT** (tecnologías de la información) es el núcleo del equipo: el temario dice que lo forma sobre todo personal senior de IT, y aporta el soporte y la infraestructura de red."
       }
     }
   }

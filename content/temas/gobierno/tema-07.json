@@ -301,6 +301,7 @@
           "type": "p",
           "text": "Alrededor del liderazgo, el marco tiene cinco componentes que forman un ciclo: **integración, diseño, implementación, valoración y mejora**. Este apartado cubre los dos primeros."
         },
+        {"type":"diagram","kind":"hub","title":"El marco de referencia: cinco componentes alrededor del liderazgo","caption":"Los cinco componentes forman un ciclo que se repite.","hub":{"icon":"user-shield","title":"Liderazgo y compromiso","text":"De la alta dirección","tone":"accent"},"members":[{"icon":"puzzle","title":"Integración","text":"En cada parte de la organización"},{"icon":"writing-sign","title":"Diseño","text":"Contexto, compromiso, roles, recursos, comunicación"},{"icon":"player-play","title":"Implementación","text":"Un plan con plazos y recursos"},{"icon":"chart-bar","title":"Valoración","text":"Métricas periódicas: ¿funciona el marco?"},{"icon":"refresh","title":"Mejora","text":"Adaptarse a cambios y brechas"}],"direction":"out"},
         {
           "type": "term",
           "term": "Integración",
@@ -496,6 +497,7 @@
           "type": "p",
           "text": "Aunque se dibuja como una secuencia, **en la práctica es iterativo**: se vuelve atrás cuantas veces haga falta. Y siempre hay que tener en cuenta la naturaleza cambiante del comportamiento humano y de la cultura."
         },
+        {"type":"diagram","kind":"flow","title":"El proceso de gestión del riesgo, paso a paso","caption":"Identificar, analizar y valorar forman la evaluación; comunicación y consulta y seguimiento y revisión acompañan todas las etapas.","items":[{"icon":"target","title":"Alcance, contexto y criterios","text":"Dónde, en qué entorno, con qué vara"},{"icon":"search","title":"Identificación","text":"Qué puede pasar"},{"icon":"microscope","title":"Análisis","text":"Naturaleza y nivel del riesgo"},{"icon":"scale","title":"Valoración","text":"Comparar con los criterios y decidir"},{"icon":"tool","title":"Tratamiento","text":"Modificar el riesgo si hace falta"},{"icon":"report-analytics","title":"Registro e informe","text":"Todo trazable y comunicado"}],"links":["luego se busca","lista de riesgos","nivel de riesgo","si hay que actuar","se documenta"]},
         {
           "type": "analogy",
           "text": "En una comunidad de vecinos que decide si instala cámaras, la **comunicación** es explicar en la junta qué riesgo hay y por qué se propone la medida. La **consulta** es escuchar a los vecinos (privacidad, coste, robos sufridos) antes de votar. Las percepciones serán distintas: el del bajo ha sufrido dos robos y el del ático no."
@@ -742,6 +744,7 @@
           "term": "Riesgo residual",
           "text": "El riesgo que queda después del tratamiento. Quien decide debe conocer su naturaleza y nivel; se documenta, se sigue, se revisa y, si procede, se trata más."
         },
+        {"type":"diagram","kind":"tree","title":"¿Hay que tratar el riesgo?","caption":"Ejemplo del tema: si el criterio dice «por encima de 10, tratar», un phishing de nivel 12 requiere tratamiento.","question":{"icon":"scale","title":"¿El nivel de riesgo supera los criterios?","text":"Lo decide la valoración"},"branches":[{"label":"No","result":{"icon":"check","title":"Mantener los controles existentes","text":"O no tomar ninguna acción más","tone":"good"}},{"label":"Sí","tree":{"question":{"icon":"tool","title":"Se trata. ¿El riesgo residual es tolerable?","text":"Tras evaluar la eficacia del tratamiento"},"branches":[{"label":"Sí","result":{"icon":"eye","title":"Documentar, seguir y revisar","text":"Quien decide conoce el residual","tone":"good"}},{"label":"No","result":{"icon":"refresh","title":"Tratamiento adicional","text":"Y se vuelve a evaluar","tone":"warn"}}]}}]},
         {
           "type": "list",
           "title": "Un plan de tratamiento debe recoger",

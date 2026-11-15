@@ -1,0 +1,522 @@
+{
+ "course": "forense",
+ "topics": [
+  {
+   "number": 1,
+   "items": [
+    {
+     "ref": "forense-t01-01"
+    },
+    {
+     "question": "Los incidentes pueden ser de diversa naturaleza. Algunos de los más comunes son:",
+     "options": [
+      "Desastres naturales.",
+      "Ataques externos y/o externos.",
+      "Errores humanos.",
+      "Todas las anteriores son correctas."
+     ],
+     "similar": "forense-t01-02",
+     "correct": 3,
+     "explanation": "El temario enumera como incidentes más comunes los **desastres naturales**, los **ataques** (externos e internos) y los **errores humanos**. Como las tres primeras opciones forman parte de esa lista, la respuesta es «Todas las anteriores». La errata «externos y/o externos» viene del propio temario y se refiere a ataques externos e internos.",
+     "difficulty": "baja",
+     "source_page": 6,
+     "section": "tipos-incidente",
+     "reasoning": "Un incidente es un evento no deseado que puede comprometer las operaciones de una organización. No tiene por qué ser un ataque: también lo es una inundación que deja sin servicio el centro de datos o un empleado que borra por error una base de datos. El temario lista cuatro orígenes habituales: desastres naturales, ataques externos, ataques internos (los llamados insiders, personas de dentro de la organización) y errores humanos. Las opciones A, B y C son tres ejemplos de esa lista, así que ninguna de ellas por sí sola es la respuesta completa. La trampa típica es pensar solo en atacantes: si ves «Todas las anteriores» y cada opción es un origen real de incidentes, esa es la buena.",
+     "args": [
+      "Incorrecta. Los desastres naturales (terremotos, incendios, inundaciones) sí son incidentes, y el temario los cita como imposibles de evitar y predecir. Pero no son los únicos de la lista, así que como respuesta única se queda corta.",
+      "Incorrecta. Los ataques son incidentes: los externos vienen de fuera de la organización y los internos, de los propios empleados o colaboradores (insiders). La opción tiene una errata («externos y/o externos») que viene del temario, pero el problema es que no es el único tipo de incidente.",
+      "Incorrecta. Los errores humanos son inherentes a cualquier actividad y a menudo los provoca la **ingeniería social** (engañar a una persona para que haga algo que no debe). Son incidentes, pero no excluyen a los demás.",
+      "Correcta. Desastres naturales, ataques (externos e internos) y errores humanos son los incidentes más comunes según el temario. Por eso la opción que los engloba a todos es la correcta."
+     ]
+    },
+    {
+     "ref": "forense-t01-03"
+    },
+    {
+     "question": "¿Cuál de los siguientes no es un proceso clave en la gestión de incidentes?",
+     "options": [
+      "Los sistemas de detección.",
+      "Los procedimientos de acción.",
+      "La estrategia de comunicación.",
+      "La investigación y el análisis."
+     ],
+     "correct": 1,
+     "explanation": "Los cuatro procesos clave del temario son **sistemas de detección**, **procedimientos de respuesta**, **estrategia de comunicación** e **investigación y análisis**. Tres opciones coinciden literalmente; la única que no aparece con ese nombre es «procedimientos de acción», que es la que se marca.",
+     "difficulty": "alta",
+     "source_page": 10,
+     "section": "procesos-clave",
+     "reasoning": "El temario dice que todas las metodologías de gestión de incidentes coinciden en cuatro procesos clave. Primero, **sistemas de detección**: alertas tempranas para saber cuanto antes que hay un ataque. Segundo, **procedimientos de respuesta**: un plan que dice qué hacer en cada escenario y quién es responsable. Tercero, **estrategia de comunicación**: un punto central que recibe la información y la difunde. Cuarto, **investigación y análisis**: estudiar el incidente, con ayuda del análisis forense, para aprender lecciones. Comparando con las opciones, A, C y D aparecen tal cual; la B cambia «respuesta» por «acción». La trampa es que las cuatro suenan razonables: aquí hay que fijarse en el nombre exacto que usa el temario.",
+     "args": [
+      "Incorrecta. Los **sistemas de detección** son el primer proceso clave: mecanismos de alerta temprana que recogen eventos y gestionan alertas de seguridad para reaccionar con prontitud. Sí forman parte de la gestión de incidentes.",
+      "Correcta. El temario no habla de «procedimientos de acción», sino de **procedimientos de respuesta**: el plan con las acciones para cada escenario y sus responsables. Es la única opción cuyo nombre no coincide con los cuatro procesos clave.",
+      "Incorrecta. La **estrategia de comunicación** es un proceso clave: en plena crisis se fija un punto central que recibe la información y la difunde a terceros, para evitar mensajes contradictorios.",
+      "Incorrecta. La **investigación y análisis** es el cuarto proceso clave: estudiar a fondo el incidente, con técnicas forenses, para extraer lecciones para el futuro."
+     ],
+     "doubt": "La pregunta está mal planteada: «procedimientos de acción» es casi un sinónimo de «procedimientos de respuesta», el nombre que da el temario, así que la diferencia es solo de vocabulario. Se marca la B porque es la única que no coincide literalmente con los cuatro procesos clave, pero el temario no incluye soluciones del test que lo confirmen."
+    },
+    {
+     "ref": "forense-t01-05"
+    },
+    {
+     "ref": "forense-t01-06"
+    },
+    {
+     "ref": "forense-t01-07"
+    },
+    {
+     "ref": "forense-t01-08"
+    },
+    {
+     "ref": "forense-t01-09"
+    },
+    {
+     "ref": "forense-t01-10"
+    }
+   ]
+  },
+  {
+   "number": 2,
+   "items": [
+    {
+     "ref": "forense-t02-01"
+    },
+    {
+     "ref": "forense-t02-02"
+    },
+    {
+     "ref": "forense-t02-03"
+    },
+    {
+     "ref": "forense-t02-04"
+    },
+    {
+     "ref": "forense-t02-05"
+    },
+    {
+     "ref": "forense-t02-06"
+    },
+    {
+     "ref": "forense-t02-07"
+    },
+    {
+     "ref": "forense-t02-08"
+    },
+    {
+     "ref": "forense-t02-09"
+    },
+    {
+     "ref": "forense-t02-10"
+    }
+   ]
+  },
+  {
+   "number": 3,
+   "items": [
+    {
+     "question": "¿Cómo aseguramos el bloqueo contra escritura de una evidencia que vamos a adquirir en frío?",
+     "options": [
+      "Mediante dispositivos hardware.",
+      "Nunca es posible bloquear totalmente contra escritura.",
+      "Mediante bloqueadores hardware o mediante bloqueo software a través de programas o scripts o bien cargando una distro Linux forense.",
+      "Todas las anteriores son ciertas."
+     ],
+     "similar": "forense-t03-01",
+     "correct": 2,
+     "explanation": "Para adquirir en frío sin alterar el original hay tres vías de **bloqueo contra escritura**: bloqueadores **hardware**, bloqueo **software** mediante programas o scripts, y arrancar con una **distribución Linux forense**. La C es la única que reúne las tres.",
+     "difficulty": "media",
+     "source_page": 12,
+     "section": "bloqueo-escritura",
+     "reasoning": "Adquirir en frío significa copiar un dispositivo que está apagado, por ejemplo el disco duro extraído de un portátil. Al conectarlo a otro equipo, el sistema operativo podría escribir en él (fechas de acceso, archivos ocultos) y eso alteraría la prueba. El bloqueo contra escritura deja leer pero impide escribir, como mirar un documento a través de un cristal. El temario describe tres formas: un **bloqueador hardware** que se coloca entre el disco y el equipo; un **bloqueo software**, por ejemplo un script que cambia el Registro de Windows para proteger los puertos USB; y una **distribución Linux forense**, que arranca sin montar los discos en modo escritura. La trampa es «Todas las anteriores»: no vale porque la B es falsa.",
+     "args": [
+      "Incorrecta. Los dispositivos hardware son una vía válida y muy fiable, pero no la única. Esta opción deja fuera el bloqueo por software y las distribuciones Linux forenses.",
+      "Incorrecta. Sí es posible bloquear la escritura; para eso existen precisamente los bloqueadores hardware y software. Afirmar que nunca se puede es falso.",
+      "Correcta. Recoge las tres formas que describe el temario: bloqueadores hardware, bloqueo software con programas o scripts y arranque con una distribución Linux forense. Es la respuesta completa.",
+      "Incorrecta. No pueden ser todas ciertas, porque la B afirma algo falso y contradice a las demás. Además, la A es incompleta frente a la C."
+     ]
+    },
+    {
+     "ref": "forense-t03-02"
+    },
+    {
+     "ref": "forense-t03-03"
+    },
+    {
+     "ref": "forense-t03-04"
+    },
+    {
+     "ref": "forense-t03-05"
+    },
+    {
+     "ref": "forense-t03-06"
+    },
+    {
+     "ref": "forense-t03-07"
+    },
+    {
+     "ref": "forense-t03-08"
+    },
+    {
+     "ref": "forense-t03-09"
+    },
+    {
+     "question": "¿Cuáles de las siguientes propiedades no pertenece a la función hash?",
+     "options": [
+      "Inyectividad.",
+      "Compresión.",
+      "Bajo coste computacional.",
+      "Bidireccionalidad."
+     ],
+     "correct": 3,
+     "explanation": "Una función hash es **unidireccional**: de la entrada se obtiene el hash, pero del hash no se puede recuperar la entrada. Por tanto, la **bidireccionalidad** no es una propiedad suya. Inyectividad, compresión y bajo coste computacional sí aparecen en la lista del temario.",
+     "difficulty": "baja",
+     "source_page": 9,
+     "section": "hash-concepto",
+     "reasoning": "Una función hash toma datos de cualquier tamaño (un archivo, un disco entero) y devuelve una cadena hexadecimal de longitud fija, como una huella dactilar de esos datos. El temario lista sus propiedades: **bajo coste computacional** (se calcula rápido con cualquier equipo), **compresión** (la salida es corta y manejable), **inyectividad** (cada entrada da un hash distinto), **unidireccionalidad** (no se puede volver atrás), determinismo y resistencia a colisiones. Igual que con una huella dactilar no puedes reconstruir a la persona, con un hash no puedes reconstruir el archivo. Por eso la bidireccionalidad es justo lo contrario de una propiedad del hash. La trampa es confundir hash con cifrado: el cifrado sí es reversible con la clave, el hash no.",
+     "args": [
+      "Incorrecta. La **inyectividad** sí figura en el temario: para cada entrada se genera un hash diferente. El propio temario matiza que no puede ser perfecta, porque las entradas son infinitas y las salidas no, así que habrá repeticiones (colisiones).",
+      "Incorrecta. La **compresión** sí es una propiedad: la salida son unos pocos caracteres hexadecimales, mucho más manejables que la entrada, que puede ser un disco de varios terabytes.",
+      "Incorrecta. El **bajo coste computacional** sí es una propiedad: calcular un hash consume pocos recursos. Lo que más tarda es leer toda la información, no el cálculo en sí.",
+      "Correcta. El hash es **unidireccional**, no bidireccional: con la entrada A obtienes B, pero con B no puedes deducir A. Si fuera reversible sería un cifrado, no una función hash."
+     ]
+    }
+   ]
+  },
+  {
+   "number": 4,
+   "items": [
+    {
+     "ref": "forense-t04-01"
+    },
+    {
+     "ref": "forense-t04-02"
+    },
+    {
+     "ref": "forense-t04-03"
+    },
+    {
+     "ref": "forense-t04-04"
+    },
+    {
+     "ref": "forense-t04-05"
+    },
+    {
+     "ref": "forense-t04-06"
+    },
+    {
+     "ref": "forense-t04-07"
+    },
+    {
+     "ref": "forense-t04-08"
+    },
+    {
+     "ref": "forense-t04-09"
+    },
+    {
+     "question": "El archivo Catalog dentro de un sistema de ficheros APFS es utilizado para:",
+     "options": [
+      "Mantener la lista de los bloques utilizados y disponibles.",
+      "Describir la jerarquía de bloques.",
+      "Mantener la lista de archivos y carpetas por partición.",
+      "Describir la jerarquía de archivos y carpetas del volumen."
+     ],
+     "correct": 3,
+     "explanation": "En **APFS** (Apple File System), el **Catalog** describe la jerarquía de archivos y carpetas del volumen y se organiza como un **árbol B** para agilizar las búsquedas. La lista de bloques usados y libres la lleva otra estructura, el **Bitmap**.",
+     "difficulty": "media",
+     "source_page": 23,
+     "section": "apfs",
+     "reasoning": "Un sistema de ficheros necesita dos cosas básicas: saber qué archivos y carpetas hay y cómo se anidan, y saber qué bloques del disco están ocupados. En APFS, el sistema de ficheros de Apple, cada tarea la hace una estructura distinta. El **Catalog** es el índice del volumen: describe la jerarquía de archivos y carpetas, como el árbol que ves en el Finder. Está organizado como un árbol B (una estructura de datos ordenada que permite encontrar un elemento sin recorrerlo todo). El **Bitmap**, parecido al $Bitmap de NTFS, lleva la lista de bloques usados y disponibles. La trampa es cambiar «archivos y carpetas» por «bloques» o «volumen» por «partición»: hay que quedarse con las palabras exactas.",
+     "args": [
+      "Incorrecta. Mantener la lista de bloques usados y disponibles es la función del **Bitmap** de APFS, equivalente al archivo $Bitmap de NTFS. No es lo que hace el Catalog.",
+      "Incorrecta. El Catalog no describe una jerarquía de bloques, sino de archivos y carpetas. La opción mezcla el Catalog (jerarquía) con el Bitmap (bloques).",
+      "Incorrecta. El Catalog no es una simple lista ni trabaja por partición: describe la jerarquía (quién está dentro de quién) de archivos y carpetas de cada **volumen**. En APFS varios volúmenes pueden compartir el espacio de un mismo contenedor.",
+      "Correcta. El Catalog describe la **jerarquía de archivos y carpetas del volumen** y se organiza como un árbol B para buscar más rápido. Es la definición literal del temario."
+     ]
+    }
+   ]
+  },
+  {
+   "number": 5,
+   "items": [
+    {
+     "ref": "forense-t05-01"
+    },
+    {
+     "ref": "forense-t05-02"
+    },
+    {
+     "ref": "forense-t05-03"
+    },
+    {
+     "ref": "forense-t05-04"
+    },
+    {
+     "ref": "forense-t05-05"
+    },
+    {
+     "ref": "forense-t05-06"
+    },
+    {
+     "ref": "forense-t05-07"
+    },
+    {
+     "ref": "forense-t05-08"
+    },
+    {
+     "ref": "forense-t05-09"
+    },
+    {
+     "ref": "forense-t05-10"
+    }
+   ]
+  },
+  {
+   "number": 6,
+   "items": [
+    {
+     "ref": "forense-t06-01"
+    },
+    {
+     "ref": "forense-t06-02"
+    },
+    {
+     "ref": "forense-t06-03"
+    },
+    {
+     "ref": "forense-t06-04"
+    },
+    {
+     "ref": "forense-t06-05"
+    },
+    {
+     "ref": "forense-t06-06"
+    },
+    {
+     "ref": "forense-t06-07"
+    },
+    {
+     "question": "¿Qué es una expresión regular?",
+     "options": [
+      "Una secuencia de caracteres que conforma un patrón de búsqueda.",
+      "Una secuencia de caracteres que conforma un patrón de análisis.",
+      "Una secuencia de caracteres que conforma un patrón de respuesta.",
+      "Ninguna de las anteriores es correcta."
+     ],
+     "similar": "forense-t06-15",
+     "correct": 0,
+     "explanation": "Una **expresión regular** es una secuencia de caracteres que forma un **patrón de búsqueda**: se compara con un texto más amplio para localizar coincidencias, por ejemplo todas las direcciones de correo de un disco. No es un patrón «de análisis» ni «de respuesta».",
+     "difficulty": "baja",
+     "source_page": 17,
+     "section": "palabras-clave",
+     "reasoning": "En la fase de análisis, el forense busca palabras clave en las evidencias. Pero a veces no sabe la palabra exacta, sino su forma: «algo, una arroba, algo, un punto y un dominio» para un correo electrónico. Para eso existen las expresiones regulares (regex). El temario las define como una secuencia de caracteres que conforma un **patrón de búsqueda**, que se compara con un conjunto de caracteres más amplio para localizar coincidencias. Combinan caracteres normales con **metacaracteres**, símbolos con significado especial como [0-9] para «cualquier dígito». Sirven para encontrar correos, números de tarjeta de crédito y datos parecidos. La trampa está en las opciones casi idénticas: solo cambia la última palabra, y la del temario es «búsqueda».",
+     "args": [
+      "Correcta. Es la definición del temario: una secuencia de caracteres que conforma un **patrón de búsqueda** para localizar coincidencias en un texto más amplio. Por ejemplo, un patrón que encuentra cualquier dirección de correo electrónico.",
+      "Incorrecta. La expresión regular no es un patrón «de análisis»: no interpreta ni valora lo que encuentra, solo localiza coincidencias. El análisis lo hace después el forense con los resultados.",
+      "Incorrecta. «Patrón de respuesta» no es un término del temario. La respuesta a incidentes es otra cosa: el conjunto de acciones para contener y recuperarse de un ataque.",
+      "Incorrecta. Sí hay una opción correcta, la A, que reproduce la definición del temario."
+     ]
+    },
+    {
+     "ref": "forense-t06-09"
+    },
+    {
+     "ref": "forense-t06-10"
+    }
+   ]
+  },
+  {
+   "number": 7,
+   "items": [
+    {
+     "ref": "forense-t07-01"
+    },
+    {
+     "ref": "forense-t07-02"
+    },
+    {
+     "ref": "forense-t07-03"
+    },
+    {
+     "ref": "forense-t07-04"
+    },
+    {
+     "ref": "forense-t07-05"
+    },
+    {
+     "ref": "forense-t07-06"
+    },
+    {
+     "ref": "forense-t07-07"
+    },
+    {
+     "question": "¿Cómo podemos obtener la lista de usuarios que han iniciado sesión en un equipo con S. O. MacOS apagado?",
+     "options": [
+      "Mediante el comando «last».",
+      "Analizando los archivos «/var/log/wtmp» y «/var/log/btmp».",
+      "Analizando el archivo «/var/run/utmpx».",
+      "Ninguna de las anteriores es correcta."
+     ],
+     "correct": 2,
+     "explanation": "Con un Mac **apagado** no se pueden ejecutar comandos, así que se analiza el archivo **/var/run/utmpx**, que guarda el histórico de inicios de sesión en formato binario. El comando «last» exige el equipo encendido, y «/var/log/wtmp» y «/var/log/btmp» son los archivos equivalentes de Linux.",
+     "difficulty": "media",
+     "source_page": 46,
+     "section": "macos-volatil",
+     "reasoning": "Para saber quién ha iniciado sesión hay dos caminos, según el estado del equipo. Si está **encendido** y tienes consola, ejecutas el comando «last», que muestra los últimos accesos. Si está **apagado**, no puedes ejecutar nada y tienes que leer los archivos de log en la copia del disco. Aquí Linux y macOS difieren: Linux usa /var/log/wtmp (inicios de sesión) y /var/log/btmp (intentos fallidos), mientras que macOS usa **/var/run/utmpx**. Es un archivo binario: se puede abrir con «cat», pero hay que interpretar el resultado. La trampa es la opción B, que es correcta pero para Linux, no para macOS.",
+     "args": [
+      "Incorrecta. El comando «last» sirve con el equipo **encendido** y con acceso a la consola. Con el Mac apagado no se puede ejecutar ningún comando en él.",
+      "Incorrecta. «/var/log/wtmp» y «/var/log/btmp» son los archivos de **Linux** que guardan los inicios de sesión y los intentos fallidos. En macOS el temario indica otro archivo.",
+      "Correcta. En macOS apagado se analiza **/var/run/utmpx**, que almacena el histórico de inicios de sesión. Es binario, así que hay que interpretar su contenido.",
+      "Incorrecta. Sí hay una opción correcta: la C, que es el archivo que indica el temario para un macOS apagado."
+     ]
+    },
+    {
+     "ref": "forense-t07-09"
+    },
+    {
+     "ref": "forense-t07-10"
+    }
+   ]
+  },
+  {
+   "number": 8,
+   "items": [
+    {
+     "ref": "forense-t08-01"
+    },
+    {
+     "ref": "forense-t08-02"
+    },
+    {
+     "ref": "forense-t08-03"
+    },
+    {
+     "ref": "forense-t08-04"
+    },
+    {
+     "ref": "forense-t08-05"
+    },
+    {
+     "ref": "forense-t08-06"
+    },
+    {
+     "ref": "forense-t08-07"
+    },
+    {
+     "ref": "forense-t08-08"
+    },
+    {
+     "ref": "forense-t08-09"
+    },
+    {
+     "ref": "forense-t08-10"
+    }
+   ]
+  },
+  {
+   "number": 9,
+   "items": [
+    {
+     "ref": "forense-t09-01"
+    },
+    {
+     "ref": "forense-t09-02"
+    },
+    {
+     "ref": "forense-t09-03"
+    },
+    {
+     "question": "Un informe de situación forense en el contexto de respuesta a incidentes debe contener:",
+     "options": [
+      "Lista de cuentas comprometidas.",
+      "Cuando se trata de un equipo que no se puede apagar.",
+      "Lista de evidencias con fecha y hora de recolección.",
+      "Todas las anteriores son correctas."
+     ],
+     "correct": 3,
+     "explanation": "El **informe de situación** recopila todo lo relevante de la investigación hasta el momento. Entre otras cosas incluye la **lista de evidencias con fecha y hora de recolección** y la **lista de cuentas comprometidas**, así que A y C son correctas. La B no tiene sentido como contenido del informe y parece una errata del test.",
+     "difficulty": "alta",
+     "source_page": 21,
+     "section": "herramientas-corporativas",
+     "reasoning": "Durante una respuesta a incidentes trabajan muchas personas a la vez, y el orden es vital. El informe de situación es la foto común y actualizada de la investigación, como la pizarra de una sala de crisis. El temario enumera lo que contiene: evidencias con fecha y hora de recolección, sistemas afectados, archivos de interés, datos accedidos o robados, actividad del atacante, IOC (indicadores de compromiso) de red y de host, **cuentas comprometidas** y tareas pendientes. Las opciones A y C están literalmente en esa lista. La B («cuando se trata de un equipo que no se puede apagar») no es un contenido, sino un fragmento de otra pregunta. Como el test solo admite una respuesta y A y C son ambas verdaderas, la intención es la D. La trampa es quedarse con una sola opción verdadera cuando hay dos.",
+     "args": [
+      "Incorrecta. La lista de **cuentas comprometidas**, tanto locales como de dominio, sí forma parte del informe de situación. Pero no es lo único: la C también lo es, así que como respuesta única se queda corta.",
+      "Incorrecta. «Cuando se trata de un equipo que no se puede apagar» no es un contenido del informe, sino una frase sin relación que parece copiada de otra pregunta (la de los equipos críticos que no se pueden detener).",
+      "Incorrecta. La **lista de evidencias** con fecha y hora de recolección, asegurando la cadena de custodia, sí es parte del informe. Pero la A también lo es, así que no es la única respuesta.",
+      "Correcta. Es la respuesta que pretende el test, porque las dos opciones con sentido (A y C) son contenidos del informe de situación según el temario. Se marca a pesar de la errata de la B."
+     ],
+     "doubt": "La pregunta está mal construida. A y C son contenidos literales del informe de situación, pero la B es una frase sin sentido aquí, así que «Todas las anteriores» no es cierta en sentido estricto. Se marca la D porque es la única forma de recoger A y C a la vez, pero podría tratarse de una pregunta de respuesta múltiple (A y C) mal pasada al campus."
+    },
+    {
+     "ref": "forense-t09-05"
+    },
+    {
+     "question": "¿Cuáles de los siguientes departamentos no es necesario que forme parte del equipo de respuesta a incidentes?",
+     "options": [
+      "RRHH.",
+      "Legal.",
+      "Calidad.",
+      "IT."
+     ],
+     "correct": 2,
+     "explanation": "El equipo de **DFIR** (Digital Forensics and Incident Response, análisis forense digital y respuesta a incidentes) coordina **legal y cumplimiento**, **RRHH**, **IT** (soporte e infraestructura de red) y los **responsables de negocio**. **Calidad** no figura como área del equipo; los estándares de calidad solo se mencionan como normativa que vigila legal.",
+     "difficulty": "media",
+     "source_page": 9,
+     "section": "equipo-dfir",
+     "reasoning": "Responder a un incidente no es solo cosa de informáticos. El temario explica que el equipo de DFIR es multidisciplinar y, durante la crisis, toma el control y coordina a otras áreas de la empresa. Según la figura del tema, esas áreas son legal y cumplimiento normativo, RRHH (Recursos Humanos), infraestructura de red, soporte IT (tecnologías de la información) y responsables de negocio. Legal es imprescindible porque marca los límites de la investigación. RRHH interviene, por ejemplo, si el incidente lo causó un empleado. IT aporta la mayor parte del personal. El departamento de calidad no aparece entre ellas. La trampa es que «calidad» sale en el temario, pero dentro de legal: los estándares de calidad son normativa que legal vigila, no un área del equipo.",
+     "args": [
+      "Incorrecta. **RRHH** (Recursos Humanos) sí forma parte del equipo: interviene cuando el incidente implica a empleados, por ejemplo un trabajador que filtra información o que debe ser sancionado.",
+      "Incorrecta. **Legal** es un área clave: el equipo de investigación debe coordinarse con ella para fijar los límites de la investigación y cumplir la legislación y la normativa aplicable.",
+      "Correcta. **Calidad** no figura entre las áreas que coordina el equipo de DFIR. Los estándares de calidad solo aparecen como normativa de la que se ocupa legal y cumplimiento.",
+      "Incorrecta. **IT** (tecnologías de la información) es el núcleo del equipo: el temario dice que lo forma sobre todo personal senior de IT, y aporta el soporte y la infraestructura de red."
+     ]
+    },
+    {
+     "ref": "forense-t09-07"
+    },
+    {
+     "ref": "forense-t09-08"
+    },
+    {
+     "ref": "forense-t09-09"
+    },
+    {
+     "ref": "forense-t09-10"
+    }
+   ]
+  },
+  {
+   "number": 10,
+   "items": [
+    {
+     "ref": "forense-t10-01"
+    },
+    {
+     "ref": "forense-t10-02"
+    },
+    {
+     "ref": "forense-t10-03"
+    },
+    {
+     "ref": "forense-t10-04"
+    },
+    {
+     "ref": "forense-t10-05"
+    },
+    {
+     "ref": "forense-t10-06"
+    },
+    {
+     "ref": "forense-t10-07"
+    },
+    {
+     "ref": "forense-t10-08"
+    },
+    {
+     "ref": "forense-t10-09"
+    },
+    {
+     "ref": "forense-t10-10"
+    }
+   ]
+  }
+ ]
+}

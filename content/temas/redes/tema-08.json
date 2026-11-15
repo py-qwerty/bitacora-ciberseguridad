@@ -266,6 +266,7 @@
           "title": "Caso práctico: ¿AH o ESP?",
           "text": "Un hospital envía historias clínicas entre dos sedes. No basta con saber que los paquetes no se han alterado: nadie debe poder leerlos. Necesita **confidencialidad**, así que debe configurar **ESP con cifrado**. AH solo, o solo números de secuencia, no ocultarían nada."
         },
+        {"type":"diagram","kind":"compare","title":"AH frente a ESP","caption":"Si hace falta que nadie lea los datos, solo sirve ESP con cifrado.","columns":[{"icon":"shield-check","title":"AH","text":"Caja transparente con precinto","items":["Autenticación e integridad","**No cifra**: el contenido se lee","Protege la cabecera IP (salvo campos mutables)","Número de secuencia antirrepetición","Coste menor"]},{"icon":"lock","title":"ESP","text":"Sobre opaco y precintado","tone":"accent","items":["**Cifra**: da confidencialidad","Integridad y autenticación, si se configura","No protege la cabecera IP externa","Número de secuencia antirrepetición","Coste mayor"]}]},
         {
           "type": "exam",
           "text": "Si la pregunta pide confidencialidad a nivel de red, la respuesta es **cifrado con ESP**. Si pregunta qué servicios «puede» dar ESP, la buena es «confidencialidad junto con autenticación e integridad». ESP no da disponibilidad, ni no repudio jurídico, ni consiste solo en ocultar direcciones."
@@ -415,6 +416,7 @@
           "title": "Caso práctico: dos sedes unidas",
           "text": "Las pasarelas de Madrid y Sevilla deben llevar paquetes internos protegidos por Internet. Los ordenadores de las oficinas no saben nada de IPsec: es la pasarela la que mete cada paquete en otro con cabecera externa «pasarela Madrid → pasarela Sevilla». Es **modo túnel**."
         },
+        {"type":"diagram","kind":"compare","title":"Modo túnel frente a modo transporte","caption":"Pista para el test: cabecera interna y externa = modo túnel.","columns":[{"icon":"packages","title":"Modo túnel","text":"Paquete dentro de paquete","tone":"accent","items":["**Dos** cabeceras IP: interna y externa","Normalmente lo aplican las pasarelas","Uso típico: **VPN** entre redes","Coste mayor"]},{"icon":"arrows-exchange","title":"Modo transporte","text":"De extremo a extremo","items":["**Una** cabecera IP: la original","Lo aplican los propios extremos","Comunicación entre dos hosts","Coste menor"]}]},
         {
           "type": "exam",
           "text": "Señal inequívoca de modo túnel: **cabecera interna y externa**. Si la opción habla de «una sola cabecera de red», de «suprimir la cabecera interna» o de «no encapsular», es transporte o es falsa. Entre pasarelas → túnel; extremo a extremo → transporte."
@@ -643,6 +645,7 @@
           "title": "Caso práctico: comprar en una tienda online",
           "text": "Tu navegador envía ClientHello con sus algoritmos. La tienda responde con ServerHello y su certificado. El navegador valida el certificado, genera el secreto premaestro, lo cifra con la clave pública de la tienda y lo envía. Ambos derivan las claves, intercambian ChangeCipherSpec y Finished, y solo entonces viajan, ya cifrados, tu dirección y tu pedido."
         },
+        {"type":"diagram","kind":"flow","title":"El Handshake de SSL/TLS en cuatro fases","caption":"La clave de sesión nunca viaja: solo viaja, cifrado, el secreto premaestro.","items":[{"icon":"arrows-exchange","title":"Fase 1: saludos","text":"ClientHello y ServerHello: algoritmos y números aleatorios"},{"icon":"certificate","title":"Fase 2: el servidor se identifica","text":"Envía su certificado X.509"},{"icon":"key","title":"Fase 3: secreto premaestro","text":"Cifrado con la clave pública del servidor"},{"icon":"cpu","title":"Cada extremo calcula las claves","text":"Premaestro → maestro → material de claves"},{"icon":"check","title":"Fase 4: ChangeCipherSpec y Finished","text":"Primer mensaje cifrado; comprueba la negociación"},{"icon":"lock","title":"Datos de aplicación cifrados","text":"Ya los protege el Record","tone":"good"}],"links":["algoritmos elegidos","el cliente valida el certificado","ClientKeyExchange","«uso lo negociado»","solo entonces"]},
         {
           "type": "exam",
           "text": "Trampas típicas: (1) El secreto premaestro lo genera **el cliente**, no el servidor ni «parte y parte» (lo que aportan ambos son los números aleatorios). (2) El Handshake **no** puede saltarse la autenticación y el intercambio de claves, y **no** genera claves para no repudio. (3) Sin certificado verificable del servidor solo se puede negociar en el **modo anónimo**, que omite el certificado. (4) El Handshake es la fase que **autentica y acuerda algoritmos y claves antes de enviar datos**; el Record llega después."
@@ -1099,6 +1102,76 @@
         "b": "Incorrecta. El control antirrepetición actúa sobre paquetes ya protegidos.",
         "c": "Incorrecta. Encapsular datos en un túnel es aplicar la protección, no acordarla.",
         "d": "Correcta. El Handshake acuerda algoritmos y claves antes de enviar datos."
+      }
+    },
+    "redes-t08-c03": {
+      "section": "esp",
+      "reasoning": "IPsec (Internet Protocol Security) protege el tráfico en la capa de red con dos protocolos. **AH** (Authentication Header, cabecera de autenticación) es como un precinto: da integridad y autenticación, pero no oculta nada. **ESP** es como un sobre opaco y precintado: el tema dice que añade confidencialidad en la capa IP, además de la integridad y autenticación que ya aportaba AH. El protocolo soporta modos «solo cifrado» y «solo autenticación», y su campo Authentication Data permite comprobar la autenticación y la integridad del paquete. Por tanto ESP **puede** proporcionar autenticación e integridad (A cierta) y no se limita a la confidencialidad (B falsa). La trampa típica es asociar ESP solo con cifrar porque es lo que lo distingue de AH.",
+      "options": {
+        "a": "Correcta. ESP puede proporcionar autenticación e integridad gracias a su campo de datos de autenticación, además de la confidencialidad.",
+        "b": "Incorrecta. No da «solo» confidencialidad: también puede autenticar y comprobar la integridad, e incluso usarse en modo solo autenticación.",
+        "c": "Incorrecta. La B es falsa, así que no pueden ser correctas las dos.",
+        "d": "Incorrecta. La A es cierta."
+      }
+    },
+    "redes-t08-c04": {
+      "section": "ike",
+      "reasoning": "IKE prepara las claves de IPsec en dos fases. En la **fase 1**, modo principal, hay seis mensajes: los dos primeros negocian los parámetros, el tercero y el cuarto intercambian el material Diffie-Hellman y, con él, se deriva la clave de sesión IKE. Solo entonces los mensajes quinto y sexto, la autenticación mutua, se cifran con esa clave. Es lógico: no puedes cifrar antes de tener la clave. En la **fase 2** ya existe esa clave, así que toda la negociación de las asociaciones de seguridad IPsec va protegida. Por tanto A es falsa (la fase 1 no está completamente cifrada) y B es cierta. La trampa típica es suponer que, como IKE es un protocolo de seguridad, todo va cifrado desde el principio.",
+      "options": {
+        "a": "Incorrecta. La fase 1 no está completamente cifrada: en el modo principal los mensajes 1 a 4 van en claro, y en el agresivo los dos primeros, porque todavía no hay clave con la que cifrar.",
+        "b": "Correcta. La fase 2 se realiza cuando ya existe la clave de sesión de la fase 1, que protege todos sus mensajes.",
+        "c": "Incorrecta. La A es falsa, así que no pueden serlo ambas.",
+        "d": "Incorrecta. La B es cierta."
+      }
+    },
+    "redes-t08-c05": {
+      "section": "ike",
+      "reasoning": "Una **SA** (Security Association, asociación de seguridad) es el «contrato» que fija cómo se protege una comunicación: algoritmos, claves y duración. IKE trabaja en dos fases. En la **fase 1** los extremos se autentican y acuerdan una clave de sesión IKE; el resultado es la SA ISAKMP (Internet Security Association and Key Management Protocol), que protege la propia negociación de IKE. En la **fase 2**, ya bajo esa protección, se negocian por propuesta y selección las SA IPsec que usarán AH o ESP para proteger los datos. Piensa en quedar primero en una sala privada (fase 1) para después firmar allí el contrato (fase 2). La trampa típica es creer que la fase 1 ya fija los parámetros de ESP o AH.",
+      "options": {
+        "a": "Incorrecta. Los parámetros de ESP forman parte de las SA IPsec, que se negocian en la **fase 2**.",
+        "b": "Incorrecta. Los parámetros de AH (Authentication Header) también se negocian en la **fase 2**.",
+        "c": "Correcta. La fase 1 establece la SA ISAKMP, que protege la siguiente fase de IKE.",
+        "d": "Incorrecta. La C es correcta."
+      }
+    },
+    "redes-t08-c06": {
+      "section": "ike",
+      "reasoning": "Recuerda el reparto de tareas de IKE. La **fase 1** autentica a los extremos y crea un canal seguro (SA ISAKMP), pero no fija cómo se protegerán los datos. La **fase 2** negocia, dentro de ese canal, las SA IPsec que usarán AH o ESP. El tema dice que la fase 2 se realiza «con plenas garantías una vez que la fase 1 ha culminado», porque la protege la clave de sesión de la fase 1. Así que la fase 2 no puede hacerse sin la fase 1 (A falsa). Y tampoco puede omitirse tras la fase 1, porque sin ella no habría SA IPsec y los datos no estarían protegidos (B falsa). Lo que sí puede ocurrir es que una sola fase 1 sirva para varias negociaciones de fase 2, pero eso no la hace innecesaria. La trampa típica es pensar que, terminada la fase 1, «ya está todo acordado».",
+      "options": {
+        "a": "Incorrecta. La fase 2 necesita el canal protegido y la clave de sesión que crea la fase 1; sin ella no tendría con qué protegerse.",
+        "b": "Incorrecta. Completar la fase 1 no basta: solo protege la negociación. Las SA IPsec que protegen los datos se acuerdan en la fase 2, así que sigue siendo necesaria.",
+        "c": "Incorrecta. Ni A ni B son ciertas.",
+        "d": "Correcta. Las dos fases dependen una de otra: la fase 2 requiere la fase 1 y sigue siendo necesaria para negociar las SA IPsec."
+      }
+    },
+    "redes-t08-c07": {
+      "section": "ssl-arquitectura",
+      "reasoning": "El tema lo dice de forma directa: SSL proporciona autenticación, integridad y confidencialidad entre los extremos de una comunicación. Lo habitual es autenticar solo al servidor con su certificado X.509; la autenticación del cliente es opcional. La integridad la da un MAC (Message Authentication Code, código de autenticación de mensaje) y la confidencialidad el cifrado simétrico. El **no repudio** exige poder demostrar ante un tercero quién generó un mensaje, y eso no es posible si ambas partes comparten la misma clave: cualquiera de las dos podría haberlo creado. Por eso la A es correcta, aunque no mencione la confidencialidad. La trampa típica es descartar la A porque «le falta» la confidencialidad: no dice «solo».",
+      "options": {
+        "a": "Correcta. SSL proporciona autenticación e integridad (además de confidencialidad).",
+        "b": "Incorrecta. Las claves de sesión son compartidas por cliente y servidor, así que no se puede demostrar ante un tercero quién generó un mensaje. Eso sería **no repudio**, propio de la firma digital.",
+        "c": "Incorrecta. No da «solo» confidencialidad: también autentica (normalmente al servidor) y protege la integridad.",
+        "d": "Incorrecta. La A es correcta."
+      }
+    },
+    "redes-t08-c08": {
+      "section": "handshake",
+      "reasoning": "El Handshake es la «negociación» inicial de SSL, en la que cliente y servidor acuerdan algoritmos y claves. En el ClientHello y el ServerHello cada uno envía un número aleatorio. Después, en la fase de intercambio de claves del cliente, este envía el mensaje **ClientKeyExchange** con el **secreto premaestro** cifrado con la clave pública del servidor. Por tanto lo genera el cliente; el servidor lo descifra con su clave privada. A continuación ambos calculan el **secreto maestro** a partir del premaestro y de los dos aleatorios, y de él derivan las claves de sesión. La trampa típica es la A, que mezcla el premaestro (solo del cliente) con el maestro (donde sí entran datos de ambos).",
+      "options": {
+        "a": "Incorrecta. Confunde el secreto premaestro con el **secreto maestro**, en cuyo cálculo sí intervienen los aleatorios del cliente y del servidor.",
+        "b": "Correcta. El cliente genera el secreto premaestro y lo envía cifrado con la clave pública del servidor.",
+        "c": "Incorrecta. El servidor no lo genera: lo recibe cifrado y lo descifra con su clave privada.",
+        "d": "Incorrecta. La B es correcta."
+      }
+    },
+    "redes-t08-c09": {
+      "section": "handshake",
+      "reasoning": "El Handshake de SSL tiene varias fases: saludo (Hello), autenticación del servidor e intercambio de claves, autenticación del cliente e intercambio de claves, y finalización. Normalmente el servidor envía su certificado X.509 en el mensaje Certificate. Pero el tema indica que ese mensaje solo no se usa cuando SSL funciona en **forma anónima**, y que existen algoritmos anónimos que permiten que el servidor no sea autenticado. Así que sí puede haber Handshake sin certificado verificable (B). Lo que nunca puede faltar es el **intercambio de claves**, porque sin él no habría claves de sesión (A falsa). Y SSL no ofrece no repudio, porque las claves son compartidas (C falsa). La trampa típica es pensar que SSL siempre exige certificado.",
+      "options": {
+        "a": "Incorrecta. Sin intercambio de claves no habría secreto premaestro ni claves de sesión, y no se podría cifrar nada. El intercambio de claves no se puede saltar.",
+        "b": "Correcta. Con algoritmos anónimos se omite el mensaje Certificate y el servidor no se autentica; existe, aunque suele estar deshabilitado por el riesgo de intermediario.",
+        "c": "Incorrecta. Las claves de sesión son simétricas y compartidas por ambos extremos, así que no dan **no repudio**: ninguno puede demostrar ante un tercero quién generó un mensaje.",
+        "d": "Incorrecta. La B es correcta."
       }
     }
   }

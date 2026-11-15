@@ -270,6 +270,7 @@
           "title": "Tres firmas, tres niveles",
           "text": "Escribir tu nombre al final de un correo es una firma simple. Firmar un PDF con un certificado guardado como archivo en tu ordenador suele ser una firma avanzada. Firmar con el DNI electrónico metido en un lector, tecleando el PIN, es una firma cualificada: certificado cualificado + chip homologado."
         },
+        {"type":"diagram","kind":"layers","title":"Los tres niveles de firma electrónica","caption":"Cada nivel incluye al anterior; solo la cualificada equivale a la manuscrita.","items":[{"icon":"writing-sign","title":"Firma simple","text":"Datos que sirven para identificar al firmante"},{"icon":"lock","title":"Firma avanzada","text":"Control exclusivo del firmante; detecta cualquier cambio"},{"icon":"certificate","title":"Firma cualificada","text":"Añade certificado y dispositivo cualificados","tone":"good"}]},
         {
           "type": "exam",
           "text": "Con eIDAS, la «firma avanzada basada en certificado reconocido» o «firma reconocida» pasa a llamarse **firma electrónica cualificada**; no «reconocida», ni «certificada», ni «simple», ni «digitalizada». Y lo que distingue a la cualificada de una avanzada es que **exige además certificado cualificado y dispositivo cualificado**. Trampas: «basta una imagen escaneada de la firma» o «no necesita identificar al firmante» (toda avanzada ya lo exige)."
@@ -332,6 +333,7 @@
           "title": "Consulta OCSP con OpenSSL",
           "text": "openssl ocsp -issuer ac_emisora.pem -cert lucia.pem -url http://ocsp.prestador.example -resp_text\n...\nlucia.pem: revoked\n    Revocation Time: Mar 10 09:12:00 2026 GMT"
         },
+        {"type":"diagram","kind":"tree","title":"¿Puedo fiarme de esta firma?","caption":"Que la matemática cuadre no basta: hay que saber de quién es y si sigue vigente.","question":{"icon":"hash","title":"¿Coinciden los dos resúmenes?","text":"Se verifica con la clave pública del firmante"},"branches":[{"label":"No","result":{"icon":"x","title":"No válida","text":"El documento cambió tras firmarse","tone":"bad"}},{"label":"Sí","tree":{"question":{"icon":"link","title":"¿La cadena de confianza llega a una raíz fiable?"},"branches":[{"label":"No","result":{"icon":"help-circle","title":"Identidad no garantizada","text":"No se sabe de quién es la clave","tone":"bad"}},{"label":"Sí","tree":{"question":{"icon":"certificate","title":"¿Certificado caducado o revocado?","text":"Se consulta con CRL u OCSP"},"branches":[{"label":"Sí","result":{"icon":"key-off","title":"No fiarse","text":"El certificado ya no vale","tone":"bad"}},{"label":"No","result":{"icon":"shield-check","title":"Firma válida","tone":"good"}}]}}]}}]},
         {
           "type": "list",
           "title": "Tres propiedades y tres roles que la profesora quiere claros",
@@ -533,6 +535,7 @@
           "title": "Caso práctico",
           "text": "Una sociedad limitada quiere firmar electrónicamente un contrato. No puede pedir un «certificado de firma de la sociedad»: eso desapareció. La administradora firma con su certificado de persona física con representación. Las facturas que la empresa emite en serie, en cambio, las marca automáticamente con un **sello electrónico** de la sociedad."
         },
+        {"type":"diagram","kind":"tree","title":"¿Firma o sello electrónico?","caption":"Las personas físicas firman; las personas jurídicas sellan.","question":{"icon":"help-circle","title":"¿Quién emite el documento?"},"branches":[{"label":"Una persona física","result":{"icon":"writing-sign","title":"Firma electrónica","text":"Con su certificado de persona física","tone":"good"}},{"label":"Una empresa o entidad","tree":{"question":{"icon":"building","title":"¿Actúa una persona concreta en su nombre?","text":"Ej.: la administradora firma un contrato"},"branches":[{"label":"Sí","result":{"icon":"user-check","title":"Firma del representante","text":"Certificado de persona física con representación","tone":"good"}},{"label":"No, emisión automática","result":{"icon":"certificate","title":"Sello electrónico","text":"Ej.: facturas en serie; garantiza origen e integridad","tone":"good"}}]}}]},
         {
           "type": "exam",
           "text": "La Ley 6/2020 **complementa** eIDAS; es falso que «no complemente ningún aspecto» o que su único objeto sea derogar la Ley 59/2003. En sujetos: **las personas físicas firman; las personas jurídicas usan sellos**. Y para vincular datos a un instante concreto, la respuesta es el **sellado electrónico de tiempo**."
@@ -1084,6 +1087,37 @@
         "b": "Incorrecta. Un reglamento no necesita ley nacional que lo incorpore; precisamente se busca evitar normas distintas.",
         "c": "Incorrecta. Las materias de soberanía nacional suelen regularse con directivas, no con reglamentos.",
         "d": "Correcta. El reglamento da una norma común que se aplica directamente y permite reconocer la firma en toda la Unión."
+      }
+    },
+    "ciberdelitos-t05-c02": {
+      "section": "ley-6-2020",
+      "reasoning": "Primero hay que distinguir los tipos de norma. Un **reglamento europeo**, como eIDAS (electronic IDentification, Authentication and trust Services), se aplica directamente en todos los Estados sin necesidad de ley nacional. Aun así, deja algunos aspectos a cada país. La Ley 6/2020 se dicta para regular esos aspectos: su objeto es complementar eIDAS. Además deroga la antigua Ley 59/2003 de firma electrónica, pero ese no es su único objeto. Y la firma electrónica es precisamente el servicio de confianza por excelencia. La trampa típica es fijarse en la derogación de la Ley 59/2003 y olvidar su función de complemento.",
+      "options": {
+        "a": "Correcta. Es el objeto que declara la propia ley: regular determinados aspectos de los servicios electrónicos de confianza **como complemento del Reglamento eIDAS**.",
+        "b": "Incorrecta. Su razón de ser es justamente complementar eIDAS en lo que el reglamento deja a cada Estado.",
+        "c": "Incorrecta. Es cierto que deroga la Ley 59/2003, pero eso no le impide complementar eIDAS. Las dos cosas son compatibles.",
+        "d": "Incorrecta. La **firma electrónica** es el servicio de confianza más conocido y la ley también se ocupa de ella, junto con sellos, sellos de tiempo o entrega certificada."
+      }
+    },
+    "ciberdelitos-t05-c04": {
+      "section": "obligaciones-prestadores",
+      "reasoning": "Un **certificado cualificado** es el certificado electrónico de mayor garantía, el que permite crear una firma equiparada a la manuscrita. Por eso el prestador debe comprobar muy bien quién lo pide. La norma española exige, como regla general, dos cosas: que el solicitante **se presente en persona** ante quien verifica su identidad y que la **acredite** con el DNI, el pasaporte u otro medio admitido en derecho. La opción B reúne los dos elementos. La C se queda con la mitad, porque omite la personación. La A convierte en obligatoria la legitimación notarial y la D permite sustituir la presencia por una simple copia del DNI. La trampa es la opción C: parece correcta porque todo lo que dice es cierto, pero le falta el requisito clave.",
+      "options": {
+        "a": "Incorrecta. La legitimación notarial de la firma de la solicitud no es obligatoria en todos los casos. Como mucho, es una vía para evitar la personación, no un requisito general.",
+        "b": "Correcta. Recoge la regla general completa: **personación** ante los encargados de verificar la identidad y **acreditación** con DNI, pasaporte u otros medios admitidos en derecho.",
+        "c": "Incorrecta. Es cierta pero incompleta: omite la **personación**, que es la garantía principal. Quedarse solo con el documento abriría la puerta a que otro lo presentara en nombre del titular.",
+        "d": "Incorrecta. Una copia del DNI no ofrece las mismas garantías que verificar la identidad en persona. El solicitante no puede elegir libremente entre las dos cosas."
+      },
+      "doubt": "El texto del tema no desarrolla este artículo y el test no da la clave. Además, la normativa actual admite excepciones a la personación, como métodos de identificación a distancia (por ejemplo, por vídeo) con seguridad equivalente. Se elige B porque es la regla general completa; en el banco de la app la variante de esta pregunta se reformuló por ese motivo."
+    },
+    "ciberdelitos-t05-c09": {
+      "section": "tipos-firma",
+      "reasoning": "La antigua Ley 59/2003 hablaba de **certificados reconocidos** y de **firma electrónica reconocida**: la firma avanzada basada en un certificado reconocido y creada con un dispositivo seguro. El Reglamento eIDAS cambió la terminología: el certificado reconocido pasa a ser **certificado cualificado** y la firma reconocida pasa a ser **firma electrónica cualificada**. Es la única equiparada a la firma manuscrita. Un truco para recordarlo: con eIDAS, «reconocido» se convierte siempre en «cualificado». La trampa típica es ofrecer el nombre antiguo («reconocida») como si fuera el nuevo, o un nombre inventado como «certificada».",
+      "options": {
+        "a": "Incorrecta. La denominación no se mantiene: eIDAS introduce una terminología nueva y deja atrás la de «certificado reconocido».",
+        "b": "Incorrecta. «Firma electrónica reconocida» es justamente el **nombre antiguo**, el de la Ley 59/2003. eIDAS lo sustituye.",
+        "c": "Correcta. Con eIDAS, la firma avanzada basada en certificado reconocido (la antigua firma reconocida) pasa a llamarse **firma electrónica cualificada**.",
+        "d": "Incorrecta. «Firma electrónica certificada» no es una categoría de eIDAS. Los niveles son firma simple, avanzada y cualificada."
       }
     }
   }

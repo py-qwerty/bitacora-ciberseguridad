@@ -108,6 +108,7 @@
           "term": "Encapsulado",
           "text": "Cada capa mete los datos de la capa superior en su propia «parte de datos» y les añade su cabecera. Como unas muñecas rusas: el mensaje HTTP va dentro de un segmento TCP, el segmento va dentro de un paquete IP, y el paquete va dentro de una trama Ethernet."
         },
+        {"type":"diagram","kind":"layers","title":"Encapsulado: cada capa va dentro de la de abajo","caption":"Como muñecas rusas: cada capa viaja en la parte de datos de la inferior.","items":[{"icon":"network","title":"Trama Ethernet","text":"Capa física: viaja por el cable"},{"icon":"router","title":"Paquete IP","text":"Capa de red: direcciones y ruta"},{"icon":"arrows-exchange","title":"Segmento TCP","text":"Capa de transporte: entre los extremos"},{"icon":"world-www","title":"Mensaje HTTP","text":"Capa de aplicación: la petición web","tone":"accent"}]},
         {
           "type": "steps",
           "title": "Ejemplo: un datagrama UDP viajando por una red Ethernet",
@@ -320,6 +321,7 @@
           "type": "p",
           "text": "**Cómo decidir si un ataque es pasivo o activo (regla del profesor).** Pregúntate si el atacante **modifica el flujo de la información**. Si solo escucha (olfatear el tráfico, *sniffing*), es pasivo. Si altera, inyecta, interfiere o impide, es activo. Por eso el **hombre en el medio** (man in the middle) y la **denegación de servicio** son **siempre ataques activos**: para ponerse entre dos equipos hay que modificar algo (por ejemplo, la tabla ARP o la tabla de rutas), y eso ya es intervenir. El profesor lo marcó como pregunta típica de test."
         },
+        {"type":"diagram","kind":"tree","title":"¿Ataque pasivo o activo?","caption":"El hombre en el medio y la denegación de servicio son siempre activos.","question":{"icon":"help-circle","title":"¿Modifica el flujo de información?","text":"Altera, inyecta, interfiere o impide"},"branches":[{"label":"No, solo escucha","tree":{"question":{"icon":"eye","title":"¿Qué obtiene el atacante?"},"branches":[{"label":"El contenido","result":{"icon":"file-text","title":"Pasivo: obtención de contenido","text":"Se frena con cifrado","tone":"warn"}},{"label":"Los patrones","result":{"icon":"chart-bar","title":"Pasivo: análisis de tráfico","text":"Cifrado más relleno de tráfico","tone":"warn"}}]}},{"label":"Sí","result":{"icon":"bomb","title":"Activo","text":"Suplantación, repetición, modificación o DoS","tone":"bad"}}]},
         {
           "type": "term",
           "term": "Hombre en el medio (man in the middle, MitM)",
@@ -644,6 +646,7 @@
           "type": "p",
           "text": "A veces hace falta además una **tercera parte confiable** que distribuya la información secreta a los participantes y actúe de **árbitro** para verificar su identidad."
         },
+        {"type":"diagram","kind":"flow","title":"Cómo viaja protegido un mensaje por el canal","caption":"A veces una tercera parte confiable reparte el secreto y hace de árbitro.","items":[{"icon":"user","title":"Emisor","text":"Tiene el mensaje y la clave"},{"icon":"lock","title":"Transformación","text":"Cifrado o firma con el secreto"},{"icon":"spy","title":"Canal","text":"Puede haber un oponente","tone":"bad"},{"icon":"user-check","title":"Receptor","text":"Usa el mismo secreto compartido","tone":"good"}],"links":["transforma","envía el mensaje seguro","recibe"]},
         {
           "type": "analogy",
           "text": "Dos amigos quieren mandarse notas en clase sin que el profesor (el oponente) las entienda. Inventan un código (la transformación), acuerdan la clave para descifrarlo (el secreto compartido) y, como no pueden quedar antes, le piden a un amigo común de confianza que les pase a los dos la clave (la tercera parte confiable)."
@@ -1082,6 +1085,27 @@
         "b": "Incorrecta. Eso describe un ataque de repetición, no el ataque Land.",
         "c": "Incorrecta. Eso describe un ataque de modificación de mensajes o de hombre en el medio.",
         "d": "Incorrecta. Eso es una denegación de servicio distribuida; el Land usa un único paquete trucado, no muchas fuentes."
+      }
+    },
+    "redes-t01-c02": {
+      "section": "mecanismos",
+      "reasoning": "Empieza por separar dos ideas de la recomendación X.800 (la norma de la UIT, Unión Internacional de Telecomunicaciones, sobre la arquitectura de seguridad OSI): el **servicio** es el objetivo (confidencialidad, integridad…) y el **mecanismo** es la herramienta que lo consigue (cifrado, firma digital…). Su finalidad es prevenir, detectar o recuperarse de ataques, nunca llevarlos a cabo. La Tabla 2 del tema relaciona unos con otros: el cifrado aparece en casi todos los servicios y la firma digital en autenticación, integridad y no repudio. Pero el mecanismo de control de acceso solo aparece en el servicio de control de acceso, el relleno de tráfico solo en la confidencialidad del flujo de tráfico y la notarización solo en el no repudio. Así que no se cumple que **cada uno** dé varios servicios. Tampoco son solo físicos u organizativos: la mayoría son técnicos y criptográficos. La trampa típica es la palabra «cada uno»: convierte un «algunos» verdadero en un «todos» falso.",
+      "options": {
+        "a": "Incorrecta. Los mecanismos sirven para **defenderse** de los ataques (prevenirlos, detectarlos o recuperarse), no para implementarlos. Quien implementa un ataque es el atacante.",
+        "b": "Incorrecta. Es cierto para algunos, como el cifrado o la firma digital, pero no para todos: el control de acceso, el relleno de tráfico y la notarización aparecen ligados a un solo servicio en la tabla del tema. La palabra «cada uno» lo convierte en falso.",
+        "c": "Incorrecta. La mayoría de los mecanismos son **técnicos**: cifrado, firma digital, intercambio de autentificación o control de enrutamiento. Los procedimientos físicos y organizativos son solo una parte de la seguridad.",
+        "d": "Correcta. Ninguna de las tres afirmaciones es cierta: los mecanismos no implementan ataques, no todos proporcionan varios servicios y no se limitan a medidas físicas u organizativas."
+      },
+      "doubt": "El enunciado no cita la tabla y la clave oficial podría ser la B si el autor pensaba en mecanismos como el cifrado o la firma digital. Según la Tabla 2 del tema, sin embargo, varios mecanismos sirven a un único servicio, así que «cada uno» es falso y la D es la más defendible."
+    },
+    "redes-t01-c07": {
+      "section": "mecanismos",
+      "reasoning": "Piensa en un observador que no puede leer tus mensajes cifrados pero sí ver cuándo y cuánto envías: si de repente hay mucho tráfico entre un ministerio y una embajada, ya deduce algo. Ese ataque pasivo es el **análisis de tráfico**. El tema define el mecanismo de **relleno de tráfico** como el que permite proteger el tráfico frente a su posible análisis. Se consigue enviando tráfico de cobertura o rellenando los mensajes para que el patrón (ritmo, tamaño, frecuencia) no revele la actividad real. No consiste en repetir mensajes, ni en saturar el ancho de banda contra una denegación de servicio, ni en agrupar mensajes válidos. La trampa típica es confundir «rellenar» con «repetir» o con «llenar el canal hasta saturarlo».",
+      "options": {
+        "a": "Incorrecta. El relleno no repite mensajes reales: añade tráfico o datos **de relleno**, sin valor, para ocultar el patrón. Reenviar mensajes repetidos se parece más a un **ataque de reenvío** (repetición), que es justo algo de lo que hay que protegerse.",
+        "b": "Incorrecta. El objetivo no es saturar el canal ni frenar una **denegación de servicio** (DoS, Denial of Service). Saturar el ancho de banda es precisamente lo que hace un ataque DoS; el relleno solo busca ocultar los patrones de comunicación.",
+        "c": "Incorrecta. Agrupar y enviar juntos mensajes válidos no añade nada de relleno: solo cambia cómo se empaquetan los mensajes reales. El relleno consiste justo en lo contrario, en añadir tráfico **ficticio** para disfrazar el patrón.",
+        "d": "Correcta. El relleno de tráfico consiste en introducir tráfico o datos de relleno para proteger frente al **análisis de tráfico**, y ninguna de las tres opciones lo describe así."
       }
     }
   }

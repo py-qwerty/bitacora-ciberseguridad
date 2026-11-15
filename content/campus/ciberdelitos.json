@@ -1,0 +1,714 @@
+{
+ "course": "ciberdelitos",
+ "topics": [
+  {
+   "number": 1,
+   "items": [
+    {
+     "ref": "ciberdelitos-t01-01"
+    },
+    {
+     "question": "Según el RGPD, ¿la prestación de un servicio que implique acceso a datos por parte de un tercero al responsable del tratamiento deberá figurar en un contrato?",
+     "options": [
+      "Depende de si los datos de carácter personal que se comunican son sensibles o no.",
+      "Sí, salvo que el tercero acredite tener las mismas medidas de seguridad que el titular del fichero.",
+      "Sí, siempre.",
+      "No."
+     ],
+     "correct": 2,
+     "explanation": "Cuando un tercero trata datos para prestar un servicio al responsable, actúa como **encargado del tratamiento**. El RGPD (Reglamento General de Protección de Datos) obliga a que esa relación se rija por un **contrato u otro acto jurídico** que vincule al encargado. No depende del tipo de dato ni de las medidas que tenga el proveedor.",
+     "difficulty": "baja",
+     "source_page": 22,
+     "section": "conceptos-y-actores",
+     "reasoning": "Empieza por identificar a los actores. El **responsable** decide para qué y cómo se tratan los datos. El **encargado** es quien los trata por cuenta del responsable para prestarle un servicio, como una gestoría que hace las nóminas. El temario dice que el RGPD prevé la obligación de formalizar un contrato con los prestadores de servicios que acceden a datos personales: el tratamiento por un encargado se rige por un contrato u otro acto jurídico vinculante. Esa obligación no tiene excepciones por tipo de dato ni por nivel de seguridad. Por eso la respuesta es «Sí, siempre». La trampa típica es ofrecer una excepción que suena razonable (datos no sensibles, buenas medidas de seguridad) pero que el reglamento no recoge.",
+     "args": [
+      "Incorrecta. El contrato de encargo se exige para cualquier dato personal. Que los datos sean sensibles (categorías especiales, como la salud) cambia otras cosas, como el nivel de riesgo, pero no esta obligación.",
+      "Incorrecta. Tener buenas medidas de seguridad es una obligación del encargado, no un sustituto del contrato. De hecho, el contrato es el documento que fija esas medidas y el resto de obligaciones.",
+      "Correcta. El RGPD exige que el tratamiento por un encargado se rija por un **contrato u otro acto jurídico vinculante**. Es el documento que fija qué puede hacer el encargado con los datos y bajo qué instrucciones.",
+      "Incorrecta. Es justo lo contrario de lo que dice el RGPD. Sin contrato, el responsable no puede demostrar que controla lo que el proveedor hace con los datos."
+     ],
+     "doubt": "El temario habla de «contrato u otro acto jurídico». La opción «Sí, siempre» solo menciona el contrato, pero es claramente la más defendible frente a las demás."
+    },
+    {
+     "ref": "ciberdelitos-t01-03"
+    },
+    {
+     "ref": "ciberdelitos-t01-04"
+    },
+    {
+     "ref": "ciberdelitos-t01-05"
+    },
+    {
+     "ref": "ciberdelitos-t01-06"
+    },
+    {
+     "question": "La única forma de tratar el riesgo en protección de datos es:",
+     "options": [
+      "Aceptarlo.",
+      "Trasladarlo.",
+      "Mitigarlo.",
+      "Ninguna de las respuestas anteriores es correcta."
+     ],
+     "correct": 3,
+     "explanation": "En protección de datos no hay **una única forma** de tratar el riesgo. El RGPD sigue un **enfoque basado en riesgos**: se aplican medidas para mitigarlo y se evalúa el riesgo que queda. Si ese riesgo sigue siendo alto, se consulta a la autoridad de control. Ninguna de las tres opciones es «la única».",
+     "difficulty": "media",
+     "source_page": 13,
+     "section": "responsabilidad-proactiva",
+     "reasoning": "Fíjate primero en la palabra clave del enunciado: «la **única** forma». El RGPD sustituye las antiguas medidas fijas por niveles por un **análisis de riesgos**: cada organización decide qué medidas técnicas y organizativas necesita. En gestión de riesgos se suelen combinar varias respuestas: mitigar (aplicar medidas), trasladar (por ejemplo, contratar un servicio o un seguro) o aceptar el riesgo residual cuando es bajo. Además, si tras la evaluación de impacto el riesgo sigue siendo alto, no basta con aceptarlo: hay que consultar a la autoridad de control. Como ninguna de esas opciones es exclusiva, la correcta es «Ninguna de las respuestas anteriores». La trampa es elegir «Mitigarlo» porque es la respuesta más habitual, sin fijarse en el «única».",
+     "args": [
+      "Incorrecta. Aceptar el riesgo solo es razonable cuando el riesgo residual es bajo. Si sigue siendo alto, el responsable no puede asumirlo sin más: debe consultar a la autoridad de control.",
+      "Incorrecta. Trasladar el riesgo (por ejemplo, a un proveedor o a un seguro) puede ayudar con las consecuencias económicas, pero no libera al responsable de sus obligaciones. Es una opción más, no la única.",
+      "Incorrecta. Mitigar, es decir, aplicar **medidas técnicas y organizativas**, es lo más frecuente, pero tampoco es la única vía. Después hay que valorar el riesgo que queda.",
+      "Correcta. No existe una sola forma de tratar el riesgo: el **enfoque basado en riesgos** del RGPD combina medidas, evaluación del riesgo residual y, si hace falta, consulta previa a la autoridad de control."
+     ],
+     "doubt": "El temario no enumera de forma explícita las opciones de tratamiento del riesgo (aparecen en figuras de la guía de la AEPD). La respuesta se deduce del «única» del enunciado y del enfoque basado en riesgos."
+    },
+    {
+     "ref": "ciberdelitos-t01-08"
+    },
+    {
+     "question": "Las brechas o violaciones de seguridad:",
+     "options": [
+      "Se notificarán a la autoridad de control cuando la violación de la seguridad constituya un alto riesgo para los derechos y las libertades de las personas físicas.",
+      "Deben notificarse siempre a la autoridad de control y, en algunos casos, a los interesados.",
+      "Serán notificadas por el responsable del tratamiento a la autoridad de control, a menos que sea improbable que dicha violación de la seguridad constituya un riesgo para los derechos y las libertades de las personas físicas.",
+      "Siempre que se notifiquen a la autoridad de control, deberán notificarse también a los interesados en cumplimiento del deber de transparencia."
+     ],
+     "similar": "ciberdelitos-t01-09",
+     "correct": 2,
+     "explanation": "Una brecha se notifica a la autoridad de control **salvo que sea improbable que suponga un riesgo** para los derechos y libertades de las personas. Avisar a los propios afectados exige un umbral mayor: un **alto riesgo**. Son dos umbrales distintos.",
+     "difficulty": "media",
+     "source_page": 43,
+     "section": "brechas",
+     "reasoning": "Una **violación de seguridad** (o brecha) es un incidente que destruye, pierde, altera o expone datos personales, por ejemplo un portátil robado con una base de clientes. El RGPD fija dos avisos con umbrales diferentes. A la **autoridad de control** (en España, la AEPD, Agencia Española de Protección de Datos) se notifica casi siempre: solo se libra el responsable si es improbable que haya riesgo. A los **interesados** (las personas afectadas) solo se les comunica si hay probable **alto riesgo**. La opción correcta es la que describe el primer umbral con su excepción. La trampa típica es intercambiar los umbrales: poner «alto riesgo» para la autoridad o «siempre» para los interesados.",
+     "args": [
+      "Incorrecta. Aplica a la autoridad de control el umbral del **alto riesgo**, que es el que corresponde a la comunicación a los interesados. A la autoridad se notifica con un umbral más bajo.",
+      "Incorrecta. No se notifica «siempre»: existe la excepción de que sea improbable que la brecha suponga un riesgo. Por ejemplo, la pérdida de un dispositivo bien cifrado puede no requerir aviso.",
+      "Correcta. Es la regla del RGPD: el responsable notifica a la autoridad de control **a menos que sea improbable un riesgo** para los derechos y libertades de las personas.",
+      "Incorrecta. Notificar a la autoridad no obliga automáticamente a avisar a los interesados. Para ellos se exige un **alto riesgo**, y aun así hay excepciones."
+     ]
+    },
+    {
+     "ref": "ciberdelitos-t01-10"
+    }
+   ]
+  },
+  {
+   "number": 2,
+   "items": [
+    {
+     "question": "¿Cuál de los siguientes no es uno de los principios del ENS?",
+     "options": [
+      "Seguridad integral.",
+      "Gestión de riesgos.",
+      "Prevención, reacción y recuperación.",
+      "Seguridad gestionada."
+     ],
+     "similar": "ciberdelitos-t02-01",
+     "correct": 3,
+     "explanation": "Los principios básicos del **ENS** (Esquema Nacional de Seguridad) son siete: seguridad como proceso integral, gestión basada en los riesgos, prevención-detección-respuesta-conservación, líneas de defensa, vigilancia continua, reevaluación periódica y diferenciación de responsabilidades. **«Seguridad gestionada»** no está en la lista.",
+     "difficulty": "media",
+     "source_page": 8,
+     "section": "principios",
+     "reasoning": "El ENS es la norma que fija cómo deben proteger sus sistemas las administraciones públicas españolas; hoy está en el Real Decreto 311/2022. Su artículo 5 enumera siete principios básicos. Para responder, compara cada opción con la lista. «Seguridad integral» es la forma corta de «seguridad como proceso integral». «Gestión de riesgos» abrevia «gestión de la seguridad basada en los riesgos». «Prevención, reacción y recuperación» era el nombre del principio en el ENS anterior (RD 3/2010), sustituido en 2022 por «prevención, detección, respuesta y conservación». «Seguridad gestionada», en cambio, no aparece en ninguna de las dos versiones. La trampa es un nombre inventado que suena a jerga técnica real.",
+     "args": [
+      "Incorrecta. «Seguridad integral» es la forma abreviada del principio de **seguridad como proceso integral**, el primero de la lista del artículo 5 del RD 311/2022.",
+      "Incorrecta. Corresponde al principio de **gestión de la seguridad basada en los riesgos**, que sí es uno de los siete principios.",
+      "Incorrecta. Es el nombre que tenía este principio en el ENS de 2010. En el ENS actual se llama **prevención, detección, respuesta y conservación**, pero sigue siendo un principio básico.",
+      "Correcta. **«Seguridad gestionada»** no figura entre los principios básicos del ENS, ni en la versión actual ni en la anterior. Es un nombre que suena plausible, pero inventado."
+     ],
+     "doubt": "La opción «Prevención, reacción y recuperación» usa el nombre del ENS de 2010; en el RD 311/2022 se llama «prevención, detección, respuesta y conservación». Aun así, «Seguridad gestionada» es la única que nunca ha sido un principio."
+    },
+    {
+     "ref": "ciberdelitos-t02-07"
+    },
+    {
+     "ref": "ciberdelitos-t02-08"
+    },
+    {
+     "ref": "ciberdelitos-t02-05"
+    },
+    {
+     "ref": "ciberdelitos-t02-02"
+    },
+    {
+     "ref": "ciberdelitos-t02-09"
+    },
+    {
+     "ref": "ciberdelitos-t02-10"
+    },
+    {
+     "ref": "ciberdelitos-t02-03"
+    },
+    {
+     "ref": "ciberdelitos-t02-04"
+    },
+    {
+     "ref": "ciberdelitos-t02-06"
+    }
+   ]
+  },
+  {
+   "number": 3,
+   "items": [
+    {
+     "ref": "ciberdelitos-t03-04"
+    },
+    {
+     "question": "Las entidades esenciales e importantes deberán notificar, sin demora indebida, a su CSIRT o, en su caso, a su autoridad competente:",
+     "options": [
+      "Cualquier incidente que tenga un impacto considerable en la prestación de sus servicios, bien porque ha causado o puede causar graves perturbaciones operativas de los servicios o pérdidas económicas para la entidad o bien porque ha afectado o puede afectar a otras personas físicas o jurídicas, al causar perjuicios materiales o inmateriales considerables.",
+      "Cualquier incidente que tenga un impacto considerable en la prestación de sus servicios, bien porque ha causado o puede causar graves incomodidades operativas de los servicios o bien porque ha afectado o puede afectar a otras personas físicas.",
+      "Cualquier incidente que tenga un impacto significativo en la prestación de sus servicios, bien porque ha causado o puede causar graves perturbaciones operativas de los servicios o pérdidas económicas para la entidad o bien porque ha afectado o puede afectar a otras personas físicas o jurídicas, al causar perjuicios materiales o inmateriales considerables.",
+      "Cualquier incidente que tenga trascendencia considerable en la prestación de sus servicios, bien porque ha causado o puede causar graves incomodidades operativas de los servicios o bien porque ha afectado o puede afectar a otras personas físicas."
+     ],
+     "correct": 2,
+     "explanation": "La Directiva **NIS 2** obliga a las entidades esenciales e importantes a notificar, sin demora indebida, los incidentes con **impacto significativo** en sus servicios. La clave está en el adjetivo: «significativo», no «considerable», y con perjuicios a personas físicas **o jurídicas**.",
+     "difficulty": "alta",
+     "source_page": 32,
+     "section": "nis2-notificacion",
+     "reasoning": "NIS 2 (Network and Information Systems, la Directiva europea 2022/2555 sobre redes y sistemas de información) obliga a notificar ciertos incidentes al **CSIRT** (Computer Security Incident Response Team, equipo de respuesta a incidentes) o a la autoridad competente. No se notifica cualquier incidente, sino el **incidente significativo**. El temario reproduce el artículo 23.1: hay que notificar «cualquier incidente que tenga un impacto significativo en la prestación de sus servicios». Las cuatro opciones son casi iguales, así que hay que buscar las palabras que cambian. Dos dicen «considerable» o «trascendencia considerable» en lugar de «significativo», y dos hablan de «incomodidades» y solo de personas físicas. Solo la opción C combina «impacto significativo», «perturbaciones operativas o pérdidas económicas» y perjuicios a personas físicas o jurídicas. La trampa es una opción casi literal con un único adjetivo cambiado.",
+     "args": [
+      "Incorrecta. Es casi literal, pero cambia «significativo» por **«considerable»**. NIS 2 usa el término «incidente significativo» y en torno a él construye los plazos de 24 horas, 72 horas y un mes.",
+      "Incorrecta. Cambia «significativo» por «considerable», rebaja las «perturbaciones» a «incomodidades», omite las pérdidas económicas y se limita a las personas físicas.",
+      "Correcta. Recoge el criterio de NIS 2: incidentes con **impacto significativo**, por causar graves perturbaciones operativas o pérdidas económicas, o perjuicios materiales o inmateriales considerables a personas físicas o jurídicas.",
+      "Incorrecta. Habla de «trascendencia considerable» y de «incomodidades», y deja fuera a las personas jurídicas. No es la terminología de la directiva."
+     ]
+    },
+    {
+     "ref": "ciberdelitos-t03-08"
+    },
+    {
+     "ref": "ciberdelitos-t03-07"
+    },
+    {
+     "question": "La Directiva NIS 2:",
+     "options": [
+      "Mantiene la distinción entre operadores de servicios esenciales y proveedores de servicios digitales.",
+      "Mantiene la distinción entre operadores de servicios esenciales y proveedores de servicios digitales e introduce que la clasificación se haga en función de su importancia.",
+      "Elimina la distinción entre operadores de servicios esenciales y proveedores de servicios digitales y se aplica a las entidades públicas y privadas cuyo tipo se enmarque en el de las entidades esenciales del anexo I y en el de las entidades importantes del anexo II.",
+      "Propone que la clasificación se haga en función del sector al que pertenezcan."
+     ],
+     "similar": "ciberdelitos-t03-08",
+     "correct": 2,
+     "explanation": "**NIS 2 elimina la distinción** de la primera NIS entre operadores de servicios esenciales y proveedores de servicios digitales. En su lugar clasifica a las entidades en **esenciales** (anexo I, sectores de alta criticidad) e **importantes** (anexo II, otros sectores críticos), públicas o privadas.",
+     "difficulty": "media",
+     "source_page": 31,
+     "section": "nis2-ambito",
+     "reasoning": "La primera Directiva NIS (2016) separaba dos grupos: los **operadores de servicios esenciales** (energía, transporte, banca…) y los **proveedores de servicios digitales** (buscadores, nube, mercados en línea). NIS 2 considera esa separación obsoleta porque no reflejaba la importancia real de cada sector. Por eso la **elimina** y clasifica a las entidades en dos categorías: esenciales e importantes. La clasificación depende del grado de criticidad del sector o del servicio y también del tamaño de la entidad. El anexo I recoge los sectores de alta criticidad y el anexo II, otros sectores críticos. La trampa típica es decir que NIS 2 «mantiene» la distinción o que clasifica solo por sector.",
+     "args": [
+      "Incorrecta. NIS 2 no mantiene la distinción: la considera **obsoleta** y la suprime.",
+      "Incorrecta. Mezcla una idea cierta (clasificar según la importancia) con una falsa (mantener la distinción antigua). NIS 2 sustituye una cosa por la otra.",
+      "Correcta. NIS 2 **elimina** la distinción entre operadores de servicios esenciales y proveedores de servicios digitales y se aplica a entidades públicas y privadas de los tipos de los anexos I (esenciales) y II (importantes).",
+      "Incorrecta. El sector cuenta, pero no es el único criterio. La directiva propone clasificar según la **importancia**, que combina la criticidad del sector o del servicio con el tamaño de la entidad."
+     ]
+    },
+    {
+     "ref": "ciberdelitos-t03-09"
+    },
+    {
+     "ref": "ciberdelitos-t03-10"
+    },
+    {
+     "ref": "ciberdelitos-t03-01"
+    },
+    {
+     "ref": "ciberdelitos-t03-02"
+    },
+    {
+     "ref": "ciberdelitos-t03-03"
+    }
+   ]
+  },
+  {
+   "number": 4,
+   "items": [
+    {
+     "question": "A efectos de aplicación de la LSSI, esta se aplica a aquellos servicios de la sociedad de la información que constituyan actividad económica para su prestador:",
+     "options": [
+      "Existe actividad económica cuando su responsable recibe ingresos directos (por las actividades de comercio electrónico que lleve a cabo, etc.) o indirectos (por publicidad, patrocinio, etc.) derivados de la actividad que realice por medios electrónicos.",
+      "Existe actividad económica solo cuando su responsable recibe ingresos directos (por las actividades de comercio electrónico que lleve a cabo, etc.).",
+      "Existe actividad económica cuando su responsable recibe ingresos directos (por las actividades de comercio electrónico que lleve a cabo, etc.) o indirectos (por publicidad, patrocinio, etc.) derivados de la actividad que realice por medios electrónicos solo cuando se trate de relación empresa-consumidor.",
+      "Existe actividad económica cuando su responsable recibe ingresos solo de actividades empresa-empresa."
+     ],
+     "similar": "ciberdelitos-t04-01",
+     "correct": 0,
+     "explanation": "La **LSSI** (Ley de Servicios de la Sociedad de la Información y de Comercio Electrónico) considera que hay actividad económica cuando el responsable recibe **ingresos directos** (ventas) **o indirectos** (publicidad, patrocinio). No limita el concepto a un tipo de relación comercial.",
+     "difficulty": "baja",
+     "source_page": 5,
+     "section": "ambito",
+     "reasoning": "La LSSI se aplica a los servicios de la sociedad de la información que son una actividad económica para quien los presta. La pregunta es qué se entiende por «actividad económica». El temario lo precisa: existe cuando el responsable recibe ingresos **directos**, por ejemplo por vender en una tienda en línea, o **indirectos**, por ejemplo por publicidad o patrocinio. Así, un blog gratuito que vive de anuncios también queda dentro de la ley. El temario no añade ninguna restricción por tipo de cliente, ni empresa-consumidor ni empresa-empresa. La trampa típica es añadir la palabra «solo» para recortar el concepto.",
+     "args": [
+      "Correcta. Recoge la idea del temario: hay actividad económica con **ingresos directos o indirectos** derivados de la actividad electrónica, sin más requisitos.",
+      "Incorrecta. Excluye los ingresos indirectos. Una web gratuita para el usuario pero financiada con publicidad también es actividad económica para la LSSI.",
+      "Incorrecta. Añade una limitación que la ley no recoge: la actividad económica no depende de que la relación sea entre empresa y consumidor.",
+      "Incorrecta. Tampoco se limita a relaciones entre empresas. Además, olvida los ingresos indirectos."
+     ]
+    },
+    {
+     "ref": "ciberdelitos-t04-02"
+    },
+    {
+     "ref": "ciberdelitos-t04-03"
+    },
+    {
+     "question": "Indica la respuesta correcta:",
+     "options": [
+      "Cuando una página web almacene cookies, la mera actividad del usuario implica la prestación del consentimiento por sí misma.",
+      "Cuando una página web almacene cookies de los usuarios, no debe solicitar su consentimiento, pero sí informar.",
+      "Cuando una página web almacene cookies de los usuarios, debe solicitar su consentimiento y debe informar.",
+      "Cuando una página web almacene cookies, se exige la preceptiva autorización de la Agencia Española de Protección de Datos para ello."
+     ],
+     "similar": "ciberdelitos-t02-03",
+     "correct": 2,
+     "explanation": "El artículo 22.2 de la LSSI impone dos obligaciones a quien usa **cookies**: **informar** de forma clara y completa sobre su uso y sus fines, y **obtener el consentimiento** del usuario. La mera inactividad del usuario nunca equivale a consentir.",
+     "difficulty": "baja",
+     "source_page": 26,
+     "section": "cookies-obligaciones",
+     "reasoning": "Una **cookie** es un pequeño archivo que una web guarda en el navegador para recordar datos, como la sesión o los hábitos de navegación. El artículo 22.2 de la LSSI permite usarlas solo si el usuario ha dado su consentimiento después de recibir información clara y completa. El temario lo resume en dos obligaciones: el **deber de información** y la **obtención del consentimiento**. Según la guía de la AEPD, el consentimiento puede darse con un clic en «acepto» o con una acción inequívoca, pero nunca se deduce de la simple inactividad. No hace falta pedir ninguna autorización a la AEPD. La trampa típica es quedarse con una sola de las dos obligaciones o inventar una autorización administrativa previa.",
+     "args": [
+      "Incorrecta. El consentimiento no se presume por navegar sin más. La guía de la AEPD exige una acción inequívoca tras recibir información clara, y precisa que la inactividad nunca vale como consentimiento.",
+      "Incorrecta. Informar no basta. La LSSI exige **las dos cosas**: informar y obtener el consentimiento.",
+      "Correcta. Son las dos obligaciones del artículo 22.2 de la LSSI: **informar** sobre el uso y los fines de las cookies y **obtener el consentimiento** del usuario.",
+      "Incorrecta. No existe una autorización previa de la AEPD para usar cookies. La AEPD publica una guía y sanciona los incumplimientos, pero no autoriza cada web."
+     ],
+     "doubt": "Hay cookies exentas de consentimiento: las estrictamente necesarias para transmitir una comunicación o prestar un servicio pedido por el usuario. La opción C describe la regla general, que es lo que pregunta el test."
+    },
+    {
+     "ref": "ciberdelitos-t04-05"
+    },
+    {
+     "ref": "ciberdelitos-t04-06"
+    },
+    {
+     "ref": "ciberdelitos-t04-07"
+    },
+    {
+     "ref": "ciberdelitos-t04-08"
+    },
+    {
+     "ref": "ciberdelitos-t04-09"
+    },
+    {
+     "ref": "ciberdelitos-t04-10"
+    }
+   ]
+  },
+  {
+   "number": 5,
+   "items": [
+    {
+     "ref": "ciberdelitos-t05-01"
+    },
+    {
+     "question": "La Ley 6/2020, de 11 de noviembre, reguladora de determinados aspectos de los servicios electrónicos de confianza:",
+     "options": [
+      "Tiene por objeto regular determinados aspectos de los servicios electrónicos de confianza, como complemento del Reglamento (UE) 910/2014, de 23 de julio de 2014, relativo a la identificación electrónica y los servicios de confianza para las transacciones electrónicas en el mercado interior.",
+      "No complementa ningún aspecto del Reglamento (UE) 910/2014.",
+      "No complementa ningún aspecto del Reglamento (UE) 910/2014, ya que su objeto es la derogación de la Ley 59/2003 de firma electrónica.",
+      "Tiene por objeto regular los servicios electrónicos cualificados de confianza y la firma electrónica no es uno de ellos."
+     ],
+     "similar": "ciberdelitos-t05-02",
+     "correct": 0,
+     "explanation": "La **Ley 6/2020** regula determinados aspectos de los servicios electrónicos de confianza **como complemento del Reglamento eIDAS** (Reglamento UE 910/2014). El reglamento europeo se aplica directamente; la ley española solo completa lo que este deja a cada país.",
+     "difficulty": "baja",
+     "source_page": 14,
+     "section": "ley-6-2020",
+     "reasoning": "Primero hay que distinguir los tipos de norma. Un **reglamento europeo**, como eIDAS (electronic IDentification, Authentication and trust Services), se aplica directamente en todos los Estados sin necesidad de ley nacional. Aun así, deja algunos aspectos a cada país. La Ley 6/2020 se dicta para regular esos aspectos: su objeto es complementar eIDAS. Además deroga la antigua Ley 59/2003 de firma electrónica, pero ese no es su único objeto. Y la firma electrónica es precisamente el servicio de confianza por excelencia. La trampa típica es fijarse en la derogación de la Ley 59/2003 y olvidar su función de complemento.",
+     "args": [
+      "Correcta. Es el objeto que declara la propia ley: regular determinados aspectos de los servicios electrónicos de confianza **como complemento del Reglamento eIDAS**.",
+      "Incorrecta. Su razón de ser es justamente complementar eIDAS en lo que el reglamento deja a cada Estado.",
+      "Incorrecta. Es cierto que deroga la Ley 59/2003, pero eso no le impide complementar eIDAS. Las dos cosas son compatibles.",
+      "Incorrecta. La **firma electrónica** es el servicio de confianza más conocido y la ley también se ocupa de ella, junto con sellos, sellos de tiempo o entrega certificada."
+     ]
+    },
+    {
+     "ref": "ciberdelitos-t05-03"
+    },
+    {
+     "question": "Respecto a la comprobación de la identidad y otras circunstancias de los solicitantes de un certificado cualificado:",
+     "options": [
+      "La firma de la solicitud de expedición de un certificado cualificado deberá legitimarse notarialmente.",
+      "La identificación de la persona física que solicite un certificado cualificado exigirá su personación ante los encargados de verificarla y se acreditará mediante el Documento Nacional de Identidad, pasaporte u otros medios admitidos en derecho.",
+      "La identificación de la persona física que solicite un certificado cualificado se acreditará mediante el Documento Nacional de Identidad, pasaporte u otros medios admitidos en derecho.",
+      "El solicitante podrá elegir entre la personación ante los encargados de verificar su identidad o presentar copia de su Documento Nacional de Identidad, pasaporte u otros medios admitidos en derecho."
+     ],
+     "correct": 1,
+     "explanation": "La regla general es que la identificación de quien pide un **certificado cualificado** exige su **personación** (presentarse en persona) ante los encargados de verificarla, con DNI, pasaporte u otros medios admitidos en derecho. La opción B recoge esa regla completa.",
+     "difficulty": "alta",
+     "source_page": 27,
+     "section": "obligaciones-prestadores",
+     "reasoning": "Un **certificado cualificado** es el certificado electrónico de mayor garantía, el que permite crear una firma equiparada a la manuscrita. Por eso el prestador debe comprobar muy bien quién lo pide. La norma española exige, como regla general, dos cosas: que el solicitante **se presente en persona** ante quien verifica su identidad y que la **acredite** con el DNI, el pasaporte u otro medio admitido en derecho. La opción B reúne los dos elementos. La C se queda con la mitad, porque omite la personación. La A convierte en obligatoria la legitimación notarial y la D permite sustituir la presencia por una simple copia del DNI. La trampa es la opción C: parece correcta porque todo lo que dice es cierto, pero le falta el requisito clave.",
+     "args": [
+      "Incorrecta. La legitimación notarial de la firma de la solicitud no es obligatoria en todos los casos. Como mucho, es una vía para evitar la personación, no un requisito general.",
+      "Correcta. Recoge la regla general completa: **personación** ante los encargados de verificar la identidad y **acreditación** con DNI, pasaporte u otros medios admitidos en derecho.",
+      "Incorrecta. Es cierta pero incompleta: omite la **personación**, que es la garantía principal. Quedarse solo con el documento abriría la puerta a que otro lo presentara en nombre del titular.",
+      "Incorrecta. Una copia del DNI no ofrece las mismas garantías que verificar la identidad en persona. El solicitante no puede elegir libremente entre las dos cosas."
+     ],
+     "doubt": "El texto del tema no desarrolla este artículo y el test no da la clave. Además, la normativa actual admite excepciones a la personación, como métodos de identificación a distancia (por ejemplo, por vídeo) con seguridad equivalente. Se elige B porque es la regla general completa; en el banco de la app la variante de esta pregunta se reformuló por ese motivo."
+    },
+    {
+     "ref": "ciberdelitos-t05-05"
+    },
+    {
+     "ref": "ciberdelitos-t05-06"
+    },
+    {
+     "ref": "ciberdelitos-t05-07"
+    },
+    {
+     "ref": "ciberdelitos-t05-08"
+    },
+    {
+     "question": "Con el Reglamento 910/2014 (eIDAS):",
+     "options": [
+      "Se mantiene la denominación de firma electrónica avanzada basada en un certificado reconocido.",
+      "La firma electrónica avanzada basada en un certificado reconocido pasa a denominarse firma electrónica reconocida.",
+      "La firma electrónica avanzada basada en un certificado reconocido pasa a denominarse firma electrónica cualificada.",
+      "La firma electrónica avanzada basada en un certificado reconocido pasa a denominarse firma electrónica certificada."
+     ],
+     "correct": 2,
+     "explanation": "Con el **Reglamento eIDAS**, la antigua firma electrónica **reconocida** (firma avanzada basada en certificado reconocido) pasa a llamarse **firma electrónica cualificada**. Del mismo modo, el certificado reconocido pasa a ser certificado cualificado.",
+     "difficulty": "baja",
+     "source_page": 9,
+     "section": "tipos-firma",
+     "reasoning": "La antigua Ley 59/2003 hablaba de **certificados reconocidos** y de **firma electrónica reconocida**: la firma avanzada basada en un certificado reconocido y creada con un dispositivo seguro. El Reglamento eIDAS cambió la terminología: el certificado reconocido pasa a ser **certificado cualificado** y la firma reconocida pasa a ser **firma electrónica cualificada**. Es la única equiparada a la firma manuscrita. Un truco para recordarlo: con eIDAS, «reconocido» se convierte siempre en «cualificado». La trampa típica es ofrecer el nombre antiguo («reconocida») como si fuera el nuevo, o un nombre inventado como «certificada».",
+     "args": [
+      "Incorrecta. La denominación no se mantiene: eIDAS introduce una terminología nueva y deja atrás la de «certificado reconocido».",
+      "Incorrecta. «Firma electrónica reconocida» es justamente el **nombre antiguo**, el de la Ley 59/2003. eIDAS lo sustituye.",
+      "Correcta. Con eIDAS, la firma avanzada basada en certificado reconocido (la antigua firma reconocida) pasa a llamarse **firma electrónica cualificada**.",
+      "Incorrecta. «Firma electrónica certificada» no es una categoría de eIDAS. Los niveles son firma simple, avanzada y cualificada."
+     ]
+    },
+    {
+     "ref": "ciberdelitos-t05-10"
+    }
+   ]
+  },
+  {
+   "number": 6,
+   "items": [
+    {
+     "ref": "ciberdelitos-t06-01"
+    },
+    {
+     "ref": "ciberdelitos-t06-02"
+    },
+    {
+     "ref": "ciberdelitos-t06-03"
+    },
+    {
+     "question": "Según la clasificación de EUROPOL, para que exista delincuencia organizada se tienen que dar, entre otros, alguno de los siguientes indicadores. Señala la incorrecta:",
+     "options": [
+      "Colaboración de dos o más personas.",
+      "Existencia de mecanismos de control y disciplina interna.",
+      "Permanencia en el tiempo.",
+      "Sospecha de comisión de delitos leves."
+     ],
+     "correct": 3,
+     "explanation": "Entre los indicadores de **delincuencia organizada** de EUROPOL figura la sospecha de comisión de **delitos graves**, no leves. La colaboración de varias personas, la permanencia en el tiempo y los mecanismos de control y disciplina interna sí son indicadores.",
+     "difficulty": "media",
+     "source_page": 12,
+     "section": "delincuencia-organizada",
+     "reasoning": "**EUROPOL** es la agencia de la Unión Europea para la cooperación policial. Para decidir si un grupo es «delincuencia organizada» usa una lista de rasgos llamados **indicadores**. Unos son obligatorios: colaboración de varias personas, permanencia en el tiempo, sospecha de **delitos graves** y búsqueda de beneficio o poder. Otros son optativos, como el reparto de tareas o los mecanismos de control y disciplina interna. La lógica es sencilla: una organización criminal se monta para cometer delitos graves y lucrarse, no faltas menores. Por eso la opción incorrecta es la de los delitos leves. La trampa es cambiar «graves» por «leves» en una frase que, por lo demás, suena idéntica al indicador real.",
+     "args": [
+      "Incorrecta. Sí forma parte de la lista: la colaboración de varias personas es uno de los **indicadores obligatorios**: sin un grupo no hay organización.",
+      "Incorrecta. Sí forma parte de la lista: los **mecanismos de control y disciplina interna** son uno de los indicadores optativos de EUROPOL, propios de una estructura jerarquizada.",
+      "Incorrecta. Sí forma parte de la lista: la **permanencia en el tiempo** es un indicador obligatorio: distingue a la organización de una colaboración puntual.",
+      "Correcta. Es el indicador falso: EUROPOL exige la sospecha de comisión de **delitos graves**, no de delitos leves."
+     ],
+     "doubt": "Los indicadores aparecen en una figura del temario que no está en el texto. Además, el criterio clásico habla de colaboración de «más de dos» personas, mientras que la opción A dice «dos o más». Aun así, la opción D es claramente la que pretende el test."
+    },
+    {
+     "ref": "ciberdelitos-t06-05"
+    },
+    {
+     "ref": "ciberdelitos-t06-06"
+    },
+    {
+     "ref": "ciberdelitos-t06-07"
+    },
+    {
+     "ref": "ciberdelitos-t06-08"
+    },
+    {
+     "ref": "ciberdelitos-t06-09"
+    },
+    {
+     "ref": "ciberdelitos-t06-10"
+    }
+   ]
+  },
+  {
+   "number": 7,
+   "items": [
+    {
+     "ref": "ciberdelitos-t07-01"
+    },
+    {
+     "ref": "ciberdelitos-t07-02"
+    },
+    {
+     "ref": "ciberdelitos-t07-03"
+    },
+    {
+     "ref": "ciberdelitos-t07-04"
+    },
+    {
+     "ref": "ciberdelitos-t07-05"
+    },
+    {
+     "ref": "ciberdelitos-t07-06"
+    },
+    {
+     "ref": "ciberdelitos-t07-07"
+    },
+    {
+     "ref": "ciberdelitos-t07-08"
+    },
+    {
+     "ref": "ciberdelitos-t07-09"
+    },
+    {
+     "question": "Dentro del ciclo del phishing, ¿a qué fase pertenece un correo electrónico que incluye el siguiente texto?:",
+     "options": [
+      "Captura de datos.",
+      "Captación de mulas.",
+      "Trasferencia, monetización y envío.",
+      "Ninguna de las anteriores: no se incluye dentro del ciclo del phishing, sino del skimming."
+     ],
+     "correct": 1,
+     "explanation": "El texto del correo no está disponible, pero el ejemplo que muestra el temario para esta pregunta es una **oferta de trabajo** desde casa, con poca dedicación y buena comisión. Ese tipo de correo pertenece a la **fase II: captación de mulas**.",
+     "difficulty": "media",
+     "source_page": 26,
+     "section": "mulas",
+     "reasoning": "El tema divide el ciclo del phishing en tres fases. En la **fase I (captura de datos)** se roban credenciales con correos y webs falsas o malware. En la **fase II (captación de mulas)** se recluta a personas que reciben en su cuenta el dinero robado y lo reenvían. En la **fase III (transferencia, monetización y envío)** se mueve el dinero hasta los delincuentes. El temario explica que las mulas se captan tradicionalmente con correos que ofrecen un trabajo desde casa, con horario libre, poca dedicación y una compensación alta; y lo ilustra con una oferta de trabajo. Si el correo es de ese tipo, la fase es la II. Para reconocerlo: si el mensaje te pide **datos**, es fase I; si te ofrece **trabajo** moviendo dinero, es fase II.",
+     "args": [
+      "Incorrecta. La captura de datos es la fase I: correos que suplantan al banco para robar usuario y contraseña. Una oferta de empleo no busca credenciales, busca colaboradores.",
+      "Correcta. Las ofertas de trabajo fácil, desde casa y bien pagado para recibir y reenviar dinero son la vía clásica de **captación de mulas**.",
+      "Incorrecta. La fase III es el movimiento del dinero (transferencias, retirada y envío por empresas internacionales), no el reclutamiento previo de quienes lo moverán.",
+      "Incorrecta. El **skimming** es la copia de la banda magnética de una tarjeta en cajeros o terminales. Un correo de captación sí forma parte del ciclo del phishing."
+     ],
+     "doubt": "El enunciado se refiere a un texto incluido como imagen que no está en el material extraído. Se responde según el ejemplo del temario (oferta de trabajo para captar mulas, figura 16); si el correo del campus fuera otro, la clave podría cambiar."
+    }
+   ]
+  },
+  {
+   "number": 8,
+   "items": [
+    {
+     "ref": "ciberdelitos-t08-01"
+    },
+    {
+     "ref": "ciberdelitos-t08-02"
+    },
+    {
+     "question": "El carding o card no present fraud consiste en la utilización de determinados datos relacionados con una tarjeta bancaria con el fin de realizar compras o pagos fraudulentos. ¿Cuáles son esos datos concretos?:",
+     "options": [
+      "La numeración de la tarjeta.",
+      "La entidad bancaria.",
+      "El nombre del cliente.",
+      "Ninguna de las anteriores."
+     ],
+     "correct": 0,
+     "explanation": "El **carding** o fraude de tarjeta no presente (CNP, card not present) usa los datos grabados en la tarjeta: la **numeración**, la fecha de caducidad y el código de verificación (CVC). De las opciones, solo la numeración es uno de esos datos.",
+     "difficulty": "media",
+     "source_page": 33,
+     "section": "carding",
+     "reasoning": "En el carding, el delincuente no tiene la tarjeta en la mano: compra por Internet o por teléfono con los datos de una tarjeta ajena. El temario dice que esos datos son los grabados físicamente en la tarjeta: la **numeración**, la **fecha de caducidad** y el **código de verificación** (CVC, CVC2 o CID), un número de tres o cuatro cifras que sirve para comprobar que se tiene la tarjeta. De las cuatro opciones, solo la numeración forma parte de esa lista. La entidad bancaria y el nombre del cliente no son los datos que permiten pagar. La trampa es elegir «Ninguna» porque falta la caducidad y el CVC; pero la numeración sí es uno de los datos concretos.",
+     "args": [
+      "Correcta. La **numeración de la tarjeta** es el dato principal del carding, junto con la fecha de caducidad y el código CVC, que el temario cita como datos grabados en la tarjeta.",
+      "Incorrecta. La entidad bancaria no es un dato que se use para pagar: se deduce de la propia numeración y no permite hacer compras.",
+      "Incorrecta. El nombre del titular no figura entre los datos que el temario cita para el carding (numeración, caducidad y CVC).",
+      "Incorrecta. La numeración sí es uno de los datos concretos del carding, así que «ninguna» no es adecuada."
+     ],
+     "doubt": "La pregunta pide «esos datos concretos» y la opción A solo da uno de los tres que cita el temario (numeración, caducidad y CVC). Se elige A por ser el único dato correcto entre las opciones, pero podría defenderse «Ninguna» si se exige la lista completa."
+    },
+    {
+     "ref": "ciberdelitos-t08-04"
+    },
+    {
+     "ref": "ciberdelitos-t08-05"
+    },
+    {
+     "ref": "ciberdelitos-t08-06"
+    },
+    {
+     "ref": "ciberdelitos-t08-07"
+    },
+    {
+     "ref": "ciberdelitos-t08-08"
+    },
+    {
+     "ref": "ciberdelitos-t08-09"
+    },
+    {
+     "question": "Rogue es un tipo concreto de malware que::",
+     "options": [
+      "Se instala en dispositivos USB durante la navegación por webs poco seguras.",
+      "Se instala durante la navegación por webs de la darknet.",
+      "Se instala de manera oculta durante la navegación por webs poco seguras.",
+      "Ninguna de las anteriores."
+     ],
+     "correct": 2,
+     "explanation": "Un **rogue** (falso antivirus) es un malware que se instala **de manera oculta** al navegar por webs poco seguras o al descargar archivos. Después muestra avisos de virus falsos para que la víctima compre un antivirus que tampoco existe.",
+     "difficulty": "baja",
+     "source_page": 30,
+     "section": "rogue",
+     "reasoning": "El temario define el **rogue** como un tipo de malware que, generalmente, se instala **de manera oculta** durante la navegación por webs poco seguras o a través de descargas directas o redes P2P (de igual a igual). Una vez dentro, lanza ventanas emergentes (pop-ups) que avisan de un virus peligroso. La víctima descarga el supuesto antivirus, que «confirma» la infección y le pide pagar una licencia con tarjeta. El fraude está en que ni el virus ni el antivirus existen. La opción C reproduce la definición. La trampa está en los detalles añadidos: «en dispositivos USB» o «solo en la darknet».",
+     "args": [
+      "Incorrecta. No se instala «en dispositivos USB»: se instala en el equipo de la víctima mientras navega. El USB es un detalle inventado.",
+      "Incorrecta. No hace falta entrar en la **darknet** (la parte de Internet accesible solo con herramientas especiales). Basta con webs poco seguras o descargas de origen dudoso.",
+      "Correcta. Es la definición del temario: se instala **de manera oculta** durante la navegación por webs poco seguras o mediante descargas.",
+      "Incorrecta. La opción C coincide con la definición del temario, así que «ninguna» no procede."
+     ]
+    }
+   ]
+  },
+  {
+   "number": 9,
+   "items": [
+    {
+     "ref": "ciberdelitos-t09-01"
+    },
+    {
+     "ref": "ciberdelitos-t09-02"
+    },
+    {
+     "ref": "ciberdelitos-t09-03"
+    },
+    {
+     "ref": "ciberdelitos-t09-04"
+    },
+    {
+     "ref": "ciberdelitos-t09-05"
+    },
+    {
+     "ref": "ciberdelitos-t09-06"
+    },
+    {
+     "ref": "ciberdelitos-t09-07"
+    },
+    {
+     "ref": "ciberdelitos-t09-08"
+    },
+    {
+     "ref": "ciberdelitos-t09-09"
+    },
+    {
+     "ref": "ciberdelitos-t09-10"
+    }
+   ]
+  },
+  {
+   "number": 10,
+   "items": [
+    {
+     "question": "De las vías que existen para poner en conocimiento de las autoridades la existencia de un ciberdelito, ¿cuál de ellas se puede realizar a través de un mensaje electrónico?",
+     "options": [
+      "La querella.",
+      "La denuncia.",
+      "La comunicación.",
+      "Cualquiera de ellas."
+     ],
+     "correct": 2,
+     "explanation": "De las tres vías (comunicación, denuncia y querella), la que puede hacerse por **correo electrónico** o formulario web es la **comunicación**. Según el temario, la denuncia exige presentarse en persona y la querella es un escrito con procurador y abogado ante el juez.",
+     "difficulty": "baja",
+     "source_page": 4,
+     "section": "tres-vias",
+     "reasoning": "El temario distingue tres formas de avisar a las autoridades. La **comunicación** solo informa de un hecho que podría ser delito, para que la policía investigue de oficio; su forma más sencilla es un correo a las direcciones de atención al ciudadano de las policías o un formulario web. La **denuncia** pone los hechos en conocimiento de un juez, fiscal o policía, y el temario indica que exige la personación del denunciante, por lo que no se puede presentar de forma telemática. La **querella** es un escrito presentado por procurador y firmado por abogado ante el juez de instrucción, con el que el querellante se convierte en parte acusadora. Por tanto, la respuesta es la comunicación. La trampa es «cualquiera de ellas», que suena moderna pero contradice el temario.",
+     "args": [
+      "Incorrecta. La **querella** es un escrito formal que se presenta por medio de procurador, firmado por abogado, ante el juez de instrucción. No se hace con un simple mensaje electrónico.",
+      "Incorrecta. Según el temario, la **denuncia** exige que el denunciante, o su representante legal, se presente en persona y acredite su identidad.",
+      "Correcta. La **comunicación** puede hacerse por correo electrónico o mediante los formularios web de la Guardia Civil o la Policía Nacional. Es la vía idónea para avisar de hechos vistos en Internet de los que no se es víctima.",
+      "Incorrecta. No vale cualquiera: la querella y la denuncia tienen requisitos formales que, según el temario, impiden presentarlas con un simple mensaje electrónico."
+     ],
+     "doubt": "El temario afirma que la denuncia no puede presentarse de forma telemática. En la práctica existen vías policiales de denuncia por Internet para algunos hechos, así que esa afirmación puede estar desfasada; para el test se sigue el temario."
+    },
+    {
+     "question": "A la hora de presentar una denuncia, se debe tener en cuenta que:",
+     "options": [
+      "Se debe describir todo lo ocurrido de manera general.",
+      "El lenguaje que se debe emplear será el adecuado para ser comprendido por personas sin formación técnica.",
+      "Se debe describir lo ocurrido de manera detallada.",
+      "No se aportará información más allá del hecho ocurrido."
+     ],
+     "correct": 2,
+     "explanation": "El temario pide **describir lo ocurrido de manera detallada** y con un lenguaje comprensible para personas sin formación técnica, como jueces y fiscales. Lo contrario, describirlo «de manera general» o limitarse al hecho, resta utilidad a la denuncia.",
+     "difficulty": "media",
+     "source_page": 6,
+     "section": "por-que-distinto",
+     "reasoning": "Denunciar un ciberdelito es más difícil que denunciar un robo en la calle, porque quien lo lee puede no entender cómo se cometió. Por eso el temario destaca como primera característica la necesidad de describir todo lo ocurrido **de manera detallada** y con un **lenguaje adecuado para personas sin formación técnica**. Las opciones A y D van en contra: piden generalidad o limitar la información. La C recoge el detalle, que además es lo que la opción A niega directamente. La B también es cierta, porque recoge la segunda mitad de la misma frase del temario. Se elige C porque es la que contrasta con la opción A, pero conviene recordar las dos ideas juntas: detalle y lenguaje comprensible.",
+     "args": [
+      "Incorrecta. Una descripción «general» es justo lo que se debe evitar. El temario pide un relato detallado y cronológico de todos los elementos relacionados con el hecho.",
+      "Incorrecta. Lo que dice es cierto: el lenguaje debe ser comprensible para personas sin formación técnica. Pero es la segunda mitad de la pauta, y la clave elegida es el detalle del relato.",
+      "Correcta. El temario exige **describir lo ocurrido de manera detallada**, porque en un ciberdelito no es fácil entender cómo se produjo ni qué consecuencias tuvo.",
+      "Incorrecta. Se debe aportar más que el hecho: indicios, registros (logs), capturas, cabeceras de correos y todo lo que se sepa del autor."
+     ],
+     "doubt": "El temario dice en la misma frase que hay que describir los hechos «de manera detallada y con un lenguaje adecuado para personas sin formación técnica», así que B y C son ciertas. Se elige C porque es la contraria directa de la opción A; la clave oficial podría ser B."
+    },
+    {
+     "ref": "ciberdelitos-t10-03"
+    },
+    {
+     "question": "A fin de contar con las máximas garantías de éxito en la resolución de un ciberdelito, es recomendable que una denuncia siga algunas pautas como, por ejemplo:",
+     "options": [
+      "Se debe presentar cuando se tengan todos los datos, sin que el tiempo que se tarde afecte en algo a la investigación.",
+      "Es obligatorio presentarla por escrito.",
+      "Es aconsejable que la denuncia sea confeccionada únicamente por el responsable técnico de la empresa víctima, ya que es él quien conoce lo que ha ocurrido exactamente.",
+      "El objeto de la denuncia es que lo que en ella se exponga sea comprendido por todos los actores jurídicos y policiales que intervengan."
+     ],
+     "similar": "ciberdelitos-t10-04",
+     "correct": 3,
+     "explanation": "El objetivo final de la denuncia es que **la entiendan todos los actores jurídicos y policiales** que intervienen, sobre todo el juez instructor. Por eso conviene presentarla pronto, mejor por escrito y redactada entre el técnico y el jurista.",
+     "difficulty": "media",
+     "source_page": 8,
+     "section": "plazo-forma",
+     "reasoning": "El temario da varias pautas para que una denuncia por ciberdelito tenga éxito. **Plazo**: presentarla cuanto antes, porque los operadores solo están obligados a conservar los datos de las comunicaciones durante doce meses (Ley 25/2007). **Forma**: es mejor llevarla ya escrita, pero no es obligatorio. **Redacción**: conviene hacerla entre el responsable técnico, que sabe qué pasó, y el abogado, que sabe explicarlo en términos jurídicos. Y el **objetivo final** es que el juez instructor y el resto de actores jurídicos y policiales entiendan lo ocurrido. Esa es la opción D. La trampa está en palabras como «obligatorio», «únicamente» o «sin que afecte», que convierten un consejo en una regla falsa.",
+     "args": [
+      "Incorrecta. El tiempo sí afecta: cuanto más se tarda, menos margen queda para pedir datos a los operadores, que solo deben conservarlos doce meses.",
+      "Incorrecta. Presentarla por escrito es **recomendable**, no obligatorio. La denuncia también puede hacerse de palabra ante el funcionario.",
+      "Incorrecta. Se aconseja redactarla **conjuntamente** entre el responsable técnico y el abogado o responsable jurídico, no solo por el técnico.",
+      "Correcta. El objetivo final es que lo expuesto lo **comprendan todos los actores jurídicos y policiales** que intervengan en el proceso."
+     ]
+    },
+    {
+     "ref": "ciberdelitos-t10-05"
+    },
+    {
+     "ref": "ciberdelitos-t10-06"
+    },
+    {
+     "ref": "ciberdelitos-t10-07"
+    },
+    {
+     "ref": "ciberdelitos-t10-08"
+    },
+    {
+     "ref": "ciberdelitos-t10-09"
+    },
+    {
+     "question": "Entre la información que se debe incluir en la documentación que acompañe a toda evidencia se debe incluir::",
+     "options": [
+      "Identificación del autor del delito.",
+      "Número de evidencia común para todos los dispositivos identificados como posibles evidencias.",
+      "Lugar en el que se encontraba en el momento de ser identificada.",
+      "Descripción general del dispositivo."
+     ],
+     "correct": 2,
+     "explanation": "La documentación de cada evidencia, que sirve de **cadena de custodia**, debe incluir el **lugar donde se encontraba** cuando se identificó, además de un número único, la fecha y hora y una descripción **detallada** del dispositivo.",
+     "difficulty": "media",
+     "source_page": 20,
+     "section": "preservacion-custodia",
+     "reasoning": "La **cadena de custodia** es el registro que demuestra que una evidencia no se ha manipulado desde que se encontró hasta que llega al juez. El temario enumera lo que debe constar para cada evidencia: un **número de identificación único**, el **lugar donde se encontraba** al identificarla, la fecha y hora, una **descripción detallada** (tipo, marca, modelo, número de serie), dónde se almacena y quién es responsable, quién accede y los traslados. Con esa lista se descarta cada opción: el número debe ser único, no común; la descripción debe ser detallada, no general; y la identidad del autor no forma parte de la documentación de la evidencia. Queda el lugar. La trampa está en los adjetivos: «común» frente a «único» y «general» frente a «detallada».",
+     "args": [
+      "Incorrecta. La documentación describe la evidencia y lo que se hace con ella, no al autor del delito, que muchas veces ni siquiera se conoce al recogerla.",
+      "Incorrecta. El número debe ser **único para cada evidencia**. Un número común para todos los dispositivos haría imposible distinguirlos y rompería la cadena de custodia.",
+      "Correcta. El temario incluye expresamente el **lugar donde se encontraba** la evidencia en el momento de identificarla como potencial evidencia.",
+      "Incorrecta. No basta con una descripción general: el temario exige una **descripción detallada** (tipo, marca, modelo, número de serie) para individualizar cada dispositivo."
+     ]
+    }
+   ]
+  }
+ ]
+}

@@ -2745,6 +2745,16 @@
         "c": "Incorrecta. Analizar el código sin ejecutarlo es SAST, y comprobar dependencias de terceros es SCA.",
         "d": "Incorrecta. Los requisitos se derivan del modelado de amenazas y del análisis de riesgos; ni IAST ni RASP sirven para eso."
       }
+    },
+    "sistemas-t02-c09": {
+      "section": "http-metodos",
+      "reasoning": "HTTP (Hypertext Transfer Protocol, protocolo de transferencia de hipertexto) es el idioma en que el navegador habla con el servidor web, y cada petición lleva un «verbo» o método. GET sirve para pedir un recurso y, si necesita datos, los pega a la URL como una cadena de consulta: todo lo que va detrás del «?». POST y PUT funcionan como un sobre cerrado: los datos viajan dentro del cuerpo del mensaje, no en la dirección. Por eso el temario avisa de que GET no debe usarse para datos sensibles: la URL queda en el historial, en la caché y en los registros del servidor. La respuesta es GET. La trampa es «Todas las anteriores»: técnicamente cualquier petición puede llevar una URL con «?», pero el método que por diseño **envía sus parámetros en la URL** es solo GET.",
+      "options": {
+        "a": "Correcta. GET añade los parámetros a la URL como cadena de consulta (lo que va tras el «?»). Por eso pueden acabar en el historial del navegador o en los registros, y no conviene usarlo con contraseñas.",
+        "b": "Incorrecta. POST envía los datos en el **cuerpo** de la petición, no en la URL. Es el método recomendado para formularios con datos sensibles.",
+        "c": "Incorrecta. PUT sube o reemplaza un recurso (por ejemplo, un archivo) en la ruta indicada, y su contenido va en el cuerpo de la petición.",
+        "d": "Incorrecta. Solo GET pone los parámetros en la URL; POST y PUT los llevan en el cuerpo, así que no valen las tres."
+      }
     }
   }
 }

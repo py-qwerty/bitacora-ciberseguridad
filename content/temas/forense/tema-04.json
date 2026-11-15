@@ -61,6 +61,7 @@
           "title": "Lo que ve el perito",
           "text": "Con un editor hexadecimal (un programa que muestra el contenido byte a byte) abres la copia de un pendrive. Ves filas de números como 4A 46 49 46… Sin interpretar las estructuras del sistema de ficheros no sabrás a qué archivo pertenece cada fila ni cómo se llama. Leer bytes no es lo mismo que ver carpetas."
         },
+        {"type":"diagram","kind":"layers","title":"Un disco por dentro: de los bits a las carpetas","caption":"Orden del test: partición > volumen > sistema de ficheros > archivos y carpetas.","items":[{"icon":"binary","title":"Dispositivo","text":"Una larga cadena de unos y ceros"},{"icon":"layout-list","title":"Partición","text":"Un trozo lógico del disco"},{"icon":"box","title":"Volumen","text":"La partición preparada para guardar datos"},{"icon":"sitemap","title":"Sistema de ficheros","text":"FAT, NTFS, Ext4, APFS…"},{"icon":"folder","title":"Archivos y carpetas","text":"Lo que ve el usuario","tone":"good"}]},
         {
           "type": "exam",
           "text": "El test pregunta el orden de la estructura: **Partición > Volumen > Sistema de ficheros > Archivos y carpetas**. Las trampas cambian el orden (volumen antes que partición, o sistema de ficheros antes que volumen). Recuerda: primero cortas el disco (partición), luego lo preparas (volumen con sistema de ficheros) y al final guardas cosas (archivos)."
@@ -268,6 +269,7 @@
           "title": "Caso práctico: el servidor con RAID 0",
           "text": "Incautas un servidor con dos discos en RAID 0. Si clonas solo uno y lo analizas como si fuera un volumen completo, verás trozos de archivos sin sentido: la otra mitad está en el otro disco. Hay que adquirir **todos** los discos y reconstruir el conjunto teniendo en cuenta cómo se reparten los datos (orden de discos, tamaño de banda). En cambio, en un RAID 1 cada disco tiene una copia completa."
         },
+        {"type":"diagram","kind":"compare","title":"RAID 0, RAID 1 y RAID 5","caption":"Un RAID se analiza como conjunto: hay que adquirir todos sus discos.","columns":[{"icon":"arrows-exchange","title":"RAID 0","text":"Bandas","tone":"warn","items":["Reparte los datos entre discos","Escritura rápida, sin redundancia","Un disco suelto: trozos sin sentido"]},{"icon":"replace","title":"RAID 1","text":"Espejo","tone":"good","items":["Copia exacta en dos o más discos","Redundancia","Cada disco tiene una copia completa"]},{"icon":"stack-2","title":"RAID 5","text":"Bandas + paridad","tone":"accent","items":["Reparte datos y paridad","Velocidad y redundancia","Si cae un disco, se reconstruye"]}]},
         {
           "type": "exam",
           "text": "«Montamos un RAID cuando…» → **un único volumen** con **varios dispositivos**. Trampas: «una única partición» o «un único dispositivo». Y no confundas niveles: **espejo = RAID 1**; **reparto en bandas sin copia = RAID 0**. Una «partición extendida» o un «volumen sin formato» no son niveles RAID."
@@ -676,6 +678,7 @@
             "**Todos los discos de un RAID**: un disco aislado de un RAID 0 no contiene los archivos completos."
           ]
         },
+        {"type":"diagram","kind":"compare","title":"Qué pasa al borrar en FAT, NTFS y Ext4","caption":"Borrar casi nunca destruye los datos: solo los marca como reutilizables.","columns":[{"icon":"table","title":"FAT","text":"Microsoft, 1980","items":["Registro: entradas de directorio","Libre/ocupado: FAT1 (copia en FAT2)","Al borrar: entrada marcada disponible"]},{"icon":"database","title":"NTFS","text":"Microsoft, 1993","items":["Registro: $MFT (copia parcial en $MFTMirr)","Libre/ocupado: $Bitmap","Al borrar: entrada de la $MFT disponible"]},{"icon":"hierarchy-3","title":"Ext4","text":"Linux, 2006","tone":"warn","items":["Registro: directorio → inodo","Libre/ocupado: Block e Inode Bitmap","Al borrar: se rompen los enlaces del inodo","Recuperar suele exigir carving"]}]},
         {
           "type": "list",
           "title": "Cómo estudiar este tema (consejos del profesor)",
@@ -1075,6 +1078,16 @@
         "b": "Incorrecta. El profesor aconsejó lo contrario: un par de ideas por sistema es suficiente.",
         "c": "Correcta. Estos tres son los que el tema marca como imprescindibles.",
         "d": "Incorrecta. Hay que conocer también FAT y ext4; solo NTFS se queda corto."
+      }
+    },
+    "forense-t04-c10": {
+      "section": "apfs",
+      "reasoning": "Un sistema de ficheros necesita dos cosas básicas: saber qué archivos y carpetas hay y cómo se anidan, y saber qué bloques del disco están ocupados. En APFS, el sistema de ficheros de Apple, cada tarea la hace una estructura distinta. El **Catalog** es el índice del volumen: describe la jerarquía de archivos y carpetas, como el árbol que ves en el Finder. Está organizado como un árbol B (una estructura de datos ordenada que permite encontrar un elemento sin recorrerlo todo). El **Bitmap**, parecido al $Bitmap de NTFS, lleva la lista de bloques usados y disponibles. La trampa es cambiar «archivos y carpetas» por «bloques» o «volumen» por «partición»: hay que quedarse con las palabras exactas.",
+      "options": {
+        "a": "Incorrecta. Mantener la lista de bloques usados y disponibles es la función del **Bitmap** de APFS, equivalente al archivo $Bitmap de NTFS. No es lo que hace el Catalog.",
+        "b": "Incorrecta. El Catalog no describe una jerarquía de bloques, sino de archivos y carpetas. La opción mezcla el Catalog (jerarquía) con el Bitmap (bloques).",
+        "c": "Incorrecta. El Catalog no es una simple lista ni trabaja por partición: describe la jerarquía (quién está dentro de quién) de archivos y carpetas de cada **volumen**. En APFS varios volúmenes pueden compartir el espacio de un mismo contenedor.",
+        "d": "Correcta. El Catalog describe la **jerarquía de archivos y carpetas del volumen** y se organiza como un árbol B para buscar más rápido. Es la definición literal del temario."
       }
     }
   }

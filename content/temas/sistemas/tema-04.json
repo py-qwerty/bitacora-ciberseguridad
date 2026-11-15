@@ -653,6 +653,7 @@
           "type": "p",
           "text": "MFA aumenta mucho la seguridad (un factor robado no basta), a cambio de añadir fricción y complejidad."
         },
+        {"type":"diagram","kind":"tree","title":"¿Es autenticación multifactor de verdad?","caption":"Pedir dos contraseñas no es MFA: son de la misma categoría.","question":{"icon":"key","title":"¿Pide más de un factor?"},"branches":[{"label":"No","result":{"icon":"lock-open","title":"Un solo factor","text":"Si lo roban, basta para entrar","tone":"warn"}},{"label":"Sí","tree":{"question":{"icon":"fingerprint","title":"¿Son de categorías distintas?","text":"Saber, tener o ser"},"branches":[{"label":"Sí","result":{"icon":"shield-check","title":"MFA real","text":"Ej.: contraseña + llave física","tone":"good"}},{"label":"No","result":{"icon":"shield-x","title":"No es MFA","text":"Ej.: contraseña + pregunta de seguridad","tone":"bad"}}]}}]},
         {
           "type": "term",
           "term": "Passwordless (sin contraseña)",
@@ -1154,6 +1155,17 @@
         "c": "Incorrecta. El riesgo va mucho más allá de alargar un token.",
         "d": "Incorrecta. La fecha del navegador no tiene que ver con la clave de firma."
       }
+    },
+    "sistemas-t04-c04": {
+      "section": "kerberos",
+      "reasoning": "Kerberos es un protocolo de autenticación de red que evita enviar contraseñas: en su lugar usa tiques emitidos por un tercero de confianza, el KDC (Key Distribution Center, centro de distribución de claves). Piensa en un parque de atracciones: en la taquilla (el AS, servidor de autenticación) te dan una pulsera general, el TGT (Ticket Granting Ticket, tique para obtener tiques). Esa pulsera no abre ninguna atracción; con ella vas al TGS y pides una entrada para una atracción concreta: el tique de servicio. Esa entrada es la que enseñas al servidor del servicio para acceder. Así, para obtener tiques de servicio se usa el TGT, y para acceder al servicio se usa el tique que da el TGS. La trampa es confundir las dos preguntas gemelas del test: «para obtener tiques» es TGT; «para acceder al servicio» es TGS.",
+      "options": {
+        "a": "Incorrecta. El TGT es el tique que se presenta al TGS para **pedir** tiques de servicio; no se entrega al servidor final para acceder.",
+        "b": "Correcta. El TGS emite el tique de servicio, cifrado con la clave del servidor de destino, y ese es el tique que el cliente presenta para acceder al servicio.",
+        "c": "Incorrecta. «TFS» no es ningún componente ni tique de Kerberos; es un distractor inventado.",
+        "d": "Incorrecta. AES (Advanced Encryption Standard, estándar de cifrado avanzado) es un algoritmo de cifrado que Kerberos puede usar, pero no es un tipo de tique."
+      },
+      "doubt": "En sentido estricto, TGS es el servicio que concede los tiques; lo que se presenta al servidor es el «tique de servicio». La pregunta usa «TGS» como nombre del tique, igual que la variante ya existente en el banco, y es la única opción que corresponde al acceso al servicio."
     }
   }
 }

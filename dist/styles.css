@@ -434,3 +434,21 @@ a.page-ref:hover{color:var(--color-primary)}
 @media(max-width:700px){.tema-section-questions .tq-body{padding-left:0}}
 @media(prefers-reduced-motion:reduce){.tq-opt{transition:none}}
 @media(forced-colors:active){.tq-opt,.tema-section-questions .argued-options li{border-color:CanvasText}.tq-opt.is-right{border-width:3px}.tq-opt.is-picked:not(.is-right){border-style:dashed}.tema-section-questions{border-top-color:CanvasText}}
+/* Árbol de decisión y matriz (esquemas tree / matrix) */
+.dg-tree{display:grid;gap:10px}
+.dg-q .dg-text b{font-size:18px}
+.dg-branches{display:grid;gap:12px;margin-left:22px!important;padding-left:18px!important;border-left:2px solid var(--line)}
+.dg-branches>li{position:relative;display:grid;gap:6px;justify-items:start}
+.dg-branches>li::before{content:"";position:absolute;left:-18px;top:13px;width:14px;height:2px;background:var(--line)}
+.dg-branches>li>.dg-node,.dg-branches>li>.dg-tree{width:100%}
+.dg-branch-label{display:inline-block;padding:2px 9px;border:1.5px solid var(--line);border-radius:2px;background:var(--color-surface);font:700 13px/1.4 var(--font-body);color:var(--ink)}
+.dg-matrix-wrap{overflow-x:auto}
+.dg-matrix{width:100%;min-width:300px;border-collapse:separate;border-spacing:4px;font-size:12.5px;table-layout:fixed}
+.dg-matrix th{padding:6px 4px;font:600 13px/1.25 var(--font-body);color:var(--ink);text-align:center;border:0;vertical-align:middle}
+.dg-matrix tbody th{text-align:right;padding-right:8px}
+.dg-matrix .dg-mx-corner{display:grid;gap:2px;font-size:11px;color:var(--color-muted);text-align:left}
+.dg-matrix td{height:58px;padding:6px;border:1.5px solid var(--ink);border-radius:3px;background:color-mix(in srgb,var(--t) 26%,var(--color-surface));vertical-align:middle;text-align:center}
+.dg-mark{display:inline-block;margin:2px;padding:2px 7px;border-radius:2px;background:var(--color-surface);border:1px solid var(--ink);font-weight:700;font-size:11.5px;color:var(--ink)}
+.dg-legend{display:flex!important;flex-wrap:wrap;gap:8px 16px;margin-top:12px!important;font-size:12px;color:var(--color-text)}
+.dg-legend li{display:inline-flex;align-items:center;gap:6px}
+.dg-legend i{width:14px;height:14px;border:1.5px solid var(--ink);border-radius:2px;background:color-mix(in srgb,var(--t) 26%,var(--color-surface))}

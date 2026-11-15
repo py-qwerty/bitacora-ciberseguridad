@@ -70,6 +70,7 @@
             ["WPA3", "2018", "Respuesta a KRACK: SAE, AES-GCM, PMF obligatorio, OWE."]
           ]
         },
+        {"type":"diagram","kind":"flow","title":"Cuatro generaciones de seguridad wifi","caption":"Cada generación corrige los fallos de la anterior.","items":[{"icon":"lock-open","title":"WEP (1999)","text":"RC4 + CRC-32 con clave fija. Roto","tone":"bad"},{"icon":"tool","title":"WPA (2003-2004)","text":"Parche: TKIP + Michael","tone":"warn"},{"icon":"lock","title":"WPA2 (2004)","text":"AES-CCMP"},{"icon":"shield-lock","title":"WPA3 (2018)","text":"SAE, AES-GCM, PMF obligatorio, OWE","tone":"good"}],"links":["mismo hardware de WEP","hardware nuevo","respuesta a KRACK"]},
         {
           "type": "key",
           "text": "Wi-Fi es la marca de compatibilidad de la Wi-Fi Alliance sobre el estándar IEEE 802.11. La seguridad wifi ha evolucionado en cuatro generaciones: WEP, WPA, WPA2 y WPA3; cada una corrige los fallos de la anterior."
@@ -483,6 +484,7 @@
             "Mensaje 4: la estación confirma; ambos instalan las claves y empieza el tráfico cifrado."
           ]
         },
+        {"type":"diagram","kind":"flow","title":"El 4-way handshake, mensaje a mensaje","caption":"Los nonces (ANonce y SNonce) hacen que cada PTK sea distinta.","items":[{"icon":"wifi","title":"1. AP → estación","text":"Envía su ANonce"},{"icon":"device-laptop","title":"2. Estación → AP","text":"Envía su SNonce y un MIC; ya calcula la PTK"},{"icon":"wifi","title":"3. AP → estación","text":"Calcula la PTK y envía la GTK cifrada"},{"icon":"device-laptop","title":"4. Estación → AP","text":"Confirma; ambos instalan las claves"},{"icon":"lock","title":"Tráfico cifrado","text":"Con las claves de esta sesión","tone":"good"}],"links":["ANonce","SNonce + MIC","GTK cifrada","confirmación"]},
         {
           "type": "p",
           "text": "**IV más grande.** TKIP duplica el tamaño del IV: pasa de **24 a 48 bits**. Con eso, el tiempo hasta que se repite un IV en una red de carga media pasa de unas pocas **horas** a unos pocos **años**."
@@ -787,6 +789,7 @@
             "**WEP**: evitarlo siempre que sea posible."
           ]
         },
+        {"type":"diagram","kind":"tree","title":"¿Qué seguridad wifi elijo?","caption":"Orden de preferencia del temario. WEP: evitarlo siempre que sea posible.","question":{"icon":"wifi","title":"¿Está disponible WPA3?"},"branches":[{"label":"Sí","tree":{"question":{"icon":"server","title":"¿Puedes montar 802.1X con RADIUS?"},"branches":[{"label":"Sí","result":{"icon":"shield-check","title":"WPA3-Enterprise","text":"La mejor opción","tone":"good"}},{"label":"No","result":{"icon":"key","title":"WPA3-Personal","text":"Con una clave compartida segura","tone":"good"}}]}},{"label":"No","tree":{"question":{"icon":"wifi","title":"¿Está disponible WPA2?"},"branches":[{"label":"Sí","result":{"icon":"lock","title":"WPA2","text":"Aceptable si no hay WPA3","tone":"warn"}},{"label":"No","result":{"icon":"alert-triangle","title":"WPA","text":"Desaconsejado; solo si no admiten WPA2","tone":"bad"}}]}}]},
         {
           "type": "p",
           "text": "Ni siquiera WPA3 es definitivo. El mismo investigador que descubrió KRACK, Mathy Vanhoef, ha publicado después otros ataques importantes:"
@@ -1163,6 +1166,37 @@
         "b": "Incorrecta. El nombre de la red no cambia entre sesiones y no aporta variación.",
         "c": "Incorrecta. Con solo la clave maestra, todas las sesiones obtendrían la misma clave.",
         "d": "Incorrecta. Copiar la contraseña haría que todas las sesiones usaran la misma clave, como en WEP."
+      }
+    },
+    "redes-t07-c07": {
+      "section": "wpa3-mejoras",
+      "reasoning": "En wifi, además de los datos, viajan **tramas de gestión**: avisos como «te desconecto» o «me asocio». En WPA2 iban sin proteger, así que un atacante podía enviar una trama falsa de desautenticación y echar a un cliente de la red, por ejemplo para luego atraerlo a un punto de acceso falso (evil twin). WPA3 hace obligatorio **PMF**: en multicast aporta integridad y en unicast integridad y confidencialidad. Si el cliente puede comprobar que la trama de desconexión no viene del punto de acceso real, la ignora. Por eso PMF dificulta esos ataques. La trampa típica es atribuir a PMF lo que hace **SAE** (autenticación entre iguales) o creer que cifra todo.",
+      "options": {
+        "a": "Incorrecta. WPA3 sí cambia el cifrado: usa **AES-GCM** (modo Galois/Counter), que da confidencialidad e integridad, en lugar del AES-CCMP de WPA2.",
+        "b": "Correcta. PMF protege las tramas de gestión y así impide falsificar las de desconexión, lo que dificulta los ataques de desautenticación.",
+        "c": "Incorrecta. La autenticación entre iguales a partir de la clave compartida es **SAE** (Simultaneous Authentication of Equals), no PMF.",
+        "d": "Incorrecta. No todo se cifra: las tramas de gestión **multicast** solo reciben integridad con PMF; únicamente las unicast se cifran."
+      }
+    },
+    "redes-t07-c08": {
+      "section": "wpa3-mejoras",
+      "reasoning": "Igual que WPA2, WPA3 tiene dos modos: **Personal**, con una clave precompartida (la contraseña de la wifi de casa), y **Enterprise**, con un servidor RADIUS (Remote Authentication Dial-In User Service, servidor de autenticación centralizada) y el protocolo 802.1X. Pero el tema añade una diferencia propia de WPA3 en confidencialidad: en Personal se usa AES-GCM de 128 bits y en Enterprise AES-GCM de 192 bits. Por eso la afirmación de que **usan diferente tamaño de clave** es cierta. La integridad no cambia: en los dos modos la proporciona GCM. La A se queda corta, porque dice que se diferencian «en las mismas características» que WPA2 y omite precisamente el tamaño de clave. La trampa típica es elegir la A porque recuerda la diferencia clásica PSK frente a RADIUS.",
+      "options": {
+        "a": "Incorrecta. Es cierto que siguen diferenciándose en la autenticación (clave precompartida frente a RADIUS con 802.1X), pero no se diferencian solo en lo mismo que WPA2: en WPA3 cambia además el tamaño de la clave de cifrado.",
+        "b": "Correcta. WPA3 Personal usa AES-GCM de 128 bits y WPA3 Enterprise AES-GCM de 192 bits.",
+        "c": "Incorrecta. En ambos modos la integridad la proporciona el mismo modo **GCM** (Galois/Counter Mode), que da confidencialidad e integridad a la vez.",
+        "d": "Incorrecta. La B es correcta según el tema."
+      },
+      "doubt": "La A también describe algo cierto (Personal usa clave precompartida y Enterprise RADIUS). Se elige la B porque es la diferencia específica de WPA3 que recoge el tema y porque la A afirma que la diferencia es la misma que en WPA2, lo que omite el cambio en el tamaño de clave."
+    },
+    "redes-t07-c10": {
+      "section": "wpa3-mejoras",
+      "reasoning": "WPS (Wi-Fi Protected Setup) era el botón o PIN para conectar dispositivos sin escribir la contraseña, pero tenía muchas vulnerabilidades. Aun así, hace falta algo parecido para aparatos sin pantalla ni teclado: una bombilla inteligente o un enchufe wifi. WPA3 propone **Wi-Fi Easy Connect**, que se basa en DPP y permite que el dispositivo se asocie con un código (por ejemplo, un QR), una contraseña o por NFC (Near Field Communication, comunicación de campo cercano) o Bluetooth. Es decir, WPA3 no elimina la conexión simplificada: la rehace de forma segura. La trampa típica es la C, que confunde «quitar WPS» con «quitar cualquier conexión sencilla».",
+      "options": {
+        "a": "Correcta. Wi-Fi Easy Connect facilita la incorporación segura de dispositivos IoT que no tienen forma de introducir la contraseña.",
+        "b": "Incorrecta. WPA3 deja atrás WPS por sus vulnerabilidades y lo reemplaza por Easy Connect.",
+        "c": "Incorrecta. WPA3 no elimina la conexión simplificada: la mantiene, pero de forma segura, con Wi-Fi Easy Connect.",
+        "d": "Incorrecta. PMF protege las tramas de gestión frente a falsificaciones. La conexión por NFC la ofrece Easy Connect (DPP), no PMF."
       }
     }
   }

@@ -150,6 +150,7 @@
           "text": "Red virtual: 10.0.0.0/16   (65.536 direcciones)\n├─ Subred web:   10.0.1.0/24  (256)  -> servidores web\n└─ Subred datos: 10.0.2.0/24  (256)  -> base de datos\n   Grupo de seguridad: permitir TCP 5432 solo desde 10.0.1.0/24",
           "title": "Esquema de segmentación"
         },
+        {"type":"diagram","kind":"layers","title":"Qué va dentro de qué en la red virtual","caption":"Ejemplo del tema: red 10.0.0.0/16 con subredes 10.0.1.0/24 (web) y 10.0.2.0/24 (datos).","items":[{"icon":"id","title":"Cuenta o suscripción","text":"Admite tantas redes virtuales como necesite"},{"icon":"network","title":"Red virtual (VPC / VNet)","text":"Rango de IP privadas; vive en una región","tone":"accent"},{"icon":"sitemap","title":"Subred","text":"Trozo del rango, con grupo de seguridad"},{"icon":"server","title":"Recursos","text":"Máquinas virtuales (instancias)"}]},
         {
           "type": "exam",
           "text": "Trampas típicas: una subred **no** publica nada en Internet automáticamente, **no** gestiona usuarios ni claves; solo segmenta parte del espacio de direcciones. Si te preguntan qué se define al crear la red, es un **rango de direcciones privadas**, no direcciones públicas ni permisos. Y en «¿cuál es parte de las redes virtuales?» con espacio de direcciones, subredes y regiones, la respuesta es **todas**."
@@ -223,6 +224,7 @@
           "title": "Error frecuente",
           "text": "Un administrador asigna una IP pública a un servidor web, pero nadie puede entrar. El motivo: el grupo de seguridad no tiene ninguna regla que permita el puerto 443 (HTTPS) desde Internet. La IP pública por sí sola **no basta**."
         },
+        {"type":"diagram","kind":"hub","title":"Las tres puertas de una red virtual","caption":"Para entrar desde Internet hacen falta las dos cosas: exposición pública y regla del grupo de seguridad.","hub":{"icon":"network","title":"Red virtual","text":"Tu planta alquilada en la nube"},"direction":"both","members":[{"icon":"world","title":"Internet","text":"Entrar: IP pública o balanceador + regla"},{"icon":"cloud","title":"Otra red virtual","text":"Emparejamiento (peering), incluso entre regiones"},{"icon":"building","title":"Oficina (on-premise)","text":"VPN"}]},
         {
           "type": "exam",
           "text": "Pregunta típica: «¿qué necesita un recurso para aceptar acceso desde Internet?». Correcta: exposición pública (IP pública o balanceador) **y** tráfico permitido por el grupo de seguridad. Trampas: «una IP privada basta», «la IP pública basta aunque el grupo de seguridad deniegue» o «pertenecer a una subred da acceso externo». Si la pregunta es cómo unir la oficina con la nube: **VPN**. Si es cómo unir dos redes virtuales: **emparejamiento**."
@@ -434,6 +436,7 @@
           "term": "Deny explícito",
           "text": "Sirve para **quitar** permisos concretos que otra directiva haya concedido. Si una directiva dice Allow y otra Deny sobre lo mismo, gana Deny."
         },
+        {"type":"diagram","kind":"tree","title":"¿Puede hacer esta acción sobre este recurso?","caption":"Sin ningún Allow no se puede hacer nada; con Allow y Deny a la vez, gana Deny.","question":{"icon":"help-circle","title":"¿Lo cubre algún Deny explícito?"},"branches":[{"label":"Sí","result":{"icon":"x","title":"Denegado","text":"Deny gana a cualquier Allow","tone":"bad"}},{"label":"No","tree":{"question":{"icon":"help-circle","title":"¿Lo cubre algún Allow?"},"branches":[{"label":"Sí","result":{"icon":"check","title":"Permitido","tone":"good"}},{"label":"No","result":{"icon":"x","title":"Denegado por defecto","text":"Sin Allow no hay nada","tone":"bad"}}]}}]},
         {
           "type": "term",
           "term": "Comodín (*)",
@@ -1159,6 +1162,16 @@
         "b": "Correcta. La escalabilidad permite adaptar el filtrado a la demanda variable.",
         "c": "Incorrecta. SECaaS precisamente simplifica la gestión y no exige administrarlo todo en local.",
         "d": "Incorrecta. Los acuerdos de servicio son imprescindibles; ningún permiso los sustituye."
+      }
+    },
+    "redes-t10-c08": {
+      "section": "secaas",
+      "reasoning": "SECaaS consiste en contratar en la nube servicios de seguridad que antes se instalaban dentro de la empresa: gestión de identidades, DLP (Data Loss Prevention, prevención de fuga de datos), filtrado web, seguridad del correo, SIEM (gestión de eventos e información de seguridad), VPN o cortafuegos. Es como contratar una empresa de vigilancia en lugar de tener vigilantes en plantilla. El tema enumera tres ventajas: disponibilidad constante, gestión simplificada (el proveedor se encarga del mantenimiento) y escalabilidad (se amplía o reduce según la necesidad). También advierte de que la seguridad queda en manos de un tercero, por lo que hay que acotar bien los acuerdos de servicio. La trampa típica es quedarse con una sola ventaja cuando la opción «todas» las recoge.",
+      "options": {
+        "a": "Incorrecta. La gestión simplificada es una ventaja que cita el tema, pero no la única.",
+        "b": "Incorrecta. La escalabilidad es una ventaja, pero no la única.",
+        "c": "Incorrecta. La disponibilidad constante es una ventaja (sujeta a los acuerdos de servicio), pero no la única.",
+        "d": "Correcta. Gestión simplificada, escalabilidad y disponibilidad constante son las tres ventajas que el tema atribuye a la seguridad en la nube."
       }
     }
   }

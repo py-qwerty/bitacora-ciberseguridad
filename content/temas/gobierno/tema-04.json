@@ -212,6 +212,7 @@
           "title": "Caso práctico",
           "text": "Una tienda en línea analiza el riesgo de que falle su servidor de pruebas. El impacto estimado es de 300 € al año y protegerlo costaría 2.000 €. La dirección firma un acta: «se acepta el riesgo; se revisará en un año». Eso es aceptación. Si nadie lo hubiera analizado, sería simplemente ignorar el riesgo."
         },
+        {"type":"diagram","kind":"tree","title":"¿Qué hacer con un riesgo ya analizado?","caption":"Es orientativo: las vías se combinan (alarma y además seguro).","question":{"icon":"help-circle","title":"¿Puedes soportar el coste si ocurre?"},"branches":[{"label":"Sí","result":{"icon":"check","title":"Asumir (aceptar)","text":"Decisión consciente, no un olvido","tone":"good"}},{"label":"No","tree":{"question":{"icon":"scale","title":"¿Compensan los controles (coste-beneficio)?"},"branches":[{"label":"Sí","result":{"icon":"shield","title":"Mitigar","text":"Controles; después, calcular el riesgo residual","tone":"good"}},{"label":"No","tree":{"question":{"icon":"users","title":"¿Un tercero lo asume a precio razonable?"},"branches":[{"label":"Sí","result":{"icon":"transfer-out","title":"Transferir","text":"Seguro o proveedor; el incidente puede ocurrir","tone":"warn"}},{"label":"No","result":{"icon":"door-exit","title":"Evitar","text":"Abandonar la actividad; se pierde su beneficio","tone":"warn"}}]}}]}}]},
         {
           "type": "exam",
           "text": "Fíjate en el vocabulario: «asumir» = «aceptar» = «asunción»; «transferir» = «externalizar». Una póliza de seguro es siempre **transferencia** (parcial), no mitigación ni eliminación de la amenaza. Trampa frecuente: «todos los riesgos deben llevar a implantar controles», falso, porque también se pueden asumir o transferir."
@@ -296,6 +297,7 @@
           "type": "p",
           "text": "Fíjate en la cadena: un **agente** aprovecha una **vulnerabilidad** en una situación de **exposición** para materializar una **amenaza**. El origen de la amenaza es el agente, **no** la vulnerabilidad: la ventana abierta no roba nada; el ladrón sí."
         },
+        {"type":"diagram","kind":"flow","title":"Cómo se encadenan los cuatro términos","caption":"El origen de la amenaza es el agente, no la vulnerabilidad.","items":[{"icon":"spy","title":"Agente","text":"Ciberdelincuentes, empleado descontento, inundación","tone":"bad"},{"icon":"lock-open","title":"Vulnerabilidad","text":"Servidor sin parchear"},{"icon":"world","title":"Exposición","text":"Ese servidor publicado en Internet","tone":"warn"},{"icon":"alert-triangle","title":"Amenaza","text":"Robo de la base de clientes","tone":"bad"}],"links":["aprovecha una","en situación de","materializa la"]},
         {
           "type": "exam",
           "text": "Trampa habitual: «el origen de la amenaza es cada una de las vulnerabilidades». Falso: el origen es el agente. Otra: definir el agente como «la debilidad del activo» (eso es la vulnerabilidad) o como «la pérdida económica» (eso es el impacto). Una vulnerabilidad no es un daño ya cuantificado ni un seguro: es una debilidad."
@@ -496,6 +498,7 @@
           "title": "Ejemplo resuelto",
           "text": "Recurso: servidor de ventas valorado en 200.000 €\nAmenaza: incendio en la sala de servidores\n\nFE  = 50 %            (se perdería la mitad del valor)\nSLE = 200.000 × 0,5  = 100.000 € por incendio\nARO = 0,1             (un incendio cada 10 años)\nALE = 100.000 × 0,1  = 10.000 € al año\n\nControl propuesto: sistema de extinción, 3.000 €/año\nNuevo ARO = 0,02  ->  nuevo ALE = 2.000 €/año (riesgo residual)\nAhorro = 10.000 - 2.000 = 8.000 €/año  >  3.000 €/año  ->  rentable"
         },
+        {"type":"diagram","kind":"flow","title":"Del valor del recurso a la pérdida anual","caption":"Si el ahorro de ALE supera el coste anual del control, compensa.","items":[{"icon":"coin","title":"Valor del recurso","text":"Servidor de ventas: 200.000 €"},{"icon":"flame","title":"SLE","text":"Pérdida en un incendio: 100.000 €"},{"icon":"history","title":"ALE","text":"Pérdida esperada al año: 10.000 €","tone":"warn"},{"icon":"scale","title":"Coste del control","text":"Ahorra 8.000 €, cuesta 3.000 €: compensa","tone":"good"}],"links":["× FE (50 %)","× ARO (0,1)","ahorro frente a coste"]},
         {
           "type": "term",
           "term": "Tasa de ocurrencia",

@@ -236,6 +236,7 @@
             "**Pérdidas por catástrofes** naturales (terremotos, inundaciones) o humanas (sabotajes, bombas). Las tratan los **planes de contingencia**, por ejemplo con **sitios alternativos de proceso** (otra instalación desde la que seguir trabajando) y con computación tolerante a fallos."
           ]
         },
+        {"type":"diagram","kind":"hub","title":"La tríada CID y lo que pasa cuando falla","caption":"Si falla cualquiera de las tres, hay un problema de seguridad.","hub":{"icon":"file-text","title":"Información","text":"En cualquier soporte","tone":"accent"},"members":[{"icon":"eye-off","title":"Confidencialidad","text":"Si falla: revelación"},{"icon":"shield-check","title":"Integridad","text":"Si falla: alteración"},{"icon":"clock","title":"Disponibilidad","text":"Si falla: destrucción o falta de acceso"}],"direction":"in","arrow":"protegen"},
         {
           "type": "exam",
           "text": "Para cada caso práctico pregúntate: ¿alguien **vio** lo que no debía? Confidencialidad. ¿Alguien **cambió** algo sin permiso? Integridad. ¿Alguien **no pudo usar** el servicio? Disponibilidad. Trampas habituales: «las intrusiones afectan exclusivamente a la confidencialidad» (falso: una intrusión puede alterar o destruir datos) y «la privacidad es el objetivo de la confidencialidad» (falso: es solo una de sus caras)."
@@ -277,6 +278,7 @@
           "term": "Criptografía",
           "text": "Técnicas matemáticas para cifrar la información de modo que solo quien tenga la clave pueda leerla. Sirve tanto para **guardar datos de forma segura** (un disco cifrado) como para **transmitirlos de forma segura** (el candado HTTPS del navegador). El temario recuerda que la criptografía es inútil si los empleados no custodian bien sus claves."
         },
+        {"type":"diagram","kind":"flow","title":"De decir quién eres a dejar rastro","caption":"Como en el hotel: nombre, DNI, tarjeta y registro de entradas.","items":[{"icon":"user","title":"Identificación","text":"Afirmo quién soy"},{"icon":"id","title":"Autenticación","text":"Pruebo que es verdad"},{"icon":"key","title":"Autorización","text":"Qué puedo hacer"},{"icon":"logs","title":"Rendición de cuentas","text":"Queda registrado lo que hice"}],"links":["se comprueba","se dan permisos","se registra"]},
         {
           "type": "exam",
           "text": "Trampas típicas: «la identificación es la autenticación» (no: identificarse es decir quién eres; autenticarse es probarlo) y «la criptografía sirve para almacenar, pero no para transmitir» (no: sirve para ambas). Cuando todas las afirmaciones son falsas, la respuesta es «ninguna de las anteriores»."
@@ -442,6 +444,7 @@
             "Tener muchos documentos no te hace mejor ni tener pocos te hace peor, pero **cuanto más documentados están los procesos, suelen estar más maduros** y la gestión de la seguridad es más firme. Hay que documentar con criterio."
           ]
         },
+        {"type":"diagram","kind":"layers","title":"El cuerpo normativo, de lo general a lo concreto","caption":"Estratégico arriba, táctico en medio y operativo abajo.","items":[{"icon":"target","title":"Plan Director de Seguridad","text":"En la cúspide: marca la estrategia","tone":"accent"},{"icon":"flag","title":"Política general","text":"Estratégico: objetivos y compromiso de la dirección"},{"icon":"book-2","title":"Políticas funcionales","text":"Táctico: qué hacer en cada área"},{"icon":"certificate","title":"Estándar","text":"Obligatorio: qué producto o método usar"},{"icon":"list-check","title":"Procedimiento","text":"Pasos detallados de una tarea"},{"icon":"settings","title":"Línea base","text":"Cómo configurar, igual en toda la organización"},{"icon":"info-circle","title":"Directriz","text":"Solo recomendación: no obliga"}]},
         {
           "type": "exam",
           "text": "Trampas clásicas: «los procedimientos detallan a **alto nivel**» (no: son el nivel más detallado); «las directrices son de obligado cumplimiento» (no: recomiendan); «el estándar recomienda y la directriz impone» (al revés); «las políticas detallan qué software usar» (eso es un estándar). Truco: **estándar = obligatorio, directriz = recomendación, procedimiento = pasos, línea base = configuración**."
@@ -1255,6 +1258,27 @@
         "b": "Correcta. Leyes, tecnología y organización de personas y procesos: las tres perspectivas que componen la visión holística.",
         "c": "Incorrecta. Son tipos de control según su momento de actuación, no perspectivas de la seguridad.",
         "d": "Incorrecta. Esta triada mezcla tipos de medidas y personas; no es la división que explicó el profesor."
+      }
+    },
+    "gobierno-t01-c04": {
+      "section": "gestion-riesgos",
+      "reasoning": "Empieza por recordar qué se puede hacer con un riesgo una vez analizado. El temario da cuatro salidas: **aceptarlo** tal cual, **mitigarlo** (bajar su probabilidad o su impacto), **evitarlo** (dejar de hacer lo que lo provoca) y **transferirlo** (un seguro paga si ocurre). Ahora empareja cada opción: B es mitigar (un control sobre las contraseñas), C es evitar (cesar tareas arriesgadas), D es aceptar (asumirlo porque sale barato) y A es transferir (aseguradora). Las cuatro encajan en alguna vía, así que hay que buscar un matiz. El matiz está en el temario: la transferencia es una vía que **realmente no actúa sobre el riesgo**; la amenaza y la probabilidad siguen igual y solo se compensa el daño económico. Trampa típica: confundir «gestionar el riesgo» con «reducirlo»; si te piden la que no toca el riesgo en sí, piensa en el seguro.",
+      "options": {
+        "a": "Correcta. Contratar un seguro es **transferir** el riesgo: no reduce ni la probabilidad ni el impacto, solo garantiza una compensación económica si ocurre. Es la única opción que no actúa sobre el riesgo en sí, y por eso es la más defendible aquí.",
+        "b": "Incorrecta. Obligar a cambiar las claves cada cierto tiempo es un **control** que **mitiga** el riesgo: reduce la probabilidad de que una contraseña robada siga sirviendo. Es una vía de gestión clásica.",
+        "c": "Incorrecta. Dejar de hacer tareas que suponen riesgo es **evitar** (eliminar) el riesgo: si no haces la actividad, el riesgo desaparece. Es otra de las cuatro vías.",
+        "d": "Incorrecta. Asumir un riesgo cuyo coste es pequeño es **aceptarlo**, una decisión legítima: no tiene sentido gastar más en protegerse de lo que costaría el daño."
+      },
+      "doubt": "El temario (pág. 35) presenta las cuatro opciones como vías válidas, incluida la transferencia («una cuarta vía para la gestión del riesgo»). La pregunta parece defectuosa; se elige A porque es la única que, según el texto, «no actúa sobre el riesgo en sí». Conviene revisar la clave del campus."
+    },
+    "gobierno-t01-c06": {
+      "section": "seguridad-fisica",
+      "reasoning": "La seguridad de la información no es solo lógica (contraseñas, cifrado, cortafuegos); también es **física**. El temario agrupa los controles físicos en tres familias: administrativos, del entorno y técnicos y físicos. Dentro de los técnicos y físicos aparecen los **dispositivos de control de acceso a las instalaciones**: tornos, tarjetas, puertas con lector. Un torno en la entrada de un centro de datos (CPD) es exactamente eso, así que A es cierta. B es falsa porque los líquidos son una de las siete fuentes de pérdidas físicas de Parker: una fuga de agua puede tirar los servidores y dejar la información **no disponible**. C está mal redactada y no define el alcance real: la seguridad física abarca todo lo que, en el entorno de los sistemas, puede afectar a la confidencialidad, integridad y disponibilidad. Trampa típica: pensar que lo físico (agua, fuego, accesos) no afecta a la seguridad de la información.",
+      "options": {
+        "a": "Correcta. Un torno es un **control de acceso físico**: solo deja pasar a quien está autorizado. El temario lo encuadra en los controles técnicos y físicos, junto a alarmas y detección de intrusos.",
+        "b": "Incorrecta. Una fuga de agua sí compromete la **disponibilidad**: puede averiar servidores y dejar los servicios caídos. Los líquidos son una de las siete fuentes de pérdidas físicas de Donn B. Parker.",
+        "c": "Incorrecta. La frase está incompleta y no describe el alcance real. La seguridad física cubre todo lo del entorno de los sistemas que puede afectar a la confidencialidad, integridad y disponibilidad, no un «ámbito de la empresa» genérico.",
+        "d": "Incorrecta. La opción A es cierta, así que «ninguna de las anteriores» no puede serlo."
       }
     }
   }

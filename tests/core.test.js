@@ -24,7 +24,7 @@ test('practice validation supports 10 and30 and rejects malformed/stale stored p
 test('simulation validation rejects corrupt IDs, answer keys, flags and deadline',()=>{const s=session();assert.equal(isValidSession(s,map),true);for(const change of [{ids:[...s.ids.slice(1),s.ids[1]]},{answers:{[s.ids[0]]:'z'}},{flags:['foreign']},{index:30},{deadline:NaN},{startedAt:Infinity},{answers:[]},{deadline:Number.MAX_VALUE},{finishedAt:9}])assert.equal(isValidSession({...s,...change},map),false);});
 test('deadline and time formatting do not allow negative remaining time',()=>{assert.equal(remaining(10,20),0);assert.equal(remaining(2000,1000),1000);assert.equal(formatTime(1),'00:01');assert.equal(formatTime(-1),'00:00');assert.equal(formatTime(DURATION),'45:00');});
 test('inherited swipe respects horizontal threshold and vertical scroll',()=>{assert.equal(swipeDirection(-44,3),1);assert.equal(swipeDirection(44,3),-1);assert.equal(swipeDirection(43,0),0);assert.equal(swipeDirection(50,80),0);});
-test('production bank has complete coverage and explanations',t=>{let d;try{d=JSON.parse(readFileSync(new URL('../dist/bank.json',import.meta.url),'utf8'));}catch(e){if(e.code==='ENOENT'){t.skip('Content bank is being assembled separately');return;}throw e;}assert.equal(validateBank(d),true);assert.equal(d.courses.length,5);assert.equal(d.topics.length,50);assert.equal(d.questions.filter(q=>!q.fromClass).length,1500);});
+test('production bank has complete coverage and explanations',t=>{let d;try{d=JSON.parse(readFileSync(new URL('../dist/bank.json',import.meta.url),'utf8'));}catch(e){if(e.code==='ENOENT'){t.skip('Content bank is being assembled separately');return;}throw e;}assert.equal(validateBank(d),true);assert.equal(d.courses.length,5);assert.equal(d.topics.length,50);assert.equal(d.questions.filter(q=>!q.fromClass&&!q.fromCampus).length,1500);});
 
 function tema(){return {course:'sistemas',number:1,title:'Windows Server',intro:{why:'Porque sí.'},sections:[{id:'uno',title:'Uno',pages:[3],blocks:[{type:'p',text:'Texto'},{type:'table',head:['A','B'],rows:[['1','2']]}]}],questions:Object.fromEntries(bank.questions.filter(q=>q.topic===11).map(q=>[q.id,{section:'uno',reasoning:'Porque.',options:{a:'1',b:'2',c:'3',d:'4'}}]))};}
 test('digital topic validation requires the topic questions argued per option',()=>{
@@ -39,4 +39,15 @@ test('diagram blocks are validated: closed icon list, shapes and sizes',()=>{
  for(const m of breaks){const t=tema();const b=JSON.parse(JSON.stringify(ok[1]));m(b);t.sections[0].blocks.push(b);assert.throws(()=>validateTema(t,bank));}
  const t=tema();const h=JSON.parse(JSON.stringify(ok[0]));h.members=[];t.sections[0].blocks.push(h);assert.throws(()=>validateTema(t,bank));
  assert.ok(ICONS.server&&ICONS['server-2']);
+});
+test('decision trees and matrices are validated: branches, depth, axes and cells',()=>{
+ const node=(icon='server',title='Pieza')=>({icon,title});
+ const leaf=(l,i='check')=>({label:l,result:node(i)});
+ const tree={type:'diagram',kind:'tree',title:'¿Aplica?',question:node('help-circle','¿Sector público?'),branches:[leaf('Sí'),{label:'No',tree:{question:node('help-circle','¿Proveedor?'),branches:[leaf('Sí'),leaf('No','x')]}}]};
+ const matrix={type:'diagram',kind:'matrix',title:'Riesgo',rows:{label:'Probabilidad',items:['Alta','Baja']},cols:{label:'Impacto',items:['Bajo','Alto']},cells:[['warn','bad'],['good','warn']],marks:[{row:0,col:1,text:'R1'}],legend:[{tone:'bad',text:'Tratar ya'}]};
+ for(const b of [tree,matrix]){const t=tema();t.sections[0].blocks.push(JSON.parse(JSON.stringify(b)));assert.equal(validateTema(t,bank).id,11);}
+ const tb=[b=>{b.branches=[leaf('Sí')]},b=>{b.branches[0].tree=b.branches[1].tree},b=>{delete b.branches[0].label},b=>{b.branches[1].tree.branches[0]={label:'x',tree:{question:node(),branches:[{label:'a',tree:{question:node(),branches:[leaf('a'),leaf('b')]}},leaf('c')]}}}];
+ for(const m of tb){const t=tema();const b=JSON.parse(JSON.stringify(tree));m(b);t.sections[0].blocks.push(b);assert.throws(()=>validateTema(t,bank));}
+ const mb=[b=>{b.cells=[['warn','bad']]},b=>{b.cells[0][0]='rojo'},b=>{b.marks[0].row=5},b=>{b.rows.items=['Solo']},b=>{b.legend[0].tone='azul'}];
+ for(const m of mb){const t=tema();const b=JSON.parse(JSON.stringify(matrix));m(b);t.sections[0].blocks.push(b);assert.throws(()=>validateTema(t,bank));}
 });

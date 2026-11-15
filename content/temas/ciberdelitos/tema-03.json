@@ -468,6 +468,7 @@
             "El nivel de detalle del tamaño de empresa no se pide; sí **los sectores**."
           ]
         },
+        {"type":"diagram","kind":"tree","title":"¿Le aplica NIS 2? ¿Entidad esencial o importante?","caption":"También son esenciales la Administración pública central y las entidades críticas.","question":{"icon":"world-www","title":"¿Es un proveedor de DNS o similar?","text":"Registro de dominios o servicio de confianza cualificado"},"branches":[{"label":"Sí","result":{"icon":"shield-check","title":"Esencial","text":"Sea cual sea su tamaño","tone":"accent"}},{"label":"No","tree":{"question":{"icon":"stack-2","title":"¿En qué anexo está su sector?"},"branches":[{"label":"Anexo I (alta criticidad)","tree":{"question":{"icon":"users","title":"¿Qué tamaño tiene?"},"branches":[{"label":"Más que mediana","result":{"icon":"shield-check","title":"Esencial","text":"Ej.: hospital grande","tone":"accent"}},{"label":"Mediana","result":{"icon":"shield-half","title":"Importante"}},{"label":"Pequeña","result":{"icon":"help-circle","title":"Solo si el Estado lo decide","text":"Si supone un alto riesgo","tone":"warn"}}]}},{"label":"Anexo II (otros críticos)","tree":{"question":{"icon":"users","title":"¿Es mediana o grande?"},"branches":[{"label":"Sí","result":{"icon":"shield-half","title":"Importante","text":"Ej.: supermercados, residuos, mensajería"}},{"label":"No","result":{"icon":"help-circle","title":"Solo si el Estado lo decide","text":"Si supone un alto riesgo","tone":"warn"}}]}},{"label":"Ninguno","result":{"icon":"x","title":"No le aplica NIS 2"}}]}}]},
         {
           "type": "exam",
           "text": "Trampas: «NIS 2 mantiene la distinción» (falso), «restringe el ámbito» (falso, lo amplía), «clasifica solo por sector» (falso, también cuenta el tamaño y otros criterios del art. 3) o «cualquier empresa del anexo II es esencial» (falso, el anexo II da normalmente importantes)."
@@ -561,6 +562,7 @@
             ["Si sigue activo al vencer el informe final", "**Informe de situación** + informe final", "El final se presenta en un mes desde que se haya **gestionado** el incidente."]
           ]
         },
+        {"type":"diagram","kind":"flow","title":"Notificar un incidente significativo en NIS 2","caption":"Las 24 y 72 horas cuentan desde la constancia y el mes, desde la notificación.","items":[{"icon":"radar","title":"Constancia","text":"La entidad conoce el incidente"},{"icon":"bell","title":"Alerta temprana","text":"¿Malintencionado? ¿Efecto transfronterizo?","tone":"warn"},{"icon":"file-text","title":"Notificación","text":"Gravedad, impacto e indicadores de compromiso"},{"icon":"report-analytics","title":"Informe intermedio","text":"Solo si CSIRT o autoridad lo piden"},{"icon":"clipboard-check","title":"Informe final","text":"Causa, medidas y efecto transfronterizo","tone":"good"}],"links":["en 24 h","en 72 h","si lo piden","en 1 mes"]},
         {
           "type": "p",
           "text": "La notificación también sirve para **coordinar**: la entidad debe aportar la información que permita valorar las **repercusiones transfronterizas**; si la recibe la autoridad, la reenvía al CSIRT; y en incidentes transfronterizos o intersectoriales la información llega a los **puntos de contacto únicos** para cooperar con otros países."
@@ -950,6 +952,7 @@
             "Quien despliegue reconocimiento de emociones o categorización biométrica debe **informar a las personas expuestas** y tratar sus datos conforme al RGPD."
           ]
         },
+        {"type":"diagram","kind":"tree","title":"¿Qué dice el Reglamento de IA de este uso?","caption":"Aunque el RIA lo permita, el uso debe cumplir también el RGPD.","question":{"icon":"alert-circle","title":"¿Es una práctica prohibida?","text":"Manipular, puntuación social, predecir delitos, emociones en trabajo"},"branches":[{"label":"Sí","result":{"icon":"x","title":"Prohibido","text":"No se puede utilizar","tone":"bad"}},{"label":"No","tree":{"question":{"icon":"scale","title":"¿Es un uso de alto riesgo?","text":"Educación, empleo, subvenciones, fronteras…"},"branches":[{"label":"Sí","result":{"icon":"alert-triangle","title":"Alto riesgo","text":"Permitido con requisitos estrictos","tone":"warn"}},{"label":"No","tree":{"question":{"icon":"users","title":"¿Interactúa con personas o genera contenido?","text":"Chatbots, contenido sintético, deepfakes"},"branches":[{"label":"Sí","result":{"icon":"eye","title":"Obligaciones de transparencia","text":"Avisar de que es IA y marcar contenido"}},{"label":"No","result":{"icon":"check","title":"Resto de usos","text":"Siguen sujetos al RGPD y otras normas","tone":"good"}}]}}]}}]},
         {
           "type": "term",
           "term": "Modelos de IA de uso general",
@@ -1370,6 +1373,26 @@
         "b": "Incorrecta. Los servicios postales no están entre los sectores de alta criticidad del anexo I.",
         "c": "Incorrecta. NIS 2 amplió su ámbito a muchos más sectores que energía, transporte y banca.",
         "d": "Incorrecta. La desaparición de la distinción antigua amplió el ámbito, y los postales quedaron incluidos como sector crítico."
+      }
+    },
+    "ciberdelitos-t03-c02": {
+      "section": "nis2-notificacion",
+      "reasoning": "NIS 2 (Network and Information Systems, la Directiva europea 2022/2555 sobre redes y sistemas de información) obliga a notificar ciertos incidentes al **CSIRT** (Computer Security Incident Response Team, equipo de respuesta a incidentes) o a la autoridad competente. No se notifica cualquier incidente, sino el **incidente significativo**. El temario reproduce el artículo 23.1: hay que notificar «cualquier incidente que tenga un impacto significativo en la prestación de sus servicios». Las cuatro opciones son casi iguales, así que hay que buscar las palabras que cambian. Dos dicen «considerable» o «trascendencia considerable» en lugar de «significativo», y dos hablan de «incomodidades» y solo de personas físicas. Solo la opción C combina «impacto significativo», «perturbaciones operativas o pérdidas económicas» y perjuicios a personas físicas o jurídicas. La trampa es una opción casi literal con un único adjetivo cambiado.",
+      "options": {
+        "a": "Incorrecta. Es casi literal, pero cambia «significativo» por **«considerable»**. NIS 2 usa el término «incidente significativo» y en torno a él construye los plazos de 24 horas, 72 horas y un mes.",
+        "b": "Incorrecta. Cambia «significativo» por «considerable», rebaja las «perturbaciones» a «incomodidades», omite las pérdidas económicas y se limita a las personas físicas.",
+        "c": "Correcta. Recoge el criterio de NIS 2: incidentes con **impacto significativo**, por causar graves perturbaciones operativas o pérdidas económicas, o perjuicios materiales o inmateriales considerables a personas físicas o jurídicas.",
+        "d": "Incorrecta. Habla de «trascendencia considerable» y de «incomodidades», y deja fuera a las personas jurídicas. No es la terminología de la directiva."
+      }
+    },
+    "ciberdelitos-t03-c05": {
+      "section": "nis2-ambito",
+      "reasoning": "La primera Directiva NIS (2016) separaba dos grupos: los **operadores de servicios esenciales** (energía, transporte, banca…) y los **proveedores de servicios digitales** (buscadores, nube, mercados en línea). NIS 2 considera esa separación obsoleta porque no reflejaba la importancia real de cada sector. Por eso la **elimina** y clasifica a las entidades en dos categorías: esenciales e importantes. La clasificación depende del grado de criticidad del sector o del servicio y también del tamaño de la entidad. El anexo I recoge los sectores de alta criticidad y el anexo II, otros sectores críticos. La trampa típica es decir que NIS 2 «mantiene» la distinción o que clasifica solo por sector.",
+      "options": {
+        "a": "Incorrecta. NIS 2 no mantiene la distinción: la considera **obsoleta** y la suprime.",
+        "b": "Incorrecta. Mezcla una idea cierta (clasificar según la importancia) con una falsa (mantener la distinción antigua). NIS 2 sustituye una cosa por la otra.",
+        "c": "Correcta. NIS 2 **elimina** la distinción entre operadores de servicios esenciales y proveedores de servicios digitales y se aplica a entidades públicas y privadas de los tipos de los anexos I (esenciales) y II (importantes).",
+        "d": "Incorrecta. El sector cuenta, pero no es el único criterio. La directiva propone clasificar según la **importancia**, que combina la criticidad del sector o del servicio con el tamaño de la entidad."
       }
     }
   }

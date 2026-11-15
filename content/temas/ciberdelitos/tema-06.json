@@ -316,6 +316,7 @@
           "type": "p",
           "text": "¿Y el empleado despedido que borra los servidores de su empresa por venganza? El tema no tiene una categoría «laboral»; su caso entraría en **otras motivaciones**. Aun así, en un análisis práctico conviene describir esa motivación como **personal o de represalia** derivada del conflicto laboral. Y ojo: tener contraseñas de trabajo no autoriza a hacer **cualquier** cosa con los sistemas."
         },
+        {"type":"diagram","kind":"tree","title":"¿Qué motivación tiene el ciberdelincuente?","caption":"Fíjate en quién se beneficia y en qué objetivo persigue.","question":{"icon":"help-circle","title":"¿Qué busca el autor?"},"branches":[{"label":"Dinero","tree":{"question":{"icon":"cash","title":"¿Actúa por encargo de una empresa?","text":"Contra los sistemas de la competencia"},"branches":[{"label":"Sí","result":{"icon":"building","title":"Económico-empresarial","text":"Robar secretos de un competidor","tone":"accent"}},{"label":"No","result":{"icon":"wallet","title":"Económica","text":"Phishing, tarjetas robadas, extorsión","tone":"accent"}}]}},{"label":"Una causa política","result":{"icon":"flag","title":"Política: hacktivismo","text":"Defacement o publicar información robada","tone":"accent"}},{"label":"Información de otro Estado","result":{"icon":"spy","title":"Estatal: ciberespionaje","text":"Instituciones y sectores estratégicos","tone":"accent"}},{"label":"Otra cosa","tree":{"question":{"icon":"alert-triangle","title":"¿Es una organización terrorista?"},"branches":[{"label":"Sí","result":{"icon":"bomb","title":"Terrorista","text":"Propaganda, comunicación o atentados","tone":"accent"}},{"label":"No","result":{"icon":"layout-list","title":"Otras motivaciones","text":"Injurias, calumnias, venganza personal…","tone":"accent"}}]}}]},
         {
           "type": "exam",
           "text": "Dos trampas frecuentes: 1) Si el enunciado dice «siguiendo instrucciones de una empresa… sistemas de la competencia», la respuesta es **económicos-empresariales**; «motivos laborales» no figura en la clasificación del tema. 2) Para motivaciones políticas, la palabra clave es **hacktivistas**, no crackers, phishers ni hackers. Si una opción dice que detectar una vulnerabilidad o usar herramientas públicas «autoriza» la intrusión, es falsa."
@@ -471,6 +472,7 @@
           "title": "Caso práctico",
           "text": "Marcos responde a un anuncio: «Gane 300 euros al mes gestionando pagos de clientes extranjeros». Le llegan 2000 euros a su cuenta, se queda 200 y envía 1800 por una empresa de giros a Rumanía. Ese dinero salía de víctimas de phishing. Marcos es la **mula**; quien publicó el anuncio es el **captador de mulas**; quien escribió el troyano bancario es el **desarrollador**."
         },
+        {"type":"diagram","kind":"flow","title":"La cadena de una banda de phishing","caption":"Ninguno hace todo y muchos ni se conocen; el captador recluta a las mulas con falsas ofertas de empleo.","items":[{"icon":"code","title":"Desarrolladores","text":"Crean o modifican el malware"},{"icon":"spy","title":"Intrusos","text":"Roban claves, tarjetas y datos"},{"icon":"packages","title":"Distribuidores","text":"Venden los datos en canales restringidos"},{"icon":"wallet","title":"Compradores","text":"Clonan tarjetas o compran por Internet"},{"icon":"user","title":"Mulas","text":"Reciben el dinero y lo reenvían","tone":"warn"},{"icon":"world","title":"Receptores en el extranjero","text":"Lo pasan a escalones superiores","tone":"bad"}],"links":["el malware","datos robados","venta de datos","dinero estafado","envío internacional"]},
         {
           "type": "exam",
           "text": "Pregunta típica: «¿qué función **no** realiza una banda de phishing?». La intrusa es «**falsificación física de documentación**»: el esquema del tema es digital (malware, intrusión, venta de datos, mulas y redes de mulas). Si el enunciado describe una cuenta que recibe dinero de estafas y lo reenvía por comisión, es una **mula**. Si varias personas se reparten el engaño, los servidores y el movimiento del dinero, el rasgo es **especialización y distribución de funciones**."
@@ -1108,6 +1110,7 @@
             ]
           ]
         },
+        {"type":"diagram","kind":"compare","title":"En la web del GDT: ¿denunciar o informar?","columns":[{"icon":"gavel","title":"Quiero denunciar","tone":"accent","items":["Es una denuncia formal","Acudir en persona a policía o juzgado","Acreditar la identidad y firmar","La web genera un PDF para imprimir"]},{"icon":"info-circle","title":"Quiero informar","items":["Comunica un hecho que parece delito","Basta con rellenar un formulario","Teléfono y correo son opcionales","No es una denuncia formal"]}]},
         {
           "type": "p",
           "text": "El **Cuerpo Nacional de Policía (CNP)** creó la **UIT** (Unidad de Investigación Tecnológica), hoy **UCC** (Unidad Central de Ciberdelincuencia, también llamada de cibercrimen), con tres brigadas:"
@@ -1604,6 +1607,17 @@
         "c": "Incorrecta. El nombre de un perfil es todavía menos fiable y no sustituye a la investigación.",
         "d": "Correcta. Hay que distinguir el indicio técnico de la atribución personal y buscar corroboración."
       }
+    },
+    "ciberdelitos-t06-c04": {
+      "section": "delincuencia-organizada",
+      "reasoning": "**EUROPOL** es la agencia de la Unión Europea para la cooperación policial. Para decidir si un grupo es «delincuencia organizada» usa una lista de rasgos llamados **indicadores**. Unos son obligatorios: colaboración de varias personas, permanencia en el tiempo, sospecha de **delitos graves** y búsqueda de beneficio o poder. Otros son optativos, como el reparto de tareas o los mecanismos de control y disciplina interna. La lógica es sencilla: una organización criminal se monta para cometer delitos graves y lucrarse, no faltas menores. Por eso la opción incorrecta es la de los delitos leves. La trampa es cambiar «graves» por «leves» en una frase que, por lo demás, suena idéntica al indicador real.",
+      "options": {
+        "a": "Incorrecta. Sí forma parte de la lista: la colaboración de varias personas es uno de los **indicadores obligatorios**: sin un grupo no hay organización.",
+        "b": "Incorrecta. Sí forma parte de la lista: los **mecanismos de control y disciplina interna** son uno de los indicadores optativos de EUROPOL, propios de una estructura jerarquizada.",
+        "c": "Incorrecta. Sí forma parte de la lista: la **permanencia en el tiempo** es un indicador obligatorio: distingue a la organización de una colaboración puntual.",
+        "d": "Correcta. Es el indicador falso: EUROPOL exige la sospecha de comisión de **delitos graves**, no de delitos leves."
+      },
+      "doubt": "Los indicadores aparecen en una figura del temario que no está en el texto. Además, el criterio clásico habla de colaboración de «más de dos» personas, mientras que la opción A dice «dos o más». Aun así, la opción D es claramente la que pretende el test."
     }
   }
 }

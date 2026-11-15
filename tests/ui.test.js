@@ -148,3 +148,10 @@ test('side questions are interactive: pick marks right and wrong at once, then c
  assert.match(html,/tq tq-ok/);assert.match(html,/>Correcto</);assert.match(html,/Acertada/);
  assert.equal(api.tqCount([q]),'1/1');api.tqPicked.delete(q.id);assert.equal(api.tqCount([q]),'1');
 });
+test('decision trees and risk matrices render nested branches and an accessible table',()=>{
+ const {api}=runtime();const n=(icon,title)=>({icon,title});
+ const tree=api.diagramBlock({type:'diagram',kind:'tree',title:'¿Aplica <b>?',question:n('help-circle','¿Público?'),branches:[{label:'Sí',result:{...n('check','ENS'),tone:'good'}},{label:'No',tree:{question:n('help-circle','¿Proveedor?'),branches:[{label:'Sí',result:n('check','ENS')},{label:'No',result:n('x','No aplica')}]}}]});
+ assert.match(tree,/dg-tree/);assert.equal((tree.match(/class="dg-tree"/g)||[]).length,2);assert.match(tree,/dg-branch-label">Sí/);assert.ok(!tree.includes('<b>?'));
+ const mx=api.diagramBlock({type:'diagram',kind:'matrix',title:'Riesgo',rows:{label:'Probabilidad',items:['Alta','Baja']},cols:{label:'Impacto',items:['Bajo','Alto']},cells:[['warn','bad'],['good','warn']],marks:[{row:0,col:1,text:'R1'}],legend:[{tone:'bad',text:'Tratar ya'}]});
+ assert.match(mx,/<table class="dg-matrix">/);assert.match(mx,/<th scope="row">Alta<\/th>/);assert.match(mx,/<td class="tone-bad"><span class="sr-only">Tratar ya<\/span><span class="dg-mark">R1<\/span><\/td>/);assert.match(mx,/dg-legend/);
+});

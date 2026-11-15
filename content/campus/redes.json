@@ -1,0 +1,812 @@
+{
+ "course": "redes",
+ "topics": [
+  {
+   "number": 1,
+   "items": [
+    {
+     "ref": "redes-t01-01"
+    },
+    {
+     "question": "Los mecanismos de seguridad:",
+     "options": [
+      "Permiten implementar ataques a la seguridad.",
+      "Cada uno de ellos permite obtener varios servicios de seguridad.",
+      "Solo pueden ser procedimientos físicos y organizativos.",
+      "Ninguna de las anteriores."
+     ],
+     "correct": 3,
+     "explanation": "Un **mecanismo de seguridad** es la herramienta que implementa un servicio. Algunos, como el cifrado o la firma digital, sirven a varios servicios, pero otros solo a uno (el control de acceso, el relleno de tráfico o la notarización). Por eso «cada uno permite varios servicios» es una generalización falsa y ninguna opción es correcta.",
+     "difficulty": "alta",
+     "source_page": 23,
+     "section": "mecanismos",
+     "reasoning": "Empieza por separar dos ideas de la recomendación X.800 (la norma de la UIT, Unión Internacional de Telecomunicaciones, sobre la arquitectura de seguridad OSI): el **servicio** es el objetivo (confidencialidad, integridad…) y el **mecanismo** es la herramienta que lo consigue (cifrado, firma digital…). Su finalidad es prevenir, detectar o recuperarse de ataques, nunca llevarlos a cabo. La Tabla 2 del tema relaciona unos con otros: el cifrado aparece en casi todos los servicios y la firma digital en autenticación, integridad y no repudio. Pero el mecanismo de control de acceso solo aparece en el servicio de control de acceso, el relleno de tráfico solo en la confidencialidad del flujo de tráfico y la notarización solo en el no repudio. Así que no se cumple que **cada uno** dé varios servicios. Tampoco son solo físicos u organizativos: la mayoría son técnicos y criptográficos. La trampa típica es la palabra «cada uno»: convierte un «algunos» verdadero en un «todos» falso.",
+     "args": [
+      "Incorrecta. Los mecanismos sirven para **defenderse** de los ataques (prevenirlos, detectarlos o recuperarse), no para implementarlos. Quien implementa un ataque es el atacante.",
+      "Incorrecta. Es cierto para algunos, como el cifrado o la firma digital, pero no para todos: el control de acceso, el relleno de tráfico y la notarización aparecen ligados a un solo servicio en la tabla del tema. La palabra «cada uno» lo convierte en falso.",
+      "Incorrecta. La mayoría de los mecanismos son **técnicos**: cifrado, firma digital, intercambio de autentificación o control de enrutamiento. Los procedimientos físicos y organizativos son solo una parte de la seguridad.",
+      "Correcta. Ninguna de las tres afirmaciones es cierta: los mecanismos no implementan ataques, no todos proporcionan varios servicios y no se limitan a medidas físicas u organizativas."
+     ],
+     "doubt": "El enunciado no cita la tabla y la clave oficial podría ser la B si el autor pensaba en mecanismos como el cifrado o la firma digital. Según la Tabla 2 del tema, sin embargo, varios mecanismos sirven a un único servicio, así que «cada uno» es falso y la D es la más defendible."
+    },
+    {
+     "ref": "redes-t01-03"
+    },
+    {
+     "ref": "redes-t01-04"
+    },
+    {
+     "ref": "redes-t01-05"
+    },
+    {
+     "ref": "redes-t01-06"
+    },
+    {
+     "question": "El rellenado de tráfico:",
+     "options": [
+      "Se basa en la inclusión de mensajes repetidos en determinadas comunicaciones.",
+      "Pretende saturar el ancho de banda de la comunicación para evitar ataques de denegación de servicio.",
+      "Se basa en el agrupamiento y envío conjunto de mensajes válidos.",
+      "Ninguna de las anteriores."
+     ],
+     "correct": 3,
+     "explanation": "El **relleno de tráfico** es el mecanismo que protege frente al **análisis de tráfico**: añade tráfico o datos de relleno sin valor para que un observador no deduzca cuándo, cuánto o con quién se comunica alguien. No repite mensajes, no busca saturar el canal y no agrupa mensajes válidos, así que ninguna opción lo describe.",
+     "difficulty": "media",
+     "source_page": 21,
+     "section": "mecanismos",
+     "reasoning": "Piensa en un observador que no puede leer tus mensajes cifrados pero sí ver cuándo y cuánto envías: si de repente hay mucho tráfico entre un ministerio y una embajada, ya deduce algo. Ese ataque pasivo es el **análisis de tráfico**. El tema define el mecanismo de **relleno de tráfico** como el que permite proteger el tráfico frente a su posible análisis. Se consigue enviando tráfico de cobertura o rellenando los mensajes para que el patrón (ritmo, tamaño, frecuencia) no revele la actividad real. No consiste en repetir mensajes, ni en saturar el ancho de banda contra una denegación de servicio, ni en agrupar mensajes válidos. La trampa típica es confundir «rellenar» con «repetir» o con «llenar el canal hasta saturarlo».",
+     "args": [
+      "Incorrecta. El relleno no repite mensajes reales: añade tráfico o datos **de relleno**, sin valor, para ocultar el patrón. Reenviar mensajes repetidos se parece más a un **ataque de reenvío** (repetición), que es justo algo de lo que hay que protegerse.",
+      "Incorrecta. El objetivo no es saturar el canal ni frenar una **denegación de servicio** (DoS, Denial of Service). Saturar el ancho de banda es precisamente lo que hace un ataque DoS; el relleno solo busca ocultar los patrones de comunicación.",
+      "Incorrecta. Agrupar y enviar juntos mensajes válidos no añade nada de relleno: solo cambia cómo se empaquetan los mensajes reales. El relleno consiste justo en lo contrario, en añadir tráfico **ficticio** para disfrazar el patrón.",
+      "Correcta. El relleno de tráfico consiste en introducir tráfico o datos de relleno para proteger frente al **análisis de tráfico**, y ninguna de las tres opciones lo describe así."
+     ]
+    },
+    {
+     "ref": "redes-t01-08"
+    },
+    {
+     "ref": "redes-t01-09"
+    },
+    {
+     "ref": "redes-t01-10"
+    }
+   ]
+  },
+  {
+   "number": 2,
+   "items": [
+    {
+     "ref": "redes-t02-01"
+    },
+    {
+     "ref": "redes-t02-02"
+    },
+    {
+     "ref": "redes-t02-03"
+    },
+    {
+     "ref": "redes-t02-04"
+    },
+    {
+     "ref": "redes-t02-05"
+    },
+    {
+     "ref": "redes-t02-06"
+    },
+    {
+     "ref": "redes-t02-07"
+    },
+    {
+     "ref": "redes-t02-08"
+    },
+    {
+     "question": "En una cadena de iptables:",
+     "options": [
+      "Si no se cumple ninguna regla no se lleva a cabo ninguna acción.",
+      "El número de reglas ha de igualar al menos a las de la cadena filter.",
+      "Si se cumple una regla se ejecuta su acción y no se revisan el resto.",
+      "El orden de las reglas no es relevante."
+     ],
+     "correct": 2,
+     "explanation": "En iptables las reglas de una cadena se evalúan **en orden**, de arriba abajo. En cuanto un paquete cumple una regla, se aplica su acción y ya no se revisan las siguientes. Si no cumple ninguna, se aplica la **política por defecto** de la cadena.",
+     "difficulty": "media",
+     "source_page": 18,
+     "section": "iptables-reglas",
+     "reasoning": "iptables es la herramienta de Linux para configurar el cortafuegos del núcleo. Las reglas se agrupan en **cadenas** (INPUT, OUTPUT, FORWARD…), y cada cadena es una lista ordenada. El tema explica que cada paquete se compara con las reglas una a una, en orden, hasta que cumple una y le afecta su acción (ACCEPT, DROP, REJECT…). Por eso **gana la primera coincidencia** y el orden es decisivo. Si el paquete no cumple ninguna regla, no se queda sin decisión: se le aplica la política por defecto de la cadena, que por seguridad suele ser DROP (descartar). No existe ningún mínimo de reglas que dependa de otra tabla. La trampa típica es pensar que «sin coincidencias no pasa nada» o que el orden da igual.",
+     "args": [
+      "Incorrecta. Si ninguna regla coincide, se aplica la **política por defecto** de la cadena, que por seguridad suele ser DROP. Siempre hay una acción final.",
+      "Incorrecta. No hay ningún número mínimo de reglas. Además, **filter** es el nombre de una **tabla** (la de filtrado), no de una cadena; cada cadena tiene las reglas que el administrador quiera.",
+      "Correcta. Las reglas se evalúan en orden y la primera que coincide decide: se ejecuta su acción y las siguientes ya no se revisan para ese paquete.",
+      "Incorrecta. El orden es **decisivo**: una regla ACCEPT colocada antes que una DROP deja pasar el paquete aunque la DROP también coincidiera."
+     ]
+    },
+    {
+     "question": "Para permitir los paquetes con destino el servidor web de mi red, debo añadir una regla en la cadena:",
+     "options": [
+      "OUTPUT.",
+      "FORWARD.",
+      "INPUT.",
+      "PREROUTING."
+     ],
+     "correct": 1,
+     "explanation": "Si el servidor web está en otro equipo de la red, protegido por el cortafuegos, los paquetes que llegan desde Internet **atraviesan** el cortafuegos camino del servidor. Ese tráfico en tránsito se filtra en la cadena **FORWARD**.",
+     "difficulty": "media",
+     "source_page": 18,
+     "section": "iptables-cadenas",
+     "reasoning": "Imagina el cortafuegos como la garita de entrada a un polígono: hay paquetes que van a la propia garita (INPUT), paquetes que salen de la garita (OUTPUT) y paquetes que solo pasan por ella hacia una nave del polígono (FORWARD). El enunciado habla del servidor web **de mi red**, es decir, de un equipo interno situado detrás del cortafuegos. Los paquetes que llegan para él no van dirigidos al cortafuegos ni los genera el cortafuegos: lo cruzan, con el cortafuegos haciendo de router. Esa es la cadena **FORWARD** de la tabla filter. PREROUTING existe, pero pertenece a las tablas nat y mangle y actúa antes de decidir la ruta; no es la cadena de filtrado. La trampa típica es elegir INPUT porque el paquete «entra»: INPUT es solo para lo que va destinado al propio cortafuegos.",
+     "args": [
+      "Incorrecta. OUTPUT filtra los paquetes **generados por el propio cortafuegos** (por ejemplo, si el cortafuegos hace una consulta DNS). Las peticiones de los clientes hacia el servidor web no salen de él.",
+      "Correcta. FORWARD procesa los paquetes que **atraviesan** el cortafuegos hacia otro equipo, como el servidor web interno.",
+      "Incorrecta. INPUT sería la cadena adecuada si el servidor web estuviera instalado **en el propio cortafuegos**. Aquí el servidor es otro equipo de la red.",
+      "Incorrecta. PREROUTING actúa al llegar el paquete, **antes** de decidir su ruta, y se usa en las tablas nat y mangle (por ejemplo, para redirigir puertos). No forma parte de la tabla filter."
+     ]
+    }
+   ]
+  },
+  {
+   "number": 3,
+   "items": [
+    {
+     "ref": "redes-t03-01"
+    },
+    {
+     "ref": "redes-t03-02"
+    },
+    {
+     "ref": "redes-t03-03"
+    },
+    {
+     "ref": "redes-t03-04"
+    },
+    {
+     "ref": "redes-t03-05"
+    },
+    {
+     "ref": "redes-t03-06"
+    },
+    {
+     "ref": "redes-t03-07"
+    },
+    {
+     "question": "El tráfico permitido en la Arquitectura de Protección de Perímetro de Tipo 4 (App-4):",
+     "options": [
+      "Entre la red interior y el intermediario o proxy.",
+      "Entre el intermediario (proxy) y la red exterior.",
+      "Las respuestas A y B son correctas.",
+      "Ninguna de las anteriores."
+     ],
+     "correct": 2,
+     "explanation": "En la **APP-4** (arquitectura de protección de perímetro de tipo 4 del ENS) el proxy está en la DMZ y el cortafuegos solo permite dos flujos: **red interior–proxy** y **proxy–Internet**. Por tanto A y B son correctas, y lo prohibido es el paso directo de Internet a la intranet sin pasar por el proxy.",
+     "difficulty": "baja",
+     "source_page": 10,
+     "section": "app3-app4",
+     "reasoning": "Las arquitecturas APP proceden de la guía CCN-STIC-811 del ENS (Esquema Nacional de Seguridad). En la APP-4 se combinan cortafuegos y **proxy** (intermediario): el proxy se coloca en la **DMZ** (zona desmilitarizada, la red intermedia entre Internet y la red interna) y el cortafuegos controla el tráfico entre las redes. El tema enumera los flujos permitidos: entre la red interior y el proxy, y entre el proxy e Internet. Lo que no debe autorizarse es que un paquete vaya de Internet a la intranet sin atravesar el proxy. Piensa en un intérprete en una reunión: tú hablas con él y él con el otro, pero nunca habláis directamente. Si A y B describen cada uno de los tramos permitidos, la opción completa es la C. La trampa típica es quedarse con un solo tramo.",
+     "args": [
+      "Incorrecta. El tramo red interior–proxy está permitido, pero no es el único: también lo está el tramo proxy–Internet, así que la respuesta completa es la C.",
+      "Incorrecta. El tramo proxy–Internet está permitido, pero falta el tramo red interior–proxy; la opción que recoge ambos es la C.",
+      "Correcta. En la APP-4 se permiten los dos tramos que pasan por el intermediario: red interior–proxy y proxy–Internet.",
+      "Incorrecta. A y B son ciertas. Lo único prohibido en APP-4 es la comunicación directa entre Internet y la intranet saltándose el proxy."
+     ]
+    },
+    {
+     "ref": "redes-t03-09"
+    },
+    {
+     "question": "Una Diodo:",
+     "options": [
+      "Es un dispositivo que garantiza el flujo unidireccional de la información mediante hardware, al no existir un canal de retorno físico.",
+      "Permite evitar fugas de información.",
+      "Las respuestas A y B son correctas.",
+      "Ninguna de las anteriores."
+     ],
+     "correct": 2,
+     "explanation": "Un **diodo de datos** garantiza por hardware que la información fluye en **un solo sentido**, porque no existe canal físico de retorno. Si se orienta para que los datos solo entren en la red protegida, nada puede salir por ese enlace, así que también **evita fugas de información**. Por eso A y B son correctas.",
+     "difficulty": "baja",
+     "source_page": 13,
+     "section": "app7-pasarela-diodo",
+     "reasoning": "El nombre viene del diodo electrónico, que deja pasar la corriente en un solo sentido. En redes, un diodo es un dispositivo que deja pasar datos solo en una dirección, y lo garantiza **físicamente**: no hay cable ni circuito de vuelta, de modo que ningún error de configuración puede abrir el sentido contrario. Aparece en el tema junto a la arquitectura APP-7, para conectar redes con distinto nivel de clasificación. Si la red clasificada solo puede **recibir** datos, ninguna información puede **salir** de ella por ese enlace. Eso es justo evitar fugas de información. Como la afirmación A (qué es) y la B (para qué sirve) son ciertas, la respuesta es la C. La trampa típica es elegir solo la A porque es la definición literal del temario.",
+     "args": [
+      "Incorrecta. Es la definición del tema y es cierta, pero no es la única afirmación correcta: la B también lo es, así que la opción completa es la C.",
+      "Incorrecta. Es cierta, porque al no haber canal de retorno la información de la red protegida no puede salir, pero la A también lo es; la respuesta completa es la C.",
+      "Correcta. El diodo garantiza por hardware el flujo unidireccional y, gracias a ello, impide las fugas de información por el sentido contrario.",
+      "Incorrecta. Tanto A como B son ciertas, así que no puede ser «ninguna»."
+     ]
+    }
+   ]
+  },
+  {
+   "number": 4,
+   "items": [
+    {
+     "ref": "redes-t04-01"
+    },
+    {
+     "ref": "redes-t04-02"
+    },
+    {
+     "ref": "redes-t04-03"
+    },
+    {
+     "ref": "redes-t04-04"
+    },
+    {
+     "question": "Los conmutadores híbridos:",
+     "options": [
+      "Suponen un avance en cuanto a su facilidad de configuración.",
+      "Permiten la definición de políticas de alto nivel.",
+      "Las respuestas A y B son correctas.",
+      "Ninguna de las anteriores."
+     ],
+     "correct": 2,
+     "explanation": "El **conmutador híbrido** se instala como un switch de nivel de aplicación pero decide mediante **políticas de seguridad**, como un IPS de host. Además, puede configurarse importando los resultados de un **escáner de vulnerabilidades**, lo que facilita mucho su configuración. Por eso A y B son correctas.",
+     "difficulty": "media",
+     "source_page": 10,
+     "section": "dispositivos-ips",
+     "reasoning": "Un IPS (Intrusion Prevention System, sistema de prevención de intrusiones) no solo detecta ataques, también los bloquea. El tema presenta varios dispositivos con funciones de IPS. El **switch de nivel de aplicación** trabaja en la capa 7 y reparte carga entre servidores. El **IPS de host a nivel de aplicación** se instala en el servidor y funciona con perfiles y políticas de seguridad. El **conmutador híbrido** mezcla ambos: se instala como el primero y funciona mediante la definición de políticas de seguridad como el segundo, sabiendo qué servidores y aplicaciones protege. Su gran ventaja es que se configura importando los datos de un escáner de vulnerabilidades: en vez de escribir reglas a mano, le dices «esto es lo vulnerable, vigílalo». Eso es un avance en facilidad de configuración (A) y se basa en definir políticas (B). La trampa típica es pensar que solo una de las dos ventajas es cierta.",
+     "args": [
+      "Incorrecta. Es cierta, porque poder configurarlo importando un escáner de vulnerabilidades simplifica su puesta en marcha, pero la B también lo es; la respuesta completa es la C.",
+      "Incorrecta. Es cierta, porque funciona mediante la definición de políticas de seguridad, igual que un IPS de host a nivel de aplicación, pero la A también lo es; la opción completa es la C.",
+      "Correcta. El conmutador híbrido funciona con políticas de seguridad y se configura fácilmente importando los resultados de un escáner de vulnerabilidades.",
+      "Incorrecta. A y B describen ventajas que el tema atribuye al conmutador híbrido."
+     ],
+     "doubt": "El tema habla de «definición de políticas de seguridad», no literalmente de «políticas de alto nivel». Se interpreta como equivalente, de ahí la C."
+    },
+    {
+     "ref": "redes-t04-06"
+    },
+    {
+     "ref": "redes-t04-07"
+    },
+    {
+     "ref": "redes-t04-08"
+    },
+    {
+     "question": "Los sistemas del tipo padded cell:",
+     "options": [
+      "Solo pueden implementarse en dispositivos físicos reales.",
+      "Funcionan de manera independiente a los NIDS (IDS en red).",
+      "Cuando detectan un ataque desencadenan acciones preventivas.",
+      "Funcionan en conjunción con un IPS."
+     ],
+     "correct": 2,
+     "explanation": "Una **padded cell** (célula de aislamiento) trabaja junto a un **IDS**: cuando se detecta tráfico malicioso, se redirige al atacante a un entorno simulado donde no puede hacer daño. Esa redirección es una **acción preventiva**: aparta al atacante de los sistemas reales.",
+     "difficulty": "media",
+     "source_page": 15,
+     "section": "padded-cell",
+     "reasoning": "Un IDS (Intrusion Detection System, sistema de detección de intrusiones) vigila el tráfico y avisa cuando ve un ataque. La **padded cell**, o célula acolchada, es un sistema trampa: un entorno falso que parece real y donde el atacante «rebota» sin causar daño, como una habitación acolchada. El tema dice que funciona **con un sistema IDS**: cuando el IDS detecta tráfico malicioso, lo redirige hacia la padded cell sin que el atacante lo note. Un ejemplo es «Bait and Switch», que usa el IDS Snort en un equipo con al menos tres interfaces de red. Así, al detectar el ataque, el conjunto desencadena una acción preventiva: desviar al intruso lejos del servicio real y estudiar cómo actúa. La trampa típica es la opción D: el tema dice IDS, no IPS.",
+     "args": [
+      "Incorrecta. La padded cell **simula** un entorno real; no tiene por qué ser un equipo físico. De hecho, su gracia es que sea un entorno controlado donde el atacante no pueda causar daño.",
+      "Incorrecta. Funciona justo **en combinación** con un IDS, que es quien detecta el tráfico malicioso y lo redirige hacia ella. Sin ese detector no sabría a quién aislar.",
+      "Correcta. Cuando se detecta un ataque, el tráfico del intruso se desvía a la célula de aislamiento: una acción preventiva que lo separa de los sistemas reales.",
+      "Incorrecta. El tema la asocia a un **IDS** (por ejemplo, Snort en Bait and Switch), no a un IPS. Un IPS bloquearía el ataque; aquí se le deja seguir, pero en un entorno falso."
+     ],
+     "doubt": "Un IDS que redirige el tráfico al detectar un ataque actúa, en la práctica, como un IPS, así que la D tiene cierta lógica. Se elige la C porque el temario habla expresamente de IDS y la detección seguida de redirección es la acción preventiva que describe."
+    },
+    {
+     "ref": "redes-t04-10"
+    }
+   ]
+  },
+  {
+   "number": 5,
+   "items": [
+    {
+     "ref": "redes-t05-01"
+    },
+    {
+     "ref": "redes-t05-02"
+    },
+    {
+     "ref": "redes-t05-03"
+    },
+    {
+     "ref": "redes-t05-04"
+    },
+    {
+     "ref": "redes-t05-05"
+    },
+    {
+     "ref": "redes-t05-06"
+    },
+    {
+     "ref": "redes-t05-07"
+    },
+    {
+     "ref": "redes-t05-08"
+    },
+    {
+     "question": "En Squid el comando con el que se especifica el puerto por el que se comunica el proxy es:",
+     "options": [
+      "http_port",
+      "cache_dir",
+      "http_access",
+      "acl"
+     ],
+     "correct": 0,
+     "explanation": "En el archivo de configuración de Squid (squid.conf), **http_port** indica el puerto por el que el proxy recibe las conexiones, por ejemplo «http_port 1891 transparent». cache_dir configura la caché, http_access permite o deniega accesos y acl define condiciones.",
+     "difficulty": "baja",
+     "source_page": 25,
+     "section": "squid-ajustes-sarg",
+     "reasoning": "Squid es un proxy caché de software libre: un intermediario entre los usuarios y la web que guarda copias de las páginas y filtra accesos. Se configura con directivas en squid.conf. Cada directiva tiene un nombre que dice lo que hace. **http_port** fija el puerto de escucha, es decir, la «puerta» por la que los navegadores hablan con el proxy. **cache_dir** fija dónde y cuánto se guarda en caché. **acl** (Access Control List, lista de control de acceso) da nombre a una condición, como una red o un dominio. **http_access** usa esas acl para permitir o denegar. La trampa típica es confundir http_port con http_access, porque ambos empiezan por «http_».",
+     "args": [
+      "Correcta. http_port establece el puerto por el que el proxy se comunica con los clientes, por ejemplo 3128 o 1891.",
+      "Incorrecta. cache_dir define el **directorio de la caché**: dónde se guardan las copias de las páginas, con qué formato y tamaño.",
+      "Incorrecta. http_access **permite o deniega** el acceso según las condiciones definidas con acl; no tiene nada que ver con el puerto.",
+      "Incorrecta. acl define **condiciones con nombre** (listas de control de acceso), como una red, un dominio o un horario, que luego usa http_access."
+     ]
+    },
+    {
+     "ref": "redes-t05-10"
+    }
+   ]
+  },
+  {
+   "number": 6,
+   "items": [
+    {
+     "ref": "redes-t06-01"
+    },
+    {
+     "ref": "redes-t06-02"
+    },
+    {
+     "ref": "redes-t06-03"
+    },
+    {
+     "ref": "redes-t06-04"
+    },
+    {
+     "question": "Las funciones hash permiten:",
+     "options": [
+      "Autenticar a un usuario.",
+      "Demostrar la integridad de un documento o texto.",
+      "Firmar digitalmente un documento.",
+      "Son válidas las tres anteriores."
+     ],
+     "correct": 3,
+     "explanation": "El tema atribuye a las **funciones hash** tres usos: reducir el documento a un resumen para la **firma digital**, comprobar la **integridad** de un mensaje y guardar el hash de las contraseñas para **autenticar** a los usuarios sin almacenarlas en claro. Por eso son válidas las tres.",
+     "difficulty": "media",
+     "source_page": 14,
+     "section": "hash",
+     "reasoning": "Una función hash convierte un archivo de cualquier tamaño en un resumen de tamaño fijo, una especie de **huella dactilar**. No usa claves, así que no es un algoritmo de cifra. El tema le da varios papeles. Primero, como la firma con clave pública es lenta, no se firma el documento entero sino su hash: el hash es una pieza de la **firma digital**. Segundo, si cambia un solo bit del mensaje cambia el resumen, así que permite comprobar la **integridad**. Tercero, muchos servidores no guardan tu contraseña sino su hash; cuando inicias sesión calculan el hash de lo que escribes y lo comparan, lo que sirve para **autenticar** al usuario. Como las tres aplicaciones aparecen en el temario, la respuesta es la D. La trampa típica es quedarse solo con la integridad, el uso más conocido.",
+     "args": [
+      "Incorrecta. Es un uso real, porque se almacena el hash de la contraseña y se compara al iniciar sesión, pero no es el único; las otras dos opciones también son válidas.",
+      "Incorrecta. Es el uso más conocido, ya que cualquier cambio en el texto cambia el resumen, pero no es el único; las tres opciones son válidas.",
+      "Incorrecta. Es cierta en el sentido de que la firma digital se aplica sobre el hash del documento, pero no es la única; las otras también lo son.",
+      "Correcta. Las funciones hash intervienen en la autenticación de usuarios (hash de contraseñas), en la integridad de documentos y en la firma digital."
+     ],
+     "doubt": "En sentido estricto, el hash por sí solo no firma ni autentica: necesita la clave privada (firma) o una comparación con lo almacenado (contraseñas). Se elige la D porque el temario le atribuye expresamente esos tres usos."
+    },
+    {
+     "ref": "redes-t06-06"
+    },
+    {
+     "ref": "redes-t06-07"
+    },
+    {
+     "ref": "redes-t06-08"
+    },
+    {
+     "ref": "redes-t06-09"
+    },
+    {
+     "question": "Los algoritmos de Diffie-Hellman y RSA:",
+     "options": [
+      "Basan su seguridad en el problema del logaritmo discreto.",
+      "Son algoritmos de cifra asimétrica.",
+      "Son algoritmos de cifra simétrica.",
+      "Son algoritmos donde los interlocutores no guardan valores secretos."
+     ],
+     "correct": 1,
+     "explanation": "Diffie-Hellman y RSA pertenecen a la **criptografía asimétrica** o de clave pública: cada parte tiene un valor secreto y publica otro. Pero su seguridad tiene bases distintas: Diffie-Hellman se apoya en el **logaritmo discreto** y RSA en la **factorización** de un producto de dos primos grandes.",
+     "difficulty": "media",
+     "source_page": 21,
+     "section": "clave-publica",
+     "reasoning": "En la cifra simétrica ambos extremos comparten la misma clave; en la **asimétrica** cada uno tiene una clave pública y otra privada. En 1976 Diffie y Hellman propusieron el primer esquema de clave pública: dos personas acuerdan un secreto común sin enviarlo nunca, y quien escuche tendría que resolver el **problema del logaritmo discreto**. En 1978 Rivest, Shamir y Adleman publicaron RSA, que según el tema basa su fortaleza en otra cosa: la dificultad de **factorizar** un número producto de dos primos grandes. En los dos casos cada participante guarda un valor secreto (el exponente secreto en Diffie-Hellman, la clave privada en RSA). Así que lo único que comparten las cuatro opciones de forma correcta es que son algoritmos asimétricos. La trampa típica es la A: solo es cierta para Diffie-Hellman.",
+     "args": [
+      "Incorrecta. Solo es cierto para **Diffie-Hellman**. RSA basa su seguridad en la **factorización** de un número producto de dos primos grandes, un problema de dificultad parecida pero distinto.",
+      "Correcta. Ambos son de clave pública (asimétricos): Diffie-Hellman para acordar un secreto y RSA para cifrar y firmar.",
+      "Incorrecta. La cifra simétrica usa una misma clave compartida, como AES o RC4. Diffie-Hellman y RSA son precisamente los pioneros de la cifra asimétrica.",
+      "Incorrecta. En ambos los interlocutores guardan valores secretos: en Diffie-Hellman cada uno su exponente aleatorio y en RSA el dueño su clave privada. Sin secretos no habría seguridad."
+     ]
+    }
+   ]
+  },
+  {
+   "number": 7,
+   "items": [
+    {
+     "ref": "redes-t07-01"
+    },
+    {
+     "ref": "redes-t07-02"
+    },
+    {
+     "ref": "redes-t07-03"
+    },
+    {
+     "ref": "redes-t07-04"
+    },
+    {
+     "ref": "redes-t07-05"
+    },
+    {
+     "ref": "redes-t07-06"
+    },
+    {
+     "question": "WPA3:",
+     "options": [
+      "No realiza ningún cambio en relación con el algoritmo de cifrado.",
+      "Dificulta ataques de desautorización gracias a los PMF.",
+      "El uso de PMF permite la autenticación entre iguales al conocer la clave compartida.",
+      "Cifra siempre todas las tramas que envía."
+     ],
+     "correct": 1,
+     "explanation": "**PMF** (Protected Management Frames, tramas de gestión protegidas) da integridad a las tramas de gestión, y en unicast también las cifra. Así el atacante ya no puede falsificar una trama de desconexión en nombre del punto de acceso, lo que **dificulta los ataques de desautenticación** (el enunciado dice «desautorización»).",
+     "difficulty": "media",
+     "source_page": 23,
+     "section": "wpa3-mejoras",
+     "reasoning": "En wifi, además de los datos, viajan **tramas de gestión**: avisos como «te desconecto» o «me asocio». En WPA2 iban sin proteger, así que un atacante podía enviar una trama falsa de desautenticación y echar a un cliente de la red, por ejemplo para luego atraerlo a un punto de acceso falso (evil twin). WPA3 hace obligatorio **PMF**: en multicast aporta integridad y en unicast integridad y confidencialidad. Si el cliente puede comprobar que la trama de desconexión no viene del punto de acceso real, la ignora. Por eso PMF dificulta esos ataques. La trampa típica es atribuir a PMF lo que hace **SAE** (autenticación entre iguales) o creer que cifra todo.",
+     "args": [
+      "Incorrecta. WPA3 sí cambia el cifrado: usa **AES-GCM** (modo Galois/Counter), que da confidencialidad e integridad, en lugar del AES-CCMP de WPA2.",
+      "Correcta. PMF protege las tramas de gestión y así impide falsificar las de desconexión, lo que dificulta los ataques de desautenticación.",
+      "Incorrecta. La autenticación entre iguales a partir de la clave compartida es **SAE** (Simultaneous Authentication of Equals), no PMF.",
+      "Incorrecta. No todo se cifra: las tramas de gestión **multicast** solo reciben integridad con PMF; únicamente las unicast se cifran."
+     ]
+    },
+    {
+     "question": "WPA3 enterprise y personal:",
+     "options": [
+      "Se diferencian en las mismas características que en WPA2 Enterprise y Personal. El uso de clave precompartida o de un servidor RADIUS.",
+      "Usan diferente tamaño de clave de cifrado.",
+      "Usan mecanismos de integridad diferentes.",
+      "Ninguna de las anteriores es correcta."
+     ],
+     "correct": 1,
+     "explanation": "WPA3 usa **AES-GCM con clave de 128 bits** en modo Personal y **de 192 bits** en modo Enterprise. Esa diferencia de tamaño de clave es lo que el tema destaca como nuevo respecto a WPA2. La integridad la dan en ambos el mismo modo GCM.",
+     "difficulty": "alta",
+     "source_page": 23,
+     "section": "wpa3-mejoras",
+     "reasoning": "Igual que WPA2, WPA3 tiene dos modos: **Personal**, con una clave precompartida (la contraseña de la wifi de casa), y **Enterprise**, con un servidor RADIUS (Remote Authentication Dial-In User Service, servidor de autenticación centralizada) y el protocolo 802.1X. Pero el tema añade una diferencia propia de WPA3 en confidencialidad: en Personal se usa AES-GCM de 128 bits y en Enterprise AES-GCM de 192 bits. Por eso la afirmación de que **usan diferente tamaño de clave** es cierta. La integridad no cambia: en los dos modos la proporciona GCM. La A se queda corta, porque dice que se diferencian «en las mismas características» que WPA2 y omite precisamente el tamaño de clave. La trampa típica es elegir la A porque recuerda la diferencia clásica PSK frente a RADIUS.",
+     "args": [
+      "Incorrecta. Es cierto que siguen diferenciándose en la autenticación (clave precompartida frente a RADIUS con 802.1X), pero no se diferencian solo en lo mismo que WPA2: en WPA3 cambia además el tamaño de la clave de cifrado.",
+      "Correcta. WPA3 Personal usa AES-GCM de 128 bits y WPA3 Enterprise AES-GCM de 192 bits.",
+      "Incorrecta. En ambos modos la integridad la proporciona el mismo modo **GCM** (Galois/Counter Mode), que da confidencialidad e integridad a la vez.",
+      "Incorrecta. La B es correcta según el tema."
+     ],
+     "doubt": "La A también describe algo cierto (Personal usa clave precompartida y Enterprise RADIUS). Se elige la B porque es la diferencia específica de WPA3 que recoge el tema y porque la A afirma que la diferencia es la misma que en WPA2, lo que omite el cambio en el tamaño de clave."
+    },
+    {
+     "ref": "redes-t07-09"
+    },
+    {
+     "question": "WPA3:",
+     "options": [
+      "Facilita la conexión de dispositivos de IoT gracias Wi-Fi Easy Connnect.",
+      "Sigue utilizando WPS para facilitar la conexión a la red.",
+      "Elimina la posibilidad de conectarse a la red de forma simplificada (similar a WPS) por sus implicaciones en cuestiones de seguridad.",
+      "Utiliza PMF para facilitar la conexión de dispositivos con tecnología NFC."
+     ],
+     "correct": 0,
+     "explanation": "WPA3 sustituye el inseguro WPS por **Wi-Fi Easy Connect**, basado en el protocolo DPP (Device Provisioning Protocol). Permite asociar dispositivos sin teclado, como los de **IoT** (Internet of Things, Internet de las cosas), mediante un código, una contraseña, NFC o Bluetooth.",
+     "difficulty": "baja",
+     "source_page": 22,
+     "section": "wpa3-mejoras",
+     "reasoning": "WPS (Wi-Fi Protected Setup) era el botón o PIN para conectar dispositivos sin escribir la contraseña, pero tenía muchas vulnerabilidades. Aun así, hace falta algo parecido para aparatos sin pantalla ni teclado: una bombilla inteligente o un enchufe wifi. WPA3 propone **Wi-Fi Easy Connect**, que se basa en DPP y permite que el dispositivo se asocie con un código (por ejemplo, un QR), una contraseña o por NFC (Near Field Communication, comunicación de campo cercano) o Bluetooth. Es decir, WPA3 no elimina la conexión simplificada: la rehace de forma segura. La trampa típica es la C, que confunde «quitar WPS» con «quitar cualquier conexión sencilla».",
+     "args": [
+      "Correcta. Wi-Fi Easy Connect facilita la incorporación segura de dispositivos IoT que no tienen forma de introducir la contraseña.",
+      "Incorrecta. WPA3 deja atrás WPS por sus vulnerabilidades y lo reemplaza por Easy Connect.",
+      "Incorrecta. WPA3 no elimina la conexión simplificada: la mantiene, pero de forma segura, con Wi-Fi Easy Connect.",
+      "Incorrecta. PMF protege las tramas de gestión frente a falsificaciones. La conexión por NFC la ofrece Easy Connect (DPP), no PMF."
+     ]
+    }
+   ]
+  },
+  {
+   "number": 8,
+   "items": [
+    {
+     "ref": "redes-t08-01"
+    },
+    {
+     "ref": "redes-t08-02"
+    },
+    {
+     "question": "El protocolo ESP:",
+     "options": [
+      "Puede proporcionar autenticación e integridad.",
+      "Proporciona solo confidencialidad.",
+      "Las respuestas A y B son correctas.",
+      "Ninguna de las anteriores."
+     ],
+     "correct": 0,
+     "explanation": "**ESP** (Encapsulating Security Payload, carga de seguridad encapsulada) añade **confidencialidad** mediante cifrado, y además puede dar **autenticación e integridad**, como AH. Admite usar solo cifrado, solo autenticación o ambos, así que no proporciona «solo» confidencialidad.",
+     "difficulty": "media",
+     "source_page": 8,
+     "section": "esp",
+     "reasoning": "IPsec (Internet Protocol Security) protege el tráfico en la capa de red con dos protocolos. **AH** (Authentication Header, cabecera de autenticación) es como un precinto: da integridad y autenticación, pero no oculta nada. **ESP** es como un sobre opaco y precintado: el tema dice que añade confidencialidad en la capa IP, además de la integridad y autenticación que ya aportaba AH. El protocolo soporta modos «solo cifrado» y «solo autenticación», y su campo Authentication Data permite comprobar la autenticación y la integridad del paquete. Por tanto ESP **puede** proporcionar autenticación e integridad (A cierta) y no se limita a la confidencialidad (B falsa). La trampa típica es asociar ESP solo con cifrar porque es lo que lo distingue de AH.",
+     "args": [
+      "Correcta. ESP puede proporcionar autenticación e integridad gracias a su campo de datos de autenticación, además de la confidencialidad.",
+      "Incorrecta. No da «solo» confidencialidad: también puede autenticar y comprobar la integridad, e incluso usarse en modo solo autenticación.",
+      "Incorrecta. La B es falsa, así que no pueden ser correctas las dos.",
+      "Incorrecta. La A es cierta."
+     ]
+    },
+    {
+     "question": "El protocolo IKE:",
+     "options": [
+      "Posee dos fases que están completamente cifradas para la negociación de parámetros de seguridad.",
+      "Todos los mensajes de la segunda fase están cifrados.",
+      "Las respuestas A y B son correctas.",
+      "Ninguna de las anteriores."
+     ],
+     "correct": 1,
+     "explanation": "En **IKE** (Internet Key Exchange, intercambio de claves de Internet) la fase 1 no va entera cifrada: los primeros mensajes (propuesta de parámetros e intercambio Diffie-Hellman) viajan en claro, y solo la autenticación final va protegida. La **fase 2**, en cambio, va toda protegida por la clave de sesión obtenida en la fase 1.",
+     "difficulty": "alta",
+     "source_page": 12,
+     "section": "ike",
+     "reasoning": "IKE prepara las claves de IPsec en dos fases. En la **fase 1**, modo principal, hay seis mensajes: los dos primeros negocian los parámetros, el tercero y el cuarto intercambian el material Diffie-Hellman y, con él, se deriva la clave de sesión IKE. Solo entonces los mensajes quinto y sexto, la autenticación mutua, se cifran con esa clave. Es lógico: no puedes cifrar antes de tener la clave. En la **fase 2** ya existe esa clave, así que toda la negociación de las asociaciones de seguridad IPsec va protegida. Por tanto A es falsa (la fase 1 no está completamente cifrada) y B es cierta. La trampa típica es suponer que, como IKE es un protocolo de seguridad, todo va cifrado desde el principio.",
+     "args": [
+      "Incorrecta. La fase 1 no está completamente cifrada: en el modo principal los mensajes 1 a 4 van en claro, y en el agresivo los dos primeros, porque todavía no hay clave con la que cifrar.",
+      "Correcta. La fase 2 se realiza cuando ya existe la clave de sesión de la fase 1, que protege todos sus mensajes.",
+      "Incorrecta. La A es falsa, así que no pueden serlo ambas.",
+      "Incorrecta. La B es cierta."
+     ]
+    },
+    {
+     "question": "El protocolo IKE:",
+     "options": [
+      "Durante la fase 1 se establecen los parámetros de protección del protocolo ESP.",
+      "Durante la fase 1 se establecen los parámetros de protección del protocolo AH.",
+      "Durante la fase 1 se establecen los parámetros de protección de la siguiente fase IKE.",
+      "Ninguna de las anteriores."
+     ],
+     "correct": 2,
+     "explanation": "La **fase 1 de IKE** crea la **SA ISAKMP**: un canal autenticado y cifrado cuya función es proteger la negociación de la fase siguiente. Los parámetros de protección de AH y ESP, es decir, las asociaciones de seguridad IPsec, se negocian después, en la fase 2.",
+     "difficulty": "media",
+     "source_page": 11,
+     "section": "ike",
+     "reasoning": "Una **SA** (Security Association, asociación de seguridad) es el «contrato» que fija cómo se protege una comunicación: algoritmos, claves y duración. IKE trabaja en dos fases. En la **fase 1** los extremos se autentican y acuerdan una clave de sesión IKE; el resultado es la SA ISAKMP (Internet Security Association and Key Management Protocol), que protege la propia negociación de IKE. En la **fase 2**, ya bajo esa protección, se negocian por propuesta y selección las SA IPsec que usarán AH o ESP para proteger los datos. Piensa en quedar primero en una sala privada (fase 1) para después firmar allí el contrato (fase 2). La trampa típica es creer que la fase 1 ya fija los parámetros de ESP o AH.",
+     "args": [
+      "Incorrecta. Los parámetros de ESP forman parte de las SA IPsec, que se negocian en la **fase 2**.",
+      "Incorrecta. Los parámetros de AH (Authentication Header) también se negocian en la **fase 2**.",
+      "Correcta. La fase 1 establece la SA ISAKMP, que protege la siguiente fase de IKE.",
+      "Incorrecta. La C es correcta."
+     ]
+    },
+    {
+     "question": "La negociación de claves de la fase 2 del protocolo IKE:",
+     "options": [
+      "Puede ser realizada sin necesidad de la fase 1.",
+      "Puede no ser necesaria una vez completada la fase 1.",
+      "Las respuestas A y B son correctas.",
+      "Ninguna de las anteriores."
+     ],
+     "correct": 3,
+     "explanation": "Las dos fases de **IKE** son dependientes. La fase 2 no puede hacerse sin la fase 1, porque necesita su clave de sesión para ir protegida. Y la fase 1 por sí sola no basta, porque solo protege la negociación: las **asociaciones de seguridad IPsec** que protegerán los datos se acuerdan en la fase 2. Ninguna afirmación es cierta.",
+     "difficulty": "alta",
+     "source_page": 12,
+     "section": "ike",
+     "reasoning": "Recuerda el reparto de tareas de IKE. La **fase 1** autentica a los extremos y crea un canal seguro (SA ISAKMP), pero no fija cómo se protegerán los datos. La **fase 2** negocia, dentro de ese canal, las SA IPsec que usarán AH o ESP. El tema dice que la fase 2 se realiza «con plenas garantías una vez que la fase 1 ha culminado», porque la protege la clave de sesión de la fase 1. Así que la fase 2 no puede hacerse sin la fase 1 (A falsa). Y tampoco puede omitirse tras la fase 1, porque sin ella no habría SA IPsec y los datos no estarían protegidos (B falsa). Lo que sí puede ocurrir es que una sola fase 1 sirva para varias negociaciones de fase 2, pero eso no la hace innecesaria. La trampa típica es pensar que, terminada la fase 1, «ya está todo acordado».",
+     "args": [
+      "Incorrecta. La fase 2 necesita el canal protegido y la clave de sesión que crea la fase 1; sin ella no tendría con qué protegerse.",
+      "Incorrecta. Completar la fase 1 no basta: solo protege la negociación. Las SA IPsec que protegen los datos se acuerdan en la fase 2, así que sigue siendo necesaria.",
+      "Incorrecta. Ni A ni B son ciertas.",
+      "Correcta. Las dos fases dependen una de otra: la fase 2 requiere la fase 1 y sigue siendo necesaria para negociar las SA IPsec."
+     ]
+    },
+    {
+     "question": "El protocolo SSL:",
+     "options": [
+      "Proporciona autenticación e integridad.",
+      "Proporciona no repudio.",
+      "Proporciona solo confidencialidad.",
+      "Ninguna de las anteriores."
+     ],
+     "correct": 0,
+     "explanation": "**SSL** (Secure Sockets Layer, antecesor de TLS) proporciona **autenticación, integridad y confidencialidad**. No proporciona **no repudio**, porque los datos se protegen con claves de sesión simétricas que conocen los dos extremos.",
+     "difficulty": "media",
+     "source_page": 16,
+     "section": "ssl-arquitectura",
+     "reasoning": "El tema lo dice de forma directa: SSL proporciona autenticación, integridad y confidencialidad entre los extremos de una comunicación. Lo habitual es autenticar solo al servidor con su certificado X.509; la autenticación del cliente es opcional. La integridad la da un MAC (Message Authentication Code, código de autenticación de mensaje) y la confidencialidad el cifrado simétrico. El **no repudio** exige poder demostrar ante un tercero quién generó un mensaje, y eso no es posible si ambas partes comparten la misma clave: cualquiera de las dos podría haberlo creado. Por eso la A es correcta, aunque no mencione la confidencialidad. La trampa típica es descartar la A porque «le falta» la confidencialidad: no dice «solo».",
+     "args": [
+      "Correcta. SSL proporciona autenticación e integridad (además de confidencialidad).",
+      "Incorrecta. Las claves de sesión son compartidas por cliente y servidor, así que no se puede demostrar ante un tercero quién generó un mensaje. Eso sería **no repudio**, propio de la firma digital.",
+      "Incorrecta. No da «solo» confidencialidad: también autentica (normalmente al servidor) y protege la integridad.",
+      "Incorrecta. La A es correcta."
+     ]
+    },
+    {
+     "question": "El protocolo SSL:",
+     "options": [
+      "El secreto premaestro se compone de información que ha sido generada parte en el cliente y parte en el servidor.",
+      "El secreto premaestro es generado por el cliente.",
+      "El secreto premaestro es generado por el servidor.",
+      "Ninguna de las anteriores."
+     ],
+     "correct": 1,
+     "explanation": "En el Handshake de SSL con intercambio RSA, el **cliente genera el secreto premaestro** y lo envía cifrado con la clave pública del servidor en el mensaje **ClientKeyExchange**. El servidor solo lo descifra. Lo que aportan los dos son los números aleatorios que después intervienen en el **secreto maestro**.",
+     "difficulty": "alta",
+     "source_page": 24,
+     "section": "handshake",
+     "reasoning": "El Handshake es la «negociación» inicial de SSL, en la que cliente y servidor acuerdan algoritmos y claves. En el ClientHello y el ServerHello cada uno envía un número aleatorio. Después, en la fase de intercambio de claves del cliente, este envía el mensaje **ClientKeyExchange** con el **secreto premaestro** cifrado con la clave pública del servidor. Por tanto lo genera el cliente; el servidor lo descifra con su clave privada. A continuación ambos calculan el **secreto maestro** a partir del premaestro y de los dos aleatorios, y de él derivan las claves de sesión. La trampa típica es la A, que mezcla el premaestro (solo del cliente) con el maestro (donde sí entran datos de ambos).",
+     "args": [
+      "Incorrecta. Confunde el secreto premaestro con el **secreto maestro**, en cuyo cálculo sí intervienen los aleatorios del cliente y del servidor.",
+      "Correcta. El cliente genera el secreto premaestro y lo envía cifrado con la clave pública del servidor.",
+      "Incorrecta. El servidor no lo genera: lo recibe cifrado y lo descifra con su clave privada.",
+      "Incorrecta. La B es correcta."
+     ]
+    },
+    {
+     "question": "En el protocolo handshake de SSL:",
+     "options": [
+      "Puede llevarse a cabo sin completar la fase de autenticación y el intercambio de claves.",
+      "Puede llevarse a cabo sin que el servidor posea un certificado de clave pública que pueda ser verificado.",
+      "Cada uno de los extremos genera las claves que le permitirán alcanzar el servicio de no repudio.",
+      "Ninguna de las anteriores."
+     ],
+     "correct": 1,
+     "explanation": "SSL admite **algoritmos anónimos** en los que el servidor no se autentica. En ese caso se omite el mensaje **Certificate**, así que el Handshake puede completarse sin que el servidor tenga un certificado verificable. Es una posibilidad poco usada, normalmente deshabilitada por el riesgo de ataques de intermediario.",
+     "difficulty": "alta",
+     "source_page": 23,
+     "section": "handshake",
+     "reasoning": "El Handshake de SSL tiene varias fases: saludo (Hello), autenticación del servidor e intercambio de claves, autenticación del cliente e intercambio de claves, y finalización. Normalmente el servidor envía su certificado X.509 en el mensaje Certificate. Pero el tema indica que ese mensaje solo no se usa cuando SSL funciona en **forma anónima**, y que existen algoritmos anónimos que permiten que el servidor no sea autenticado. Así que sí puede haber Handshake sin certificado verificable (B). Lo que nunca puede faltar es el **intercambio de claves**, porque sin él no habría claves de sesión (A falsa). Y SSL no ofrece no repudio, porque las claves son compartidas (C falsa). La trampa típica es pensar que SSL siempre exige certificado.",
+     "args": [
+      "Incorrecta. Sin intercambio de claves no habría secreto premaestro ni claves de sesión, y no se podría cifrar nada. El intercambio de claves no se puede saltar.",
+      "Correcta. Con algoritmos anónimos se omite el mensaje Certificate y el servidor no se autentica; existe, aunque suele estar deshabilitado por el riesgo de intermediario.",
+      "Incorrecta. Las claves de sesión son simétricas y compartidas por ambos extremos, así que no dan **no repudio**: ninguno puede demostrar ante un tercero quién generó un mensaje.",
+      "Incorrecta. La B es correcta."
+     ]
+    },
+    {
+     "ref": "redes-t08-10"
+    }
+   ]
+  },
+  {
+   "number": 9,
+   "items": [
+    {
+     "ref": "redes-t09-01"
+    },
+    {
+     "ref": "redes-t09-02"
+    },
+    {
+     "question": "Se quiere desplegar una VPN de nivel de enlace, el protocolo a utilizar debería ser:",
+     "options": [
+      "SSH.",
+      "PPTP.",
+      "L2F.",
+      "L2TP."
+     ],
+     "correct": 3,
+     "explanation": "En el nivel de enlace hay tres protocolos: PPTP, L2F y **L2TP**. El tema desaconseja PPTP por sus vulnerabilidades y señala que L2F solo protege una parte del camino y depende del proveedor. **L2TP** combina lo mejor de ambos y es el recomendado, junto con IPsec para cifrar.",
+     "difficulty": "media",
+     "source_page": 13,
+     "section": "vpn-enlace",
+     "reasoning": "Una VPN (Virtual Private Network, red privada virtual) crea un túnel seguro sobre una red pública. Según la capa donde se forme el túnel hay VPN de enlace, de red, de transporte o de aplicación. En el **nivel de enlace** el tema cita tres protocolos. **PPTP** (Point-to-Point Tunneling Protocol, de Microsoft) tiene vulnerabilidades graves en su autenticación y su cifrado y se desaconseja. **L2F** (Layer 2 Forwarding, de Cisco) solo crea túneles entre el ISP (proveedor de Internet) y la organización, así que el tramo del cliente al ISP va sin proteger. **L2TP** (Layer 2 Tunneling Protocol) surge de ambos, es el más avanzado, sirve en cualquier situación en la que se usarían los otros dos y se recomienda combinarlo con IPsec. La pregunta dice «debería»: la respuesta es la opción recomendada, no cualquiera de capa 2. La trampa típica es elegir PPTP o L2F porque también son de enlace.",
+     "args": [
+      "Incorrecta. **SSH** (Secure Shell) crea túneles en el **nivel de aplicación**, no en el de enlace.",
+      "Incorrecta. PPTP es de nivel de enlace, pero tiene vulnerabilidades conocidas en su autenticación (PAP, CHAP, MS-CHAP) y en su cifrado, y el tema desaconseja usarlo.",
+      "Incorrecta. L2F también es de nivel de enlace, pero solo protege el tramo entre el ISP y la organización y obliga a depender del proveedor.",
+      "Correcta. L2TP combina lo mejor de PPTP y L2F, sirve en cualquier caso en que se usarían ellos y se recomienda junto con IPsec para el cifrado."
+     ]
+    },
+    {
+     "ref": "redes-t09-04"
+    },
+    {
+     "ref": "redes-t09-05"
+    },
+    {
+     "question": "Una persona teme que sus comentarios en redes sociales puedan ser utilizados en su contra por el gobierno totalitario en el que se encuentra. Para estar segura, ¿qué debería utilizar al publicar en redes?",
+     "options": [
+      "Una VPN.",
+      "La red Freenet.",
+      "La red TOR.",
+      "Las respuestas B y C son correctas."
+     ],
+     "correct": 2,
+     "explanation": "Una VPN da confidencialidad, pero **no anonimato**: el concentrador VPN sabe quién eres y con quién hablas. **Tor** encamina el tráfico por tres nodos con cifrado en capas, de modo que la red social ve la IP del nodo de salida y no la del usuario. **Freenet** sirve para publicar y recuperar contenidos dentro de su propia red, no para escribir en redes sociales.",
+     "difficulty": "alta",
+     "source_page": 5,
+     "section": "vpn-y-anonimato",
+     "reasoning": "Lo que busca esta persona es **anonimato**: que no se pueda relacionar lo que publica con su identidad. El tema insiste en que una VPN no lo consigue, porque el concentrador VPN conoce al cliente y los servidores con los que se comunica; si el gobierno presiona al proveedor, la identidad queda expuesta. **Freenet** es una red P2P (entre iguales) para publicar, replicar y recuperar archivos de forma anónima y contra la censura, pero solo dentro de Freenet: no sirve para acceder a una red social normal de Internet. **Tor** (The Onion Router) es una red sobre Internet: el cliente envía el tráfico por un nodo de entrada, uno intermedio y uno de salida, y la red social solo ve la dirección del nodo de salida. Para publicar en redes sociales, la herramienta adecuada es Tor. Aun así, debe evitar identificarse con datos personales. La trampa típica es la D, porque Freenet también da anonimato, pero en otro ámbito.",
+     "args": [
+      "Incorrecta. Una VPN da confidencialidad, integridad y autenticación, pero **no anonimato**: el concentrador VPN sabe quién es el usuario y con qué servidores se comunica.",
+      "Incorrecta. Freenet da anonimato a autores y lectores, pero de contenidos publicados **dentro de su propia red P2P**; no permite publicar en las redes sociales normales de Internet.",
+      "Correcta. Tor oculta la IP real tras tres nodos con cifrado en capas, de modo que la red social solo ve el nodo de salida.",
+      "Incorrecta. Freenet no sirve para publicar en redes sociales de Internet, así que no son correctas las dos."
+     ],
+     "doubt": "El tema no plantea este caso de forma literal y presenta Freenet como herramienta contra la censura que protege la identidad de los autores, así que la D podría ser la clave oficial. Se elige la C porque publicar «en redes sociales» exige acceder a servicios de Internet, algo que hace Tor y no Freenet."
+    },
+    {
+     "ref": "redes-t09-07"
+    },
+    {
+     "ref": "redes-t09-08"
+    },
+    {
+     "ref": "redes-t09-09"
+    },
+    {
+     "question": "En Onion Routing:",
+     "options": [
+      "Se utilizan las claves públicas de los tres routers por los que pasa nuestro mensaje para cifrar en capas el mensaje enviado.",
+      "Se acuerdan claves simétricas con cada router intermedio.",
+      "El cliente puede escoger los routers por los que quiere que viaje su comunicación.",
+      "El servidor final conocerá la IP del cliente que le envía la consulta."
+     ],
+     "correct": 1,
+     "explanation": "En **Onion Routing** el cliente obtiene del directorio de Tor las claves públicas de tres nodos y las usa para **acordar una clave simétrica con cada uno**. Después cifra el mensaje en capas con esas claves simétricas, y cada nodo retira la suya, como si pelara una cebolla.",
+     "difficulty": "media",
+     "source_page": 24,
+     "section": "tor",
+     "reasoning": "Tor (The Onion Router) debe su nombre a la cebolla: el mensaje lleva varias capas de cifrado. Según el tema, Alice consulta el **directorio de Tor**, que le da la información de conexión y la clave pública de tres nodos: entry guard (entrada), middle relay (intermedio) y exit relay (salida). Con esas claves públicas acuerda una **clave simétrica** distinta con cada nodo. El mensaje se cifra en capas con esas claves simétricas, porque el cifrado simétrico es mucho más rápido. Cada nodo solo conoce el salto anterior y el siguiente, así que el servidor final ve la IP del nodo de salida, no la del cliente. La trampa típica es la A: las claves públicas se usan para acordar las claves, no para cifrar cada capa del mensaje.",
+     "args": [
+      "Incorrecta. Las claves públicas de los nodos se usan para **acordar** las claves simétricas; las capas del mensaje se cifran con esas claves simétricas, mucho más rápidas.",
+      "Correcta. El cliente acuerda una clave simétrica con cada nodo del circuito y cifra el mensaje en capas con ellas.",
+      "Incorrecta. En la descripción del tema es el **directorio de Tor** quien ofrece los tres nodos que harán de entrada, intermedio y salida; el usuario no los elige a mano.",
+      "Incorrecta. El servidor final solo ve la IP del **nodo de salida**. Quien conoce la IP real del cliente es el nodo de entrada, que a su vez no sabe qué servicio se consulta."
+     ],
+     "doubt": "El tema dice que el directorio «ofrece» los tres nodos. En el Tor real es el software del cliente quien elige la ruta a partir de la lista del directorio, así que la C podría discutirse fuera del temario."
+    }
+   ]
+  },
+  {
+   "number": 10,
+   "items": [
+    {
+     "ref": "redes-t10-01"
+    },
+    {
+     "ref": "redes-t10-02"
+    },
+    {
+     "ref": "redes-t10-03"
+    },
+    {
+     "ref": "redes-t10-04"
+    },
+    {
+     "ref": "redes-t10-05"
+    },
+    {
+     "ref": "redes-t10-06"
+    },
+    {
+     "ref": "redes-t10-07"
+    },
+    {
+     "question": "¿Cuál de las siguientes características nos ofrecen los servicios de seguridad dados desde la nube?",
+     "options": [
+      "Gestión simplificada.",
+      "Escalabilidad.",
+      "Disponibilidad del servicio constante.",
+      "Todas las opciones son correctas."
+     ],
+     "correct": 3,
+     "explanation": "El tema cita tres ventajas de delegar la seguridad en la nube (**SECaaS**, Security as a Service, seguridad como servicio): **disponibilidad del servicio constante**, **gestión simplificada** y **escalabilidad**. Como las tres aparecen, la respuesta es «todas».",
+     "difficulty": "baja",
+     "source_page": 13,
+     "section": "secaas",
+     "reasoning": "SECaaS consiste en contratar en la nube servicios de seguridad que antes se instalaban dentro de la empresa: gestión de identidades, DLP (Data Loss Prevention, prevención de fuga de datos), filtrado web, seguridad del correo, SIEM (gestión de eventos e información de seguridad), VPN o cortafuegos. Es como contratar una empresa de vigilancia en lugar de tener vigilantes en plantilla. El tema enumera tres ventajas: disponibilidad constante, gestión simplificada (el proveedor se encarga del mantenimiento) y escalabilidad (se amplía o reduce según la necesidad). También advierte de que la seguridad queda en manos de un tercero, por lo que hay que acotar bien los acuerdos de servicio. La trampa típica es quedarse con una sola ventaja cuando la opción «todas» las recoge.",
+     "args": [
+      "Incorrecta. La gestión simplificada es una ventaja que cita el tema, pero no la única.",
+      "Incorrecta. La escalabilidad es una ventaja, pero no la única.",
+      "Incorrecta. La disponibilidad constante es una ventaja (sujeta a los acuerdos de servicio), pero no la única.",
+      "Correcta. Gestión simplificada, escalabilidad y disponibilidad constante son las tres ventajas que el tema atribuye a la seguridad en la nube."
+     ]
+    },
+    {
+     "ref": "redes-t10-09"
+    },
+    {
+     "ref": "redes-t10-10"
+    }
+   ]
+  }
+ ]
+}

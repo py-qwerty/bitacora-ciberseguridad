@@ -265,6 +265,7 @@
           "title": "Caso práctico",
           "text": "Un portátil va lentísimo y el ventilador no para. Con TCPView ves que un proceso llamado «svch0st.exe» (con un cero) mantiene una conexión con una IP extranjera por el puerto 3333. En Process Monitor filtras por ese proceso y ves que escribe en una clave de arranque del Registro. Con ListDLLs compruebas que carga una DLL sin firmar. Antes de matarlo, haces un volcado con ProcDump para conservar la prueba."
         },
+        {"type":"diagram","kind":"flow","title":"Windows encendido: qué capturar antes de que se evapore","caption":"La hora va primero: sin ella, la cronología no es fiable.","items":[{"icon":"clock","title":"Fecha y hora","text":"date /t, time /t o Get-Date"},{"icon":"users","title":"Usuarios conectados","text":"PsLoggedOn, LogonSessions, query user"},{"icon":"file","title":"Archivos abiertos","text":"net file, PsFile, openfiles"},{"icon":"network","title":"Configuración de red","text":"ipconfig /all y modo promiscuo"},{"icon":"plug","title":"Conexiones abiertas","text":"netstat -ano, TCPView"},{"icon":"cpu","title":"Procesos","text":"tasklist, pslist, Process Explorer"},{"icon":"device-floppy","title":"Volcar memoria","text":"Si es malicioso, antes de matarlo","tone":"warn"}]},
         {
           "type": "exam",
           "text": "Pregunta clásica: ante un equipo sospechoso de malware, ¿analizamos las conexiones abiertas? Sí, es de lo primero; las «conexiones cerradas» ya no se pueden observar en vivo. Otra: ¿qué distingue a Process Monitor de una lista estática de procesos? Que observa la actividad **en tiempo real** y permite **filtrar** por proceso; no bloquea nada ni reconstruye el pasado si no hay registros. Y cuidado: una herramienta que muestra conexiones por proceso relaciona programa y destino, pero no dice qué persona escribió la comunicación ni prueba sola que sea maliciosa."
@@ -771,6 +772,7 @@
             ]
           ]
         },
+        {"type":"diagram","kind":"layers","title":"Dónde queda un archivo borrado en Windows 10","caption":"$I y $R comparten sufijo aleatorio: el $I dice de dónde venía el $R.","items":[{"icon":"database","title":"Raíz del volumen","text":"Por ejemplo, C:\\"},{"icon":"folder","title":"$Recycle.Bin","text":"La papelera desde Vista"},{"icon":"id","title":"Carpeta con el SID","text":"Una por usuario"},{"icon":"file-text","title":"Pareja $I y $R","text":"$I información del borrado; $R contenido real","tone":"accent"}]},
         {
           "type": "example",
           "title": "Caso práctico",
@@ -1360,6 +1362,7 @@
           "title": "Caso práctico",
           "text": "En $HOME/Library/LaunchAgents de una diseñadora aparece com.apple.update-helper.plist, que lanza /Users/Shared/.helper cada vez que ella inicia sesión. Apple no instala nada en la carpeta de usuario con ese nombre: es una persistencia típica de malware. Que sea un agente (depende de su sesión) y no un daemon no lo hace ni más ni menos sospechoso: lo sospechoso es qué ejecuta y desde dónde."
         },
+        {"type":"diagram","kind":"compare","title":"Dónde mirar en cada sistema operativo","caption":"macOS se parece a Linux, pero cambia de sitio varias piezas.","columns":[{"icon":"device-desktop","title":"Windows","items":["Logs: .evtx en System32\\winevt\\Logs","Usuarios: colmena SAM","Persistencia: Inicio, claves Run y servicios","Recientes: UserAssist, MRU y Prefetch","Borrados: $Recycle.Bin ($I y $R)"]},{"icon":"terminal-2","title":"Linux","items":["Logs: /var/log (auth.log…)","Usuarios: /etc/passwd y /etc/shadow","Persistencia: cron","Comandos: .bash_history","Procesos en vivo: /proc/[PID]"]},{"icon":"device-laptop","title":"macOS","items":["Logs: /var/log, /Library/Logs y ~/Library/Logs","Usuarios: /etc/passwd; shadow en un .plist por usuario","Persistencia: LaunchAgents y daemons","Comandos: .zsh_history o .bash_history","Sin /proc: Monitor de Actividad"]}]},
         {
           "type": "exam",
           "text": "Logs de macOS: la respuesta es que están en **las tres rutas** (/var/log, /Library/Logs y /Users/[USUARIO]/Library/Logs). Plist = **pares clave-valor**, no una imagen del disco ni una lista de procesos. LaunchAgent = depende de la sesión del usuario; daemon = arranca con el sistema. La diferencia describe **cuándo y cómo se ejecutan**, no si son legítimos o maliciosos."
@@ -1803,6 +1806,16 @@
         "b": "Incorrecta. Las marcas temporales pueden manipularse; no son exactas por venir del sistema.",
         "c": "Correcta. Hay que contrastar las marcas temporales porque pueden haber sido alteradas.",
         "d": "Incorrecta. Modificar el original destruye la integridad de la evidencia."
+      }
+    },
+    "forense-t07-c08": {
+      "section": "macos-volatil",
+      "reasoning": "Para saber quién ha iniciado sesión hay dos caminos, según el estado del equipo. Si está **encendido** y tienes consola, ejecutas el comando «last», que muestra los últimos accesos. Si está **apagado**, no puedes ejecutar nada y tienes que leer los archivos de log en la copia del disco. Aquí Linux y macOS difieren: Linux usa /var/log/wtmp (inicios de sesión) y /var/log/btmp (intentos fallidos), mientras que macOS usa **/var/run/utmpx**. Es un archivo binario: se puede abrir con «cat», pero hay que interpretar el resultado. La trampa es la opción B, que es correcta pero para Linux, no para macOS.",
+      "options": {
+        "a": "Incorrecta. El comando «last» sirve con el equipo **encendido** y con acceso a la consola. Con el Mac apagado no se puede ejecutar ningún comando en él.",
+        "b": "Incorrecta. «/var/log/wtmp» y «/var/log/btmp» son los archivos de **Linux** que guardan los inicios de sesión y los intentos fallidos. En macOS el temario indica otro archivo.",
+        "c": "Correcta. En macOS apagado se analiza **/var/run/utmpx**, que almacena el histórico de inicios de sesión. Es binario, así que hay que interpretar su contenido.",
+        "d": "Incorrecta. Sí hay una opción correcta: la C, que es el archivo que indica el temario para un macOS apagado."
       }
     }
   }

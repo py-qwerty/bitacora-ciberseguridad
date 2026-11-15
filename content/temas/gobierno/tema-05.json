@@ -227,6 +227,7 @@
           "title": "Caso práctico",
           "text": "Un SIEM (sistema que recoge y correlaciona alertas) avisa a las 3:00 de accesos masivos a la base de clientes. Fase 2: el analista comprueba que no es una copia de seguridad programada (validar) y ve que se han descargado 200 000 registros (criticidad alta), así que avisa de inmediato al responsable de seguridad y a dirección (escalar). Fase 3: bloquea la cuenta y aísla el servidor. Fase 4: ya restaurado el servicio, no se cierra el caso: se investiga cómo entró el atacante, se redacta el informe y se vigila que la nueva medida (doble factor de autenticación) funcione."
         },
+        {"type":"diagram","kind":"flow","title":"Las cuatro fases de la respuesta a incidentes","caption":"Restaurar el servicio no cierra el caso: falta investigar.","items":[{"icon":"clipboard-check","title":"Plan","text":"Taxonomía, estrategia, roles y comunicación"},{"icon":"radar","title":"Detección y análisis","text":"Validar, asignar criticidad y escalar","tone":"warn"},{"icon":"shield-half","title":"Mitigación y contención","text":"Frenar el daño y volver a la normalidad"},{"icon":"microscope","title":"Investigación y mejora","text":"Informe, causas y seguimiento de mejoras","tone":"good"}],"links":["salta una alerta","incidente confirmado","daño controlado"]},
         {
           "type": "exam",
           "text": "Tres trampas frecuentes: (1) dar por **confirmado** un incidente solo porque saltó una alerta, o lanzarse a erradicarlo sin evaluar alcance: tras la detección toca **validar y asignar criticidad**; (2) esperar al informe final para asignar criticidad o tratar como rutinario un incidente grave: lo correcto es **escalar rápido según criticidad**; (3) cerrar el expediente en cuanto el servicio vuelve a funcionar: queda la fase de **investigar causas y seguir las acciones de mejora**. Recuperar la disponibilidad no demuestra que el atacante se haya ido."
@@ -1046,6 +1047,7 @@
           ],
           "title": "CISSP frente a CISM"
         },
+        {"type":"diagram","kind":"compare","title":"Qué certificación es de quién","caption":"Las dos exigen código ético y educación continua.","columns":[{"icon":"shield-lock","title":"(ISC)2","text":"Formación y certificación en seguridad","items":["**CISSP**: generalista, la más conocida","**CAP**: autorizar sistemas y evaluar riesgos","**SSCP**: perfil más operativo","**CSSLP**: software seguro"]},{"icon":"clipboard-check","title":"ISACA","text":"Auditoría y control (COBIT)","items":["**CISA**: auditores de sistemas","**CISM**: gestores de seguridad","**CGEIT**: gobierno de las TI","**CRISC**: riesgo y control"]}]},
         {
           "type": "exam",
           "text": "Asocia cada certificación con su organización: **CISSP, CAP, SSCP, CSSLP → (ISC)2**; **CISA, CISM, CGEIT, CRISC → ISACA** (y COBIT es de ISACA). CISA = auditor; CISM = gestor. Todas comparten la idea de **código ético** y **educación continua**."
@@ -1458,6 +1460,17 @@
         "c": "Incorrecta. Enviar registros sin alcance ni destinatarios no es escalar de forma ordenada.",
         "d": "Incorrecta. Tratarlo como rutinario contradice su gravedad."
       }
+    },
+    "gobierno-t05-c02": {
+      "section": "resiliencia",
+      "reasoning": "Según el temario, la resiliencia incluye las actividades para **garantizar la disponibilidad** y **gestionar una contingencia grave**. Sus herramientas son el **BCP** (Business Continuity Plan, plan de continuidad de negocio), el **DRP** (Disaster Recovery Plan, plan de recuperación ante desastres) y la gestión de crisis. El papel del profesional de seguridad ahí es **diseñar** estrategias, **supervisar** procedimientos y **analizar** si la recuperación funciona. Supervisar la restauración (A), diseñar estrategias de recuperación (B) y analizar la replicación entre CPD (Centro de Proceso de Datos) (D) son tareas de ese tipo. En cambio, **manejar** día a día los sistemas del CPD de respaldo (C) es operación de TI: lo hacen los técnicos de sistemas siguiendo el DRP. Trampa típica: pensar que todo lo que pasa en un CPD de contingencia es resiliencia; cuenta quién hace qué.",
+      "options": {
+        "a": "Incorrecta. Supervisar los procedimientos técnicos de restauración forma parte del **DRP**: comprobar que la infraestructura se puede levantar tras una disrupción. Es resiliencia.",
+        "b": "Incorrecta. Diseñar las estrategias de recuperación de las aplicaciones de negocio es el núcleo del **BCP/DRP**. Es una tarea típica de resiliencia.",
+        "c": "Correcta. Operar los sistemas del CPD de contingencia es trabajo de **operación de TI**, no de diseño o supervisión. El profesional de seguridad planifica y comprueba; los equipos de sistemas ejecutan.",
+        "d": "Incorrecta. Analizar cómo se replican los datos entre el CPD principal y el secundario sirve para asegurar que se puede recuperar la información. Es análisis de resiliencia."
+      },
+      "doubt": "El temario (pág. 19) no enumera estas tareas concretas. Se elige C porque es la única de ejecución operativa frente a supervisar, diseñar o analizar, que son las funciones del profesional de seguridad."
     }
   }
 }

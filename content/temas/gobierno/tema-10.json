@@ -106,6 +106,7 @@
           "type": "p",
           "text": "Compartir no es lo mismo que evitar: con un seguro sigues haciendo la actividad y, además, normalmente solo trasladas la parte **económica** del daño, no la reputacional ni la responsabilidad. Y aceptar no es lo mismo que ignorar: se acepta **con información** y se sigue vigilando."
         },
+        {"type":"diagram","kind":"tree","title":"¿Qué opción de tratamiento es?","caption":"Las opciones se pueden combinar: candado y seguro a la vez.","question":{"icon":"help-circle","title":"¿Se sigue haciendo la actividad?"},"branches":[{"label":"No","result":{"icon":"door-exit","title":"Evitar","text":"No iniciar o dejar la actividad"}},{"label":"Sí","tree":{"question":{"icon":"adjustments","title":"¿Qué se hace con el riesgo?"},"branches":[{"label":"Quitar el origen","result":{"icon":"x","title":"Eliminar la fuente","text":"Desaparece el origen del peligro"}},{"label":"Poner un control","result":{"icon":"shield","title":"Mitigar","text":"Modificar probabilidad o consecuencias","tone":"good"}},{"label":"Contratar un seguro","result":{"icon":"wallet","title":"Compartir","text":"Se traslada sobre todo lo económico"}},{"label":"Asumirlo informado","result":{"icon":"eye","title":"Retener (aceptar)","text":"Decisión informada, y se sigue vigilando","tone":"warn"}}]}}]},
         {
           "type": "exam",
           "text": "Si la pregunta dice «no iniciar o dejar la actividad», la respuesta es **evitar**. Si habla de mantener la actividad y poner un control, es **mitigar** (modificar probabilidad o consecuencias). Si habla de una póliza, es **compartir**. Desconfía de las opciones que dicen que cada riesgo debe tratarse con **una única opción excluyente**: es falso."
@@ -296,6 +297,7 @@
           "type": "p",
           "text": "La tabla 3 del temario es una **matriz** que cruza el nivel de madurez (filas, de 0 a 5) con la eficacia intrínseca (columnas, de 1 a 5) y colorea la eficacia real: rojo en toda la fila 0 (una medida no implantada no protege nada, por buena que sea), naranja en la fila 1, y verde oscuro solo cuando madurez y eficacia intrínseca son ambas 5. Una salvaguarda excelente mal implantada rinde poco; una mediocre perfectamente implantada tampoco llega al máximo."
         },
+        {"type":"diagram","kind":"layers","title":"Niveles de madurez de una salvaguarda","caption":"Sin implantación real (nivel 0) no hay protección, por buena que sea la medida.","items":[{"icon":"shield-check","title":"5 · Probada","text":"Desplegada, probada y todos informados","tone":"good"},{"icon":"shield","title":"4 · Desplegada","text":"Completa, pero poco conocida"},{"icon":"shield-half","title":"3 · Casi completa","text":"En la mayor parte, no en toda"},{"icon":"tool","title":"2 · Mal mantenida","text":"Instalada, sin mantenimiento adecuado"},{"icon":"alert-triangle","title":"1 · Graves deficiencias","text":"Obsoleta o sin mantenimiento","tone":"warn"},{"icon":"shield-x","title":"0 · No implantada","text":"No protege nada","tone":"bad"}]},
         {
           "type": "example",
           "title": "Caso práctico: comprado pero no configurado",
@@ -338,6 +340,7 @@
             ["Indicador de riesgo", "Métrica o combinación de métricas que, con un criterio de interpretación, permite conocer el comportamiento de los riesgos.", "Si el % de parcheo baja del 95 %, alerta: el riesgo de explotación sube."]
           ]
         },
+        {"type":"diagram","kind":"flow","title":"De la medida al indicador de riesgo","caption":"La métrica da un número; el indicador lo interpreta.","items":[{"icon":"hash","title":"Medida","text":"Dato: 12 de 340 sin parche"},{"icon":"chart-bar","title":"Métrica","text":"Grado cuantitativo: 96,5 % parcheados"},{"icon":"bell","title":"Indicador de riesgo","text":"Bajo el 95 %: alerta, sube el riesgo","tone":"warn"}],"links":["se relaciona y compara","se interpreta con un criterio"]},
         {
           "type": "p",
           "text": "Las métricas sirven para **especificar en el mundo formal** (números) la correspondencia de un **atributo del mundo real**, y son la base de los métodos **cuantitativos** de evaluación y predicción."
@@ -961,6 +964,57 @@
         "b": "Correcta. Hay que revisar las propiedades de las escalas y qué operaciones admiten.",
         "c": "Incorrecta. Los colores son presentación; no cambian la naturaleza de la escala.",
         "d": "Incorrecta. El orden de las tablas no afecta a si los valores son comparables."
+      }
+    },
+    "gobierno-t10-c01": {
+      "section": "indicadores-riesgo",
+      "reasoning": "Un **indicador de riesgos** es una métrica, o una combinación de varias, que permite conocer cómo se comportan los riesgos. Para que sea útil, el temario exige cinco características: **específico** (mide algo concreto), **medible** (se puede cuantificar), **alcanzable** (se puede lograr), **realista** (encaja con los recursos) y **a tiempo** (con un plazo). Es el criterio **SMART**, por sus iniciales en inglés. Realista, específico y medible están en la lista; «objetivo» no. Trampa típica: «objetivo» suena a cualidad deseable y se cuela fácilmente, pero no es una de las cinco.",
+      "options": {
+        "a": "Correcta. «**Objetivo**» no forma parte de las características que exige el temario (específicos, medibles, alcanzables, realistas y a tiempo).",
+        "b": "Incorrecta. **Realista** sí es una característica: el indicador debe encajar con los recursos y la situación de la organización.",
+        "c": "Incorrecta. **Específico** sí es una característica: el indicador debe medir algo concreto y bien delimitado.",
+        "d": "Incorrecta. **Medible** sí es una característica: si no se puede cuantificar, no sirve como indicador."
+      }
+    },
+    "gobierno-t10-c04": {
+      "section": "preventivas-reactivas",
+      "reasoning": "Una salvaguarda puede actuar antes o después de un incidente. Las **preventivas** actúan antes: reducen la **probabilidad** de que una **amenaza** se materialice, quitando oportunidades al incidente. Las **reactivas** actúan después: limitan el **impacto** y acotan las consecuencias. Con eso, A describe las reactivas, no las preventivas. C es falsa porque las amenazas siguen existiendo; lo que baja es la probabilidad de que se materialicen. D cambia «amenazas» por «riesgo»: el riesgo no se «materializa», lo que se materializa es la amenaza. Trampa típica: cambiar una palabra del temario («amenazas» por «riesgo») para que la frase parezca igual.",
+      "options": {
+        "a": "Incorrecta. Reducir el **impacto** es lo que hacen las salvaguardas **reactivas**, que limitan las consecuencias cuando la amenaza ya se ha materializado.",
+        "b": "Correcta. Es la definición literal del temario: las preventivas reducen la **probabilidad de materialización de las amenazas**, quitando oportunidades al incidente.",
+        "c": "Incorrecta. Una salvaguarda no elimina amenazas: un atacante o un incendio siguen siendo posibles. Lo que reduce es la **probabilidad** de que se materialicen.",
+        "d": "Incorrecta. Cambia «amenazas» por «riesgo». Lo que se materializa es una **amenaza**; el riesgo es la combinación de su probabilidad y su impacto."
+      }
+    },
+    "gobierno-t10-c06": {
+      "section": "diseno-medicion",
+      "reasoning": "Medir el riesgo exige un orden. Primero se eligen las **entidades** a medir (un riesgo, una salvaguarda). Después, sus **atributos**, es decir, las propiedades que se pueden medir. Luego, los **conceptos medibles**, que relacionan atributos con una necesidad de información. Por último, se **definen las métricas**: el método y la escala para convertir lo real en números. Las tres primeras opciones coinciden con el temario. La cuarta cambia «métricas» por «medidas»; una medida es el valor que sale al aplicar la métrica, no algo que haya que definir de antemano. Trampa típica: el test cambia una sola palabra («medidas» por «métricas») y espera que lo notes.",
+      "options": {
+        "a": "Incorrecta. **Determinar los atributos** a medir (propiedades medibles de una entidad) es una de las cuatro tareas que exige el temario.",
+        "b": "Incorrecta. **Determinar las entidades** a medir (por ejemplo, un riesgo o una salvaguarda) es la primera tarea de la lista.",
+        "c": "Incorrecta. **Determinar los conceptos medibles** (la relación entre atributos y una necesidad de información) también es necesario.",
+        "d": "Correcta. El temario pide **definir las métricas**, no «las medidas». Una medida es el valor que se obtiene al aplicar la métrica, así que no es una tarea de diseño."
+      },
+      "doubt": "La diferencia es de una palabra: el temario (pág. 18) dice «definir las métricas» y la opción dice «definir las medidas». En la práctica también hay que pensar las medidas, pero es la única opción que no coincide con la lista."
+    },
+    "gobierno-t10-c07": {
+      "section": "indicadores-riesgo",
+      "reasoning": "Medir sirve para saber si la seguridad funciona y cómo evolucionan los riesgos. El temario da cuatro objetivos: evaluar la **efectividad** de las salvaguardas, evaluar la **peligrosidad de las amenazas** actuales y emergentes, **mejorar la respuesta** a los riesgos y ayudar a la evaluación de riesgos y al plan de tratamiento. B coincide literalmente. A es falsa porque medir no busca tener más salvaguardas, sino saber si las que hay funcionan. C cambia «respuesta» por «minimización», que no es lo que dice el temario. Como A y C fallan, D tampoco vale. Trampa típica: frases que suenan bien («mejorar la minimización del riesgo») pero cambian una palabra del texto.",
+      "options": {
+        "a": "Incorrecta. Medir no persigue **más** salvaguardas, sino comprobar la **efectividad** de las que ya hay. Más controles no significa más seguridad.",
+        "b": "Correcta. **Evaluar la peligrosidad de las amenazas actuales y emergentes** es uno de los objetivos de la medición que enumera el temario.",
+        "c": "Incorrecta. El temario habla de **mejorar la respuesta** a los riesgos, no de «mejorar la minimización». Es una palabra cambiada.",
+        "d": "Incorrecta. A y C no son objetivos del temario, así que «todas son ciertas» es falsa."
+      }
+    },
+    "gobierno-t10-c09": {
+      "section": "elaboracion-metricas",
+      "reasoning": "Una métrica es una medida cuantitativa del grado en que algo posee un atributo. Al elaborarlas, el temario dice que existen **dos tipos**. La **directa** mide un atributo sin depender de ninguna otra métrica, por ejemplo el número de incidentes en un mes. La **indirecta** se obtiene combinando otras métricas con un algoritmo (una función de medición), por ejemplo el porcentaje de equipos parcheados (parcheados entre totales). «Cualitativas y cuantitativas» se refiere a escalas o métodos de análisis, y «de impacto y de riesgo» a indicadores. Trampa típica: confundir los tipos de métrica con los tipos de escala o de análisis.",
+      "options": {
+        "a": "Incorrecta. «Simples y compuestas» no es la clasificación del temario, aunque se parece. El temario las llama **directas e indirectas**.",
+        "b": "Correcta. Las métricas son **directas** (no dependen de otra métrica) o **indirectas** (se derivan de otras mediante una función de medición).",
+        "c": "Incorrecta. Cualitativo y cuantitativo describe **escalas** o enfoques de análisis. Además, el temario define la métrica como una medida cuantitativa.",
+        "d": "Incorrecta. Impacto y riesgo son tipos de **indicadores** que ayudan a decidir qué monitorizar, no tipos de métrica."
       }
     }
   }

@@ -213,6 +213,7 @@
           "title": "Caso práctico",
           "text": "Una tienda online con sede solo en Estados Unidos vende en euros, tiene la web en español y envía a Madrid. Aunque no tenga oficina en Europa, debe cumplir el RGPD con sus clientes europeos, porque dirige su oferta a personas que están en la Unión. Lo mismo una app extranjera que rastrea la ubicación de usuarios en Francia."
         },
+        {"type":"diagram","kind":"tree","title":"¿Le aplica el RGPD?","caption":"Ofrecer bienes o servicios cuenta aunque el usuario no pague.","question":{"icon":"user","title":"¿Trata datos de personas físicas?","text":"Identificadas o identificables"},"branches":[{"label":"No, solo de empresas","result":{"icon":"building","title":"No le aplica el RGPD","text":"Los datos de personas jurídicas quedan fuera"}},{"label":"Sí","tree":{"question":{"icon":"map-pin","title":"¿Tiene establecimiento en la UE?"},"branches":[{"label":"Sí","result":{"icon":"check","title":"Le aplica el RGPD","text":"Aunque trate los datos fuera de la UE","tone":"accent"}},{"label":"No","tree":{"question":{"icon":"world","title":"¿Se dirige a personas en la UE?","text":"Ofrece bienes o servicios, o controla su comportamiento"},"branches":[{"label":"Sí","result":{"icon":"check","title":"Le aplica el RGPD","text":"Ej.: tienda de EE. UU. que vende a Madrid","tone":"accent"}},{"label":"No","result":{"icon":"x","title":"No le aplica el RGPD"}}]}}]}}]},
         {
           "type": "p",
           "text": "**Un detalle curioso.** El RGPD empezó a aplicarse en mayo de 2018 y la LOPDGDD se aprobó en diciembre del mismo año. Durante unos meses España no tuvo ley nueva y no pasó nada grave, porque el reglamento europeo **se aplica solo, sin necesitar ley nacional**. La ley española existe únicamente para completar lo que el reglamento deja a cada país. Un ejemplo, según la clase: el RGPD obliga a nombrar delegado de protección de datos en tres supuestos y permite a los Estados ampliarlos; España los amplió mucho."
@@ -556,6 +557,7 @@
           "title": "¿Responsable o encargado? Dos ejemplos de la clase",
           "text": "Una empresa subcontrata una asesoría laboral para hacer las nóminas: la empresa es **responsable** y la asesoría es **encargada**. Si la asesoría, al conocer las direcciones, enviara por su cuenta una carta publicitaria a los empleados, se saldría del encargo y estaría decidiendo un fin propio. Una empresa que contrata un **servicio de hosting** también es responsable, y el proveedor de hosting es encargado: solo debe alojar los datos, aunque tenga datos de muchos clientes distintos."
         },
+        {"type":"diagram","kind":"tree","title":"¿Responsable o encargado del tratamiento?","caption":"Pista del enunciado: «siguiendo instrucciones de su cliente» es un encargado.","question":{"icon":"user-cog","title":"¿Decide para qué y cómo se usan los datos?","text":"Fija los fines y los medios"},"branches":[{"label":"Sí","result":{"icon":"user-shield","title":"Responsable","text":"Ej.: la empresa con sus nóminas","tone":"accent"}},{"label":"No, sigue instrucciones","tree":{"question":{"icon":"alert-triangle","title":"¿Usa los datos para un fin propio?","text":"Ej.: enviar publicidad a los empleados"},"branches":[{"label":"No","result":{"icon":"user-check","title":"Encargado","text":"Trata por cuenta del responsable, con contrato","tone":"good"}},{"label":"Sí","result":{"icon":"user-x","title":"Se sale del encargo","text":"Decide un fin propio: deja de ser encargado","tone":"bad"}}]}}]},
         {
           "type": "exam",
           "text": "Trampas frecuentes: definir al responsable como solo «persona física» o solo «persona jurídica» (son las dos), o como quien decide «junto con el encargado» (el encargado no decide). Definir el dato personal incluyendo a las personas jurídicas es siempre incorrecto. En los casos prácticos, la pista es la frase «siguiendo instrucciones de su cliente»: eso es un **encargado**. Y el encargo se regula por **contrato u otro acto jurídico vinculante**, no basta con una charla ni con comprobar que tiene antivirus."
@@ -1263,6 +1265,7 @@
             "Aun así, la autoridad de control puede exigir que se comunique o decidir que se da alguna de estas condiciones."
           ]
         },
+        {"type":"diagram","kind":"tree","title":"Brecha de datos: ¿a quién hay que avisar?","caption":"Todas las brechas se documentan, también las que no se notifican.","question":{"icon":"alert-triangle","title":"¿Es improbable que suponga un riesgo?","text":"Para los derechos y libertades de las personas"},"branches":[{"label":"Sí, improbable","result":{"icon":"file-text","title":"No se notifica","text":"Pero se documenta igualmente","tone":"good"}},{"label":"No","tree":{"question":{"icon":"flame","title":"¿Es probable un alto riesgo?"},"branches":[{"label":"No","result":{"icon":"building-bank","title":"Notificar a la AEPD","text":"En 72 horas desde que se conoce","tone":"warn"}},{"label":"Sí","tree":{"question":{"icon":"lock","title":"¿Datos cifrados o riesgo ya eliminado?"},"branches":[{"label":"Sí","result":{"icon":"building-bank","title":"Solo a la AEPD","text":"En 72 horas; no hace falta avisar a afectados","tone":"warn"}},{"label":"No","result":{"icon":"users","title":"AEPD y afectados","text":"AEPD en 72 h; afectados sin dilación","tone":"bad"}}]}}]}}]},
         {
           "type": "steps",
           "title": "Caso práctico: un lunes por la mañana",
@@ -2021,6 +2024,38 @@
         "b": "Incorrecta. Con el bloqueo no se borran de inmediato: se conservan inaccesibles durante el plazo de posibles reclamaciones.",
         "c": "Incorrecta. Si el personal pudiera verlos, no estarían bloqueados: el bloqueo exige que nadie de la organización acceda.",
         "d": "Incorrecta. El bloqueo no es una cesión a otra entidad; los datos permanecen en la organización, inaccesibles."
+      }
+    },
+    "ciberdelitos-t01-c02": {
+      "section": "conceptos-y-actores",
+      "reasoning": "Empieza por identificar a los actores. El **responsable** decide para qué y cómo se tratan los datos. El **encargado** es quien los trata por cuenta del responsable para prestarle un servicio, como una gestoría que hace las nóminas. El temario dice que el RGPD prevé la obligación de formalizar un contrato con los prestadores de servicios que acceden a datos personales: el tratamiento por un encargado se rige por un contrato u otro acto jurídico vinculante. Esa obligación no tiene excepciones por tipo de dato ni por nivel de seguridad. Por eso la respuesta es «Sí, siempre». La trampa típica es ofrecer una excepción que suena razonable (datos no sensibles, buenas medidas de seguridad) pero que el reglamento no recoge.",
+      "options": {
+        "a": "Incorrecta. El contrato de encargo se exige para cualquier dato personal. Que los datos sean sensibles (categorías especiales, como la salud) cambia otras cosas, como el nivel de riesgo, pero no esta obligación.",
+        "b": "Incorrecta. Tener buenas medidas de seguridad es una obligación del encargado, no un sustituto del contrato. De hecho, el contrato es el documento que fija esas medidas y el resto de obligaciones.",
+        "c": "Correcta. El RGPD exige que el tratamiento por un encargado se rija por un **contrato u otro acto jurídico vinculante**. Es el documento que fija qué puede hacer el encargado con los datos y bajo qué instrucciones.",
+        "d": "Incorrecta. Es justo lo contrario de lo que dice el RGPD. Sin contrato, el responsable no puede demostrar que controla lo que el proveedor hace con los datos."
+      },
+      "doubt": "El temario habla de «contrato u otro acto jurídico». La opción «Sí, siempre» solo menciona el contrato, pero es claramente la más defendible frente a las demás."
+    },
+    "ciberdelitos-t01-c07": {
+      "section": "responsabilidad-proactiva",
+      "reasoning": "Fíjate primero en la palabra clave del enunciado: «la **única** forma». El RGPD sustituye las antiguas medidas fijas por niveles por un **análisis de riesgos**: cada organización decide qué medidas técnicas y organizativas necesita. En gestión de riesgos se suelen combinar varias respuestas: mitigar (aplicar medidas), trasladar (por ejemplo, contratar un servicio o un seguro) o aceptar el riesgo residual cuando es bajo. Además, si tras la evaluación de impacto el riesgo sigue siendo alto, no basta con aceptarlo: hay que consultar a la autoridad de control. Como ninguna de esas opciones es exclusiva, la correcta es «Ninguna de las respuestas anteriores». La trampa es elegir «Mitigarlo» porque es la respuesta más habitual, sin fijarse en el «única».",
+      "options": {
+        "a": "Incorrecta. Aceptar el riesgo solo es razonable cuando el riesgo residual es bajo. Si sigue siendo alto, el responsable no puede asumirlo sin más: debe consultar a la autoridad de control.",
+        "b": "Incorrecta. Trasladar el riesgo (por ejemplo, a un proveedor o a un seguro) puede ayudar con las consecuencias económicas, pero no libera al responsable de sus obligaciones. Es una opción más, no la única.",
+        "c": "Incorrecta. Mitigar, es decir, aplicar **medidas técnicas y organizativas**, es lo más frecuente, pero tampoco es la única vía. Después hay que valorar el riesgo que queda.",
+        "d": "Correcta. No existe una sola forma de tratar el riesgo: el **enfoque basado en riesgos** del RGPD combina medidas, evaluación del riesgo residual y, si hace falta, consulta previa a la autoridad de control."
+      },
+      "doubt": "El temario no enumera de forma explícita las opciones de tratamiento del riesgo (aparecen en figuras de la guía de la AEPD). La respuesta se deduce del «única» del enunciado y del enfoque basado en riesgos."
+    },
+    "ciberdelitos-t01-c09": {
+      "section": "brechas",
+      "reasoning": "Una **violación de seguridad** (o brecha) es un incidente que destruye, pierde, altera o expone datos personales, por ejemplo un portátil robado con una base de clientes. El RGPD fija dos avisos con umbrales diferentes. A la **autoridad de control** (en España, la AEPD, Agencia Española de Protección de Datos) se notifica casi siempre: solo se libra el responsable si es improbable que haya riesgo. A los **interesados** (las personas afectadas) solo se les comunica si hay probable **alto riesgo**. La opción correcta es la que describe el primer umbral con su excepción. La trampa típica es intercambiar los umbrales: poner «alto riesgo» para la autoridad o «siempre» para los interesados.",
+      "options": {
+        "a": "Incorrecta. Aplica a la autoridad de control el umbral del **alto riesgo**, que es el que corresponde a la comunicación a los interesados. A la autoridad se notifica con un umbral más bajo.",
+        "b": "Incorrecta. No se notifica «siempre»: existe la excepción de que sea improbable que la brecha suponga un riesgo. Por ejemplo, la pérdida de un dispositivo bien cifrado puede no requerir aviso.",
+        "c": "Correcta. Es la regla del RGPD: el responsable notifica a la autoridad de control **a menos que sea improbable un riesgo** para los derechos y libertades de las personas.",
+        "d": "Incorrecta. Notificar a la autoridad no obliga automáticamente a avisar a los interesados. Para ellos se exige un **alto riesgo**, y aun así hay excepciones."
       }
     }
   }

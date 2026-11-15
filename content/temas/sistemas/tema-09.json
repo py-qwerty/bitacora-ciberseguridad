@@ -411,6 +411,7 @@
           "title": "Elegir rol en tres situaciones",
           "text": "Un auditor externo solo debe revisar la configuración: **Lector**. Un técnico tiene que crear y mantener máquinas virtuales, pero no debe poder dar acceso a nadie: **Colaborador**. La responsable del proyecto, que además decide quién entra en el equipo: **Propietario**."
         },
+        {"type":"diagram","kind":"matrix","title":"Qué puede hacer cada rol integrado","caption":"Lo que separa a Propietario de Colaborador es poder dar acceso.","rows":{"label":"Rol","items":["Propietario","Colaborador","Lector","Administrador de acceso de usuario"]},"cols":{"label":"Permiso","items":["Ver recursos","Crear y administrar","Conceder acceso"]},"cells":[["good","good","good"],["good","good","bad"],["good","bad","bad"],["accent","bad","good"]],"marks":[{"row":2,"col":0,"text":"Auditor"},{"row":1,"col":1,"text":"Técnico"},{"row":0,"col":2,"text":"Responsable"}],"legend":[{"tone":"good","text":"Puede hacerlo"},{"tone":"bad","text":"No puede o no es su función"},{"tone":"accent","text":"El tema no lo indica"}]},
         {
           "type": "exam",
           "text": "La frase clave es «**sin poder conceder acceso a otros**»: eso es Colaborador. Lo que distingue a Propietario de Colaborador es justo que **Propietario puede delegar acceso**. «Solo consultar» o «ver sin administrar» es Lector. Trampa: elegir Administrador de acceso de usuario para alguien que debe administrar recursos (ese rol gestiona accesos, no máquinas)."

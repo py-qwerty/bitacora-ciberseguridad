@@ -61,6 +61,7 @@
             ["Asimétrica", "Par pública + privada", "Unas mil veces más lenta", "Intercambiar claves y firmar", "Diffie-Hellman, RSA"]
           ]
         },
+        {"type":"diagram","kind":"compare","title":"Cifra simétrica frente a asimétrica","caption":"Bloque y flujo son tipos dentro de la simétrica, no lo que la separa de la asimétrica.","columns":[{"icon":"key","title":"Simétrica","text":"Copias de la misma llave","tone":"accent","items":["**Una** clave secreta compartida","La misma clave cifra y descifra","**Muy rápida**","En flujo (RC4) o en bloque (AES)"]},{"icon":"lock","title":"Asimétrica","text":"Candados abiertos, una sola llave","items":["**Par** de claves: pública y privada","Lo que cifra una lo descifra la otra","Unas **mil veces más lenta**","Intercambia claves y firma: Diffie-Hellman, RSA"]}]},
         {
           "type": "exam",
           "text": "Trampa clásica: «la simétrica usa una clave para cifrar y otra para descifrar». Es al revés: **dos claves distintas** es lo que define a la **asimétrica**. Otra trampa: «la simétrica cifra en bloques y la asimétrica en flujo». Bloque/flujo es una subdivisión **dentro** de la simétrica, no lo que la separa de la asimétrica."
@@ -427,6 +428,7 @@
           "term": "Cifrado híbrido",
           "text": "La combinación que se usa en la práctica: el contenido grande se cifra con un algoritmo **simétrico** y una **clave de sesión** (clave temporal para esa comunicación), y esa clave pequeña se protege con criptografía **asimétrica**. Así se tiene la velocidad de la primera y la comodidad de reparto de la segunda."
         },
+        {"type":"diagram","kind":"tree","title":"¿AES o RSA? ¿Y con qué clave?","caption":"En la práctica se combinan las dos: es el cifrado híbrido.","question":{"icon":"help-circle","title":"¿Qué tienes que cifrar?"},"branches":[{"label":"Muchos datos","result":{"icon":"key","title":"AES (simétrica)","text":"Con una clave de sesión","tone":"good"}},{"label":"Un valor pequeño","tree":{"question":{"icon":"help-circle","title":"¿Para qué?","text":"Una clave de sesión o un hash"},"branches":[{"label":"Que solo lo lea el receptor","result":{"icon":"lock","title":"RSA con la pública del receptor","text":"Él lo descifra con su privada","tone":"good"}},{"label":"Firmarlo","result":{"icon":"writing-sign","title":"RSA con tu clave privada","text":"Se verifica con tu clave pública","tone":"good"}}]}}]},
         {
           "type": "exam",
           "text": "Regla rápida: **confidencialidad → pública del receptor**; **firma → privada del emisor**; **verificar la firma → pública del emisor**. Nunca se envía ni se comparte una clave privada. Para un archivo muy grande la respuesta correcta es el esquema híbrido; las trampas son «cifrar todo con asimétrica», «guardar solo un hash» o «usar la firma como cifrado». Y con algoritmos asimétricos se cifran **mensajes de pocos bits**, no «del tamaño que sea» ni «más rápido que la simétrica»."
@@ -585,6 +587,7 @@
           "type": "p",
           "text": "¿Y cifrar un mensaje largo directamente con RSA? Se podría convertir el texto en números (por ejemplo con su código ASCII) y cifrarlos, pero no tiene sentido por la lentitud: la cifra asimétrica va por cientos de kilobytes por segundo y la simétrica, por cientos de megabytes. Por eso se usa el esquema híbrido."
         },
+        {"type":"diagram","kind":"flow","title":"Firma digital: firmar y verificar","caption":"Si los dos resúmenes no coinciden, la firma se rechaza.","items":[{"icon":"hash","title":"Alicia calcula el hash","text":"H = h(M)"},{"icon":"key","title":"Lo firma con su privada","text":"S = H^d mod n"},{"icon":"send","title":"Envía (M, S)","text":"Bernardo recibe M' y S"},{"icon":"lock-open","title":"Bernardo recupera H","text":"Con la clave pública de Alicia"},{"icon":"refresh","title":"Recalcula h(M')","text":"Hash del documento recibido"},{"icon":"check","title":"¿h(M') = H?","text":"Sí: acepta. No: rechaza","tone":"good"}],"links":["firma","envía","verifica","recalcula","compara"]},
         {
           "type": "exam",
           "text": "Si los resúmenes **no coinciden, se rechaza la firma**, aunque coincidan el nombre o el tamaño del archivo o la clave siga vigente. La firma se verifica con la **clave pública del firmante** (nunca con la privada de nadie ni con la pública del receptor). Y el hash no sustituye la identidad del firmante, no permite recuperar el original y no garantiza ausencia total de colisiones: solo compacta el documento para poder firmarlo."
@@ -927,6 +930,27 @@
         "b": "Correcta. La verificación de integridad no coincidirá porque el hash del documento modificado es distinto del firmado.",
         "c": "Incorrecta. El nombre del archivo no forma parte de la verificación.",
         "d": "Incorrecta. La verificación compara precisamente la huella del contenido; no ignora el contenido."
+      }
+    },
+    "redes-t06-c05": {
+      "section": "hash",
+      "reasoning": "Una función hash convierte un archivo de cualquier tamaño en un resumen de tamaño fijo, una especie de **huella dactilar**. No usa claves, así que no es un algoritmo de cifra. El tema le da varios papeles. Primero, como la firma con clave pública es lenta, no se firma el documento entero sino su hash: el hash es una pieza de la **firma digital**. Segundo, si cambia un solo bit del mensaje cambia el resumen, así que permite comprobar la **integridad**. Tercero, muchos servidores no guardan tu contraseña sino su hash; cuando inicias sesión calculan el hash de lo que escribes y lo comparan, lo que sirve para **autenticar** al usuario. Como las tres aplicaciones aparecen en el temario, la respuesta es la D. La trampa típica es quedarse solo con la integridad, el uso más conocido.",
+      "options": {
+        "a": "Incorrecta. Es un uso real, porque se almacena el hash de la contraseña y se compara al iniciar sesión, pero no es el único; las otras dos opciones también son válidas.",
+        "b": "Incorrecta. Es el uso más conocido, ya que cualquier cambio en el texto cambia el resumen, pero no es el único; las tres opciones son válidas.",
+        "c": "Incorrecta. Es cierta en el sentido de que la firma digital se aplica sobre el hash del documento, pero no es la única; las otras también lo son.",
+        "d": "Correcta. Las funciones hash intervienen en la autenticación de usuarios (hash de contraseñas), en la integridad de documentos y en la firma digital."
+      },
+      "doubt": "En sentido estricto, el hash por sí solo no firma ni autentica: necesita la clave privada (firma) o una comparación con lo almacenado (contraseñas). Se elige la D porque el temario le atribuye expresamente esos tres usos."
+    },
+    "redes-t06-c10": {
+      "section": "clave-publica",
+      "reasoning": "En la cifra simétrica ambos extremos comparten la misma clave; en la **asimétrica** cada uno tiene una clave pública y otra privada. En 1976 Diffie y Hellman propusieron el primer esquema de clave pública: dos personas acuerdan un secreto común sin enviarlo nunca, y quien escuche tendría que resolver el **problema del logaritmo discreto**. En 1978 Rivest, Shamir y Adleman publicaron RSA, que según el tema basa su fortaleza en otra cosa: la dificultad de **factorizar** un número producto de dos primos grandes. En los dos casos cada participante guarda un valor secreto (el exponente secreto en Diffie-Hellman, la clave privada en RSA). Así que lo único que comparten las cuatro opciones de forma correcta es que son algoritmos asimétricos. La trampa típica es la A: solo es cierta para Diffie-Hellman.",
+      "options": {
+        "a": "Incorrecta. Solo es cierto para **Diffie-Hellman**. RSA basa su seguridad en la **factorización** de un número producto de dos primos grandes, un problema de dificultad parecida pero distinto.",
+        "b": "Correcta. Ambos son de clave pública (asimétricos): Diffie-Hellman para acordar un secreto y RSA para cifrar y firmar.",
+        "c": "Incorrecta. La cifra simétrica usa una misma clave compartida, como AES o RC4. Diffie-Hellman y RSA son precisamente los pioneros de la cifra asimétrica.",
+        "d": "Incorrecta. En ambos los interlocutores guardan valores secretos: en Diffie-Hellman cada uno su exponente aleatorio y en RSA el dueño su clave privada. Sin secretos no habría seguridad."
       }
     }
   }

@@ -164,6 +164,7 @@
             "Estimar el **riesgo**: el impacto ponderado por la probabilidad de ocurrencia."
           ]
         },
+        {"type":"diagram","kind":"flow","title":"Cómo determina Magerit el riesgo, empezando por el activo","caption":"El impacto no incluye la frecuencia; el riesgo sí.","items":[{"icon":"database","title":"Activos","text":"Qué tengo y cuánto vale","tone":"accent"},{"icon":"skull","title":"Amenazas","text":"A qué están expuestos"},{"icon":"shield","title":"Salvaguardas","text":"Cuáles hay y cuán eficaces son"},{"icon":"flame","title":"Impacto","text":"Daño si la amenaza ocurre"},{"icon":"alert-triangle","title":"Riesgo","text":"Impacto ponderado por la probabilidad","tone":"bad"}],"links":["expuestos a","frenadas por","si se materializa","× probabilidad"]},
         {
           "type": "example",
           "title": "Impacto frente a riesgo con números",
@@ -290,6 +291,7 @@
           "term": "Insuficiencias",
           "text": "Debilidades del sistema de protección: amenazas para las que no hay salvaguarda o para las que la existente no es eficaz."
         },
+        {"type":"diagram","kind":"flow","title":"Las cuatro actividades del análisis en Magerit (MAR)","caption":"MAR.1, MAR.2 y MAR.3 suelen hacerse a la vez, en las mismas entrevistas.","items":[{"icon":"database","title":"MAR.1 Activos","text":"Tipo, dependencias y valor: modelo de valor"},{"icon":"skull","title":"MAR.2 Amenazas","text":"Probabilidad y degradación: mapa de riesgos"},{"icon":"shield","title":"MAR.3 Salvaguardas","text":"Eficacia: aplicabilidad e insuficiencias"},{"icon":"report-analytics","title":"MAR.4 Estado de riesgo","text":"Impacto y riesgo: informe de estado"}],"links":["¿qué les amenaza?","¿qué los protege?","se procesa todo"]},
         {
           "type": "p",
           "text": "En la práctica, MAR.1, MAR.2 y MAR.3 suelen hacerse **a la vez**: se entrevista a las mismas personas, que tienden a contar todo lo de un activo (sus amenazas y sus defensas) antes de pasar al siguiente."
@@ -372,6 +374,7 @@
           "term": "Residual",
           "text": "Lo que queda después de aplicar las salvaguardas. El riesgo residual es el riesgo que sigue existiendo aunque hayas puesto todas las defensas."
         },
+        {"type":"diagram","kind":"tree","title":"¿Se puede aceptar el riesgo? (Magerit)","caption":"Aceptar exige prudencia y justificación, y cuentan también las obligaciones legales, contractuales y la reputación.","question":{"icon":"scale","title":"¿El impacto o el riesgo residual es asumible?"},"branches":[{"label":"Sí","result":{"icon":"thumb-up","title":"Aceptar, justificándolo","tone":"good"}},{"label":"No","tree":{"question":{"icon":"cash","title":"¿Las salvaguardas cuestan de forma desproporcionada?","text":"Frente al impacto y riesgo residuales"},"branches":[{"label":"Sí","result":{"icon":"thumb-up","title":"Puede aceptarse, justificándolo","tone":"warn"}},{"label":"No","result":{"icon":"tool","title":"Tratar el riesgo","text":"Eliminar, mitigar o compartir","tone":"bad"}}]}}]},
         {
           "type": "exam",
           "text": "«¿Qué no condiciona las decisiones según Magerit?» → **el origen de la amenaza**. Es una trampa porque «orígenes de la amenaza» sí aparece en NIST, pero como factor para estimar la probabilidad, no como condicionante de la decisión. Y si un riesgo es asumible pero hay una obligación legal, la decisión debe incluir **las obligaciones legales y contractuales**, no solo la cifra o la opción más barata."
@@ -1072,6 +1075,26 @@
         "b": "Incorrecta. Esperar al incumplimiento llega tarde y no permite exigir nada.",
         "c": "Incorrecta. Los criterios implícitos impiden exigir su cumplimiento.",
         "d": "Correcta. Hay que comunicar instrucciones y niveles requeridos."
+      }
+    },
+    "gobierno-t08-c06": {
+      "section": "iso-apreciacion",
+      "reasoning": "La ISO/IEC 27005 da directrices para gestionar el riesgo de seguridad de la información. Propone dos aproximaciones: una de **alto nivel**, rápida y general, y otra **detallada**, más costosa y pensada para sistemas de alto riesgo. La detallada contempla tres cosas: identificar y **valorar en profundidad los activos**, **evaluar las amenazas** a las que están expuestos y **evaluar sus vulnerabilidades**. Con eso se evalúan los riesgos y se decide el tratamiento. A coincide con el primer paso. Las demás mezclan piezas: hablan de «salvaguardas» (que no aparecen en esa definición) o de «evaluar activos» en lugar de identificarlos y valorarlos. Trampa típica: cambiar una palabra (salvaguardas por vulnerabilidades) para que suene parecido.",
+      "options": {
+        "a": "Correcta. La apreciación detallada empieza por la **identificación y valoración en profundidad de los activos**, y sigue con la evaluación de amenazas y vulnerabilidades. Es casi literal del temario.",
+        "b": "Incorrecta. Las **salvaguardas** (controles) no forman parte de la definición de apreciación detallada; aparecen después, en el tratamiento. Lo que se evalúa son las vulnerabilidades.",
+        "c": "Incorrecta. A los activos no se les «evalúa» sin más: se les **identifica y valora en profundidad**. La opción está incompleta y deja fuera las vulnerabilidades.",
+        "d": "Incorrecta. Mezcla amenazas con **salvaguardas**. La definición habla de amenazas y vulnerabilidades, no de controles."
+      }
+    },
+    "gobierno-t08-c07": {
+      "section": "nist-gestion",
+      "reasoning": "NIST explica que la evaluación del riesgo es solo una parte de un proceso más amplio de gestión del riesgo. Ese proceso tiene cuatro componentes: el **marco de referencia** (el contexto y las reglas), la **evaluación** de riesgos, la **respuesta** a los riesgos y el **seguimiento**. Todas las opciones comparten «marco» y «seguimiento»; solo cambian dos palabras. NIST usa **evaluación**, no «valoración», y **respuesta**, no «tratamiento». «Valoración» y «tratamiento» son vocabulario de Magerit y de la ISO. Trampa típica: mezclar el vocabulario de varias metodologías que dicen casi lo mismo con distintas palabras.",
+      "options": {
+        "a": "Correcta. **Marco de referencia, evaluación, respuesta y seguimiento** son los cuatro procesos de gestión del riesgo según NIST, tal como los recoge el temario.",
+        "b": "Incorrecta. Cambia «evaluación» por **valoración**, término propio de Magerit. NIST habla de evaluación.",
+        "c": "Incorrecta. Cambia dos términos: **valoración** y **tratamiento** son vocabulario de Magerit y de la ISO, no de NIST.",
+        "d": "Incorrecta. NIST habla de **respuesta** al riesgo, no de tratamiento; «tratamiento» es el término de la ISO 27005 y la ISO 31000."
       }
     }
   }

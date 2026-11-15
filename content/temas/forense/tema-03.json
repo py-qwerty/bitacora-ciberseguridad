@@ -558,6 +558,7 @@
           "type": "p",
           "text": "Los ejes son independientes: puede haber una adquisición física en caliente (el disco entero de un servidor encendido) o lógica en frío (unas carpetas de un pendrive desconectado). El tema incluye vídeos sobre adquisición remota de un servidor Linux y sobre las herramientas EFW Tools."
         },
+        {"type":"diagram","kind":"compare","title":"Adquisición física frente a lógica","caption":"El alcance no depende del estado: puede haber física en caliente o lógica en frío.","columns":[{"icon":"database","title":"Física","text":"Todo el dispositivo","tone":"accent","items":["Del primer al último bit (sector)","Tabla de particiones y todas las particiones","Espacio libre y restos de borrados","Como imagen o como clonado"]},{"icon":"folder","title":"Lógica","text":"Solo una parte","items":["Un volumen o una parte de él","Carpetas, archivos o una base de datos","Solo como imagen, nunca como clonado","La que se usa en adquisiciones parciales"]}]},
         {
           "type": "exam",
           "text": "«Disco completo, con todas sus particiones y la tabla de particiones» → **física**. Trampas: confundir el alcance con el estado («en caliente», «imagen en caliente»); afirmar que la física copia solo archivos visibles y la lógica todos los sectores (es al revés); o que la física es siempre en frío y la lógica siempre en caliente."
@@ -634,6 +635,7 @@
           "title": "Caso práctico",
           "text": "Encuentras un portátil apagado bajo la mesa del sospechoso. No lo enciendes «para ver la última sesión», no lo conectas a la red para que se actualice ni cambias su configuración: cualquiera de esas cosas escribe en el disco. Desconectas la batería y la alimentación, fotografías y etiquetas los cables, tapas el botón con cinta y anotas todo en el acta."
         },
+        {"type":"diagram","kind":"tree","title":"Llego a la escena: ¿qué hago con el equipo?","caption":"Tras capturar lo volátil se decide igualmente el apagado. Etiqueta, fotografía y documenta todo.","question":{"icon":"device-desktop","title":"¿Cómo está el equipo?"},"branches":[{"label":"Apagado","result":{"icon":"lock","title":"Recolección en frío","text":"No encender; quitar batería y corriente","tone":"good"}},{"label":"Encendido","tree":{"question":{"icon":"cpu","title":"¿Hay datos volátiles o cifrados accesibles?","text":"RAM, procesos, volumen desbloqueado"},"branches":[{"label":"Sí","result":{"icon":"bolt","title":"Adquirir en caliente primero","text":"Cifrados, luego volátiles, con software propio","tone":"warn"}},{"label":"No","tree":{"question":{"icon":"database","title":"¿Un corte brusco corrompería datos?","text":"Sistemas transaccionales, lentos o antiguos"},"branches":[{"label":"No","result":{"icon":"plug","title":"Apagado forense","text":"Cortar la corriente de golpe","tone":"good"}},{"label":"Sí","result":{"icon":"settings","title":"Apagado limpio","text":"Apagado normal; puede perderse información","tone":"warn"}}]}}]}}]},
         {
           "type": "exam",
           "text": "«Proceso de recopilación de los elementos físicos…» → **recolección** (no adquisición, ni clonado, ni imagen). «¿Qué distingue recolección y adquisición?» → recolección reúne contenedores físicos y adquisición obtiene su información (ninguna de las dos exige apagar el equipo). En un portátil apagado, lo correcto es **desconectar la alimentación y documentar conexiones**. Ante un equipo encendido con procesos relevantes, antes de cortar la corriente hay que valorar **adquirir los volátiles** y el **riesgo para los datos en curso**."
@@ -725,6 +727,7 @@
           "type": "p",
           "text": "Para que la comparación tenga sentido hay que usar el **mismo algoritmo** y el **mismo alcance** (el disco entero en los tres casos, por ejemplo). Comparar nombres de archivo o contar los archivos que muestra el explorador no demuestra nada."
         },
+        {"type":"diagram","kind":"flow","title":"Preservación en frío: los tres hashes","caption":"Mismo algoritmo y mismo alcance en los tres; después basta comparar con HA1.","items":[{"icon":"hash","title":"HA1","text":"Hash del origen antes"},{"icon":"replace","title":"Adquisición","text":"Copia con el origen bloqueado"},{"icon":"hash","title":"HA2","text":"Hash del origen después"},{"icon":"hash","title":"HB","text":"Hash de la copia"},{"icon":"check","title":"HA1 = HA2 = HB","text":"Origen intacto y copia idéntica","tone":"good"}],"links":["copiar","recalcular","calcular","comparar"]},
         {
           "type": "term",
           "term": "Preservación en caliente",
@@ -1209,6 +1212,26 @@
         "b": "Incorrecta. Una máquina virtual en marcha sí tiene datos volátiles en memoria, y apagarla los perdería.",
         "c": "Incorrecta. Copiar solo los asuntos empobrece la evidencia: se pierde el contenido de los mensajes.",
         "d": "Incorrecta. El servidor de correo puede contener evidencias aunque no haya sido infectado; es un equipo relacionado."
+      }
+    },
+    "forense-t03-c01": {
+      "section": "bloqueo-escritura",
+      "reasoning": "Adquirir en frío significa copiar un dispositivo que está apagado, por ejemplo el disco duro extraído de un portátil. Al conectarlo a otro equipo, el sistema operativo podría escribir en él (fechas de acceso, archivos ocultos) y eso alteraría la prueba. El bloqueo contra escritura deja leer pero impide escribir, como mirar un documento a través de un cristal. El temario describe tres formas: un **bloqueador hardware** que se coloca entre el disco y el equipo; un **bloqueo software**, por ejemplo un script que cambia el Registro de Windows para proteger los puertos USB; y una **distribución Linux forense**, que arranca sin montar los discos en modo escritura. La trampa es «Todas las anteriores»: no vale porque la B es falsa.",
+      "options": {
+        "a": "Incorrecta. Los dispositivos hardware son una vía válida y muy fiable, pero no la única. Esta opción deja fuera el bloqueo por software y las distribuciones Linux forenses.",
+        "b": "Incorrecta. Sí es posible bloquear la escritura; para eso existen precisamente los bloqueadores hardware y software. Afirmar que nunca se puede es falso.",
+        "c": "Correcta. Recoge las tres formas que describe el temario: bloqueadores hardware, bloqueo software con programas o scripts y arranque con una distribución Linux forense. Es la respuesta completa.",
+        "d": "Incorrecta. No pueden ser todas ciertas, porque la B afirma algo falso y contradice a las demás. Además, la A es incompleta frente a la C."
+      }
+    },
+    "forense-t03-c10": {
+      "section": "hash-concepto",
+      "reasoning": "Una función hash toma datos de cualquier tamaño (un archivo, un disco entero) y devuelve una cadena hexadecimal de longitud fija, como una huella dactilar de esos datos. El temario lista sus propiedades: **bajo coste computacional** (se calcula rápido con cualquier equipo), **compresión** (la salida es corta y manejable), **inyectividad** (cada entrada da un hash distinto), **unidireccionalidad** (no se puede volver atrás), determinismo y resistencia a colisiones. Igual que con una huella dactilar no puedes reconstruir a la persona, con un hash no puedes reconstruir el archivo. Por eso la bidireccionalidad es justo lo contrario de una propiedad del hash. La trampa es confundir hash con cifrado: el cifrado sí es reversible con la clave, el hash no.",
+      "options": {
+        "a": "Incorrecta. La **inyectividad** sí figura en el temario: para cada entrada se genera un hash diferente. El propio temario matiza que no puede ser perfecta, porque las entradas son infinitas y las salidas no, así que habrá repeticiones (colisiones).",
+        "b": "Incorrecta. La **compresión** sí es una propiedad: la salida son unos pocos caracteres hexadecimales, mucho más manejables que la entrada, que puede ser un disco de varios terabytes.",
+        "c": "Incorrecta. El **bajo coste computacional** sí es una propiedad: calcular un hash consume pocos recursos. Lo que más tarda es leer toda la información, no el cálculo en sí.",
+        "d": "Correcta. El hash es **unidireccional**, no bidireccional: con la entrada A obtienes B, pero con B no puedes deducir A. Si fuera reversible sería un cifrado, no una función hash."
       }
     }
   }

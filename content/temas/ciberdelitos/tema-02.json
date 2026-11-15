@@ -354,6 +354,7 @@
           "type": "p",
           "text": "Para el examen, la profesora insistió en que debes saber **a quién aplica el ENS**, porque en el caso práctico puede preguntarse qué normativa debe cumplir una empresa o entidad. Esa es la forma de razonar: ¿es sector público o proveedor suyo? Entonces, ENS."
         },
+        {"type":"diagram","kind":"tree","title":"¿Le aplica el ENS?","caption":"Ser empresa privada no libra del ENS si presta servicios al sector público.","question":{"icon":"building-bank","title":"¿Es parte del sector público?","text":"Estado, comunidades, entidades locales o sector institucional"},"branches":[{"label":"Sí","result":{"icon":"shield-check","title":"Debe cumplir el ENS","text":"Ministerios, ayuntamientos, universidades públicas…","tone":"accent"}},{"label":"No","tree":{"question":{"icon":"building","title":"¿Presta servicios al sector público?","text":"Por contrato, para ejercer sus competencias"},"branches":[{"label":"Sí","result":{"icon":"shield-check","title":"Debe cumplir el ENS","text":"Se le exige en los pliegos","tone":"accent"}},{"label":"No","tree":{"question":{"icon":"lock","title":"¿Trata información clasificada?","text":"Secretos oficiales"},"branches":[{"label":"Sí","result":{"icon":"shield-check","title":"Debe cumplir el ENS","text":"Con posibles medidas adicionales","tone":"accent"}},{"label":"No","result":{"icon":"x","title":"No le aplica el ENS","text":"Puede certificarse en ISO 27001 si quiere"}}]}}]}}]},
         {
           "type": "exam",
           "text": "Frase falsa típica: «el ENS es exigible **solo** a la Administración pública». Es falsa porque alcanza también a los sistemas **operados por terceros** o situados **en dependencias de terceros** que prestan servicios a las AA. PP. (Administraciones Públicas). En cambio, es verdad que obliga a todos los sistemas de información de las AA. PP. **con independencia de dónde estén** (en su edificio o en el centro de datos de un proveedor)."
@@ -696,6 +697,7 @@
             ["Act: mejora continua", "Tratar las **no conformidades**: corregirlas, gestionar sus consecuencias, buscar sus causas, aplicar acciones correctivas proporcionadas, revisar su eficacia y cambiar el SGSI si hace falta."]
           ]
         },
+        {"type":"diagram","kind":"flow","title":"El ciclo de adecuación al ENS (PDCA)","caption":"Tras actuar se vuelve a planificar: el ciclo nunca se da por terminado.","items":[{"icon":"list-check","title":"Planificar (Plan)","text":"Política, categoría, riesgos y plan de mejora"},{"icon":"tool","title":"Hacer (Do)","text":"Implantar medidas, formar y concienciar"},{"icon":"search","title":"Verificar (Check)","text":"Medir controles, auditorías internas e INES"},{"icon":"refresh","title":"Actuar (Act)","text":"Corregir no conformidades y mejorar","tone":"good"}],"links":["implantar","revisar","mejorar"]},
         {
           "type": "term",
           "term": "Declaración de aplicabilidad",
@@ -779,6 +781,7 @@
           "type": "p",
           "text": "**Truco para no confundir los nombres** (de la profesora): cuando **tú mismo** te evalúas, **declaras** que cumples; cuando **alguien externo** te audita, **certifica** que cumples. Por eso se habla de **declaración de conformidad** (autoevaluación, categoría básica) y de **certificación de conformidad** (auditoría, categorías media y alta)."
         },
+        {"type":"diagram","kind":"tree","title":"Categoría del sistema y cómo demostrar que cumple","caption":"Manda la dimensión con el nivel más alto; se repite al menos cada dos años.","question":{"icon":"adjustments","title":"¿Alguna dimensión en nivel alto?","text":"Confidencialidad, integridad, trazabilidad, autenticidad o disponibilidad"},"branches":[{"label":"Sí","result":{"icon":"certificate","title":"Categoría alta","text":"Auditoría formal y certificación de conformidad","tone":"warn"}},{"label":"No","tree":{"question":{"icon":"adjustments","title":"¿Alguna dimensión en nivel medio?"},"branches":[{"label":"Sí","result":{"icon":"certificate","title":"Categoría media","text":"Auditoría formal y certificación de conformidad"}},{"label":"No, todas bajas","result":{"icon":"clipboard-check","title":"Categoría básica","text":"Autoevaluación y declaración de conformidad","tone":"good"}}]}}]},
         {
           "type": "list",
           "title": "Más detalles de la clase",
@@ -1198,6 +1201,17 @@
         "c": "Incorrecta. La ISO 27001 no es una norma legal, y el ENS no se limita a ayuntamientos: abarca todo el sector público y sus proveedores.",
         "d": "Incorrecta. El ENS no es voluntario: es una norma legal obligatoria para su ámbito de aplicación."
       }
+    },
+    "ciberdelitos-t02-c01": {
+      "section": "principios",
+      "reasoning": "El ENS es la norma que fija cómo deben proteger sus sistemas las administraciones públicas españolas; hoy está en el Real Decreto 311/2022. Su artículo 5 enumera siete principios básicos. Para responder, compara cada opción con la lista. «Seguridad integral» es la forma corta de «seguridad como proceso integral». «Gestión de riesgos» abrevia «gestión de la seguridad basada en los riesgos». «Prevención, reacción y recuperación» era el nombre del principio en el ENS anterior (RD 3/2010), sustituido en 2022 por «prevención, detección, respuesta y conservación». «Seguridad gestionada», en cambio, no aparece en ninguna de las dos versiones. La trampa es un nombre inventado que suena a jerga técnica real.",
+      "options": {
+        "a": "Incorrecta. «Seguridad integral» es la forma abreviada del principio de **seguridad como proceso integral**, el primero de la lista del artículo 5 del RD 311/2022.",
+        "b": "Incorrecta. Corresponde al principio de **gestión de la seguridad basada en los riesgos**, que sí es uno de los siete principios.",
+        "c": "Incorrecta. Es el nombre que tenía este principio en el ENS de 2010. En el ENS actual se llama **prevención, detección, respuesta y conservación**, pero sigue siendo un principio básico.",
+        "d": "Correcta. **«Seguridad gestionada»** no figura entre los principios básicos del ENS, ni en la versión actual ni en la anterior. Es un nombre que suena plausible, pero inventado."
+      },
+      "doubt": "La opción «Prevención, reacción y recuperación» usa el nombre del ENS de 2010; en el RD 311/2022 se llama «prevención, detección, respuesta y conservación». Aun así, «Seguridad gestionada» es la única que nunca ha sido un principio."
     }
   }
 }

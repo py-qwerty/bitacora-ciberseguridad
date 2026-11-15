@@ -252,6 +252,7 @@
             ["Equipo a equipo", "Todo, de origen a destino", "Nada del recorrido"]
           ]
         },
+        {"type":"diagram","kind":"tree","title":"¿Qué arquitectura de VPN necesito?","caption":"Solo equipo a equipo protege también el tramo interno hasta el servidor.","question":{"icon":"help-circle","title":"¿Qué quieres conectar?"},"branches":[{"label":"Varias sedes","result":{"icon":"building","title":"Sitio a sitio","text":"Túnel entre concentradores; sin software en los equipos"}},{"label":"Teletrabajadores","result":{"icon":"device-laptop","title":"Acceso remoto","text":"Cliente VPN + concentrador de la organización"}},{"label":"Un equipo con un servidor","result":{"icon":"server","title":"Equipo a equipo","text":"Sin concentrador; protege de extremo a extremo"}}]},
         {
           "type": "exam",
           "text": "Si la pregunta dice «proteger también el tramo dentro de la red hasta el servidor final», «extremo a extremo» o «que el servicio de administración solo sea alcanzable tras establecer el canal con el servidor», la respuesta es **equipo a equipo**. Trampas: «túnel entre pasarelas de sedes» o «acceso remoto que termina en el perímetro» dejan tramos sin proteger. Y si preguntan qué protocolo sirve para equipo a equipo, IPsec, SSH y SSL/TLS valen: «todas las anteriores»."
@@ -455,6 +456,7 @@
           "title": "Ejemplo",
           "text": "ssh -L 15432:bd.interna.empresa.es:5432 admin@bastion.empresa.es\npsql -h localhost -p 15432 -U informes"
         },
+        {"type":"diagram","kind":"tree","title":"¿Qué tecnología VPN uso?","caption":"Cada tecnología trabaja en una capa: enlace, red, transporte o aplicación.","question":{"icon":"help-circle","title":"¿Qué necesitas?"},"branches":[{"label":"Proteger un enlace físico","result":{"icon":"plug","title":"L2TP + IPsec","text":"Capa de enlace; PPTP es inseguro"}},{"label":"Unir redes o equipos","result":{"icon":"shield-lock","title":"IPsec","text":"Capa de red: la recomendación número uno","tone":"good"}},{"label":"Apps web con el navegador","result":{"icon":"browser","title":"SSL/TLS","text":"Capa de transporte: portal web"}},{"label":"Túnel puntual de administrador","result":{"icon":"terminal-2","title":"SSH","text":"Capa de aplicación: ssh -L"}}]},
         {
           "type": "exam",
           "text": "«El protocolo más común para VPN de nivel de aplicación» es **SSH**; IPsec es de red, SSL/TLS de transporte y L2TP de enlace. Si te preguntan qué función de SSH sirve para transportar una conexión, es la **redirección local de puertos**; son distractores la concesión de tiques (eso es Kerberos), la asignación de direcciones (DHCP) o la traducción de direcciones (NAT)."
@@ -626,6 +628,7 @@
             "El nodo de salida retira la última capa y entrega la petición al servidor final, que ve la IP del nodo de salida, no la de Alice."
           ]
         },
+        {"type":"diagram","kind":"flow","title":"El circuito de Tor: quién sabe qué","caption":"Cada nodo retira una capa y solo conoce el salto anterior y el siguiente.","items":[{"icon":"user","title":"Alice","text":"Pide tres nodos al directorio; cifra en capas"},{"icon":"door-enter","title":"Nodo de entrada","text":"Conoce tu IP, no el destino"},{"icon":"eye-off","title":"Nodo intermedio","text":"Solo conoce el anterior y el siguiente"},{"icon":"door-exit","title":"Nodo de salida","text":"Conoce el destino, no quién eres"},{"icon":"server","title":"Servidor final","text":"Ve la IP del nodo de salida"}],"links":["3 capas","quita 1 capa","quita 1 capa","quita la última"]},
         {
           "type": "term",
           "term": "Onion routing (encaminamiento cebolla)",
@@ -1000,6 +1003,38 @@
         "c": "Correcta. El túnel de equipo a equipo llega hasta el servidor final y protege todo el recorrido.",
         "d": "Incorrecta. Un enlace que termina antes del servidor deja justo el tramo que se quiere proteger."
       }
+    },
+    "redes-t09-c03": {
+      "section": "vpn-enlace",
+      "reasoning": "Una VPN (Virtual Private Network, red privada virtual) crea un túnel seguro sobre una red pública. Según la capa donde se forme el túnel hay VPN de enlace, de red, de transporte o de aplicación. En el **nivel de enlace** el tema cita tres protocolos. **PPTP** (Point-to-Point Tunneling Protocol, de Microsoft) tiene vulnerabilidades graves en su autenticación y su cifrado y se desaconseja. **L2F** (Layer 2 Forwarding, de Cisco) solo crea túneles entre el ISP (proveedor de Internet) y la organización, así que el tramo del cliente al ISP va sin proteger. **L2TP** (Layer 2 Tunneling Protocol) surge de ambos, es el más avanzado, sirve en cualquier situación en la que se usarían los otros dos y se recomienda combinarlo con IPsec. La pregunta dice «debería»: la respuesta es la opción recomendada, no cualquiera de capa 2. La trampa típica es elegir PPTP o L2F porque también son de enlace.",
+      "options": {
+        "a": "Incorrecta. **SSH** (Secure Shell) crea túneles en el **nivel de aplicación**, no en el de enlace.",
+        "b": "Incorrecta. PPTP es de nivel de enlace, pero tiene vulnerabilidades conocidas en su autenticación (PAP, CHAP, MS-CHAP) y en su cifrado, y el tema desaconseja usarlo.",
+        "c": "Incorrecta. L2F también es de nivel de enlace, pero solo protege el tramo entre el ISP y la organización y obliga a depender del proveedor.",
+        "d": "Correcta. L2TP combina lo mejor de PPTP y L2F, sirve en cualquier caso en que se usarían ellos y se recomienda junto con IPsec para el cifrado."
+      }
+    },
+    "redes-t09-c06": {
+      "section": "vpn-y-anonimato",
+      "reasoning": "Lo que busca esta persona es **anonimato**: que no se pueda relacionar lo que publica con su identidad. El tema insiste en que una VPN no lo consigue, porque el concentrador VPN conoce al cliente y los servidores con los que se comunica; si el gobierno presiona al proveedor, la identidad queda expuesta. **Freenet** es una red P2P (entre iguales) para publicar, replicar y recuperar archivos de forma anónima y contra la censura, pero solo dentro de Freenet: no sirve para acceder a una red social normal de Internet. **Tor** (The Onion Router) es una red sobre Internet: el cliente envía el tráfico por un nodo de entrada, uno intermedio y uno de salida, y la red social solo ve la dirección del nodo de salida. Para publicar en redes sociales, la herramienta adecuada es Tor. Aun así, debe evitar identificarse con datos personales. La trampa típica es la D, porque Freenet también da anonimato, pero en otro ámbito.",
+      "options": {
+        "a": "Incorrecta. Una VPN da confidencialidad, integridad y autenticación, pero **no anonimato**: el concentrador VPN sabe quién es el usuario y con qué servidores se comunica.",
+        "b": "Incorrecta. Freenet da anonimato a autores y lectores, pero de contenidos publicados **dentro de su propia red P2P**; no permite publicar en las redes sociales normales de Internet.",
+        "c": "Correcta. Tor oculta la IP real tras tres nodos con cifrado en capas, de modo que la red social solo ve el nodo de salida.",
+        "d": "Incorrecta. Freenet no sirve para publicar en redes sociales de Internet, así que no son correctas las dos."
+      },
+      "doubt": "El tema no plantea este caso de forma literal y presenta Freenet como herramienta contra la censura que protege la identidad de los autores, así que la D podría ser la clave oficial. Se elige la C porque publicar «en redes sociales» exige acceder a servicios de Internet, algo que hace Tor y no Freenet."
+    },
+    "redes-t09-c10": {
+      "section": "tor",
+      "reasoning": "Tor (The Onion Router) debe su nombre a la cebolla: el mensaje lleva varias capas de cifrado. Según el tema, Alice consulta el **directorio de Tor**, que le da la información de conexión y la clave pública de tres nodos: entry guard (entrada), middle relay (intermedio) y exit relay (salida). Con esas claves públicas acuerda una **clave simétrica** distinta con cada nodo. El mensaje se cifra en capas con esas claves simétricas, porque el cifrado simétrico es mucho más rápido. Cada nodo solo conoce el salto anterior y el siguiente, así que el servidor final ve la IP del nodo de salida, no la del cliente. La trampa típica es la A: las claves públicas se usan para acordar las claves, no para cifrar cada capa del mensaje.",
+      "options": {
+        "a": "Incorrecta. Las claves públicas de los nodos se usan para **acordar** las claves simétricas; las capas del mensaje se cifran con esas claves simétricas, mucho más rápidas.",
+        "b": "Correcta. El cliente acuerda una clave simétrica con cada nodo del circuito y cifra el mensaje en capas con ellas.",
+        "c": "Incorrecta. En la descripción del tema es el **directorio de Tor** quien ofrece los tres nodos que harán de entrada, intermedio y salida; el usuario no los elige a mano.",
+        "d": "Incorrecta. El servidor final solo ve la IP del **nodo de salida**. Quien conoce la IP real del cliente es el nodo de entrada, que a su vez no sabe qué servicio se consulta."
+      },
+      "doubt": "El tema dice que el directorio «ofrece» los tres nodos. En el Tor real es el software del cliente quien elige la ruta a partir de la lista del directorio, así que la C podría discutirse fuera del temario."
     }
   }
 }

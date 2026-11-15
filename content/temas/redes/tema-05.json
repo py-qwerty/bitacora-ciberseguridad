@@ -130,6 +130,7 @@
           "title": "¿Cuál elijo?",
           "text": "Si quieres impedir que un empleado **copie documentos sensibles en su propio equipo** (o a un pendrive), el DLP de red no sirve: esa copia nunca pasa por el perímetro. Necesitas un DLP **en la estación de trabajo**, que observa las operaciones locales. En cambio, para frenar que alguien mande un fichero por correo a Internet basta un DLP de red."
         },
+        {"type":"diagram","kind":"tree","title":"¿Qué tipo de DLP necesito?","question":{"icon":"help-circle","title":"¿Dónde está el dato que quiero vigilar?"},"branches":[{"label":"Sale por la red","result":{"icon":"world","title":"DLP de red","text":"En el perímetro: datos en movimiento","tone":"good"}},{"label":"En el equipo","result":{"icon":"device-laptop","title":"DLP en estación de trabajo","text":"Agente local: datos en uso","tone":"good"}},{"label":"Guardado","result":{"icon":"database","title":"DLP en centro de datos","text":"Almacenamiento: datos en reposo","tone":"good"}}]},
         {
           "type": "exam",
           "text": "Dos preguntas típicas: «¿dónde se sitúa un control de fugas de red?» → **cerca del perímetro, para analizar transferencias**. «¿Dónde lo despliego para que nadie copie documentos en su equipo?» → **en la estación de trabajo**. Trampa: opciones como «en un servidor de identidad para validar credenciales» o «en un proxy inverso de servidores públicos» mezclan otras herramientas."
@@ -309,6 +310,7 @@
             ["Interfaz", "Consola web o aplicación.", "Sirve para **configurar** el SIEM y para **operarlo**: muestra al operador las alertas."]
           ]
         },
+        {"type":"diagram","kind":"hub","title":"SIEM: muchas fuentes, un servidor que correlaciona","caption":"Cada fuente lleva un agente (sonda) que recoge sus registros.","hub":{"icon":"server-cog","title":"Servidor SIEM","text":"Correlaciona los eventos","tone":"accent","chips":[{"icon":"database","text":"Base de datos"},{"icon":"bell","text":"Interfaz con alertas"}]},"members":[{"icon":"world-www","title":"Servidor web"},{"icon":"flame","title":"Cortafuegos"},{"icon":"hierarchy-3","title":"Controlador de dominio"},{"icon":"shield-check","title":"Antivirus"},{"icon":"lock","title":"VPN"}],"direction":"in","arrow":"los agentes envían logs"},
         {
           "type": "steps",
           "title": "Cómo trabaja un SIEM",
@@ -412,6 +414,7 @@
           "type": "analogy",
           "text": "Las acl son las etiquetas que el portero sabe reconocer («empleado», «lleva tarjeta», «es fin de semana»). Las http_access son las órdenes que sigue en orden: «si es empleado Y lleva tarjeta, pasa; si no, no pasa»."
         },
+        {"type":"diagram","kind":"flow","title":"Squid lee http_access de arriba abajo","caption":"Se aplica la primera línea que encaja; por eso deny all va al final.","items":[{"icon":"browser","title":"Petición del cliente"},{"icon":"user-check","title":"allow localnet password","text":"Red local Y autenticado"},{"icon":"server","title":"allow localhost","text":"El propio servidor"},{"icon":"x","title":"deny all","text":"Todo lo demás, denegado","tone":"bad"}],"links":["¿encaja la primera?","si no, la siguiente","si no, la última"]},
         {
           "type": "p",
           "text": "Tras cualquier cambio en squid.conf hay que decirle al servicio que **recargue** la configuración. El temario lo repite al final de cada ejemplo:"
@@ -930,6 +933,16 @@
         "b": "Incorrecta. error_directory indica la carpeta de mensajes de error en el idioma deseado.",
         "c": "Correcta. http_port configura el puerto de escucha del proxy.",
         "d": "Incorrecta. access_log es la ruta del log de Squid que analiza SARG."
+      }
+    },
+    "redes-t05-c09": {
+      "section": "squid-ajustes-sarg",
+      "reasoning": "Squid es un proxy caché de software libre: un intermediario entre los usuarios y la web que guarda copias de las páginas y filtra accesos. Se configura con directivas en squid.conf. Cada directiva tiene un nombre que dice lo que hace. **http_port** fija el puerto de escucha, es decir, la «puerta» por la que los navegadores hablan con el proxy. **cache_dir** fija dónde y cuánto se guarda en caché. **acl** (Access Control List, lista de control de acceso) da nombre a una condición, como una red o un dominio. **http_access** usa esas acl para permitir o denegar. La trampa típica es confundir http_port con http_access, porque ambos empiezan por «http_».",
+      "options": {
+        "a": "Correcta. http_port establece el puerto por el que el proxy se comunica con los clientes, por ejemplo 3128 o 1891.",
+        "b": "Incorrecta. cache_dir define el **directorio de la caché**: dónde se guardan las copias de las páginas, con qué formato y tamaño.",
+        "c": "Incorrecta. http_access **permite o deniega** el acceso según las condiciones definidas con acl; no tiene nada que ver con el puerto.",
+        "d": "Incorrecta. acl define **condiciones con nombre** (listas de control de acceso), como una red, un dominio o un horario, que luego usa http_access."
       }
     }
   }

@@ -165,6 +165,7 @@
           "title": "Caso práctico: la web de la asociación vecinal",
           "text": "Un investigador descubre que la copia falsa de un banco está alojada en la web de una pequeña asociación de vecinos. Lo más probable no es que la asociación sea cómplice, sino que su servidor tenía una vulnerabilidad y los phishers lo usaron sin que nadie lo supiera. Además, retirar esa página no termina la campaña: siguen existiendo los dominios parecidos registrados, los correos ya enviados y quizá otras copias en otros servidores."
         },
+        {"type":"diagram","kind":"hub","title":"Las piezas de una campaña de phishing","caption":"Una campaña es un conjunto de recursos: retirar una sola pieza no la extingue.","hub":{"icon":"target","title":"Campaña de phishing","text":"Fase I: captura de datos"},"direction":"in","members":[{"icon":"browser","title":"Web clonada","text":"Copia que captura lo tecleado"},{"icon":"world-www","title":"Dominio parecido","text":"Una letra cambiada u otro país"},{"icon":"server","title":"Alojamiento","text":"A menudo, un servidor legítimo vulnerado"},{"icon":"mailbox","title":"Direcciones de correo","text":"Compradas, recolectadas o generadas"},{"icon":"send","title":"Servidores de envío","text":"Envío masivo, como el spam"},{"icon":"mail","title":"Mensaje convincente","text":"Por correo electrónico o SMS"}]},
         {
           "type": "exam",
           "text": "Dos ideas típicas: 1) una web legítima comprometida puede alojar un fraude sin que su dueño participe; 2) una campaña es un **conjunto de recursos** (dominios, alojamiento, listas de correo, servidores de envío, mensajes), así que neutralizar uno solo no la extingue. También preguntan por qué una campaña «bancaria» pide DNI o claves de redes sociales: porque cualquier dato personal sirve para otras suplantaciones y fraudes."
@@ -501,6 +502,7 @@
           "type": "p",
           "text": "Los datos robados no siempre los usa quien los obtiene: muchas veces se **venden** a otros delincuentes, creando un **mercado secundario** de datos personales."
         },
+        {"type":"diagram","kind":"tree","title":"¿Qué variante de phishing es?","caption":"Mira el canal, a quién va dirigido y si la víctima tiene que equivocarse.","question":{"icon":"help-circle","title":"¿Por dónde llega el engaño?"},"branches":[{"label":"SMS o MMS","result":{"icon":"device-mobile","title":"Smishing","text":"Mensaje de texto que imita al banco","tone":"accent"}},{"label":"Llamada","result":{"icon":"antenna","title":"Vishing","text":"Voz o grabación que imita al banco","tone":"accent"}},{"label":"Correo o web falsa","tree":{"question":{"icon":"mail","title":"¿Va a perfiles escogidos?","text":"Directivos, grandes patrimonios, personal clave"},"branches":[{"label":"Sí","result":{"icon":"target","title":"Whaling","text":"Más dinero o información sensible","tone":"accent"}},{"label":"No","result":{"icon":"users","title":"Phishing","text":"Envío masivo a cualquiera","tone":"accent"}}]}},{"label":"DNS alterado","tree":{"question":{"icon":"network","title":"¿Dónde se altera?","text":"La víctima escribe bien la dirección"},"branches":[{"label":"Servidor DNS","result":{"icon":"server","title":"Pharming en servidor","text":"Afecta a todos sus usuarios","tone":"accent"}},{"label":"Archivo hosts","result":{"icon":"device-desktop","title":"Pharming local","text":"Solo afecta al equipo infectado","tone":"accent"}}]}}]},
         {
           "type": "exam",
           "text": "«El pharming consiste en…» → modificar el servicio de DNS (no es un ataque al correo ni a una web). «Técnica que modifica el servidor DNS» → pharming («Dnsing» no existe). Si solo un equipo redirige mal y el servidor DNS responde bien, la manipulación está en la **resolución local** (archivo hosts). Y si un certificado añadido por el atacante muestra conexión cifrada, la lección es que el indicador de cifrado no basta si se ha manipulado la confianza del equipo."
@@ -591,6 +593,7 @@
           "title": "Caso práctico: el viernes a las 22:00",
           "text": "Una transferencia fraudulenta sale de la cuenta de un jubilado un viernes por la noche. Él no mira el banco hasta el lunes; para entonces, la mula ya ha retirado el dinero el sábado y lo ha enviado. El momento no elimina los registros del banco ni cambia el titular de la cuenta: solo **gana tiempo** antes de la reacción."
         },
+        {"type":"diagram","kind":"flow","title":"El ciclo del phishing, del anzuelo a la organización","caption":"Las fases I y II se ejecutan a la vez: siempre hay mulas disponibles.","items":[{"icon":"password","title":"Fase I: captura de claves","text":"Ingeniería social o malware"},{"icon":"users","title":"Fase II: captación de mulas","text":"Falsos empleos o campañas solidarias"},{"icon":"transfer-out","title":"Fase III: transferencia","text":"A las mulas, en horario no laborable"},{"icon":"cash","title":"La mula retira el dinero","text":"Se queda un 5-10 % de comisión"},{"icon":"world","title":"Envío internacional","text":"Normalmente a países del este de Europa"},{"icon":"hierarchy-3","title":"Escalones superiores","text":"Cada receptor lo reenvía hacia arriba","tone":"bad"}],"links":["claves robadas","cuentas receptoras","saldo transferido","resto del dinero","de escalón en escalón"]},
         {
           "type": "exam",
           "text": "¿Por qué en días no laborables? Para **retrasar la detección y la reacción**. Trampas: «evitar que se registre el movimiento», «cambiar el titular» o «que la transferencia deje de necesitar autenticación» son falsas."
@@ -983,6 +986,17 @@
         "c": "Incorrecta. Una campaña puede usar varios dominios y servidores a la vez.",
         "d": "Incorrecta. Retirar una página no borra los mensajes enviados a los destinatarios."
       }
+    },
+    "ciberdelitos-t07-c10": {
+      "section": "mulas",
+      "reasoning": "El tema divide el ciclo del phishing en tres fases. En la **fase I (captura de datos)** se roban credenciales con correos y webs falsas o malware. En la **fase II (captación de mulas)** se recluta a personas que reciben en su cuenta el dinero robado y lo reenvían. En la **fase III (transferencia, monetización y envío)** se mueve el dinero hasta los delincuentes. El temario explica que las mulas se captan tradicionalmente con correos que ofrecen un trabajo desde casa, con horario libre, poca dedicación y una compensación alta; y lo ilustra con una oferta de trabajo. Si el correo es de ese tipo, la fase es la II. Para reconocerlo: si el mensaje te pide **datos**, es fase I; si te ofrece **trabajo** moviendo dinero, es fase II.",
+      "options": {
+        "a": "Incorrecta. La captura de datos es la fase I: correos que suplantan al banco para robar usuario y contraseña. Una oferta de empleo no busca credenciales, busca colaboradores.",
+        "b": "Correcta. Las ofertas de trabajo fácil, desde casa y bien pagado para recibir y reenviar dinero son la vía clásica de **captación de mulas**.",
+        "c": "Incorrecta. La fase III es el movimiento del dinero (transferencias, retirada y envío por empresas internacionales), no el reclutamiento previo de quienes lo moverán.",
+        "d": "Incorrecta. El **skimming** es la copia de la banda magnética de una tarjeta en cajeros o terminales. Un correo de captación sí forma parte del ciclo del phishing."
+      },
+      "doubt": "El enunciado se refiere a un texto incluido como imagen que no está en el material extraído. Se responde según el ejemplo del temario (oferta de trabajo para captar mulas, figura 16); si el correo del campus fuera otro, la clave podría cambiar."
     }
   }
 }

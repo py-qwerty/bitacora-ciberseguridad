@@ -1,4 +1,4 @@
-import { DURATION, EXAM_SIZE, generateExam, gradeExam, remaining, formatTime, isValidSession, practiceBlocks, topicQuestions, baseQuestions, validPractice, swipeDirection, validateBank, validateTema, ICONS } from './core.js?v=7'; import { setupPracticas, loadPracticasIndex, practicasRoute, isPracticasPath, practicasCard, courseExamLink, simulacroExamLink } from './practicas.js?v=2';
+import { DURATION, EXAM_SIZE, generateExam, gradeExam, remaining, formatTime, isValidSession, practiceBlocks, topicQuestions, baseQuestions, campusQuestions, validPractice, swipeDirection, validateBank, validateTema, ICONS } from './core.js?v=8'; import { setupPracticas, loadPracticasIndex, practicasRoute, isPracticasPath, practicasCard, courseExamLink, simulacroExamLink } from './practicas.js?v=2';
 const $ = s => document.querySelector(s);
 const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const number = n => n.toLocaleString('es-ES');
@@ -50,7 +50,7 @@ const topicTitle = n => namedTopic(bank.topics.find(t => t.id === n)) || `Tema $
 const courseTitle = id => bank.courses.find(c=>c.id===id)?.shortTitle || bank.courses.find(c=>c.id===id)?.title || id;
 const topicInfo = n => bank.topics.find(t=>t.id===n);
 const topicBadge = n => `<span class="topic-tag" aria-label="Tema ${topicInfo(n)?.number ?? n}">${String(topicInfo(n)?.number ?? n).padStart(2,'0')}</span>`;
-const sourceLabel = kind => ({'campus-confirmed':'Confirmada en el campus','temario-test':'Test del temario','practice':'Pregunta de práctica'}[kind] || 'Material de estudio');
+const sourceLabel = kind => ({'campus-confirmed':'Confirmada en el campus','campus-reasoned':'Test del campus · clave razonada con el temario','temario-test':'Test del temario','practice':'Pregunta de práctica'}[kind] || 'Material de estudio');
 function explanation(q){return `<aside class="answer-explanation"><h3>Por qué es correcta</h3><p>${esc(q.explanation)}</p><p class="source-note">${esc(q.fromClass?'Pregunta de clase':sourceLabel(q.source?.kind))} · ${esc(q.source?.title)}${q.source?.page?' · Página '+esc(q.source.page):''}</p></aside>`;}
 function topicMaterial(topic){
   const m=topic?.material;
@@ -116,6 +116,12 @@ function diagramBlock(b){
   } else if (b.kind === 'layers') {
     const nest = i => `<div class="dg-layer" style="--d:${i}">${dgNode(b.items[i], '', 'div', ' dg-plain')}${i < b.items.length - 1 ? nest(i + 1) : ''}</div>`;
     body = nest(0);
+  } else if (b.kind === 'tree') {
+    const tree = t => `<div class="dg-tree">${dgNode(t.question, '', 'div', ' dg-solid dg-q')}<ul class="dg-branches">${t.branches.map(br => `<li><span class="dg-branch-label">${rich(br.label)}</span>${br.tree ? tree(br.tree) : dgNode(br.result, '')}</li>`).join('')}</ul></div>`;
+    body = tree(b);
+  } else if (b.kind === 'matrix') {
+    const toneText = t => b.legend?.find(l => l.tone === t)?.text || '';
+    body = `<div class="dg-matrix-wrap"><table class="dg-matrix"><thead><tr><th scope="col" class="dg-mx-corner"><span>${rich(b.rows.label)} ↓</span><span>${rich(b.cols.label)} →</span></th>${b.cols.items.map(c => `<th scope="col">${rich(c)}</th>`).join('')}</tr></thead><tbody>${b.rows.items.map((r, i) => `<tr><th scope="row">${rich(r)}</th>${b.cells[i].map((t, j) => `<td class="tone-${t}">${toneText(t) ? `<span class="sr-only">${rich(toneText(t))}</span>` : ''}${(b.marks || []).filter(m => m.row === i && m.col === j).map(m => `<span class="dg-mark">${rich(m.text)}</span>`).join('')}</td>`).join('')}</tr>`).join('')}</tbody></table></div>${b.legend?.length ? `<ul class="dg-legend">${b.legend.map(l => `<li><i class="tone-${l.tone}" aria-hidden="true"></i>${rich(l.text)}</li>`).join('')}</ul>` : ''}`;
   } else {
     body = `<div class="dg-compare">${b.columns.map(c => `<section class="dg-col tone-${c.tone || 'accent'}">${dgNode(c, '', 'div', ' dg-plain')}<ul>${c.items.map(i => `<li>${rich(i)}</li>`).join('')}</ul></section>`).join('')}</div>`;
   }
@@ -194,7 +200,7 @@ function temaFeedback(q,selected){
   return `<details class="tema-feedback"><summary>Argumentación opción por opción</summary><p class="tq-reasoning">${rich(arg.reasoning)}</p>${arguedOptions(q,arg,selected)}${arg.doubt?`<p class="tq-doubt"><b>Para revisar:</b> ${rich(arg.doubt)}</p>`:''}</details><a class="tema-feedback-link" href="${sectionHref(q.topic,arg.section)}">Repasar en el tema digital: ${esc(section.title)} →</a>`;
 }
 function practiceIds(p){const params=currentRoute().params;return p.finishedAt&&params.get('repaso')==='1'&&params.get('filtro')==='errores'?p.ids.filter(id=>p.answers[id]!==questionMap.get(id).correct):p.ids;}
-function blockLabel(b){return b===0?'Test completo':b===4?'Preguntas de clase':'Test '+b;}
+function blockLabel(b){return b===0?'Test completo':b===4?'Preguntas de clase':b===5?'Test del campus':'Test '+b;}
 function eyebrow(text) { return `<p class="eyebrow">${text}</p>`; }
 function heading(title, text, tag = 'TU CUADERNO DE NAVEGACIÓN') {
   return `<div class="page-heading"><h1>${title}</h1>${text ? `<p class="lead">${text}</p>` : ''}</div>`;
@@ -205,7 +211,7 @@ function optionsRead(q, selected, showCorrect = false) {
 }
 function activeSession() { return session && !session.finishedAt ? session : null; }
 function getPractice(topic, block) {
-  const blocks=practiceMap.get(topic)||[]; const ids=(block===0?baseQuestions(bank.questions,topic):blocks[block-1])?.map(q=>q.id);
+  const blocks=practiceMap.get(topic)||[]; const ids=(block===0?baseQuestions(bank.questions,topic):block===5?(campusQuestions(bank,topic).length?campusQuestions(bank,topic):null):block>=1&&block<=4?blocks[block-1]:null)?.map(q=>q.id);
   if(!ids)return null;
   const saved=read(`practice:${topic}:${block}`);
   return saved?.topic===topic&&saved?.block===block&&validPractice(saved,ids,questionMap) ? saved : {topic,block,ids,index:0,answers:{},checked:[],finishedAt:null};
@@ -245,8 +251,8 @@ function coursePage(id){
 function topicPage(n,params){
   const topic=topicInfo(n);if(!topic)return notFound();
   const blocks=practiceMap.get(n);const completed=blocks.slice(0,3).filter((_,i)=>getPractice(n,i+1).finishedAt).length;
-  const row=(qs,b)=>{const p=getPractice(n,b);const count=Object.keys(p.answers).length;const correct=p.ids.filter(id=>p.answers[id]===questionMap.get(id).correct).length;return `<a class="test-row" href="#/practica/${n}/${b}"><span class="test-number">${b===0?'30':b===4?'+':b}</span><div><h2>${blockLabel(b)}</h2><p>${p.finishedAt?`${correct}/${qs.length} aciertos · Terminado`:count?`${count}/${qs.length} respondidas · Continuar`:qs.length+' preguntas'}</p></div><span class="test-state">${p.finishedAt?'✓':count?'Continuar':'›'}</span></a>`;};
-  return `<a class="back-link" href="#/asignatura/${esc(topic.course)}">← Temas de ${esc(courseTitle(topic.course))}</a>${heading(esc(topicTitle(n)),'30 preguntas con explicación')}<div class="topic-columns"><div class="topic-study">${temaCard(topic)}${practicasCard(topic)}${materialBlock(topic)}</div><div class="topic-tests"><div class="progress-summary"><span>${completed} de 3 bloques terminados</span><span>Avance guardado</span></div><section class="test-list" aria-label="Tests del tema">${blocks.slice(0,3).map((qs,i)=>row(qs,i+1)).join('')}${row(baseQuestions(bank.questions,n),0)}${blocks[3]?row(blocks[3],4):''}</section><p class="local-note">El test completo contiene las mismas 30 preguntas de los tres bloques, con progreso independiente.${blocks[3]?' «Preguntas de clase» reúne lo que los profesores remarcaron en clase como importante o trampa de examen.':''} Pulsa «Comprobar respuesta» para entender cada solución.</p></div></div>`;
+  const row=(qs,b)=>{const p=getPractice(n,b);const count=Object.keys(p.answers).length;const correct=p.ids.filter(id=>p.answers[id]===questionMap.get(id).correct).length;return `<a class="test-row" href="#/practica/${n}/${b}"><span class="test-number">${b===0?'30':b===4?'+':b===5?'U':b}</span><div><h2>${blockLabel(b)}</h2><p>${p.finishedAt?`${correct}/${qs.length} aciertos · Terminado`:count?`${count}/${qs.length} respondidas · Continuar`:qs.length+' preguntas'}</p></div><span class="test-state">${p.finishedAt?'✓':count?'Continuar':'›'}</span></a>`;};
+  return `<a class="back-link" href="#/asignatura/${esc(topic.course)}">← Temas de ${esc(courseTitle(topic.course))}</a>${heading(esc(topicTitle(n)),'30 preguntas con explicación')}<div class="topic-columns"><div class="topic-study">${temaCard(topic)}${practicasCard(topic)}${materialBlock(topic)}</div><div class="topic-tests"><div class="progress-summary"><span>${completed} de 3 bloques terminados</span><span>Avance guardado</span></div><section class="test-list" aria-label="Tests del tema">${blocks.slice(0,3).map((qs,i)=>row(qs,i+1)).join('')}${row(baseQuestions(bank.questions,n),0)}${blocks[3]?row(blocks[3],4):''}${campusQuestions(bank,n).length?row(campusQuestions(bank,n),5):''}</section><p class="local-note">El test completo contiene las mismas 30 preguntas de los tres bloques, con progreso independiente.${blocks[3]?' «Preguntas de clase» reúne lo que los profesores remarcaron en clase como importante o trampa de examen.':''}${campusQuestions(bank,n).length?' «Test del campus» reproduce las preguntas del test del tema en el campus, en su orden; las que no estaban en el banco llevan una clave razonada con el temario.':''} Pulsa «Comprobar respuesta» para entender cada solución.</p></div></div>`;
 }
 function distributionTable(result){
   if(!result)return '';
@@ -578,7 +584,7 @@ document.addEventListener('visibilitychange',()=>{if(!document.hidden&&currentRo
 setupPracticas({get bank(){return bank;},get questionMap(){return questionMap;},read,write,esc,rich,heading,topicTitle,topicInfo,courseTitle,notFound,render,ask,sectionHref});
 async function init() {
   try {
-    const response=await fetch('bank.json?v=4',{signal:AbortSignal.timeout(15000)});
+    const response=await fetch('bank.json?v=5',{signal:AbortSignal.timeout(15000)});
     if(!response.ok)throw Error('HTTP '+response.status);
     const data=await response.json();
     validateBank(data);

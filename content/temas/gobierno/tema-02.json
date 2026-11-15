@@ -188,6 +188,7 @@
           "type": "p",
           "text": "La figura del temario coloca la **estrategia** en el centro: une la misión (y la misión de seguridad) con los objetivos (y los objetivos de seguridad). Es decir, la estrategia es el puente entre el porqué y las metas, y así se conecta la seguridad con su **aportación al negocio**."
         },
+        {"type":"diagram","kind":"hub","title":"La estrategia, puente entre el porqué y las metas","caption":"Todo debe apoyar las metas del negocio, nunca ir aparte.","hub":{"icon":"map-pin","title":"Estrategia de seguridad","text":"Cómo llegamos; se revisa periódicamente","tone":"accent"},"members":[{"icon":"flag","title":"Misión","text":"Por qué importa; casi nunca cambia"},{"icon":"eye","title":"Visión","text":"A qué aspiramos; se revisa"},{"icon":"target","title":"Objetivos","text":"Metas concretas para un periodo"}],"direction":"both"},
         {
           "type": "list",
           "title": "Qué contiene la estrategia de seguridad",
@@ -366,6 +367,7 @@
             "**Aprobación y seguimiento:** la dirección debe aprobar el plan para implicarse y **provisionar los recursos**; después se revisa al menos una vez al año si se está cumpliendo."
           ]
         },
+        {"type":"diagram","kind":"flow","title":"Las seis fases del Plan Director de Seguridad","caption":"Primero objetivos y riesgos; después, controles.","items":[{"icon":"target","title":"Modelo de seguridad","text":"Qué proteger y con qué criterios"},{"icon":"search","title":"Situación actual","text":"Diagnóstico realista de hoy"},{"icon":"chart-bar","title":"Análisis GAP","text":"Lo que falta hasta lo deseado"},{"icon":"list-check","title":"Plan de acción","text":"Proyectos, recursos y prioridades"},{"icon":"writing-sign","title":"Aprobación y desarrollo","text":"La dirección aprueba y se ejecuta"},{"icon":"refresh","title":"Seguimiento","text":"Revisar al menos una vez al año","tone":"good"}],"links":["se diagnostica","se compara","se prioriza","se aprueba","se vigila"]},
         {
           "type": "exam",
           "text": "Trampas típicas: (1) «Cumplir **todos y cada uno** de los controles de ISO/IEC 27001» **nunca** es una fase del PDS: los controles se seleccionan según riesgos y alcance. (2) En la fase de **definición del plan de acción** se define alcance, se estiman recursos y se prioriza; **implementar controles no** pertenece a esa fase, sino a la ejecución (desarrollo). (3) Con presupuesto limitado, se prioriza por **riesgos evaluados, estado actual y objetivos de negocio**, no por preferencias del proveedor o descuentos."
@@ -411,6 +413,7 @@
           "title": "Caso práctico",
           "text": "El servicio de correo de una empresa no es «el servidor de correo». Incluye al equipo que lo administra, el procedimiento para dar de alta a un empleado nuevo, la mesa de ayuda que atiende incidencias y el compromiso de que funcione el 99 % del tiempo. Un servicio de TI tampoco tiene por qué entregar un producto físico: un soporte técnico o una consultoría también son servicios."
         },
+        {"type":"diagram","kind":"hub","title":"Las tres piezas de un servicio de TI","caption":"Si falta cualquiera de las tres, el cliente se queda sin servicio.","hub":{"icon":"cloud-computing","title":"Servicio de TI","text":"Apoya los procesos de negocio del cliente","tone":"accent","chips":[{"icon":"writing-sign","text":"Definido en un SLA"}]},"members":[{"icon":"users","title":"Personas","text":"Quien lo administra y atiende"},{"icon":"settings","title":"Procesos","text":"Procedimientos, como dar de alta"},{"icon":"server","title":"Tecnología","text":"Equipos y aplicaciones"}],"direction":"in","arrow":"lo forman"},
         {
           "type": "exam",
           "text": "Si una opción dice que un servicio es «solo infraestructura y aplicaciones, sin intervención humana», «solo el contrato y la factura» o que la responsabilidad «acaba al entregar el hardware», es falsa: faltan personas y procesos."
@@ -1419,6 +1422,16 @@
         "b": "Correcta. Misión = por qué importa la seguridad; visión = a dónde quiere llegar.",
         "c": "Incorrecta. Son conceptos distintos, con función y ritmo de revisión diferentes.",
         "d": "Incorrecta. Ni la misión es un plan ni la visión un presupuesto."
+      }
+    },
+    "gobierno-t02-c05": {
+      "section": "plan-director",
+      "reasoning": "El Plan Director de Seguridad es la hoja de ruta para aplicar la estrategia de seguridad en un plazo de 2 a 5 años. El temario dice que determina tres cosas: el **estado actual** de la seguridad y de la gestión de riesgos, el **resultado deseado** y el **plan de proyectos** para llegar. Además, el modelo de seguridad debe tener en cuenta la **gestión de los riesgos**: conocerlos y saber cómo tratarlos. Esa foto del punto de partida son, precisamente, los niveles de riesgo y de control actualizados. Los dominios de la ISO 27001, el organigrama o el SOA son documentos que pueden existir, pero no son lo que el temario pide como base. Trampa típica: elegir un documento de la ISO 27001 que suena oficial en lugar del análisis de situación.",
+      "options": {
+        "a": "Incorrecta. Los dominios de controles de la ISO 27001 son una referencia de buenas prácticas, no el insumo clave. El PDS se apoya en el estado actual de riesgos de la propia empresa, no en el índice de una norma.",
+        "b": "Incorrecta. El organigrama describe quién manda sobre quién. Puede ser útil para asignar responsables, pero no es lo que el temario señala para definir el plan.",
+        "c": "Correcta. El PDS arranca del **estado actual** de la seguridad y de la gestión de riesgos. Los niveles de riesgo y de control actualizados son esa foto de partida que permite fijar objetivos y proyectos.",
+        "d": "Incorrecta. El SOA (Statement of Applicability, declaración de aplicabilidad) es un documento del SGSI de la ISO 27001 que dice qué controles aplican. No es lo que el temario pide para el Plan Director."
       }
     }
   }

@@ -336,6 +336,7 @@
           "title": "Caso práctico",
           "text": "Un banco necesita que, si alguien envía un ataque conocido contra su web, la conexión se corte en el acto. Un IDS en modo escucha solo lo avisaría cuando el paquete ya ha llegado. La solución es un IPS en línea, colocado entre el router de Internet y la red de servidores."
         },
+        {"type":"diagram","kind":"tree","title":"¿IDS o IPS?","caption":"Detectan igual (firmas o anomalías); cambia lo que pueden hacer.","question":{"icon":"help-circle","title":"¿Hay que cortar el ataque en el acto?"},"branches":[{"label":"Sí","result":{"icon":"shield-x","title":"IPS en modo en línea","text":"En medio del camino: puede bloquear","tone":"good"}},{"label":"No, basta avisar","result":{"icon":"eye","title":"IDS en modo escucha","text":"A un lado, mira una copia","tone":"accent"}}]},
         {
           "type": "exam",
           "text": "En las preguntas de «los IDS y los IPS…» suele ser correcto a la vez que se parecen en las técnicas de recopilación y que se diferencian en las acciones: por eso la respuesta habitual es «A y B son correctas». En los casos prácticos, si hay que **cortar** conexiones de inmediato, la respuesta es el IPS en línea; un detector pasivo conectado a una copia del tráfico, un analizador de registros o un honeypot no están en el camino y no pueden cortar nada."
@@ -715,6 +716,7 @@
           ],
           "title": "Cómo funciona"
         },
+        {"type":"diagram","kind":"tree","title":"Padded cell: adónde va cada tráfico","question":{"icon":"radar","title":"¿El IDS lo marca como malicioso?","text":"Examina todo el tráfico que llega"},"branches":[{"label":"No","result":{"icon":"server","title":"Servidores reales","text":"El tráfico normal sigue su camino","tone":"good"}},{"label":"Sí","result":{"icon":"lock-square-rounded","title":"Padded cell","text":"Aislado y registrado sin notarlo","tone":"warn"}}]},
         {
           "type": "term",
           "term": "Bait and Switch («cebo y cambiazo»)",
@@ -820,6 +822,7 @@
           "type": "analogy",
           "text": "Es como el correo de una empresa: el cartero recoge las cartas (sniffer), en recepción las abren y ordenan (preprocesador), el responsable de seguridad las lee y decide si alguna es sospechosa (motor de detección) y la secretaria archiva o da aviso (salida)."
         },
+        {"type":"diagram","kind":"flow","title":"La cadena de Snort: del cable a la alerta","caption":"En clase se añadió un decodificador entre la captura y el preprocesador.","items":[{"icon":"antenna","title":"Sniffer","text":"Captura los paquetes"},{"icon":"adjustments","title":"Preprocesador","text":"Los prepara y formatea"},{"icon":"cpu","title":"Motor de detección","text":"Compara con las reglas y decide","tone":"accent"},{"icon":"bell","title":"Salida","text":"Escribe la alerta o guarda"}],"links":["paquetes","listos para analizar","alerta o registro"]},
         {
           "type": "list",
           "title": "Matices de la clase sobre Snort",
@@ -1774,6 +1777,28 @@
         "c": "Incorrecta. Las reglas dinámicas se activan con otra regla de tipo activate; no tiene relación con las variables.",
         "d": "Correcta. Se cambia una vez la variable y todas las reglas que la usan se actualizan."
       }
+    },
+    "redes-t04-c05": {
+      "section": "dispositivos-ips",
+      "reasoning": "Un IPS (Intrusion Prevention System, sistema de prevención de intrusiones) no solo detecta ataques, también los bloquea. El tema presenta varios dispositivos con funciones de IPS. El **switch de nivel de aplicación** trabaja en la capa 7 y reparte carga entre servidores. El **IPS de host a nivel de aplicación** se instala en el servidor y funciona con perfiles y políticas de seguridad. El **conmutador híbrido** mezcla ambos: se instala como el primero y funciona mediante la definición de políticas de seguridad como el segundo, sabiendo qué servidores y aplicaciones protege. Su gran ventaja es que se configura importando los datos de un escáner de vulnerabilidades: en vez de escribir reglas a mano, le dices «esto es lo vulnerable, vigílalo». Eso es un avance en facilidad de configuración (A) y se basa en definir políticas (B). La trampa típica es pensar que solo una de las dos ventajas es cierta.",
+      "options": {
+        "a": "Incorrecta. Es cierta, porque poder configurarlo importando un escáner de vulnerabilidades simplifica su puesta en marcha, pero la B también lo es; la respuesta completa es la C.",
+        "b": "Incorrecta. Es cierta, porque funciona mediante la definición de políticas de seguridad, igual que un IPS de host a nivel de aplicación, pero la A también lo es; la opción completa es la C.",
+        "c": "Correcta. El conmutador híbrido funciona con políticas de seguridad y se configura fácilmente importando los resultados de un escáner de vulnerabilidades.",
+        "d": "Incorrecta. A y B describen ventajas que el tema atribuye al conmutador híbrido."
+      },
+      "doubt": "El tema habla de «definición de políticas de seguridad», no literalmente de «políticas de alto nivel». Se interpreta como equivalente, de ahí la C."
+    },
+    "redes-t04-c09": {
+      "section": "padded-cell",
+      "reasoning": "Un IDS (Intrusion Detection System, sistema de detección de intrusiones) vigila el tráfico y avisa cuando ve un ataque. La **padded cell**, o célula acolchada, es un sistema trampa: un entorno falso que parece real y donde el atacante «rebota» sin causar daño, como una habitación acolchada. El tema dice que funciona **con un sistema IDS**: cuando el IDS detecta tráfico malicioso, lo redirige hacia la padded cell sin que el atacante lo note. Un ejemplo es «Bait and Switch», que usa el IDS Snort en un equipo con al menos tres interfaces de red. Así, al detectar el ataque, el conjunto desencadena una acción preventiva: desviar al intruso lejos del servicio real y estudiar cómo actúa. La trampa típica es la opción D: el tema dice IDS, no IPS.",
+      "options": {
+        "a": "Incorrecta. La padded cell **simula** un entorno real; no tiene por qué ser un equipo físico. De hecho, su gracia es que sea un entorno controlado donde el atacante no pueda causar daño.",
+        "b": "Incorrecta. Funciona justo **en combinación** con un IDS, que es quien detecta el tráfico malicioso y lo redirige hacia ella. Sin ese detector no sabría a quién aislar.",
+        "c": "Correcta. Cuando se detecta un ataque, el tráfico del intruso se desvía a la célula de aislamiento: una acción preventiva que lo separa de los sistemas reales.",
+        "d": "Incorrecta. El tema la asocia a un **IDS** (por ejemplo, Snort en Bait and Switch), no a un IPS. Un IPS bloquearía el ataque; aquí se le deja seguir, pero en un entorno falso."
+      },
+      "doubt": "Un IDS que redirige el tráfico al detectar un ataque actúa, en la práctica, como un IPS, así que la D tiene cierta lógica. Se elige la C porque el temario habla expresamente de IDS y la detección seguida de redirección es la acción preventiva que describe."
     }
   }
 }

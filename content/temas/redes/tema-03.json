@@ -146,6 +146,7 @@
             ["Zona de gestión", "Servicios de administración y monitorización", "Se explica en el apartado siguiente"]
           ]
         },
+        {"type":"diagram","kind":"layers","title":"La diana de zonas: de fuera hacia el centro","caption":"Cuanto más al centro, más valioso y más controles que atravesar. La zona de gestión las cruza todas.","items":[{"icon":"world","title":"Internet","text":"Red pública, no confiable","tone":"bad"},{"icon":"server","title":"DMZ externa","text":"Sistemas expuestos a Internet"},{"icon":"users","title":"Zona empresarial","text":"Equipos de los usuarios finales"},{"icon":"server-cog","title":"DMZ interna","text":"Intermediarios hacia los datos sensibles"},{"icon":"database","title":"Zona restringida","text":"Sistemas críticos e información sensible","tone":"good"}]},
         {
           "type": "term",
           "term": "Extranet",
@@ -397,6 +398,7 @@
           "type": "p",
           "text": "**APP-6** obliga a que el **proxy esté interpuesto entre el cortafuegos externo y el interno**, en serie: Internet → cortafuegos externo → proxy → cortafuegos interno → red interior. Como el proxy está en medio del camino, una vulnerabilidad en el cortafuegos exterior **no da acceso directo** a la red interna. Por eso en APP-6 **se elimina el requisito de fabricantes distintos**."
         },
+        {"type":"diagram","kind":"flow","title":"APP-6: el camino obligado del tráfico","caption":"Si cae el cortafuegos externo, aún queda el proxy: por eso no exige fabricantes distintos.","items":[{"icon":"world","title":"Internet","tone":"bad"},{"icon":"flame","title":"Cortafuegos externo"},{"icon":"arrows-exchange","title":"Proxy","text":"Interpuesto en serie","tone":"accent"},{"icon":"flame","title":"Cortafuegos interno"},{"icon":"building","title":"Red interior","tone":"good"}],"links":["entra","solo hacia el proxy","reenvía","entrega"]},
         {
           "type": "table",
           "title": "APP-5 frente a APP-6",
@@ -466,6 +468,7 @@
           "title": "Caso práctico",
           "text": "Un laboratorio debe enviar sus mediciones a la red de la sede, pero nadie desde fuera debe poder mandarle órdenes. Un cortafuegos con regla de salida no basta (el cable sigue permitiendo la vuelta) y un proxy es bidireccional. La solución es un **diodo de datos**. En cambio, si dos ministerios con distinto nivel de clasificación deben intercambiar documentos revisando que no se cuele nada secreto, se usa una **pasarela de intercambio seguro**."
         },
+        {"type":"diagram","kind":"tree","title":"¿Pasarela de intercambio seguro o diodo de datos?","caption":"Ambos solo aparecen en APP-7, para redes clasificadas.","question":{"icon":"help-circle","title":"¿La información debe ir en los dos sentidos?"},"branches":[{"label":"Sí, controlada","result":{"icon":"arrows-exchange","title":"Pasarela de intercambio seguro","text":"Rompe protocolos y analiza el contenido","tone":"good"}},{"label":"No, solo uno","result":{"icon":"arrow-right","title":"Diodo de datos","text":"Sin canal físico de retorno","tone":"good"}}]},
         {
           "type": "exam",
           "text": "Sobre la pasarela, la trampa es «es obligado su uso en el ENS»: no lo es; solo se contempla en APP-7 para redes clasificadas, así que la correcta es únicamente la definición (interconectar redes con distintas políticas). Sobre el diodo, el test de UNIR da por buenas tanto la definición (flujo unidireccional por hardware) como «permite evitar fugas»: respuesta **A y B**. Si se pide qué arquitectura contempla intercambios entre niveles de clasificación distintos, es **APP-7**."
@@ -841,6 +844,26 @@
         "b": "Incorrecta. APP-1 es la más básica, con un único cortafuegos y sin mecanismos especiales.",
         "c": "Incorrecta. APP-2 solo tiene un proxy expuesto.",
         "d": "Incorrecta. La arquitectura simple no prevé intercambios entre niveles de clasificación."
+      }
+    },
+    "redes-t03-c08": {
+      "section": "app3-app4",
+      "reasoning": "Las arquitecturas APP proceden de la guía CCN-STIC-811 del ENS (Esquema Nacional de Seguridad). En la APP-4 se combinan cortafuegos y **proxy** (intermediario): el proxy se coloca en la **DMZ** (zona desmilitarizada, la red intermedia entre Internet y la red interna) y el cortafuegos controla el tráfico entre las redes. El tema enumera los flujos permitidos: entre la red interior y el proxy, y entre el proxy e Internet. Lo que no debe autorizarse es que un paquete vaya de Internet a la intranet sin atravesar el proxy. Piensa en un intérprete en una reunión: tú hablas con él y él con el otro, pero nunca habláis directamente. Si A y B describen cada uno de los tramos permitidos, la opción completa es la C. La trampa típica es quedarse con un solo tramo.",
+      "options": {
+        "a": "Incorrecta. El tramo red interior–proxy está permitido, pero no es el único: también lo está el tramo proxy–Internet, así que la respuesta completa es la C.",
+        "b": "Incorrecta. El tramo proxy–Internet está permitido, pero falta el tramo red interior–proxy; la opción que recoge ambos es la C.",
+        "c": "Correcta. En la APP-4 se permiten los dos tramos que pasan por el intermediario: red interior–proxy y proxy–Internet.",
+        "d": "Incorrecta. A y B son ciertas. Lo único prohibido en APP-4 es la comunicación directa entre Internet y la intranet saltándose el proxy."
+      }
+    },
+    "redes-t03-c10": {
+      "section": "app7-pasarela-diodo",
+      "reasoning": "El nombre viene del diodo electrónico, que deja pasar la corriente en un solo sentido. En redes, un diodo es un dispositivo que deja pasar datos solo en una dirección, y lo garantiza **físicamente**: no hay cable ni circuito de vuelta, de modo que ningún error de configuración puede abrir el sentido contrario. Aparece en el tema junto a la arquitectura APP-7, para conectar redes con distinto nivel de clasificación. Si la red clasificada solo puede **recibir** datos, ninguna información puede **salir** de ella por ese enlace. Eso es justo evitar fugas de información. Como la afirmación A (qué es) y la B (para qué sirve) son ciertas, la respuesta es la C. La trampa típica es elegir solo la A porque es la definición literal del temario.",
+      "options": {
+        "a": "Incorrecta. Es la definición del tema y es cierta, pero no es la única afirmación correcta: la B también lo es, así que la opción completa es la C.",
+        "b": "Incorrecta. Es cierta, porque al no haber canal de retorno la información de la red protegida no puede salir, pero la A también lo es; la respuesta completa es la C.",
+        "c": "Correcta. El diodo garantiza por hardware el flujo unidireccional y, gracias a ello, impide las fugas de información por el sentido contrario.",
+        "d": "Incorrecta. Tanto A como B son ciertas, así que no puede ser «ninguna»."
       }
     }
   }

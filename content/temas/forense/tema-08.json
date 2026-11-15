@@ -100,6 +100,7 @@
           "type": "p",
           "text": "Las dos tarjetas se extraen antes porque son soportes independientes que se pueden copiar con su propio lector, y porque así no se mezclan con la adquisición del terminal (que, como verás, altera el teléfono)."
         },
+        {"type":"diagram","kind":"flow","title":"Orden de adquisición de un móvil","caption":"Las tarjetas se copian aparte con su lector; adquirir el terminal altera el teléfono.","items":[{"icon":"id","title":"1. Tarjeta SIM","text":"La del operador: identifica al abonado"},{"icon":"device-floppy","title":"2. Tarjeta de memoria","text":"La microSD, solo si la hay"},{"icon":"device-mobile","title":"3. Memoria del terminal","text":"La fuente más rica","tone":"accent"}],"links":["después","después"]},
         {
           "type": "exam",
           "text": "La respuesta correcta incluye **las tres** fuentes: tarjeta del operador, tarjeta de memoria (si existe) y memoria del terminal. Las trampas omiten una de ellas: «tarjeta del operador y memoria del terminal» (falta la microSD) o «tarjeta de memoria y memoria del terminal» (falta la SIM)."
@@ -271,6 +272,7 @@
           "type": "p",
           "text": "Las dos más sencillas (backup del fabricante y Magnet ACQUIRE u otra herramienta para iOS) exigen **conocer el código de desbloqueo**. ADB y Custom Recovery, solo para Android, dan más información si se consigue acceso privilegiado, pero las mejoras continuas de seguridad las hacen cada vez más difíciles. Los métodos avanzados acceden al chip directamente, pero requieren conocimientos de electrónica y microsoldadura y suelen encargarse a empresas especializadas."
         },
+        {"type":"diagram","kind":"tree","title":"¿Qué vía uso para la memoria del terminal?","question":{"icon":"lock","title":"¿Conoces el código de desbloqueo?"},"branches":[{"label":"Sí","result":{"icon":"lock-open","title":"Backup del fabricante o Magnet ACQUIRE","text":"Lo más sencillo; en iOS, también Dr. Fone","tone":"good"}},{"label":"No","tree":{"question":{"icon":"device-mobile","title":"¿Es Android y logras acceso privilegiado?"},"branches":[{"label":"Sí","result":{"icon":"terminal-2","title":"ADB o Custom Recovery","text":"Root o bootloader desbloqueado, con autorización","tone":"warn"}},{"label":"No","result":{"icon":"cpu","title":"JTAG, Direct eMMC o Chip Off","text":"Último recurso, con auto judicial","tone":"bad"}}]}}]},
         {
           "type": "exam",
           "text": "«Si tengo el patrón, ¿cuál es la opción más sencilla?» → una herramienta como **Magnet ACQUIRE** (o el backup del fabricante). Trampas: Chip Off (la más destructiva, solo cuando nada más funciona) y Custom Recovery (invasivo, para cuando **no** se tiene el código)."
@@ -542,6 +544,7 @@
           "title": "Caso práctico",
           "text": "Un teléfono rescatado de un incendio no enciende. Ni backup ni ADB son posibles. El perito pide al juzgado autorización para JTAG, Direct eMMC y Chip Off, explicando que puede perderse todo. Como la placa está dañada, acaba usando Chip Off: desuelda el chip y lo lee en un lector externo."
         },
+        {"type":"diagram","kind":"compare","title":"Métodos avanzados: de menos a más destructivo","caption":"Los tres son invasivos y necesitan un auto judicial que recoja su peligrosidad.","columns":[{"icon":"plug","title":"JTAG","items":["Usa los contactos de prueba de la placa","La menos lesiva","Muy lenta: 32 GB pueden tardar 24 h"]},{"icon":"link","title":"Direct eMMC","tone":"warn","items":["Conectores auxiliares de la placa","Habla con el chip sin pasar por la CPU","Más rápida que JTAG","Alto riesgo de dañar la placa"]},{"icon":"tool","title":"Chip Off","tone":"bad","items":["Se extrae físicamente el chip","Funciona cuando nada más puede","La más destructiva"]}]},
         {
           "type": "exam",
           "text": "«¿Cuál de estos **no** es un procedimiento avanzado: JTAG, Chip Off, Direct eMMC?» → **todos lo son**. «¿Qué distingue al Chip Off?» → **extrae físicamente el chip** para leerlo. «¿Qué debe incluir la decisión previa?» → **la técnica, sus riesgos y la autorización**; no vale garantizar la recuperación como sustituto de autorización ni omitir la intervención del informe."

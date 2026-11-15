@@ -305,6 +305,7 @@
           "type": "p",
           "text": "La elección depende de cuántos equipos externos deben acceder, cuántos servicios hay abiertos, etc. Con muchos servicios, la restrictiva cuesta más de mantener, pero sigue siendo la recomendada."
         },
+        {"type":"diagram","kind":"compare","title":"Política restrictiva frente a permisiva","columns":[{"icon":"lock","title":"Restrictiva","text":"Lista de invitados","tone":"good","items":["Se descarta lo no permitido","Las reglas abren excepciones","La más segura","Más difícil de mantener","Servicio nuevo: bloqueado"]},{"icon":"lock-open","title":"Permisiva","text":"Lista negra","tone":"warn","items":["Se acepta lo no prohibido","Las reglas cierran excepciones","Seguridad más baja","Más cómoda para los usuarios","Servicio nuevo: funciona sin revisar"]}]},
         {
           "type": "example",
           "title": "El servicio olvidado",
@@ -561,6 +562,7 @@
           "title": "Tres casos prácticos",
           "text": "1) El propio equipo con iptables es el servidor web y recibe una conexión al puerto 80: **INPUT**. 2) El equipo es el cortafuegos de la empresa y el servidor web es otra máquina detrás de él: los paquetes de Internet al servidor lo **atraviesan**, así que **FORWARD**. 3) El cortafuegos descarga actualizaciones de su sistema: los paquetes los crea un proceso local, así que **OUTPUT**."
         },
+        {"type":"diagram","kind":"tree","title":"¿Qué cadena uso para filtrar?","caption":"Para filtrar (tabla filter) solo existen estas tres cadenas.","question":{"icon":"help-circle","title":"¿Qué relación tiene el paquete conmigo?","text":"Para mí, desde mí o a través de mí"},"branches":[{"label":"Es para mí","result":{"icon":"door-enter","title":"INPUT","text":"Destino: el propio cortafuegos","tone":"good"}},{"label":"Sale de mí","result":{"icon":"door-exit","title":"OUTPUT","text":"Lo genera un proceso local","tone":"good"}},{"label":"Pasa por mí","result":{"icon":"arrows-exchange","title":"FORWARD","text":"Lo atraviesa hacia otro equipo","tone":"good"}}]},
         {
           "type": "steps",
           "title": "El orden de las tablas en el viaje del paquete (según la clase)",
@@ -626,6 +628,7 @@
           "title": "El orden importa",
           "text": "Regla 1: ACCEPT todo lo que vaya al puerto 22. Regla 2: DROP todo lo que venga de 203.0.113.5. Si esa IP intenta conectarse al puerto 22, **entra**: cumple la regla 1 y la regla 2 ya ni se mira. Para bloquearla habría que poner la DROP **antes**."
         },
+        {"type":"diagram","kind":"flow","title":"Cómo recorre un paquete las reglas de una cadena","caption":"Gana la primera coincidencia terminante (ACCEPT, DROP, REJECT); LOG registra y sigue.","items":[{"icon":"box","title":"Llega el paquete","text":"Entra en la cadena"},{"icon":"list-check","title":"Regla 1","text":"Si cumple, se aplica y acaba"},{"icon":"list-check","title":"Reglas 2, 3…","text":"Solo si no cumplió las anteriores"},{"icon":"shield","title":"Política por defecto","text":"Se fija con -P","tone":"accent"}],"links":["se compara en orden","si no cumple","si no cumple ninguna"]},
         {
           "type": "p",
           "text": "El tema afirma que, por seguridad, la política por defecto de la cadena se establece como **DROP**. Ojo en la práctica: en una instalación limpia de Linux las cadenas de iptables vienen con **ACCEPT** y es el administrador quien la cambia a DROP con -P para tener una política restrictiva."
@@ -1158,6 +1161,26 @@
         "b": "Incorrecta. La política por defecto solo afecta a lo que no coincide con ninguna regla; la DROP seguiría bloqueando.",
         "c": "Incorrecta. Reordenar reglas en todas las cadenas es innecesario y puede alterar otros comportamientos.",
         "d": "Correcta. Se borra la regla anterior (por ejemplo con -D) en vez de acumular reglas contrarias."
+      }
+    },
+    "redes-t02-c09": {
+      "section": "iptables-reglas",
+      "reasoning": "iptables es la herramienta de Linux para configurar el cortafuegos del núcleo. Las reglas se agrupan en **cadenas** (INPUT, OUTPUT, FORWARD…), y cada cadena es una lista ordenada. El tema explica que cada paquete se compara con las reglas una a una, en orden, hasta que cumple una y le afecta su acción (ACCEPT, DROP, REJECT…). Por eso **gana la primera coincidencia** y el orden es decisivo. Si el paquete no cumple ninguna regla, no se queda sin decisión: se le aplica la política por defecto de la cadena, que por seguridad suele ser DROP (descartar). No existe ningún mínimo de reglas que dependa de otra tabla. La trampa típica es pensar que «sin coincidencias no pasa nada» o que el orden da igual.",
+      "options": {
+        "a": "Incorrecta. Si ninguna regla coincide, se aplica la **política por defecto** de la cadena, que por seguridad suele ser DROP. Siempre hay una acción final.",
+        "b": "Incorrecta. No hay ningún número mínimo de reglas. Además, **filter** es el nombre de una **tabla** (la de filtrado), no de una cadena; cada cadena tiene las reglas que el administrador quiera.",
+        "c": "Correcta. Las reglas se evalúan en orden y la primera que coincide decide: se ejecuta su acción y las siguientes ya no se revisan para ese paquete.",
+        "d": "Incorrecta. El orden es **decisivo**: una regla ACCEPT colocada antes que una DROP deja pasar el paquete aunque la DROP también coincidiera."
+      }
+    },
+    "redes-t02-c10": {
+      "section": "iptables-cadenas",
+      "reasoning": "Imagina el cortafuegos como la garita de entrada a un polígono: hay paquetes que van a la propia garita (INPUT), paquetes que salen de la garita (OUTPUT) y paquetes que solo pasan por ella hacia una nave del polígono (FORWARD). El enunciado habla del servidor web **de mi red**, es decir, de un equipo interno situado detrás del cortafuegos. Los paquetes que llegan para él no van dirigidos al cortafuegos ni los genera el cortafuegos: lo cruzan, con el cortafuegos haciendo de router. Esa es la cadena **FORWARD** de la tabla filter. PREROUTING existe, pero pertenece a las tablas nat y mangle y actúa antes de decidir la ruta; no es la cadena de filtrado. La trampa típica es elegir INPUT porque el paquete «entra»: INPUT es solo para lo que va destinado al propio cortafuegos.",
+      "options": {
+        "a": "Incorrecta. OUTPUT filtra los paquetes **generados por el propio cortafuegos** (por ejemplo, si el cortafuegos hace una consulta DNS). Las peticiones de los clientes hacia el servidor web no salen de él.",
+        "b": "Correcta. FORWARD procesa los paquetes que **atraviesan** el cortafuegos hacia otro equipo, como el servidor web interno.",
+        "c": "Incorrecta. INPUT sería la cadena adecuada si el servidor web estuviera instalado **en el propio cortafuegos**. Aquí el servidor es otro equipo de la red.",
+        "d": "Incorrecta. PREROUTING actúa al llegar el paquete, **antes** de decidir su ruta, y se usa en las tablas nat y mangle (por ejemplo, para redirigir puertos). No forma parte de la tabla filter."
       }
     }
   }

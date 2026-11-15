@@ -74,10 +74,12 @@
           ],
           "title": "Las dos fases del esquema"
         },
+        {"type":"diagram","kind":"flow","title":"Fase 1, pre-análisis: preparar la evidencia","caption":"Seis pasos en este orden, casi iguales en todos los casos y muy automatizables.","items":[{"icon":"refresh","title":"1. Recuperar borrados","text":"Primero básica, después en bruto"},{"icon":"lock","title":"2. Cifrados","text":"Localizarlos y descifrarlos si se puede"},{"icon":"archive","title":"3. Descomprimir","text":"ZIP, RAR y elementos embebidos"},{"icon":"box","title":"4. Máquinas virtuales","text":"Software de virtualización y discos virtuales"},{"icon":"hash","title":"5. Hash de todo","text":"Filtrar conocidos y sospechosos"},{"icon":"file-code","title":"6. Firmas y extensiones","text":"Manda la firma, no la extensión"}]},
         {
           "type": "p",
           "text": "Una regla para no perderte: si el paso **prepara o filtra** datos (recuperar, descifrar, descomprimir, calcular hashes, comprobar firmas), es pre-análisis. Si **busca respuestas** (palabras clave, sistema operativo, comunicaciones, contenido de los archivos), es análisis."
         },
+        {"type":"diagram","kind":"flow","title":"Fase 2, análisis: responder a las preguntas del caso","caption":"Cuatro pasos, muy personalizados según el encargo. No existe fase de post-análisis.","items":[{"icon":"search","title":"1. Palabras clave","text":"Y archivos de interés (regex y reglas)"},{"icon":"settings","title":"2. Sistema operativo","text":"Versión, usuarios, programas, logs y dispositivos"},{"icon":"world","title":"3. Comunicaciones","text":"P2P/FTP, correo, navegadores y nube"},{"icon":"file-text","title":"4. Archivos relevantes","text":"Bases de datos y ofimáticos; especialista si hace falta"}]},
         {
           "type": "list",
           "title": "Cómo plantea el profesor este esquema",
@@ -418,6 +420,7 @@
           "term": "NSRL (National Software Reference Library)",
           "text": "Base de datos del NIST (National Institute of Standards and Technology, el instituto de normalización de EE. UU.) con el hash de unos **280 millones** de archivos de programas comerciales. Sirve para **descartar archivos lícitos**."
         },
+        {"type":"diagram","kind":"hub","title":"Contra qué se compara el hash de cada archivo","caption":"Siempre con el mismo algoritmo: un MD5 nunca coincide con un SHA-1.","hub":{"icon":"hash","title":"Hash de cada archivo","text":"Huella del contenido, no del nombre","tone":"accent"},"members":[{"icon":"shield-check","title":"Conocidos y legítimos","text":"NSRL: Windows, Office… se apartan","tone":"good"},{"icon":"bug","title":"Malware","text":"Hashes de archivos maliciosos","tone":"bad"},{"icon":"eye-off","title":"Contenido ilegal","text":"Se localiza sin verlo uno a uno","tone":"bad"},{"icon":"target","title":"Archivos del caso","text":"Por ejemplo, los documentos robados","tone":"warn"}],"direction":"out","arrow":"se compara con"},
         {
           "type": "p",
           "text": "Un requisito importantísimo: **usar el mismo algoritmo**. Un hash MD5 y un hash SHA-1 del mismo archivo son cadenas distintas; si tu base de datos tiene MD5 y tú calculas SHA-1, nunca encontrarás coincidencias."
@@ -1381,6 +1384,16 @@
         "b": "Incorrecta. No es un antivirus ni borra pruebas por sí mismo.",
         "c": "Incorrecta. La $MFT sigue siendo la estructura de NTFS; WSL no la sustituye.",
         "d": "Incorrecta. No cifra el volumen ni impide el análisis."
+      }
+    },
+    "forense-t06-c08": {
+      "section": "palabras-clave",
+      "reasoning": "En la fase de análisis, el forense busca palabras clave en las evidencias. Pero a veces no sabe la palabra exacta, sino su forma: «algo, una arroba, algo, un punto y un dominio» para un correo electrónico. Para eso existen las expresiones regulares (regex). El temario las define como una secuencia de caracteres que conforma un **patrón de búsqueda**, que se compara con un conjunto de caracteres más amplio para localizar coincidencias. Combinan caracteres normales con **metacaracteres**, símbolos con significado especial como [0-9] para «cualquier dígito». Sirven para encontrar correos, números de tarjeta de crédito y datos parecidos. La trampa está en las opciones casi idénticas: solo cambia la última palabra, y la del temario es «búsqueda».",
+      "options": {
+        "a": "Correcta. Es la definición del temario: una secuencia de caracteres que conforma un **patrón de búsqueda** para localizar coincidencias en un texto más amplio. Por ejemplo, un patrón que encuentra cualquier dirección de correo electrónico.",
+        "b": "Incorrecta. La expresión regular no es un patrón «de análisis»: no interpreta ni valora lo que encuentra, solo localiza coincidencias. El análisis lo hace después el forense con los resultados.",
+        "c": "Incorrecta. «Patrón de respuesta» no es un término del temario. La respuesta a incidentes es otra cosa: el conjunto de acciones para contener y recuperarse de un ataque.",
+        "d": "Incorrecta. Sí hay una opción correcta, la A, que reproduce la definición del temario."
       }
     }
   }

@@ -319,6 +319,7 @@
           "title": "Caso práctico",
           "text": "Un hospital quiere un WAF pero no puede tocar el direccionamiento IP de su red sin parar servicios críticos: elige el modo **bridge**. Una tienda online que quiere bloquear ataques y ocultar sus servidores pone **dos WAF en proxy inverso**. Un equipo de seguridad que solo quiere observar qué ataques recibe antes de decidir, monta uno **pasivo** con un network tap."
         },
+        {"type":"diagram","kind":"tree","title":"Qué modo de instalación de WAF elegir","caption":"El modo embebido (plugin en el servidor web) también bloquea, pero hay que vigilar el rendimiento.","question":{"icon":"shield","title":"¿El WAF debe bloquear ataques?"},"branches":[{"label":"No, solo observar","result":{"icon":"eye","title":"Pasivo","text":"Mira una copia con network tap","tone":"warn"}},{"label":"Sí","tree":{"question":{"icon":"settings","title":"¿Puedes cambiar la configuración IP de la red?"},"branches":[{"label":"Sí","result":{"icon":"server-2","title":"Proxy inverso","text":"El preferido; se ponen dos","tone":"good"}},{"label":"No","result":{"icon":"network","title":"Bridge (transparente)","text":"Como un switch sin dirección IP","tone":"good"}}]}}]},
         {
           "type": "exam",
           "text": "Asociaciones fijas: «solo detecta, no bloquea» → **pasivo**; «el más recomendable/deseable» → **proxy inverso**; «no cambia la configuración IP de la LAN» → **bridge**; «se puede instalar como proxy inverso, transparente o pasivo» → **todas**. En la pregunta de variantes (proxy inverso deseable, redundancia con dos WAF, definición de blacklist/whitelist) la respuesta es **todas las demás son correctas**. Trampa: «instrumenta el código dentro de la aplicación» describe RASP, no un proxy inverso."
@@ -1047,6 +1048,17 @@
         "c": "Incorrecta. La correlación de registros es precisamente detección.",
         "d": "Incorrecta. Los cortafuegos y el WAF son barreras previas, no solo recuperación."
       }
+    },
+    "sistemas-t08-c07": {
+      "section": "rasp",
+      "reasoning": "Se pide la afirmación falsa, así que hay que comprobar cada una. IAST (Interactive Application Security Testing, pruebas interactivas de seguridad) observa la aplicación desde dentro mientras funciona; ese contexto hace que genere pocos falsos positivos (A, verdadera). Al instrumentar la aplicación añade tiempo de cómputo, sobre todo si bloquea o sanea, de modo que suele afectar al rendimiento (C, verdadera). Según el tema, estas herramientas pueden limitarse a detectar e informar, bloquear el ataque o sanear la petición corrigiendo la entrada (D, verdadera). RASP, por su parte, intercepta las llamadas sensibles y bloquea peticiones maliciosas desde dentro: hace el trabajo de un WAF (Web Application Firewall, cortafuegos de aplicaciones web), pero en software y con visibilidad del código. Por eso B es la falsa. Ojo: en la versión del tema 7 la falsa era la del rendimiento; aquí las frases van negadas al revés.",
+      "options": {
+        "a": "Incorrecta. Es una afirmación verdadera: IAST analiza la aplicación en ejecución y con contexto interno, lo que reduce mucho los falsos positivos, es decir, las alarmas sobre fallos que no existen.",
+        "b": "Correcta. Es la afirmación falsa: RASP vigila la aplicación desde dentro y puede bloquear peticiones o cortar sesiones; en la práctica funciona como un cortafuegos de aplicaciones web de tipo software, con la ventaja de ver el código.",
+        "c": "Incorrecta. Es una afirmación verdadera: El temario advierte de que estas herramientas pueden disminuir el rendimiento y alargar el tiempo de respuesta, sobre todo cuando bloquean o sanean.",
+        "d": "Incorrecta. Es una afirmación verdadera: El tema describe tres acciones posibles tras detectar un ataque: generar un informe (detectar solamente), bloquear o sanear la petición maligna."
+      },
+      "doubt": "La opción D atribuye a IAST las tres acciones, aunque el temario asigna «informar» a IAST y «bloquear» o «sanear» a RASP dentro de la misma familia. Se toma como verdadera porque el tema presenta las tres acciones para esta categoría de herramientas, y la B contradice claramente el temario."
     }
   }
 }

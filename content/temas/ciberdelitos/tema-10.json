@@ -107,6 +107,7 @@
           "title": "Caso práctico",
           "text": "Lucía navega por un foro y encuentra a un usuario que vende datos de tarjetas robadas. Ella no es víctima: lo adecuado es una **comunicación** al formulario de la Guardia Civil con la URL del hilo, el nick del vendedor y una captura. En cambio, la empresa de Javier ha sufrido un ransomware y quiere, además, ejercer la acusación contra los autores y pedir diligencias: su abogado y su procurador presentarán una **querella** ante el juez de instrucción."
         },
+        {"type":"diagram","kind":"tree","title":"¿Comunicación, denuncia o querella?","caption":"Cuanto más te implicas en el proceso, más formalidades se te exigen.","question":{"icon":"help-circle","title":"¿Eres víctima del hecho?"},"branches":[{"label":"No, solo lo he visto","result":{"icon":"mail","title":"Comunicación","text":"Correo o formulario web de la policía","tone":"accent"}},{"label":"Sí","tree":{"question":{"icon":"scale","title":"¿Quieres ser parte acusadora?","text":"Impulsar la acusación y pedir diligencias"},"branches":[{"label":"No","result":{"icon":"file-text","title":"Denuncia","text":"Ante juez, fiscal o policía","tone":"accent"}},{"label":"Sí","result":{"icon":"gavel","title":"Querella","text":"Con abogado y procurador, ante el juez","tone":"accent"}}]}}]},
         {
           "type": "list",
           "title": "Lenguaje preciso (consejo de la profesora)",
@@ -398,6 +399,7 @@
           "type": "p",
           "text": "Las páginas 11 a 13 incluyen cuatro figuras (solicitud de autorización judicial, interceptación de comunicaciones, grabación de comunicaciones y registro remoto sobre equipos) cuyo contenido es solo gráfico; aquí se resume la idea que acompañan: cada medida requiere solicitud motivada y autorización del juez."
         },
+        {"type":"diagram","kind":"hub","title":"La autorización judicial y sus cuatro principios","caption":"Interceptar, acceder en remoto o grabar exige siempre resolución judicial.","hub":{"icon":"gavel","title":"Resolución judicial","text":"Obligatoria para las tres medidas","chips":[{"icon":"radar","text":"Interceptar comunicaciones"},{"icon":"device-laptop","text":"Acceso remoto a equipos"},{"icon":"users","text":"Grabar conversaciones"}]},"direction":"in","arrow":"debe cumplir","members":[{"icon":"target","title":"Especialidad","text":"¿Por qué delito concreto?"},{"icon":"clock","title":"Idoneidad","text":"¿Sobre qué y durante cuánto tiempo?"},{"icon":"scale","title":"Excepcionalidad","text":"¿Hay algo menos invasivo?"},{"icon":"alert-triangle","title":"Necesidad","text":"¿Sin ella se perjudica la investigación?"}]},
         {
           "type": "exam",
           "text": "Si te preguntan qué tienen en común interceptar comunicaciones, acceder en remoto a un equipo o grabar conversaciones, la respuesta es la **autorización judicial**. No confundas los principios: «no hay medida menos gravosa» es **excepcionalidad**; «un delito concreto» es **especialidad**."
@@ -729,6 +731,7 @@
           "title": "Dos pendrives gemelos",
           "text": "En un registro aparecen dos pendrives idénticos, sin número de serie legible. Se les asigna EV-007 y EV-008 con una etiqueta adhesiva no removible en la carcasa (no en el conector), se fotografían y se anota en la ficha de cada uno dónde estaba. Usar «el azul» como único identificador, escribir sobre el circuito o ponerles nombres provisionales intercambiables haría imposible saber luego cuál es cuál."
         },
+        {"type":"diagram","kind":"flow","title":"El recorrido de una evidencia digital","caption":"Todo se documenta de principio a fin: una mala manipulación puede dejarla inservible.","items":[{"icon":"search","title":"Identificación","text":"Física o lógica; lo más volátil primero"},{"icon":"device-floppy","title":"Recogida o adquisición","text":"Retirar el soporte o hacer imagen forense"},{"icon":"hash","title":"Verificación con hash","text":"La copia coincide bit a bit"},{"icon":"archive","title":"Preservación","text":"Cadena de custodia: accesos y traslados"},{"icon":"microscope","title":"Análisis","text":"Siempre sobre la copia, nunca el original","tone":"good"}],"links":["qué asegurar","copia","verificada","se analiza"]},
         {
           "type": "exam",
           "text": "La ficha lleva un **número único por evidencia** (no uno común para todas), el **lugar** donde se encontró y una descripción **detallada** (no general). No incluye la identidad del autor del delito. El análisis se hace **sobre copias**, y cada traslado se registra con responsables, fechas y motivo."
@@ -1218,6 +1221,48 @@
         "b": "Correcta. Falta la trazabilidad de una fase posterior y documentar solo el inicio no lo resuelve.",
         "c": "Incorrecta. El acta da fe de lo presenciado, no de actuaciones futuras no registradas.",
         "d": "Incorrecta. La presencia de un notario o testigo no hace irrelevante una alteración posterior."
+      }
+    },
+    "ciberdelitos-t10-c01": {
+      "section": "tres-vias",
+      "reasoning": "El temario distingue tres formas de avisar a las autoridades. La **comunicación** solo informa de un hecho que podría ser delito, para que la policía investigue de oficio; su forma más sencilla es un correo a las direcciones de atención al ciudadano de las policías o un formulario web. La **denuncia** pone los hechos en conocimiento de un juez, fiscal o policía, y el temario indica que exige la personación del denunciante, por lo que no se puede presentar de forma telemática. La **querella** es un escrito presentado por procurador y firmado por abogado ante el juez de instrucción, con el que el querellante se convierte en parte acusadora. Por tanto, la respuesta es la comunicación. La trampa es «cualquiera de ellas», que suena moderna pero contradice el temario.",
+      "options": {
+        "a": "Incorrecta. La **querella** es un escrito formal que se presenta por medio de procurador, firmado por abogado, ante el juez de instrucción. No se hace con un simple mensaje electrónico.",
+        "b": "Incorrecta. Según el temario, la **denuncia** exige que el denunciante, o su representante legal, se presente en persona y acredite su identidad.",
+        "c": "Correcta. La **comunicación** puede hacerse por correo electrónico o mediante los formularios web de la Guardia Civil o la Policía Nacional. Es la vía idónea para avisar de hechos vistos en Internet de los que no se es víctima.",
+        "d": "Incorrecta. No vale cualquiera: la querella y la denuncia tienen requisitos formales que, según el temario, impiden presentarlas con un simple mensaje electrónico."
+      },
+      "doubt": "El temario afirma que la denuncia no puede presentarse de forma telemática. En la práctica existen vías policiales de denuncia por Internet para algunos hechos, así que esa afirmación puede estar desfasada; para el test se sigue el temario."
+    },
+    "ciberdelitos-t10-c02": {
+      "section": "por-que-distinto",
+      "reasoning": "Denunciar un ciberdelito es más difícil que denunciar un robo en la calle, porque quien lo lee puede no entender cómo se cometió. Por eso el temario destaca como primera característica la necesidad de describir todo lo ocurrido **de manera detallada** y con un **lenguaje adecuado para personas sin formación técnica**. Las opciones A y D van en contra: piden generalidad o limitar la información. La C recoge el detalle, que además es lo que la opción A niega directamente. La B también es cierta, porque recoge la segunda mitad de la misma frase del temario. Se elige C porque es la que contrasta con la opción A, pero conviene recordar las dos ideas juntas: detalle y lenguaje comprensible.",
+      "options": {
+        "a": "Incorrecta. Una descripción «general» es justo lo que se debe evitar. El temario pide un relato detallado y cronológico de todos los elementos relacionados con el hecho.",
+        "b": "Incorrecta. Lo que dice es cierto: el lenguaje debe ser comprensible para personas sin formación técnica. Pero es la segunda mitad de la pauta, y la clave elegida es el detalle del relato.",
+        "c": "Correcta. El temario exige **describir lo ocurrido de manera detallada**, porque en un ciberdelito no es fácil entender cómo se produjo ni qué consecuencias tuvo.",
+        "d": "Incorrecta. Se debe aportar más que el hecho: indicios, registros (logs), capturas, cabeceras de correos y todo lo que se sepa del autor."
+      },
+      "doubt": "El temario dice en la misma frase que hay que describir los hechos «de manera detallada y con un lenguaje adecuado para personas sin formación técnica», así que B y C son ciertas. Se elige C porque es la contraria directa de la opción A; la clave oficial podría ser B."
+    },
+    "ciberdelitos-t10-c04": {
+      "section": "plazo-forma",
+      "reasoning": "El temario da varias pautas para que una denuncia por ciberdelito tenga éxito. **Plazo**: presentarla cuanto antes, porque los operadores solo están obligados a conservar los datos de las comunicaciones durante doce meses (Ley 25/2007). **Forma**: es mejor llevarla ya escrita, pero no es obligatorio. **Redacción**: conviene hacerla entre el responsable técnico, que sabe qué pasó, y el abogado, que sabe explicarlo en términos jurídicos. Y el **objetivo final** es que el juez instructor y el resto de actores jurídicos y policiales entiendan lo ocurrido. Esa es la opción D. La trampa está en palabras como «obligatorio», «únicamente» o «sin que afecte», que convierten un consejo en una regla falsa.",
+      "options": {
+        "a": "Incorrecta. El tiempo sí afecta: cuanto más se tarda, menos margen queda para pedir datos a los operadores, que solo deben conservarlos doce meses.",
+        "b": "Incorrecta. Presentarla por escrito es **recomendable**, no obligatorio. La denuncia también puede hacerse de palabra ante el funcionario.",
+        "c": "Incorrecta. Se aconseja redactarla **conjuntamente** entre el responsable técnico y el abogado o responsable jurídico, no solo por el técnico.",
+        "d": "Correcta. El objetivo final es que lo expuesto lo **comprendan todos los actores jurídicos y policiales** que intervengan en el proceso."
+      }
+    },
+    "ciberdelitos-t10-c10": {
+      "section": "preservacion-custodia",
+      "reasoning": "La **cadena de custodia** es el registro que demuestra que una evidencia no se ha manipulado desde que se encontró hasta que llega al juez. El temario enumera lo que debe constar para cada evidencia: un **número de identificación único**, el **lugar donde se encontraba** al identificarla, la fecha y hora, una **descripción detallada** (tipo, marca, modelo, número de serie), dónde se almacena y quién es responsable, quién accede y los traslados. Con esa lista se descarta cada opción: el número debe ser único, no común; la descripción debe ser detallada, no general; y la identidad del autor no forma parte de la documentación de la evidencia. Queda el lugar. La trampa está en los adjetivos: «común» frente a «único» y «general» frente a «detallada».",
+      "options": {
+        "a": "Incorrecta. La documentación describe la evidencia y lo que se hace con ella, no al autor del delito, que muchas veces ni siquiera se conoce al recogerla.",
+        "b": "Incorrecta. El número debe ser **único para cada evidencia**. Un número común para todos los dispositivos haría imposible distinguirlos y rompería la cadena de custodia.",
+        "c": "Correcta. El temario incluye expresamente el **lugar donde se encontraba** la evidencia en el momento de identificarla como potencial evidencia.",
+        "d": "Incorrecta. No basta con una descripción general: el temario exige una **descripción detallada** (tipo, marca, modelo, número de serie) para individualizar cada dispositivo."
       }
     }
   }
