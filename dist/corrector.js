@@ -38,7 +38,7 @@ export async function verifyKey() {
     throw Error('No se ha podido comprobar la key ahora mismo; se ha guardado igualmente.');
   }
 }
-async function client() {
+export async function client() {
   if (!hasKey()) throw Error('Falta la API key.');
   sdk ||= import('./vendor/anthropic-sdk-1.8.0.js');
   const { Anthropic } = await sdk;

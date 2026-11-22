@@ -1,0 +1,88 @@
+/* Chat «Pregunta a Claude» */
+.ai-dock svg,.ai-panel svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.ai-launch{display:flex;flex-direction:column;justify-content:center;align-items:center;flex:1;min-height:54px;gap:3px;border:0;border-radius:var(--radius-control);background:none;font-size:10px;font-weight:600;color:var(--color-muted)}
+.ai-launch svg{width:22px;height:22px;stroke-width:1.6}
+.ai-launch:hover{background:var(--color-background)}
+.ai-launch[aria-expanded=true]{background:var(--color-tint);color:var(--color-primary)}
+.ai-dock{display:flex;flex:1}
+.ai-edge{display:none}
+.ai-ico-desk{display:none}
+.ai-panel{display:none;flex-direction:column;min-height:0;background:var(--color-surface);color:var(--color-text)}
+@media(max-width:1023px){body.ai-open>.ai-panel{display:flex;position:fixed;left:0;right:0;bottom:0;height:min(88dvh,760px);z-index:45;border-top:1px solid var(--color-border);border-radius:var(--radius-panel) var(--radius-panel) 0 0;box-shadow:0 -10px 40px rgba(16,63,79,.25);padding-bottom:env(safe-area-inset-bottom)}}
+@media(max-width:1023px){body.ai-open .pomo{display:none}}
+.ai-head{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 12px 8px 14px;border-bottom:1px solid var(--color-border)}
+.ai-head h2{display:flex;align-items:center;gap:7px;font:700 18px/1.1 var(--font-display);letter-spacing:.2px;color:var(--color-primary)}
+.ai-head h2{white-space:nowrap}
+.ai-head h2 svg{color:var(--color-secondary)}
+.ai-tools{display:flex;gap:2px}
+.ai-tools button{display:grid;place-items:center;width:34px;height:34px;border:0;border-radius:6px;background:none;color:var(--color-muted)}
+.ai-tools button:hover,.ai-tools button[aria-pressed=true]{background:var(--color-tint);color:var(--color-primary)}
+.ai-log{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;padding:12px 14px;display:flex;flex-direction:column;gap:10px;font-size:13px;line-height:1.6}
+.ai-empty{margin:auto 0;color:var(--color-muted);font-size:12.5px;text-align:center;padding:0 6px}
+.ai-empty b{color:var(--color-text)}
+.ai-msg{max-width:100%;overflow-wrap:anywhere}
+.ai-msg p+p,.ai-msg p+ul,.ai-msg p+ol,.ai-msg ul+p,.ai-msg ol+p{margin-top:8px}
+.ai-msg ul,.ai-msg ol{margin:6px 0 0;padding-left:18px}
+.ai-msg li+li{margin-top:3px}
+.ai-msg code{font:12px var(--font-mono);background:var(--color-background);padding:1px 4px;border-radius:3px}
+.ai-msg pre{margin:8px 0 0;padding:8px 10px;background:var(--color-background);border-radius:6px;overflow-x:auto}
+.ai-msg pre code{background:none;padding:0}
+.ai-msg.is-user{align-self:flex-end;max-width:92%;padding:8px 11px;border-radius:12px 12px 3px 12px;background:var(--color-primary);color:#fff}
+.ai-msg.is-user blockquote{margin:0 0 6px;padding:5px 8px;border-left:3px solid var(--color-accent);background:rgba(255,255,255,.1);border-radius:3px;font-size:12px;white-space:pre-wrap;display:-webkit-box;-webkit-line-clamp:6;-webkit-box-orient:vertical;overflow:hidden}
+.ai-msg.is-user blockquote span,.ai-ctx-tag{display:block;font-size:10.5px;font-weight:700;opacity:.8;margin-bottom:2px}
+.ai-msg.is-user p{white-space:pre-wrap}
+.ai-msg.is-bot{padding:2px 0}
+.ai-msg.is-error{padding:8px 10px;border:1px solid var(--color-danger);border-radius:6px;color:var(--color-danger)}
+.ai-typing{display:inline-flex;gap:4px;padding:6px 0}
+.ai-typing i{width:6px;height:6px;border-radius:50%;background:var(--color-secondary);animation:ai-dot 1s infinite ease-in-out}
+.ai-typing i:nth-child(2){animation-delay:.15s}.ai-typing i:nth-child(3){animation-delay:.3s}
+@keyframes ai-dot{0%,80%,100%{opacity:.25;transform:translateY(0)}40%{opacity:1;transform:translateY(-3px)}}
+.ai-setup{padding:12px 14px;border-top:1px solid var(--color-border);overflow-y:auto;max-height:70%}
+.ai-setup-form{display:grid;gap:9px;font-size:12px;line-height:1.6;color:var(--color-muted)}
+.ai-setup-form b,.ai-setup-form code{color:var(--color-text)}
+.ai-setup-form label{display:grid;gap:4px;font-weight:700;color:var(--color-text)}
+.ai-setup-form input,.ai-setup-form select{width:100%;min-height:40px;padding:8px 10px;border:1px solid var(--color-border);border-radius:var(--radius-control);background:var(--color-surface);font:13px var(--font-body)}
+.ai-setup-msg:empty{display:none}.ai-setup-msg.is-bad{color:var(--color-danger)}
+.ai-setup-actions{display:flex;flex-wrap:wrap;gap:6px}.ai-setup-actions .btn{min-height:38px;padding:8px 12px}
+.ai-form{display:grid;gap:6px;padding:8px 12px 12px;border-top:1px solid var(--color-border)}
+.ai-quote{display:flex;gap:6px;align-items:flex-start;padding:6px 8px;border-left:3px solid var(--color-secondary);background:var(--color-tint);border-radius:3px;font-size:12px}
+.ai-quote>div{flex:1;min-width:0}
+.ai-quote span{display:block;font-size:10.5px;font-weight:700;color:var(--color-secondary)}
+.ai-quote p{white-space:pre-wrap;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.ai-quote button{border:0;background:none;font-size:18px;line-height:1;color:var(--color-muted);padding:0 4px}
+.ai-reading{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--color-muted);cursor:pointer;min-width:0}
+.ai-reading span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ai-reading input{flex:0 0 auto;width:15px;height:15px;margin:0;accent-color:var(--color-secondary)}
+.ai-input-row{display:flex;gap:6px;align-items:flex-end}
+.ai-form textarea{flex:1;min-width:0;min-height:40px;max-height:160px;resize:none;padding:9px 10px;border:1px solid var(--color-border);border-radius:var(--radius-control);background:var(--color-surface);font:13px/1.5 var(--font-body);color:var(--color-text)}
+.ai-form textarea:focus-visible{outline:2px solid var(--color-focus);outline-offset:1px}
+.ai-send{min-height:40px;padding:0 12px;border:0;border-radius:var(--radius-control);background:var(--color-primary);color:#fff;font:700 12px var(--font-body)}
+.ai-send:hover{background:var(--color-secondary)}.ai-send.is-stop{background:var(--color-danger)}
+.ai-ask-sel{position:fixed;left:0;top:0;z-index:60;display:inline-flex;align-items:center;gap:6px;min-height:36px;padding:0 12px;border:0;border-radius:999px;background:var(--color-primary);color:#fff;font:700 12px var(--font-body);box-shadow:0 6px 18px rgba(16,63,79,.3)}
+.ai-ask-sel svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linejoin:round}
+.ai-ask-sel:hover{background:var(--color-secondary)}
+@media(min-width:1024px){
+  /* Lanzador en el menú izquierdo, con el mismo aspecto que los demás enlaces */
+  .ai-dock{flex:0 0 auto}
+  .ai-launch{flex:0 0 auto;flex-direction:row;justify-content:flex-start;gap:12px;width:100%;min-height:44px;padding:0 14px;font-size:13px}
+  .ai-ico-desk{display:inline}.ai-ico-mob{display:none}
+  /* Columna derecha: ocupa el sitio de las preguntas y empuja el contenido, nunca lo tapa */
+  :root{--ai-col:clamp(340px,27vw,440px)}
+  body.ai-open>.ai-panel{display:flex;position:fixed;top:61px;right:0;bottom:0;width:var(--ai-col);z-index:15;border-left:1px solid var(--color-border)}
+  body.ai-open main,body.ai-open footer,body.ai-open .global-notice{margin-right:var(--ai-col)}
+  body.ai-open .tema-section-questions{display:none}
+  body.ai-open .tema-section{grid-template-columns:minmax(0,1fr)}
+  body.ai-open .pomo{right:calc(var(--ai-col) + 28px)}
+  /* Pestaña para volver a abrirlo cuando está replegado */
+  .ai-edge{position:fixed;right:0;top:50%;z-index:15;display:flex;flex-direction:column;align-items:center;gap:6px;padding:12px 7px;border:1px solid var(--color-border);border-right:0;border-radius:10px 0 0 10px;background:var(--color-surface);color:var(--color-primary);font:700 12px var(--font-body);box-shadow:-4px 4px 16px rgba(16,63,79,.12);transform:translateY(-50%)}
+  .ai-edge span{writing-mode:vertical-rl;transform:rotate(180deg);letter-spacing:.3px}
+  .ai-edge svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+  .ai-edge:hover{background:var(--color-tint)}
+  body.ai-open .ai-edge{display:none}
+  .in-exam .ai-edge{display:none}
+}
+@media(prefers-reduced-motion:reduce){.ai-typing i{animation:none}}
+@media(forced-colors:active){.ai-msg.is-user,.ai-ask-sel,.ai-send{border:1px solid CanvasText}}
+/* Durante un simulacro el chat no aparece (sería hacer trampa) */
+body.in-exam>.ai-panel,body.in-exam .ai-ask-sel{display:none!important}
+@media(min-width:1024px){body.in-exam.ai-open main,body.in-exam.ai-open footer{margin-right:0}}

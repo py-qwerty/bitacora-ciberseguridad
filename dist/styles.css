@@ -393,6 +393,7 @@ a.page-ref:hover{color:var(--color-primary)}
 
 /* Preguntas laterales del tema: limpias e interactivas (se elige y se corrige al instante) */
 .tema-section-questions{padding:4px 0 0;border:0;border-top:2px solid var(--color-primary);border-radius:0;background:none;overflow:visible}
+@media(min-width:1024px){.tema-section-questions{overflow-y:auto;overscroll-behavior:contain;padding-right:6px}}
 .tema-section-questions h3{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin:0;padding:12px 0 2px;background:none;font:700 20px/1.1 var(--font-display);letter-spacing:.2px;color:var(--color-primary)}
 .tema-section-questions h3 .tq-count{min-width:0;padding:0;border:0;background:none;font:700 17px/1 var(--font-display);color:var(--color-secondary)}
 .tema-section-questions .small{margin:0 0 6px;padding:0;border:0;font-size:12px;color:var(--color-muted)}
