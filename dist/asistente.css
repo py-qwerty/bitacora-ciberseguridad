@@ -86,3 +86,8 @@
 /* Durante un simulacro el chat no aparece (sería hacer trampa) */
 body.in-exam>.ai-panel,body.in-exam .ai-ask-sel{display:none!important}
 @media(min-width:1024px){body.in-exam.ai-open main,body.in-exam.ai-open footer{margin-right:0}}
+.ai-model-note{margin-top:10px;font-size:11px}
+.ai-opts{display:flex;align-items:center;justify-content:space-between;gap:8px;min-width:0}
+.ai-opts .ai-reading{flex:1}
+.ai-model-pick select{width:auto;min-height:28px;padding:2px 22px 2px 8px;border:1px solid var(--color-border);border-radius:6px;background-color:var(--color-surface);font:600 11px var(--font-body);color:var(--color-secondary);cursor:pointer}
+.ai-model-pick select:hover{border-color:var(--color-secondary)}

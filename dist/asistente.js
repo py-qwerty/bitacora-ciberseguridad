@@ -4,11 +4,18 @@
 // - Al subrayar texto de la página aparece «Preguntar a Claude», que lo adjunta como cita.
 // Usa la misma API key de Console que el corrector (guardada solo en este navegador) y
 // habla directamente con la API de Anthropic, sin servidor intermedio.
-import { hasKey, MODELS, currentModel, maskedKey, saveSettings, clearKey, verifyKey, client } from './corrector.js?v=3';
+import { hasKey, maskedKey, saveSettings, clearKey, verifyKey, client } from './corrector.js?v=3';
 
 const CHAT = 'bitacora-ciber:v1:ai:chat';
 const OPEN = 'bitacora-ciber:v1:ai:open';
 const MAX_SAVED = 40;
+// El chat tiene su propio modelo (independiente del corrector). Haiku por defecto: rápido y barato para dudas.
+const CHAT_MODEL = 'bitacora-ciber:v1:ai:chat-model';
+const CHAT_MODELS = [
+  { id: 'claude-haiku-5-5', label: 'Claude Haiku 5.5 · rápido y el más barato' },
+  { id: 'claude-sonnet-5-5', label: 'Claude Sonnet 5.5 · equilibrado' },
+  { id: 'claude-opus-5-5', label: 'Claude Opus 5.5 · el más preciso y caro' }
+];
 const safeGet = k => { try { return localStorage.getItem(k) || ''; } catch { return ''; } };
 const safeSet = (k, v) => { try { if (v) localStorage.setItem(k, v); else localStorage.removeItem(k); } catch { /* sin almacenamiento */ } };
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -31,6 +38,7 @@ function load() {
   try { const v = JSON.parse(safeGet(CHAT) || '[]'); return Array.isArray(v) ? v.filter(m => m && (m.role === 'user' || m.role === 'assistant') && typeof m.text === 'string') : []; }
   catch { return []; }
 }
+const chatModel = () => CHAT_MODELS.some(m => m.id === safeGet(CHAT_MODEL)) ? safeGet(CHAT_MODEL) : CHAT_MODELS[0].id;
 const save = () => safeSet(CHAT, msgs.length ? JSON.stringify(msgs.slice(-MAX_SAVED)) : '');
 
 // Markdown mínimo y seguro (se escapa todo antes de dar formato).
@@ -65,7 +73,7 @@ function bubble(m) {
 
 function renderLog() {
   if (!msgs.length) {
-    log.innerHTML = `<div class="ai-empty"><p><b>¿Tienes una duda?</b></p><p>Escríbela aquí o <b>subraya</b> un trozo de la página y pulsa «Preguntar a Claude».</p></div>`;
+    log.innerHTML = `<div class="ai-empty"><p><b>¿Tienes una duda?</b></p><p>Escríbela aquí o <b>subraya</b> un trozo de la página y pulsa «Preguntar a Claude».</p><p class="ai-model-note">Puedes cambiar de modelo abajo, junto al cuadro de texto: Haiku es el más rápido y barato; Opus, el más preciso.</p></div>`;
     return;
   }
   log.innerHTML = msgs.map(bubble).join('');
@@ -79,7 +87,7 @@ function renderSetup(open) {
   if (setupBox.hidden) return;
   setupBox.innerHTML = `<form class="ai-setup-form"><p>${need ? 'Para chatear, pega tu <b>API key de Console</b>' : `Conectado con <code>${esc(maskedKey())}</code>. Puedes cambiar la key o el modelo`} (empieza por <code>sk-ant-</code>; se crea en platform.claude.com → API keys). Se guarda <b>solo en este navegador</b> y cada mensaje se cobra en tu cuenta de Console.</p>
 <label>API key<input type="password" name="key" autocomplete="off" spellcheck="false" placeholder="${need ? 'sk-ant-api03-…' : 'Déjalo vacío para mantener la actual'}"></label>
-<label>Modelo<select name="model">${MODELS.map(m => `<option value="${m.id}"${m.id === currentModel() ? ' selected' : ''}>${esc(m.label.split(' · ')[0])}</option>`).join('')}</select></label>
+<label>Modelo del chat<select name="model">${CHAT_MODELS.map(m => `<option value="${m.id}"${m.id === chatModel() ? ' selected' : ''}>${esc(m.label)}</option>`).join('')}</select></label>
 <p class="ai-setup-msg" role="status"></p>
 <div class="ai-setup-actions"><button type="submit" class="btn">Guardar</button>${need ? '' : '<button type="button" class="btn secondary" data-ai="forget">Borrar key</button><button type="button" class="btn text" data-ai="close-setup">Cerrar</button>'}</div></form>`;
 }
@@ -183,7 +191,7 @@ async function send(text) {
     const c = await client(); Anthropic = c.Anthropic;
     const history = apiMessages(reply).slice(-30);
     while (history.length && history[0].role !== 'user') history.shift();
-    busy = await c.api.messages.create({ model: currentModel(), max_tokens: 4000, system: systemBlocks(), messages: history, stream: true });
+    busy = await c.api.messages.create({ model: chatModel(), max_tokens: 4000, system: systemBlocks(), messages: history, stream: true });
     let pending = false;
     for await (const ev of busy) {
       if (ev.type === 'content_block_delta' && ev.delta?.type === 'text_delta') {
@@ -263,7 +271,7 @@ export function initAsistente() {
     <div class="ai-tools"><button type="button" data-ai="new" title="Nueva conversación" aria-label="Nueva conversación"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button><button type="button" data-ai="settings" title="API key y modelo" aria-label="API key y modelo"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3m0 14v3M2 12h3m14 0h3M4.9 4.9 7 7m10 10 2.1 2.1M4.9 19.1 7 17M17 7l2.1-2.1"/></svg></button><button type="button" data-ai="close" title="Replegar el chat" aria-label="Replegar el chat"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="ai-ico-desk" d="M9 6l6 6-6 6"/><path class="ai-ico-mob" d="M6 6l12 12M18 6 6 18"/></svg></button></div></header>
   <div class="ai-log" aria-live="polite"></div>
   <div class="ai-setup" hidden></div>
-  <form class="ai-form"><div class="ai-quote" hidden></div><label class="sr-only" for="ai-input">Tu pregunta</label><label class="ai-reading"><input type="checkbox" checked><span>Incluir lo que estoy leyendo</span></label><div class="ai-input-row"><textarea id="ai-input" rows="2" placeholder="Escribe tu duda…"></textarea><button type="submit" class="ai-send">Enviar</button></div></form>
+  <form class="ai-form"><div class="ai-quote" hidden></div><label class="sr-only" for="ai-input">Tu pregunta</label><div class="ai-opts"><label class="ai-reading"><input type="checkbox" checked><span>Incluir lo que estoy leyendo</span></label><label class="ai-model-pick" title="Modelo del chat"><span class="sr-only">Modelo del chat</span><select></select></label></div><div class="ai-input-row"><textarea id="ai-input" rows="2" placeholder="Escribe tu duda…"></textarea><button type="submit" class="ai-send">Enviar</button></div></form>
 </div>`;
   nav.append(dock);
   // El panel vive en <body> (el menú inferior usa transform, que atraparía un panel fijo).
@@ -310,10 +318,10 @@ export function initAsistente() {
       input.value = ''; autosize(); send(t); return;
     }
     const f = e.target, say = (t, bad) => { const p = f.querySelector('.ai-setup-msg'); p.textContent = t; p.classList.toggle('is-bad', !!bad); };
-    try { saveSettings(f.key.value, f.model.value); } catch (err) { say(err.message, true); return; }
+    try { saveSettings(f.key.value); safeSet(CHAT_MODEL, f.model.value); } catch (err) { say(err.message, true); return; }
     if (!hasKey()) { say('Pega la API key para continuar.', true); return; }
     say('Comprobando la key…');
-    try { await verifyKey(); renderSetup(false); input.focus(); }
+    try { await verifyKey(); renderSetup(false); renderLog(); input.focus(); }
     catch (err) { say(err.message, true); form.hidden = !hasKey(); }
   });
   const autosize = () => { input.style.height = 'auto'; input.style.height = Math.min(input.scrollHeight, 160) + 'px'; };
@@ -321,6 +329,11 @@ export function initAsistente() {
   input.addEventListener('keydown', e => { if (e.key === 'Enter' && !e.shiftKey && !e.isComposing) { e.preventDefault(); form.requestSubmit(); } });
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && dock.dataset.open === 'true' && !isDesktop()) setOpen(false); });
 
+  const pick = panel.querySelector('.ai-model-pick select');
+  const fillPick = () => { pick.innerHTML = CHAT_MODELS.map(m => `<option value="${m.id}"${m.id === chatModel() ? ' selected' : ''}>${esc(m.label.split(' · ')[0].replace('Claude ', ''))}</option>`).join(''); };
+  fillPick();
+  pick.addEventListener('change', () => { safeSet(CHAT_MODEL, pick.value); const s = setupBox.querySelector('select[name=model]'); if (s) s.value = pick.value; });
+  panel.addEventListener('change', e => { if (e.target.matches('.ai-setup select[name=model]')) { safeSet(CHAT_MODEL, e.target.value); fillPick(); } });
   if (isDesktop() && safeGet(OPEN) === '1') setOpen(true);
   renderLog(); renderSetup(false); renderQuote();
 }
