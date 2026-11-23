@@ -26,7 +26,7 @@ function clasesDe(course, number) {
   if (!Array.isArray(list)) throw Error(`clases-grabadas.json: ${course} debe ser una lista`);
   return list.filter(c => (c.temas || []).includes(number)).map(c => {
     if (!c.titulo || !/^https:\/\//.test(c.url || '') || (c.embed && !/^https:\/\//.test(c.embed))) throw Error(`clases-grabadas.json: clase mal formada en ${course}: ${JSON.stringify(c)}`);
-    return { titulo: c.titulo, fecha: c.fecha || '', url: c.url, ...(c.embed ? { embed: c.embed } : {}), ...(c.nota ? { nota: c.nota } : {}) };
+    return { titulo: c.titulo, fecha: c.fecha || '', url: c.url, ...(Number.isInteger(c.minutos) ? { minutos: c.minutos } : {}), ...(c.embed ? { embed: c.embed } : {}), ...(c.nota ? { nota: c.nota } : {}) };
   }).sort((a, b) => a.fecha.localeCompare(b.fecha));
 }
 for (const course of bank.courses) {

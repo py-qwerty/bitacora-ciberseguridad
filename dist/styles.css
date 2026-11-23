@@ -467,15 +467,12 @@ abbr.sg:focus-visible{outline:3px solid var(--color-focus)}
 /* Clases grabadas del tema */
 .clases-tema{margin:0 0 20px;padding:16px 18px;border:1px solid var(--color-border);border-radius:var(--radius-panel);background:var(--color-background)}
 .clases-tema h2{font-size:15px;display:flex;gap:8px;align-items:center}.clases-tema h2>span{color:var(--color-secondary);font-size:12px}
-.clases-tema>.small{margin-top:4px}
+.clases-head .small{margin-top:4px}
 .clases-list{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:8px}
-.clase{border:1px solid var(--color-border);border-radius:var(--radius-control);background:var(--color-surface)}
-.clase>summary{display:flex;align-items:center;gap:12px;padding:10px 12px;list-style:none;color:var(--color-text)}
-.clase>summary::-webkit-details-marker{display:none}
+.clase{display:flex;align-items:center;gap:12px;padding:10px 12px;border:1px solid var(--color-border);border-radius:var(--radius-control);background:var(--color-surface);color:var(--color-text);text-decoration:none;transition:border-color var(--motion),background var(--motion)}
+.clase:hover{border-color:var(--color-secondary);background:var(--color-tint);color:var(--color-text)}
 .clase-play{display:flex;align-items:center;justify-content:center;flex:0 0 34px;height:34px;border-radius:50%;background:var(--color-primary);color:#fff;font-size:12px}
 .clase-text{flex:1;min-width:0;display:grid}.clase-text b{font-size:13px;line-height:1.45}.clase-text small{font-size:11px;color:var(--color-muted);font-weight:400}
-.clase-cta{font-size:11px;color:var(--color-secondary);white-space:nowrap}
-.clase[open] .clase-cta{color:var(--color-muted)}.clase[open] .clase-cta::after{content:' ▲'}
-.clase-player{position:relative;margin:0 12px;aspect-ratio:16/9;border-radius:var(--radius-control);overflow:hidden;background:#0b2a35}
-.clase-player iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-.clase-links{padding:10px 12px 12px;font-size:12px}.clase-links a{font-weight:700}.clase-links .small{display:block;margin-top:4px}
+.clase-cta{font-size:11px;font-weight:700;color:var(--color-secondary);white-space:nowrap}
+@media (min-width:900px){.clases-list{grid-template-columns:repeat(auto-fill,minmax(340px,1fr))}}
+@media (max-width:520px){.clase-cta{display:none}}
