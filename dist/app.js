@@ -130,7 +130,7 @@ function diagramBlock(b){
       if (s.note !== undefined) return `<li class="dg-sq-note" style="--x:${x(s.at)}"><span>${rich(s.note)}</span></li>`;
       k++; const l = Math.min(s.from, s.to), r = Math.max(s.from, s.to), dir = s.to > s.from ? 'r' : 'l';
       const who = `${rich(b.actors[s.from].title)} → ${rich(b.actors[s.to].title)}`;
-      return `<li class="dg-sq-msg dg-sq-${dir}${s.reply ? ' dg-sq-reply' : ''} tone-${s.tone || 'accent'}" style="--l:${x(l)};--w:${(r - l) / n * 100}%"><span class="dg-sq-num" aria-hidden="true">${k}</span><span class="dg-sq-label"><span class="sr-only">Paso ${k}, ${who}: </span>${rich(s.text)}</span><span class="dg-sq-arrow" aria-hidden="true"></span></li>`;
+      return `<li class="dg-sq-msg dg-sq-${dir}${s.reply ? ' dg-sq-reply' : ''} tone-${s.tone || 'accent'}" style="--l:${x(l)};--w:${(r - l) / n * 100}%"><span class="dg-sq-num" aria-hidden="true">${k}</span><span class="dg-sq-label"><span class="sr-only">Paso ${k}, ${who}: </span><span class="dg-sq-txt">${rich(s.text)}</span></span><span class="dg-sq-arrow" aria-hidden="true"></span></li>`;
     };
     body = `<div class="dg-seq" style="--n:${n}">${b.actors.map((a, i) => `<span class="dg-sq-life" style="--x:${x(i)}" aria-hidden="true"></span>`).join('')}<ul class="dg-sq-actors">${b.actors.map(a => `<li>${dgNode(a, '', 'div', ' dg-solid')}</li>`).join('')}</ul><ol class="dg-sq-steps">${b.steps.map(row).join('')}</ol></div>`;
   } else {

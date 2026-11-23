@@ -369,6 +369,7 @@
             ["Control de calidad", "Garantizar y evaluar el nivel de seguridad de su comunidad", "Análisis de riesgos, BCM y DRP, consultoría, campañas de sensibilización, evaluación y certificación de productos"]
           ]
         },
+        {"type":"diagram","kind":"sequence","title":"Un CSIRT y su comunidad","caption":"Gestionar incidentes es su razón de ser; los avisos preventivos son un servicio proactivo.","actors":[{"icon":"building","title":"Cliente","text":"de su comunidad"},{"icon":"shield-check","title":"CSIRT","text":"o CERT"}],"steps":[{"from":1,"to":0,"text":"Aviso preventivo (divulgación)","tone":"good"},{"from":0,"to":1,"text":"Notifica un incidente","tone":"warn"},{"note":"Clasifica: gravedad y prioridad","at":1},{"from":1,"to":0,"text":"Asistencia para atenderlo","reply":true,"tone":"warn"}]},
         {
           "type": "term",
           "term": "Artefacto",
@@ -611,6 +612,7 @@
             ["Registro de operaciones", "Por cada operación: qué se hizo, fecha y hora de inicio y de fin, y quién la hizo"]
           ]
         },
+        {"type":"diagram","kind":"sequence","title":"Quién entrega la evidencia a quién","caption":"Cada entrega se firma y se anota; el hash demuestra que nada cambió.","actors":[{"icon":"user","title":"Investigadora","text":"la recoge"},{"icon":"archive","title":"Custodio","text":"la guarda"},{"icon":"microscope","title":"Analista","text":"la analiza"}],"steps":[{"note":"Recoge el disco y calcula su hash","at":0},{"from":0,"to":1,"text":"Entrega el disco + su SHA-256","tone":"accent"},{"from":1,"to":0,"text":"Firma de recepción","reply":true,"tone":"accent"},{"note":"Anota operación, inicio y fin","at":1},{"from":1,"to":2,"text":"Entrega registrada y firmada","tone":"warn"},{"note":"Recalcula el hash: coincide","at":2}]},
         {
           "type": "code",
           "title": "Ejemplo de entrada en el registro de custodia",

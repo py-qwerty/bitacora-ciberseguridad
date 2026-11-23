@@ -222,6 +222,7 @@
           "term": "Escalar",
           "text": "Llevar el asunto rápidamente a un nivel superior de responsabilidad (dirección, responsable de seguridad, equipo especializado) cuando su gravedad lo exige."
         },
+        {"type":"diagram","kind":"sequence","title":"Quién avisa a quién en un incidente","caption":"Con el caso del SIEM de las 3:00: validar, escalar, contener y, al final, informar.","actors":[{"icon":"radar","title":"SIEM","text":"recoge alertas"},{"icon":"user-search","title":"Analista"},{"icon":"user-shield","title":"Responsable y dirección"},{"icon":"users","title":"Partes interesadas"}],"steps":[{"from":0,"to":1,"text":"Alerta: accesos masivos a clientes","tone":"warn"},{"note":"¿Real o falso positivo? Valida","at":1},{"note":"200 000 registros: criticidad alta","at":1},{"from":1,"to":2,"text":"Escala el incidente de inmediato","tone":"bad"},{"note":"Bloquea la cuenta y aísla el servidor","at":1},{"note":"Investiga cómo entró el atacante","at":1},{"from":1,"to":3,"text":"Informe con causas y mejoras","tone":"good"},{"note":"Seguimiento de la nueva medida","at":1}]},
         {
           "type": "example",
           "title": "Caso práctico",

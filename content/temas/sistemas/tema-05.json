@@ -70,6 +70,7 @@
           "type": "p",
           "text": "Primero, para mantener el estado, los ID se pasaban como parámetros en la dirección (URL). Después HTTP incorporó la **cookie**, una cabecera estándar de hasta **4096 bytes** guardada por el navegador, donde se suele colocar el ID de sesión."
         },
+        {"type":"diagram","kind":"sequence","title":"Del login a la pulsera: la sesión con cookie","caption":"Te autenticas una vez; después basta con presentar el ID de sesión.","actors":[{"icon":"browser","title":"Navegador"},{"icon":"server","title":"Aplicación web"}],"steps":[{"from":0,"to":1,"text":"Usuario y contraseña","tone":"accent"},{"note":"Autentica y genera un ID al azar","at":1},{"from":1,"to":0,"text":"Set-Cookie: SESSIONID=…","reply":true,"tone":"accent"},{"note":"Guarda la cookie","at":0},{"from":0,"to":1,"text":"Petición + cookie con el ID","tone":"good"},{"note":"Reconoce la sesión del usuario","at":1},{"from":1,"to":0,"text":"Respuesta, sin pedir la contraseña","reply":true,"tone":"good"},{"from":0,"to":1,"text":"Otra petición + la misma cookie","tone":"good"}]},
         {
           "type": "table",
           "title": "Dónde puede viajar el ID de sesión",
@@ -331,6 +332,7 @@
           "title": "Caso práctico: la cafetería",
           "text": "Lucía entra en una web sin HTTPS desde la wifi de una cafetería. En la mesa de al lado, alguien con una herramienta tipo Firesheep ve pasar su cookie de sesión, la copia en su navegador y aparece dentro de la cuenta de Lucía sin saber su contraseña. Con HTTPS y la cookie marcada como Secure, el ID nunca habría viajado en claro."
         },
+        {"type":"diagram","kind":"sequence","title":"Secuestro de sesión en la wifi de la cafetería","caption":"Con HTTPS y la cookie marcada como Secure, el ID nunca habría viajado en claro.","actors":[{"icon":"user","title":"Lucía"},{"icon":"spy","title":"Atacante","text":"en la mesa de al lado"},{"icon":"server","title":"Web sin HTTPS"}],"steps":[{"from":0,"to":2,"text":"Entra en su cuenta, sin HTTPS","tone":"accent"},{"from":2,"to":0,"text":"Cookie de sesión, en claro","reply":true,"tone":"accent"},{"from":0,"to":2,"text":"Petición con la cookie, en claro","tone":"accent"},{"note":"Ve pasar la cookie y la copia","at":1},{"from":1,"to":2,"text":"Petición con la cookie copiada","tone":"bad"},{"from":2,"to":1,"text":"Dentro de la cuenta de Lucía","reply":true,"tone":"bad"}]},
         {
           "type": "exam",
           "text": "«¿Qué ataque permite suplantar a un usuario?» suele tener como respuesta **todas las anteriores**: la repetición con un ID capturado, la adivinación de un ID activo y la fijación de sesión acaban igual, con el atacante usando una sesión válida ajena. Recuerda: lo que se roba no es la contraseña, sino el ID."

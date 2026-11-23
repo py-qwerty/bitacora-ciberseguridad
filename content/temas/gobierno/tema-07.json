@@ -522,6 +522,7 @@
           "type": "p",
           "text": "Las partes interesadas juzgan el riesgo según sus **percepciones**, que varían por valores, necesidades, hipótesis, conceptos e inquietudes. Como pueden influir mucho en las decisiones, esas percepciones se deben **identificar, registrar y tener en cuenta**."
         },
+        {"type":"diagram","kind":"sequence","title":"Comunicación y consulta con las partes interesadas","caption":"Comunicar es explicar; consultar es escuchar antes de decidir.","actors":[{"icon":"users","title":"Equipo de riesgos","text":"enfoque consultivo"},{"icon":"user-check","title":"Partes interesadas"}],"steps":[{"note":"Prepara el plan de comunicación y consulta","at":0},{"from":0,"to":1,"text":"Explica el riesgo y sus razones","tone":"accent"},{"from":1,"to":0,"text":"Sus percepciones e inquietudes","reply":true,"tone":"accent"},{"note":"Identifica y registra esas percepciones","at":0},{"from":0,"to":1,"text":"Consulta al definir criterios","tone":"warn"},{"from":1,"to":0,"text":"Opiniones para valorar riesgos","reply":true,"tone":"warn"},{"from":0,"to":1,"text":"Presenta el plan de tratamiento","tone":"good"},{"from":1,"to":0,"text":"Aprobación y apoyo","reply":true,"tone":"good"}]},
         {
           "type": "exam",
           "text": "Si usuarios y técnicos ven distinto un riesgo, la respuesta es **comunicación y consulta** de perspectivas. Trampas: excluir las percepciones no técnicas, elegir la visión más optimista, promediar opiniones sin entender sus supuestos, sustituir la evaluación por la voluntad de la mayoría, «garantizar que no haya diferencias de percepción» o «divulgar toda la información a cualquiera» (hay que respetar la confidencialidad)."
@@ -817,6 +818,7 @@
           "type": "p",
           "text": "Elaborar informes es parte integral de la **gobernanza**: mejora el diálogo con las partes interesadas y ayuda a la alta dirección y a los órganos de supervisión a cumplir sus responsabilidades."
         },
+        {"type":"diagram","kind":"sequence","title":"Del seguimiento al informe y a la revisión del marco","caption":"Así se cierra el círculo entre proceso y marco.","actors":[{"icon":"eye","title":"Responsables del seguimiento"},{"icon":"building","title":"Alta dirección","text":"rinde cuentas por gestionar"},{"icon":"gavel","title":"Órganos de supervisión","text":"rinden cuentas por supervisar"}],"steps":[{"note":"Vigila controles en todas las etapas","at":0},{"note":"Registra resultados de forma trazable","at":0},{"from":0,"to":1,"text":"Informe: resultados y riesgos emergentes","tone":"accent"},{"from":0,"to":2,"text":"Informe para supervisar la gestión","tone":"accent"},{"note":"Usa los resultados para revisar el marco","at":1},{"from":1,"to":2,"text":"Rinde cuentas de la gestión","tone":"good"}]},
         {
           "type": "exam",
           "text": "«¿Cuándo se realizan el seguimiento y la revisión?» → **en todas las etapas del proceso**. Son trampas las opciones que lo limitan a una etapa (solo evaluación, solo comunicación y consulta, solo definición del proceso)."

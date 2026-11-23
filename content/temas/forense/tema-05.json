@@ -652,6 +652,7 @@
           "type": "p",
           "text": "Para limitar el problema existen herramientas forenses que acceden al dispositivo a bajo nivel y lo **«bloquean»**, para que el recolector no siga borrando durante la investigación. Pero tienen un límite claro: **lo que ya se eliminó antes de la adquisición sigue siendo irrecuperable**. Ni bloquear ahora, ni hacer otra copia de la imagen, ni cambiar el algoritmo hash lo devuelven."
         },
+        {"type":"diagram","kind":"sequence","title":"Un archivo borrado en un SSD con TRIM","caption":"Bloquear el SSD frena futuros borrados, pero no devuelve lo ya eliminado.","actors":[{"icon":"user","title":"Usuario"},{"icon":"device-desktop","title":"Sistema operativo","text":"compatible con TRIM"},{"icon":"cpu","title":"SSD","text":"con recolector de basura"},{"icon":"microscope","title":"Perito"}],"steps":[{"from":0,"to":1,"text":"Borra el archivo"},{"note":"Lo marca como borrado","at":1},{"from":1,"to":2,"text":"TRIM: estos bloques ya no se usan","tone":"warn"},{"note":"Inactivo: pone esos bloques a cero","at":2},{"from":3,"to":2,"text":"Bloquea el SSD y lo adquiere","tone":"good"},{"note":"Lo ya borrado no se recupera","at":2}]},
         {
           "type": "example",
           "title": "Caso práctico",

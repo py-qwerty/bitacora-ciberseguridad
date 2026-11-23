@@ -476,3 +476,31 @@ abbr.sg:focus-visible{outline:3px solid var(--color-focus)}
 .clase-cta{font-size:11px;font-weight:700;color:var(--color-secondary);white-space:nowrap}
 @media (min-width:900px){.clases-list{grid-template-columns:repeat(auto-fill,minmax(340px,1fr))}}
 @media (max-width:520px){.clase-cta{display:none}}
+/* Esquema «sequence»: diagrama de secuencia (actores, líneas de vida y mensajes numerados) */
+.dg-seq{position:relative;padding-bottom:10px}
+.dg-sq-life{position:absolute;top:24px;bottom:0;left:var(--x);width:2px;margin-left:-1px;background:var(--ink);opacity:.85}
+.dg-sq-actors{position:relative;z-index:1;display:grid!important;grid-template-columns:repeat(var(--n),minmax(0,1fr));gap:6px;margin-bottom:10px!important}
+.dg-sq-actors li{display:flex;justify-content:center;min-width:0}
+.dg-sq-actors .dg-node{flex-direction:column;align-items:center;min-width:0;max-width:100%;text-align:center}
+.dg-sq-actors .dg-icon{flex:0 0 auto;padding:10px 0 4px;border-right:0}
+.dg-sq-actors .dg-text{padding:2px 10px 10px;overflow-wrap:anywhere;hyphens:auto}
+.dg-sq-actors .dg-text b{font-size:17px}
+.dg-seq[style*="--n:4"] .dg-sq-actors .dg-text,.dg-seq[style*="--n:3"] .dg-sq-actors .dg-text{padding:2px 6px 8px}
+.dg-seq[style*="--n:4"] .dg-sq-actors .dg-text b{font-size:15px}
+.dg-seq[style*="--n:4"] .dg-sq-actors .dg-text small{font-size:11.5px}
+.dg-sq-steps{position:relative;z-index:1;display:grid;gap:2px}
+/* El texto se centra sobre su flecha, con un ancho mínimo legible y sin salirse del recuadro. */
+.dg-sq-msg{--lw:min(100%,max(150px,calc(var(--w) - 36px)));position:relative;padding:4px 0 29px}
+.dg-sq-label{display:block;width:var(--lw);margin-left:clamp(0px,calc(var(--l) + var(--w) / 2 - var(--lw) / 2),calc(100% - var(--lw)));text-align:center;font-size:13px;line-height:1.3;font-weight:600;color:var(--color-text)}
+.dg-sq-label{text-wrap:balance}.dg-sq-txt{padding:1px 4px;border-radius:3px;background:var(--color-surface);-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.dg-sq-arrow{position:absolute;left:var(--l);width:var(--w);bottom:11px;height:3px;background:var(--t)}
+.dg-sq-reply .dg-sq-arrow{background:repeating-linear-gradient(90deg,var(--t) 0 8px,transparent 8px 13px)}
+.dg-sq-arrow::after{content:"";position:absolute;top:50%;border:7px solid transparent;transform:translateY(-50%)}
+.dg-sq-r .dg-sq-arrow::after{right:-1px;border-left:11px solid var(--t);border-right:0}
+.dg-sq-l .dg-sq-arrow::after{left:-1px;border-right:11px solid var(--t);border-left:0}
+.dg-sq-num{position:absolute;z-index:1;bottom:-.5px;display:grid;place-items:center;width:26px;height:26px;margin-left:-13px;border-radius:50%;background:var(--t);color:#fff;font:700 13px/1 var(--font-mono),ui-monospace,monospace;font-variant-numeric:lining-nums tabular-nums;box-shadow:0 0 0 3px var(--color-surface)}
+.dg-sq-r .dg-sq-num{left:var(--l)}.dg-sq-l .dg-sq-num{left:calc(var(--l) + var(--w))}
+.dg-sq-note{padding:4px 0}
+.dg-sq-note span{--nw:min(100%,170px);display:block;width:var(--nw);margin-left:clamp(0px,calc(var(--x) - var(--nw) / 2),calc(100% - var(--nw)));padding:5px 10px;border:1.5px solid var(--ink);border-radius:2px;background:var(--color-tint,var(--color-surface));font-size:12.5px;font-weight:700;line-height:1.3;color:var(--ink);text-align:center}
+@container (min-width:640px){.dg-sq-label{font-size:14px}}
+@media(forced-colors:active){.dg-sq-life,.dg-sq-arrow{background:CanvasText}.dg-sq-num{background:CanvasText;color:Canvas}}

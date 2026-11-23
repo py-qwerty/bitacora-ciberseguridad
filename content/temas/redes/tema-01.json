@@ -327,6 +327,7 @@
           "term": "Hombre en el medio (man in the middle, MitM)",
           "text": "Ataque en el que el intruso se coloca **entre dos extremos** que creen hablar directamente entre sí, y puede leer y alterar lo que pasa. Es un ataque **activo**, aunque su objetivo sea solo espiar, porque para colocarse en medio debe modificar el flujo."
         },
+        {"type":"diagram","kind":"sequence","title":"Hombre en el medio, paso a paso","caption":"Los dos extremos creen hablar entre sí, pero todo pasa por el atacante.","actors":[{"icon":"device-desktop","title":"Equipo A"},{"icon":"spy","title":"Atacante","text":"en medio"},{"icon":"server","title":"Equipo B"}],"steps":[{"note":"Modifica la tabla ARP o de rutas","at":1},{"from":0,"to":1,"text":"Mensaje para B","tone":"bad"},{"note":"Lee o altera el mensaje","at":1},{"from":1,"to":2,"text":"Reenvía el mensaje (quizá cambiado)","tone":"bad"},{"from":2,"to":1,"text":"Respuesta para A","reply":true,"tone":"bad"},{"from":1,"to":0,"text":"Reenvía la respuesta","reply":true,"tone":"bad"},{"note":"Cree hablar directamente con B","at":0}]},
         {
           "type": "exam",
           "text": "La suplantación es **siempre activa**: el atacante actúa, no solo observa. La confidencialidad no la evita, porque ocultar el contenido no demuestra quién está al otro lado; lo que la frena es la **autenticación** y el **control de acceso**. La DoS ataca la **disponibilidad**, no la confidencialidad ni la integridad: si te preguntan si amenaza a cualquiera de estas dos, la respuesta es «ninguna de las anteriores». Repetición ≠ modificación: en la repetición el mensaje se reenvía tal cual."
@@ -381,6 +382,7 @@
           "term": "Ataque Land (ataque «Tierra»)",
           "text": "Ataque de denegación de servicio en el que se envían paquetes TCP SYN cuya **IP de origen y de destino son la misma, la de la víctima**, y con el mismo puerto de origen y destino. El equipo recibe peticiones que parecen venir de sí mismo y, si no está preparado, puede entrar en un bucle y dejar de responder. Es una **suplantación de IP** (activa)."
         },
+        {"type":"diagram","kind":"sequence","title":"El ataque Land, paso a paso","caption":"Los sistemas operativos actuales descartan estos paquetes; algunos equipos industriales, no.","actors":[{"icon":"spy","title":"Atacante"},{"icon":"server","title":"Víctima"}],"steps":[{"note":"Fabrica un TCP SYN con Scapy","at":0},{"from":0,"to":1,"text":"SYN: origen = destino = víctima","tone":"bad"},{"note":"Parece venir de sí misma","at":1},{"note":"Sin preparación: bucle, deja de responder","at":1},{"note":"Ya no contesta SYN-ACK a los SYN","at":1}]},
         {
           "type": "list",
           "title": "Qué conviene recordar (enfoque defensivo)",

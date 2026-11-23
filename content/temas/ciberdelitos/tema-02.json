@@ -792,6 +792,7 @@
             "**No cualquier empresa puede certificar**: solo las acreditadas por ENAC."
           ]
         },
+        {"type":"diagram","kind":"sequence","title":"La auditoría formal del ENS, de la entidad a la sede","caption":"Categorías media y alta; se repite al menos cada dos años y con cambios significativos.","actors":[{"icon":"certificate","title":"Entidad de certificación","text":"acreditada por ENAC"},{"icon":"user-shield","title":"Responsable de seguridad","text":"del organismo auditado"},{"icon":"user-cog","title":"Responsable del sistema"},{"icon":"users","title":"Ciudadanos","text":"leen la sede electrónica"}],"steps":[{"note":"Audita el sistema","at":0},{"from":0,"to":1,"text":"Eleva el informe de auditoría","tone":"accent"},{"note":"Analiza el informe","at":1},{"from":1,"to":2,"text":"Traslada las conclusiones","tone":"warn"},{"from":0,"to":1,"text":"Certificación de conformidad","tone":"good"},{"from":1,"to":3,"text":"Se publica en la sede electrónica","tone":"good"}]},
         {
           "type": "p",
           "text": "Para el examen, la profesora destacó: saber **a quién aplica** el ENS, las **cinco dimensiones**, y **cuándo hace falta auditoría o certificación**."

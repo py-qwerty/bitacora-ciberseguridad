@@ -275,6 +275,7 @@
             "Recibe la respuesta de web2 y se la entrega al cliente como si fuera suya."
           ]
         },
+        {"type":"diagram","kind":"sequence","title":"Proxy inverso: una sola puerta para la granja web","caption":"El cliente nunca sabe qué servidor le atendió.","actors":[{"icon":"browser","title":"Navegador del cliente"},{"icon":"sitemap","title":"Proxy inverso"},{"icon":"server","title":"web2","text":"uno de varios servidores"}],"steps":[{"from":0,"to":1,"text":"Pide www.tienda.com"},{"note":"Elige el servidor menos cargado","at":1},{"from":1,"to":2,"text":"Reenvía la petición"},{"from":2,"to":1,"text":"Respuesta","reply":true,"tone":"good"},{"from":1,"to":0,"text":"Respuesta, como si fuera suya","reply":true,"tone":"good"}]},
         {
           "type": "exam",
           "text": "Trampa clásica: «¿qué proxy es el más indicado para balancear carga? A) de aplicación, B) web caché, C) transparente, D) ninguna». La respuesta es **D**, porque el que balancea carga es el **proxy inverso** y no aparece en la lista. No te dejes llevar por el transparente: da caché y seguridad, pero no reparte peticiones entre servidores. Otra trampa: el proxy transparente se reconoce porque **no requiere configuración en el cliente**; el que «se configura explícitamente en cada navegador» es justo lo contrario."
@@ -349,6 +350,7 @@
           "type": "p",
           "text": "**Squid** es un proxy caché libre, muy usado en Linux. Los clientes le mandan sus peticiones web; si ya tiene el objeto pedido en su caché (porque alguien lo pidió antes), responde directamente; si no, lo pide a Internet, lo entrega y se guarda una copia. Así la web va más rápida y se gasta menos ancho de banda. Además, como todo pasa por él, sirve para **controlar el acceso**."
         },
+        {"type":"diagram","kind":"sequence","title":"Squid como caché: la primera vez y la segunda","caption":"Si ya tiene la copia, responde sin salir a Internet: más rápido y menos ancho de banda.","actors":[{"icon":"users","title":"Clientes"},{"icon":"server-cog","title":"Squid"},{"icon":"world","title":"Internet"}],"steps":[{"from":0,"to":1,"text":"Pide una página","tone":"accent"},{"note":"No la tiene en caché","at":1},{"from":1,"to":2,"text":"La pide a Internet","tone":"accent"},{"from":2,"to":1,"text":"La página","reply":true,"tone":"accent"},{"note":"Guarda una copia","at":1},{"from":1,"to":0,"text":"Entrega la página","reply":true,"tone":"accent"},{"from":0,"to":1,"text":"Otro cliente pide lo mismo","tone":"good"},{"note":"Ya la tiene en caché","at":1},{"from":1,"to":0,"text":"Responde directamente desde la caché","reply":true,"tone":"good"}]},
         {
           "type": "analogy",
           "text": "Es como la fotocopiadora de la biblioteca de un colegio: la primera vez que un alumno pide un artículo se trae del archivo central; las siguientes veces se entrega la copia que ya está en el mostrador, y el bibliotecario decide qué alumnos pueden pedir qué cosas."
@@ -466,6 +468,7 @@
           "term": "proxy_auth REQUIRED",
           "text": "Condición que se cumple solo si el usuario **se ha autenticado en el proxy** con un usuario válido. Puesta en http_access, significa que no se navega sin identificarse ante Squid. No tiene nada que ver con que el servidor de destino pida contraseña."
         },
+        {"type":"diagram","kind":"sequence","title":"Squid con autenticación NCSA: sin usuario no se navega","caption":"La regla http_access allow localnet password solo se cumple tras identificarse en el proxy.","actors":[{"icon":"user","title":"Usuario"},{"icon":"server-cog","title":"Squid"},{"icon":"world","title":"Internet"}],"steps":[{"from":0,"to":1,"text":"Petición web sin identificarse","tone":"bad"},{"note":"proxy_auth REQUIRED: no cumple","at":1},{"from":0,"to":1,"text":"Usuario y contraseña","tone":"accent"},{"note":"ncsa_auth comprueba el fichero usrpass","at":1},{"from":1,"to":2,"text":"Petición permitida","tone":"good"},{"from":2,"to":1,"text":"Respuesta","reply":true,"tone":"good"},{"from":1,"to":0,"text":"Respuesta","reply":true,"tone":"good"}]},
         {
           "type": "p",
           "text": "Squid también puede autenticar contra un directorio **LDAP** (Lightweight Directory Access Protocol, protocolo para consultar directorios de usuarios como OpenLDAP o el propio Directorio Activo), indicando en auth_param el programa squid_ldap_auth, la rama del directorio donde están los usuarios y la IP del servidor LDAP."

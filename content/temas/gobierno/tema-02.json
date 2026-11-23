@@ -537,6 +537,7 @@
             "**No cuenta** como caída la causada por mal uso o mala configuración de la red por parte del cliente."
           ]
         },
+        {"type":"diagram","kind":"sequence","title":"Una caída de red bajo el SLA, paso a paso","caption":"La caída cuenta desde el aviso hasta la comprobación del DSI; la causada por mal uso del cliente no cuenta.","actors":[{"icon":"user","title":"Cliente","text":"usa el servicio"},{"icon":"server-cog","title":"DSI","text":"presta el servicio"}],"steps":[{"from":0,"to":1,"text":"Aviso: no hay conectividad","tone":"bad"},{"note":"Empieza a contar Td","at":1},{"note":"Restaura el servicio","at":1},{"note":"Comprueba que está restaurado del todo","at":1},{"from":1,"to":0,"text":"Incidencia cerrada: termina Td","reply":true,"tone":"good"},{"note":"Fin de mes: D = (T − Td) / T","at":1},{"note":"720 h y 10 h caído: 98,6 %","at":1},{"note":"Compara con los tramos pactados","at":1},{"from":1,"to":0,"text":"Penalización nivel A","reply":true,"tone":"warn"}]},
         {
           "type": "exam",
           "text": "Lo que se evalúa aquí es la idea: un compromiso de disponibilidad solo sirve si define **cómo se mide**, **desde cuándo** cuenta la caída y **qué consecuencias** tiene. Y las cifras recogidas tienen valor cuando se **comparan con los niveles pactados** y se usan para mejorar, no cuando se archivan o se presume del mejor mes."
@@ -908,6 +909,7 @@
             ]
           ]
         },
+        {"type":"diagram","kind":"sequence","title":"La seguridad en ITIL: del requisito al SLA","caption":"Lo que pide el cliente acaba comprometido por escrito en la sección de seguridad del SLA.","actors":[{"icon":"user","title":"Cliente","text":"formula requisitos"},{"icon":"server-cog","title":"Proveedor de TI","text":"presta el servicio"}],"steps":[{"from":0,"to":1,"text":"Requisitos de seguridad","tone":"accent"},{"note":"Los traduce en servicios de seguridad","at":1},{"from":1,"to":0,"text":"Calidad de seguridad en el SLA","reply":true,"tone":"good"},{"note":"Diseña controles de seguridad","at":1},{"note":"Prueba los mecanismos con regularidad","at":1},{"note":"Detecta y combate incidentes","at":1},{"note":"Revisa: ¿coherente con el riesgo?","at":1}]},
         {
           "type": "term",
           "term": "Disponibilidad, integridad y confidencialidad",

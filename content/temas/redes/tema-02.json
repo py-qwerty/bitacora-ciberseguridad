@@ -330,6 +330,7 @@
           "type": "p",
           "text": "La pasarela a nivel de aplicación se coloca **en medio** de todas las conversaciones: el usuario habla con la pasarela, y la pasarela habla con el servidor de destino. Ofrece servicio de proxy para aplicaciones concretas (Telnet, HTTP, FTP, IMAP, POP…). El proceso es **transparente**: el usuario cree que habla directamente con el destino."
         },
+        {"type":"diagram","kind":"sequence","title":"Pasarela de aplicación: en medio de la conversación","caption":"El usuario cree hablar con el destino, pero la pasarela entiende y filtra cada petición.","actors":[{"icon":"user","title":"Usuario"},{"icon":"shield","title":"Pasarela de aplicación"},{"icon":"server","title":"Servidor de destino"}],"steps":[{"from":0,"to":1,"text":"Petición (p. ej. HTTP)","tone":"accent"},{"note":"Entiende los datos y decide","at":1},{"note":"Puede autenticar y registrar (log)","at":1},{"from":1,"to":2,"text":"Repite la petición permitida","tone":"accent"},{"from":2,"to":1,"text":"Respuesta","reply":true,"tone":"good"},{"from":1,"to":0,"text":"Entrega la respuesta","reply":true,"tone":"good"}]},
         {
           "type": "analogy",
           "text": "Es como un traductor-intérprete en una reunión: tú hablas con él, él lo repite al otro lado. Como entiende cada palabra, puede negarse a transmitir algo inapropiado. Pero si llegan cien reuniones a la vez, el intérprete se colapsa, y si alguien habla un idioma que no conoce, no puede trabajar."
@@ -380,6 +381,7 @@
             "Durante ese reenvío **no analiza el contenido** a nivel de aplicación; solo mira cabeceras."
           ]
         },
+        {"type":"diagram","kind":"sequence","title":"Pasarela de circuito: identificarse y después reenviar","caption":"Al principio hace de proxy; después solo reenvía, sin abrir el contenido.","actors":[{"icon":"user","title":"Usuario"},{"icon":"shield-half","title":"Pasarela de circuito"},{"icon":"server","title":"Servidor de destino"}],"steps":[{"from":0,"to":1,"text":"Establece conexión con la pasarela","tone":"accent"},{"from":0,"to":1,"text":"Se autentica","tone":"accent"},{"note":"Conexión establecida: pasa a filtro","at":1},{"from":0,"to":1,"text":"Tráfico del usuario","tone":"good"},{"note":"Solo mira cabeceras, no el contenido","at":1},{"from":1,"to":2,"text":"Reenvía el tráfico","tone":"good"},{"from":2,"to":1,"text":"Respuesta","reply":true,"tone":"good"},{"from":1,"to":0,"text":"Reenvía la respuesta","reply":true,"tone":"good"}]},
         {
           "type": "analogy",
           "text": "Como el control de acceso de un edificio: en la entrada te identificas y te dan un pase; después, nadie abre tu maletín en cada pasillo."

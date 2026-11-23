@@ -311,6 +311,7 @@
             ["Distribución Linux forense", "Un tipo especial de bloqueo software: arrancas el equipo con un Linux cuyo modo forense no monta los discos (no los «engancha»), así que no puede escribir en ellos; si hace falta los monta en solo lectura.", "Útil cuando no puedes extraer el disco o no tienes adaptador para el bloqueador hardware. Ejemplos: Kali Linux, Parrot Security OS, Tsurugi Linux."]
           ]
         },
+        {"type":"diagram","kind":"sequence","title":"El bloqueador hardware: leer sí, escribir no","caption":"Se pone de puente entre el disco original y nuestro equipo.","actors":[{"icon":"device-laptop","title":"Equipo forense"},{"icon":"shield-lock","title":"Bloqueador hardware"},{"icon":"device-floppy","title":"Disco original","text":"la evidencia"}],"steps":[{"from":0,"to":1,"text":"Orden de lectura","tone":"good"},{"from":1,"to":2,"text":"Deja pasar la lectura","tone":"good"},{"from":2,"to":1,"text":"Datos del disco","reply":true,"tone":"good"},{"from":1,"to":0,"text":"Datos para hacer la copia","reply":true,"tone":"good"},{"from":0,"to":1,"text":"Escritura del sistema operativo","tone":"bad"},{"note":"Descarta la orden de escritura","at":1},{"note":"El original no cambia","at":2}]},
         {
           "type": "term",
           "term": "Montar un dispositivo",
@@ -737,6 +738,7 @@
           "type": "p",
           "text": "Ese hash **no garantiza el origen**: no prueba que la copia sea igual a lo que había en la memoria. Para cubrir ese hueco se recurre a un **tercero de confianza** que dé fe del proceso: un fedatario público (letrado de la Administración de Justicia), un notario u otro mecanismo aceptado como tal. El tema incluye un vídeo sobre la adquisición de RAM en Windows."
         },
+        {"type":"diagram","kind":"sequence","title":"Preservación en caliente: el volcado de RAM","caption":"El hash protege la copia; el origen lo avala un tercero de confianza.","actors":[{"icon":"device-desktop","title":"Equipo encendido","text":"su RAM"},{"icon":"user","title":"Perito"},{"icon":"user-check","title":"Fedatario","text":"notario o letrado"}],"steps":[{"note":"La RAM cambia sin parar: no se bloquea","at":0},{"note":"Presencia todo el proceso","at":2},{"from":1,"to":0,"text":"Vuelca la RAM con software propio","tone":"accent"},{"from":0,"to":1,"text":"Archivo con el volcado","reply":true,"tone":"accent"},{"note":"Calcula solo el hash del resultado","at":1},{"from":2,"to":1,"text":"Da fe del proceso","tone":"good"}]},
         {
           "type": "table",
           "title": "Resumen",

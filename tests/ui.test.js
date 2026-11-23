@@ -136,6 +136,8 @@ test('diagram blocks render every kind as accessible markup and escape text',()=
  assert.match(api.diagramBlock({type:'diagram',kind:'layers',title:'Capas',items:[n('building','Fuera'),n('shield','Dentro')]}),/--d:1/);
  const cmp=api.diagramBlock({type:'diagram',kind:'compare',title:'Cmp',columns:[{icon:'check',title:'Bien',tone:'good',items:['a']},{icon:'x',title:'Mal',tone:'bad',items:['b']}]});
  assert.match(cmp,/tone-good/);assert.match(cmp,/tone-bad/);
+ const seq=api.diagramBlock({type:'diagram',kind:'sequence',title:'HTTP',actors:[n('device-desktop','Navegador'),n('server','Servidor')],steps:[{from:0,to:1,text:'Pide <b>'},{from:1,to:0,text:'Responde',reply:true,tone:'good'},{note:'Se pinta',at:0}]});
+ assert.match(seq,/dg-sequence/);assert.equal((seq.match(/class="dg-sq-msg/g)||[]).length,2);assert.match(seq,/dg-sq-l dg-sq-reply tone-good/);assert.match(seq,/Paso 2, Servidor → Navegador/);assert.match(seq,/dg-sq-note/);assert.match(seq,/Pide &lt;b&gt;/);
 });
 test('side questions are interactive: pick marks right and wrong at once, then can be retried',()=>{
  const {api}=runtime();const data=fixture();api.seed(data);const t=temaFixture();api.seedTema(11,t);

@@ -866,6 +866,7 @@
           "title": "Caso práctico",
           "text": "Una tienda online tiene IAST (Contrast Community) en el entorno de pruebas. Mientras ZAP recorre la web, el agente ve que el parámetro «id» del carrito llega sin filtrar hasta la consulta SQL de la función obtenerPedido() y genera un informe con la línea exacta. En producción, la misma empresa activa RASP: cuando un atacante real envía ' OR 1=1 en ese parámetro, el agente corta la petición antes de que llegue a la base de datos."
         },
+        {"type":"diagram","kind":"sequence","title":"IAST en pruebas, RASP en producción","caption":"En pruebas el agente informa; en producción corta el ataque antes de la base de datos.","actors":[{"icon":"radar","title":"ZAP","text":"escáner DAST"},{"icon":"spy","title":"Atacante real"},{"icon":"shield-search","title":"Aplicación con agente"},{"icon":"database","title":"Base de datos"}],"steps":[{"from":0,"to":2,"text":"Recorre la web (crawling)","tone":"accent"},{"from":2,"to":3,"text":"Consulta SQL con «id» sin filtrar","tone":"accent"},{"note":"IAST: informe con la línea exacta","at":2},{"from":1,"to":2,"text":"' OR 1=1 en «id»","tone":"bad"},{"note":"RASP corta la petición","at":2},{"from":2,"to":1,"text":"Petición bloqueada","reply":true,"tone":"good"}]},
         {
           "type": "p",
           "text": "La lista de herramientas IAST del tema (Tabla 3) está en imagen y no se puede leer en el texto."

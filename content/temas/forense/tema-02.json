@@ -394,6 +394,7 @@
           "type": "p",
           "text": "¿Qué faltó? Los **registros del sistema operativo**, que anotan, entre otras cosas, si alguien ha cambiado la fecha y hora del equipo. Con ellos se podría haber comprobado si hubo manipulación. La adquisición fue correcta, pero **no suficiente**."
         },
+        {"type":"diagram","kind":"sequence","title":"El caso de la hora de creación, paso a paso","caption":"La copia fue correcta, pero faltó recoger los registros del sistema.","actors":[{"icon":"gavel","title":"Juez"},{"icon":"user","title":"Perito"},{"icon":"user-x","title":"Perito contrario","text":"la otra parte"}],"steps":[{"from":0,"to":1,"text":"¿Fecha y hora de creación?","tone":"accent"},{"note":"Copia los archivos y mira el reloj","at":1},{"from":1,"to":0,"text":"Informe con las fechas","reply":true,"tone":"accent"},{"from":2,"to":0,"text":"Contrapericial: el reloj se puede cambiar","tone":"bad"},{"note":"Sin registros del sistema: no puede rebatirlo","at":1}]},
         {
           "type": "analogy",
           "text": "Es como presentar un ticket de compra con la fecha impresa sin poder demostrar que la caja registradora estaba en hora ese día. Para defender la fecha necesitas también el «historial» del reloj."

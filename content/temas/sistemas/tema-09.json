@@ -564,6 +564,7 @@
             ["Autenticación de paso a través", "La contraseña se comprueba contra el AD local; misma contraseña en local y en nube, con las directivas de contraseña de la organización. Alternativa a la sincronización de hash."]
           ]
         },
+        {"type":"diagram","kind":"sequence","title":"Dos formas de comprobar la contraseña en la nube","caption":"Sincronización de hash o autenticación de paso a través: son alternativas.","actors":[{"icon":"user","title":"Usuario"},{"icon":"cloud-lock","title":"Entra ID","text":"en la nube"},{"icon":"building","title":"AD local","text":"con Azure AD Connect"}],"steps":[{"note":"Opción 1: sincronización de hash","at":1},{"from":2,"to":1,"text":"Copia el hash, no la contraseña","tone":"accent"},{"from":0,"to":1,"text":"Inicia sesión","tone":"accent"},{"note":"Comprueba con el hash copiado","at":1},{"note":"Opción 2: paso a través","at":1},{"from":0,"to":1,"text":"Inicia sesión","tone":"good"},{"from":1,"to":2,"text":"Comprueba la contraseña contra el AD","tone":"good"},{"from":2,"to":1,"text":"Resultado","reply":true,"tone":"good"}]},
         {
           "type": "list",
           "title": "Ventajas",
@@ -632,6 +633,7 @@
           "title": "El secreto en el repositorio",
           "text": "Una aplicación tiene escrita la contraseña de su base de datos en un archivo de configuración subido a Git. Cualquiera con acceso al repositorio (o a una copia filtrada) la ve. La solución es guardarla en **Key Vault** como secreto: la aplicación la pide al arrancar con su propia identidad, el acceso queda registrado y la contraseña se puede cambiar sin tocar el código. Ni Entra ID (identidades) ni una etiqueta del grupo de recursos sirven como almacén de secretos."
         },
+        {"type":"diagram","kind":"sequence","title":"La aplicación pide a Key Vault, no guarda secretos","caption":"El secreto sale del código y la clave nunca sale del almacén.","actors":[{"icon":"code","title":"Aplicación"},{"icon":"lock","title":"Azure Key Vault"},{"icon":"database","title":"Base de datos"}],"steps":[{"from":0,"to":1,"text":"Al arrancar: pide el secreto con su identidad","tone":"accent"},{"note":"Controla el acceso y lo registra","at":1},{"from":1,"to":0,"text":"Contraseña de la base de datos","reply":true,"tone":"accent"},{"from":0,"to":2,"text":"Se conecta con esa contraseña","tone":"accent"},{"from":0,"to":1,"text":"«Cifra o firma esto por mí»","tone":"good"},{"note":"Usa la clave dentro del almacén","at":1},{"from":1,"to":0,"text":"Resultado, sin entregar la clave","reply":true,"tone":"good"}]},
         {
           "type": "table",
           "title": "Problemas que resuelve",

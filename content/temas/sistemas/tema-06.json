@@ -336,6 +336,7 @@
           "title": "XSS reflejado en el ErrorServlet",
           "text": "Enlace trampa:\nhttp://example.com/ErrorServlet?mensaje=<script>alert('XSS_Robo_de_Cookies')</script>\n\nPágina que devuelve el servidor:\n<p>Error: <script>alert('XSS_Robo_de_Cookies')</script></p>"
         },
+        {"type":"diagram","kind":"sequence","title":"XSS reflejado en el ErrorServlet, paso a paso","caption":"Defensa: codificar la salida, y el script se vería como texto.","actors":[{"icon":"spy","title":"Atacante"},{"icon":"browser","title":"Víctima","text":"su navegador"},{"icon":"server","title":"example.com","text":"el ErrorServlet"}],"steps":[{"from":0,"to":1,"text":"Enlace trampa: script en «mensaje»","tone":"bad"},{"from":1,"to":2,"text":"Clic: GET /ErrorServlet?mensaje=…"},{"note":"Escribe el mensaje tal cual","at":2},{"from":2,"to":1,"text":"Página de error con el script","reply":true,"tone":"bad"},{"note":"Lo ejecuta con permisos de example.com","at":1},{"from":1,"to":0,"text":"Un script real: cookie de sesión","tone":"bad"}]},
         {
           "type": "p",
           "text": "La defensa fundamental es la **codificación de salida**: convertir los caracteres especiales de HTML (<, >, \", ', &) en sus **entidades HTML** (&lt;, &gt;, etc.). El navegador muestra entonces el payload (la carga útil del ataque) como texto inofensivo en la pantalla, en lugar de ejecutarlo."
@@ -643,6 +644,7 @@
           "title": "XML malicioso con una entidad externa",
           "text": "<?xml version=\"1.0\"?>\n<!DOCTYPE datos [\n  <!ENTITY xxe SYSTEM \"file:///etc/passwd\">\n]>\n<datos>\n  <username>&xxe;</username>\n</datos>"
         },
+        {"type":"diagram","kind":"sequence","title":"XXE: el parser lee /etc/passwd por el atacante","caption":"Defensa: deshabilitar DTD y entidades externas antes de crear el parser.","actors":[{"icon":"spy","title":"Atacante"},{"icon":"server","title":"Servlet","text":"parser XML por defecto"},{"icon":"file-text","title":"/etc/passwd","text":"archivo local"}],"steps":[{"from":0,"to":1,"text":"XML con la entidad xxe → /etc/passwd","tone":"bad"},{"note":"El parser resuelve &xxe;","at":1},{"from":1,"to":2,"text":"Lee el archivo local","tone":"warn"},{"from":2,"to":1,"text":"root:x:0:0:root:/root:/bin/bash…","reply":true,"tone":"warn"},{"from":1,"to":0,"text":"«Procesado XML para usuario: root:x…»","reply":true,"tone":"bad"}]},
         {
           "type": "list",
           "title": "Solución XXE: configurar el parser con denegar por defecto",

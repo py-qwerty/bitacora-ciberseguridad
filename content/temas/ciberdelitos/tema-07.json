@@ -258,6 +258,7 @@
             "Al terminar, la web falsa **redirige a la web auténtica** de VISA España para que nada parezca raro."
           ]
         },
+        {"type":"diagram","kind":"sequence","title":"La web falsa que suplanta a VISA, paso a paso","caption":"Cada formulario envía los datos al pulsar «Continuar»; acabar en la web real no prueba nada.","actors":[{"icon":"spy","title":"Phisher"},{"icon":"user","title":"Víctima"},{"icon":"world-www","title":"Web falsa","text":"idéntica a la real"},{"icon":"building-bank","title":"Web auténtica","text":"VISA España"}],"steps":[{"from":0,"to":1,"text":"Correo: «Haga ahora» o usarán su tarjeta","tone":"bad"},{"from":1,"to":2,"text":"Pulsa el enlace"},{"from":2,"to":1,"text":"Formulario 1: datos personales","reply":true,"tone":"warn"},{"from":1,"to":2,"text":"Envía sus datos personales"},{"from":2,"to":0,"text":"Los datos ya viajan al phisher","tone":"bad"},{"from":2,"to":1,"text":"Formulario 2: tarjeta (y DNI)","reply":true,"tone":"warn"},{"from":1,"to":2,"text":"Envía los datos de la tarjeta"},{"from":2,"to":0,"text":"Datos de la tarjeta","tone":"bad"},{"from":2,"to":1,"text":"Redirige a la web auténtica","reply":true,"tone":"warn"},{"from":1,"to":3,"text":"Llega a la web real","tone":"good"},{"note":"Nada parece raro","at":1}]},
         {
           "type": "p",
           "text": "La misma campaña se lanza en varios países traduciendo los textos, lo que deja huellas: «nombres» en plural y «apellido» en singular (formato extranjero de dos nombres y un apellido), «code postal» en vez de código postal, o «jj» bajo la fecha de nacimiento (posiblemente de jahr, «año» en alemán)."
@@ -498,6 +499,7 @@
           "type": "p",
           "text": "En principio bastaría con comprobar que hay conexión segura SSL. Pero algunos malware **instalan en el equipo un certificado** del atacante, de modo que la página falsa aparece cifrada y «validada». Si se ha manipulado la confianza del propio equipo, el candado ya no garantiza nada."
         },
+        {"type":"diagram","kind":"sequence","title":"Pharming local: escribir bien la dirección no basta","caption":"El equipo mira primero su archivo hosts y ni siquiera pregunta al servidor DNS.","actors":[{"icon":"spy","title":"Atacante"},{"icon":"device-laptop","title":"Equipo de la víctima"},{"icon":"world-www","title":"Web falsa","text":"idéntica a la del banco"}],"steps":[{"from":0,"to":1,"text":"Malware añade una línea al hosts","tone":"bad"},{"note":"La víctima escribe www.mibanco.es bien","at":1},{"note":"El hosts da la IP del atacante","at":1},{"from":1,"to":2,"text":"Se conecta a la web falsa","tone":"warn"},{"from":2,"to":1,"text":"Página idéntica, a veces con candado","reply":true,"tone":"warn"},{"from":1,"to":2,"text":"Usuario y claves del banco"},{"from":2,"to":0,"text":"Datos robados","tone":"bad"}]},
         {
           "type": "p",
           "text": "Los datos robados no siempre los usa quien los obtiene: muchas veces se **venden** a otros delincuentes, creando un **mercado secundario** de datos personales."
@@ -545,6 +547,7 @@
           "title": "Caso práctico: el «agente financiero» desde casa",
           "text": "Marta responde a un anuncio de «agente de pagos para empresa internacional». Su tarea: recibir transferencias de clientes en su cuenta personal, quedarse un 8 % y enviar el resto por una empresa de envío de dinero a Europa del Este. Aunque se presente como trabajo administrativo, la función real es la de una **mula**: canalizar dinero procedente de fraudes."
         },
+        {"type":"diagram","kind":"sequence","title":"Cómo usa la organización a una mula","caption":"Sin mulas no hay dinero: por eso se captan a la vez que se roban las claves.","actors":[{"icon":"spy","title":"Organización","text":"tiene las claves robadas"},{"icon":"building-bank","title":"Cuenta de la víctima"},{"icon":"user","title":"Mula","text":"en el país de la víctima"},{"icon":"world","title":"Receptor en el extranjero"}],"steps":[{"from":0,"to":2,"text":"Oferta: trabajo desde casa, buena paga","tone":"bad"},{"from":2,"to":0,"text":"Acepta y presta su cuenta","reply":true,"tone":"warn"},{"from":0,"to":1,"text":"Entra suplantando a la víctima","tone":"bad"},{"from":1,"to":2,"text":"Transferencia a la cuenta de la mula","tone":"warn"},{"from":0,"to":2,"text":"Aviso: saca el dinero ya","tone":"bad"},{"note":"Se queda su comisión","at":2},{"from":2,"to":3,"text":"Resto por envío internacional de dinero","tone":"warn"},{"note":"Lo reenvía a escalones superiores","at":3}]},
         {
           "type": "list",
           "title": "Cómo organizan las redes o bolsas de mulas",

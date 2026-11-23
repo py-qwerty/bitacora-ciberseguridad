@@ -359,6 +359,7 @@
             "Prohibido: paquetes **directamente de Internet a la intranet** sin atravesar el proxy."
           ]
         },
+        {"type":"diagram","kind":"sequence","title":"APP-4: qué flujos deja pasar el cortafuegos","caption":"Todo cruza el cortafuegos; lo directo de Internet a la intranet se prohíbe.","actors":[{"icon":"users","title":"Red interior"},{"icon":"flame","title":"Cortafuegos"},{"icon":"server","title":"Proxy en la DMZ"},{"icon":"world","title":"Internet"}],"steps":[{"from":0,"to":2,"text":"Petición web (interior ↔ proxy)","tone":"good"},{"note":"Controla y registra la petición","at":2},{"from":2,"to":3,"text":"Hace la petición en su nombre","tone":"good"},{"from":3,"to":2,"text":"Respuesta (proxy ↔ Internet)","reply":true,"tone":"good"},{"from":2,"to":0,"text":"Entrega la respuesta","reply":true,"tone":"good"},{"from":3,"to":1,"text":"Paquete directo a la intranet","tone":"bad"},{"note":"Prohibido: no atraviesa el proxy","at":1}]},
         {
           "type": "analogy",
           "text": "Es como una mensajería con almacén intermedio: el paquete del cliente nunca va directo a tu casa; llega al almacén (proxy), se revisa y desde allí se te entrega. Y si alguien asalta el almacén, aún no tiene las llaves de tu casa."

@@ -431,6 +431,7 @@
           "term": "dd: if y of",
           "text": "dd copia datos bit a bit. **if** (input file) es el **origen**: lo que se lee. **of** (output file) es el **destino**: donde se escribe. En el ejemplo, se lee el bloque 0 del teléfono y se escribe en imagen.dd dentro de la tarjeta. Al terminar, dd muestra un resumen de bloques leídos, copiados y bytes transferidos."
         },
+        {"type":"diagram","kind":"sequence","title":"Adquirir un Android por ADB, paso a paso","caption":"Root solo con permiso del juez; dd lee del teléfono (if) y escribe en la microSD (of).","actors":[{"icon":"gavel","title":"Juez"},{"icon":"device-laptop","title":"Perito","text":"PC con adb"},{"icon":"device-mobile","title":"Teléfono Android","text":"depuración USB activa"},{"icon":"device-floppy","title":"microSD","text":"borrada de forma segura"}],"steps":[{"from":1,"to":0,"text":"Pide permiso para ser root","tone":"accent"},{"from":0,"to":1,"text":"Permiso expreso","reply":true,"tone":"accent"},{"from":1,"to":2,"text":"adb devices","tone":"warn"},{"from":2,"to":1,"text":"El teléfono aparece conectado","reply":true,"tone":"warn"},{"from":1,"to":2,"text":"adb shell y su (root)"},{"from":1,"to":2,"text":"cat /proc/partitions"},{"from":2,"to":1,"text":"Bloques mmcblk0, mmcblk1…","reply":true},{"from":1,"to":2,"text":"dd if=mmcblk0 of=microSD","tone":"good"},{"from":2,"to":3,"text":"Copia bit a bit del bloque 0","tone":"good"},{"note":"Queda imagen.dd en la tarjeta","at":3}]},
         {
           "type": "example",
           "title": "Por qué importa no confundirlos",
@@ -520,6 +521,7 @@
           "type": "p",
           "text": "En la petición se mencionan las técnicas que se van a emplear (en principio, las tres, porque no se sabe cuál funcionará) y su **peligrosidad**, avisando de que se puede perder toda la memoria."
         },
+        {"type":"diagram","kind":"sequence","title":"Pedir el auto judicial para un método avanzado","caption":"Son técnicas invasivas: sin auto del juez no se aplican.","actors":[{"icon":"user","title":"Perito"},{"icon":"gavel","title":"Juez"},{"icon":"device-mobile","title":"Teléfono"}],"steps":[{"from":0,"to":1,"text":"Pide JTAG, Direct eMMC y Chip Off","tone":"accent"},{"from":0,"to":1,"text":"Avisa: puede perderse toda la memoria","tone":"warn"},{"from":1,"to":0,"text":"Auto judicial que lo autoriza","reply":true,"tone":"good"},{"from":0,"to":2,"text":"Accede a bajo nivel al chip","tone":"warn"},{"note":"El indicio puede quedar inservible","at":2}]},
         {
           "type": "term",
           "term": "PCB (Printed Circuit Board) y eMMC",

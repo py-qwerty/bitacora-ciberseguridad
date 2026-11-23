@@ -591,6 +591,7 @@
           ],
           "title": "Cómo funciona un rol en una instancia EC2"
         },
+        {"type":"diagram","kind":"sequence","title":"Un rol en una instancia EC2: claves que nadie escribe","caption":"No hay claves estáticas en el código ni en el repositorio.","actors":[{"icon":"user-cog","title":"Administrador"},{"icon":"cloud","title":"AWS"},{"icon":"server","title":"Instancia EC2","text":"con SDK o awscli"},{"icon":"database","title":"Bucket de S3"}],"steps":[{"from":0,"to":1,"text":"Crea un rol: leer el bucket","tone":"accent"},{"from":0,"to":1,"text":"Asigna el rol a la instancia","tone":"accent"},{"from":2,"to":1,"text":"Consulta la API de metadatos","tone":"good"},{"from":1,"to":2,"text":"Clave y secreto generados","reply":true,"tone":"good"},{"from":2,"to":3,"text":"Lee el bucket con esas claves","tone":"good"},{"note":"Rota las claves regularmente","at":1},{"from":1,"to":2,"text":"Claves nuevas, sin intervención","reply":true,"tone":"warn"}]},
         {
           "type": "p",
           "text": "Único requisito: la aplicación debe ejecutarse en una instancia de EC2. La gran ventaja es que **no hay claves estáticas** escritas en el código, en un repositorio o copiadas a mano en cada servidor."

@@ -489,6 +489,7 @@
             "Actualización del DOM: el JavaScript cambia solo la parte de la pantalla que hace falta."
           ]
         },
+        {"type":"diagram","kind":"sequence","title":"Una SPA con AJAX, paso a paso","caption":"Solo la primera vez llega una página entera; después viajan datos ligeros.","actors":[{"icon":"user","title":"Usuario"},{"icon":"browser","title":"Navegador","text":"con el motor AJAX"},{"icon":"server","title":"Servidor","text":"el backend"}],"steps":[{"from":0,"to":1,"text":"Entra en la URL","tone":"accent"},{"from":1,"to":2,"text":"Pide la página (carga inicial)","tone":"accent"},{"from":2,"to":1,"text":"HTML principal + JavaScript + CSS","reply":true,"tone":"accent"},{"from":0,"to":1,"text":"Hace clic","tone":"good"},{"note":"El JavaScript intercepta el clic","at":1},{"from":1,"to":2,"text":"Petición AJAX en segundo plano","tone":"good"},{"from":2,"to":1,"text":"Datos ligeros (normalmente JSON)","reply":true,"tone":"good"},{"note":"Cambia solo esa parte (DOM)","at":1}]},
         {
           "type": "table",
           "title": "Modelo síncrono clásico frente a modelo asíncrono AJAX",
@@ -1116,6 +1117,7 @@
             ]
           ]
         },
+        {"type":"diagram","kind":"sequence","title":"Cargar una web con HTTP/1.1, paso a paso","caption":"Una sola conexión TCP se reutiliza para pedir la página y cada pieza que necesita.","actors":[{"icon":"browser","title":"Navegador","text":"el cliente"},{"icon":"server","title":"Servidor web"}],"steps":[{"from":0,"to":1,"text":"Abre la conexión TCP","tone":"warn"},{"from":0,"to":1,"text":"GET /index.html (dame la página)"},{"from":1,"to":0,"text":"200 OK + el HTML","reply":true},{"from":0,"to":1,"text":"GET /estilos.css","tone":"bad"},{"from":1,"to":0,"text":"200 OK + el CSS","reply":true,"tone":"bad"},{"from":0,"to":1,"text":"GET /app.js","tone":"good"},{"from":1,"to":0,"text":"200 OK + el JavaScript","reply":true,"tone":"good"},{"note":"El navegador pinta la web","at":0},{"from":0,"to":1,"text":"Cierra la conexión","tone":"warn"}]},
         {
           "type": "term",
           "term": "Multiplexar",
@@ -1393,6 +1395,7 @@
             "El script lee ese cuerpo (el JavaScript no podía leer la cabecera por HttpOnly, pero el cuerpo sí) y se lo envía al atacante, que ya tiene la sesión de la víctima."
           ]
         },
+        {"type":"diagram","kind":"sequence","title":"El ataque XST, paso a paso","caption":"HttpOnly impide leer la cabecera, pero no el cuerpo. Defensa: deshabilitar TRACE.","actors":[{"icon":"browser","title":"Navegador de la víctima"},{"icon":"spy","title":"Web del atacante"},{"icon":"server","title":"Aplicación legítima"}],"steps":[{"from":0,"to":2,"text":"Inicia sesión","tone":"accent"},{"from":2,"to":0,"text":"Cookie de sesión (HttpOnly)","reply":true,"tone":"accent"},{"from":0,"to":1,"text":"Visita la web del atacante","tone":"bad"},{"from":1,"to":0,"text":"Página con un script","reply":true,"tone":"bad"},{"from":0,"to":2,"text":"TRACE por XMLHttpRequest, con la cookie","tone":"bad"},{"from":2,"to":0,"text":"Cabeceras copiadas en el cuerpo: ¡la cookie!","reply":true,"tone":"bad"},{"note":"El script lee el cuerpo","at":0},{"from":0,"to":1,"text":"Envía la cookie al atacante","tone":"bad"}]},
         {
           "type": "p",
           "text": "Condiciones y límites del ataque: solo funciona si **TRACE está habilitado en el navegador y en el servidor**; hoy los navegadores lo tienen deshabilitado, así que no tiene éxito. Lo robado sirve **mientras la sesión no caduque**. Con un JWT guardado en una cookie el ataque sería idéntico."
@@ -1451,6 +1454,7 @@
           "title": "Caso práctico: el carrito de la compra",
           "text": "Añades unas zapatillas en la página del producto y luego vas a la página del carrito. Son dos peticiones HTTP independientes. Para que el carrito «recuerde» las zapatillas, la aplicación crea una sesión y le da a tu navegador una cookie con su identificador. En la segunda petición el navegador la envía, y el servidor encuentra tu carrito. Ni el método HEAD ni una conexión persistente sin contexto resuelven esto."
         },
+        {"type":"diagram","kind":"sequence","title":"El carrito que recuerda gracias a la sesión","caption":"Son dos peticiones independientes; la cookie con el identificador las une.","actors":[{"icon":"browser","title":"Navegador"},{"icon":"server","title":"Servidor","text":"la tienda"}],"steps":[{"from":0,"to":1,"text":"Añade las zapatillas al carrito","tone":"accent"},{"note":"Crea una sesión y su identificador","at":1},{"from":1,"to":0,"text":"Cookie con el identificador de sesión","reply":true,"tone":"accent"},{"note":"Guarda la cookie","at":0},{"from":0,"to":1,"text":"Pide la página del carrito + cookie","tone":"good"},{"note":"Busca la sesión: encuentra tu carrito","at":1},{"from":1,"to":0,"text":"Carrito con las zapatillas","reply":true,"tone":"good"}]},
         {
           "type": "term",
           "term": "JWT (JSON Web Token)",

@@ -237,6 +237,7 @@
             "**Órganos de gobierno**: se crean canales que den confianza en que el sistema responderá y en que los incidentes se afrontarán según el plan."
           ]
         },
+        {"type":"diagram","kind":"sequence","title":"Comunicación y consulta en Magerit: con quién y qué","caption":"Equilibrar seguridad y productividad, y poder exigir al proveedor lo pactado.","actors":[{"icon":"building","title":"Organización"},{"icon":"users","title":"Usuarios"},{"icon":"packages","title":"Proveedores externos"},{"icon":"hierarchy-3","title":"Órganos de gobierno"}],"steps":[{"from":1,"to":0,"text":"Sus necesidades de trabajo","tone":"accent"},{"from":0,"to":1,"text":"Parámetros de seguridad de la dirección","reply":true,"tone":"accent"},{"from":0,"to":2,"text":"Instrucciones claras por escrito","tone":"warn"},{"from":0,"to":2,"text":"Niveles de servicio exigibles","tone":"warn"},{"from":2,"to":0,"text":"Servicio y gestión de incidentes","reply":true,"tone":"warn"},{"from":0,"to":3,"text":"Canales que dan confianza","tone":"good"},{"note":"Incidentes afrontados según el plan","at":0}]},
         {
           "type": "example",
           "title": "Caso práctico",

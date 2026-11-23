@@ -293,6 +293,7 @@
           "title": "Caso práctico",
           "text": "La empresa A aporta un informe que dice que un exempleado borró correos. El exempleado contrata a otra perita para una contrapericial. Ella revisa el informe y detecta que las horas se interpretaron en UTC (hora universal) sin convertir a hora española, lo que cambia el orden de los hechos. Su contrapericial explica el error y lo demuestra con los propios datos."
         },
+        {"type":"diagram","kind":"sequence","title":"Una contrapericial, paso a paso","caption":"La contrapericial se apoya en análisis; la validez la decide el juez.","actors":[{"icon":"building","title":"Empresa A"},{"icon":"gavel","title":"Juez"},{"icon":"user","title":"Exempleado"},{"icon":"microscope","title":"Perita","text":"de la contrapericial"}],"steps":[{"from":0,"to":1,"text":"Informe: el exempleado borró correos","tone":"warn"},{"from":2,"to":3,"text":"Encarga la contrapericial","tone":"accent"},{"note":"Revisa método, fuentes y conclusiones","at":3},{"note":"Error: horas en UTC sin convertir","at":3},{"from":3,"to":2,"text":"Contrapericial que demuestra el error","reply":true,"tone":"good"},{"from":2,"to":1,"text":"Aporta la contrapericial","tone":"good"},{"note":"Valora ambos informes","at":1}]},
         {
           "type": "exam",
           "text": "El informe debe estar **identificado en todas sus páginas**, **numerado** y con **índice**, y llevar la **firma** del perito. Pero no se exige **firmar cada página**: esa es la afirmación falsa típica. Si preguntan para qué sirve el código único: para identificar inequívocamente el trabajo y sus páginas."
@@ -737,6 +738,7 @@
             "Entregar en un **soporte no alterable**, como un DVD o un PDF, con **firma digital** (una firma electrónica que demuestra quién firma y que el documento no ha cambiado) e incluso su **hash**."
           ]
         },
+        {"type":"diagram","kind":"sequence","title":"Encargo y entrega del informe pericial","caption":"Lo pida quien lo pida, el informe es imparcial y responde a lo preguntado.","actors":[{"icon":"gavel","title":"Quien encarga","text":"juez, fiscal o una parte"},{"icon":"user","title":"Perito"}],"steps":[{"from":0,"to":1,"text":"Encargo con las cuestiones a responder","tone":"accent"},{"note":"Analiza de forma imparcial y objetiva","at":1},{"from":1,"to":0,"text":"Informe en soporte no alterable (PDF, DVD)","reply":true,"tone":"good"},{"from":1,"to":0,"text":"Con firma digital y su hash","reply":true,"tone":"good"},{"note":"Se sabe quién firma y que no cambió","at":0}]},
         {
           "type": "example",
           "title": "Caso práctico",

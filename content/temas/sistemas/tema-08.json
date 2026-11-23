@@ -248,6 +248,7 @@
             "**Cuando detecta un ataque**: no reenvía la petición al servidor, o corta la conexión directamente o pidiendo a otro equipo (router o cortafuegos de red) que la bloquee."
           ]
         },
+        {"type":"diagram","kind":"sequence","title":"El WAF delante del servidor: deja pasar o corta","caption":"La petición maliciosa nunca llega al servidor web.","actors":[{"icon":"browser","title":"Cliente legítimo"},{"icon":"spy","title":"Atacante"},{"icon":"shield","title":"WAF"},{"icon":"server","title":"Servidor web"}],"steps":[{"from":0,"to":2,"text":"Petición HTTP normal","tone":"good"},{"note":"La compara con sus reglas","at":2},{"from":2,"to":3,"text":"La reenvía","tone":"good"},{"from":3,"to":2,"text":"Respuesta","reply":true,"tone":"good"},{"from":2,"to":0,"text":"Respuesta","reply":true,"tone":"good"},{"from":1,"to":2,"text":"Formulario con ' OR 1=1","tone":"bad"},{"note":"Detecta el ataque: no la reenvía","at":2},{"from":2,"to":1,"text":"Corta la conexión","reply":true,"tone":"bad"}]},
         {
           "type": "table",
           "title": "Formas de diseño de un WAF",
@@ -445,6 +446,7 @@
           "title": "Caso práctico",
           "text": "Un atacante cuela una inyección SQL tan bien disfrazada que el WAF no la reconoce. Cuando la aplicación va a ejecutar la consulta, el sensor RASP ve que el texto del usuario ha cambiado la estructura de la consulta. En modo protección, la bloquea y cierra la sesión; en modo monitorización, solo lo anota y avisa."
         },
+        {"type":"diagram","kind":"sequence","title":"Cuando el WAF falla, RASP frena desde dentro","caption":"En modo monitorización, RASP solo lo anotaría y avisaría.","actors":[{"icon":"spy","title":"Atacante"},{"icon":"shield","title":"WAF"},{"icon":"shield-lock","title":"Aplicación con RASP"}],"steps":[{"from":0,"to":1,"text":"Inyección SQL muy bien disfrazada","tone":"bad"},{"note":"No la reconoce","at":1},{"from":1,"to":2,"text":"La deja pasar","tone":"warn"},{"note":"Sensor RASP: la consulta cambió de estructura","at":2},{"from":2,"to":0,"text":"Modo protección: bloquea y cierra sesión","reply":true,"tone":"good"}]},
         {
           "type": "exam",
           "text": "La descripción correcta de RASP siempre incluye «**dentro de la aplicación**» y «**en tiempo de ejecución**». Trampas: «analiza el código fuente antes de ejecutarse» (eso es análisis estático, SAST), «inspecciona solo el tráfico externo» o «se instala en el cortafuegos perimetral» (eso es un WAF o un cortafuegos de red), «solo genera documentación» o «impide siempre cualquier ataque sin configuración» (ninguna herramienta lo hace). Y si preguntan por el modo monitorización: **detecta y reporta sin bloquear**."

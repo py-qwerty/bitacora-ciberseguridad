@@ -546,6 +546,7 @@
           "title": "Un banner mal diseñado",
           "text": "Una web carga las cookies publicitarias en cuanto entras y, segundos después, muestra el banner «¿Aceptas las cookies?». El defecto: el tratamiento **empezó antes** del consentimiento. Pedirlo después no lo convierte en previo ni en retroactivo. Lo correcto: bloquear las cookies no exentas hasta que el usuario acepte."
         },
+        {"type":"diagram","kind":"sequence","title":"Un banner de cookies bien hecho","caption":"Si las cookies publicitarias se cargan antes del «acepto», el consentimiento ya no es previo.","actors":[{"icon":"browser","title":"Usuario","text":"con su navegador"},{"icon":"world-www","title":"Web"}],"steps":[{"from":0,"to":1,"text":"Entra en la web"},{"from":1,"to":0,"text":"Solo cookies estrictamente necesarias","reply":true,"tone":"good"},{"from":1,"to":0,"text":"Banner: información clara de los fines","reply":true,"tone":"warn"},{"note":"No hacer nada no es consentir","at":0},{"from":0,"to":1,"text":"Clic en «acepto»","tone":"accent"},{"note":"Ahora sí: analíticas y publicitarias","at":1},{"from":1,"to":0,"text":"Instala las cookies consentidas","reply":true,"tone":"accent"}]},
         {
           "type": "p",
           "text": "Por qué importa: las cookies sirven para mejorar la navegación, pero también pueden usarse para espiar los hábitos del usuario, explotarlos comercialmente o cederlos a terceros sin que lo sepa. Incumplir el art. 22.2 es una infracción **grave** (art. 38.3): multa de 30 001 a 150 000 €."
@@ -660,6 +661,7 @@
             "…confirmar la aceptación por un medio equivalente al usado para contratar, **en el mismo momento**, siempre que el destinatario pueda archivar esa confirmación (por ejemplo, la pantalla final descargable del pedido)."
           ]
         },
+        {"type":"diagram","kind":"sequence","title":"Comprar en una web: informar antes y confirmar después","caption":"En vez del acuse en 24 horas vale una confirmación archivable en el mismo momento.","actors":[{"icon":"user","title":"Aceptante","text":"quien compra"},{"icon":"world-www","title":"Oferente","text":"la web del prestador"}],"steps":[{"from":1,"to":0,"text":"Información general: quién es, NIF, precios"},{"from":1,"to":0,"text":"Trámites, corregir errores y condiciones","tone":"warn"},{"note":"Puede guardar las condiciones generales","at":0},{"from":0,"to":1,"text":"Acepta la oferta con un clic","tone":"accent"},{"note":"Recibe la aceptación","at":1},{"from":1,"to":0,"text":"Acuse de recibo en 24 horas","reply":true,"tone":"good"}]},
         {
           "type": "list",
           "title": "Cuándo no hace falta la confirmación posterior (art. 28.3)",

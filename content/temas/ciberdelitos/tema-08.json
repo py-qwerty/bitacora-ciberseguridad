@@ -190,6 +190,7 @@
           "type": "p",
           "text": "En las versiones más elaboradas, los delincuentes crean una **web falsa que imita a un banco occidental** real y dan a la víctima unas claves para «comprobar» que en una cuenta a su nombre ya hay millones. Convencida de que el dinero existe, paga sin reparos las comisiones e impuestos que le piden para «liberarlo»."
         },
+        {"type":"diagram","kind":"sequence","title":"La carta nigeriana: la cadena de adelantos","caption":"La fortuna es el cebo; el negocio del estafador son los pagos previos.","actors":[{"icon":"spy","title":"Estafador"},{"icon":"user","title":"Víctima"},{"icon":"building-bank","title":"Web bancaria falsa","text":"imita a un banco real"}],"steps":[{"from":0,"to":1,"text":"Ayúdame a sacar una fortuna","tone":"bad"},{"from":1,"to":0,"text":"Contesta interesada","reply":true},{"from":0,"to":1,"text":"Pide cuenta y documentación","tone":"bad"},{"from":1,"to":0,"text":"Envía cuenta y copia de documentos","reply":true},{"from":0,"to":1,"text":"Claves para ver «su» cuenta","tone":"bad"},{"from":1,"to":2,"text":"Entra a comprobarlo"},{"from":2,"to":1,"text":"Millones a su nombre (falso)","reply":true,"tone":"bad"},{"from":0,"to":1,"text":"Obstáculo: paga un pequeño adelanto","tone":"bad"},{"from":1,"to":0,"text":"Paga el adelanto","reply":true,"tone":"warn"},{"from":0,"to":1,"text":"Nuevo gasto, siempre «el último»","tone":"bad"},{"from":1,"to":0,"text":"Paga otra vez","reply":true,"tone":"warn"},{"note":"Nunca recibe nada","at":1}]},
         {
           "type": "example",
           "title": "Por qué funciona la cadena de pagos",
@@ -295,6 +296,7 @@
           "type": "p",
           "text": "Lo curioso: los estafadores **nunca pretenden cobrar el precio del coche**. Su negocio son los pequeños pagos exigidos por la falsa empresa escrow, multiplicados por muchísimas víctimas. Una estafa sencilla de preparar y muy rentable."
         },
+        {"type":"diagram","kind":"sequence","title":"El coche barato y la falsa empresa escrow","caption":"Los estafadores nunca cobran el coche: viven de los pagos sucesivos de muchas víctimas.","actors":[{"icon":"user","title":"Dueño real","text":"del anuncio auténtico"},{"icon":"spy","title":"Estafador","text":"falso vendedor"},{"icon":"user-x","title":"Comprador","text":"la víctima"},{"icon":"world-www","title":"Falsa escrow","text":"solo una web falsa"}],"steps":[{"from":1,"to":0,"text":"Se hace pasar por comprador","tone":"bad"},{"from":0,"to":1,"text":"Documentación escaneada del coche","reply":true,"tone":"warn"},{"note":"Copia el anuncio a precio muy bajo","at":1},{"from":2,"to":1,"text":"¿Por qué es tan barato?"},{"from":1,"to":2,"text":"Vivo en Reino Unido; usemos escrow","reply":true,"tone":"bad"},{"from":3,"to":2,"text":"Correo: tenemos su coche","tone":"bad"},{"from":3,"to":2,"text":"Usuario y contraseña para seguirlo","tone":"bad"},{"from":3,"to":2,"text":"Pague un impuesto de frontera","tone":"bad"},{"from":2,"to":3,"text":"Envío internacional de dinero","reply":true,"tone":"warn"},{"from":3,"to":2,"text":"Otro gasto: aduanas, seguro…","tone":"bad"}]},
         {
           "type": "table",
           "title": "Lo que parece una prueba y lo que realmente demuestra",
@@ -359,6 +361,7 @@
             ["Duración", "Meses de correos.", "Más elaborada y larga; exige una complicidad previa sincera."]
           ]
         },
+        {"type":"diagram","kind":"sequence","title":"Romancescam con «accidente en el extranjero»","caption":"Cada excusa es distinta, pero el patrón se repite: otra transferencia.","actors":[{"icon":"spy","title":"Estafador","text":"perfil atractivo y falso"},{"icon":"user","title":"Víctima"},{"icon":"skull","title":"Tercero","text":"falso familiar o amigo"}],"steps":[{"note":"Estudia lo que cuenta su perfil","at":0},{"from":1,"to":0,"text":"Escribe al perfil atractivo"},{"from":0,"to":1,"text":"Meses de mensajes y confianza","tone":"warn"},{"from":1,"to":0,"text":"Pide una foto o una llamada","tone":"accent"},{"from":0,"to":1,"text":"Foto preparada o actor con guion","reply":true,"tone":"accent"},{"from":2,"to":1,"text":"Ha tenido un accidente grave","tone":"bad"},{"from":1,"to":2,"text":"Dinero urgente para el hospital","reply":true,"tone":"warn"},{"from":2,"to":1,"text":"Ahora sobornos, repatriación…","tone":"bad"},{"from":1,"to":2,"text":"Otra transferencia","reply":true,"tone":"warn"}]},
         {
           "type": "example",
           "title": "La cadena de excusas",

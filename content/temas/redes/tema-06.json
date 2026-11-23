@@ -468,6 +468,7 @@
           "title": "Ejemplo con números de juguete",
           "text": "Públicos: p = 23, α = 5\nAlicia: a = 6   ->  A = 5^6  mod 23 = 8   (envía 8)\nBernardo: b = 15 ->  B = 5^15 mod 23 = 19  (envía 19)\n\nAlicia:   19^6  mod 23 = 2\nBernardo:  8^15 mod 23 = 2\nClave compartida K = 2  (nunca viajó por la red)"
         },
+        {"type":"diagram","kind":"sequence","title":"Diffie-Hellman: quién envía qué","caption":"Con los números de juguete: viajan 8 y 19, y ambos obtienen K = 2.","actors":[{"icon":"user","title":"Alicia"},{"icon":"user-check","title":"Bernardo"},{"icon":"spy","title":"Intruso","text":"escucha el canal"}],"steps":[{"from":0,"to":1,"text":"Acuerdan públicos: p y α","tone":"accent"},{"note":"Elige secreto a","at":0},{"note":"Elige secreto b","at":1},{"from":0,"to":1,"text":"A = α^a mod p","tone":"good"},{"from":1,"to":0,"text":"B = α^b mod p","reply":true,"tone":"good"},{"note":"Ve p, α, A y B","at":2},{"note":"B^a mod p = K","at":0},{"note":"A^b mod p = K","at":1},{"note":"Sin a ni b no saca K","at":2}]},
         {
           "type": "p",
           "text": "Un intruso ve p, α, A y B, pero para obtener K tendría que sacar a o b, es decir, resolver el logaritmo discreto. Fíjate en lo que **no** hace Diffie-Hellman por sí solo: no cifra un documento, no firma y no verifica la identidad de los extremos; solo **acuerda un secreto**."
@@ -532,6 +533,7 @@
           "title": "Cifrado y descifrado (ejemplo del temario)",
           "text": "Clave pública de Bernardo: n = 143 (= 11·13), e = 7\nClave privada de Bernardo: d = 103\nSecreto de Alicia: N = 75\n\nCifrar:    75^7   mod 143 = 114   -> envía 114\nDescifrar: 114^103 mod 143 = 75    -> Bernardo recupera 75"
         },
+        {"type":"diagram","kind":"sequence","title":"RSA: Alicia envía un secreto a Bernardo","caption":"Solo Bernardo, que conoce d, puede deshacer el cifrado.","actors":[{"icon":"user","title":"Alicia"},{"icon":"user-check","title":"Bernardo"}],"steps":[{"from":1,"to":0,"text":"Clave pública (n = 143, e = 7)","tone":"accent"},{"note":"C = 75^7 mod 143 = 114","at":0},{"from":0,"to":1,"text":"Envía C = 114","tone":"good"},{"note":"114^103 mod 143 = 75","at":1},{"note":"Recupera el secreto N = 75","at":1}]},
         {
           "type": "example",
           "title": "Leer la fórmula en una pregunta",

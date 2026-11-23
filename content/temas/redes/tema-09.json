@@ -206,6 +206,7 @@
           "title": "Caso práctico",
           "text": "Marta teletrabaja con split tunnel. Cuando abre la intranet (10.0.0.5), el tráfico entra en el túnel y llega al concentrador; de ahí al servidor de la intranet viaja por la LAN de la empresa sin el cifrado de la VPN. Cuando consulta el tiempo en una web pública, ese tráfico sale directamente por su router de casa."
         },
+        {"type":"diagram","kind":"sequence","title":"VPN de acceso remoto con túnel dividido","caption":"El túnel termina en el concentrador: no protege extremo a extremo.","actors":[{"icon":"device-laptop","title":"Portátil de Marta","text":"cliente VPN"},{"icon":"shield-lock","title":"Concentrador VPN"},{"icon":"server","title":"Servidor de la intranet"},{"icon":"world","title":"Web pública"}],"steps":[{"from":0,"to":1,"text":"Petición a la intranet, por el túnel","tone":"good"},{"from":1,"to":2,"text":"Sigue por la LAN, sin cifrado VPN","tone":"warn"},{"from":2,"to":0,"text":"Respuesta (vuelve por el concentrador)","reply":true},{"from":0,"to":3,"text":"Consulta el tiempo, directa por su router","tone":"accent"},{"from":3,"to":0,"text":"Respuesta, fuera del túnel","reply":true,"tone":"accent"}]},
         {
           "type": "exam",
           "text": "Teletrabajo = **acceso remoto**. Sobre el split tunnel, la respuesta correcta es que separa el tráfico de la organización del que sale por Internet local; falsas: «envía todo por la organización» (eso es el túnel completo), «duplica el tráfico», «separa por contraseña» o «solo el tráfico cifrado usa el proveedor local». Y si preguntan por el límite del acceso remoto: el **tramo posterior al concentrador** puede quedar sin protección; el concentrador no extiende su cifrado a toda la LAN."
@@ -521,6 +522,7 @@
             "El usuario descifra el archivo y verifica su firma con las claves correspondientes."
           ]
         },
+        {"type":"diagram","kind":"sequence","title":"Freenet: la búsqueda va de vecino en vecino","caption":"Si se agota el TTL sin encontrarlo, la respuesta es Reply Not Found.","actors":[{"icon":"user","title":"Tu nodo"},{"icon":"network","title":"Nodo vecino"},{"icon":"network","title":"Otro nodo"},{"icon":"archive","title":"Nodo con el archivo"}],"steps":[{"from":0,"to":1,"text":"Data Request (clave exacta)","tone":"accent"},{"from":1,"to":2,"text":"Reenvía la petición","tone":"accent"},{"from":2,"to":3,"text":"Reenvía la petición","tone":"accent"},{"note":"Tiene el archivo en su disco","at":3},{"from":3,"to":2,"text":"Data Reply","reply":true,"tone":"good"},{"from":2,"to":1,"text":"Data Reply (mismo camino)","reply":true,"tone":"good"},{"from":1,"to":0,"text":"Data Reply","reply":true,"tone":"good"},{"note":"Descifra y verifica la firma","at":0}]},
         {
           "type": "exam",
           "text": "Para encontrar un recurso en Freenet **se envía la búsqueda de nodo en nodo hasta dar con el que lo almacena**. Falsas: «se consulta un directorio centralizado» (eso es Tor) y «basta con una consulta local» (tu disco guarda archivos cifrados de otros, no lo que tú buscas). Que sea P2P significa que **los participantes contribuyen a almacenar y recuperar** la información; no hay servidor central ni el autor atiende cada petición. Su finalidad es **publicar y recuperar información con anonimato**, no unir sedes ni autenticar usuarios."
@@ -584,6 +586,7 @@
             "Bob responde siguiendo el mismo proceso: busca en la DHT los túneles de entrada de Alice."
           ]
         },
+        {"type":"diagram","kind":"sequence","title":"I2P: Alice escribe a Bob y Bob contesta","caption":"Los túneles van en un solo sentido: mensaje y respuesta usan cuatro túneles.","actors":[{"icon":"user","title":"Alice"},{"icon":"database","title":"DHT (netDB)"},{"icon":"user-check","title":"Bob"}],"steps":[{"from":0,"to":1,"text":"¿Túneles de entrada de Bob?","tone":"accent"},{"from":1,"to":0,"text":"Túneles de entrada de Bob","reply":true,"tone":"accent"},{"from":0,"to":2,"text":"Mensaje: salida de Alice → entrada de Bob","tone":"good"},{"from":2,"to":1,"text":"¿Túneles de entrada de Alice?","tone":"warn"},{"from":1,"to":2,"text":"Túneles de entrada de Alice","reply":true,"tone":"warn"},{"from":2,"to":0,"text":"Respuesta: salida de Bob → entrada de Alice","reply":true,"tone":"good"}]},
         {
           "type": "exam",
           "text": "Para comunicarte con un nodo I2P **consultas la DHT**. Trampas: «directorio centralizado» (eso es Tor), «basta con conocer su IP» (precisamente se oculta) y «conocer sus túneles de **salida**» (necesitas sus túneles de **entrada**). La finalidad de I2P es que **cliente y servidor no se identifiquen entre sí**, no unir sedes ni autenticar equipos con certificados."

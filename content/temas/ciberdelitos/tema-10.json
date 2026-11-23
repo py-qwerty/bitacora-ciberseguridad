@@ -88,6 +88,7 @@
             ]
           ]
         },
+        {"type":"diagram","kind":"sequence","title":"Comunicación, denuncia y querella: quién habla con quién","caption":"Cuanto más te implicas, más formalidades: solo la querella te hace parte acusadora.","actors":[{"icon":"eye","title":"Informante","text":"lo ha visto, no es víctima"},{"icon":"user","title":"Víctima"},{"icon":"scale","title":"Abogado y procurador"},{"icon":"gavel","title":"Policía o juzgado","text":"juez, fiscal o policía"}],"steps":[{"from":0,"to":3,"text":"Comunicación: correo o formulario web","tone":"accent"},{"note":"Si es delito, investiga de oficio","at":3},{"from":1,"to":3,"text":"Denuncia, por escrito o de palabra","tone":"warn"},{"from":3,"to":1,"text":"Puede llamarle a declarar","reply":true,"tone":"warn"},{"from":1,"to":2,"text":"Quiere ser parte acusadora","tone":"good"},{"from":2,"to":3,"text":"Querella ante el juez de instrucción","tone":"good"},{"from":2,"to":3,"text":"Pide diligencias de investigación","tone":"good"}]},
         {
           "type": "list",
           "title": "Para que una comunicación sea útil",
@@ -220,6 +221,7 @@
           "title": "Caso práctico",
           "text": "Una pyme detecta que alguien entró en su correo corporativo hace tres meses y desvió un pago. El administrador de sistemas reúne los registros de acceso; la abogada de la empresa los ordena en un relato cronológico y explica que se trata de un posible delito de estafa. Lo presentan por escrito esa misma semana, sin esperar a «tenerlo todo»: cada mes que pasa acerca el límite de doce meses de conservación de datos."
         },
+        {"type":"diagram","kind":"sequence","title":"Denunciar pronto: la carrera contra los doce meses","caption":"Pasados doce meses, la operadora puede no conservar ya los datos de la IP.","actors":[{"icon":"user-cog","title":"Técnico","text":"administrador de sistemas"},{"icon":"scale","title":"Jurista","text":"abogada de la empresa"},{"icon":"gavel","title":"Policía y juzgado"},{"icon":"antenna","title":"Operadora","text":"guarda datos de tráfico"}],"steps":[{"note":"Reúne los registros de acceso","at":0},{"from":0,"to":1,"text":"Qué pasó y qué efectos tuvo","tone":"accent"},{"note":"Relato cronológico y encaje legal","at":1},{"from":1,"to":2,"text":"Denuncia por escrito, sin esperar","tone":"good"},{"from":2,"to":3,"text":"Con autorización judicial: ¿quién usaba la IP?","tone":"warn"},{"from":3,"to":2,"text":"El cliente de esa IP","reply":true,"tone":"warn"}]},
         {
           "type": "exam",
           "text": "Trampas: «esperar a tener todos los datos, el tiempo no afecta» (falso: el tiempo corre en contra), «es **obligatorio** presentarla por escrito» (es **aconsejable**; la denuncia también puede ser verbal), «que la redacte **únicamente** el técnico» (se recomienda hacerlo **conjuntamente** con el jurista). La correcta suele ser que lo expuesto lo comprendan **todos los actores jurídicos y policiales**."

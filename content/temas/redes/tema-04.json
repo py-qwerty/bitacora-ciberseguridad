@@ -297,6 +297,7 @@
             "Una tercera interfaz se usa para gestión y administración."
           ]
         },
+        {"type":"diagram","kind":"sequence","title":"IPS en modo en línea: el tráfico lo atraviesa","caption":"Entra por una interfaz, sale por otra; la tercera es para gestión.","actors":[{"icon":"world","title":"Exterior"},{"icon":"shield-check","title":"IPS en línea"},{"icon":"server","title":"Red interna"}],"steps":[{"from":0,"to":1,"text":"Tráfico legítimo (interfaz de entrada)","tone":"good"},{"note":"Lo analiza: ¿lo deja pasar?","at":1},{"from":1,"to":2,"text":"Reenvía lo permitido (segunda interfaz)","tone":"good"},{"from":0,"to":1,"text":"Tráfico malicioso","tone":"bad"},{"note":"Lo detecta: alerta y bloquea","at":1},{"note":"No llega nada","at":2}]},
         {
           "type": "table",
           "head": [

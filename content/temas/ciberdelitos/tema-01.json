@@ -1108,6 +1108,7 @@
             "Si hay dudas sobre la identidad del solicitante, puede pedir información adicional para confirmarla."
           ]
         },
+        {"type":"diagram","kind":"sequence","title":"Ejercer un derecho ante el responsable, paso a paso","caption":"Si la solicitud es compleja, el plazo se prorroga dos meses avisando dentro del primer mes.","actors":[{"icon":"user","title":"Interesado","text":"la persona de los datos"},{"icon":"building","title":"Responsable","text":"quien trata los datos"},{"icon":"building-bank","title":"AEPD","text":"autoridad de control"}],"steps":[{"from":0,"to":1,"text":"Solicita ejercer un derecho (gratis)","tone":"accent"},{"from":1,"to":0,"text":"Si duda, pide confirmar identidad","tone":"warn"},{"from":0,"to":1,"text":"Aporta la información adicional","reply":true,"tone":"warn"},{"note":"Plazo: un mes desde la solicitud","at":1},{"from":1,"to":0,"text":"Responde y atiende el derecho","reply":true,"tone":"good"},{"note":"Si no lo atiende…","at":1},{"from":1,"to":0,"text":"Explica por qué, en un mes","reply":true,"tone":"bad"},{"from":0,"to":2,"text":"Puede presentar una reclamación","tone":"bad"}]},
         {
           "type": "table",
           "title": "Los derechos de un vistazo",
@@ -1277,6 +1278,7 @@
             "Como hay alto riesgo (las contraseñas pueden reutilizarse en otros servicios), se comunica a los clientes en lenguaje claro y se les pide que las cambien."
           ]
         },
+        {"type":"diagram","kind":"sequence","title":"Una brecha de datos: quién avisa a quién","caption":"Todas las brechas se documentan; a los afectados solo se les avisa si hay alto riesgo.","actors":[{"icon":"server-cog","title":"Encargado","text":"trata datos por cuenta ajena"},{"icon":"building","title":"Responsable","text":"decide sobre los datos"},{"icon":"building-bank","title":"AEPD","text":"autoridad de control"},{"icon":"users","title":"Afectados","text":"los interesados"}],"steps":[{"note":"Detecta la brecha","at":0},{"from":0,"to":1,"text":"Aviso de la brecha sin dilación","tone":"warn"},{"note":"Tiene constancia: corren 72 horas","at":1},{"note":"Documenta la brecha y avisa al DPO","at":1},{"from":1,"to":2,"text":"Notifica lo que sabe (72 horas)","tone":"accent"},{"from":1,"to":2,"text":"Completa la información por fases","tone":"accent"},{"note":"¿Probable alto riesgo?","at":1},{"from":1,"to":3,"text":"Comunicación sin dilación, lenguaje claro","tone":"bad"}]},
         {
           "type": "exam",
           "text": "Fíjate en los dos umbrales. A la autoridad: **salvo que sea improbable un riesgo**. A los interesados: **cuando haya probable alto riesgo**. Son trampas: «se notifica a la autoridad solo si hay alto riesgo», «se notifica siempre a la autoridad», «siempre que se notifica a la autoridad hay que avisar a los interesados». Si no se conoce todo el alcance: **notificar a tiempo y completar gradualmente**. Y una brecha no es solo revelación: también **pérdida, destrucción o alteración**."

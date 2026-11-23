@@ -477,6 +477,7 @@
           "type": "p",
           "text": "La **responsabilidad de monitorizar un riesgo recae en su propietario**. Puede delegar el seguimiento diario, pero retoma el control cuando el riesgo se sale de los márgenes tolerables. Y cada vez que la realidad difiere de lo estimado, conviene **revisar el análisis y las decisiones de tratamiento**."
         },
+        {"type":"diagram","kind":"sequence","title":"El propietario del riesgo y quien vigila el indicador","caption":"Se puede delegar el seguimiento diario, no la responsabilidad.","actors":[{"icon":"user-shield","title":"Propietario del riesgo","text":"responsable de monitorizar"},{"icon":"user-search","title":"Responsable del análisis","text":"seguimiento diario"}],"steps":[{"from":0,"to":1,"text":"Delega el seguimiento diario","tone":"accent"},{"note":"Mide con la periodicidad fijada","at":1},{"from":1,"to":0,"text":"Indicador dentro de los márgenes","reply":true,"tone":"good"},{"note":"El indicador supera el umbral","at":1},{"from":1,"to":0,"text":"Aviso: fuera de lo tolerable","tone":"bad"},{"note":"Retoma el control","at":0},{"note":"Revisa el análisis y el tratamiento","at":0}]},
         {
           "type": "example",
           "title": "Caso práctico: el indicador que sube sin dueño",

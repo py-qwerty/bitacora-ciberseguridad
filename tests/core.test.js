@@ -51,3 +51,10 @@ test('decision trees and matrices are validated: branches, depth, axes and cells
  const mb=[b=>{b.cells=[['warn','bad']]},b=>{b.cells[0][0]='rojo'},b=>{b.marks[0].row=5},b=>{b.rows.items=['Solo']},b=>{b.legend[0].tone='azul'}];
  for(const m of mb){const t=tema();const b=JSON.parse(JSON.stringify(matrix));m(b);t.sections[0].blocks.push(b);assert.throws(()=>validateTema(t,bank));}
 });
+test('sequence diagrams are validated: actors, messages and notes',()=>{
+ const node=(icon='server',title='Pieza')=>({icon,title});
+ const seq={type:'diagram',kind:'sequence',title:'HTTP',actors:[node('device-desktop','Navegador'),node('server','Servidor')],steps:[{from:0,to:1,text:'Pide la página'},{from:1,to:0,text:'Aquí la tienes',reply:true,tone:'good'},{note:'Se pinta la web',at:0}]};
+ const t0=tema();t0.sections[0].blocks.push(JSON.parse(JSON.stringify(seq)));assert.equal(validateTema(t0,bank).id,11);
+ const sb=[b=>{b.actors=[node()]},b=>{b.steps[0].to=0},b=>{b.steps[0].to=2},b=>{b.steps[0].text=' '},b=>{b.steps[1].tone='azul'},b=>{b.steps[2].at=5},b=>{b.steps=[{note:'a',at:0},{note:'b',at:1}]},b=>{b.steps[1].reply='sí'}];
+ for(const m of sb){const t=tema();const b=JSON.parse(JSON.stringify(seq));m(b);t.sections[0].blocks.push(b);assert.throws(()=>validateTema(t,bank));}
+});

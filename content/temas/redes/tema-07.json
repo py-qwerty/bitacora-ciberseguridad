@@ -120,6 +120,7 @@
           "type": "p",
           "text": "En WEP, WPA y WPA2 estas tramas de gestión **viajan sin cifrar y sin protección**. Cualquiera puede leerlas y, peor aún, **falsificarlas**: por ejemplo, enviar una trama de «desautenticación» haciéndose pasar por el AP para echarte de la red. Solo WPA3 las protege de forma obligatoria con **PMF** (lo verás al final del tema)."
         },
+        {"type":"diagram","kind":"sequence","title":"Unirse a una wifi y el peligro de las tramas sin proteger","caption":"En WEP, WPA y WPA2 las tramas de gestión viajan sin protección: se pueden falsificar.","actors":[{"icon":"device-mobile","title":"Estación"},{"icon":"wifi","title":"Punto de acceso (AP)"},{"icon":"spy","title":"Atacante"}],"steps":[{"from":1,"to":0,"text":"Trama de gestión: «aquí estoy»","tone":"accent"},{"from":0,"to":1,"text":"Solicitud de detección (probe request)","tone":"accent"},{"note":"Elige una red","at":0},{"from":0,"to":1,"text":"Se autentica (en WEP: OSA o SKA)","tone":"good"},{"from":2,"to":0,"text":"Desautenticación falsa, fingiéndose el AP","tone":"bad"},{"note":"Queda fuera de la red","at":0}]},
         {
           "type": "table",
           "title": "Los tres pilares con los que se analiza cada protocolo",
@@ -178,6 +179,7 @@
             "El AP comprueba el resultado e indica si se ha superado o no; en función de eso, el cliente tiene o no acceso a la red."
           ]
         },
+        {"type":"diagram","kind":"sequence","title":"SKA: el reto-respuesta de WEP","caption":"La clave nunca viaja por el aire, pero el AP no demuestra nada al cliente.","actors":[{"icon":"device-laptop","title":"Cliente"},{"icon":"wifi","title":"Punto de acceso (AP)"}],"steps":[{"from":0,"to":1,"text":"Pido autenticarme"},{"from":1,"to":0,"text":"Reto: un texto aleatorio","reply":true,"tone":"accent"},{"note":"Cifra el reto con la clave compartida","at":0},{"from":0,"to":1,"text":"Reto cifrado","tone":"accent"},{"note":"Comprueba el resultado","at":1},{"from":1,"to":0,"text":"Superado o no superado","reply":true,"tone":"good"}]},
         {
           "type": "list",
           "title": "Dos problemas de la autenticación SKA",
@@ -407,6 +409,7 @@
             "Si es aceptado, se generan las claves y el AP abre el paso al tráfico."
           ]
         },
+        {"type":"diagram","kind":"sequence","title":"WPA-Enterprise: así entra un empleado con 802.1X","caption":"Hasta que RADIUS no dice «aceptado», el AP solo deja pasar mensajes EAP.","actors":[{"icon":"device-laptop","title":"Portátil","text":"suplicante"},{"icon":"wifi","title":"AP","text":"autenticador"},{"icon":"server","title":"Servidor RADIUS"},{"icon":"users","title":"Directorio de la empresa"}],"steps":[{"from":0,"to":1,"text":"Se asocia (solo pasa EAP)","tone":"accent"},{"from":0,"to":1,"text":"Credenciales o certificado (túnel EAP)","tone":"accent"},{"from":1,"to":2,"text":"Reenvía la petición","tone":"accent"},{"from":2,"to":3,"text":"Consulta la identidad (p. ej. LDAP)","tone":"warn"},{"from":3,"to":2,"text":"Resultado de la consulta","reply":true,"tone":"warn"},{"from":2,"to":1,"text":"«Aceptado» o «rechazado»","reply":true,"tone":"good"},{"note":"Si aceptado: se generan las claves","at":1},{"from":1,"to":0,"text":"Abre el paso al tráfico","reply":true,"tone":"good"}]},
         {
           "type": "example",
           "title": "Caso práctico",
@@ -669,6 +672,7 @@
           "type": "p",
           "text": "Lo mismo puede hacerse con **curvas elípticas** en lugar de exponenciación; el concepto es idéntico."
         },
+        {"type":"diagram","kind":"sequence","title":"SAE en WPA3: commit, confirm y después el 4-way handshake","caption":"Ambos llegan al mismo secreto sin enviarlo; SAE no sustituye el 4-way handshake, lo precede.","actors":[{"icon":"device-laptop","title":"Cliente"},{"icon":"wifi","title":"Punto de acceso (AP)"}],"steps":[{"note":"PE = contraseña + MAC","at":0},{"note":"PE = contraseña + MAC","at":1},{"from":0,"to":1,"text":"Commit: sA y EA","tone":"accent"},{"from":1,"to":0,"text":"Commit: sB y EB","reply":true,"tone":"accent"},{"note":"Calcula el secreto compartido ss","at":0},{"note":"Calcula el mismo secreto ss","at":1},{"from":0,"to":1,"text":"Confirm: llegué al mismo secreto","tone":"good"},{"from":1,"to":0,"text":"Confirm: yo también","reply":true,"tone":"good"},{"note":"Hash del secreto: obtiene la PMK","at":0},{"note":"Hash del secreto: obtiene la PMK","at":1},{"from":1,"to":0,"text":"4-way handshake con esa PMK","tone":"warn"}]},
         {
           "type": "term",
           "term": "Ataque de diccionario offline",

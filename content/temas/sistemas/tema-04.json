@@ -173,6 +173,7 @@
             "El servidor repite el cálculo con la contraseña que tiene guardada; si su hash coincide con el response, concede el acceso."
           ]
         },
+        {"type":"diagram","kind":"sequence","title":"Digest: el reto-respuesta con nonce, paso a paso","caption":"La contraseña nunca viaja: solo un hash que vale para ese nonce.","actors":[{"icon":"browser","title":"Cliente","text":"el navegador"},{"icon":"server","title":"Servidor"}],"steps":[{"from":0,"to":1,"text":"Pide el recurso protegido","tone":"warn"},{"from":1,"to":0,"text":"401 + realm + nonce (el reto)","reply":true,"tone":"warn"},{"note":"Calcula el hash MD5 (response)","at":0},{"from":0,"to":1,"text":"Authorization: usuario, nonce, URI, response","tone":"good"},{"note":"Repite el cálculo y compara","at":1},{"from":1,"to":0,"text":"Acceso concedido si coincide","reply":true,"tone":"good"}]},
         {
           "type": "table",
           "title": "Basic frente a digest",
@@ -232,6 +233,7 @@
             "**Verificación:** si el servidor es el DC, comprueba él mismo; si no, reenvía desafío, respuesta y usuario al DC, que tiene el hash de la contraseña y repite el cálculo."
           ]
         },
+        {"type":"diagram","kind":"sequence","title":"Los tres mensajes de NTLMv2 y la verificación","caption":"Si el servidor es el propio DC, comprueba él mismo. La contraseña no viaja.","actors":[{"icon":"device-laptop","title":"Cliente"},{"icon":"server","title":"Servidor"},{"icon":"server-cog","title":"Controlador de dominio","text":"guarda el hash"}],"steps":[{"from":0,"to":1,"text":"NEGOTIATE (tipo 1): versiones soportadas","tone":"accent"},{"from":1,"to":0,"text":"CHALLENGE (tipo 2): desafío de 8 bytes","reply":true,"tone":"warn"},{"note":"HMAC-MD5 con el hash y los desafíos","at":0},{"from":0,"to":1,"text":"AUTHENTICATE (tipo 3): respuesta, usuario, dominio","tone":"good"},{"from":1,"to":2,"text":"Reenvía desafío, respuesta y usuario","tone":"good"},{"note":"Repite el cálculo con el hash","at":2},{"from":2,"to":1,"text":"Resultado de la verificación","reply":true,"tone":"good"}]},
         {
           "type": "term",
           "term": "HMAC (Hash-based Message Authentication Code)",
@@ -299,6 +301,7 @@
           "term": "Tique de servicio",
           "text": "El «vale» para un servicio concreto (un servidor de archivos, una web). Va cifrado con la clave secreta del servidor de destino, que lo descifra, obtiene la clave de sesión y comprueba quién eres."
         },
+        {"type":"diagram","kind":"sequence","title":"Kerberos paso a paso: del TGT al servicio","caption":"Tres fases: conseguir el TGT, cambiarlo por un tique y usarlo. La contraseña nunca viaja.","actors":[{"icon":"device-laptop","title":"Cliente"},{"icon":"id","title":"AS","text":"en el KDC"},{"icon":"ticket","title":"TGS","text":"en el KDC"},{"icon":"server","title":"Servidor de destino"}],"steps":[{"from":0,"to":1,"text":"Pide autenticarse, sin contraseña en claro","tone":"accent"},{"note":"Verifica al usuario","at":1},{"from":1,"to":0,"text":"TGT (la «pulsera»)","reply":true,"tone":"accent"},{"from":0,"to":2,"text":"TGT + petición del servicio","tone":"warn"},{"note":"Descifra el TGT y verifica","at":2},{"from":2,"to":0,"text":"Tique de servicio (el «vale»)","reply":true,"tone":"warn"},{"from":0,"to":3,"text":"Presenta el tique de servicio","tone":"good"},{"note":"Lo descifra con su clave","at":3},{"from":3,"to":0,"text":"Canal autenticado establecido","reply":true,"tone":"good"}]},
         {
           "type": "steps",
           "title": "El flujo completo",
@@ -718,6 +721,7 @@
           "term": "OIDC (OpenID Connect)",
           "text": "**Capa de autenticación** construida sobre OAuth 2.0. Al final del flujo entrega un **ID token**, que es un JWT con información del usuario, para que la aplicación sepa quién es."
         },
+        {"type":"diagram","kind":"sequence","title":"OAuth 2.0 con código de autorización, paso a paso","caption":"La aplicación nunca ve tu contraseña: recibe un código y lo cambia por un token.","actors":[{"icon":"user","title":"Tú"},{"icon":"code","title":"Aplicación cliente"},{"icon":"cloud","title":"Servicio externo","text":"login y API"}],"steps":[{"note":"Quiere acceso a tus datos","at":1},{"from":1,"to":0,"text":"Te redirige al login del servicio","tone":"accent"},{"from":0,"to":2,"text":"Inicias sesión y autorizas a la app","tone":"accent"},{"from":2,"to":0,"text":"Te devuelve con un código","reply":true,"tone":"warn"},{"from":0,"to":1,"text":"Llegas a la app con el código","tone":"warn"},{"from":1,"to":2,"text":"Cambia el código por un token","tone":"good"},{"from":2,"to":1,"text":"Token de acceso (+ ID token con OIDC)","reply":true,"tone":"good"},{"from":1,"to":2,"text":"Llama a la API con el token"},{"from":2,"to":1,"text":"Tus datos, sin tu contraseña","reply":true}]},
         {
           "type": "table",
           "title": "OAuth 2.0 frente a OIDC",

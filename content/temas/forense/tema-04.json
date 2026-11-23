@@ -351,6 +351,7 @@
           "type": "p",
           "text": "Para abrir un archivo, el sistema operativo consulta el índice, encuentra el archivo y sigue el **enlace a su primera parte**. Esa parte enlaza con la siguiente, y así hasta el final. Gracias a esa cadena, un archivo puede estar **fragmentado** (repartido en trozos no consecutivos) y aun así leerse entero."
         },
+        {"type":"diagram","kind":"sequence","title":"Abrir un archivo fragmentado, paso a paso","caption":"La aplicación solo da la ruta; el sistema de ficheros sigue los enlaces.","actors":[{"icon":"code","title":"Aplicación"},{"icon":"folder","title":"Sistema de ficheros","text":"traduce rutas"},{"icon":"device-floppy","title":"Disco","text":"índice y bloques"}],"steps":[{"from":0,"to":1,"text":"Abre el archivo por su ruta"},{"from":1,"to":2,"text":"Consulta el índice","tone":"accent"},{"from":2,"to":1,"text":"Dónde empieza la parte 1","reply":true,"tone":"accent"},{"from":1,"to":2,"text":"Lee la parte 1","tone":"warn"},{"from":2,"to":1,"text":"Parte 1 + enlace a la 2","reply":true,"tone":"warn"},{"from":1,"to":2,"text":"Lee la parte 2"},{"from":2,"to":1,"text":"Parte 2: fin del archivo","reply":true},{"note":"Une los trozos no consecutivos","at":1},{"from":1,"to":0,"text":"El archivo entero","reply":true,"tone":"good"}]},
         {
           "type": "analogy",
           "text": "Una yincana: la primera pista dice dónde está la segunda, la segunda dónde está la tercera… Las pistas pueden estar por toda la ciudad; mientras cada una apunte a la siguiente, llegas al final."
