@@ -1,4 +1,4 @@
-import { DURATION, EXAM_SIZE, generateExam, gradeExam, remaining, formatTime, isValidSession, practiceBlocks, topicQuestions, baseQuestions, campusQuestions, validPractice, swipeDirection, validateBank, validateTema, ICONS } from './core.js?v=9'; import { setupPracticas, loadPracticasIndex, practicasRoute, isPracticasPath, practicasCard, courseExamLink, simulacroExamLink } from './practicas.js?v=5';
+import { DURATION, EXAM_SIZE, generateExam, gradeExam, remaining, formatTime, isValidSession, practiceBlocks, topicQuestions, baseQuestions, campusQuestions, validPractice, swipeDirection, validateBank, validateTema, ICONS } from './core.js?v=9'; import { setupPracticas, loadPracticasIndex, practicasRoute, isPracticasPath, practicasCard, courseExamLink, simulacroExamLink } from './practicas.js?v=5'; import { setupSiglas, sgStart, sgEnd, sgApply, sgList } from './siglas.js?v=2';
 const $ = s => document.querySelector(s);
 const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const number = n => n.toLocaleString('es-ES');
@@ -80,7 +80,7 @@ function practiceMaterial(topic){
   const m=topicMaterial(topic);if(!m)return '';
   return `<p class="practice-material"><a href="${esc(m.url)}" target="_blank" rel="noopener">Consultar tema en PDF <span aria-hidden="true">↗</span><span class="sr-only"> (se abre en otra pestaña)</span></a><span>Se abre aparte; mantienes tu avance en el test.</span></p>`;
 }
-const rich = value => esc(value).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+const rich = (value, mode) => sgApply(esc(value).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>'), mode);
 function loadTema(n){
   if(!temaIndex.has(n))return null;
   const cached=temaCache.get(n);if(cached)return cached;
@@ -130,17 +130,17 @@ function diagramBlock(b){
 function temaBlock(b){
   const title=b.title?`<h4>${rich(b.title)}</h4>`:'';
   switch(b.type){
-    case 'p':return `<p>${rich(b.text)}</p>`;
-    case 'analogy':return `<aside class="tb tb-analogy"><span class="tb-label">Imagínalo así</span>${title}<p>${rich(b.text)}</p></aside>`;
-    case 'term':return `<dl class="tb tb-term"><dt>${rich(b.term)}</dt><dd>${rich(b.text)}</dd></dl>`;
-    case 'list':return `<div class="tb-list">${title}<ul>${b.items.map(i=>`<li>${rich(i)}</li>`).join('')}</ul></div>`;
-    case 'steps':return `<div class="tb-list">${title}<ol class="tb-steps">${b.items.map(i=>`<li>${rich(i)}</li>`).join('')}</ol></div>`;
+    case 'p':return `<p>${rich(b.text,'inline')}</p>`;
+    case 'analogy':return `<aside class="tb tb-analogy"><span class="tb-label">Imagínalo así</span>${title}<p>${rich(b.text,'inline')}</p></aside>`;
+    case 'term':return `<dl class="tb tb-term"><dt>${rich(b.term,'define')}</dt><dd>${rich(b.text,'inline')}</dd></dl>`;
+    case 'list':return `<div class="tb-list">${title}<ul>${b.items.map(i=>`<li>${rich(i,'inline')}</li>`).join('')}</ul></div>`;
+    case 'steps':return `<div class="tb-list">${title}<ol class="tb-steps">${b.items.map(i=>`<li>${rich(i,'inline')}</li>`).join('')}</ol></div>`;
     case 'table':return `<div class="tb-table">${title}<div class="table-wrap"><table><thead><tr>${b.head.map(h=>`<th scope="col">${rich(h)}</th>`).join('')}</tr></thead><tbody>${b.rows.map(r=>`<tr>${r.map((c,i)=>i===0?`<th scope="row">${rich(c)}</th>`:`<td>${rich(c)}</td>`).join('')}</tr>`).join('')}</tbody></table></div></div>`;
-    case 'example':return `<aside class="tb tb-example"><span class="tb-label">Ejemplo</span>${title}<p>${rich(b.text)}</p></aside>`;
-    case 'exam':return `<aside class="tb tb-exam"><span class="tb-label">Así cae en el test</span>${title}<p>${rich(b.text)}</p></aside>`;
+    case 'example':return `<aside class="tb tb-example"><span class="tb-label">Ejemplo</span>${title}<p>${rich(b.text,'inline')}</p></aside>`;
+    case 'exam':return `<aside class="tb tb-exam"><span class="tb-label">Así cae en el test</span>${title}<p>${rich(b.text,'inline')}</p></aside>`;
     case 'code':return `<figure class="tb-code">${b.title?`<figcaption>${rich(b.title)}</figcaption>`:''}<pre><code>${esc(b.text)}</code></pre></figure>`;
     case 'diagram':return diagramBlock(b);
-    case 'key':return `<aside class="tb tb-key"><span class="tb-label">Idea clave</span><p>${rich(b.text)}</p></aside>`;
+    case 'key':return `<aside class="tb tb-key"><span class="tb-label">Idea clave</span><p>${rich(b.text,'inline')}</p></aside>`;
     default:return '';
   }
 }
@@ -166,7 +166,7 @@ function tqRefresh(id){
   const picked=tqPicked.get(id);const done=picked?tqVerdict(q,picked):'';
   el.classList.remove('tq-ok','tq-bad');if(done)el.classList.add('tq-'+done);
   el.querySelectorAll('.tq-opt').forEach(b=>{const k=b.dataset.key;b.classList.toggle('is-picked',picked===k);b.classList.toggle('is-right',!!picked&&k===q.correct);b.setAttribute('aria-pressed',String(picked===k));b.disabled=!!picked;});
-  el.querySelector('.tq-result').innerHTML=picked?tqResult(q,arg,picked):'<p class="tq-hint">Elige una opción y verás al instante si es correcta.</p>';
+  sgStart(entry.data.siglas,false);try{el.querySelector('.tq-result').innerHTML=picked?tqResult(q,arg,picked):'<p class="tq-hint">Elige una opción y verás al instante si es correcta.</p>';}finally{sgEnd();}
   const txt=el.querySelector('.tq-state-text');if(txt)txt.textContent=done==='ok'?'Acertada':done==='bad'?'Fallada':'Sin responder';
   const panel=el.closest('.tema-section-questions');if(panel){const all=panel.querySelectorAll('.tq');const ok=panel.querySelectorAll('.tq-ok').length;const tried=panel.querySelectorAll('.tq-ok,.tq-bad').length;const c=panel.querySelector('.tq-count');if(c)c.textContent=tried?`${ok}/${all.length}`:String(all.length);}
 }
@@ -180,12 +180,26 @@ function temaPage(n){
   const intro=t.intro;const prog=temaProgress(n);const secIds=t.sections.map(s=>s.id);const doneN=secIds.filter(i=>prog.studied[i]).length;const lastIdx=secIds.indexOf(prog.last);
   const progress=`<div class="tema-progress"><p class="tema-progress-text"><b>${doneN}</b> de ${secIds.length} apartados estudiados</p><progress max="${secIds.length}" value="${doneN}" aria-label="Apartados estudiados"></progress>${lastIdx>=0?`<a class="btn secondary tema-resume" href="${sectionHref(n,prog.last)}" data-resume="${esc(prog.last)}">Continuar donde lo dejaste · apartado ${lastIdx+1}</a>`:''}</div>`;
   const facts=[`<li><b>${t.sections.length}</b> apartados</li>`,t.minutes?`<li><b>${t.minutes}</b> min de lectura</li>`:'',`<li><b>${qs.length}</b> preguntas argumentadas</li>`].join('');
-  return `${back}<header class="tema-hero"><div class="tema-hero-main"><p class="tema-kicker">${esc(courseTitle(topic.course))}, tema ${topic.number}<span class="sr-only">. Tema digital</span></p><h1>${esc(topicTitle(n).replace(/^Tema \d+\.\s*/,''))}</h1><ul class="tema-facts">${facts}</ul><p class="tema-why">${rich(intro.why)}</p>${progress}</div>${intro.before||intro.goals?`<div class="tema-intro">${intro.before?`<section class="tema-before"><h2>Antes de empezar</h2><ul>${intro.before.map(i=>`<li>${rich(i)}</li>`).join('')}</ul></section>`:''}${intro.goals?`<section class="tema-goals"><h2>Al terminar sabrás</h2><ul>${intro.goals.map(i=>`<li>${rich(i)}</li>`).join('')}</ul></section>`:''}</div>`:''}</header>
-<div class="tema-layout"><nav class="tema-index" aria-label="Apartados del tema"><details open><summary>Apartados</summary><ol>${t.sections.map((s,i)=>`<li data-section-li="${esc(s.id)}"${prog.studied[s.id]?' class="is-studied"':''}><a href="${sectionHref(n,s.id)}" data-section="${esc(s.id)}"><span class="tema-index-number">${i+1}</span><span>${esc(s.title)}</span>${bySection.get(s.id).length?`<small>${bySection.get(s.id).length} preg.</small>`:''}<span class="tema-index-done" aria-hidden="true">✓</span></a></li>`).join('')}${t.summary?`<li><a href="${sectionHref(n,'resumen')}" data-section="resumen"><span class="tema-index-number">✓</span><span>Resumen</span></a></li>`:''}${t.glossary?`<li><a href="${sectionHref(n,'glosario')}" data-section="glosario"><span class="tema-index-number">Aa</span><span>Glosario</span></a></li>`:''}</ol></details><a class="btn secondary full" href="#/practica/${n}/0">Test completo de 30 →</a></nav>
-<article class="tema-body">${t.sections.map((s,i)=>{const list=bySection.get(s.id);return `<section class="tema-section" id="apartado-${esc(s.id)}" aria-labelledby="titulo-${esc(s.id)}"><div class="tema-section-content"><header class="tema-section-head"><span class="tema-section-number" aria-hidden="true">${i+1}</span><div><h2 id="titulo-${esc(s.id)}"><span class="sr-only">Apartado ${i+1}. </span>${esc(s.title)}</h2><p class="tema-section-meta">${pageLinks(topic,s.pages)}${list.length?`<span>${list.length} ${list.length===1?'pregunta':'preguntas'} del test</span>`:''}</p></div></header>${s.blocks.map(temaBlock).join('')}<div class="studied-row"><button type="button" class="studied-toggle" data-action="tema-studied" data-topic="${n}" data-section="${esc(s.id)}" aria-pressed="${prog.studied[s.id]?'true':'false'}"><span class="studied-box" aria-hidden="true"></span>He estudiado este apartado</button></div></div>${list.length?`<aside class="tema-section-questions" aria-label="Preguntas del apartado ${i+1}"><h3>Pon a prueba este apartado <span class="tq-count">${tqCount(list)}</span></h3><p class="small">Elige una opción y comprueba al momento si aciertas.</p>${list.map(q=>temaQuestion(q,t.questions[q.id])).join('')}</aside>`:''}</section>`;}).join('')}
-${t.summary?`<section class="tema-section tema-summary" id="apartado-resumen"><div class="tema-section-content"><h2>Resumen: lo que tienes que saber</h2><ul>${t.summary.map(i=>`<li>${rich(i)}</li>`).join('')}</ul></div></section>`:''}
+  sgStart(t.siglas);try{
+  return `${back}${clasesBlock(t)}<header class="tema-hero"><div class="tema-hero-main"><p class="tema-kicker">${esc(courseTitle(topic.course))}, tema ${topic.number}<span class="sr-only">. Tema digital</span></p><h1>${esc(topicTitle(n).replace(/^Tema \d+\.\s*/,''))}</h1><ul class="tema-facts">${facts}</ul><p class="tema-why">${rich(intro.why,'inline')}</p>${progress}</div>${intro.before||intro.goals?`<div class="tema-intro">${intro.before?`<section class="tema-before"><h2>Antes de empezar</h2><ul>${intro.before.map(i=>`<li>${rich(i,'inline')}</li>`).join('')}</ul></section>`:''}${intro.goals?`<section class="tema-goals"><h2>Al terminar sabrás</h2><ul>${intro.goals.map(i=>`<li>${rich(i,'inline')}</li>`).join('')}</ul></section>`:''}</div>`:''}</header>
+<div class="tema-layout"><nav class="tema-index" aria-label="Apartados del tema"><details open><summary>Apartados</summary><ol>${t.sections.map((s,i)=>`<li data-section-li="${esc(s.id)}"${prog.studied[s.id]?' class="is-studied"':''}><a href="${sectionHref(n,s.id)}" data-section="${esc(s.id)}"><span class="tema-index-number">${i+1}</span><span>${esc(s.title)}</span>${bySection.get(s.id).length?`<small>${bySection.get(s.id).length} preg.</small>`:''}<span class="tema-index-done" aria-hidden="true">✓</span></a></li>`).join('')}${t.summary?`<li><a href="${sectionHref(n,'resumen')}" data-section="resumen"><span class="tema-index-number">✓</span><span>Resumen</span></a></li>`:''}${t.glossary?`<li><a href="${sectionHref(n,'glosario')}" data-section="glosario"><span class="tema-index-number">Aa</span><span>Glosario</span></a></li>`:''}${t.siglas&&Object.keys(t.siglas).length?`<li><a href="${sectionHref(n,'siglas')}" data-section="siglas"><span class="tema-index-number">AB</span><span>Siglas</span></a></li>`:''}</ol></details><a class="btn secondary full" href="#/practica/${n}/0">Test completo de 30 →</a></nav>
+<article class="tema-body">${t.sections.map((s,i)=>{const list=bySection.get(s.id);return `<section class="tema-section" id="apartado-${esc(s.id)}" aria-labelledby="titulo-${esc(s.id)}"><div class="tema-section-content"><header class="tema-section-head"><span class="tema-section-number" aria-hidden="true">${i+1}</span><div><h2 id="titulo-${esc(s.id)}"><span class="sr-only">Apartado ${i+1}. </span>${sgApply(esc(s.title))}</h2><p class="tema-section-meta">${pageLinks(topic,s.pages)}${list.length?`<span>${list.length} ${list.length===1?'pregunta':'preguntas'} del test</span>`:''}</p></div></header>${s.blocks.map(temaBlock).join('')}<div class="studied-row"><button type="button" class="studied-toggle" data-action="tema-studied" data-topic="${n}" data-section="${esc(s.id)}" aria-pressed="${prog.studied[s.id]?'true':'false'}"><span class="studied-box" aria-hidden="true"></span>He estudiado este apartado</button></div></div>${list.length?`<aside class="tema-section-questions" aria-label="Preguntas del apartado ${i+1}"><h3>Pon a prueba este apartado <span class="tq-count">${tqCount(list)}</span></h3><p class="small">Elige una opción y comprueba al momento si aciertas.</p>${list.map(q=>temaQuestion(q,t.questions[q.id])).join('')}</aside>`:''}</section>`;}).join('')}
+${t.summary?`<section class="tema-section tema-summary" id="apartado-resumen"><div class="tema-section-content"><h2>Resumen: lo que tienes que saber</h2><ul>${t.summary.map(i=>`<li>${rich(i,'inline')}</li>`).join('')}</ul></div></section>`:''}
 ${t.glossary?`<section class="tema-section tema-glossary-section" id="apartado-glosario"><div class="tema-section-content"><h2>Glosario</h2><dl class="tema-glossary">${t.glossary.map(g=>`<div><dt>${rich(g.term)}</dt><dd>${rich(g.text)}</dd></div>`).join('')}</dl></div></section>`:''}
+${siglasSection(t)}
 <p class="local-note">Explicación propia elaborada a partir del temario de la UNIR para estudiar desde cero. Ante cualquier duda manda el PDF original.</p></article></div>`;
+  }finally{sgEnd();}
+}
+// «Siglas de este tema»: todas las siglas que salen en el tema, con su explicación (mapa preparado por build-temas).
+function siglasSection(t){
+  const list=sgList(t.siglas);if(!list.length)return '';
+  return `<section class="tema-section tema-glossary-section tema-siglas" id="apartado-siglas"><div class="tema-section-content"><h2>Siglas de este tema</h2><p class="small">La primera vez que sale cada sigla se explica entre paréntesis; después, pasa el ratón o toca cualquier sigla subrayada para ver qué significa.</p><dl class="tema-glossary">${list.map(([k,v])=>`<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join('')}</dl></div></section>`;
+}
+// Clases grabadas del tema (content/clases-grabadas.json): reproductor dentro de la página y enlace al campus.
+const clasesDate=f=>{const d=new Date(f+'T12:00:00');return isNaN(d)?'':d.toLocaleDateString('es-ES',{day:'numeric',month:'long',year:'numeric'});};
+function clasesBlock(t){
+  const list=Array.isArray(t.clases)?t.clases:[];if(!list.length)return '';
+  return `<section class="clases-tema" aria-labelledby="clases-tema-title"><h2 id="clases-tema-title"><span aria-hidden="true">▶</span> ${list.length===1?'Clase grabada de este tema':`${list.length} clases grabadas de este tema`}</h2><p class="small">Necesitas tener iniciada la sesión del campus de UNIR para verlas.</p><ul class="clases-list">${list.map(c=>`<li><details class="clase"><summary><span class="clase-play" aria-hidden="true">▶</span><span class="clase-text"><b>${esc(c.titulo)}</b><small>${esc([clasesDate(c.fecha),c.nota].filter(Boolean).join(' · '))}</small></span><span class="clase-cta">Ver aquí</span></summary>${c.embed?`<div class="clase-player"><iframe src="${esc(c.embed)}" title="${esc(c.titulo)}" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>`:''}<p class="clase-links"><a href="${esc(c.url)}" target="_blank" rel="noopener">Abrir la grabación en una pestaña nueva <span aria-hidden="true">↗</span></a>${c.embed?' <span class="small">Si el reproductor pide iniciar sesión o se queda en blanco, usa este enlace.</span>':''}</p></details></li>`).join('')}</ul></section>`;
 }
 function temaCard(topic){
   if(!temaIndex.has(topic.id))return '';
@@ -581,10 +595,11 @@ document.addEventListener('click',e=>{
 window.addEventListener('hashchange',()=>render());
 window.addEventListener('storage',e=>{const path=currentRoute().path;if(e.key?.startsWith(PREFIX)&&(path.startsWith('/practica/')||(e.key===PREFIX+'autoAdvance'&&path==='/examen')))render(false);});
 document.addEventListener('visibilitychange',()=>{if(!document.hidden&&currentRoute().path==='/examen')render(false);});
+setupSiglas();
 setupPracticas({get bank(){return bank;},get questionMap(){return questionMap;},read,write,esc,rich,heading,topicTitle,topicInfo,courseTitle,notFound,render,ask,sectionHref});
 async function init() {
   try {
-    const response=await fetch('bank.json?v=5',{signal:AbortSignal.timeout(15000)});
+    const response=await fetch('bank.json?v=6',{signal:AbortSignal.timeout(15000)});
     if(!response.ok)throw Error('HTTP '+response.status);
     const data=await response.json();
     validateBank(data);

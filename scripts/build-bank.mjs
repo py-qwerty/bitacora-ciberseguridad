@@ -14,6 +14,9 @@ const courses = [
   { id: 'ciberdelitos', shortTitle: 'Ciberdelitos y regulación', title: 'Ciberdelitos y Regulación de la Ciberseguridad' }
 ];
 const glossary = await load('content/glossary.json');
+// Significados propios de una asignatura (null = en esa asignatura no es una sigla).
+const siglasCurso = await load('content/siglas-curso.json').catch(() => ({}));
+const glossaryFor = id => Object.fromEntries(Object.entries({ ...glossary, ...(siglasCurso[id] || {}) }).filter(([, v]) => typeof v === 'string'));
 const materials = await load('content/materials.json');
 const topics = [], questions = [], campusTests = {};
 const norm = s => String(s).normalize('NFKC').replace(/\s+/g, ' ').trim();
@@ -56,7 +59,7 @@ for (const [courseIndex, course] of courses.entries()) {
       const id = fromCampus ? `${course.id}-t${String(number).padStart(2, '0')}-c${String(campusPos).padStart(2, '0')}` : `${course.id}-t${String(number).padStart(2, '0')}-${String(index + 1).padStart(2, '0')}`;
       if (fromCampus && !(Number.isInteger(q.source_page) && q.source_page > 0)) throw Error(`${id}: falta source_page`);
       const fullText = [q.question, ...q.options, q.explanation].join(' ');
-      const terms = Object.fromEntries(Object.entries({ ...glossary, ...(q.glossary || {}) }).filter(([term]) => new RegExp(`(?<![A-Za-z0-9])${escapeRE(term)}(?![A-Za-z0-9])`).test(fullText)));
+      const terms = Object.fromEntries(Object.entries({ ...glossaryFor(course.id), ...(q.glossary || {}) }).filter(([term]) => new RegExp(`(?<![A-Za-z0-9])${escapeRE(term)}(?![A-Za-z0-9])`).test(fullText)));
       if (terms.DROP && /\bSQL\b|bases? de datos/i.test(fullText)) terms.DROP = 'En SQL, instrucción para eliminar un objeto de la base de datos, por ejemplo una tabla; es diferente del veredicto DROP de un cortafuegos.';
       // Some source explanations already carry a hand-written «Siglas:» note; merge it with the glossary note instead of repeating it.
       // La explicación corta se muestra como texto plano: se quita el marcado de negrita.
@@ -86,7 +89,7 @@ for (const [courseIndex, course] of courses.entries()) {
     }
   }
 }
-const bank = { version: '2026-11-15.1', title: 'Bitácora Ciber', context: 'Práctica personal a partir del material docente. Solo la categoría campus-confirmed incorpora corrección observada en el campus; las demás claves están razonadas para estudiar. Las preguntas del test del campus sin corrección observada (campus-reasoned) llevan una clave razonada con el temario. Los simulacros no reproducen reglas oficiales. Las referencias de versiones y normativa pertenecen al material citado.', courses, topics, campus: campusTests, questions };
+const bank = { version: '2026-11-23.1', title: 'Bitácora Ciber', context: 'Práctica personal a partir del material docente. Solo la categoría campus-confirmed incorpora corrección observada en el campus; las demás claves están razonadas para estudiar. Las preguntas del test del campus sin corrección observada (campus-reasoned) llevan una clave razonada con el temario. Los simulacros no reproducen reglas oficiales. Las referencias de versiones y normativa pertenecen al material citado.', courses, topics, campus: campusTests, questions };
 validateBank(bank);
 if (questions.filter(q => !q.fromClass && !q.fromCampus).length !== 1500) throw Error('Cobertura incompleta');
 if (questions.filter(q => q.source.kind === 'campus-confirmed').some(q => q.course !== 'sistemas' || q.topic !== 1)) throw Error('Confirmación campus fuera de su alcance');
