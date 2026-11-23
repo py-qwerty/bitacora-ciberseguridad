@@ -1,0 +1,89 @@
+/* Camino de estudio (dist/camino.js): página #/camino y bloque «Antes de este tema». */
+:root{--cm-sistemas:#6d4796;--cm-redes:#1d659f;--cm-forense:#9c4426;--cm-gobierno:#2b7046;--cm-ciberdelitos:#85600f}
+.cm-tag{display:inline-flex;align-items:center;padding:1px 7px;border-radius:4px;font-size:10px;font-weight:700;letter-spacing:.2px;white-space:nowrap;color:var(--cm-c);background:color-mix(in srgb,var(--cm-c) 11%,var(--color-surface))}
+.cm-sistemas{--cm-c:var(--cm-sistemas)}.cm-redes{--cm-c:var(--cm-redes)}.cm-forense{--cm-c:var(--cm-forense)}.cm-gobierno{--cm-c:var(--cm-gobierno)}.cm-ciberdelitos{--cm-c:var(--cm-ciberdelitos)}
+
+/* Resumen y siguiente paso */
+.cm-summary{display:grid;gap:12px;margin-bottom:28px}
+.cm-progress{padding:16px 18px;border:1px solid var(--color-border);border-radius:var(--radius-panel)}
+.cm-progress p{font-size:12px;color:var(--color-muted)}.cm-progress b{font-size:22px;color:var(--color-text);margin-right:2px}
+.cm-progress progress,.cm-card progress{display:block;width:100%;height:4px;margin-top:10px;border:0;border-radius:4px;background:var(--color-background);accent-color:var(--color-secondary)}
+.cm-progress progress::-webkit-progress-bar,.cm-card progress::-webkit-progress-bar{background:var(--color-background);border-radius:4px}
+.cm-progress progress::-webkit-progress-value,.cm-card progress::-webkit-progress-value{background:var(--color-secondary);border-radius:4px}
+.cm-progress progress::-moz-progress-bar,.cm-card progress::-moz-progress-bar{background:var(--color-secondary)}
+.cm-next{display:grid;grid-template-columns:1fr auto;align-items:center;gap:4px 12px;padding:16px 18px;border-radius:var(--radius-panel);background:var(--color-primary);color:#fff;text-decoration:none}
+.cm-next:hover{background:var(--color-secondary);color:#fff}
+.cm-next-label{grid-column:1;font-size:10px;font-weight:600;letter-spacing:.3px;opacity:.85}
+.cm-next-title{grid-column:1;display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:14px;line-height:1.45}
+.cm-next .cm-tag{background:#ffffffe6}
+.cm-next-go{grid-column:2;grid-row:1/3;font-size:22px}
+.cm-next.is-finished{display:block;font-size:13px;font-weight:600}
+
+/* Temas clave */
+.cm-keys{margin-bottom:32px}
+.cm-keys h2{font-size:16px}.cm-keys .small{margin-top:4px}
+.cm-keys ol{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:8px}
+.cm-keys a{display:flex;align-items:flex-start;gap:10px;padding:12px 14px;border:1px solid var(--color-border);border-radius:var(--radius-control);text-decoration:none;color:var(--color-text);height:100%}
+.cm-keys a:hover{border-color:var(--color-secondary);background:var(--color-tint)}
+.cm-keys a>span:last-child{display:grid;gap:2px;min-width:0}
+.cm-keys b{font-size:12px;font-weight:600;line-height:1.5}.cm-keys small{font-size:10px;color:var(--color-muted)}
+
+/* Etapas */
+.cm-etapas{list-style:none;margin:0;padding:0;display:grid;gap:30px}
+.cm-etapa-head{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:start;margin-bottom:14px}
+.cm-etapa-n{display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;background:var(--color-primary);color:#fff;font:700 15px var(--font-body)}
+.cm-etapa-head h2{font-size:17px}
+.cm-etapa-head p{font-size:12px;line-height:1.7;color:var(--color-muted);margin-top:3px;max-width:75ch}
+.cm-etapa-count{font:600 11px var(--font-mono);color:var(--color-muted);padding-top:6px}
+.cm-grid{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.cm-card a{display:flex;gap:12px;height:100%;padding:14px;border:1px solid var(--color-border);border-radius:var(--radius-control);text-decoration:none;color:var(--color-text);background:var(--color-surface)}
+.cm-card a:hover{border-color:var(--color-secondary);background:var(--color-tint)}
+.cm-card.is-done a{background:var(--color-background)}
+.cm-pos{display:flex;align-items:center;justify-content:center;flex:0 0 28px;height:28px;border-radius:50%;border:1px solid var(--color-border);font:600 11px var(--font-mono);color:var(--color-muted)}
+.cm-card.is-done .cm-pos{background:var(--color-success);border-color:var(--color-success);color:#fff}
+.cm-card-body{display:flex;flex-direction:column;gap:5px;min-width:0;flex:1}
+.cm-card-top{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.cm-num{font-size:10px;color:var(--color-muted);font-weight:600}
+.cm-base{font-size:9px;font-weight:700;color:var(--color-warning);border:1px solid currentColor;border-radius:4px;padding:0 5px}
+.cm-title{font-size:13px;font-weight:600;line-height:1.5}
+.cm-meta{font-size:10px;color:var(--color-muted)}
+.cm-card progress{margin-top:2px}
+.cm-needs{font-size:10px;color:var(--color-muted);display:flex;flex-wrap:wrap;gap:4px;align-items:center;margin-top:2px}
+.cm-needs i{font-style:normal;font-weight:600;color:var(--cm-c)}
+.cm-needs i+i::before{content:"·";color:var(--color-muted);margin-right:4px;font-weight:400}
+
+/* Bloque «Antes de este tema» en el tema digital */
+.cm-antes{margin:0 0 20px;padding:16px 18px;border:1px solid var(--color-border);border-left:4px solid var(--color-secondary);border-radius:var(--radius-panel)}
+.cm-where{font-size:10px;color:var(--color-muted);margin-bottom:8px}
+.cm-antes h2{font-size:16px}
+.cm-intro{margin-top:4px}
+.cm-links{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:10px}
+.cm-link{padding:12px 14px;border-radius:var(--radius-control);background:var(--color-background)}
+.cm-link-head{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:12px}
+.cm-link-head>a{color:var(--color-text);text-decoration:none}.cm-link-head>a:hover{color:var(--color-primary);text-decoration:underline}
+.cm-ok{font-size:10px;font-weight:700;color:var(--color-success)}
+.cm-link>p{font-size:12px;line-height:1.7;margin-top:6px}
+.cm-apartados{list-style:none;margin:8px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:6px}
+.cm-apartados a{display:inline-flex;align-items:center;gap:6px;min-height:32px;padding:4px 10px;border:1px solid var(--color-border);border-radius:999px;background:var(--color-surface);font-size:11px;text-decoration:none;color:var(--color-secondary)}
+.cm-apartados a:hover{border-color:var(--color-secondary);background:var(--color-tint)}
+.cm-apartados a.is-studied{color:var(--color-success)}
+.cm-conecta{margin-top:10px;border-top:1px solid var(--color-border)}
+.cm-conecta>summary{min-height:44px}
+.cm-conecta .cm-links{margin-top:2px;margin-bottom:6px}
+
+@media(min-width:700px){
+  .cm-summary{grid-template-columns:minmax(220px,1fr) 2fr}
+  .cm-keys ol{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .cm-grid{grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+  .cm-links{grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
+}
+@media(min-width:1024px){
+  .cm-keys ol{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .cm-etapa{display:grid;grid-template-columns:280px 1fr;gap:24px;align-items:start}
+  .cm-etapa-head{position:sticky;top:85px;margin:0}
+  .cm-etapa+.cm-etapa{padding-top:30px;border-top:1px solid var(--color-border)}
+  .cm-grid{grid-template-columns:repeat(auto-fill,minmax(250px,1fr))}
+}
+@media(forced-colors:active){.cm-next,.cm-antes{border:1px solid CanvasText}}
+/* Con «Camino» la barra inferior del móvil tiene seis botones: menos relleno para que ninguna etiqueta se parta. */
+@media(max-width:1023px){.bottom-nav{padding-left:6px;padding-right:6px;gap:2px}.bottom-nav a{min-width:0}.bottom-nav a span{white-space:nowrap}}

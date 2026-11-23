@@ -5,6 +5,7 @@ import vm from 'node:vm';
 import * as core from '../dist/core.js';
 import * as practicas from '../dist/practicas.js';
 import * as siglas from '../dist/siglas.js';
+import * as camino from '../dist/camino.js';
 function fixture(){const courses=[{id:'sistemas',title:'Sistemas',shortTitle:'Sistemas'},{id:'redes',title:'Redes',shortTitle:'Redes'}];const topics=[{id:11,course:'sistemas',number:1,title:'Windows Server'},{id:12,course:'sistemas',number:2,title:'Linux'},{id:21,course:'redes',number:1,title:'Redes'}];const questions=topics.flatMap(t=>Array.from({length:30},(_,i)=>({id:`${t.course}-${t.number}-${i}`,course:t.course,topic:t.id,test:'Tema '+t.number,order:i+1,text:`Caso ${t.id}/${i}`,options:['a','b','c','d'].map(key=>({key,text:'Opción '+key})),correct:'abcd'[i%4],explanation:'La razón de la respuesta <debe> explicarse.',difficulty:'media',source:{kind:'practice',title:t.title,page:5}})));return {version:'test',courses,topics,questions};}
 function runtime(){
  const elements=new Map();const events={};let ctx;
@@ -13,7 +14,7 @@ function runtime(){
  const storage=new Map();const document={querySelector:get,querySelectorAll:()=>[],addEventListener:(k,fn)=>{(events[k]??=[]).push(fn)},activeElement:get('focus'),hidden:false};
  document.body=element();
  const window={addEventListener(){},scrollX:0,scrollY:0,scrollTo(){},innerHeight:700};
- const sandbox={...core,...practicas,...siglas,document,window,localStorage:{getItem:k=>storage.get(k)||null,setItem:(k,v)=>storage.set(k,v),key:i=>[...storage.keys()][i],get length(){return storage.size}},location:{hash:'#/temas'},setInterval:()=>1,clearInterval(){},setTimeout,clearTimeout,URLSearchParams,Map,Set,Date,Math,JSON,Number,String,Object,Array,performance:{now:()=>0},crypto:{randomUUID:()=> 'simulation-1'},matchMedia:()=>({matches:true}),innerWidth:390};
+ const sandbox={...core,...practicas,...siglas,...camino,document,window,localStorage:{getItem:k=>storage.get(k)||null,setItem:(k,v)=>storage.set(k,v),key:i=>[...storage.keys()][i],get length(){return storage.size}},location:{hash:'#/temas'},setInterval:()=>1,clearInterval(){},setTimeout,clearTimeout,URLSearchParams,Map,Set,Date,Math,JSON,Number,String,Object,Array,performance:{now:()=>0},crypto:{randomUUID:()=> 'simulation-1'},matchMedia:()=>({matches:true}),innerWidth:390};
  ctx=vm.createContext(sandbox);const script=readFileSync(new URL('../dist/app.js',import.meta.url),'utf8').replace(/^import .*?;\n/,'').replace(/init\(\);\s*$/,'');
  vm.runInContext(script+`\nglobalThis.api={seed(data){bank=data;questionMap=new Map(bank.questions.map(q=>[q.id,q]));practiceMap=new Map(bank.topics.map(t=>[t.id,practiceBlocks(bank.questions,t.id)]));},home,coursePage,topicPage,practicePage,setup,resultsPage,historyPage,explanation,read,write,getPractice,savePractice,autoAdvanceEnabled,navigationContext,render,startExam,session:()=>session,temaPage,diagramBlock,temaQuestion,tqPicked,tqCount,toggleStudied,temaProgress,seedTema(n,data){temaIndex.set(n,{topic:n,sections:data.sections.length,minutes:data.minutes});temaCache.set(n,{status:'ready',data});}};`,ctx);
  ctx.api.seed(fixture());return {api:ctx.api,ctx,elements,get,events,storage};
@@ -157,4 +158,16 @@ test('decision trees and risk matrices render nested branches and an accessible 
  assert.match(tree,/dg-tree/);assert.equal((tree.match(/class="dg-tree"/g)||[]).length,2);assert.match(tree,/dg-branch-label">Sí/);assert.ok(!tree.includes('<b>?'));
  const mx=api.diagramBlock({type:'diagram',kind:'matrix',title:'Riesgo',rows:{label:'Probabilidad',items:['Alta','Baja']},cols:{label:'Impacto',items:['Bajo','Alto']},cells:[['warn','bad'],['good','warn']],marks:[{row:0,col:1,text:'R1'}],legend:[{tone:'bad',text:'Tratar ya'}]});
  assert.match(mx,/<table class="dg-matrix">/);assert.match(mx,/<th scope="row">Alta<\/th>/);assert.match(mx,/<td class="tone-bad"><span class="sr-only">Tratar ya<\/span><span class="dg-mark">R1<\/span><\/td>/);assert.match(mx,/dg-legend/);
+});
+
+test('camino: the topic page lists what to study first with links to exact sections, and the path page needs its data',()=>{
+ const {api}=runtime();
+ const t={camino:{etapa:2,etapaTitulo:'El <riesgo>',pos:7,antes:[{topic:21,course:'redes',number:1,title:'Redes',apartados:[{id:'capas',title:'Capas <OSI>'}],por:'Hace falta **saber** capas.'}],conecta:[{topic:12,course:'sistemas',number:2,title:'Linux',apartados:[{id:'http',title:'HTTP'}],por:'Relacionado.'}]}};
+ const html=camino.caminoBlock(t);
+ assert.match(html,/Antes de este tema/);assert.match(html,/Paso <b>7<\/b>/);assert.match(html,/El &lt;riesgo&gt;/);
+ assert.match(html,/href="#\/tema\/21\/estudio\?apartado=capas"/);assert.match(html,/Capas &lt;OSI&gt;/);assert.match(html,/<strong>saber<\/strong>/);
+ assert.match(html,/Relacionado en otros temas \(1\)/);assert.match(html,/cm-tag cm-redes/);
+ assert.equal(camino.caminoBlock({}),'');
+ assert.match(camino.caminoBlock({camino:{etapa:1,etapaTitulo:'Cimientos',pos:1,antes:[],conecta:[]}}),/cimientos del máster/);
+ assert.match(camino.caminoPage(),/No se ha podido cargar el camino/);
 });

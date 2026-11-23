@@ -1,4 +1,4 @@
-import { DURATION, EXAM_SIZE, generateExam, gradeExam, remaining, formatTime, isValidSession, practiceBlocks, topicQuestions, baseQuestions, campusQuestions, extraBlocks, validPractice, swipeDirection, validateBank, validateTema, ICONS } from './core.js?v=11'; import { setupPracticas, loadPracticasIndex, practicasRoute, isPracticasPath, practicasCard, courseExamLink, simulacroExamLink } from './practicas.js?v=5'; import { setupSiglas, sgStart, sgEnd, sgApply, sgList } from './siglas.js?v=2';
+import { DURATION, EXAM_SIZE, generateExam, gradeExam, remaining, formatTime, isValidSession, practiceBlocks, topicQuestions, baseQuestions, campusQuestions, extraBlocks, validPractice, swipeDirection, validateBank, validateTema, ICONS } from './core.js?v=11'; import { setupPracticas, loadPracticasIndex, practicasRoute, isPracticasPath, practicasCard, courseExamLink, simulacroExamLink } from './practicas.js?v=5'; import { setupSiglas, sgStart, sgEnd, sgApply, sgList } from './siglas.js?v=2'; import { setupCamino, loadCamino, caminoPage, caminoBlock } from './camino.js?v=1';
 const $ = s => document.querySelector(s);
 const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const number = n => n.toLocaleString('es-ES');
@@ -193,7 +193,7 @@ function temaPage(n){
   const facts=[`<li><b>${t.sections.length}</b> apartados</li>`,t.minutes?`<li><b>${t.minutes}</b> min de lectura</li>`:'',`<li><b>${qs.length}</b> preguntas argumentadas</li>`].join('');
   sgStart(t.siglas);try{
   return `${back}<header class="tema-hero"><div class="tema-hero-main"><p class="tema-kicker">${esc(courseTitle(topic.course))}, tema ${topic.number}<span class="sr-only">. Tema digital</span></p><h1>${esc(topicTitle(n).replace(/^Tema \d+\.\s*/,''))}</h1><ul class="tema-facts">${facts}</ul><p class="tema-why">${rich(intro.why,'inline')}</p>${progress}</div>${intro.before||intro.goals?`<div class="tema-intro">${intro.before?`<section class="tema-before"><h2>Antes de empezar</h2><ul>${intro.before.map(i=>`<li>${rich(i,'inline')}</li>`).join('')}</ul></section>`:''}${intro.goals?`<section class="tema-goals"><h2>Al terminar sabrás</h2><ul>${intro.goals.map(i=>`<li>${rich(i,'inline')}</li>`).join('')}</ul></section>`:''}</div>`:''}</header>
-${clasesBlock(t)}<div class="tema-layout"><nav class="tema-index" aria-label="Apartados del tema"><details open><summary>Apartados</summary><ol>${t.sections.map((s,i)=>`<li data-section-li="${esc(s.id)}"${prog.studied[s.id]?' class="is-studied"':''}><a href="${sectionHref(n,s.id)}" data-section="${esc(s.id)}"><span class="tema-index-number">${i+1}</span><span>${esc(s.title)}</span>${bySection.get(s.id).length?`<small>${bySection.get(s.id).length} preg.</small>`:''}<span class="tema-index-done" aria-hidden="true">✓</span></a></li>`).join('')}${t.summary?`<li><a href="${sectionHref(n,'resumen')}" data-section="resumen"><span class="tema-index-number">✓</span><span>Resumen</span></a></li>`:''}${t.glossary?`<li><a href="${sectionHref(n,'glosario')}" data-section="glosario"><span class="tema-index-number">Aa</span><span>Glosario</span></a></li>`:''}${t.siglas&&Object.keys(t.siglas).length?`<li><a href="${sectionHref(n,'siglas')}" data-section="siglas"><span class="tema-index-number">AB</span><span>Siglas</span></a></li>`:''}</ol></details><a class="btn secondary full" href="#/practica/${n}/0">Test completo de 30 →</a></nav>
+${caminoBlock(t)}${clasesBlock(t)}<div class="tema-layout"><nav class="tema-index" aria-label="Apartados del tema"><details open><summary>Apartados</summary><ol>${t.sections.map((s,i)=>`<li data-section-li="${esc(s.id)}"${prog.studied[s.id]?' class="is-studied"':''}><a href="${sectionHref(n,s.id)}" data-section="${esc(s.id)}"><span class="tema-index-number">${i+1}</span><span>${esc(s.title)}</span>${bySection.get(s.id).length?`<small>${bySection.get(s.id).length} preg.</small>`:''}<span class="tema-index-done" aria-hidden="true">✓</span></a></li>`).join('')}${t.summary?`<li><a href="${sectionHref(n,'resumen')}" data-section="resumen"><span class="tema-index-number">✓</span><span>Resumen</span></a></li>`:''}${t.glossary?`<li><a href="${sectionHref(n,'glosario')}" data-section="glosario"><span class="tema-index-number">Aa</span><span>Glosario</span></a></li>`:''}${t.siglas&&Object.keys(t.siglas).length?`<li><a href="${sectionHref(n,'siglas')}" data-section="siglas"><span class="tema-index-number">AB</span><span>Siglas</span></a></li>`:''}</ol></details><a class="btn secondary full" href="#/practica/${n}/0">Test completo de 30 →</a></nav>
 <article class="tema-body">${t.sections.map((s,i)=>{const list=bySection.get(s.id);return `<section class="tema-section" id="apartado-${esc(s.id)}" aria-labelledby="titulo-${esc(s.id)}"><div class="tema-section-content"><header class="tema-section-head"><span class="tema-section-number" aria-hidden="true">${i+1}</span><div><h2 id="titulo-${esc(s.id)}"><span class="sr-only">Apartado ${i+1}. </span>${sgApply(esc(s.title))}</h2><p class="tema-section-meta">${pageLinks(topic,s.pages)}${list.length?`<span>${list.length} ${list.length===1?'pregunta':'preguntas'} del test</span>`:''}</p></div></header>${s.blocks.map(temaBlock).join('')}<div class="studied-row"><button type="button" class="studied-toggle" data-action="tema-studied" data-topic="${n}" data-section="${esc(s.id)}" aria-pressed="${prog.studied[s.id]?'true':'false'}"><span class="studied-box" aria-hidden="true"></span>He estudiado este apartado</button></div></div>${list.length?`<aside class="tema-section-questions" aria-label="Preguntas del apartado ${i+1}"><h3>Pon a prueba este apartado <span class="tq-count">${tqCount(list)}</span></h3><p class="small">Elige una opción y comprueba al momento si aciertas.</p>${list.map(q=>temaQuestion(q,t.questions[q.id])).join('')}</aside>`:''}</section>`;}).join('')}
 ${t.summary?`<section class="tema-section tema-summary" id="apartado-resumen"><div class="tema-section-content"><h2>Resumen: lo que tienes que saber</h2><ul>${t.summary.map(i=>`<li>${rich(i,'inline')}</li>`).join('')}</ul></div></section>`:''}
 ${t.glossary?`<section class="tema-section tema-glossary-section" id="apartado-glosario"><div class="tema-section-content"><h2>Glosario</h2><dl class="tema-glossary">${t.glossary.map(g=>`<div><dt>${rich(g.term)}</dt><dd>${rich(g.text)}</dd></div>`).join('')}</dl></div></section>`:''}
@@ -368,9 +368,9 @@ function render(focus=true) {
   cancelQuestionTransition();
   clearInterval(timer);timer=null;
   const {path,params}=currentRoute();
-  const nav=path.startsWith('/tema')||path.startsWith('/asignatura')||path.startsWith('/practica')||path.startsWith('/redaccion')?'temas':path.startsWith('/simulacro')||path==='/examen'||path.startsWith('/examen-real')?'simulacro':path.startsWith('/historial')||path.startsWith('/resultado')?'historial':path==='/tfm'?'tfm':'';
+  const nav=path.startsWith('/tema')||path.startsWith('/asignatura')||path.startsWith('/practica')||path.startsWith('/redaccion')?'temas':path.startsWith('/simulacro')||path==='/examen'||path.startsWith('/examen-real')?'simulacro':path.startsWith('/historial')||path.startsWith('/resultado')?'historial':path==='/tfm'?'tfm':path==='/camino'?'camino':'';
   document.querySelectorAll('[data-nav]').forEach(a=>{if(a.dataset.nav===nav)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});
-  const wide=/^\/tema\/\d+\/estudio$/.test(path)||path==='/tfm';
+  const wide=/^\/tema\/\d+\/estudio$/.test(path)||path==='/tfm'||path==='/camino';
   main.className=path==='/examen'?'exam-main':wide?'wide-main':'';
   document.body.classList.toggle('route-wide',wide);
   document.body.classList.toggle('in-exam',path==='/examen'||path==='/examen-real/en-curso');
@@ -384,6 +384,7 @@ function render(focus=true) {
   else if(path==='/historial')main.innerHTML=historyPage();
   else if(path.startsWith('/resultado/'))main.innerHTML=resultsPage(path.split('/')[2]);
   else if(path==='/tfm')main.innerHTML=tfmPage();
+  else if(path==='/camino')main.innerHTML=caminoPage();
   else if(path==='/reglas')main.innerHTML=rulesPage();
   else if(isPracticasPath(path))main.innerHTML=practicasRoute(path,params)??notFound();
   else main.innerHTML=notFound();
@@ -608,6 +609,7 @@ window.addEventListener('hashchange',()=>render());
 window.addEventListener('storage',e=>{const path=currentRoute().path;if(e.key?.startsWith(PREFIX)&&(path.startsWith('/practica/')||(e.key===PREFIX+'autoAdvance'&&path==='/examen')))render(false);});
 document.addEventListener('visibilitychange',()=>{if(!document.hidden&&currentRoute().path==='/examen')render(false);});
 setupSiglas();
+setupCamino({esc,rich,heading,sectionHref,temaProgress,studiedTotal});
 setupPracticas({get bank(){return bank;},get questionMap(){return questionMap;},read,write,esc,rich,heading,topicTitle,topicInfo,courseTitle,notFound,render,ask,sectionHref});
 async function init() {
   try {
@@ -617,7 +619,7 @@ async function init() {
     validateBank(data);
     try{const idx=await fetch(`temas/index.json?v=${encodeURIComponent(data.version)}`,{signal:AbortSignal.timeout(15000)}).then(r=>r.ok?r.json():null);if(Array.isArray(idx?.temas))temaIndex=new Map(idx.temas.filter(t=>Number.isInteger(t.topic)).map(t=>[t.topic,t]));}catch{temaIndex=new Map();}
     bank=data;questionMap=new Map(bank.questions.map(q=>[q.id,q]));practiceMap=new Map(bank.topics.map(t=>[t.id,practiceBlocks(bank.questions,t.id)]));
-    await loadPracticasIndex();
+    await Promise.all([loadPracticasIndex(),loadCamino(data.version)]);
     const saved=activeSession();if(saved&&remaining(saved.deadline)===0){finish(true);return;}
     render(false);
   } catch {

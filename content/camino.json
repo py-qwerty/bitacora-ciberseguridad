@@ -1,0 +1,382 @@
+{
+  "_nota": "Camino de estudio entre asignaturas. 'etapas' ordena los 50 temas (cada uno una sola vez). 'temas' dice, para cada tema, qué apartados de otros temas conviene haber visto antes ('antes') y con qué otros temas se relaciona ('conecta'). Referencias: '<asignatura>/<número>' y los id de apartado del tema. Lo valida y publica scripts/build-temas.mjs (dist/camino.json y campo 'camino' de cada tema).",
+  "etapas": [
+    {
+      "id": "cimientos",
+      "titulo": "Cimientos: el idioma común",
+      "idea": "Cuatro temas que dan el vocabulario que todos los demás usan sin volver a explicarlo: qué es proteger la información, cómo viaja por la red, cómo funciona una web y qué hace la criptografía.",
+      "temas": ["gobierno/1", "redes/1", "sistemas/2", "redes/6"]
+    },
+    {
+      "id": "riesgo",
+      "titulo": "El riesgo: qué proteger y de qué",
+      "idea": "Toda la seguridad gira alrededor del riesgo. Primero las piezas (amenaza, vulnerabilidad, dimensiones), después las normas para gestionarlo (ISO 27001, ISO 31000) y por último las metodologías y la monitorización.",
+      "temas": ["gobierno/4", "gobierno/6", "gobierno/3", "gobierno/2", "gobierno/7", "gobierno/8", "gobierno/9", "gobierno/10", "gobierno/5"]
+    },
+    {
+      "id": "normas",
+      "titulo": "Las leyes que obligan",
+      "idea": "Con el riesgo y la ISO 27001 ya claros, el ENS, el RGPD y la NIS 2 se entienden mucho mejor: piden lo mismo, pero por ley. La firma electrónica cierra la etapa porque necesita la criptografía de los cimientos.",
+      "temas": ["ciberdelitos/2", "ciberdelitos/1", "ciberdelitos/3", "ciberdelitos/4", "ciberdelitos/5"]
+    },
+    {
+      "id": "red",
+      "titulo": "Defender la red",
+      "idea": "De fuera hacia dentro: el cortafuegos, cómo se dibujan las zonas de la red, los vigilantes (IDS, SIEM) y después los protocolos cifrados (wifi, IPsec, TLS, VPN) y la nube.",
+      "temas": ["redes/2", "redes/3", "redes/4", "redes/5", "redes/7", "redes/8", "redes/9", "redes/10"]
+    },
+    {
+      "id": "sistemas",
+      "titulo": "Sistemas y aplicaciones web",
+      "idea": "El servidor Windows y su dominio, y después la aplicación web de principio a fin: fallos, autenticación, sesiones, desarrollo seguro, análisis, producción, nube y big data.",
+      "temas": ["sistemas/1", "sistemas/3", "sistemas/4", "sistemas/5", "sistemas/6", "sistemas/7", "sistemas/8", "sistemas/9", "sistemas/10"]
+    },
+    {
+      "id": "incidentes",
+      "titulo": "Incidentes y ciberdelincuencia",
+      "idea": "Qué es un incidente y quién responde, y luego el lado del atacante: quién es, cómo engaña (phishing, estafas) y qué daña (malware, ransomware), y qué dice de todo ello el Código Penal.",
+      "temas": ["forense/1", "ciberdelitos/6", "ciberdelitos/7", "ciberdelitos/8", "ciberdelitos/9"]
+    },
+    {
+      "id": "prueba",
+      "titulo": "La prueba digital: del disco al juzgado",
+      "idea": "La evidencia digital paso a paso: cómo se copia sin alterarla, cómo está guardada en el disco, cómo se recupera y se analiza, y cómo se presenta en una denuncia o en un informe pericial.",
+      "temas": ["forense/2", "forense/3", "forense/4", "forense/5", "forense/6", "forense/7", "forense/8", "forense/9", "ciberdelitos/10", "forense/10"]
+    }
+  ],
+  "temas": {
+    "redes/6": {
+      "antes": [
+        { "ref": "redes/1", "apartados": ["confidencialidad-integridad", "no-repudio-disponibilidad", "mecanismos"], "por": "La criptografía es el mecanismo que da confidencialidad, integridad y no repudio: ayuda saber antes qué promete cada uno de esos servicios." }
+      ]
+    },
+    "sistemas/2": {
+      "antes": [
+        { "ref": "redes/1", "apartados": ["capas", "capas-tcpip"], "por": "HTTP es un protocolo de la capa de aplicación: con el modelo de capas claro, sabes dónde vive y qué tiene por debajo." }
+      ]
+    },
+    "gobierno/4": {
+      "antes": [
+        { "ref": "gobierno/1", "apartados": ["negocio-activos-amenazas", "controles", "gestion-riesgos"], "por": "El tema 1 presenta el riesgo y las cuatro respuestas (aceptar, mitigar, evitar, transferir); aquí se desarrollan con detalle y con números." }
+      ],
+      "conecta": [
+        { "ref": "redes/1", "apartados": ["vulnerabilidad-amenaza-ataque"], "por": "La misma diferencia entre vulnerabilidad, amenaza y ataque, explicada desde las redes." }
+      ]
+    },
+    "gobierno/6": {
+      "antes": [
+        { "ref": "gobierno/1", "apartados": ["cid", "otros-conceptos"], "por": "Las cinco dimensiones amplían la tríada confidencialidad-integridad-disponibilidad con autenticidad y trazabilidad." },
+        { "ref": "gobierno/4", "apartados": ["terminologia", "decisiones-riesgo"], "por": "El análisis de riesgos usa el vocabulario de amenaza, vulnerabilidad y exposición." }
+      ],
+      "conecta": [
+        { "ref": "ciberdelitos/2", "apartados": ["dimensiones"], "por": "El ENS usa exactamente estas cinco dimensiones para clasificar los sistemas." }
+      ]
+    },
+    "gobierno/3": {
+      "antes": [
+        { "ref": "gobierno/1", "apartados": ["jerarquia-documental", "proceso"], "por": "La ISO 27001 pide políticas y procedimientos y trata la seguridad como un proceso continuo: son ideas del tema 1." }
+      ],
+      "conecta": [
+        { "ref": "ciberdelitos/2", "apartados": ["marco-normativo"], "por": "Allí se compara el ENS (obligatorio) con la ISO 27001 (voluntaria)." }
+      ]
+    },
+    "gobierno/2": {
+      "antes": [
+        { "ref": "gobierno/1", "apartados": ["proceso", "economia"], "por": "El Plan Director parte de que la seguridad es un proceso con coste y beneficio para el negocio." }
+      ],
+      "conecta": [
+        { "ref": "gobierno/3", "apartados": ["norma-27001", "pdca"], "por": "El modelo de seguridad del Plan Director suele construirse sobre la ISO 27001." }
+      ]
+    },
+    "gobierno/7": {
+      "antes": [
+        { "ref": "gobierno/4", "apartados": ["decisiones-riesgo", "terminologia"], "por": "La ISO 31000 da por sabido qué es un riesgo y cómo se puede responder a él." },
+        { "ref": "gobierno/6", "apartados": ["analisis-riesgos", "gestion-riesgos"], "por": "Distingue análisis y gestión del riesgo y explica el riesgo residual." }
+      ]
+    },
+    "gobierno/8": {
+      "antes": [
+        { "ref": "gobierno/6", "apartados": ["dimensiones", "salvaguardas", "analisis-riesgos"], "por": "Magerit valora los activos en las cinco dimensiones y usa salvaguardas: aquí se presentan." },
+        { "ref": "gobierno/4", "apartados": ["cuantitativo"], "por": "El enfoque cuantitativo (SLE, ARO, ALE) reaparece en NIST." }
+      ]
+    },
+    "gobierno/9": {
+      "antes": [
+        { "ref": "gobierno/7", "apartados": ["evaluacion", "proceso-comunicacion"], "por": "El tema sigue los tres pasos de evaluación de la ISO 31000: identificar, analizar y valorar." },
+        { "ref": "gobierno/8", "apartados": ["nist-enfoques"], "por": "Cualitativo, semicuantitativo y cuantitativo se presentan en el tema 8." }
+      ]
+    },
+    "gobierno/10": {
+      "antes": [
+        { "ref": "gobierno/7", "apartados": ["tratamiento"], "por": "Las opciones de tratamiento salen de la ISO 31000." },
+        { "ref": "gobierno/9", "apartados": ["inherente-real", "tratamiento"], "por": "Se trata el riesgo que deja la evaluación: inherente frente a residual." },
+        { "ref": "gobierno/6", "apartados": ["salvaguardas"], "por": "El catálogo de salvaguardas amplía sus cuatro formas de actuar." }
+      ],
+      "conecta": [
+        { "ref": "gobierno/3", "apartados": ["madurez-cmmi"], "por": "La eficacia de una salvaguarda se mide con niveles de madurez como los de CMMI." }
+      ]
+    },
+    "gobierno/5": {
+      "antes": [
+        { "ref": "gobierno/1", "apartados": ["que-es-seguridad", "factor-humano"], "por": "Repasa qué abarca la seguridad antes de ver quién se dedica a ella." }
+      ],
+      "conecta": [
+        { "ref": "forense/1", "apartados": ["procesos-clave", "csirt"], "por": "La gestión de incidentes que aquí se resume se estudia a fondo en Forense." },
+        { "ref": "redes/10", "apartados": ["nube-y-objetivos"], "por": "La nube, vista desde la parte técnica." }
+      ]
+    },
+    "ciberdelitos/2": {
+      "antes": [
+        { "ref": "gobierno/3", "apartados": ["familia-27000", "norma-27001", "pdca"], "por": "El ENS se compara constantemente con la ISO 27001 y comparte su ciclo de mejora continua." },
+        { "ref": "gobierno/6", "apartados": ["dimensiones"], "por": "El ENS clasifica los sistemas con las cinco dimensiones de la seguridad." }
+      ],
+      "conecta": [
+        { "ref": "redes/3", "apartados": ["ens-app1-app2"], "por": "Cómo aplica el ENS el diseño de las redes: las arquitecturas APP." }
+      ]
+    },
+    "ciberdelitos/1": {
+      "antes": [
+        { "ref": "gobierno/1", "apartados": ["cid", "clasificacion"], "por": "El RGPD exige medidas de seguridad sobre los datos según su sensibilidad." },
+        { "ref": "gobierno/4", "apartados": ["decisiones-riesgo", "terminologia"], "por": "La responsabilidad proactiva y la EIPD son un análisis de riesgos aplicado a datos personales." }
+      ],
+      "conecta": [
+        { "ref": "ciberdelitos/4", "apartados": ["cookies-obligaciones"], "por": "Las cookies combinan la LSSI con el consentimiento del RGPD." }
+      ]
+    },
+    "ciberdelitos/3": {
+      "antes": [
+        { "ref": "ciberdelitos/2", "apartados": ["origen", "ambito-subjetivo"], "por": "La NIS 2 extiende al sector privado obligaciones parecidas a las que el ENS impone a la Administración." }
+      ],
+      "conecta": [
+        { "ref": "forense/1", "apartados": ["csirt"], "por": "Los CSIRT a los que hay que notificar los incidentes." }
+      ]
+    },
+    "ciberdelitos/4": {
+      "antes": [
+        { "ref": "ciberdelitos/1", "apartados": ["conceptos-y-actores", "consentimiento-y-licitud"], "por": "La publicidad por correo y las cookies se apoyan en el consentimiento del RGPD." }
+      ]
+    },
+    "ciberdelitos/5": {
+      "antes": [
+        { "ref": "redes/6", "apartados": ["hash", "clave-publica", "firma-digital"], "por": "Este tema explica lo legal; la mecánica técnica (hash + clave privada para firmar, clave pública para verificar) está en Redes T6." }
+      ]
+    },
+    "redes/2": {
+      "antes": [
+        { "ref": "redes/1", "apartados": ["capas", "capas-tcpip"], "por": "Los cortafuegos se clasifican por la capa en la que miran: IP y puertos o la aplicación." }
+      ]
+    },
+    "redes/3": {
+      "antes": [
+        { "ref": "redes/2", "apartados": ["concepto-funciones", "pasarela-aplicacion", "ngfw"], "por": "Las arquitecturas combinan cortafuegos y proxys: hay que saber qué hace cada pieza." },
+        { "ref": "ciberdelitos/2", "apartados": ["origen", "medidas"], "por": "Las arquitecturas APP-1 a APP-7 vienen de las guías del ENS." }
+      ]
+    },
+    "redes/4": {
+      "antes": [
+        { "ref": "redes/2", "apartados": ["limitaciones", "tipos-y-criterios"], "por": "El IDS existe por lo que el cortafuegos no puede ver." },
+        { "ref": "redes/3", "apartados": ["zonas-generales"], "por": "Para saber dónde se coloca cada sensor (DMZ, intranet)." }
+      ]
+    },
+    "redes/5": {
+      "antes": [
+        { "ref": "redes/2", "apartados": ["pasarela-aplicacion"], "por": "El proxy es la pasarela a nivel de aplicación del tema 2, ahora en detalle." },
+        { "ref": "redes/4", "apartados": ["firmas-anomalias"], "por": "DLP y SIEM detectan con las mismas dos ideas: firmas y anomalías." }
+      ],
+      "conecta": [
+        { "ref": "sistemas/2", "apartados": ["http-mensajes"], "por": "Squid filtra peticiones HTTP: ayuda conocer el mensaje por dentro." }
+      ]
+    },
+    "redes/7": {
+      "antes": [
+        { "ref": "redes/6", "apartados": ["cifra-flujo", "modos-bloque", "aes"], "por": "WEP usa RC4 (cifra en flujo) y WPA2 usa AES: sus fallos y mejoras se entienden desde la criptografía." }
+      ]
+    },
+    "redes/8": {
+      "antes": [
+        { "ref": "redes/6", "apartados": ["hash", "clave-publica", "diffie-hellman", "rsa", "firma-digital"], "por": "IPsec y TLS son criptografía en acción: acuerdo de claves, certificados y hash." },
+        { "ref": "redes/1", "apartados": ["capas-tcpip"], "por": "IPsec trabaja en la capa de red y TLS encima de la de transporte." }
+      ]
+    },
+    "redes/9": {
+      "antes": [
+        { "ref": "redes/8", "apartados": ["ipsec-sa", "modos-ipsec", "ssl-arquitectura"], "por": "Las VPN de nivel de red y de transporte son IPsec y TLS." }
+      ]
+    },
+    "redes/10": {
+      "antes": [
+        { "ref": "redes/3", "apartados": ["zonas-generales", "subzonas"], "por": "La red virtual en la nube reproduce las zonas de una red física." },
+        { "ref": "gobierno/1", "apartados": ["otros-conceptos"], "por": "IAM es identificación, autenticación y autorización." }
+      ],
+      "conecta": [
+        { "ref": "sistemas/9", "apartados": ["entra-id", "roles-integrados"], "por": "El mismo problema (quién puede hacer qué en la nube) resuelto en Azure." }
+      ]
+    },
+    "sistemas/1": {
+      "antes": [
+        { "ref": "gobierno/1", "apartados": ["otros-conceptos"], "por": "Contraseñas, bloqueo y Kerberos son autenticación; las directivas son autorización." },
+        { "ref": "redes/2", "apartados": ["concepto-funciones"], "por": "Para entender el firewall de Windows y sus perfiles." }
+      ]
+    },
+    "sistemas/3": {
+      "antes": [
+        { "ref": "sistemas/2", "apartados": ["http-metodos", "http-mensajes", "http-riesgos"], "por": "Todos los ataques web viajan dentro de peticiones HTTP." }
+      ],
+      "conecta": [
+        { "ref": "sistemas/6", "apartados": ["inyeccion-sql", "xss", "csrf"], "por": "Los mismos fallos vistos desde el programador que los evita." }
+      ]
+    },
+    "sistemas/4": {
+      "antes": [
+        { "ref": "redes/6", "apartados": ["hash", "clave-publica", "firma-digital"], "por": "Digest usa hash, JWT va firmado y mTLS usa certificados." },
+        { "ref": "sistemas/1", "apartados": ["active-directory", "bloqueo-kerberos"], "por": "Kerberos y NTLM son los protocolos del dominio de Windows." },
+        { "ref": "sistemas/2", "apartados": ["sesiones"], "por": "Tras autenticarte, la web te recuerda con un identificador de sesión." }
+      ],
+      "conecta": [
+        { "ref": "redes/8", "apartados": ["handshake"], "por": "mTLS es el handshake de TLS con certificado también en el cliente." }
+      ]
+    },
+    "sistemas/5": {
+      "antes": [
+        { "ref": "sistemas/2", "apartados": ["sesiones", "mismo-origen"], "por": "La sesión y las cookies seguras se presentan en el tema 2." },
+        { "ref": "sistemas/4", "apartados": ["formularios"], "por": "La sesión empieza justo después del inicio de sesión." }
+      ],
+      "conecta": [
+        { "ref": "sistemas/3", "apartados": ["csrf"], "por": "CSRF visto como vulnerabilidad." }
+      ]
+    },
+    "sistemas/6": {
+      "antes": [
+        { "ref": "sistemas/3", "apartados": ["raiz-comun", "sqli", "xss"], "por": "Aquí se programan las defensas de los ataques que el tema 3 explica." },
+        { "ref": "redes/6", "apartados": ["hash", "aes"], "por": "Las prácticas criptográficas (guardar contraseñas, cifrar datos) usan hash y AES." }
+      ]
+    },
+    "sistemas/7": {
+      "antes": [
+        { "ref": "sistemas/2", "apartados": ["ssdlc", "desarrollo-pruebas"], "por": "Cada tipo de análisis encaja en una fase del ciclo de desarrollo seguro." },
+        { "ref": "sistemas/3", "apartados": ["catalogos"], "por": "Los resultados se clasifican con OWASP, CWE y CVE." }
+      ]
+    },
+    "sistemas/8": {
+      "antes": [
+        { "ref": "redes/2", "apartados": ["pasarela-aplicacion", "ngfw"], "por": "El WAF es un cortafuegos de aplicación especializado en HTTP." },
+        { "ref": "redes/4", "apartados": ["ips", "firmas-anomalias"], "por": "El WAF detecta con firmas y anomalías y bloquea como un IPS." },
+        { "ref": "sistemas/7", "apartados": ["iast-rasp"], "por": "RASP se presenta en el tema 7." }
+      ],
+      "conecta": [
+        { "ref": "forense/9", "apartados": ["fases-plan"], "por": "La respuesta a incidentes completa." }
+      ]
+    },
+    "sistemas/9": {
+      "antes": [
+        { "ref": "sistemas/1", "apartados": ["active-directory"], "por": "Entra ID es el Active Directory de la nube, y AD Connect une los dos." },
+        { "ref": "redes/10", "apartados": ["iam", "roles"], "por": "Los roles y permisos de AWS son la misma idea que los de Azure." }
+      ]
+    },
+    "sistemas/10": {
+      "antes": [
+        { "ref": "sistemas/4", "apartados": ["kerberos"], "por": "Hadoop autentica usuarios y nodos con Kerberos." },
+        { "ref": "redes/6", "apartados": ["aes", "clave-publica"], "por": "Cifrado en tránsito, en reposo y gestión de claves." },
+        { "ref": "ciberdelitos/1", "apartados": ["principios"], "por": "La privacidad en big data choca con los principios del RGPD." }
+      ]
+    },
+    "forense/1": {
+      "antes": [
+        { "ref": "gobierno/1", "apartados": ["cid"], "por": "Un incidente es cualquier suceso que daña la confidencialidad, la integridad o la disponibilidad." }
+      ],
+      "conecta": [
+        { "ref": "gobierno/5", "apartados": ["incidentes"], "por": "La gestión de incidentes desde el punto de vista del profesional." },
+        { "ref": "ciberdelitos/3", "apartados": ["nis2-notificacion"], "por": "Los plazos legales para notificar un incidente." }
+      ]
+    },
+    "ciberdelitos/7": {
+      "antes": [
+        { "ref": "ciberdelitos/6", "apartados": ["delincuencia-organizada", "cadena-phishing"], "por": "El tema 6 presenta la banda de phishing que aquí se desmonta fase a fase." }
+      ]
+    },
+    "ciberdelitos/8": {
+      "antes": [
+        { "ref": "ciberdelitos/7", "apartados": ["estafa-digital"], "por": "Sigue con más estafas tras el phishing." }
+      ]
+    },
+    "ciberdelitos/9": {
+      "antes": [
+        { "ref": "gobierno/1", "apartados": ["cid"], "por": "Los daños informáticos atacan la integridad y la disponibilidad; el acceso ilícito, la confidencialidad." },
+        { "ref": "ciberdelitos/6", "apartados": ["convenio-budapest"], "por": "Los delitos del Código Penal vienen del Convenio de Budapest." }
+      ],
+      "conecta": [
+        { "ref": "redes/4", "apartados": ["hids-nids"], "por": "Cómo se detecta el malware en el equipo y en la red." },
+        { "ref": "sistemas/8", "apartados": ["dos-ddos"], "por": "Las botnets se usan para la denegación de servicio." }
+      ]
+    },
+    "forense/2": {
+      "antes": [
+        { "ref": "forense/1", "apartados": ["forense-objetivos", "cadena-custodia"], "por": "La evidencia es el centro del análisis forense que presenta el tema 1." }
+      ]
+    },
+    "forense/3": {
+      "antes": [
+        { "ref": "redes/6", "apartados": ["hash", "md5-sha"], "por": "El hash demuestra que la copia es idéntica al original: aquí se explica cómo funciona." },
+        { "ref": "forense/2", "apartados": ["adquisicion", "orden-volatilidad"], "por": "Qué se adquiere primero y por qué." }
+      ]
+    },
+    "forense/4": {
+      "antes": [
+        { "ref": "forense/3", "apartados": ["imagen-clonado", "fisica-logica"], "por": "Se analiza la imagen forense del disco que se obtuvo en el tema 3." }
+      ]
+    },
+    "forense/5": {
+      "antes": [
+        { "ref": "forense/4", "apartados": ["indice", "fat", "ntfs", "vision-forense"], "por": "Recuperar un archivo borrado depende de cómo lo guarda y lo borra el sistema de ficheros." }
+      ]
+    },
+    "forense/6": {
+      "antes": [
+        { "ref": "forense/5", "apartados": ["firmas", "basica-bruto"], "por": "El pre-análisis recupera archivos y verifica firmas." },
+        { "ref": "forense/3", "apartados": ["hash-usos"], "por": "Se filtran archivos conocidos con su hash." },
+        { "ref": "redes/6", "apartados": ["mapa-cripto"], "por": "Para entender qué es un volumen cifrado y por qué no se puede abrir sin la clave." }
+      ]
+    },
+    "forense/7": {
+      "antes": [
+        { "ref": "forense/2", "apartados": ["orden-volatilidad"], "por": "Con el equipo encendido, se recoge primero lo más volátil." },
+        { "ref": "sistemas/1", "apartados": ["active-directory", "directivas-locales"], "por": "El registro de eventos depende de la auditoría que se configura en Windows Server." },
+        { "ref": "forense/6", "apartados": ["sistema-operativo"], "por": "Desarrolla el paso de análisis del sistema operativo." }
+      ]
+    },
+    "forense/8": {
+      "antes": [
+        { "ref": "forense/3", "apartados": ["caliente-frio", "fisica-logica"], "por": "Las vías de adquisición del móvil son variantes de la física y la lógica." },
+        { "ref": "forense/4", "apartados": ["particiones"], "por": "Android tiene varias particiones con papeles distintos." }
+      ]
+    },
+    "forense/9": {
+      "antes": [
+        { "ref": "forense/1", "apartados": ["procesos-clave", "csirt", "bia-rto-rpo"], "por": "La planificación parte de los procesos de gestión de incidentes y de los objetivos de recuperación." },
+        { "ref": "redes/3", "apartados": ["zonas-generales", "defensa-profundidad"], "por": "La segmentación y los anillos de seguridad son las zonas de red." }
+      ],
+      "conecta": [
+        { "ref": "gobierno/5", "apartados": ["incidentes"], "por": "El mismo proceso visto desde Gobierno." },
+        { "ref": "sistemas/8", "apartados": ["incidentes", "backup"], "por": "Incidentes y copias de seguridad en una aplicación en producción." }
+      ]
+    },
+    "ciberdelitos/10": {
+      "antes": [
+        { "ref": "forense/2", "apartados": ["evidencia-digital", "caracteristicas"], "por": "La evidencia digital y la ISO 27037 se explican a fondo en Forense." },
+        { "ref": "forense/3", "apartados": ["hash-usos", "preservacion"], "por": "La cadena de custodia se apoya en los hash de la adquisición." }
+      ],
+      "conecta": [
+        { "ref": "forense/10", "apartados": ["audiencia"], "por": "El informe pericial que acompaña a la denuncia." }
+      ]
+    },
+    "forense/10": {
+      "antes": [
+        { "ref": "forense/1", "apartados": ["perito-responsabilidad", "informe-pericial"], "por": "El tema 1 presenta al perito y el informe; aquí se redacta." },
+        { "ref": "forense/2", "apartados": ["prueba-legal"], "por": "El informe ayuda al juez a valorar la prueba." }
+      ],
+      "conecta": [
+        { "ref": "ciberdelitos/10", "apartados": ["informes-privacidad"], "por": "Los informes forenses dentro de una denuncia." }
+      ]
+    }
+  }
+}
