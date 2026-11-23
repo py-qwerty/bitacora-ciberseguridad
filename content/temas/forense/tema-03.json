@@ -1235,6 +1235,506 @@
         "c": "Incorrecta. El **bajo coste computacional** sí es una propiedad: calcular un hash consume pocos recursos. Lo que más tarda es leer toda la información, no el cálculo en sí.",
         "d": "Correcta. El hash es **unidireccional**, no bidireccional: con la entrada A obtienes B, pero con B no puedes deducir A. Si fuera reversible sería un cifrado, no una función hash."
       }
+    },
+    "forense-t03-e01": {
+      "section": "por-que-importa",
+      "reasoning": "El apartado explica que la parte contraria ataca el procedimiento porque una copia mal hecha invalida la prueba.",
+      "options": {
+        "a": "Correcta. Una adquisición defectuosa puede tumbar la prueba con independencia de su contenido.",
+        "b": "Incorrecta. La ley no prohíbe valorar el contenido; lo que se discute es cómo se obtuvo.",
+        "c": "Incorrecta. El perito sí explica el contenido; el ataque se dirige al procedimiento.",
+        "d": "Incorrecta. Es al revés: los datos digitales se modifican con muchísima facilidad."
+      }
+    },
+    "forense-t03-e02": {
+      "section": "por-que-importa",
+      "reasoning": "El término ISO/IEC 27037 del apartado indica la fecha original (2012) y la ratificación española de AENOR (2016).",
+      "options": {
+        "a": "Correcta. AENOR la ratificó en 2016 con esa denominación.",
+        "b": "Incorrecta. 2012 es el año de la norma internacional, no el de la ratificación de AENOR.",
+        "c": "Incorrecta. La SP 800-86 es una guía del NIST, no una norma ratificada por AENOR.",
+        "d": "Incorrecta. El RFC 3227 es de 2002 y trata del orden de volatilidad."
+      }
+    },
+    "forense-t03-e03": {
+      "section": "por-que-importa",
+      "reasoning": "El término fedatario público del apartado cita al notario y al letrado de la Administración de Justicia.",
+      "options": {
+        "a": "Incorrecta. El perito de parte no tiene autoridad para dar fe pública.",
+        "b": "Incorrecta. El técnico de TI es un contacto de apoyo, no un fedatario.",
+        "c": "Correcta. Es quien tiene autoridad legal para dar fe, como un notario.",
+        "d": "Incorrecta. El custodio forma parte de la cadena de custodia, pero no da fe pública."
+      }
+    },
+    "forense-t03-e04": {
+      "section": "escena",
+      "reasoning": "El apartado sobre acotar la escena incluye el control de accesos: nadie toca nada hasta que el forense tiene copia.",
+      "options": {
+        "a": "Incorrecta. El personal de TI ayuda a localizar sistemas, pero no debe manipular las pruebas.",
+        "b": "Correcta. Hasta tener la copia garantizada, nadie más toca las pruebas.",
+        "c": "Incorrecta. Permitir el uso normal pone en riesgo la evidencia.",
+        "d": "Incorrecta. El abogado no debe manipular las posibles pruebas."
+      }
+    },
+    "forense-t03-e05": {
+      "section": "escena",
+      "reasoning": "El término contactos de apoyo del apartado enumera redes, CPD y TI.",
+      "options": {
+        "a": "Incorrecta. Estos departamentos no conocen la infraestructura técnica.",
+        "b": "Incorrecta. El notario puede acompañar, pero no son los contactos técnicos que se buscan.",
+        "c": "Incorrecta. Son terceros que no explican la infraestructura interna.",
+        "d": "Correcta. Redes, CPD y TI son los contactos de apoyo del tema."
+      }
+    },
+    "forense-t03-e06": {
+      "section": "escena",
+      "reasoning": "El apartado menciona los retos de tiempo y detalle y propone el triaje y el análisis por capas.",
+      "options": {
+        "a": "Incorrecta. Son técnicas de borrado seguro, no de priorización.",
+        "b": "Incorrecta. Son pasos de la recolección, no soluciones a los retos de tiempo y detalle.",
+        "c": "Correcta. Triaje y análisis por capas permiten priorizar.",
+        "d": "Incorrecta. La pesca de arrastre es un estilo extremo, y clonar varios orígenes en un disco no es posible."
+      }
+    },
+    "forense-t03-e07": {
+      "section": "escena",
+      "reasoning": "El bloque de examen del apartado señala como trampa incluir todos los servidores con los que interactúa el equipo.",
+      "options": {
+        "a": "Correcta. Hay que justificar la relación de cada equipo; no basta con que interactúe.",
+        "b": "Incorrecta. Limitarse al equipo infectado también es un error, pero aquí el fallo es el contrario.",
+        "c": "Incorrecta. El temario rechaza adquirir indiscriminadamente y justificar después.",
+        "d": "Incorrecta. El fabricante es un criterio irrelevante para acotar la escena."
+      }
+    },
+    "forense-t03-e08": {
+      "section": "hash-concepto",
+      "reasoning": "El término función hash del apartado indica que la salida suele escribirse en hexadecimal.",
+      "options": {
+        "a": "Incorrecta. Internamente son bits, pero se escribe en hexadecimal.",
+        "b": "Incorrecta. El octal no es la forma habitual de representar un hash.",
+        "c": "Incorrecta. Un hash contiene letras de la a a la f, así que no es decimal.",
+        "d": "Correcta. Los hash se escriben como cadenas hexadecimales."
+      }
+    },
+    "forense-t03-e09": {
+      "section": "hash-concepto",
+      "reasoning": "La tabla de propiedades del apartado asocia la compresión con anotar el hash en un acta o leerlo ante notario.",
+      "options": {
+        "a": "Incorrecta. El determinismo permite repetir el cálculo y comparar, no anotarlo con facilidad.",
+        "b": "Correcta. La compresión da una salida corta y manejable.",
+        "c": "Incorrecta. La unidireccionalidad impide reconstruir la entrada a partir del hash.",
+        "d": "Incorrecta. La resistencia a colisiones impide fabricar archivos falsos con la misma huella."
+      }
+    },
+    "forense-t03-e10": {
+      "section": "hash-concepto",
+      "reasoning": "La tabla de propiedades del apartado explica que el hash no es una copia ni un cifrado gracias a la unidireccionalidad.",
+      "options": {
+        "a": "Incorrecta. La compresión hace la salida corta, pero no es la propiedad que impide volver atrás.",
+        "b": "Incorrecta. El determinismo garantiza el mismo resultado para la misma entrada.",
+        "c": "Correcta. El hash es de un solo sentido: no permite reconstruir los datos.",
+        "d": "Incorrecta. El bajo coste se refiere a la rapidez del cálculo."
+      }
+    },
+    "forense-t03-e11": {
+      "section": "hash-concepto",
+      "reasoning": "La propiedad de bajo coste computacional de la tabla aclara que lo lento es la lectura, no el cálculo.",
+      "options": {
+        "a": "Incorrecta. El cálculo es barato y se puede hacer con un portátil.",
+        "b": "Correcta. El tiempo se va en leer los datos, no en calcular.",
+        "c": "Incorrecta. Calcular un hash no exige cifrar nada.",
+        "d": "Incorrecta. Las 35 pasadas son del método Gutmann de borrado, no del hash."
+      }
+    },
+    "forense-t03-e12": {
+      "section": "hash-concepto",
+      "reasoning": "La propiedad de inyectividad de la tabla del apartado explica por qué es solo un ideal.",
+      "options": {
+        "a": "Correcta. Con salidas de tamaño fijo, tiene que haber repeticiones.",
+        "b": "Incorrecta. El hash es determinista: misma entrada, mismo resultado.",
+        "c": "Incorrecta. La salida tiene tamaño fijo, distinto del de la entrada.",
+        "d": "Incorrecta. El resultado no depende del equipo, solo de la entrada y el algoritmo."
+      }
+    },
+    "forense-t03-e13": {
+      "section": "hash-concepto",
+      "reasoning": "El ejemplo de hash y contraseñas del apartado explica las tablas arcoíris basándose en el determinismo.",
+      "options": {
+        "a": "Incorrecta. Un hash no se descifra: es unidireccional.",
+        "b": "Incorrecta. El hash no es una copia comprimida recuperable.",
+        "c": "Incorrecta. Una colisión es una coincidencia entre entradas distintas, no revela la entrada.",
+        "d": "Correcta. El determinismo permite comparar con hashes precalculados."
+      }
+    },
+    "forense-t03-e14": {
+      "section": "hash-usos",
+      "reasoning": "La tabla de algoritmos del apartado indica que MD5 tiene 128 bits, igual a 32 caracteres hexadecimales.",
+      "options": {
+        "a": "Incorrecta. 40 caracteres (160 bits) es el tamaño de SHA-1.",
+        "b": "Correcta. MD5 tiene 128 bits, que son 32 caracteres hexadecimales.",
+        "c": "Incorrecta. 256 bits corresponde a SHA-256.",
+        "d": "Incorrecta. 224 bits es una de las variantes de SHA-2 y SHA-3."
+      }
+    },
+    "forense-t03-e15": {
+      "section": "hash-usos",
+      "reasoning": "La tabla de algoritmos hash del apartado asigna a SHA-1 una salida de 160 bits (40 caracteres).",
+      "options": {
+        "a": "Incorrecta. 128 bits es el tamaño de MD5.",
+        "b": "Incorrecta. 256 bits es SHA-256, una variante de SHA-2.",
+        "c": "Correcta. SHA-1 produce 160 bits, que son 40 caracteres hexadecimales.",
+        "d": "Incorrecta. 512 bits es la variante más larga de SHA-2 o SHA-3."
+      }
+    },
+    "forense-t03-e16": {
+      "section": "hash-usos",
+      "reasoning": "La lista de usos forenses del apartado incluye descartar o señalar archivos conocidos comparando hashes.",
+      "options": {
+        "a": "Correcta. Comparar con hashes conocidos permite descartarlos automáticamente.",
+        "b": "Incorrecta. El hash no cifra archivos.",
+        "c": "Incorrecta. Borrar datos de la imagen alteraría la evidencia.",
+        "d": "Incorrecta. El hash no permite reconstruir el contenido."
+      }
+    },
+    "forense-t03-e17": {
+      "section": "hash-usos",
+      "reasoning": "La tabla de herramientas por sistema cita HashMyFiles de NirSoft para Windows.",
+      "options": {
+        "a": "Incorrecta. Guymager es una herramienta de Linux que menciona la clase.",
+        "b": "Incorrecta. R-Wipe & Clean es una herramienta de borrado seguro.",
+        "c": "Incorrecta. WinPmem aparece en el ejemplo de volcado de RAM.",
+        "d": "Correcta. HashMyFiles es la herramienta de NirSoft para hashes."
+      }
+    },
+    "forense-t03-e18": {
+      "section": "hash-usos",
+      "reasoning": "El apartado indica que FTK Imager calcula los hash al adquirir, como cabe esperar de una herramienta forense.",
+      "options": {
+        "a": "Correcta. Calcular el hash forma parte de la adquisición con estas herramientas.",
+        "b": "Incorrecta. El tema dice lo contrario: ya lo calculan por sí solas.",
+        "c": "Incorrecta. Los 15 MB son un ejemplo de archivo cuyo hash es instantáneo, no un límite.",
+        "d": "Incorrecta. Contar archivos no demuestra la integridad."
+      }
+    },
+    "forense-t03-e19": {
+      "section": "bloqueo-escritura",
+      "reasoning": "La tabla de las tres formas de bloquear cita WiebeTech (CRU) y Tableau como marcas de bloqueadores hardware.",
+      "options": {
+        "a": "Incorrecta. Son distribuciones Linux forenses, un tipo de bloqueo software.",
+        "b": "Incorrecta. Son suites forenses de análisis.",
+        "c": "Correcta. Son las marcas de bloqueadores hardware que cita el tema.",
+        "d": "Incorrecta. Son programas de virtualización."
+      }
+    },
+    "forense-t03-e20": {
+      "section": "bloqueo-escritura",
+      "reasoning": "La lista sobre la distribución forense en vivo explica que no monta los discos y que no deja huella del acceso.",
+      "options": {
+        "a": "Incorrecta. Su finalidad es justo impedir la escritura en el original.",
+        "b": "Correcta. No monta los discos y no intervienen los registros del sistema investigado.",
+        "c": "Incorrecta. El tema no le atribuye la capacidad de descifrar discos.",
+        "d": "Incorrecta. El hash sigue siendo necesario para preservar la integridad."
+      }
+    },
+    "forense-t03-e21": {
+      "section": "bloqueo-escritura",
+      "reasoning": "El ejemplo de código del apartado muestra el bloqueo software de USB mediante el Registro.",
+      "options": {
+        "a": "Correcta. Es un bloqueo de escritura por software en los USB.",
+        "b": "Incorrecta. No cifra nada; solo impide escribir.",
+        "c": "Incorrecta. La lectura sigue permitida, si no no se podría copiar.",
+        "d": "Incorrecta. El borrado seguro se hace con otras herramientas, como dd."
+      }
+    },
+    "forense-t03-e22": {
+      "section": "bloqueo-escritura",
+      "reasoning": "La lista sobre el bloqueo por software del apartado comenta el efecto de instalar FTK Imager en caliente.",
+      "options": {
+        "a": "Incorrecta. No invalida la adquisición; lo importante es documentarlo.",
+        "b": "Incorrecta. Cualquier instalación en un equipo encendido modifica algo.",
+        "c": "Incorrecta. El tema no exige repetirla en frío.",
+        "d": "Correcta. Modifica el equipo, es aceptable y se documenta."
+      }
+    },
+    "forense-t03-e23": {
+      "section": "borrado-seguro",
+      "reasoning": "El término método Gutmann del apartado lo define como 35 pasadas con distintos patrones.",
+      "options": {
+        "a": "Incorrecta. Escribir ceros una vez es el borrado seguro más común, no el Gutmann.",
+        "b": "Correcta. Son 35 pasadas con distintos patrones.",
+        "c": "Incorrecta. El formateo rápido no es un borrado seguro.",
+        "d": "Incorrecta. Borrar el espacio libre es otra modalidad de borrado seguro."
+      }
+    },
+    "forense-t03-e24": {
+      "section": "borrado-seguro",
+      "reasoning": "La tabla de alcances del borrado seguro indica el formateo lento para una partición.",
+      "options": {
+        "a": "Incorrecta. El formateo rápido deja los datos recuperables.",
+        "b": "Incorrecta. Vaciar la papelera no sobrescribe los datos.",
+        "c": "Correcta. El formateo lento sobrescribe todo el espacio de la partición.",
+        "d": "Incorrecta. Calcular un hash no borra nada."
+      }
+    },
+    "forense-t03-e25": {
+      "section": "borrado-seguro",
+      "reasoning": "La lista de cuándo se hace un borrado seguro no incluye el original; el apartado insiste en que se aplica al destino.",
+      "options": {
+        "a": "Incorrecta. Desechar un dispositivo es uno de los casos de borrado seguro.",
+        "b": "Incorrecta. Reutilizarlo en otro caso es uno de los casos de borrado seguro.",
+        "c": "Incorrecta. El destino de un clonado debe borrarse de forma segura.",
+        "d": "Correcta. El original nunca se borra: se destruiría la prueba."
+      }
+    },
+    "forense-t03-e26": {
+      "section": "borrado-seguro",
+      "reasoning": "El ejemplo del apartado sobre el borrado como indicio relaciona las 35 pasadas con la intencionalidad.",
+      "options": {
+        "a": "Correcta. Un patrón de borrado tan poco habitual puede indicar intención.",
+        "b": "Incorrecta. Tras un borrado seguro el contenido no es recuperable.",
+        "c": "Incorrecta. La ISO/IEC 27037 no trata de borrar los equipos investigados.",
+        "d": "Incorrecta. El tema dice que el propio patrón de borrado puede ser un indicio."
+      }
+    },
+    "forense-t03-e27": {
+      "section": "imagen-clonado",
+      "reasoning": "El término imagen forense del apartado cita RAW o DD como copia en bruto y E01 como formato de EnCase.",
+      "options": {
+        "a": "Incorrecta. RAW es una copia en bruto, sin metadatos.",
+        "b": "Incorrecta. DD es también una copia en bruto.",
+        "c": "Correcta. E01 es el formato de EnCase con metadatos y compresión.",
+        "d": "Incorrecta. TXT es un archivo de texto, no un formato de imagen forense."
+      }
+    },
+    "forense-t03-e28": {
+      "section": "imagen-clonado",
+      "reasoning": "La comparativa del apartado pone el CCTV como uso típico del clonado.",
+      "options": {
+        "a": "Incorrecta. Una imagen necesita un programa que la lea y no funciona directamente en el hardware.",
+        "b": "Correcta. El clonado se puede usar directamente en el hardware original.",
+        "c": "Incorrecta. Una copia parcial no reproduce el disco para usarlo en el equipo.",
+        "d": "Incorrecta. La facilidad de envío no resuelve el uso en hardware específico."
+      }
+    },
+    "forense-t03-e29": {
+      "section": "imagen-clonado",
+      "reasoning": "La comparativa del apartado recoge los requisitos del destino del clonado y que solo cabe uno por disco.",
+      "options": {
+        "a": "Incorrecta. Ambos pueden ser copias exactas; no es eso lo que los distingue.",
+        "b": "Incorrecta. Al revés: el clonado no necesita programas; la imagen sí.",
+        "c": "Incorrecta. El clonado incluso puede usarse en el hardware original.",
+        "d": "Correcta. Cada clonado necesita su propio disco limpio y suficientemente grande."
+      }
+    },
+    "forense-t03-e30": {
+      "section": "imagen-clonado",
+      "reasoning": "El bloque de examen del apartado señala como trampa decir que no hace falta ningún programa para trabajar con imágenes.",
+      "options": {
+        "a": "Incorrecta. Es una característica de la imagen: se guarda en cualquier soporte de archivos.",
+        "b": "Incorrecta. Según el formato, la imagen puede llevar metadatos, compresión y redundancia.",
+        "c": "Correcta. Funcionar sin programas es propio del clonado, no de la imagen.",
+        "d": "Incorrecta. La facilidad de distribución es una ventaja de la imagen."
+      }
+    },
+    "forense-t03-e31": {
+      "section": "caliente-frio",
+      "reasoning": "La tabla de las dos situaciones del apartado da los otros nombres de cada tipo de adquisición.",
+      "options": {
+        "a": "Correcta. Son los otros nombres de la adquisición en frío.",
+        "b": "Incorrecta. Live Response Acquisition es la adquisición en caliente.",
+        "c": "Incorrecta. Lógica y parcial se refieren al alcance, no al estado del equipo.",
+        "d": "Incorrecta. Son tipos de apagado de la recolección en caliente."
+      }
+    },
+    "forense-t03-e32": {
+      "section": "caliente-frio",
+      "reasoning": "La tabla de las dos situaciones del apartado indica qué se puede obtener en cada una.",
+      "options": {
+        "a": "Incorrecta. Los datos volátiles solo se pueden adquirir en caliente.",
+        "b": "Incorrecta. Volátiles y no volátiles es lo que permite la adquisición en caliente.",
+        "c": "Incorrecta. El cifrado no es lo que determina qué se obtiene en frío.",
+        "d": "Correcta. Con el equipo apagado solo quedan los datos no volátiles."
+      }
+    },
+    "forense-t03-e33": {
+      "section": "caliente-frio",
+      "reasoning": "Entre los consejos prácticos del profesor del apartado está que las adquisiciones en caliente son in situ y las de frío en el laboratorio.",
+      "options": {
+        "a": "Incorrecta. Invierte los lugares de cada tipo de adquisición.",
+        "b": "Correcta. Caliente in situ y frío en el laboratorio.",
+        "c": "Incorrecta. Un equipo encendido que no se puede trasladar se adquiere en el sitio.",
+        "d": "Incorrecta. El notario refuerza la prueba, pero no es obligatorio en ambos casos."
+      }
+    },
+    "forense-t03-e34": {
+      "section": "caliente-frio",
+      "reasoning": "Los consejos prácticos del profesor incluyen qué hacer con un equipo apagado y cifrado.",
+      "options": {
+        "a": "Incorrecta. El profesor dice que se puede recurrir a la clave de recuperación.",
+        "b": "Incorrecta. Encender el equipo y probar contraseñas alteraría la escena.",
+        "c": "Correcta. La salida es obtener la clave de recuperación de TI o de la cuenta Microsoft.",
+        "d": "Incorrecta. Un clon de un disco cifrado sigue estando cifrado."
+      }
+    },
+    "forense-t03-e35": {
+      "section": "fisica-logica",
+      "reasoning": "El término adquisición lógica del apartado explica por qué no admite clonado.",
+      "options": {
+        "a": "Correcta. El clonado copia el dispositivo entero, incompatible con una selección.",
+        "b": "Incorrecta. La imagen lógica es justo la que guarda una selección de datos.",
+        "c": "Incorrecta. El clonado no depende del estado del equipo.",
+        "d": "Incorrecta. El motivo es técnico, no una prohibición legal."
+      }
+    },
+    "forense-t03-e36": {
+      "section": "fisica-logica",
+      "reasoning": "El apartado explica que alcance y estado son ejes independientes y cita la lógica en frío de unas carpetas de un pendrive.",
+      "options": {
+        "a": "Incorrecta. No se copia todo el dispositivo y no estaba encendido.",
+        "b": "Incorrecta. Es en frío, pero no se copia el dispositivo completo.",
+        "c": "Correcta. Una selección de carpetas de un pendrive desconectado es lógica en frío.",
+        "d": "Incorrecta. Es lógica, pero el dispositivo estaba desconectado."
+      }
+    },
+    "forense-t03-e37": {
+      "section": "recoleccion",
+      "reasoning": "Los pasos de la recolección en frío del apartado incluyen tapar el botón de encendido con cinta.",
+      "options": {
+        "a": "Incorrecta. La cinta no tiene relación con el hash.",
+        "b": "Incorrecta. No sirve para indicar el cifrado.",
+        "c": "Incorrecta. No es un precinto notarial.",
+        "d": "Correcta. Evita que alguien lo encienda accidentalmente."
+      }
+    },
+    "forense-t03-e38": {
+      "section": "recoleccion",
+      "reasoning": "Los pasos de la recolección en caliente definen el sistema transaccional al valorar la estabilidad de los datos.",
+      "options": {
+        "a": "Incorrecta. Eso no es lo que define a un sistema transaccional.",
+        "b": "Correcta. Graba de forma definitiva al terminar cada operación.",
+        "c": "Incorrecta. El cifrado al apagar es propio de BitLocker o FileVault.",
+        "d": "Incorrecta. Los scripts de limpieza son un riesgo del apagado limpio, no la definición."
+      }
+    },
+    "forense-t03-e39": {
+      "section": "recoleccion",
+      "reasoning": "El término apagado forense frente a apagado limpio del apartado explica las ventajas de cortar la corriente.",
+      "options": {
+        "a": "Correcta. Congela el disco tal como estaba y evita scripts de limpieza.",
+        "b": "Incorrecta. La RAM se pierde con cualquier apagado.",
+        "c": "Incorrecta. Es al revés: en sistemas transaccionales un corte brusco puede corromper datos.",
+        "d": "Incorrecta. Guardar los archivos abiertos es propio del apagado normal."
+      }
+    },
+    "forense-t03-e40": {
+      "section": "recoleccion",
+      "reasoning": "Los pasos de la recolección en frío del apartado justifican fotografiar los cables por la reconstrucción posterior.",
+      "options": {
+        "a": "Incorrecta. Un cable no tiene hash.",
+        "b": "Incorrecta. El notario puede dar fe, pero no es el motivo de la foto.",
+        "c": "Correcta. La foto permite reconstruir la configuración original.",
+        "d": "Incorrecta. El método Gutmann es un método de borrado seguro."
+      }
+    },
+    "forense-t03-e41": {
+      "section": "adquisicion-campo",
+      "reasoning": "Los pasos de la adquisición en caliente del apartado fijan el orden ante datos cifrados.",
+      "options": {
+        "a": "Incorrecta. Lo cifrado y lo volátil van primero.",
+        "b": "Incorrecta. Adquirir en frío exige apagar y se perdería el acceso a lo cifrado.",
+        "c": "Incorrecta. La caché del procesador no se puede adquirir.",
+        "d": "Correcta. Primero los cifrados volátiles y luego los no volátiles."
+      }
+    },
+    "forense-t03-e42": {
+      "section": "adquisicion-campo",
+      "reasoning": "Los pasos de la adquisición en caliente del apartado definen la versión portable como la que se ejecuta sin instalarse.",
+      "options": {
+        "a": "Incorrecta. El software del sistema investigado puede estar comprometido.",
+        "b": "Correcta. Es software que funciona sin instalarse.",
+        "c": "Incorrecta. Un bloqueador hardware es un aparato, no un programa portable.",
+        "d": "Incorrecta. Montar los discos en escritura es justo lo que se evita."
+      }
+    },
+    "forense-t03-e43": {
+      "section": "adquisicion-campo",
+      "reasoning": "El apartado indica que en caliente hay que registrar herramienta y versión y calcular el hash del resultado.",
+      "options": {
+        "a": "Correcta. Herramienta, versión y hash del resultado deben quedar registrados.",
+        "b": "Incorrecta. El usuario de la sesión no sustituye el registro de la herramienta.",
+        "c": "Incorrecta. La hora sola no basta para documentar la adquisición.",
+        "d": "Incorrecta. Contar archivos no demuestra nada sobre la integridad."
+      }
+    },
+    "forense-t03-e44": {
+      "section": "adquisicion-campo",
+      "reasoning": "El paso de copia de la adquisición en frío del apartado distingue la clonadora forense del ordenador de uso general.",
+      "options": {
+        "a": "Incorrecta. Encender el equipo original lo alteraría.",
+        "b": "Incorrecta. El apagado del destino no protege el origen.",
+        "c": "Correcta. Con un ordenador normal hace falta bloquear la escritura.",
+        "d": "Incorrecta. Un ordenador normal escribe en los discos por su cuenta."
+      }
+    },
+    "forense-t03-e45": {
+      "section": "preservacion",
+      "reasoning": "Los pasos de la preservación en frío del apartado definen HA1, HA2 y HB.",
+      "options": {
+        "a": "Incorrecta. El hash del origen antes es HA1.",
+        "b": "Correcta. HA2 es el hash del origen después de adquirir.",
+        "c": "Incorrecta. El hash de la copia es HB.",
+        "d": "Incorrecta. En caliente solo se calcula el hash del resultado, sin HA1 ni HA2."
+      }
+    },
+    "forense-t03-e46": {
+      "section": "preservacion",
+      "reasoning": "El apartado de preservación cita Autopsy, EnCase y FTK como suites que hacen la comprobación automáticamente.",
+      "options": {
+        "a": "Incorrecta. Son distribuciones Linux forenses.",
+        "b": "Incorrecta. Son herramientas de hash o de copia, no suites de análisis.",
+        "c": "Incorrecta. VMware y VirtualBox son de virtualización.",
+        "d": "Correcta. Autopsy, EnCase y FTK comprueban el hash automáticamente."
+      }
+    },
+    "forense-t03-e47": {
+      "section": "preservacion",
+      "reasoning": "El apartado de preservación exige el mismo algoritmo y alcance para que la comparación tenga sentido.",
+      "options": {
+        "a": "Incorrecta. Con algoritmos distintos los resultados no son comparables.",
+        "b": "Incorrecta. Comparar nombres de archivo no demuestra la integridad.",
+        "c": "Correcta. Mismo algoritmo y mismo alcance en los tres hashes.",
+        "d": "Incorrecta. En frío el origen está apagado y bloqueado."
+      }
+    },
+    "forense-t03-e48": {
+      "section": "preservacion",
+      "reasoning": "El apartado explica que en caliente el origen lo avala un tercero de confianza.",
+      "options": {
+        "a": "Correcta. Un notario o fedatario da fe de cómo se hizo el volcado.",
+        "b": "Incorrecta. La RAM cambia sin parar, así que esos hashes nunca coincidirían.",
+        "c": "Incorrecta. La memoria no se puede bloquear contra escritura.",
+        "d": "Incorrecta. Cada volcado será distinto porque la memoria cambia constantemente."
+      }
+    },
+    "forense-t03-e49": {
+      "section": "supuestos-especiales",
+      "reasoning": "El apartado enumera los tres supuestos especiales de la ISO/IEC 27037.",
+      "options": {
+        "a": "Incorrecta. Un portátil normal se trata con el flujo general.",
+        "b": "Correcta. Son los tres supuestos especiales de la norma.",
+        "c": "Incorrecta. Son fases del tratamiento de la evidencia, no supuestos especiales.",
+        "d": "Incorrecta. Son formatos y alcances de adquisición."
+      }
+    },
+    "forense-t03-e50": {
+      "section": "supuestos-especiales",
+      "reasoning": "El término dispositivos de almacenamiento del apartado justifica su prioridad baja por ser los menos volátiles.",
+      "options": {
+        "a": "Incorrecta. El tema aclara que baja prioridad no significa poca importancia.",
+        "b": "Incorrecta. No hay ninguna prohibición legal de adquirirlos.",
+        "c": "Incorrecta. Al contrario: conservan sus datos sin corriente.",
+        "d": "Correcta. Son los menos volátiles, por eso pueden esperar."
+      }
     }
   }
 }

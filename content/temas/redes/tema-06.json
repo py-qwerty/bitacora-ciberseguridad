@@ -954,6 +954,506 @@
         "c": "Incorrecta. La cifra simétrica usa una misma clave compartida, como AES o RC4. Diffie-Hellman y RSA son precisamente los pioneros de la cifra asimétrica.",
         "d": "Incorrecta. En ambos los interlocutores guardan valores secretos: en Diffie-Hellman cada uno su exponente aleatorio y en RSA el dueño su clave privada. Sin secretos no habría seguridad."
       }
+    },
+    "redes-t06-e01": {
+      "section": "mapa-cripto",
+      "reasoning": "El mapa del tema presenta flujo y bloque como subdivisiones internas de la cifra simétrica.",
+      "options": {
+        "a": "Correcta. Flujo y bloque son los dos tipos de cifra simétrica.",
+        "b": "Incorrecta. Pública y privada son las dos claves de la cifra asimétrica, no tipos de simétrica.",
+        "c": "Incorrecta. El hash es una familia aparte sin clave, no un tipo de cifra simétrica.",
+        "d": "Incorrecta. La firma es un uso de la asimétrica; no clasifica la simétrica."
+      }
+    },
+    "redes-t06-e02": {
+      "section": "mapa-cripto",
+      "reasoning": "El bloque de examen del mapa señala esta frase como trampa clásica: bloque/flujo no distingue simétrica de asimétrica.",
+      "options": {
+        "a": "Incorrecta. La asimétrica no se define por cifrar en flujo; se define por el par de claves.",
+        "b": "Incorrecta. La simétrica también puede ser en flujo, como RC4.",
+        "c": "Correcta. Flujo y bloque son subdivisiones dentro de la cifra simétrica.",
+        "d": "Incorrecta. La asimétrica no se subdivide en bloque y flujo en el tema."
+      }
+    },
+    "redes-t06-e03": {
+      "section": "mapa-cripto",
+      "reasoning": "La tabla de las tres familias asigna RC4 a la simétrica en flujo y AES a la simétrica en bloque.",
+      "options": {
+        "a": "Incorrecta. AES es el ejemplo de cifra simétrica en bloque.",
+        "b": "Correcta. RC4 es el ejemplo de cifra en flujo del tema.",
+        "c": "Incorrecta. SHA-3 es una función hash, sin clave.",
+        "d": "Incorrecta. RSA es un algoritmo de clave pública (asimétrico)."
+      }
+    },
+    "redes-t06-e04": {
+      "section": "cifra-flujo",
+      "reasoning": "El apartado explica que cada bit del mensaje se combina con un bit distinto de la secuencia cifrante Si.",
+      "options": {
+        "a": "Incorrecta. Combinar con el bloque cifrado anterior es lo que hace el modo CBC de la cifra en bloque.",
+        "b": "Incorrecta. La clave pública pertenece a la cifra asimétrica, no a la cifra en flujo.",
+        "c": "Incorrecta. El hash no interviene en el cifrado en flujo.",
+        "d": "Correcta. Cada bit se combina con un bit de la secuencia cifrante Si."
+      }
+    },
+    "redes-t06-e05": {
+      "section": "cifra-flujo",
+      "reasoning": "El apartado define Si como binaria y pseudoaleatoria: parece azar pero se genera de forma determinista desde K.",
+      "options": {
+        "a": "Correcta. Parece aleatoria, pero se genera de forma determinista desde la clave.",
+        "b": "Incorrecta. Si no se pudiera regenerar, el receptor no podría descifrar.",
+        "c": "Incorrecta. La secuencia no se envía: cada extremo la genera con la clave secreta.",
+        "d": "Incorrecta. Se genera desde la clave K, no desde el mensaje."
+      }
+    },
+    "redes-t06-e06": {
+      "section": "cifra-flujo",
+      "reasoning": "El apartado define XOR (distintos dan 1, iguales dan 0) y lo aplica bit a bit entre M y Si.",
+      "options": {
+        "a": "Incorrecta. El tercer bit es 1⊕1, que da 0, no 1.",
+        "b": "Incorrecta. El primer bit es 1⊕0, que da 1, no 0.",
+        "c": "Correcta. Bit a bit: 1⊕0=1, 0⊕1=1, 1⊕1=0, 0⊕0=0.",
+        "d": "Incorrecta. Parece haber invertido el resultado: los dos primeros bits son 1."
+      }
+    },
+    "redes-t06-e07": {
+      "section": "cifra-flujo",
+      "reasoning": "El apartado describe RC4 con sus dos rutinas: KSA (preparación de la clave) y PRGA (generación pseudoaleatoria).",
+      "options": {
+        "a": "Incorrecta. SubBytes y ShiftRows son operaciones de las rondas de AES.",
+        "b": "Correcta. KSA prepara el estado con la clave y PRGA genera la secuencia.",
+        "c": "Incorrecta. ECB y CBC son modos de cifra en bloque.",
+        "d": "Incorrecta. AddRoundKey y MixColumns también son operaciones de AES."
+      }
+    },
+    "redes-t06-e08": {
+      "section": "cifra-flujo",
+      "reasoning": "El apartado recoge su popularidad y sus usos: SSL/TLS hasta 2014 y los cifrados wifi WEP y WPA.",
+      "options": {
+        "a": "Correcta. Son los usos de RC4 que cita el tema.",
+        "b": "Incorrecta. Lo que dejó de usarse en X.509 en 2017 fue SHA-1.",
+        "c": "Incorrecta. FIPS 197 es la norma que publica AES.",
+        "d": "Incorrecta. Para contraseñas se usan funciones hash, no un cifrador en flujo."
+      }
+    },
+    "redes-t06-e09": {
+      "section": "cifra-bloque",
+      "reasoning": "El apartado define el relleno como los bits que completan el último bloque cuando el mensaje no encaja exactamente.",
+      "options": {
+        "a": "Correcta. El relleno completa el último bloque.",
+        "b": "Incorrecta. No se quitan bits del mensaje: se añaden.",
+        "c": "Incorrecta. Las subclaves salen de la expansión de clave, no del relleno.",
+        "d": "Incorrecta. Eso describe el IV de los modos de cifra, no el relleno."
+      }
+    },
+    "redes-t06-e10": {
+      "section": "cifra-bloque",
+      "reasoning": "El apartado define el cifrador de producto por la combinación de sustituciones y permutaciones.",
+      "options": {
+        "a": "Incorrecta. El nombre no viene de una multiplicación literal de clave y texto.",
+        "b": "Correcta. Combinan sustituciones y permutaciones.",
+        "c": "Incorrecta. El producto de dos primos es la base de RSA, no de la cifra en bloque.",
+        "d": "Incorrecta. Un cifrador en bloque no calcula hashes."
+      }
+    },
+    "redes-t06-e11": {
+      "section": "cifra-bloque",
+      "reasoning": "El apartado explica que las rondas usan subclaves distintas derivadas de K por expansión de clave.",
+      "options": {
+        "a": "Incorrecta. Las subclaves no se envían: se derivan de K en ambos extremos.",
+        "b": "Incorrecta. La cifra en bloque es simétrica: no usa clave pública.",
+        "c": "Incorrecta. Cada ronda usa una subclave distinta, no la misma clave.",
+        "d": "Correcta. Las subclaves salen de K por expansión de clave."
+      }
+    },
+    "redes-t06-e12": {
+      "section": "cifra-bloque",
+      "reasoning": "El ejemplo de la avalancha del apartado muestra que un carácter distinto cambia alrededor de la mitad de los bits del bloque.",
+      "options": {
+        "a": "Incorrecta. Eso conservaría patrones, justo lo que la avalancha evita.",
+        "b": "Incorrecta. El cambio se reparte por todo el bloque, no solo al final.",
+        "c": "Correcta. Cambia alrededor de la mitad de los bits de salida.",
+        "d": "Incorrecta. Con entradas distintas, la misma clave da salidas muy distintas."
+      }
+    },
+    "redes-t06-e13": {
+      "section": "modos-bloque",
+      "reasoning": "El apartado define el modo de cifra como la regla de encadenamiento de bloques.",
+      "options": {
+        "a": "Correcta. El modo dice cómo se relaciona cada bloque con los demás.",
+        "b": "Incorrecta. El tamaño de clave es un parámetro del algoritmo, no el modo.",
+        "c": "Incorrecta. La sustitución forma parte de cada ronda, no del modo.",
+        "d": "Incorrecta. El intercambio de claves es tarea de Diffie-Hellman o RSA."
+      }
+    },
+    "redes-t06-e14": {
+      "section": "modos-bloque",
+      "reasoning": "El apartado define CBC: C[i] = E(P[i] ⊕ C[i-1]) y C[1] = E(P[1] ⊕ IV).",
+      "options": {
+        "a": "Incorrecta. Cifrar un contador es lo que hace el modo CTR.",
+        "b": "Correcta. CBC encadena cada bloque con el cifrado anterior.",
+        "c": "Incorrecta. Las subclaves pertenecen al interior del algoritmo, no al modo.",
+        "d": "Incorrecta. CBC mira hacia atrás (el cifrado anterior), no al bloque siguiente."
+      }
+    },
+    "redes-t06-e15": {
+      "section": "modos-bloque",
+      "reasoning": "El apartado describe CTR precisamente como el cifrado de un contador combinado con XOR.",
+      "options": {
+        "a": "Incorrecta. ECB cifra cada bloque de forma independiente, sin contador.",
+        "b": "Incorrecta. CBC encadena con el bloque cifrado anterior.",
+        "c": "Incorrecta. KSA es una rutina de RC4, no un modo de cifra en bloque.",
+        "d": "Correcta. CTR cifra un contador y lo combina con XOR."
+      }
+    },
+    "redes-t06-e16": {
+      "section": "modos-bloque",
+      "reasoning": "La comparativa de modos marca CTR como paralelizable, con errores aislados y recomendado.",
+      "options": {
+        "a": "Incorrecta. ECB paraleliza, pero revela patrones y no se recomienda.",
+        "b": "Incorrecta. Según el temario, CBC no paraleliza y propaga los errores.",
+        "c": "Correcta. CTR paraleliza, aísla errores y está recomendado.",
+        "d": "Incorrecta. RC4 es un cifrador en flujo, no un modo de cifra en bloque."
+      }
+    },
+    "redes-t06-e17": {
+      "section": "modos-bloque",
+      "reasoning": "El apartado define el IV como el valor inicial que evita que mensajes iguales den cifrados iguales.",
+      "options": {
+        "a": "Correcta. Esa es la función del vector inicial.",
+        "b": "Incorrecta. El IV no sustituye a la clave: la clave sigue siendo necesaria.",
+        "c": "Incorrecta. La longitud del mensaje se indica en el relleno de MD5, no en el IV.",
+        "d": "Incorrecta. El IV no firma nada; la firma es asimétrica."
+      }
+    },
+    "redes-t06-e18": {
+      "section": "modos-bloque",
+      "reasoning": "La comparativa de modos indica que en CBC bloques iguales no producen cifrados iguales; sí señala que no paraleliza y propaga errores.",
+      "options": {
+        "a": "Incorrecta. Sí es un inconveniente de CBC: no se puede paralelizar.",
+        "b": "Incorrecta. Según el temario, en CBC un error se propaga al resto.",
+        "c": "Correcta. Ese defecto es de ECB; CBC lo evita al encadenar bloques.",
+        "d": "Incorrecta. Al no paralelizar, CBC penaliza los grandes volúmenes."
+      }
+    },
+    "redes-t06-e19": {
+      "section": "aes",
+      "reasoning": "El apartado de AES indica que AES es Rijndael estandarizado.",
+      "options": {
+        "a": "Incorrecta. Keccak es el nombre de SHA-3.",
+        "b": "Correcta. AES es el algoritmo Rijndael convertido en estándar.",
+        "c": "Incorrecta. Feistel es la estructura que usaba DES; AES no es de tipo Feistel.",
+        "d": "Incorrecta. RC4 es un cifrador en flujo de Ron Rivest, no el algoritmo de AES."
+      }
+    },
+    "redes-t06-e20": {
+      "section": "aes",
+      "reasoning": "El apartado de AES atribuye la publicación al NIST en la norma FIPS 197.",
+      "options": {
+        "a": "Incorrecta. La NSA creó SHA-2, que es una familia de hash, no una norma de AES.",
+        "b": "Correcta. El NIST lo publicó en FIPS 197.",
+        "c": "Incorrecta. El MIT es la universidad de los autores de RSA y X.509 son certificados.",
+        "d": "Incorrecta. La norma es FIPS 197, pero la publicó el NIST, no la NSA."
+      }
+    },
+    "redes-t06-e21": {
+      "section": "aes",
+      "reasoning": "La lista de operaciones de ronda de AES describe ShiftRows como la rotación de filas.",
+      "options": {
+        "a": "Incorrecta. Eso es SubBytes.",
+        "b": "Incorrecta. Eso es AddRoundKey.",
+        "c": "Incorrecta. Eso es MixColumns.",
+        "d": "Correcta. ShiftRows rota las filas 0, 1, 2 y 3 bytes."
+      }
+    },
+    "redes-t06-e22": {
+      "section": "aes",
+      "reasoning": "La lista de las cuatro operaciones de ronda asocia el XOR con la subclave a AddRoundKey.",
+      "options": {
+        "a": "Correcta. AddRoundKey hace el XOR con la subclave.",
+        "b": "Incorrecta. SubBytes sustituye bytes mediante la caja S.",
+        "c": "Incorrecta. MixColumns mezcla los bytes de cada columna.",
+        "d": "Incorrecta. ShiftRows rota las filas del estado."
+      }
+    },
+    "redes-t06-e23": {
+      "section": "aes",
+      "reasoning": "La tabla de cifras de AES indica matriz de estado 4×4 bytes y que no es de tipo Feistel.",
+      "options": {
+        "a": "Incorrecta. AES no es de tipo Feistel; esa estructura era la de DES.",
+        "b": "Incorrecta. La esponja es el diseño de SHA-3 (Keccak).",
+        "c": "Correcta. El estado de AES es una matriz de 4×4 bytes.",
+        "d": "Incorrecta. Los cinco vectores ABCDE son de SHA-1."
+      }
+    },
+    "redes-t06-e24": {
+      "section": "hash",
+      "reasoning": "El ejemplo de comprobar una descarga del apartado usa el hash para verificar la integridad comparando valores.",
+      "options": {
+        "a": "Incorrecta. Un hash no se descifra con ninguna clave.",
+        "b": "Correcta. Un hash distinto indica corrupción o manipulación.",
+        "c": "Incorrecta. La ISO no está cifrada; el hash solo es una huella.",
+        "d": "Incorrecta. El hash depende solo del contenido, no de cómo se descargó."
+      }
+    },
+    "redes-t06-e25": {
+      "section": "hash",
+      "reasoning": "La tabla de usos del hash explica el almacenamiento de contraseñas y advierte de la fuerza bruta.",
+      "options": {
+        "a": "Incorrecta. Un hash no se puede descifrar, ni siquiera por el servidor.",
+        "b": "Incorrecta. El hash tiene longitud fija; no se trata de que ocupe más.",
+        "c": "Correcta. El robo de la base no revela las contraseñas en claro.",
+        "d": "Incorrecta. El tema advierte que pueden intentar romperlas por fuerza bruta."
+      }
+    },
+    "redes-t06-e26": {
+      "section": "hash",
+      "reasoning": "Las propiedades del hash incluyen que no se puede invertir y que no es una compresión como ZIP.",
+      "options": {
+        "a": "Incorrecta. El hash tiene longitud fija y suele ser mucho más corto que el archivo.",
+        "b": "Incorrecta. El hash no tiene clave y no se «descomprime».",
+        "c": "Incorrecta. Un hash se aplica a archivos de cualquier tipo y tamaño.",
+        "d": "Correcta. A diferencia de ZIP, del hash no se recupera el archivo."
+      }
+    },
+    "redes-t06-e27": {
+      "section": "md5-sha",
+      "reasoning": "El apartado define SHA-2 con cuatro tamaños de resumen: 224, 256, 384 y 512 bits.",
+      "options": {
+        "a": "Incorrecta. 128 es MD5 y 160 es SHA-1, no variantes de SHA-2.",
+        "b": "Correcta. Son los cuatro tamaños de SHA-2.",
+        "c": "Incorrecta. 160 bits es el resumen de SHA-1.",
+        "d": "Incorrecta. 1024 bits es un tamaño de bloque de SHA-2, no de resumen."
+      }
+    },
+    "redes-t06-e28": {
+      "section": "md5-sha",
+      "reasoning": "El apartado presenta SHA-3 como una función esponja con un array tridimensional, distinta del esquema de MD5 y SHA.",
+      "options": {
+        "a": "Incorrecta. Los cinco vectores ABCDE son de SHA-1.",
+        "b": "Incorrecta. La estructura Feistel es de DES, no de SHA-3.",
+        "c": "Incorrecta. Cuatro vectores ABCD y 64 vueltas describen MD5.",
+        "d": "Correcta. SHA-3 es una función esponja."
+      }
+    },
+    "redes-t06-e29": {
+      "section": "md5-sha",
+      "reasoning": "El apartado relaciona SHAttered (2017) con la retirada de SHA-1 de los certificados X.509.",
+      "options": {
+        "a": "Incorrecta. FIPS 197 es la norma de AES, de 2001.",
+        "b": "Correcta. SHAttered mostró una colisión práctica en SHA-1.",
+        "c": "Incorrecta. Keccak ganó en 2012 y no fue la causa de retirar SHA-1.",
+        "d": "Incorrecta. RC4 dejó SSL/TLS en 2014 y es un cifrador, no un hash."
+      }
+    },
+    "redes-t06-e30": {
+      "section": "md5-sha",
+      "reasoning": "El primer paso de cómo trabaja MD5 explica que los últimos 64 bits del relleno guardan la longitud.",
+      "options": {
+        "a": "Correcta. Los 64 bits finales codifican la longitud del mensaje.",
+        "b": "Incorrecta. Las vueltas son siempre 64 por bloque y no se codifican en el relleno.",
+        "c": "Incorrecta. Los vectores iniciales son públicos y no van en el relleno.",
+        "d": "Incorrecta. MD5 no usa clave ni subclaves."
+      }
+    },
+    "redes-t06-e31": {
+      "section": "md5-sha",
+      "reasoning": "La definición y la comparativa del apartado indican bloque de 512 bits para MD5.",
+      "options": {
+        "a": "Incorrecta. 128 bits es el tamaño del resumen de MD5, no del bloque.",
+        "b": "Incorrecta. 160 bits es el resumen de SHA-1.",
+        "c": "Correcta. MD5 trabaja con bloques de 512 bits.",
+        "d": "Incorrecta. 1024 bits es un tamaño de bloque de algunas variantes de SHA-2."
+      }
+    },
+    "redes-t06-e32": {
+      "section": "md5-sha",
+      "reasoning": "El apartado explica que el tamaño del resumen sale del número de vectores de 32 bits: cuatro en MD5 y cinco en SHA-1.",
+      "options": {
+        "a": "Incorrecta. Ambos procesan bloques de 512 bits.",
+        "b": "Correcta. 5 × 32 = 160 y 4 × 32 = 128.",
+        "c": "Incorrecta. Ninguna de las dos funciones hash usa clave.",
+        "d": "Incorrecta. SHA-1 hace 80 vueltas, pero eso no fija el tamaño del resumen."
+      }
+    },
+    "redes-t06-e33": {
+      "section": "clave-publica",
+      "reasoning": "El apartado de clave pública sitúa su origen en 1976 con Diffie y Hellman.",
+      "options": {
+        "a": "Incorrecta. Rivest, Shamir y Adleman presentaron RSA en 1978.",
+        "b": "Incorrecta. Ron Rivest diseñó RC4 y MD5, no la idea de clave pública.",
+        "c": "Incorrecta. La NSA y el NIST aparecen en el tema por SHA y AES.",
+        "d": "Correcta. Diffie y Hellman propusieron la cifra asimétrica en 1976."
+      }
+    },
+    "redes-t06-e34": {
+      "section": "clave-publica",
+      "reasoning": "La tabla de usos del par de claves asocia cifrar con la privada del emisor a la autenticidad (firma digital).",
+      "options": {
+        "a": "Correcta. Firmar con la privada propia permite que todos verifiquen con la pública.",
+        "b": "Incorrecta. Cifrar con su pública solo lo podría descifrar ella misma; no prueba autoría.",
+        "c": "Incorrecta. Eso da confidencialidad para cada lector, no prueba de origen.",
+        "d": "Incorrecta. Una clave simétrica compartida no permite que cualquiera verifique el origen."
+      }
+    },
+    "redes-t06-e35": {
+      "section": "clave-publica",
+      "reasoning": "El apartado explica que obtener la privada desde la pública es un problema NP, computacionalmente inviable.",
+      "options": {
+        "a": "Incorrecta. Las dos claves sí están relacionadas matemáticamente.",
+        "b": "Incorrecta. La clave pública se publica tal cual, no cifrada.",
+        "c": "Correcta. Es computacionalmente inviable (problema NP).",
+        "d": "Incorrecta. La clave pública se reutiliza; no es de un solo uso."
+      }
+    },
+    "redes-t06-e36": {
+      "section": "clave-publica",
+      "reasoning": "El término cifrado híbrido del apartado define la clave de sesión como clave temporal simétrica protegida con asimétrica.",
+      "options": {
+        "a": "Correcta. Es una clave simétrica temporal para esa comunicación.",
+        "b": "Incorrecta. Una clave privada nunca se envía.",
+        "c": "Incorrecta. No es un hash de contraseña sino una clave de cifrado.",
+        "d": "Incorrecta. Se usa con un algoritmo simétrico, no es una clave pública."
+      }
+    },
+    "redes-t06-e37": {
+      "section": "clave-publica",
+      "reasoning": "El apartado compara las velocidades: cientos de KB/s para asimétrica frente a cientos de MB/s para simétrica.",
+      "options": {
+        "a": "Incorrecta. Está al revés: la simétrica es la rápida.",
+        "b": "Incorrecta. Hay una diferencia de unas mil veces entre ambas.",
+        "c": "Incorrecta. La asimétrica es la lenta, no la rápida.",
+        "d": "Correcta. La asimétrica es unas mil veces más lenta."
+      }
+    },
+    "redes-t06-e38": {
+      "section": "diffie-hellman",
+      "reasoning": "El apartado identifica el problema del logaritmo discreto como base de Diffie-Hellman.",
+      "options": {
+        "a": "Correcta. Su seguridad se basa en el logaritmo discreto.",
+        "b": "Incorrecta. La factorización de n = p · q es la base de RSA.",
+        "c": "Incorrecta. Las colisiones afectan a las funciones hash, no a DH.",
+        "d": "Incorrecta. La avalancha es una propiedad de la cifra en bloque."
+      }
+    },
+    "redes-t06-e39": {
+      "section": "diffie-hellman",
+      "reasoning": "Los pasos del protocolo indican que Alicia calcula A = α^a mod p y se lo envía a Bernardo.",
+      "options": {
+        "a": "Incorrecta. La base es el generador α y el exponente el secreto a, no al revés.",
+        "b": "Incorrecta. Es una exponenciación, no un producto.",
+        "c": "Correcta. A = α^a mod p.",
+        "d": "Incorrecta. El módulo es p y la base α; aquí están intercambiados."
+      }
+    },
+    "redes-t06-e40": {
+      "section": "diffie-hellman",
+      "reasoning": "Los pasos del protocolo definen α como raíz primitiva de p, acordada públicamente.",
+      "options": {
+        "a": "Incorrecta. α es público; los secretos son a y b.",
+        "b": "Correcta. α es una raíz primitiva de p.",
+        "c": "Incorrecta. El producto de dos primos es el módulo n de RSA.",
+        "d": "Incorrecta. El inverso de e en Φ(n) es la clave privada d de RSA."
+      }
+    },
+    "redes-t06-e41": {
+      "section": "diffie-hellman",
+      "reasoning": "El diagrama y el texto del apartado indican que el intruso ve p, α, A y B, pero no a, b ni K.",
+      "options": {
+        "a": "Correcta. Son los únicos valores que viajan por el canal.",
+        "b": "Incorrecta. a y b son secretos y K nunca viaja por la red.",
+        "c": "Incorrecta. a y b no se envían nunca.",
+        "d": "Incorrecta. b es secreto de Bernardo y K no se transmite."
+      }
+    },
+    "redes-t06-e42": {
+      "section": "diffie-hellman",
+      "reasoning": "El último paso del protocolo muestra que ambos llegan a K = α^(a·b) mod p.",
+      "options": {
+        "a": "Incorrecta. Elevar una potencia a otra multiplica los exponentes, no los suma.",
+        "b": "Incorrecta. La base sigue siendo α, no el producto de los secretos.",
+        "c": "Incorrecta. Base y módulo están intercambiados.",
+        "d": "Correcta. Ambos obtienen α^(a·b) mod p."
+      }
+    },
+    "redes-t06-e43": {
+      "section": "rsa",
+      "reasoning": "El ejemplo de generación del apartado RSA calcula n = 119 y Φ(n) = 96 con p = 7 y q = 17.",
+      "options": {
+        "a": "Incorrecta. Los valores están intercambiados.",
+        "b": "Incorrecta. Φ(n) es (7 − 1)(17 − 1) = 96, no 112.",
+        "c": "Correcta. n = 7 · 17 = 119 y Φ(n) = 6 · 16 = 96.",
+        "d": "Incorrecta. n es el producto 7 · 17, no la suma de ambos."
+      }
+    },
+    "redes-t06-e44": {
+      "section": "rsa",
+      "reasoning": "El último paso de generación de claves RSA indica: clave pública (n, e), clave privada d.",
+      "options": {
+        "a": "Incorrecta. d es la clave privada y nunca se publica.",
+        "b": "Incorrecta. p y q se guardan en secreto.",
+        "c": "Correcta. La clave pública es (n, e).",
+        "d": "Incorrecta. Φ(n) es secreto: solo lo conoce quien sabe p y q."
+      }
+    },
+    "redes-t06-e45": {
+      "section": "rsa",
+      "reasoning": "Los pasos de generación de RSA definen d como inversa de e módulo Φ(n).",
+      "options": {
+        "a": "Incorrecta. La relación es módulo Φ(n) y da 1, no 0 módulo n.",
+        "b": "Incorrecta. Es una relación multiplicativa, no una suma.",
+        "c": "Incorrecta. d no se obtiene reduciendo e módulo n.",
+        "d": "Correcta. d es el inverso de e módulo Φ(n)."
+      }
+    },
+    "redes-t06-e46": {
+      "section": "rsa",
+      "reasoning": "El paso de elegir la clave pública e menciona 65 537 (F4) como valor habitual que acelera el cifrado.",
+      "options": {
+        "a": "Incorrecta. 65 537 es 2^16 + 1, un número pequeño, no de 1024 bits.",
+        "b": "Correcta. Es F4 = 2^16 + 1 y acelera el cifrado.",
+        "c": "Incorrecta. d es el inverso de e módulo Φ(n), no al revés y no módulo n.",
+        "d": "Incorrecta. El módulo n es público, sea cual sea e."
+      }
+    },
+    "redes-t06-e47": {
+      "section": "rsa",
+      "reasoning": "El apartado RSA describe el cifrado con la pública del receptor como C = N^e mod n.",
+      "options": {
+        "a": "Correcta. Se cifra con la pública del receptor: C = N^e mod n.",
+        "b": "Incorrecta. Cifrar con la privada de Alicia sería firmar, no dar confidencialidad.",
+        "c": "Incorrecta. La base es el mensaje N y el exponente e, no al revés.",
+        "d": "Incorrecta. El módulo es n; Φ(n) es secreto y Alicia no lo conoce."
+      }
+    },
+    "redes-t06-e48": {
+      "section": "firma-digital",
+      "reasoning": "El apartado de firma digital define firmar un valor H como S = H^d mod n.",
+      "options": {
+        "a": "Incorrecta. Elevar a e es la operación de verificación, con la pública.",
+        "b": "Incorrecta. La base es el hash H y el exponente d, no al revés.",
+        "c": "Incorrecta. El módulo es n y el exponente d; aquí están intercambiados.",
+        "d": "Correcta. S = H^d mod n, con la privada del firmante."
+      }
+    },
+    "redes-t06-e49": {
+      "section": "firma-digital",
+      "reasoning": "El ejemplo numérico del apartado verifica la firma calculando 65^5 mod 119 = 46.",
+      "options": {
+        "a": "Incorrecta. Usar d = 77 es firmar, y el verificador no conoce la privada.",
+        "b": "Correcta. S^e mod n = 65^5 mod 119.",
+        "c": "Incorrecta. La base es la firma S y el exponente e, no al revés.",
+        "d": "Incorrecta. El módulo es n = 119, no la firma."
+      }
+    },
+    "redes-t06-e50": {
+      "section": "firma-digital",
+      "reasoning": "Los pasos de firma y verificación del apartado describen recuperar H con la pública del emisor y compararlo con h(M').",
+      "options": {
+        "a": "Incorrecta. El documento no está cifrado; se verifica con la pública de Alicia.",
+        "b": "Incorrecta. Bernardo no tiene la clave privada de Alicia.",
+        "c": "Incorrecta. La clave pública de Bernardo no interviene en verificar la firma de Alicia.",
+        "d": "Correcta. Recupera H con la pública de Alicia y lo compara con h(M')."
+      }
     }
   }
 }

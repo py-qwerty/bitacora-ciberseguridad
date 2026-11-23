@@ -866,6 +866,506 @@
         "c": "Correcta. El diodo garantiza por hardware el flujo unidireccional y, gracias a ello, impide las fugas de información por el sentido contrario.",
         "d": "Incorrecta. Tanto A como B son ciertas, así que no puede ser «ninguna»."
       }
+    },
+    "redes-t03-e01": {
+      "section": "cortafuegos-bastion",
+      "reasoning": "El apartado del bastión define la topología de defensa.",
+      "options": {
+        "a": "Correcta. Es la forma en que se colocan y conectan los dispositivos de seguridad para limitar, cifrar o descifrar el tráfico.",
+        "b": "Incorrecta. Topología se refiere al dibujo de la red, no al edificio.",
+        "c": "Incorrecta. No se define por el número de equipos.",
+        "d": "Incorrecta. Ese documento es la política de seguridad, no la topología."
+      }
+    },
+    "redes-t03-e02": {
+      "section": "cortafuegos-bastion",
+      "reasoning": "La lista del apartado enumera qué exige planificar una arquitectura de seguridad.",
+      "options": {
+        "a": "Incorrecta. Partir de una política de seguridad sí es una exigencia.",
+        "b": "Incorrecta. Decidir responsables y beneficiarios sí es una exigencia.",
+        "c": "Correcta. El tema no lo exige; de hecho, APP-5 pide fabricantes distintos.",
+        "d": "Incorrecta. Controlar y mantener después sí es una exigencia."
+      }
+    },
+    "redes-t03-e03": {
+      "section": "cortafuegos-bastion",
+      "reasoning": "El recuadro de examen del apartado describe esta confusión típica.",
+      "options": {
+        "a": "Incorrecta. El bastión dual es el intermediario crítico y debe estar muy protegido.",
+        "b": "Correcta. Un señuelo que atrae atacantes es un honeypot; el bastión, al contrario, debe estar muy protegido.",
+        "c": "Incorrecta. La DMZ interna media el acceso a la zona restringida.",
+        "d": "Incorrecta. El diodo garantiza un solo sentido de flujo."
+      }
+    },
+    "redes-t03-e04": {
+      "section": "cortafuegos-bastion",
+      "reasoning": "El apartado empieza definiendo la misión del cortafuegos en ambos sentidos.",
+      "options": {
+        "a": "Incorrecta. Controla ambos sentidos.",
+        "b": "Incorrecta. El tema no considera fiable el tráfico interno.",
+        "c": "Incorrecta. El puerto no es la condición.",
+        "d": "Correcta. La misión del cortafuegos incluye bloquear de dentro hacia fuera; el tema pone este mismo ejemplo."
+      }
+    },
+    "redes-t03-e05": {
+      "section": "zonas-generales",
+      "reasoning": "El apartado de las tres zonas define Internet.",
+      "options": {
+        "a": "Incorrecta. El tema no la define por el cifrado.",
+        "b": "Correcta. Es una red pública que la organización no controla.",
+        "c": "Incorrecta. La usa todo el mundo.",
+        "d": "Incorrecta. Precisamente se publican servicios hacia Internet desde la DMZ."
+      }
+    },
+    "redes-t03-e06": {
+      "section": "zonas-generales",
+      "reasoning": "El apartado define la DMZ y su nombre alternativo.",
+      "options": {
+        "a": "Correcta. El tema dice que la DMZ también se llama Perimeter Network.",
+        "b": "Incorrecta. La Internal Network es la red interior, distinta de la DMZ.",
+        "c": "Incorrecta. La extranet es una subzona para terceros de confianza.",
+        "d": "Incorrecta. La zona de gestión es otra subzona distinta."
+      }
+    },
+    "redes-t03-e07": {
+      "section": "zonas-generales",
+      "reasoning": "El caso práctico de la tienda online del apartado ilustra ambas conexiones.",
+      "options": {
+        "a": "Incorrecta. Esa es la conexión de un cliente que visita la web.",
+        "b": "Incorrecta. El origen es la oficina, no la DMZ.",
+        "c": "Correcta. Los empleados están en la intranet y la web, en la DMZ.",
+        "d": "Incorrecta. No interviene Internet y, además, esa conexión directa no debe ocurrir."
+      }
+    },
+    "redes-t03-e08": {
+      "section": "zonas-generales",
+      "reasoning": "El apartado explica la DMZ como zona puente y lo que no debe ocurrir.",
+      "options": {
+        "a": "Incorrecta. Es la conexión normal Internet → DMZ.",
+        "b": "Incorrecta. Es una conexión intranet → DMZ prevista por el tema.",
+        "c": "Incorrecta. Es una conexión intranet → DMZ prevista por el tema.",
+        "d": "Correcta. El tema dice que lo que no debe ocurrir es que alguien de Internet llegue directamente a la intranet."
+      }
+    },
+    "redes-t03-e09": {
+      "section": "zonas-generales",
+      "reasoning": "El apartado de las tres zonas explica el origen del nombre.",
+      "options": {
+        "a": "Incorrecta. La DMZ sí está protegida por cortafuegos.",
+        "b": "Incorrecta. No tiene relación con un uso militar de la red.",
+        "c": "Correcta. El tema explica que el nombre viene de esa franja neutral.",
+        "d": "Incorrecta. La DMZ precisamente es accesible desde Internet."
+      }
+    },
+    "redes-t03-e10": {
+      "section": "subzonas",
+      "reasoning": "El apartado de subzonas presenta el esquema de diana de Obregon.",
+      "options": {
+        "a": "Incorrecta. Es al revés: en el centro hay más controles.",
+        "b": "Incorrecta. El tema no lo describe así; la zona de gestión, por ejemplo, las cruza todas.",
+        "c": "Incorrecta. Los datos sensibles están en el centro, en la zona restringida.",
+        "d": "Correcta. Lo más valioso está en el centro y hay que atravesar más controles para llegar."
+      }
+    },
+    "redes-t03-e11": {
+      "section": "subzonas",
+      "reasoning": "La tabla de subzonas del apartado describe la zona empresarial.",
+      "options": {
+        "a": "Correcta. Ordenadores, impresoras y teléfonos: donde trabaja el personal.",
+        "b": "Incorrecta. Eso es la extranet.",
+        "c": "Incorrecta. Eso es la zona restringida.",
+        "d": "Incorrecta. Eso es la zona de gestión."
+      }
+    },
+    "redes-t03-e12": {
+      "section": "subzonas",
+      "reasoning": "El apartado de subzonas define la extranet.",
+      "options": {
+        "a": "Incorrecta. Eso describe la DMZ externa.",
+        "b": "Correcta. Son terceros en los que se confía pero que no controla la organización; por eso se filtra lo expuesto.",
+        "c": "Incorrecta. Eso describe la DMZ interna.",
+        "d": "Incorrecta. Eso describe la zona de gestión."
+      }
+    },
+    "redes-t03-e13": {
+      "section": "subzonas",
+      "reasoning": "La tabla de subzonas del apartado da la idea clave de cada zona.",
+      "options": {
+        "a": "Incorrecta. Los datos sensibles están en la zona restringida.",
+        "b": "Incorrecta. Los empleados están en la zona empresarial.",
+        "c": "Incorrecta. Los servicios de terceros están en la extranet.",
+        "d": "Correcta. Aloja los sistemas expuestos e intermediarios, y el tráfico se analiza ahí antes de salir."
+      }
+    },
+    "redes-t03-e14": {
+      "section": "subzonas",
+      "reasoning": "El diagrama de la diana del apartado muestra este orden.",
+      "options": {
+        "a": "Incorrecta. La DMZ externa, que da la cara a Internet, va antes que la zona empresarial.",
+        "b": "Correcta. Es el orden del diagrama: de lo expuesto a lo más sensible.",
+        "c": "Incorrecta. La DMZ interna está justo antes de la zona restringida, a la que da acceso.",
+        "d": "Incorrecta. La DMZ interna no está junto a Internet: media hacia los datos sensibles."
+      }
+    },
+    "redes-t03-e15": {
+      "section": "zona-gestion",
+      "reasoning": "El apartado de la zona de gestión explica su forma en la figura.",
+      "options": {
+        "a": "Incorrecta. Al contrario: debe estar especialmente protegida.",
+        "b": "Incorrecta. No hace eso, y esa conexión directa no debe existir.",
+        "c": "Correcta. Aloja administración y monitorización de equipos de todas las zonas.",
+        "d": "Incorrecta. El tema no la limita a redes clasificadas."
+      }
+    },
+    "redes-t03-e16": {
+      "section": "zona-gestion",
+      "reasoning": "El apartado define el log al describir la zona de gestión.",
+      "options": {
+        "a": "Correcta. Es la «caja negra» de la red: quién entró, qué falló, qué se bloqueó.",
+        "b": "Incorrecta. Eso es un cortafuegos.",
+        "c": "Incorrecta. Eso es un diodo de datos.",
+        "d": "Incorrecta. Eso es un proxy."
+      }
+    },
+    "redes-t03-e17": {
+      "section": "zona-gestion",
+      "reasoning": "El recuadro de examen del apartado recoge esta trampa.",
+      "options": {
+        "a": "Correcta. Es una trampa del tema: los servicios públicos van en la DMZ.",
+        "b": "Incorrecta. Sí aloja sistemas de registro, de seguridad y de rendimiento.",
+        "c": "Incorrecta. Sí, por los permisos elevados de quienes la manejan.",
+        "d": "Incorrecta. Sí es transversal al resto de zonas."
+      }
+    },
+    "redes-t03-e18": {
+      "section": "zona-gestion",
+      "reasoning": "El apartado explica por qué la zona de gestión atrae ataques.",
+      "options": {
+        "a": "Incorrecta. La web pública está en la DMZ.",
+        "b": "Incorrecta. Debe estar aislada y protegida, no fuera del perímetro.",
+        "c": "Incorrecta. La propiedad intelectual está en la zona restringida.",
+        "d": "Correcta. Sus usuarios son administradores; controlarla da el control de toda la red."
+      }
+    },
+    "redes-t03-e19": {
+      "section": "arquitectura-simple",
+      "reasoning": "El apartado de arquitectura simple la define.",
+      "options": {
+        "a": "Incorrecta. Eso es APP-5.",
+        "b": "Correcta. El cortafuegos se coloca justo en la conexión con Internet y no hay zonas intermedias.",
+        "c": "Incorrecta. Eso es APP-6.",
+        "d": "Incorrecta. Eso es defensa en profundidad."
+      }
+    },
+    "redes-t03-e20": {
+      "section": "arquitectura-simple",
+      "reasoning": "El apartado define el bastión con interfaz dual.",
+      "options": {
+        "a": "Incorrecta. No se refiere a dos cortafuegos.",
+        "b": "Incorrecta. No tiene que ver con discos.",
+        "c": "Correcta. Dos interfaces: una conectada a Internet y otra a la red interna; todo el tráfico pasa por él.",
+        "d": "Incorrecta. No se refiere a proxys."
+      }
+    },
+    "redes-t03-e21": {
+      "section": "arquitectura-simple",
+      "reasoning": "El apartado de arquitectura simple señala esta debilidad.",
+      "options": {
+        "a": "Incorrecta. Al contrario: es sencilla y barata.",
+        "b": "Incorrecta. Un cortafuegos sí puede filtrar la salida.",
+        "c": "Correcta. Es un punto único de fallo: no hay otra barrera detrás.",
+        "d": "Incorrecta. Eso lo exige APP-5, no la arquitectura simple."
+      }
+    },
+    "redes-t03-e22": {
+      "section": "defensa-profundidad",
+      "reasoning": "El apartado de defensa en profundidad lo explica.",
+      "options": {
+        "a": "Correcta. En la DMZ se colocan los servidores accesibles desde fuera, separados del interior.",
+        "b": "Incorrecta. El tema no la define así.",
+        "c": "Incorrecta. El tema no la define así.",
+        "d": "Incorrecta. Unirlas eliminaría la separación."
+      }
+    },
+    "redes-t03-e23": {
+      "section": "defensa-profundidad",
+      "reasoning": "El apartado describe la figura con los dos routers.",
+      "options": {
+        "a": "Incorrecta. Esa es la posición del router interior.",
+        "b": "Incorrecta. El tema no lo coloca ahí.",
+        "c": "Incorrecta. El tema no lo coloca ahí.",
+        "d": "Correcta. El router exterior separa Internet de la red perimetral, donde está el bastión."
+      }
+    },
+    "redes-t03-e24": {
+      "section": "defensa-profundidad",
+      "reasoning": "El apartado de defensa en profundidad define el router.",
+      "options": {
+        "a": "Incorrecta. Eso no define un router.",
+        "b": "Correcta. El tema dice que el router dirige paquetes de una red a otra y, si aplica reglas de filtrado, actúa como cortafuegos.",
+        "c": "Incorrecta. Eso describe un diodo.",
+        "d": "Incorrecta. Eso no define un router."
+      }
+    },
+    "redes-t03-e25": {
+      "section": "defensa-profundidad",
+      "reasoning": "La tabla simple frente a defensa en profundidad del apartado lo compara.",
+      "options": {
+        "a": "Incorrecta. Tiene más barreras, no menos.",
+        "b": "Correcta. La tabla comparativa le asigna coste y complejidad mayores.",
+        "c": "Incorrecta. Los servidores públicos van en la DMZ.",
+        "d": "Incorrecta. Si cae la primera barrera, el atacante se queda en la DMZ."
+      }
+    },
+    "redes-t03-e26": {
+      "section": "defensa-profundidad",
+      "reasoning": "El recuadro de examen del apartado enumera estas trampas.",
+      "options": {
+        "a": "Incorrecta. Es cierto: ahí se ponen los servidores públicos.",
+        "b": "Incorrecta. Es cierto: hay otro filtrado entre DMZ e interior.",
+        "c": "Correcta. El tema lo señala como trampa: la DMZ es una zona expuesta, menos confiable que el interior.",
+        "d": "Incorrecta. Es cierto: es la ventaja central del diseño."
+      }
+    },
+    "redes-t03-e27": {
+      "section": "ens-app1-app2",
+      "reasoning": "El apartado del ENS lo define y cita su regulación.",
+      "options": {
+        "a": "Correcta. El tema dice que hoy lo regula el Real Decreto 311/2022.",
+        "b": "Incorrecta. Es el real decreto anterior, sustituido por el de 2022.",
+        "c": "Incorrecta. Es una guía del CCN sobre interconexión, no la norma que regula el ENS.",
+        "d": "Incorrecta. X.800 es una recomendación de la ITU."
+      }
+    },
+    "redes-t03-e28": {
+      "section": "ens-app1-app2",
+      "reasoning": "El apartado explica qué es un real decreto al presentar el ENS.",
+      "options": {
+        "a": "Incorrecta. No la aprueban las Cortes ni tiene rango de ley.",
+        "b": "Incorrecta. Las guías CCN-STIC son otra cosa.",
+        "c": "Incorrecta. El tema no lo define así.",
+        "d": "Correcta. La aprueba el Gobierno, no las Cortes, y tiene rango inferior a la ley."
+      }
+    },
+    "redes-t03-e29": {
+      "section": "ens-app1-app2",
+      "reasoning": "El apartado presenta la guía y sus siete APP.",
+      "options": {
+        "a": "Incorrecta. Son siete, no cinco.",
+        "b": "Incorrecta. El tema no las agrupa así.",
+        "c": "Incorrecta. No guardan relación con las capas de TCP/IP.",
+        "d": "Correcta. La guía define siete, cada vez más robustas."
+      }
+    },
+    "redes-t03-e30": {
+      "section": "ens-app1-app2",
+      "reasoning": "El apartado describe APP-1 y APP-2.",
+      "options": {
+        "a": "Correcta. APP-2 sustituye el cortafuegos por un proxy, que permite monitorizar y fijar reglas de autorización y registro.",
+        "b": "Incorrecta. Eso se parece a APP-5.",
+        "c": "Incorrecta. El diodo solo aparece en APP-7.",
+        "d": "Incorrecta. Eso se parece a APP-5."
+      }
+    },
+    "redes-t03-e31": {
+      "section": "ens-app1-app2",
+      "reasoning": "El apartado presenta la guía y su autor.",
+      "options": {
+        "a": "Incorrecta. La ITU publica recomendaciones como X.800.",
+        "b": "Correcta. Es una guía de 2017 del CCN.",
+        "c": "Incorrecta. El NIST publica guías como la SP 800-41-1.",
+        "d": "Incorrecta. Del SANS procede el esquema de zonas de Obregon."
+      }
+    },
+    "redes-t03-e32": {
+      "section": "app3-app4",
+      "reasoning": "El apartado describe APP-3 y APP-4.",
+      "options": {
+        "a": "Incorrecta. Dos cortafuegos aparecen en APP-5.",
+        "b": "Incorrecta. Sustituir el cortafuegos por un proxy es APP-2.",
+        "c": "Correcta. APP-3 combina cortafuegos y proxy; APP-4 lleva el proxy a la DMZ colgada del cortafuegos.",
+        "d": "Incorrecta. El diodo es de APP-7."
+      }
+    },
+    "redes-t03-e33": {
+      "section": "app3-app4",
+      "reasoning": "El apartado y el resumen de APP señalan esta debilidad.",
+      "options": {
+        "a": "Correcta. Una vulnerabilidad en el cortafuegos expuesto sigue exponiendo la infraestructura.",
+        "b": "Incorrecta. En APP-3 el intercambio sí pasa por el proxy.",
+        "c": "Incorrecta. El proxy permite controlar y registrar.",
+        "d": "Incorrecta. Eso lo exige APP-5."
+      }
+    },
+    "redes-t03-e34": {
+      "section": "app3-app4",
+      "reasoning": "El apartado enumera las ventajas y el límite de APP-4.",
+      "options": {
+        "a": "Incorrecta. APP-4 tiene un único cortafuegos.",
+        "b": "Correcta. Es una de las ventajas de APP-4 que destaca el tema.",
+        "c": "Incorrecta. APP-4 no lleva diodo.",
+        "d": "Incorrecta. El tema no describe nada parecido."
+      }
+    },
+    "redes-t03-e35": {
+      "section": "app3-app4",
+      "reasoning": "El apartado define el proxy y lo compara con un router.",
+      "options": {
+        "a": "Incorrecta. Invierte los papeles.",
+        "b": "Incorrecta. Ninguno se define por cifrar o descifrar.",
+        "c": "Incorrecta. El que controla y registra es el proxy.",
+        "d": "Correcta. El router o cortafuegos sencillo mira de dónde vienen y adónde van los paquetes; el proxy entiende la conversación."
+      }
+    },
+    "redes-t03-e36": {
+      "section": "app3-app4",
+      "reasoning": "El apartado cierra APP-4 con este límite.",
+      "options": {
+        "a": "Incorrecta. En APP-4 todo pasa por el proxy.",
+        "b": "Incorrecta. Está detrás del cortafuegos, en la DMZ.",
+        "c": "Correcta. El tema lo indica: un error en el único cortafuegos compromete la infraestructura.",
+        "d": "Incorrecta. La pasarela solo aparece en APP-7."
+      }
+    },
+    "redes-t03-e37": {
+      "section": "app5-app6",
+      "reasoning": "El apartado describe el funcionamiento de APP-5.",
+      "options": {
+        "a": "Incorrecta. El tema no los divide por servicios.",
+        "b": "Incorrecta. El tema no los describe así.",
+        "c": "Correcta. El tema dice que uno controla la entrada al proxy y otro la salida, sin tráfico directo entre ellos.",
+        "d": "Incorrecta. Ninguno es proxy ni diodo."
+      }
+    },
+    "redes-t03-e38": {
+      "section": "app5-app6",
+      "reasoning": "El apartado de APP-5 explica qué debe superar el atacante.",
+      "options": {
+        "a": "Incorrecta. Con el proxy no basta: queda el otro cortafuegos.",
+        "b": "Incorrecta. Queda aún el segundo cortafuegos.",
+        "c": "Incorrecta. APP-5 no lleva diodo ni pasarela.",
+        "d": "Correcta. El tema dice que en APP-5 hay que comprometer los dos cortafuegos."
+      }
+    },
+    "redes-t03-e39": {
+      "section": "app5-app6",
+      "reasoning": "El diagrama de APP-6 del apartado muestra este camino.",
+      "options": {
+        "a": "Incorrecta. El primero en recibir el tráfico es el cortafuegos externo.",
+        "b": "Correcta. El proxy queda en serie entre el cortafuegos externo y el interno.",
+        "c": "Incorrecta. El proxy no va detrás de ambos, sino entre ellos.",
+        "d": "Incorrecta. El orden de los cortafuegos está invertido."
+      }
+    },
+    "redes-t03-e40": {
+      "section": "app5-app6",
+      "reasoning": "El apartado de APP-5 describe los flujos permitidos.",
+      "options": {
+        "a": "Correcta. El tema dice que no puede circular directamente; los flujos son los de APP-4, todo por el proxy.",
+        "b": "Incorrecta. El fabricante no cambia los flujos permitidos.",
+        "c": "Incorrecta. Hay una DMZ entre ambos y el tráfico pasa por el proxy.",
+        "d": "Incorrecta. Ningún tráfico circula directo entre ellos."
+      }
+    },
+    "redes-t03-e41": {
+      "section": "app5-app6",
+      "reasoning": "La tabla APP-5 frente a APP-6 y el resumen del tema lo recogen.",
+      "options": {
+        "a": "Incorrecta. APP-6 elimina ese requisito.",
+        "b": "Correcta. El resumen le asigna como punto débil la mayor complejidad.",
+        "c": "Incorrecta. El proxy está en serie entre dos cortafuegos.",
+        "d": "Incorrecta. Usa dos cortafuegos."
+      }
+    },
+    "redes-t03-e42": {
+      "section": "app7-pasarela-diodo",
+      "reasoning": "El apartado de APP-7 define la red clasificada.",
+      "options": {
+        "a": "Correcta. Maneja información marcada oficialmente como difusión limitada, confidencial o secreto.",
+        "b": "Incorrecta. Eso es zonificación, no clasificación.",
+        "c": "Incorrecta. No tiene que ver con el orden de las IP.",
+        "d": "Incorrecta. No tiene que ver con el tipo de software."
+      }
+    },
+    "redes-t03-e43": {
+      "section": "app7-pasarela-diodo",
+      "reasoning": "El apartado explica esta idea con el modelo OSI.",
+      "options": {
+        "a": "Incorrecta. No se trata de cifrar.",
+        "b": "Incorrecta. El tema no habla de dejar pasar solo HTTP.",
+        "c": "Correcta. La pasarela recibe los datos, los deja en un soporte intermedio y el otro lado los recoge.",
+        "d": "Incorrecta. Eso sería NAT."
+      }
+    },
+    "redes-t03-e44": {
+      "section": "app7-pasarela-diodo",
+      "reasoning": "La tabla pasarela frente a diodo del apartado los compara.",
+      "options": {
+        "a": "Incorrecta. Invierte los papeles.",
+        "b": "Incorrecta. La pasarela no es unidireccional.",
+        "c": "Incorrecta. El diodo es unidireccional y no se define por analizar contenido.",
+        "d": "Correcta. La pasarela intercambia de forma controlada en ambos sentidos; el diodo, solo en uno."
+      }
+    },
+    "redes-t03-e45": {
+      "section": "app7-pasarela-diodo",
+      "reasoning": "El caso práctico del apartado compara cortafuegos, proxy y diodo.",
+      "options": {
+        "a": "Incorrecta. Los cortafuegos sí filtran la salida.",
+        "b": "Incorrecta. El tema no dice eso.",
+        "c": "Incorrecta. El caso no se plantea por la clasificación, sino por el sentido único.",
+        "d": "Correcta. Una regla de software puede saltarse; el diodo no tiene canal físico de retorno."
+      }
+    },
+    "redes-t03-e46": {
+      "section": "app7-pasarela-diodo",
+      "reasoning": "El apartado de APP-7 describe sus elementos.",
+      "options": {
+        "a": "Incorrecta. Lo que puede sustituirse es el proxy, no los cortafuegos.",
+        "b": "Incorrecta. APP-7 mantiene dos cortafuegos.",
+        "c": "Correcta. El tema dice que APP-7 mantiene los dos cortafuegos y que el proxy puede tener que sustituirse.",
+        "d": "Incorrecta. Los cortafuegos se mantienen."
+      }
+    },
+    "redes-t03-e47": {
+      "section": "comparativa-app",
+      "reasoning": "El apartado de comparativa lo resume al principio.",
+      "options": {
+        "a": "Correcta. Más barreras, más control del contenido y menos dependencia de un único equipo.",
+        "b": "Incorrecta. Ocurre lo contrario: más equipos y más coste.",
+        "c": "Incorrecta. El tema no las describe así.",
+        "d": "Incorrecta. APP-5 a APP-7 tienen dos cortafuegos."
+      }
+    },
+    "redes-t03-e48": {
+      "section": "comparativa-app",
+      "reasoning": "La tabla resumen del apartado da el punto fuerte de cada APP.",
+      "options": {
+        "a": "Incorrecta. Ese es el punto fuerte de APP-1.",
+        "b": "Correcta. El proxy de APP-2 permite monitorizar, autorizar y registrar.",
+        "c": "Incorrecta. Ese es el punto fuerte de APP-5.",
+        "d": "Incorrecta. Ese es el punto fuerte de APP-7."
+      }
+    },
+    "redes-t03-e49": {
+      "section": "comparativa-app",
+      "reasoning": "El apartado de comparativa lo aclara.",
+      "options": {
+        "a": "Correcta. La guía las presenta como opciones; el ENS ofrece el catálogo, no una receta única.",
+        "b": "Incorrecta. No hay que implantarlas todas en secuencia.",
+        "c": "Incorrecta. No son requisitos simultáneos.",
+        "d": "Incorrecta. El ENS se dirige al sector público."
+      }
+    },
+    "redes-t03-e50": {
+      "section": "comparativa-app",
+      "reasoning": "La tabla resumen del apartado indica los puntos débiles.",
+      "options": {
+        "a": "Incorrecta. APP-7 tiene dos cortafuegos.",
+        "b": "Incorrecta. En APP-7 el proxy está protegido o sustituido.",
+        "c": "Correcta. El resumen le asigna coste y complejidad muy altos.",
+        "d": "Incorrecta. Ese es el punto débil de APP-5."
+      }
     }
   }
 }

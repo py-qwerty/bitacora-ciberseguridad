@@ -2759,6 +2759,506 @@
         "c": "Incorrecta. PUT sube o reemplaza un recurso (por ejemplo, un archivo) en la ruta indicada, y su contenido va en el cuerpo de la petición.",
         "d": "Incorrecta. Solo GET pone los parámetros en la URL; POST y PUT los llevan en el cuerpo, así que no valen las tres."
       }
+    },
+    "sistemas-t02-e01": {
+      "section": "punto-de-partida",
+      "reasoning": "El apartado inicial presenta los tres objetivos del tema: arquitecturas, HTTP y SSDLC.",
+      "options": {
+        "a": "Incorrecta. Son áreas de seguridad, pero no los bloques de este tema.",
+        "b": "Correcta. Son los tres bloques que plantea el tema.",
+        "c": "Incorrecta. Son controles generales, no la estructura del tema.",
+        "d": "Incorrecta. Son ataques concretos que aparecen después, no los bloques."
+      }
+    },
+    "sistemas-t02-e02": {
+      "section": "anatomia-objetivos",
+      "reasoning": "La tabla de piezas de un ciberataque identifica el formulario como vector de ataque.",
+      "options": {
+        "a": "Incorrecta. El payload es el texto malicioso escrito en el campo.",
+        "b": "Incorrecta. El agente es quien ataca, el atacante en Internet.",
+        "c": "Incorrecta. El activo impactado es la base de datos.",
+        "d": "Correcta. El formulario es el camino de entrada."
+      }
+    },
+    "sistemas-t02-e03": {
+      "section": "anatomia-objetivos",
+      "reasoning": "El apartado separa vulnerabilidad, payload, activo e impacto con el mismo ejemplo de inyección SQL.",
+      "options": {
+        "a": "Incorrecta. Eso es el activo impactado.",
+        "b": "Correcta. La falta de validación es el fallo explotado.",
+        "c": "Incorrecta. Eso es el payload.",
+        "d": "Incorrecta. Eso es el impacto en el negocio."
+      }
+    },
+    "sistemas-t02-e04": {
+      "section": "anatomia-objetivos",
+      "reasoning": "La tabla de objetivos asocia el no repudio a la firma digital.",
+      "options": {
+        "a": "Correcta. Es el objetivo y el mecanismo que cita el tema.",
+        "b": "Incorrecta. La integridad evita alteraciones, no la negación de una acción.",
+        "c": "Incorrecta. La trazabilidad usa logs y monitorización; los clústeres dan disponibilidad.",
+        "d": "Incorrecta. La confidencialidad evita que lo lea quien no debe."
+      }
+    },
+    "sistemas-t02-e05": {
+      "section": "anatomia-objetivos",
+      "reasoning": "El apartado define el SIEM por la correlación y el SOAR por la capacidad de respuesta.",
+      "options": {
+        "a": "Incorrecta. El cifrado de registros no es la función descrita.",
+        "b": "Incorrecta. Responder a incidentes es lo que añade un SOAR.",
+        "c": "Incorrecta. No las descarta; las une en una alerta.",
+        "d": "Correcta. Correlacionar es la función que destaca el tema."
+      }
+    },
+    "sistemas-t02-e06": {
+      "section": "modelo-web",
+      "reasoning": "El apartado explica el éxito de la web por su acoplamiento débil frente a RPC, RMI, DCOM y CORBA.",
+      "options": {
+        "a": "Correcta. Es la definición que da el tema.",
+        "b": "Incorrecta. Eso describe un acoplamiento fuerte como el de CORBA.",
+        "c": "Incorrecta. La web funciona en Internet, intranet y móviles.",
+        "d": "Incorrecta. Cliente y servidor pueden usar tecnologías distintas."
+      }
+    },
+    "sistemas-t02-e07": {
+      "section": "modelo-web",
+      "reasoning": "El apartado define el tipo MIME como etiqueta del tipo de contenido.",
+      "options": {
+        "a": "Incorrecta. La versión va en la línea inicial, no en el tipo MIME.",
+        "b": "Incorrecta. El método también va en la línea inicial.",
+        "c": "Correcta. Es la función del tipo MIME.",
+        "d": "Incorrecta. El dominio lo indica la cabecera Host."
+      }
+    },
+    "sistemas-t02-e08": {
+      "section": "modelo-web",
+      "reasoning": "La tabla de familias de aplicaciones web sitúa esas tecnologías en las RIA.",
+      "options": {
+        "a": "Incorrecta. Las tradicionales generan las páginas en el servidor (MPA).",
+        "b": "Correcta. Son tecnologías típicas de RIA.",
+        "c": "Incorrecta. SOAP es un estándar de servicios web.",
+        "d": "Incorrecta. Las nativas se programan en el lenguaje del sistema del móvil."
+      }
+    },
+    "sistemas-t02-e09": {
+      "section": "monolitica-capas",
+      "reasoning": "La tabla de capas, y el aviso del PDF, identifican la lógica de negocio como el corazón.",
+      "options": {
+        "a": "Incorrecta. La presentación muestra la interfaz y recoge acciones.",
+        "b": "Incorrecta. El acceso a datos habla con la base de datos; el PDF repite por error otro texto.",
+        "c": "Correcta. Es la cocina del restaurante: decide y prepara.",
+        "d": "Incorrecta. TCP es transporte de red, no una capa de la aplicación."
+      }
+    },
+    "sistemas-t02-e10": {
+      "section": "monolitica-capas",
+      "reasoning": "Los pasos de una petición en MVC con Java empiezan en el controlador.",
+      "options": {
+        "a": "Incorrecta. El Modelo actúa después, a petición del controlador.",
+        "b": "Incorrecta. La Vista se elige y rellena al final.",
+        "c": "Correcta. El servlet controlador recibe y examina la petición.",
+        "d": "Incorrecta. La base de datos la consulta el Modelo, no recibe la petición."
+      }
+    },
+    "sistemas-t02-e11": {
+      "section": "monolitica-capas",
+      "reasoning": "El apartado enumera las ventajas de las capas y su precio en complejidad.",
+      "options": {
+        "a": "Incorrecta. La reutilización es precisamente una ventaja de las capas.",
+        "b": "Incorrecta. Repartirlas es una posibilidad, no una obligación.",
+        "c": "Correcta. Es el precio que menciona el tema.",
+        "d": "Incorrecta. La separación de responsabilidades es una ventaja."
+      }
+    },
+    "sistemas-t02-e12": {
+      "section": "spa-ajax",
+      "reasoning": "Los pasos de funcionamiento de una SPA indican que el servidor responde con datos ligeros.",
+      "options": {
+        "a": "Incorrecta. Devolver HTML completo es propio del modelo clásico.",
+        "b": "Incorrecta. El manifiesto es propio de las PWA.",
+        "c": "Correcta. Es la respuesta típica en una SPA.",
+        "d": "Incorrecta. Una redirección no es la respuesta habitual a un clic en una SPA."
+      }
+    },
+    "sistemas-t02-e13": {
+      "section": "spa-ajax",
+      "reasoning": "El apartado avisa de que el elemento adicional en el cliente aumenta la superficie de ataque.",
+      "options": {
+        "a": "Incorrecta. El tema no habla de cifrado débil del motor AJAX.",
+        "b": "Incorrecta. XMLHttpRequest respeta la política del mismo origen.",
+        "c": "Correcta. Es el inconveniente que señala el temario.",
+        "d": "Incorrecta. AJAX no obliga a usar GET para credenciales."
+      }
+    },
+    "sistemas-t02-e14": {
+      "section": "spa-ajax",
+      "reasoning": "La lista sobre dónde se implementa la seguridad sitúa la autenticación obligatoria en el backend.",
+      "options": {
+        "a": "Correcta. Es lo que establece el tema.",
+        "b": "Incorrecta. Lo que se hace en el cliente se puede saltar.",
+        "c": "Incorrecta. El manifiesto describe la app instalable, no autentica.",
+        "d": "Incorrecta. No es donde el tema sitúa la autenticación."
+      }
+    },
+    "sistemas-t02-e15": {
+      "section": "pwa",
+      "reasoning": "El apartado separa el papel del manifiesto (instalable) del de los service workers (sin conexión).",
+      "options": {
+        "a": "Correcta. El manifiesto la hace instalable.",
+        "b": "Incorrecta. El service worker da el funcionamiento sin conexión y las notificaciones.",
+        "c": "Incorrecta. El certificado permite HTTPS, requisito de la PWA.",
+        "d": "Incorrecta. La API del backend no hace instalable la app."
+      }
+    },
+    "sistemas-t02-e16": {
+      "section": "pwa",
+      "reasoning": "El apartado explica que HTTPS es condición para los service workers en una PWA.",
+      "options": {
+        "a": "Correcta. Es la razón que da el tema.",
+        "b": "Incorrecta. Ser descubrible es otra característica, no la razón de HTTPS.",
+        "c": "Incorrecta. Una PWA se instala sin pasar por la tienda.",
+        "d": "Incorrecta. HTTPS no se exige por rendimiento."
+      }
+    },
+    "sistemas-t02-e17": {
+      "section": "pwa",
+      "reasoning": "La tabla de características de la PWA define cada término.",
+      "options": {
+        "a": "Incorrecta. Reenganchable alude a las notificaciones push.",
+        "b": "Incorrecta. Responsiva es adaptarse a móvil, tablet u ordenador.",
+        "c": "Correcta. Es la característica que describe la pregunta.",
+        "d": "Incorrecta. Actualizable es que se actualiza sola."
+      }
+    },
+    "sistemas-t02-e18": {
+      "section": "microservicios",
+      "reasoning": "La lista de principios incluye el despliegue independiente de cada servicio.",
+      "options": {
+        "a": "Incorrecta. Cada microservicio suele tener su propio motor de base de datos.",
+        "b": "Correcta. El despliegue independiente es un principio.",
+        "c": "Incorrecta. Eso define un monolito.",
+        "d": "Incorrecta. Hay independencia tecnológica por servicio."
+      }
+    },
+    "sistemas-t02-e19": {
+      "section": "microservicios",
+      "reasoning": "Los pasos del ejemplo con Spring describen Eureka como servicio de registro.",
+      "options": {
+        "a": "Correcta. Eureka es el registro o agenda de servicios.",
+        "b": "Incorrecta. La pasarela es Spring Cloud Gateway.",
+        "c": "Incorrecta. El orquestador de contenedores es Kubernetes.",
+        "d": "Incorrecta. Cada servicio tiene su propia base de datos."
+      }
+    },
+    "sistemas-t02-e20": {
+      "section": "microservicios",
+      "reasoning": "El apartado define contenedor y Kubernetes al hablar del coste operacional.",
+      "options": {
+        "a": "Incorrecta. No es un lenguaje de programación.",
+        "b": "Incorrecta. Un formato de datos sería, por ejemplo, JSON.",
+        "c": "Incorrecta. Eureka es el registro; Kubernetes orquesta.",
+        "d": "Correcta. Es la definición del tema."
+      }
+    },
+    "sistemas-t02-e21": {
+      "section": "mvvm",
+      "reasoning": "La tabla de piezas de MVVM sitúa Vista y ViewModel en el frontend.",
+      "options": {
+        "a": "Incorrecta. En el backend solo está el Modelo.",
+        "b": "Incorrecta. El ViewModel no vive en la base de datos.",
+        "c": "Correcta. Ambos viven en el frontend.",
+        "d": "Incorrecta. Generar la vista en el servidor es propio de MVC clásico."
+      }
+    },
+    "sistemas-t02-e22": {
+      "section": "mvvm",
+      "reasoning": "El apartado indica que en MVVM la seguridad se concentra en el modelo del backend.",
+      "options": {
+        "a": "Correcta. El modelo, en el backend, concentra la seguridad.",
+        "b": "Incorrecta. El ViewModel está en el cliente, terreno del usuario.",
+        "c": "Incorrecta. La vista solo muestra datos ya controlados.",
+        "d": "Incorrecta. El data binding es un mecanismo de presentación."
+      }
+    },
+    "sistemas-t02-e23": {
+      "section": "http-metodos",
+      "reasoning": "El apartado aplica los mínimos privilegios a los métodos HTTP.",
+      "options": {
+        "a": "Incorrecta. HEAD sirve al atacante para investigar cabeceras.",
+        "b": "Correcta. Son los dos que bastan según la clase.",
+        "c": "Incorrecta. PUT permite subir ficheros y conviene deshabilitarlo.",
+        "d": "Incorrecta. Ambos conviene deshabilitarlos."
+      }
+    },
+    "sistemas-t02-e24": {
+      "section": "http-metodos",
+      "reasoning": "La tabla de métodos a deshabilitar explica el riesgo de OPTIONS.",
+      "options": {
+        "a": "Incorrecta. Eso es PUT.",
+        "b": "Incorrecta. Eso es CONNECT.",
+        "c": "Incorrecta. Eso es TRACE, origen del XST.",
+        "d": "Correcta. Es el riesgo que cita el tema."
+      }
+    },
+    "sistemas-t02-e25": {
+      "section": "http-metodos",
+      "reasoning": "El apartado diferencia cargar el login con GET de enviar las credenciales con POST.",
+      "options": {
+        "a": "Incorrecta. HTTPS cifra el viaje, pero la URL sigue visible y en registros.",
+        "b": "Incorrecta. PUT sirve para subir recursos.",
+        "c": "Incorrecta. HEAD no lleva cuerpo; no sirve para enviar datos.",
+        "d": "Correcta. Es la recomendación del tema."
+      }
+    },
+    "sistemas-t02-e26": {
+      "section": "http-metodos",
+      "reasoning": "La tabla de métodos HTTP describe TRACE como eco de la petición para diagnóstico.",
+      "options": {
+        "a": "Incorrecta. Eso es OPTIONS.",
+        "b": "Incorrecta. Eso es PUT.",
+        "c": "Correcta. Es la función de TRACE.",
+        "d": "Incorrecta. Eso es POST."
+      }
+    },
+    "sistemas-t02-e27": {
+      "section": "http-mensajes",
+      "reasoning": "La tabla de versiones de HTTP atribuye la multiplexación a HTTP/2.",
+      "options": {
+        "a": "Incorrecta. Eso es HTTP/3.",
+        "b": "Correcta. La multiplexación es lo propio de HTTP/2.",
+        "c": "Incorrecta. La cabecera Host obligatoria llegó con HTTP/1.1.",
+        "d": "Incorrecta. Eso describe HTTP/1.0."
+      }
+    },
+    "sistemas-t02-e28": {
+      "section": "http-mensajes",
+      "reasoning": "Los pasos sobre las cuatro partes de un mensaje describen la línea vacía como separador.",
+      "options": {
+        "a": "Correcta. La línea vacía separa cabeceras y cuerpo.",
+        "b": "Incorrecta. Content-Length indica el tamaño, no separa partes.",
+        "c": "Incorrecta. HTTP no usa punto y coma como separador de bloques.",
+        "d": "Incorrecta. La línea inicial va al principio, antes de las cabeceras."
+      }
+    },
+    "sistemas-t02-e29": {
+      "section": "http-mensajes",
+      "reasoning": "La tabla de cabeceras explica los valores private y no-store de Cache-Control.",
+      "options": {
+        "a": "Incorrecta. private permite una copia solo para ese usuario.",
+        "b": "Incorrecta. No es el valor que el tema presenta como más seguro.",
+        "c": "Correcta. no-store no guarda nada.",
+        "d": "Incorrecta. No es el valor que el tema presenta como más seguro."
+      }
+    },
+    "sistemas-t02-e30": {
+      "section": "http-mensajes",
+      "reasoning": "El apartado advierte de que los errores 500 pueden delatar vulnerabilidades y filtrar información.",
+      "options": {
+        "a": "Incorrecta. Los 5xx son errores del servidor, no del cliente.",
+        "b": "Correcta. Ambas ideas las recoge el tema.",
+        "c": "Incorrecta. Eso sería un 401.",
+        "d": "Incorrecta. Eso sería un 404."
+      }
+    },
+    "sistemas-t02-e31": {
+      "section": "http-riesgos",
+      "reasoning": "La lista sobre CSRF termina con la defensa del valor secreto en el formulario.",
+      "options": {
+        "a": "Incorrecta. Cambiar a GET empeora la exposición y no evita el CSRF.",
+        "b": "Correcta. Es la defensa que describe el tema.",
+        "c": "Incorrecta. HttpOnly frena la lectura por JavaScript, no el envío automático de la cookie.",
+        "d": "Incorrecta. Deshabilitar TRACE frena el XST, no el CSRF."
+      }
+    },
+    "sistemas-t02-e32": {
+      "section": "http-riesgos",
+      "reasoning": "La lista sobre response splitting indica como defensa filtrar los CRLF.",
+      "options": {
+        "a": "Correcta. Es la defensa que indica el tema.",
+        "b": "Incorrecta. Las consultas parametrizadas frenan la inyección SQL.",
+        "c": "Incorrecta. POST no impide inyectar CRLF en cabeceras.",
+        "d": "Incorrecta. X-Frame-Options evita que otra web incruste la página."
+      }
+    },
+    "sistemas-t02-e33": {
+      "section": "http-riesgos",
+      "reasoning": "El apartado matiza que POST no cifra y que el cifrado del viaje lo da TLS.",
+      "options": {
+        "a": "Incorrecta. POST no cifra nada por sí mismo.",
+        "b": "Incorrecta. Con POST los datos van en el cuerpo, no en la URL.",
+        "c": "Incorrecta. HEAD no tiene relación con cifrar.",
+        "d": "Correcta. Es el matiz que subraya el tema."
+      }
+    },
+    "sistemas-t02-e34": {
+      "section": "http-riesgos",
+      "reasoning": "El apartado detalla las condiciones y límites del ataque XST.",
+      "options": {
+        "a": "Incorrecta. Secure obliga a usar TLS, no condiciona el XST.",
+        "b": "Correcta. Son las condiciones que cita el tema.",
+        "c": "Incorrecta. La versión de HTTP no es condición del XST.",
+        "d": "Incorrecta. Deshabilitar OPTIONS no favorece el ataque."
+      }
+    },
+    "sistemas-t02-e35": {
+      "section": "sesiones",
+      "reasoning": "La tabla comparativa del apartado sitúa el contexto según el mecanismo.",
+      "options": {
+        "a": "Incorrecta. Con JWT el servidor no guarda sesión.",
+        "b": "Incorrecta. Ambos viajan normalmente en una cookie, no en la URL.",
+        "c": "Incorrecta. Es justo al revés.",
+        "d": "Correcta. Es la diferencia que recoge el tema."
+      }
+    },
+    "sistemas-t02-e36": {
+      "section": "sesiones",
+      "reasoning": "El apartado define Base64 y advierte de que codificar no es cifrar.",
+      "options": {
+        "a": "Correcta. Es lo que explica el tema sobre Base64.",
+        "b": "Incorrecta. Si estuviera cifrado no se leería sin clave.",
+        "c": "Incorrecta. Base64 no necesita clave.",
+        "d": "Incorrecta. El tema habla de Base64, no de hashes."
+      }
+    },
+    "sistemas-t02-e37": {
+      "section": "sesiones",
+      "reasoning": "El apartado aclara la diferencia entre ambos usos de «sin estado».",
+      "options": {
+        "a": "Correcta. Es la distinción del tema.",
+        "b": "Incorrecta. El JWT es un token firmado.",
+        "c": "Incorrecta. HTTP funciona sobre TCP (salvo HTTP/3) y el JWT suele ir en cookie.",
+        "d": "Incorrecta. HTTP tiene cabeceras y el JWT caduca."
+      }
+    },
+    "sistemas-t02-e38": {
+      "section": "mismo-origen",
+      "reasoning": "El apartado define el mismo origen por protocolo, servidor y puerto.",
+      "options": {
+        "a": "Incorrecta. No son los criterios de la política.",
+        "b": "Incorrecta. Un puerto distinto ya es otro origen.",
+        "c": "Incorrecta. La ruta no forma parte del origen.",
+        "d": "Correcta. Son los tres elementos que cita el tema."
+      }
+    },
+    "sistemas-t02-e39": {
+      "section": "mismo-origen",
+      "reasoning": "El apartado señala script como la etiqueta más peligrosa para saltarse la política.",
+      "options": {
+        "a": "Incorrecta. img carga imágenes de otros dominios, pero no ejecuta código.",
+        "b": "Correcta. script permite ejecutar código ajeno.",
+        "c": "Incorrecta. video tampoco ejecuta código del atacante.",
+        "d": "Incorrecta. link carga recursos, pero el tema destaca script."
+      }
+    },
+    "sistemas-t02-e40": {
+      "section": "mismo-origen",
+      "reasoning": "La tabla de almacenes del navegador muestra que solo las cookies tienen atributos de seguridad.",
+      "options": {
+        "a": "Incorrecta. localStorage no tiene atributos de seguridad.",
+        "b": "Incorrecta. sessionStorage también lo lee el JavaScript.",
+        "c": "Correcta. Es la recomendación del profesor.",
+        "d": "Incorrecta. IndexedDB no tiene atributos de seguridad según el tema."
+      }
+    },
+    "sistemas-t02-e41": {
+      "section": "practica-http-herramientas",
+      "reasoning": "La práctica con las herramientas de desarrollador usa document.cookie para comprobar HttpOnly.",
+      "options": {
+        "a": "Incorrecta. Secure controla que viaje solo por TLS.",
+        "b": "Correcta. HttpOnly impediría esa lectura.",
+        "c": "Incorrecta. SameSite controla el envío desde otros sitios.",
+        "d": "Incorrecta. Leerla no indica que haya caducado."
+      }
+    },
+    "sistemas-t02-e42": {
+      "section": "ssdlc",
+      "reasoning": "El apartado presenta los casos de abuso como variante del modelado de amenazas.",
+      "options": {
+        "a": "Incorrecta. Un DAST necesita la aplicación en marcha.",
+        "b": "Incorrecta. Se escriben en diseño, antes de que haya incidentes.",
+        "c": "Correcta. Es la definición del tema.",
+        "d": "Incorrecta. No se refieren a errores de usuario."
+      }
+    },
+    "sistemas-t02-e43": {
+      "section": "ssdlc",
+      "reasoning": "La tabla de costes del apartado justifica el SSDLC: cuanto más tarde, más caro.",
+      "options": {
+        "a": "Incorrecta. Esa cifra corresponde a la implementación.",
+        "b": "Correcta. Es la cifra para producción.",
+        "c": "Incorrecta. Esa cifra corresponde a las pruebas.",
+        "d": "Incorrecta. El tema insiste en que más tarde es más caro."
+      }
+    },
+    "sistemas-t02-e44": {
+      "section": "ssdlc",
+      "reasoning": "La tabla comparativa del apartado los distingue por su ámbito.",
+      "options": {
+        "a": "Incorrecta. Ambos buscan seguridad.",
+        "b": "Incorrecta. Ambos pertenecen a análisis y diseño.",
+        "c": "Incorrecta. No se definen por esas herramientas.",
+        "d": "Correcta. El ámbito es la diferencia que señala el profesor."
+      }
+    },
+    "sistemas-t02-e45": {
+      "section": "ssdlc-normas-madurez",
+      "reasoning": "La tabla de normas y el bloque de examen señalan BSIMM como el modelo de pago.",
+      "options": {
+        "a": "Incorrecta. SAMM es gratuito.",
+        "b": "Incorrecta. SSDF es gratuito.",
+        "c": "Incorrecta. ASVS es un catálogo de requisitos.",
+        "d": "Correcta. BSIMM es de pago."
+      }
+    },
+    "sistemas-t02-e46": {
+      "section": "ssdlc-normas-madurez",
+      "reasoning": "El apartado destaca que los siete puntos sirven para adaptar un proceso ya existente.",
+      "options": {
+        "a": "Correcta. Es su idea clave según el tema.",
+        "b": "Incorrecta. Cubren varias fases, de análisis a producción.",
+        "c": "Incorrecta. ISO 27001 es un marco de gestión de la organización.",
+        "d": "Incorrecta. Valen para cualquier ciclo de desarrollo."
+      }
+    },
+    "sistemas-t02-e47": {
+      "section": "desarrollo-pruebas",
+      "reasoning": "La tabla de herramientas asigna al SCA el análisis de dependencias.",
+      "options": {
+        "a": "Incorrecta. SAST examina el código propio sin ejecutarlo.",
+        "b": "Incorrecta. DAST ataca la aplicación en ejecución desde fuera.",
+        "c": "Incorrecta. RASP bloquea ataques en producción.",
+        "d": "Correcta. SCA analiza las dependencias."
+      }
+    },
+    "sistemas-t02-e48": {
+      "section": "desarrollo-pruebas",
+      "reasoning": "La tabla de caja blanca y negra clasifica DAST como caja negra.",
+      "options": {
+        "a": "Incorrecta. SAST ve todo el código: caja blanca.",
+        "b": "Correcta. DAST es caja negra.",
+        "c": "Incorrecta. IAST usa un agente interno: caja blanca.",
+        "d": "Incorrecta. RASP usa el mismo agente que IAST: caja blanca."
+      }
+    },
+    "sistemas-t02-e49": {
+      "section": "desarrollo-pruebas",
+      "reasoning": "La tabla de aciertos y errores define el falso negativo y cómo tratarlo.",
+      "options": {
+        "a": "Incorrecta. El falso positivo es avisar de algo que no existe.",
+        "b": "Incorrecta. En un verdadero positivo la herramienta sí la encuentra.",
+        "c": "Incorrecta. La vulnerabilidad existe, así que no es verdadero negativo.",
+        "d": "Correcta. Es la definición y la recomendación del tema."
+      }
+    },
+    "sistemas-t02-e50": {
+      "section": "desarrollo-pruebas",
+      "reasoning": "La tabla CWE, OWASP Top 10 y CVE distingue tipos de debilidad y vulnerabilidades concretas.",
+      "options": {
+        "a": "Correcta. Es la diferencia que explica el tema.",
+        "b": "Incorrecta. Ambos son de MITRE.",
+        "c": "Incorrecta. Las diez categorías son el OWASP Top 10.",
+        "d": "Incorrecta. El tema no los distingue por precio."
+      }
     }
   }
 }

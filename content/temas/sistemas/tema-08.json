@@ -1061,6 +1061,506 @@
         "d": "Incorrecta. Es una afirmación verdadera: El tema describe tres acciones posibles tras detectar un ataque: generar un informe (detectar solamente), bloquear o sanear la petición maligna."
       },
       "doubt": "La opción D atribuye a IAST las tres acciones, aunque el temario asigna «informar» a IAST y «bloquear» o «sanear» a RASP dentro de la misma familia. Se toma como verdadera porque el tema presenta las tres acciones para esta categoría de herramientas, y la B contradice claramente el temario."
+    },
+    "sistemas-t08-e01": {
+      "section": "operaciones-produccion",
+      "reasoning": "El apartado define las operaciones de seguridad como las tareas continuas de la fase de producción.",
+      "options": {
+        "a": "Incorrecta. Las pruebas de aceptación son anteriores a producción.",
+        "b": "Incorrecta. El análisis estático corresponde al desarrollo.",
+        "c": "Incorrecta. Los requisitos se definen en análisis y diseño.",
+        "d": "Correcta. Son las operaciones de seguridad, continuas en producción."
+      }
+    },
+    "sistemas-t08-e02": {
+      "section": "operaciones-produccion",
+      "reasoning": "La lista del apartado enumera las operaciones de seguridad propias de producción.",
+      "options": {
+        "a": "Correcta. Los requisitos se definen al principio del ciclo, no en producción.",
+        "b": "Incorrecta. La concienciación de usuarios figura en la lista.",
+        "c": "Incorrecta. La seguridad física también aparece.",
+        "d": "Incorrecta. El backup y la recuperación sí son operaciones de producción."
+      }
+    },
+    "sistemas-t08-e03": {
+      "section": "operaciones-produccion",
+      "reasoning": "El apartado recoge como tercera idea de fondo que la concienciación requiere entender el porqué.",
+      "options": {
+        "a": "Incorrecta. La concienciación se dirige también a los usuarios.",
+        "b": "Incorrecta. El tema dice que imponer sin explicar no funciona.",
+        "c": "Correcta. Entender el porqué es lo que hace eficaz la concienciación.",
+        "d": "Incorrecta. La formación y la concienciación son continuas."
+      }
+    },
+    "sistemas-t08-e04": {
+      "section": "operaciones-produccion",
+      "reasoning": "La segunda idea de fondo del apartado advierte que la tecnología mal configurada no protege.",
+      "options": {
+        "a": "Correcta. Sin buena configuración ni personas formadas, la tecnología no basta.",
+        "b": "Incorrecta. El IDS no sustituye a la monitorización continua.",
+        "c": "Incorrecta. El cortafuegos de red no mira el contenido HTTP.",
+        "d": "Incorrecta. La seguridad física sigue siendo una operación necesaria."
+      }
+    },
+    "sistemas-t08-e05": {
+      "section": "dos-ddos",
+      "reasoning": "Los pasos del saludo TCP del apartado explican que el tercer paso falta en el ataque.",
+      "options": {
+        "a": "Incorrecta. El SYN sí se envía; es el inicio del ataque.",
+        "b": "Incorrecta. El servidor sí responde con SYN-ACK y reserva memoria.",
+        "c": "Correcta. El ACK final nunca llega y la conexión queda medio abierta.",
+        "d": "Incorrecta. El RST no forma parte de los tres pasos que describe el tema."
+      }
+    },
+    "sistemas-t08-e06": {
+      "section": "dos-ddos",
+      "reasoning": "El apartado define la arquitectura DDoS con masters, slaves y reflectors.",
+      "options": {
+        "a": "Incorrecta. Las que dan órdenes son las master.",
+        "b": "Incorrecta. Los reflectors son terceros, no la víctima.",
+        "c": "Correcta. Los reflectors rebotan y amplifican el tráfico.",
+        "d": "Incorrecta. Separar tráfico es tarea de la protección anti-DDoS."
+      }
+    },
+    "sistemas-t08-e07": {
+      "section": "dos-ddos",
+      "reasoning": "La tabla de ataques lentos del apartado contrapone Slowloris (cabeceras) y Slow HTTP POST (cuerpo).",
+      "options": {
+        "a": "Incorrecta. El DoS por consultas pesadas es otra variante.",
+        "b": "Incorrecta. Eso describe a Slowloris.",
+        "c": "Incorrecta. Eso es una inundación TCP con conexiones half-open.",
+        "d": "Correcta. Cabeceras completas y cuerpo enviado lentísimo."
+      }
+    },
+    "sistemas-t08-e08": {
+      "section": "dos-ddos",
+      "reasoning": "La tabla de ataques lentos indica que Slowloris agota el máximo de conexiones (MaxClients en Apache).",
+      "options": {
+        "a": "Correcta. Se alcanza el máximo de conexiones, MaxClients en Apache.",
+        "b": "Incorrecta. Content-Length se relaciona con Slow HTTP POST.",
+        "c": "Incorrecta. El CRS es el conjunto de reglas de ModSecurity.",
+        "d": "Incorrecta. La cookie de sesión no es el recurso que se agota."
+      }
+    },
+    "sistemas-t08-e09": {
+      "section": "dos-ddos",
+      "reasoning": "El apartado enumera las herramientas para lanzar o probar ataques de denegación de servicio.",
+      "options": {
+        "a": "Incorrecta. SlowhttpTest sí figura entre las herramientas DoS.",
+        "b": "Correcta. Dependency Check revisa dependencias, no lanza ataques DoS.",
+        "c": "Incorrecta. Hping3 también se cita.",
+        "d": "Incorrecta. GoldenEye también aparece."
+      }
+    },
+    "sistemas-t08-e10": {
+      "section": "defensas-ddos",
+      "reasoning": "El apartado define el TCB para explicar las defensas del sistema operativo.",
+      "options": {
+        "a": "Incorrecta. No es un módulo de Apache.",
+        "b": "Incorrecta. No es un paquete del atacante.",
+        "c": "Incorrecta. No es una regla del WAF.",
+        "d": "Correcta. Es la estructura en memoria de cada conexión TCP."
+      }
+    },
+    "sistemas-t08-e11": {
+      "section": "defensas-ddos",
+      "reasoning": "La tabla de defensas del sistema operativo distingue SYN cache y SYN cookies.",
+      "options": {
+        "a": "Incorrecta. Guardar más tiempo el TCB agravaría el problema.",
+        "b": "Correcta. El TCB se crea solo cuando el saludo termina.",
+        "c": "Incorrecta. Se recomienda justo no responder ICMP a UDP de puertos cerrados.",
+        "d": "Incorrecta. Se recomienda reducir, no aumentar, el tiempo SYN received."
+      }
+    },
+    "sistemas-t08-e12": {
+      "section": "defensas-ddos",
+      "reasoning": "La lista de defensas de arquitectura del apartado precisa el límite del delayed binding.",
+      "options": {
+        "a": "Incorrecta. Slowloris sí queda frenado por el delayed binding.",
+        "b": "Incorrecta. Las cabeceras lentas son Slowloris, que sí se frena.",
+        "c": "Correcta. Slow HTTP POST ataca con el cuerpo, tras una cabecera correcta.",
+        "d": "Incorrecta. Las cabeceras sin terminar también se frenan."
+      }
+    },
+    "sistemas-t08-e13": {
+      "section": "defensas-ddos",
+      "reasoning": "La lista de defensas en la arquitectura incluye limitar el tiempo de vida de las conexiones.",
+      "options": {
+        "a": "Incorrecta. El tema recomienda no habilitar conexiones persistentes.",
+        "b": "Correcta. Limitar el tiempo de vida de las conexiones es una defensa citada.",
+        "c": "Incorrecta. Hay que denegar los métodos que la aplicación no usa.",
+        "d": "Incorrecta. El registro en tiempo real ayuda a detectar anomalías."
+      }
+    },
+    "sistemas-t08-e14": {
+      "section": "defensas-ddos",
+      "reasoning": "La lista de defensas de arquitectura incluye un servicio auxiliar que mantiene una respuesta.",
+      "options": {
+        "a": "Incorrecta. El descifrado TLS es una función del WAF.",
+        "b": "Incorrecta. El tema no propone contraatacar.",
+        "c": "Incorrecta. Las copias de seguridad son otra operación distinta.",
+        "d": "Correcta. Mantiene una respuesta informativa aunque caigan los servidores."
+      }
+    },
+    "sistemas-t08-e15": {
+      "section": "waf",
+      "reasoning": "La analogía del apartado compara el cortafuegos de red con el guardia y el WAF con el inspector que abre la caja.",
+      "options": {
+        "a": "Incorrecta. Está invertido.",
+        "b": "Correcta. El WAF analiza el contenido de la capa de aplicación.",
+        "c": "Incorrecta. El WAF va más allá de cabeceras de red y puertos.",
+        "d": "Incorrecta. Se complementan: el de red sigue siendo el primer nivel."
+      }
+    },
+    "sistemas-t08-e16": {
+      "section": "waf",
+      "reasoning": "La tabla lista negra frente a lista blanca del apartado describe qué guarda cada una.",
+      "options": {
+        "a": "Incorrecta. Eso es lo que guarda la lista blanca.",
+        "b": "Correcta. La lista negra es una base de firmas de ataques.",
+        "c": "Incorrecta. La clave que necesita el WAF es la privada del servidor, no del cliente.",
+        "d": "Incorrecta. Instrumentar código es propio de RASP."
+      }
+    },
+    "sistemas-t08-e17": {
+      "section": "waf",
+      "reasoning": "La tabla del apartado señala como punto débil de la blacklist que no reconoce ataques nuevos.",
+      "options": {
+        "a": "Incorrecta. Ese es el punto débil de la lista blanca.",
+        "b": "Incorrecta. Su punto fuerte es precisamente ser fácil de poner en marcha.",
+        "c": "Incorrecta. El cifrado se resuelve con la clave privada del servidor.",
+        "d": "Correcta. Solo conoce firmas de ataques ya conocidos."
+      }
+    },
+    "sistemas-t08-e18": {
+      "section": "waf",
+      "reasoning": "Los detalles de funcionamiento del apartado indican que el WAF necesita la clave privada para el tráfico TLS.",
+      "options": {
+        "a": "Incorrecta. El tema no menciona certificados en los clientes.",
+        "b": "Incorrecta. No hace falta renunciar al cifrado.",
+        "c": "Correcta. Con la clave privada puede descifrar y analizar.",
+        "d": "Incorrecta. Bloquear todo el cifrado rompería la aplicación."
+      }
+    },
+    "sistemas-t08-e19": {
+      "section": "waf",
+      "reasoning": "El apartado enumera HTTP, SOAP y XML-RPC como capas que examina el WAF.",
+      "options": {
+        "a": "Incorrecta. No son los protocolos de servicios web del tema.",
+        "b": "Incorrecta. Son protocolos de correo, no los que cita el tema.",
+        "c": "Correcta. SOAP y XML-RPC son protocolos de servicios web en XML.",
+        "d": "Incorrecta. Son servicios de red, no capas de servicios web."
+      }
+    },
+    "sistemas-t08-e20": {
+      "section": "waf-modos",
+      "reasoning": "La tabla de modos del apartado describe el comportamiento del bridge con tarjeta dual con bypass.",
+      "options": {
+        "a": "Incorrecta. El bypass precisamente evita cortar la red.",
+        "b": "Incorrecta. El tema no describe tal redirección.",
+        "c": "Incorrecta. No cambia de modo de instalación.",
+        "d": "Correcta. Se mantiene el servicio, pero sin protección."
+      }
+    },
+    "sistemas-t08-e21": {
+      "section": "waf-modos",
+      "reasoning": "La tabla de modos indica que el modo pasivo recibe el duplicado mediante un network tap.",
+      "options": {
+        "a": "Correcta. El network tap le entrega una copia del tráfico.",
+        "b": "Incorrecta. El balanceador reparte peticiones; no es el mecanismo del modo pasivo.",
+        "c": "Incorrecta. El plugin corresponde al modo embebido.",
+        "d": "Incorrecta. Comportarse como switch sin IP es el modo bridge."
+      }
+    },
+    "sistemas-t08-e22": {
+      "section": "waf-modos",
+      "reasoning": "La tabla de modos del apartado destaca el rendimiento como aspecto clave del modo embebido.",
+      "options": {
+        "a": "Incorrecta. El network tap es del modo pasivo.",
+        "b": "Incorrecta. El embebido no obliga a cambiar la IP de la red.",
+        "c": "Correcta. Al compartir servidor, puede ralentizarlo.",
+        "d": "Incorrecta. Duplicar el tráfico es propio del modo pasivo."
+      }
+    },
+    "sistemas-t08-e23": {
+      "section": "waf-modos",
+      "reasoning": "La lista de recomendaciones del apartado indica preferir lista blanca.",
+      "options": {
+        "a": "Incorrecta. La alta disponibilidad con dos equipos sí se recomienda.",
+        "b": "Incorrecta. Probar las reglas antes de producción sí se recomienda.",
+        "c": "Correcta. El tema prefiere la lista blanca, no la negra.",
+        "d": "Incorrecta. Administrarlo con protocolos seguros sí se recomienda."
+      }
+    },
+    "sistemas-t08-e24": {
+      "section": "waf-modos",
+      "reasoning": "El apartado remite al WAF Evaluation Criteria del WASC para profundizar.",
+      "options": {
+        "a": "Correcta. Es el proyecto del WASC con los requisitos de un WAF.",
+        "b": "Incorrecta. El Core Rule Set son las reglas de ModSecurity.",
+        "c": "Incorrecta. CCN-STIC 817 es la guía de gestión de ciberincidentes.",
+        "d": "Incorrecta. Dependency Check revisa librerías."
+      }
+    },
+    "sistemas-t08-e25": {
+      "section": "modsecurity",
+      "reasoning": "El apartado indica que ModSecurity es un módulo de Apache, por tanto embebido.",
+      "options": {
+        "a": "Incorrecta. Como módulo de Apache no actúa como proxy separado.",
+        "b": "Correcta. Es un módulo dentro del servidor: modo embebido.",
+        "c": "Incorrecta. No se comporta como un switch de nivel 2.",
+        "d": "Incorrecta. No recibe un duplicado: analiza las peticiones reales."
+      }
+    },
+    "sistemas-t08-e26": {
+      "section": "modsecurity",
+      "reasoning": "El apartado enumera las cinco fases de procesamiento de ModSecurity en este orden.",
+      "options": {
+        "a": "Incorrecta. Las cabeceras llegan antes que el cuerpo y el logging es lo último.",
+        "b": "Incorrecta. La petición se analiza antes que la respuesta.",
+        "c": "Incorrecta. El logging cierra el proceso, no lo abre.",
+        "d": "Correcta. Petición (cabeceras y cuerpo), respuesta (cabeceras y cuerpo) y logging."
+      }
+    },
+    "sistemas-t08-e27": {
+      "section": "modsecurity",
+      "reasoning": "El apartado define las técnicas de evasión y la capacidad antievasión de ModSecurity.",
+      "options": {
+        "a": "Incorrecta. Bloquear toda barra rompería cualquier web.",
+        "b": "Correcta. La normalización deshace los disfraces antes del análisis.",
+        "c": "Incorrecta. ModSecurity analiza también la URL y el cuerpo.",
+        "d": "Incorrecta. Cifrar no deshace la evasión."
+      }
+    },
+    "sistemas-t08-e28": {
+      "section": "modsecurity",
+      "reasoning": "El bloque de examen del apartado explica que el filtrado HTTPS es posible por estar embebido.",
+      "options": {
+        "a": "Correcta. Embebido en el servidor, ve los datos tras el descifrado.",
+        "b": "Incorrecta. No obliga a renunciar al cifrado.",
+        "c": "Incorrecta. No usa claves de usuarios.",
+        "d": "Incorrecta. Analiza también los cuerpos; y las cabeceras HTTP sí van cifradas en HTTPS."
+      }
+    },
+    "sistemas-t08-e29": {
+      "section": "modsecurity",
+      "reasoning": "El apartado define el CRS y lo distingue del módulo Evasive.",
+      "options": {
+        "a": "Correcta. Es el conjunto de reglas de referencia de OWASP.",
+        "b": "Incorrecta. La protección DoS la aporta el módulo Evasive.",
+        "c": "Incorrecta. La guía del CCN es la CCN-STIC 661.",
+        "d": "Incorrecta. El log de auditoría es otra capacidad distinta."
+      }
+    },
+    "sistemas-t08-e30": {
+      "section": "rasp",
+      "reasoning": "El apartado define la instrumentación (hooks) como base del funcionamiento de RASP.",
+      "options": {
+        "a": "Incorrecta. No tienen relación con las copias de seguridad.",
+        "b": "Incorrecta. Las expresiones regulares sobre el tráfico son propias del WAF.",
+        "c": "Correcta. Avisan de eventos sensibles desde dentro de la aplicación.",
+        "d": "Incorrecta. Eso describe un network tap."
+      }
+    },
+    "sistemas-t08-e31": {
+      "section": "rasp",
+      "reasoning": "La tabla WAF frente a RASP del apartado compara qué puede hacer cada uno.",
+      "options": {
+        "a": "Correcta. Actúa sobre la propia aplicación: sesión, funciones, conexión.",
+        "b": "Incorrecta. Inspeccionar el tráfico antes del servidor es lo propio del WAF.",
+        "c": "Incorrecta. Las listas con expresiones regulares son el método del WAF.",
+        "d": "Incorrecta. Bloquear por firmas también lo hace el WAF."
+      }
+    },
+    "sistemas-t08-e32": {
+      "section": "rasp",
+      "reasoning": "La tabla de modos de RASP del apartado distingue monitorización y protección.",
+      "options": {
+        "a": "Incorrecta. El modo protección sí bloquea.",
+        "b": "Correcta. Monitorización: detecta y reporta sin bloquear.",
+        "c": "Incorrecta. Proxy inverso es un modo de instalación de WAF.",
+        "d": "Incorrecta. El modo pasivo es de los WAF con network tap."
+      }
+    },
+    "sistemas-t08-e33": {
+      "section": "rasp",
+      "reasoning": "El apartado define IAST y explica qué añade RASP sobre la misma instrumentación.",
+      "options": {
+        "a": "Incorrecta. Ambas se integran en la aplicación, no en cortafuegos o navegadores.",
+        "b": "Incorrecta. Está invertido y RASP no se limita a documentar.",
+        "c": "Incorrecta. Ninguna de las dos se define así en el tema.",
+        "d": "Correcta. IAST encuentra fallos en pruebas; RASP protege en producción."
+      }
+    },
+    "sistemas-t08-e34": {
+      "section": "rasp-evaluacion",
+      "reasoning": "La lista de métricas del apartado define el throughput dentro del overhead.",
+      "options": {
+        "a": "Incorrecta. No es una métrica de las que cita el tema.",
+        "b": "Incorrecta. Eso es la tasa de detección.",
+        "c": "Incorrecta. Eso es el tiempo de reacción.",
+        "d": "Correcta. Throughput = peticiones atendidas por segundo."
+      }
+    },
+    "sistemas-t08-e35": {
+      "section": "rasp-evaluacion",
+      "reasoning": "El apartado define el virtual patching como mitigación temporal.",
+      "options": {
+        "a": "Correcta. Mitiga temporalmente mientras se corrige el código.",
+        "b": "Incorrecta. No corrige el código: el fallo sigue ahí.",
+        "c": "Incorrecta. No tiene que ver con actualizar el sistema operativo.",
+        "d": "Incorrecta. No es una simulación de ataques."
+      }
+    },
+    "sistemas-t08-e36": {
+      "section": "rasp-evaluacion",
+      "reasoning": "La tabla de ventajas e inconvenientes del apartado recoge esta debilidad.",
+      "options": {
+        "a": "Incorrecta. La integración con terceros es compleja, pero no imposible.",
+        "b": "Incorrecta. La visibilidad interna es justamente una ventaja.",
+        "c": "Incorrecta. La protección en tiempo real es una ventaja.",
+        "d": "Correcta. Si el atacante controla el entorno, puede burlarla."
+      }
+    },
+    "sistemas-t08-e37": {
+      "section": "rasp-evaluacion",
+      "reasoning": "Los pasos de adopción del apartado incluyen proteger el agente RASP.",
+      "options": {
+        "a": "Incorrecta. El objetivo no es el consumo de memoria.",
+        "b": "Correcta. Se protege su integridad para que no lo desactiven.",
+        "c": "Incorrecta. No se trata de generar más alertas.",
+        "d": "Incorrecta. Las reglas y políticas deben mantenerse y actualizarse."
+      }
+    },
+    "sistemas-t08-e38": {
+      "section": "monitorizacion",
+      "reasoning": "La lista de lo que pide el apartado empieza por diseñar el logging en análisis y diseño.",
+      "options": {
+        "a": "Incorrecta. Esperar al incidente es demasiado tarde.",
+        "b": "Correcta. El registro se diseña desde las primeras fases.",
+        "c": "Incorrecta. En producción ya se usa, pero se diseña antes.",
+        "d": "Incorrecta. No se espera a ninguna auditoría."
+      }
+    },
+    "sistemas-t08-e39": {
+      "section": "monitorizacion",
+      "reasoning": "La lista del apartado enumera las capas cuyas configuraciones deben auditarse.",
+      "options": {
+        "a": "Incorrecta. El tema no se limita al servidor web.",
+        "b": "Correcta. Se auditan todas las capas.",
+        "c": "Incorrecta. No basta con la base de datos.",
+        "d": "Incorrecta. Los equipos de administración no son las capas que enumera el tema."
+      }
+    },
+    "sistemas-t08-e40": {
+      "section": "monitorizacion",
+      "reasoning": "La lista de lo que pide el apartado incluye el mínimo privilegio.",
+      "options": {
+        "a": "Incorrecta. No es el principio que menciona el tema para permisos.",
+        "b": "Correcta. Cada uno solo con lo que necesita.",
+        "c": "Incorrecta. Compartir privilegios va en contra de la seguridad.",
+        "d": "Incorrecta. Confiar por defecto es lo contrario a lo que se pide."
+      }
+    },
+    "sistemas-t08-e41": {
+      "section": "incidentes",
+      "reasoning": "El apartado de incidentes cita la guía CCN-STIC 817.",
+      "options": {
+        "a": "Correcta. CCN-STIC 817 trata la gestión de ciberincidentes.",
+        "b": "Incorrecta. La 661 es la guía en la que se basa ModSecurity.",
+        "c": "Incorrecta. Es un proyecto del WASC sobre WAF.",
+        "d": "Incorrecta. Es el conjunto de reglas de ModSecurity."
+      }
+    },
+    "sistemas-t08-e42": {
+      "section": "incidentes",
+      "reasoning": "La tabla de fases del apartado describe la erradicación con el ejemplo de reinstalar.",
+      "options": {
+        "a": "Incorrecta. La preparación es anterior al incidente.",
+        "b": "Incorrecta. La identificación detecta el incidente y su alcance.",
+        "c": "Incorrecta. La contención fue aislar el servidor, el paso anterior.",
+        "d": "Correcta. Reinstalar para eliminar lo comprometido es erradicación."
+      }
+    },
+    "sistemas-t08-e43": {
+      "section": "incidentes",
+      "reasoning": "La tabla de fases del apartado define la recapitulación.",
+      "options": {
+        "a": "Incorrecta. Preparar herramientas es la fase de preparación.",
+        "b": "Incorrecta. Separar equipos es contención.",
+        "c": "Correcta. Es la fase de documentar y aprender.",
+        "d": "Incorrecta. Contactar con el CERT forma parte de la identificación."
+      }
+    },
+    "sistemas-t08-e44": {
+      "section": "incidentes",
+      "reasoning": "El apartado define CERT y lo sitúa en la fase de identificación.",
+      "options": {
+        "a": "Incorrecta. No es un certificado, aunque la sigla se parezca.",
+        "b": "Correcta. Es un equipo de respuesta a emergencias informáticas.",
+        "c": "Incorrecta. Las reglas del WAF son otra cosa (por ejemplo, CRS).",
+        "d": "Incorrecta. No tiene relación con las copias de seguridad."
+      }
+    },
+    "sistemas-t08-e45": {
+      "section": "backup",
+      "reasoning": "El apartado define la copia lógica y la física de la base de datos.",
+      "options": {
+        "a": "Incorrecta. El tema no las distingue por el soporte.",
+        "b": "Incorrecta. Está invertido.",
+        "c": "Correcta. Contenido entendible frente a ficheros del disco.",
+        "d": "Incorrecta. No es la diferencia que da el tema."
+      }
+    },
+    "sistemas-t08-e46": {
+      "section": "backup",
+      "reasoning": "La lista de qué debe incluir la copia del apartado cita los sistemas de ficheros del servidor.",
+      "options": {
+        "a": "Correcta. Los ficheros del servidor de aplicaciones y su configuración se copian.",
+        "b": "Incorrecta. Con solo la base de datos no se levanta el servicio.",
+        "c": "Incorrecta. Los ejecutables solos no bastan para restaurar.",
+        "d": "Incorrecta. Los registros no permiten restaurar el servicio."
+      }
+    },
+    "sistemas-t08-e47": {
+      "section": "backup",
+      "reasoning": "El apartado insiste en disponer y entrenar los procedimientos de backup y recuperación.",
+      "options": {
+        "a": "Correcta. Diseñado, probado y entrenado.",
+        "b": "Incorrecta. Que la copia termine bien no demuestra que se pueda restaurar.",
+        "c": "Incorrecta. Improvisar es lo que el procedimiento evita.",
+        "d": "Incorrecta. El tema exige que lo entrenen los administradores."
+      }
+    },
+    "sistemas-t08-e48": {
+      "section": "defensa-profundidad",
+      "reasoning": "La tabla de piezas del esquema indica que los cortafuegos de red no bastan.",
+      "options": {
+        "a": "Correcta. No miran el contenido HTTP de esos puertos.",
+        "b": "Incorrecta. El esquema los pone precisamente en alta disponibilidad.",
+        "c": "Incorrecta. No es su problema según el tema.",
+        "d": "Incorrecta. Están en el perímetro, no dentro del servidor."
+      }
+    },
+    "sistemas-t08-e49": {
+      "section": "defensa-profundidad",
+      "reasoning": "La tabla de piezas y la de anti-DDoS híbrido del apartado describen este enfoque.",
+      "options": {
+        "a": "Incorrecta. El WAF no sustituye a la protección anti-DDoS.",
+        "b": "Incorrecta. El tema prefiere no contratarlo todo al operador.",
+        "c": "Incorrecta. Solo equipos propios no cubre los ataques volumétricos que saturan líneas.",
+        "d": "Correcta. Combina equipos propios y servicio del operador."
+      }
+    },
+    "sistemas-t08-e50": {
+      "section": "defensa-profundidad",
+      "reasoning": "La tabla de piezas del apartado asigna al SIEM la correlación de eventos.",
+      "options": {
+        "a": "Incorrecta. El balanceador reparte peticiones entre servidores.",
+        "b": "Incorrecta. El IDS detecta ataques en la red.",
+        "c": "Correcta. El SIEM centraliza y correlaciona los registros.",
+        "d": "Incorrecta. El cortafuegos de red filtra en el perímetro."
+      }
     }
   }
 }

@@ -1435,6 +1435,506 @@
         "c": "Correcta. El PDS arranca del **estado actual** de la seguridad y de la gestión de riesgos. Los niveles de riesgo y de control actualizados son esa foto de partida que permite fijar objetivos y proyectos.",
         "d": "Incorrecta. El SOA (Statement of Applicability, declaración de aplicabilidad) es un documento del SGSI de la ISO 27001 que dice qué controles aplican. No es lo que el temario pide para el Plan Director."
       }
+    },
+    "gobierno-t02-e01": {
+      "section": "gobierno",
+      "reasoning": "El apartado define eficacia y eficiencia al hablar de supervisar los controles implantados, con este mismo ejemplo del control eficaz pero carísimo.",
+      "options": {
+        "a": "Incorrecta. Está al revés: consigue el objetivo (eficaz), pero derrochando recursos (no eficiente).",
+        "b": "Incorrecta. Sí es eficaz, porque logra su objetivo.",
+        "c": "Correcta. Logra el objetivo, pero con un coste desproporcionado: eficaz e ineficiente.",
+        "d": "Incorrecta. No es eficiente, porque derrocha recursos."
+      }
+    },
+    "gobierno-t02-e02": {
+      "section": "gobierno",
+      "reasoning": "La tabla de los tres grandes objetivos del gobierno precisa que el riesgo se reduce hasta un nivel aceptable.",
+      "options": {
+        "a": "Correcta. El objetivo es dejar el riesgo en un nivel aceptable, no eliminarlo del todo.",
+        "b": "Incorrecta. El tema subraya que no se busca reducirlos a cero.",
+        "c": "Incorrecta. El nivel lo fija la organización según su apetito de riesgo, no el proveedor.",
+        "d": "Incorrecta. Gastar lo mínimo no es objetivo del gobierno; se trata de optimizar la inversión."
+      }
+    },
+    "gobierno-t02-e03": {
+      "section": "gobierno",
+      "reasoning": "El apartado define el apetito de riesgo al hablar de los comités de seguimiento que comprueban que los riesgos siguen por debajo de él.",
+      "options": {
+        "a": "Incorrecta. Eso es el riesgo residual, que debe quedar por debajo del apetito de riesgo.",
+        "b": "Incorrecta. El apetito de riesgo no es una probabilidad de ataque, sino un nivel de aceptación.",
+        "c": "Incorrecta. El presupuesto es un recurso; el apetito de riesgo es cuánto riesgo se tolera.",
+        "d": "Correcta. Es el nivel de riesgo que la organización está dispuesta a aceptar."
+      }
+    },
+    "gobierno-t02-e04": {
+      "section": "gobierno",
+      "reasoning": "La lista de ejemplos del profesor recoge solo mecanismos de dirección y supervisión, no tareas técnicas.",
+      "options": {
+        "a": "Incorrecta. Los comités de seguimiento sí son un ejemplo del profesor.",
+        "b": "Correcta. Es una tarea técnica del día a día; el gobierno dirige y supervisa.",
+        "c": "Incorrecta. Los indicadores medidos con regularidad sí aparecen en la lista.",
+        "d": "Incorrecta. La estructura jerárquica de roles sí es uno de los ejemplos."
+      }
+    },
+    "gobierno-t02-e05": {
+      "section": "gobierno",
+      "reasoning": "El apartado define la ISO/IEC 38500 como lectura de referencia sobre gobierno corporativo de TI, no de seguridad concreta.",
+      "options": {
+        "a": "Incorrecta. Los requisitos de un SGSI los fija la ISO/IEC 27001.",
+        "b": "Correcta. Es una norma de gobierno corporativo de TI, de muy alto nivel.",
+        "c": "Incorrecta. La guía de buenas prácticas de servicios de TI es ITIL.",
+        "d": "Incorrecta. No es un modelo de madurez por dominios."
+      }
+    },
+    "gobierno-t02-e06": {
+      "section": "mision-vision",
+      "reasoning": "La tabla de piezas del gobierno de la seguridad asigna a la estrategia el «cómo».",
+      "options": {
+        "a": "Incorrecta. La misión explica por qué la seguridad es relevante.",
+        "b": "Incorrecta. La visión describe lo que se desea que llegue a ser la seguridad.",
+        "c": "Incorrecta. Los objetivos son las metas; la pregunta es cómo alcanzarlas.",
+        "d": "Correcta. La estrategia es el cómo llegar a las metas."
+      }
+    },
+    "gobierno-t02-e07": {
+      "section": "mision-vision",
+      "reasoning": "El apartado explica que la estrategia es el puente entre el porqué y las metas.",
+      "options": {
+        "a": "Correcta. La estrategia une la misión con los objetivos.",
+        "b": "Incorrecta. Los controles son medidas concretas, no el puente entre misión y objetivos.",
+        "c": "Incorrecta. El SLA pertenece a la gestión de servicios, no a los fundamentos estratégicos.",
+        "d": "Incorrecta. El análisis GAP es una fase del Plan Director."
+      }
+    },
+    "gobierno-t02-e08": {
+      "section": "mision-vision",
+      "reasoning": "La lista del apartado sobre qué contiene la estrategia incluye expresamente la reducción de riesgos con cumplimiento y costes.",
+      "options": {
+        "a": "Incorrecta. Una lista de compras es demasiado operativa para una estrategia.",
+        "b": "Incorrecta. La configuración de equipos es un detalle operativo, no estratégico.",
+        "c": "Correcta. La estrategia explica cómo reducir los riesgos con el cumplimiento y los costes en mente.",
+        "d": "Incorrecta. Los turnos de guardia son organización operativa del día a día."
+      }
+    },
+    "gobierno-t02-e09": {
+      "section": "mision-vision",
+      "reasoning": "El caso práctico del apartado plantea esta tienda online para mostrar la diferencia entre una estrategia alineada y una independiente.",
+      "options": {
+        "a": "Correcta. Alinear es identificar los riesgos para el objetivo de negocio y reducirlos con los recursos disponibles.",
+        "b": "Incorrecta. Es el ejemplo de estrategia no alineada que el tema critica.",
+        "c": "Incorrecta. La estrategia de seguridad no debe ser independiente del negocio.",
+        "d": "Incorrecta. Aplazar la seguridad deja sin tratar los riesgos justo cuando más importan."
+      }
+    },
+    "gobierno-t02-e10": {
+      "section": "plan-director",
+      "reasoning": "La definición del PDS en el apartado fija su horizonte habitual en 2 a 5 años como máximo.",
+      "options": {
+        "a": "Incorrecta. Un año es el periodo de revisión, no la duración del plan.",
+        "b": "Incorrecta. Es demasiado corto para un plan estratégico.",
+        "c": "Correcta. El PDS suele abarcar de 2 a 5 años como máximo.",
+        "d": "Incorrecta. Es demasiado largo y, además, el PDS se revisa cada año."
+      }
+    },
+    "gobierno-t02-e11": {
+      "section": "plan-director",
+      "reasoning": "El apartado enumera estas tres preguntas como el contenido esencial de un PDS.",
+      "options": {
+        "a": "Incorrecta. Un PDS no es un plan de compras.",
+        "b": "Incorrecta. Esas preguntas son propias de la investigación de un incidente.",
+        "c": "Incorrecta. Certificarse puede ser una acción del PDS, pero no son sus tres preguntas.",
+        "d": "Correcta. Situación actual, situación deseada y plan para llegar."
+      }
+    },
+    "gobierno-t02-e12": {
+      "section": "plan-director",
+      "reasoning": "Entre lo que remarcó el profesor sobre el PDS está que no es obligatorio, pero sí una buena práctica.",
+      "options": {
+        "a": "Incorrecta. La ISO 27001 pide una política, no un Plan Director.",
+        "b": "Correcta. No es obligatorio, pero demuestra madurez en el gobierno de la seguridad.",
+        "c": "Incorrecta. Ninguna ley lo exige, según el profesor.",
+        "d": "Incorrecta. El tema no lo presenta como obligatorio en ningún sector."
+      }
+    },
+    "gobierno-t02-e13": {
+      "section": "plan-director",
+      "reasoning": "El profesor remarcó que certificarse sería una acción dentro del Plan Director.",
+      "options": {
+        "a": "Incorrecta. Certificarse no sustituye al plan; forma parte de él.",
+        "b": "Incorrecta. Es solo una acción del plan, no el plan completo.",
+        "c": "Incorrecta. Precisamente se integra dentro del Plan Director.",
+        "d": "Correcta. Es una acción dentro del PDS, no el PDS entero."
+      }
+    },
+    "gobierno-t02-e14": {
+      "section": "plan-director",
+      "reasoning": "Lo que remarcó el profesor sobre el PDS incluye su revisión anual y su renovación con objetivos más exigentes.",
+      "options": {
+        "a": "Correcta. Revisión anual y, al acabar, un nuevo plan más exigente.",
+        "b": "Incorrecta. La seguridad es un proceso; nunca queda concluida.",
+        "c": "Incorrecta. La revisión es periódica (anual), no solo tras incidentes.",
+        "d": "Incorrecta. Se revisa cada año y el siguiente plan es más exigente, no igual."
+      }
+    },
+    "gobierno-t02-e15": {
+      "section": "fases-pds",
+      "reasoning": "La secuencia de fases del apartado empieza por la definición del modelo de seguridad.",
+      "options": {
+        "a": "Incorrecta. El análisis GAP es la tercera fase.",
+        "b": "Incorrecta. El plan de acción es la cuarta fase.",
+        "c": "Correcta. Todo empieza por definir el modelo de seguridad.",
+        "d": "Incorrecta. El seguimiento es la última fase."
+      }
+    },
+    "gobierno-t02-e16": {
+      "section": "fases-pds",
+      "reasoning": "El orden de las seis fases del apartado sitúa el plan de acción justo después del GAP.",
+      "options": {
+        "a": "Incorrecta. La situación actual se analiza antes del GAP.",
+        "b": "Correcta. Con la brecha identificada se define el plan de acción.",
+        "c": "Incorrecta. La aprobación viene después del plan de acción.",
+        "d": "Incorrecta. El modelo de seguridad es la primera fase."
+      }
+    },
+    "gobierno-t02-e17": {
+      "section": "fases-pds",
+      "reasoning": "El apartado define el análisis GAP como la medida de la brecha entre la situación actual y la deseada.",
+      "options": {
+        "a": "Correcta. Mide la brecha entre la madurez actual y la deseada.",
+        "b": "Incorrecta. El coste de ruptura pertenece a la economía de la seguridad, no al GAP.",
+        "c": "Incorrecta. Eso sería el cálculo de disponibilidad de un SLA.",
+        "d": "Incorrecta. No se trata de contar controles cumplidos, sino de medir la brecha de madurez."
+      }
+    },
+    "gobierno-t02-e18": {
+      "section": "fases-pds",
+      "reasoning": "Los matices de las fases según la clase explican cómo se lee el diagrama de araña del análisis GAP.",
+      "options": {
+        "a": "Incorrecta. Más cerca del borde significa más madurez, no más riesgos.",
+        "b": "Incorrecta. La posición refleja el nivel evaluado; no indica falta de evaluación.",
+        "c": "Incorrecta. El diagrama representa madurez por dominios, no presupuesto.",
+        "d": "Correcta. El borde es el estado ideal: más cerca, más madurez."
+      }
+    },
+    "gobierno-t02-e19": {
+      "section": "fases-pds",
+      "reasoning": "El apartado de fases añade estas cuatro condiciones de realismo tras la lista del modelo de seguridad.",
+      "options": {
+        "a": "Incorrecta. Priorizar por el fabricante es un error que el tema critica.",
+        "b": "Incorrecta. Cumplir todos los controles de la ISO 27001 nunca es una fase del PDS.",
+        "c": "Correcta. Son las cuatro condiciones que hacen realista el plan de proyectos.",
+        "d": "Incorrecta. La opinión de la competencia no figura entre los criterios del tema."
+      }
+    },
+    "gobierno-t02-e20": {
+      "section": "fases-pds",
+      "reasoning": "Los matices de la clase sobre la definición del modelo insisten en este equilibrio de los objetivos.",
+      "options": {
+        "a": "Incorrecta. Unos objetivos inalcanzables no se cumplirán; el profesor lo desaconseja.",
+        "b": "Correcta. Retadores pero alcanzables es el consejo del profesor.",
+        "c": "Incorrecta. Si son demasiado bajos, no mejoran nada.",
+        "d": "Incorrecta. El modelo es una decisión propia de cada empresa según su contexto."
+      }
+    },
+    "gobierno-t02-e21": {
+      "section": "servicio-ti",
+      "reasoning": "La definición de servicio de TI del apartado pone el apoyo a los procesos de negocio del cliente como finalidad.",
+      "options": {
+        "a": "Incorrecta. Un servicio no consiste en vender hardware; puede no haber producto físico.",
+        "b": "Incorrecta. La definición no habla de sustituir al personal del cliente.",
+        "c": "Correcta. Su finalidad es apoyar los procesos de negocio del cliente.",
+        "d": "Incorrecta. La ISO 27001 no es la finalidad de un servicio de TI."
+      }
+    },
+    "gobierno-t02-e22": {
+      "section": "servicio-ti",
+      "reasoning": "Las tres ideas de la definición del apartado señalan el apoyo al cliente como vara de medir.",
+      "options": {
+        "a": "Correcta. Lo que mide un servicio es si apoya al cliente en su trabajo.",
+        "b": "Incorrecta. La tecnología más moderna no es la medida del servicio.",
+        "c": "Incorrecta. El coste no es la vara de medir que da el tema.",
+        "d": "Incorrecta. La potencia de una máquina no define si el servicio apoya al cliente."
+      }
+    },
+    "gobierno-t02-e23": {
+      "section": "servicio-ti",
+      "reasoning": "La definición de servicio de TI del apartado termina indicando que debe definirse en un SLA.",
+      "options": {
+        "a": "Incorrecta. El inventario recoge activos, no define el servicio ni sus compromisos.",
+        "b": "Incorrecta. La política general es un documento estratégico de seguridad, no del servicio.",
+        "c": "Incorrecta. El plan de continuidad trata la recuperación ante desastres.",
+        "d": "Correcta. El servicio de TI se define en un acuerdo de nivel de servicio."
+      }
+    },
+    "gobierno-t02-e24": {
+      "section": "sla",
+      "reasoning": "La definición de SLA del apartado lo sitúa entre el DSI y los usuarios finales, aunque luego se extienda a cualquier prestación de servicios.",
+      "options": {
+        "a": "Incorrecta. El auditor y la Dirección no son las partes del SLA según su definición.",
+        "b": "Correcta. El SLA reparte responsabilidades entre el DSI y los usuarios finales.",
+        "c": "Incorrecta. Son roles de la organización, pero no las partes del SLA definido en el tema.",
+        "d": "Incorrecta. La OGC y los proveedores acreditados aparecen en relación con ITIL, no con el SLA."
+      }
+    },
+    "gobierno-t02-e25": {
+      "section": "sla",
+      "reasoning": "El apartado define el outsourcing como término asociado al uso de SLA en cualquier relación de prestación de servicios.",
+      "options": {
+        "a": "Correcta. Es externalizar una función que antes se hacía dentro.",
+        "b": "Incorrecta. Un centro de datos propio es lo contrario de externalizar.",
+        "c": "Incorrecta. Formar al personal interno no es externalizar.",
+        "d": "Incorrecta. Las certificaciones de ITIL no tienen que ver con el outsourcing."
+      }
+    },
+    "gobierno-t02-e26": {
+      "section": "sla",
+      "reasoning": "El apartado de SLA explica que los niveles explícitos permiten evaluar el servicio sin ambigüedad.",
+      "options": {
+        "a": "Incorrecta. Justo al contrario: el SLA hace posible medir el servicio.",
+        "b": "Correcta. Con niveles explícitos se evalúa el servicio sin ambigüedad en varias dimensiones.",
+        "c": "Incorrecta. Un SLA no es un simple precio; documenta compromisos.",
+        "d": "Incorrecta. El SLA regula la relación con el proveedor, no la elimina."
+      }
+    },
+    "gobierno-t02-e27": {
+      "section": "sla",
+      "reasoning": "El apartado describe el SLA en general como un documento de carácter legal con prestaciones mínimas.",
+      "options": {
+        "a": "Incorrecta. Puede considerarse un contrato; no es una mera recomendación.",
+        "b": "Incorrecta. No es un manual técnico, sino un compromiso de prestación.",
+        "c": "Incorrecta. Un SLA no es una norma internacional certificable.",
+        "d": "Correcta. Es un documento normalmente legal que fija prestaciones mínimas."
+      }
+    },
+    "gobierno-t02-e28": {
+      "section": "disponibilidad",
+      "reasoning": "El apartado da la fórmula D = (T − Td) / T y la tabla de tramos de penalización con la que se resuelve el caso.",
+      "options": {
+        "a": "Incorrecta. El cálculo da 95 %, no 97 %.",
+        "b": "Incorrecta. El porcentaje es correcto, pero el nivel B es para 98 % > D ≥ 96 %.",
+        "c": "Correcta. 684/720 = 95 %, dentro del tramo del nivel C.",
+        "d": "Incorrecta. 98 % correspondería a unas 14 horas de caída, no a 36."
+      }
+    },
+    "gobierno-t02-e29": {
+      "section": "disponibilidad",
+      "reasoning": "Las reglas para contar el tiempo de caída del apartado fijan el aviso al DSI como inicio.",
+      "options": {
+        "a": "Correcta. El cómputo empieza con el aviso al DSI.",
+        "b": "Incorrecta. No se espera a que el DSI empiece a trabajar; cuenta desde el aviso.",
+        "c": "Incorrecta. Lo que cuenta es el aviso al DSI, no el momento en que el cliente lo detecta.",
+        "d": "Incorrecta. El cierre de la incidencia marca el final del cómputo, no el inicio."
+      }
+    },
+    "gobierno-t02-e30": {
+      "section": "disponibilidad",
+      "reasoning": "La tercera regla para contar el tiempo de caída del apartado excluye los fallos causados por el cliente.",
+      "options": {
+        "a": "Incorrecta. No cuenta doble; directamente no cuenta.",
+        "b": "Incorrecta. Al deberse al cliente, no se computa como caída.",
+        "c": "Correcta. La caída causada por mala configuración del cliente no cuenta.",
+        "d": "Incorrecta. El tema no fija ningún umbral de horas; simplemente no cuenta."
+      }
+    },
+    "gobierno-t02-e31": {
+      "section": "disponibilidad",
+      "reasoning": "La tabla de tramos de penalización del apartado asigna el nivel D a cualquier disponibilidad inferior al 90 %.",
+      "options": {
+        "a": "Incorrecta. El nivel A es para 99 % > D ≥ 98 %.",
+        "b": "Correcta. Por debajo del 90 % corresponde el nivel D.",
+        "c": "Incorrecta. El nivel C exige al menos un 90 %.",
+        "d": "Incorrecta. El nivel B es para 98 % > D ≥ 96 %."
+      }
+    },
+    "gobierno-t02-e32": {
+      "section": "itil-origen",
+      "reasoning": "La definición de ITIL del apartado sitúa su origen en el gobierno británico a finales de los ochenta.",
+      "options": {
+        "a": "Incorrecta. Su origen es británico y de finales de los ochenta.",
+        "b": "Incorrecta. ITIL no es una norma ISO.",
+        "c": "Incorrecta. No tiene relación con la Unión Europea ni con el RGPD.",
+        "d": "Correcta. Nació en el gobierno británico a finales de los ochenta."
+      }
+    },
+    "gobierno-t02-e33": {
+      "section": "itil-origen",
+      "reasoning": "El apartado aclara que ITIL certifica personas y remite a la ISO/IEC 20000 para certificar la gestión de servicios de una organización.",
+      "options": {
+        "a": "Correcta. La ISO/IEC 20000 es la norma para certificar la gestión de servicios de una organización.",
+        "b": "Incorrecta. ITIL Foundation certifica a personas, no a empresas.",
+        "c": "Incorrecta. O-ISM3 es un modelo de madurez cuya finalidad principal no es certificar.",
+        "d": "Incorrecta. La ISO/IEC 38500 trata el gobierno corporativo de TI, no certifica la gestión de servicios."
+      }
+    },
+    "gobierno-t02-e34": {
+      "section": "itil-origen",
+      "reasoning": "La tabla de organizaciones del apartado distingue el papel de itSMF, OGC y APMG.",
+      "options": {
+        "a": "Incorrecta. El foro independiente de usuarios es el itSMF.",
+        "b": "Incorrecta. La oficina del Tesoro británico es la OGC.",
+        "c": "Correcta. APMG es el proveedor acreditado de exámenes, formadores y materiales.",
+        "d": "Incorrecta. El tema no relaciona a APMG con la publicación de normas ISO."
+      }
+    },
+    "gobierno-t02-e35": {
+      "section": "itil-origen",
+      "reasoning": "La tabla de organizaciones del apartado define el itSMF como foro de usuarios propiedad de sus miembros.",
+      "options": {
+        "a": "Incorrecta. Esa es la OGC (Office of Government Commerce).",
+        "b": "Incorrecta. Los exámenes los gestiona APMG.",
+        "c": "Incorrecta. El itSMF no certifica empresas.",
+        "d": "Correcta. Es un foro independiente de usuarios, propiedad de sus miembros."
+      }
+    },
+    "gobierno-t02-e36": {
+      "section": "itil-origen",
+      "reasoning": "La tabla de versiones de ITIL del apartado recoge este cambio de procesos a prácticas en ITIL 4.",
+      "options": {
+        "a": "Correcta. ITIL 4 rebautiza los procesos como prácticas.",
+        "b": "Incorrecta. Es al revés: los procesos pasan a ser prácticas.",
+        "c": "Incorrecta. El tema no menciona que los servicios cambien de nombre.",
+        "d": "Incorrecta. El tema no habla de renombrar los SLA."
+      }
+    },
+    "gobierno-t02-e37": {
+      "section": "itil-caracteristicas",
+      "reasoning": "La tabla de las cuatro características de ITIL define así el rasgo de no propietario.",
+      "options": {
+        "a": "Incorrecta. «No propietario» no se refiere a licencias de pago.",
+        "b": "Correcta. No depende de tecnologías, sectores ni fabricantes.",
+        "c": "Incorrecta. Eso se acerca a la idea de no prescriptivo, y ni siquiera obliga.",
+        "d": "Incorrecta. Puede aplicarlo cualquier organización, pública o privada."
+      }
+    },
+    "gobierno-t02-e38": {
+      "section": "itil-caracteristicas",
+      "reasoning": "La tabla de características de ITIL explica la diferencia entre mejores y buenas prácticas por el paso del tiempo.",
+      "options": {
+        "a": "Incorrecta. ITIL no es prescriptivo: ninguna de sus prácticas es obligatoria.",
+        "b": "Incorrecta. La distinción no tiene que ver con el sector público.",
+        "c": "Correcta. Las mejores prácticas de hoy se convierten con el tiempo en simplemente buenas.",
+        "d": "Incorrecta. La ISO no certifica las prácticas de ITIL."
+      }
+    },
+    "gobierno-t02-e39": {
+      "section": "itil-caracteristicas",
+      "reasoning": "La tabla de guías, modelos y estándares del apartado pone O-ISM3 como ejemplo de modelo de madurez.",
+      "options": {
+        "a": "Incorrecta. ITIL es una guía de buenas prácticas.",
+        "b": "Incorrecta. La ISO/IEC 27001 es un estándar certificable.",
+        "c": "Incorrecta. La ISO/IEC 20000 es una norma de gestión de servicios, no el modelo de madurez del esquema.",
+        "d": "Correcta. O-ISM3 es el modelo de madurez del esquema."
+      }
+    },
+    "gobierno-t02-e40": {
+      "section": "itil-caracteristicas",
+      "reasoning": "La columna «¿Certificable?» del esquema del apartado resuelve la pregunta.",
+      "options": {
+        "a": "Incorrecta. Está invertido: ITIL certifica personas y la ISO 27001, organizaciones.",
+        "b": "Correcta. La ISO 27001 certifica a la organización e ITIL, a personas.",
+        "c": "Incorrecta. Certificar no es la finalidad principal de O-ISM3.",
+        "d": "Incorrecta. La ISO 27001 sí permite certificar a la organización."
+      }
+    },
+    "gobierno-t02-e41": {
+      "section": "itil-practicas",
+      "reasoning": "La tabla del esquema de gestión de servicios del apartado sitúa incidentes y problemas en el soporte.",
+      "options": {
+        "a": "Correcta. Incidentes y problemas son prácticas del soporte de servicios.",
+        "b": "Incorrecta. La entrega agrupa niveles de servicio, finanzas, disponibilidad y capacidad.",
+        "c": "Incorrecta. La gestión financiera es una práctica de la entrega, no un bloque.",
+        "d": "Incorrecta. El gobierno corporativo no es un bloque del esquema de ITIL."
+      }
+    },
+    "gobierno-t02-e42": {
+      "section": "itil-practicas",
+      "reasoning": "El esquema de soporte de servicios del apartado define por separado ambas prácticas.",
+      "options": {
+        "a": "Incorrecta. Está al revés.",
+        "b": "Incorrecta. Aprobar cambios es la gestión del cambio y poner versiones en producción, la de entregas.",
+        "c": "Correcta. Incidentes restablece el servicio y problemas busca la causa raíz.",
+        "d": "Incorrecta. Son prácticas distintas dentro del soporte de servicios."
+      }
+    },
+    "gobierno-t02-e43": {
+      "section": "itil-practicas",
+      "reasoning": "La tabla del esquema de ITIL del apartado reparte las prácticas entre soporte y entrega.",
+      "options": {
+        "a": "Correcta. La gestión de la disponibilidad pertenece a la entrega del servicio.",
+        "b": "Incorrecta. La gestión del cambio es del soporte de servicios.",
+        "c": "Incorrecta. La mesa de servicio es el punto de contacto del soporte.",
+        "d": "Incorrecta. La gestión de configuración es del soporte de servicios."
+      }
+    },
+    "gobierno-t02-e44": {
+      "section": "itil-practicas",
+      "reasoning": "El esquema de ITIL del apartado describe la gestión de configuración como inventario de componentes y relaciones.",
+      "options": {
+        "a": "Incorrecta. La gestión de entregas pone en producción versiones nuevas.",
+        "b": "Incorrecta. La gestión de la capacidad asegura la infraestructura necesaria.",
+        "c": "Incorrecta. La gestión de niveles de servicio trata los SLA.",
+        "d": "Correcta. La gestión de configuración es el inventario de componentes y relaciones."
+      }
+    },
+    "gobierno-t02-e45": {
+      "section": "capacidad",
+      "reasoning": "La definición del apartado resume la capacidad como la cantidad justa, en el momento justo y al precio justo.",
+      "options": {
+        "a": "Incorrecta. No se busca la máxima potencia, sino la adecuada.",
+        "b": "Correcta. Cuando se necesita, en el volumen necesario y al precio adecuado.",
+        "c": "Incorrecta. La capacidad no garantiza la ausencia de incidentes de seguridad.",
+        "d": "Incorrecta. Comprar con excesiva antelación genera capacidad ociosa, que es un KPI negativo."
+      }
+    },
+    "gobierno-t02-e46": {
+      "section": "capacidad",
+      "reasoning": "La tabla de las cuatro características aplicadas a la capacidad asocia lo predictivo a las previsiones de demanda.",
+      "options": {
+        "a": "Incorrecta. El objetivo no es tener menos servidores, sino los necesarios.",
+        "b": "Incorrecta. Comprar según las ofertas del fabricante es un error que el tema señala.",
+        "c": "Correcta. Las previsiones precisas de demanda son el factor crítico de éxito predictivo.",
+        "d": "Incorrecta. Las políticas y procedimientos corresponden a la característica consistente."
+      }
+    },
+    "gobierno-t02-e47": {
+      "section": "itil-seguridad",
+      "reasoning": "El apartado de la gestión de la seguridad en ITIL empieza indicando que se basa en la ISO 27001.",
+      "options": {
+        "a": "Incorrecta. La ISO/IEC 20000 es la norma de gestión de servicios.",
+        "b": "Incorrecta. La ISO/IEC 38500 trata el gobierno corporativo de TI.",
+        "c": "Incorrecta. O-ISM3 es un modelo de madurez, no la base del proceso de seguridad de ITIL.",
+        "d": "Correcta. La seguridad en ITIL se basa en la ISO 27001."
+      }
+    },
+    "gobierno-t02-e48": {
+      "section": "itil-seguridad",
+      "reasoning": "La tabla de subprocesos de seguridad en ITIL asigna este objetivo a la revisión de la seguridad.",
+      "options": {
+        "a": "Correcta. La revisión comprueba la coherencia de las medidas con el riesgo del negocio.",
+        "b": "Incorrecta. Las pruebas comprueban que los mecanismos funcionan, con regularidad.",
+        "c": "Incorrecta. El diseño crea medidas técnicas y organizativas para la CID.",
+        "d": "Incorrecta. La gestión de incidentes detecta y combate ataques y minimiza daños."
+      }
+    },
+    "gobierno-t02-e49": {
+      "section": "itil-seguridad",
+      "reasoning": "La tabla de KPI del apartado clasifica cada indicador como pre o post-incidente.",
+      "options": {
+        "a": "Incorrecta. Las medidas de prevención son un KPI pre-incidente.",
+        "b": "Correcta. Los incidentes importantes por severidad miden el daño ya ocurrido.",
+        "c": "Incorrecta. La duración de la implementación es pre-incidente.",
+        "d": "Incorrecta. Los problemas detectados en los test son pre-incidente."
+      }
+    },
+    "gobierno-t02-e50": {
+      "section": "itil-seguridad",
+      "reasoning": "El apartado comenta que, por la orientación a servicio de ITIL, uno de sus KPI de seguridad mide la disponibilidad.",
+      "options": {
+        "a": "Incorrecta. ITIL trata disponibilidad, integridad y confidencialidad, no solo esta última.",
+        "b": "Incorrecta. La ISO/IEC 38500 no aparece relacionada con los KPI de ITIL.",
+        "c": "Correcta. La orientación a servicio hace que un KPI mida la disponibilidad.",
+        "d": "Incorrecta. Un KPI no sustituye a ningún subproceso."
+      }
     }
   }
 }

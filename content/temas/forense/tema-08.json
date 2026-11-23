@@ -1039,6 +1039,506 @@
         "c": "Incorrecta. Cambiar la extensión no cambia el formato interno del archivo.",
         "d": "Incorrecta. Binario es un formato de codificación, no un cifrado."
       }
+    },
+    "forense-t08-e01": {
+      "section": "peculiaridades",
+      "reasoning": "El apartado explica que la regla de no modificar la evidencia no se puede cumplir con un móvil.",
+      "options": {
+        "a": "Correcta. Es la regla que no se puede cumplir con un móvil.",
+        "b": "Incorrecta. Las herramientas forenses de móviles sí calculan hashes.",
+        "c": "Incorrecta. Documentar es precisamente lo que exige el tema.",
+        "d": "Incorrecta. La autorización es posible y necesaria en ciertos pasos."
+      }
+    },
+    "forense-t08-e02": {
+      "section": "peculiaridades",
+      "reasoning": "El segundo obstáculo del apartado es que solo se ve lo que ve el usuario.",
+      "options": {
+        "a": "Incorrecta. Sin root no se accede a los archivos del sistema.",
+        "b": "Correcta. Es lo que indica el tema.",
+        "c": "Incorrecta. Se obtiene más que la SIM: la parte del usuario de la memoria.",
+        "d": "Incorrecta. Sin root no hay tallado de la memoria completa."
+      }
+    },
+    "forense-t08-e03": {
+      "section": "peculiaridades",
+      "reasoning": "El apartado define root y rootear.",
+      "options": {
+        "a": "Incorrecta. Restablecer de fábrica borra el teléfono; no es rootear.",
+        "b": "Incorrecta. El backup del fabricante es una vía de adquisición, no rootear.",
+        "c": "Correcta. Es la definición del tema.",
+        "d": "Incorrecta. El modo avión aísla el teléfono, no da privilegios."
+      }
+    },
+    "forense-t08-e04": {
+      "section": "peculiaridades",
+      "reasoning": "El apartado exige permiso expreso por ser una acción delicada.",
+      "options": {
+        "a": "Incorrecta. Al ser una acción que altera el teléfono, necesita permiso.",
+        "b": "Incorrecta. La microSD no tiene relación con esta decisión.",
+        "c": "Incorrecta. El tema lo admite si es necesario y está autorizado.",
+        "d": "Correcta. Es lo que exige el tema."
+      }
+    },
+    "forense-t08-e05": {
+      "section": "peculiaridades",
+      "reasoning": "El caso práctico del apartado plantea exactamente esta situación.",
+      "options": {
+        "a": "Correcta. Es la conclusión del caso del tema.",
+        "b": "Incorrecta. Magnet ACQUIRE necesita el teléfono desbloqueado.",
+        "c": "Incorrecta. El backup del fabricante también exige el desbloqueo.",
+        "d": "Incorrecta. La adquisición lógica requiere conocer el código."
+      }
+    },
+    "forense-t08-e06": {
+      "section": "procedimiento",
+      "reasoning": "Los pasos del apartado empiezan por la SIM.",
+      "options": {
+        "a": "Incorrecta. La memoria interna es lo último.",
+        "b": "Correcta. Es el primer paso.",
+        "c": "Incorrecta. La microSD es el segundo paso.",
+        "d": "Incorrecta. La nube no forma parte del procedimiento descrito."
+      }
+    },
+    "forense-t08-e07": {
+      "section": "procedimiento",
+      "reasoning": "El apartado justifica el orden por la independencia de las tarjetas.",
+      "options": {
+        "a": "Incorrecta. El tema no dice que se borren al encender.",
+        "b": "Incorrecta. El tema no menciona ninguna prohibición legal así.",
+        "c": "Correcta. Es la razón que da el tema.",
+        "d": "Incorrecta. La memoria interna es la fuente más rica."
+      }
+    },
+    "forense-t08-e08": {
+      "section": "tarjeta-sim",
+      "reasoning": "Las peculiaridades de la SIM del apartado excluyen el contenido multimedia.",
+      "options": {
+        "a": "Incorrecta. La SIM puede contener contactos.",
+        "b": "Incorrecta. La SIM puede contener registro de llamadas.",
+        "c": "Incorrecta. La SIM puede contener SMS.",
+        "d": "Correcta. La SIM no contiene multimedia."
+      }
+    },
+    "forense-t08-e09": {
+      "section": "tarjeta-sim",
+      "reasoning": "La tabla de identificadores del apartado distingue ICCID, IMSI, MSISDN e IMEI.",
+      "options": {
+        "a": "Correcta. Es el número de teléfono.",
+        "b": "Incorrecta. Eso es el IMEI.",
+        "c": "Incorrecta. Eso es el ICCID.",
+        "d": "Incorrecta. La raíz de la SIM es el MF."
+      }
+    },
+    "forense-t08-e10": {
+      "section": "tarjeta-sim",
+      "reasoning": "El apartado da esta recomendación tras explicar la adquisición de la SIM.",
+      "options": {
+        "a": "Incorrecta. No se descartan; se piden a quien los puede interpretar.",
+        "b": "Correcta. Es la recomendación del tema.",
+        "c": "Incorrecta. Un hash no sirve para interpretar registros de antenas.",
+        "d": "Incorrecta. Rootear el teléfono no afecta a los datos de la SIM."
+      }
+    },
+    "forense-t08-e11": {
+      "section": "tarjeta-sim",
+      "reasoning": "El apartado compara la estructura de la SIM con un sistema FAT.",
+      "options": {
+        "a": "Incorrecta. Eso es el EF (LND).",
+        "b": "Incorrecta. Eso describe un DF, como DF (Telecom).",
+        "c": "Correcta. El MF es la raíz.",
+        "d": "Incorrecta. La agenda está en el EF (ADN)."
+      }
+    },
+    "forense-t08-e12": {
+      "section": "tarjeta-sim",
+      "reasoning": "La tabla de archivos de la SIM del apartado indica qué guarda cada uno.",
+      "options": {
+        "a": "Incorrecta. Es la agenda.",
+        "b": "Incorrecta. Es el identificador de la tarjeta.",
+        "c": "Incorrecta. Es la carpeta de servicios del operador.",
+        "d": "Correcta. Guarda los últimos números marcados."
+      }
+    },
+    "forense-t08-e13": {
+      "section": "tarjeta-sim",
+      "reasoning": "El apartado define la eSIM y su limitación forense.",
+      "options": {
+        "a": "Correcta. Es lo que indica el tema.",
+        "b": "Incorrecta. Eso es para la SIM física, no para la eSIM.",
+        "c": "Incorrecta. La eSIM no es un soporte extraíble.",
+        "d": "Incorrecta. No guarda información como la SIM clásica."
+      }
+    },
+    "forense-t08-e14": {
+      "section": "tarjeta-memoria",
+      "reasoning": "La lista de contenidos de la microSD del apartado define APK.",
+      "options": {
+        "a": "Incorrecta. Las copias de WhatsApp son otro tipo de archivo.",
+        "b": "Correcta. Es la definición del tema.",
+        "c": "Incorrecta. Los registros de antenas están en la SIM.",
+        "d": "Incorrecta. Eso es un Custom Recovery."
+      }
+    },
+    "forense-t08-e15": {
+      "section": "tarjeta-memoria",
+      "reasoning": "El apartado lista lo que hace falta para adquirir la tarjeta de memoria.",
+      "options": {
+        "a": "Incorrecta. Son la herramienta de flasheo y el Custom Recovery.",
+        "b": "Incorrecta. Sirven para iPhone y sus backups.",
+        "c": "Correcta. Son las que cita el tema.",
+        "d": "Incorrecta. Sirven para adquirir la SIM."
+      }
+    },
+    "forense-t08-e16": {
+      "section": "tarjeta-memoria",
+      "reasoning": "El caso práctico del apartado subraya que esa copia sí es idéntica al original.",
+      "options": {
+        "a": "Incorrecta. Copiar la microSD no recupera los borrados del teléfono.",
+        "b": "Incorrecta. La SIM es otro soporte y se adquiere aparte.",
+        "c": "Incorrecta. Siempre hay que documentar.",
+        "d": "Correcta. Es la excepción amable que describe el tema."
+      }
+    },
+    "forense-t08-e17": {
+      "section": "vias-terminal",
+      "reasoning": "La comparativa de métodos del apartado indica el sistema de cada vía.",
+      "options": {
+        "a": "Correcta. Es la única exclusiva de iOS.",
+        "b": "Incorrecta. Es solo para Android.",
+        "c": "Incorrecta. Es solo para Android.",
+        "d": "Incorrecta. Sirve para Android e iOS."
+      }
+    },
+    "forense-t08-e18": {
+      "section": "vias-terminal",
+      "reasoning": "La comparativa del apartado indica el sistema de cada vía.",
+      "options": {
+        "a": "Incorrecta. Sirven para Android e iOS.",
+        "b": "Correcta. Son las vías exclusivas de Android.",
+        "c": "Incorrecta. Son métodos avanzados para cualquier sistema.",
+        "d": "Incorrecta. Son herramientas para iPhone."
+      }
+    },
+    "forense-t08-e19": {
+      "section": "vias-terminal",
+      "reasoning": "La idea clave del apartado resume qué vía corresponde con y sin código.",
+      "options": {
+        "a": "Incorrecta. Ambas exigen el teléfono desbloqueado.",
+        "b": "Incorrecta. Es una vía solo para iPhone.",
+        "c": "Correcta. Es lo que propone el tema sin código en Android.",
+        "d": "Incorrecta. Chip Off es la más destructiva, no la más segura."
+      }
+    },
+    "forense-t08-e20": {
+      "section": "vias-terminal",
+      "reasoning": "La comparativa del apartado indica lo que necesita cada vía.",
+      "options": {
+        "a": "Incorrecta. Eso basta para el backup del fabricante.",
+        "b": "Incorrecta. Eso es lo que piden Magnet ACQUIRE o la adquisición de iOS.",
+        "c": "Incorrecta. No es lo que exigen los métodos avanzados.",
+        "d": "Correcta. Es lo que requieren según el tema."
+      }
+    },
+    "forense-t08-e21": {
+      "section": "backup-fabricante",
+      "reasoning": "El apartado pone estos dos ejemplos de programas oficiales.",
+      "options": {
+        "a": "Correcta. Es el de Apple.",
+        "b": "Incorrecta. Es el de Samsung.",
+        "c": "Incorrecta. Es una herramienta de flasheo para Samsung.",
+        "d": "Incorrecta. Es una herramienta forense, no el backup oficial."
+      }
+    },
+    "forense-t08-e22": {
+      "section": "backup-fabricante",
+      "reasoning": "El apartado distingue cómo se analiza el backup de cada sistema.",
+      "options": {
+        "a": "Incorrecta. Esas son las específicas para iPhone.",
+        "b": "Correcta. Es lo que indica el tema para Android.",
+        "c": "Incorrecta. No se limita a la suite del fabricante.",
+        "d": "Incorrecta. Odin flashea particiones; no analiza backups."
+      }
+    },
+    "forense-t08-e23": {
+      "section": "backup-fabricante",
+      "reasoning": "Los pasos de la adquisición por backup del apartado incluyen el modo MTP.",
+      "options": {
+        "a": "Incorrecta. La depuración y el root son de ADB.",
+        "b": "Incorrecta. El modo descarga se usa para flashear un Custom Recovery.",
+        "c": "Correcta. Es el modo que pide el tema.",
+        "d": "Incorrecta. OTG permite conectar memorias USB al teléfono."
+      }
+    },
+    "forense-t08-e24": {
+      "section": "backup-fabricante",
+      "reasoning": "El apartado define el inhibidor al hablar del modo avión.",
+      "options": {
+        "a": "Incorrecta. Eso sería un bloqueador de escritura por software.",
+        "b": "Incorrecta. No tiene que ver con el bloqueo del teléfono.",
+        "c": "Incorrecta. No es una protección física contra golpes.",
+        "d": "Correcta. Es la definición del tema."
+      }
+    },
+    "forense-t08-e25": {
+      "section": "backup-fabricante",
+      "reasoning": "El apartado enumera la información básica que aporta el backup del fabricante.",
+      "options": {
+        "a": "Correcta. No forma parte de lo que da el backup.",
+        "b": "Incorrecta. Sí lo incluye el backup.",
+        "c": "Incorrecta. Sí lo incluye el backup.",
+        "d": "Incorrecta. Sí incluye algunas conversaciones de mensajería."
+      }
+    },
+    "forense-t08-e26": {
+      "section": "magnet-ios",
+      "reasoning": "El apartado indica los requisitos de Magnet ACQUIRE.",
+      "options": {
+        "a": "Incorrecta. El modo avión se recomienda activado, no desactivado.",
+        "b": "Incorrecta. El bootloader desbloqueado es requisito del Custom Recovery.",
+        "c": "Correcta. Es el requisito que añade el tema.",
+        "d": "Incorrecta. La eSIM no tiene relación con este requisito."
+      }
+    },
+    "forense-t08-e27": {
+      "section": "magnet-ios",
+      "reasoning": "La tabla de modos de Magnet ACQUIRE del apartado describe su alcance.",
+      "options": {
+        "a": "Incorrecta. Eso es el modo completa, que requiere root.",
+        "b": "Incorrecta. Magnet adquiere la memoria del terminal, no solo la SIM.",
+        "c": "Incorrecta. Eso es propio de los métodos avanzados.",
+        "d": "Correcta. Es el alcance del modo rápida."
+      }
+    },
+    "forense-t08-e28": {
+      "section": "magnet-ios",
+      "reasoning": "El apartado explica la ventaja de estas herramientas para iOS.",
+      "options": {
+        "a": "Correcta. Es la ventaja que señala el tema.",
+        "b": "Incorrecta. Puede pedir el código de desbloqueo.",
+        "c": "Incorrecta. Puede pedir que se acepte «Confiar en este ordenador».",
+        "d": "Incorrecta. Dr. Fone es comercial."
+      }
+    },
+    "forense-t08-e29": {
+      "section": "magnet-ios",
+      "reasoning": "Los pasos de recuperación con Dr. Fone del apartado mencionan los adjuntos.",
+      "options": {
+        "a": "Incorrecta. El tema no dice que obtenga contraseñas.",
+        "b": "Correcta. Es lo que indica el tema.",
+        "c": "Incorrecta. Al contrario, puede pedir el código.",
+        "d": "Incorrecta. No descifra la partición de sistema."
+      }
+    },
+    "forense-t08-e30": {
+      "section": "adb",
+      "reasoning": "La lista de requisitos de ADB del apartado define BusyBox.",
+      "options": {
+        "a": "Incorrecta. Los drivers son otro requisito distinto.",
+        "b": "Incorrecta. Eso es un Custom Recovery como TWRP.",
+        "c": "Correcta. Es la definición del tema.",
+        "d": "Incorrecta. Las bases del agente son archivos .db."
+      }
+    },
+    "forense-t08-e31": {
+      "section": "adb",
+      "reasoning": "El apartado menciona netcat como soporte de salida alternativo.",
+      "options": {
+        "a": "Incorrecta. netcat no da privilegios.",
+        "b": "Incorrecta. Las particiones se listan con cat /proc/partitions.",
+        "c": "Incorrecta. netcat no desbloquea el bootloader.",
+        "d": "Correcta. Es su función en el tema."
+      }
+    },
+    "forense-t08-e32": {
+      "section": "adb",
+      "reasoning": "El código de la secuencia de adquisición del apartado muestra cada comando.",
+      "options": {
+        "a": "Correcta. Lista bloques y particiones.",
+        "b": "Incorrecta. Lista los dispositivos conectados.",
+        "c": "Incorrecta. Eleva a superusuario.",
+        "d": "Incorrecta. Copia el bloque 0."
+      }
+    },
+    "forense-t08-e33": {
+      "section": "adb",
+      "reasoning": "El apartado explica la nomenclatura de bloques y particiones en /dev.",
+      "options": {
+        "a": "Incorrecta. Un bloque completo no lleva «p»; sería mmcblk2.",
+        "b": "Correcta. Es la partición 2 del bloque 0.",
+        "c": "Incorrecta. No tiene relación con la SIM.",
+        "d": "Incorrecta. No es una copia de seguridad."
+      }
+    },
+    "forense-t08-e34": {
+      "section": "adb",
+      "reasoning": "El código de la secuencia del apartado comenta qué hace cada comando.",
+      "options": {
+        "a": "Incorrecta. Eso lo hace adb shell.",
+        "b": "Incorrecta. Eso lo hace su.",
+        "c": "Correcta. Es su función.",
+        "d": "Incorrecta. Eso lo hace dd."
+      }
+    },
+    "forense-t08-e35": {
+      "section": "custom-recovery",
+      "reasoning": "La definición de Custom Recovery del apartado cita TWRP.",
+      "options": {
+        "a": "Incorrecta. Es la herramienta de flasheo, no el recovery.",
+        "b": "Incorrecta. Es un paquete de utilidades para ADB.",
+        "c": "Incorrecta. Es una herramienta de adquisición.",
+        "d": "Correcta. Es el más común."
+      }
+    },
+    "forense-t08-e36": {
+      "section": "custom-recovery",
+      "reasoning": "La lista de aspectos a tener en cuenta del apartado advierte de este riesgo.",
+      "options": {
+        "a": "Correcta. Es el riesgo que señala el tema.",
+        "b": "Incorrecta. El ICCID es de la SIM y no cambia.",
+        "c": "Incorrecta. El tema no dice eso.",
+        "d": "Incorrecta. El tema no menciona ese efecto."
+      }
+    },
+    "forense-t08-e37": {
+      "section": "custom-recovery",
+      "reasoning": "La lista de aspectos del apartado aclara que no hace falta el código.",
+      "options": {
+        "a": "Incorrecta. El tema dice que no hace falta.",
+        "b": "Correcta. Es lo que indica el tema.",
+        "c": "Incorrecta. Custom Recovery es solo para Android.",
+        "d": "Incorrecta. No se basa en el backup del fabricante."
+      }
+    },
+    "forense-t08-e38": {
+      "section": "custom-recovery",
+      "reasoning": "Los pasos del procedimiento general del apartado siguen este orden.",
+      "options": {
+        "a": "Incorrecta. El modo recuperación va después de flashear.",
+        "b": "Incorrecta. La copia con dd es lo último.",
+        "c": "Correcta. Es el orden del tema.",
+        "d": "Incorrecta. Para flashear hay que estar antes en modo descarga."
+      }
+    },
+    "forense-t08-e39": {
+      "section": "metodos-avanzados",
+      "reasoning": "La comparativa de métodos avanzados del apartado indica sus ventajas.",
+      "options": {
+        "a": "Incorrecta. Es el más destructivo.",
+        "b": "Incorrecta. Tiene alto riesgo de dañar la placa.",
+        "c": "Incorrecta. No es uno de los métodos avanzados.",
+        "d": "Correcta. Es el menos lesivo."
+      }
+    },
+    "forense-t08-e40": {
+      "section": "metodos-avanzados",
+      "reasoning": "La comparativa del apartado recoge este inconveniente de JTAG.",
+      "options": {
+        "a": "Correcta. Es el inconveniente que señala el tema.",
+        "b": "Incorrecta. Eso es Chip Off.",
+        "c": "Incorrecta. El tema no pone esa condición a JTAG.",
+        "d": "Incorrecta. No es lo que dice el tema de JTAG."
+      }
+    },
+    "forense-t08-e41": {
+      "section": "metodos-avanzados",
+      "reasoning": "La comparativa del apartado indica la ventaja de Direct eMMC.",
+      "options": {
+        "a": "Incorrecta. El menos lesivo es JTAG.",
+        "b": "Correcta. Es su ventaja según el tema.",
+        "c": "Incorrecta. Requiere gran habilidad soldando.",
+        "d": "Incorrecta. Para placas dañadas el tema usa Chip Off."
+      }
+    },
+    "forense-t08-e42": {
+      "section": "metodos-avanzados",
+      "reasoning": "El caso práctico del apartado plantea este escenario.",
+      "options": {
+        "a": "Incorrecta. Exige un teléfono encendido y desbloqueado.",
+        "b": "Incorrecta. Exige un teléfono que funcione.",
+        "c": "Correcta. Es el método que funciona con placas dañadas.",
+        "d": "Incorrecta. Usa contactos de la placa, que está dañada."
+      }
+    },
+    "forense-t08-e43": {
+      "section": "metodos-avanzados",
+      "reasoning": "El apartado define PCB, eMMC y eMCP.",
+      "options": {
+        "a": "Incorrecta. Eso es la PCB.",
+        "b": "Incorrecta. Eso es el bootloader.",
+        "c": "Incorrecta. Eso es el eMCP.",
+        "d": "Correcta. Es la definición del tema."
+      }
+    },
+    "forense-t08-e44": {
+      "section": "analisis-android",
+      "reasoning": "La tabla de particiones del apartado lo destaca.",
+      "options": {
+        "a": "Correcta. Es la de mayor interés.",
+        "b": "Incorrecta. Contiene drivers, kernel y arranque.",
+        "c": "Incorrecta. Es el mini sistema de recuperación.",
+        "d": "Incorrecta. Contiene datos temporales para actualizar."
+      }
+    },
+    "forense-t08-e45": {
+      "section": "analisis-android",
+      "reasoning": "Los pasos para analizar la imagen en Autopsy del apartado lo indican.",
+      "options": {
+        "a": "Incorrecta. Es la carpeta de backups de iTunes.",
+        "b": "Correcta. Es la carpeta que pide el tema.",
+        "c": "Incorrecta. Es una ubicación de macOS.",
+        "d": "Incorrecta. Es una carpeta de Windows."
+      }
+    },
+    "forense-t08-e46": {
+      "section": "analisis-android",
+      "reasoning": "La tabla de bases del agente del apartado indica el contenido de cada una.",
+      "options": {
+        "a": "Incorrecta. Guarda las cuentas del usuario.",
+        "b": "Incorrecta. Guarda contactos e historial de llamadas.",
+        "c": "Correcta. Guarda los datos de la SIM.",
+        "d": "Incorrecta. Guarda dispositivos Bluetooth emparejados."
+      }
+    },
+    "forense-t08-e47": {
+      "section": "analisis-android",
+      "reasoning": "El apartado destaca que contacts2.db reúne contactos y llamadas.",
+      "options": {
+        "a": "Incorrecta. Guarda SMS y MMS.",
+        "b": "Incorrecta. Guarda el calendario.",
+        "c": "Incorrecta. Es la del navegador por defecto.",
+        "d": "Correcta. Reúne contactos y llamadas."
+      }
+    },
+    "forense-t08-e48": {
+      "section": "analisis-ios",
+      "reasoning": "El apartado describe así la organización del iPhone.",
+      "options": {
+        "a": "Correcta. Es lo que indica el tema.",
+        "b": "Incorrecta. Tiene dos particiones y están cifradas.",
+        "c": "Incorrecta. El iPhone se organiza de forma muy distinta a Android.",
+        "d": "Incorrecta. Ambas están cifradas."
+      }
+    },
+    "forense-t08-e49": {
+      "section": "analisis-ios",
+      "reasoning": "El apartado relaciona cifrado y sandbox con la elección del backup.",
+      "options": {
+        "a": "Incorrecta. iOS usa ampliamente SQLite y Plist.",
+        "b": "Correcta. Es la razón que da el tema.",
+        "c": "Incorrecta. ADB es solo para Android.",
+        "d": "Incorrecta. Los iPhone sí tienen código de desbloqueo."
+      }
+    },
+    "forense-t08-e50": {
+      "section": "analisis-ios",
+      "reasoning": "La lista sobre Plist del apartado pone este ejemplo.",
+      "options": {
+        "a": "Incorrecta. Guarda SMS e iMessage.",
+        "b": "Incorrecta. Guarda los contactos.",
+        "c": "Correcta. Es el Plist de búsquedas de Safari.",
+        "d": "Incorrecta. Es una base del agente de Magnet para Android."
+      }
     }
   }
 }

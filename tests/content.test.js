@@ -12,7 +12,8 @@ test('all fifty topics have thirty distinct questions with valid source pages', 
     const qs = bank.questions.filter(q => q.topic === topic.id);
     const source = sources.find(s => s.course === topic.course && s.topic === topic.number);
     assert.ok(source, `Missing source: ${topic.course}/${topic.number}`);
-    assert.equal(qs.filter(q => !q.fromClass && !q.fromCampus).length, 30);
+    assert.equal(qs.filter(q => !q.fromClass && !q.fromCampus && !q.fromExtra).length, 30);
+    assert.ok(qs.filter(q => q.fromExtra).length <= 50);
     assert.ok(qs.filter(q => q.fromCampus).length <= 10);
     assert.ok(qs.filter(q => q.fromClass).length <= 10);
     const signatures = qs.map(q => JSON.stringify([q.text.toLocaleLowerCase('es'), q.options.map(o => o.text.toLocaleLowerCase('es'))]));

@@ -1109,6 +1109,506 @@
         "c": "Incorrecta. Agrupar y enviar juntos mensajes válidos no añade nada de relleno: solo cambia cómo se empaquetan los mensajes reales. El relleno consiste justo en lo contrario, en añadir tráfico **ficticio** para disfrazar el patrón.",
         "d": "Correcta. El relleno de tráfico consiste en introducir tráfico o datos de relleno para proteger frente al **análisis de tráfico**, y ninguna de las tres opciones lo describe así."
       }
+    },
+    "redes-t01-e01": {
+      "section": "capas",
+      "reasoning": "El apartado de capas presenta OSI como el modelo de referencia de 7 capas de la ISO.",
+      "options": {
+        "a": "Correcta. El tema dice que OSI es un modelo de referencia de 7 capas diseñado por la ISO.",
+        "b": "Incorrecta. La ITU es la que publica la recomendación X.800, no la que diseñó OSI.",
+        "c": "Incorrecta. El IEEE aparece en el tema por las normas 802.3 y 802.11, no por el modelo OSI.",
+        "d": "Incorrecta. Los RFC definen estándares de Internet (como el RFC 4949), pero OSI es de la ISO."
+      }
+    },
+    "redes-t01-e02": {
+      "section": "capas",
+      "reasoning": "El apartado contrapone el modelo de referencia OSI con la arquitectura real TCP/IP.",
+      "options": {
+        "a": "Incorrecta. Invierte los papeles: el modelo teórico es OSI y la arquitectura real es TCP/IP.",
+        "b": "Incorrecta. OSI tiene 7 capas, pero TCP/IP solo 4.",
+        "c": "Correcta. OSI sirve para describir cualquier red; TCP/IP es la arquitectura real, de 4 capas, sobre la que funciona Internet.",
+        "d": "Incorrecta. TCP/IP es precisamente la base de Internet y de casi todas las redes de empresa."
+      }
+    },
+    "redes-t01-e03": {
+      "section": "capas",
+      "reasoning": "La tabla de correspondencia del apartado asigna Ethernet y wifi a la capa física.",
+      "options": {
+        "a": "Incorrecta. En la capa de red están IP, ICMP e IGMP.",
+        "b": "Correcta. La tabla del tema coloca Ethernet, wifi, ARP y RARP en la capa física de TCP/IP.",
+        "c": "Incorrecta. En la capa de transporte están TCP y UDP.",
+        "d": "Incorrecta. En la capa de aplicación están HTTP, SMTP, FTP, Telnet y NTP."
+      }
+    },
+    "redes-t01-e04": {
+      "section": "capas",
+      "reasoning": "El apartado de capas detalla qué capas OSI agrupa cada capa de TCP/IP.",
+      "options": {
+        "a": "Incorrecta. La capa de red de OSI coincide con la capa de red de TCP/IP; no se agrupa en la más baja.",
+        "b": "Incorrecta. Se olvida de la capa de enlace de datos, que también queda incluida.",
+        "c": "Incorrecta. La capa de red (3) tiene su propia capa en TCP/IP.",
+        "d": "Correcta. Según la tabla del tema, la capa física de TCP/IP agrupa enlace de datos y física de OSI."
+      }
+    },
+    "redes-t01-e05": {
+      "section": "capas-tcpip",
+      "reasoning": "El apartado describe ARP y RARP dentro de la capa física de TCP/IP.",
+      "options": {
+        "a": "Incorrecta. RARP hace el proceso inverso: de la dirección física a la IP.",
+        "b": "Correcta. ARP (Address Resolution Protocol) traduce una dirección IP en la dirección física de la máquina.",
+        "c": "Incorrecta. ICMP envía mensajes de control y error, como el ping.",
+        "d": "Incorrecta. IGMP gestiona los envíos a grupos."
+      }
+    },
+    "redes-t01-e06": {
+      "section": "capas-tcpip",
+      "reasoning": "El apartado lista ICMP entre los protocolos de la capa de red.",
+      "options": {
+        "a": "Correcta. ICMP está en la capa de red junto a IP e IGMP.",
+        "b": "Incorrecta. En la capa física están Ethernet, wifi, ARP y RARP.",
+        "c": "Incorrecta. En transporte solo están TCP y UDP.",
+        "d": "Incorrecta. En aplicación están protocolos como HTTP o SMTP."
+      }
+    },
+    "redes-t01-e07": {
+      "section": "capas-tcpip",
+      "reasoning": "La tabla TCP frente a UDP del apartado indica los usos típicos de cada protocolo.",
+      "options": {
+        "a": "Incorrecta. TCP es fiable pero orientado a conexión y más complejo; aquí no se necesita esa garantía.",
+        "b": "Incorrecta. IP es de la capa de red, no de transporte.",
+        "c": "Correcta. UDP envía sin saludar, es ligero y su uso típico incluye voz y vídeo en directo.",
+        "d": "Incorrecta. ICMP es de la capa de red y sirve para control y errores, no para transportar la voz."
+      }
+    },
+    "redes-t01-e08": {
+      "section": "capas-tcpip",
+      "reasoning": "La tabla TCP frente a UDP del apartado recoge conexión, fiabilidad y complejidad de cada protocolo.",
+      "options": {
+        "a": "Incorrecta. TCP establece la conexión antes de enviar: sí es orientado a conexión.",
+        "b": "Incorrecta. TCP sí comprueba que los datos llegan y en orden.",
+        "c": "Incorrecta. TCP sí es más complejo que UDP.",
+        "d": "Correcta. No garantizar la recepción es propio de UDP; TCP ofrece un flujo fiable."
+      }
+    },
+    "redes-t01-e09": {
+      "section": "capas-tcpip",
+      "reasoning": "El apartado explica el encapsulado con la imagen de las muñecas rusas.",
+      "options": {
+        "a": "Incorrecta. La trama Ethernet es la capa más externa; el paquete IP va dentro de ella.",
+        "b": "Incorrecta. El segmento TCP va dentro del paquete IP, no al revés.",
+        "c": "Correcta. Como muñecas rusas: la trama contiene el paquete IP, este el segmento TCP y este el mensaje HTTP.",
+        "d": "Incorrecta. Ese es el orden de dentro afuera, no de fuera adentro."
+      }
+    },
+    "redes-t01-e10": {
+      "section": "capas-tcpip",
+      "reasoning": "Las ideas del profesor recogidas en el apartado subrayan pensar siempre «en capas».",
+      "options": {
+        "a": "Incorrecta. El profesor no plantea la velocidad del algoritmo como primera pregunta.",
+        "b": "Incorrecta. El puerto no es lo que el profesor destaca para saber qué parte se protege.",
+        "c": "Incorrecta. El autor del protocolo no determina qué parte del mensaje protege.",
+        "d": "Correcta. Un protocolo de aplicación solo cubre su capa; uno de capas más bajas protege todo lo que viaja por encima."
+      }
+    },
+    "redes-t01-e11": {
+      "section": "capas-tcpip",
+      "reasoning": "El apartado recoge esta idea del profesor sobre el origen inseguro de IP y MAC.",
+      "options": {
+        "a": "Correcta. Internet nació cuando la seguridad no era una preocupación, y la asignatura añade seguridad por encima.",
+        "b": "Incorrecta. IP no se diseñó con cifrado; el problema es que no se pensó en atacantes.",
+        "c": "Incorrecta. El tema no dice que se diseñaran para que los ISP leyeran el tráfico.",
+        "d": "Incorrecta. El tema no habla de redes cerradas; el motivo es la época y la falta de atacantes."
+      }
+    },
+    "redes-t01-e12": {
+      "section": "arquitectura-x800",
+      "reasoning": "El apartado de X.800 define la ITU y su recomendación X.800.",
+      "options": {
+        "a": "Incorrecta. La ISO diseñó el modelo OSI, pero X.800 lo publica la ITU.",
+        "b": "Correcta. X.800 es una recomendación de la ITU, organismo de Naciones Unidas de telecomunicaciones.",
+        "c": "Incorrecta. El IEEE no publica X.800.",
+        "d": "Incorrecta. El RFC 4949 es un glosario de seguridad, distinto de X.800."
+      }
+    },
+    "redes-t01-e13": {
+      "section": "arquitectura-x800",
+      "reasoning": "El apartado insiste en que X.800 no es una especificación de implementación.",
+      "options": {
+        "a": "Incorrecta. Sí describe los servicios de seguridad básicos.",
+        "b": "Incorrecta. Sí indica en qué capa OSI puede aplicarse cada servicio.",
+        "c": "Incorrecta. Sí ayuda a los responsables de seguridad a evaluar productos y políticas.",
+        "d": "Correcta. El tema subraya que X.800 no es una especificación de implementación: no dice cómo programarlo."
+      }
+    },
+    "redes-t01-e14": {
+      "section": "arquitectura-x800",
+      "reasoning": "La tabla de los tres pilares del apartado define ataque, servicio y mecanismo.",
+      "options": {
+        "a": "Incorrecta. Son conceptos del RFC 4949, pero no los tres pilares de X.800.",
+        "b": "Correcta. La tabla del tema organiza X.800 en ataques, servicios y mecanismos de seguridad.",
+        "c": "Incorrecta. Son servicios o propiedades, no los tres pilares de la arquitectura.",
+        "d": "Incorrecta. Son las finalidades de los mecanismos, no los pilares."
+      }
+    },
+    "redes-t01-e15": {
+      "section": "arquitectura-x800",
+      "reasoning": "El apartado asocia a cada pilar una pregunta que responde.",
+      "options": {
+        "a": "Incorrecta. El servicio responde a «¿qué propiedad quiero garantizar?».",
+        "b": "Incorrecta. El ataque responde a «¿qué me pueden hacer?».",
+        "c": "Correcta. El mecanismo es la técnica implementada para prevenir, detectar o recuperarse de ataques.",
+        "d": "Incorrecta. La política no es uno de los tres pilares de la tabla."
+      }
+    },
+    "redes-t01-e16": {
+      "section": "arquitectura-x800",
+      "reasoning": "El apartado presenta el RFC 4949 como glosario complementario a X.800.",
+      "options": {
+        "a": "Correcta. El tema lo describe como un glosario de seguridad de Internet que, junto con X.800, define términos y clasifica ataques.",
+        "b": "Incorrecta. El tema no lo relaciona con la definición de TCP.",
+        "c": "Incorrecta. Las recomendaciones son de la ITU (como X.800); un RFC es otro tipo de documento.",
+        "d": "Incorrecta. La wifi es la norma IEEE 802.11."
+      }
+    },
+    "redes-t01-e17": {
+      "section": "vulnerabilidad-amenaza-ataque",
+      "reasoning": "El apartado incluye la contraseña débil entre los tres ejemplos de la clase.",
+      "options": {
+        "a": "Correcta. Una contraseña débil es una debilidad explotable, es decir, una vulnerabilidad.",
+        "b": "Incorrecta. Nada indica que alguien esté intentando entrar; lo descrito es la debilidad.",
+        "c": "Incorrecta. El ataque sería que alguien la adivinara y entrara; aquí solo hay debilidad.",
+        "d": "Incorrecta. Una contraseña trivial no protege: es la propia debilidad."
+      }
+    },
+    "redes-t01-e18": {
+      "section": "vulnerabilidad-amenaza-ataque",
+      "reasoning": "Es el tercer ejemplo de la clase recogido en el apartado.",
+      "options": {
+        "a": "Incorrecta. Un ataque es el acto deliberado, tenga éxito o no.",
+        "b": "Incorrecta. Precisamente fracasan porque no hay vulnerabilidad que explotar.",
+        "c": "Incorrecta. Sí hay actuación deliberada: los intentos son ataques.",
+        "d": "Correcta. La clase lo dijo expresamente: un ataque puede fracasar y que haya intento no implica sistema vulnerable."
+      }
+    },
+    "redes-t01-e19": {
+      "section": "vulnerabilidad-amenaza-ataque",
+      "reasoning": "El apartado define el vector de ataque y lo distingue del ataque.",
+      "options": {
+        "a": "Incorrecta. El tema avisa de que no es sinónimo de ataque: el ataque es el acto.",
+        "b": "Correcta. El vector es por dónde se hace el ataque: un correo malicioso, un puerto expuesto, una wifi falsa.",
+        "c": "Incorrecta. La debilidad es la vulnerabilidad, no el vector.",
+        "d": "Incorrecta. Eso se parece más a la idea de amenaza o riesgo."
+      }
+    },
+    "redes-t01-e20": {
+      "section": "vulnerabilidad-amenaza-ataque",
+      "reasoning": "La tabla de definiciones del RFC 4949 del apartado asocia «posibilidad» a la amenaza.",
+      "options": {
+        "a": "Incorrecta. La vulnerabilidad es el fallo o debilidad, no la posibilidad del daño.",
+        "b": "Incorrecta. El ataque es el acto deliberado, no una posibilidad.",
+        "c": "Correcta. La amenaza es la posibilidad o evento potencial de que una vulnerabilidad sea explotada.",
+        "d": "Incorrecta. El vector es la vía por la que se ataca."
+      }
+    },
+    "redes-t01-e21": {
+      "section": "vulnerabilidad-amenaza-ataque",
+      "reasoning": "El recuadro de examen del apartado incluye esta trampa del «control que impide accesos».",
+      "options": {
+        "a": "Incorrecta. Un fallo de operación y gestión es una vulnerabilidad.",
+        "b": "Incorrecta. Un asalto deliberado es un ataque.",
+        "c": "Correcta. El tema lo advierte: un control que impide accesos es una medida de protección.",
+        "d": "Incorrecta. Un evento potencialmente dañino es una amenaza."
+      }
+    },
+    "redes-t01-e22": {
+      "section": "ataques-pasivos",
+      "reasoning": "La tabla del apartado describe los dos tipos de ataque pasivo.",
+      "options": {
+        "a": "Correcta. El tema recoge exactamente estos dos tipos de ataque pasivo.",
+        "b": "Incorrecta. Repetición y modificación son ataques activos.",
+        "c": "Incorrecta. Suplantación y DoS son ataques activos.",
+        "d": "Incorrecta. La repetición es activa, aunque el análisis de tráfico sí sea pasivo."
+      }
+    },
+    "redes-t01-e23": {
+      "section": "ataques-pasivos",
+      "reasoning": "Es el ejemplo de análisis de tráfico de la tabla del apartado.",
+      "options": {
+        "a": "Incorrecta. No ha leído el contenido, que está cifrado.",
+        "b": "Incorrecta. No altera ningún mensaje: solo observa.",
+        "c": "Incorrecta. No reenvía nada: solo observa los patrones.",
+        "d": "Correcta. Deduce información de los patrones (quién, cuándo, cuánto) sin leer el contenido."
+      }
+    },
+    "redes-t01-e24": {
+      "section": "ataques-pasivos",
+      "reasoning": "El apartado define los metadatos al explicar el análisis de tráfico.",
+      "options": {
+        "a": "Incorrecta. El contenido es lo que se cifra; los metadatos son datos sobre él.",
+        "b": "Correcta. El tema los define así y avisa de que el cifrado no los oculta.",
+        "c": "Incorrecta. Las claves no son metadatos.",
+        "d": "Incorrecta. El relleno añade datos de cobertura, pero eso no define qué son los metadatos."
+      }
+    },
+    "redes-t01-e25": {
+      "section": "ataques-activos",
+      "reasoning": "La tabla del apartado lista los cuatro tipos de ataque activo.",
+      "options": {
+        "a": "Incorrecta. La repetición es uno de los cuatro activos.",
+        "b": "Correcta. El análisis de tráfico es un ataque pasivo.",
+        "c": "Incorrecta. La modificación de mensajes es uno de los cuatro activos.",
+        "d": "Incorrecta. La DoS es uno de los cuatro activos."
+      }
+    },
+    "redes-t01-e26": {
+      "section": "ataques-activos",
+      "reasoning": "La tabla de ataques activos del apartado pone este ejemplo para la modificación.",
+      "options": {
+        "a": "Incorrecta. En la repetición el mensaje se reenvía tal cual, sin cambiarlo.",
+        "b": "Incorrecta. No se hace pasar por otra entidad: cambia el contenido.",
+        "c": "Correcta. Altera parcialmente un mensaje original para provocar un efecto no deseado.",
+        "d": "Incorrecta. El análisis de tráfico es pasivo y no altera nada."
+      }
+    },
+    "redes-t01-e27": {
+      "section": "ataques-activos",
+      "reasoning": "El recuadro de examen del apartado insiste en no confundir repetición y modificación.",
+      "options": {
+        "a": "Correcta. El tema lo resume: repetición ≠ modificación, porque en la repetición el mensaje no se cambia.",
+        "b": "Incorrecta. Los dos son ataques activos.",
+        "c": "Incorrecta. Invierte las definiciones.",
+        "d": "Incorrecta. Ninguno de los dos se define por atacar esas propiedades."
+      }
+    },
+    "redes-t01-e28": {
+      "section": "ataques-activos",
+      "reasoning": "La tabla de ataques activos explica en qué se apoya la suplantación.",
+      "options": {
+        "a": "Incorrecta. El relleno de tráfico es un mecanismo de defensa, no un ataque.",
+        "b": "Incorrecta. La notarización es un mecanismo de seguridad.",
+        "c": "Incorrecta. El tema no describe la suplantación así.",
+        "d": "Correcta. El tema dice que la suplantación suele apoyarse en otro ataque activo, por ejemplo una repetición, para conseguir privilegios."
+      }
+    },
+    "redes-t01-e29": {
+      "section": "ataques-activos",
+      "reasoning": "El apartado de ataques activos plantea explícitamente este contraste.",
+      "options": {
+        "a": "Incorrecta. Invierte el contraste.",
+        "b": "Incorrecta. El cifrado no basta contra los activos, que exigen detectar y recuperarse.",
+        "c": "Incorrecta. Los pasivos se detectan mal, porque no alteran nada.",
+        "d": "Correcta. Los pasivos no alteran nada y se previenen con cifrado; los activos se detectan mejor pero se previenen mal."
+      }
+    },
+    "redes-t01-e30": {
+      "section": "ataques-activos",
+      "reasoning": "El apartado recoge la regla del profesor para clasificar ataques.",
+      "options": {
+        "a": "Correcta. Si solo escucha, es pasivo; si altera, inyecta, interfiere o impide, es activo.",
+        "b": "Incorrecta. Leer el contenido puede ocurrir en un ataque pasivo; no es el criterio.",
+        "c": "Incorrecta. El uso de malware no es el criterio del profesor.",
+        "d": "Incorrecta. La ubicación del atacante no decide la clasificación."
+      }
+    },
+    "redes-t01-e31": {
+      "section": "ataques-activos",
+      "reasoning": "La tabla de ataques activos explica cómo actúa la denegación de servicio.",
+      "options": {
+        "a": "Incorrecta. El tema no define así la DoS.",
+        "b": "Correcta. El tema dice que la DoS satura el ancho de banda o sobrecarga los recursos de cómputo.",
+        "c": "Incorrecta. Leer contraseñas es obtención de contenido, un ataque pasivo.",
+        "d": "Incorrecta. Cambiar contenido es modificación, no DoS."
+      }
+    },
+    "redes-t01-e32": {
+      "section": "autenticacion-control-acceso",
+      "reasoning": "La tabla de servicios de autenticación del apartado distingue según haya o no conexión.",
+      "options": {
+        "a": "Incorrecta. La de entidades origen/destino es para comunicaciones con conexión.",
+        "b": "Incorrecta. El control de acceso no es un servicio de autenticación.",
+        "c": "Correcta. Para comunicaciones sin conexión, X.800 prevé verificar la identidad de quien emitió los datos.",
+        "d": "Incorrecta. El no repudio es otra categoría de servicio."
+      }
+    },
+    "redes-t01-e33": {
+      "section": "autenticacion-control-acceso",
+      "reasoning": "El apartado define la autenticación y estos dos requisitos.",
+      "options": {
+        "a": "Correcta. El tema pide asegurar la autenticidad al iniciar y que nadie intercepte después para suplantar.",
+        "b": "Incorrecta. Cifrado y orden son cuestiones de confidencialidad y de TCP, no de autenticación.",
+        "c": "Incorrecta. Los permisos corresponden al control de acceso.",
+        "d": "Incorrecta. Eso describe integridad y no repudio."
+      }
+    },
+    "redes-t01-e34": {
+      "section": "autenticacion-control-acceso",
+      "reasoning": "El recuadro de examen del apartado señala la trampa de la distancia.",
+      "options": {
+        "a": "Incorrecta. Es la definición del servicio.",
+        "b": "Correcta. Es una trampa del tema: precisamente se autentica a entidades remotas por la red.",
+        "c": "Incorrecta. El tema habla de entidades: personas, máquinas o programas.",
+        "d": "Incorrecta. La autenticación es el paso previo al control de acceso."
+      }
+    },
+    "redes-t01-e35": {
+      "section": "confidencialidad-integridad",
+      "reasoning": "La tabla de servicios de confidencialidad del apartado lo define.",
+      "options": {
+        "a": "Incorrecta. Protege solo ciertos campos de los datos.",
+        "b": "Incorrecta. Protege los datos transmitidos en una conexión, no los patrones.",
+        "c": "Incorrecta. Es un servicio de integridad, que detecta cambios.",
+        "d": "Correcta. Protege la información deducible del tráfico: origen, destino, frecuencia, longitud."
+      }
+    },
+    "redes-t01-e36": {
+      "section": "confidencialidad-integridad",
+      "reasoning": "La tabla de servicios de integridad del apartado detalla cada variante.",
+      "options": {
+        "a": "Incorrecta. Este solo detecta la alteración.",
+        "b": "Incorrecta. Es para comunicaciones sin conexión y solo detecta.",
+        "c": "Correcta. Es el único de la tabla que añade la recuperación del mensaje original.",
+        "d": "Incorrecta. Se limita a ciertos campos y no recupera."
+      }
+    },
+    "redes-t01-e37": {
+      "section": "confidencialidad-integridad",
+      "reasoning": "La analogía del apartado compara sobre y precinto con confidencialidad e integridad.",
+      "options": {
+        "a": "Incorrecta. Lo que impide ver el contenido es el sobre opaco.",
+        "b": "Incorrecta. La analogía no trata de la disponibilidad.",
+        "c": "Correcta. El precinto no evita que se abra, pero delata que alguien lo ha hecho: detectar, no impedir.",
+        "d": "Incorrecta. La analogía no trata del control de acceso."
+      }
+    },
+    "redes-t01-e38": {
+      "section": "confidencialidad-integridad",
+      "reasoning": "La tabla del apartado enumera los servicios de confidencialidad.",
+      "options": {
+        "a": "Incorrecta. Sí es un servicio de confidencialidad.",
+        "b": "Incorrecta. Sí es un servicio de confidencialidad.",
+        "c": "Incorrecta. Sí es un servicio de confidencialidad.",
+        "d": "Correcta. La «recuperación» aparece en un servicio de integridad, no de confidencialidad."
+      }
+    },
+    "redes-t01-e39": {
+      "section": "confidencialidad-integridad",
+      "reasoning": "El apartado explica que la confidencialidad puede limitarse a ciertos campos.",
+      "options": {
+        "a": "Incorrecta. Ese protege los patrones del tráfico, no un campo.",
+        "b": "Correcta. Protege solo ciertos campos de los datos frente a su revelación.",
+        "c": "Incorrecta. La integridad detecta cambios; no oculta el dato.",
+        "d": "Incorrecta. Protege todos los datos de la conexión, más de lo pedido."
+      }
+    },
+    "redes-t01-e40": {
+      "section": "no-repudio-disponibilidad",
+      "reasoning": "La tabla de las dos caras del no repudio del apartado lo detalla.",
+      "options": {
+        "a": "Correcta. Así el emisor ya no puede negar haber enviado el mensaje.",
+        "b": "Incorrecta. Eso es el no repudio en destino.",
+        "c": "Incorrecta. El servicio no se define por un notario.",
+        "d": "Incorrecta. Que no cambió es integridad, no no repudio."
+      }
+    },
+    "redes-t01-e41": {
+      "section": "no-repudio-disponibilidad",
+      "reasoning": "El recuadro de examen del apartado lo destaca expresamente.",
+      "options": {
+        "a": "Incorrecta. La disponibilidad frena la denegación de servicio.",
+        "b": "Correcta. Protege frente a la negación de los propios participantes, no frente a un intruso.",
+        "c": "Incorrecta. La integridad frena la repetición y la modificación.",
+        "d": "Incorrecta. Frena el análisis de tráfico."
+      }
+    },
+    "redes-t01-e42": {
+      "section": "no-repudio-disponibilidad",
+      "reasoning": "La Tabla 1 del apartado relaciona cada ataque con su servicio.",
+      "options": {
+        "a": "Correcta. La Tabla 1 asocia a la suplantación la autenticación (de entidades y del origen de datos) y el control de acceso.",
+        "b": "Incorrecta. Ocultar el contenido no demuestra quién está al otro lado.",
+        "c": "Incorrecta. La disponibilidad frena la DoS; la integridad, repetición y modificación.",
+        "d": "Incorrecta. El no repudio no aparece en la Tabla 1."
+      }
+    },
+    "redes-t01-e43": {
+      "section": "mecanismos",
+      "reasoning": "El apartado de mecanismos presenta las dos familias.",
+      "options": {
+        "a": "Incorrecta. Invierte la definición.",
+        "b": "Incorrecta. El tema no distingue por software o hardware.",
+        "c": "Correcta. El tema dice que los específicos se incorporan en una capa del protocolo y los generales no están ligados a ninguna.",
+        "d": "Incorrecta. El tema no los distingue así."
+      }
+    },
+    "redes-t01-e44": {
+      "section": "mecanismos",
+      "reasoning": "Las dos tablas del apartado separan mecanismos específicos y generales.",
+      "options": {
+        "a": "Incorrecta. Es un mecanismo general.",
+        "b": "Incorrecta. Es un mecanismo general.",
+        "c": "Incorrecta. Es un mecanismo general.",
+        "d": "Correcta. La notarización está en la tabla de mecanismos específicos."
+      }
+    },
+    "redes-t01-e45": {
+      "section": "mecanismos",
+      "reasoning": "La tabla de mecanismos específicos describe el intercambio de autentificación.",
+      "options": {
+        "a": "Incorrecta. La notarización es un registro por un tercero de confianza.",
+        "b": "Incorrecta. Las etiquetas marcan el nivel de sensibilidad de los recursos.",
+        "c": "Incorrecta. Elige rutas seguras para los datos.",
+        "d": "Correcta. Verifica la identidad mediante un intercambio de información, como reto y respuesta."
+      }
+    },
+    "redes-t01-e46": {
+      "section": "mecanismos",
+      "reasoning": "La Tabla 2 del apartado relaciona servicios y mecanismos.",
+      "options": {
+        "a": "Incorrecta. Sí sirve a ese servicio.",
+        "b": "Incorrecta. Sí sirve a ese servicio.",
+        "c": "Correcta. La firma no oculta nada; sirve a autenticación, integridad y no repudio.",
+        "d": "Incorrecta. Sí sirve a ese servicio."
+      }
+    },
+    "redes-t01-e47": {
+      "section": "mecanismos",
+      "reasoning": "La Tabla 2 del apartado asigna mecanismos al no repudio.",
+      "options": {
+        "a": "Correcta. Es exactamente la combinación que da la Tabla 2 para el no repudio.",
+        "b": "Incorrecta. Son los de la confidencialidad del flujo de tráfico.",
+        "c": "Incorrecta. No es la combinación de la Tabla 2 para el no repudio.",
+        "d": "Incorrecta. No es la combinación de la Tabla 2 para el no repudio."
+      }
+    },
+    "redes-t01-e48": {
+      "section": "modelo-seguridad-redes",
+      "reasoning": "El apartado del modelo de seguridad describe esos dos componentes.",
+      "options": {
+        "a": "Incorrecta. Son protecciones de equipos, no los componentes del modelo.",
+        "b": "Correcta. El tema cita la transformación (cifrado, firma) y una información secreta compartida, como una clave.",
+        "c": "Incorrecta. Las direcciones no protegen el mensaje.",
+        "d": "Incorrecta. No son los dos componentes que describe el modelo."
+      }
+    },
+    "redes-t01-e49": {
+      "section": "modelo-seguridad-redes",
+      "reasoning": "El apartado enumera los cuatro pasos de diseño en ese orden.",
+      "options": {
+        "a": "Correcta. Primero el algoritmo, luego el secreto que usará, después su distribución y por último el protocolo.",
+        "b": "Incorrecta. El secreto se genera para el algoritmo, que va primero.",
+        "c": "Incorrecta. El protocolo es la última tarea, no la primera.",
+        "d": "Incorrecta. No se puede distribuir un secreto antes de generarlo."
+      }
+    },
+    "redes-t01-e50": {
+      "section": "modelo-seguridad-redes",
+      "reasoning": "La tabla de amenazas a los extremos del apartado define ambos conceptos.",
+      "options": {
+        "a": "Incorrecta. Invierte las definiciones.",
+        "b": "Incorrecta. Ninguna de las dos se define por cifrar o firmar.",
+        "c": "Correcta. Vigilancia: software como un antivirus. Monitorización: software como un detector de intrusiones.",
+        "d": "Incorrecta. Las dos son defensas, no amenazas."
+      }
     }
   }
 }

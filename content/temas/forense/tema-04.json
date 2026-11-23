@@ -1090,6 +1090,506 @@
         "c": "Incorrecta. El Catalog no es una simple lista ni trabaja por partición: describe la jerarquía (quién está dentro de quién) de archivos y carpetas de cada **volumen**. En APFS varios volúmenes pueden compartir el espacio de un mismo contenedor.",
         "d": "Correcta. El Catalog describe la **jerarquía de archivos y carpetas del volumen** y se organiza como un árbol B para buscar más rápido. Es la definición literal del temario."
       }
+    },
+    "forense-t04-e01": {
+      "section": "unos-y-ceros",
+      "reasoning": "El término SSD del apartado lo contrapone al disco duro clásico de platos magnéticos.",
+      "options": {
+        "a": "Correcta. Un SSD usa memoria flash y no tiene piezas móviles.",
+        "b": "Incorrecta. Los platos magnéticos son propios del disco duro clásico.",
+        "c": "Incorrecta. Los discos ópticos son otra familia de almacenamiento.",
+        "d": "Incorrecta. Eso describe un esquema de particionado como MBR o GPT."
+      }
+    },
+    "forense-t04-e02": {
+      "section": "unos-y-ceros",
+      "reasoning": "El ejemplo «lo que ve el perito» del apartado define el editor hexadecimal como programa que muestra el contenido byte a byte.",
+      "options": {
+        "a": "Incorrecta. Un editor hexadecimal no monta particiones; solo muestra bytes.",
+        "b": "Incorrecta. No formatea nada; es una herramienta de visualización.",
+        "c": "Correcta. Muestra el contenido byte a byte.",
+        "d": "Incorrecta. Reconstruir un RAID es una tarea distinta."
+      }
+    },
+    "forense-t04-e03": {
+      "section": "unos-y-ceros",
+      "reasoning": "El término dispositivo de almacenamiento del apartado enumera los tres tipos modernos en los que se centra el tema.",
+      "options": {
+        "a": "Incorrecta. Son soportes antiguos que el tema no trata.",
+        "b": "Incorrecta. También incluye memorias flash y discos ópticos.",
+        "c": "Incorrecta. La RAM y la caché no son dispositivos de almacenamiento de este tema.",
+        "d": "Correcta. Discos duros, memorias flash y discos ópticos."
+      }
+    },
+    "forense-t04-e04": {
+      "section": "particiones",
+      "reasoning": "El término esquema de particionado del apartado indica que se guarda en los primeros sectores.",
+      "options": {
+        "a": "Incorrecta. Está al principio, no al final del disco.",
+        "b": "Correcta. Está en los primeros sectores, lo primero que se lee al arrancar.",
+        "c": "Incorrecta. La $MFT es del sistema de ficheros NTFS, no del esquema de particionado.",
+        "d": "Incorrecta. La BIOS tiene memoria propia, pero no guarda el esquema del disco."
+      }
+    },
+    "forense-t04-e05": {
+      "section": "particiones",
+      "reasoning": "El término sector del apartado da su tamaño tradicional de 512 bytes.",
+      "options": {
+        "a": "Correcta. Un sector mide tradicionalmente 512 bytes.",
+        "b": "Incorrecta. 128 bits es el tamaño de un hash MD5, no de un sector.",
+        "c": "Incorrecta. Es demasiado pequeño para un sector.",
+        "d": "Incorrecta. Un megabyte es mucho mayor que un sector."
+      }
+    },
+    "forense-t04-e06": {
+      "section": "particiones",
+      "reasoning": "El término letras de unidad del apartado explica el origen histórico de empezar por la C.",
+      "options": {
+        "a": "Incorrecta. La partición de recuperación no tiene que ver con las letras A y B.",
+        "b": "Incorrecta. La C no significa «contenedor».",
+        "c": "Correcta. La A y la B eran para las disqueteras.",
+        "d": "Incorrecta. Las letras las asigna Windows a los volúmenes, no el MBR."
+      }
+    },
+    "forense-t04-e07": {
+      "section": "particiones",
+      "reasoning": "La definición de esquema de particionado del apartado se centra en el número y tamaño de las particiones.",
+      "options": {
+        "a": "Incorrecta. El sistema de ficheros se implanta al formatear cada volumen.",
+        "b": "Incorrecta. Eso lo gestiona el sistema de ficheros con su índice.",
+        "c": "Incorrecta. La composición de un RAID no es el esquema de particionado.",
+        "d": "Correcta. Número y tamaño de las particiones."
+      }
+    },
+    "forense-t04-e08": {
+      "section": "particiones",
+      "reasoning": "El término retrocompatibilidad del apartado recoge la anécdota del Windows 98 y la moraleja de no descartar nada.",
+      "options": {
+        "a": "Incorrecta. Pueden contener evidencias como cualquier otro sistema.",
+        "b": "Correcta. La moraleja es no descartar nada.",
+        "c": "Incorrecta. Al contrario: por antiguo ni siquiera le afectó un ransomware.",
+        "d": "Incorrecta. Actualizar el sistema alteraría la evidencia."
+      }
+    },
+    "forense-t04-e09": {
+      "section": "mbr-gpt",
+      "reasoning": "El término MBR del apartado lo define como los primeros 512 bytes del dispositivo.",
+      "options": {
+        "a": "Incorrecta. Es menor que el tamaño real del MBR.",
+        "b": "Correcta. El MBR ocupa los primeros 512 bytes.",
+        "c": "Incorrecta. Está al principio, no al final.",
+        "d": "Incorrecta. Es mucho más grande que el MBR."
+      }
+    },
+    "forense-t04-e10": {
+      "section": "mbr-gpt",
+      "reasoning": "El término MBR del apartado enumera sus dos contenidos: código de arranque y tabla de particiones.",
+      "options": {
+        "a": "Incorrecta. Son estructuras del sistema de ficheros NTFS.",
+        "b": "Incorrecta. Son estructuras del sistema de ficheros APFS.",
+        "c": "Incorrecta. Son estructuras del sistema de ficheros FAT.",
+        "d": "Correcta. Código de arranque y tabla de particiones."
+      }
+    },
+    "forense-t04-e11": {
+      "section": "mbr-gpt",
+      "reasoning": "El término partición extendida del apartado indica sus identificadores 0x05 o 0x0F.",
+      "options": {
+        "a": "Incorrecta. No son los identificadores de la partición extendida.",
+        "b": "Incorrecta. No son los identificadores de la partición extendida.",
+        "c": "Correcta. La extendida usa el ID 0x05 o 0x0F.",
+        "d": "Incorrecta. Invierte las cifras de los identificadores reales."
+      }
+    },
+    "forense-t04-e12": {
+      "section": "mbr-gpt",
+      "reasoning": "El término partición extendida explica que cuenta como primaria, lo que deja tres primarias más.",
+      "options": {
+        "a": "Incorrecta. La extendida ya ocupa una de las cuatro plazas primarias.",
+        "b": "Incorrecta. Quedan tres plazas primarias libres.",
+        "c": "Incorrecta. Ilimitadas son las lógicas dentro de la extendida, no las primarias.",
+        "d": "Correcta. La extendida cuenta como primaria: quedan tres."
+      }
+    },
+    "forense-t04-e13": {
+      "section": "mbr-gpt",
+      "reasoning": "El apartado contrapone el gestor de arranque de Windows/DOS con GRUB en Linux.",
+      "options": {
+        "a": "Incorrecta. UEFI es el firmware que sustituye a la BIOS.",
+        "b": "Correcta. GRUB es el gestor de arranque de Linux.",
+        "c": "Incorrecta. GPT es un esquema de particionado.",
+        "d": "Incorrecta. La BIOS es el firmware antiguo de la placa."
+      }
+    },
+    "forense-t04-e14": {
+      "section": "mbr-gpt",
+      "reasoning": "El apartado explica el MBR de protección como mecanismo de compatibilidad frente a herramientas antiguas.",
+      "options": {
+        "a": "Correcta. Protege el disco de herramientas antiguas que solo entienden MBR.",
+        "b": "Incorrecta. La copia de la $MFT es $MFTMirr, dentro de NTFS.",
+        "c": "Incorrecta. El límite de 2 TB es una limitación del MBR que GPT supera.",
+        "d": "Incorrecta. El MBR de protección no cifra nada."
+      }
+    },
+    "forense-t04-e15": {
+      "section": "mbr-gpt",
+      "reasoning": "El ejemplo de interés forense del MBR del apartado describe esta técnica de ocultación.",
+      "options": {
+        "a": "Incorrecta. Que no se vea no significa que esté vacía.",
+        "b": "Incorrecta. El disco puede adquirirse con normalidad.",
+        "c": "Correcta. La partición no se monta, pero conserva sus datos.",
+        "d": "Incorrecta. Un ID incorrecto no implica cifrado."
+      }
+    },
+    "forense-t04-e16": {
+      "section": "volumenes-raid",
+      "reasoning": "El término paridad del apartado la define como dato extra que permite reconstruir un disco caído.",
+      "options": {
+        "a": "Incorrecta. La copia exacta es el espejo de RAID 1.",
+        "b": "Incorrecta. El reparto en bandas es RAID 0.",
+        "c": "Incorrecta. La partición activa pertenece al arranque en MBR.",
+        "d": "Correcta. La paridad permite reconstruir el disco que falla."
+      }
+    },
+    "forense-t04-e17": {
+      "section": "volumenes-raid",
+      "reasoning": "La tabla de niveles RAID del apartado describe RAID 5 como bandas más paridad.",
+      "options": {
+        "a": "Incorrecta. RAID 0 reparte en bandas, pero sin paridad ni redundancia.",
+        "b": "Incorrecta. RAID 1 es un espejo, sin bandas.",
+        "c": "Correcta. RAID 5 combina bandas y paridad.",
+        "d": "Incorrecta. LVM es el gestor de volúmenes lógicos de Linux, no un nivel RAID."
+      }
+    },
+    "forense-t04-e18": {
+      "section": "volumenes-raid",
+      "reasoning": "El apartado cita los RAID y los volúmenes lógicos de Linux (LVM) como volúmenes que abarcan varias particiones.",
+      "options": {
+        "a": "Correcta. LVM gestiona volúmenes que pueden abarcar varias particiones.",
+        "b": "Incorrecta. LVM no es un nivel RAID.",
+        "c": "Incorrecta. El copy-on-write es el rasgo de Btrfs.",
+        "d": "Incorrecta. El gestor de arranque de Linux es GRUB."
+      }
+    },
+    "forense-t04-e19": {
+      "section": "volumenes-raid",
+      "reasoning": "La tabla de niveles RAID del apartado atribuye a RAID 0 alto rendimiento sin redundancia.",
+      "options": {
+        "a": "Incorrecta. La copia en espejo es RAID 1.",
+        "b": "Correcta. Es rápido al escribir, pero no tiene redundancia.",
+        "c": "Incorrecta. La paridad es propia de RAID 5.",
+        "d": "Incorrecta. El cifrado no es una función de los niveles RAID."
+      }
+    },
+    "forense-t04-e20": {
+      "section": "volumenes-raid",
+      "reasoning": "El apartado menciona los RAID anidados con los ejemplos RAID 0+1 y RAID 50.",
+      "options": {
+        "a": "Incorrecta. No son esquemas de particionado.",
+        "b": "Incorrecta. Una partición extendida no es un nivel RAID.",
+        "c": "Correcta. Son RAID anidados que combinan dos niveles.",
+        "d": "Incorrecta. No son sistemas de ficheros."
+      }
+    },
+    "forense-t04-e21": {
+      "section": "sistema-ficheros",
+      "reasoning": "La tabla de sistemas de ficheros más habituales del apartado relaciona cada sistema operativo con los suyos.",
+      "options": {
+        "a": "Incorrecta. NTFS y FAT son los habituales de Windows.",
+        "b": "Incorrecta. HFS+ y APFS son de Apple.",
+        "c": "Incorrecta. MBR y GPT son esquemas de particionado, no sistemas de ficheros.",
+        "d": "Correcta. Ext3 y Ext4 son los de Linux."
+      }
+    },
+    "forense-t04-e22": {
+      "section": "sistema-ficheros",
+      "reasoning": "El término formatear del apartado aclara que el formateo rápido no borra necesariamente los datos.",
+      "options": {
+        "a": "Incorrecta. Sobrescribir todo es lo que hace un formateo lento o un borrado seguro.",
+        "b": "Correcta. Crea un índice vacío y los datos antiguos pueden seguir ahí.",
+        "c": "Incorrecta. Formatear actúa sobre una partición, no sobre la tabla de particiones.",
+        "d": "Incorrecta. Formatear no cifra el volumen."
+      }
+    },
+    "forense-t04-e23": {
+      "section": "sistema-ficheros",
+      "reasoning": "El término espacio sin asignar del apartado lo define como zona sin partición o sin formato.",
+      "options": {
+        "a": "Correcta. Es la zona sin partición o sin formatear.",
+        "b": "Incorrecta. El MBR ocupa los primeros 512 bytes; no es espacio sin asignar.",
+        "c": "Incorrecta. Los clústeres dañados pertenecen a un volumen NTFS.",
+        "d": "Incorrecta. El espacio libre compartido es una característica de APFS."
+      }
+    },
+    "forense-t04-e24": {
+      "section": "sistema-ficheros",
+      "reasoning": "La lista de para qué sirve el sistema de ficheros aclara expresamente que no reconstruye archivos sobrescritos.",
+      "options": {
+        "a": "Incorrecta. Traducir rutas a ubicaciones físicas es su función principal.",
+        "b": "Incorrecta. Saber dónde empieza y termina cada archivo es una de sus funciones.",
+        "c": "Correcta. Un sistema de ficheros no reconstruye datos sobrescritos.",
+        "d": "Incorrecta. Gracias a él, las aplicaciones solo necesitan la ruta."
+      }
+    },
+    "forense-t04-e25": {
+      "section": "indice",
+      "reasoning": "El término bloque o clúster del apartado lo define como unidad de reparto formada por sectores.",
+      "options": {
+        "a": "Incorrecta. Un disco de un RAID no es un bloque del sistema de ficheros.",
+        "b": "Correcta. Es la unidad de reparto del espacio, formada por sectores.",
+        "c": "Incorrecta. Una partición lógica es una división del disco, no un bloque.",
+        "d": "Incorrecta. Los archivos $ son estructuras internas de NTFS."
+      }
+    },
+    "forense-t04-e26": {
+      "section": "indice",
+      "reasoning": "La lista de piezas comunes del índice del apartado define el mapa de bits como un bit por bloque libre u ocupado.",
+      "options": {
+        "a": "Incorrecta. Nombres y rutas los guarda el archivo que gestiona todos los archivos.",
+        "b": "Incorrecta. El mapa de bits no describe la composición de un RAID.",
+        "c": "Incorrecta. El código de arranque está en el MBR o en el sector de arranque.",
+        "d": "Correcta. Un bit por bloque indica si está libre u ocupado."
+      }
+    },
+    "forense-t04-e27": {
+      "section": "indice",
+      "reasoning": "El término bloque o clúster del apartado indica que el último bloque se ocupa entero aunque se use solo en parte.",
+      "options": {
+        "a": "Incorrecta. El bloque es la unidad mínima de reparto; no se ocupan medios bloques.",
+        "b": "Correcta. El último bloque se ocupa entero.",
+        "c": "Incorrecta. El MBR no guarda contenido de archivos.",
+        "d": "Incorrecta. El esquema de particionado no decide cuántos bloques ocupa un archivo."
+      }
+    },
+    "forense-t04-e28": {
+      "section": "indice",
+      "reasoning": "El apartado aclara que el índice es un conjunto de archivos especiales que varía según el sistema.",
+      "options": {
+        "a": "Correcta. Es un conjunto de archivos especiales.",
+        "b": "Incorrecta. El tema dice que su número y contenido cambian de un sistema a otro.",
+        "c": "Incorrecta. La tabla de particiones no sabe nada de archivos.",
+        "d": "Incorrecta. La extensión no dice dónde están los trozos de un archivo."
+      }
+    },
+    "forense-t04-e29": {
+      "section": "fat",
+      "reasoning": "El término FAT del apartado sitúa su primera incorporación en 1980.",
+      "options": {
+        "a": "Incorrecta. 1993 es el año de NTFS.",
+        "b": "Correcta. FAT se incorporó en 1980.",
+        "c": "Incorrecta. 2006 es el año del anuncio de Ext4.",
+        "d": "Incorrecta. 2016 es el año del anuncio de APFS."
+      }
+    },
+    "forense-t04-e30": {
+      "section": "fat",
+      "reasoning": "El término FAT del apartado explica que las versiones difieren en el tamaño de las direcciones de bloque.",
+      "options": {
+        "a": "Incorrecta. Todas son sistemas de ficheros de Microsoft.",
+        "b": "Incorrecta. Todas las versiones usan tabla de asignación.",
+        "c": "Incorrecta. El tema no las distingue por el número de copias.",
+        "d": "Correcta. Difieren en el tamaño de dirección de bloque."
+      }
+    },
+    "forense-t04-e31": {
+      "section": "fat",
+      "reasoning": "La tabla de elementos de FAT del apartado describe qué guarda cada uno.",
+      "options": {
+        "a": "Incorrecta. Eso lo guardan las entradas de directorio.",
+        "b": "Incorrecta. La copia parcial de la $MFT es $MFTMirr, de NTFS.",
+        "c": "Correcta. Estado de clústeres y cadena de cada archivo.",
+        "d": "Incorrecta. Los inodos son de Ext4."
+      }
+    },
+    "forense-t04-e32": {
+      "section": "fat",
+      "reasoning": "El ejemplo «qué pasa al borrar en FAT» del apartado explica por qué el archivo puede recuperarse.",
+      "options": {
+        "a": "Correcta. Mientras no se sobrescriba, el contenido sigue en el pendrive.",
+        "b": "Incorrecta. FAT no sobrescribe los bytes al borrar.",
+        "c": "Incorrecta. La FAT2 es una copia de la FAT1, no de los archivos.",
+        "d": "Incorrecta. La FAT2 no guarda los archivos, así que no es lo que decide la recuperación."
+      }
+    },
+    "forense-t04-e33": {
+      "section": "ntfs",
+      "reasoning": "El término NTFS del apartado indica que se introdujo en 1993.",
+      "options": {
+        "a": "Incorrecta. 1980 es el año de FAT.",
+        "b": "Incorrecta. 1998 es el año desde el que HFS+ fue el sistema por defecto de Apple.",
+        "c": "Correcta. NTFS se introdujo en 1993.",
+        "d": "Incorrecta. 2006 es el año del anuncio de Ext4."
+      }
+    },
+    "forense-t04-e34": {
+      "section": "ntfs",
+      "reasoning": "El apartado indica que los archivos que empiezan por $ son internos del sistema de ficheros.",
+      "options": {
+        "a": "Incorrecta. El $ no indica cifrado.",
+        "b": "Incorrecta. Los archivos borrados se marcan en la $MFT, no llevan $.",
+        "c": "Incorrecta. NTFS no usa tabla FAT.",
+        "d": "Correcta. Son internos de NTFS y el usuario normal no los ve."
+      }
+    },
+    "forense-t04-e35": {
+      "section": "ntfs",
+      "reasoning": "El término $Bitmap del apartado menciona a $BadClus como el archivo que anota los clústeres dañados.",
+      "options": {
+        "a": "Incorrecta. $Volume guarda información sobre el volumen.",
+        "b": "Correcta. $BadClus anota los clústeres dañados.",
+        "c": "Incorrecta. $MFTMirr es la copia parcial de la $MFT.",
+        "d": "Incorrecta. $UpCase sirve para comparar y ordenar nombres."
+      }
+    },
+    "forense-t04-e36": {
+      "section": "ntfs",
+      "reasoning": "La tabla de otros archivos de NTFS describe $LogFile como el gestor del sistema transaccional.",
+      "options": {
+        "a": "Incorrecta. Eso lo hace $Secure.",
+        "b": "Incorrecta. Eso lo hace $i30.",
+        "c": "Correcta. $LogFile anota los cambios para deshacerlos o completarlos.",
+        "d": "Incorrecta. Eso lo hace $Boot."
+      }
+    },
+    "forense-t04-e37": {
+      "section": "ntfs",
+      "reasoning": "La tabla de otros archivos de NTFS del apartado describe $i30.",
+      "options": {
+        "a": "Correcta. $i30 describe los archivos de cada carpeta.",
+        "b": "Incorrecta. $AttrDef define los atributos utilizables en el volumen.",
+        "c": "Incorrecta. $Secure guarda descriptores de seguridad y propietarios.",
+        "d": "Incorrecta. $Boot apunta al sector de arranque del volumen."
+      }
+    },
+    "forense-t04-e38": {
+      "section": "ntfs",
+      "reasoning": "El término NTFS del apartado describe su soporte nativo de compresión y cifrado con privilegios.",
+      "options": {
+        "a": "Incorrecta. NTFS admite tanto compresión como cifrado.",
+        "b": "Incorrecta. Solo se descifran con privilegios suficientes.",
+        "c": "Incorrecta. Solo los archivos de menos de 512 bytes guardan su contenido en la $MFT.",
+        "d": "Correcta. Soporte nativo, con acceso según privilegios."
+      }
+    },
+    "forense-t04-e39": {
+      "section": "ext4",
+      "reasoning": "El término Ext4 del apartado da la fecha de anuncio y su antecesor, Ext3.",
+      "options": {
+        "a": "Incorrecta. 1993 es el año de NTFS, que no tiene relación con FAT en este sentido.",
+        "b": "Correcta. Se anunció en octubre de 2006 como mejora de Ext3.",
+        "c": "Incorrecta. En 2016 se anunció APFS como sustituto de HFS+.",
+        "d": "Incorrecta. Ext4 no deriva de NTFS."
+      }
+    },
+    "forense-t04-e40": {
+      "section": "ext4",
+      "reasoning": "La lista de mejoras de Ext4 sobre Ext3 del apartado define los extents.",
+      "options": {
+        "a": "Correcta. Apuntan a tramos de bloques contiguos.",
+        "b": "Incorrecta. No son copias de seguridad.",
+        "c": "Incorrecta. Las particiones lógicas pertenecen al esquema MBR.",
+        "d": "Incorrecta. Los clones son una característica de APFS."
+      }
+    },
+    "forense-t04-e41": {
+      "section": "ext4",
+      "reasoning": "La lista de mejoras de Ext4 explica el journaling y los checksums que lo protegen.",
+      "options": {
+        "a": "Incorrecta. Guardar solo las diferencias describe los clones de APFS.",
+        "b": "Incorrecta. La desfragmentación en caliente es otra mejora distinta.",
+        "c": "Correcta. Es un diario de cambios previos.",
+        "d": "Incorrecta. No registra inicios de sesión de usuarios."
+      }
+    },
+    "forense-t04-e42": {
+      "section": "ext4",
+      "reasoning": "El apartado explica las dos ventajas de los grupos de bloques autónomos de Ext4.",
+      "options": {
+        "a": "Incorrecta. El cifrado y la compresión no son la ventaja de esta organización.",
+        "b": "Incorrecta. El límite de 2 TB es del esquema de particionado, no del sistema de ficheros.",
+        "c": "Incorrecta. Los inodos siguen siendo esenciales en Ext4.",
+        "d": "Correcta. Tolerancia a fallos y rapidez."
+      }
+    },
+    "forense-t04-e43": {
+      "section": "ext4",
+      "reasoning": "El término inodo del apartado aclara que el nombre no está en el inodo, sino en la entrada de directorio.",
+      "options": {
+        "a": "Incorrecta. El tema aclara que el nombre no está en el inodo.",
+        "b": "Correcta. El nombre está en la entrada de directorio.",
+        "c": "Incorrecta. El Block Bitmap solo marca qué bloques están en uso.",
+        "d": "Incorrecta. La tabla de particiones no sabe nada de archivos."
+      }
+    },
+    "forense-t04-e44": {
+      "section": "apfs",
+      "reasoning": "El término APFS del apartado indica que sustituye a HFS+, por defecto en Apple desde 1998.",
+      "options": {
+        "a": "Correcta. APFS sustituyó a HFS+, por defecto desde 1998.",
+        "b": "Incorrecta. NTFS es de Microsoft.",
+        "c": "Incorrecta. Ext4 es de Linux.",
+        "d": "Incorrecta. FAT es de Microsoft."
+      }
+    },
+    "forense-t04-e45": {
+      "section": "apfs",
+      "reasoning": "La lista de características destacadas de APFS describe el espacio libre compartido entre volúmenes.",
+      "options": {
+        "a": "Incorrecta. El espacio sin particionar no pertenece a ningún volumen.",
+        "b": "Incorrecta. Compartir bloques entre archivo y clon es la característica de los clones.",
+        "c": "Correcta. Varios volúmenes comparten el espacio disponible.",
+        "d": "Incorrecta. El MBR de protección pertenece a los discos GPT."
+      }
+    },
+    "forense-t04-e46": {
+      "section": "apfs",
+      "reasoning": "La tabla de estructuras de APFS indica que el Catalog es un árbol B.",
+      "options": {
+        "a": "Incorrecta. La tabla FAT es propia del sistema FAT.",
+        "b": "Incorrecta. El mapa de bits de APFS es el Bitmap, no el Catalog.",
+        "c": "Incorrecta. Los inodos son de Ext4.",
+        "d": "Correcta. El Catalog se organiza como un árbol B."
+      }
+    },
+    "forense-t04-e47": {
+      "section": "btrfs",
+      "reasoning": "El término copy-on-write del apartado de Btrfs lo define como escribir aparte y actualizar después la referencia.",
+      "options": {
+        "a": "Incorrecta. Eso es un clonado forense.",
+        "b": "Correcta. La versión nueva se escribe aparte y el original no se toca.",
+        "c": "Incorrecta. Eso es el journaling.",
+        "d": "Incorrecta. Eso es un RAID 1 (espejo)."
+      }
+    },
+    "forense-t04-e48": {
+      "section": "btrfs",
+      "reasoning": "La pareja que pide recordar el apartado es Btrfs = copy-on-write + instantáneas.",
+      "options": {
+        "a": "Incorrecta. Ext4 se asocia al journaling.",
+        "b": "Incorrecta. FAT32 es un sistema de Microsoft sin copy-on-write.",
+        "c": "Correcta. Btrfs es el de copy-on-write e instantáneas.",
+        "d": "Incorrecta. NTFS es de Microsoft."
+      }
+    },
+    "forense-t04-e49": {
+      "section": "vision-forense",
+      "reasoning": "La visión de conjunto del apartado resume que los sistemas de ficheros borran marcando, no destruyendo.",
+      "options": {
+        "a": "Correcta. Borrar solo marca como reutilizable.",
+        "b": "Incorrecta. El tema advierte contra esta idea: los bytes no se sobrescriben de inmediato.",
+        "c": "Incorrecta. Lo invisible puede conservar información.",
+        "d": "Incorrecta. También en NTFS y Ext4 los datos pueden seguir en el disco."
+      }
+    },
+    "forense-t04-e50": {
+      "section": "vision-forense",
+      "reasoning": "La lista de dónde buscar lo que el usuario no ve no incluye el explorador, que solo muestra lo que el sistema expone.",
+      "options": {
+        "a": "Correcta. El explorador muestra justo lo que el usuario ya ve.",
+        "b": "Incorrecta. El espacio sin particionar puede guardar restos de particiones antiguas.",
+        "c": "Incorrecta. Las entradas disponibles conservan nombres, fechas y ubicación de archivos borrados.",
+        "d": "Incorrecta. Un disco aislado de un RAID 0 no contiene los archivos completos."
+      }
     }
   }
 }

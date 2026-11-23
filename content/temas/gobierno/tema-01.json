@@ -1280,6 +1280,506 @@
         "c": "Incorrecta. La frase está incompleta y no describe el alcance real. La seguridad física cubre todo lo del entorno de los sistemas que puede afectar a la confidencialidad, integridad y disponibilidad, no un «ámbito de la empresa» genérico.",
         "d": "Incorrecta. La opción A es cierta, así que «ninguna de las anteriores» no puede serlo."
       }
+    },
+    "gobierno-t01-e01": {
+      "section": "que-es-seguridad",
+      "reasoning": "El apartado pone exactamente este ejemplo (contratos impresos) para la seguridad de la información, frente al cortafuegos como ejemplo de seguridad informática.",
+      "options": {
+        "a": "Incorrecta. La seguridad informática solo cubre la parte técnica de los sistemas; un contrato en papel queda fuera de ella.",
+        "b": "Correcta. La seguridad de la información abarca cualquier soporte, incluido el papel, y este es el ejemplo que da el tema.",
+        "c": "Incorrecta. El papel sí se protege: la seguridad de la información incluye cualquier soporte, no solo el digital.",
+        "d": "Incorrecta. No es un control de red; es una norma organizativa sobre información en papel."
+      }
+    },
+    "gobierno-t01-e02": {
+      "section": "que-es-seguridad",
+      "reasoning": "El apartado cita a Schneier para subrayar que un sistema sofisticado puede caer por la negligencia de un empleado con su contraseña.",
+      "options": {
+        "a": "Incorrecta. Es justo lo contrario: el tema insiste en que la tecnología sola, criptografía incluida, no basta.",
+        "b": "Incorrecta. Las herramientas técnicas no sustituyen a las políticas ni a los procedimientos.",
+        "c": "Incorrecta. Reducir la seguridad a comprar un producto es la visión que Schneier critica.",
+        "d": "Correcta. Es la idea de Schneier que recoge el tema: la tecnología sola no resuelve la seguridad."
+      }
+    },
+    "gobierno-t01-e03": {
+      "section": "que-es-seguridad",
+      "reasoning": "El apartado define el sistema de información y lo distingue expresamente del sistema informático, de ahí el enfoque sociotécnico.",
+      "options": {
+        "a": "Correcta. El sistema de información añade procedimientos, estructuras organizativas y personas a las máquinas y programas.",
+        "b": "Incorrecta. Está al revés: el informático se limita a máquinas y programas.",
+        "c": "Incorrecta. No son sinónimos; el tema los distingue precisamente para justificar el enfoque sociotécnico.",
+        "d": "Incorrecta. No se limita a los datos almacenados: incluye componentes técnicos, humanos y organizativos."
+      }
+    },
+    "gobierno-t01-e04": {
+      "section": "que-es-seguridad",
+      "reasoning": "El apartado define juntos el IDS y el honeypot como ejemplos de la perspectiva técnica, y la confusión entre ambos es la trampa natural.",
+      "options": {
+        "a": "Incorrecta. Eso describe un IDS (sistema de detección de intrusos), no un honeypot.",
+        "b": "Incorrecta. Un parche corrige fallos; un honeypot no corrige nada, sirve de cebo.",
+        "c": "Correcta. Es un equipo señuelo pensado para atraer y estudiar a los atacantes.",
+        "d": "Incorrecta. Un cortafuegos filtra tráfico; el honeypot, al contrario, se deja atractivo para atraerlo."
+      }
+    },
+    "gobierno-t01-e05": {
+      "section": "que-es-seguridad",
+      "reasoning": "Entre las ideas que el apartado repite desde el principio está que la cantidad de seguridad y su coste los decide la dirección.",
+      "options": {
+        "a": "Incorrecta. El técnico aplica medidas, pero la decisión de cuánto invertir es de la dirección.",
+        "b": "Incorrecta. El fabricante no decide el nivel de seguridad que necesita la organización.",
+        "c": "Correcta. Es una decisión de negocio que el tema atribuye a la dirección.",
+        "d": "Incorrecta. Las medidas deben justificarse ante los usuarios, pero no son ellos quienes deciden."
+      }
+    },
+    "gobierno-t01-e06": {
+      "section": "negocio-activos-amenazas",
+      "reasoning": "El apartado presenta esta cadena paso a paso para insistir en que la seguridad nace del negocio.",
+      "options": {
+        "a": "Correcta. Es la cadena del profesor: del negocio a los sistemas, de ahí a los activos y por último a los controles.",
+        "b": "Incorrecta. Empieza por los controles, cuando el profesor insiste en que lo primero es el negocio.",
+        "c": "Incorrecta. Los activos forman los sistemas de información, no van antes que el negocio.",
+        "d": "Incorrecta. Los controles protegen activos; no se sitúan entre los sistemas y el negocio."
+      }
+    },
+    "gobierno-t01-e07": {
+      "section": "negocio-activos-amenazas",
+      "reasoning": "La tabla de activos del apartado explica cómo se protege un servidor y pone este caso del puerto de base de datos.",
+      "options": {
+        "a": "Incorrecta. Cerrar un puerto necesario rompería el servicio; solo se quitan los que no se usan.",
+        "b": "Incorrecta. Mantenerlo abierto sin protección deja el riesgo intacto.",
+        "c": "Incorrecta. El tema no propone aislar la base de datos, sino proteger esa comunicación.",
+        "d": "Correcta. Se mantiene el puerto, pero cifrando la comunicación y filtrando por IP."
+      }
+    },
+    "gobierno-t01-e08": {
+      "section": "negocio-activos-amenazas",
+      "reasoning": "El apartado muestra que cada tipo de activo pide medidas distintas; para las personas, concienciar y medir el aprendizaje.",
+      "options": {
+        "a": "Incorrecta. Cifrar y filtrar por IP son medidas para servidores y líneas de comunicación.",
+        "b": "Correcta. El profesor insistió en medir el aprendizaje, por ejemplo con simulacros de phishing.",
+        "c": "Incorrecta. Las cabeceras de seguridad y las pruebas son medidas para aplicaciones.",
+        "d": "Incorrecta. Quitar servicios y puertos es una medida de bastionado de servidores."
+      }
+    },
+    "gobierno-t01-e09": {
+      "section": "negocio-activos-amenazas",
+      "reasoning": "El apartado usa los fichajes y la tienda online para explicar que la protección se gradúa según la criticidad.",
+      "options": {
+        "a": "Correcta. Es la conclusión del ejemplo: proteger según la criticidad de cada activo.",
+        "b": "Incorrecta. El profesor aclara que no es que los empleados importen menos, sino que el daño posible es distinto.",
+        "c": "Incorrecta. La aplicación de fichajes también es necesaria (incluso por ley); solo su caída es menos grave.",
+        "d": "Incorrecta. Justo lo contrario: el ejemplo demuestra que no todos merecen la misma protección."
+      }
+    },
+    "gobierno-t01-e10": {
+      "section": "negocio-activos-amenazas",
+      "reasoning": "El apartado afirma que los recursos nunca son infinitos y presenta el análisis de riesgos como herramienta para priorizar.",
+      "options": {
+        "a": "Incorrecta. Precisamente no se pueden implantar todos a la vez, porque los recursos son limitados.",
+        "b": "Incorrecta. El análisis de riesgos se apoya en conocer el negocio y los activos; no lo sustituye.",
+        "c": "Correcta. Sirve para decidir qué controles hacen falta antes, dado que los recursos son limitados.",
+        "d": "Incorrecta. El profesor advierte que certificarse no equivale a estar seguro, y nada la garantiza automáticamente."
+      }
+    },
+    "gobierno-t01-e11": {
+      "section": "cid",
+      "reasoning": "El apartado cita el código fuente como ejemplo de información confidencial que no es personal y menciona los troyanos como forma de ataque.",
+      "options": {
+        "a": "Incorrecta. El enunciado no dice que el programa deje de funcionar; se ha extraído información.",
+        "b": "Incorrecta. Nada indica que el código se haya alterado; se ha copiado.",
+        "c": "Incorrecta. La autenticidad no forma parte de la tríada y no es lo que se ve afectado aquí.",
+        "d": "Correcta. Alguien ve lo que no debía: confidencialidad, aunque no se trate de datos personales."
+      }
+    },
+    "gobierno-t01-e12": {
+      "section": "cid",
+      "reasoning": "El apartado de integridad describe este caso concreto del programa que reduce saldos sin conocerlos.",
+      "options": {
+        "a": "Incorrecta. Una intrusión no afecta solo a la confidencialidad; aquí lo que se altera son los saldos.",
+        "b": "Correcta. Se modifican datos sin autorización, aunque el atacante no llegue a verlos.",
+        "c": "Incorrecta. Alterar el programa que actualiza el dato también compromete la integridad del dato.",
+        "d": "Incorrecta. El programa sigue funcionando; lo que falla es la exactitud de los saldos."
+      }
+    },
+    "gobierno-t01-e13": {
+      "section": "cid",
+      "reasoning": "La tabla de los tres principios para proteger la integridad pone este ejemplo para la separación de obligaciones.",
+      "options": {
+        "a": "Incorrecta. El menor privilegio limita a cada usuario a lo imprescindible, pero no exige que intervengan dos personas.",
+        "b": "Correcta. Dos personas distintas intervienen en una tarea sensible: separación de obligaciones.",
+        "c": "Incorrecta. La rotación consiste en cambiar de responsable de vez en cuando, no en repartir una misma tarea.",
+        "d": "Incorrecta. La rendición de cuentas atribuye acciones a usuarios; no es uno de los tres principios de integridad."
+      }
+    },
+    "gobierno-t01-e14": {
+      "section": "cid",
+      "reasoning": "La tabla de principios de integridad añade esta limitación práctica a la rotación de obligaciones.",
+      "options": {
+        "a": "Incorrecta. El registro de transacciones complementa al menor privilegio; la rotación no lo impide.",
+        "b": "Incorrecta. El tema no la restringe a tareas sin datos sensibles; su ejemplo es un cajero.",
+        "c": "Incorrecta. El temario presenta los tres principios como complementarios, no como contradictorios.",
+        "d": "Correcta. Con poca plantilla es difícil ir cambiando a los responsables de cada tarea."
+      }
+    },
+    "gobierno-t01-e15": {
+      "section": "cid",
+      "reasoning": "El apartado de disponibilidad cita la denegación de servicio con botnets como una de sus dos situaciones típicas.",
+      "options": {
+        "a": "Correcta. Una botnet que satura la web es una denegación de servicio y ataca la disponibilidad.",
+        "b": "Incorrecta. El phishing engaña a la víctima para robar credenciales; aquí nadie ha sido engañado.",
+        "c": "Incorrecta. El taint analysis es una técnica de análisis de código, un control, no un ataque.",
+        "d": "Incorrecta. No hay manipulación de personas; hay saturación técnica del servicio."
+      }
+    },
+    "gobierno-t01-e16": {
+      "section": "otros-conceptos",
+      "reasoning": "La tabla de conceptos que acompañan a la tríada pone como ejemplo de identificación escribir el nombre de usuario.",
+      "options": {
+        "a": "Incorrecta. Autenticarse es probar la identidad (por ejemplo, con la contraseña), no solo afirmarla.",
+        "b": "Incorrecta. La autorización son los permisos que se conceden después de autenticarse.",
+        "c": "Correcta. Escribir el nombre de usuario es afirmar quién eres: identificación.",
+        "d": "Incorrecta. La rendición de cuentas es el registro posterior de lo que hace cada usuario."
+      }
+    },
+    "gobierno-t01-e17": {
+      "section": "otros-conceptos",
+      "reasoning": "El apartado define la rendición de cuentas con el ejemplo de los registros de auditoría y las bitácoras.",
+      "options": {
+        "a": "Correcta. Atribuir la acción de borrar a «mgarcia» es la rendición de cuentas.",
+        "b": "Incorrecta. La identificación es afirmar quién eres al entrar, no registrar lo que haces después.",
+        "c": "Incorrecta. La autorización define qué puede hacer el usuario, no deja constancia de lo que hizo.",
+        "d": "Incorrecta. La disponibilidad se refiere a poder usar la información, no a atribuir acciones."
+      }
+    },
+    "gobierno-t01-e18": {
+      "section": "otros-conceptos",
+      "reasoning": "El apartado define la autenticidad y advierte que no pertenece a la tríada, aunque algunas preguntas la incluyan como distractor.",
+      "options": {
+        "a": "Incorrecta. La tríada es confidencialidad, integridad y disponibilidad; la autenticidad no está.",
+        "b": "Incorrecta. La autorización son los permisos; la autenticidad trata de si algo es lo que dice ser.",
+        "c": "Incorrecta. Eso es la rendición de cuentas (accountability).",
+        "d": "Correcta. Es que una entidad o dato sea quien dice ser, y no forma parte de la tríada."
+      }
+    },
+    "gobierno-t01-e19": {
+      "section": "otros-conceptos",
+      "reasoning": "El apartado define la criptografía con ambos usos y señala como trampa la idea de que solo sirve para almacenar.",
+      "options": {
+        "a": "Incorrecta. Esta es la trampa típica: también sirve para transmitir.",
+        "b": "Incorrecta. También sirve para almacenar, por ejemplo con un disco cifrado.",
+        "c": "Correcta. Sirve para las dos cosas: almacenar y transmitir de forma segura.",
+        "d": "Incorrecta. Al contrario: la criptografía es inútil si las claves no se custodian bien."
+      }
+    },
+    "gobierno-t01-e20": {
+      "section": "economia",
+      "reasoning": "El apartado plantea la seguridad como asunto económico y da esta regla general de proporcionalidad.",
+      "options": {
+        "a": "Incorrecta. El gasto debe guardar proporción con lo que se perdería; no es ilimitado.",
+        "b": "Correcta. Es la regla general: no gastar más de lo que costaría perder el activo.",
+        "c": "Incorrecta. El tema no fija el gasto por comparación con el sector, sino por el valor del activo y el impacto.",
+        "d": "Incorrecta. La frecuencia no basta: hay que estimar el impacto, incluidas las pérdidas indirectas."
+      }
+    },
+    "gobierno-t01-e21": {
+      "section": "economia",
+      "reasoning": "La tabla de costes del marco de Mizzi define cada uno; el de construcción corresponde a montar las defensas.",
+      "options": {
+        "a": "Incorrecta. Eso es el coste de ruptura (CTB), que soporta el atacante.",
+        "b": "Incorrecta. Eso es la pérdida de beneficio inmediata (L).",
+        "c": "Incorrecta. Eso es el coste de reconstrucción (R).",
+        "d": "Correcta. El coste de construcción es montar las defensas de la organización."
+      }
+    },
+    "gobierno-t01-e22": {
+      "section": "economia",
+      "reasoning": "La tabla del marco de Mizzi indica expresamente que el coste de ruptura se puede estimar con un pentesting.",
+      "options": {
+        "a": "Correcta. El pentesting estima cuánto le costaría al atacante romper las defensas: el CTB.",
+        "b": "Incorrecta. El coste de reparación es corregir vulnerabilidades con parches, lo paga la organización.",
+        "c": "Incorrecta. El coste de reconstrucción es rehacer los sistemas tras el incidente.",
+        "d": "Incorrecta. La pérdida de beneficio es lo que se deja de ganar tras el incidente."
+      }
+    },
+    "gobierno-t01-e23": {
+      "section": "economia",
+      "reasoning": "El apartado explica los dos problemas del lado del atacante: beneficio difícil de estimar y motivaciones no económicas.",
+      "options": {
+        "a": "Incorrecta. El coste de ruptura lo soporta el atacante, no la empresa.",
+        "b": "Incorrecta. Muchos sí buscan beneficio (por ejemplo, vender datos de tarjetas); el matiz es que no siempre.",
+        "c": "Correcta. Si el motivo no es económico, el atacante puede asumir un coste mayor que el beneficio.",
+        "d": "Incorrecta. El pentesting es precisamente una forma de estimar el coste de ruptura."
+      }
+    },
+    "gobierno-t01-e24": {
+      "section": "economia",
+      "reasoning": "El apartado de economía explica la adopción de los cortafuegos por la facilidad de implantación y la exigencia de los auditores.",
+      "options": {
+        "a": "Incorrecta. El tema no atribuye la adopción a una exigencia del fabricante del sistema operativo.",
+        "b": "Correcta. Facilidad de implantación y exigencia de los auditores son los dos factores que cita el tema.",
+        "c": "Incorrecta. El tema dice lo contrario: pocas intrusiones han llevado a cerrar empresas.",
+        "d": "Incorrecta. El software bien protegido es más caro y lento de desarrollar, según el tema."
+      }
+    },
+    "gobierno-t01-e25": {
+      "section": "proceso",
+      "reasoning": "Los pasos del ciclo del apartado empiezan por identificar los activos de información, calificada como la base de todo.",
+      "options": {
+        "a": "Correcta. Identificar los activos de información es la base del proceso de seguridad.",
+        "b": "Incorrecta. Comprar una herramienta no es la base; la seguridad es un proceso, no un producto.",
+        "c": "Incorrecta. El tema descarta que baste con la auditoría inicial: la revisión es continua.",
+        "d": "Incorrecta. El manual de usuario no figura como base del ciclo de seguridad."
+      }
+    },
+    "gobierno-t01-e26": {
+      "section": "proceso",
+      "reasoning": "El apartado presenta la seguridad como un proceso de revisión continua justificado por los cambios en amenazas y organización.",
+      "options": {
+        "a": "Incorrecta. El tema no habla de que las normas caduquen; la revisión responde a los cambios en riesgos.",
+        "b": "Incorrecta. Renovar licencias es precisamente lo que el tema descarta como suficiente.",
+        "c": "Correcta. Las amenazas evolucionan y la organización cambia, así que las políticas deben adecuarse.",
+        "d": "Incorrecta. La revisión no es un trámite para el auditor, sino una necesidad ante nuevos riesgos."
+      }
+    },
+    "gobierno-t01-e27": {
+      "section": "jerarquia-documental",
+      "reasoning": "La tabla de la jerarquía documental usa el antivirus de McAfee como ejemplo de estándar obligatorio.",
+      "options": {
+        "a": "Correcta. Obliga a usar un producto concreto de forma uniforme: es un estándar.",
+        "b": "Incorrecta. La directriz solo recomienda; aquí hay una obligación.",
+        "c": "Incorrecta. La línea base diría cómo configurar el antivirus, no qué producto usar.",
+        "d": "Incorrecta. La política general es estratégica y no baja al nivel de un producto concreto."
+      }
+    },
+    "gobierno-t01-e28": {
+      "section": "jerarquia-documental",
+      "reasoning": "El apartado explica expresamente la relación entre estándar y línea base con el ejemplo del antivirus.",
+      "options": {
+        "a": "Incorrecta. Recomendar una formación es una directriz.",
+        "b": "Incorrecta. Obligar a usar un fabricante es lo que ya hace el estándar.",
+        "c": "Incorrecta. Los pasos de actualización son un procedimiento.",
+        "d": "Correcta. La línea base fija los parámetros de configuración del producto que eligió el estándar."
+      }
+    },
+    "gobierno-t01-e29": {
+      "section": "jerarquia-documental",
+      "reasoning": "La tabla del apartado sitúa las políticas funcionales en el alto nivel y las distingue de las herramientas que las implementan.",
+      "options": {
+        "a": "Incorrecta. Los parámetros de configuración corresponden a la línea base.",
+        "b": "Correcta. Afectan a un área y dicen qué hacer, sin entrar en cómo.",
+        "c": "Incorrecta. Son obligatorias; la recomendación es propia de la directriz.",
+        "d": "Incorrecta. El paso a paso es propio del procedimiento."
+      }
+    },
+    "gobierno-t01-e30": {
+      "section": "jerarquia-documental",
+      "reasoning": "La tabla de los tres niveles del apartado asigna estos documentos al nivel operativo.",
+      "options": {
+        "a": "Incorrecta. El nivel estratégico corresponde a la política general.",
+        "b": "Incorrecta. El táctico corresponde a las políticas funcionales (y estándares).",
+        "c": "Correcta. El nivel operativo dice cómo implementar y cumplir lo de arriba.",
+        "d": "Incorrecta. «Directivo» no es uno de los tres niveles del tema."
+      }
+    },
+    "gobierno-t01-e31": {
+      "section": "jerarquia-documental",
+      "reasoning": "El término «cuerpo normativo de seguridad» del apartado sitúa al Plan Director en la cúspide.",
+      "options": {
+        "a": "Incorrecta. La política de clasificación es uno de los mínimos exigibles, pero no está en la cúspide.",
+        "b": "Correcta. El Plan Director de Seguridad marca la estrategia y está en lo más alto.",
+        "c": "Incorrecta. Las líneas base son documentos operativos, en la parte baja.",
+        "d": "Incorrecta. Un estándar concreta un producto; no marca la estrategia."
+      }
+    },
+    "gobierno-t01-e32": {
+      "section": "jerarquia-documental",
+      "reasoning": "El bloque de examen del apartado señala como trampa que «los procedimientos detallan a alto nivel».",
+      "options": {
+        "a": "Incorrecta. Es verdadera: la directriz es solo una recomendación.",
+        "b": "Incorrecta. Es verdadera: el estándar puede comprometer con un fabricante concreto.",
+        "c": "Incorrecta. Es verdadera: la política general declara la importancia de la información y el compromiso de la dirección.",
+        "d": "Correcta. Es falsa: los procedimientos son el nivel más detallado, no de alto nivel."
+      }
+    },
+    "gobierno-t01-e33": {
+      "section": "clasificacion",
+      "reasoning": "La tabla de niveles en una empresa del apartado pone este ejemplo para el uso interno.",
+      "options": {
+        "a": "Correcta. Se difunden dentro de la empresa pero no fuera: uso interno.",
+        "b": "Incorrecta. Uso público es, por ejemplo, un folleto comercial.",
+        "c": "Incorrecta. Confidencial se reserva para lo más sensible: fórmulas, productos nuevos o fusiones.",
+        "d": "Incorrecta. Alto secreto es un nivel del sector público, no del ejemplo empresarial."
+      }
+    },
+    "gobierno-t01-e34": {
+      "section": "clasificacion",
+      "reasoning": "La tabla de niveles del sector público del apartado define cada nivel por la gravedad del daño de su difusión.",
+      "options": {
+        "a": "Incorrecta. Secreta corresponde a un daño importante, no extremadamente grave.",
+        "b": "Incorrecta. Confidencial es un nivel inferior: podría dañar la seguridad nacional.",
+        "c": "Correcta. Alto secreto es el nivel del daño extremadamente grave.",
+        "d": "Incorrecta. Sensible pero no clasificada implica solo un impacto menor."
+      }
+    },
+    "gobierno-t01-e35": {
+      "section": "clasificacion",
+      "reasoning": "Entre los otros criterios de clasificación, el apartado trata la información personal como categoría propia protegida por la ley.",
+      "options": {
+        "a": "Incorrecta. No es información interna sin más: tiene protección legal específica.",
+        "b": "Incorrecta. El tema no la presenta como pública; su difusión está protegida.",
+        "c": "Incorrecta. «Secreta» es un nivel de la escala del sector público, no la categoría de los datos personales.",
+        "d": "Correcta. Es una categoría aparte, protegida por la ley porque afecta a derechos de las personas."
+      }
+    },
+    "gobierno-t01-e36": {
+      "section": "clasificacion",
+      "reasoning": "La tabla de roles de la clasificación describe al usuario con el ejemplo de bloquear la sesión al levantarse.",
+      "options": {
+        "a": "Incorrecta. El usuario no cambia la clasificación por su cuenta; eso lo decide el propietario.",
+        "b": "Correcta. Bloquear la sesión al levantarse es lo que el tema espera del usuario.",
+        "c": "Incorrecta. Las copias de seguridad son tareas técnicas del custodio.",
+        "d": "Incorrecta. No hay obligación de avisar al propietario; lo que debe es no dejar la información expuesta."
+      }
+    },
+    "gobierno-t01-e37": {
+      "section": "clasificacion",
+      "reasoning": "La lista de actividades de clasificación del apartado incluye documentar las excepciones, y el bloque de examen avisa de que la clasificación sí las admite.",
+      "options": {
+        "a": "Correcta. Documentar las excepciones es una de las actividades del proceso.",
+        "b": "Incorrecta. La clasificación sí admite excepciones, siempre documentadas.",
+        "c": "Incorrecta. El criterio es el valor y el daño si se difunde, no el formato ni el tamaño.",
+        "d": "Incorrecta. Clasificar los datos corresponde al propietario, no a cada usuario."
+      }
+    },
+    "gobierno-t01-e38": {
+      "section": "clasificacion",
+      "reasoning": "El apartado aclara que en el inventario manda el valor estratégico y no el coste del activo.",
+      "options": {
+        "a": "Incorrecta. El coste se puede anotar, pero no es lo que prioriza la protección.",
+        "b": "Incorrecta. La obsolescencia puede influir en el coste anotado, no en la prioridad.",
+        "c": "Correcta. El valor estratégico, cuánto sustenta los servicios, es el criterio que importa.",
+        "d": "Incorrecta. El tema no usa el número de usuarios como criterio de prioridad."
+      }
+    },
+    "gobierno-t01-e39": {
+      "section": "controles",
+      "reasoning": "El apartado de controles afirma que gastar en una medida sin riesgo asociado no se justifica desde la seguridad.",
+      "options": {
+        "a": "Incorrecta. El tema dice expresamente que figurar en el inventario no la justifica.",
+        "b": "Incorrecta. Que sea moderna no la justifica si no reduce un riesgo.",
+        "c": "Correcta. Sin un riesgo que reducir, el control no se justifica.",
+        "d": "Incorrecta. Un control solo aporta si reduce un riesgo concreto."
+      }
+    },
+    "gobierno-t01-e40": {
+      "section": "controles",
+      "reasoning": "El ejemplo del apartado detalla los riesgos que trata el control de contraseñas y justifica la extensión a integridad y disponibilidad.",
+      "options": {
+        "a": "Incorrecta. El tema no basa el alcance del control en cómo se guardan las claves.",
+        "b": "Incorrecta. El cambio periódico es un procedimiento del control, no la razón de que cubra integridad y disponibilidad.",
+        "c": "Incorrecta. El tema no relaciona este control con la denegación de servicio.",
+        "d": "Correcta. Un intruso con una clave robada puede modificar el sistema, afectando a integridad y disponibilidad."
+      }
+    },
+    "gobierno-t01-e41": {
+      "section": "controles",
+      "reasoning": "La definición de control del apartado lo vincula al análisis de riesgos como proceso previo.",
+      "options": {
+        "a": "Correcta. El análisis de riesgos estima las pérdidas posibles y precede al control.",
+        "b": "Incorrecta. Clasificar identifica el valor de la información, pero no es el proceso que estima pérdidas.",
+        "c": "Incorrecta. Una auditoría comprueba controles; no es el estudio previo del impacto.",
+        "d": "Incorrecta. El pentesting estima el coste de ruptura del atacante, no el impacto de las amenazas."
+      }
+    },
+    "gobierno-t01-e42": {
+      "section": "gestion-riesgos",
+      "reasoning": "La tabla de las cuatro vías del apartado usa este ejemplo para la vía de evitar.",
+      "options": {
+        "a": "Incorrecta. Aceptar sería convivir con el riesgo tal cual, sin dejar la actividad.",
+        "b": "Correcta. Se elimina la actividad que genera el riesgo: evitarlo.",
+        "c": "Incorrecta. Mitigar sería aplicar controles manteniendo la actividad.",
+        "d": "Incorrecta. Transferir sería que un tercero, como una aseguradora, compense las pérdidas."
+      }
+    },
+    "gobierno-t01-e43": {
+      "section": "gestion-riesgos",
+      "reasoning": "La tabla de las cuatro vías del apartado pone este caso como ejemplo de aceptación.",
+      "options": {
+        "a": "Incorrecta. No se contrata ningún seguro; no hay transferencia.",
+        "b": "Incorrecta. La web sigue funcionando; no se deja la actividad.",
+        "c": "Incorrecta. No se añaden controles para bajar el riesgo; se mantiene la protección básica.",
+        "d": "Correcta. Se convive con un riesgo pequeño: aceptarlo."
+      }
+    },
+    "gobierno-t01-e44": {
+      "section": "gestion-riesgos",
+      "reasoning": "El apartado añade este matiz justo después de explicar el alcance limitado de la transferencia.",
+      "options": {
+        "a": "Incorrecta. Contratar un seguro es transferir, no aceptar.",
+        "b": "Incorrecta. Dejar la actividad es evitar el riesgo.",
+        "c": "Correcta. Aceptar un riesgo no significa que ya no hagan falta controles en general.",
+        "d": "Incorrecta. El tema no atribuye esa decisión al custodio técnico."
+      }
+    },
+    "gobierno-t01-e45": {
+      "section": "seguridad-fisica",
+      "reasoning": "El ejemplo del búnker de Bahnhof en el apartado sirve para recordar que la ubicación no sustituye al control de acceso.",
+      "options": {
+        "a": "Correcta. La ubicación no protege frente al acceso no autorizado de personas.",
+        "b": "Incorrecta. El tema concluye justo lo contrario: siguen haciendo falta controles de acceso.",
+        "c": "Incorrecta. La estabilidad geológica ayuda, pero no elimina riesgos como el acceso de personas.",
+        "d": "Incorrecta. El tema no limita la protección del búnker a las anomalías eléctricas."
+      }
+    },
+    "gobierno-t01-e46": {
+      "section": "seguridad-fisica",
+      "reasoning": "La tabla de las siete fuentes de Parker del apartado asigna estos ejemplos a las anomalías eléctricas.",
+      "options": {
+        "a": "Incorrecta. Los gases incluyen gases de guerra, industriales y partículas en suspensión.",
+        "b": "Correcta. Magnetismo, radiaciones y picos de tensión son anomalías eléctricas.",
+        "c": "Incorrecta. Los organismos son virus, bacterias, insectos y personas.",
+        "d": "Incorrecta. La temperatura se refiere, por ejemplo, al calor extremo de un incendio."
+      }
+    },
+    "gobierno-t01-e47": {
+      "section": "seguridad-fisica",
+      "reasoning": "El apartado enumera las siete fuentes físicas de Parker, entre las que no hay ninguna de tipo lógico.",
+      "options": {
+        "a": "Incorrecta. Los líquidos (inundaciones, fugas) sí son una de las siete fuentes.",
+        "b": "Incorrecta. Los organismos, incluidas las personas, sí están en la lista.",
+        "c": "Correcta. Las contraseñas débiles son un riesgo lógico, no una fuente de pérdida física de Parker.",
+        "d": "Incorrecta. Los movimientos (caídas, terremotos) sí son una de las fuentes."
+      }
+    },
+    "gobierno-t01-e48": {
+      "section": "seguridad-fisica",
+      "reasoning": "La tabla de las tres familias de controles físicos del apartado sitúa estos elementos en el entorno y la habitabilidad.",
+      "options": {
+        "a": "Incorrecta. Los administrativos tratan la planificación de las instalaciones y los controles sobre el personal.",
+        "b": "Incorrecta. Los técnicos y físicos incluyen el inventario, los tornos, las alarmas y los soportes.",
+        "c": "Incorrecta. Los controles lógicos no son una de las tres familias de controles físicos.",
+        "d": "Correcta. Climatización e incendios pertenecen a los controles del entorno y de habitabilidad."
+      }
+    },
+    "gobierno-t01-e49": {
+      "section": "factor-humano",
+      "reasoning": "El apartado del factor humano define la ingeniería social como la manipulación de usuarios legítimos.",
+      "options": {
+        "a": "Correcta. Es obtener información confidencial manipulando a las personas.",
+        "b": "Incorrecta. No tiene que ver con diseñar redes sociales, pese al nombre.",
+        "c": "Incorrecta. Eso es el análisis estático de código.",
+        "d": "Incorrecta. Eso describe la matriz RACI de responsabilidades."
+      }
+    },
+    "gobierno-t01-e50": {
+      "section": "factor-humano",
+      "reasoning": "La lista del apartado sobre cómo proteger el factor humano no incluye medidas puramente técnicas como el almacenamiento.",
+      "options": {
+        "a": "Incorrecta. La formación y los simulacros de phishing sí están en la lista.",
+        "b": "Correcta. Más almacenamiento es una medida técnica que el tema descarta ante la ingeniería social.",
+        "c": "Incorrecta. Explicar el porqué de las medidas reduce la resistencia de los empleados y sí aparece.",
+        "d": "Incorrecta. Los procedimientos de verificación de identidad sí son una de las medidas."
+      }
     }
   }
 }

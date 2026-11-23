@@ -1408,6 +1408,506 @@
         "c": "Correcta. Se unifica en un defecto y se hace seguimiento de su corrección con las evidencias de las tres herramientas.",
         "d": "Incorrecta. Cerrar avisos sin vincularlos pierde trazabilidad y evidencias."
       }
+    },
+    "sistemas-t07-e01": {
+      "section": "por-que-analizar",
+      "reasoning": "El apartado ilustra el coste con una gráfica: en servicio, unas 60 veces más que en diseño.",
+      "options": {
+        "a": "Correcta. En producción cuesta unas sesenta veces más.",
+        "b": "Incorrecta. La diferencia que da el tema es mucho mayor.",
+        "c": "Incorrecta. El coste crece mucho a medida que avanza el ciclo.",
+        "d": "Incorrecta. Arreglar tarde nunca es más barato."
+      }
+    },
+    "sistemas-t07-e02": {
+      "section": "por-que-analizar",
+      "reasoning": "El apartado explica las limitaciones del pentest manual final y la alternativa de un SSDLC con herramientas.",
+      "options": {
+        "a": "Incorrecta. El hackeo ético no está prohibido; el problema es su coste.",
+        "b": "Incorrecta. Se aplica precisamente a aplicaciones web.",
+        "c": "Correcta. Es caro, lento y no cubre toda la superficie de ataque.",
+        "d": "Incorrecta. El tema no dice eso; su problema es la cobertura y el coste."
+      }
+    },
+    "sistemas-t07-e03": {
+      "section": "por-que-analizar",
+      "reasoning": "El apartado resume la introducción en prevenir, detectar y corregir, siempre lo antes posible.",
+      "options": {
+        "a": "Incorrecta. Prevenir con formación es la primera idea.",
+        "b": "Incorrecta. Detectar con análisis combinados es la segunda idea.",
+        "c": "Incorrecta. Corregir es la tercera idea.",
+        "d": "Correcta. Esperar a producción va en contra de lo que propone el tema."
+      }
+    },
+    "sistemas-t07-e04": {
+      "section": "tipos-de-analisis",
+      "reasoning": "El apartado define caja blanca, negra y gris según la información interna disponible.",
+      "options": {
+        "a": "Incorrecta. En caja blanca se ve el código fuente.",
+        "b": "Correcta. Solo ve entradas y salidas: caja negra.",
+        "c": "Incorrecta. El inventario corresponde a SCA, no es una modalidad de caja.",
+        "d": "Incorrecta. No es una de las modalidades del tema."
+      }
+    },
+    "sistemas-t07-e05": {
+      "section": "tipos-de-analisis",
+      "reasoning": "El apartado define la caja gris como información interna parcial con ataque externo.",
+      "options": {
+        "a": "Incorrecta. En caja negra no se tiene información interna.",
+        "b": "Incorrecta. En caja blanca se ve el interior, el código fuente.",
+        "c": "Correcta. Información parcial y ataque desde fuera es caja gris.",
+        "d": "Incorrecta. El análisis estático lee código sin ejecutar; no es esta modalidad."
+      }
+    },
+    "sistemas-t07-e06": {
+      "section": "tipos-de-analisis",
+      "reasoning": "El apartado agrupa todas las herramientas bajo la sigla AST, Application Security Testing.",
+      "options": {
+        "a": "Correcta. AST = Application Security Testing.",
+        "b": "Incorrecta. No es la sigla que usa el tema.",
+        "c": "Incorrecta. No es lo que significa AST en el tema.",
+        "d": "Incorrecta. Aunque existe en compiladores, aquí AST agrupa las pruebas de seguridad."
+      }
+    },
+    "sistemas-t07-e07": {
+      "section": "tipos-de-analisis",
+      "reasoning": "El apartado define CVE con el ejemplo de CVE-2021-44228, Log4Shell.",
+      "options": {
+        "a": "Incorrecta. Las categorías de debilidad son CWE, no CVE.",
+        "b": "Correcta. Es la famosa Log4Shell de Log4j.",
+        "c": "Incorrecta. CVE no trata licencias.",
+        "d": "Incorrecta. El estándar de requisitos de OWASP es ASVS."
+      }
+    },
+    "sistemas-t07-e08": {
+      "section": "tipos-de-analisis",
+      "reasoning": "La lista de complementos manuales del apartado define el fuzzer.",
+      "options": {
+        "a": "Correcta. Un fuzzer bombardea con entradas anómalas para provocar fallos.",
+        "b": "Incorrecta. Puntuar la gravedad es tarea de modelos como CVSS.",
+        "c": "Incorrecta. El agente en el servidor es propio de IAST.",
+        "d": "Incorrecta. Eso describe ficheros como package.json o pom.xml."
+      }
+    },
+    "sistemas-t07-e09": {
+      "section": "ssdlc-fases",
+      "reasoning": "La tabla de fases del apartado asigna a análisis y diseño la completitud de requisitos.",
+      "options": {
+        "a": "Correcta. Sin código, se revisa la completitud de los requisitos.",
+        "b": "Incorrecta. SAST requiere código: va en desarrollo.",
+        "c": "Incorrecta. DAST necesita una aplicación ejecutable: va en pruebas.",
+        "d": "Incorrecta. RASP se usa en producción."
+      }
+    },
+    "sistemas-t07-e10": {
+      "section": "ssdlc-fases",
+      "reasoning": "La tabla de fases sitúa SAST y SCA en la fase de desarrollo.",
+      "options": {
+        "a": "Correcta. SCA se aplica en desarrollo, junto a SAST.",
+        "b": "Incorrecta. En análisis y diseño todavía no hay librerías que revisar.",
+        "c": "Incorrecta. En producción se usa RASP.",
+        "d": "Incorrecta. La correlación unifica resultados; no es la fase de SCA."
+      }
+    },
+    "sistemas-t07-e11": {
+      "section": "ssdlc-fases",
+      "reasoning": "La tabla del apartado asigna funcional, DAST e IAST a pruebas y RASP a producción.",
+      "options": {
+        "a": "Correcta. Funcional, DAST e IAST en pruebas; RASP en producción.",
+        "b": "Incorrecta. Los requisitos se revisan en diseño y DAST va en pruebas.",
+        "c": "Incorrecta. Está invertido: RASP es de producción.",
+        "d": "Incorrecta. SAST y SCA son de desarrollo y la correlación va al final."
+      }
+    },
+    "sistemas-t07-e12": {
+      "section": "ssdlc-fases",
+      "reasoning": "El bloque de examen del apartado señala la trampa de confundir definir requisitos con probarlos.",
+      "options": {
+        "a": "Incorrecta. El error no tiene que ver con SCA.",
+        "b": "Correcta. Definir (análisis) no es lo mismo que probar (pruebas).",
+        "c": "Incorrecta. La prueba funcional necesita la aplicación funcionando.",
+        "d": "Incorrecta. El error es situarla en análisis, no en producción."
+      }
+    },
+    "sistemas-t07-e13": {
+      "section": "combinar",
+      "reasoning": "La lista de ventajas de combinar del apartado describe esta sinergia entre DAST e IAST.",
+      "options": {
+        "a": "Incorrecta. Las licencias son cosa de SCA.",
+        "b": "Incorrecta. DAST es de caja negra y no lee el código.",
+        "c": "Incorrecta. En producción se usa RASP, no IAST como sustituto.",
+        "d": "Correcta. El IAST aprovecha las peticiones del recorrido del DAST."
+      }
+    },
+    "sistemas-t07-e14": {
+      "section": "combinar",
+      "reasoning": "La última ventaja de combinar del apartado se refiere a herramientas del mismo tipo.",
+      "options": {
+        "a": "Correcta. Sus diseños diferentes detectan vulnerabilidades diferentes.",
+        "b": "Incorrecta. El tema dice que encuentran cosas distintas.",
+        "c": "Incorrecta. El tema no dice eso; al contrario, combinar mejora la detección.",
+        "d": "Incorrecta. El tema no hace depender la ventaja del precio."
+      }
+    },
+    "sistemas-t07-e15": {
+      "section": "combinar",
+      "reasoning": "El bloque de examen del apartado señala como trampa que la combinación «garantiza» encontrarlo todo.",
+      "options": {
+        "a": "Incorrecta. La detección temprana sí es una ventaja de combinar.",
+        "b": "Correcta. Ninguna combinación llega al 100 % de detección.",
+        "c": "Incorrecta. La reducción de falsos positivos sí es una ventaja.",
+        "d": "Incorrecta. El cumplimiento normativo sí es una ventaja citada."
+      }
+    },
+    "sistemas-t07-e16": {
+      "section": "sca",
+      "reasoning": "El apartado de SCA define dependencias directas y transitivas.",
+      "options": {
+        "a": "Incorrecta. Directa sería si la declararas tú en tu proyecto.",
+        "b": "Correcta. La trae otra librería: es transitiva.",
+        "c": "Incorrecta. Obsoleta se refiere a que nadie la mantiene, no a cómo llega.",
+        "d": "Incorrecta. Tú no la has declarado; llega a través de A."
+      }
+    },
+    "sistemas-t07-e17": {
+      "section": "sca",
+      "reasoning": "El apartado explica que SCA controla licencias restrictivas como GPL por cumplimiento legal.",
+      "options": {
+        "a": "Incorrecta. El tema cita MIT y Apache como permisivas.",
+        "b": "Incorrecta. La licencia es una condición legal, no de rendimiento.",
+        "c": "Correcta. GPL es restrictiva y puede obligar a publicar tu código.",
+        "d": "Incorrecta. MIT es permisiva y no impide actualizar."
+      }
+    },
+    "sistemas-t07-e18": {
+      "section": "sca",
+      "reasoning": "Los pasos de funcionamiento de SCA del apartado enumeran estos ficheros por lenguaje.",
+      "options": {
+        "a": "Incorrecta. package.json es de JavaScript.",
+        "b": "Incorrecta. requirements.txt es de Python.",
+        "c": "Incorrecta. Gemfile es de Ruby.",
+        "d": "Correcta. pom.xml declara las dependencias de Java con Maven."
+      }
+    },
+    "sistemas-t07-e19": {
+      "section": "sca",
+      "reasoning": "Las limitaciones de SCA del apartado ponen este ejemplo de falso positivo.",
+      "options": {
+        "a": "Incorrecta. Un aviso de SCA no demuestra explotación.",
+        "b": "Incorrecta. No tiene que ver con licencias.",
+        "c": "Incorrecta. Falso negativo es no avisar de algo real; aquí sí avisa.",
+        "d": "Correcta. Puede no ser un riesgo real: hay que revisarlo en contexto."
+      }
+    },
+    "sistemas-t07-e20": {
+      "section": "sca",
+      "reasoning": "La tabla de qué revisa una SCA cita CVE, NVD y OSS Index como bases de vulnerabilidades.",
+      "options": {
+        "a": "Incorrecta. El fichero de Python es requirements.txt.",
+        "b": "Incorrecta. No es un catálogo de licencias.",
+        "c": "Correcta. NVD es la base de vulnerabilidades del NIST.",
+        "d": "Incorrecta. La probabilidad de explotación la estima EPSS."
+      }
+    },
+    "sistemas-t07-e21": {
+      "section": "sast",
+      "reasoning": "El apartado de SAST define el desensamblado como paso previo para analizar ejecutables.",
+      "options": {
+        "a": "Incorrecta. SAST no ejecuta la aplicación.",
+        "b": "Incorrecta. Enviar peticiones es propio de DAST.",
+        "c": "Incorrecta. El agente en memoria es propio de IAST.",
+        "d": "Correcta. Desensambla y reconstruye el flujo para analizarlo."
+      }
+    },
+    "sistemas-t07-e22": {
+      "section": "sast",
+      "reasoning": "Los pasos de funcionamiento de SAST del apartado describen la comparación con reglas.",
+      "options": {
+        "a": "Incorrecta. Las respuestas HTTP las analiza DAST.",
+        "b": "Correcta. El modelo se contrasta con reglas de vulnerabilidades.",
+        "c": "Incorrecta. Las licencias las revisa SCA.",
+        "d": "Incorrecta. SAST trabaja sobre el código, no sobre logs de producción."
+      }
+    },
+    "sistemas-t07-e23": {
+      "section": "sast",
+      "reasoning": "La tabla de niveles del apartado usa login() como ejemplo de análisis intraprocedural.",
+      "options": {
+        "a": "Incorrecta. El interprocedural sigue el dato entre varias funciones.",
+        "b": "Incorrecta. Ese nivel detecta, por ejemplo, llamadas peligrosas como eval().",
+        "c": "Correcta. Todo ocurre dentro de una sola función: intraprocedural.",
+        "d": "Incorrecta. La composición de software (SCA) revisa dependencias."
+      }
+    },
+    "sistemas-t07-e24": {
+      "section": "sast",
+      "reasoning": "El último paso del funcionamiento de SAST en el apartado menciona PQL.",
+      "options": {
+        "a": "Incorrecta. CVSS es un sistema de puntuación de gravedad.",
+        "b": "Incorrecta. SQL es un lenguaje de bases de datos.",
+        "c": "Incorrecta. XPath consulta XML; aparece como tipo de inyección.",
+        "d": "Correcta. PQL permite escribir reglas propias para Java."
+      }
+    },
+    "sistemas-t07-e25": {
+      "section": "sast",
+      "reasoning": "La tabla de ventajas e inconvenientes del apartado incluye la causa de origen como ventaja.",
+      "options": {
+        "a": "Incorrecta. Los problemas de entorno en runtime son un inconveniente de SAST.",
+        "b": "Incorrecta. SAST puede generar muchos falsos positivos.",
+        "c": "Correcta. Apunta a la causa raíz en el código.",
+        "d": "Incorrecta. Lo que solo ocurre en ejecución es justo lo que SAST no ve."
+      }
+    },
+    "sistemas-t07-e26": {
+      "section": "sast",
+      "reasoning": "El apartado de SAST enumera herramientas como SonarQube, Checkmarx o CodeQL.",
+      "options": {
+        "a": "Incorrecta. OWASP ZAP es una herramienta DAST.",
+        "b": "Incorrecta. Burp Suite es una herramienta DAST.",
+        "c": "Correcta. SonarQube es un analizador estático (SAST).",
+        "d": "Incorrecta. Nessus analiza infraestructura y red."
+      }
+    },
+    "sistemas-t07-e27": {
+      "section": "falsos-positivos",
+      "reasoning": "El apartado compara el coste de ambos errores con la analogía de la alarma de humo.",
+      "options": {
+        "a": "Incorrecta. Un falso negativo no bloquea nada: pasa desapercibido.",
+        "b": "Incorrecta. Revisar avisos falsos es el coste del falso positivo.",
+        "c": "Correcta. Deja la vulnerabilidad y genera falsa tranquilidad.",
+        "d": "Incorrecta. Cualquier herramienta automática puede producirlos."
+      }
+    },
+    "sistemas-t07-e28": {
+      "section": "falsos-positivos",
+      "reasoning": "El apartado explica la imperfección de las herramientas por la indecidibilidad del problema.",
+      "options": {
+        "a": "Incorrecta. SAST revisa todo el código.",
+        "b": "Incorrecta. El límite es matemático, no comercial.",
+        "c": "Correcta. Es un problema indecidible demostrado matemáticamente.",
+        "d": "Incorrecta. El tema no atribuye la imperfección a la conexión."
+      }
+    },
+    "sistemas-t07-e29": {
+      "section": "falsos-positivos",
+      "reasoning": "Los pasos de auditoría del apartado empiezan por revisar cada aviso siguiendo la traza.",
+      "options": {
+        "a": "Incorrecta. El historial de versiones no es la traza del aviso.",
+        "b": "Correcta. Es el camino del dato hasta el punto vulnerable.",
+        "c": "Incorrecta. Los autores del código no son la traza.",
+        "d": "Incorrecta. El tiempo de análisis no tiene relación."
+      }
+    },
+    "sistemas-t07-e30": {
+      "section": "funcional",
+      "reasoning": "El apartado cita ASVS como catálogo de requisitos y WSTG como guía práctica.",
+      "options": {
+        "a": "Correcta. ASVS es el estándar de requisitos verificables.",
+        "b": "Incorrecta. Dependency-Check es una herramienta SCA.",
+        "c": "Incorrecta. CVSS puntúa la gravedad de vulnerabilidades.",
+        "d": "Incorrecta. No es el catálogo de requisitos que cita el apartado."
+      }
+    },
+    "sistemas-t07-e31": {
+      "section": "funcional",
+      "reasoning": "El apartado define el control horizontal con este mismo ejemplo de la factura.",
+      "options": {
+        "a": "Incorrecta. X-Frame-Options impide meter la web en un marco ajeno.",
+        "b": "Incorrecta. El vertical se refiere a acciones de un nivel superior, como administrador.",
+        "c": "Incorrecta. La gestión de sesiones trata caducidad e invalidación.",
+        "d": "Correcta. Ver datos de otro usuario del mismo nivel es un fallo horizontal."
+      }
+    },
+    "sistemas-t07-e32": {
+      "section": "funcional",
+      "reasoning": "La tabla de requisitos del apartado describe los atributos Secure, HttpOnly y SameSite.",
+      "options": {
+        "a": "Correcta. HttpOnly impide el acceso desde scripts.",
+        "b": "Incorrecta. Secure obliga a enviar la cookie solo por HTTPS.",
+        "c": "Incorrecta. SameSite evita el envío desde otros sitios.",
+        "d": "Incorrecta. HSTS es una cabecera que obliga a usar HTTPS."
+      }
+    },
+    "sistemas-t07-e33": {
+      "section": "funcional",
+      "reasoning": "La fila de cabeceras de seguridad del apartado explica la función de cada una.",
+      "options": {
+        "a": "Incorrecta. CSP controla qué scripts se pueden cargar.",
+        "b": "Correcta. HSTS obliga a usar HTTPS.",
+        "c": "Incorrecta. CORS indica qué otros dominios pueden llamar a la aplicación.",
+        "d": "Incorrecta. Esta cabecera no es la que obliga a usar HTTPS."
+      }
+    },
+    "sistemas-t07-e34": {
+      "section": "funcional",
+      "reasoning": "El enfoque del apartado enumera proxy interceptador, sniffer, fuerza bruta y footprinting.",
+      "options": {
+        "a": "Correcta. Ve y modifica las peticiones en tránsito.",
+        "b": "Incorrecta. Capturar el tráfico de red es tarea del sniffer.",
+        "c": "Incorrecta. Recopilar información del objetivo es footprinting.",
+        "d": "Incorrecta. Un proxy no cifra datos en reposo."
+      }
+    },
+    "sistemas-t07-e35": {
+      "section": "dast",
+      "reasoning": "El apartado enumera las cinco fases de DAST en este orden.",
+      "options": {
+        "a": "Correcta. Reconocimiento, crawling, pasivo, activo y auditoría.",
+        "b": "Incorrecta. No se puede atacar antes de recorrer la aplicación.",
+        "c": "Incorrecta. El reconocimiento va antes del crawling y el pasivo antes del activo.",
+        "d": "Incorrecta. El escaneo pasivo se hace durante el crawling, no al principio."
+      }
+    },
+    "sistemas-t07-e36": {
+      "section": "dast",
+      "reasoning": "La fase de crawling del apartado indica primero manual en modo proxy y después automático.",
+      "options": {
+        "a": "Correcta. Primero manual en modo proxy.",
+        "b": "Incorrecta. El escaneo activo es una fase posterior.",
+        "c": "Incorrecta. La auditoría es la última fase.",
+        "d": "Incorrecta. El automático va después y se configura con el contexto."
+      }
+    },
+    "sistemas-t07-e37": {
+      "section": "dast",
+      "reasoning": "La tabla pasivo frente a activo del apartado pone como ejemplo la cookie sin HttpOnly.",
+      "options": {
+        "a": "Incorrecta. El activo inyecta payloads; aquí no se envió ataque.",
+        "b": "Correcta. El pasivo detecta ausencias de atributos observando el tráfico.",
+        "c": "Incorrecta. El reconocimiento identifica tecnologías, puertos o lenguajes.",
+        "d": "Incorrecta. La auditoría confirma resultados; no los genera."
+      }
+    },
+    "sistemas-t07-e38": {
+      "section": "dast",
+      "reasoning": "El apartado explica que el análisis sintáctico de DAST le impide entender la semántica.",
+      "options": {
+        "a": "Correcta. Su análisis es sintáctico, no semántico.",
+        "b": "Incorrecta. DAST trabaja con la aplicación en ejecución, no con el código.",
+        "c": "Incorrecta. DAST inyecta en parámetros GET y POST.",
+        "d": "Incorrecta. Las licencias las revisa SCA."
+      }
+    },
+    "sistemas-t07-e39": {
+      "section": "dast",
+      "reasoning": "La tabla qué detecta y qué no del apartado incluye la ausencia de token anti-CSRF.",
+      "options": {
+        "a": "Incorrecta. Los fallos de diseño de autorización le cuestan.",
+        "b": "Incorrecta. La lógica de negocio con varios parámetros le cuesta.",
+        "c": "Incorrecta. Las licencias no son cosa de DAST sino de SCA.",
+        "d": "Correcta. La ausencia de token anti-CSRF es algo que detecta bien."
+      }
+    },
+    "sistemas-t07-e40": {
+      "section": "dast",
+      "reasoning": "El apartado resume la conclusión del estudio de Amankwah (2020).",
+      "options": {
+        "a": "Incorrecta. También algunos libres resultaron eficaces.",
+        "b": "Correcta. ZAP y Skipfish destacaron entre los libres.",
+        "c": "Incorrecta. El estudio no concluye eso.",
+        "d": "Incorrecta. El tema no dice que los libres ganaran siempre."
+      }
+    },
+    "sistemas-t07-e41": {
+      "section": "dast",
+      "reasoning": "El párrafo de cobertura del apartado propone correlacionar DAST con SAST.",
+      "options": {
+        "a": "Incorrecta. Hay que probar con todos los roles de usuario.",
+        "b": "Incorrecta. Sin credenciales se pierde cobertura de zonas autenticadas.",
+        "c": "Incorrecta. Desactivar fases reduce la detección, no los falsos positivos.",
+        "d": "Correcta. Cruzar con SAST ayuda a confirmar o descartar avisos."
+      }
+    },
+    "sistemas-t07-e42": {
+      "section": "iast-rasp",
+      "reasoning": "El apartado explica que IAST funciona con un agente en el servidor junto a la aplicación.",
+      "options": {
+        "a": "Incorrecta. El agente no va en el navegador.",
+        "b": "Correcta. Se instala en el servidor con la aplicación.",
+        "c": "Incorrecta. IAST observa la ejecución, no el repositorio.",
+        "d": "Incorrecta. No es un dispositivo de red perimetral."
+      }
+    },
+    "sistemas-t07-e43": {
+      "section": "iast-rasp",
+      "reasoning": "Las características de IAST del apartado citan la precisión de su correlación con SAST.",
+      "options": {
+        "a": "Incorrecta. Revisar dependencias es SCA.",
+        "b": "Incorrecta. Atacar desde fuera es propio de DAST.",
+        "c": "Correcta. Las dos ven el interior de la aplicación.",
+        "d": "Incorrecta. IAST necesita la aplicación en ejecución."
+      }
+    },
+    "sistemas-t07-e44": {
+      "section": "iast-rasp",
+      "reasoning": "El apartado distingue IAST (informa) de RASP (bloquea o sanea en producción).",
+      "options": {
+        "a": "Incorrecta. IAST informa, pero no corta la petición.",
+        "b": "Incorrecta. SCA revisa dependencias, no actúa en tiempo real.",
+        "c": "Correcta. RASP bloquea o sanea el ataque en producción.",
+        "d": "Incorrecta. SAST trabaja en desarrollo, sin ejecutar."
+      }
+    },
+    "sistemas-t07-e45": {
+      "section": "iast-rasp",
+      "reasoning": "La tabla IAST frente a RASP del apartado clasifica las herramientas según informen, bloqueen o saneen.",
+      "options": {
+        "a": "Incorrecta. Seeker es una herramienta IAST que informa.",
+        "b": "Incorrecta. Contrast Assess es IAST; el RASP de Contrast es Contrast Protect.",
+        "c": "Incorrecta. Fortify SecurityScope es IAST que informa.",
+        "d": "Correcta. Saner es el ejemplo de RASP que sanea."
+      }
+    },
+    "sistemas-t07-e46": {
+      "section": "hast",
+      "reasoning": "El ejemplo del apartado HAST describe la combinación Acunetix (DAST) más AcuSensor (IAST).",
+      "options": {
+        "a": "Incorrecta. Las licencias las revisa SCA.",
+        "b": "Incorrecta. El escáner externo es Acunetix.",
+        "c": "Correcta. AcuSensor es el agente interno (IAST).",
+        "d": "Incorrecta. AcuSensor no es una plataforma de correlación."
+      }
+    },
+    "sistemas-t07-e47": {
+      "section": "hast",
+      "reasoning": "El apartado define HAST como combinación de modalidades que comparten resultados.",
+      "options": {
+        "a": "Incorrecta. Repetir SAST con más reglas sigue siendo solo SAST.",
+        "b": "Incorrecta. Solo inventario de componentes es SCA.",
+        "c": "Incorrecta. Solo pruebas externas es DAST.",
+        "d": "Correcta. Combina varias modalidades en una herramienta."
+      }
+    },
+    "sistemas-t07-e48": {
+      "section": "correlacion",
+      "reasoning": "La lista de informes y cumplimiento del apartado define MTTR.",
+      "options": {
+        "a": "Incorrecta. Eso es EPSS.",
+        "b": "Incorrecta. No es un indicador de coincidencia entre herramientas.",
+        "c": "Incorrecta. Eso es CVSS.",
+        "d": "Correcta. MTTR es el tiempo medio de corrección."
+      }
+    },
+    "sistemas-t07-e49": {
+      "section": "correlacion",
+      "reasoning": "La lista del apartado enumera los estados activo, mitigado, falso positivo y aceptado.",
+      "options": {
+        "a": "Incorrecta. Activo sí es un estado del ciclo de vida.",
+        "b": "Incorrecta. Mitigado sí es un estado.",
+        "c": "Correcta. Compilado no figura entre los estados.",
+        "d": "Incorrecta. Falso positivo también es un estado."
+      }
+    },
+    "sistemas-t07-e50": {
+      "section": "correlacion",
+      "reasoning": "El bloque de examen del apartado señala como trampa priorizar solo por el número de herramientas.",
+      "options": {
+        "a": "Incorrecta. El tema advierte contra priorizar solo por repetición.",
+        "b": "Correcta. La prioridad debe basarse en el riesgo.",
+        "c": "Incorrecta. Descartar por duplicado es otra trampa.",
+        "d": "Incorrecta. Registrar tres defectos es justo lo que la correlación evita."
+      }
     }
   }
 }

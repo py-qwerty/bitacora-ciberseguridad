@@ -1819,6 +1819,506 @@
         "c": "Correcta. En macOS apagado se analiza **/var/run/utmpx**, que almacena el histórico de inicios de sesión. Es binario, así que hay que interpretar su contenido.",
         "d": "Incorrecta. Sí hay una opción correcta: la C, que es el archivo que indica el temario para un macOS apagado."
       }
+    },
+    "forense-t07-e01": {
+      "section": "win-volatil",
+      "reasoning": "El apartado define la información volátil y explica que solo se obtiene en caliente.",
+      "options": {
+        "a": "Correcta. Es la definición del tema.",
+        "b": "Incorrecta. Lo guardado en disco no es volátil; sobrevive al apagado.",
+        "c": "Incorrecta. Que el usuario los borre no los convierte en información volátil.",
+        "d": "Incorrecta. Las copias de seguridad están en soportes persistentes."
+      }
+    },
+    "forense-t07-e02": {
+      "section": "win-volatil",
+      "reasoning": "El apartado define ambos tipos de adquisición por el estado del equipo y lo que se puede capturar.",
+      "options": {
+        "a": "Incorrecta. Lo invierte: la memoria solo se vuelca en caliente.",
+        "b": "Correcta. Es la distinción que hace el tema.",
+        "c": "Incorrecta. La diferencia no es remoto o local, sino encendido o apagado.",
+        "d": "Incorrecta. En frío ya no hay datos volátiles que capturar."
+      }
+    },
+    "forense-t07-e03": {
+      "section": "win-volatil",
+      "reasoning": "La tabla de archivos abiertos del apartado compara net file, PsFile y openfiles.",
+      "options": {
+        "a": "Incorrecta. PsFile no recupera borrados; muestra archivos abiertos.",
+        "b": "Incorrecta. Al contrario: su ventaja es que funciona en remoto.",
+        "c": "Correcta. Son las mejoras que señala el tema.",
+        "d": "Incorrecta. No muestra conexiones cerradas; trabaja con archivos abiertos."
+      }
+    },
+    "forense-t07-e04": {
+      "section": "win-volatil",
+      "reasoning": "La tabla del apartado recoge este detalle de openfiles.",
+      "options": {
+        "a": "Incorrecta. La opción -p es de LogonSessions, para ver procesos por sesión.",
+        "b": "Incorrecta. Los archivos abiertos solo se ven con el equipo encendido.",
+        "c": "Incorrecta. openfiles es un comando del sistema, no de Sysinternals.",
+        "d": "Correcta. Es el requisito que indica el tema."
+      }
+    },
+    "forense-t07-e05": {
+      "section": "win-red-procesos",
+      "reasoning": "El apartado define el modo promiscuo al hablar de la configuración de red.",
+      "options": {
+        "a": "Correcta. Es la definición del tema.",
+        "b": "Incorrecta. Eso lo haría un cortafuegos, no el modo promiscuo.",
+        "c": "Incorrecta. No tiene que ver con conectarse a varias redes.",
+        "d": "Incorrecta. El modo promiscuo no cifra nada."
+      }
+    },
+    "forense-t07-e06": {
+      "section": "win-red-procesos",
+      "reasoning": "El apartado explica NetBIOS y su caché, y el comando para verla.",
+      "options": {
+        "a": "Incorrecta. La tabla de rutas se ve con netstat -r.",
+        "b": "Correcta. Es lo que muestra nbtstat -c.",
+        "c": "Incorrecta. Los procesos se ven con tasklist o pslist.",
+        "d": "Incorrecta. La configuración de la tarjeta se ve con ipconfig /all."
+      }
+    },
+    "forense-t07-e07": {
+      "section": "win-red-procesos",
+      "reasoning": "La tabla de herramientas de red del apartado detalla las opciones de netstat.",
+      "options": {
+        "a": "Incorrecta. -r muestra las tablas de enrutamiento.",
+        "b": "Incorrecta. -c es la opción de nbtstat para la caché NetBIOS.",
+        "c": "Correcta. -o muestra el PID de cada conexión.",
+        "d": "Incorrecta. /all es una opción de ipconfig."
+      }
+    },
+    "forense-t07-e08": {
+      "section": "win-red-procesos",
+      "reasoning": "La tabla de herramientas de procesos del apartado describe ListDLLs.",
+      "options": {
+        "a": "Incorrecta. TCPView muestra las conexiones de cada proceso.",
+        "b": "Incorrecta. Process Monitor supervisa actividad en tiempo real.",
+        "c": "Incorrecta. tasklist es el administrador de tareas en consola.",
+        "d": "Correcta. Es la herramienta específica para DLL."
+      }
+    },
+    "forense-t07-e09": {
+      "section": "win-red-procesos",
+      "reasoning": "El caso práctico y la idea clave del apartado insisten en volcar la memoria antes de matar el proceso.",
+      "options": {
+        "a": "Correcta. Es lo que recomienda el tema.",
+        "b": "Incorrecta. Cambiar la hora alteraría la evidencia.",
+        "c": "Incorrecta. Reiniciar destruye la información volátil.",
+        "d": "Incorrecta. Borrar el ejecutable elimina evidencia."
+      }
+    },
+    "forense-t07-e10": {
+      "section": "win-registro",
+      "reasoning": "La definición del Registro en el apartado menciona estos archivos antiguos.",
+      "options": {
+        "a": "Incorrecta. Son artefactos modernos, no archivos de configuración de MS-DOS.",
+        "b": "Correcta. Son los que cita el tema.",
+        "c": "Incorrecta. Son colmenas del propio Registro.",
+        "d": "Incorrecta. No son los archivos que cita el tema."
+      }
+    },
+    "forense-t07-e11": {
+      "section": "win-registro",
+      "reasoning": "El apartado aclara que HKCR no es una clave raíz real sino una vista combinada.",
+      "options": {
+        "a": "Incorrecta. No tiene colmena propia: es una vista.",
+        "b": "Incorrecta. Las cuentas locales están en la colmena SAM.",
+        "c": "Correcta. Es lo que explica el tema.",
+        "d": "Incorrecta. Eso es HKEY_CURRENT_CONFIG."
+      }
+    },
+    "forense-t07-e12": {
+      "section": "win-registro",
+      "reasoning": "La tabla de claves raíz del apartado indica el archivo de cada una.",
+      "options": {
+        "a": "Incorrecta. Ahí está el NTUSER.DAT de cada usuario.",
+        "b": "Incorrecta. Ahí están los archivos de precarga .pf.",
+        "c": "Incorrecta. Ahí están los registros de eventos .evtx.",
+        "d": "Correcta. Es la ubicación de las colmenas del equipo."
+      }
+    },
+    "forense-t07-e13": {
+      "section": "win-registro",
+      "reasoning": "La definición de colmena del apartado explica cómo se trabaja el Registro en frío.",
+      "options": {
+        "a": "Correcta. Es el método que describe el tema.",
+        "b": "Incorrecta. Arrancar el original lo alteraría; se trabaja sobre la copia.",
+        "c": "Incorrecta. Esas herramientas ven sesiones activas, no el Registro de una imagen.",
+        "d": "Incorrecta. El Registro se guarda en archivos (colmenas) que están en el disco."
+      }
+    },
+    "forense-t07-e14": {
+      "section": "win-registro-artefactos",
+      "reasoning": "El apartado define la persistencia al hablar de las aplicaciones de inicio.",
+      "options": {
+        "a": "Incorrecta. Cifrar archivos es lo que hace el ransomware, no la persistencia.",
+        "b": "Correcta. Es la definición del tema.",
+        "c": "Incorrecta. No tiene relación con la papelera.",
+        "d": "Incorrecta. Propagarse es otra conducta distinta."
+      }
+    },
+    "forense-t07-e15": {
+      "section": "win-registro-artefactos",
+      "reasoning": "El apartado enumera las claves de unidades mapeadas y de recursos compartidos.",
+      "options": {
+        "a": "Incorrecta. USBSTOR registra dispositivos USB.",
+        "b": "Incorrecta. Esa clave guarda las carpetas que comparte el propio equipo.",
+        "c": "Correcta. Es la clave de las unidades mapeadas.",
+        "d": "Incorrecta. Guarda la zona horaria."
+      }
+    },
+    "forense-t07-e16": {
+      "section": "win-registro-artefactos",
+      "reasoning": "La tabla de otros elementos de interés del apartado lo recoge.",
+      "options": {
+        "a": "Incorrecta. Guarda las búsquedas en la barra del Explorador.",
+        "b": "Incorrecta. Controla el comportamiento de Prefetch.",
+        "c": "Incorrecta. Guarda la zona horaria.",
+        "d": "Correcta. Es el valor del último apagado."
+      }
+    },
+    "forense-t07-e17": {
+      "section": "win-registro-artefactos",
+      "reasoning": "El apartado nombra estas herramientas al hablar de persistencia.",
+      "options": {
+        "a": "Correcta. Son las que cita el tema.",
+        "b": "Incorrecta. Sirven para dispositivos USB.",
+        "c": "Incorrecta. Sirven para la papelera y el Registro en general.",
+        "d": "Incorrecta. Sirven para Prefetch y UserAssist."
+      }
+    },
+    "forense-t07-e18": {
+      "section": "win-registro-artefactos",
+      "reasoning": "El apartado lista setupapi.dev.log como fuente de USB fuera del Registro y lo usa para fechar la primera conexión.",
+      "options": {
+        "a": "Incorrecta. MountPoints2 está dentro del Registro (en NTUSER.DAT).",
+        "b": "Correcta. Está fuera del Registro y da la primera conexión.",
+        "c": "Incorrecta. USBSTOR está dentro del Registro.",
+        "d": "Incorrecta. El 4616 registra cambios de fecha y hora."
+      }
+    },
+    "forense-t07-e19": {
+      "section": "win-eventos",
+      "reasoning": "El apartado indica la extensión y la ruta de los registros de eventos.",
+      "options": {
+        "a": "Incorrecta. Es una extensión genérica de logs, no la de Windows moderno.",
+        "b": "Incorrecta. .dat aparece en NTUSER.DAT, una colmena del Registro.",
+        "c": "Correcta. Es la extensión de los eventos.",
+        "d": "Incorrecta. .pf es la extensión de Prefetch."
+      }
+    },
+    "forense-t07-e20": {
+      "section": "win-eventos",
+      "reasoning": "La tabla de eventos típicos del apartado asocia cada suceso con su EventID.",
+      "options": {
+        "a": "Incorrecta. Es el inicio de sesión.",
+        "b": "Incorrecta. Es el cierre de sesión.",
+        "c": "Incorrecta. Es el intento de inicio fallido.",
+        "d": "Correcta. Es el cambio de fecha y hora."
+      }
+    },
+    "forense-t07-e21": {
+      "section": "win-eventos",
+      "reasoning": "La lista del apartado enumera lo que guarda cada evento.",
+      "options": {
+        "a": "Correcta. Son los campos que enumera el tema.",
+        "b": "Incorrecta. Los eventos no guardan copias de documentos.",
+        "c": "Incorrecta. Los eventos no guardan la memoria de los procesos.",
+        "d": "Incorrecta. Un evento no guarda contraseñas."
+      }
+    },
+    "forense-t07-e22": {
+      "section": "win-eventos",
+      "reasoning": "El caso práctico del apartado interpreta esta misma secuencia de eventos.",
+      "options": {
+        "a": "Incorrecta. El cierre de sesión es 4634, no 4625.",
+        "b": "Correcta. Es la lectura de esos EventID.",
+        "c": "Incorrecta. El cambio de hora es 4616.",
+        "d": "Incorrecta. La ejecución de programas aparece en Application, no con esos ID."
+      }
+    },
+    "forense-t07-e23": {
+      "section": "win-actividad-reciente",
+      "reasoning": "El apartado explica UserAssist y su codificación ROT-13.",
+      "options": {
+        "a": "Incorrecta. No es la codificación que cita el tema.",
+        "b": "Incorrecta. Es un hash, no una codificación reversible de nombres.",
+        "c": "Correcta. Es la codificación de UserAssist.",
+        "d": "Incorrecta. AES es un cifrado; UserAssist no cifra."
+      }
+    },
+    "forense-t07-e24": {
+      "section": "win-actividad-reciente",
+      "reasoning": "La tabla de listas MRU del apartado indica qué guarda cada una.",
+      "options": {
+        "a": "Incorrecta. Guarda documentos recientes.",
+        "b": "Incorrecta. Guarda direcciones escritas en Internet Explorer.",
+        "c": "Incorrecta. Guarda rutas usadas en «Guardar como…».",
+        "d": "Correcta. Es la lista de órdenes de Ejecutar."
+      }
+    },
+    "forense-t07-e25": {
+      "section": "win-actividad-reciente",
+      "reasoning": "La definición de UserAssist del apartado destaca esta diferencia con Prefetch.",
+      "options": {
+        "a": "Correcta. Es la diferencia que señala el tema.",
+        "b": "Incorrecta. No es lo que distingue a UserAssist según el tema.",
+        "c": "Incorrecta. UserAssist no guarda el contenido de documentos.",
+        "d": "Incorrecta. Ninguna de estas fuentes dice quién estaba delante; solo qué cuenta actuó."
+      }
+    },
+    "forense-t07-e26": {
+      "section": "win-actividad-reciente",
+      "reasoning": "La definición de Prefetch del apartado explica qué significa que exista un .pf.",
+      "options": {
+        "a": "Incorrecta. El .pf no indica desinstalación.",
+        "b": "Incorrecta. Un .pf no dice nada sobre si el programa es malicioso.",
+        "c": "Correcta. Es lo que indica según el tema.",
+        "d": "Incorrecta. El .pf no informa del origen del programa."
+      }
+    },
+    "forense-t07-e27": {
+      "section": "win-actividad-reciente",
+      "reasoning": "La tabla de EnablePrefetcher del apartado indica el significado de cada valor.",
+      "options": {
+        "a": "Incorrecta. 0 desactiva Prefetch; no es el valor por defecto.",
+        "b": "Incorrecta. 1 limita Prefetch a las aplicaciones.",
+        "c": "Incorrecta. 2 limita Prefetch al arranque del sistema.",
+        "d": "Correcta. Es el valor por defecto."
+      }
+    },
+    "forense-t07-e28": {
+      "section": "win-papelera",
+      "reasoning": "El apartado explica que cada subcarpeta de la papelera lleva el SID del usuario.",
+      "options": {
+        "a": "Correcta. Es lo que indica el tema.",
+        "b": "Incorrecta. Se usa el SID, no el nombre de la cuenta.",
+        "c": "Incorrecta. No se usa ninguna fecha.",
+        "d": "Incorrecta. Lo aleatorio es el sufijo de los $I/$R, no la carpeta."
+      }
+    },
+    "forense-t07-e29": {
+      "section": "win-papelera",
+      "reasoning": "La tabla comparativa del apartado distingue la papelera antigua de la moderna.",
+      "options": {
+        "a": "Incorrecta. Eso describe la papelera moderna.",
+        "b": "Correcta. Es la organización antigua.",
+        "c": "Incorrecta. La papelera nunca estuvo en la carpeta del usuario.",
+        "d": "Incorrecta. Prefetch no tiene relación con la papelera."
+      }
+    },
+    "forense-t07-e30": {
+      "section": "win-papelera",
+      "reasoning": "El apartado cita Rifiuti2 para la papelera.",
+      "options": {
+        "a": "Incorrecta. Sirve para archivos Prefetch.",
+        "b": "Incorrecta. Sirve para programas de inicio.",
+        "c": "Correcta. Es la herramienta de la papelera.",
+        "d": "Incorrecta. Sirve para dispositivos USB."
+      }
+    },
+    "forense-t07-e31": {
+      "section": "linux-volatil",
+      "reasoning": "El apartado diferencia date (hora del sistema) y hwclock (reloj hardware).",
+      "options": {
+        "a": "Incorrecta. Da la hora del sistema en UTC, no el reloj hardware.",
+        "b": "Incorrecta. Es un comando de PowerShell en Windows.",
+        "c": "Incorrecta. lsof -i lista conexiones de red.",
+        "d": "Correcta. Es el comando del reloj hardware."
+      }
+    },
+    "forense-t07-e32": {
+      "section": "linux-volatil",
+      "reasoning": "El apartado describe los campos de /etc/passwd en orden.",
+      "options": {
+        "a": "Correcta. Es el último campo de la línea.",
+        "b": "Incorrecta. La carpeta personal es /home/ana.",
+        "c": "Incorrecta. El grupo es el GID, 1001.",
+        "d": "Incorrecta. La «x» remite a /etc/shadow; /bin/bash es la shell."
+      }
+    },
+    "forense-t07-e33": {
+      "section": "linux-volatil",
+      "reasoning": "La tabla de dos caminos del apartado indica estas fuentes para el equipo apagado.",
+      "options": {
+        "a": "Incorrecta. wtmp guarda los inicios de sesión, no los fallos.",
+        "b": "Correcta. btmp guarda los intentos fallidos.",
+        "c": "Incorrecta. shadow guarda los hashes de las contraseñas.",
+        "d": "Incorrecta. /proc solo existe en caliente y no guarda sesiones."
+      }
+    },
+    "forense-t07-e34": {
+      "section": "linux-volatil",
+      "reasoning": "El apartado presenta lsof para archivos abiertos y conexiones.",
+      "options": {
+        "a": "Incorrecta. Muestra la configuración de interfaces.",
+        "b": "Incorrecta. Muestra los procesos en árbol.",
+        "c": "Correcta. Es el comando que describe el tema.",
+        "d": "Incorrecta. Lee el reloj hardware."
+      }
+    },
+    "forense-t07-e35": {
+      "section": "linux-procesos",
+      "reasoning": "La tabla de letras de ps aux del apartado explica cada una.",
+      "options": {
+        "a": "Incorrecta. Eso lo hace la u.",
+        "b": "Incorrecta. Es al revés: la a quita la restricción de solo los tuyos.",
+        "c": "Incorrecta. Ninguna de esas letras ordena por memoria.",
+        "d": "Correcta. Es lo que aporta la x."
+      }
+    },
+    "forense-t07-e36": {
+      "section": "linux-procesos",
+      "reasoning": "El apartado explica las dos señales al hablar de matar procesos.",
+      "options": {
+        "a": "Correcta. Es la diferencia que explica el tema.",
+        "b": "Incorrecta. Lo invierte.",
+        "c": "Incorrecta. Las señales se listan con kill -l.",
+        "d": "Incorrecta. Sí hay diferencia: cambia la señal enviada."
+      }
+    },
+    "forense-t07-e37": {
+      "section": "linux-procesos",
+      "reasoning": "La definición de /proc del apartado explica su carácter virtual.",
+      "options": {
+        "a": "Incorrecta. /proc no está cifrado.",
+        "b": "Correcta. Es la razón que da el tema.",
+        "c": "Incorrecta. No depende de la sesión de root.",
+        "d": "Incorrecta. /proc existe en Linux en general."
+      }
+    },
+    "forense-t07-e38": {
+      "section": "linux-procesos",
+      "reasoning": "El apartado describe dos archivos globales útiles de /proc.",
+      "options": {
+        "a": "Incorrecta. Eso está en /proc/cmdline.",
+        "b": "Incorrecta. Están en /proc/[PID]/environ.",
+        "c": "Correcta. Es su contenido.",
+        "d": "Incorrecta. El historial está en /root/.bash_history."
+      }
+    },
+    "forense-t07-e39": {
+      "section": "linux-logs-cron",
+      "reasoning": "El apartado define demonio al hablar de daemon.log.",
+      "options": {
+        "a": "Incorrecta. Un demonio no es malware por definición.",
+        "b": "Incorrecta. Es un programa, no un log.",
+        "c": "Incorrecta. Eso recuerda a .bash_logout, no a un demonio.",
+        "d": "Correcta. Es la definición del tema."
+      }
+    },
+    "forense-t07-e40": {
+      "section": "linux-logs-cron",
+      "reasoning": "La tabla de logs del apartado indica esta equivalencia.",
+      "options": {
+        "a": "Correcta. Es el equivalente en Red Hat.",
+        "b": "Incorrecta. Equivale a syslog, mensajes generales.",
+        "c": "Incorrecta. Registra eventos de demonios.",
+        "d": "Incorrecta. Recoge mensajes generales del sistema."
+      }
+    },
+    "forense-t07-e41": {
+      "section": "linux-logs-cron",
+      "reasoning": "La tabla «No te confundas» del apartado compara estas expresiones.",
+      "options": {
+        "a": "Incorrecta. Cada 10 minutos es «*/10 * * * *».",
+        "b": "Correcta. Es su significado.",
+        "c": "Incorrecta. Eso es «0 0 10 * *».",
+        "d": "Incorrecta. Eso es «10 * * * *»."
+      }
+    },
+    "forense-t07-e42": {
+      "section": "linux-logs-cron",
+      "reasoning": "El apartado explica las carpetas periódicas de cron.",
+      "options": {
+        "a": "Incorrecta. Eso corresponde a cron.hourly.",
+        "b": "Incorrecta. Eso corresponde a cron.weekly.",
+        "c": "Correcta. cron.daily ejecuta a diario.",
+        "d": "Incorrecta. Las carpetas de cron no dependen del arranque."
+      }
+    },
+    "forense-t07-e43": {
+      "section": "macos-volatil",
+      "reasoning": "La tabla Linux frente a macOS del apartado recoge esta diferencia.",
+      "options": {
+        "a": "Incorrecta. Eso es lo propio de Linux.",
+        "b": "Incorrecta. passwd no guarda las contraseñas cifradas.",
+        "c": "Incorrecta. utmpx guarda sesiones, no contraseñas.",
+        "d": "Correcta. Es la ubicación en macOS."
+      }
+    },
+    "forense-t07-e44": {
+      "section": "macos-volatil",
+      "reasoning": "La tabla comparativa del apartado indica el comando de cada sistema.",
+      "options": {
+        "a": "Correcta. Es el comando de macOS.",
+        "b": "Incorrecta. Es la forma que el tema da para Linux.",
+        "c": "Incorrecta. hwclock aparece en el bloque de Linux.",
+        "d": "Incorrecta. Get-Date es de PowerShell en Windows."
+      }
+    },
+    "forense-t07-e45": {
+      "section": "macos-volatil",
+      "reasoning": "El apartado explica la alternativa a /proc en macOS.",
+      "options": {
+        "a": "Incorrecta. No es la opción que cita el tema.",
+        "b": "Correcta. Es la opción que genera el informe.",
+        "c": "Incorrecta. macOS no tiene /proc.",
+        "d": "Incorrecta. Forzar salida termina el proceso, no lo documenta."
+      }
+    },
+    "forense-t07-e46": {
+      "section": "macos-volatil",
+      "reasoning": "La tabla comparativa y el código del apartado muestran estas opciones de find.",
+      "options": {
+        "a": "Incorrecta. -newermt busca los modificados.",
+        "b": "Incorrecta. Es la forma de mostrar fechas usada en Linux.",
+        "c": "Correcta. -newerBt busca los creados.",
+        "d": "Incorrecta. Filtra por permisos de ejecución, no por fecha."
+      }
+    },
+    "forense-t07-e47": {
+      "section": "macos-logs-plist",
+      "reasoning": "La definición de plist del apartado indica sus dos formatos.",
+      "options": {
+        "a": "Incorrecta. No usa CSV.",
+        "b": "Incorrecta. No son los formatos que cita el tema.",
+        "c": "Incorrecta. Puede ser binario, pero no cifrado, y también XML.",
+        "d": "Correcta. Son los dos formatos del tema."
+      }
+    },
+    "forense-t07-e48": {
+      "section": "macos-logs-plist",
+      "reasoning": "El apartado señala los logs más útiles de macOS.",
+      "options": {
+        "a": "Correcta. Es el log de instalaciones.",
+        "b": "Incorrecta. Recoge mensajes generales.",
+        "c": "Incorrecta. Guarda sesiones de usuarios.",
+        "d": "Incorrecta. Es un log de autenticación de Linux, no el que cita el tema para macOS."
+      }
+    },
+    "forense-t07-e49": {
+      "section": "macos-logs-plist",
+      "reasoning": "La lista de ubicaciones del apartado advierte sobre lo raro en /System/Library/.",
+      "options": {
+        "a": "Incorrecta. Los elementos de usuario van en $HOME/Library.",
+        "b": "Correcta. Es la valoración del tema.",
+        "c": "Incorrecta. En LaunchDaemons se definen daemons, no agentes.",
+        "d": "Incorrecta. Que no tenga interfaz no lo hace irrelevante."
+      }
+    },
+    "forense-t07-e50": {
+      "section": "macos-logs-plist",
+      "reasoning": "La tabla de LaunchAgent y daemon del apartado indica dónde se define cada uno.",
+      "options": {
+        "a": "Incorrecta. Ahí hay LaunchAgents y LaunchDaemons.",
+        "b": "Incorrecta. Ahí también hay ambos tipos.",
+        "c": "Correcta. Solo admite LaunchAgents.",
+        "d": "Incorrecta. Es una carpeta de logs."
+      }
     }
   }
 }

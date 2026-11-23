@@ -1184,6 +1184,506 @@
         "c": "Incorrecta. INPUT sería la cadena adecuada si el servidor web estuviera instalado **en el propio cortafuegos**. Aquí el servidor es otro equipo de la red.",
         "d": "Incorrecta. PREROUTING actúa al llegar el paquete, **antes** de decidir su ruta, y se usa en las tablas nat y mangle (por ejemplo, para redirigir puertos). No forma parte de la tabla filter."
       }
+    },
+    "redes-t02-e01": {
+      "section": "exposicion",
+      "reasoning": "El apartado explica la exposición que supone conectar un equipo a una red.",
+      "options": {
+        "a": "Correcta. Un equipo aislado solo puede atacarse en persona; conectado, se le ataca en remoto.",
+        "b": "Incorrecta. Usar servicios de red es justo lo que gana al conectarse, no lo que pierde.",
+        "c": "Incorrecta. El cifrado local no depende de estar conectado.",
+        "d": "Incorrecta. El tema no habla del antivirus como defensa natural del equipo aislado."
+      }
+    },
+    "redes-t02-e02": {
+      "section": "exposicion",
+      "reasoning": "El recuadro de examen del apartado insiste en que el cortafuegos controla ambos sentidos.",
+      "options": {
+        "a": "Incorrecta. El tema no dice que el saliente sea siempre más peligroso: se filtran los dos sentidos.",
+        "b": "Incorrecta. Filtrar no acelera la navegación.",
+        "c": "Correcta. El tema lo advierte: filtrar solo la entrada no impide que un equipo infectado hable con el atacante.",
+        "d": "Incorrecta. El tema no menciona ninguna obligación legal de este tipo."
+      }
+    },
+    "redes-t02-e03": {
+      "section": "exposicion",
+      "reasoning": "El apartado de exposición explica el dilema entre abrir servicios y protegerse.",
+      "options": {
+        "a": "Incorrecta. Un cortafuegos sí puede bloquear el tráfico entrante.",
+        "b": "Correcta. Muchas organizaciones necesitan ofrecer servicios hacia fuera; cada servicio abierto es una puerta.",
+        "c": "Incorrecta. Filtrar la entrada y la salida no son excluyentes.",
+        "d": "Incorrecta. La política restrictiva precisamente funciona con excepciones que permiten."
+      }
+    },
+    "redes-t02-e04": {
+      "section": "concepto-funciones",
+      "reasoning": "El ejemplo del apartado ilustra el cortafuegos de host en el día a día.",
+      "options": {
+        "a": "Incorrecta. El perimetral se sitúa entre dos redes, como Internet y la LAN.",
+        "b": "Incorrecta. La pasarela de circuito es un tipo de cortafuegos por capa, no estos productos.",
+        "c": "Incorrecta. El tema no los presenta como NGFW.",
+        "d": "Correcta. Están instalados en un equipo concreto y protegen solo su tráfico, incluso en la wifi de una cafetería."
+      }
+    },
+    "redes-t02-e05": {
+      "section": "concepto-funciones",
+      "reasoning": "La lista de funcionalidades del apartado y las trampas del tema lo aclaran.",
+      "options": {
+        "a": "Incorrecta. Ocultar información interna sí es una de sus funcionalidades.",
+        "b": "Correcta. El tema la cita como trampa típica: el cortafuegos no valida el software de los equipos.",
+        "c": "Incorrecta. Proteger contra el IP spoofing sí es una de sus funcionalidades.",
+        "d": "Incorrecta. Como todo pasa por él, es el mejor sitio para registrar eventos."
+      }
+    },
+    "redes-t02-e06": {
+      "section": "concepto-funciones",
+      "reasoning": "El apartado define la política de seguridad del cortafuegos.",
+      "options": {
+        "a": "Correcta. Se expresa con direcciones, puertos, protocolos y sentido del tráfico; el cortafuegos la aplica.",
+        "b": "Incorrecta. Eso sería la herramienta que aplica la política, no la política.",
+        "c": "Incorrecta. Las firmas de ataques no son la definición de la política.",
+        "d": "Incorrecta. El registro es una función de monitorización, no la política."
+      }
+    },
+    "redes-t02-e07": {
+      "section": "concepto-funciones",
+      "reasoning": "El apartado explica cómo un cortafuegos frena casos típicos de IP spoofing.",
+      "options": {
+        "a": "Incorrecta. La dirección de origen es falsa; confiar en ella es justo lo que busca el atacante.",
+        "b": "Incorrecta. Reenviarlo dejaría pasar la suplantación.",
+        "c": "Correcta. Un paquete con IP interna no puede llegar legítimamente desde Internet: es IP spoofing.",
+        "d": "Incorrecta. NAT traduce direcciones; no sirve para validar un origen falso."
+      }
+    },
+    "redes-t02-e08": {
+      "section": "concepto-funciones",
+      "reasoning": "El apartado define NAT como función de red que un cortafuegos puede soportar.",
+      "options": {
+        "a": "Incorrecta. NAT no cifra el tráfico.",
+        "b": "Incorrecta. Con NAT, precisamente, comparten una única IP pública.",
+        "c": "Incorrecta. Eso es protección contra suplantación, no NAT.",
+        "d": "Correcta. NAT cambia las direcciones de los paquetes al pasar por el router."
+      }
+    },
+    "redes-t02-e09": {
+      "section": "limitaciones",
+      "reasoning": "La tabla de limitaciones del apartado incluye los ataques que no pasan por el cortafuegos.",
+      "options": {
+        "a": "Incorrecta. El cortafuegos filtra los dos sentidos.",
+        "b": "Incorrecta. El tema dice que es una trampa pensar que las conexiones internas son confiables.",
+        "c": "Correcta. El cortafuegos solo controla el tráfico que lo cruza; el tráfico interno no lo cruza.",
+        "d": "Incorrecta. El puerto no es la causa: el tráfico ni siquiera llega al cortafuegos."
+      }
+    },
+    "redes-t02-e10": {
+      "section": "limitaciones",
+      "reasoning": "La tabla de limitaciones del apartado pone este ejemplo para las redes inalámbricas.",
+      "options": {
+        "a": "Incorrecta. La amenaza interna es un empleado que abre una conexión que el atacante aprovecha.",
+        "b": "Incorrecta. Se refiere a equipos infectados fuera que luego se conectan dentro.",
+        "c": "Incorrecta. No es una limitación del cortafuegos de la tabla, sino algo que puede frenar.",
+        "d": "Correcta. Entra por la wifi y queda dentro sin cruzar el cortafuegos."
+      }
+    },
+    "redes-t02-e11": {
+      "section": "limitaciones",
+      "reasoning": "La tabla de limitaciones del apartado describe las amenazas internas.",
+      "options": {
+        "a": "Correcta. La tabla del tema define así las amenazas internas: un empleado, a sabiendas o engañado, abre la puerta.",
+        "b": "Incorrecta. No hay ninguna wifi implicada.",
+        "c": "Incorrecta. No hay un equipo infectado fuera que se conecte después.",
+        "d": "Incorrecta. El movimiento lateral es un equipo interno atacando a otro."
+      }
+    },
+    "redes-t02-e12": {
+      "section": "limitaciones",
+      "reasoning": "El apartado de limitaciones arranca con esta idea central.",
+      "options": {
+        "a": "Incorrecta. El tema no plantea así las limitaciones.",
+        "b": "Correcta. El tema lo dice expresamente: de esa idea salen todas sus limitaciones.",
+        "c": "Incorrecta. Un filtro de paquetes, por ejemplo, ni siquiera entiende la aplicación.",
+        "d": "Incorrecta. Filtra en ambos sentidos."
+      }
+    },
+    "redes-t02-e13": {
+      "section": "limitaciones",
+      "reasoning": "El ejemplo del portátil de la comercial cierra con esa recomendación.",
+      "options": {
+        "a": "Incorrecta. Otro perimetral tampoco vería un equipo que ya está dentro.",
+        "b": "Incorrecta. Una política permisiva reduce la seguridad.",
+        "c": "Incorrecta. El tema no propone eso; el problema es que el malware ya está dentro.",
+        "d": "Correcta. El malware nunca cruzó el perímetro, así que hacen falta otras capas en los propios equipos."
+      }
+    },
+    "redes-t02-e14": {
+      "section": "tipos-y-criterios",
+      "reasoning": "El apartado de tipos y criterios empieza con esta clasificación.",
+      "options": {
+        "a": "Incorrecta. El fabricante no es un criterio de clasificación del tema.",
+        "b": "Correcta. El tema clasifica por la capa de la pila TCP/IP y la complejidad del filtrado.",
+        "c": "Incorrecta. El tema no usa esos criterios.",
+        "d": "Incorrecta. El tema no usa esos criterios."
+      }
+    },
+    "redes-t02-e15": {
+      "section": "tipos-y-criterios",
+      "reasoning": "El apartado define el proxy al describir las pasarelas.",
+      "options": {
+        "a": "Incorrecta. Eso es el filtrado de paquetes.",
+        "b": "Incorrecta. Eso es una VPN.",
+        "c": "Correcta. El cliente habla con el proxy y este con el servidor, lo que le permite revisar lo que pasa en medio.",
+        "d": "Incorrecta. Eso es la tabla de estado."
+      }
+    },
+    "redes-t02-e16": {
+      "section": "tipos-y-criterios",
+      "reasoning": "La tabla de criterios NIST del apartado lo recoge.",
+      "options": {
+        "a": "Correcta. La actividad de red se basa en la hora, la tasa de peticiones, etc.",
+        "b": "Incorrecta. Ese criterio usa IP, puertos y sentido del tráfico.",
+        "c": "Incorrecta. Ese criterio usa los datos de la capa de aplicación.",
+        "d": "Incorrecta. Ese criterio se basa en quién es el usuario."
+      }
+    },
+    "redes-t02-e17": {
+      "section": "tipos-y-criterios",
+      "reasoning": "La tabla de criterios NIST del apartado lo indica para la identidad de usuario.",
+      "options": {
+        "a": "Correcta. La tabla del tema dice que requiere autenticación, por ejemplo IPsec, que autentica y cifra a nivel IP.",
+        "b": "Incorrecta. La tabla de estado sigue conexiones, no identifica usuarios.",
+        "c": "Incorrecta. La política por defecto no identifica usuarios.",
+        "d": "Incorrecta. Los puertos no dicen quién es el usuario."
+      }
+    },
+    "redes-t02-e18": {
+      "section": "tipos-y-criterios",
+      "reasoning": "La tabla de criterios NIST del apartado pone este ejemplo.",
+      "options": {
+        "a": "Incorrecta. IP y puertos no permiten distinguir el spam.",
+        "b": "Incorrecta. La actividad de red mira horas y tasas, no el contenido del correo.",
+        "c": "Incorrecta. Saber quién es el usuario no distingue el spam.",
+        "d": "Correcta. Vigilar SMTP exige mirar los datos de aplicación, que es lo que hacen las pasarelas de aplicación."
+      }
+    },
+    "redes-t02-e19": {
+      "section": "filtrado-paquetes",
+      "reasoning": "La lista de datos que comprueban las reglas del apartado lo detalla.",
+      "options": {
+        "a": "Incorrecta. La interfaz de entrada sí puede comprobarse.",
+        "b": "Correcta. El contenido de aplicación no está en las cabeceras que mira el filtro.",
+        "c": "Incorrecta. El tamaño sí puede comprobarse.",
+        "d": "Incorrecta. Los puertos sí pueden comprobarse."
+      }
+    },
+    "redes-t02-e20": {
+      "section": "filtrado-paquetes",
+      "reasoning": "El ejemplo de regla del apartado muestra este límite del filtro.",
+      "options": {
+        "a": "Incorrecta. El puerto 443 sí se puede filtrar: está en la cabecera TCP.",
+        "b": "Incorrecta. El filtro trabaja sobre todo en la capa de red, no en la de aplicación.",
+        "c": "Correcta. Ni el usuario ni el contenido aparecen en la cabecera IP/TCP que mira el filtro.",
+        "d": "Incorrecta. Las reglas también admiten origen, puertos, protocolo, interfaz y tamaño."
+      }
+    },
+    "redes-t02-e21": {
+      "section": "filtrado-paquetes",
+      "reasoning": "La tabla de balance del apartado lista ventajas y desventajas.",
+      "options": {
+        "a": "Incorrecta. La sencillez es una de sus ventajas.",
+        "b": "Incorrecta. La facilidad de uso es una de sus ventajas.",
+        "c": "Correcta. No identificar usuarios ni contenidos es precisamente una desventaja.",
+        "d": "Incorrecta. La velocidad es una de sus ventajas."
+      }
+    },
+    "redes-t02-e22": {
+      "section": "filtrado-paquetes",
+      "reasoning": "El apartado define el cortafuegos de estado frente al sin estado.",
+      "options": {
+        "a": "Correcta. El de estado guarda una tabla de conexiones abiertas; el sin estado no tiene memoria.",
+        "b": "Incorrecta. Ninguno de los dos lee el contenido de aplicación.",
+        "c": "Incorrecta. Invierte las definiciones.",
+        "d": "Incorrecta. Ninguno de los dos autentica usuarios."
+      }
+    },
+    "redes-t02-e23": {
+      "section": "politicas",
+      "reasoning": "El ejemplo del servicio olvidado del apartado compara ambas políticas.",
+      "options": {
+        "a": "Incorrecta. Eso ocurriría con una política restrictiva.",
+        "b": "Incorrecta. La permisiva no limita el acceso a la red interna.",
+        "c": "Incorrecta. La política no depende de si el puerto es conocido.",
+        "d": "Correcta. La permisiva acepta todo lo que no esté prohibido, así que el servicio olvidado queda abierto."
+      }
+    },
+    "redes-t02-e24": {
+      "section": "politicas",
+      "reasoning": "La tabla de las dos políticas del apartado lo detalla.",
+      "options": {
+        "a": "Incorrecta. Eso son las reglas en la política permisiva.",
+        "b": "Correcta. Por defecto se deniega y cada regla abre una excepción.",
+        "c": "Incorrecta. Eso corresponde a la idea de lista negra, que es la permisiva.",
+        "d": "Incorrecta. Las reglas no son registros."
+      }
+    },
+    "redes-t02-e25": {
+      "section": "politicas",
+      "reasoning": "El apartado de políticas cierra con esta recomendación.",
+      "options": {
+        "a": "Incorrecta. El tema no la considera imposible: solo más costosa.",
+        "b": "Correcta. El tema reconoce que con muchos servicios la restrictiva cuesta más, pero la sigue recomendando.",
+        "c": "Incorrecta. La más cómoda para los usuarios es la permisiva.",
+        "d": "Incorrecta. La permisiva sigue siendo menos segura."
+      }
+    },
+    "redes-t02-e26": {
+      "section": "pasarela-aplicacion",
+      "reasoning": "El apartado describe así el funcionamiento de la pasarela de aplicación.",
+      "options": {
+        "a": "Incorrecta. Transparente no significa que el usuario vea las reglas.",
+        "b": "Incorrecta. No tiene que ver con el cifrado.",
+        "c": "Correcta. El usuario habla con la pasarela, pero cree que habla con el servidor de destino.",
+        "d": "Incorrecta. La pasarela, al contrario, facilita llevar un registro."
+      }
+    },
+    "redes-t02-e27": {
+      "section": "pasarela-aplicacion",
+      "reasoning": "La tabla de ventajas e inconvenientes del apartado lo recoge.",
+      "options": {
+        "a": "Correcta. Al contrario: necesita soporte específico para cada aplicación, y las nuevas no siempre lo tienen.",
+        "b": "Incorrecta. Autenticar usuarios es una de sus ventajas.",
+        "c": "Incorrecta. Llevar un log es una de sus ventajas.",
+        "d": "Incorrecta. Suele ser más segura: basta indicar qué aplicaciones se admiten."
+      }
+    },
+    "redes-t02-e28": {
+      "section": "pasarela-aplicacion",
+      "reasoning": "El apartado de la pasarela de aplicación menciona esta topología de defensa.",
+      "options": {
+        "a": "Incorrecta. La pasarela tiene inconvenientes (recursos, soporte) que conviene compensar.",
+        "b": "Incorrecta. El filtro de paquetes es ciego al contenido.",
+        "c": "Incorrecta. El tema no propone esa combinación.",
+        "d": "Correcta. El tema dice que es habitual combinar ambas para sumar sus ventajas."
+      }
+    },
+    "redes-t02-e29": {
+      "section": "pasarela-aplicacion",
+      "reasoning": "El apartado explica que la pasarela de aplicación filtra según el protocolo de aplicación.",
+      "options": {
+        "a": "Incorrecta. No ve el contenido de aplicación.",
+        "b": "Incorrecta. Recuerda conexiones, pero tampoco ve el contenido.",
+        "c": "Incorrecta. Tras establecer la conexión solo reenvía sin analizar contenido.",
+        "d": "Correcta. Entiende los datos de aplicación, como la petición web, y puede filtrarlos."
+      }
+    },
+    "redes-t02-e30": {
+      "section": "pasarela-circuito",
+      "reasoning": "El apartado presenta la pasarela de circuito como híbrido.",
+      "options": {
+        "a": "Correcta. Combina el comportamiento de una pasarela de aplicación al inicio con el de un filtro después.",
+        "b": "Incorrecta. No analiza el contenido de aplicación.",
+        "c": "Incorrecta. El tema no la define así.",
+        "d": "Incorrecta. El tema no la define así."
+      }
+    },
+    "redes-t02-e31": {
+      "section": "pasarela-circuito",
+      "reasoning": "La tabla de comparación rápida del apartado lo resume.",
+      "options": {
+        "a": "Incorrecta. Esa es la pasarela de aplicación.",
+        "b": "Correcta. La tabla comparativa le da carga media-baja y no analiza contenido de aplicación.",
+        "c": "Incorrecta. Sí autentica al inicio; la carga baja es del filtro de paquetes.",
+        "d": "Incorrecta. Tras autenticar solo reenvía, sin analizar contenido."
+      }
+    },
+    "redes-t02-e32": {
+      "section": "pasarela-circuito",
+      "reasoning": "Los pasos de funcionamiento del apartado lo describen.",
+      "options": {
+        "a": "Incorrecta. Durante el reenvío solo mira cabeceras.",
+        "b": "Incorrecta. Sí autentica, al inicio.",
+        "c": "Correcta. El usuario establece primero la conexión con la pasarela y ahí puede autenticarse.",
+        "d": "Incorrecta. El tema no habla de autenticar al cerrar."
+      }
+    },
+    "redes-t02-e33": {
+      "section": "ngfw",
+      "reasoning": "El apartado de NGFW define la inspección profunda de paquetes.",
+      "options": {
+        "a": "Correcta. Permite ir más allá de bloquear por puerto y protocolo.",
+        "b": "Incorrecta. Eso es filtrado básico por cabecera.",
+        "c": "Incorrecta. Eso es la tabla de estado.",
+        "d": "Incorrecta. Eso es NAT."
+      }
+    },
+    "redes-t02-e34": {
+      "section": "ngfw",
+      "reasoning": "El apartado define IDS e IPS como componentes de un NGFW.",
+      "options": {
+        "a": "Incorrecta. Invierte las funciones.",
+        "b": "Correcta. IDS: detección de intrusiones. IPS: prevención, que además bloquea.",
+        "c": "Incorrecta. Ninguno de los dos cifra tráfico.",
+        "d": "Incorrecta. No se distinguen por eso."
+      }
+    },
+    "redes-t02-e35": {
+      "section": "ngfw",
+      "reasoning": "El apartado recoge la definición de Gartner del NGFW.",
+      "options": {
+        "a": "Incorrecta. No forman parte de la definición.",
+        "b": "Incorrecta. No forman parte de la definición.",
+        "c": "Incorrecta. Eso es lo tradicional, el cortafuegos de estado, no lo que añade.",
+        "d": "Correcta. Gartner pide, como mínimo, información de aplicación y prevención de intrusiones."
+      }
+    },
+    "redes-t02-e36": {
+      "section": "ngfw",
+      "reasoning": "El apartado de NGFW define la defensa en profundidad.",
+      "options": {
+        "a": "Incorrecta. Concentrarlo todo en una barrera es lo contrario.",
+        "b": "Incorrecta. Confiar en lo que pasó el perímetro es un error que el tema señala.",
+        "c": "Correcta. Por eso se ponen defensas en varias capas: si una falla, la siguiente frena o mitiga.",
+        "d": "Incorrecta. Ninguna barrera es infalible; por eso hay varias capas."
+      }
+    },
+    "redes-t02-e37": {
+      "section": "iptables-tablas",
+      "reasoning": "El apartado de iptables lo presenta sobre Netfilter.",
+      "options": {
+        "a": "Incorrecta. SELinux es una extensión de seguridad de Linux, relacionada con la tabla security.",
+        "b": "Incorrecta. ufw es una herramienta más sencilla que esconde iptables.",
+        "c": "Correcta. Netfilter es la pieza del núcleo; iptables es la herramienta para escribir las reglas.",
+        "d": "Incorrecta. syslog es el registro del sistema, al que escribe la acción LOG."
+      }
+    },
+    "redes-t02-e38": {
+      "section": "iptables-tablas",
+      "reasoning": "La tabla de tablas de iptables del apartado pone este ejemplo para raw.",
+      "options": {
+        "a": "Incorrecta. mangle altera cabeceras, como el TTL.",
+        "b": "Incorrecta. nat modifica direcciones de origen o destino.",
+        "c": "Incorrecta. security es para sistemas con SELinux.",
+        "d": "Correcta. raw trata los paquetes antes del seguimiento de estado y permite excluirlos de él."
+      }
+    },
+    "redes-t02-e39": {
+      "section": "iptables-tablas",
+      "reasoning": "La tabla de tablas de iptables del apartado la describe.",
+      "options": {
+        "a": "Incorrecta. Filtrar es tarea de la tabla filter.",
+        "b": "Correcta. Es una tabla adicional para sistemas con SELinux; según la clase, muy rara.",
+        "c": "Incorrecta. Cambiar el TTL es tarea de mangle.",
+        "d": "Incorrecta. Excluir del seguimiento es tarea de raw."
+      }
+    },
+    "redes-t02-e40": {
+      "section": "iptables-tablas",
+      "reasoning": "El apartado de iptables presenta estas características.",
+      "options": {
+        "a": "Correcta. El tema dice que es de estado, está en el núcleo desde la 2.4 (2001) y casi todas las distribuciones lo incluyen.",
+        "b": "Incorrecta. Es de estado, no sin estado.",
+        "c": "Incorrecta. No es una pasarela de aplicación y la versión citada es la 2.4.",
+        "d": "Incorrecta. Es software libre y casi todas las distribuciones lo incluyen."
+      }
+    },
+    "redes-t02-e41": {
+      "section": "iptables-cadenas",
+      "reasoning": "Los tres recorridos posibles del apartado lo detallan.",
+      "options": {
+        "a": "Incorrecta. Ese es el recorrido de un paquete que va para el equipo.",
+        "b": "Correcta. El paquete lo crea un proceso local, pasa por OUTPUT y sale por POSTROUTING.",
+        "c": "Incorrecta. Ese es el recorrido de un paquete que solo atraviesa el equipo.",
+        "d": "Incorrecta. INPUT es para paquetes cuyo destino es el propio equipo."
+      }
+    },
+    "redes-t02-e42": {
+      "section": "iptables-cadenas",
+      "reasoning": "La tabla de cadenas del apartado indica en qué tablas aparece cada una.",
+      "options": {
+        "a": "Correcta. Para filtrar solo existen INPUT, FORWARD y OUTPUT; en PREROUTING aún no se sabe el destino.",
+        "b": "Incorrecta. PREROUTING aparece en nat.",
+        "c": "Incorrecta. PREROUTING aparece en mangle.",
+        "d": "Incorrecta. PREROUTING aparece en raw."
+      }
+    },
+    "redes-t02-e43": {
+      "section": "iptables-cadenas",
+      "reasoning": "El orden del viaje del paquete del apartado describe POSTROUTING.",
+      "options": {
+        "a": "Incorrecta. PREROUTING actúa al llegar, no al salir.",
+        "b": "Incorrecta. OUTPUT es para paquetes generados localmente, justo después de crearse.",
+        "c": "Correcta. POSTROUTING afecta a los paquetes a punto de salir; ahí aún se puede cambiar el origen.",
+        "d": "Incorrecta. FORWARD es para paquetes que atraviesan; no es el último punto antes de salir."
+      }
+    },
+    "redes-t02-e44": {
+      "section": "iptables-cadenas",
+      "reasoning": "El apartado da esta regla para recordar el orden de las tablas.",
+      "options": {
+        "a": "Incorrecta. Es el orden inverso.",
+        "b": "Incorrecta. No es el orden de la clase.",
+        "c": "Incorrecta. No es el orden de la clase.",
+        "d": "Correcta. La regla para recordarlo es siempre raw, mangle, nat, filter."
+      }
+    },
+    "redes-t02-e45": {
+      "section": "iptables-cadenas",
+      "reasoning": "El ejemplo de redirigir y traducir del apartado lo subraya.",
+      "options": {
+        "a": "Incorrecta. La interfaz sola no dice a qué servidor va.",
+        "b": "Incorrecta. El protocolo solo no dice el destino.",
+        "c": "Incorrecta. El estado no es lo que la clase exige al traducir.",
+        "d": "Correcta. Al traducir hay que indicar siempre a qué IP y puerto se envía: iptables no puede adivinarlo."
+      }
+    },
+    "redes-t02-e46": {
+      "section": "iptables-reglas",
+      "reasoning": "La tabla de acciones y los pasos de evaluación del apartado lo explican.",
+      "options": {
+        "a": "Incorrecta. LOG no descarta el paquete.",
+        "b": "Incorrecta. LOG no es una acción terminante.",
+        "c": "Correcta. LOG registra el paquete y deja que siga evaluándose con las reglas siguientes.",
+        "d": "Incorrecta. Avisar al otro extremo es propio de REJECT."
+      }
+    },
+    "redes-t02-e47": {
+      "section": "iptables-reglas",
+      "reasoning": "Los ejemplos de traducir un enunciado a una regla del apartado lo muestran.",
+      "options": {
+        "a": "Correcta. El destino es el propio cortafuegos (INPUT), TCP, puerto de destino 80, conexiones nuevas (NEW).",
+        "b": "Incorrecta. FORWARD es para tráfico que atraviesa, no para el propio cortafuegos.",
+        "c": "Incorrecta. No es una traducción y el puerto 80 es de destino, no de origen.",
+        "d": "Incorrecta. El protocolo es TCP y se piden conexiones nuevas, no establecidas."
+      }
+    },
+    "redes-t02-e48": {
+      "section": "iptables-reglas",
+      "reasoning": "El apartado recoge esta recomendación del profesor sobre la interfaz de salida.",
+      "options": {
+        "a": "Incorrecta. La posición de la regla la decide -A u otras opciones, no -o.",
+        "b": "Correcta. Las direcciones privadas se repiten entre redes y el cortafuegos puede no saber qué interfaz usar.",
+        "c": "Incorrecta. -o no cambia la política por defecto.",
+        "d": "Incorrecta. -o no tiene que ver con el registro."
+      }
+    },
+    "redes-t02-e49": {
+      "section": "iptables-reglas",
+      "reasoning": "Es otro de los ejemplos de traducir enunciados a reglas del apartado.",
+      "options": {
+        "a": "Correcta. El tráfico solo pasa por el cortafuegos (FORWARD) y son conexiones en marcha (ESTABLISHED).",
+        "b": "Incorrecta. INPUT es para tráfico destinado al propio cortafuegos.",
+        "c": "Incorrecta. NEW es el primer paquete de una conexión nueva, no una ya establecida.",
+        "d": "Incorrecta. OUTPUT es para tráfico generado por el propio cortafuegos."
+      }
+    },
+    "redes-t02-e50": {
+      "section": "iptables-reglas",
+      "reasoning": "El apartado de reglas matiza la política por defecto de iptables.",
+      "options": {
+        "a": "Incorrecta. Sí se puede cambiar, con -P.",
+        "b": "Incorrecta. No vienen con REJECT y -F vacía la cadena.",
+        "c": "Correcta. El tema aclara que vienen con ACCEPT y que se cambia a DROP con -P para ser restrictiva.",
+        "d": "Incorrecta. Siempre hay una política por defecto; se fija con -P."
+      }
     }
   }
 }

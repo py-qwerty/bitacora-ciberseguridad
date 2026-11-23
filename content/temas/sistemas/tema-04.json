@@ -1170,6 +1170,506 @@
         "d": "Incorrecta. AES (Advanced Encryption Standard, estándar de cifrado avanzado) es un algoritmo de cifrado que Kerberos puede usar, pero no es un tipo de tique."
       },
       "doubt": "En sentido estricto, TGS es el servicio que concede los tiques; lo que se presenta al servidor es el «tique de servicio». La pregunta usa «TGS» como nombre del tique, igual que la variante ya existente en el banco, y es la única opción que corresponde al acceso al servicio."
+    },
+    "sistemas-t04-e01": {
+      "section": "panorama",
+      "reasoning": "El apartado distingue autenticar (quién eres) de autorizar (qué puedes hacer).",
+      "options": {
+        "a": "Correcta. Se decide un permiso sobre un recurso.",
+        "b": "Incorrecta. Un segundo factor serviría para comprobar la identidad, no permisos.",
+        "c": "Incorrecta. Base64 es una codificación usada en basic, no un control de permisos.",
+        "d": "Incorrecta. Identificarse es parte de la autenticación, ya hecha."
+      }
+    },
+    "sistemas-t04-e02": {
+      "section": "panorama",
+      "reasoning": "El apartado define el SSO y cita Kerberos y OAuth/OIDC como ejemplos.",
+      "options": {
+        "a": "Incorrecta. Compartir contraseñas no es SSO y es mala práctica.",
+        "b": "Correcta. Es la definición del tema.",
+        "c": "Incorrecta. Eso se acerca a mTLS, no al SSO.",
+        "d": "Incorrecta. Eso describe HTTP basic."
+      }
+    },
+    "sistemas-t04-e03": {
+      "section": "panorama",
+      "reasoning": "La tabla de métodos del apartado indica dónde se usa cada uno.",
+      "options": {
+        "a": "Incorrecta. Eso es OAuth 2.0 / OIDC.",
+        "b": "Incorrecta. Eso corresponde a HTTP basic.",
+        "c": "Correcta. Es el uso que indica el mapa.",
+        "d": "Incorrecta. Eso es passwordless."
+      }
+    },
+    "sistemas-t04-e04": {
+      "section": "http-basic",
+      "reasoning": "Los pasos de basic muestran el 401 con WWW-Authenticate y la respuesta con Authorization.",
+      "options": {
+        "a": "Incorrecta. Authorization la envía el cliente con las credenciales.",
+        "b": "Correcta. Es la cabecera del desafío del servidor.",
+        "c": "Incorrecta. Basic no se basa en cookies.",
+        "d": "Incorrecta. Esa cabecera restringe recursos de la página."
+      }
+    },
+    "sistemas-t04-e05": {
+      "section": "http-basic",
+      "reasoning": "El apartado de basic define el realm al explicar la cabecera WWW-Authenticate.",
+      "options": {
+        "a": "Correcta. Es el nombre del área protegida.",
+        "b": "Incorrecta. La cadena Base64 va en Authorization.",
+        "c": "Incorrecta. Ese valor es el nonce de digest.",
+        "d": "Incorrecta. Basic no usa ninguna clave."
+      }
+    },
+    "sistemas-t04-e06": {
+      "section": "http-basic",
+      "reasoning": "La lista de riesgos de basic incluye la falta de cierre de sesión estándar.",
+      "options": {
+        "a": "Incorrecta. Basic usa Base64, no MD5.",
+        "b": "Incorrecta. Basic no usa cookies de sesión.",
+        "c": "Incorrecta. El nonce es propio de digest.",
+        "d": "Correcta. Es el riesgo que recoge el tema."
+      }
+    },
+    "sistemas-t04-e07": {
+      "section": "http-basic",
+      "reasoning": "Los riesgos de basic incluyen el ataque de repetición con un sniffer.",
+      "options": {
+        "a": "Incorrecta. Kerberoasting ataca cuentas de servicio de Kerberos.",
+        "b": "Correcta. Reenviar lo capturado es repetición.",
+        "c": "Incorrecta. La fijación de sesión abusa de un ID de sesión previo al login.",
+        "d": "Incorrecta. El golden ticket forja TGT con la clave krbtgt."
+      }
+    },
+    "sistemas-t04-e08": {
+      "section": "http-digest",
+      "reasoning": "Los pasos de digest y la tabla basic frente a digest explican qué viaja.",
+      "options": {
+        "a": "Incorrecta. Los certificados son propios de mTLS.",
+        "b": "Incorrecta. Eso es HTTP basic.",
+        "c": "Incorrecta. El TGT es de Kerberos.",
+        "d": "Correcta. Viaja el response, un hash."
+      }
+    },
+    "sistemas-t04-e09": {
+      "section": "http-digest",
+      "reasoning": "El apartado define MD5 como la función hash de digest.",
+      "options": {
+        "a": "Incorrecta. AES es un cifrado simétrico, no un hash.",
+        "b": "Correcta. Digest calcula el response con MD5.",
+        "c": "Incorrecta. Base64 es una codificación, la de basic.",
+        "d": "Incorrecta. RSA es criptografía de clave pública."
+      }
+    },
+    "sistemas-t04-e10": {
+      "section": "http-digest",
+      "reasoning": "Los límites de digest señalan el riesgo de nonces repetidos.",
+      "options": {
+        "a": "Incorrecta. La contraseña sigue entrando en el cálculo.",
+        "b": "Correcta. Un nonce repetido permite reutilizar respuestas.",
+        "c": "Incorrecta. El nonce no cambia cómo se guarda la contraseña.",
+        "d": "Incorrecta. El cliente sigue calculando el response."
+      }
+    },
+    "sistemas-t04-e11": {
+      "section": "http-digest",
+      "reasoning": "El apartado distingue nonce (servidor) y cnonce (cliente).",
+      "options": {
+        "a": "Incorrecta. La CA emite certificados, no nonces.",
+        "b": "Incorrecta. El servidor genera el nonce, no el cnonce.",
+        "c": "Incorrecta. El controlador de dominio no interviene en digest.",
+        "d": "Correcta. Lo añade el cliente."
+      }
+    },
+    "sistemas-t04-e12": {
+      "section": "ntlmv2",
+      "reasoning": "Los tres mensajes de NTLMv2 se describen uno a uno en el apartado.",
+      "options": {
+        "a": "Incorrecta. El TGT es de Kerberos.",
+        "b": "Incorrecta. Eso va en el NEGOTIATE_MESSAGE (tipo 1).",
+        "c": "Incorrecta. Eso va en el AUTHENTICATE_MESSAGE (tipo 3).",
+        "d": "Correcta. Es el contenido del tipo 2."
+      }
+    },
+    "sistemas-t04-e13": {
+      "section": "ntlmv2",
+      "reasoning": "El tipo 3 de NTLMv2 y la definición de HMAC lo explican.",
+      "options": {
+        "a": "Correcta. NTLMv2 usa HMAC-MD5.",
+        "b": "Incorrecta. No es el algoritmo de NTLMv2 según el tema.",
+        "c": "Incorrecta. Base64 es una codificación.",
+        "d": "Incorrecta. Es un algoritmo de firma de JWT (RS256)."
+      }
+    },
+    "sistemas-t04-e14": {
+      "section": "ntlmv2",
+      "reasoning": "El paso de verificación de NTLMv2 describe el reenvío al controlador de dominio.",
+      "options": {
+        "a": "Correcta. El DC es quien tiene el hash para comprobar.",
+        "b": "Incorrecta. En NTLM la contraseña no viaja.",
+        "c": "Incorrecta. Emitir TGT es propio del AS de Kerberos.",
+        "d": "Incorrecta. Siempre se verifica la respuesta."
+      }
+    },
+    "sistemas-t04-e15": {
+      "section": "ntlmv2",
+      "reasoning": "La lista de ataques contra NTLMv2 define el relay.",
+      "options": {
+        "a": "Correcta. Es la retransmisión del desafío y la respuesta.",
+        "b": "Incorrecta. Pass-the-ticket roba un tique Kerberos.",
+        "c": "Incorrecta. AS-REP Roasting abusa de cuentas sin preautenticación en Kerberos.",
+        "d": "Incorrecta. El silver ticket forja tiques de un servicio."
+      }
+    },
+    "sistemas-t04-e16": {
+      "section": "ntlmv2",
+      "reasoning": "Los pasos del ataque de repetición activo explican que se aprovechan desafíos repetidos.",
+      "options": {
+        "a": "Incorrecta. La clave krbtgt es objetivo del golden ticket.",
+        "b": "Incorrecta. El ataque no obtiene la contraseña.",
+        "c": "Correcta. Es la clave del ataque de repetición activo.",
+        "d": "Incorrecta. No tiene relación con el cifrado de Kerberos."
+      }
+    },
+    "sistemas-t04-e17": {
+      "section": "kerberos",
+      "reasoning": "El apartado separa las dos piezas del KDC: AS y TGS.",
+      "options": {
+        "a": "Incorrecta. Kerberos no se basa en una CA.",
+        "b": "Incorrecta. El TGS emite los tiques de servicio.",
+        "c": "Incorrecta. El servidor de destino recibe el tique de servicio.",
+        "d": "Correcta. El AS entrega el TGT."
+      }
+    },
+    "sistemas-t04-e18": {
+      "section": "kerberos",
+      "reasoning": "La definición del TGT indica que se cifra con la clave de krbtgt.",
+      "options": {
+        "a": "Correcta. Es la clave del TGS, krbtgt.",
+        "b": "Incorrecta. El TGT no se cifra con la contraseña del usuario.",
+        "c": "Incorrecta. Kerberos no usa la clave pública del servidor web.",
+        "d": "Incorrecta. El nonce es de digest."
+      }
+    },
+    "sistemas-t04-e19": {
+      "section": "kerberos",
+      "reasoning": "La definición del tique de servicio explica con qué clave se cifra.",
+      "options": {
+        "a": "Incorrecta. HS256 es un algoritmo de firma de JWT.",
+        "b": "Incorrecta. Con la clave krbtgt se cifra el TGT.",
+        "c": "Incorrecta. La contraseña no viaja en Kerberos.",
+        "d": "Correcta. El servidor de destino lo descifra con su clave."
+      }
+    },
+    "sistemas-t04-e20": {
+      "section": "kerberos",
+      "reasoning": "La tabla de ataques contra Kerberos describe el golden ticket.",
+      "options": {
+        "a": "Incorrecta. El silver ticket usa el hash de una cuenta de servicio y vale para un servicio.",
+        "b": "Correcta. Forja TGT para todo el dominio.",
+        "c": "Incorrecta. Kerberoasting rompe offline contraseñas de cuentas de servicio.",
+        "d": "Incorrecta. El relay es un ataque contra NTLM."
+      }
+    },
+    "sistemas-t04-e21": {
+      "section": "kerberos",
+      "reasoning": "La tabla de ataques y las recomendaciones del apartado lo relacionan.",
+      "options": {
+        "a": "Correcta. Es la recomendación del tema.",
+        "b": "Incorrecta. Basic es mucho más débil.",
+        "c": "Incorrecta. El tema pide dejar solo AES de 256 bits.",
+        "d": "Incorrecta. El tema desaconseja servicios con cuentas de usuario normales."
+      }
+    },
+    "sistemas-t04-e22": {
+      "section": "kerberos",
+      "reasoning": "La tabla de ataques contra Kerberos describe el Kerberoasting.",
+      "options": {
+        "a": "Incorrecta. La CA es propia de mTLS.",
+        "b": "Correcta. Pide tiques de cuentas con SPN.",
+        "c": "Incorrecta. Los enlaces mágicos son passwordless.",
+        "d": "Incorrecta. El refresh token es de JWT."
+      }
+    },
+    "sistemas-t04-e23": {
+      "section": "jwt",
+      "reasoning": "El apartado define el JWT como token firmado y sin estado.",
+      "options": {
+        "a": "Incorrecta. El claim exp indica la caducidad.",
+        "b": "Correcta. Es lo que significa sin estado.",
+        "c": "Incorrecta. El JWT está firmado.",
+        "d": "Incorrecta. Se envía en cada petición, en la cabecera Authorization."
+      }
+    },
+    "sistemas-t04-e24": {
+      "section": "jwt",
+      "reasoning": "La lista de claims habituales define cada campo.",
+      "options": {
+        "a": "Incorrecta. El destinatario es aud.",
+        "b": "Incorrecta. El emisor es iss.",
+        "c": "Correcta. exp es expiration.",
+        "d": "Incorrecta. El identificador único es jti."
+      }
+    },
+    "sistemas-t04-e25": {
+      "section": "jwt",
+      "reasoning": "El apartado aclara qué protege y qué no protege la firma de un JWT.",
+      "options": {
+        "a": "Incorrecta. Base64 lo decodifica cualquiera.",
+        "b": "Incorrecta. Firmar no es cifrar.",
+        "c": "Correcta. Es lo que explica el tema.",
+        "d": "Incorrecta. No hace falta clave para leer el payload."
+      }
+    },
+    "sistemas-t04-e26": {
+      "section": "jwt",
+      "reasoning": "La tabla de algoritmos de firma indica cuáles recomienda el temario.",
+      "options": {
+        "a": "Incorrecta. MD5 con nonce es propio de digest.",
+        "b": "Incorrecta. HS256 con secreto débil es vulnerable.",
+        "c": "Incorrecta. none significa sin firma y debe deshabilitarse.",
+        "d": "Correcta. RS256 es el recomendado."
+      }
+    },
+    "sistemas-t04-e27": {
+      "section": "jwt-ataques",
+      "reasoning": "La tabla de vulnerabilidades de JWT recoge el robo de la clave privada y su remedio.",
+      "options": {
+        "a": "Incorrecta. El tema dice expresamente que nunca en el código.",
+        "b": "Correcta. Es la recomendación del tema.",
+        "c": "Incorrecta. El payload lo lee cualquiera.",
+        "d": "Incorrecta. localStorage es accesible a un XSS."
+      }
+    },
+    "sistemas-t04-e28": {
+      "section": "jwt-ataques",
+      "reasoning": "La fila de almacenamiento inseguro de la tabla de vulnerabilidades lo explica.",
+      "options": {
+        "a": "Incorrecta. El lugar de almacenamiento no impide verificar la firma.",
+        "b": "Incorrecta. La URL expone el token en historial y registros.",
+        "c": "Correcta. Es el riesgo y el remedio del tema.",
+        "d": "Incorrecta. sessionStorage tiene el mismo problema ante un XSS."
+      }
+    },
+    "sistemas-t04-e29": {
+      "section": "jwt-ataques",
+      "reasoning": "La fila de reutilización del token en la tabla de vulnerabilidades da el remedio.",
+      "options": {
+        "a": "Incorrecta. GET expone el token en la URL.",
+        "b": "Incorrecta. Sin caducidad el token robado serviría siempre.",
+        "c": "Incorrecta. alg none permite fabricar tokens.",
+        "d": "Correcta. Es la recomendación del tema."
+      }
+    },
+    "sistemas-t04-e30": {
+      "section": "jwt-ataques",
+      "reasoning": "El apartado define el refresh token como complemento de los tokens cortos.",
+      "options": {
+        "a": "Correcta. Es su única función según el tema.",
+        "b": "Incorrecta. Cifrar el payload es tarea de JWE.",
+        "c": "Incorrecta. La firma la hace el servidor con su clave.",
+        "d": "Incorrecta. iss se sigue validando siempre."
+      }
+    },
+    "sistemas-t04-e31": {
+      "section": "jwt-ataques",
+      "reasoning": "La fila de manipulación de claims de la tabla de vulnerabilidades da el remedio.",
+      "options": {
+        "a": "Incorrecta. Base64 no protege nada.",
+        "b": "Correcta. Es la recomendación del tema.",
+        "c": "Incorrecta. El nonce pertenece a digest.",
+        "d": "Incorrecta. Ocultar el nombre del claim no protege."
+      }
+    },
+    "sistemas-t04-e32": {
+      "section": "mtls",
+      "reasoning": "Los pasos del handshake de mTLS describen el CertificateRequest.",
+      "options": {
+        "a": "Incorrecta. CHALLENGE_MESSAGE es de NTLMv2.",
+        "b": "Incorrecta. ClientHello lo envía el cliente al empezar.",
+        "c": "Incorrecta. WWW-Authenticate es de HTTP basic y digest.",
+        "d": "Correcta. Es el mensaje que pide el certificado del cliente."
+      }
+    },
+    "sistemas-t04-e33": {
+      "section": "mtls",
+      "reasoning": "El apartado de mTLS advierte del error de cifrar solo el login.",
+      "options": {
+        "a": "Incorrecta. No tiene relación con este error.",
+        "b": "Incorrecta. El golden ticket es un ataque a Kerberos.",
+        "c": "Incorrecta. AS-REP Roasting es un ataque a Kerberos.",
+        "d": "Correcta. La cookie viaja sin cifrar tras el login."
+      }
+    },
+    "sistemas-t04-e34": {
+      "section": "mtls",
+      "reasoning": "La tabla de ataques a mTLS incluye la mala configuración sin revocación.",
+      "options": {
+        "a": "Correcta. Es el riesgo que señala el tema.",
+        "b": "Incorrecta. El cifrado del canal no depende de la revocación.",
+        "c": "Incorrecta. El servidor sigue enviando su certificado.",
+        "d": "Incorrecta. mTLS no se basa en contraseñas."
+      }
+    },
+    "sistemas-t04-e35": {
+      "section": "mtls",
+      "reasoning": "Las defensas TLS del apartado incluyen medidas contra el DoS por handshakes.",
+      "options": {
+        "a": "Incorrecta. Quitar comprobaciones elimina la autenticación.",
+        "b": "Incorrecta. TLS 1.0 es inseguro.",
+        "c": "Correcta. Es una de las defensas del tema.",
+        "d": "Incorrecta. Aceptar cualquier certificado anula mTLS."
+      }
+    },
+    "sistemas-t04-e36": {
+      "section": "mtls",
+      "reasoning": "Las recomendaciones TLS del apartado definen HSTS.",
+      "options": {
+        "a": "Incorrecta. Cifrar el payload es tarea de JWE.",
+        "b": "Incorrecta. Eso lo hace el atributo HttpOnly.",
+        "c": "Correcta. Es la función de HSTS.",
+        "d": "Incorrecta. Limitar intentos es otra medida."
+      }
+    },
+    "sistemas-t04-e37": {
+      "section": "formularios",
+      "reasoning": "Las recomendaciones de formularios incluyen renovar el ID de sesión.",
+      "options": {
+        "a": "Correcta. Evita la fijación de sesión.",
+        "b": "Incorrecta. El cifrado del formulario lo da HTTPS.",
+        "c": "Incorrecta. Al contrario, la cookie debe ser HttpOnly.",
+        "d": "Incorrecta. HTTPS se mantiene en todo el recorrido."
+      }
+    },
+    "sistemas-t04-e38": {
+      "section": "formularios",
+      "reasoning": "Las recomendaciones de formularios citan bcrypt y Argon2.",
+      "options": {
+        "a": "Correcta. Son los que cita el tema.",
+        "b": "Incorrecta. Base64 no protege y MD5 es débil.",
+        "c": "Incorrecta. AES es cifrado reversible, no un hash de contraseñas.",
+        "d": "Incorrecta. HS256 es un algoritmo de firma de JWT."
+      }
+    },
+    "sistemas-t04-e39": {
+      "section": "formularios",
+      "reasoning": "Las recomendaciones de formularios mencionan los honeypots contra la automatización.",
+      "options": {
+        "a": "Incorrecta. Eso sería un CAPTCHA.",
+        "b": "Correcta. Es la definición del tema.",
+        "c": "Incorrecta. La contraseña nunca debe guardarse en una cookie.",
+        "d": "Incorrecta. Eso es un factor de posesión de MFA."
+      }
+    },
+    "sistemas-t04-e40": {
+      "section": "formularios",
+      "reasoning": "La tabla de atributos de la cookie segura asocia cada atributo a un ataque.",
+      "options": {
+        "a": "Incorrecta. Contra la captura sin cifrar protege Secure.",
+        "b": "Incorrecta. Contra el XSS protege HttpOnly.",
+        "c": "Correcta. SameSite frena el CSRF.",
+        "d": "Incorrecta. La fuerza bruta se frena limitando intentos."
+      }
+    },
+    "sistemas-t04-e41": {
+      "section": "formularios",
+      "reasoning": "Las recomendaciones de formularios fijan el límite de intentos.",
+      "options": {
+        "a": "Incorrecta. No es el rango del tema.",
+        "b": "Correcta. Es el rango que da el tema.",
+        "c": "Incorrecta. No es el rango del tema.",
+        "d": "Incorrecta. El tema sí recomienda limitarlos."
+      }
+    },
+    "sistemas-t04-e42": {
+      "section": "mfa-passwordless",
+      "reasoning": "La tabla de categorías de factores clasifica contraseña y huella.",
+      "options": {
+        "a": "Incorrecta. La huella no es posesión.",
+        "b": "Incorrecta. La contraseña no es posesión.",
+        "c": "Correcta. Saber y ser.",
+        "d": "Incorrecta. La huella es inherencia."
+      }
+    },
+    "sistemas-t04-e43": {
+      "section": "mfa-passwordless",
+      "reasoning": "El apartado define passwordless e incluye WebAuthn entre sus métodos.",
+      "options": {
+        "a": "Incorrecta. Eso es NTLM.",
+        "b": "Incorrecta. Eso es un enlace mágico.",
+        "c": "Correcta. Es la definición del tema.",
+        "d": "Incorrecta. Eso es un JWT con HS256."
+      }
+    },
+    "sistemas-t04-e44": {
+      "section": "mfa-passwordless",
+      "reasoning": "Las recomendaciones de passwordless fijan la vida de los tokens.",
+      "options": {
+        "a": "Correcta. Es la caducidad que recomienda el tema.",
+        "b": "Incorrecta. Es demasiado tiempo según el tema.",
+        "c": "Incorrecta. Es demasiado tiempo según el tema.",
+        "d": "Incorrecta. Deben ser de un solo uso y además de vida corta."
+      }
+    },
+    "sistemas-t04-e45": {
+      "section": "mfa-passwordless",
+      "reasoning": "La lista de riesgos de passwordless enumera sus amenazas propias.",
+      "options": {
+        "a": "Incorrecta. La reutilización es un riesgo de passwordless.",
+        "b": "Incorrecta. El phishing es un riesgo de passwordless.",
+        "c": "Incorrecta. Controlar correo o teléfono da acceso a enlaces y códigos.",
+        "d": "Correcta. Es un ataque contra Kerberos."
+      }
+    },
+    "sistemas-t04-e46": {
+      "section": "oauth-oidc",
+      "reasoning": "Los pasos del flujo con código de autorización describen ese intercambio.",
+      "options": {
+        "a": "Incorrecta. No se envía por correo.",
+        "b": "Incorrecta. La aplicación nunca ve la contraseña.",
+        "c": "Incorrecta. El código no es un identificador de sesión.",
+        "d": "Correcta. El código se canjea por un token de acceso."
+      }
+    },
+    "sistemas-t04-e47": {
+      "section": "oauth-oidc",
+      "reasoning": "La tabla OAuth 2.0 frente a OIDC muestra qué entrega cada uno.",
+      "options": {
+        "a": "Correcta. El ID token es lo que añade OIDC.",
+        "b": "Incorrecta. El TGT es de Kerberos.",
+        "c": "Incorrecta. Los certificados de cliente son de mTLS.",
+        "d": "Incorrecta. No es lo que añade OIDC."
+      }
+    },
+    "sistemas-t04-e48": {
+      "section": "oauth-oidc",
+      "reasoning": "La lista de ventajas e inconvenientes del apartado lo recoge.",
+      "options": {
+        "a": "Incorrecta. Permite login con proveedores externos.",
+        "b": "Incorrecta. Precisamente evita dar la contraseña a la app.",
+        "c": "Correcta. Es el riesgo que señala el tema.",
+        "d": "Incorrecta. No depende de un dominio Windows."
+      }
+    },
+    "sistemas-t04-e49": {
+      "section": "checklist",
+      "reasoning": "La tabla de ataques generales asocia cada ataque con su defensa típica.",
+      "options": {
+        "a": "Incorrecta. Eso frena la fuerza bruta.",
+        "b": "Correcta. Es la defensa contra el MITM.",
+        "c": "Incorrecta. Eso frena la repetición.",
+        "d": "Incorrecta. Es una buena práctica, pero no la defensa del MITM."
+      }
+    },
+    "sistemas-t04-e50": {
+      "section": "checklist",
+      "reasoning": "La lista de comprobación del apartado recoge qué hacer y qué evitar.",
+      "options": {
+        "a": "Incorrecta. Es una recomendación de la lista.",
+        "b": "Incorrecta. Es una recomendación de la lista.",
+        "c": "Correcta. Es lo que hay que evitar.",
+        "d": "Incorrecta. Es una recomendación de la lista."
+      }
     }
   }
 }

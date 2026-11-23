@@ -1419,6 +1419,506 @@
         "d": "Correcta. Las tres medidas suman a un control de acceso sólido: credenciales difíciles de robar, funciones separadas y permisos bien gestionados."
       },
       "doubt": "El temario no recoge esta lista tal cual. Su resumen de defensas de autorización habla de mínimos privilegios, roles bien definidos y comprobación en el servidor, y la política de contraseñas es en rigor una medida de autenticación. Se elige «Todas las anteriores» porque las tres opciones contribuyen al control de acceso y es la respuesta que pretende el test."
+    },
+    "sistemas-t05-e01": {
+      "section": "sesion",
+      "reasoning": "El apartado explica la sesión como solución a que HTTP sea sin estado.",
+      "options": {
+        "a": "Incorrecta. Al contrario, la sesión evita pedir la contraseña cada vez.",
+        "b": "Incorrecta. HTTP por sí mismo no cifra; eso lo hace TLS.",
+        "c": "Incorrecta. HTTP admite GET, POST y otros métodos.",
+        "d": "Correcta. HTTP es sin estado y la sesión le da memoria."
+      }
+    },
+    "sistemas-t05-e02": {
+      "section": "sesion",
+      "reasoning": "El apartado indica el tamaño máximo de una cookie al explicar su origen.",
+      "options": {
+        "a": "Correcta. Es el tamaño que da el tema.",
+        "b": "Incorrecta. 128 bits es la entropía mínima recomendada del ID.",
+        "c": "Incorrecta. Suena a tamaño de clave, no de cookie.",
+        "d": "Incorrecta. No es el tamaño de una cookie."
+      }
+    },
+    "sistemas-t05-e03": {
+      "section": "sesion",
+      "reasoning": "Los conceptos clave de la sesión incluyen el caso de las API con JWT.",
+      "options": {
+        "a": "Incorrecta. La contraseña no viaja en cada petición.",
+        "b": "Incorrecta. El servidor no almacena el JWT.",
+        "c": "Incorrecta. La API sí identifica al usuario, mediante el token.",
+        "d": "Correcta. Es lo que explica el tema."
+      }
+    },
+    "sistemas-t05-e04": {
+      "section": "sesion",
+      "reasoning": "La tabla de ubicaciones del ID de sesión describe los riesgos de cada una.",
+      "options": {
+        "a": "Incorrecta. No es lo que describe el tema.",
+        "b": "Incorrecta. El servidor sí lo lee; el problema es la exposición.",
+        "c": "Correcta. Es el problema de llevar el ID en la URL.",
+        "d": "Incorrecta. No tiene relación con el método DELETE."
+      }
+    },
+    "sistemas-t05-e05": {
+      "section": "id-fuerte",
+      "reasoning": "Las recomendaciones del ID de sesión exigen un generador criptográficamente seguro.",
+      "options": {
+        "a": "Correcta. Es el generador que exige el tema.",
+        "b": "Incorrecta. Un contador es predecible.",
+        "c": "Incorrecta. La hora es predecible.",
+        "d": "Incorrecta. Un valor derivado del correo se puede deducir."
+      }
+    },
+    "sistemas-t05-e06": {
+      "section": "id-fuerte",
+      "reasoning": "El apartado explica las variables B, A y S de la fórmula de OWASP.",
+      "options": {
+        "a": "Incorrecta. Eso ocurre al aumentar B.",
+        "b": "Correcta. Más ID válidos facilitan acertar uno.",
+        "c": "Incorrecta. S aparece en la fórmula y sí influye.",
+        "d": "Incorrecta. La entropía depende de B, no de S."
+      }
+    },
+    "sistemas-t05-e07": {
+      "section": "id-fuerte",
+      "reasoning": "El ejemplo de las sesiones abandonadas relaciona la inactividad con la variable S.",
+      "options": {
+        "a": "Incorrecta. La entropía mínima sigue siendo de 128 bits.",
+        "b": "Correcta. Es la razón del ejemplo.",
+        "c": "Incorrecta. El ID debe seguir siendo aleatorio.",
+        "d": "Incorrecta. El logout sigue siendo necesario."
+      }
+    },
+    "sistemas-t05-e08": {
+      "section": "id-fuerte",
+      "reasoning": "El ejemplo de WebLogic calcula los caracteres necesarios para 128 bits.",
+      "options": {
+        "a": "Incorrecta. 22 es el mínimo teórico, sin contar los 3 no aleatorios.",
+        "b": "Correcta. Es la cifra recomendada por el tema.",
+        "c": "Incorrecta. No llega a 128 bits.",
+        "d": "Incorrecta. 128 son bits, no caracteres."
+      }
+    },
+    "sistemas-t05-e09": {
+      "section": "id-fuerte",
+      "reasoning": "La primera recomendación del apartado trata sobre quién gestiona las sesiones.",
+      "options": {
+        "a": "Incorrecta. localStorage no es un mecanismo de gestión de sesiones seguro.",
+        "b": "Incorrecta. El tema dice que es difícil hacerlo a mano.",
+        "c": "Correcta. Es la recomendación, con su matiz.",
+        "d": "Incorrecta. Precisamente la sesión evita eso."
+      }
+    },
+    "sistemas-t05-e10": {
+      "section": "cookies",
+      "reasoning": "El apartado precisa la diferencia entre SameSite y HttpOnly que el test explota.",
+      "options": {
+        "a": "Incorrecta. Secure obliga a enviarla solo por HTTPS.",
+        "b": "Incorrecta. HttpOnly impide que JavaScript la lea.",
+        "c": "Correcta. Es la función de SameSite.",
+        "d": "Incorrecta. Max-Age fija la caducidad."
+      }
+    },
+    "sistemas-t05-e11": {
+      "section": "cookies",
+      "reasoning": "El ejemplo de cookie protegida del apartado explica cada atributo.",
+      "options": {
+        "a": "Correcta. 1800 segundos son 30 minutos.",
+        "b": "Incorrecta. Eso lo indica Secure.",
+        "c": "Incorrecta. Eso lo indica HttpOnly.",
+        "d": "Incorrecta. Eso lo indica SameSite."
+      }
+    },
+    "sistemas-t05-e12": {
+      "section": "cookies",
+      "reasoning": "Las otras medidas de defensa del apartado incluyen la integridad con HMAC.",
+      "options": {
+        "a": "Incorrecta. La caducidad la fija Expires o Max-Age.",
+        "b": "Incorrecta. Eso es Secure.",
+        "c": "Incorrecta. Eso es HttpOnly.",
+        "d": "Correcta. Es lo que aporta HMAC."
+      }
+    },
+    "sistemas-t05-e13": {
+      "section": "cookies",
+      "reasoning": "El apartado corrige la descripción del PDF sobre SameSite.",
+      "options": {
+        "a": "Incorrecta. La caducidad no es función de SameSite.",
+        "b": "Incorrecta. SameSite no cifra.",
+        "c": "Incorrecta. SameSite se aplica a cualquier cookie.",
+        "d": "Correcta. Es la precisión que hace el tema."
+      }
+    },
+    "sistemas-t05-e14": {
+      "section": "ataques-captura",
+      "reasoning": "La tabla de vías para obtener un ID de sesión describe la revelación.",
+      "options": {
+        "a": "Incorrecta. En la fijación el atacante impone un ID antes del login.",
+        "b": "Incorrecta. La predicción deduce IDs con patrón.",
+        "c": "Incorrecta. La fuerza bruta prueba valores hasta acertar.",
+        "d": "Correcta. El ID se ha revelado en la URL indexada."
+      }
+    },
+    "sistemas-t05-e15": {
+      "section": "ataques-captura",
+      "reasoning": "La tabla de ataques asocia la predicción con el uso de un CSPRNG.",
+      "options": {
+        "a": "Incorrecta. Cambiar dónde viaja no lo hace aleatorio.",
+        "b": "Correcta. Elimina la predictibilidad.",
+        "c": "Incorrecta. HttpOnly protege del robo por XSS.",
+        "d": "Incorrecta. El token anti-CSRF valida la procedencia."
+      }
+    },
+    "sistemas-t05-e16": {
+      "section": "ataques-captura",
+      "reasoning": "La definición de secuestro de sesión del apartado introduce el sidejacking.",
+      "options": {
+        "a": "Incorrecta. La fijación impone el ID antes del login.",
+        "b": "Incorrecta. El clickjacking usa marcos transparentes.",
+        "c": "Incorrecta. Es un ataque contra Kerberos.",
+        "d": "Correcta. Es el término del tema."
+      }
+    },
+    "sistemas-t05-e17": {
+      "section": "ataques-captura",
+      "reasoning": "La tabla de vías de obtención incluye la manipulación del ID y su defensa.",
+      "options": {
+        "a": "Incorrecta. Ocultar el logout no protege nada.",
+        "b": "Incorrecta. El método del login no impide manipular la cookie.",
+        "c": "Correcta. Es la defensa que indica el tema.",
+        "d": "Incorrecta. El tamaño no aporta integridad."
+      }
+    },
+    "sistemas-t05-e18": {
+      "section": "ataques-captura",
+      "reasoning": "El apartado arranca con la idea de que el ID equivale a las credenciales.",
+      "options": {
+        "a": "Incorrecta. Con el ID basta para suplantar.",
+        "b": "Correcta. Es la idea central del apartado.",
+        "c": "Incorrecta. Es igual de valioso mientras sea válido.",
+        "d": "Incorrecta. Su valor está en que esté autenticado."
+      }
+    },
+    "sistemas-t05-e19": {
+      "section": "ataques-captura",
+      "reasoning": "La tabla de vías para obtener un ID asocia el XSS con HttpOnly.",
+      "options": {
+        "a": "Correcta. HttpOnly impide que el script lea la cookie.",
+        "b": "Incorrecta. La predicción se frena con un CSPRNG.",
+        "c": "Incorrecta. La revelación se frena no poniendo el ID en la URL.",
+        "d": "Incorrecta. La ingeniería social se frena con formación."
+      }
+    },
+    "sistemas-t05-e20": {
+      "section": "fijacion",
+      "reasoning": "La tabla fijación frente a secuestro compara cuándo actúa el atacante.",
+      "options": {
+        "a": "Correcta. Es la diferencia de momento.",
+        "b": "Incorrecta. Eso describe el secuestro.",
+        "c": "Incorrecta. En ninguno se roba la contraseña.",
+        "d": "Incorrecta. La defensa de la fijación es regenerar el ID."
+      }
+    },
+    "sistemas-t05-e21": {
+      "section": "fijacion",
+      "reasoning": "La definición de fijación de sesión indica qué aplicaciones son vulnerables.",
+      "options": {
+        "a": "Incorrecta. La MFA no es la condición del ataque.",
+        "b": "Incorrecta. Regenerar el ID es justo la defensa.",
+        "c": "Incorrecta. El tema no las presenta como vulnerables a la fijación.",
+        "d": "Correcta. Es la condición que describe el tema."
+      }
+    },
+    "sistemas-t05-e22": {
+      "section": "fijacion",
+      "reasoning": "El apartado cita la configuración de Spring Security contra la fijación.",
+      "options": {
+        "a": "Correcta. Crea una sesión nueva al autenticar.",
+        "b": "Incorrecta. Limita a una sesión por usuario.",
+        "c": "Incorrecta. Destruye la sesión en el logout.",
+        "d": "Incorrecta. Define la dirección de cierre de sesión."
+      }
+    },
+    "sistemas-t05-e23": {
+      "section": "csrf",
+      "reasoning": "La definición de CSRF del apartado subraya que no hace falta conocer el ID.",
+      "options": {
+        "a": "Correcta. Es la clave del CSRF.",
+        "b": "Incorrecta. Robar la cookie con XSS es otro ataque.",
+        "c": "Incorrecta. No necesita adivinar el ID.",
+        "d": "Incorrecta. Atacar la base de datos es propio de la SQLi."
+      }
+    },
+    "sistemas-t05-e24": {
+      "section": "csrf",
+      "reasoning": "El apartado explica por qué el CSRF no afecta a las API con JWT en cabecera.",
+      "options": {
+        "a": "Incorrecta. El JWT no se cifra con una clave del navegador.",
+        "b": "Correcta. Es la razón que da el tema.",
+        "c": "Incorrecta. Las API sí reciben POST.",
+        "d": "Incorrecta. La caducidad no es la razón."
+      }
+    },
+    "sistemas-t05-e25": {
+      "section": "csrf",
+      "reasoning": "La tabla del apartado separa los tres ataques y lo que frena cada uno.",
+      "options": {
+        "a": "Incorrecta. Frena el CSRF.",
+        "b": "Incorrecta. Frena el CSRF.",
+        "c": "Correcta. Es la defensa de la SQLi.",
+        "d": "Incorrecta. Limita el daño del XSS."
+      }
+    },
+    "sistemas-t05-e26": {
+      "section": "csrf",
+      "reasoning": "El ejemplo de CSRF del apartado describe la creación de una cuenta.",
+      "options": {
+        "a": "Incorrecta. El CSRF no obtiene la contraseña.",
+        "b": "Incorrecta. El ejemplo no habla de borrar datos.",
+        "c": "Correcta. Es el resultado del ejemplo.",
+        "d": "Incorrecta. Una ventana emergente es típica de las demos de XSS."
+      }
+    },
+    "sistemas-t05-e27": {
+      "section": "defensa-sesion",
+      "reasoning": "La tabla de los dos tiempos de una sesión compara si se reinician con la actividad.",
+      "options": {
+        "a": "Correcta. Es la diferencia clave del tema.",
+        "b": "Incorrecta. Es justo al revés.",
+        "c": "Incorrecta. No dependen de cerrar el navegador.",
+        "d": "Incorrecta. El certificado no tiene relación con la sesión."
+      }
+    },
+    "sistemas-t05-e28": {
+      "section": "defensa-sesion",
+      "reasoning": "La tabla del ejemplo de Spring Boot explica cada pieza de configuración.",
+      "options": {
+        "a": "Incorrecta. Eso es sessionFixation().migrateSession().",
+        "b": "Correcta. Limita la concurrencia.",
+        "c": "Incorrecta. No fija tiempos.",
+        "d": "Incorrecta. Eso es deleteCookies."
+      }
+    },
+    "sistemas-t05-e29": {
+      "section": "defensa-sesion",
+      "reasoning": "La tabla del ejemplo de Spring Boot describe las piezas del logout.",
+      "options": {
+        "a": "Incorrecta. No envía correos.",
+        "b": "Incorrecta. Eso lo hace deleteCookies.",
+        "c": "Incorrecta. No gestiona el token anti-CSRF.",
+        "d": "Correcta. Es su función."
+      }
+    },
+    "sistemas-t05-e30": {
+      "section": "defensa-sesion",
+      "reasoning": "La tabla del ejemplo de Spring Boot describe el uso de CookieCsrfTokenRepository.",
+      "options": {
+        "a": "Incorrecta. El tiempo absoluto lo controla un filtro propio.",
+        "b": "Incorrecta. No gestiona el ID de sesión.",
+        "c": "Incorrecta. Eso es maximumSessions(1).",
+        "d": "Correcta. Es lo que hace según el tema."
+      }
+    },
+    "sistemas-t05-e31": {
+      "section": "defensa-sesion",
+      "reasoning": "La lista de comprobación del apartado enumera las medidas de una sesión robusta.",
+      "options": {
+        "a": "Incorrecta. Sí figura en la lista.",
+        "b": "Correcta. Va contra la lista de comprobación.",
+        "c": "Incorrecta. Sí figura en la lista.",
+        "d": "Incorrecta. Sí figura en la lista."
+      }
+    },
+    "sistemas-t05-e32": {
+      "section": "autorizacion-fundamentos",
+      "reasoning": "La lista de objetivos del servicio de autorización lo recoge.",
+      "options": {
+        "a": "Correcta. Es uno de los objetivos.",
+        "b": "Incorrecta. Eso es autenticación.",
+        "c": "Incorrecta. TLS protege el transporte.",
+        "d": "Incorrecta. Eso es gestión de sesiones."
+      }
+    },
+    "sistemas-t05-e33": {
+      "section": "autorizacion-fundamentos",
+      "reasoning": "Los pasos del flujo de control de la autorización indican qué se consulta.",
+      "options": {
+        "a": "Incorrecta. El User-Agent identifica el navegador, no permisos.",
+        "b": "Incorrecta. El certificado no decide permisos.",
+        "c": "Correcta. La ACL registra quién puede hacer qué.",
+        "d": "Incorrecta. El historial no interviene."
+      }
+    },
+    "sistemas-t05-e34": {
+      "section": "autorizacion-fundamentos",
+      "reasoning": "La tabla de vistas horizontal y vertical ordena las capas.",
+      "options": {
+        "a": "Incorrecta. El SGBD aparece en la vista horizontal.",
+        "b": "Incorrecta. El navegador aparece en la vista horizontal.",
+        "c": "Incorrecta. El hardware está por debajo del sistema operativo.",
+        "d": "Correcta. El middleware está entre aplicación y sistema operativo."
+      }
+    },
+    "sistemas-t05-e35": {
+      "section": "autorizacion-fundamentos",
+      "reasoning": "El apartado describe la autorización en el navegador con la sandbox de Chrome.",
+      "options": {
+        "a": "Correcta. Es lo que explica el tema.",
+        "b": "Incorrecta. El núcleo usa el token normal, no el renderizador.",
+        "c": "Incorrecta. El renderizado ocurre en el navegador.",
+        "d": "Incorrecta. No tiene relación con el SGBD."
+      }
+    },
+    "sistemas-t05-e36": {
+      "section": "autorizacion-fundamentos",
+      "reasoning": "La lista de medidas en el servidor web o de aplicaciones lo recoge.",
+      "options": {
+        "a": "Incorrecta. El tema la considera peor opción.",
+        "b": "Correcta. Es el enfoque recomendado.",
+        "c": "Incorrecta. El tema sí recomienda filtrar.",
+        "d": "Incorrecta. No es el criterio que cita el tema."
+      }
+    },
+    "sistemas-t05-e37": {
+      "section": "desarrollo-autorizacion",
+      "reasoning": "La definición de RBAC incluye el ejemplo de roles en un CMS.",
+      "options": {
+        "a": "Correcta. Es el permiso del Editor.",
+        "b": "Incorrecta. Eso es el Administrador.",
+        "c": "Incorrecta. Eso es el Visor.",
+        "d": "Incorrecta. No corresponde a ningún rol del ejemplo."
+      }
+    },
+    "sistemas-t05-e38": {
+      "section": "desarrollo-autorizacion",
+      "reasoning": "Los pasos de la autorización incluyen cómo responder a los errores de autorización.",
+      "options": {
+        "a": "Incorrecta. El 404 indica que el recurso no existe.",
+        "b": "Incorrecta. El 401 indica falta de autenticación.",
+        "c": "Correcta. Autenticado pero sin permiso.",
+        "d": "Incorrecta. El 500 es un error del servidor."
+      }
+    },
+    "sistemas-t05-e39": {
+      "section": "desarrollo-autorizacion",
+      "reasoning": "Los pasos de la autorización advierten de que el frontend es solo cosmética.",
+      "options": {
+        "a": "Correcta. Es la razón que da el tema.",
+        "b": "Incorrecta. No es un problema de visualización.",
+        "c": "Incorrecta. No es un problema de rendimiento.",
+        "d": "Incorrecta. El problema es que se puede saltar."
+      }
+    },
+    "sistemas-t05-e40": {
+      "section": "desarrollo-autorizacion",
+      "reasoning": "Los pasos de la autorización describen el uso de JWT en API y microservicios.",
+      "options": {
+        "a": "Incorrecta. Un rol en la URL se manipula fácilmente.",
+        "b": "Incorrecta. No es el mecanismo descrito para API.",
+        "c": "Correcta. Es lo que indica el tema.",
+        "d": "Incorrecta. No tiene relación con la autorización."
+      }
+    },
+    "sistemas-t05-e41": {
+      "section": "toctou",
+      "reasoning": "El apartado define TOCTOU y su significado.",
+      "options": {
+        "a": "Incorrecta. No es un tiempo de sesión.",
+        "b": "Incorrecta. No es un token.",
+        "c": "Correcta. Es el significado de la sigla.",
+        "d": "Incorrecta. Eso es el atributo Secure."
+      }
+    },
+    "sistemas-t05-e42": {
+      "section": "toctou",
+      "reasoning": "El caso práctico y las medidas del apartado tratan este escenario.",
+      "options": {
+        "a": "Incorrecta. HttpOnly protege de XSS.",
+        "b": "Incorrecta. La longitud del ID no tiene relación con TOCTOU.",
+        "c": "Correcta. El bloqueo evita el doble uso.",
+        "d": "Incorrecta. No resuelve el problema de concurrencia."
+      }
+    },
+    "sistemas-t05-e43": {
+      "section": "toctou",
+      "reasoning": "El apartado define la operación atómica como defensa frente a TOCTOU.",
+      "options": {
+        "a": "Incorrecta. Eso abre precisamente el hueco de TOCTOU.",
+        "b": "Correcta. Es la definición del tema.",
+        "c": "Incorrecta. No depende de quién la ejecute.",
+        "d": "Incorrecta. No se define por los reintentos."
+      }
+    },
+    "sistemas-t05-e44": {
+      "section": "administracion-defensas",
+      "reasoning": "La tabla de modelos de gestión del control de acceso pone Linux como ejemplo de DAC.",
+      "options": {
+        "a": "Incorrecta. RBAC asigna permisos por roles.",
+        "b": "Incorrecta. En el MAC decide solo el administrador.",
+        "c": "Correcta. El propietario decide.",
+        "d": "Incorrecta. TOCTOU es un ataque, no un modelo."
+      }
+    },
+    "sistemas-t05-e45": {
+      "section": "administracion-defensas",
+      "reasoning": "La tabla de modelos de gestión del control de acceso da el ejemplo del MAC.",
+      "options": {
+        "a": "Incorrecta. No es el ejemplo del tema.",
+        "b": "Incorrecta. No es el ejemplo del tema.",
+        "c": "Incorrecta. Linux es el ejemplo del DAC.",
+        "d": "Correcta. Es el ejemplo del tema."
+      }
+    },
+    "sistemas-t05-e46": {
+      "section": "administracion-defensas",
+      "reasoning": "El caso práctico del PDF con nombre raro ilustra la protección de recursos estáticos.",
+      "options": {
+        "a": "Incorrecta. Es seguridad por oscuridad.",
+        "b": "Correcta. Es la lección del caso.",
+        "c": "Incorrecta. El tema pide protegerlos.",
+        "d": "Incorrecta. La dirección directa evita el menú."
+      }
+    },
+    "sistemas-t05-e47": {
+      "section": "oauth-oidc",
+      "reasoning": "Las consideraciones de seguridad de OAuth 2.0 tratan el reuso del código.",
+      "options": {
+        "a": "Incorrecta. Los códigos son de validez corta.",
+        "b": "Incorrecta. Un código es de un solo uso.",
+        "c": "Incorrecta. El alcance debe ser lo más limitado posible.",
+        "d": "Correcta. Es lo que exige el tema."
+      }
+    },
+    "sistemas-t05-e48": {
+      "section": "oauth-oidc",
+      "reasoning": "Las consideraciones de seguridad de OAuth 2.0 fijan la probabilidad de acierto.",
+      "options": {
+        "a": "Incorrecta. Sería demasiado fácil de adivinar.",
+        "b": "Correcta. Es el límite que da el tema.",
+        "c": "Incorrecta. No es la cifra del tema.",
+        "d": "Incorrecta. Debe ser igual o inferior, no superior."
+      }
+    },
+    "sistemas-t05-e49": {
+      "section": "oauth-oidc",
+      "reasoning": "Las consideraciones de seguridad incluyen la coincidencia de la URI de redirección.",
+      "options": {
+        "a": "Correcta. Es la razón que da el tema.",
+        "b": "Incorrecta. La duración del token no depende de esto.",
+        "c": "Incorrecta. El usuario sigue dando su permiso.",
+        "d": "Incorrecta. El cliente debe validar siempre el certificado TLS."
+      }
+    },
+    "sistemas-t05-e50": {
+      "section": "oauth-oidc",
+      "reasoning": "La definición de OAuth 2.0 del apartado presenta proveedor y consumidor.",
+      "options": {
+        "a": "Incorrecta. No son esos los dos papeles.",
+        "b": "Correcta. Es la definición del tema.",
+        "c": "Incorrecta. No son esos los dos papeles.",
+        "d": "Incorrecta. Son códigos temporales, no papeles."
+      }
     }
   }
 }

@@ -1036,6 +1036,506 @@
         "c": "Incorrecta. Un grupo sin permisos no concede nada.",
         "d": "Incorrecta. La existencia del rol no concede acceso: hace falta una asignación."
       }
+    },
+    "sistemas-t09-e01": {
+      "section": "nube-modelos",
+      "reasoning": "La tabla de modelos del apartado pone este mismo ejemplo para la nube híbrida.",
+      "options": {
+        "a": "Incorrecta. Solo usaría recursos compartidos de un proveedor.",
+        "b": "Correcta. Combina la privada (historiales) y la pública (web de citas).",
+        "c": "Incorrecta. Solo usaría recursos exclusivos de la organización.",
+        "d": "Incorrecta. El tema no trata este modelo; el caso combina pública y privada."
+      }
+    },
+    "sistemas-t09-e02": {
+      "section": "nube-modelos",
+      "reasoning": "La tabla de modelos del apartado define la nube privada por el uso exclusivo.",
+      "options": {
+        "a": "Correcta. Lo que la define es el uso exclusivo, esté donde esté.",
+        "b": "Incorrecta. Eso es la nube pública.",
+        "c": "Incorrecta. Eso es la nube híbrida.",
+        "d": "Incorrecta. Repartir servidores entre clientes es propio de la nube pública."
+      }
+    },
+    "sistemas-t09-e03": {
+      "section": "nube-modelos",
+      "reasoning": "El ejemplo del apartado contrapone escalado vertical y horizontal.",
+      "options": {
+        "a": "Incorrecta. El vertical aumenta la potencia de una misma máquina.",
+        "b": "Incorrecta. La recuperación ante desastres usa réplicas en otras zonas.",
+        "c": "Correcta. Añadir máquinas iguales es escalar horizontalmente.",
+        "d": "Incorrecta. La distribución geográfica despliega en varias regiones."
+      }
+    },
+    "sistemas-t09-e04": {
+      "section": "nube-modelos",
+      "reasoning": "La tabla de ventajas del apartado define la elasticidad como escalado automático.",
+      "options": {
+        "a": "Incorrecta. La agilidad es crear y cambiar recursos en minutos.",
+        "b": "Incorrecta. La alta disponibilidad es funcionar sin cortes según el SLA.",
+        "c": "Correcta. Crecer o encoger solo según la demanda es elasticidad.",
+        "d": "Incorrecta. El escalado vertical da más potencia a una máquina, no implica automatismo."
+      }
+    },
+    "sistemas-t09-e05": {
+      "section": "nube-modelos",
+      "reasoning": "El apartado define el SLA al hablar de la alta disponibilidad.",
+      "options": {
+        "a": "Incorrecta. Ese rol es el Administrador de acceso de usuario.",
+        "b": "Incorrecta. El directorio es el inquilino de Entra ID.",
+        "c": "Correcta. Es el acuerdo de nivel de servicio con el proveedor.",
+        "d": "Incorrecta. Esa herramienta es Azure AD Connect."
+      }
+    },
+    "sistemas-t09-e06": {
+      "section": "jerarquia",
+      "reasoning": "La analogía del apartado asocia cada nivel de Azure con un elemento de la mudanza.",
+      "options": {
+        "a": "Incorrecta. El recurso es el objeto que va en la caja.",
+        "b": "Correcta. El camión con factura propia es la suscripción.",
+        "c": "Incorrecta. El grupo de recursos es la caja.",
+        "d": "Incorrecta. El grupo de administración es la flota con normas comunes."
+      }
+    },
+    "sistemas-t09-e07": {
+      "section": "jerarquia",
+      "reasoning": "El apartado define el ámbito y explica la herencia hacia los niveles inferiores.",
+      "options": {
+        "a": "Incorrecta. Precisamente la herencia evita repetirlo.",
+        "b": "Incorrecta. La herencia va hacia abajo, no hacia arriba.",
+        "c": "Incorrecta. La herencia no depende de crear recursos.",
+        "d": "Correcta. Se propaga hacia abajo a todo lo que cuelga del ámbito."
+      }
+    },
+    "sistemas-t09-e08": {
+      "section": "jerarquia",
+      "reasoning": "El bloque de examen del apartado da el truco de situar la suscripción en medio.",
+      "options": {
+        "a": "Correcta. La suscripción está entre ambos grupos.",
+        "b": "Incorrecta. El recurso es el nivel más bajo.",
+        "c": "Incorrecta. El grupo de administración está por encima de las suscripciones.",
+        "d": "Incorrecta. Es al revés: el grupo de administración está arriba."
+      }
+    },
+    "sistemas-t09-e09": {
+      "section": "grupos-recursos",
+      "reasoning": "El apartado explica que el grupo de recursos agrupa recursos con el mismo ciclo de vida.",
+      "options": {
+        "a": "Incorrecta. El autor no es el criterio de agrupación.",
+        "b": "Incorrecta. El precio no es el criterio del tema.",
+        "c": "Incorrecta. El tema no exige la misma región.",
+        "d": "Correcta. Nacen, se actualizan y mueren juntos."
+      }
+    },
+    "sistemas-t09-e10": {
+      "section": "grupos-recursos",
+      "reasoning": "Las propiedades del apartado indican que cada recurso está en un solo grupo de recursos.",
+      "options": {
+        "a": "Incorrecta. El número de suscripciones no cambia esa regla.",
+        "b": "Incorrecta. No puede estar en dos a la vez.",
+        "c": "Correcta. Un único grupo, aunque puede moverse.",
+        "d": "Incorrecta. Todo recurso vive en un grupo de recursos."
+      }
+    },
+    "sistemas-t09-e11": {
+      "section": "grupos-recursos",
+      "reasoning": "El apartado define Azure Resource Manager como la capa de administración común.",
+      "options": {
+        "a": "Incorrecta. Eso es Azure Key Vault.",
+        "b": "Correcta. Es el punto único de administración de recursos.",
+        "c": "Incorrecta. Eso es Azure AD Connect.",
+        "d": "Incorrecta. Ese rol es Propietario."
+      }
+    },
+    "sistemas-t09-e12": {
+      "section": "grupos-recursos",
+      "reasoning": "Los pasos del apartado describen qué ocurre cuando se pide algo a Azure.",
+      "options": {
+        "a": "Incorrecta. Los seis meses se refieren a funciones nuevas que llegan al portal.",
+        "b": "Incorrecta. No interviene el directorio local.",
+        "c": "Incorrecta. El tema no describe ese paso.",
+        "d": "Correcta. Primero autentica y autoriza; luego reenvía."
+      }
+    },
+    "sistemas-t09-e13": {
+      "section": "grupos-recursos",
+      "reasoning": "El apartado menciona como curiosidad este desfase entre API y portal.",
+      "options": {
+        "a": "Correcta. Aparecen antes en las API y luego en el portal.",
+        "b": "Incorrecta. Es al revés.",
+        "c": "Incorrecta. AD Connect sincroniza identidades; no es donde aparecen las novedades.",
+        "d": "Incorrecta. Los grupos de administración son un nivel de ámbito."
+      }
+    },
+    "sistemas-t09-e14": {
+      "section": "suscripciones-gobierno",
+      "reasoning": "La lista de ideas sobre suscripciones del apartado resume estas propiedades.",
+      "options": {
+        "a": "Incorrecta. Cada recurso está asociado a una única suscripción.",
+        "b": "Incorrecta. Una cuenta puede tener una o más suscripciones.",
+        "c": "Correcta. Separan costes y marcan una frontera de seguridad.",
+        "d": "Incorrecta. Pueden transferirse a otra cuenta."
+      }
+    },
+    "sistemas-t09-e15": {
+      "section": "suscripciones-gobierno",
+      "reasoning": "La tabla de límites de la suscripción distingue facturación y control de acceso.",
+      "options": {
+        "a": "Correcta. Las facturas se separan por suscripción.",
+        "b": "Incorrecta. El límite de acceso sirve para aplicar directivas distintas.",
+        "c": "Incorrecta. No es uno de los dos límites de la suscripción.",
+        "d": "Incorrecta. No es uno de los límites que describe el tema."
+      }
+    },
+    "sistemas-t09-e16": {
+      "section": "suscripciones-gobierno",
+      "reasoning": "El apartado define el grupo de administración y señala el requisito del mismo inquilino.",
+      "options": {
+        "a": "Incorrecta. El tema no exige el mismo propietario.",
+        "b": "Incorrecta. El tema no exige la misma región.",
+        "c": "Correcta. Deben confiar en el mismo directorio de Entra ID.",
+        "d": "Incorrecta. El número de recursos no es un requisito."
+      }
+    },
+    "sistemas-t09-e17": {
+      "section": "suscripciones-gobierno",
+      "reasoning": "El apartado define la gobernanza al presentar los grupos de administración.",
+      "options": {
+        "a": "Incorrecta. Eso es Key Vault.",
+        "b": "Correcta. Son las reglas de uso de la nube.",
+        "c": "Incorrecta. Eso es Azure AD Connect.",
+        "d": "Incorrecta. Eso es el SLA."
+      }
+    },
+    "sistemas-t09-e18": {
+      "section": "entra-id",
+      "reasoning": "El apartado indica que Entra ID es el nuevo nombre de Azure AD.",
+      "options": {
+        "a": "Correcta. Es el nombre anterior del servicio.",
+        "b": "Incorrecta. ARM es la capa de administración de recursos.",
+        "c": "Incorrecta. Key Vault custodia secretos y claves.",
+        "d": "Incorrecta. AD FS es un componente opcional de federación."
+      }
+    },
+    "sistemas-t09-e19": {
+      "section": "entra-id",
+      "reasoning": "La tabla AD local frente a Entra ID del apartado aclara su relación.",
+      "options": {
+        "a": "Correcta. Es un servicio distinto que puede funcionar solo o conectado.",
+        "b": "Incorrecta. No es una copia de AD en la nube.",
+        "c": "Incorrecta. No lo sustituye por completo.",
+        "d": "Incorrecta. Una pequeña empresa puede usarlo como único directorio."
+      }
+    },
+    "sistemas-t09-e20": {
+      "section": "entra-id",
+      "reasoning": "El apartado define el inquilino como la instancia de Entra ID que representa a la organización.",
+      "options": {
+        "a": "Incorrecta. La suscripción es otra cosa distinta.",
+        "b": "Incorrecta. El invitado es un tipo de usuario.",
+        "c": "Correcta. Es la instancia de Entra ID de la organización.",
+        "d": "Incorrecta. Los grupos de recursos no se comparten entre empresas así."
+      }
+    },
+    "sistemas-t09-e21": {
+      "section": "entra-id",
+      "reasoning": "La lista directorio y suscripciones del apartado fija esta relación.",
+      "options": {
+        "a": "Incorrecta. Las regiones no afectan a esta relación.",
+        "b": "Incorrecta. No se admiten dos directorios por suscripción.",
+        "c": "Correcta. Cada suscripción confía en un único directorio.",
+        "d": "Incorrecta. Siempre confía en un directorio de Entra ID."
+      }
+    },
+    "sistemas-t09-e22": {
+      "section": "entra-id",
+      "reasoning": "La lista directorio y suscripciones del apartado recoge este requisito.",
+      "options": {
+        "a": "Correcta. Debe existir en el directorio de confianza de la suscripción.",
+        "b": "Incorrecta. El tema no exige una licencia de Microsoft 365.",
+        "c": "Incorrecta. No es necesario un equipo unido al dominio.",
+        "d": "Incorrecta. No necesita roles en otras suscripciones."
+      }
+    },
+    "sistemas-t09-e23": {
+      "section": "usuarios-grupos",
+      "reasoning": "El apartado explica que Entra ID genera un token de acceso tras la autenticación.",
+      "options": {
+        "a": "Correcta. El token de acceso es el pase digital del usuario.",
+        "b": "Incorrecta. Las claves RSA se guardan en Key Vault.",
+        "c": "Incorrecta. Un grupo de recursos es un contenedor de recursos.",
+        "d": "Incorrecta. La definición de rol describe permisos, no es un pase."
+      }
+    },
+    "sistemas-t09-e24": {
+      "section": "usuarios-grupos",
+      "reasoning": "La tabla de tipos de usuarios del apartado define la identidad sincronizada.",
+      "options": {
+        "a": "Incorrecta. La identidad de nube solo existe en Entra ID.",
+        "b": "Incorrecta. La entidad de servicio es la identidad de una aplicación.",
+        "c": "Incorrecta. El invitado procede de fuera de Azure.",
+        "d": "Correcta. Su origen es el AD local y se sincroniza."
+      }
+    },
+    "sistemas-t09-e25": {
+      "section": "usuarios-grupos",
+      "reasoning": "La lista de formas de crear usuarios del apartado cita New-AzureADUser.",
+      "options": {
+        "a": "Incorrecta. New-AzureADGroup crea grupos.",
+        "b": "Correcta. New-AzureADUser crea usuarios.",
+        "c": "Incorrecta. Get-AzRoleDefinition consulta un rol.",
+        "d": "Incorrecta. New-AzADMSRoleDefinition crea roles personalizados."
+      }
+    },
+    "sistemas-t09-e26": {
+      "section": "usuarios-grupos",
+      "reasoning": "La tabla de tipos de grupos del apartado distingue el grupo de seguridad y el de Microsoft 365.",
+      "options": {
+        "a": "Incorrecta. El grupo de seguridad administra accesos a recursos.",
+        "b": "Incorrecta. El grupo de recursos agrupa recursos de Azure.",
+        "c": "Incorrecta. El grupo de administración agrupa suscripciones.",
+        "d": "Correcta. Microsoft 365 aporta buzón, calendario y SharePoint."
+      }
+    },
+    "sistemas-t09-e27": {
+      "section": "usuarios-grupos",
+      "reasoning": "El apartado explica que la pertenencia a los grupos puede ser manual o dinámica por reglas.",
+      "options": {
+        "a": "Incorrecta. No describe el borrado automático.",
+        "b": "Incorrecta. No tiene relación con cambiar de suscripción.",
+        "c": "Incorrecta. No abre el grupo a cualquiera.",
+        "d": "Correcta. Las reglas de atributos deciden quién pertenece."
+      }
+    },
+    "sistemas-t09-e28": {
+      "section": "roles-integrados",
+      "reasoning": "La tabla de roles integrados del apartado describe la función de cada rol.",
+      "options": {
+        "a": "Incorrecta. Propietario hace todo, incluido administrar recursos.",
+        "b": "Correcta. Solo gestiona los accesos, como el cerrajero de la analogía.",
+        "c": "Incorrecta. Lector solo ve los recursos.",
+        "d": "Incorrecta. Colaborador administra recursos, pero no da acceso."
+      }
+    },
+    "sistemas-t09-e29": {
+      "section": "roles-integrados",
+      "reasoning": "El apartado define el rol integrado y recomienda usarlo antes que uno personalizado.",
+      "options": {
+        "a": "Incorrecta. Dar Propietario a todos viola el mínimo privilegio.",
+        "b": "Correcta. Los integrados cubren casi todos los casos.",
+        "c": "Incorrecta. Los roles integrados no se eliminan.",
+        "d": "Incorrecta. No es un requisito para crear roles."
+      }
+    },
+    "sistemas-t09-e30": {
+      "section": "roles-integrados",
+      "reasoning": "La lista de escenarios de Azure RBAC del apartado incluye el acceso de una aplicación.",
+      "options": {
+        "a": "Incorrecta. No necesita Propietario en toda la suscripción.",
+        "b": "Incorrecta. Los roles se asignan también a aplicaciones (entidades de servicio).",
+        "c": "Incorrecta. Key Vault no es la única forma de acceso de una aplicación.",
+        "d": "Correcta. Es uno de los escenarios citados."
+      }
+    },
+    "sistemas-t09-e31": {
+      "section": "definicion-rol",
+      "reasoning": "El apartado explica que el rol es un archivo JSON.",
+      "options": {
+        "a": "Incorrecta. No es el formato que indica el tema.",
+        "b": "Incorrecta. No es una tabla CSV.",
+        "c": "Correcta. La definición de rol es un archivo JSON.",
+        "d": "Incorrecta. HTML es para páginas web."
+      }
+    },
+    "sistemas-t09-e32": {
+      "section": "definicion-rol",
+      "reasoning": "El apartado explica el formato de las operaciones y el comodín asterisco.",
+      "options": {
+        "a": "Correcta. El comodín abarca todas las acciones, también las futuras.",
+        "b": "Incorrecta. El asterisco no significa ninguna.",
+        "c": "Incorrecta. Solo lectura sería */read.",
+        "d": "Incorrecta. Los datos van en DataActions."
+      }
+    },
+    "sistemas-t09-e33": {
+      "section": "definicion-rol",
+      "reasoning": "La tabla de los tres roles por dentro muestra el NotActions de Colaborador.",
+      "options": {
+        "a": "Incorrecta. Colaborador sí puede crear máquinas virtuales.",
+        "b": "Incorrecta. Colaborador sí puede ver recursos.",
+        "c": "Correcta. Se le quitan las de Microsoft.Authorization.",
+        "d": "Incorrecta. No es lo que resta su NotActions."
+      }
+    },
+    "sistemas-t09-e34": {
+      "section": "definicion-rol",
+      "reasoning": "El apartado aclara que NotActions no es una prohibición absoluta.",
+      "options": {
+        "a": "Correcta. Otro rol puede conceder lo que Colaborador resta.",
+        "b": "Incorrecta. NotActions no es una denegación global.",
+        "c": "Incorrecta. Una identidad puede tener varias asignaciones.",
+        "d": "Incorrecta. No hace falta quitar Colaborador."
+      }
+    },
+    "sistemas-t09-e35": {
+      "section": "definicion-rol",
+      "reasoning": "El apartado explica la separación entre plano de administración y de datos.",
+      "options": {
+        "a": "Incorrecta. No limita el acceso a los datos al portal.",
+        "b": "Incorrecta. El motivo no es el tamaño del archivo.",
+        "c": "Correcta. Evita que un * de administración abra los datos.",
+        "d": "Incorrecta. No tiene relación con el cifrado."
+      }
+    },
+    "sistemas-t09-e36": {
+      "section": "definicion-rol",
+      "reasoning": "La lista de cómo crear o consultar roles del apartado cita Get-AzRoleDefinition Owner.",
+      "options": {
+        "a": "Incorrecta. No es el cmdlet que cita el tema.",
+        "b": "Incorrecta. New-AzureADUser crea usuarios.",
+        "c": "Incorrecta. New-AzureADGroup crea grupos.",
+        "d": "Correcta. Get-AzRoleDefinition consulta la definición de un rol."
+      }
+    },
+    "sistemas-t09-e37": {
+      "section": "asignacion-rol",
+      "reasoning": "El apartado afirma que el acceso se concede creando la asignación y se revoca eliminándola.",
+      "options": {
+        "a": "Incorrecta. Los roles integrados no se borran para revocar accesos.",
+        "b": "Correcta. Se elimina la asignación.",
+        "c": "Incorrecta. Cambiar el nombre no afecta a los permisos.",
+        "d": "Incorrecta. Desactivar la suscripción es desproporcionado y no es lo que dice el tema."
+      }
+    },
+    "sistemas-t09-e38": {
+      "section": "asignacion-rol",
+      "reasoning": "La tabla de las tres piezas de una asignación del apartado asocia cada pregunta.",
+      "options": {
+        "a": "Incorrecta. La definición de rol es el qué.",
+        "b": "Correcta. La entidad de seguridad es el quién.",
+        "c": "Incorrecta. El ámbito es el dónde.",
+        "d": "Incorrecta. El inquilino no es una pieza de la asignación."
+      }
+    },
+    "sistemas-t09-e39": {
+      "section": "asignacion-rol",
+      "reasoning": "El ejemplo de Marketing del apartado explica el efecto de elegir un ámbito demasiado amplio.",
+      "options": {
+        "a": "Incorrecta. Las asignaciones no caducan así.",
+        "b": "Incorrecta. Tendrían más acceso, no menos.",
+        "c": "Correcta. Un ámbito amplio da acceso a más de lo necesario.",
+        "d": "Incorrecta. Asignar un rol no borra recursos."
+      }
+    },
+    "sistemas-t09-e40": {
+      "section": "ad-connect",
+      "reasoning": "El apartado define Azure AD Connect como herramienta gratuita.",
+      "options": {
+        "a": "Incorrecta. No es de pago por usuario.",
+        "b": "Correcta. El tema la presenta como gratuita.",
+        "c": "Incorrecta. El tema no la limita a una licencia concreta.",
+        "d": "Incorrecta. No se paga por suscripción."
+      }
+    },
+    "sistemas-t09-e41": {
+      "section": "ad-connect",
+      "reasoning": "La tabla de componentes de AD Connect del apartado describe la sincronización de hash.",
+      "options": {
+        "a": "Correcta. Se copia la huella irreversible, no la contraseña.",
+        "b": "Incorrecta. La contraseña en claro no se copia.",
+        "c": "Incorrecta. Sí se sincroniza el hash para permitir el inicio de sesión.",
+        "d": "Incorrecta. No genera contraseñas nuevas."
+      }
+    },
+    "sistemas-t09-e42": {
+      "section": "ad-connect",
+      "reasoning": "La tabla de componentes del apartado describe la autenticación de paso a través.",
+      "options": {
+        "a": "Incorrecta. Key Vault no valida contraseñas de usuarios.",
+        "b": "Correcta. Se valida contra el Active Directory local.",
+        "c": "Incorrecta. El portal no es quien valida en este método.",
+        "d": "Incorrecta. La validación no se hace en el navegador."
+      }
+    },
+    "sistemas-t09-e43": {
+      "section": "ad-connect",
+      "reasoning": "La tabla de componentes del apartado describe AD FS como federación opcional.",
+      "options": {
+        "a": "Correcta. AD FS aporta la federación con la infraestructura local.",
+        "b": "Incorrecta. Connect Health supervisa la sincronización.",
+        "c": "Incorrecta. La sincronización de hash copia huellas de contraseña.",
+        "d": "Incorrecta. ARM es la capa de administración de recursos."
+      }
+    },
+    "sistemas-t09-e44": {
+      "section": "ad-connect",
+      "reasoning": "La lista de ventajas del apartado menciona que sustituye a DirSync y Azure AD Sync.",
+      "options": {
+        "a": "Incorrecta. Son herramientas de administración vigentes.",
+        "b": "Incorrecta. Son servicios actuales de Azure.",
+        "c": "Incorrecta. Son componentes del propio AD Connect.",
+        "d": "Correcta. Son las herramientas antiguas que reemplaza."
+      }
+    },
+    "sistemas-t09-e45": {
+      "section": "key-vault",
+      "reasoning": "La tabla de conceptos de Key Vault del apartado fija el tamaño de los secretos.",
+      "options": {
+        "a": "Incorrecta. El tema sí indica un límite.",
+        "b": "Incorrecta. Es muy superior al límite del tema.",
+        "c": "Incorrecta. Key Vault no guarda ficheros grandes como secretos.",
+        "d": "Correcta. Los secretos son datos de menos de 10 KB."
+      }
+    },
+    "sistemas-t09-e46": {
+      "section": "key-vault",
+      "reasoning": "La tabla de variantes de claves del apartado indica FIPS 140-2 nivel 2.",
+      "options": {
+        "a": "Correcta. HSM validados FIPS 140-2 nivel 2.",
+        "b": "Incorrecta. No es el nivel que indica el tema.",
+        "c": "Incorrecta. No es el nivel que indica el tema.",
+        "d": "Incorrecta. Sí están validados."
+      }
+    },
+    "sistemas-t09-e47": {
+      "section": "key-vault",
+      "reasoning": "La tabla de variantes de claves del apartado define BYOK.",
+      "options": {
+        "a": "Incorrecta. No tiene que ver con borrar claves.",
+        "b": "Correcta. Permite importar claves propias.",
+        "c": "Incorrecta. Compartir una clave es una mala práctica.",
+        "d": "Incorrecta. BYOK se asocia a la variante por hardware."
+      }
+    },
+    "sistemas-t09-e48": {
+      "section": "key-vault",
+      "reasoning": "Las buenas prácticas del apartado piden separar plano de administración y de datos.",
+      "options": {
+        "a": "Incorrecta. Sin acceso no podría usar las claves.",
+        "b": "Incorrecta. No necesita gestionar el almacén.",
+        "c": "Incorrecta. Dar ambos viola el mínimo privilegio.",
+        "d": "Correcta. Usar claves es una operación del plano de datos."
+      }
+    },
+    "sistemas-t09-e49": {
+      "section": "key-vault",
+      "reasoning": "Las buenas prácticas del apartado justifican la eliminación temporal y la protección de purga.",
+      "options": {
+        "a": "Incorrecta. No sirven para compartir entre inquilinos.",
+        "b": "Incorrecta. No tienen relación con la renovación.",
+        "c": "Incorrecta. El motivo no es económico.",
+        "d": "Correcta. Protegen frente a la pérdida irreversible de claves."
+      }
+    },
+    "sistemas-t09-e50": {
+      "section": "para-ampliar",
+      "reasoning": "El apartado de ampliación define ambos protocolos y su relación.",
+      "options": {
+        "a": "Incorrecta. Ninguno de los dos se define así.",
+        "b": "Correcta. Autorización frente a autenticación añadida encima.",
+        "c": "Incorrecta. Son protocolos estándar, no de un fabricante.",
+        "d": "Incorrecta. Sincronizar es AD Connect y filtrar peticiones es el WAF."
+      }
     }
   }
 }

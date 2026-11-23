@@ -884,6 +884,506 @@
         "d": "Incorrecta. La fuerza bruta consiste en probar muchas contraseñas o claves hasta acertar; no tiene que ver con peticiones internas del servidor."
       },
       "doubt": "El enunciado mezcla ideas: la SSRF no explota cómo los navegadores manejan las políticas de origen cruzado (eso encaja más con CSRF o CORS), sino una función del servidor que no valida la URL de destino. Aun así, «forzar al servidor a hacer solicitudes internas» solo describe la SSRF, y el temario la define así."
+    },
+    "sistemas-t03-e01": {
+      "section": "catalogos",
+      "reasoning": "La tabla del apartado asocia cada vulnerabilidad del tema con su número CWE.",
+      "options": {
+        "a": "Incorrecta. CWE-89 es la inyección SQL.",
+        "b": "Correcta. CWE-79 es el XSS.",
+        "c": "Incorrecta. CWE-78 es la inyección de comandos del sistema operativo.",
+        "d": "Incorrecta. CWE-352 es el CSRF."
+      }
+    },
+    "sistemas-t03-e02": {
+      "section": "catalogos",
+      "reasoning": "Los matices sobre los catálogos contraponen el alcance y la periodicidad de ambas listas.",
+      "options": {
+        "a": "Incorrecta. OWASP se renueva cada varios años y trabaja por categorías.",
+        "b": "Incorrecta. Es al revés: el Top 25 es general y OWASP es solo web.",
+        "c": "Correcta. Es la comparación que hace el tema.",
+        "d": "Incorrecta. CWE lo mantiene MITRE; OWASP es otra comunidad."
+      }
+    },
+    "sistemas-t03-e03": {
+      "section": "catalogos",
+      "reasoning": "El apartado compara CWE con una clase y CVE con un objeto o instancia.",
+      "options": {
+        "a": "Incorrecta. El molde es el CWE.",
+        "b": "Correcta. El CVE es la instancia concreta.",
+        "c": "Incorrecta. Las categorías son propias del OWASP Top Ten.",
+        "d": "Incorrecta. La lista anual es el CWE Top 25."
+      }
+    },
+    "sistemas-t03-e04": {
+      "section": "catalogos",
+      "reasoning": "El apartado define el desbordamiento de búfer y su defensa con funciones que comprueban límites.",
+      "options": {
+        "a": "Correcta. Es el ejemplo que da el tema.",
+        "b": "Incorrecta. Cifrar la memoria no evita escribir fuera de límites.",
+        "c": "Incorrecta. Las listas negras son débiles y no resuelven el problema.",
+        "d": "Incorrecta. Más permisos aumentan el daño."
+      }
+    },
+    "sistemas-t03-e05": {
+      "section": "catalogos",
+      "reasoning": "La lista de usos del CWE Top 25 recoge reducir, ahorrar, analizar tendencias y priorizar.",
+      "options": {
+        "a": "Incorrecta. Reducir vulnerabilidades es uno de sus usos.",
+        "b": "Correcta. No es una certificación de productos.",
+        "c": "Incorrecta. Analizar tendencias es uno de sus usos.",
+        "d": "Incorrecta. Priorizar por explotabilidad es uno de sus usos."
+      }
+    },
+    "sistemas-t03-e06": {
+      "section": "raiz-comun",
+      "reasoning": "La tabla del apartado relaciona cada destino de la entrada con quién la interpreta.",
+      "options": {
+        "a": "Incorrecta. El navegador de la víctima ejecuta el XSS.",
+        "b": "Incorrecta. El motor de base de datos ejecuta la inyección SQL.",
+        "c": "Correcta. En el SSRF el servidor hace la petición.",
+        "d": "Incorrecta. El sistema operativo del cliente no aparece en la tabla."
+      }
+    },
+    "sistemas-t03-e07": {
+      "section": "raiz-comun",
+      "reasoning": "El apartado separa los fallos de validación de los de lógica, como el CSRF.",
+      "options": {
+        "a": "Incorrecta. La inyección SQL nace de entradas sin validar.",
+        "b": "Incorrecta. El XSS nace de entradas sin validar.",
+        "c": "Correcta. El CSRF es un fallo de lógica, no de validación.",
+        "d": "Incorrecta. La inyección de comandos nace de entradas sin validar."
+      }
+    },
+    "sistemas-t03-e08": {
+      "section": "raiz-comun",
+      "reasoning": "El apartado compara lista blanca y negra y justifica la debilidad de la segunda.",
+      "options": {
+        "a": "Correcta. Es la razón que da el tema.",
+        "b": "Incorrecta. Una lista negra puede estar en el servidor; ese no es el problema.",
+        "c": "Incorrecta. Una lista negra rechaza lo malo conocido, no lo bueno.",
+        "d": "Incorrecta. El tema no habla de rendimiento."
+      }
+    },
+    "sistemas-t03-e09": {
+      "section": "raiz-comun",
+      "reasoning": "El apartado aclara quién tiene el fallo en las inyecciones.",
+      "options": {
+        "a": "Correcta. El fallo y la corrección están en la aplicación.",
+        "b": "Incorrecta. Cifrar la base de datos no evita la inyección.",
+        "c": "Incorrecta. La validación en el navegador se salta.",
+        "d": "Incorrecta. El tema sitúa el fallo en la aplicación."
+      }
+    },
+    "sistemas-t03-e10": {
+      "section": "proxy-burp",
+      "reasoning": "La tabla de funciones de Burp Suite describe Intruder como un fuzzer.",
+      "options": {
+        "a": "Incorrecta. Decoder convierte texto entre formatos.",
+        "b": "Incorrecta. Repeater reenvía una petición cambiando lo que quieras, a mano.",
+        "c": "Incorrecta. Inspector muestra la petición por partes.",
+        "d": "Correcta. Intruder automatiza las pruebas con listas."
+      }
+    },
+    "sistemas-t03-e11": {
+      "section": "sqli",
+      "reasoning": "La tabla de tipos de inyección SQL describe la ciega por la deducción indirecta.",
+      "options": {
+        "a": "Incorrecta. La basada en errores lee los mensajes de error.",
+        "b": "Incorrecta. La de unión pega otra consulta con UNION.",
+        "c": "Correcta. Es la definición de la inyección ciega.",
+        "d": "Incorrecta. «Almacenado» es un tipo de XSS, no de SQLi."
+      }
+    },
+    "sistemas-t03-e12": {
+      "section": "sqli",
+      "reasoning": "La tabla de requisitos del UNION recoge columnas y tipos.",
+      "options": {
+        "a": "Incorrecta. Precisamente se usa UNION para leer otras tablas.",
+        "b": "Incorrecta. Con PreparedStatement la inyección no funcionaría.",
+        "c": "Incorrecta. El número de filas no tiene que coincidir.",
+        "d": "Correcta. Son los requisitos del UNION."
+      }
+    },
+    "sistemas-t03-e13": {
+      "section": "sqli",
+      "reasoning": "La demostración del profesor empieza probando un solo carácter especial y leyendo el error.",
+      "options": {
+        "a": "Incorrecta. Con parametrización la comilla no provocaría ese error.",
+        "b": "Incorrecta. El error menciona MySQL, una base de datos.",
+        "c": "Correcta. Es lo que deduce el auditor en la demo.",
+        "d": "Incorrecta. Un error de MySQL apunta a SQL, no a XSS."
+      }
+    },
+    "sistemas-t03-e14": {
+      "section": "sqli",
+      "reasoning": "El apartado contrapone Statement y PreparedStatement en Java.",
+      "options": {
+        "a": "Incorrecta. El tema no la presenta como la alternativa segura.",
+        "b": "Incorrecta. El tema no la presenta como la alternativa segura.",
+        "c": "Correcta. PreparedStatement es la clase segura.",
+        "d": "Incorrecta. El tema no la presenta como la alternativa segura."
+      }
+    },
+    "sistemas-t03-e15": {
+      "section": "sqli",
+      "reasoning": "El bloque de trampas del apartado descarta el cifrado como defensa contra la inyección.",
+      "options": {
+        "a": "Incorrecta. Lo más efectivo son las consultas parametrizadas.",
+        "b": "Correcta. Es la trampa que señala el tema.",
+        "c": "Incorrecta. Cambiar a POST tampoco toca la causa.",
+        "d": "Incorrecta. No evita ningún tipo de inyección."
+      }
+    },
+    "sistemas-t03-e16": {
+      "section": "xss",
+      "reasoning": "La tabla de tipos de XSS describe el basado en DOM como totalmente del cliente.",
+      "options": {
+        "a": "Incorrecta. En el reflejado el servidor devuelve el script en la respuesta.",
+        "b": "Incorrecta. En el almacenado el script se guarda en la base de datos.",
+        "c": "Correcta. Ocurre totalmente en el navegador.",
+        "d": "Incorrecta. Persistente es otro nombre del almacenado."
+      }
+    },
+    "sistemas-t03-e17": {
+      "section": "xss",
+      "reasoning": "El apartado muestra un ejemplo de cabecera CSP que limita los scripts al propio sitio.",
+      "options": {
+        "a": "Incorrecta. CSP no cifra nada.",
+        "b": "Incorrecta. Eso es el atributo Secure.",
+        "c": "Incorrecta. Eso es el atributo HttpOnly de la cookie.",
+        "d": "Correcta. Limita los scripts al propio origen."
+      }
+    },
+    "sistemas-t03-e18": {
+      "section": "xss",
+      "reasoning": "El ejemplo de antes y después del apartado muestra la conversión a entidades HTML.",
+      "options": {
+        "a": "Incorrecta. Eso se parece a SameSite, no a la codificación.",
+        "b": "Incorrecta. No elimina comentarios; los muestra como texto.",
+        "c": "Incorrecta. No es cifrado.",
+        "d": "Correcta. Es lo que hace la codificación de salida."
+      }
+    },
+    "sistemas-t03-e19": {
+      "section": "xss",
+      "reasoning": "El apartado describe el camino típico del XSS reflejado mediante un enlace GET.",
+      "options": {
+        "a": "Incorrecta. GET no cifra nada.",
+        "b": "Correcta. Es la razón que da el tema.",
+        "c": "Incorrecta. El ataque necesita justo que el servidor lo refleje.",
+        "d": "Incorrecta. Los navegadores no bloquean los POST."
+      }
+    },
+    "sistemas-t03-e20": {
+      "section": "xss",
+      "reasoning": "Los matices de la clase sobre almacenamiento del navegador explican su exposición al XSS.",
+      "options": {
+        "a": "Correcta. Carecen de atributos de protección.",
+        "b": "Incorrecta. No viajan al servidor en cada petición; eso hacen las cookies.",
+        "c": "Incorrecta. Base64 no es cifrado y no es la razón.",
+        "d": "Incorrecta. localStorage persiste; y eso no explica la vulnerabilidad."
+      }
+    },
+    "sistemas-t03-e21": {
+      "section": "comandos",
+      "reasoning": "El ejemplo del ping muestra cómo el ; añade una segunda orden.",
+      "options": {
+        "a": "Correcta. Encadena una segunda orden.",
+        "b": "Incorrecta. El ; no comenta la línea.",
+        "c": "Incorrecta. No es un operador de redirección.",
+        "d": "Incorrecta. Subir de carpeta es ../."
+      }
+    },
+    "sistemas-t03-e22": {
+      "section": "comandos",
+      "reasoning": "La tabla de tipos de inyección de comandos distingue la directa de la ciega.",
+      "options": {
+        "a": "Incorrecta. Eso describe la inyección directa.",
+        "b": "Incorrecta. CVE identifica vulnerabilidades públicas, no resultados de un ataque.",
+        "c": "Incorrecta. El tema no menciona correos.",
+        "d": "Correcta. Es como se deduce en la ciega."
+      }
+    },
+    "sistemas-t03-e23": {
+      "section": "comandos",
+      "reasoning": "La lista de prevención del apartado empieza por evitar ejecutar comandos externos.",
+      "options": {
+        "a": "Incorrecta. Como administrador el daño sería mayor.",
+        "b": "Correcta. Es la primera medida del tema.",
+        "c": "Incorrecta. Ocultarlo lleva a la variante ciega, no lo evita.",
+        "d": "Incorrecta. Hay más separadores, como la barra vertical."
+      }
+    },
+    "sistemas-t03-e24": {
+      "section": "comandos",
+      "reasoning": "La demo y el párrafo final del apartado vinculan el daño a los permisos del usuario del sistema.",
+      "options": {
+        "a": "Incorrecta. El número de parámetros no determina el daño.",
+        "b": "Correcta. Es lo que remarca el tema.",
+        "c": "Incorrecta. La versión de HTTP no influye en el alcance.",
+        "d": "Incorrecta. El tamaño de la base de datos no es el criterio."
+      }
+    },
+    "sistemas-t03-e25": {
+      "section": "response-splitting",
+      "reasoning": "La lista de impactos del response splitting incluye el envenenamiento de caché.",
+      "options": {
+        "a": "Incorrecta. El response splitting no inyecta SQL.",
+        "b": "Incorrecta. El desbordamiento de búfer es otro tipo de fallo.",
+        "c": "Incorrecta. No tiene relación con el bloqueo de cuentas.",
+        "d": "Correcta. Es uno de los impactos que cita el tema."
+      }
+    },
+    "sistemas-t03-e26": {
+      "section": "response-splitting",
+      "reasoning": "El ejemplo del apartado usa %0d%0a como \\r\\n codificados.",
+      "options": {
+        "a": "Incorrecta. El espacio se codifica como %20.",
+        "b": "Incorrecta. ../ es propio del path traversal.",
+        "c": "Incorrecta. La etiqueta script se asocia al XSS.",
+        "d": "Correcta. Son CR y LF codificados."
+      }
+    },
+    "sistemas-t03-e27": {
+      "section": "response-splitting",
+      "reasoning": "La lista de prevención del apartado señala la validación estricta como la más efectiva.",
+      "options": {
+        "a": "Incorrecta. X-Frame-Options frena el clickjacking.",
+        "b": "Correcta. Es la medida más efectiva según el tema.",
+        "c": "Incorrecta. localStorage es vulnerable al XSS y no tiene relación.",
+        "d": "Incorrecta. POST no impide inyectar CRLF en cabeceras."
+      }
+    },
+    "sistemas-t03-e28": {
+      "section": "lfi",
+      "reasoning": "El apartado define ../ antes de explicar el path traversal.",
+      "options": {
+        "a": "Incorrecta. Incluir archivos remotos es propio de la RFI.",
+        "b": "Incorrecta. La carpeta actual se indica con ./.",
+        "c": "Incorrecta. Hacen falta varias ../ encadenadas para llegar a la raíz.",
+        "d": "Correcta. Es el significado de ../."
+      }
+    },
+    "sistemas-t03-e29": {
+      "section": "lfi",
+      "reasoning": "La prevención del LFI incluye usar un índice o mapa en lugar de la ruta.",
+      "options": {
+        "a": "Correcta. Es el diseño que propone el tema.",
+        "b": "Incorrecta. Comprobar solo la extensión es una defensa falsa.",
+        "c": "Incorrecta. Cambiar el nombre del parámetro no protege.",
+        "d": "Incorrecta. POST no impide manipular el valor."
+      }
+    },
+    "sistemas-t03-e30": {
+      "section": "lfi",
+      "reasoning": "El apartado presenta la ruta canónica como defensa complementaria contra el path traversal.",
+      "options": {
+        "a": "Incorrecta. Aceptar la ruta del usuario tal cual es el fallo.",
+        "b": "Correcta. Es la definición y el uso que da el tema.",
+        "c": "Incorrecta. No se trata de cifrar la URL.",
+        "d": "Incorrecta. php.ini tiene relación con la RFI, no con esta defensa."
+      }
+    },
+    "sistemas-t03-e31": {
+      "section": "lfi",
+      "reasoning": "Las defensas adicionales del apartado incluyen permisos por rol en sistema y base de datos.",
+      "options": {
+        "a": "Incorrecta. Es justo lo que el profesor desaconseja.",
+        "b": "Correcta. Es la recomendación de permisos por rol.",
+        "c": "Incorrecta. Compartir credenciales de administrador va contra el mínimo privilegio.",
+        "d": "Incorrecta. Permisos amplios agravan cualquier fallo."
+      }
+    },
+    "sistemas-t03-e32": {
+      "section": "rfi",
+      "reasoning": "La prevención de la RFI empieza por desactivar allow_url_include.",
+      "options": {
+        "a": "Incorrecta. No es la directiva que cita el tema contra la RFI.",
+        "b": "Incorrecta. No es la directiva que cita el tema contra la RFI.",
+        "c": "Incorrecta. No es la directiva que cita el tema contra la RFI.",
+        "d": "Correcta. Es la directiva que hay que desactivar."
+      }
+    },
+    "sistemas-t03-e33": {
+      "section": "rfi",
+      "reasoning": "El apartado explica el requisito de que el archivo remoto no coincida con uno local.",
+      "options": {
+        "a": "Correcta. Es el motivo que explica el tema.",
+        "b": "Incorrecta. El tema no da esa razón.",
+        "c": "Incorrecta. PHP no exige la extensión .txt.",
+        "d": "Incorrecta. La caché del navegador no tiene relación."
+      }
+    },
+    "sistemas-t03-e34": {
+      "section": "rfi",
+      "reasoning": "La tabla RFI frente a LFI compara el origen del archivo y el riesgo típico.",
+      "options": {
+        "a": "Incorrecta. El RCE es el riesgo típico de la RFI.",
+        "b": "Incorrecta. Es al revés: en la RFI el atacante escribe el archivo.",
+        "c": "Correcta. Es la diferencia de origen del archivo.",
+        "d": "Incorrecta. allow_url_include afecta a la inclusión remota."
+      }
+    },
+    "sistemas-t03-e35": {
+      "section": "csrf",
+      "reasoning": "El apartado subraya que en el CSRF no se roba nada.",
+      "options": {
+        "a": "Correcta. Es la clave del CSRF.",
+        "b": "Incorrecta. Robar cookies con un script es propio del XSS.",
+        "c": "Incorrecta. No hay descifrado de cookies.",
+        "d": "Incorrecta. El response splitting es otra vulnerabilidad."
+      }
+    },
+    "sistemas-t03-e36": {
+      "section": "csrf",
+      "reasoning": "El apartado explica la SOP y por qué no impide el envío de peticiones desde etiquetas.",
+      "options": {
+        "a": "Correcta. Las etiquetas envían la petición aunque no puedan leer la respuesta.",
+        "b": "Incorrecta. La política se aplica también con HTTPS.",
+        "c": "Incorrecta. La petición la hace el navegador de la víctima.",
+        "d": "Incorrecta. El banco no desactiva nada en el ejemplo."
+      }
+    },
+    "sistemas-t03-e37": {
+      "section": "csrf",
+      "reasoning": "La lista de otras defensas del CSRF incluye el atributo SameSite.",
+      "options": {
+        "a": "Incorrecta. HttpOnly impide que el JavaScript lea la cookie.",
+        "b": "Incorrecta. Max-Age no aparece en el tema como defensa.",
+        "c": "Incorrecta. Secure obliga a enviarla por TLS.",
+        "d": "Correcta. SameSite limita el envío entre sitios."
+      }
+    },
+    "sistemas-t03-e38": {
+      "section": "csrf",
+      "reasoning": "Los pasos de la demo concluyen que la configuración del navegador y SameSite influyen.",
+      "options": {
+        "a": "Correcta. Es la conclusión de la demo.",
+        "b": "Incorrecta. El lenguaje no fue el factor en la demo.",
+        "c": "Incorrecta. Eso tiene relación con UNION en SQL, no con CSRF.",
+        "d": "Incorrecta. La versión de PHP no fue el factor."
+      }
+    },
+    "sistemas-t03-e39": {
+      "section": "csrf",
+      "reasoning": "El apartado recoge el matiz del token de un solo uso.",
+      "options": {
+        "a": "Correcta. Es la ventaja que menciona el profesor.",
+        "b": "Incorrecta. El token se sigue asociando a la sesión.",
+        "c": "Incorrecta. El token no tiene relación con usar GET.",
+        "d": "Incorrecta. No sustituye a la autenticación."
+      }
+    },
+    "sistemas-t03-e40": {
+      "section": "ssrf",
+      "reasoning": "La tabla de usos de la función «descargar imagen» asocia esa dirección a los metadatos de la nube.",
+      "options": {
+        "a": "Incorrecta. Una redirección la hace el navegador, no es SSRF.",
+        "b": "Incorrecta. Para eso usaría file:///etc/passwd.",
+        "c": "Incorrecta. Para eso usaría una IP interna como 192.168.1.1/admin.",
+        "d": "Correcta. Es lo que consigue según la tabla."
+      }
+    },
+    "sistemas-t03-e41": {
+      "section": "ssrf",
+      "reasoning": "La tabla SSRF frente a redirección no validada distingue quién se conecta.",
+      "options": {
+        "a": "Incorrecta. En el SSRF quien actúa es el servidor.",
+        "b": "Incorrecta. Es justo al revés.",
+        "c": "Incorrecta. En el SSRF no hay 302; el servidor se conecta él mismo.",
+        "d": "Correcta. Es la diferencia clave del tema."
+      }
+    },
+    "sistemas-t03-e42": {
+      "section": "ssrf",
+      "reasoning": "La lista de prevención del SSRF y la tabla CSRF frente a SSRF separan sus defensas.",
+      "options": {
+        "a": "Incorrecta. La lista blanca es la defensa principal del SSRF.",
+        "b": "Correcta. El token es la defensa del CSRF.",
+        "c": "Incorrecta. No devolver respuestas en crudo sí figura.",
+        "d": "Incorrecta. Limitar permisos sí figura."
+      }
+    },
+    "sistemas-t03-e43": {
+      "section": "ssrf",
+      "reasoning": "El apartado recoge la explicación del profesor sobre el auge del SSRF.",
+      "options": {
+        "a": "Incorrecta. El tema no dice eso.",
+        "b": "Incorrecta. Robar cookies con JavaScript es propio del XSS.",
+        "c": "Correcta. Es la razón que da la clase.",
+        "d": "Incorrecta. No tiene relación con la inyección SQL."
+      }
+    },
+    "sistemas-t03-e44": {
+      "section": "autenticacion-autorizacion",
+      "reasoning": "La tabla de fallos de autenticación asocia contraseñas en claro con hash y salt.",
+      "options": {
+        "a": "Incorrecta. Base64 es codificación, no protege.",
+        "b": "Correcta. Es el remedio del tema.",
+        "c": "Incorrecta. Contraseñas más cortas empeoran la seguridad.",
+        "d": "Incorrecta. Las contraseñas no deben guardarse en cookies."
+      }
+    },
+    "sistemas-t03-e45": {
+      "section": "autenticacion-autorizacion",
+      "reasoning": "El apartado define hash y salt al hablar de los fallos de autenticación.",
+      "options": {
+        "a": "Incorrecta. El hash no se puede deshacer.",
+        "b": "Incorrecta. El viaje por la red lo protege TLS.",
+        "c": "Correcta. Es la función del salt.",
+        "d": "Incorrecta. La MFA es otra medida distinta."
+      }
+    },
+    "sistemas-t03-e46": {
+      "section": "autenticacion-autorizacion",
+      "reasoning": "Los ejemplos de fallos de autorización incluyen la omisión del control de acceso.",
+      "options": {
+        "a": "Incorrecta. La autenticación comprueba quién eres, no qué puedes hacer.",
+        "b": "Correcta. Es un fallo de autorización.",
+        "c": "Incorrecta. No hay cabeceras manipuladas.",
+        "d": "Incorrecta. No se ejecutan órdenes del sistema."
+      }
+    },
+    "sistemas-t03-e47": {
+      "section": "autenticacion-autorizacion",
+      "reasoning": "La tabla de fallos de autenticación incluye el bypass y su remedio.",
+      "options": {
+        "a": "Incorrecta. El clickjacking engaña al usuario con un marco transparente.",
+        "b": "Incorrecta. En un IDOR el usuario ya está autenticado y ve objetos ajenos.",
+        "c": "Correcta. Es el fallo y el remedio que recoge el tema.",
+        "d": "Incorrecta. En el SSRF el servidor hace peticiones a otros destinos."
+      }
+    },
+    "sistemas-t03-e48": {
+      "section": "cve",
+      "reasoning": "La tabla de lectura del identificador CVE explica cada parte.",
+      "options": {
+        "a": "Correcta. Es el año de publicación.",
+        "b": "Incorrecta. No indica cuándo se programó el software.",
+        "c": "Incorrecta. El CVE no clasifica la gravedad.",
+        "d": "Incorrecta. La CWE es un catálogo distinto."
+      }
+    },
+    "sistemas-t03-e49": {
+      "section": "cve",
+      "reasoning": "El apartado indica quién mantiene y cataloga los identificadores CVE.",
+      "options": {
+        "a": "Incorrecta. El CCN-CERT publica guías, no mantiene CVE.",
+        "b": "Incorrecta. OWASP publica el Top Ten, no mantiene CVE.",
+        "c": "Correcta. MITRE asigna y cataloga los CVE.",
+        "d": "Incorrecta. Microsoft no mantiene el sistema CVE."
+      }
+    },
+    "sistemas-t03-e50": {
+      "section": "cve",
+      "reasoning": "El apartado plantea qué hacer cuando hay CVE pero no parche.",
+      "options": {
+        "a": "Correcta. Son las dos opciones que plantea el profesor.",
+        "b": "Incorrecta. Una vez publicado un CVE, atacar es más fácil; esperar es arriesgado.",
+        "c": "Incorrecta. El certificado no tiene relación con la librería vulnerable.",
+        "d": "Incorrecta. Ignorar el CVE no elimina la vulnerabilidad."
+      }
     }
   }
 }

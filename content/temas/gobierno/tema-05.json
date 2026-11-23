@@ -1472,6 +1472,506 @@
         "d": "Incorrecta. Analizar cómo se replican los datos entre el CPD principal y el secundario sirve para asegurar que se puede recuperar la información. Es análisis de resiliencia."
       },
       "doubt": "El temario (pág. 19) no enumera estas tareas concretas. Se elige C porque es la única de ejecución operativa frente a supervisar, diseñar o analizar, que son las funciones del profesional de seguridad."
+    },
+    "gobierno-t05-e01": {
+      "section": "profesion",
+      "reasoning": "La tabla del apartado aplica uno a uno los cinco criterios de una profesión a la seguridad de la información.",
+      "options": {
+        "a": "Incorrecta. El tema enumera cinco criterios, no tres.",
+        "b": "Incorrecta. Son cinco, no siete.",
+        "c": "Incorrecta. Falta uno: son cinco.",
+        "d": "Correcta. Son cinco criterios."
+      }
+    },
+    "gobierno-t05-e02": {
+      "section": "profesion",
+      "reasoning": "El apartado define BOK y CBK al explicar el primer criterio de una profesión.",
+      "options": {
+        "a": "Incorrecta. BOK es el término genérico; el del CISSP tiene nombre propio.",
+        "b": "Correcta. El cuerpo de conocimiento del CISSP es el CBK.",
+        "c": "Incorrecta. Los CPE son los créditos de formación continua para mantener el CISSP.",
+        "d": "Incorrecta. La SoA es la declaración de aplicabilidad de un SGSI."
+      }
+    },
+    "gobierno-t05-e03": {
+      "section": "profesion",
+      "reasoning": "La lista de matices importantes del apartado señala lo que la profesión no tiene.",
+      "options": {
+        "a": "Correcta. No hay grado propio ni colegio que habilite para ejercer.",
+        "b": "Incorrecta. (ISC)2 e ISACA obligan a sus certificados a seguir un código ético.",
+        "c": "Incorrecta. Existen conferencias como ACM CCS y revistas como IEEE Security and Privacy.",
+        "d": "Incorrecta. Hay empresas, puestos y departamentos dedicados a la seguridad."
+      }
+    },
+    "gobierno-t05-e04": {
+      "section": "profesion",
+      "reasoning": "El apartado cita la ACM CCS como ejemplo del lado académico de la cultura profesional.",
+      "options": {
+        "a": "Incorrecta. DefCon es un evento hacker de EE. UU.",
+        "b": "Incorrecta. Rooted CON es un evento hacker español.",
+        "c": "Correcta. La ACM CCS la organiza el grupo SIGSAC desde 1993.",
+        "d": "Incorrecta. HackerHalted es un evento del mundo hacker."
+      }
+    },
+    "gobierno-t05-e05": {
+      "section": "profesion",
+      "reasoning": "La tabla de los cinco criterios del apartado asocia las consultoras especializadas al reconocimiento por los clientes.",
+      "options": {
+        "a": "Correcta. Que los clientes las contraten por su conocimiento es reconocimiento de su autoridad.",
+        "b": "Incorrecta. El cuerpo de conocimientos se ilustra con el BOK de (ISC)2.",
+        "c": "Incorrecta. El código ético se ilustra con (ISC)2 e ISACA.",
+        "d": "Incorrecta. La aprobación de la comunidad se ve en que existan empresas, puestos y departamentos."
+      }
+    },
+    "gobierno-t05-e06": {
+      "section": "hacker-etico",
+      "reasoning": "La idea clave del apartado resume al hacker ético en estos tres elementos.",
+      "options": {
+        "a": "Incorrecta. Usa técnicas ofensivas y no existe colegiación obligatoria.",
+        "b": "Incorrecta. El cobro no es el criterio y el anonimato no define al hacker ético.",
+        "c": "Incorrecta. Sin autorización no es hacking ético, aunque haya buena intención.",
+        "d": "Correcta. Técnicas ofensivas, autorización previa y código ético."
+      }
+    },
+    "gobierno-t05-e07": {
+      "section": "hacker-etico",
+      "reasoning": "El apartado del hacker ético enumera estos eventos e indica que Rooted CON es español.",
+      "options": {
+        "a": "Incorrecta. DefCon se celebra en EE. UU.",
+        "b": "Incorrecta. ACM CCS es una conferencia académica, no un evento hacker.",
+        "c": "Correcta. Rooted CON es el evento hacker español que cita el tema.",
+        "d": "Incorrecta. IEEE Security and Privacy es una revista, no un evento."
+      }
+    },
+    "gobierno-t05-e08": {
+      "section": "hacker-etico",
+      "reasoning": "La lista de rasgos del hacker ético del apartado incluye esta aportación.",
+      "options": {
+        "a": "Incorrecta. La certificación ISO 27001 la otorga una auditoría de certificación, no un hacker ético.",
+        "b": "Correcta. Aporta la visión del atacante.",
+        "c": "Incorrecta. El hacking ético es auditoría técnica; no sustituye al cumplimiento.",
+        "d": "Incorrecta. Ninguna prueba garantiza que no habrá ataques."
+      }
+    },
+    "gobierno-t05-e09": {
+      "section": "hacker-etico",
+      "reasoning": "El caso práctico del apartado describe el contrato que convierte la prueba en hacking ético.",
+      "options": {
+        "a": "Correcta. El contrato fija qué se prueba y cuándo.",
+        "b": "Incorrecta. El contrato no exime de responsabilidad; delimita la autorización.",
+        "c": "Incorrecta. Atacar a terceros sin su autorización no es ético ni legal.",
+        "d": "Incorrecta. El tema no habla de publicar las vulnerabilidades."
+      }
+    },
+    "gobierno-t05-e10": {
+      "section": "incidentes",
+      "reasoning": "El apartado de incidentes nombra las dos guías de referencia y su origen.",
+      "options": {
+        "a": "Incorrecta. La NIST SP 800-61 r2 es estadounidense.",
+        "b": "Incorrecta. La ISO/IEC 27001 fija requisitos de un SGSI, no es una guía de ciberincidentes.",
+        "c": "Incorrecta. COBIT es un marco de gobierno de las TI.",
+        "d": "Correcta. La CCN-STIC 817 es la guía española del CCN."
+      }
+    },
+    "gobierno-t05-e11": {
+      "section": "incidentes",
+      "reasoning": "La lista de ejemplos de incidentes del apartado define la exfiltración.",
+      "options": {
+        "a": "Incorrecta. Eso describe el ransomware.",
+        "b": "Correcta. Exfiltrar es sacar datos a escondidas.",
+        "c": "Incorrecta. Borrar registros no es exfiltrar.",
+        "d": "Incorrecta. Saturar un servicio provoca una parada, no una exfiltración."
+      }
+    },
+    "gobierno-t05-e12": {
+      "section": "incidentes",
+      "reasoning": "Los pasos de la respuesta a incidentes del apartado describen el contenido de la fase de plan.",
+      "options": {
+        "a": "Incorrecta. El informe final pertenece a la investigación posterior y mejora.",
+        "b": "Incorrecta. Bloquear y aislar es mitigación y contención.",
+        "c": "Correcta. Taxonomía, estrategia, roles y comunicación forman el plan.",
+        "d": "Incorrecta. Validar alertas es parte de la detección y el análisis."
+      }
+    },
+    "gobierno-t05-e13": {
+      "section": "incidentes",
+      "reasoning": "El caso práctico del SIEM del apartado asigna cada acción a su fase.",
+      "options": {
+        "a": "Correcta. Bloquear y aislar es contener el incidente.",
+        "b": "Incorrecta. Descartar una copia programada es validar, en la fase de detección.",
+        "c": "Incorrecta. El informe pertenece a la fase de investigación y mejora.",
+        "d": "Incorrecta. Vigilar la nueva medida es el seguimiento de la última fase."
+      }
+    },
+    "gobierno-t05-e14": {
+      "section": "incidentes",
+      "reasoning": "El apartado abre con los retos del profesional antes de tratar la gestión de incidentes y los nuevos entornos.",
+      "options": {
+        "a": "Incorrecta. Las amenazas no desaparecen: evolucionan.",
+        "b": "Incorrecta. Los entornos son cada vez más heterogéneos, no más simples.",
+        "c": "Correcta. Perímetros que desaparecen y entornos heterogéneos son retos del tema.",
+        "d": "Incorrecta. Ni los sistemas ni las amenazas son estables."
+      }
+    },
+    "gobierno-t05-e15": {
+      "section": "incidentes",
+      "reasoning": "La definición de incidente del apartado lo vincula a las tres dimensiones de la seguridad.",
+      "options": {
+        "a": "Incorrecta. Una alerta debe validarse; puede ser un falso positivo.",
+        "b": "Incorrecta. Una vulnerabilidad es una debilidad, no un evento que ya ocurre.",
+        "c": "Incorrecta. La definición exige amenazar las operaciones y la CID.",
+        "d": "Correcta. Es un evento no deseado que amenaza la confidencialidad, la integridad o la disponibilidad."
+      }
+    },
+    "gobierno-t05-e16": {
+      "section": "nube",
+      "reasoning": "La tabla de modelos de servicio en la nube del apartado define IaaS con este ejemplo.",
+      "options": {
+        "a": "Incorrecta. En SaaS se alquila la aplicación completa lista para usar.",
+        "b": "Correcta. Alquilar la máquina y gestionar el resto es IaaS.",
+        "c": "Incorrecta. En PaaS se alquila una plataforma para desplegar código sin administrar servidores.",
+        "d": "Incorrecta. BYOD es usar dispositivos personales para trabajar, no un modelo cloud."
+      }
+    },
+    "gobierno-t05-e17": {
+      "section": "nube",
+      "reasoning": "La lista de riesgos de la nube del apartado vincula los fallos de aislamiento a las nubes no privadas.",
+      "options": {
+        "a": "Correcta. Compartir infraestructura conlleva riesgo de fallos de aislamiento.",
+        "b": "Incorrecta. La pérdida o el robo es un riesgo de la movilidad.",
+        "c": "Incorrecta. El parque heterogéneo es una preocupación de la movilidad.",
+        "d": "Incorrecta. Los SLA se pueden y se deben negociar con el proveedor."
+      }
+    },
+    "gobierno-t05-e18": {
+      "section": "nube",
+      "reasoning": "El apartado de la nube define la CSA como promotora de buenas prácticas cloud.",
+      "options": {
+        "a": "Incorrecta. ISACA se dedica a la auditoría y el control de sistemas.",
+        "b": "Incorrecta. El CCN publica, entre otras, la guía de ciberincidentes CCN-STIC 817.",
+        "c": "Incorrecta. (ISC)2 forma y certifica profesionales, como el CISSP.",
+        "d": "Correcta. La CSA promueve buenas prácticas de seguridad en la nube."
+      }
+    },
+    "gobierno-t05-e19": {
+      "section": "nube",
+      "reasoning": "La lista de medidas para gestionar los riesgos de la nube recomienda apoyarse en un framework al negociar.",
+      "options": {
+        "a": "Incorrecta. El contrato estándar del proveedor puede no cubrir los riesgos propios.",
+        "b": "Incorrecta. El contrato debe incluir los aspectos de seguridad, no solo precio y duración.",
+        "c": "Correcta. Un framework o estándar ayuda a no olvidar dominios de seguridad.",
+        "d": "Incorrecta. Delegar en comercial no garantiza cubrir los aspectos de seguridad."
+      }
+    },
+    "gobierno-t05-e20": {
+      "section": "nube",
+      "reasoning": "La lista de riesgos de la nube del apartado explica de dónde viene la mayor exposición.",
+      "options": {
+        "a": "Correcta. Se abre al exterior un servicio que antes era interno.",
+        "b": "Incorrecta. El tema no afirma que los proveedores no cifren.",
+        "c": "Incorrecta. Los dispositivos personales son un asunto de movilidad (BYOD).",
+        "d": "Incorrecta. Los SLA se negocian precisamente en el contrato con el proveedor."
+      }
+    },
+    "gobierno-t05-e21": {
+      "section": "movilidad",
+      "reasoning": "El apartado de movilidad identifica el MDM como el software de control de dispositivos.",
+      "options": {
+        "a": "Incorrecta. Un SIEM recoge y correlaciona alertas.",
+        "b": "Correcta. El MDM gestiona y controla los dispositivos móviles.",
+        "c": "Incorrecta. Un DLP previene fugas de información.",
+        "d": "Incorrecta. Un IRM gestiona derechos sobre documentos."
+      }
+    },
+    "gobierno-t05-e22": {
+      "section": "movilidad",
+      "reasoning": "La lista de lo que controla el MDM y el caso de la consultora del apartado muestran esta función.",
+      "options": {
+        "a": "Incorrecta. La geolocalización ayuda a localizar el dispositivo, no separa datos.",
+        "b": "Incorrecta. Bloquear aplicaciones no separa los datos de empresa de los personales.",
+        "c": "Correcta. El contenedor aislado permite borrar solo los datos corporativos.",
+        "d": "Incorrecta. La autenticación protege el acceso, no separa datos."
+      }
+    },
+    "gobierno-t05-e23": {
+      "section": "movilidad",
+      "reasoning": "El apartado de movilidad indica este mínimo para los dispositivos que no se pueden gestionar.",
+      "options": {
+        "a": "Incorrecta. El tema no propone comprar móviles nuevos como mínimo.",
+        "b": "Incorrecta. El tema no plantea prohibir todo acceso externo.",
+        "c": "Incorrecta. La seguridad no se traslada al operador de telefonía.",
+        "d": "Correcta. Hay que acreditar que es apto con medidas normativas y técnicas."
+      }
+    },
+    "gobierno-t05-e24": {
+      "section": "movilidad",
+      "reasoning": "La lista de preocupaciones del gestor de seguridad del apartado recoge esta complejidad en el BYOD.",
+      "options": {
+        "a": "Correcta. Que sea del trabajador complica legal y técnicamente aplicar políticas.",
+        "b": "Incorrecta. El tema no dice que no admitan cifrado.",
+        "c": "Incorrecta. El tema habla de complejidad legal, no de una prohibición total.",
+        "d": "Incorrecta. Sí pueden conectarse; el problema es controlarlos."
+      }
+    },
+    "gobierno-t05-e25": {
+      "section": "auditoria-tecnica",
+      "reasoning": "La definición y la analogía del apartado distinguen la auditoría técnica del cumplimiento.",
+      "options": {
+        "a": "Incorrecta. Comprobar papeles y normas es propio del cumplimiento.",
+        "b": "Correcta. Mide el nivel real de seguridad con pruebas técnicas.",
+        "c": "Incorrecta. La coherencia del cuerpo normativo es tarea de cumplimiento.",
+        "d": "Incorrecta. La satisfacción de clientes no es objeto de la auditoría técnica."
+      }
+    },
+    "gobierno-t05-e26": {
+      "section": "auditoria-tecnica",
+      "reasoning": "La tabla de actividades de auditoría técnica del apartado define cada una.",
+      "options": {
+        "a": "Incorrecta. La revisión de código analiza la robustez del software propio.",
+        "b": "Incorrecta. El forense investiga las causas de un incidente ya ocurrido.",
+        "c": "Correcta. El análisis de malware estudia el comportamiento de lo sospechoso.",
+        "d": "Incorrecta. El test de intrusión simula a un atacante contra sistemas expuestos."
+      }
+    },
+    "gobierno-t05-e27": {
+      "section": "auditoria-tecnica",
+      "reasoning": "La tabla de actividades de auditoría técnica distingue ambos tipos de análisis de código.",
+      "options": {
+        "a": "Correcta. El estático no ejecuta el código; el dinámico sí.",
+        "b": "Incorrecta. La diferencia no está en quién lo hace.",
+        "c": "Incorrecta. La revisión de código no mira documentación ni plazos.",
+        "d": "Incorrecta. Son dos técnicas distintas."
+      }
+    },
+    "gobierno-t05-e28": {
+      "section": "auditoria-tecnica",
+      "reasoning": "La tabla de actividades de auditoría técnica define el test de intrusión sobre sistemas expuestos.",
+      "options": {
+        "a": "Incorrecta. Un sistema apagado no permite medir si resiste un ataque.",
+        "b": "Incorrecta. El test es una prueba técnica real, no documental.",
+        "c": "Incorrecta. El objetivo son los sistemas en uso expuestos, no las copias.",
+        "d": "Correcta. Se realiza sobre sistemas expuestos al exterior."
+      }
+    },
+    "gobierno-t05-e29": {
+      "section": "cumplimiento",
+      "reasoning": "El apartado de cumplimiento define PCI DSS como ejemplo de regulación aplicable.",
+      "options": {
+        "a": "Incorrecta. La ley orgánica de protección de datos es la LOPD (hoy LOPDGDD).",
+        "b": "Correcta. Es un estándar que imponen las marcas de tarjetas.",
+        "c": "Incorrecta. El reglamento europeo de aplicación directa es el RGPD.",
+        "d": "Incorrecta. No es una certificación profesional."
+      }
+    },
+    "gobierno-t05-e30": {
+      "section": "cumplimiento",
+      "reasoning": "La tabla de tareas del área de cumplimiento del apartado define la evaluación de la seguridad.",
+      "options": {
+        "a": "Incorrecta. El cumplimiento legal identifica la regulación aplicable y controla que se cumple.",
+        "b": "Incorrecta. La certificación adecúa la organización a un estándar como la ISO 27001.",
+        "c": "Correcta. Métricas, cuadros de mando y Plan Director son evaluación de la seguridad.",
+        "d": "Incorrecta. La auditoría identifica los puntos no conformes."
+      }
+    },
+    "gobierno-t05-e31": {
+      "section": "cumplimiento",
+      "reasoning": "El apartado explica la diferencia entre ley, ley orgánica y reglamento con el ejemplo de la LOPD.",
+      "options": {
+        "a": "Incorrecta. La aprueba el Parlamento español; lo europeo es el RGPD.",
+        "b": "Correcta. Regula un derecho fundamental y por eso es orgánica.",
+        "c": "Incorrecta. No se limita a los organismos públicos.",
+        "d": "Incorrecta. Un estándar contractual es, por ejemplo, PCI DSS."
+      }
+    },
+    "gobierno-t05-e32": {
+      "section": "cumplimiento",
+      "reasoning": "El término «ley, ley orgánica y reglamento» del apartado explica la aplicación directa del reglamento europeo.",
+      "options": {
+        "a": "Incorrecta. La trasposición es propia de las directivas, no de los reglamentos.",
+        "b": "Incorrecta. No es un contrato: obliga directamente.",
+        "c": "Incorrecta. Se aplica en todos los países de la UE.",
+        "d": "Correcta. Se aplica directamente en toda la UE, sin trasposición."
+      }
+    },
+    "gobierno-t05-e33": {
+      "section": "resiliencia",
+      "reasoning": "La tabla BCP frente a DRP del apartado indica qué protege cada plan.",
+      "options": {
+        "a": "Correcta. El BCP protege procesos y el DRP, servicios tecnológicos.",
+        "b": "Incorrecta. Está invertido.",
+        "c": "Incorrecta. Ninguno se define por la reputación o los contratos.",
+        "d": "Incorrecta. Tienen alcances distintos: el DRP es una pieza del BCP."
+      }
+    },
+    "gobierno-t05-e34": {
+      "section": "resiliencia",
+      "reasoning": "El apartado de resiliencia define la gestión de crisis como parte del BCP.",
+      "options": {
+        "a": "Incorrecta. El DRP se centra en la recuperación tecnológica.",
+        "b": "Incorrecta. El forense investiga las causas de un incidente; no forma parte del BCP.",
+        "c": "Correcta. La gestión de crisis decide quién actúa y cómo se comunica.",
+        "d": "Incorrecta. El SOC opera la seguridad; no es parte del BCP."
+      }
+    },
+    "gobierno-t05-e35": {
+      "section": "resiliencia",
+      "reasoning": "La lista de otras categorías de funciones del apartado describe la formación y concienciación.",
+      "options": {
+        "a": "Incorrecta. Revisar código es auditoría técnica.",
+        "b": "Incorrecta. Operar el CPD de contingencia es resiliencia.",
+        "c": "Incorrecta. Negociar SLA cloud pertenece a la gestión de la nube.",
+        "d": "Correcta. El plan de formación y las campañas son su núcleo."
+      }
+    },
+    "gobierno-t05-e36": {
+      "section": "otras-funciones",
+      "reasoning": "La tabla de otras categorías de funciones del apartado define la operación de la seguridad.",
+      "options": {
+        "a": "Correcta. Un tercero que opera la seguridad, como un SOC, es operación de la seguridad.",
+        "b": "Incorrecta. La oficina técnica asume el área con más implicación en estrategia y planificación.",
+        "c": "Incorrecta. La inteligencia de seguridad detecta fraude y amenazas con correlación de eventos.",
+        "d": "Incorrecta. El despliegue de soluciones diseña e implanta herramientas."
+      }
+    },
+    "gobierno-t05-e37": {
+      "section": "otras-funciones",
+      "reasoning": "La tabla de otras categorías del apartado describe la oficina técnica frente al outsourcing.",
+      "options": {
+        "a": "Incorrecta. No se limita a instalar herramientas.",
+        "b": "Correcta. Tiene mayor implicación en la estrategia y la planificación.",
+        "c": "Incorrecta. La presta precisamente un tercero.",
+        "d": "Incorrecta. El tema no dice que el outsourcing incluya siempre la seguridad física."
+      }
+    },
+    "gobierno-t05-e38": {
+      "section": "otras-funciones",
+      "reasoning": "La tabla de otras categorías de funciones del apartado define SCADA e ICS.",
+      "options": {
+        "a": "Incorrecta. La prevención de fugas es DLP.",
+        "b": "Incorrecta. No son certificaciones; las de hacking ético son, por ejemplo, CEH u OSCP.",
+        "c": "Correcta. Supervisan y controlan procesos industriales.",
+        "d": "Incorrecta. La continuidad de negocio se gestiona con el BCP."
+      }
+    },
+    "gobierno-t05-e39": {
+      "section": "otras-funciones",
+      "reasoning": "La tabla de otras categorías del apartado enumera las herramientas del despliegue de soluciones.",
+      "options": {
+        "a": "Incorrecta. Un SOC es operación de la seguridad, no una herramienta de fugas.",
+        "b": "Incorrecta. VPN e IDS/IPS pertenecen a la protección de las comunicaciones.",
+        "c": "Correcta. DLP previene fugas e IRM gestiona derechos sobre documentos.",
+        "d": "Incorrecta. SCADA e ICS son sistemas industriales."
+      }
+    },
+    "gobierno-t05-e40": {
+      "section": "otras-funciones",
+      "reasoning": "La tabla de otras categorías de funciones del apartado define la inteligencia de seguridad.",
+      "options": {
+        "a": "Incorrecta. Las VPN pertenecen a la protección de las comunicaciones.",
+        "b": "Incorrecta. El borrado remoto es una función del MDM.",
+        "c": "Incorrecta. La revisión de código es auditoría técnica.",
+        "d": "Correcta. Correlación de eventos y big data para detectar patrones."
+      }
+    },
+    "gobierno-t05-e41": {
+      "section": "certificaciones",
+      "reasoning": "La tabla de los tres grandes grupos de certificaciones del apartado sitúa CEH entre las técnicas.",
+      "options": {
+        "a": "Correcta. CEH es una certificación técnica.",
+        "b": "Incorrecta. Las de gestión son, por ejemplo, CISM o CISSP.",
+        "c": "Incorrecta. Las intermedias son Security+ o CISA.",
+        "d": "Incorrecta. Una certificación no es un título académico."
+      }
+    },
+    "gobierno-t05-e42": {
+      "section": "certificaciones",
+      "reasoning": "La tabla de los tres grandes grupos de certificaciones del apartado clasifica CISA como intermedia.",
+      "options": {
+        "a": "Incorrecta. De gestión son CISM, CISSP, CAP o ISO 27001 LI.",
+        "b": "Correcta. CISA es una certificación intermedia.",
+        "c": "Incorrecta. Técnicas son CEH, OSCP, GCIH o CCNA Security.",
+        "d": "Incorrecta. «Ofensiva» no es uno de los grupos del tema."
+      }
+    },
+    "gobierno-t05-e43": {
+      "section": "certificaciones",
+      "reasoning": "La lista del apartado sobre por qué pesan tanto las certificaciones da estos tres motivos.",
+      "options": {
+        "a": "Incorrecta. No son licencias obligatorias para ejercer.",
+        "b": "Incorrecta. No son títulos académicos ni los sustituyen.",
+        "c": "Incorrecta. Exigen renovación con formación continua.",
+        "d": "Correcta. Especialización, necesidad de demostrar conocimientos y reciclaje continuo."
+      }
+    },
+    "gobierno-t05-e44": {
+      "section": "cissp-cap",
+      "reasoning": "La tabla de los ocho dominios del CISSP del apartado indica que antes eran diez.",
+      "options": {
+        "a": "Incorrecta. Diez eran antes de 2015.",
+        "b": "Incorrecta. Catorce eran los dominios del Anexo A de la ISO 27001:2013.",
+        "c": "Correcta. Desde 2015 son ocho dominios.",
+        "d": "Incorrecta. Cuatro son los dominios del CISM."
+      }
+    },
+    "gobierno-t05-e45": {
+      "section": "cissp-cap",
+      "reasoning": "El apartado de (ISC)2 indica los créditos de educación continua necesarios para mantener el CISSP.",
+      "options": {
+        "a": "Correcta. Se exigen 120 CPE cada tres años.",
+        "b": "Incorrecta. No es la cifra que da el tema.",
+        "c": "Incorrecta. 250 y seis son el número de preguntas y las horas del examen, no los CPE.",
+        "d": "Incorrecta. El CISSP sí exige CPE para mantenerse."
+      }
+    },
+    "gobierno-t05-e46": {
+      "section": "cissp-cap",
+      "reasoning": "El caso práctico de Lucía y los requisitos del CISSP del apartado resuelven la pregunta.",
+      "options": {
+        "a": "Incorrecta. El examen es solo uno de los tres requisitos.",
+        "b": "Correcta. Le faltan años de experiencia y adherirse al código ético.",
+        "c": "Incorrecta. El tema no menciona ninguna cuota como requisito sustitutivo.",
+        "d": "Incorrecta. El CISM es otra certificación, de ISACA, y no es requisito del CISSP."
+      }
+    },
+    "gobierno-t05-e47": {
+      "section": "cissp-cap",
+      "reasoning": "La definición de CAP y sus dominios en el apartado muestran su foco en la autorización de sistemas.",
+      "options": {
+        "a": "Incorrecta. El software seguro es el foco de CSSLP.",
+        "b": "Incorrecta. La auditoría de sistemas corresponde a CISA, de ISACA.",
+        "c": "Correcta. CAP se centra en autorizar sistemas y evaluar riesgos.",
+        "d": "Incorrecta. El gobierno de las TI corresponde a CGEIT, de ISACA."
+      }
+    },
+    "gobierno-t05-e48": {
+      "section": "isaca-cism",
+      "reasoning": "El apartado de ISACA indica que desarrolla COBIT.",
+      "options": {
+        "a": "Incorrecta. ITIL nació en el gobierno británico.",
+        "b": "Incorrecta. O-ISM3 es de The Open Group.",
+        "c": "Incorrecta. El NIST CSF es del NIST de EE. UU.",
+        "d": "Correcta. COBIT es el marco de ISACA."
+      }
+    },
+    "gobierno-t05-e49": {
+      "section": "isaca-cism",
+      "reasoning": "El apartado pide asociar cada certificación con su organización.",
+      "options": {
+        "a": "Correcta. SSCP es de (ISC)2, no de ISACA.",
+        "b": "Incorrecta. CRISC (riesgo y control) es de ISACA.",
+        "c": "Incorrecta. CGEIT (gobierno de las TI) es de ISACA.",
+        "d": "Incorrecta. CISA (auditoría) es de ISACA."
+      }
+    },
+    "gobierno-t05-e50": {
+      "section": "isaca-cism",
+      "reasoning": "La lista de dominios del CISM del apartado, frente a los del CISSP, resuelve la pregunta.",
+      "options": {
+        "a": "Incorrecta. Es el dominio 3 del CISSP.",
+        "b": "Correcta. El gobierno de la seguridad es un dominio del CISM.",
+        "c": "Incorrecta. Es el dominio 4 del CISSP.",
+        "d": "Incorrecta. Es el dominio 8 del CISSP."
+      }
     }
   }
 }

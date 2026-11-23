@@ -1174,6 +1174,506 @@
         "c": "Incorrecta. La disponibilidad constante es una ventaja (sujeta a los acuerdos de servicio), pero no la única.",
         "d": "Correcta. Gestión simplificada, escalabilidad y disponibilidad constante son las tres ventajas que el tema atribuye a la seguridad en la nube."
       }
+    },
+    "redes-t10-e01": {
+      "section": "nube-y-objetivos",
+      "reasoning": "El término máquina virtual e instancia del apartado relaciona instancia con EC2.",
+      "options": {
+        "a": "Correcta. Instancia es la máquina virtual de EC2.",
+        "b": "Incorrecta. S3 es el almacenamiento de archivos; un bucket guarda objetos.",
+        "c": "Incorrecta. Un rol es una identidad de IAM, no una máquina.",
+        "d": "Incorrecta. VNet es la red virtual de Azure."
+      }
+    },
+    "redes-t10-e02": {
+      "section": "nube-y-objetivos",
+      "reasoning": "El término on-premise del apartado lo define como infraestructura propia en las instalaciones.",
+      "options": {
+        "a": "Correcta. On-premise es la infraestructura propia, en local.",
+        "b": "Incorrecta. Eso es la nube.",
+        "c": "Incorrecta. Eso es SECaaS.",
+        "d": "Incorrecta. Eso es el emparejamiento (peering)."
+      }
+    },
+    "redes-t10-e03": {
+      "section": "nube-y-objetivos",
+      "reasoning": "El bloque de examen del apartado asocia subredes, regiones y emparejamiento a las redes virtuales.",
+      "options": {
+        "a": "Incorrecta. IAM se reconoce por los permisos.",
+        "b": "Correcta. Son elementos de las redes virtuales.",
+        "c": "Incorrecta. SECaaS trata de contratar seguridad desde la nube.",
+        "d": "Incorrecta. Los ARN identifican recursos de AWS."
+      }
+    },
+    "redes-t10-e04": {
+      "section": "nube-y-objetivos",
+      "reasoning": "La analogía del apartado subraya que decidir quién conduce sigue siendo responsabilidad del cliente.",
+      "options": {
+        "a": "Incorrecta. El mantenimiento físico lo hace el proveedor.",
+        "b": "Correcta. El control de accesos sigue siendo del cliente.",
+        "c": "Incorrecta. El hardware lo pone el proveedor; el cliente paga por uso.",
+        "d": "Incorrecta. La red regional es infraestructura del proveedor."
+      }
+    },
+    "redes-t10-e05": {
+      "section": "red-virtual",
+      "reasoning": "El término red virtual del apartado da sus nombres en AWS y Azure.",
+      "options": {
+        "a": "Incorrecta. EC2 son instancias y NSG es el grupo de seguridad de Azure.",
+        "b": "Incorrecta. Los nombres están intercambiados.",
+        "c": "Correcta. VPC en AWS y VNet en Azure.",
+        "d": "Incorrecta. IAM gestiona accesos y SIEM correlaciona registros."
+      }
+    },
+    "redes-t10-e06": {
+      "section": "red-virtual",
+      "reasoning": "La tabla de elementos de la red virtual indica que vive en una sola región.",
+      "options": {
+        "a": "Incorrecta. El rango de direcciones no determina regiones.",
+        "b": "Incorrecta. Una cuenta puede tener varias redes, pero cada una en su región.",
+        "c": "Incorrecta. No hay un mínimo de dos regiones.",
+        "d": "Correcta. Cada red virtual vive en una región."
+      }
+    },
+    "redes-t10-e07": {
+      "section": "red-virtual",
+      "reasoning": "La tabla de elementos de la red virtual describe la cuenta o suscripción con tantas redes como necesite.",
+      "options": {
+        "a": "Incorrecta. Una cuenta puede tener varias redes.",
+        "b": "Correcta. Admite tantas redes como necesite.",
+        "c": "Incorrecta. El tema no fija un máximo por región.",
+        "d": "Incorrecta. Público y privado son tipos de subred, no un límite de redes."
+      }
+    },
+    "redes-t10-e08": {
+      "section": "red-virtual",
+      "reasoning": "El término grupo de seguridad de red del apartado lo define como reglas tipo firewall.",
+      "options": {
+        "a": "Incorrecta. Eso es una región.",
+        "b": "Incorrecta. Eso es un grupo de IAM, otra cosa distinta.",
+        "c": "Correcta. Son reglas tipo cortafuegos para la subred.",
+        "d": "Incorrecta. Eso es el espacio de direcciones."
+      }
+    },
+    "redes-t10-e09": {
+      "section": "red-virtual",
+      "reasoning": "El esquema de segmentación del apartado indica 65.536 direcciones para /16 y 256 para /24.",
+      "options": {
+        "a": "Correcta. /16 = 65.536 direcciones; /24 = 256.",
+        "b": "Incorrecta. Los valores están intercambiados.",
+        "c": "Incorrecta. 16 y 24 son los bits que fijan la red, no las direcciones.",
+        "d": "Incorrecta. Una subred /24 tiene 256 direcciones."
+      }
+    },
+    "redes-t10-e10": {
+      "section": "red-virtual",
+      "reasoning": "El término dirección IP privada del apartado explica el significado del prefijo.",
+      "options": {
+        "a": "Incorrecta. Una red virtual vive en una sola región.",
+        "b": "Incorrecta. No indica número de subredes.",
+        "c": "Correcta. Menos bits de red dejan más direcciones.",
+        "d": "Incorrecta. Es al revés: cuanto menor, más direcciones."
+      }
+    },
+    "redes-t10-e11": {
+      "section": "red-virtual",
+      "reasoning": "El caso práctico de la tienda online y su esquema permiten TCP 5432 solo desde 10.0.1.0/24.",
+      "options": {
+        "a": "Incorrecta. La web no podría consultar la base de datos.",
+        "b": "Incorrecta. Expondría la base de datos a Internet.",
+        "c": "Correcta. Solo la subred web llega al puerto de la base de datos.",
+        "d": "Incorrecta. El 443 es HTTPS de la web, y abrirlo a todos no protege los datos."
+      }
+    },
+    "redes-t10-e12": {
+      "section": "interconexion",
+      "reasoning": "La tabla de escenarios de interconexión indica que el saliente está permitido por defecto.",
+      "options": {
+        "a": "Incorrecta. El emparejamiento une redes virtuales, no da salida a Internet.",
+        "b": "Incorrecta. Lo restringido es el entrante.",
+        "c": "Incorrecta. El balanceador sirve para el tráfico entrante.",
+        "d": "Correcta. Salir a Internet está permitido por defecto."
+      }
+    },
+    "redes-t10-e13": {
+      "section": "interconexion",
+      "reasoning": "El término balanceador de carga del apartado lo presenta como cara pública de servidores privados.",
+      "options": {
+        "a": "Incorrecta. Un rol presta permisos, no expone servidores.",
+        "b": "Incorrecta. Un grupo de IAM agrupa usuarios.",
+        "c": "Incorrecta. Un ARN solo identifica recursos.",
+        "d": "Correcta. El balanceador expone servidores con IP privada."
+      }
+    },
+    "redes-t10-e14": {
+      "section": "interconexion",
+      "reasoning": "El ejemplo de error frecuente del apartado explica que falta la regla del grupo de seguridad.",
+      "options": {
+        "a": "Correcta. Sin regla para el 443, la IP pública no basta.",
+        "b": "Incorrecta. Una IP pública puede servir HTTPS sin problema.",
+        "c": "Incorrecta. El emparejamiento une redes virtuales, no da acceso desde Internet.",
+        "d": "Incorrecta. Los roles dan permisos a la instancia, no abren puertos."
+      }
+    },
+    "redes-t10-e15": {
+      "section": "interconexion",
+      "reasoning": "El caso práctico del ERP y la tabla de escenarios usan el emparejamiento para unir redes virtuales.",
+      "options": {
+        "a": "Incorrecta. La VPN une la nube con la oficina (on-premise).",
+        "b": "Correcta. El emparejamiento une redes virtuales, también entre regiones.",
+        "c": "Incorrecta. Una directiva IAM da permisos, no conecta redes.",
+        "d": "Incorrecta. El balanceador reparte peticiones entrantes."
+      }
+    },
+    "redes-t10-e16": {
+      "section": "interconexion",
+      "reasoning": "La tabla de escenarios advierte que el emparejamiento conecta redes pero no da permisos IAM.",
+      "options": {
+        "a": "Incorrecta. Es verdadera: sí es una conexión directa entre dos redes.",
+        "b": "Incorrecta. Es verdadera: sí une redes de regiones diferentes.",
+        "c": "Incorrecta. Es verdadera: sí comunica los recursos como en una misma red.",
+        "d": "Correcta. Es falsa: el emparejamiento no concede permisos IAM."
+      }
+    },
+    "redes-t10-e17": {
+      "section": "interconexion",
+      "reasoning": "La tabla de escenarios indica que en la misma red virtual los recursos se hablan directamente.",
+      "options": {
+        "a": "Correcta. En la misma red virtual se hablan directamente.",
+        "b": "Incorrecta. El emparejamiento es para redes virtuales distintas.",
+        "c": "Incorrecta. La VPN es para unir con la red local.",
+        "d": "Incorrecta. La IP pública es para el acceso desde Internet."
+      }
+    },
+    "redes-t10-e18": {
+      "section": "iam",
+      "reasoning": "El término granular del apartado IAM lo define como ajuste muy detallado de acciones y recursos.",
+      "options": {
+        "a": "Incorrecta. Repartir en subredes es segmentar la red.",
+        "b": "Incorrecta. Es justo lo contrario de granular.",
+        "c": "Correcta. Permite precisar cada acción sobre cada recurso.",
+        "d": "Incorrecta. Granular no se refiere al cifrado."
+      }
+    },
+    "redes-t10-e19": {
+      "section": "iam",
+      "reasoning": "El apartado IAM atribuye muchas fugas a permisos demasiado amplios del cliente.",
+      "options": {
+        "a": "Correcta. Los permisos excesivos del cliente causan muchas fugas.",
+        "b": "Incorrecta. El tema dice que no suelen deberse a fallos del proveedor.",
+        "c": "Incorrecta. La latencia no es causa de fugas de datos.",
+        "d": "Incorrecta. Las IP privadas son una buena práctica, no la causa."
+      }
+    },
+    "redes-t10-e20": {
+      "section": "iam",
+      "reasoning": "El apartado IAM separa autenticación de autorización, y el bloque de examen de directivas lo recalca.",
+      "options": {
+        "a": "Incorrecta. Los permisos los dan las directivas, no la autenticación.",
+        "b": "Correcta. Autenticarse no implica recibir permisos amplios.",
+        "c": "Incorrecta. El grupo también debe tener solo los permisos necesarios.",
+        "d": "Incorrecta. Sin directivas el usuario no puede hacer nada."
+      }
+    },
+    "redes-t10-e21": {
+      "section": "arn",
+      "reasoning": "El término ARN del apartado da su significado.",
+      "options": {
+        "a": "Incorrecta. No es un número de rol.",
+        "b": "Incorrecta. No es una notación de derechos de acceso.",
+        "c": "Correcta. ARN es Amazon Resource Name.",
+        "d": "Incorrecta. No es una red de regiones."
+      }
+    },
+    "redes-t10-e22": {
+      "section": "arn",
+      "reasoning": "El apartado de ARN explica que en el usuario de IAM la región está vacía porque IAM es global.",
+      "options": {
+        "a": "Correcta. IAM es global y no lleva región.",
+        "b": "Incorrecta. Las directivas no se reflejan en el ARN.",
+        "c": "Incorrecta. La partición es aws, no aws-cn.",
+        "d": "Incorrecta. El estado del usuario no aparece en el ARN."
+      }
+    },
+    "redes-t10-e23": {
+      "section": "arn",
+      "reasoning": "El apartado de ARN señala que en el ejemplo de S3 faltan región y cuenta.",
+      "options": {
+        "a": "Incorrecta. Aparecen aws (partición) y s3 (servicio).",
+        "b": "Correcta. Región y cuenta están vacías.",
+        "c": "Incorrecta. Aparecen s3 y la ruta del recurso.",
+        "d": "Incorrecta. La partición aws sí aparece."
+      }
+    },
+    "redes-t10-e24": {
+      "section": "arn",
+      "reasoning": "La tabla de campos del ARN define partition como el grupo de regiones.",
+      "options": {
+        "a": "Incorrecta. La región va en el campo region.",
+        "b": "Correcta. Es el grupo de regiones de AWS.",
+        "c": "Incorrecta. La cuenta va en account-id.",
+        "d": "Incorrecta. El tipo va en resource-type."
+      }
+    },
+    "redes-t10-e25": {
+      "section": "arn",
+      "reasoning": "El formato del ARN del apartado fija ese orden de campos.",
+      "options": {
+        "a": "Incorrecta. El servicio va antes que la región y la cuenta antes que el recurso.",
+        "b": "Incorrecta. La partición va antes que el servicio.",
+        "c": "Correcta. Es el orden del formato del ARN.",
+        "d": "Incorrecta. La cuenta no va al principio."
+      }
+    },
+    "redes-t10-e26": {
+      "section": "arn",
+      "reasoning": "La tabla de campos del ARN pone eu-west-1 como ejemplo de región.",
+      "options": {
+        "a": "Correcta. eu-west-1 es la región.",
+        "b": "Incorrecta. La partición es aws.",
+        "c": "Incorrecta. La cuenta es 123456789012.",
+        "d": "Incorrecta. El tipo de recurso es instance."
+      }
+    },
+    "redes-t10-e27": {
+      "section": "directivas",
+      "reasoning": "La tabla de campos de una directiva define Statement como lista de declaraciones.",
+      "options": {
+        "a": "Incorrecta. Eso es Version.",
+        "b": "Incorrecta. La directiva no guarda su fecha de creación en Statement.",
+        "c": "Incorrecta. La etiqueta opcional es Sid.",
+        "d": "Correcta. Statement enlaza acciones con recursos y es una lista."
+      }
+    },
+    "redes-t10-e28": {
+      "section": "directivas",
+      "reasoning": "La lectura del ejemplo de directiva aclara que Version es la versión del lenguaje.",
+      "options": {
+        "a": "Incorrecta. La cuenta aparece en los ARN, no en Version.",
+        "b": "Incorrecta. El tema aclara que no es la fecha de creación.",
+        "c": "Incorrecta. Las directivas no caducan con ese campo.",
+        "d": "Correcta. Es la versión del lenguaje de políticas."
+      }
+    },
+    "redes-t10-e29": {
+      "section": "directivas",
+      "reasoning": "La lectura del ejemplo de directiva indica que Sid es solo una etiqueta.",
+      "options": {
+        "a": "Incorrecta. El efecto va en Effect.",
+        "b": "Incorrecta. El recurso va en Resource.",
+        "c": "Correcta. Sid es una etiqueta.",
+        "d": "Incorrecta. Las acciones van en Action."
+      }
+    },
+    "redes-t10-e30": {
+      "section": "directivas",
+      "reasoning": "El término Deny explícito y el árbol de decisión del apartado establecen que Deny gana a cualquier Allow.",
+      "options": {
+        "a": "Incorrecta. AWS evalúa las directivas sin pedir confirmación.",
+        "b": "Incorrecta. El Allow no supera a un Deny explícito.",
+        "c": "Incorrecta. La antigüedad de la directiva no importa.",
+        "d": "Correcta. El Deny explícito prevalece."
+      }
+    },
+    "redes-t10-e31": {
+      "section": "directivas",
+      "reasoning": "El apartado de directivas indica el formato servicio:permiso para las acciones.",
+      "options": {
+        "a": "Incorrecta. El orden y el separador son servicio:permiso.",
+        "b": "Incorrecta. El ARN identifica recursos, no acciones.",
+        "c": "Incorrecta. Las directivas no usan IP y puerto como acciones.",
+        "d": "Correcta. Formato servicio:permiso."
+      }
+    },
+    "redes-t10-e32": {
+      "section": "directivas",
+      "reasoning": "El término comodín del apartado cita más de cuatrocientos permisos de EC2.",
+      "options": {
+        "a": "Incorrecta. Dos son las acciones del ejemplo, no todas las de EC2.",
+        "b": "Incorrecta. Son muchos más.",
+        "c": "Correcta. EC2 tiene más de cuatrocientos permisos.",
+        "d": "Incorrecta. Son muchos más de cuarenta."
+      }
+    },
+    "redes-t10-e33": {
+      "section": "directivas",
+      "reasoning": "La tabla de campos de una directiva indica que «*» en Resource significa cualquier recurso.",
+      "options": {
+        "a": "Incorrecta. No se limita a los recursos del usuario.",
+        "b": "Incorrecta. Es justo lo contrario.",
+        "c": "Incorrecta. No se limita a un servicio.",
+        "d": "Correcta. «*» es cualquier recurso."
+      }
+    },
+    "redes-t10-e34": {
+      "section": "directivas",
+      "reasoning": "El término mínimo privilegio del apartado de directivas lo define así.",
+      "options": {
+        "a": "Incorrecta. Segmentar es dividir una red.",
+        "b": "Incorrecta. La denegación por defecto es que sin Allow no se puede nada.",
+        "c": "Incorrecta. El Deny explícito quita permisos concretos.",
+        "d": "Correcta. Es el principio de mínimo privilegio."
+      }
+    },
+    "redes-t10-e35": {
+      "section": "usuarios-grupos",
+      "reasoning": "El término usuario de IAM del apartado admite ambas posibilidades.",
+      "options": {
+        "a": "Correcta. Puede ser una persona o un programa.",
+        "b": "Incorrecta. También puede ser un programa.",
+        "c": "Incorrecta. También puede ser una persona.",
+        "d": "Incorrecta. Un usuario es una identidad, no un conjunto de cuentas."
+      }
+    },
+    "redes-t10-e36": {
+      "section": "usuarios-grupos",
+      "reasoning": "El apartado explica las dos claves activas como forma de rotar sin interrupción.",
+      "options": {
+        "a": "Correcta. Dos claves permiten rotar sin cortar el servicio.",
+        "b": "Incorrecta. Con una sola no se podría rotar sin interrupción.",
+        "c": "Incorrecta. El número no depende de las regiones.",
+        "d": "Incorrecta. El límite es de dos claves activas."
+      }
+    },
+    "redes-t10-e37": {
+      "section": "usuarios-grupos",
+      "reasoning": "Los pasos para rotar una clave sin cortar el servicio siguen ese orden.",
+      "options": {
+        "a": "Incorrecta. Borrar primero la vieja cortaría el servicio.",
+        "b": "Correcta. Es el orden que evita cortes.",
+        "c": "Incorrecta. No se puede actualizar a una clave que aún no existe.",
+        "d": "Incorrecta. Borrar la vieja antes de actualizar el programa corta el servicio."
+      }
+    },
+    "redes-t10-e38": {
+      "section": "usuarios-grupos",
+      "reasoning": "El término SDK y CLI del apartado nombra awscli como la herramienta de línea de comandos.",
+      "options": {
+        "a": "Incorrecta. EC2 es el servicio de instancias.",
+        "b": "Correcta. awscli es la CLI de AWS.",
+        "c": "Incorrecta. IAM es la gestión de identidades.",
+        "d": "Incorrecta. VPC es la red virtual de AWS."
+      }
+    },
+    "redes-t10-e39": {
+      "section": "usuarios-grupos",
+      "reasoning": "El término grupo de IAM del apartado aclara que no sustituye la autenticación de cada miembro.",
+      "options": {
+        "a": "Correcta. Cada miembro conserva sus credenciales.",
+        "b": "Incorrecta. El grupo no es una contraseña compartida.",
+        "c": "Incorrecta. El grupo no es una clave compartida.",
+        "d": "Incorrecta. Todos deben autenticarse con sus credenciales."
+      }
+    },
+    "redes-t10-e40": {
+      "section": "usuarios-grupos",
+      "reasoning": "El término rotación de claves del apartado la define así.",
+      "options": {
+        "a": "Incorrecta. Rotar no es moverlas de región.",
+        "b": "Incorrecta. Compartir claves es mala práctica, no rotación.",
+        "c": "Correcta. Rotar limita el tiempo de uso de una clave robada.",
+        "d": "Incorrecta. Rotar no consiste en cifrar la clave."
+      }
+    },
+    "redes-t10-e41": {
+      "section": "roles",
+      "reasoning": "El término rol de IAM del apartado lo define sin credenciales fijas.",
+      "options": {
+        "a": "Incorrecta. El rol no tiene contraseña fija.",
+        "b": "Correcta. El rol se asume temporalmente, sin credenciales fijas.",
+        "c": "Incorrecta. El rol tiene una o más directivas.",
+        "d": "Incorrecta. Los roles existen en AWS."
+      }
+    },
+    "redes-t10-e42": {
+      "section": "roles",
+      "reasoning": "Los pasos de cómo funciona un rol en una instancia EC2 mencionan la API de metadatos.",
+      "options": {
+        "a": "Incorrecta. Las claves no se envían por correo.",
+        "b": "Incorrecta. Nadie tiene que configurar nada a mano.",
+        "c": "Incorrecta. Precisamente se evita guardar claves en el código.",
+        "d": "Correcta. La instancia las obtiene de la API de metadatos."
+      }
+    },
+    "redes-t10-e43": {
+      "section": "roles",
+      "reasoning": "El apartado de usuarios y grupos sitúa la llegada de los roles en 2012, y el de roles desarrolla su funcionamiento.",
+      "options": {
+        "a": "Incorrecta. No es el año que da el tema.",
+        "b": "Correcta. Los roles llegaron en 2012.",
+        "c": "Incorrecta. No es el año que da el tema.",
+        "d": "Incorrecta. No es el año que da el tema."
+      }
+    },
+    "redes-t10-e44": {
+      "section": "roles",
+      "reasoning": "El término acceso entre cuentas del apartado de roles lo indica expresamente.",
+      "options": {
+        "a": "Incorrecta. Las del usuario no se aplican en la otra cuenta.",
+        "b": "Correcta. Mandan las directivas del rol.",
+        "c": "Incorrecta. No se suman directivas de ambas cuentas.",
+        "d": "Incorrecta. Sin Allow no hay permisos."
+      }
+    },
+    "redes-t10-e45": {
+      "section": "roles",
+      "reasoning": "El caso del tercero que gestiona las copias usa un rol con permisos mínimos.",
+      "options": {
+        "a": "Correcta. Un rol con permisos mínimos que asume el proveedor.",
+        "b": "Incorrecta. Precisamente se evita crear usuarios con claves.",
+        "c": "Incorrecta. Compartir la contraseña del administrador es inseguro.",
+        "d": "Incorrecta. Una VPN no da permisos y los completos violan el mínimo privilegio."
+      }
+    },
+    "redes-t10-e46": {
+      "section": "roles",
+      "reasoning": "La lista de a quién se pueden aplicar los roles no incluye subredes.",
+      "options": {
+        "a": "Incorrecta. Las instancias EC2 sí pueden tener rol.",
+        "b": "Correcta. Las subredes no asumen roles.",
+        "c": "Incorrecta. Las aplicaciones móviles sí aparecen.",
+        "d": "Incorrecta. Lambda sí aparece como servicio que usa roles."
+      }
+    },
+    "redes-t10-e47": {
+      "section": "secaas",
+      "reasoning": "La tabla de servicios que ya se ofrecen como SECaaS define el SIEM.",
+      "options": {
+        "a": "Incorrecta. MFA es autenticación multifactor.",
+        "b": "Incorrecta. DLP previene fugas de datos.",
+        "c": "Correcta. El SIEM correlaciona logs.",
+        "d": "Incorrecta. La VPN ofrece túneles cifrados."
+      }
+    },
+    "redes-t10-e48": {
+      "section": "secaas",
+      "reasoning": "La tabla de servicios SECaaS describe DLP como prevención de fugas.",
+      "options": {
+        "a": "Incorrecta. Eso es la VPN como servicio.",
+        "b": "Incorrecta. Eso es la seguridad del correo.",
+        "c": "Incorrecta. Eso es el SIEM.",
+        "d": "Correcta. DLP evita fugas de información sensible."
+      }
+    },
+    "redes-t10-e49": {
+      "section": "secaas",
+      "reasoning": "La tabla de servicios SECaaS no incluye el emparejamiento de redes.",
+      "options": {
+        "a": "Incorrecta. La seguridad perimetral sí aparece.",
+        "b": "Incorrecta. La seguridad del correo sí aparece.",
+        "c": "Correcta. El emparejamiento es interconexión de redes, no SECaaS.",
+        "d": "Incorrecta. La VPN sí aparece."
+      }
+    },
+    "redes-t10-e50": {
+      "section": "secaas",
+      "reasoning": "El apartado SECaaS indica que la disponibilidad depende del diseño del servicio y del acuerdo.",
+      "options": {
+        "a": "Correcta. Depende del diseño y del acuerdo de servicio.",
+        "b": "Incorrecta. No depende solo de la conexión del cliente.",
+        "c": "Incorrecta. SECaaS no exige instalar el firewall en local.",
+        "d": "Incorrecta. El tema pide revisar qué pasa si el proveedor cae."
+      }
     }
   }
 }

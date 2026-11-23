@@ -749,6 +749,506 @@
         "c": "Correcta. Un ticket robado deja de ser útil al caducar, así que la ventana del atacante es menor. El precio es una autenticación más frecuente.",
         "d": "Incorrecta. La vigencia no tiene relación con activar o desactivar el cifrado. Los tipos de cifrado se configuran aparte, en las opciones de seguridad."
       }
+    },
+    "sistemas-t01-e01": {
+      "section": "punto-de-partida",
+      "reasoning": "El apartado de partida presenta al CCN-CERT como parte del CCN, que a su vez pertenece al CNI.",
+      "options": {
+        "a": "Incorrecta. La AEPD vela por la protección de datos personales; no publica las guías CCN-STIC.",
+        "b": "Incorrecta. INCIBE es otro organismo de ciberseguridad, pero no es del que depende el CCN.",
+        "c": "Correcta. El tema indica que el CCN forma parte del CNI.",
+        "d": "Incorrecta. El CCN no depende de este ministerio según el temario."
+      }
+    },
+    "sistemas-t01-e02": {
+      "section": "punto-de-partida",
+      "reasoning": "El apartado enumera las guías del tema: 570A23 (dominio y servidores), 570 (controladores) y 599A23 (clientes Windows).",
+      "options": {
+        "a": "Correcta. La 599A23 es la guía para los equipos cliente Windows.",
+        "b": "Incorrecta. La 301 se menciona para el máximo nivel en entornos clasificados.",
+        "c": "Incorrecta. La 570A23 se centra en el dominio y los servidores, no en los clientes.",
+        "d": "Incorrecta. La 570 trata los controladores de dominio, no los puestos cliente."
+      }
+    },
+    "sistemas-t01-e03": {
+      "section": "punto-de-partida",
+      "reasoning": "El apartado subraya que el «ni menos» también cuenta: un sistema que no deja trabajar no sirve.",
+      "options": {
+        "a": "Incorrecta. Reducir administradores tiene que ver con el «ni más», no con el «ni menos».",
+        "b": "Correcta. Es exactamente la razón que da el tema para el «ni menos».",
+        "c": "Incorrecta. Las guías son lo más restrictivas posible, no reparten permisos amplios.",
+        "d": "Incorrecta. El principio ajusta permisos a cada función; no iguala a todos."
+      }
+    },
+    "sistemas-t01-e04": {
+      "section": "punto-de-partida",
+      "reasoning": "Entre las ideas iniciales del apartado figura que se parte de un sistema limpio que funcionará bajo el ENS.",
+      "options": {
+        "a": "Incorrecta. El punto de partida no es un servidor ya cargado de aplicaciones.",
+        "b": "Incorrecta. El tema no plantea convertir un cliente en servidor.",
+        "c": "Incorrecta. No se parte de copias de otras organizaciones.",
+        "d": "Correcta. Se asume un sistema recién formateado destinado a producción."
+      }
+    },
+    "sistemas-t01-e05": {
+      "section": "novedades-2022",
+      "reasoning": "El apartado describe el TPM como una caja fuerte diminuta que además mide el arranque.",
+      "options": {
+        "a": "Incorrecta. El cifrado SMB AES-256 es otra mejora de 2022, no la función del TPM.",
+        "b": "Incorrecta. Las máquinas virtuales blindadas existían desde 2016 y no son la función del TPM.",
+        "c": "Correcta. Guardar secretos y medir el arranque es lo que hace el TPM.",
+        "d": "Incorrecta. Filtrar tráfico es tarea del firewall."
+      }
+    },
+    "sistemas-t01-e06": {
+      "section": "novedades-2022",
+      "reasoning": "El apartado define HVCI como integridad de código protegida por hipervisor para el núcleo.",
+      "options": {
+        "a": "Incorrecta. La segunda comprobación desde el procesador es DRTM.",
+        "b": "Incorrecta. Cifrar discos de VM corresponde a las máquinas virtuales blindadas.",
+        "c": "Incorrecta. Parchear sin reiniciar es hotpatching, de 2025.",
+        "d": "Correcta. Es el «portero con la lista de invitados» del kernel."
+      }
+    },
+    "sistemas-t01-e07": {
+      "section": "novedades-2022",
+      "reasoning": "El apartado explica la protección DMA como defensa frente a dispositivos que espían la memoria.",
+      "options": {
+        "a": "Incorrecta. La firma SMB protege mensajes de red y además es de 2025.",
+        "b": "Incorrecta. TLS 1.3 cifra conexiones de red, no protege la memoria local.",
+        "c": "Incorrecta. DNS sobre HTTPS cifra consultas de nombres.",
+        "d": "Correcta. Es la medida que bloquea la lectura directa de memoria por dispositivos."
+      }
+    },
+    "sistemas-t01-e08": {
+      "section": "novedades-2022",
+      "reasoning": "El apartado separa las novedades de 2022 de una tabla con características ya presentes desde 2016.",
+      "options": {
+        "a": "Incorrecta. SMB con AES-256 figura entre las medidas de 2022.",
+        "b": "Incorrecta. TLS 1.3 por defecto es de 2022.",
+        "c": "Correcta. Las shielded VMs existen desde 2016.",
+        "d": "Incorrecta. DNS sobre HTTPS es de 2022."
+      }
+    },
+    "sistemas-t01-e09": {
+      "section": "novedades-2022",
+      "reasoning": "El apartado describe una APT en la que el rootkit oculta un troyano que exfiltra datos.",
+      "options": {
+        "a": "Correcta. El rootkit oculta al troyano desde lo más profundo del sistema.",
+        "b": "Incorrecta. Enviar datos al C2 es tarea del troyano en ese ejemplo.",
+        "c": "Incorrecta. El ejemplo no habla de cifrado para rescate.",
+        "d": "Incorrecta. La fuerza bruta no forma parte del ejemplo de APT."
+      }
+    },
+    "sistemas-t01-e10": {
+      "section": "novedades-2025",
+      "reasoning": "El apartado de 2025 explica el pass-the-hash antes de presentar Credential Guard por defecto.",
+      "options": {
+        "a": "Incorrecta. Eso es un ataque de diccionario.",
+        "b": "Incorrecta. Falsear DNS es otra amenaza, mitigada por DNS sobre HTTPS.",
+        "c": "Incorrecta. Eso se acerca a un relay o man-in-the-middle sobre SMB.",
+        "d": "Correcta. Es la definición de pass-the-hash del tema."
+      }
+    },
+    "sistemas-t01-e11": {
+      "section": "novedades-2025",
+      "reasoning": "El apartado presenta hotpatching como parchear en caliente para no interrumpir el servicio.",
+      "options": {
+        "a": "Incorrecta. Credential Guard protege credenciales, no evita reinicios.",
+        "b": "Incorrecta. Secured-core es de 2022 y protege el arranque.",
+        "c": "Correcta. Hotpatching parchea sin reiniciar.",
+        "d": "Incorrecta. SMB sobre QUIC permite acceder a archivos por Internet."
+      }
+    },
+    "sistemas-t01-e12": {
+      "section": "novedades-2025",
+      "reasoning": "La tabla de 2025 describe SMB sobre QUIC como acceso cifrado a archivos sin VPN.",
+      "options": {
+        "a": "Incorrecta. AES-256 en SMB es una mejora de 2022.",
+        "b": "Correcta. Es lo que aporta SMB sobre QUIC.",
+        "c": "Incorrecta. Eso es el rate limiting.",
+        "d": "Incorrecta. El bloqueo de NTLM es otra medida distinta de 2025."
+      }
+    },
+    "sistemas-t01-e13": {
+      "section": "novedades-2025",
+      "reasoning": "El apartado asocia la firma SMB con la protección frente a man-in-the-middle y relay.",
+      "options": {
+        "a": "Correcta. Son los dos ataques que cita el tema.",
+        "b": "Incorrecta. La fuerza bruta la frena el rate limiting o el bloqueo de cuentas.",
+        "c": "Incorrecta. Los ataques al firmware los aborda Secured-core.",
+        "d": "Incorrecta. DMA se mitiga con la protección DMA de 2022."
+      }
+    },
+    "sistemas-t01-e14": {
+      "section": "novedades-2025",
+      "reasoning": "La tabla «¿2022 o 2025?» sitúa LDAP cifrado en 2025 y el resto de opciones en 2022.",
+      "options": {
+        "a": "Incorrecta. DNS sobre HTTPS es de 2022.",
+        "b": "Correcta. LDAP cifrado por defecto es de 2025.",
+        "c": "Incorrecta. TLS 1.3 por defecto es de 2022.",
+        "d": "Incorrecta. SMB con AES-256 es de 2022."
+      }
+    },
+    "sistemas-t01-e15": {
+      "section": "active-directory",
+      "reasoning": "El apartado distingue el DC, que custodia AD, del servidor miembro, que solo pertenece al dominio.",
+      "options": {
+        "a": "Incorrecta. Eso describe un controlador de dominio.",
+        "b": "Incorrecta. Pertenecer a otro dominio no lo hace servidor miembro de este.",
+        "c": "Incorrecta. Una réplica de AD en un sitio sería un DC, no un miembro.",
+        "d": "Correcta. Es la definición de servidor miembro."
+      }
+    },
+    "sistemas-t01-e16": {
+      "section": "active-directory",
+      "reasoning": "El apartado explica que la relación de confianza puede ser unidireccional o bidireccional.",
+      "options": {
+        "a": "Incorrecta. Bidireccional exigiría que ambos dominios se aceptaran.",
+        "b": "Incorrecta. Las OU agrupan objetos dentro de un dominio; no relacionan dominios.",
+        "c": "Correcta. Solo un dominio confía en el otro.",
+        "d": "Incorrecta. Un sitio es una agrupación física, no una confianza entre dominios."
+      }
+    },
+    "sistemas-t01-e17": {
+      "section": "active-directory",
+      "reasoning": "El apartado insiste en que el sitio es un concepto físico y el dominio uno lógico.",
+      "options": {
+        "a": "Incorrecta. Es justo al revés.",
+        "b": "Incorrecta. Son los bosques los que agrupan dominios, no al revés.",
+        "c": "Incorrecta. Un dominio puede existir con un solo sitio.",
+        "d": "Correcta. Es la distinción que hace el tema."
+      }
+    },
+    "sistemas-t01-e18": {
+      "section": "active-directory",
+      "reasoning": "La tabla de herramientas asigna a la GPMC la creación y vinculación de GPO.",
+      "options": {
+        "a": "Correcta. La GPMC crea, edita y vincula GPO.",
+        "b": "Incorrecta. Esa consola establece confianzas entre dominios.",
+        "c": "Incorrecta. El Visor de eventos muestra registros, no vincula GPO.",
+        "d": "Incorrecta. La autoridad de certificación emite certificados."
+      }
+    },
+    "sistemas-t01-e19": {
+      "section": "active-directory",
+      "reasoning": "La tabla del apartado separa los perfiles según la información de las categorías del sistema.",
+      "options": {
+        "a": "Incorrecta. Esas son categorías del sistema, no perfiles de información.",
+        "b": "Incorrecta. Son los niveles de directivas de la guía 570A.",
+        "c": "Incorrecta. Son los perfiles del firewall.",
+        "d": "Correcta. Son los tres perfiles de MP.INFO.2."
+      }
+    },
+    "sistemas-t01-e20": {
+      "section": "niveles-ou",
+      "reasoning": "Los pasos del apartado explican que los DC viven en su contenedor y reciben una incremental específica.",
+      "options": {
+        "a": "Incorrecta. Los DC sí pertenecen al dominio; son su pieza central.",
+        "b": "Correcta. Su ubicación propia es la razón que da el tema.",
+        "c": "Incorrecta. La OU Servidores Miembro contiene OU hijas de varios roles.",
+        "d": "Incorrecta. Los DC necesitan incluso más protección que los miembros."
+      }
+    },
+    "sistemas-t01-e21": {
+      "section": "niveles-ou",
+      "reasoning": "El apartado define la plantilla .inf incremental como un añadido sobre los niveles superiores.",
+      "options": {
+        "a": "Incorrecta. No tiene relación con el ciclo de parches.",
+        "b": "Correcta. Es la razón del nombre según el tema.",
+        "c": "Incorrecta. No sustituye: se suma a lo que viene de arriba.",
+        "d": "Incorrecta. Se aplica a todos los equipos de la OU, nuevos o no."
+      }
+    },
+    "sistemas-t01-e22": {
+      "section": "niveles-ou",
+      "reasoning": "El caso práctico del apartado indica que un servidor web nuevo solo requiere su OU de rol.",
+      "options": {
+        "a": "Correcta. Es lo que propone el caso práctico del tema.",
+        "b": "Incorrecta. Editar la GPO del dominio afectaría a todos los equipos.",
+        "c": "Incorrecta. Esa OU es solo para controladores de dominio.",
+        "d": "Incorrecta. En Computers no le llegan las GPO de la estructura."
+      }
+    },
+    "sistemas-t01-e23": {
+      "section": "gpo-prioridad",
+      "reasoning": "La tabla de prioridades indica que entre OU anidadas manda la más específica.",
+      "options": {
+        "a": "Correcta. Gana la OU más cercana al equipo.",
+        "b": "Incorrecta. La directiva local tiene la prioridad más baja.",
+        "c": "Incorrecta. La de referencia es menos específica que la de rol.",
+        "d": "Incorrecta. El dominio tiene menos prioridad que una OU concreta."
+      }
+    },
+    "sistemas-t01-e24": {
+      "section": "gpo-prioridad",
+      "reasoning": "Las reglas prácticas del apartado explican cómo conviven la incremental y la GPO por defecto.",
+      "options": {
+        "a": "Incorrecta. El profesor indicó que no hace falta borrarla.",
+        "b": "Incorrecta. La incremental se vincula con mayor prioridad.",
+        "c": "Correcta. La de por defecto completa lo que la incremental no toca.",
+        "d": "Incorrecta. No se desactiva; sigue aplicándose donde no hay choque."
+      }
+    },
+    "sistemas-t01-e25": {
+      "section": "gpo-prioridad",
+      "reasoning": "El apartado advierte que poner la contraseña en una OU no basta y remite a las FGPP.",
+      "options": {
+        "a": "Incorrecta. El tema advierte de que ponerla en una OU no basta.",
+        "b": "Correcta. Las FGPP permiten directivas distintas por tipo de usuario.",
+        "c": "Incorrecta. La directiva local solo afecta a una máquina y no al dominio.",
+        "d": "Incorrecta. El firewall filtra tráfico, no regula contraseñas."
+      }
+    },
+    "sistemas-t01-e26": {
+      "section": "gpo-prioridad",
+      "reasoning": "El ejemplo del apartado usa esta directiva para mostrar que «No definido» no significa «nadie».",
+      "options": {
+        "a": "Correcta. Por defecto puede hacerlo cualquier usuario autenticado.",
+        "b": "Incorrecta. Eso ocurriría solo si se definiera el ajuste con ese grupo.",
+        "c": "Incorrecta. Es justo la confusión que el tema quiere evitar: no definido no es vacío.",
+        "d": "Incorrecta. La cuenta de invitado no tiene relación con este ajuste."
+      }
+    },
+    "sistemas-t01-e27": {
+      "section": "gpo-prioridad",
+      "reasoning": "El ejemplo del profesor sobre Escritorio remoto muestra que una configuración suele requerir varios ajustes.",
+      "options": {
+        "a": "Correcta. Es la lección del ejemplo del Escritorio remoto.",
+        "b": "Incorrecta. Reiniciar no suple los ajustes que faltan.",
+        "c": "Incorrecta. El tema explica precisamente cómo habilitarlo en el dominio.",
+        "d": "Incorrecta. No hace falta borrar la GPO por defecto para nada."
+      }
+    },
+    "sistemas-t01-e28": {
+      "section": "contrasenas",
+      "reasoning": "El apartado define la directiva de contraseñas por la solidez y la vigencia.",
+      "options": {
+        "a": "Incorrecta. Los cifrados de Kerberos van en Opciones de seguridad.",
+        "b": "Incorrecta. Eso corresponde a la directiva de bloqueo de cuenta.",
+        "c": "Incorrecta. La vigencia de tickets es de la directiva Kerberos.",
+        "d": "Correcta. Solidez y vigencia es lo que regula."
+      }
+    },
+    "sistemas-t01-e29": {
+      "section": "contrasenas",
+      "reasoning": "La lista de pautas del apartado desaconseja expresamente añadir un dígito a una palabra.",
+      "options": {
+        "a": "Correcta. El CCN desaconseja este patrón, como en «Cualquiera01».",
+        "b": "Incorrecta. Pensar en códigos secretos es una pauta del CCN.",
+        "c": "Incorrecta. Teclear con las dos manos es una pauta del CCN.",
+        "d": "Incorrecta. Evitar datos adivinables sí es una pauta."
+      }
+    },
+    "sistemas-t01-e30": {
+      "section": "contrasenas",
+      "reasoning": "El apartado define la cuenta de servicio y recuerda que las directivas de cuenta también la afectan.",
+      "options": {
+        "a": "Incorrecta. La cuenta de invitado es otra cosa.",
+        "b": "Incorrecta. Los privilegios temporales se asocian a JEA, no a las cuentas de servicio.",
+        "c": "Correcta. Es la definición del tema.",
+        "d": "Incorrecta. Una cuenta de servicio no se define por cómo se crea."
+      }
+    },
+    "sistemas-t01-e31": {
+      "section": "bloqueo-kerberos",
+      "reasoning": "El apartado advierte de que el bloqueo puede usarse para dejar fuera a usuarios legítimos.",
+      "options": {
+        "a": "Correcta. Es el efecto secundario que describe el tema.",
+        "b": "Incorrecta. Bloquear cuentas no da más privilegios al atacante.",
+        "c": "Incorrecta. El pass-the-hash roba hashes de memoria.",
+        "d": "Incorrecta. Un ticket caducado no sirve para suplantar."
+      }
+    },
+    "sistemas-t01-e32": {
+      "section": "bloqueo-kerberos",
+      "reasoning": "Entre lo que hay que saber del bloqueo, el tema indica que el Administrador integrado no está protegido.",
+      "options": {
+        "a": "Incorrecta. El nombre de la cuenta no impide usar FGPP.",
+        "b": "Correcta. Es la razón que da el tema.",
+        "c": "Incorrecta. Kerberos sí autentica a esa cuenta.",
+        "d": "Incorrecta. El firewall no filtra por nombres de cuenta."
+      }
+    },
+    "sistemas-t01-e33": {
+      "section": "bloqueo-kerberos",
+      "reasoning": "El apartado aconseja dejar los valores por defecto o endurecerlos, nunca relajarlos.",
+      "options": {
+        "a": "Incorrecta. Alargar los tickets aumenta la ventana del atacante.",
+        "b": "Incorrecta. NTLM es antiguo y débil; 2025 incluso permite bloquearlo.",
+        "c": "Correcta. Es la recomendación del tema.",
+        "d": "Incorrecta. La directiva Kerberos no se configura en las directivas locales."
+      }
+    },
+    "sistemas-t01-e34": {
+      "section": "controladores-dominio",
+      "reasoning": "Las reglas para los DC piden no mezclar su rol con otros servicios salvo necesidad.",
+      "options": {
+        "a": "Incorrecta. Mezclar roles en el DC solo se admite si es imprescindible.",
+        "b": "Correcta. Es la regla del tema cuando hay medios para separar.",
+        "c": "Incorrecta. El DC debe estar en un lugar físicamente seguro.",
+        "d": "Incorrecta. Usarlo de almacén es lo que la analogía desaconseja."
+      }
+    },
+    "sistemas-t01-e35": {
+      "section": "controladores-dominio",
+      "reasoning": "El apartado indica que no se toca la política por defecto de los DC, sino que se crea otra con prioridad.",
+      "options": {
+        "a": "Incorrecta. El tema dice expresamente que no se modifica la predeterminada.",
+        "b": "Correcta. Se añade una incremental más restrictiva y con prioridad.",
+        "c": "Incorrecta. No se elimina ni se sustituye por la local.",
+        "d": "Incorrecta. La política de DC no tiene sentido en la OU de clientes."
+      }
+    },
+    "sistemas-t01-e36": {
+      "section": "controladores-dominio",
+      "reasoning": "El apartado explica qué configuran las GPO de los servidores miembro y qué no repiten.",
+      "options": {
+        "a": "Incorrecta. Los perfiles del ENS no son ajustes de una GPO de servidor.",
+        "b": "Incorrecta. Contraseñas y bloqueo ya vienen de la GPO del dominio.",
+        "c": "Incorrecta. Kerberos forma parte de las directivas de cuenta del dominio.",
+        "d": "Correcta. Es el foco que indica el tema."
+      }
+    },
+    "sistemas-t01-e37": {
+      "section": "directivas-locales",
+      "reasoning": "El apartado destaca esta opción de seguridad por el riesgo de revelar el nombre del administrador.",
+      "options": {
+        "a": "Incorrecta. No tiene relación con los cifrados de Kerberos.",
+        "b": "Incorrecta. No afecta a la auditoría.",
+        "c": "Correcta. Revelaría el nombre del administrador a partir de su SID.",
+        "d": "Incorrecta. No bloquea cuentas de servicio."
+      }
+    },
+    "sistemas-t01-e38": {
+      "section": "directivas-locales",
+      "reasoning": "El apartado explica que los cifrados antiguos se retiran en Opciones de seguridad a favor de AES.",
+      "options": {
+        "a": "Incorrecta. Mantenerlos es justo lo que se quiere evitar.",
+        "b": "Incorrecta. NTLM es un protocolo antiguo, no un cifrado de Kerberos.",
+        "c": "Correcta. Es la recomendación de las guías.",
+        "d": "Incorrecta. Los cifrados de Kerberos no dependen del perfil del firewall."
+      }
+    },
+    "sistemas-t01-e39": {
+      "section": "directivas-locales",
+      "reasoning": "El mapa de carpetas sitúa en Asignación de derechos de usuario quién puede hacer qué en el equipo.",
+      "options": {
+        "a": "Incorrecta. Kerberos regula la vigencia de tickets.",
+        "b": "Incorrecta. La auditoría registra eventos, no concede derechos.",
+        "c": "Correcta. Ahí se asignan los derechos de inicio de sesión.",
+        "d": "Incorrecta. El registro de eventos trata tamaño y retención de los logs."
+      }
+    },
+    "sistemas-t01-e40": {
+      "section": "directivas-locales",
+      "reasoning": "El mapa de carpetas separa lo que va en Directivas de cuenta de lo que va en Directivas locales.",
+      "options": {
+        "a": "Incorrecta. La auditoría está en Directivas locales.",
+        "b": "Incorrecta. Los derechos de usuario están en Directivas locales.",
+        "c": "Incorrecta. Los cifrados de Kerberos están en Directivas locales → Opciones de seguridad.",
+        "d": "Correcta. El bloqueo de cuenta está en Directivas de cuenta."
+      }
+    },
+    "sistemas-t01-e41": {
+      "section": "servicios-cuentas",
+      "reasoning": "El apartado explica que los secretos de la LSA son el motivo para no usar cuentas de dominio en servicios.",
+      "options": {
+        "a": "Incorrecta. El ataque no se centra en el firewall del DC.",
+        "b": "Incorrecta. El riesgo va mucho más allá de los registros locales.",
+        "c": "Correcta. Es el riesgo concreto que describe el tema.",
+        "d": "Incorrecta. El tema habla de la contraseña de esa cuenta, no de todos los tickets."
+      }
+    },
+    "sistemas-t01-e42": {
+      "section": "servicios-cuentas",
+      "reasoning": "El apartado describe la gMSA como la variante compartible de la cuenta de servicio administrada.",
+      "options": {
+        "a": "Incorrecta. En ambas la contraseña la gestiona Windows y nadie la teclea.",
+        "b": "Correcta. Es lo que distingue a la versión de grupo.",
+        "c": "Incorrecta. Es una cuenta de dominio.",
+        "d": "Incorrecta. Darle privilegios excesivos iría contra el mínimo privilegio."
+      }
+    },
+    "sistemas-t01-e43": {
+      "section": "servicios-cuentas",
+      "reasoning": "El apartado define el Patch Tuesday y subraya la importancia de actualizar.",
+      "options": {
+        "a": "Incorrecta. Los tickets de Kerberos duran horas, no se ligan a un día del mes.",
+        "b": "Incorrecta. No se refiere a las líneas base anuales.",
+        "c": "Incorrecta. La revisión de reglas no tiene un día fijo.",
+        "d": "Correcta. Es la definición del tema."
+      }
+    },
+    "sistemas-t01-e44": {
+      "section": "firewall",
+      "reasoning": "El apartado enumera las formas de configurar el firewall, incluida la línea de comandos netsh advfirewall.",
+      "options": {
+        "a": "Correcta. Es la vía por línea de comandos que cita el tema.",
+        "b": "Incorrecta. gpedit.msc edita la directiva local, no es el comando del firewall.",
+        "c": "Incorrecta. Policy Analyzer compara GPO.",
+        "d": "Incorrecta. No es una de las formas que recoge el tema."
+      }
+    },
+    "sistemas-t01-e45": {
+      "section": "firewall",
+      "reasoning": "La tabla de perfiles asigna el Privado a redes catalogadas así sin conectividad con un DC.",
+      "options": {
+        "a": "Incorrecta. Dominio exige conectividad con un DC.",
+        "b": "Correcta. Sin DC y con red catalogada como privada.",
+        "c": "Incorrecta. Público se aplica a redes sin catalogar o marcadas como públicas.",
+        "d": "Incorrecta. En cada conexión solo se aplica un perfil."
+      }
+    },
+    "sistemas-t01-e46": {
+      "section": "firewall",
+      "reasoning": "El apartado pone como ejemplo de apertura necesaria el puerto 53/UDP en un servidor DNS.",
+      "options": {
+        "a": "Correcta. Es el puerto que cita el tema para DNS.",
+        "b": "Incorrecta. No es el puerto del ejemplo de DNS.",
+        "c": "Incorrecta. No es el puerto del ejemplo de DNS.",
+        "d": "Incorrecta. No es el puerto del ejemplo de DNS."
+      }
+    },
+    "sistemas-t01-e47": {
+      "section": "herramientas",
+      "reasoning": "El apartado describe Policy Analyzer como la utilidad del SCT que compara GPO.",
+      "options": {
+        "a": "Incorrecta. Analizar tráfico para detectar intrusiones es propio de un IDS.",
+        "b": "Correcta. Es su función principal según el tema.",
+        "c": "Incorrecta. Eso es la autoridad de certificación.",
+        "d": "Incorrecta. El cumplimiento del ENS en Linux lo mide CLARA ENS-LINUX."
+      }
+    },
+    "sistemas-t01-e48": {
+      "section": "herramientas",
+      "reasoning": "La tabla del apartado asigna a CLARA la auditoría del ENS en Windows y Linux.",
+      "options": {
+        "a": "Incorrecta. Policy Analyzer compara GPO con líneas base de Microsoft.",
+        "b": "Correcta. Es la herramienta del CCN-CERT para el ENS.",
+        "c": "Incorrecta. El Visor de eventos muestra registros, no audita el ENS.",
+        "d": "Incorrecta. El NIST ofrece guías de configuración, no mide el ENS."
+      }
+    },
+    "sistemas-t01-e49": {
+      "section": "herramientas",
+      "reasoning": "El apartado cierra con la advertencia de CLARA sobre plantillas adaptadas, coherente con la idea de referencia adaptable.",
+      "options": {
+        "a": "Incorrecta. El tema insiste en que las plantillas se adaptan.",
+        "b": "Incorrecta. Usa esas guías como referencia; no las sustituye.",
+        "c": "Incorrecta. Funciona dentro y fuera de un dominio.",
+        "d": "Correcta. Es la advertencia que recoge el tema."
+      }
+    },
+    "sistemas-t01-e50": {
+      "section": "practica-act1",
+      "reasoning": "Los pasos del laboratorio indican instalar el servidor con experiencia de escritorio.",
+      "options": {
+        "a": "Correcta. Es la opción que pide la actividad.",
+        "b": "Incorrecta. El tema descarta Core por ser solo de línea de comandos.",
+        "c": "Incorrecta. Windows 11 es el cliente, no el servidor.",
+        "d": "Incorrecta. No es una opción que plantee la actividad."
+      }
     }
   }
 }

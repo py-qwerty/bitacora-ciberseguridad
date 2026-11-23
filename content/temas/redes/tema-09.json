@@ -1038,6 +1038,506 @@
         "d": "Incorrecta. El servidor final solo ve la IP del **nodo de salida**. Quien conoce la IP real del cliente es el nodo de entrada, que a su vez no sabe qué servicio se consulta."
       },
       "doubt": "El tema dice que el directorio «ofrece» los tres nodos. En el Tor real es el software del cliente quien elige la ruta a partir de la lista del directorio, así que la C podría discutirse fuera del temario."
+    },
+    "redes-t09-e01": {
+      "section": "vpn-que-es",
+      "reasoning": "El término concentrador VPN del apartado lo define como el equipo que termina los túneles en la organización.",
+      "options": {
+        "a": "Incorrecta. Eso es el cliente VPN del acceso remoto.",
+        "b": "Correcta. Termina los túneles VPN del lado de la organización.",
+        "c": "Incorrecta. El enlace privado es la alternativa cara a la VPN.",
+        "d": "Incorrecta. El nodo de entrada pertenece a Tor, no a una VPN."
+      }
+    },
+    "redes-t09-e02": {
+      "section": "vpn-que-es",
+      "reasoning": "La lista de servicios de seguridad que debe ofrecer una VPN recoge esos cuatro.",
+      "options": {
+        "a": "Correcta. Son los cuatro servicios que debe ofrecer una VPN.",
+        "b": "Incorrecta. La VPN no da anonimato.",
+        "c": "Incorrecta. Además de confidencialidad, ofrece autenticación, integridad y no repudio.",
+        "d": "Incorrecta. La VPN no da anonimato: su gestor sabe quién eres."
+      }
+    },
+    "redes-t09-e03": {
+      "section": "vpn-que-es",
+      "reasoning": "El término NIST y ENS como referencias del apartado las presenta como guías, no como requisitos.",
+      "options": {
+        "a": "Incorrecta. El tema aclara que no son requisitos imprescindibles.",
+        "b": "Incorrecta. Son guías, no protocolos como IPsec o L2TP.",
+        "c": "Correcta. Son guías de referencia de diseño.",
+        "d": "Incorrecta. No son fabricantes ni productos."
+      }
+    },
+    "redes-t09-e04": {
+      "section": "vpn-que-es",
+      "reasoning": "El apartado compara la VPN con los enlaces privados y destaca que es más barata y flexible.",
+      "options": {
+        "a": "Correcta. Es más barata y flexible que los enlaces privados.",
+        "b": "Incorrecta. La VPN cifra precisamente porque Internet es inseguro.",
+        "c": "Incorrecta. La VPN se construye sobre Internet.",
+        "d": "Incorrecta. La VPN no da anonimato."
+      }
+    },
+    "redes-t09-e05": {
+      "section": "vpn-que-es",
+      "reasoning": "El término túnel del apartado lo define como canal lógico que encapsula y cifra.",
+      "options": {
+        "a": "Incorrecta. Eso describe Freenet, no un túnel VPN.",
+        "b": "Incorrecta. Es lógico, no un cable físico dedicado.",
+        "c": "Correcta. Es un canal lógico que encapsula y cifra.",
+        "d": "Incorrecta. Un túnel no es un cortafuegos."
+      }
+    },
+    "redes-t09-e06": {
+      "section": "vpn-y-anonimato",
+      "reasoning": "El apartado explica que la VPN da confidencialidad pero no anonimato porque el concentrador te conoce.",
+      "options": {
+        "a": "Incorrecta. La VPN sí cifra el contenido.",
+        "b": "Correcta. El gestor de la VPN conoce tu identidad y destinos.",
+        "c": "Incorrecta. La VPN funciona sobre Internet, no solo en la LAN.",
+        "d": "Incorrecta. El contenido va cifrado por el túnel."
+      }
+    },
+    "redes-t09-e07": {
+      "section": "vpn-y-anonimato",
+      "reasoning": "El término anonimato del apartado lo distingue expresamente de la confidencialidad.",
+      "options": {
+        "a": "Incorrecta. Las definiciones están intercambiadas.",
+        "b": "Incorrecta. Son propiedades distintas.",
+        "c": "Incorrecta. Integridad y autenticación son otros servicios.",
+        "d": "Correcta. Anonimato es sobre la identidad; confidencialidad, sobre el contenido."
+      }
+    },
+    "redes-t09-e08": {
+      "section": "vpn-y-anonimato",
+      "reasoning": "El apartado nombra Freenet, I2P y Tor como las tres redes de anonimato.",
+      "options": {
+        "a": "Correcta. L2TP es un protocolo VPN de capa de enlace.",
+        "b": "Incorrecta. I2P sí es una red de anonimato del tema.",
+        "c": "Incorrecta. Tor sí es una red de anonimato del tema.",
+        "d": "Incorrecta. Freenet sí es una red de anonimato del tema."
+      }
+    },
+    "redes-t09-e09": {
+      "section": "sitio-a-sitio",
+      "reasoning": "La lista de características de sitio a sitio indica como límite que no protege dentro de cada sede.",
+      "options": {
+        "a": "Incorrecta. El caso práctico une tres sedes.",
+        "b": "Incorrecta. Es transparente: los puestos no instalan software.",
+        "c": "Incorrecta. Puede haber una o varias conexiones, según convenga.",
+        "d": "Correcta. Solo protege el tramo de Internet."
+      }
+    },
+    "redes-t09-e10": {
+      "section": "sitio-a-sitio",
+      "reasoning": "Las características de sitio a sitio mencionan varias conexiones para distintos niveles de seguridad.",
+      "options": {
+        "a": "Incorrecta. Una sola conexión puede llevar todo el tráfico entre sedes.",
+        "b": "Incorrecta. El túnel puede llevar tráfico variado.",
+        "c": "Correcta. Por ejemplo, una conexión por departamento.",
+        "d": "Incorrecta. Una VPN no da anonimato."
+      }
+    },
+    "redes-t09-e11": {
+      "section": "sitio-a-sitio",
+      "reasoning": "El caso práctico de las tres sedes describe cómo el router de la sede introduce el paquete en el túnel.",
+      "options": {
+        "a": "Incorrecta. En sitio a sitio los puestos no instalan cliente VPN.",
+        "b": "Correcta. El router o concentrador de la sede lo mete en el túnel.",
+        "c": "Incorrecta. El túnel termina en el concentrador de Madrid, no en el servidor.",
+        "d": "Incorrecta. El ISP solo transporta; el túnel lo gestionan los concentradores."
+      }
+    },
+    "redes-t09-e12": {
+      "section": "sitio-a-sitio",
+      "reasoning": "Las características de sitio a sitio indican que el concentrador puede ser dedicado o integrado en router o NGFW.",
+      "options": {
+        "a": "Incorrecta. También puede ser una función de un router o cortafuegos.",
+        "b": "Incorrecta. En sitio a sitio los equipos de los empleados no intervienen.",
+        "c": "Incorrecta. El concentrador está del lado de la organización.",
+        "d": "Correcta. Dedicado o integrado en un router o NGFW."
+      }
+    },
+    "redes-t09-e13": {
+      "section": "acceso-remoto",
+      "reasoning": "El apartado de acceso remoto describe el cliente VPN en el equipo del trabajador y el concentrador en la organización.",
+      "options": {
+        "a": "Correcta. El trabajador instala un cliente VPN.",
+        "b": "Incorrecta. El concentrador lo despliega la organización.",
+        "c": "Incorrecta. Un servidor SSH no forma parte del acceso remoto típico.",
+        "d": "Incorrecta. Freenet es una red de anonimato, no una VPN."
+      }
+    },
+    "redes-t09-e14": {
+      "section": "acceso-remoto",
+      "reasoning": "La tabla túnel completo frente a túnel dividido indica esa ventaja del split tunnel.",
+      "options": {
+        "a": "Incorrecta. Eso es la ventaja del túnel completo.",
+        "b": "Incorrecta. El acceso remoto no protege extremo a extremo.",
+        "c": "Correcta. Descarga el concentrador y gana velocidad.",
+        "d": "Incorrecta. El tráfico general sale directo, fuera del túnel."
+      }
+    },
+    "redes-t09-e15": {
+      "section": "acceso-remoto",
+      "reasoning": "La tabla túnel completo frente a túnel dividido recoge su inconveniente: más carga y latencia.",
+      "options": {
+        "a": "Correcta. Todo pasa por la organización, con más carga y latencia.",
+        "b": "Incorrecta. Eso es el inconveniente del túnel dividido.",
+        "c": "Incorrecta. El tráfico corporativo va por el túnel en ambos casos.",
+        "d": "Incorrecta. Un concentrador atiende a muchos clientes."
+      }
+    },
+    "redes-t09-e16": {
+      "section": "acceso-remoto",
+      "reasoning": "El término split tunnel del apartado explica que lo decide la política de rutas.",
+      "options": {
+        "a": "Incorrecta. El tema descarta que se separe por contraseña.",
+        "b": "Incorrecta. No se separa según el tráfico vaya cifrado.",
+        "c": "Correcta. La política de rutas decide qué entra en el túnel.",
+        "d": "Incorrecta. El tamaño del paquete no interviene."
+      }
+    },
+    "redes-t09-e17": {
+      "section": "equipo-a-equipo",
+      "reasoning": "La lista de usos del apartado destaca la administración remota de servidores.",
+      "options": {
+        "a": "Incorrecta. Unir sedes es la VPN de sitio a sitio.",
+        "b": "Correcta. Es su uso principal.",
+        "c": "Incorrecta. El acceso web de teletrabajadores encaja con acceso remoto o SSL/TLS.",
+        "d": "Incorrecta. Una VPN no da anonimato."
+      }
+    },
+    "redes-t09-e18": {
+      "section": "equipo-a-equipo",
+      "reasoning": "La lista de usos de equipo a equipo menciona la protección frente a escaneos y diccionario.",
+      "options": {
+        "a": "Correcta. El servicio queda oculto hasta establecer la VPN.",
+        "b": "Incorrecta. La VPN no garantiza disponibilidad física.",
+        "c": "Incorrecta. La VPN no protege contra el robo físico.",
+        "d": "Incorrecta. La correlación de nodos es un riesgo de Tor."
+      }
+    },
+    "redes-t09-e19": {
+      "section": "equipo-a-equipo",
+      "reasoning": "El apartado indica que IPsec en modo transporte es el pensado para equipo a equipo.",
+      "options": {
+        "a": "Incorrecta. El modo túnel se usa en sitio a sitio y acceso remoto.",
+        "b": "Correcta. El modo transporte une dos equipos finales.",
+        "c": "Incorrecta. El modo agresivo es de la fase 1 de IKE.",
+        "d": "Incorrecta. El túnel dividido es una configuración del acceso remoto."
+      }
+    },
+    "redes-t09-e20": {
+      "section": "equipo-a-equipo",
+      "reasoning": "El apartado explica que en equipo a equipo el servidor termina el túnel y no hay concentrador.",
+      "options": {
+        "a": "Incorrecta. Sitio a sitio usa un concentrador en cada sede.",
+        "b": "Incorrecta. El acceso remoto usa un concentrador en la organización.",
+        "c": "Correcta. El servidor termina el túnel.",
+        "d": "Incorrecta. El split tunnel sigue siendo acceso remoto con concentrador."
+      }
+    },
+    "redes-t09-e21": {
+      "section": "vpn-enlace",
+      "reasoning": "El término PPTP del apartado indica que el túnel se construye con GRE.",
+      "options": {
+        "a": "Incorrecta. IKEv2 negocia claves en IPsec.",
+        "b": "Incorrecta. ESP pertenece a IPsec.",
+        "c": "Correcta. PPTP encapsula con GRE.",
+        "d": "Incorrecta. SSH es de capa de aplicación."
+      }
+    },
+    "redes-t09-e22": {
+      "section": "vpn-enlace",
+      "reasoning": "El término PPTP del apartado menciona MPPE y MS-CHAP como aportaciones de Microsoft.",
+      "options": {
+        "a": "Correcta. MPPE para cifrar y MS-CHAP para autenticar.",
+        "b": "Incorrecta. AES-CCMP y EAP son de la seguridad wifi.",
+        "c": "Incorrecta. RADIUS es una aportación de L2TP, no de PPTP.",
+        "d": "Incorrecta. GRE es el encapsulado y PAP es de PPP."
+      }
+    },
+    "redes-t09-e23": {
+      "section": "vpn-enlace",
+      "reasoning": "El término L2F del apartado describe sus extremos y el tramo sin proteger.",
+      "options": {
+        "a": "Correcta. ISP-concentrador, con el tramo cliente-ISP al descubierto.",
+        "b": "Incorrecta. L2F no se define como túnel entre sedes.",
+        "c": "Incorrecta. Eso se parece a PPTP.",
+        "d": "Incorrecta. Quien se recomienda combinar con IPsec es L2TP."
+      }
+    },
+    "redes-t09-e24": {
+      "section": "vpn-enlace",
+      "reasoning": "El término L2TP del apartado menciona RADIUS y TACACS+.",
+      "options": {
+        "a": "Incorrecta. LDAP y SAML no los cita el tema para L2TP.",
+        "b": "Incorrecta. Kerberos y DHCP no son los que añade L2TP.",
+        "c": "Incorrecta. MPPE es cifrado de Microsoft y GRE es encapsulado.",
+        "d": "Correcta. L2TP añade RADIUS y TACACS+."
+      }
+    },
+    "redes-t09-e25": {
+      "section": "vpn-enlace",
+      "reasoning": "El apartado de VPN de enlace explica que, al estar por debajo de IP, valen para cualquier protocolo de red.",
+      "options": {
+        "a": "Incorrecta. Solo protegen el enlace donde se implementan.",
+        "b": "Correcta. Al estar bajo IP, no dependen de él.",
+        "c": "Incorrecta. IPsec es opcional, combinado con L2TP.",
+        "d": "Incorrecta. Son de capa de enlace (capa 2)."
+      }
+    },
+    "redes-t09-e26": {
+      "section": "vpn-red-ipsec",
+      "reasoning": "La lista de protocolos que forman IPsec atribuye a IKEv2 la negociación de claves.",
+      "options": {
+        "a": "Incorrecta. AH da integridad y autenticación del origen.",
+        "b": "Incorrecta. GRE es el encapsulado de PPTP, no parte de IPsec.",
+        "c": "Incorrecta. ESP cifra los datos, no negocia las claves.",
+        "d": "Correcta. IKEv2 negocia y reparte las claves."
+      }
+    },
+    "redes-t09-e27": {
+      "section": "vpn-red-ipsec",
+      "reasoning": "La tabla de los dos modos de IPsec asocia el modo túnel a sitio a sitio y acceso remoto.",
+      "options": {
+        "a": "Incorrecta. Equipo a equipo usa el modo transporte.",
+        "b": "Incorrecta. Equipo a equipo usa el modo transporte.",
+        "c": "Incorrecta. El portal web corresponde a SSL/TLS, no a IPsec.",
+        "d": "Correcta. Modo túnel en sitio a sitio y acceso remoto."
+      }
+    },
+    "redes-t09-e28": {
+      "section": "vpn-red-ipsec",
+      "reasoning": "El apartado de IPsec señala como gran inconveniente la dificultad de configuración.",
+      "options": {
+        "a": "Incorrecta. IPsec funciona con paquetes IP en general.",
+        "b": "Correcta. Es potente, pero difícil de configurar.",
+        "c": "Incorrecta. IPsec es de capa de red.",
+        "d": "Incorrecta. ESP cifra el tráfico."
+      }
+    },
+    "redes-t09-e29": {
+      "section": "vpn-red-ipsec",
+      "reasoning": "La lista de protocolos de IPsec indica que ESP añade el cifrado.",
+      "options": {
+        "a": "Incorrecta. Las claves las negocia IKEv2.",
+        "b": "Incorrecta. La autenticación del origen ya la da AH.",
+        "c": "Correcta. ESP añade confidencialidad.",
+        "d": "Incorrecta. GRE pertenece a PPTP."
+      }
+    },
+    "redes-t09-e30": {
+      "section": "vpn-transporte-tls",
+      "reasoning": "La lista de ventajas de la VPN SSL/TLS indica que al cliente le basta el navegador.",
+      "options": {
+        "a": "Incorrecta. IPsec no se usa en la VPN SSL/TLS.",
+        "b": "Incorrecta. SSH es la VPN de capa de aplicación.",
+        "c": "Incorrecta. El concentrador está en la organización.",
+        "d": "Correcta. Basta el navegador."
+      }
+    },
+    "redes-t09-e31": {
+      "section": "vpn-transporte-tls",
+      "reasoning": "La lista de ventajas de la VPN SSL/TLS describe esta forma habitual de autenticación.",
+      "options": {
+        "a": "Incorrecta. Está al revés: el servidor se autentica con TLS.",
+        "b": "Incorrecta. El servidor se autentica y el usuario se identifica.",
+        "c": "Correcta. Servidor con TLS; usuario con usuario y contraseña.",
+        "d": "Incorrecta. Lo habitual es que no se autentique al usuario con TLS."
+      }
+    },
+    "redes-t09-e32": {
+      "section": "vpn-transporte-tls",
+      "reasoning": "Los pasos de una VPN SSL/TLS típica indican cómo se resuelven las aplicaciones no web.",
+      "options": {
+        "a": "Correcta. Un pequeño software tuneliza la conexión.",
+        "b": "Incorrecta. No es obligatorio pasar a IPsec.",
+        "c": "Incorrecta. Se tunelizan, no se dejan sin cifrar.",
+        "d": "Incorrecta. Sí se pueden usar con un pequeño software."
+      }
+    },
+    "redes-t09-e33": {
+      "section": "vpn-transporte-tls",
+      "reasoning": "Los pasos de la VPN SSL/TLS mencionan el proxy que se conecta en nombre del usuario.",
+      "options": {
+        "a": "Incorrecta. Tor es una red de anonimato, no parte de la VPN.",
+        "b": "Incorrecta. El usuario entra por el portal del concentrador.",
+        "c": "Correcta. Un proxy hace la conexión final por HTTPS.",
+        "d": "Incorrecta. El ISP no actúa en nombre del usuario."
+      }
+    },
+    "redes-t09-e34": {
+      "section": "vpn-aplicacion-ssh",
+      "reasoning": "El apartado de VPN de aplicación describe esos dos caminos.",
+      "options": {
+        "a": "Correcta. Modificar la aplicación o tunelizar, normalmente con SSH.",
+        "b": "Incorrecta. GRE y MPPE pertenecen a PPTP, de capa de enlace.",
+        "c": "Incorrecta. Son modos de IPsec, de capa de red.",
+        "d": "Incorrecta. Son configuraciones del acceso remoto."
+      }
+    },
+    "redes-t09-e35": {
+      "section": "vpn-aplicacion-ssh",
+      "reasoning": "El término SSH del apartado explica su uso por administradores por el coste de configuración.",
+      "options": {
+        "a": "Incorrecta. SSH sí cifra.",
+        "b": "Incorrecta. SSH es de capa de aplicación.",
+        "c": "Correcta. Su configuración por cliente es costosa.",
+        "d": "Incorrecta. SSH no requiere concentrador."
+      }
+    },
+    "redes-t09-e36": {
+      "section": "vpn-aplicacion-ssh",
+      "reasoning": "El caso práctico de la base de datos interna usa localhost:15432 como punto de conexión local.",
+      "options": {
+        "a": "Incorrecta. bastion es el servidor SSH, no el destino al que conecta el programa.",
+        "b": "Incorrecta. 15432 es el puerto local, no el de la base de datos remota.",
+        "c": "Incorrecta. El puerto local elegido es 15432, no 5432.",
+        "d": "Correcta. El puerto local redirigido es localhost:15432."
+      }
+    },
+    "redes-t09-e37": {
+      "section": "vpn-aplicacion-ssh",
+      "reasoning": "El término redirección local de puertos y su sintaxis explican el significado de cada valor.",
+      "options": {
+        "a": "Incorrecta. El puerto del servicio remoto es el tercer valor.",
+        "b": "Correcta. Es el puerto local de tu equipo.",
+        "c": "Incorrecta. El puerto del servidor SSH no aparece en esa parte.",
+        "d": "Incorrecta. El número de saltos no forma parte del comando."
+      }
+    },
+    "redes-t09-e38": {
+      "section": "freenet",
+      "reasoning": "El apartado de Freenet atribuye su origen a Ian Clarke en 1999.",
+      "options": {
+        "a": "Incorrecta. Microsoft se asocia en el tema a PPTP.",
+        "b": "Correcta. Ian Clarke lo inició en 1999 contra la censura.",
+        "c": "Incorrecta. Cisco creó L2F.",
+        "d": "Incorrecta. El NIST publica guías de VPN, no creó Freenet."
+      }
+    },
+    "redes-t09-e39": {
+      "section": "freenet",
+      "reasoning": "Los objetivos de diseño de Freenet explican el almacenamiento cifrado sin implicaciones.",
+      "options": {
+        "a": "Incorrecta. El motivo es el cifrado, no la compresión.",
+        "b": "Incorrecta. Los archivos se replican, no se borran tras cada consulta.",
+        "c": "Correcta. Están cifrados con una clave que el usuario no tiene.",
+        "d": "Incorrecta. Freenet es completamente descentralizada."
+      }
+    },
+    "redes-t09-e40": {
+      "section": "freenet",
+      "reasoning": "La tabla de tipos de claves de Freenet define la SSK como espacio de nombres del publicador.",
+      "options": {
+        "a": "Incorrecta. La KSK sale del nombre del archivo y sirve para localizarlo.",
+        "b": "Correcta. La SSK define el espacio de nombres del publicador.",
+        "c": "Incorrecta. La DHT es la base de datos repartida de I2P.",
+        "d": "Incorrecta. La CSK es el hash del contenido y sirve para cifrar."
+      }
+    },
+    "redes-t09-e41": {
+      "section": "freenet",
+      "reasoning": "La tabla de tipos de claves de Freenet describe la CSK.",
+      "options": {
+        "a": "Correcta. Es el hash del contenido y cifra el archivo.",
+        "b": "Incorrecta. Eso describe la KSK.",
+        "c": "Incorrecta. Eso describe la SSK.",
+        "d": "Incorrecta. Los túneles de entrada son de I2P."
+      }
+    },
+    "redes-t09-e42": {
+      "section": "freenet",
+      "reasoning": "Los pasos de búsqueda de un recurso en Freenet indican la respuesta Reply Not Found.",
+      "options": {
+        "a": "Incorrecta. Data Reply es la respuesta cuando se encuentra el archivo.",
+        "b": "Correcta. Reply Not Found indica que no se encontró.",
+        "c": "Incorrecta. Data Request es la petición, no la respuesta.",
+        "d": "Incorrecta. No es un mensaje de Freenet que cite el tema."
+      }
+    },
+    "redes-t09-e43": {
+      "section": "i2p",
+      "reasoning": "La lista de túneles unidireccionales del apartado indica que hacen falta cuatro.",
+      "options": {
+        "a": "Correcta. Cuatro túneles para ida y vuelta.",
+        "b": "Incorrecta. Cada parte usa un túnel de salida y uno de entrada.",
+        "c": "Incorrecta. Dos solo bastarían para un sentido.",
+        "d": "Incorrecta. Los túneles van en un solo sentido."
+      }
+    },
+    "redes-t09-e44": {
+      "section": "i2p",
+      "reasoning": "El término garlic routing del apartado describe la agrupación de mensajes.",
+      "options": {
+        "a": "Incorrecta. Eso se parece al circuito de tres nodos de Tor.",
+        "b": "Incorrecta. Eso es la búsqueda de Freenet.",
+        "c": "Incorrecta. Eso es el túnel dividido de una VPN.",
+        "d": "Correcta. Agrupa varios mensajes que viajan juntos cifrados."
+      }
+    },
+    "redes-t09-e45": {
+      "section": "i2p",
+      "reasoning": "La tabla de criptografía de I2P asigna AES-256 CBC a la confidencialidad de los datos.",
+      "options": {
+        "a": "Incorrecta. DSA/ECDSA firma la información de la netDB.",
+        "b": "Incorrecta. ElGamal cifra las claves AES.",
+        "c": "Incorrecta. SHA-256 da la integridad.",
+        "d": "Correcta. AES-256 en modo CBC cifra los datos."
+      }
+    },
+    "redes-t09-e46": {
+      "section": "i2p",
+      "reasoning": "El término DHT y netDB del apartado describe su contenido.",
+      "options": {
+        "a": "Correcta. Guarda contactos de routers y direcciones .i2p.",
+        "b": "Incorrecta. Almacenar archivos es lo que hace Freenet.",
+        "c": "Incorrecta. Tor usa un directorio centralizado propio.",
+        "d": "Incorrecta. Las claves privadas no se publican."
+      }
+    },
+    "redes-t09-e47": {
+      "section": "tor",
+      "reasoning": "La lista de los tres nodos del circuito Tor describe qué conoce cada uno.",
+      "options": {
+        "a": "Incorrecta. El intermedio solo conoce el nodo anterior y el siguiente.",
+        "b": "Correcta. El nodo de entrada conoce tu IP, no el destino.",
+        "c": "Incorrecta. El de salida conoce el destino, no tu IP.",
+        "d": "Incorrecta. El directorio no forma parte del circuito."
+      }
+    },
+    "redes-t09-e48": {
+      "section": "tor",
+      "reasoning": "El apartado de Tor explica cómo se rompería el anonimato.",
+      "options": {
+        "a": "Incorrecta. Ningún nodo descifra el mensaje completo.",
+        "b": "Incorrecta. Eso ocurre siempre y no rompe el anonimato.",
+        "c": "Incorrecta. El directorio ya da las claves públicas y eso es normal.",
+        "d": "Correcta. Controlar entrada y salida permite correlacionar."
+      }
+    },
+    "redes-t09-e49": {
+      "section": "tor",
+      "reasoning": "Los pasos del circuito Tor indican que el servidor ve la IP del nodo de salida.",
+      "options": {
+        "a": "Incorrecta. El directorio no interviene en la conexión.",
+        "b": "Incorrecta. Tor oculta la IP real de Alice al servidor.",
+        "c": "Incorrecta. El nodo de entrada no habla con el servidor final.",
+        "d": "Correcta. El servidor ve la IP del nodo de salida."
+      }
+    },
+    "redes-t09-e50": {
+      "section": "tor",
+      "reasoning": "La tabla comparativa de Freenet, I2P y Tor recoge los dominios propios de cada red.",
+      "options": {
+        "a": "Incorrecta. .onion es de Tor, no de Freenet.",
+        "b": "Correcta. freenet:KSK@… para Freenet, .i2p para I2P y .onion para Tor.",
+        "c": "Incorrecta. .i2p es de I2P, no de Freenet.",
+        "d": "Incorrecta. .onion y .i2p están intercambiados."
+      }
     }
   }
 }

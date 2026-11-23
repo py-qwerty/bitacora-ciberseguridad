@@ -1176,6 +1176,506 @@
         "c": "Incorrecta. Las claves de sesión son simétricas y compartidas por ambos extremos, así que no dan **no repudio**: ninguno puede demostrar ante un tercero quién generó un mensaje.",
         "d": "Incorrecta. La B es correcta."
       }
+    },
+    "redes-t08-e01": {
+      "section": "servicios-seguridad",
+      "reasoning": "La tabla de servicios de seguridad define el no repudio como la imposibilidad de negar el envío ante un tercero.",
+      "options": {
+        "a": "Correcta. El no repudio impide negar el envío ante terceros.",
+        "b": "Incorrecta. La autenticación garantiza que el otro extremo es quien dice ser.",
+        "c": "Incorrecta. La integridad garantiza que el mensaje no se ha modificado.",
+        "d": "Incorrecta. La disponibilidad trata de que el servicio esté accesible."
+      }
+    },
+    "redes-t08-e02": {
+      "section": "servicios-seguridad",
+      "reasoning": "La tabla de servicios indica que el no repudio exige firma digital con clave privada personal.",
+      "options": {
+        "a": "Incorrecta. Con una clave compartida, cualquiera de los dos extremos pudo calcular el MAC.",
+        "b": "Correcta. Solo una firma con clave privada personal prueba la autoría ante terceros.",
+        "c": "Incorrecta. El cifrado simétrico da confidencialidad, no prueba quién envió.",
+        "d": "Incorrecta. El número de secuencia previene repeticiones, no el repudio."
+      }
+    },
+    "redes-t08-e03": {
+      "section": "servicios-seguridad",
+      "reasoning": "El apartado insiste en que ningún protocolo criptográfico, ni IPsec ni SSL, garantiza la disponibilidad.",
+      "options": {
+        "a": "Incorrecta. El certificado de cliente no aporta disponibilidad.",
+        "b": "Incorrecta. Ningún modo de IPsec asegura la disponibilidad.",
+        "c": "Correcta. La disponibilidad no la garantiza ningún protocolo criptográfico.",
+        "d": "Incorrecta. Ni AH ni ESP proporcionan disponibilidad."
+      }
+    },
+    "redes-t08-e04": {
+      "section": "servicios-seguridad",
+      "reasoning": "El bloque de examen del apartado explica que el uso de claves compartidas impide el no repudio.",
+      "options": {
+        "a": "Incorrecta. Se apoyan en la criptografía para crear el canal seguro.",
+        "b": "Incorrecta. Sí autentican: el MAC da integridad y autenticación.",
+        "c": "Correcta. Con claves compartidas no se puede probar quién generó el mensaje.",
+        "d": "Incorrecta. IPsec trabaja en la capa de red y SSL por encima de transporte."
+      }
+    },
+    "redes-t08-e05": {
+      "section": "ipsec-sa",
+      "reasoning": "El término IPsec del apartado lo sitúa en la capa de red.",
+      "options": {
+        "a": "Incorrecta. Entre transporte y aplicación trabaja SSL/TLS.",
+        "b": "Incorrecta. IPsec no actúa sobre cómo viajan los bits por el medio.",
+        "c": "Incorrecta. IPsec es transparente para las aplicaciones.",
+        "d": "Correcta. IPsec protege los paquetes en la capa de red."
+      }
+    },
+    "redes-t08-e06": {
+      "section": "ipsec-sa",
+      "reasoning": "El apartado concluye que IPsec funciona tanto en IPv4 como en IPv6.",
+      "options": {
+        "a": "Incorrecta. También funciona en IPv4, y en IPv6 hoy puede ser opcional.",
+        "b": "Incorrecta. También funciona en IPv6.",
+        "c": "Correcta. IPsec funciona en IPv4 y en IPv6.",
+        "d": "Incorrecta. IPsec trabaja en la capa de red, por debajo de TCP."
+      }
+    },
+    "redes-t08-e07": {
+      "section": "ipsec-sa",
+      "reasoning": "Los rasgos de las SA del apartado indican que son unidireccionales y hace falta una por sentido.",
+      "options": {
+        "a": "Correcta. Las SA son unidireccionales: una por sentido.",
+        "b": "Incorrecta. Una SA solo protege un sentido.",
+        "c": "Incorrecta. IKE negocia las SA; no hace que dejen de existir.",
+        "d": "Incorrecta. Una SA rige muchos paquetes y puede renovarse."
+      }
+    },
+    "redes-t08-e08": {
+      "section": "ipsec-sa",
+      "reasoning": "La lista de rasgos de las SA indica que pueden configurarse a mano o negociarse con IKE.",
+      "options": {
+        "a": "Incorrecta. Es verdadera: las SA se pueden renovar.",
+        "b": "Incorrecta. Es verdadera: la SA es la unidad básica de negociación.",
+        "c": "Correcta. Es falsa: también pueden negociarse con IKE.",
+        "d": "Incorrecta. Es verdadera: IKE las negocia automáticamente."
+      }
+    },
+    "redes-t08-e09": {
+      "section": "ipsec-sa",
+      "reasoning": "El término IPsec del apartado cita el RFC 4301 como el estándar que lo define.",
+      "options": {
+        "a": "Correcta. IPsec se define en el RFC 4301.",
+        "b": "Incorrecta. Ese RFC no es el que define IPsec en el tema.",
+        "c": "Incorrecta. El RFC 4307 también corresponde a IKEv2.",
+        "d": "Incorrecta. El RFC 4306 corresponde a IKEv2."
+      }
+    },
+    "redes-t08-e10": {
+      "section": "ah",
+      "reasoning": "El apartado de AH explica su posición tras la cabecera IP y el esquema [IP][AH][TCP/UDP][Datos].",
+      "options": {
+        "a": "Incorrecta. AH no cifra nada, así que no hay carga cifrada.",
+        "b": "Incorrecta. Delante impediría que los routers encaminasen el paquete con normalidad.",
+        "c": "Incorrecta. Al final del paquete van el tráiler y la autenticación de ESP.",
+        "d": "Correcta. AH va justo detrás de la cabecera IP."
+      }
+    },
+    "redes-t08-e11": {
+      "section": "ah",
+      "reasoning": "El apartado de AH explica que se excluyen los campos que cambian legítimamente por el camino, como el TTL.",
+      "options": {
+        "a": "Correcta. Al cambiar en cada router, harían fallar la comprobación.",
+        "b": "Incorrecta. ESP no cifra la cabecera IP externa.",
+        "c": "Incorrecta. El TTL es un contador, no una clave.",
+        "d": "Incorrecta. El TTL existe en IPv4 y AH funciona en ambas versiones."
+      }
+    },
+    "redes-t08-e12": {
+      "section": "ah",
+      "reasoning": "La tabla de campos de AH define Authentication Data como el código de autenticación, normalmente un HMAC.",
+      "options": {
+        "a": "Incorrecta. El SPI va en su propio campo.",
+        "b": "Correcta. Contiene el HMAC del paquete.",
+        "c": "Incorrecta. AH no cifra, así que no lleva vector de inicialización.",
+        "d": "Incorrecta. El contador es el número de secuencia."
+      }
+    },
+    "redes-t08-e13": {
+      "section": "ah",
+      "reasoning": "La tabla de campos de AH define Next Header como el indicador de la cabecera siguiente.",
+      "options": {
+        "a": "Incorrecta. Eso es Payload Length.",
+        "b": "Correcta. Next Header dice qué cabecera sigue.",
+        "c": "Incorrecta. Eso lo indica el SPI.",
+        "d": "Incorrecta. Eso se parece al número de secuencia."
+      }
+    },
+    "redes-t08-e14": {
+      "section": "ah",
+      "reasoning": "El apartado de AH menciona como precio a pagar la bajada de rendimiento en ambos extremos.",
+      "options": {
+        "a": "Incorrecta. Los routers que no participan en IPsec ignoran AH.",
+        "b": "Correcta. Firmar y verificar cada datagrama cuesta en ambos extremos.",
+        "c": "Incorrecta. AH calcula un código de autenticación por paquete.",
+        "d": "Incorrecta. AH no cifra; además el coste afecta a los dos extremos."
+      }
+    },
+    "redes-t08-e15": {
+      "section": "esp",
+      "reasoning": "La tabla de partes de un paquete ESP indica que la cabecera ESP no se cifra pero sí se autentica.",
+      "options": {
+        "a": "Incorrecta. La carga sí va cifrada.",
+        "b": "Incorrecta. El tráiler sí va cifrado.",
+        "c": "Correcta. La cabecera ESP va en claro, aunque autenticada.",
+        "d": "Incorrecta. Esos campos forman parte del tráiler, que va cifrado."
+      }
+    },
+    "redes-t08-e16": {
+      "section": "esp",
+      "reasoning": "La tabla de partes de ESP describe el contenido del tráiler.",
+      "options": {
+        "a": "Correcta. Relleno, longitud del relleno y protocolo siguiente.",
+        "b": "Incorrecta. Eso va en la cabecera ESP.",
+        "c": "Incorrecta. Eso forma la carga cifrada.",
+        "d": "Incorrecta. Eso es el campo Authentication Data, al final."
+      }
+    },
+    "redes-t08-e17": {
+      "section": "esp",
+      "reasoning": "El apartado de ESP y la tabla AH frente a ESP señalan que solo AH protege la cabecera IP.",
+      "options": {
+        "a": "Incorrecta. Está al revés: es AH quien la autentica.",
+        "b": "Correcta. AH la autentica; ESP no la cubre.",
+        "c": "Incorrecta. AH sí la protege, salvo los campos mutables.",
+        "d": "Incorrecta. La cabecera IP externa no se cifra, o los routers no podrían encaminar."
+      }
+    },
+    "redes-t08-e18": {
+      "section": "esp",
+      "reasoning": "La tabla AH frente a ESP indica que AH tiene coste menor y ESP mayor por el cifrado.",
+      "options": {
+        "a": "Incorrecta. DTLS va sobre UDP, no en la capa de red.",
+        "b": "Incorrecta. El cifrado de ESP es más costoso que AH.",
+        "c": "Incorrecta. IKE no transporta datos, solo negocia las SA.",
+        "d": "Correcta. AH basta para origen e integridad y cuesta menos."
+      }
+    },
+    "redes-t08-e19": {
+      "section": "esp",
+      "reasoning": "La tabla de partes de ESP explica el papel del vector de inicialización dentro de la carga.",
+      "options": {
+        "a": "Incorrecta. La SA la identifica el SPI.",
+        "b": "Incorrecta. Las repeticiones las detecta el número de secuencia.",
+        "c": "Incorrecta. El protocolo siguiente va en el tráiler ESP.",
+        "d": "Correcta. Evita que textos iguales den cifrados iguales."
+      }
+    },
+    "redes-t08-e20": {
+      "section": "ike",
+      "reasoning": "Los términos ISAKMP e IKE del apartado presentan IKE como implementación de ISAKMP.",
+      "options": {
+        "a": "Correcta. IKE implementa el marco ISAKMP.",
+        "b": "Incorrecta. Está al revés: ISAKMP es el marco e IKE la implementación.",
+        "c": "Incorrecta. AH es el protocolo de autenticación de paquetes, no un sinónimo.",
+        "d": "Incorrecta. IKEv2 es la versión mejorada de IKE, no de ISAKMP."
+      }
+    },
+    "redes-t08-e21": {
+      "section": "ike",
+      "reasoning": "La tabla de las dos fases de IKE recoge los modos de cada fase.",
+      "options": {
+        "a": "Incorrecta. Los modos están intercambiados.",
+        "b": "Incorrecta. Túnel y transporte son modos de IPsec, no fases de IKE.",
+        "c": "Incorrecta. El modo agresivo pertenece a la fase 1.",
+        "d": "Correcta. Principal o agresivo en fase 1; rápido en fase 2."
+      }
+    },
+    "redes-t08-e22": {
+      "section": "ike",
+      "reasoning": "La tabla modo principal frente a modo agresivo indica seis y tres mensajes.",
+      "options": {
+        "a": "Incorrecta. El modo agresivo tiene tres mensajes.",
+        "b": "Incorrecta. Los valores están intercambiados.",
+        "c": "Incorrecta. Cuatro son los mensajes que van en claro en el modo principal.",
+        "d": "Correcta. Principal: seis; agresivo: tres."
+      }
+    },
+    "redes-t08-e23": {
+      "section": "ike",
+      "reasoning": "La tabla modo principal frente a modo agresivo explica su menor seguridad por el hash en claro.",
+      "options": {
+        "a": "Incorrecta. El modo agresivo usa solo tres mensajes.",
+        "b": "Incorrecta. El problema es el hash en claro, no la ausencia de Diffie-Hellman.",
+        "c": "Incorrecta. Precisamente sus primeros mensajes no van cifrados.",
+        "d": "Correcta. El hash en claro puede capturarse y analizarse."
+      }
+    },
+    "redes-t08-e24": {
+      "section": "ike",
+      "reasoning": "Los pasos de la fase 1 en modo principal asignan a los mensajes 3 y 4 el intercambio Diffie-Hellman.",
+      "options": {
+        "a": "Incorrecta. La autenticación cifrada va en los mensajes 5 y 6.",
+        "b": "Incorrecta. Las SA IPsec se negocian en la fase 2.",
+        "c": "Correcta. Los mensajes 3 y 4 llevan material Diffie-Hellman en claro.",
+        "d": "Incorrecta. Eso ocurre en los mensajes 1 y 2."
+      }
+    },
+    "redes-t08-e25": {
+      "section": "ike",
+      "reasoning": "La analogía de los espías y los pasos de la fase 2 indican que no se repite la fase 1 para nuevas SA.",
+      "options": {
+        "a": "Incorrecta. No hace falta repetir la fase 1.",
+        "b": "Incorrecta. La fase 1 ya está hecha y su canal sigue sirviendo.",
+        "c": "Correcta. Basta con otra fase 2 sobre el canal de la fase 1.",
+        "d": "Incorrecta. Los mensajes 5 y 6 son la autenticación de la fase 1, ya hecha."
+      }
+    },
+    "redes-t08-e26": {
+      "section": "modos-ipsec",
+      "reasoning": "La tabla túnel frente a transporte describe el modo transporte con una sola cabecera IP.",
+      "options": {
+        "a": "Incorrecta. El modo túnel encapsula el paquete entero y usa dos cabeceras IP.",
+        "b": "Incorrecta. El modo agresivo es un modo de la fase 1 de IKE.",
+        "c": "Correcta. El modo transporte conserva la cabecera IP original.",
+        "d": "Incorrecta. El modo rápido es el de la fase 2 de IKE."
+      }
+    },
+    "redes-t08-e27": {
+      "section": "modos-ipsec",
+      "reasoning": "La tabla túnel frente a transporte distingue quién genera la cabecera interna y quién la externa.",
+      "options": {
+        "a": "Incorrecta. La pila TCP/IP del equipo genera la cabecera interna.",
+        "b": "Incorrecta. El destino final recibe el paquete original, no pone la cabecera externa.",
+        "c": "Correcta. La pasarela IPsec añade la cabecera externa.",
+        "d": "Incorrecta. No interviene ningún servidor de certificados en el encapsulado."
+      }
+    },
+    "redes-t08-e28": {
+      "section": "modos-ipsec",
+      "reasoning": "El apartado de modos indica que el host puede usar túnel pero sin ventaja y con más coste.",
+      "options": {
+        "a": "Incorrecta. ESP cifra también en modo túnel.",
+        "b": "Incorrecta. AH y ESP pueden usarse en cualquiera de los dos modos.",
+        "c": "Correcta. No aporta ventaja y añade el coste de otra cabecera.",
+        "d": "Incorrecta. El tema dice que un host también puede usar el modo túnel."
+      }
+    },
+    "redes-t08-e29": {
+      "section": "modos-ipsec",
+      "reasoning": "El apartado de modos explica que AH y ESP pueden usarse en ambos modos y combinarse.",
+      "options": {
+        "a": "Incorrecta. Ambos protocolos admiten los dos modos.",
+        "b": "Correcta. Se pueden combinar en distintos modos.",
+        "c": "Incorrecta. AH y ESP pueden combinarse.",
+        "d": "Incorrecta. La combinación no exige que ambos vayan en túnel."
+      }
+    },
+    "redes-t08-e30": {
+      "section": "ssl-arquitectura",
+      "reasoning": "La tabla de historia de SSL/TLS indica que hoy se recomiendan TLS 1.2 y 1.3.",
+      "options": {
+        "a": "Incorrecta. Son versiones antiguas, ya superadas.",
+        "b": "Incorrecta. SSL 2.0 tenía demasiados agujeros de seguridad.",
+        "c": "Correcta. Son las versiones recomendadas hoy.",
+        "d": "Incorrecta. Son versiones anteriores a las recomendadas."
+      }
+    },
+    "redes-t08-e31": {
+      "section": "ssl-arquitectura",
+      "reasoning": "La tabla de historia indica que el IETF mejoró SSLv3 para crear TLS 1.0.",
+      "options": {
+        "a": "Incorrecta. Netscape desarrolló SSL; TLS 1.0 es del IETF.",
+        "b": "Correcta. Es la mejora de SSLv3 hecha por el IETF.",
+        "c": "Incorrecta. SSL/TLS no proporciona no repudio.",
+        "d": "Incorrecta. No es idéntico: es una versión mejorada."
+      }
+    },
+    "redes-t08-e32": {
+      "section": "ssl-arquitectura",
+      "reasoning": "La tabla de quién se autentica en SSL marca la autenticación solo del servidor como lo habitual.",
+      "options": {
+        "a": "Incorrecta. La mutua es opcional y propia de entornos pequeños.",
+        "b": "Correcta. Lo habitual es autenticar solo al servidor.",
+        "c": "Incorrecta. La anónima casi nunca se usa y expone a intermediarios.",
+        "d": "Incorrecta. No existe como modalidad habitual autenticar solo al cliente."
+      }
+    },
+    "redes-t08-e33": {
+      "section": "ssl-arquitectura",
+      "reasoning": "La tabla de modalidades de autenticación explica que la mutua a gran escala exigiría una PKI enorme.",
+      "options": {
+        "a": "Incorrecta. En modo mutuo los datos se cifran igual.",
+        "b": "Correcta. Emitir y gestionar tantos certificados requiere una PKI enorme.",
+        "c": "Incorrecta. La autenticación mutua no está ligada a SSL 2.0.",
+        "d": "Incorrecta. La clave privada nunca se envía; el cliente firma con ella."
+      }
+    },
+    "redes-t08-e34": {
+      "section": "ssl-arquitectura",
+      "reasoning": "La tabla sesión frente a conexión del apartado define ambos conceptos.",
+      "options": {
+        "a": "Incorrecta. Está al revés: la sesión agrupa parámetros para varias conexiones.",
+        "b": "Incorrecta. Está al revés: la conexión lleva los datos.",
+        "c": "Incorrecta. Son conceptos distintos con contenidos distintos.",
+        "d": "Correcta. La sesión evita renegociar todo en cada conexión."
+      }
+    },
+    "redes-t08-e35": {
+      "section": "ssl-arquitectura",
+      "reasoning": "El término certificado X.509 del apartado describe su contenido.",
+      "options": {
+        "a": "Correcta. Clave pública, nombre y firma de la CA.",
+        "b": "Incorrecta. El premaestro se genera en el Handshake, no va en el certificado.",
+        "c": "Incorrecta. La clave privada de la CA nunca se incluye.",
+        "d": "Incorrecta. La clave privada del servidor nunca se envía."
+      }
+    },
+    "redes-t08-e36": {
+      "section": "record",
+      "reasoning": "Los pasos del Record Protocol siguen ese orden exacto.",
+      "options": {
+        "a": "Incorrecta. Primero se fragmenta; el cifrado va después del MAC.",
+        "b": "Correcta. Fragmentar, comprimir, MAC, cifrar, cabecera y TCP.",
+        "c": "Incorrecta. El primer paso es fragmentar.",
+        "d": "Incorrecta. El MAC se añade antes de cifrar."
+      }
+    },
+    "redes-t08-e37": {
+      "section": "record",
+      "reasoning": "Los pasos del Record Protocol marcan la compresión como opcional.",
+      "options": {
+        "a": "Incorrecta. El cifrado da la confidencialidad del Record.",
+        "b": "Incorrecta. El MAC da la integridad y se añade siempre.",
+        "c": "Correcta. La compresión es opcional.",
+        "d": "Incorrecta. Cada registro lleva su cabecera."
+      }
+    },
+    "redes-t08-e38": {
+      "section": "record",
+      "reasoning": "El apartado del Record lo presenta como la capa inferior que encapsula todo lo superior.",
+      "options": {
+        "a": "Correcta. El Record encapsula todo lo que va encima.",
+        "b": "Incorrecta. Alert también va por encima del Record.",
+        "c": "Incorrecta. El Handshake va por encima del Record.",
+        "d": "Incorrecta. Change Cipher Spec es uno de los protocolos superiores."
+      }
+    },
+    "redes-t08-e39": {
+      "section": "handshake",
+      "reasoning": "La tabla de la fase 2 del Handshake define ServerHelloDone como cierre de esa fase.",
+      "options": {
+        "a": "Incorrecta. ServerKeyExchange solo se envía si hace falta para el intercambio.",
+        "b": "Incorrecta. CertificateRequest solo se envía si se quiere autenticar al cliente.",
+        "c": "Incorrecta. Finished cierra la fase 4.",
+        "d": "Correcta. ServerHelloDone cierra los mensajes del servidor en la fase 2."
+      }
+    },
+    "redes-t08-e40": {
+      "section": "handshake",
+      "reasoning": "La tabla de la fase 1 del Handshake indica que el servidor elige de la lista del cliente.",
+      "options": {
+        "a": "Correcta. El servidor elige de la lista del cliente.",
+        "b": "Incorrecta. La lista la propone el cliente, no el servidor.",
+        "c": "Incorrecta. El servidor elige entre lo que propone el cliente.",
+        "d": "Incorrecta. Los algoritmos quedan fijados en la fase 1."
+      }
+    },
+    "redes-t08-e41": {
+      "section": "handshake",
+      "reasoning": "La tabla de la fase 3 del Handshake define CertificateVerify como prueba de posesión de la clave privada.",
+      "options": {
+        "a": "Correcta. Es una firma que prueba la posesión de la clave privada.",
+        "b": "Incorrecta. La validación del certificado del servidor la hace el cliente, no con este mensaje.",
+        "c": "Incorrecta. El premaestro va en ClientKeyExchange.",
+        "d": "Incorrecta. La caducidad se comunica con la alerta certificate_expired."
+      }
+    },
+    "redes-t08-e42": {
+      "section": "handshake",
+      "reasoning": "La tabla de la fase 4 del Handshake indica que el Finished del cliente es el primer mensaje cifrado.",
+      "options": {
+        "a": "Incorrecta. ClientKeyExchange lleva el premaestro cifrado con RSA, pero no usa aún lo negociado.",
+        "b": "Correcta. El Finished del cliente es el primero cifrado con lo negociado.",
+        "c": "Incorrecta. El ServerHello va en la fase 1, antes de acordar claves.",
+        "d": "Incorrecta. El certificado del servidor no va cifrado."
+      }
+    },
+    "redes-t08-e43": {
+      "section": "handshake",
+      "reasoning": "Los pasos de la semilla a las claves del apartado siguen el orden premaestro, maestro y material de claves.",
+      "options": {
+        "a": "Correcta. Premaestro, maestro y material de claves.",
+        "b": "Incorrecta. El orden está invertido.",
+        "c": "Incorrecta. El material de claves se obtiene del maestro, no al revés.",
+        "d": "Incorrecta. El premaestro va primero: es la semilla."
+      }
+    },
+    "redes-t08-e44": {
+      "section": "handshake",
+      "reasoning": "El apartado del Handshake recalca que la clave de sesión nunca viaja, solo el premaestro cifrado.",
+      "options": {
+        "a": "Incorrecta. El ServerHello lleva versión, aleatorio y algoritmos elegidos.",
+        "b": "Incorrecta. ChangeCipherSpec no transporta claves.",
+        "c": "Correcta. Solo viaja el premaestro cifrado; las claves se calculan en cada extremo.",
+        "d": "Incorrecta. Finished lleva un resumen, no la clave de sesión."
+      }
+    },
+    "redes-t08-e45": {
+      "section": "ccs-alert",
+      "reasoning": "El término Alert Protocol del apartado indica que el nivel fatal cierra la conexión.",
+      "options": {
+        "a": "Incorrecta. warning es solo un aviso.",
+        "b": "Incorrecta. critical es un nivel intermedio; el que cierra es fatal.",
+        "c": "Incorrecta. info no es uno de los niveles que cita el tema.",
+        "d": "Correcta. fatal cierra la conexión."
+      }
+    },
+    "redes-t08-e46": {
+      "section": "ccs-alert",
+      "reasoning": "La tabla de ejemplos de alertas asocia bad_record_mac a un MAC que no cuadra.",
+      "options": {
+        "a": "Incorrecta. bad_certificate indica un certificado defectuoso.",
+        "b": "Correcta. bad_record_mac señala un MAC incorrecto.",
+        "c": "Incorrecta. unexpected_message indica un mensaje fuera de lugar.",
+        "d": "Incorrecta. decompression_failure indica que no se pudo descomprimir."
+      }
+    },
+    "redes-t08-e47": {
+      "section": "ccs-alert",
+      "reasoning": "El término Alert Protocol del apartado le atribuye los mensajes de error y advertencia.",
+      "options": {
+        "a": "Incorrecta. El Handshake negocia algoritmos y claves.",
+        "b": "Incorrecta. Change Cipher Spec solo anuncia que se empieza a usar lo negociado.",
+        "c": "Incorrecta. El Record fragmenta, protege y transporta los datos.",
+        "d": "Correcta. Alert comunica errores y avisos."
+      }
+    },
+    "redes-t08-e48": {
+      "section": "dtls",
+      "reasoning": "La tabla de qué cambia respecto a TLS menciona las cookies como defensa contra DoS.",
+      "options": {
+        "a": "Correcta. Las cookies evitan gastar recursos con clientes falsos.",
+        "b": "Incorrecta. RC4 no es viable en DTLS.",
+        "c": "Incorrecta. La cabecera externa es del modo túnel de IPsec.",
+        "d": "Incorrecta. DTLS no exige certificado a cada cliente."
+      }
+    },
+    "redes-t08-e49": {
+      "section": "dtls",
+      "reasoning": "La tabla de cambios de DTLS explica la inviabilidad de RC4 y la propuesta de CBC con IV explícito.",
+      "options": {
+        "a": "Incorrecta. El motivo es el orden, y el tema no propone ECB.",
+        "b": "Correcta. RC4 depende del orden; se usa CBC con IV explícito.",
+        "c": "Incorrecta. El IV es explícito, no se elimina.",
+        "d": "Incorrecta. El tema no propone MD5 como sustituto."
+      }
+    },
+    "redes-t08-e50": {
+      "section": "dtls",
+      "reasoning": "La tabla de qué cambia respecto a TLS indica época de 16 bits y secuencia de 48 bits.",
+      "options": {
+        "a": "Incorrecta. Los tamaños están intercambiados.",
+        "b": "Incorrecta. No se reparten a partes iguales.",
+        "c": "Correcta. Época de 16 bits y secuencia de 48 bits.",
+        "d": "Incorrecta. No son los tamaños que da el tema."
+      }
     }
   }
 }

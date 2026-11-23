@@ -1202,6 +1202,506 @@
         "c": "Incorrecta. WPA3 no elimina la conexión simplificada: la mantiene, pero de forma segura, con Wi-Fi Easy Connect.",
         "d": "Incorrecta. PMF protege las tramas de gestión frente a falsificaciones. La conexión por NFC la ofrece Easy Connect (DPP), no PMF."
       }
+    },
+    "redes-t07-e01": {
+      "section": "origen-wifi",
+      "reasoning": "El apartado explica que Wi-Fi es la marca con la que la Wi-Fi Alliance certificó el estándar 802.11b.",
+      "options": {
+        "a": "Correcta. Wi-Fi es la marca de compatibilidad de la Wi-Fi Alliance.",
+        "b": "Incorrecta. El estándar es IEEE 802.11, y es inalámbrico; el de cable es 802.3.",
+        "c": "Incorrecta. Los protocolos de seguridad son WEP, WPA, WPA2 y WPA3.",
+        "d": "Incorrecta. El cifrador de flujo de WEP es RC4, no Wi-Fi."
+      }
+    },
+    "redes-t07-e02": {
+      "section": "origen-wifi",
+      "reasoning": "El término Wi-Fi Alliance del apartado indica que antes se llamaba WECA.",
+      "options": {
+        "a": "Incorrecta. El IEEE es la organización que publica el estándar 802.11, no la Wi-Fi Alliance.",
+        "b": "Incorrecta. RADIUS es un servicio de autenticación remota.",
+        "c": "Incorrecta. WPA es un protocolo de seguridad wifi, no una asociación.",
+        "d": "Correcta. Se fundó como WECA en 1999."
+      }
+    },
+    "redes-t07-e03": {
+      "section": "origen-wifi",
+      "reasoning": "La lista de la familia 802.11 del apartado asocia el 802.11i a la seguridad y a WPA/WPA2.",
+      "options": {
+        "a": "Incorrecta. En el 802.11b está WEP, no WPA ni WPA2.",
+        "b": "Incorrecta. El 802.11ax (Wi-Fi 6) aporta más alcance y velocidad.",
+        "c": "Incorrecta. El 802.11n mejora alcance y velocidad, no la seguridad.",
+        "d": "Correcta. El 802.11i es el estándar de seguridad del que salen WPA y WPA2."
+      }
+    },
+    "redes-t07-e04": {
+      "section": "origen-wifi",
+      "reasoning": "El término IEEE 802.11 del apartado lo presenta como equivalente inalámbrico de Ethernet (802.3).",
+      "options": {
+        "a": "Incorrecta. 802.1X es el control de acceso basado en puertos de WPA-Enterprise.",
+        "b": "Incorrecta. 802.11i es una versión de la propia familia 802.11.",
+        "c": "Incorrecta. 802.11b también forma parte de la familia 802.11.",
+        "d": "Correcta. El 802.11 es el equivalente inalámbrico de Ethernet (802.3)."
+      }
+    },
+    "redes-t07-e05": {
+      "section": "unirse-a-una-wifi",
+      "reasoning": "El apartado define las tramas de gestión como mensajes de servicio que no llevan datos del usuario.",
+      "options": {
+        "a": "Correcta. Son mensajes de servicio para organizar la conexión.",
+        "b": "Incorrecta. Las tramas de gestión no llevan los datos del usuario.",
+        "c": "Incorrecta. No son registros guardados en el router, sino mensajes por el aire.",
+        "d": "Incorrecta. Las claves temporales (PTK, GTK) se derivan en el 4-way handshake."
+      }
+    },
+    "redes-t07-e06": {
+      "section": "unirse-a-una-wifi",
+      "reasoning": "Los pasos para conectarse del apartado mencionan las probe requests como búsqueda activa de AP.",
+      "options": {
+        "a": "Incorrecta. La desautenticación sirve para desconectar, no para descubrir redes.",
+        "b": "Incorrecta. EAP se usa para autenticarse en modo Enterprise, después de elegir red.",
+        "c": "Incorrecta. El reto cifrado es parte de SKA, una vez elegida la red.",
+        "d": "Correcta. Las probe requests buscan AP en todos los canales."
+      }
+    },
+    "redes-t07-e07": {
+      "section": "unirse-a-una-wifi",
+      "reasoning": "El apartado advierte que antes de WPA3 las tramas de gestión pueden leerse y falsificarse, como la desautenticación.",
+      "options": {
+        "a": "Incorrecta. WPA2 no cifra las tramas de gestión; además cifra con AES, no RC4.",
+        "b": "Incorrecta. Toda wifi usa tramas de gestión.",
+        "c": "Correcta. Sin protección, la trama falsa de desautenticación es aceptada.",
+        "d": "Incorrecta. El 4-way handshake sí usa nonces (ANonce y SNonce)."
+      }
+    },
+    "redes-t07-e08": {
+      "section": "unirse-a-una-wifi",
+      "reasoning": "La tabla de los tres pilares pone como fallo de confidencialidad que un vecino capture y descifre los paquetes.",
+      "options": {
+        "a": "Incorrecta. La autenticación trata de quién puede entrar o si el AP es legítimo.",
+        "b": "Correcta. Leer lo que viaja por el aire es un fallo de confidencialidad.",
+        "c": "Incorrecta. La integridad trata de si el paquete llega sin modificar.",
+        "d": "Incorrecta. La disponibilidad no es uno de los tres pilares con que el tema analiza los protocolos."
+      }
+    },
+    "redes-t07-e09": {
+      "section": "wep-autenticacion",
+      "reasoning": "El apartado define OSA como una puerta abierta que no autentica realmente.",
+      "options": {
+        "a": "Incorrecta. El reto-respuesta es la autenticación SKA, no OSA.",
+        "b": "Incorrecta. RADIUS y los certificados pertenecen a WPA-Enterprise.",
+        "c": "Incorrecta. WEP nunca autentica al AP ante el cliente.",
+        "d": "Correcta. OSA no autentica nada en la práctica."
+      }
+    },
+    "redes-t07-e10": {
+      "section": "wep-autenticacion",
+      "reasoning": "Los pasos del reto-respuesta de SKA indican que el cliente cifra el reto con la clave compartida y lo devuelve.",
+      "options": {
+        "a": "Incorrecta. La clave nunca viaja por el aire en SKA.",
+        "b": "Incorrecta. SKA no usa hashes de la dirección MAC.",
+        "c": "Correcta. El cliente devuelve el reto cifrado con la clave compartida.",
+        "d": "Incorrecta. WEP no usa certificados digitales."
+      }
+    },
+    "redes-t07-e11": {
+      "section": "wep-autenticacion",
+      "reasoning": "El término rogue AP y el caso práctico de la feria describen al atacante como intermediario MITM.",
+      "options": {
+        "a": "Incorrecta. El suplicante es el cliente que se autentica, no el AP falso.",
+        "b": "Incorrecta. RADIUS es el servidor legítimo de autenticación en Enterprise.",
+        "c": "Correcta. El atacante actúa como hombre en el medio (MITM).",
+        "d": "Incorrecta. La GTK la reparte un AP en el 4-way handshake; no describe el ataque."
+      }
+    },
+    "redes-t07-e12": {
+      "section": "wep-autenticacion",
+      "reasoning": "El apartado lista los dos problemas de SKA y aclara en el bloque de examen que la clave nunca se envía.",
+      "options": {
+        "a": "Incorrecta. Sí es un problema: el AP solo sabe que el cliente conoce la clave.",
+        "b": "Incorrecta. Sí es un problema: la autenticación es de una sola dirección.",
+        "c": "Incorrecta. Sí es un problema: no se puede asociar una clave a cada usuario.",
+        "d": "Correcta. La clave no viaja nunca; se cifra un reto con ella."
+      }
+    },
+    "redes-t07-e13": {
+      "section": "wep-cifrado-integridad",
+      "reasoning": "Los pasos de cifrado de WEP indican que el IV se concatena con la clave compartida para formar la clave de RC4.",
+      "options": {
+        "a": "Incorrecta. El CRC-32 calcula el ICV; no forma la clave de RC4.",
+        "b": "Correcta. Clave RC4 = IV (24 bits) || clave compartida.",
+        "c": "Incorrecta. La PTK con nonces es propia de WPA y WPA2.",
+        "d": "Incorrecta. La mezcla con un IV de 48 bits es la función de TKIP en WPA."
+      }
+    },
+    "redes-t07-e14": {
+      "section": "wep-cifrado-integridad",
+      "reasoning": "El esquema de paquete WEP del apartado muestra el IV y el KeyID en claro y el resto cifrado.",
+      "options": {
+        "a": "Incorrecta. El MPDU y el ICV son precisamente lo que va cifrado.",
+        "b": "Incorrecta. La secuencia cifrante se combina con XOR; no se envía.",
+        "c": "Incorrecta. La clave compartida nunca se transmite.",
+        "d": "Correcta. El IV y el byte de elección de clave van en claro."
+      }
+    },
+    "redes-t07-e15": {
+      "section": "wep-cifrado-integridad",
+      "reasoning": "El término CRC-32 del apartado lo define como detector de errores accidentales sin clave.",
+      "options": {
+        "a": "Correcta. Está pensado para errores accidentales, no para atacantes.",
+        "b": "Incorrecta. Cifrar es tarea de RC4; el CRC-32 solo calcula el ICV.",
+        "c": "Incorrecta. El IV no se calcula con el CRC-32.",
+        "d": "Incorrecta. El CRC-32 no usa ninguna clave secreta."
+      }
+    },
+    "redes-t07-e16": {
+      "section": "wep-cifrado-integridad",
+      "reasoning": "El problema de confidencialidad del apartado explica la necesidad de sincronía de RC4 frente a un medio con pérdidas.",
+      "options": {
+        "a": "Incorrecta. RC4 es de flujo; el cifrado en bloque de 128 bits es AES.",
+        "b": "Correcta. RC4 necesita sincronía y el aire tiene muchas pérdidas.",
+        "c": "Incorrecta. RADIUS pertenece a WPA-Enterprise y no tiene relación con RC4.",
+        "d": "Incorrecta. La clave de RC4 en WEP es IV + clave compartida, de 64 o 128 bits."
+      }
+    },
+    "redes-t07-e17": {
+      "section": "wep-cifrado-integridad",
+      "reasoning": "Los pasos de cómo cifra WEP un paquete siguen exactamente ese orden.",
+      "options": {
+        "a": "Incorrecta. El ICV se calcula antes del XOR, porque también se cifra.",
+        "b": "Incorrecta. RC4 necesita antes la clave formada por IV + clave compartida.",
+        "c": "Correcta. ICV, IV + clave, RC4, XOR y por último la cabecera.",
+        "d": "Incorrecta. La cabecera se añade al final, no al principio."
+      }
+    },
+    "redes-t07-e18": {
+      "section": "wep-debilidades",
+      "reasoning": "El resumen de WEP indica que la clave de 128 bits incluye un IV de 24 bits, así que el secreto es de 104.",
+      "options": {
+        "a": "Correcta. 128 − 24 = 104 bits secretos.",
+        "b": "Incorrecta. 24 bits es el tamaño del IV, que no es secreto.",
+        "c": "Incorrecta. 40 bits es la parte secreta de la clave de 64 bits.",
+        "d": "Incorrecta. 24 de esos 128 bits son el IV, que va en claro."
+      }
+    },
+    "redes-t07-e19": {
+      "section": "wep-debilidades",
+      "reasoning": "La tabla de los seis fallos de diseño asocia el ICV que no cubre la cabecera con los ataques de redirección.",
+      "options": {
+        "a": "Incorrecta. El problema de RC4 es la falta de sincronía en el aire.",
+        "b": "Incorrecta. La repetición del IV permite deducir información, no redirigir.",
+        "c": "Correcta. Sin proteger la cabecera, se puede cambiar el destino.",
+        "d": "Incorrecta. La autenticación unidireccional facilita el rogue AP."
+      }
+    },
+    "redes-t07-e20": {
+      "section": "wep-debilidades",
+      "reasoning": "El apartado de debilidades de WEP menciona Airsnort, WEPCrack y Aircrack.",
+      "options": {
+        "a": "Incorrecta. Son ataques recientes contra WPA2/WPA3 y la fragmentación, no herramientas contra WEP.",
+        "b": "Correcta. Son las herramientas que recuperan claves WEP.",
+        "c": "Incorrecta. Son el servidor de autenticación y protocolos de directorio de Enterprise.",
+        "d": "Incorrecta. Son métodos de autenticación EAP."
+      }
+    },
+    "redes-t07-e21": {
+      "section": "wep-debilidades",
+      "reasoning": "La conclusión del apartado rechaza ocultar o alargar el SSID como solución, porque el fallo es de diseño del cifrado.",
+      "options": {
+        "a": "Correcta. Ocultar o alargar el SSID no corrige el cifrado.",
+        "b": "Incorrecta. WEP sigue roto por diseño, haga lo que haga con el nombre.",
+        "c": "Incorrecta. Cambiar la clave no corrige los fallos de diseño de WEP.",
+        "d": "Incorrecta. El IV de 48 bits es una mejora de TKIP en WPA, no de ocultar el SSID."
+      }
+    },
+    "redes-t07-e22": {
+      "section": "wep-debilidades",
+      "reasoning": "El apartado sitúa en 2001 el inicio de las vulnerabilidades y las califica de errores de diseño.",
+      "options": {
+        "a": "Incorrecta. 2017 es el año de KRACK, contra WPA/WPA2.",
+        "b": "Incorrecta. El año es correcto, pero no eran fallos puntuales de implementación.",
+        "c": "Incorrecta. El 802.11i (2004) es el estándar que corrige WEP.",
+        "d": "Correcta. Desde 2001, y eran errores de diseño."
+      }
+    },
+    "redes-t07-e23": {
+      "section": "wpa-autenticacion",
+      "reasoning": "El término WPA del apartado lo define como solución transitoria compatible con el hardware de WEP.",
+      "options": {
+        "a": "Incorrecta. WPA es de 2003-2004; WPA3 y KRACK son posteriores.",
+        "b": "Incorrecta. WPA cifra con RC4; AES llega con WPA2.",
+        "c": "Correcta. Era un puente compatible con el hardware de WEP.",
+        "d": "Incorrecta. WPA ya tiene modos Personal y Enterprise."
+      }
+    },
+    "redes-t07-e24": {
+      "section": "wpa-autenticacion",
+      "reasoning": "El término IEEE 802.1X del apartado reparte los papeles: cliente suplicante, AP autenticador y servidor RADIUS.",
+      "options": {
+        "a": "Incorrecta. El suplicante es el cliente que pide acceso.",
+        "b": "Correcta. El AP actúa como autenticador.",
+        "c": "Incorrecta. Ese papel lo cumple el servidor RADIUS.",
+        "d": "Incorrecta. El directorio (p. ej. Directorio Activo) lo consulta RADIUS; no es un papel de 802.1X."
+      }
+    },
+    "redes-t07-e25": {
+      "section": "wpa-autenticacion",
+      "reasoning": "El término EAP del apartado explica que el túnel protege la información sensible de quien escucha.",
+      "options": {
+        "a": "Incorrecta. EAP no reparte direcciones IP.",
+        "b": "Correcta. El túnel oculta la información sensible a quien escucha.",
+        "c": "Incorrecta. El túnel protege la autenticación; el tráfico de datos se cifra después con las claves de sesión.",
+        "d": "Incorrecta. En Enterprise la decisión la toma el servidor RADIUS."
+      }
+    },
+    "redes-t07-e26": {
+      "section": "wpa-autenticacion",
+      "reasoning": "Los pasos de entrada en la wifi Enterprise indican que, tras asociarse, el AP solo deja pasar EAP.",
+      "options": {
+        "a": "Correcta. Hasta la respuesta de RADIUS, solo pasan mensajes EAP.",
+        "b": "Incorrecta. No pasa ningún tráfico de datos antes del «aceptado».",
+        "c": "Incorrecta. En Enterprise no hay PSK y no pasa tráfico hasta la aceptación.",
+        "d": "Incorrecta. La GTK se reparte después, en el 4-way handshake."
+      }
+    },
+    "redes-t07-e27": {
+      "section": "wpa-autenticacion",
+      "reasoning": "El término RADIUS del apartado menciona LDAP y SAML como protocolos de consulta al directorio.",
+      "options": {
+        "a": "Incorrecta. TKIP y CCMP son protocolos de cifrado e integridad de WPA y WPA2.",
+        "b": "Correcta. LDAP o SAML permiten consultar el directorio.",
+        "c": "Incorrecta. OWE y SAE son mecanismos de WPA3.",
+        "d": "Incorrecta. WPS y DPP son mecanismos de conexión simplificada."
+      }
+    },
+    "redes-t07-e28": {
+      "section": "wpa-tkip",
+      "reasoning": "El término PMK del apartado TKIP la define como el secreto de partida del que se derivan las claves de sesión.",
+      "options": {
+        "a": "Incorrecta. La clave transitoria de sesión es la PTK.",
+        "b": "Correcta. La PMK es la clave maestra de partida.",
+        "c": "Incorrecta. La clave de grupo para difusión es la GTK.",
+        "d": "Incorrecta. El valor aleatorio del AP es el ANonce."
+      }
+    },
+    "redes-t07-e29": {
+      "section": "wpa-tkip",
+      "reasoning": "El término GTK del apartado la asocia al tráfico de difusión.",
+      "options": {
+        "a": "Correcta. La GTK protege el tráfico de difusión.",
+        "b": "Incorrecta. La autenticación ante RADIUS va por EAP, no con la GTK.",
+        "c": "Incorrecta. PMF es de WPA3 y no se define mediante la GTK.",
+        "d": "Incorrecta. El tráfico de un solo cliente usa su PTK."
+      }
+    },
+    "redes-t07-e30": {
+      "section": "wpa-tkip",
+      "reasoning": "Los pasos del 4-way handshake sitúan el envío de la GTK cifrada en el mensaje 3.",
+      "options": {
+        "a": "Incorrecta. En el mensaje 1 el AP solo envía su ANonce.",
+        "b": "Incorrecta. El mensaje 2 lo envía la estación, no el AP.",
+        "c": "Incorrecta. El mensaje 4 es la confirmación de la estación.",
+        "d": "Correcta. En el mensaje 3 el AP envía la GTK cifrada."
+      }
+    },
+    "redes-t07-e31": {
+      "section": "wpa-tkip",
+      "reasoning": "El apartado indica que el IV más grande (48 bits) lleva la repetición de horas a años.",
+      "options": {
+        "a": "Incorrecta. 24 bits es el IV de WEP, que se repite en horas.",
+        "b": "Incorrecta. El tamaño es correcto, pero el tema habla de horas frente a años.",
+        "c": "Correcta. 48 bits llevan la repetición de horas a años.",
+        "d": "Incorrecta. TKIP no usa un IV de 128 bits."
+      }
+    },
+    "redes-t07-e32": {
+      "section": "wpa-tkip",
+      "reasoning": "El apartado justifica la función de mezcla por la necesidad de alargar el IV sin cambiar el hardware de WEP.",
+      "options": {
+        "a": "Incorrecta. TKIP sigue usando RC4; AES llega con WPA2.",
+        "b": "Incorrecta. La PMK es la misma en todas las sesiones; lo que varía es la PTK.",
+        "c": "Correcta. Adapta la clave de cada paquete al formato del hardware antiguo.",
+        "d": "Incorrecta. Calcular el MIC es tarea de Michael."
+      }
+    },
+    "redes-t07-e33": {
+      "section": "wpa-michael",
+      "reasoning": "El término Michael del apartado lo define como algoritmo de integridad, no de cifrado.",
+      "options": {
+        "a": "Correcta. Michael calcula el MIC: es de integridad.",
+        "b": "Incorrecta. El cifrado en flujo de WPA lo hace RC4.",
+        "c": "Incorrecta. AES es el cifrado en bloque de WPA2 y WPA3.",
+        "d": "Incorrecta. Michael no acuerda claves."
+      }
+    },
+    "redes-t07-e34": {
+      "section": "wpa-michael",
+      "reasoning": "El apartado indica que Michael solo usa desplazamientos y sumas.",
+      "options": {
+        "a": "Incorrecta. Las exponenciaciones modulares son propias de Diffie-Hellman.",
+        "b": "Correcta. Solo usa desplazamientos y sumas.",
+        "c": "Incorrecta. La caja S pertenece a AES.",
+        "d": "Incorrecta. Las matrices polinómicas aparecen en MixColumns de AES."
+      }
+    },
+    "redes-t07-e35": {
+      "section": "wpa-michael",
+      "reasoning": "La lista sobre la contramedida de Michael explica su efecto secundario de facilitar ataques DoS.",
+      "options": {
+        "a": "Correcta. La contramedida desconecta al cliente: denegación de servicio.",
+        "b": "Incorrecta. Los MIC erróneos no revelan la PMK.",
+        "c": "Incorrecta. Reinstalar claves y repetir nonces es KRACK, contra el 4-way handshake.",
+        "d": "Incorrecta. El CRC-32 sigue calculándose siempre en WPA; no se cambia por esto."
+      }
+    },
+    "redes-t07-e36": {
+      "section": "wpa-michael",
+      "reasoning": "El apartado señala que WPA mantiene el CRC-32 en el ICV por compatibilidad con los dispositivos de WEP.",
+      "options": {
+        "a": "Incorrecta. Michael se añade, pero el CRC-32 se sigue calculando.",
+        "b": "Correcta. Se mantiene por compatibilidad con el hardware de WEP.",
+        "c": "Incorrecta. CBC-MAC es la integridad de WPA2, no de WPA.",
+        "d": "Incorrecta. El ICV acompaña a las tramas de datos, no solo a las de gestión."
+      }
+    },
+    "redes-t07-e37": {
+      "section": "wpa2",
+      "reasoning": "El término CCMP del apartado WPA2 reparte los papeles: CTR confidencialidad, CBC-MAC integridad.",
+      "options": {
+        "a": "Incorrecta. Los papeles están intercambiados.",
+        "b": "Incorrecta. TKIP y Michael son las piezas de WPA, no de CCMP.",
+        "c": "Correcta. CTR cifra y CBC-MAC da la integridad.",
+        "d": "Incorrecta. GCM es de WPA3 y CRC-32 de WEP."
+      }
+    },
+    "redes-t07-e38": {
+      "section": "wpa2",
+      "reasoning": "La tabla WPA frente a WPA2 y el resumen del apartado indican qué comparte y qué cambia WPA2.",
+      "options": {
+        "a": "Incorrecta. La autenticación (PSK o 802.1X) es la misma en ambos.",
+        "b": "Correcta. Cambia a AES-CCMP; autenticación y gestión de claves son las mismas.",
+        "c": "Incorrecta. RC4 y Michael son justo lo que WPA2 abandona.",
+        "d": "Incorrecta. WPA2 sigue teniendo modo Personal y modo Enterprise."
+      }
+    },
+    "redes-t07-e39": {
+      "section": "wpa2",
+      "reasoning": "La tabla WPA frente a WPA2 indica que WPA es compatible con el hardware de WEP y WPA2 requiere hardware nuevo.",
+      "options": {
+        "a": "Correcta. WPA2 necesita hardware nuevo para usar AES.",
+        "b": "Incorrecta. Michael es ligero, pensado para dispositivos de poca capacidad.",
+        "c": "Incorrecta. WEP no es un modo del 802.11i, y su hardware sí usa RC4.",
+        "d": "Incorrecta. TKIP se diseñó precisamente para el hardware de WEP."
+      }
+    },
+    "redes-t07-e40": {
+      "section": "wpa3-sae",
+      "reasoning": "El apartado de WPA3 presenta KRACK como la causa de la aparición de WPA3.",
+      "options": {
+        "a": "Incorrecta. Dragonblood (2020) ataca a SAE, que es posterior a WPA3.",
+        "b": "Incorrecta. Aircrack es una herramienta contra WEP, no el ataque de 2017.",
+        "c": "Incorrecta. FragAttacks es de 2021.",
+        "d": "Correcta. KRACK motivó la llegada de WPA3."
+      }
+    },
+    "redes-t07-e41": {
+      "section": "wpa3-sae",
+      "reasoning": "El término KRACK del apartado describe la reinstalación de claves y la reutilización de nonces.",
+      "options": {
+        "a": "Correcta. KRACK fuerza la reinstalación de claves y la reutilización de nonces.",
+        "b": "Incorrecta. Eso es un ataque de diccionario offline.",
+        "c": "Incorrecta. Eso es un ataque de desautenticación, que frena PMF.",
+        "d": "Incorrecta. El agotamiento de IV es una debilidad de WEP."
+      }
+    },
+    "redes-t07-e42": {
+      "section": "wpa3-sae",
+      "reasoning": "El término ZKP del apartado la define como demostrar un secreto sin revelarlo.",
+      "options": {
+        "a": "Incorrecta. En una ZKP el secreto no se envía, ni siquiera cifrado.",
+        "b": "Correcta. Se prueba conocer el secreto sin desvelarlo.",
+        "c": "Incorrecta. Hay un secreto (la contraseña); lo que no se hace es revelarlo.",
+        "d": "Incorrecta. Se demuestra que sí se conoce el secreto."
+      }
+    },
+    "redes-t07-e43": {
+      "section": "wpa3-sae",
+      "reasoning": "Las dos fases de SAE del apartado son commit y confirm, y el resultado es la PMK.",
+      "options": {
+        "a": "Incorrecta. La GTK se entrega después, en el 4-way handshake.",
+        "b": "Incorrecta. Reto y respuesta describen SKA de WEP.",
+        "c": "Correcta. Commit y confirm dan como resultado la PMK.",
+        "d": "Incorrecta. ANonce y SNonce pertenecen al 4-way handshake, que deriva la PTK."
+      }
+    },
+    "redes-t07-e44": {
+      "section": "wpa3-sae",
+      "reasoning": "El término ataque de diccionario offline y la lista de lo que gana WPA3 con SAE explican esta protección.",
+      "options": {
+        "a": "Correcta. Es diccionario offline y SAE lo frena.",
+        "b": "Incorrecta. Probar contra la red sería online; PMF protege las tramas de gestión.",
+        "c": "Incorrecta. KRACK es otro ataque y el 4-way handshake es justo lo que explota.",
+        "d": "Incorrecta. El evil twin es un AP falso; OWE no autentica al AP."
+      }
+    },
+    "redes-t07-e45": {
+      "section": "wpa3-mejoras",
+      "reasoning": "El término WPS del apartado de mejoras de WPA3 recoge sus vulnerabilidades, como los PIN adivinables.",
+      "options": {
+        "a": "Correcta. WPS tenía vulnerabilidades como los PIN adivinables.",
+        "b": "Incorrecta. WPS no cifra tramas de gestión.",
+        "c": "Incorrecta. WPS no requiere RADIUS.",
+        "d": "Incorrecta. WPS usa botón o PIN, no certificados."
+      }
+    },
+    "redes-t07-e46": {
+      "section": "wpa3-mejoras",
+      "reasoning": "El término PMF del apartado distingue entre multicast (integridad) y unicast (integridad y confidencialidad).",
+      "options": {
+        "a": "Incorrecta. Está al revés: las multicast solo llevan integridad.",
+        "b": "Incorrecta. PMF aporta integridad en ambos casos.",
+        "c": "Incorrecta. Las multicast no se cifran; solo llevan integridad.",
+        "d": "Correcta. Multicast con integridad; unicast con integridad y confidencialidad."
+      }
+    },
+    "redes-t07-e47": {
+      "section": "wpa3-mejoras",
+      "reasoning": "La lista de ataques que PMF pretende frenar del apartado recoge desconexión, evil twin y honeypot.",
+      "options": {
+        "a": "Incorrecta. El diccionario offline lo frena SAE, y KRACK y Dragonblood son otros ataques.",
+        "b": "Incorrecta. Mezcla ataques recientes y de WPS que PMF no aborda.",
+        "c": "Incorrecta. Son debilidades de WEP, no lo que protege PMF.",
+        "d": "Correcta. Son los tres ataques que cita el tema para PMF."
+      }
+    },
+    "redes-t07-e48": {
+      "section": "elegir-protocolo",
+      "reasoning": "Los pasos del orden de preferencia del apartado colocan WPA3-Personal en segundo lugar.",
+      "options": {
+        "a": "Incorrecta. WPA queda solo para dispositivos que no admiten WPA2.",
+        "b": "Incorrecta. WPA2 solo entra si WPA3 no está disponible.",
+        "c": "Correcta. Va segunda si no se puede montar 802.1X.",
+        "d": "Incorrecta. WPA2 va por detrás de cualquier modo de WPA3."
+      }
+    },
+    "redes-t07-e49": {
+      "section": "elegir-protocolo",
+      "reasoning": "La tabla de ataques recientes del apartado asocia Dragonblood a Dragonfly y SAE.",
+      "options": {
+        "a": "Incorrecta. Eso lo afecta KRACK (2017).",
+        "b": "Incorrecta. Eso es FragAttacks (2021).",
+        "c": "Correcta. Ataca a Dragonfly, base de SAE.",
+        "d": "Incorrecta. Dragonblood no se dirige a WEP."
+      }
+    },
+    "redes-t07-e50": {
+      "section": "elegir-protocolo",
+      "reasoning": "La tabla de ataques recientes del apartado describe FragAttacks como fallo que afecta de WEP a WPA3.",
+      "options": {
+        "a": "Incorrecta. KRACK (2017) ataca el 4-way handshake de WPA/WPA2.",
+        "b": "Correcta. FragAttacks afecta a todos los protocolos.",
+        "c": "Incorrecta. Dragonblood (2020) ataca el Dragonfly de SAE.",
+        "d": "Incorrecta. Airsnort es una herramienta antigua contra WEP."
+      }
     }
   }
 }

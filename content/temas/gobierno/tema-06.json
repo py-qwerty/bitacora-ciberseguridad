@@ -1180,6 +1180,506 @@
         "c": "Incorrecta. Generar informes no es el objetivo; lo es apoyar decisiones.",
         "d": "Incorrecta. Una herramienta sin responsables de decisión no integra el riesgo en el negocio."
       }
+    },
+    "gobierno-t06-e01": {
+      "section": "informacion-activo",
+      "reasoning": "El apartado define activo como todo lo que tiene valor y merece protección, e incluye personas, aplicaciones e instalaciones.",
+      "options": {
+        "a": "Incorrecta. Las personas que manejan la información aparecen expresamente como activo.",
+        "b": "Correcta. Una amenaza no tiene valor que proteger: es lo que puede causar daño a los activos.",
+        "c": "Incorrecta. Las aplicaciones están en la lista de activos del tema.",
+        "d": "Incorrecta. Las instalaciones también se citan como activo que merece protección."
+      }
+    },
+    "gobierno-t06-e02": {
+      "section": "informacion-activo",
+      "reasoning": "El apartado enumera tres soportes de la información: personas, papel y sistemas informáticos.",
+      "options": {
+        "a": "Incorrecta. Reduce la información a lo técnico y olvida personas y papel.",
+        "b": "Incorrecta. Limita los soportes a redes y móviles, dejando fuera personas y papel.",
+        "c": "Incorrecta. Copias y nube son ejemplos técnicos, no la clasificación del tema.",
+        "d": "Correcta. Son los tres soportes que cita el tema: personas, papel y sistemas informáticos."
+      }
+    },
+    "gobierno-t06-e03": {
+      "section": "informacion-activo",
+      "reasoning": "En la definición de TIC se indica que su expansión ha multiplicado el número de amenazas y su probabilidad.",
+      "options": {
+        "a": "Correcta. El tema dice que las TIC han multiplicado el número de amenazas y su probabilidad.",
+        "b": "Incorrecta. El tema no habla de una reducción del impacto, sino de más amenazas.",
+        "c": "Incorrecta. Las TIC no trasladan las amenazas al papel; añaden nuevas.",
+        "d": "Incorrecta. Las amenazas físicas siguen existiendo (incendios, inundaciones)."
+      }
+    },
+    "gobierno-t06-e04": {
+      "section": "informacion-activo",
+      "reasoning": "La tabla de las cuatro preguntas asocia el «cómo / con qué se protege» con las salvaguardas.",
+      "options": {
+        "a": "Incorrecta. El «dónde» responde a dónde vive la información, no a con qué se protege.",
+        "b": "Incorrecta. El «cuándo» se refiere al periodo de protección, el ciclo de vida.",
+        "c": "Correcta. El «cómo» pregunta con qué se protege, y la respuesta son las salvaguardas.",
+        "d": "Incorrecta. El «qué» indica lo que hay que garantizar: las dimensiones."
+      }
+    },
+    "gobierno-t06-e05": {
+      "section": "informacion-activo",
+      "reasoning": "El apartado pone como ejemplo de proceso manual rellenar un formulario en papel y pide seguridad en todos los procesos.",
+      "options": {
+        "a": "Incorrecta. Describe justo el error de la empresa, no el principio que se incumple.",
+        "b": "Correcta. El tema pide seguridad en todos los procesos, manuales y automatizados.",
+        "c": "Incorrecta. El tema no limita la protección a los activos más valiosos.",
+        "d": "Incorrecta. El papel es uno de los soportes de la información que hay que proteger."
+      }
+    },
+    "gobierno-t06-e06": {
+      "section": "dimensiones",
+      "reasoning": "El apartado pone como ejemplo de autenticidad un correo firmado digitalmente por el director.",
+      "options": {
+        "a": "Incorrecta. La trazabilidad registra quién hizo qué y cuándo, no la procedencia de un mensaje.",
+        "b": "Incorrecta. La firma no impide que otros lean el correo; eso sería confidencialidad.",
+        "c": "Incorrecta. La disponibilidad trata de que la información esté accesible cuando se necesita.",
+        "d": "Correcta. La autenticidad garantiza la identidad de quien origina la información."
+      }
+    },
+    "gobierno-t06-e07": {
+      "section": "dimensiones",
+      "reasoning": "En la tabla de dimensiones, el ataque típico contra la disponibilidad es un ransomware que cifra los servidores.",
+      "options": {
+        "a": "Correcta. Los médicos no pueden acceder a la información cuando la necesitan: falla la disponibilidad.",
+        "b": "Incorrecta. No se discute de quién procede la información, sino que no se puede usar.",
+        "c": "Incorrecta. La trazabilidad se rompe al borrar registros, no al cifrar los datos.",
+        "d": "Incorrecta. El enunciado no dice que se hayan filtrado datos, sino que no se pueden consultar."
+      }
+    },
+    "gobierno-t06-e08": {
+      "section": "dimensiones",
+      "reasoning": "La tabla de dimensiones asocia el borrado de logs con la pérdida de trazabilidad.",
+      "options": {
+        "a": "Incorrecta. Aunque se modifica un fichero, lo que se pierde es la constancia de quién hizo qué.",
+        "b": "Correcta. Sin registros ya no se puede saber quién hizo qué y cuándo: se rompe la trazabilidad.",
+        "c": "Incorrecta. El servicio puede seguir funcionando con normalidad tras el borrado.",
+        "d": "Incorrecta. No se suplanta la identidad de quien origina información."
+      }
+    },
+    "gobierno-t06-e09": {
+      "section": "dimensiones",
+      "reasoning": "La definición de integridad del apartado añade la detección fácil de los cambios.",
+      "options": {
+        "a": "Incorrecta. Saber quién accedió corresponde a la trazabilidad.",
+        "b": "Incorrecta. El cifrado es una salvaguarda, no forma parte de la definición de integridad.",
+        "c": "Correcta. La definición incluye que, si hay un cambio, se pueda detectar con facilidad.",
+        "d": "Incorrecta. Que solo la conozcan los autorizados es la confidencialidad."
+      }
+    },
+    "gobierno-t06-e10": {
+      "section": "dimensiones",
+      "reasoning": "El apartado distingue la privacidad (datos personales) de la confidencialidad (cualquier información).",
+      "options": {
+        "a": "Incorrecta. No son sinónimos y la privacidad no figura en la lista de cinco dimensiones.",
+        "b": "Incorrecta. Es al revés: la confidencialidad es la que protege cualquier información.",
+        "c": "Incorrecta. La confidencialidad no se limita al papel; afecta a toda información.",
+        "d": "Correcta. El tema dice que la privacidad se refiere sobre todo a datos personales."
+      }
+    },
+    "gobierno-t06-e11": {
+      "section": "dimensiones",
+      "reasoning": "El apartado incluye el no repudio entre los términos que no son dimensiones y lo relaciona con la autenticidad.",
+      "options": {
+        "a": "Correcta. El tema lo liga a la autenticidad, pero lo excluye de las cinco dimensiones.",
+        "b": "Incorrecta. La trazabilidad sí es una de las cinco y no se sustituye.",
+        "c": "Incorrecta. El tema no habla de una sexta dimensión; el no repudio queda fuera.",
+        "d": "Incorrecta. La disponibilidad trata del acceso a tiempo, no de negar el envío."
+      }
+    },
+    "gobierno-t06-e12": {
+      "section": "dimensiones",
+      "reasoning": "El apartado afirma expresamente que cada dimensión es una garantía distinta y que cumplir una no asegura las demás.",
+      "options": {
+        "a": "Incorrecta. Ninguna dimensión engloba a las demás; son garantías distintas.",
+        "b": "Incorrecta. Un dato puede no haber cambiado y, aun así, venir de un impostor.",
+        "c": "Correcta. Es lo que dice el tema: cada una es una garantía distinta.",
+        "d": "Incorrecta. Las copias ayudan a la disponibilidad, pero no cubren las demás dimensiones."
+      }
+    },
+    "gobierno-t06-e13": {
+      "section": "acceso-conservacion",
+      "reasoning": "El apartado dice que, además de las cinco dimensiones, hay que garantizar el acceso y la conservación.",
+      "options": {
+        "a": "Incorrecta. Cumplimiento y privacidad son términos que el tema descarta como dimensiones.",
+        "b": "Incorrecta. Cifrado y copias son salvaguardas, no los aspectos que se tratan aparte.",
+        "c": "Correcta. Son los dos aspectos adicionales que se tratan de forma específica.",
+        "d": "Incorrecta. Protección y no repudio son trampas típicas, no los aspectos del tema."
+      }
+    },
+    "gobierno-t06-e14": {
+      "section": "acceso-conservacion",
+      "reasoning": "El apartado explica que acceso y conservación podrían incluirse en la disponibilidad, pero tienen peculiaridades propias.",
+      "options": {
+        "a": "Incorrecta. Afectan a todos los soportes, no solo al papel.",
+        "b": "Incorrecta. El tema no menciona ninguna ley específica para estos aspectos.",
+        "c": "Incorrecta. No son tarea exclusiva del centro de datos; afectan a toda la organización.",
+        "d": "Correcta. El tema dice que podrían verse como parte de la disponibilidad, pero tienen peculiaridades propias."
+      }
+    },
+    "gobierno-t06-e15": {
+      "section": "acceso-conservacion",
+      "reasoning": "El caso práctico del apartado atribuye este fallo a la conservación, en los procedimientos de destrucción o reutilización de soportes.",
+      "options": {
+        "a": "Incorrecta. Nadie ha entrado al sistema; el problema está en el soporte desechado.",
+        "b": "Incorrecta. La información no ha dejado de estar disponible para la empresa.",
+        "c": "Incorrecta. No se trata de saber quién hizo qué, sino de un soporte mal eliminado.",
+        "d": "Correcta. Falla la conservación en su fase final: destrucción o reutilización de soportes."
+      }
+    },
+    "gobierno-t06-e16": {
+      "section": "acceso-conservacion",
+      "reasoning": "La lista de lo que incluye la conservación menciona expresamente los formatos que nadie sabe leer.",
+      "options": {
+        "a": "Incorrecta. Nadie no autorizado está conociendo el contenido.",
+        "b": "Correcta. Un formato ilegible convierte el archivo en información perdida: falla la conservación.",
+        "c": "Incorrecta. No se cuestiona el registro de quién hizo qué.",
+        "d": "Incorrecta. No se duda de quién creó el archivo, sino de poder leerlo."
+      }
+    },
+    "gobierno-t06-e17": {
+      "section": "acceso-conservacion",
+      "reasoning": "La definición de conservación del apartado la sitúa en el ciclo de vida junto con el uso y el acceso.",
+      "options": {
+        "a": "Correcta. El tema dice que la conservación va junto con el uso y el acceso de la información.",
+        "b": "Incorrecta. Cifrado y firma son salvaguardas técnicas, no elementos del ciclo citados aquí.",
+        "c": "Incorrecta. La copia y el borrado no son la formulación del tema.",
+        "d": "Incorrecta. Venta y cesión no aparecen en la definición de conservación."
+      }
+    },
+    "gobierno-t06-e18": {
+      "section": "donde-sic",
+      "reasoning": "La definición de SIC del apartado enumera personas, datos, procedimientos y recursos técnicos.",
+      "options": {
+        "a": "Incorrecta. Es una visión técnica que olvida los procedimientos y los datos como elementos.",
+        "b": "Correcta. Son los cuatro elementos que cita el tema para un SIC.",
+        "c": "Incorrecta. Son solo ejemplos de recursos técnicos, no la composición completa.",
+        "d": "Incorrecta. Son partes interesadas, no los elementos de un SIC."
+      }
+    },
+    "gobierno-t06-e19": {
+      "section": "donde-sic",
+      "reasoning": "La tabla de elementos del SIC usa el alta de usuarios como ejemplo de procedimiento.",
+      "options": {
+        "a": "Incorrecta. El problema no es de servidores ni de aplicaciones.",
+        "b": "Incorrecta. Los datos no se han robado ni alterado en el caso.",
+        "c": "Incorrecta. Aunque intervienen técnicos, lo que falta es el método documentado.",
+        "d": "Correcta. El alta de usuarios es un procedimiento; si nadie lo controla, hay errores."
+      }
+    },
+    "gobierno-t06-e20": {
+      "section": "donde-sic",
+      "reasoning": "En la tabla de elementos del SIC, la amenaza asociada a las personas es la ingeniería social.",
+      "options": {
+        "a": "Incorrecta. El malware se asocia a los recursos técnicos.",
+        "b": "Incorrecta. Los fallos de hardware son amenazas de los recursos técnicos.",
+        "c": "Correcta. Manipular a alguien para que revele datos es la amenaza asociada a las personas.",
+        "d": "Incorrecta. La alteración se asocia al elemento datos/información."
+      }
+    },
+    "gobierno-t06-e21": {
+      "section": "donde-sic",
+      "reasoning": "El apartado exige proteger el SIC de forma global y advierte contra los enfoques que excluyen personas o soportes.",
+      "options": {
+        "a": "Incorrecta. Limitarse a lo conectado a Internet es una de las trampas del tema.",
+        "b": "Correcta. El tema pide proteger el SIC de forma global, sin dejar fuera ningún elemento.",
+        "c": "Incorrecta. Restringir a los archivos de uso diario es otra trampa del tema.",
+        "d": "Incorrecta. El tema no establece un criterio de coste para elegir qué proteger."
+      }
+    },
+    "gobierno-t06-e22": {
+      "section": "salvaguardas",
+      "reasoning": "La definición del apartado dice que «salvaguarda» y «control» son sinónimos.",
+      "options": {
+        "a": "Incorrecta. Ambos pueden ser técnicos, organizativos o físicos.",
+        "b": "Incorrecta. La salvaguarda es una medida, no una amenaza.",
+        "c": "Correcta. El tema los usa como sinónimos: medidas para contrarrestar amenazas.",
+        "d": "Incorrecta. El tema no establece esa distinción entre medir y evitar."
+      }
+    },
+    "gobierno-t06-e23": {
+      "section": "salvaguardas",
+      "reasoning": "En la tabla de formas de actuar, cifrar los portátiles es el ejemplo de disminuir el impacto.",
+      "options": {
+        "a": "Incorrecta. Recuperar es volver a la normalidad, como con copias o planes de continuidad.",
+        "b": "Correcta. El robo puede producirse, pero el daño se reduce porque los datos no se leen.",
+        "c": "Incorrecta. El cifrado no evita que roben el portátil.",
+        "d": "Incorrecta. No se trata de aprender de un incidente previo."
+      }
+    },
+    "gobierno-t06-e24": {
+      "section": "salvaguardas",
+      "reasoning": "La definición de salvaguarda del apartado pone la cerradura y el sistema antiincendios como ejemplos físicos.",
+      "options": {
+        "a": "Correcta. El tema cita la cerradura y el sistema antiincendios como salvaguardas físicas.",
+        "b": "Incorrecta. El antivirus es una salvaguarda técnica.",
+        "c": "Incorrecta. Una norma es una salvaguarda organizativa.",
+        "d": "Incorrecta. La formación es una salvaguarda organizativa."
+      }
+    },
+    "gobierno-t06-e25": {
+      "section": "salvaguardas",
+      "reasoning": "En la tabla de formas de actuar, el cortafuegos y la formación contra el phishing ilustran la prevención.",
+      "options": {
+        "a": "Correcta. Son medidas de prevención: hacen menos probable que la amenaza se materialice.",
+        "b": "Incorrecta. Disminuir el impacto es limitar el daño una vez ocurrido, como al cifrar.",
+        "c": "Incorrecta. Recuperar es volver a la normalidad con copias o planes de continuidad.",
+        "d": "Incorrecta. Modificar controles es ajustar tras un incidente; aquí no se menciona ninguno."
+      }
+    },
+    "gobierno-t06-e26": {
+      "section": "salvaguardas",
+      "reasoning": "La tabla de formas de actuar ilustra la modificación de controles con el segundo factor añadido tras un robo de credenciales.",
+      "options": {
+        "a": "Incorrecta. No se trata de formar al personal, sino de cambiar un control técnico tras un incidente.",
+        "b": "Incorrecta. No se cifra nada para reducir el daño.",
+        "c": "Incorrecta. No se restauran datos ni servicios.",
+        "d": "Correcta. Se cambia un control a la vista de lo aprendido en un incidente previo."
+      }
+    },
+    "gobierno-t06-e27": {
+      "section": "salvaguardas",
+      "reasoning": "El diagrama de flujo del apartado encadena prevenir, disminuir el impacto, recuperar y modificar.",
+      "options": {
+        "a": "Incorrecta. La recuperación llega después del daño, no al principio.",
+        "b": "Correcta. Es el orden del diagrama: prevenir, reducir el impacto, recuperar y modificar.",
+        "c": "Incorrecta. Primero se intenta evitar que ocurra; reducir el impacto viene después.",
+        "d": "Incorrecta. Modificar controles es la fase final de aprendizaje, no la primera."
+      }
+    },
+    "gobierno-t06-e28": {
+      "section": "ciclo-vida",
+      "reasoning": "El apartado enumera seis fases del ciclo de vida y la clasificación no está entre ellas.",
+      "options": {
+        "a": "Incorrecta. La transmisión es la fase en que el dato viaja por una red.",
+        "b": "Incorrecta. El proceso es la fase en que un programa trata el dato.",
+        "c": "Correcta. La clasificación no figura entre las fases del ciclo de vida del tema.",
+        "d": "Incorrecta. La utilización es la fase en que alguien consulta el dato."
+      }
+    },
+    "gobierno-t06-e29": {
+      "section": "ciclo-vida",
+      "reasoning": "La lista de fases del apartado ilustra el proceso con un programa que calcula una factura.",
+      "options": {
+        "a": "Incorrecta. La entrada es cuando el dato se crea o se recoge, como al rellenar un formulario.",
+        "b": "Incorrecta. El almacenamiento es cuando se guarda en una base de datos o archivo.",
+        "c": "Incorrecta. La utilización es cuando una persona lo consulta para trabajar.",
+        "d": "Correcta. Un programa que trata el dato para calcular la factura es la fase de proceso."
+      }
+    },
+    "gobierno-t06-e30": {
+      "section": "ciclo-vida",
+      "reasoning": "Las fases del apartado empiezan por la entrada del dato en el sistema.",
+      "options": {
+        "a": "Correcta. El ciclo empieza cuando el dato se crea o se recoge.",
+        "b": "Incorrecta. El almacenamiento es la segunda fase.",
+        "c": "Incorrecta. La transmisión llega después del proceso.",
+        "d": "Incorrecta. El proceso es posterior a la entrada y al almacenamiento."
+      }
+    },
+    "gobierno-t06-e31": {
+      "section": "ciclo-vida",
+      "reasoning": "La analogía del apartado advierte de que dejar sin proteger una sola fase, como la destrucción, invalida el resto.",
+      "options": {
+        "a": "Incorrecta. Los expedientes siguen conteniendo información hasta su destrucción segura.",
+        "b": "Correcta. Dejar una fase sin protección, aunque sea la última, inutiliza el esfuerzo anterior.",
+        "c": "Incorrecta. Proteger un tramo no compensa dejar otro abierto.",
+        "d": "Incorrecta. El problema es que otros pueden conocer los datos, no que no estén accesibles."
+      }
+    },
+    "gobierno-t06-e32": {
+      "section": "analisis-riesgos",
+      "reasoning": "La definición de riesgo del apartado lo estima combinando probabilidad e impacto.",
+      "options": {
+        "a": "Incorrecta. El número de activos o amenazas no es la fórmula del tema.",
+        "b": "Correcta. El tema estima el riesgo combinando probabilidad e impacto.",
+        "c": "Incorrecta. El presupuesto no forma parte de la estimación del riesgo.",
+        "d": "Incorrecta. El histórico es una fuente de información, no la fórmula del riesgo."
+      }
+    },
+    "gobierno-t06-e33": {
+      "section": "analisis-riesgos",
+      "reasoning": "El apartado define vulnerabilidad y usa como ejemplo un programa sin actualizar.",
+      "options": {
+        "a": "Incorrecta. La amenaza es quien o lo que puede causar el daño, como un ciberdelincuente.",
+        "b": "Incorrecta. El impacto es el daño que se sufre si la amenaza se materializa.",
+        "c": "Correcta. Es una debilidad del activo que una amenaza podría aprovechar.",
+        "d": "Incorrecta. El riesgo residual es el que queda tras aplicar los controles."
+      }
+    },
+    "gobierno-t06-e34": {
+      "section": "analisis-riesgos",
+      "reasoning": "La tabla de fuentes del apartado señala el histórico de incidentes como fuente interna destacada.",
+      "options": {
+        "a": "Incorrecta. ENISA es una fuente externa sobre riesgos generales.",
+        "b": "Incorrecta. Las alertas de campañas son información externa.",
+        "c": "Incorrecta. El Foro Económico Mundial es una fuente externa.",
+        "d": "Correcta. El histórico de incidentes es una de las fuentes internas más importantes."
+      }
+    },
+    "gobierno-t06-e35": {
+      "section": "analisis-riesgos",
+      "reasoning": "La tabla del apartado distingue fuentes externas (riesgos generales) de internas (efecto en la propia organización).",
+      "options": {
+        "a": "Correcta. Las fuentes externas informan de riesgos generales del sector o del mundo.",
+        "b": "Incorrecta. Valorar el efecto en la propia empresa es la función de las fuentes internas.",
+        "c": "Incorrecta. Un informe externo no sustituye el conocimiento interno de los activos.",
+        "d": "Incorrecta. La política la aprueba la alta dirección, no una fuente externa."
+      }
+    },
+    "gobierno-t06-e36": {
+      "section": "analisis-riesgos",
+      "reasoning": "El caso práctico del apartado muestra el uso conjunto de una fuente externa y del histórico interno.",
+      "options": {
+        "a": "Incorrecta. No contrata ningún seguro ni pasa el impacto a otro.",
+        "b": "Correcta. Cruza un informe externo con su propio histórico para valorar el riesgo.",
+        "c": "Incorrecta. No se está asumiendo el riesgo, sino analizándolo.",
+        "d": "Incorrecta. El nivel asumible lo fija la dirección; aquí solo se recaba información."
+      }
+    },
+    "gobierno-t06-e37": {
+      "section": "analisis-riesgos",
+      "reasoning": "El apartado advierte de que el análisis no garantiza la ausencia de incidentes, mientras que las demás opciones están en su lista de aportaciones.",
+      "options": {
+        "a": "Incorrecta. Es cierta: el análisis hace los criterios más objetivos.",
+        "b": "Incorrecta. Es cierta: identifica las áreas que requieren salvaguardas.",
+        "c": "Correcta. Es falsa: ningún análisis garantiza que no haya más incidentes.",
+        "d": "Incorrecta. Es cierta: identifica riesgos que pueden impedir los objetivos de negocio."
+      }
+    },
+    "gobierno-t06-e38": {
+      "section": "gestion-riesgos",
+      "reasoning": "El apartado define el riesgo inherente como el previo a cualquier control.",
+      "options": {
+        "a": "Incorrecta. Lo que asume la dirección es el nivel asumible o apetito de riesgo.",
+        "b": "Correcta. El inherente es el riesgo en bruto, antes de los controles.",
+        "c": "Incorrecta. Transferir es una forma de tratar el riesgo, no un tipo de riesgo.",
+        "d": "Incorrecta. El que queda tras los controles es el riesgo residual."
+      }
+    },
+    "gobierno-t06-e39": {
+      "section": "gestion-riesgos",
+      "reasoning": "La definición de nivel asumible del apartado indica que lo fija la alta dirección.",
+      "options": {
+        "a": "Incorrecta. El tema aclara expresamente que no lo fija el departamento técnico.",
+        "b": "Incorrecta. El auditor revisa, pero no decide cuánto riesgo se acepta.",
+        "c": "Correcta. El apetito de riesgo lo decide la alta dirección.",
+        "d": "Incorrecta. La aseguradora cubre parte del impacto, pero no fija el apetito de riesgo."
+      }
+    },
+    "gobierno-t06-e40": {
+      "section": "gestion-riesgos",
+      "reasoning": "En la tabla de formas de tratar un riesgo, no ofrecer pagos en una web desprotegida es el ejemplo de evitar.",
+      "options": {
+        "a": "Incorrecta. Mitigar sería aplicar salvaguardas para reducir el riesgo.",
+        "b": "Incorrecta. Transferir sería pasar parte del impacto a un tercero, como un seguro.",
+        "c": "Incorrecta. Aceptar sería asumir el riesgo y seguir con la actividad.",
+        "d": "Correcta. Se deja de hacer la actividad que genera el riesgo."
+      }
+    },
+    "gobierno-t06-e41": {
+      "section": "gestion-riesgos",
+      "reasoning": "La tabla de formas de tratar un riesgo pone el ciberseguro como ejemplo de transferencia.",
+      "options": {
+        "a": "Correcta. El seguro traslada parte del impacto económico a un tercero.",
+        "b": "Incorrecta. La empresa no deja de hacer su actividad.",
+        "c": "Incorrecta. Un seguro no reduce la probabilidad ni el daño técnico.",
+        "d": "Incorrecta. No asume el riesgo sin más: lo comparte con la aseguradora."
+      }
+    },
+    "gobierno-t06-e42": {
+      "section": "gestion-riesgos",
+      "reasoning": "El apartado relaciona expresamente su lista de principios con la ISO 31000.",
+      "options": {
+        "a": "Incorrecta. La ISO 27001 trata de sistemas de gestión de la seguridad de la información, no es la citada aquí.",
+        "b": "Correcta. El tema dice que los principios coinciden con los de la ISO 31000.",
+        "c": "Incorrecta. La ISO 9001 se refiere a gestión de la calidad.",
+        "d": "Incorrecta. La ISO 22301 se asocia a continuidad de negocio, no es la que cita el tema."
+      }
+    },
+    "gobierno-t06-e43": {
+      "section": "gestion-riesgos",
+      "reasoning": "La lista de principios del apartado habla de la mejor información posible y de factores humanos, no de basarse solo en datos técnicos.",
+      "options": {
+        "a": "Incorrecta. Integrar factores humanos y culturales sí es un principio.",
+        "b": "Incorrecta. Ser dinámica e iterativa sí está en la lista.",
+        "c": "Incorrecta. La transparencia y la participación de las partes interesadas sí son principios.",
+        "d": "Correcta. El principio es basarse en la mejor información posible, no solo en datos técnicos."
+      }
+    },
+    "gobierno-t06-e44": {
+      "section": "gestion-riesgos",
+      "reasoning": "La tabla inherente/residual del apartado usa este ejemplo de ransomware y atribuye la decisión a la dirección.",
+      "options": {
+        "a": "Incorrecta. El inherente es el que existe sin controles; aquí ya hay copias y antivirus.",
+        "b": "Correcta. Es el riesgo que queda tras los controles, y su aceptación la decide la dirección.",
+        "c": "Incorrecta. No se ha trasladado el riesgo a ningún tercero.",
+        "d": "Incorrecta. El riesgo no ha desaparecido; sigue habiendo días de parada posibles."
+      }
+    },
+    "gobierno-t06-e45": {
+      "section": "politica",
+      "reasoning": "La tabla del cuerpo normativo pone la longitud mínima de contraseñas como ejemplo de norma.",
+      "options": {
+        "a": "Incorrecta. La política recoge principios de alto nivel, no reglas tan concretas.",
+        "b": "Incorrecta. Los procedimientos describen pasos a seguir, como dar de alta a un usuario.",
+        "c": "Correcta. Es una regla obligatoria que desarrolla la política: una norma.",
+        "d": "Incorrecta. Las directrices de negocio no son un nivel del cuerpo normativo del tema."
+      }
+    },
+    "gobierno-t06-e46": {
+      "section": "politica",
+      "reasoning": "La lista de requisitos de la política del apartado incluye la aprobación por la alta dirección como patrocinio y compromiso.",
+      "options": {
+        "a": "Correcta. El tema dice que la aprobación de la dirección muestra patrocinio y compromiso.",
+        "b": "Incorrecta. La política no depende de lo que diga ningún fabricante.",
+        "c": "Incorrecta. Debe aplicarse de forma horizontal, del primero al último.",
+        "d": "Incorrecta. La política sigue vigente aunque cambie la tecnología."
+      }
+    },
+    "gobierno-t06-e47": {
+      "section": "politica",
+      "reasoning": "Entre los requisitos de la política, el apartado pide que se aplique horizontalmente a toda la organización.",
+      "options": {
+        "a": "Incorrecta. Limitarla a TI contradice su aplicación horizontal.",
+        "b": "Correcta. Horizontal significa que obliga a toda la organización, del primero al último.",
+        "c": "Incorrecta. La política la aprueba la alta dirección; no la redactan todos.",
+        "d": "Incorrecta. De la política se derivan normas y procedimientos: sí hay jerarquía."
+      }
+    },
+    "gobierno-t06-e48": {
+      "section": "politica",
+      "reasoning": "El apartado indica que la política sigue vigente aunque se cambie de tecnología porque es de alto nivel.",
+      "options": {
+        "a": "Correcta. Al ser de alto nivel, no depende de un producto concreto y sigue vigente.",
+        "b": "Incorrecta. Cambiar de tecnología no obliga a rehacer los principios de la organización.",
+        "c": "Incorrecta. El manual de un proveedor no asigna objetivos ni responsabilidades organizativas.",
+        "d": "Incorrecta. La política no baja de nivel; los procedimientos se derivan de ella."
+      }
+    },
+    "gobierno-t06-e49": {
+      "section": "a-fondo",
+      "reasoning": "La tabla de evolución del concepto distingue la seguridad informática (sistemas) de la de la información (información en cualquier soporte).",
+      "options": {
+        "a": "Incorrecta. Proteger equipos y programas es la seguridad informática.",
+        "b": "Correcta. La seguridad de la información protege la información en cualquier soporte.",
+        "c": "Incorrecta. La implicación militar se asocia a la ciberseguridad.",
+        "d": "Incorrecta. Las redes son solo una parte de los sistemas."
+      }
+    },
+    "gobierno-t06-e50": {
+      "section": "a-fondo",
+      "reasoning": "La lista de cinco principios para consejos plantea la ciberseguridad como riesgo de toda la empresa.",
+      "options": {
+        "a": "Incorrecta. El principio dice expresamente que no es solo un asunto de TI.",
+        "b": "Correcta. Es un problema de gestión de riesgos de toda la empresa.",
+        "c": "Incorrecta. Los principios se dirigen al consejo de la propia empresa, no a terceros.",
+        "d": "Incorrecta. Otro principio pide que el ciberriesgo esté en el orden del día."
+      }
     }
   }
 }

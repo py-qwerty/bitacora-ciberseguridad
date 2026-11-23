@@ -1146,6 +1146,506 @@
         "c": "Incorrecta. Si el límite se aplica después de construir el arreglo, la memoria ya se ha consumido.",
         "d": "Correcta. Rechazar los tamaños que superan el límite antes de asignar protege los recursos."
       }
+    },
+    "sistemas-t06-e01": {
+      "section": "desarrollo-seguro",
+      "reasoning": "El apartado define Security by Design como integrar la seguridad en diseño, programación, pruebas y despliegue.",
+      "options": {
+        "a": "Incorrecta. Es justo lo contrario: añadirla al final es lo que esta filosofía quiere evitar.",
+        "b": "Correcta. La seguridad se integra en todas las fases del ciclo de vida.",
+        "c": "Incorrecta. No se delega a sistemas tras el despliegue; empieza en el diseño.",
+        "d": "Incorrecta. Una auditoría puntual no equivale a integrar la seguridad en cada fase."
+      }
+    },
+    "sistemas-t06-e02": {
+      "section": "desarrollo-seguro",
+      "reasoning": "El apartado insiste en la idea económica: cuanto antes se detecta el fallo, más barato es arreglarlo.",
+      "options": {
+        "a": "Incorrecta. En producción es cuando más cuesta: parches urgentes y daño reputacional.",
+        "b": "Incorrecta. El mantenimiento es una fase tardía; corregir ahí cuesta más.",
+        "c": "Incorrecta. Esperar a un incidente es la opción más cara de todas.",
+        "d": "Correcta. Detectarlo al diseñar o programar es lo más barato."
+      }
+    },
+    "sistemas-t06-e03": {
+      "section": "desarrollo-seguro",
+      "reasoning": "El apartado cita a McGraw (2006) y destaca la revisión estática como práctica clave de la implementación.",
+      "options": {
+        "a": "Incorrecta. Las pruebas de penetración no son la práctica que McGraw destaca para la implementación.",
+        "b": "Incorrecta. El análisis de riesgos de arquitectura no es la práctica principal de esa fase.",
+        "c": "Correcta. La revisión estática de código es la práctica principal de la implementación según McGraw.",
+        "d": "Incorrecta. Monitorizar logs es una tarea de operación, no de implementación."
+      }
+    },
+    "sistemas-t06-e04": {
+      "section": "desarrollo-seguro",
+      "reasoning": "El apartado enumera las seis familias recogidas de Graff y Van Wyk, Chess y OWASP.",
+      "options": {
+        "a": "Incorrecta. La validación de entrada es la primera de las seis familias.",
+        "b": "Incorrecta. La gestión de errores sí es una de las familias.",
+        "c": "Incorrecta. La gestión de archivos también figura en la lista.",
+        "d": "Correcta. El balanceo de carga es un tema de infraestructura, no una familia de codificación segura."
+      }
+    },
+    "sistemas-t06-e05": {
+      "section": "desarrollo-seguro",
+      "reasoning": "El apartado define CWE como catálogo de debilidades comunes con número propio.",
+      "options": {
+        "a": "Correcta. CWE numera tipos de debilidades (errores de programación).",
+        "b": "Incorrecta. CWE cataloga tipos de debilidad, no vulnerabilidades de productos concretos.",
+        "c": "Incorrecta. Eso describe FIPS 140-2, no CWE.",
+        "d": "Incorrecta. Eso sería OWASP Java Encoder, no un catálogo de debilidades."
+      }
+    },
+    "sistemas-t06-e06": {
+      "section": "validacion-entrada",
+      "reasoning": "El apartado explica que la regla número uno es validar en un sistema de confianza, el servidor.",
+      "options": {
+        "a": "Incorrecta. JavaScript sí puede comprobar números; el problema es que se puede eludir.",
+        "b": "Correcta. El cliente puede desactivar o saltarse cualquier comprobación del navegador.",
+        "c": "Incorrecta. El tema exige validar en el servidor, no específicamente en la base de datos.",
+        "d": "Incorrecta. JavaScript no cifra nada aquí; confundir validar con cifrar es una trampa."
+      }
+    },
+    "sistemas-t06-e07": {
+      "section": "validacion-entrada",
+      "reasoning": "Entre las recomendaciones clave, el apartado prefiere la lista de permitidos porque la de denegados no prevé todas las variantes.",
+      "options": {
+        "a": "Incorrecta. El motivo no es el consumo de memoria sino la falta de cobertura.",
+        "b": "Incorrecta. La validación que cuenta se hace en el servidor, no en el navegador.",
+        "c": "Correcta. El atacante siempre puede inventar una variante que la lista negra no recoge.",
+        "d": "Incorrecta. Se sigue recomendando canonicalizar antes de validar."
+      }
+    },
+    "sistemas-t06-e08": {
+      "section": "validacion-entrada",
+      "reasoning": "El caso práctico del apartado muestra cómo canonicalizar desenmascara la ofuscación con codificación URL.",
+      "options": {
+        "a": "Incorrecta. Cifrar ocultaría aún más el patrón; canonicalizar no es cifrar.",
+        "b": "Correcta. Decodificar a la forma canónica deja ver el ../ disfrazado.",
+        "c": "Incorrecta. La longitud no revela que la cadena contenga una ruta de escape.",
+        "d": "Incorrecta. La validación en el cliente se elude y no resuelve la ofuscación."
+      }
+    },
+    "sistemas-t06-e09": {
+      "section": "validacion-entrada",
+      "reasoning": "El apartado incluye entre sus recomendaciones rechazar la entrada si falla la validación.",
+      "options": {
+        "a": "Incorrecta. El tema dice expresamente que no hay que intentar arreglarla.",
+        "b": "Incorrecta. Convertir el juego de caracteres no convierte en válida una entrada que no lo es.",
+        "c": "Incorrecta. Aplazar la validación supone usar un dato no comprobado.",
+        "d": "Correcta. Lo que no encaja se rechaza."
+      }
+    },
+    "sistemas-t06-e10": {
+      "section": "validacion-entrada",
+      "reasoning": "El apartado incluye bases de datos y ficheros externos entre las fuentes no confiables que hay que validar.",
+      "options": {
+        "a": "Incorrecta. La rutina centralizada sí es una recomendación del tema.",
+        "b": "Incorrecta. Fijar un juego de caracteres como UTF-8 sí figura.",
+        "c": "Correcta. El tema exige validar todas las fuentes no confiables, no solo la entrada del usuario.",
+        "d": "Incorrecta. Validar que las cabeceras HTTP sean ASCII sí aparece."
+      }
+    },
+    "sistemas-t06-e11": {
+      "section": "salida-cripto",
+      "reasoning": "El apartado define la codificación de salida con el ejemplo de < convertido en &lt;.",
+      "options": {
+        "a": "Correcta. &lt; es la entidad HTML del símbolo menor que.",
+        "b": "Incorrecta. %3C es codificación URL, no la entidad HTML que usa el ejemplo.",
+        "c": "Incorrecta. \\n es un salto de línea, no tiene relación con <.",
+        "d": "Incorrecta. <br> es otra etiqueta HTML; no neutraliza nada."
+      }
+    },
+    "sistemas-t06-e12": {
+      "section": "salida-cripto",
+      "reasoning": "Entre las recomendaciones de codificación de salida figura usar una rutina estándar y probada.",
+      "options": {
+        "a": "Incorrecta. Codificar no es cifrar; el servidor debe seguir leyendo el dato.",
+        "b": "Correcta. Se usan rutinas estándar y probadas, no caseras.",
+        "c": "Incorrecta. La codificación se hace en un sistema de confianza: el servidor.",
+        "d": "Incorrecta. Hay que codificar según el contexto; HTML no sirve igual para JavaScript o URL."
+      }
+    },
+    "sistemas-t06-e13": {
+      "section": "salida-cripto",
+      "reasoning": "El apartado de prácticas criptográficas exige usar el generador aleatorio aprobado.",
+      "options": {
+        "a": "Incorrecta. La hora es predecible y un atacante podría adivinarla.",
+        "b": "Correcta. Se usa el generador aleatorio aprobado del módulo criptográfico.",
+        "c": "Incorrecta. Un contador es totalmente predecible.",
+        "d": "Incorrecta. Un hash de un dato conocido también es predecible."
+      }
+    },
+    "sistemas-t06-e14": {
+      "section": "salida-cripto",
+      "reasoning": "El apartado incluye entre las prácticas criptográficas cumplir FIPS 140-2 o equivalente.",
+      "options": {
+        "a": "Correcta. Es la norma estadounidense de certificación de módulos criptográficos.",
+        "b": "Incorrecta. No es una entrada del catálogo CWE.",
+        "c": "Incorrecta. No es una librería de OWASP sino una norma.",
+        "d": "Incorrecta. Eso describe LDAP, no FIPS 140-2."
+      }
+    },
+    "sistemas-t06-e15": {
+      "section": "errores-registros",
+      "reasoning": "El apartado de gestión de errores pide no mostrar debug ni stack trace al usuario.",
+      "options": {
+        "a": "Incorrecta. Registrar intentos fallidos es una norma de logs, no lo que se incumple aquí.",
+        "b": "Correcta. Mostrar la traza de la pila es exponer información de depuración.",
+        "c": "Incorrecta. Es una regla de gestión de archivos, no de mensajes de error.",
+        "d": "Incorrecta. La codificación de salida evita XSS, no la fuga de detalles técnicos."
+      }
+    },
+    "sistemas-t06-e16": {
+      "section": "errores-registros",
+      "reasoning": "La lista de gestión de errores indica que los fallos de controles de seguridad deniegan por defecto.",
+      "options": {
+        "a": "Incorrecta. Conceder el acceso ante un fallo sería fallar de forma insegura.",
+        "b": "Incorrecta. El tema pide que la aplicación gestione sus errores por sí misma.",
+        "c": "Incorrecta. Reintentar no es la regla del tema; la regla es denegar.",
+        "d": "Correcta. Ante un error del control, se deniega."
+      }
+    },
+    "sistemas-t06-e17": {
+      "section": "errores-registros",
+      "reasoning": "La tabla del apartado separa lo que sí se registra (intentos fallidos) de lo que no (contraseñas, tokens).",
+      "options": {
+        "a": "Incorrecta. Las contraseñas nunca se registran, ni siquiera las fallidas.",
+        "b": "Incorrecta. Los tokens de sesión utilizables no deben ir al log.",
+        "c": "Correcta. Los intentos de autenticación fallidos son un evento clave que sí se registra.",
+        "d": "Incorrecta. La información confidencial innecesaria no se registra."
+      }
+    },
+    "sistemas-t06-e18": {
+      "section": "errores-registros",
+      "reasoning": "Entre las otras reglas del registro, el tema pide usar un hash para verificar la integridad de las entradas.",
+      "options": {
+        "a": "Incorrecta. Un hash no cifra; sirve para verificar integridad.",
+        "b": "Incorrecta. El objetivo no es comprimir sino detectar cambios.",
+        "c": "Correcta. El hash permite verificar que las entradas no se han alterado.",
+        "d": "Incorrecta. Las contraseñas directamente no deben llegar al log."
+      }
+    },
+    "sistemas-t06-e19": {
+      "section": "errores-registros",
+      "reasoning": "La lista de gestión de archivos del apartado indica validar el tipo por los encabezados internos.",
+      "options": {
+        "a": "Incorrecta. La longitud del nombre no dice nada sobre el contenido real.",
+        "b": "Correcta. Los encabezados internos revelan el formato real del archivo.",
+        "c": "Incorrecta. La fecha de creación no identifica el tipo de archivo.",
+        "d": "Incorrecta. La IP de origen no indica qué tipo de archivo es."
+      }
+    },
+    "sistemas-t06-e20": {
+      "section": "errores-registros",
+      "reasoning": "La gestión de archivos del apartado propone usar índices en lugar de rutas que vengan del usuario.",
+      "options": {
+        "a": "Correcta. Es exactamente la recomendación de usar índices hacia rutas predefinidas.",
+        "b": "Incorrecta. Enviar la ruta absoluta al cliente está desaconsejado.",
+        "c": "Incorrecta. El caso no cifra nada; evita que el usuario controle la ruta.",
+        "d": "Incorrecta. Validar solo en el cliente se puede eludir."
+      }
+    },
+    "sistemas-t06-e21": {
+      "section": "inyeccion-sql",
+      "reasoning": "El apartado explica que la SQLi nace de concatenar la entrada en la consulta.",
+      "options": {
+        "a": "Incorrecta. GET o POST solo cambian cómo viajan los datos, no cómo se usan.",
+        "b": "Correcta. Concatenar convierte el dato en parte del comando SQL.",
+        "c": "Incorrecta. Los mensajes genéricos son una buena práctica, no la causa.",
+        "d": "Incorrecta. Las variables de entorno protegen credenciales; no causan SQLi."
+      }
+    },
+    "sistemas-t06-e22": {
+      "section": "inyeccion-sql",
+      "reasoning": "El ejemplo de explotación del apartado muestra que la condición siempre verdadera devuelve todas las filas.",
+      "options": {
+        "a": "Incorrecta. La consulta se ejecuta sin error; ese es el peligro.",
+        "b": "Incorrecta. La condición verdadera abarca todas las filas, no solo una.",
+        "c": "Correcta. La condición siempre verdadera devuelve todos los usuarios.",
+        "d": "Incorrecta. Un shell remoto se asocia a webshells o inyección de comandos, no a este ejemplo."
+      }
+    },
+    "sistemas-t06-e23": {
+      "section": "inyeccion-sql",
+      "reasoning": "El apartado describe qué pasa con el payload cuando se usa PreparedStatement.",
+      "options": {
+        "a": "Incorrecta. Precisamente PreparedStatement impide que el valor forme parte del comando.",
+        "b": "Correcta. El valor se trata como texto literal y no coincide con ningún id.",
+        "c": "Incorrecta. PreparedStatement no cifra; separa estructura y valores.",
+        "d": "Incorrecta. Eso ocurre al concatenar, no con sentencias preparadas."
+      }
+    },
+    "sistemas-t06-e24": {
+      "section": "inyeccion-sql",
+      "reasoning": "El bloque de examen del apartado avisa de no confundir SQLi con CWE-78 (comandos) ni con CWE-113 (cabeceras).",
+      "options": {
+        "a": "Correcta. CWE-78 es la inyección de comandos del sistema operativo.",
+        "b": "Incorrecta. CWE-79 es el cross-site scripting.",
+        "c": "Incorrecta. CWE-113 es la manipulación de cabeceras HTTP (response splitting).",
+        "d": "Incorrecta. CWE-352 es la falsificación de peticiones en sitios cruzados."
+      }
+    },
+    "sistemas-t06-e25": {
+      "section": "xss",
+      "reasoning": "El apartado define el XSS reflejado como el que viaja en la propia petición y el servidor refleja al momento.",
+      "options": {
+        "a": "Incorrecta. El almacenamiento permanente no es la variante reflejada del ejemplo.",
+        "b": "Incorrecta. La configuración del servidor no interviene en el XSS reflejado.",
+        "c": "Incorrecta. Un fichero subido a la carpeta pública se relaciona con CWE-434.",
+        "d": "Correcta. El script va en la petición y se refleja en la respuesta."
+      }
+    },
+    "sistemas-t06-e26": {
+      "section": "xss",
+      "reasoning": "El apartado muestra el Servlet seguro usando Encode.forHtml(mensaje) de OWASP Java Encoder.",
+      "options": {
+        "a": "Incorrecta. forUrl es para el contexto URL, no para escribir dentro de HTML.",
+        "b": "Incorrecta. prepareStatement es la defensa contra SQLi, no contra XSS.",
+        "c": "Incorrecta. Quitar CR y LF es la defensa contra response splitting.",
+        "d": "Correcta. Encode.forHtml es el codificador para el contexto HTML del ejemplo."
+      }
+    },
+    "sistemas-t06-e27": {
+      "section": "xss",
+      "reasoning": "El apartado presenta CSP como defensa adicional en capas, con el ejemplo script-src 'self'.",
+      "options": {
+        "a": "Correcta. Restringe la carga de scripts a los del propio origen.",
+        "b": "Incorrecta. CSP no cifra nada; dice al navegador qué orígenes acepta.",
+        "c": "Incorrecta. CSP no controla el almacenamiento de cookies.",
+        "d": "Incorrecta. CSP actúa en el navegador, no valida la entrada en el servidor."
+      }
+    },
+    "sistemas-t06-e28": {
+      "section": "csrf",
+      "reasoning": "El primer paso de la explotación en el apartado es una víctima autenticada, requisito imprescindible.",
+      "options": {
+        "a": "Incorrecta. Sin cookies no habría sesión que reutilizar y el ataque fallaría.",
+        "b": "Incorrecta. El cifrado de la base de datos no tiene relación con el CSRF.",
+        "c": "Correcta. Sin una sesión abierta no hay cookie que el navegador pueda adjuntar.",
+        "d": "Incorrecta. El cortafuegos no interviene: la petición la envía el navegador legítimo."
+      }
+    },
+    "sistemas-t06-e29": {
+      "section": "csrf",
+      "reasoning": "El bloque de examen del apartado señala como trampa «un campo oculto de valor fijo».",
+      "options": {
+        "a": "Incorrecta. Los campos ocultos sí se envían con el formulario.",
+        "b": "Incorrecta. Moverlo a la URL no lo haría secreto ni impredecible.",
+        "c": "Incorrecta. El método no es el problema; el formulario de Bob también hace POST.",
+        "d": "Correcta. Un valor fijo se copia; hace falta un token aleatorio de sesión."
+      }
+    },
+    "sistemas-t06-e30": {
+      "section": "csrf",
+      "reasoning": "El apartado explica que la same-origin policy es lo que impide a Bob conocer el token.",
+      "options": {
+        "a": "Correcta. La política de mismo origen impide leer contenido de otro sitio.",
+        "b": "Incorrecta. TLS protege el transporte, pero no es lo que impide a Bob leer la página.",
+        "c": "Incorrecta. El token también va en el formulario como campo oculto, no solo en el servidor.",
+        "d": "Incorrecta. SameSite controla el envío de la cookie, no oculta contenido."
+      }
+    },
+    "sistemas-t06-e31": {
+      "section": "csrf",
+      "reasoning": "El apartado describe la solución en tres pasos: generar, incluir en el formulario y comprobar.",
+      "options": {
+        "a": "Incorrecta. No se puede comprobar un token que aún no se ha generado.",
+        "b": "Incorrecta. Para incluir el token en la JSP antes hay que generarlo.",
+        "c": "Incorrecta. Se genera al mostrar el formulario (doGet), no al procesarlo.",
+        "d": "Correcta. Generar en doGet, incluir en la JSP y comprobar en doPost."
+      }
+    },
+    "sistemas-t06-e32": {
+      "section": "csrf",
+      "reasoning": "Entre las alternativas y refuerzos del apartado figuran las cookies SameSite.",
+      "options": {
+        "a": "Incorrecta. OWASP Java Encoder codifica la salida contra XSS.",
+        "b": "Incorrecta. script-src es una directiva CSP que limita scripts.",
+        "c": "Correcta. SameSite impide enviar la cookie en peticiones de otros sitios.",
+        "d": "Incorrecta. PreparedStatement protege frente a SQLi."
+      }
+    },
+    "sistemas-t06-e33": {
+      "section": "rutas-comandos",
+      "reasoning": "El ejemplo del apartado muestra cómo la ruta construida se resuelve a /etc/passwd.",
+      "options": {
+        "a": "Incorrecta. Sin validación nadie comprueba la extensión; la ruta se abre.",
+        "b": "Correcta. La ruta se resuelve a /etc/passwd y se entrega su contenido.",
+        "c": "Incorrecta. El ataque sale de docs, no la lista.",
+        "d": "Incorrecta. La ruta apunta a /etc/passwd, no al código del Servlet."
+      }
+    },
+    "sistemas-t06-e34": {
+      "section": "rutas-comandos",
+      "reasoning": "El apartado describe la defensa en pasos: lista blanca, normalización y verificación de prefijo.",
+      "options": {
+        "a": "Incorrecta. Eso es la lista blanca (ALLOWED_FILES.contains), otro paso distinto.",
+        "b": "Incorrecta. Quitar los .. es la normalización, no la verificación de prefijo.",
+        "c": "Incorrecta. Ningún paso de esta defensa cifra la ruta.",
+        "d": "Correcta. startsWith() confirma que la ruta resuelta queda dentro de la base."
+      }
+    },
+    "sistemas-t06-e35": {
+      "section": "credenciales-recursos",
+      "reasoning": "El apartado muestra la comprobación de length contra MAX_LENGTH antes de crear el ArrayList.",
+      "options": {
+        "a": "Correcta. Se compara con el máximo antes de gastar memoria.",
+        "b": "Incorrecta. Reservar primero «para ver si cabe» es justo el error.",
+        "c": "Incorrecta. Más memoria sin límite no impide la denegación de servicio.",
+        "d": "Incorrecta. Aplicar el límite después de construir la lista llega tarde."
+      }
+    },
+    "sistemas-t06-e36": {
+      "section": "rutas-comandos",
+      "reasoning": "El apartado explica que metacaracteres como ;, && o | sirven para encadenar comandos en el shell.",
+      "options": {
+        "a": "Incorrecta. Aquí no hay consulta SQL; el ; lo interpreta el shell.",
+        "b": "Correcta. El shell interpreta el ; como separador y ejecuta una segunda orden.",
+        "c": "Incorrecta. El salto de línea en cabeceras se inyecta con %0d%0a.",
+        "d": "Incorrecta. El ; no tiene ningún significado para el protocolo del ping."
+      }
+    },
+    "sistemas-t06-e37": {
+      "section": "rutas-comandos",
+      "reasoning": "La lista de soluciones del apartado empieza por no ejecutar comandos del sistema operativo.",
+      "options": {
+        "a": "Incorrecta. La validación en el cliente se elude fácilmente.",
+        "b": "Incorrecta. Usar sh -c es precisamente la versión vulnerable del ejemplo.",
+        "c": "Correcta. Evitar ejecutar comandos del SO elimina el problema de raíz.",
+        "d": "Incorrecta. Rebajar permisos no impide que el shell interprete metacaracteres."
+      }
+    },
+    "sistemas-t06-e38": {
+      "section": "rutas-comandos",
+      "reasoning": "El apartado califica la lista blanca de defensa secundaria, complementaria a evitar el shell.",
+      "options": {
+        "a": "Correcta. Es la defensa secundaria y admite solo caracteres seguros.",
+        "b": "Incorrecta. La defensa principal es evitar el shell; la lista blanca la complementa.",
+        "c": "Incorrecta. La lista blanca valida caracteres, no cifra nada.",
+        "d": "Incorrecta. Bloquear una palabra concreta sería una lista negra, que se queda corta."
+      }
+    },
+    "sistemas-t06-e39": {
+      "section": "autorizacion-subidas",
+      "reasoning": "La tabla del apartado distingue autenticación y autorización por la pregunta que responde cada una.",
+      "options": {
+        "a": "Incorrecta. Está al revés: la autorización responde a qué puedes hacer.",
+        "b": "Incorrecta. La auditoría no responde a qué puedes hacer.",
+        "c": "Incorrecta. El registro (logs) no decide los permisos.",
+        "d": "Correcta. Autenticación = quién eres; autorización = qué puedes hacer."
+      }
+    },
+    "sistemas-t06-e40": {
+      "section": "autorizacion-subidas",
+      "reasoning": "El ejemplo del apartado muestra un usuario normal que escribe a mano la petición de borrado.",
+      "options": {
+        "a": "Correcta. La petición se fabrica a mano y el servidor no comprueba el rol.",
+        "b": "Incorrecta. El método HTTP no cambia que falte la comprobación de permisos.",
+        "c": "Incorrecta. Cifrar la cookie no añade la verificación de rol que falta.",
+        "d": "Incorrecta. El origen del menú no resuelve la ausencia de autorización en el servidor."
+      }
+    },
+    "sistemas-t06-e41": {
+      "section": "autorizacion-subidas",
+      "reasoning": "El tercer paso de los fail-safe defaults del apartado devuelve 403 Forbidden.",
+      "options": {
+        "a": "Incorrecta. 200 indicaría que la operación se ha realizado.",
+        "b": "Incorrecta. 400 se usa en el tema para tamaños fuera de límite, no para permisos.",
+        "c": "Correcta. 403 Forbidden indica acceso prohibido.",
+        "d": "Incorrecta. 500 es un error interno, no una denegación controlada."
+      }
+    },
+    "sistemas-t06-e42": {
+      "section": "autorizacion-subidas",
+      "reasoning": "El apartado indica que web.xml y anotaciones como @RolesAllowed centralizan la autorización.",
+      "options": {
+        "a": "Correcta. web.xml y @RolesAllowed o @ServletSecurity centralizan la autorización.",
+        "b": "Incorrecta. CSP controla el origen de scripts en el navegador.",
+        "c": "Incorrecta. El token anti-CSRF verifica el origen de la petición, no el rol.",
+        "d": "Incorrecta. OWASP Java Encoder codifica la salida."
+      }
+    },
+    "sistemas-t06-e43": {
+      "section": "autorizacion-subidas",
+      "reasoning": "El ejemplo del apartado muestra que el webshell subido da control remoto del servidor.",
+      "options": {
+        "a": "Incorrecta. El servidor ejecuta el .jsp, no se limita a servirlo como descarga.",
+        "b": "Incorrecta. El problema es que se ejecuta sin error.",
+        "c": "Correcta. El webshell permite lanzar comandos del sistema desde el navegador.",
+        "d": "Incorrecta. Robar cookies desde el navegador de la víctima se asocia al XSS."
+      }
+    },
+    "sistemas-t06-e44": {
+      "section": "autorizacion-subidas",
+      "reasoning": "La defensa por capas del apartado propone validar el contenido real con los magic bytes.",
+      "options": {
+        "a": "Incorrecta. Los magic bytes están en el contenido, no en el nombre.",
+        "b": "Correcta. Identifican el formato real a partir de los primeros bytes.",
+        "c": "Incorrecta. No son una firma añadida por el servidor.",
+        "d": "Incorrecta. Renombrar con UUID es otra capa distinta de la defensa."
+      }
+    },
+    "sistemas-t06-e45": {
+      "section": "xxe-ssrf",
+      "reasoning": "El ejemplo de explotación del apartado muestra cómo el parser por defecto divulga /etc/passwd.",
+      "options": {
+        "a": "Incorrecta. file:// es un recurso válido para una entidad externa.",
+        "b": "Incorrecta. Por defecto acepta DOCTYPE; hay que deshabilitarlo expresamente.",
+        "c": "Incorrecta. No interviene ningún cifrado en el ataque.",
+        "d": "Correcta. El parser resuelve la entidad externa y divulga el archivo."
+      }
+    },
+    "sistemas-t06-e46": {
+      "section": "xxe-ssrf",
+      "reasoning": "La solución XXE del apartado señala disallow-doctype-decl como la opción más fuerte.",
+      "options": {
+        "a": "Correcta. Deshabilitar las DTD es la opción más fuerte según el tema.",
+        "b": "Incorrecta. La extensión .xml no dice nada sobre las entidades del contenido.",
+        "c": "Incorrecta. Las expresiones regulares se citan como solución que no resuelve nada.",
+        "d": "Incorrecta. Confiar en usuarios autenticados no impide la explotación."
+      }
+    },
+    "sistemas-t06-e47": {
+      "section": "xxe-ssrf",
+      "reasoning": "El ejemplo de SSRF del apartado usa 169.254.169.254 para acceder a los metadatos de la nube.",
+      "options": {
+        "a": "Incorrecta. Las cookies de otros usuarios se roban con XSS, no así.",
+        "b": "Correcta. Esa dirección sirve los metadatos de la instancia en la nube.",
+        "c": "Incorrecta. Capturar teclas no es el riesgo típico de SSRF.",
+        "d": "Incorrecta. El certificado TLS no se obtiene de esa dirección interna."
+      }
+    },
+    "sistemas-t06-e48": {
+      "section": "response-splitting",
+      "reasoning": "El apartado explica que CR/LF en una cabecera permite inyectar cabeceras o cuerpos nuevos (CWE-113).",
+      "options": {
+        "a": "Incorrecta. No hay consulta SQL; se manipulan cabeceras HTTP.",
+        "b": "Incorrecta. El XSS inyecta scripts en el cuerpo; aquí se cortan cabeceras con CR/LF.",
+        "c": "Correcta. Inyectar %0d%0a en una cabecera es HTTP response splitting.",
+        "d": "Incorrecta. CSRF fuerza peticiones con la cookie de la víctima, no inyecta cabeceras."
+      }
+    },
+    "sistemas-t06-e49": {
+      "section": "credenciales-recursos",
+      "reasoning": "El bloque de examen del apartado señala Base64 como trampa: disfraza el secreto sin sacarlo del código.",
+      "options": {
+        "a": "Incorrecta. Base64 sirve para cualquier dato; el problema no es el formato.",
+        "b": "Incorrecta. El rendimiento no es el problema de seguridad.",
+        "c": "Correcta. Se decodifica fácilmente y el secreto continúa en el código.",
+        "d": "Incorrecta. Base64 no obliga a publicar nada."
+      }
+    },
+    "sistemas-t06-e50": {
+      "section": "credenciales-recursos",
+      "reasoning": "El ejemplo del apartado contrapone el secreto escrito en el código con la lectura mediante System.getenv.",
+      "options": {
+        "a": "Incorrecta. Es justo el ejemplo malo: la contraseña escrita en el código.",
+        "b": "Incorrecta. Encode.forHtml codifica salida, no lee variables de entorno.",
+        "c": "Incorrecta. setString asigna un parámetro SQL, no lee el entorno.",
+        "d": "Correcta. System.getenv obtiene el secreto del entorno de ejecución."
+      }
     }
   }
 }

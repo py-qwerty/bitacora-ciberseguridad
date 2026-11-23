@@ -41,7 +41,11 @@ export function isValidSession(s,map) {
   return !!(s&&typeof s.id==='string'&&Array.isArray(s.ids)&&s.ids.length===EXAM_SIZE&&new Set(s.ids).size===EXAM_SIZE&&s.ids.every(id=>map.has(id))&&validTime(s.deadline)&&validTime(s.startedAt)&&s.deadline>=s.startedAt&&Array.isArray(s.flags)&&s.flags.every(id=>s.ids.includes(id))&&Number.isInteger(s.index)&&s.index>=0&&s.index<s.ids.length&&validAnswers(s.answers,s.ids,map)&&(!s.finishedAt||(validTime(s.finishedAt)&&s.finishedAt>=s.startedAt&&s.finishedAt<=s.deadline)));
 }
 export function topicQuestions(questions,topic){return questions.filter(q=>q.topic===topic).sort((a,b)=>a.test.localeCompare(b.test,'es',{numeric:true})||a.order-b.order||a.id.localeCompare(b.id));}
-export function baseQuestions(questions,topic){return topicQuestions(questions,topic).filter(q=>!q.fromClass&&!q.fromCampus);}
+export function baseQuestions(questions,topic){return topicQuestions(questions,topic).filter(q=>!q.fromClass&&!q.fromCampus&&!q.fromExtra);}
+// Ampliación: hasta 50 preguntas más por tema, en tests de 10 (bloques 6 a 10 de la app).
+export const EXTRA_BLOCK=10, EXTRA_MAX=50;
+export function extraQuestions(questions,topic){return topicQuestions(questions,topic).filter(q=>q.fromExtra);}
+export function extraBlocks(questions,topic){const list=extraQuestions(questions,topic);const out=[];for(let i=0;i<list.length;i+=EXTRA_BLOCK)out.push(list.slice(i,i+EXTRA_BLOCK));return out;}
 export function classQuestions(questions,topic){return topicQuestions(questions,topic).filter(q=>q.fromClass);}
 export function campusQuestions(bank,topic){const map=new Map(bank.questions.map(q=>[q.id,q]));return (bank.campus?.[topic]||[]).map(id=>map.get(id)).filter(Boolean);}
 export function practiceBlocks(questions,topic){
@@ -62,7 +66,7 @@ export function validateBank(data){
     if(!q||typeof q.id!=='string'||ids.has(q.id)||!topics.has(q.topic)||topics.get(q.topic).course!==q.course||typeof q.text!=='string'||!q.text.trim()||!Array.isArray(q.options)||q.options.length!==4||q.options.some((o,i)=>o?.key!=='abcd'[i]||typeof o.text!=='string'||!o.text.trim())||!q.options.some(o=>o.key===q.correct)||typeof q.explanation!=='string'||!q.explanation.trim()||!q.source||!['practice','temario-test','campus-confirmed','campus-reasoned'].includes(q.source.kind)||typeof q.source.title!=='string'||!q.source.title.trim()||typeof q.test!=='string'||!Number.isFinite(q.order))throw Error('Pregunta no válida');
     ids.add(q.id);
   }
-  for(const t of data.topics){const own=data.questions.filter(q=>q.topic===t.id);const extra=own.filter(q=>q.fromClass).length;const camp=own.filter(q=>q.fromCampus).length;if(own.length-extra-camp!==30||extra>10||camp>10)throw Error('Cada tema debe contener treinta preguntas y, como mucho, diez de clase y diez del campus.');}
+  for(const t of data.topics){const own=data.questions.filter(q=>q.topic===t.id);const extra=own.filter(q=>q.fromClass).length;const camp=own.filter(q=>q.fromCampus).length;const amp=own.filter(q=>q.fromExtra).length;if(own.length-extra-camp-amp!==30||extra>10||camp>10||amp>EXTRA_MAX)throw Error('Cada tema debe contener treinta preguntas y, como mucho, diez de clase, diez del campus y cincuenta de ampliación.');}
   if(data.campus!==undefined){if(!data.campus||typeof data.campus!=='object')throw Error('Test del campus no válido');for(const [t,list] of Object.entries(data.campus)){const topic=topics.get(Number(t));if(!topic||!Array.isArray(list)||!list.length||list.length>10||new Set(list).size!==list.length||list.some(id=>!ids.has(id)||data.questions.find(q=>q.id===id).course!==topic.course))throw Error('Test del campus no válido');}}
   return true;
 }

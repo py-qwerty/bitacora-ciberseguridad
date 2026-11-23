@@ -30,6 +30,8 @@ for (const [courseIndex, course] of courses.entries()) {
   // Test del campus: las preguntas del test de cada tema en el orden del campus. Las que ya están en el banco se
   // referencian por id; las nuevas se añaden con clave razonada a partir del temario (no confirmada por el campus).
   const campus = await load(`content/campus/${course.id}.json`).catch(() => ({ topics: [] }));
+  // Ampliación: hasta 50 preguntas más por tema, redactadas a partir del temario (tests «Ampliación 1–5»).
+  const extra = await load(`content/extra/${course.id}.json`).catch(() => ({ topics: [] }));
   for (let number = 1; number <= 10; number++) {
     const before = base.topics.find(t => t.number === number);
     const added = additions.topics.find(t => t.number === number);
@@ -78,6 +80,20 @@ for (const [courseIndex, course] of courses.entries()) {
       if (q.original_issue) source.adaptation = q.original_issue;
       questions.push({ id, course: course.id, topic: topic.id, test: fromCampus ? `Tema ${number} · Campus` : fromClass ? `Tema ${number} · Clase` : `Tema ${number}`, order: fromCampus ? 100 + campusPos : index + 1, ...(fromClass ? { fromClass: true } : {}), ...(fromCampus ? { fromCampus: true } : {}), text: norm(q.question), options: q.options.map((text, i) => ({ key: 'abcd'[i], text: norm(text) })), correct: 'abcd'[q.correct], explanation: body + (expansion ? ` Siglas y términos: ${expansion}` : ''), difficulty: q.difficulty || 'media', source, ...(Object.keys(terms).length ? { glossary: terms } : {}) });
     });
+    const ampl = extra.topics.find(t => t.number === number)?.questions || [];
+    if (ampl.length > 50) throw Error(`${course.id}/${number}: ${ampl.length} preguntas de ampliación, máximo 50`);
+    ampl.forEach((q, i) => {
+      const id = `${course.id}-t${String(number).padStart(2, '0')}-e${String(i + 1).padStart(2, '0')}`;
+      if (!Number.isInteger(q.correct) || q.correct < 0 || q.correct > 3 || q.options.length !== 4 || q.options.some(o => !norm(o))) throw Error(`Opciones inválidas ${id}`);
+      if (new Set(q.options.map(norm)).size !== 4) throw Error(`Opciones repetidas ${id}`);
+      if (unique.has(signature(q))) throw Error(`Pregunta duplicada ${id}`);
+      unique.add(signature(q));
+      const fullText = [q.question, ...q.options, q.explanation].join(' ');
+      const terms = Object.fromEntries(Object.entries(glossaryFor(course.id)).filter(([term]) => new RegExp(`(?<![A-Za-z0-9])${escapeRE(term)}(?![A-Za-z0-9])`).test(fullText)));
+      const body = norm(q.explanation).replace(/\*\*/g, '');
+      const expansion = Object.entries(terms).map(([key, value]) => `${key}: ${value}`).join(' ');
+      questions.push({ id, course: course.id, topic: topic.id, test: `Tema ${number} · Ampliación`, order: 200 + i, fromExtra: true, text: norm(q.question), options: q.options.map((text, k) => ({ key: 'abcd'[k], text: norm(text) })), correct: 'abcd'[q.correct], explanation: body + (expansion ? ` Siglas y términos: ${expansion}` : ''), difficulty: q.difficulty || 'media', source: { kind: 'practice', title: `Temario UNIR · Tema ${number}. ${topic.title}`, ...(Number.isInteger(q.source_page) && q.source_page > 0 ? { page: q.source_page } : {}) }, ...(Object.keys(terms).length ? { glossary: terms } : {}) });
+    });
     if (campusItems.length) {
       const own = new Set(questions.filter(q => q.course === course.id).map(q => q.id));
       campusTests[topic.id] = campusItems.filter(item => !item.skip).map(item => {
@@ -91,7 +107,7 @@ for (const [courseIndex, course] of courses.entries()) {
 }
 const bank = { version: '2026-11-23.1', title: 'Bitácora Ciber', context: 'Práctica personal a partir del material docente. Solo la categoría campus-confirmed incorpora corrección observada en el campus; las demás claves están razonadas para estudiar. Las preguntas del test del campus sin corrección observada (campus-reasoned) llevan una clave razonada con el temario. Los simulacros no reproducen reglas oficiales. Las referencias de versiones y normativa pertenecen al material citado.', courses, topics, campus: campusTests, questions };
 validateBank(bank);
-if (questions.filter(q => !q.fromClass && !q.fromCampus).length !== 1500) throw Error('Cobertura incompleta');
+if (questions.filter(q => !q.fromClass && !q.fromCampus && !q.fromExtra).length !== 1500) throw Error('Cobertura incompleta');
 if (questions.filter(q => q.source.kind === 'campus-confirmed').some(q => q.course !== 'sistemas' || q.topic !== 1)) throw Error('Confirmación campus fuera de su alcance');
 const json = JSON.stringify(bank, null, 2) + '\n';
 if (json.includes(homedir() + '/') || /"source_pdf"|mod\/quiz\/review\.php\?attempt=/i.test(json)) throw Error('Datos locales o personales inesperados en el banco');

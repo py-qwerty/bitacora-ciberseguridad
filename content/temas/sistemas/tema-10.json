@@ -1041,6 +1041,506 @@
         "c": "Incorrecta. Cifrar en reposo protege el almacenamiento, pero no comprueba qué ha entrado.",
         "d": "Correcta. En la ingesta hay que autenticar el origen y validar los datos recibidos."
       }
+    },
+    "sistemas-t10-e01": {
+      "section": "que-es-big-data",
+      "reasoning": "El apartado afirma que la seguridad no es distinta en sus objetivos, pero sí en su escala.",
+      "options": {
+        "a": "Correcta. Cambia la escala y la heterogeneidad del entorno.",
+        "b": "Incorrecta. Los objetivos son los mismos; cambia la escala.",
+        "c": "Incorrecta. Los datos no son necesariamente anónimos y la autenticación es esencial.",
+        "d": "Incorrecta. Los controles deben adaptarse y extenderse."
+      }
+    },
+    "sistemas-t10-e02": {
+      "section": "que-es-big-data",
+      "reasoning": "El apartado define el NIST Big Data Interoperability Framework y cita sus volúmenes 6 y 4.",
+      "options": {
+        "a": "Correcta. Son los volúmenes que usa el tema.",
+        "b": "Incorrecta. No son los volúmenes que cita el tema.",
+        "c": "Incorrecta. No son los volúmenes que cita el tema.",
+        "d": "Incorrecta. No son los volúmenes que cita el tema."
+      }
+    },
+    "sistemas-t10-e03": {
+      "section": "que-es-big-data",
+      "reasoning": "La lista de objetivos del apartado menciona Azure HDInsight como ejemplo.",
+      "options": {
+        "a": "Incorrecta. Key Vault custodia secretos y claves.",
+        "b": "Correcta. HDInsight es el ejemplo de arquitectura big data.",
+        "c": "Incorrecta. Entra ID gestiona identidades.",
+        "d": "Incorrecta. Resource Manager es la capa de administración de Azure."
+      }
+    },
+    "sistemas-t10-e04": {
+      "section": "cinco-v",
+      "reasoning": "La tabla de las 5 V del apartado asocia la velocidad con la necesidad de baja latencia.",
+      "options": {
+        "a": "Incorrecta. Eso corresponde al volumen.",
+        "b": "Correcta. La velocidad exige controles de baja latencia.",
+        "c": "Incorrecta. Eso corresponde a la veracidad.",
+        "d": "Incorrecta. Eso corresponde al valor."
+      }
+    },
+    "sistemas-t10-e05": {
+      "section": "cinco-v",
+      "reasoning": "El apartado define los datos estructurados, semiestructurados y no estructurados.",
+      "options": {
+        "a": "Incorrecta. Estructurado es lo que encaja en filas y columnas.",
+        "b": "Incorrecta. No estructurado es un correo, una foto o un vídeo.",
+        "c": "Correcta. JSON tiene etiquetas sin esquema fijo.",
+        "d": "Incorrecta. No es una categoría de la clasificación del tema."
+      }
+    },
+    "sistemas-t10-e06": {
+      "section": "cinco-v",
+      "reasoning": "La tabla de las 5 V del apartado asocia la veracidad con la integridad.",
+      "options": {
+        "a": "Incorrecta. El volumen dificulta la revisión manual.",
+        "b": "Incorrecta. La variedad exige controles para muchos formatos.",
+        "c": "Incorrecta. La velocidad exige baja latencia.",
+        "d": "Correcta. Veracidad = confianza en la corrección de los datos."
+      }
+    },
+    "sistemas-t10-e07": {
+      "section": "cinco-v",
+      "reasoning": "El apartado explica que la diversidad de sistemas dificulta la protección end-to-end.",
+      "options": {
+        "a": "Incorrecta. Los datos sí se pueden cifrar en tránsito y en reposo.",
+        "b": "Correcta. Muchos sistemas son muchos vectores de ataque.",
+        "c": "Incorrecta. Las API sí pueden autenticarse.",
+        "d": "Incorrecta. Al contrario: la auditoría es una medida recomendada."
+      }
+    },
+    "sistemas-t10-e08": {
+      "section": "modelo-nist",
+      "reasoning": "La tabla de roles del NBDRA pone este ejemplo para el consumidor de datos.",
+      "options": {
+        "a": "Incorrecta. El data provider aporta los datos que entran.",
+        "b": "Incorrecta. El orquestador define requisitos y coordina.",
+        "c": "Correcta. El consumidor usa los resultados.",
+        "d": "Incorrecta. El proveedor de aplicaciones ejecuta los análisis."
+      }
+    },
+    "sistemas-t10-e09": {
+      "section": "modelo-nist",
+      "reasoning": "La tabla de roles del NBDRA describe al orquestador del sistema.",
+      "options": {
+        "a": "Correcta. El orquestador define requisitos y coordina.",
+        "b": "Incorrecta. El proveedor de datos aporta los datos.",
+        "c": "Incorrecta. La plataforma aporta la infraestructura subyacente.",
+        "d": "Incorrecta. El consumidor usa los resultados."
+      }
+    },
+    "sistemas-t10-e10": {
+      "section": "modelo-nist",
+      "reasoning": "El apartado describe los dos tejidos transversales del NBDRA.",
+      "options": {
+        "a": "Incorrecta. Son funciones, no tejidos.",
+        "b": "Incorrecta. Son funciones, no tejidos.",
+        "c": "Correcta. Son los dos tejidos transversales.",
+        "d": "Incorrecta. Son funciones, no tejidos."
+      }
+    },
+    "sistemas-t10-e11": {
+      "section": "modelo-nist",
+      "reasoning": "El apartado explica la taxonomía del volumen 4 del NIST.",
+      "options": {
+        "a": "Incorrecta. No es el criterio del NIST.",
+        "b": "Incorrecta. No es el criterio del NIST.",
+        "c": "Correcta. Se clasifican por la dimensión de seguridad afectada.",
+        "d": "Incorrecta. No es el criterio del NIST."
+      }
+    },
+    "sistemas-t10-e12": {
+      "section": "modelo-nist",
+      "reasoning": "La lista de lo que cubre el tejido de seguridad y privacidad no incluye costes.",
+      "options": {
+        "a": "Incorrecta. Sí forma parte del tejido.",
+        "b": "Incorrecta. El linaje sí figura.",
+        "c": "Incorrecta. La anonimización sí figura.",
+        "d": "Correcta. La optimización de costes no es parte del tejido de seguridad."
+      }
+    },
+    "sistemas-t10-e13": {
+      "section": "amenazas",
+      "reasoning": "La tabla de amenazas del apartado define la suplantación.",
+      "options": {
+        "a": "Incorrecta. La intercepción se coloca en medio de una comunicación.",
+        "b": "Incorrecta. La denegación de servicio satura recursos.",
+        "c": "Incorrecta. La exposición de metadatos revela nombres de tablas o columnas.",
+        "d": "Correcta. Un componente falso que se hace pasar por legítimo es spoofing."
+      }
+    },
+    "sistemas-t10-e14": {
+      "section": "amenazas",
+      "reasoning": "El apartado define los metadatos con este ejemplo de exposición.",
+      "options": {
+        "a": "Correcta. El nombre de la columna ya revela información sensible.",
+        "b": "Incorrecta. No hay código malicioso en el ejemplo.",
+        "c": "Incorrecta. No tiene que ver con el cifrado de la red.",
+        "d": "Incorrecta. No hay saturación de recursos."
+      }
+    },
+    "sistemas-t10-e15": {
+      "section": "amenazas",
+      "reasoning": "El apartado define el ataque de inferencia con el ejemplo del código postal.",
+      "options": {
+        "a": "Incorrecta. Eso es una denegación de servicio.",
+        "b": "Correcta. Combina datos accesibles para deducir lo protegido.",
+        "c": "Incorrecta. Eso es un ataque de replay.",
+        "d": "Incorrecta. Eso es un ataque de downgrade."
+      }
+    },
+    "sistemas-t10-e16": {
+      "section": "amenazas",
+      "reasoning": "La tabla de amenazas y la definición de UDF del apartado describen este riesgo.",
+      "options": {
+        "a": "Incorrecta. No eliminan el linaje.",
+        "b": "Incorrecta. Las UDF no impiden el cifrado de columnas.",
+        "c": "Incorrecta. No tienen relación con Kerberos.",
+        "d": "Correcta. El código sin revisar puede ser malicioso."
+      }
+    },
+    "sistemas-t10-e17": {
+      "section": "amenazas",
+      "reasoning": "El apartado resume el diagnóstico común de la literatura citada.",
+      "options": {
+        "a": "Correcta. Falta una visión global de extremo a extremo.",
+        "b": "Incorrecta. El diagnóstico es el contrario.",
+        "c": "Incorrecta. No es lo que señala la literatura citada.",
+        "d": "Incorrecta. El tema no habla de ese límite."
+      }
+    },
+    "sistemas-t10-e18": {
+      "section": "autenticacion",
+      "reasoning": "El apartado de autenticación recomienda combinar SSO y TLS mutuo.",
+      "options": {
+        "a": "Incorrecta. La IP privada es una comprobación superficial.",
+        "b": "Incorrecta. Las contraseñas compartidas son una mala práctica.",
+        "c": "Correcta. SSO más TLS mutuo es la combinación recomendada.",
+        "d": "Incorrecta. No es la combinación que propone el tema."
+      }
+    },
+    "sistemas-t10-e19": {
+      "section": "autenticacion",
+      "reasoning": "El apartado define TLS y TLS mutuo.",
+      "options": {
+        "a": "Correcta. Los dos extremos se autentican con certificado.",
+        "b": "Incorrecta. El TLS mutuo sigue cifrando.",
+        "c": "Incorrecta. Ambos presentan certificado, no solo el cliente.",
+        "d": "Incorrecta. Se basa en certificados."
+      }
+    },
+    "sistemas-t10-e20": {
+      "section": "autenticacion",
+      "reasoning": "El apartado define Kerberos como protocolo basado en tiques.",
+      "options": {
+        "a": "Incorrecta. La IP no autentica a nadie.",
+        "b": "Correcta. Los tiques del servidor central demuestran la identidad.",
+        "c": "Incorrecta. No se envía la contraseña ni su hash a cada servicio.",
+        "d": "Incorrecta. No usa cookies de navegador."
+      }
+    },
+    "sistemas-t10-e21": {
+      "section": "autenticacion",
+      "reasoning": "La lista de controles de autenticación del apartado incluye tokens con vida limitada.",
+      "options": {
+        "a": "Incorrecta. No sustituyen al cifrado.",
+        "b": "Incorrecta. El motivo no es el espacio.",
+        "c": "Correcta. Limitan el daño porque caducan y se revocan.",
+        "d": "Incorrecta. La autenticación no sustituye a la autorización."
+      }
+    },
+    "sistemas-t10-e22": {
+      "section": "autenticacion",
+      "reasoning": "La lista de controles de autenticación del apartado define la autenticación federada.",
+      "options": {
+        "a": "Correcta. Es la confianza mutua entre organizaciones.",
+        "b": "Incorrecta. Una autenticación aislada no confía en otras organizaciones.",
+        "c": "Incorrecta. La IP no es un mecanismo de autenticación robusto.",
+        "d": "Incorrecta. No hay anonimato: hay identidades validadas."
+      }
+    },
+    "sistemas-t10-e23": {
+      "section": "autorizacion",
+      "reasoning": "La tabla de modelos de control de acceso del apartado pone este ejemplo para ABAC.",
+      "options": {
+        "a": "Incorrecta. RBAC decide solo por el rol del usuario.",
+        "b": "Correcta. Combina atributos del usuario y del contexto.",
+        "c": "Incorrecta. No es uno de los modelos del tema.",
+        "d": "Incorrecta. No es uno de los modelos del tema."
+      }
+    },
+    "sistemas-t10-e24": {
+      "section": "autorizacion",
+      "reasoning": "La lista de lo que debe ofrecer la autorización en big data define la separación de funciones.",
+      "options": {
+        "a": "Incorrecta. No se refiere a la distribución física de funciones.",
+        "b": "Correcta. Separa quién autoriza de quién ejecuta.",
+        "c": "Incorrecta. No trata del almacenamiento.",
+        "d": "Incorrecta. No es lo que define el tema."
+      }
+    },
+    "sistemas-t10-e25": {
+      "section": "autorizacion",
+      "reasoning": "El apartado define IAM y lo distingue de los modelos concretos.",
+      "options": {
+        "a": "Incorrecta. Eso es Kerberos.",
+        "b": "Incorrecta. Eso es ABAC.",
+        "c": "Correcta. Es un término general de gestión de identidades.",
+        "d": "Incorrecta. Eso es un KMS."
+      }
+    },
+    "sistemas-t10-e26": {
+      "section": "autorizacion",
+      "reasoning": "El apartado define el control de acceso granular hasta el nivel de celda.",
+      "options": {
+        "a": "Correcta. Puede llegar al nivel de celda.",
+        "b": "Incorrecta. Se queda muy corto respecto a lo que describe el tema.",
+        "c": "Incorrecta. Autorizar al clúster entero no es granular.",
+        "d": "Incorrecta. Puede ir más allá de la tabla: columna, fila y celda."
+      }
+    },
+    "sistemas-t10-e27": {
+      "section": "autorizacion",
+      "reasoning": "El ejemplo de ventas sin datos personales del apartado explica este error.",
+      "options": {
+        "a": "Incorrecta. El RGPD no prohíbe ocultar columnas.",
+        "b": "Incorrecta. Ocultar en pantalla no borra nada.",
+        "c": "Incorrecta. Las ventas por provincia seguirían visibles.",
+        "d": "Correcta. El control debe estar en el motor, no en la interfaz."
+      }
+    },
+    "sistemas-t10-e28": {
+      "section": "cifrado-y-claves",
+      "reasoning": "El apartado define el ataque de downgrade al hablar del cifrado en tránsito.",
+      "options": {
+        "a": "Incorrecta. Eso es un ataque de inferencia.",
+        "b": "Incorrecta. Eso es un ataque de replay.",
+        "c": "Incorrecta. Eso es una denegación de servicio.",
+        "d": "Correcta. Rebaja el cifrado negociado para romperlo."
+      }
+    },
+    "sistemas-t10-e29": {
+      "section": "cifrado-y-claves",
+      "reasoning": "El apartado define las zonas de cifrado como cifrado transparente en reposo.",
+      "options": {
+        "a": "Incorrecta. Protegen datos en reposo, no en tránsito.",
+        "b": "Incorrecta. Precisamente no hay que cambiar la aplicación.",
+        "c": "Correcta. El cifrado es transparente para la aplicación.",
+        "d": "Incorrecta. Las claves se guardan separadas, en un gestor de claves."
+      }
+    },
+    "sistemas-t10-e30": {
+      "section": "cifrado-y-claves",
+      "reasoning": "La lista de técnicas avanzadas de cifrado del apartado define el homomórfico parcial.",
+      "options": {
+        "a": "Incorrecta. Eso es el cifrado de columna.",
+        "b": "Incorrecta. Eso es ABE, cifrado basado en atributos.",
+        "c": "Incorrecta. Eso es el cifrado híbrido.",
+        "d": "Correcta. Opera sobre datos cifrados sin descifrarlos."
+      }
+    },
+    "sistemas-t10-e31": {
+      "section": "cifrado-y-claves",
+      "reasoning": "La lista de técnicas avanzadas del apartado define el cifrado híbrido.",
+      "options": {
+        "a": "Incorrecta. No es la definición del tema.",
+        "b": "Incorrecta. Tránsito y reposo son momentos, no algoritmos combinados.",
+        "c": "Incorrecta. No es lo que define el tema como híbrido.",
+        "d": "Correcta. Une la rapidez del simétrico con la comodidad del asimétrico."
+      }
+    },
+    "sistemas-t10-e32": {
+      "section": "cifrado-y-claves",
+      "reasoning": "El apartado define el KMS y aclara lo que no hace.",
+      "options": {
+        "a": "Incorrecta. Crear claves sí es función del KMS.",
+        "b": "Incorrecta. Rotarlas también lo es.",
+        "c": "Correcta. Autenticar usuarios no es tarea del KMS.",
+        "d": "Incorrecta. Controlar quién usa cada clave también lo es."
+      }
+    },
+    "sistemas-t10-e33": {
+      "section": "cifrado-y-claves",
+      "reasoning": "La lista de gestión segura de claves del apartado empieza por separarlas de los datos.",
+      "options": {
+        "a": "Incorrecta. Compartirlas viola el acceso controlado.",
+        "b": "Incorrecta. Junto a los datos, quien roba unos roba las otras.",
+        "c": "Incorrecta. Las claves en el código quedan expuestas.",
+        "d": "Correcta. Separadas de los datos que protegen."
+      }
+    },
+    "sistemas-t10-e34": {
+      "section": "auditoria-privacidad-gobernanza",
+      "reasoning": "El apartado indica que los registros solo los consulta el auditor.",
+      "options": {
+        "a": "Incorrecta. Los proveedores externos no deben verlos.",
+        "b": "Incorrecta. Estar autenticado no basta para ver los registros.",
+        "c": "Incorrecta. Los analistas no deben acceder a la auditoría.",
+        "d": "Correcta. Solo el auditor accede a los registros."
+      }
+    },
+    "sistemas-t10-e35": {
+      "section": "auditoria-privacidad-gobernanza",
+      "reasoning": "El párrafo de privacidad del apartado pone este ejemplo de generalización.",
+      "options": {
+        "a": "Correcta. Convertir un valor en un rango es generalizar.",
+        "b": "Incorrecta. La supresión borraría el campo.",
+        "c": "Incorrecta. La perturbación añade ruido al valor.",
+        "d": "Incorrecta. Cifrar oculta el valor, no lo convierte en un rango."
+      }
+    },
+    "sistemas-t10-e36": {
+      "section": "auditoria-privacidad-gobernanza",
+      "reasoning": "El apartado define la privacidad diferencial.",
+      "options": {
+        "a": "Correcta. Ruido controlado que protege a cada individuo.",
+        "b": "Incorrecta. No borra filas; añade ruido.",
+        "c": "Incorrecta. No se basa en cifrar resultados.",
+        "d": "Incorrecta. Precisamente permite consultas agregadas."
+      }
+    },
+    "sistemas-t10-e37": {
+      "section": "auditoria-privacidad-gobernanza",
+      "reasoning": "El apartado define el GDPR/RGPD y su naturaleza de reglamento.",
+      "options": {
+        "a": "Incorrecta. El tema no establece ese umbral.",
+        "b": "Correcta. Su aplicación es directa en toda la UE.",
+        "c": "Incorrecta. Eso describe a una directiva.",
+        "d": "Incorrecta. No se limita a datos fuera de la UE."
+      }
+    },
+    "sistemas-t10-e38": {
+      "section": "auditoria-privacidad-gobernanza",
+      "reasoning": "El párrafo de gobernanza del apartado cita estos tres marcos.",
+      "options": {
+        "a": "Incorrecta. No son marcos de gobierno de un SGSI.",
+        "b": "Correcta. Son los marcos de control del tema.",
+        "c": "Incorrecta. Son mecanismos de autenticación e identidad.",
+        "d": "Incorrecta. Son componentes de Hadoop."
+      }
+    },
+    "sistemas-t10-e39": {
+      "section": "nist-en-la-practica",
+      "reasoning": "La tabla de controles por fase del apartado describe la fase de presentación.",
+      "options": {
+        "a": "Correcta. Son los controles de la fase de presentación.",
+        "b": "Incorrecta. Eso corresponde a la ingesta.",
+        "c": "Incorrecta. Eso corresponde al procesamiento y análisis.",
+        "d": "Incorrecta. Eso corresponde al almacenamiento."
+      }
+    },
+    "sistemas-t10-e40": {
+      "section": "nist-en-la-practica",
+      "reasoning": "La tabla de controles por fase del apartado describe la fase de procesamiento.",
+      "options": {
+        "a": "Incorrecta. Filtrar lo que se muestra es de la presentación.",
+        "b": "Incorrecta. Autenticar al proveedor es de la ingesta.",
+        "c": "Correcta. Revisar que los trabajos no lleven código malicioso es de esta fase.",
+        "d": "Incorrecta. Validar lo recibido es de la ingesta."
+      }
+    },
+    "sistemas-t10-e41": {
+      "section": "nist-en-la-practica",
+      "reasoning": "La lista de desafíos del apartado define los ataques de canal lateral.",
+      "options": {
+        "a": "Incorrecta. Eso es aprovechar un componente externo inseguro.",
+        "b": "Correcta. Se basan en efectos físicos observables.",
+        "c": "Incorrecta. El phishing no es un canal lateral.",
+        "d": "Incorrecta. Eso es una denegación de servicio."
+      }
+    },
+    "sistemas-t10-e42": {
+      "section": "nist-en-la-practica",
+      "reasoning": "La lista de buenas prácticas del apartado incluye las pruebas de escalabilidad.",
+      "options": {
+        "a": "Incorrecta. Las pruebas de penetración también se recomiendan.",
+        "b": "Incorrecta. El tema pide equilibrar, nunca eliminar controles necesarios.",
+        "c": "Incorrecta. En big data los datos se reparten entre muchos nodos.",
+        "d": "Correcta. Evitan que la seguridad se convierta en cuello de botella."
+      }
+    },
+    "sistemas-t10-e43": {
+      "section": "arquitectura-hadoop",
+      "reasoning": "La tabla de piezas de Hadoop del apartado define NameNode y DataNode.",
+      "options": {
+        "a": "Incorrecta. El DataNode guarda los bloques físicamente.",
+        "b": "Correcta. El NameNode lleva el catálogo de bloques.",
+        "c": "Incorrecta. El ResourceManager es el servicio principal de YARN.",
+        "d": "Incorrecta. ZooKeeper se encarga de la coordinación."
+      }
+    },
+    "sistemas-t10-e44": {
+      "section": "arquitectura-hadoop",
+      "reasoning": "La tabla de piezas de Hadoop del apartado describe Hive como consultas tipo SQL.",
+      "options": {
+        "a": "Incorrecta. Pig es un lenguaje de scripts.",
+        "b": "Correcta. Hive ofrece consultas tipo SQL.",
+        "c": "Incorrecta. YARN gestiona recursos.",
+        "d": "Incorrecta. Kafka gestiona flujos de eventos."
+      }
+    },
+    "sistemas-t10-e45": {
+      "section": "arquitectura-hadoop",
+      "reasoning": "La tabla de piezas de Hadoop del apartado explica las fases de MapReduce.",
+      "options": {
+        "a": "Correcta. Map procesa en paralelo en cada nodo.",
+        "b": "Incorrecta. Juntar resultados es la fase reduce.",
+        "c": "Incorrecta. Repartir recursos es tarea de YARN.",
+        "d": "Incorrecta. Replicar bloques es tarea de HDFS."
+      }
+    },
+    "sistemas-t10-e46": {
+      "section": "arquitectura-hadoop",
+      "reasoning": "La lista de amenazas de Hadoop del apartado define el ataque de replay.",
+      "options": {
+        "a": "Incorrecta. Eso es un ataque de diccionario.",
+        "b": "Correcta. Reutiliza un mensaje de autenticación capturado.",
+        "c": "Incorrecta. Eso es ejecución de código arbitrario.",
+        "d": "Incorrecta. Eso describe nodos maliciosos colaborando."
+      }
+    },
+    "sistemas-t10-e47": {
+      "section": "seguridad-hadoop",
+      "reasoning": "El párrafo de autenticación del apartado define los keytabs.",
+      "options": {
+        "a": "Incorrecta. Las ACL son otro mecanismo de autorización.",
+        "b": "Incorrecta. No son tablas de Hive.",
+        "c": "Correcta. Permiten a los servicios autenticarse de forma automática.",
+        "d": "Incorrecta. Los registros de Ranger son otra cosa."
+      }
+    },
+    "sistemas-t10-e48": {
+      "section": "seguridad-hadoop",
+      "reasoning": "La tabla de herramientas de seguridad de Hadoop del apartado define Knox.",
+      "options": {
+        "a": "Incorrecta. Rhino añade cifrado, autorización y auditoría a Hadoop.",
+        "b": "Incorrecta. Atlas gestiona metadatos y linaje.",
+        "c": "Incorrecta. Sentry es una alternativa a Ranger para autorización.",
+        "d": "Correcta. Knox es la puerta única de entrada REST."
+      }
+    },
+    "sistemas-t10-e49": {
+      "section": "seguridad-hadoop",
+      "reasoning": "La tabla de herramientas de seguridad de Hadoop describe Atlas.",
+      "options": {
+        "a": "Incorrecta. Ranger administra políticas de acceso.",
+        "b": "Incorrecta. Knox es la pasarela REST.",
+        "c": "Correcta. Atlas se ocupa de metadatos y linaje.",
+        "d": "Incorrecta. El KMS gestiona claves."
+      }
+    },
+    "sistemas-t10-e50": {
+      "section": "seguridad-hadoop",
+      "reasoning": "La tabla de implementaciones reales del apartado recoge esta limitación de Amazon EMR.",
+      "options": {
+        "a": "Correcta. Es la limitación que señala el tema.",
+        "b": "Incorrecta. EMR sí ofrece cifrado en tránsito.",
+        "c": "Incorrecta. EMR sí usa KMS.",
+        "d": "Incorrecta. El tema no menciona tal limitación."
+      }
     }
   }
 }

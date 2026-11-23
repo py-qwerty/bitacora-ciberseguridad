@@ -1397,6 +1397,506 @@
         "c": "Incorrecta. «Patrón de respuesta» no es un término del temario. La respuesta a incidentes es otra cosa: el conjunto de acciones para contener y recuperarse de un ataque.",
         "d": "Incorrecta. Sí hay una opción correcta, la A, que reproduce la definición del temario."
       }
+    },
+    "forense-t06-e01": {
+      "section": "esquema-general",
+      "reasoning": "El apartado indica que el pre-análisis termina en la verificación de firmas y que el análisis empieza con las palabras clave.",
+      "options": {
+        "a": "Correcta. Es el paso 6, con el que se cierra el pre-análisis.",
+        "b": "Incorrecta. Es el primer paso de la fase de análisis, no el último del pre-análisis.",
+        "c": "Incorrecta. El hash es el paso 5 del pre-análisis; después aún queda verificar firmas.",
+        "d": "Incorrecta. El sistema operativo es el segundo paso de la fase de análisis."
+      }
+    },
+    "forense-t06-e02": {
+      "section": "esquema-general",
+      "reasoning": "El apartado da esta regla para no perderse: preparar o filtrar es pre-análisis; buscar respuestas es análisis.",
+      "options": {
+        "a": "Incorrecta. La automatización no define la fase; de hecho, el pre-análisis es lo más automatizado.",
+        "b": "Correcta. Es la regla que da el tema para ubicar cada paso.",
+        "c": "Incorrecta. No existe fase de post-análisis en este esquema.",
+        "d": "Incorrecta. Recurrir a un especialista ocurre al final del análisis, con los archivos relevantes."
+      }
+    },
+    "forense-t06-e03": {
+      "section": "esquema-general",
+      "reasoning": "En el apartado, el profesor sitúa el origen del esquema en el NIST y la ISO/IEC 27037.",
+      "options": {
+        "a": "Incorrecta. Son normas jurídicas, no las referencias técnicas del esquema.",
+        "b": "Incorrecta. La ISO/IEC 27001 trata la gestión de la seguridad, no el esquema forense del tema.",
+        "c": "Correcta. Son las dos referencias que cita el profesor.",
+        "d": "Incorrecta. Son instrumentos legales de ciberdelincuencia y ciberseguridad, no la base del esquema."
+      }
+    },
+    "forense-t06-e04": {
+      "section": "esquema-general",
+      "reasoning": "El apartado insiste en que el esquema y las herramientas son orientativos y pueden cambiar según el caso.",
+      "options": {
+        "a": "Incorrecta. El tema dice expresamente que no es una receta cerrada.",
+        "b": "Incorrecta. Las herramientas citadas son ejemplos orientativos, no obligatorias.",
+        "c": "Incorrecta. El esquema solo tiene dos fases; no hay post-análisis.",
+        "d": "Correcta. Es la idea con la que el tema presenta el esquema."
+      }
+    },
+    "forense-t06-e05": {
+      "section": "esquema-general",
+      "reasoning": "La tabla del apartado describe el pre-análisis como casi igual en todos los casos y muy automatizable.",
+      "options": {
+        "a": "Correcta. Así lo describe la tabla de las dos fases.",
+        "b": "Incorrecta. Eso describe la fase de análisis, no el pre-análisis.",
+        "c": "Incorrecta. Las suites forenses automatizan buena parte del pre-análisis; mirar byte a byte es cosa del pasado.",
+        "d": "Incorrecta. El pre-análisis va primero; responder a las preguntas es el análisis."
+      }
+    },
+    "forense-t06-e06": {
+      "section": "recuperar-borrados",
+      "reasoning": "El apartado explica que el borrado marca el archivo en el índice y que los datos permanecen hasta ser sobrescritos.",
+      "options": {
+        "a": "Incorrecta. El borrado normal no sobrescribe los datos; por eso existe la recuperación.",
+        "b": "Correcta. Es lo que describe el tema y lo que hace posible recuperar.",
+        "c": "Incorrecta. Borrar no cifra ni traslada el archivo a ninguna zona oculta.",
+        "d": "Incorrecta. El contenido sigue en el disco; los metadatos internos viajan dentro de él."
+      }
+    },
+    "forense-t06-e07": {
+      "section": "recuperar-borrados",
+      "reasoning": "El apartado señala el matiz de los SSD: el disco puede borrar por su cuenta los bloques y entonces no se recuperan.",
+      "options": {
+        "a": "Incorrecta. Un SSD también se organiza con un sistema de ficheros como NTFS o ext4.",
+        "b": "Incorrecta. El tema no dice que se cifren; dice que el disco puede borrarlos físicamente.",
+        "c": "Correcta. Es el matiz que el tema explica sobre los SSD y la orden TRIM.",
+        "d": "Incorrecta. El tema no limita los SSD a la recuperación en bruto."
+      }
+    },
+    "forense-t06-e08": {
+      "section": "recuperar-borrados",
+      "reasoning": "La tabla del apartado asocia cada tipo de recuperación con sus herramientas.",
+      "options": {
+        "a": "Incorrecta. Son las herramientas de la recuperación básica, que lee el índice.",
+        "b": "Incorrecta. Sirven para eventos y registro de Windows, en el análisis del sistema operativo.",
+        "c": "Incorrecta. Sirven para localizar elementos cifrados.",
+        "d": "Correcta. Son las que el tema asocia a la recuperación en bruto."
+      }
+    },
+    "forense-t06-e09": {
+      "section": "recuperar-borrados",
+      "reasoning": "El apartado distingue metadatos externos e internos y aclara que el carving solo conserva los internos.",
+      "options": {
+        "a": "Correcta. Los EXIF son metadatos internos y viajan dentro de la foto.",
+        "b": "Incorrecta. El propietario es un dato externo del sistema de ficheros y se pierde.",
+        "c": "Incorrecta. La ruta es un dato externo y la recuperación en bruto no la conserva.",
+        "d": "Incorrecta. Las fechas del sistema de ficheros son externas y se pierden."
+      }
+    },
+    "forense-t06-e10": {
+      "section": "cifrados",
+      "reasoning": "El apartado define el cifrado y distingue entre archivo cifrado y volumen cifrado.",
+      "options": {
+        "a": "Incorrecta. Ambos requieren una clave para poder leerse.",
+        "b": "Correcta. Es la distinción que hace el tema.",
+        "c": "Incorrecta. Un volumen cifrado puede ser una partición de un disco físico.",
+        "d": "Incorrecta. El tema los distingue claramente por su alcance."
+      }
+    },
+    "forense-t06-e11": {
+      "section": "cifrados",
+      "reasoning": "El apartado nombra estas dos herramientas para escanear la evidencia en busca de cifrados.",
+      "options": {
+        "a": "Incorrecta. Son herramientas de registro de Windows y de adquisición o recuperación básica.",
+        "b": "Incorrecta. Sirven para historial de Chrome y eventos del sistema.",
+        "c": "Correcta. Son las dos que cita el tema para detectar cifrados.",
+        "d": "Incorrecta. Ese módulo detecta discrepancias entre extensión y firma."
+      }
+    },
+    "forense-t06-e12": {
+      "section": "cifrados",
+      "reasoning": "El apartado justifica su lugar en el pre-análisis por el tiempo que puede llevar descifrar.",
+      "options": {
+        "a": "Incorrecta. Cifrar sugiere interés, pero no prueba nada ilícito.",
+        "b": "Incorrecta. Los cifrados suelen ser de gran interés; no se descartan.",
+        "c": "Incorrecta. El tema no menciona ninguna obligación legal de ese tipo.",
+        "d": "Correcta. Es la razón que da el tema."
+      }
+    },
+    "forense-t06-e13": {
+      "section": "cifrados",
+      "reasoning": "En la lista de la fuerza bruta en la práctica se menciona la tarjeta gráfica como acelerador.",
+      "options": {
+        "a": "Correcta. Es lo que se comentó en clase.",
+        "b": "Incorrecta. El antivirus no tiene relación con la velocidad de la fuerza bruta.",
+        "c": "Incorrecta. Se trabaja sobre la copia para no alterar el original.",
+        "d": "Incorrecta. Los ZIP antiguos pueden ser vulnerables, pero convertir archivos no acelera nada."
+      }
+    },
+    "forense-t06-e14": {
+      "section": "descomprimir",
+      "reasoning": "El apartado define elemento embebido con estos ejemplos.",
+      "options": {
+        "a": "Incorrecta. Eso sería un archivo comprimido cifrado, no un elemento embebido.",
+        "b": "Correcta. Es la definición del tema.",
+        "c": "Incorrecta. Eso es un resto de borrado, propio de la recuperación en bruto.",
+        "d": "Incorrecta. Un disco virtual pertenece a una máquina virtual, no es un elemento embebido."
+      }
+    },
+    "forense-t06-e15": {
+      "section": "descomprimir",
+      "reasoning": "El apartado destaca que DOCX, XLSX y PPTX son ZIP y por eso hay que abrirlos por dentro.",
+      "options": {
+        "a": "Incorrecta. No son texto plano: son contenedores ZIP.",
+        "b": "Incorrecta. No están cifrados por defecto.",
+        "c": "Correcta. Es el dato que subraya el tema.",
+        "d": "Incorrecta. VHDX es un formato de disco virtual, no de documento."
+      }
+    },
+    "forense-t06-e16": {
+      "section": "descomprimir",
+      "reasoning": "El apartado explica que descomprimir y extraer permite aplicar a esos archivos hashes, firmas y palabras clave.",
+      "options": {
+        "a": "Incorrecta. No descomprimir no duplica hashes; simplemente oculta el contenido.",
+        "b": "Incorrecta. Un comprimido no se marca como malware por el hecho de serlo.",
+        "c": "Incorrecta. Nada se descomprime solo; es un paso que hace el perito.",
+        "d": "Correcta. Es la consecuencia que señala el tema."
+      }
+    },
+    "forense-t06-e17": {
+      "section": "maquinas-virtuales",
+      "reasoning": "El apartado explica que la MV es un ordenador completo dentro de otro y puede guardar evidencias propias.",
+      "options": {
+        "a": "Correcta. Es la razón que da el tema para buscarlas.",
+        "b": "Incorrecta. La MV no copia el anfitrión; tiene su propio contenido.",
+        "c": "Incorrecta. El tema no dice eso; el anfitrión sigue registrando su propia actividad.",
+        "d": "Incorrecta. Una MV no es un volumen cifrado; su disco virtual se puede analizar."
+      }
+    },
+    "forense-t06-e18": {
+      "section": "maquinas-virtuales",
+      "reasoning": "La tabla de formatos del apartado asocia cada disco virtual con su programa.",
+      "options": {
+        "a": "Incorrecta. VDI es VirtualBox Disk Image.",
+        "b": "Correcta. VMDK es el formato de VMware.",
+        "c": "Incorrecta. VHDX es de Windows e Hyper-V.",
+        "d": "Incorrecta. QCOW es de QEMU; Parallels usa HDD."
+      }
+    },
+    "forense-t06-e19": {
+      "section": "maquinas-virtuales",
+      "reasoning": "El apartado señala el gran tamaño de los discos virtuales como pista para encontrarlos.",
+      "options": {
+        "a": "Incorrecta. Es al revés: son de los archivos más grandes.",
+        "b": "Incorrecta. El tema dice que casi nadie les cambia la extensión.",
+        "c": "Correcta. Es la pista práctica que da el tema.",
+        "d": "Incorrecta. No hay relación con los temporales del navegador."
+      }
+    },
+    "forense-t06-e20": {
+      "section": "maquinas-virtuales",
+      "reasoning": "El tercer paso para localizar MV es buscar sus discos por extensión o por firma; si se cambió la extensión, manda la firma.",
+      "options": {
+        "a": "Incorrecta. La extensión se cambió a .dat, así que no aparecería.",
+        "b": "Incorrecta. El historial web no indica dónde está un disco virtual.",
+        "c": "Incorrecta. La NSRL sirve para descartar software comercial conocido, no para hallar discos de usuario.",
+        "d": "Correcta. La firma no cambia al renombrar el archivo."
+      }
+    },
+    "forense-t06-e21": {
+      "section": "hash-filtrado",
+      "reasoning": "El apartado define la NSRL como base de hashes de software comercial para apartar lo conocido.",
+      "options": {
+        "a": "Correcta. Es la función que le atribuye el tema.",
+        "b": "Incorrecta. Eso lo hacen las bases de hashes de contenido ilegal, a menudo cerradas.",
+        "c": "Incorrecta. Eso es la recuperación en bruto (carving).",
+        "d": "Incorrecta. Eso es el hash borroso."
+      }
+    },
+    "forense-t06-e22": {
+      "section": "hash-filtrado",
+      "reasoning": "La definición de hash del apartado aclara que no se puede invertir.",
+      "options": {
+        "a": "Incorrecta. Sí es una propiedad: un bit distinto cambia todo el hash.",
+        "b": "Correcta. El hash no se puede invertir; por eso es la opción que no es propiedad.",
+        "c": "Incorrecta. Sí es propiedad: la salida tiene longitud fija.",
+        "d": "Incorrecta. Sí es propiedad: por eso un archivo renombrado conserva su hash."
+      }
+    },
+    "forense-t06-e23": {
+      "section": "hash-filtrado",
+      "reasoning": "La lista del apartado enumera contra qué se comparan los hashes para filtrar.",
+      "options": {
+        "a": "Incorrecta. Sí figura: sirve para apartar lo conocido.",
+        "b": "Incorrecta. Sí figura: permite localizarlas sin verlas una a una.",
+        "c": "Correcta. No es una de las listas de filtrado del tema.",
+        "d": "Incorrecta. Sí figura: por ejemplo, los documentos robados en una fuga."
+      }
+    },
+    "forense-t06-e24": {
+      "section": "hash-filtrado",
+      "reasoning": "El ejemplo del apartado advierte que conocido no siempre es irrelevante.",
+      "options": {
+        "a": "Incorrecta. El tema advierte justo contra esa conclusión.",
+        "b": "Incorrecta. Coincidir con una versión legítima no lo convierte en malware.",
+        "c": "Incorrecta. La evidencia nunca se altera ni se borra.",
+        "d": "Correcta. Es la lección del ejemplo de Discord."
+      }
+    },
+    "forense-t06-e25": {
+      "section": "hash-filtrado",
+      "reasoning": "El apartado menciona que estas bases pueden ser cerradas, lo que junto a la sensibilidad del hash motiva el hash borroso.",
+      "options": {
+        "a": "Correcta. Es lo que dice el tema.",
+        "b": "Incorrecta. La NSRL contiene software comercial, no contenido ilegal, y estas bases no son públicas.",
+        "c": "Incorrecta. El tema no limita estas bases a un algoritmo concreto.",
+        "d": "Incorrecta. La verificación de firmas no genera bases de hashes."
+      }
+    },
+    "forense-t06-e26": {
+      "section": "hash-borroso",
+      "reasoning": "La definición del apartado describe el troceado y la comparación de fragmentos.",
+      "options": {
+        "a": "Incorrecta. Un único hash, por largo que sea, sigue siendo un hash convencional.",
+        "b": "Incorrecta. Comparar fechas del índice no mide la similitud del contenido.",
+        "c": "Correcta. Es el mecanismo que describe el tema.",
+        "d": "Incorrecta. Eso es la verificación de firmas."
+      }
+    },
+    "forense-t06-e27": {
+      "section": "hash-borroso",
+      "reasoning": "El apartado menciona varios algoritmos de hash borroso según lo que se busque.",
+      "options": {
+        "a": "Incorrecta. SHA-256 es un hash convencional.",
+        "b": "Incorrecta. MD5 es un hash convencional.",
+        "c": "Incorrecta. ssdeep es borroso, pero el tema lo cita para archivos en general.",
+        "d": "Correcta. dHash es el que el tema asocia a imágenes."
+      }
+    },
+    "forense-t06-e28": {
+      "section": "hash-borroso",
+      "reasoning": "El caso práctico del apartado presenta ese 92 % como pista que debe confirmarse.",
+      "options": {
+        "a": "Correcta. Es la lectura que hace el tema del resultado.",
+        "b": "Incorrecta. El resultado orienta, pero no prueba por sí solo la autoría.",
+        "c": "Incorrecta. El porcentaje mide trozos coincidentes, no texto copiado literalmente.",
+        "d": "Incorrecta. Descartar la relación por no coincidir el hash convencional es la trampa."
+      }
+    },
+    "forense-t06-e29": {
+      "section": "firmas",
+      "reasoning": "El apartado define la firma como los primeros bytes que indican de verdad el tipo de archivo.",
+      "options": {
+        "a": "Incorrecta. Eso es la extensión, que se cambia renombrando.",
+        "b": "Correcta. Es la definición del tema.",
+        "c": "Incorrecta. El hash resume todo el contenido; no identifica el formato.",
+        "d": "Incorrecta. No tiene que ver con la firma electrónica de una persona."
+      }
+    },
+    "forense-t06-e30": {
+      "section": "firmas",
+      "reasoning": "La tabla de firmas del apartado indica que «PK» es ZIP y también DOCX, XLSX y PPTX.",
+      "options": {
+        "a": "Incorrecta. JPEG empieza por FF D8 FF.",
+        "b": "Incorrecta. %PDF es la firma de los PDF, no de los DOCX.",
+        "c": "Correcta. Es coherente: un DOCX es un ZIP.",
+        "d": "Incorrecta. La firma de VMDK es 4B 44 4D («KDM»)."
+      }
+    },
+    "forense-t06-e31": {
+      "section": "firmas",
+      "reasoning": "El apartado pone este módulo como ejemplo de verificación automática de firmas.",
+      "options": {
+        "a": "Incorrecta. Es un módulo de Autopsy para archivos de interés.",
+        "b": "Incorrecta. Es una herramienta para localizar volúmenes cifrados.",
+        "c": "Incorrecta. Es una herramienta de NirSoft para el historial de Chrome.",
+        "d": "Correcta. Es el módulo de OSForensics que cita el tema."
+      }
+    },
+    "forense-t06-e32": {
+      "section": "firmas",
+      "reasoning": "El apartado define la esteganografía y la contrasta con el cifrado.",
+      "options": {
+        "a": "Correcta. Es la diferencia que marca el tema.",
+        "b": "Incorrecta. La diferencia no está en la longitud de las contraseñas.",
+        "c": "Incorrecta. Ocultar datos en imágenes inocentes es esteganografía, no cifrado.",
+        "d": "Incorrecta. El ejemplo del tema es precisamente una imagen."
+      }
+    },
+    "forense-t06-e33": {
+      "section": "palabras-clave",
+      "reasoning": "El apartado explica en qué se diferencia del buscador del sistema.",
+      "options": {
+        "a": "Incorrecta. Precisamente busca dentro del contenido, no solo en nombres.",
+        "b": "Correcta. Es la diferencia que destaca el tema.",
+        "c": "Incorrecta. Lo encontrado siempre se revisa.",
+        "d": "Incorrecta. Se hace en la fase de análisis, con la evidencia ya preparada."
+      }
+    },
+    "forense-t06-e34": {
+      "section": "palabras-clave",
+      "reasoning": "La tabla de metacaracteres del apartado define el «+».",
+      "options": {
+        "a": "Incorrecta. Un número exacto se indica con {n}.",
+        "b": "Incorrecta. El límite de palabra es \\b.",
+        "c": "Correcta. Es su significado en la tabla del tema.",
+        "d": "Incorrecta. El inicio de línea es ^."
+      }
+    },
+    "forense-t06-e35": {
+      "section": "palabras-clave",
+      "reasoning": "Aplicando la tabla de metacaracteres: {3} exige tres dígitos exactos y + una o más mayúsculas.",
+      "options": {
+        "a": "Incorrecta. Solo tiene dos dígitos.",
+        "b": "Incorrecta. Las letras están en minúscula y [A-Z] exige mayúsculas.",
+        "c": "Incorrecta. El orden está invertido: primero deben ir los dígitos.",
+        "d": "Correcta. Tres dígitos y después varias mayúsculas."
+      }
+    },
+    "forense-t06-e36": {
+      "section": "palabras-clave",
+      "reasoning": "El apartado define la búsqueda ciega con este ejemplo de términos.",
+      "options": {
+        "a": "Correcta. Es la definición del tema.",
+        "b": "Incorrecta. No tiene que ver con trabajar solo sobre hashes.",
+        "c": "Incorrecta. No se define por la ausencia de metacaracteres.",
+        "d": "Incorrecta. No es una búsqueda automática sin el perito; la diseña él."
+      }
+    },
+    "forense-t06-e37": {
+      "section": "palabras-clave",
+      "reasoning": "El apartado define los archivos de interés a partir de reglas reutilizables.",
+      "options": {
+        "a": "Incorrecta. Eso sería una búsqueda de palabras clave, no una regla de características.",
+        "b": "Correcta. Es la definición del tema.",
+        "c": "Incorrecta. Lo que marca la NSRL se suele apartar, no seleccionar.",
+        "d": "Incorrecta. La recuperación en bruto no define qué es un archivo de interés."
+      }
+    },
+    "forense-t06-e38": {
+      "section": "palabras-clave",
+      "reasoning": "El apartado pone estos dos ejemplos de uso de las reglas por fechas.",
+      "options": {
+        "a": "Incorrecta. El tema no cita esos delitos para las reglas.",
+        "b": "Incorrecta. El tema no menciona estos casos al hablar de reglas.",
+        "c": "Correcta. Son los dos casos que destaca el tema.",
+        "d": "Incorrecta. La clonación de tarjetas aparece en el análisis del sistema operativo, no aquí."
+      }
+    },
+    "forense-t06-e39": {
+      "section": "palabras-clave",
+      "reasoning": "El apartado pone este ejemplo para mostrar que el análisis es la fase más personalizada.",
+      "options": {
+        "a": "Incorrecta. El P2P interesa en casos de compartición de archivos, no en este.",
+        "b": "Incorrecta. El correo es lo prioritario en una revelación de secretos.",
+        "c": "Incorrecta. Los monederos aparecen como ejemplo de regla, no de falsificación.",
+        "d": "Correcta. Es lo que el tema prioriza en una falsificación."
+      }
+    },
+    "forense-t06-e40": {
+      "section": "sistema-operativo",
+      "reasoning": "El apartado cita estas dos herramientas para registro y eventos.",
+      "options": {
+        "a": "Correcta. Es la que el tema asocia a los eventos.",
+        "b": "Incorrecta. Extrae el historial de Chrome, en comunicaciones.",
+        "c": "Incorrecta. Es de recuperación en bruto.",
+        "d": "Incorrecta. Sirve para localizar elementos cifrados."
+      }
+    },
+    "forense-t06-e41": {
+      "section": "sistema-operativo",
+      "reasoning": "El apartado usa este ejemplo para mostrar que el perito describe lo observado sin interpretar más allá.",
+      "options": {
+        "a": "Incorrecta. Atribuye una conducta que el dato no muestra.",
+        "b": "Correcta. Describe solo lo que se observa.",
+        "c": "Incorrecta. Supone una causa que el registro no acredita.",
+        "d": "Incorrecta. Estos hechos no son archivos, pero indican actividad real."
+      }
+    },
+    "forense-t06-e42": {
+      "section": "sistema-operativo",
+      "reasoning": "La tabla del apartado asigna a cada comprobación sus preguntas.",
+      "options": {
+        "a": "Incorrecta. Es la pregunta sobre nombre, versión y actualizaciones.",
+        "b": "Incorrecta. Es la pregunta de la comprobación de hardware.",
+        "c": "Correcta. Es la pregunta propia de los logs.",
+        "d": "Incorrecta. Corresponde a antivirus y análisis de seguridad."
+      }
+    },
+    "forense-t06-e43": {
+      "section": "sistema-operativo",
+      "reasoning": "El caso práctico del apartado relaciona software y hardware instalados con la posibilidad de cometer el hecho.",
+      "options": {
+        "a": "Incorrecta. Estar actualizado no indica capacidad para clonar tarjetas.",
+        "b": "Incorrecta. Tener cuentas con contraseña es normal y no relaciona el equipo con el hecho.",
+        "c": "Incorrecta. Las cookies son de comunicaciones y no permiten clonar tarjetas.",
+        "d": "Correcta. Es el software que hacía posible el hecho."
+      }
+    },
+    "forense-t06-e44": {
+      "section": "comunicaciones",
+      "reasoning": "El apartado marca este límite legal al analizar comunicaciones privadas.",
+      "options": {
+        "a": "Correcta. Es el derecho que cita el tema.",
+        "b": "Incorrecta. No es el derecho que el tema vincula al análisis de comunicaciones.",
+        "c": "Incorrecta. No es el límite que menciona el tema.",
+        "d": "Incorrecta. No guarda relación con leer comunicaciones privadas."
+      }
+    },
+    "forense-t06-e45": {
+      "section": "comunicaciones",
+      "reasoning": "El apartado menciona esta herramienta al hablar de navegadores.",
+      "options": {
+        "a": "Incorrecta. Sirve para los eventos del sistema.",
+        "b": "Correcta. Es la herramienta que cita el tema.",
+        "c": "Incorrecta. Sirve para el registro de Windows.",
+        "d": "Incorrecta. Es un módulo de Autopsy para archivos de interés."
+      }
+    },
+    "forense-t06-e46": {
+      "section": "comunicaciones",
+      "reasoning": "El apartado advierte de las órdenes de borrado remoto en apps como Google Drive u OneDrive.",
+      "options": {
+        "a": "Incorrecta. Las cookies no muestran órdenes de borrado en la nube.",
+        "b": "Incorrecta. La firma no informa de un borrado remoto.",
+        "c": "Correcta. Es lo que recomienda el tema.",
+        "d": "Incorrecta. La NSRL no tiene relación con un borrado remoto."
+      }
+    },
+    "forense-t06-e47": {
+      "section": "comunicaciones",
+      "reasoning": "La tabla del apartado enumera lo que se revisa en comunicaciones.",
+      "options": {
+        "a": "Incorrecta. Es el primer punto del análisis de comunicaciones.",
+        "b": "Incorrecta. Se revisan dentro de los navegadores.",
+        "c": "Incorrecta. Son «otros programas con acceso a Internet».",
+        "d": "Correcta. Pertenecen al análisis del sistema operativo."
+      }
+    },
+    "forense-t06-e48": {
+      "section": "archivos-relevantes",
+      "reasoning": "El apartado enumera estos archivos como objeto del paso 4 del análisis.",
+      "options": {
+        "a": "Correcta. Son los ejemplos que da el tema.",
+        "b": "Incorrecta. Son del análisis del sistema operativo.",
+        "c": "Incorrecta. Se localizan en el pre-análisis.",
+        "d": "Incorrecta. Son del análisis de comunicaciones."
+      }
+    },
+    "forense-t06-e49": {
+      "section": "archivos-relevantes",
+      "reasoning": "El apartado usa este ejemplo para marcar los límites del perito digital.",
+      "options": {
+        "a": "Incorrecta. Lo honesto, según el profesor, es derivarlo al especialista.",
+        "b": "Correcta. Es el reparto que propone el tema.",
+        "c": "Incorrecta. El hash borroso mide similitud, no el entorno de grabación.",
+        "d": "Incorrecta. La firma indica el formato, no dónde se grabó."
+      }
+    },
+    "forense-t06-e50": {
+      "section": "archivos-relevantes",
+      "reasoning": "El apartado define al perito y sus límites.",
+      "options": {
+        "a": "Incorrecta. El juez valora la prueba; no es el perito.",
+        "b": "Incorrecta. El fiscal acusa y dirige investigaciones; no es el perito.",
+        "c": "Correcta. Es la definición del tema.",
+        "d": "Incorrecta. Adquirir evidencias no define la figura del perito."
+      }
     }
   }
 }

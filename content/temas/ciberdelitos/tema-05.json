@@ -1120,6 +1120,506 @@
         "c": "Correcta. Con eIDAS, la firma avanzada basada en certificado reconocido (la antigua firma reconocida) pasa a llamarse **firma electrónica cualificada**.",
         "d": "Incorrecta. «Firma electrónica certificada» no es una categoría de eIDAS. Los niveles son firma simple, avanzada y cualificada."
       }
+    },
+    "ciberdelitos-t05-e01": {
+      "section": "normas",
+      "reasoning": "La historia en cuatro pasos del apartado sitúa cada norma en su momento.",
+      "options": {
+        "a": "Correcta. La Ley 59/2003 transpuso la directiva.",
+        "b": "Incorrecta. La Ley 6/2020 complementa eIDAS, no transpone la directiva.",
+        "c": "Incorrecta. Ese real decreto regula el DNI electrónico.",
+        "d": "Incorrecta. La LSSI transpone la directiva de comercio electrónico."
+      }
+    },
+    "ciberdelitos-t05-e02": {
+      "section": "normas",
+      "reasoning": "La historia en cuatro pasos y el apartado de eIDAS dan la fecha de aplicación.",
+      "options": {
+        "a": "Incorrecta. Esa es la fecha del reglamento, no la de su aplicación.",
+        "b": "Incorrecta. Esa es la fecha de la Ley 6/2020.",
+        "c": "Correcta. Se aplica desde el 1 de julio de 2016.",
+        "d": "Incorrecta. Marzo de 2006 es cuando llega el DNIe."
+      }
+    },
+    "ciberdelitos-t05-e03": {
+      "section": "normas",
+      "reasoning": "El cuarto paso de la historia del apartado indica que la Ley 6/2020 deroga del todo la Ley 59/2003.",
+      "options": {
+        "a": "Incorrecta. No sigue vigente.",
+        "b": "Correcta. La deroga por completo.",
+        "c": "Incorrecta. Una ley nacional no se convierte en reglamento europeo.",
+        "d": "Incorrecta. Los reglamentos europeos no transponen leyes nacionales."
+      }
+    },
+    "ciberdelitos-t05-e04": {
+      "section": "normas",
+      "reasoning": "La tabla de tipos de normas del apartado indica quién aprueba cada una.",
+      "options": {
+        "a": "Incorrecta. Parlamento y Consejo aprueban el reglamento base, no los de ejecución.",
+        "b": "Incorrecta. Las Cortes aprueban leyes españolas.",
+        "c": "Incorrecta. El Gobierno aprueba reales decretos españoles.",
+        "d": "Correcta. Los aprueba la Comisión Europea."
+      }
+    },
+    "ciberdelitos-t05-e05": {
+      "section": "firma-concepto",
+      "reasoning": "Los términos «firma electrónica» y «firma digital» del apartado explican su relación.",
+      "options": {
+        "a": "Correcta. La digital es un tipo de firma electrónica.",
+        "b": "Incorrecta. Invierte la relación.",
+        "c": "Incorrecta. Uno es jurídico y amplio; el otro, un mecanismo técnico.",
+        "d": "Incorrecta. Una imagen escaneada no es una firma digital."
+      }
+    },
+    "ciberdelitos-t05-e06": {
+      "section": "firma-concepto",
+      "reasoning": "El apartado destaca lo que no aparece en la tabla de garantías: la confidencialidad.",
+      "options": {
+        "a": "Incorrecta. La integridad sí la aporta.",
+        "b": "Correcta. Firmar no oculta el contenido.",
+        "c": "Incorrecta. La autenticidad de origen sí la aporta.",
+        "d": "Incorrecta. El no repudio sí lo aporta."
+      }
+    },
+    "ciberdelitos-t05-e07": {
+      "section": "firma-concepto",
+      "reasoning": "El caso práctico de Lucía del apartado explica qué hace y qué no hace la firma.",
+      "options": {
+        "a": "Incorrecta. La firma no oculta el contenido.",
+        "b": "Incorrecta. La firma permite detectar cualquier alteración.",
+        "c": "Incorrecta. Para leerlo no necesita ninguna clave: no está cifrado.",
+        "d": "Correcta. Puede leerlo, pero cualquier cambio se detecta."
+      }
+    },
+    "ciberdelitos-t05-e08": {
+      "section": "firma-concepto",
+      "reasoning": "El término «firma electrónica» del apartado recoge la definición del art. 3.1 de la Ley 59/2003.",
+      "options": {
+        "a": "Incorrecta. El concepto es mucho más amplio que la firma con DNIe.",
+        "b": "Incorrecta. Una imagen escaneada no es la definición legal.",
+        "c": "Correcta. Son datos electrónicos que sirven para identificar al firmante.",
+        "d": "Incorrecta. Un certificado no es una firma."
+      }
+    },
+    "ciberdelitos-t05-e09": {
+      "section": "clave-publica",
+      "reasoning": "Los pasos «Firmar y verificar» del apartado describen el proceso.",
+      "options": {
+        "a": "Correcta. Se firma la huella del documento.",
+        "b": "Incorrecta. En la práctica no se cifra el documento entero.",
+        "c": "Incorrecta. La clave del verificador no interviene al firmar.",
+        "d": "Incorrecta. El certificado del prestador no se cifra al firmar."
+      }
+    },
+    "ciberdelitos-t05-e10": {
+      "section": "clave-publica",
+      "reasoning": "Los pasos «Firmar y verificar» del apartado terminan con la comparación de resúmenes.",
+      "options": {
+        "a": "Incorrecta. El verificador nunca necesita la clave privada.",
+        "b": "Incorrecta. Eso sería cifrar un mensaje para él, no firmar.",
+        "c": "Incorrecta. Un certificado caducado impediría fiarse de la firma.",
+        "d": "Correcta. Si los resúmenes coinciden, la firma es válida."
+      }
+    },
+    "ciberdelitos-t05-e11": {
+      "section": "clave-publica",
+      "reasoning": "El apartado subraya que la clave privada nunca sale del firmante.",
+      "options": {
+        "a": "Incorrecta. Enviarla destruiría la seguridad de la firma.",
+        "b": "Correcta. Solo la conoce y controla su dueño.",
+        "c": "Incorrecta. El certificado contiene la clave pública, nunca la privada.",
+        "d": "Incorrecta. El verificador no la recibe en ningún momento."
+      }
+    },
+    "ciberdelitos-t05-e12": {
+      "section": "certificados",
+      "reasoning": "El término «Certificado digital o electrónico» del apartado detalla su contenido.",
+      "options": {
+        "a": "Incorrecta. El certificado nunca contiene la clave privada.",
+        "b": "Incorrecta. Contiene mucho más, y no una firma escaneada.",
+        "c": "Correcta. Clave pública, titular, emisor y validez.",
+        "d": "Incorrecta. La clave privada del prestador nunca se publica."
+      }
+    },
+    "ciberdelitos-t05-e13": {
+      "section": "certificados",
+      "reasoning": "El término «Prestador de servicios de confianza» y la tabla de cambio de nombres lo indican.",
+      "options": {
+        "a": "Correcta. Era el PSC.",
+        "b": "Incorrecta. La TSA es la autoridad de sellado de tiempo.",
+        "c": "Incorrecta. ENAC acredita a las entidades evaluadoras.",
+        "d": "Incorrecta. El tercero de confianza era otra figura, hoy desaparecida."
+      }
+    },
+    "ciberdelitos-t05-e14": {
+      "section": "certificados",
+      "reasoning": "El término «Prestador de servicios de confianza» del apartado distingue cualificado y no cualificado.",
+      "options": {
+        "a": "Incorrecta. Hay prestadores públicos y privados.",
+        "b": "Incorrecta. Todos deben verificar la identidad.",
+        "c": "Incorrecta. No tiene que ver con dónde opera.",
+        "d": "Correcta. La condición la concede el organismo de supervisión."
+      }
+    },
+    "ciberdelitos-t05-e15": {
+      "section": "certificados",
+      "reasoning": "El caso real del apartado de certificados lo cita.",
+      "options": {
+        "a": "Incorrecta. El CCN-CERT es un equipo de respuesta a incidentes.",
+        "b": "Correcta. Es CERES, de la FNMT-RCM.",
+        "c": "Incorrecta. INCIBE no es el prestador citado.",
+        "d": "Incorrecta. La AEPD no emite certificados."
+      }
+    },
+    "ciberdelitos-t05-e16": {
+      "section": "tipos-firma",
+      "reasoning": "La lista de requisitos de la firma avanzada (art. 26 eIDAS) del apartado.",
+      "options": {
+        "a": "Incorrecta. El certificado cualificado es requisito de la cualificada.",
+        "b": "Incorrecta. El dispositivo cualificado también es de la cualificada.",
+        "c": "Correcta. El control exclusivo es requisito de la avanzada.",
+        "d": "Incorrecta. La AEPD no valida firmas."
+      }
+    },
+    "ciberdelitos-t05-e17": {
+      "section": "tipos-firma",
+      "reasoning": "La tabla «Cambio de nombres con eIDAS» del apartado.",
+      "options": {
+        "a": "Correcta. Ahora es certificado cualificado.",
+        "b": "Incorrecta. «Avanzado» se refiere a un tipo de firma, no al certificado.",
+        "c": "Incorrecta. Ese nombre no existe en eIDAS.",
+        "d": "Incorrecta. No es el nuevo nombre del certificado reconocido."
+      }
+    },
+    "ciberdelitos-t05-e18": {
+      "section": "tipos-firma",
+      "reasoning": "El ejemplo «Tres firmas, tres niveles» del apartado.",
+      "options": {
+        "a": "Incorrecta. La simple sería, por ejemplo, el nombre al final de un correo.",
+        "b": "Incorrecta. El DNIe sí usa certificado, y cualificado.",
+        "c": "Incorrecta. «Digitalizada» no es un nivel de eIDAS.",
+        "d": "Correcta. Es una firma cualificada."
+      }
+    },
+    "ciberdelitos-t05-e19": {
+      "section": "tipos-firma",
+      "reasoning": "El ejemplo «Tres firmas, tres niveles» lo clasifica como firma simple.",
+      "options": {
+        "a": "Incorrecta. La avanzada exige control exclusivo y detectar cambios.",
+        "b": "Correcta. Es una firma simple.",
+        "c": "Incorrecta. La cualificada exige certificado y dispositivo cualificados.",
+        "d": "Incorrecta. «Reconocida» era el antiguo nombre de la cualificada."
+      }
+    },
+    "ciberdelitos-t05-e20": {
+      "section": "tipos-firma",
+      "reasoning": "El término «Firma electrónica cualificada (QES)» del apartado define el QSCD.",
+      "options": {
+        "a": "Incorrecta. Ese es otro tipo de certificado.",
+        "b": "Incorrecta. Eso es una CRL.",
+        "c": "Correcta. Es el dispositivo cualificado de creación de firma.",
+        "d": "Incorrecta. Eso es OCSP."
+      }
+    },
+    "ciberdelitos-t05-e21": {
+      "section": "actores-validez",
+      "reasoning": "La tabla de caducidad y revocación del apartado distingue ambas situaciones.",
+      "options": {
+        "a": "Correcta. Caducidad por fecha; revocación anticipada.",
+        "b": "Incorrecta. Invierte los dos conceptos.",
+        "c": "Incorrecta. La revocación la hace el prestador.",
+        "d": "Incorrecta. Son causas de extinción distintas."
+      }
+    },
+    "ciberdelitos-t05-e22": {
+      "section": "actores-validez",
+      "reasoning": "Los términos CRL y OCSP del apartado los comparan con la lista de tarjetas robadas y la llamada al banco.",
+      "options": {
+        "a": "Incorrecta. Invierte el funcionamiento de cada una.",
+        "b": "Incorrecta. Ninguna de las dos emite ni revoca certificados.",
+        "c": "Incorrecta. Ambas sirven para cualquier certificado.",
+        "d": "Correcta. Lista completa frente a consulta individual."
+      }
+    },
+    "ciberdelitos-t05-e23": {
+      "section": "actores-validez",
+      "reasoning": "La tabla «Tipos de certificado (según la clase)» del apartado.",
+      "options": {
+        "a": "Incorrecta. El sello garantiza origen e integridad de lo que emite una entidad.",
+        "b": "Correcta. Es el certificado de autenticación de sitio web.",
+        "c": "Incorrecta. El de firma es para personas físicas que firman.",
+        "d": "Incorrecta. La DPC es un documento del prestador, no un certificado."
+      }
+    },
+    "ciberdelitos-t05-e24": {
+      "section": "actores-validez",
+      "reasoning": "La tabla de actores de la firma electrónica describe al prestador.",
+      "options": {
+        "a": "Incorrecta. El Supremo no autoriza prestadores.",
+        "b": "Incorrecta. La inscripción mercantil no basta.",
+        "c": "Correcta. Hace falta la evaluación de conformidad de una entidad acreditada por ENAC.",
+        "d": "Incorrecta. La ISO 27001 no es el requisito."
+      }
+    },
+    "ciberdelitos-t05-e25": {
+      "section": "actores-validez",
+      "reasoning": "El párrafo tras la tabla de tipos de certificado lo explica.",
+      "options": {
+        "a": "Correcta. Todos tienen validez, con distinto nivel de seguridad.",
+        "b": "Incorrecta. Los no cualificados también tienen validez.",
+        "c": "Incorrecta. No depende de que el emisor sea público.",
+        "d": "Incorrecta. No depende del tipo de titular."
+      }
+    },
+    "ciberdelitos-t05-e26": {
+      "section": "valor-juridico",
+      "reasoning": "El apartado recuerda el precedente de la LSSI antes de eIDAS.",
+      "options": {
+        "a": "Incorrecta. No carecían de valor; el juez las valoraba.",
+        "b": "Correcta. Quedaban a la libre apreciación judicial.",
+        "c": "Incorrecta. Solo la reconocida (hoy cualificada) equivalía a la manuscrita.",
+        "d": "Incorrecta. No se exigía notario."
+      }
+    },
+    "ciberdelitos-t05-e27": {
+      "section": "valor-juridico",
+      "reasoning": "El bloque de examen del apartado señala esta trampa de exceso.",
+      "options": {
+        "a": "Incorrecta. Es verdadera: equivale a la manuscrita.",
+        "b": "Incorrecta. Es verdadera: art. 25.3 eIDAS.",
+        "c": "Incorrecta. Es verdadera: el juez la acepta y quien la niegue debe probarlo.",
+        "d": "Correcta. Es falsa: no garantiza que el contenido sea verdad."
+      }
+    },
+    "ciberdelitos-t05-e28": {
+      "section": "valor-juridico",
+      "reasoning": "La tabla de valor probatorio según el tipo de firma lo explica.",
+      "options": {
+        "a": "Incorrecta. El firmante no tiene que probar nada de entrada.",
+        "b": "Incorrecta. La DPC no es la prueba que se exige aquí.",
+        "c": "Correcta. La carga es de quien la impugna.",
+        "d": "Incorrecta. El juez no tiene que probar la firma de oficio."
+      }
+    },
+    "ciberdelitos-t05-e29": {
+      "section": "eidas",
+      "reasoning": "El apartado de eIDAS desarrolla la sigla.",
+      "options": {
+        "a": "Correcta. Es el significado de eIDAS.",
+        "b": "Incorrecta. No es el desarrollo de la sigla.",
+        "c": "Incorrecta. No es el desarrollo de la sigla.",
+        "d": "Incorrecta. No es el desarrollo de la sigla."
+      }
+    },
+    "ciberdelitos-t05-e30": {
+      "section": "eidas",
+      "reasoning": "El término «Reconocimiento mutuo (art. 6)» del apartado.",
+      "options": {
+        "a": "Incorrecta. Hay condiciones de notificación y nivel.",
+        "b": "Incorrecta. El nivel debe ser sustancial o alto.",
+        "c": "Incorrecta. eIDAS impone el reconocimiento mutuo.",
+        "d": "Correcta. Notificado y con nivel sustancial o alto suficiente."
+      }
+    },
+    "ciberdelitos-t05-e31": {
+      "section": "eidas",
+      "reasoning": "El término sobre el reconocimiento mutuo menciona los tres niveles.",
+      "options": {
+        "a": "Incorrecta. Esos nombres corresponden a otro marco de certificación.",
+        "b": "Correcta. Bajo, sustancial y alto.",
+        "c": "Incorrecta. Básica, media y alta son las categorías del ENS.",
+        "d": "Incorrecta. Esos son los niveles de firma electrónica."
+      }
+    },
+    "ciberdelitos-t05-e32": {
+      "section": "eidas",
+      "reasoning": "El apartado de eIDAS resume el art. 19.",
+      "options": {
+        "a": "Incorrecta. No se limita a los cualificados.",
+        "b": "Incorrecta. No depende de la titularidad.",
+        "c": "Correcta. Obliga a todos los prestadores.",
+        "d": "Incorrecta. La obligación es de los prestadores."
+      }
+    },
+    "ciberdelitos-t05-e33": {
+      "section": "eidas",
+      "reasoning": "El término «Lista de confianza (Trusted List)» del apartado.",
+      "options": {
+        "a": "Correcta. Distingue servicio por servicio.",
+        "b": "Incorrecta. No basta el nombre: se detallan los servicios.",
+        "c": "Incorrecta. No registra firmas de usuarios.",
+        "d": "Incorrecta. Nunca contiene claves privadas."
+      }
+    },
+    "ciberdelitos-t05-e34": {
+      "section": "eidas-2-cartera",
+      "reasoning": "El apartado sobre la actualización de 2024 recoge esta explicación de la profesora.",
+      "options": {
+        "a": "Incorrecta. La firma cualificada sigue existiendo.",
+        "b": "Incorrecta. El tema no habla de sustituir el DNIe.",
+        "c": "Incorrecta. La Ley 6/2020 es anterior y española.",
+        "d": "Correcta. La cartera europea es el motivo principal."
+      }
+    },
+    "ciberdelitos-t05-e35": {
+      "section": "eidas-2-cartera",
+      "reasoning": "La lista de características de la cartera del apartado.",
+      "options": {
+        "a": "Incorrecta. No hay un emisor europeo único.",
+        "b": "Correcta. La emite cada Estado.",
+        "c": "Incorrecta. Los bancos pueden aceptarla, pero no la emiten.",
+        "d": "Incorrecta. ENISA no emite carteras."
+      }
+    },
+    "ciberdelitos-t05-e36": {
+      "section": "eidas-2-cartera",
+      "reasoning": "La lista de características de la cartera indica que su uso es gratuito.",
+      "options": {
+        "a": "Incorrecta. Es una característica real.",
+        "b": "Incorrecta. Es una característica real.",
+        "c": "Correcta. Su uso es gratuito.",
+        "d": "Incorrecta. Es una característica real."
+      }
+    },
+    "ciberdelitos-t05-e37": {
+      "section": "ley-6-2020",
+      "reasoning": "La tabla de novedades principales de la Ley 6/2020.",
+      "options": {
+        "a": "Correcta. Es la presunción de validez ligada a la lista de confianza.",
+        "b": "Incorrecta. La presunción admite prueba en contrario.",
+        "c": "Incorrecta. Es justo lo contrario de una presunción de validez.",
+        "d": "Incorrecta. Hay muchos prestadores además de la FNMT."
+      }
+    },
+    "ciberdelitos-t05-e38": {
+      "section": "ley-6-2020",
+      "reasoning": "La tabla de novedades de la Ley 6/2020 recoge esta desaparición.",
+      "options": {
+        "a": "Incorrecta. Los prestadores cualificados siguen existiendo.",
+        "b": "Incorrecta. El sellado de tiempo es un servicio cualificado nuevo.",
+        "c": "Incorrecta. El certificado cualificado sigue existiendo.",
+        "d": "Correcta. Desaparece el tercero de confianza."
+      }
+    },
+    "ciberdelitos-t05-e39": {
+      "section": "ley-6-2020",
+      "reasoning": "La tabla de novedades de la Ley 6/2020 enumera los nuevos servicios.",
+      "options": {
+        "a": "Incorrecta. Los certificados de firma de personas jurídicas desaparecen.",
+        "b": "Correcta. Es uno de los nuevos servicios cualificados.",
+        "c": "Incorrecta. El tercero de confianza desaparece.",
+        "d": "Incorrecta. «Reconocida» es el nombre antiguo de la cualificada."
+      }
+    },
+    "ciberdelitos-t05-e40": {
+      "section": "ley-6-2020",
+      "reasoning": "El término «Sello electrónico» del apartado.",
+      "options": {
+        "a": "Incorrecta. El sello sí garantiza el origen.",
+        "b": "Incorrecta. El sello sí garantiza la integridad.",
+        "c": "Correcta. No expresa la voluntad de una persona concreta.",
+        "d": "Incorrecta. Identifica a la entidad que emite el documento."
+      }
+    },
+    "ciberdelitos-t05-e41": {
+      "section": "obligaciones-prestadores",
+      "reasoning": "La lista «Quién presta y quién controla (según la clase)» lo indica.",
+      "options": {
+        "a": "Incorrecta. La cifra es mayor.",
+        "b": "Incorrecta. Esa cifra no es la que dio la profesora.",
+        "c": "Incorrecta. Esa cifra no aparece en este tema.",
+        "d": "Correcta. Hasta 300.000 euros."
+      }
+    },
+    "ciberdelitos-t05-e42": {
+      "section": "obligaciones-prestadores",
+      "reasoning": "El párrafo «Sobre el ministerio» del apartado aclara el nombre.",
+      "options": {
+        "a": "Incorrecta. El tema avisa de que ese nombre no es el que cita la ley.",
+        "b": "Correcta. Es el ministerio que nombra la Ley 6/2020.",
+        "c": "Incorrecta. Interior no es el ministerio supervisor.",
+        "d": "Incorrecta. Exteriores aparece como trampa en las brechas."
+      }
+    },
+    "ciberdelitos-t05-e43": {
+      "section": "obligaciones-prestadores",
+      "reasoning": "La lista «Quién presta y quién controla» del apartado.",
+      "options": {
+        "a": "Correcta. Son los ejemplos que dio la clase.",
+        "b": "Incorrecta. Hay prestadores públicos y privados españoles.",
+        "c": "Incorrecta. Ni la AEPD ni el CCN son prestadores de confianza.",
+        "d": "Incorrecta. No se limitan a los bancos."
+      }
+    },
+    "ciberdelitos-t05-e44": {
+      "section": "otras-normas",
+      "reasoning": "La tabla de normativa relacionada del apartado.",
+      "options": {
+        "a": "Incorrecta. El DNIe se regula por el RD 1553/2005 y sus reformas.",
+        "b": "Incorrecta. No regulan la firma de empresas.",
+        "c": "Correcta. Son el ENS y el ENI.",
+        "d": "Incorrecta. Las listas de confianza se concretan en actos de ejecución de la Comisión."
+      }
+    },
+    "ciberdelitos-t05-e45": {
+      "section": "otras-normas",
+      "reasoning": "El párrafo sobre Colombia del apartado recoge esta definición.",
+      "options": {
+        "a": "Incorrecta. No es una imagen escaneada.",
+        "b": "Incorrecta. No se define como certificado.",
+        "c": "Incorrecta. Eso sería, en todo caso, una firma simple.",
+        "d": "Correcta. Valor numérico que acredita clave e integridad."
+      }
+    },
+    "ciberdelitos-t05-e46": {
+      "section": "otras-normas",
+      "reasoning": "La tabla de normativa relacionada indica la norma del DNIe.",
+      "options": {
+        "a": "Incorrecta. La LSSI regula el comercio electrónico.",
+        "b": "Correcta. Es el RD 1553/2005 y sus reformas.",
+        "c": "Incorrecta. eIDAS es el marco europeo general.",
+        "d": "Incorrecta. Esa ley trata la conservación de datos de tráfico."
+      }
+    },
+    "ciberdelitos-t05-e47": {
+      "section": "dnie",
+      "reasoning": "El inicio del apartado del DNI electrónico da la fecha.",
+      "options": {
+        "a": "Correcta. Desde marzo de 2006.",
+        "b": "Incorrecta. Julio de 2016 es la aplicación de eIDAS.",
+        "c": "Incorrecta. 2003 es la Ley 59/2003.",
+        "d": "Incorrecta. 2020 es la Ley 6/2020."
+      }
+    },
+    "ciberdelitos-t05-e48": {
+      "section": "dnie",
+      "reasoning": "La tabla «Los dos certificados del chip» del apartado.",
+      "options": {
+        "a": "Incorrecta. Eso lo aporta el certificado de firma.",
+        "b": "Incorrecta. El DNIe no cifra los correos por sí mismo.",
+        "c": "Correcta. Es la autenticidad de origen.",
+        "d": "Incorrecta. El sellado de tiempo es otro servicio."
+      }
+    },
+    "ciberdelitos-t05-e49": {
+      "section": "dnie",
+      "reasoning": "La analogía del apartado compara el DNIe con la tarjeta del banco.",
+      "options": {
+        "a": "Incorrecta. También hace falta tener la tarjeta.",
+        "b": "Incorrecta. El tema no habla de biometría en este uso.",
+        "c": "Incorrecta. No se describe un triple factor.",
+        "d": "Correcta. Es un doble factor."
+      }
+    },
+    "ciberdelitos-t05-e50": {
+      "section": "dnie",
+      "reasoning": "El párrafo sobre banca electrónica del apartado del DNIe.",
+      "options": {
+        "a": "Incorrecta. El DNIe no bloquea webs.",
+        "b": "Correcta. Sin el chip y la clave privada no puede suplantarte.",
+        "c": "Incorrecta. El PIN no se envía al destinatario.",
+        "d": "Incorrecta. El tema no menciona la huella en este caso."
+      }
     }
   }
 }

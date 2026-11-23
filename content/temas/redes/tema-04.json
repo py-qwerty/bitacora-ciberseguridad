@@ -1800,6 +1800,506 @@
         "d": "Incorrecta. El tema la asocia a un **IDS** (por ejemplo, Snort en Bait and Switch), no a un IPS. Un IPS bloquearía el ataque; aquí se le deja seguir, pero en un entorno falso."
       },
       "doubt": "Un IDS que redirige el tráfico al detectar un ataque actúa, en la práctica, como un IPS, así que la D tiene cierta lógica. Se elige la C porque el temario habla expresamente de IDS y la detección seguida de redirección es la acción preventiva que describe."
+    },
+    "redes-t04-e01": {
+      "section": "por-que-detectar",
+      "reasoning": "El apartado inicial del tema define el threat intelligence.",
+      "options": {
+        "a": "Correcta. Incluye contexto, mecanismos, indicadores e implicaciones de una amenaza para tomar decisiones informadas.",
+        "b": "Incorrecta. Bloquear es tarea de un cortafuegos o un IPS.",
+        "c": "Incorrecta. Eso describe lo que obtiene un escáner de vulnerabilidades.",
+        "d": "Incorrecta. Eso es un honeypot."
+      }
+    },
+    "redes-t04-e02": {
+      "section": "por-que-detectar",
+      "reasoning": "El apartado presenta ambas herramientas y hacia dónde mira cada una.",
+      "options": {
+        "a": "Incorrecta. Invierte los papeles.",
+        "b": "Incorrecta. No se definen por mirar el tráfico del cortafuegos.",
+        "c": "Correcta. El escáner busca agujeros conocidos en tus sistemas; el honeypot estudia cómo ataca el atacante.",
+        "d": "Incorrecta. Ninguno de los dos bloquea; el escáner propone correcciones."
+      }
+    },
+    "redes-t04-e03": {
+      "section": "por-que-detectar",
+      "reasoning": "La lista de qué puede detectar un IDS del apartado lo recoge.",
+      "options": {
+        "a": "Incorrecta. La DDoS busca saturar un servicio con muchos equipos.",
+        "b": "Correcta. Tantear hosts activos, sistemas operativos, versiones o topología es exploración.",
+        "c": "Incorrecta. El ataque de acceso es un intento de entrar sin permiso.",
+        "d": "Incorrecta. No es uno de los tipos que el tema asocia a un IDS en esta lista."
+      }
+    },
+    "redes-t04-e04": {
+      "section": "por-que-detectar",
+      "reasoning": "El apartado relaciona la verificación de integridad con el IDS de equipo.",
+      "options": {
+        "a": "Incorrecta. El NIDS analiza tráfico capturado, no los ficheros del equipo.",
+        "b": "Incorrecta. El IPS en línea analiza y bloquea tráfico.",
+        "c": "Incorrecta. El switch de aplicación reparte carga con información de capa 7.",
+        "d": "Correcta. El tema dice que comprobar que los archivos importantes no han cambiado es lo que hace un IDS de equipo."
+      }
+    },
+    "redes-t04-e05": {
+      "section": "hids-nids",
+      "reasoning": "El apartado de HIDS y NIDS define el modo promiscuo.",
+      "options": {
+        "a": "Incorrecta. Ese es el funcionamiento normal de una tarjeta.",
+        "b": "Correcta. Así el NIDS puede analizar todo el tráfico del segmento, no solo el suyo.",
+        "c": "Incorrecta. El modo promiscuo no cifra nada.",
+        "d": "Incorrecta. El modo promiscuo no bloquea nada."
+      }
+    },
+    "redes-t04-e06": {
+      "section": "hids-nids",
+      "reasoning": "El apartado describe las dos interfaces del modo escucha.",
+      "options": {
+        "a": "Correcta. No se puede atacar fácilmente lo que no tiene dirección.",
+        "b": "Incorrecta. En modo escucha el NIDS no bloquea nada.",
+        "c": "Incorrecta. El tema no da ese motivo.",
+        "d": "Incorrecta. El tema no da ese motivo."
+      }
+    },
+    "redes-t04-e07": {
+      "section": "hids-nids",
+      "reasoning": "El apartado explica el modo escucha con un network tap.",
+      "options": {
+        "a": "Incorrecta. No cifra tráfico.",
+        "b": "Incorrecta. No es un programa de registro.",
+        "c": "Correcta. La interfaz de monitorización del NIDS se conecta a él para recibir esa copia.",
+        "d": "Incorrecta. Esa es la interfaz de gestión."
+      }
+    },
+    "redes-t04-e08": {
+      "section": "hids-nids",
+      "reasoning": "La comparativa HIDS/NIDS del apartado pone estos ejemplos de alerta.",
+      "options": {
+        "a": "Incorrecta. Ver un barrido de puertos en la red es propio del NIDS.",
+        "b": "Incorrecta. Ver conexiones en la red es propio del NIDS.",
+        "c": "Incorrecta. Ver todo el segmento es propio del NIDS.",
+        "d": "Correcta. El HIDS ve los cambios dentro del propio equipo, como un archivo modificado."
+      }
+    },
+    "redes-t04-e09": {
+      "section": "hids-nids",
+      "reasoning": "El caso práctico del apartado describe esta situación.",
+      "options": {
+        "a": "Incorrecta. Cortar es propio de un IPS en línea.",
+        "b": "Incorrecta. Redirigir a una padded cell requiere ese montaje específico.",
+        "c": "Correcta. En modo escucha el NIDS no está en el camino; el administrador decide después qué hacer.",
+        "d": "Incorrecta. El NIDS no borra tráfico de la red."
+      }
+    },
+    "redes-t04-e10": {
+      "section": "firmas-anomalias",
+      "reasoning": "Es el caso práctico del apartado de firmas y anomalías.",
+      "options": {
+        "a": "Incorrecta. El caso dice que no coincide con ninguna firma.",
+        "b": "Incorrecta. El caso no habla de un IPS.",
+        "c": "Incorrecta. El caso no habla de un honeypot.",
+        "d": "Correcta. Es detección por anomalías: compara con el comportamiento normal."
+      }
+    },
+    "redes-t04-e11": {
+      "section": "firmas-anomalias",
+      "reasoning": "La tabla comparativa del apartado da el punto fuerte de cada técnica.",
+      "options": {
+        "a": "Correcta. Con ataques conocidos da pocas falsas alarmas.",
+        "b": "Incorrecta. Detectar ataques nuevos es el punto fuerte de las anomalías.",
+        "c": "Incorrecta. Al contrario: hay que mantener las firmas actualizadas.",
+        "d": "Incorrecta. Aprender lo normal es propio de las anomalías."
+      }
+    },
+    "redes-t04-e12": {
+      "section": "firmas-anomalias",
+      "reasoning": "La fila «qué hay que preparar» de la tabla del apartado lo indica.",
+      "options": {
+        "a": "Incorrecta. Invierte lo que necesita cada técnica.",
+        "b": "Correcta. Es lo que recoge la tabla del tema.",
+        "c": "Incorrecta. No es lo que recoge el tema.",
+        "d": "Incorrecta. No es lo que recoge el tema."
+      }
+    },
+    "redes-t04-e13": {
+      "section": "firmas-anomalias",
+      "reasoning": "El apartado de firmas y anomalías destaca esta idea general.",
+      "options": {
+        "a": "Incorrecta. El profesor aconseja más bien detrás del cortafuegos.",
+        "b": "Incorrecta. Un IDS detecta y avisa; bloquear es del IPS.",
+        "c": "Incorrecta. El tema no lo exige.",
+        "d": "Correcta. Un IDS de firmas sin firmas nuevas es como un antivirus de hace cinco años."
+      }
+    },
+    "redes-t04-e14": {
+      "section": "ips",
+      "reasoning": "El apartado del IPS describe su despliegue en línea.",
+      "options": {
+        "a": "Incorrecta. Esas dos son las del IDS en modo escucha.",
+        "b": "Correcta. Una recibe el tráfico, otra reenvía lo permitido y la tercera es para gestión.",
+        "c": "Incorrecta. El IPS no trabaja con un tap: está en medio del camino.",
+        "d": "Incorrecta. El tema habla de al menos tres."
+      }
+    },
+    "redes-t04-e15": {
+      "section": "ips",
+      "reasoning": "La tabla IDS frente a IPS del apartado lo compara.",
+      "options": {
+        "a": "Incorrecta. Invierte las consecuencias.",
+        "b": "Incorrecta. El IDS en escucha no está en el camino.",
+        "c": "Correcta. El IDS solo mira una copia; el IPS está en medio y todo el tráfico lo atraviesa.",
+        "d": "Incorrecta. El tema no dice eso."
+      }
+    },
+    "redes-t04-e16": {
+      "section": "ips",
+      "reasoning": "El caso práctico del banco del apartado lo describe.",
+      "options": {
+        "a": "Correcta. En línea, en medio del camino, para que todo el tráfico lo atraviese.",
+        "b": "Incorrecta. A un lado solo vería una copia y no podría cortar.",
+        "c": "Incorrecta. El caso no lo plantea así.",
+        "d": "Incorrecta. Eso sería un honeypot o una honeynet."
+      }
+    },
+    "redes-t04-e17": {
+      "section": "ips",
+      "reasoning": "El apartado del IPS lo afirma tras describir el modo en línea.",
+      "options": {
+        "a": "Correcta. El tema dice que, al estar en el trayecto, tiene control total.",
+        "b": "Incorrecta. Recibir una copia es propio del IDS en modo escucha.",
+        "c": "Incorrecta. Está en el camino del tráfico, no solo en los registros.",
+        "d": "Incorrecta. Gestiona por su tercera interfaz, pero controla todo el tráfico."
+      }
+    },
+    "redes-t04-e18": {
+      "section": "dispositivos-ips",
+      "reasoning": "La tabla de capas y la definición del apartado lo explican.",
+      "options": {
+        "a": "Incorrecta. La capa 3 es la del router.",
+        "b": "Incorrecta. Invierte las capas.",
+        "c": "Incorrecta. No es lo que dice el tema.",
+        "d": "Correcta. Un switch normal trabaja en la capa 2; el de aplicación mira información de capa 7."
+      }
+    },
+    "redes-t04-e19": {
+      "section": "dispositivos-ips",
+      "reasoning": "El apartado de otros dispositivos con funciones de IPS lo define.",
+      "options": {
+        "a": "Incorrecta. No se limita al contenido HTTP o DNS.",
+        "b": "Correcta. Se instala en el propio sistema y analiza su gestión de memoria, llamadas al sistema y conexiones.",
+        "c": "Incorrecta. El tema no lo define así.",
+        "d": "Incorrecta. No trabaja con un tap: está en el propio sistema."
+      }
+    },
+    "redes-t04-e20": {
+      "section": "dispositivos-ips",
+      "reasoning": "Los pasos de funcionamiento del apartado lo explican.",
+      "options": {
+        "a": "Incorrecta. No compara con una base de ataques conocidos.",
+        "b": "Incorrecta. No es un sistema trampa.",
+        "c": "Correcta. El tema lo dice: es un IPS basado en anomalías.",
+        "d": "Incorrecta. No redirige tráfico a un entorno falso."
+      }
+    },
+    "redes-t04-e21": {
+      "section": "dispositivos-ips",
+      "reasoning": "La lista de ventajas del conmutador híbrido del apartado lo recoge.",
+      "options": {
+        "a": "Incorrecta. El tema no propone desactivar políticas.",
+        "b": "Incorrecta. El tema habla de importar resultados del escáner, no firmas del IDS.",
+        "c": "Correcta. Es una de las ventajas del conmutador híbrido que recoge el tema.",
+        "d": "Incorrecta. Se instala en la red, como un switch."
+      }
+    },
+    "redes-t04-e22": {
+      "section": "valor-sistemas-trampa",
+      "reasoning": "La tabla de las tres fases del apartado lo explica.",
+      "options": {
+        "a": "Correcta. No tiene tráfico legítimo, lo que ayuda a separar verdaderos de falsos positivos.",
+        "b": "Incorrecta. Un honeypot no bloquea tráfico.",
+        "c": "Incorrecta. No corrige agujeros; eso se hace a partir del escáner.",
+        "d": "Incorrecta. El tema no dice eso para la fase de detección."
+      }
+    },
+    "redes-t04-e23": {
+      "section": "valor-sistemas-trampa",
+      "reasoning": "La fila de respuesta de la tabla del apartado lo recoge.",
+      "options": {
+        "a": "Incorrecta. El honeypot no bloquea en el cortafuegos.",
+        "b": "Incorrecta. No es lo que aporta el honeypot.",
+        "c": "Incorrecta. El tema no lo menciona.",
+        "d": "Correcta. Parar un sistema real interrumpe el negocio; estudiar el honeypot permite responder más rápido."
+      }
+    },
+    "redes-t04-e24": {
+      "section": "valor-sistemas-trampa",
+      "reasoning": "El apartado define falso y verdadero positivo.",
+      "options": {
+        "a": "Incorrecta. Eso sería un ataque no detectado.",
+        "b": "Correcta. Si hay demasiados, el equipo no distingue a tiempo los ataques verdaderos.",
+        "c": "Incorrecta. Eso es un verdadero positivo.",
+        "d": "Incorrecta. No es la definición."
+      }
+    },
+    "redes-t04-e25": {
+      "section": "valor-sistemas-trampa",
+      "reasoning": "La fila de prevención de la tabla del apartado lo describe.",
+      "options": {
+        "a": "Incorrecta. El honeypot no cifra información.",
+        "b": "Correcta. El tiempo que pierde ahí no lo dedica a los sistemas reales, y todo queda grabado.",
+        "c": "Incorrecta. No impide llegar al perímetro.",
+        "d": "Incorrecta. Es complementario del escáner, no lo sustituye."
+      }
+    },
+    "redes-t04-e26": {
+      "section": "niveles-interaccion",
+      "reasoning": "La tabla de niveles de interacción del apartado lo detalla.",
+      "options": {
+        "a": "Incorrecta. Eso es la baja interacción.",
+        "b": "Incorrecta. Eso es la alta interacción.",
+        "c": "Correcta. Busca maximizar la interacción del atacante minimizando el riesgo de un compromiso real.",
+        "d": "Incorrecta. Eso es una honeynet."
+      }
+    },
+    "redes-t04-e27": {
+      "section": "niveles-interaccion",
+      "reasoning": "El apartado de niveles de interacción presenta T-Pot.",
+      "options": {
+        "a": "Correcta. Es de Deutsche Telekom y muestra los datos con Elasticsearch y Kibana.",
+        "b": "Incorrecta. Eso describe Snort.",
+        "c": "Incorrecta. Eso describe libpcap.",
+        "d": "Incorrecta. Eso describe Kibana, que T-Pot usa, pero no es T-Pot."
+      }
+    },
+    "redes-t04-e28": {
+      "section": "niveles-interaccion",
+      "reasoning": "El recuadro de examen del apartado recoge esta trampa.",
+      "options": {
+        "a": "Incorrecta. Es cierto: datos falsos, nunca información real.",
+        "b": "Incorrecta. Es cierto: los expertos la detectan con facilidad.",
+        "c": "Incorrecta. Es cierto: maximiza interacción minimizando riesgo.",
+        "d": "Correcta. El tema dice que es falso: la alta interacción usa sistemas reales."
+      }
+    },
+    "redes-t04-e29": {
+      "section": "honeypot-honeynet",
+      "reasoning": "Las características del honeypot del apartado lo indican.",
+      "options": {
+        "a": "Incorrecta. El tema dice que suele ir detrás.",
+        "b": "Incorrecta. Nunca debe tener información real.",
+        "c": "Incorrecta. Eso aumenta el riesgo de que sirva de trampolín.",
+        "d": "Correcta. Es lo que dice el tema sobre su ubicación habitual."
+      }
+    },
+    "redes-t04-e30": {
+      "section": "honeypot-honeynet",
+      "reasoning": "La tabla honeypot frente a honeynet del apartado lo compara.",
+      "options": {
+        "a": "Correcta. Es una red entera diseñada para ser atacada, con sistemas y aplicaciones reales.",
+        "b": "Incorrecta. Eso describe el honeypot clásico.",
+        "c": "Incorrecta. Es al revés.",
+        "d": "Incorrecta. Ninguno de los dos bloquea ataques."
+      }
+    },
+    "redes-t04-e31": {
+      "section": "honeypot-honeynet",
+      "reasoning": "El apartado de honeypot y honeynet lo explica.",
+      "options": {
+        "a": "Incorrecta. Eso describe el IPS.",
+        "b": "Correcta. Ayudan a descubrir tipos de ataque nuevos y a crear nuevas firmas para los motores de los IDS.",
+        "c": "Incorrecta. El tema no dice eso.",
+        "d": "Incorrecta. El tema no dice eso."
+      }
+    },
+    "redes-t04-e32": {
+      "section": "honeypot-honeynet",
+      "reasoning": "Las características del honeypot del apartado lo señalan.",
+      "options": {
+        "a": "Incorrecta. El tema no dice eso.",
+        "b": "Incorrecta. El tema no dice eso.",
+        "c": "Correcta. Todo lo que le llega procede de intrusos, sin tráfico de producción.",
+        "d": "Incorrecta. El tema no dice eso."
+      }
+    },
+    "redes-t04-e33": {
+      "section": "padded-cell",
+      "reasoning": "El apartado de padded cell describe Bait and Switch.",
+      "options": {
+        "a": "Correcta. Usa Snort para detectar y redirige el tráfico malicioso a la padded cell sin que se note.",
+        "b": "Incorrecta. Eso se parece más a T-Pot.",
+        "c": "Incorrecta. No es un IPS y el tema habla de al menos tres interfaces.",
+        "d": "Incorrecta. Una honeynet nunca debe tener datos reales."
+      }
+    },
+    "redes-t04-e34": {
+      "section": "padded-cell",
+      "reasoning": "El apartado de padded cell cierra con esta desventaja.",
+      "options": {
+        "a": "Incorrecta. No es la desventaja que señala el tema.",
+        "b": "Correcta. El tema lo dice para ambas: instalarlas exige mucha experiencia en redes y seguridad.",
+        "c": "Incorrecta. El tráfico malicioso se desvía a la padded cell.",
+        "d": "Incorrecta. Todo lo que hace el atacante se registra."
+      }
+    },
+    "redes-t04-e35": {
+      "section": "padded-cell",
+      "reasoning": "El recuadro de examen del apartado recoge este matiz.",
+      "options": {
+        "a": "Incorrecta. Es cierto: el IDS detecta y redirige.",
+        "b": "Incorrecta. Es cierto: simula un entorno real atractivo y seguro.",
+        "c": "Incorrecta. Es cierto, igual que honeypots y honeynets.",
+        "d": "Correcta. Que no lo descubra es el objetivo, no una garantía."
+      }
+    },
+    "redes-t04-e36": {
+      "section": "snort-arquitectura",
+      "reasoning": "El apartado de Snort cuenta su origen.",
+      "options": {
+        "a": "Incorrecta. Netfilter es la pieza del núcleo de Linux que usa iptables.",
+        "b": "Incorrecta. Elasticsearch almacena y busca registros, como en T-Pot.",
+        "c": "Correcta. Es la biblioteca que usan muchos programas para capturar tráfico.",
+        "d": "Incorrecta. Docker es un sistema de contenedores."
+      }
+    },
+    "redes-t04-e37": {
+      "section": "snort-arquitectura",
+      "reasoning": "El apartado de Snort lo indica.",
+      "options": {
+        "a": "Incorrecta. La compra fue al revés.",
+        "b": "Incorrecta. Deutsche Telekom creó T-Pot.",
+        "c": "Correcta. Cisco lo mantiene desde que compró Sourcefire, su anterior responsable.",
+        "d": "Incorrecta. Suricata es su gran competidor."
+      }
+    },
+    "redes-t04-e38": {
+      "section": "snort-arquitectura",
+      "reasoning": "Los componentes de Snort, en orden, aparecen en el apartado.",
+      "options": {
+        "a": "Incorrecta. Primero hay que capturar; luego se prepara.",
+        "b": "Incorrecta. El preprocesador prepara los paquetes antes de que el motor los analice.",
+        "c": "Incorrecta. El motor necesita paquetes capturados y preparados.",
+        "d": "Correcta. Captura, preparación, decisión con las reglas y escritura de la alerta."
+      }
+    },
+    "redes-t04-e39": {
+      "section": "snort-arquitectura",
+      "reasoning": "Los matices de la clase sobre Snort lo mencionan.",
+      "options": {
+        "a": "Incorrecta. Vuelca reglas de iptables.",
+        "b": "Correcta. La clase la cita para migrar reglas de Snort 2 a Snort 3.",
+        "c": "Incorrecta. Es un capturador de tráfico, cuyo formato usa la opción -b.",
+        "d": "Incorrecta. Es la biblioteca de captura."
+      }
+    },
+    "redes-t04-e40": {
+      "section": "snort-arquitectura",
+      "reasoning": "Los matices de la clase sobre Snort lo explican.",
+      "options": {
+        "a": "Correcta. Las reglas solo detectan lo que se puede describir; para lo avanzado hace falta un IDS por anomalías.",
+        "b": "Incorrecta. Más reglas no sirven si el ataque no se puede describir con una.",
+        "c": "Incorrecta. No es lo que propuso la clase.",
+        "d": "Incorrecta. Guardar en binario no detecta nada."
+      }
+    },
+    "redes-t04-e41": {
+      "section": "snort-comandos",
+      "reasoning": "La tabla de opciones habituales del apartado describe -b.",
+      "options": {
+        "a": "Incorrecta. Eso es -e.",
+        "b": "Correcta. Con -b no hace falta -v, -d ni -e.",
+        "c": "Incorrecta. Eso es -D.",
+        "d": "Incorrecta. Eso es -r."
+      }
+    },
+    "redes-t04-e42": {
+      "section": "snort-comandos",
+      "reasoning": "La tabla de más opciones mencionadas en clase lo recoge.",
+      "options": {
+        "a": "Correcta. -D es el modo demonio y -q el modo silencioso.",
+        "b": "Incorrecta. Invierte las opciones.",
+        "c": "Incorrecta. Mostrar datos de aplicación es -d (minúscula).",
+        "d": "Incorrecta. Ninguna de las dos hace eso."
+      }
+    },
+    "redes-t04-e43": {
+      "section": "snort-comandos",
+      "reasoning": "La tabla de opciones mencionadas en clase describe -A.",
+      "options": {
+        "a": "Incorrecta. Eso es el modo full.",
+        "b": "Incorrecta. Las estadísticas no son el formato de alerta.",
+        "c": "Correcta. Es lo que la clase explicó del modo fast.",
+        "d": "Incorrecta. No es lo que se explicó del modo fast."
+      }
+    },
+    "redes-t04-e44": {
+      "section": "snort-comandos",
+      "reasoning": "El apartado de comandos menciona el sello temporal de los logs.",
+      "options": {
+        "a": "Incorrecta. No es lo que indica el tema.",
+        "b": "Incorrecta. No es lo que indica el tema.",
+        "c": "Incorrecta. No es lo que indica el tema.",
+        "d": "Correcta. El tema dice que cada fichero lleva un timestamp de creación."
+      }
+    },
+    "redes-t04-e45": {
+      "section": "snort-reglas",
+      "reasoning": "La tabla de acciones del apartado de reglas lo detalla.",
+      "options": {
+        "a": "Incorrecta. Eso es sdrop.",
+        "b": "Incorrecta. Eso es log.",
+        "c": "Incorrecta. Eso es pass.",
+        "d": "Correcta. Envía TCP reset si es TCP o ICMP port unreachable si es UDP."
+      }
+    },
+    "redes-t04-e46": {
+      "section": "snort-reglas",
+      "reasoning": "La tabla de acciones del apartado lo recoge.",
+      "options": {
+        "a": "Incorrecta. drop bloquea y guarda.",
+        "b": "Incorrecta. log guarda sin bloquear.",
+        "c": "Correcta. Es el «silent drop»: bloquea sin registrar.",
+        "d": "Incorrecta. pass ignora el paquete."
+      }
+    },
+    "redes-t04-e47": {
+      "section": "snort-reglas",
+      "reasoning": "La tabla de acciones del apartado describe ambas.",
+      "options": {
+        "a": "Correcta. activate lanza una alerta y activa la regla dynamic, que después actúa como log.",
+        "b": "Incorrecta. Invierte la relación.",
+        "c": "Incorrecta. Ninguna de las dos ignora o bloquea.",
+        "d": "Incorrecta. Ninguna de las dos bloquea."
+      }
+    },
+    "redes-t04-e48": {
+      "section": "snort-reglas",
+      "reasoning": "La tabla de opciones comunes del apartado lo explica.",
+      "options": {
+        "a": "Incorrecta. Es al revés: las propias usan valores superiores a 1.000.000.",
+        "b": "Correcta. Es lo que recoge la tabla de opciones del tema.",
+        "c": "Incorrecta. Al revisar se mantiene el sid y se sube el rev.",
+        "d": "Incorrecta. El sid identifica la regla; no cuenta alertas."
+      }
+    },
+    "redes-t04-e49": {
+      "section": "snort-reglas",
+      "reasoning": "Los ejemplos de content con posiciones del apartado lo explican.",
+      "options": {
+        "a": "Correcta. offset 0 empieza al inicio y depth 3 limita la búsqueda a 3 bytes.",
+        "b": "Incorrecta. offset 0 empieza en el byte 0, no en el 3.",
+        "c": "Incorrecta. Eso sería distance, relativo a la última coincidencia.",
+        "d": "Incorrecta. depth no cuenta repeticiones."
+      }
+    },
+    "redes-t04-e50": {
+      "section": "snort-reglas",
+      "reasoning": "La tabla de la cabecera de una regla del apartado lo explica.",
+      "options": {
+        "a": "Incorrecta. Ese es el significado de ->.",
+        "b": "Incorrecta. No es un operador de exclusión.",
+        "c": "Correcta. La dirección del flujo puede ser -> (de origen a destino) o <> (en ambos sentidos).",
+        "d": "Incorrecta. No compara tamaños."
+      }
     }
   }
 }

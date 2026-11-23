@@ -947,6 +947,506 @@
         "c": "Incorrecta. http_access **permite o deniega** el acceso según las condiciones definidas con acl; no tiene nada que ver con el puerto.",
         "d": "Incorrecta. acl define **condiciones con nombre** (listas de control de acceso), como una red, un dominio o un horario, que luego usa http_access."
       }
+    },
+    "redes-t05-e01": {
+      "section": "panorama",
+      "reasoning": "La tabla de qué protege cada herramienta del apartado inicial pone este ejemplo.",
+      "options": {
+        "a": "Correcta. Impedir que salga información sensible es el papel del DLP (prevención de fuga de datos).",
+        "b": "Incorrecta. El proxy intermedia y filtra conexiones de navegación.",
+        "c": "Incorrecta. El SIEM reúne y correlaciona eventos.",
+        "d": "Incorrecta. SARG genera informes a partir de los logs de Squid."
+      }
+    },
+    "redes-t05-e02": {
+      "section": "panorama",
+      "reasoning": "El recuadro de examen del apartado inicial da este truco.",
+      "options": {
+        "a": "Incorrecta. Mezcla las funciones de las tres.",
+        "b": "Incorrecta. Mezcla las funciones de las tres.",
+        "c": "Correcta. Es la asociación que propone el tema para no confundirlas.",
+        "d": "Incorrecta. Correlacionar es del SIEM y filtrar conexiones, del proxy."
+      }
+    },
+    "redes-t05-e03": {
+      "section": "panorama",
+      "reasoning": "El recuadro de examen del apartado inicial recoge esta trampa.",
+      "options": {
+        "a": "Incorrecta. Es correcta: es la función del DLP.",
+        "b": "Correcta. Evitar fugas es tarea del DLP; el tema lo pone como trampa típica.",
+        "c": "Incorrecta. Es correcta: es una función del proxy.",
+        "d": "Incorrecta. Es correcta: es la función del SIEM."
+      }
+    },
+    "redes-t05-e04": {
+      "section": "dlp",
+      "reasoning": "El apartado del DLP empieza enumerando estas tres vías.",
+      "options": {
+        "a": "Incorrecta. No son las vías que cita el tema.",
+        "b": "Incorrecta. No son las vías que cita el tema.",
+        "c": "Incorrecta. Son canales, no las tres vías que enumera el tema.",
+        "d": "Correcta. Son las tres vías que cita el tema: error, mala fe interna y atacante que ha entrado."
+      }
+    },
+    "redes-t05-e05": {
+      "section": "dlp",
+      "reasoning": "La tabla de los tres estados del apartado pone este ejemplo.",
+      "options": {
+        "a": "Incorrecta. En movimiento es cuando el dato viaja por la red.",
+        "b": "Correcta. Alguien está trabajando con el dato en su equipo: es el ejemplo del tema para «en uso».",
+        "c": "Incorrecta. En reposo es cuando está guardado en un disco o servidor.",
+        "d": "Incorrecta. No es uno de los tres estados del tema."
+      }
+    },
+    "redes-t05-e06": {
+      "section": "dlp",
+      "reasoning": "El caso práctico del hospital del apartado lo describe.",
+      "options": {
+        "a": "Correcta. Es lo que describe el caso del tema.",
+        "b": "Incorrecta. El DLP bloquea lo que incumple la política; no lo deja salir cifrado.",
+        "c": "Incorrecta. El tema no dice que borre el documento.",
+        "d": "Incorrecta. El tema no dice que bloquee la cuenta."
+      }
+    },
+    "redes-t05-e07": {
+      "section": "dlp",
+      "reasoning": "La definición de DLP del apartado lo indica.",
+      "options": {
+        "a": "Incorrecta. No deja pasar lo que incumple la política.",
+        "b": "Incorrecta. No es lo que describe el tema.",
+        "c": "Correcta. El tema dice que, si no se cumple la política, bloquea la operación y genera una alerta.",
+        "d": "Incorrecta. No es lo que describe el tema."
+      }
+    },
+    "redes-t05-e08": {
+      "section": "dlp-tipos",
+      "reasoning": "La tabla de tipos de DLP del apartado lo describe.",
+      "options": {
+        "a": "Incorrecta. Eso es el DLP de red.",
+        "b": "Incorrecta. Eso es el DLP en estación de trabajo.",
+        "c": "Incorrecta. No es un tipo de DLP del tema.",
+        "d": "Correcta. Vigila equipos de almacenamiento y la información en reposo."
+      }
+    },
+    "redes-t05-e09": {
+      "section": "dlp-tipos",
+      "reasoning": "La tabla de tipos de DLP del apartado lo define.",
+      "options": {
+        "a": "Incorrecta. El agente es el DLP de estación.",
+        "b": "Incorrecta. Eso es un proxy inverso.",
+        "c": "Correcta. Es un «disco duro» compartido por red, que vigila el DLP de centro de datos.",
+        "d": "Incorrecta. Eso es un SIEM."
+      }
+    },
+    "redes-t05-e10": {
+      "section": "dlp-tipos",
+      "reasoning": "La tabla de tipos de DLP indica el estado que cubre cada uno.",
+      "options": {
+        "a": "Incorrecta. La red ve datos que viajan; la estación, datos en uso.",
+        "b": "Incorrecta. La red no vigila datos guardados.",
+        "c": "Incorrecta. La estación vigila el uso local y el centro de datos, lo guardado.",
+        "d": "Correcta. Es la correspondencia que da la tabla del tema."
+      }
+    },
+    "redes-t05-e11": {
+      "section": "dlp-tipos",
+      "reasoning": "El ejemplo «¿cuál elijo?» del apartado lo explica.",
+      "options": {
+        "a": "Correcta. El envío por correo cruza el perímetro, así que basta un DLP de red.",
+        "b": "Incorrecta. El de centro de datos vigila lo almacenado.",
+        "c": "Incorrecta. El SIEM correlaciona eventos; no es un DLP.",
+        "d": "Incorrecta. El proxy inverso reparte carga entre servidores."
+      }
+    },
+    "redes-t05-e12": {
+      "section": "dlp-deteccion",
+      "reasoning": "La tabla de técnicas de detección del apartado describe EDM.",
+      "options": {
+        "a": "Incorrecta. Eso es IDM.",
+        "b": "Correcta. Se registran los datos sensibles concretos (calculando su hash) y se buscan esos valores exactos.",
+        "c": "Incorrecta. Eso es VML.",
+        "d": "Incorrecta. Eso es DCM."
+      }
+    },
+    "redes-t05-e13": {
+      "section": "dlp-deteccion",
+      "reasoning": "La tabla de técnicas de detección del apartado describe VML.",
+      "options": {
+        "a": "Incorrecta. EDM necesita valores exactos registrados.",
+        "b": "Incorrecta. IDM necesita la huella de un documento concreto.",
+        "c": "Incorrecta. DCM busca patrones o palabras clave, no «estilo».",
+        "d": "Correcta. Análisis estadístico entrenado con ejemplos, para datos no estructurados sin huella, como código fuente."
+      }
+    },
+    "redes-t05-e14": {
+      "section": "dlp-deteccion",
+      "reasoning": "La tabla de técnicas de detección del apartado lo recoge.",
+      "options": {
+        "a": "Incorrecta. EDM busca valores concretos, no tipos de fichero.",
+        "b": "Correcta. Reconoce el tipo según una lista y puede abrir ficheros empaquetados, como comprimidos o correos.",
+        "c": "Incorrecta. IDM compara huellas de documentos concretos.",
+        "d": "Incorrecta. VML compara por estadística con ejemplos."
+      }
+    },
+    "redes-t05-e15": {
+      "section": "dlp-deteccion",
+      "reasoning": "El apartado de detección define hash y huella.",
+      "options": {
+        "a": "Incorrecta. No es una copia del documento.",
+        "b": "Incorrecta. Eso se parece a lo que busca DCM.",
+        "c": "Correcta. Además, basta cambiar una letra para que el hash cambie.",
+        "d": "Incorrecta. Al contrario: basta cambiar una letra para que cambie."
+      }
+    },
+    "redes-t05-e16": {
+      "section": "dlp-deteccion",
+      "reasoning": "La tabla de técnicas del apartado distingue para qué es buena cada una.",
+      "options": {
+        "a": "Correcta. EDM registra los datos concretos y busca esas coincidencias exactas.",
+        "b": "Incorrecta. DCM detectaría cualquier número con ese formato, no solo los de sus clientes.",
+        "c": "Incorrecta. IDM trabaja con documentos, no con valores sueltos.",
+        "d": "Incorrecta. VML no busca valores concretos."
+      }
+    },
+    "redes-t05-e17": {
+      "section": "proxy",
+      "reasoning": "La lista de para qué se instala un proxy del apartado lo enumera.",
+      "options": {
+        "a": "Correcta. Correlacionar alertas es propio del SIEM.",
+        "b": "Incorrecta. Sí es un propósito del proxy.",
+        "c": "Incorrecta. Sí es un propósito del proxy.",
+        "d": "Incorrecta. Sí es un propósito del proxy."
+      }
+    },
+    "redes-t05-e18": {
+      "section": "proxy",
+      "reasoning": "La lista de propósitos del proxy del apartado lo explica.",
+      "options": {
+        "a": "Incorrecta. El tema no lo explica por el cifrado.",
+        "b": "Incorrecta. Eso es NAT y oculta la red, pero no frena ataques de aplicación.",
+        "c": "Incorrecta. La caché acelera, no frena ataques de protocolo.",
+        "d": "Correcta. Al entender el protocolo (por ejemplo HTTP) puede rechazar peticiones malformadas o contenido peligroso."
+      }
+    },
+    "redes-t05-e19": {
+      "section": "proxy",
+      "reasoning": "La lista de propósitos del proxy del apartado lo recoge.",
+      "options": {
+        "a": "Incorrecta. El tema no dice eso.",
+        "b": "Correcta. Como el proxy hace las peticiones en nombre de los usuarios, los equipos internos quedan ocultos.",
+        "c": "Incorrecta. El proxy permite o deniega según la política, no lo bloquea todo.",
+        "d": "Incorrecta. El proxy no cifra discos."
+      }
+    },
+    "redes-t05-e20": {
+      "section": "proxy-tipos",
+      "reasoning": "La tabla de los seis tipos de proxy del apartado lo describe.",
+      "options": {
+        "a": "Incorrecta. Eso es el proxy de aplicación.",
+        "b": "Incorrecta. Eso es el proxy web caché.",
+        "c": "Correcta. Redirige y monitoriza, pero no es capaz de procesar ni filtrar por contenido.",
+        "d": "Incorrecta. Eso es el proxy inverso."
+      }
+    },
+    "redes-t05-e21": {
+      "section": "proxy-tipos",
+      "reasoning": "La tabla de tipos de proxy del apartado lo define.",
+      "options": {
+        "a": "Incorrecta. Eso es el proxy NAT.",
+        "b": "Incorrecta. Eso es la pasarela de circuito.",
+        "c": "Correcta. Así reduce tráfico y acelera la red; también puede filtrar contenido peligroso.",
+        "d": "Incorrecta. Eso es el proxy inverso."
+      }
+    },
+    "redes-t05-e22": {
+      "section": "proxy-tipos",
+      "reasoning": "La tabla de tipos de proxy y la definición de NAT del apartado lo explican.",
+      "options": {
+        "a": "Correcta. La red local usa IP privadas y el router traduce direcciones y puertos al salir.",
+        "b": "Incorrecta. Eso es la caché.",
+        "c": "Incorrecta. Eso es el proxy inverso.",
+        "d": "Incorrecta. Eso es el proxy de aplicación."
+      }
+    },
+    "redes-t05-e23": {
+      "section": "proxy-tipos",
+      "reasoning": "El recuadro de examen del apartado de tipos de proxy lo advierte.",
+      "options": {
+        "a": "Incorrecta. Un proxy de aplicación puede configurarse en el navegador.",
+        "b": "Incorrecta. Un proxy caché puede configurarse en el navegador.",
+        "c": "Incorrecta. Puede configurarse explícitamente en el navegador.",
+        "d": "Correcta. El transparente se reconoce justo porque no requiere configuración en el cliente."
+      }
+    },
+    "redes-t05-e24": {
+      "section": "proxy-tipos",
+      "reasoning": "El apartado de tipos de proxy empieza con estas dos preguntas.",
+      "options": {
+        "a": "Incorrecta. El tema no los clasifica así.",
+        "b": "Correcta. A los empleados que salen o a los servidores que reciben visitas, y si solo reenvía o entiende la aplicación.",
+        "c": "Incorrecta. El tema no los clasifica así.",
+        "d": "Incorrecta. El tema no los clasifica así."
+      }
+    },
+    "redes-t05-e25": {
+      "section": "proxy-tipos",
+      "reasoning": "Los pasos del proxy inverso en una granja web del apartado lo muestran.",
+      "options": {
+        "a": "Incorrecta. Quien elige el servidor es el proxy inverso.",
+        "b": "Correcta. El proxy reenvía la petición y entrega la respuesta como si fuera suya.",
+        "c": "Incorrecta. La dirección pública apunta al proxy inverso.",
+        "d": "Incorrecta. El cliente habla con el proxy, no con el servidor."
+      }
+    },
+    "redes-t05-e26": {
+      "section": "siem",
+      "reasoning": "La tabla de componentes del SIEM del apartado lo describe.",
+      "options": {
+        "a": "Incorrecta. El agente recoge los logs en cada fuente y los envía.",
+        "b": "Incorrecta. La interfaz sirve para configurar y ver alertas.",
+        "c": "Correcta. La base de datos central almacena los logs.",
+        "d": "Incorrecta. El servidor hace la correlación."
+      }
+    },
+    "redes-t05-e27": {
+      "section": "siem",
+      "reasoning": "La tabla de componentes del SIEM del apartado lo indica.",
+      "options": {
+        "a": "Correcta. El temario también los llama «sondas».",
+        "b": "Incorrecta. Los IPS son otra herramienta.",
+        "c": "Incorrecta. Los proxies son intermediarios de conexiones.",
+        "d": "Incorrecta. Las huellas son de las técnicas del DLP."
+      }
+    },
+    "redes-t05-e28": {
+      "section": "siem",
+      "reasoning": "Los pasos de cómo trabaja un SIEM del apartado lo explican.",
+      "options": {
+        "a": "Incorrecta. El tema no da ese motivo.",
+        "b": "Incorrecta. El operador necesita ver las alertas.",
+        "c": "Incorrecta. El tema no da ese motivo.",
+        "d": "Correcta. El tema lo justifica así en la fase de recolección."
+      }
+    },
+    "redes-t05-e29": {
+      "section": "siem",
+      "reasoning": "La definición de correlación de eventos del apartado lo aclara.",
+      "options": {
+        "a": "Incorrecta. Es correlación: relaciones como mismo usuario o misma IP.",
+        "b": "Incorrecta. Es correlación: el servidor agrupa los logs de un mismo ataque.",
+        "c": "Incorrecta. Es correlación: la secuencia temporal es una relación.",
+        "d": "Correcta. Eso es preparar los datos, no correlacionarlos."
+      }
+    },
+    "redes-t05-e30": {
+      "section": "siem",
+      "reasoning": "La tabla de componentes del SIEM del apartado lo describe.",
+      "options": {
+        "a": "Correcta. Es una consola web o aplicación para configurar y operar el SIEM.",
+        "b": "Incorrecta. Eso hacen los agentes.",
+        "c": "Incorrecta. Eso hace el servidor.",
+        "d": "Incorrecta. Eso hace la base de datos."
+      }
+    },
+    "redes-t05-e31": {
+      "section": "squid",
+      "reasoning": "El apartado de Squid indica dónde está su configuración.",
+      "options": {
+        "a": "Incorrecta. Es la configuración de SARG.",
+        "b": "Correcta. Toda la configuración de Squid está en ese único fichero de texto.",
+        "c": "Incorrecta. Es el log de accesos que analiza SARG.",
+        "d": "Incorrecta. Es el fichero de contraseñas del ejemplo NCSA."
+      }
+    },
+    "redes-t05-e32": {
+      "section": "squid",
+      "reasoning": "La lista de características de Squid del apartado lo recoge.",
+      "options": {
+        "a": "Incorrecta. Las contraseñas del ejemplo están en un fichero.",
+        "b": "Incorrecta. Squid no correlaciona alertas.",
+        "c": "Correcta. Guarda en RAM los objetos más pedidos y datos sobre ellos (tamaño, fecha, caducidad).",
+        "d": "Incorrecta. Los informes de SARG se guardan en su directorio de salida."
+      }
+    },
+    "redes-t05-e33": {
+      "section": "squid",
+      "reasoning": "La lista de características de Squid del apartado lo indica.",
+      "options": {
+        "a": "Correcta. El temario dice que cachea también las consultas DNS.",
+        "b": "Incorrecta. El temario no lo menciona.",
+        "c": "Incorrecta. Squid puede autenticar contra LDAP, pero no se dice que lo cachee.",
+        "d": "Incorrecta. El temario no lo menciona."
+      }
+    },
+    "redes-t05-e34": {
+      "section": "squid-acl",
+      "reasoning": "El apartado de acl y http_access lo define.",
+      "options": {
+        "a": "Incorrecta. Eso lo hace http_access.",
+        "b": "Correcta. Su forma es acl nombre tipo valores: «llamo X a lo que cumpla tal cosa».",
+        "c": "Incorrecta. Eso lo hace service squid reload.",
+        "d": "Incorrecta. Eso lo hace http_port."
+      }
+    },
+    "redes-t05-e35": {
+      "section": "squid-acl",
+      "reasoning": "La definición de http_access del apartado lo explica.",
+      "options": {
+        "a": "Incorrecta. Eso sería un «o», y no es como funciona.",
+        "b": "Incorrecta. El tipo de acl no importa para combinarlas.",
+        "c": "Incorrecta. El tema no dice eso.",
+        "d": "Correcta. Las acl de una misma línea funcionan como un «y»."
+      }
+    },
+    "redes-t05-e36": {
+      "section": "squid-acl",
+      "reasoning": "La definición de http_access del apartado lo explica.",
+      "options": {
+        "a": "Incorrecta. No significa obligatoriedad.",
+        "b": "Incorrecta. No tiene que ver con el registro.",
+        "c": "Correcta. El ! niega la condición.",
+        "d": "Incorrecta. No cambia el orden de evaluación."
+      }
+    },
+    "redes-t05-e37": {
+      "section": "squid-acl",
+      "reasoning": "La definición de http_access y el diagrama del apartado lo muestran.",
+      "options": {
+        "a": "Incorrecta. Para recargar se usa service squid reload.",
+        "b": "Incorrecta. No borra reglas: solo se aplica si ninguna anterior encaja.",
+        "c": "Correcta. Squid revisa las líneas de arriba abajo; lo que no se haya permitido antes cae en deny all.",
+        "d": "Incorrecta. Afecta a todo lo que no haya encajado antes."
+      }
+    },
+    "redes-t05-e38": {
+      "section": "squid-auth",
+      "reasoning": "Los pasos para exigir autenticación del apartado lo detallan.",
+      "options": {
+        "a": "Incorrecta. ncsa_auth es el programa que comprueba las contraseñas, no el que crea el fichero.",
+        "b": "Incorrecta. sarg -x genera informes de SARG.",
+        "c": "Incorrecta. chown cambia el propietario del fichero.",
+        "d": "Correcta. htpasswd, del paquete apache2-utils, añade usuarios y pide su contraseña."
+      }
+    },
+    "redes-t05-e39": {
+      "section": "squid-auth",
+      "reasoning": "El apartado de Squid con usuario y contraseña lo indica.",
+      "options": {
+        "a": "Incorrecta. No son los mismos.",
+        "b": "Correcta. El tema dice que son independientes de los usuarios del sistema operativo.",
+        "c": "Incorrecta. El Directorio Activo es otra posible integración.",
+        "d": "Incorrecta. No se limita a los administradores."
+      }
+    },
+    "redes-t05-e40": {
+      "section": "squid-auth",
+      "reasoning": "Los pasos y el ejemplo de configuración del apartado lo muestran.",
+      "options": {
+        "a": "Correcta. En el ejemplo: auth_param basic program /usr/lib/squid/ncsa_auth /etc/squid/usrpass.",
+        "b": "Incorrecta. El horario se define con una acl de tipo time.",
+        "c": "Incorrecta. El puerto lo fija http_port.",
+        "d": "Incorrecta. Los dominios se filtran con dstdomain."
+      }
+    },
+    "redes-t05-e41": {
+      "section": "squid-auth",
+      "reasoning": "El apartado de autenticación menciona LDAP.",
+      "options": {
+        "a": "Incorrecta. ncsa_auth valida contra un fichero de texto.",
+        "b": "Correcta. Se indica junto a la rama del directorio y la IP del servidor LDAP.",
+        "c": "Incorrecta. htpasswd crea el fichero de claves de NCSA.",
+        "d": "Incorrecta. sarg genera informes."
+      }
+    },
+    "redes-t05-e42": {
+      "section": "squid-filtros",
+      "reasoning": "La tabla de tipos de acl del apartado de filtros lo asocia.",
+      "options": {
+        "a": "Correcta. Compara la ruta de la URL con expresiones regulares; sirve para extensiones.",
+        "b": "Incorrecta. Compara dominios de destino.",
+        "c": "Incorrecta. Compara la URL completa con palabras clave; el tema lo usa para palabras.",
+        "d": "Incorrecta. Compara días y horas."
+      }
+    },
+    "redes-t05-e43": {
+      "section": "squid-filtros",
+      "reasoning": "La tabla de tipos de acl del apartado pone este ejemplo.",
+      "options": {
+        "a": "Incorrecta. Se usa para la ruta y las extensiones.",
+        "b": "Incorrecta. Compara dominios concretos de una lista.",
+        "c": "Correcta. Compara la URL completa con expresiones regulares o palabras clave.",
+        "d": "Incorrecta. Compara la dirección MAC."
+      }
+    },
+    "redes-t05-e44": {
+      "section": "squid-filtros",
+      "reasoning": "La tabla de tipos de acl del apartado lo recoge.",
+      "options": {
+        "a": "Incorrecta. src compara la IP de origen, no la MAC.",
+        "b": "Incorrecta. proxy_auth comprueba si el usuario se ha autenticado.",
+        "c": "Incorrecta. dstdomain compara el dominio de destino.",
+        "d": "Correcta. El tipo arp compara la dirección MAC del equipo."
+      }
+    },
+    "redes-t05-e45": {
+      "section": "squid-filtros",
+      "reasoning": "La definición de la restricción por horario del apartado lo explica.",
+      "options": {
+        "a": "Incorrecta. T es martes y S es domingo.",
+        "b": "Incorrecta. Las letras van en inglés, no en español.",
+        "c": "Incorrecta. El jueves es H, no R.",
+        "d": "Correcta. H por tHursday y A por sAturday, para no repetir la T y la S."
+      }
+    },
+    "redes-t05-e46": {
+      "section": "squid-filtros",
+      "reasoning": "La definición de dirección MAC del apartado lo indica.",
+      "options": {
+        "a": "Incorrecta. El modo transparente no es el requisito.",
+        "b": "Incorrecta. La autenticación no es el requisito.",
+        "c": "Correcta. La MAC no atraviesa routers, así que el proxy debe estar en la misma VLAN.",
+        "d": "Incorrecta. La MAC tiene 12 dígitos hexadecimales."
+      }
+    },
+    "redes-t05-e47": {
+      "section": "squid-ajustes-sarg",
+      "reasoning": "La tabla de parámetros de squid.conf del apartado lo describe.",
+      "options": {
+        "a": "Correcta. Indica formato, ruta, megas y número de directorios de primer y segundo nivel.",
+        "b": "Incorrecta. Eso es error_directory.",
+        "c": "Incorrecta. Eso es http_port.",
+        "d": "Incorrecta. Eso es access_log, en la configuración de SARG."
+      }
+    },
+    "redes-t05-e48": {
+      "section": "squid-ajustes-sarg",
+      "reasoning": "La tabla de parámetros de squid.conf del apartado lo indica.",
+      "options": {
+        "a": "Incorrecta. No es el que cita el tema.",
+        "b": "Correcta. El tema indica que http_port es 3128 por defecto.",
+        "c": "Incorrecta. Es el puerto del ejemplo con transparent, no el de por defecto.",
+        "d": "Incorrecta. Es el puerto web, no el de Squid por defecto."
+      }
+    },
+    "redes-t05-e49": {
+      "section": "squid-ajustes-sarg",
+      "reasoning": "La tabla de parámetros de squid.conf del apartado pone este ejemplo.",
+      "options": {
+        "a": "Correcta. El tema dice que transparent pone el proxy en modo transparente.",
+        "b": "Incorrecta. Los mensajes de error se configuran con error_directory.",
+        "c": "Incorrecta. No desactiva la caché.",
+        "d": "Incorrecta. Las reglas http_access se siguen aplicando."
+      }
+    },
+    "redes-t05-e50": {
+      "section": "squid-ajustes-sarg",
+      "reasoning": "La definición de SARG y su configuración del apartado lo muestran.",
+      "options": {
+        "a": "Incorrecta. SARG no analiza la configuración.",
+        "b": "Incorrecta. SARG no analiza contraseñas.",
+        "c": "Correcta. SARG lee los logs de Squid (access.log) y genera informes web por usuario y equipo.",
+        "d": "Incorrecta. Reunir logs de toda la empresa sería un SIEM."
+      }
     }
   }
 }

@@ -1058,6 +1058,506 @@
         "c": "Incorrecta. El valor no depende de que la herramienta sea de pago o gratuita.",
         "d": "Correcta. Sirve para demostrar que es la misma imagen aunque haya una zona dañada."
       }
+    },
+    "forense-t05-e01": {
+      "section": "archivo",
+      "reasoning": "La tabla «dónde vive cada dato de un archivo» del apartado sitúa las fechas y el propietario en el sistema de ficheros.",
+      "options": {
+        "a": "Incorrecta. El contenido puede llevar metadatos, pero estas fechas las gestiona el sistema de ficheros.",
+        "b": "Correcta. Fechas, nombre, ruta y propietario están en el sistema de ficheros.",
+        "c": "Incorrecta. El MBR guarda el código de arranque y la tabla de particiones, no datos de archivos.",
+        "d": "Incorrecta. La firma identifica el tipo de archivo, no sus fechas."
+      }
+    },
+    "forense-t05-e02": {
+      "section": "archivo",
+      "reasoning": "El apartado matiza que los metadatos son datos dentro del contenido, distintos del nombre que registra el sistema de ficheros.",
+      "options": {
+        "a": "Correcta. El título viaja dentro del archivo y el nombre es del sistema de ficheros.",
+        "b": "Incorrecta. Son datos distintos y ninguno se guarda en el MBR.",
+        "c": "Incorrecta. Invierte los papeles: el nombre es del sistema de ficheros.",
+        "d": "Incorrecta. El título es un metadato interno, no del sistema de ficheros."
+      }
+    },
+    "forense-t05-e03": {
+      "section": "archivo",
+      "reasoning": "La tabla del apartado separa los datos del sistema de ficheros de los metadatos internos como el GPS.",
+      "options": {
+        "a": "Incorrecta. Nombre y extensión los gestiona el sistema de ficheros.",
+        "b": "Incorrecta. La ruta la gestiona el sistema de ficheros.",
+        "c": "Correcta. El GPS es un metadato guardado dentro del archivo.",
+        "d": "Incorrecta. El propietario lo gestiona el sistema de ficheros."
+      }
+    },
+    "forense-t05-e04": {
+      "section": "firmas",
+      "reasoning": "La tabla de firmas típicas del apartado asocia 4D 5A (MZ) con los ejecutables de Windows.",
+      "options": {
+        "a": "Incorrecta. %PDF es la firma de los PDF.",
+        "b": "Incorrecta. PK.. es la firma de ZIP y de los documentos Office Open XML.",
+        "c": "Incorrecta. GIF8 es la firma de las imágenes GIF.",
+        "d": "Correcta. Los EXE de Windows empiezan por MZ."
+      }
+    },
+    "forense-t05-e05": {
+      "section": "firmas",
+      "reasoning": "El apartado explica la coincidencia de firmas porque el DOCX es un contenedor ZIP.",
+      "options": {
+        "a": "Incorrecta. El tema no atribuye el formato ZIP a Microsoft.",
+        "b": "Correcta. El DOCX es un ZIP con XML, y la firma refleja el contenedor.",
+        "c": "Incorrecta. Los dos tienen firma; los de texto plano son los que no la tienen.",
+        "d": "Incorrecta. La firma está al principio del archivo."
+      }
+    },
+    "forense-t05-e06": {
+      "section": "firmas",
+      "reasoning": "El apartado pone el JPG como ejemplo de formato con firma de inicio (FF D8) y de final (FF D9).",
+      "options": {
+        "a": "Correcta. FF D9 es la firma de final del JPG.",
+        "b": "Incorrecta. FF D8 es la firma de inicio del JPG, no la de final.",
+        "c": "Incorrecta. 25 50 son los primeros bytes de un PDF.",
+        "d": "Incorrecta. 4D 5A es la firma de un ejecutable de Windows."
+      }
+    },
+    "forense-t05-e07": {
+      "section": "firmas",
+      "reasoning": "El caso práctico del apartado muestra que la firma %PDF delata un PDF renombrado como .txt.",
+      "options": {
+        "a": "Incorrecta. La firma de PNG es 89 50 4E 47.",
+        "b": "Incorrecta. Un ejecutable de Windows empezaría por 4D 5A (MZ).",
+        "c": "Correcta. 25 50 44 46 es «%PDF».",
+        "d": "Incorrecta. Un MP3 con etiquetas ID3v2 empieza por 49 44 33."
+      }
+    },
+    "forense-t05-e08": {
+      "section": "firmas",
+      "reasoning": "El término firma ELF del apartado la presenta como la de los ejecutables de Linux.",
+      "options": {
+        "a": "Incorrecta. MZ es la firma de los ejecutables de Windows.",
+        "b": "Correcta. ELF es la de los ejecutables de Linux.",
+        "c": "Incorrecta. ID3 corresponde a los MP3 con etiquetas.",
+        "d": "Incorrecta. GIF8 corresponde a las imágenes GIF."
+      }
+    },
+    "forense-t05-e09": {
+      "section": "firmas",
+      "reasoning": "La lista de la demostración del profesor explica que el lector se guía por los bytes iniciales.",
+      "options": {
+        "a": "Correcta. El lector identifica el formato por la firma inicial.",
+        "b": "Incorrecta. Cambiar la extensión no convierte ni reescribe el contenido.",
+        "c": "Incorrecta. No hay compatibilidad: simplemente se ignora la extensión.",
+        "d": "Incorrecta. El lector no cambia la extensión; lee la firma."
+      }
+    },
+    "forense-t05-e10": {
+      "section": "firmas",
+      "reasoning": "La última idea de la demostración del profesor señala la discrepancia firma-extensión como indicio de ocultación.",
+      "options": {
+        "a": "Incorrecta. No es un fallo del disco ni obliga a repetir nada.",
+        "b": "Incorrecta. La discrepancia no implica cifrado.",
+        "c": "Correcta. Es un indicio de ocultación fácil de comprobar.",
+        "d": "Incorrecta. Un falso positivo es otra cosa propia de la recuperación en bruto."
+      }
+    },
+    "forense-t05-e11": {
+      "section": "firmas",
+      "reasoning": "El término ASCII del apartado explica por qué muchas firmas se leen como texto.",
+      "options": {
+        "a": "Incorrecta. Exif es un estándar de metadatos de fotos.",
+        "b": "Incorrecta. XMP es un estándar de metadatos de Adobe.",
+        "c": "Incorrecta. FAT es un sistema de ficheros.",
+        "d": "Correcta. ASCII asigna un carácter a cada byte."
+      }
+    },
+    "forense-t05-e12": {
+      "section": "metadatos",
+      "reasoning": "La lista de estándares de metadatos del apartado asocia ID3 con el audio MP3.",
+      "options": {
+        "a": "Incorrecta. Exif es el estándar de las fotografías.",
+        "b": "Correcta. ID3 es el de los MP3.",
+        "c": "Incorrecta. XMP es el estándar generalista de Adobe.",
+        "d": "Incorrecta. ELF es una firma de ejecutables de Linux."
+      }
+    },
+    "forense-t05-e13": {
+      "section": "metadatos",
+      "reasoning": "La lista de estándares del apartado describe XMP como el generalista de Adobe.",
+      "options": {
+        "a": "Incorrecta. Exif es específico de las fotos.",
+        "b": "Incorrecta. ID3 es específico del audio MP3.",
+        "c": "Correcta. XMP es el estándar generalista de Adobe.",
+        "d": "Incorrecta. ASCII es una tabla de caracteres, no un estándar de metadatos."
+      }
+    },
+    "forense-t05-e14": {
+      "section": "metadatos",
+      "reasoning": "La lista de los metadatos en la práctica del apartado advierte del borrado de metadatos en redes y mensajería.",
+      "options": {
+        "a": "Correcta. Se pierden los metadatos y no es el archivo original.",
+        "b": "Incorrecta. El profesor dice lo contrario: suelen eliminarse.",
+        "c": "Incorrecta. El tema no dice que la app añada GPS fiable.",
+        "d": "Incorrecta. Enviar una foto no la convierte en ejecutable."
+      }
+    },
+    "forense-t05-e15": {
+      "section": "metadatos",
+      "reasoning": "La lista de los metadatos en la práctica del apartado explica la exportación a .eml para conservar las cabeceras.",
+      "options": {
+        "a": "Incorrecta. Otro reenvío sigue siendo una copia.",
+        "b": "Incorrecta. Una captura pierde las cabeceras del mensaje.",
+        "c": "Incorrecta. Imprimirlo pierde las cabeceras y los metadatos.",
+        "d": "Correcta. El .eml conserva las cabeceras del mensaje original."
+      }
+    },
+    "forense-t05-e16": {
+      "section": "metadatos",
+      "reasoning": "La lista de los metadatos en la práctica nombra ExifTool como herramienta de referencia.",
+      "options": {
+        "a": "Incorrecta. AlternateStreamView lista los flujos alternativos de NTFS.",
+        "b": "Correcta. ExifTool es la herramienta de referencia para metadatos.",
+        "c": "Incorrecta. PhotoRec se usa para la recuperación en bruto.",
+        "d": "Incorrecta. HxD es el editor hexadecimal de la demostración."
+      }
+    },
+    "forense-t05-e17": {
+      "section": "metadatos",
+      "reasoning": "El apartado indica que los metadatos forman parte del archivo y viajan con él al copiarlo.",
+      "options": {
+        "a": "Incorrecta. Los metadatos no están en el sistema de ficheros sino dentro del archivo.",
+        "b": "Incorrecta. Copiar no los elimina; las apps de mensajería sí suelen hacerlo.",
+        "c": "Correcta. Van dentro del archivo, así que viajan con él.",
+        "d": "Incorrecta. El MBR no guarda metadatos de archivos."
+      }
+    },
+    "forense-t05-e18": {
+      "section": "flujos-alternativos",
+      "reasoning": "El término flujo de datos alternativo del apartado lo define como característica de NTFS.",
+      "options": {
+        "a": "Correcta. Los ADS son propios de NTFS, el sistema de ficheros de Windows.",
+        "b": "Incorrecta. FAT32 no tiene flujos alternativos según el tema.",
+        "c": "Incorrecta. Ext4 es el sistema típico de Linux.",
+        "d": "Incorrecta. APFS es el sistema de Apple."
+      }
+    },
+    "forense-t05-e19": {
+      "section": "flujos-alternativos",
+      "reasoning": "La tabla de cómo ver los flujos alternativos cita dir /r y AlternateStreamView.",
+      "options": {
+        "a": "Incorrecta. file identifica el tipo de archivo por su firma.",
+        "b": "Incorrecta. xxd muestra el contenido en hexadecimal.",
+        "c": "Incorrecta. exiftool lee metadatos.",
+        "d": "Correcta. dir /r muestra los flujos alternativos."
+      }
+    },
+    "forense-t05-e20": {
+      "section": "flujos-alternativos",
+      "reasoning": "El apartado explica que por defecto se devuelve el flujo principal y los alternativos quedan ocultos.",
+      "options": {
+        "a": "Incorrecta. No se concatenan; los alternativos quedan ocultos.",
+        "b": "Correcta. Se devuelve siempre el flujo principal.",
+        "c": "Incorrecta. Los alternativos solo se obtienen pidiéndolos expresamente.",
+        "d": "Incorrecta. No hay error: se devuelve el principal."
+      }
+    },
+    "forense-t05-e21": {
+      "section": "caso-dossier",
+      "reasoning": "El apartado del caso indica que el dossier se publicó en formato DOC.",
+      "options": {
+        "a": "Incorrecta. El tema dice que se publicó en Word antiguo, no en PDF.",
+        "b": "Incorrecta. DOCX es el formato moderno de Word, no el del caso.",
+        "c": "Correcta. Se publicó en DOC, el formato antiguo de Word.",
+        "d": "Incorrecta. Un TXT apenas habría tenido metadatos."
+      }
+    },
+    "forense-t05-e22": {
+      "section": "caso-dossier",
+      "reasoning": "La lista de hallazgos del apartado recoge revisiones, disquete, autores y plagio, pero no ubicación.",
+      "options": {
+        "a": "Incorrecta. Las diez revisiones fueron uno de los hallazgos.",
+        "b": "Incorrecta. La copia a disquete fue uno de los hallazgos.",
+        "c": "Incorrecta. Los nombres de los autores fueron uno de los hallazgos.",
+        "d": "Correcta. El caso no menciona coordenadas GPS."
+      }
+    },
+    "forense-t05-e23": {
+      "section": "caso-dossier",
+      "reasoning": "El bloque de examen del apartado resume la idea evaluada: los metadatos revelan lo que no se ve.",
+      "options": {
+        "a": "Correcta. Los metadatos revelan información oculta al lector.",
+        "b": "Incorrecta. El propio caso demuestra que un DOC tiene metadatos.",
+        "c": "Incorrecta. El caso no compara fiabilidad, sino información adicional.",
+        "d": "Incorrecta. También los documentos ofimáticos tienen metadatos relevantes."
+      }
+    },
+    "forense-t05-e24": {
+      "section": "borrado",
+      "reasoning": "El apartado explica el borrado lógico como un atajo de rendimiento.",
+      "options": {
+        "a": "Incorrecta. El motivo que da el tema es de rendimiento, no legal.",
+        "b": "Correcta. Marcar es instantáneo y sobrescribir sería lento.",
+        "c": "Incorrecta. Se pueden borrar; simplemente no se sobrescriben.",
+        "d": "Incorrecta. El borrado normal no crea copias en otra partición."
+      }
+    },
+    "forense-t05-e25": {
+      "section": "borrado",
+      "reasoning": "La lista de archivos muy sensibles a la corrupción del apartado no incluye el texto plano.",
+      "options": {
+        "a": "Incorrecta. Los ejecutables no cargan si falta la cabecera o sus tablas.",
+        "b": "Incorrecta. En cifrados y comprimidos cada parte depende de las anteriores.",
+        "c": "Correcta. El texto plano no figura en la lista de formatos sensibles.",
+        "d": "Incorrecta. Sin índices ni estructuras, algunas bases de datos son ilegibles."
+      }
+    },
+    "forense-t05-e26": {
+      "section": "borrado",
+      "reasoning": "El apartado describe el aspecto de una JPG parcialmente sobrescrita tras recuperarla.",
+      "options": {
+        "a": "Correcta. Se recupera la parte no pisada y el resto aparece dañado.",
+        "b": "Incorrecta. La parte sobrescrita se pierde.",
+        "c": "Incorrecta. El tipo de archivo no cambia por sobrescribirse.",
+        "d": "Incorrecta. Puede recuperarse la parte de la imagen que no se pisó."
+      }
+    },
+    "forense-t05-e27": {
+      "section": "borrado",
+      "reasoning": "El apartado contrapone el caso cotidiano con el de una prueba única muy dañada.",
+      "options": {
+        "a": "Incorrecta. Si está muy dañada, puede no servir.",
+        "b": "Incorrecta. El hash no permite reconstruir datos.",
+        "c": "Incorrecta. La valoración de la prueba corresponde al juez, que no está obligado.",
+        "d": "Correcta. Puede que no haya nada útil que presentar."
+      }
+    },
+    "forense-t05-e28": {
+      "section": "que-se-recupera",
+      "reasoning": "La tabla 2 del apartado indica que en la papelera no hace falta recuperación.",
+      "options": {
+        "a": "Incorrecta. La básica se usa cuando la papelera se ha vaciado.",
+        "b": "Correcta. Basta con sacarlo de la papelera.",
+        "c": "Incorrecta. El carving se usa cuando se ha perdido la entrada del índice.",
+        "d": "Incorrecta. En la papelera el archivo está intacto."
+      }
+    },
+    "forense-t05-e29": {
+      "section": "que-se-recupera",
+      "reasoning": "La tabla 2 del apartado asigna a la papelera vaciada la recuperación básica con probabilidad alta.",
+      "options": {
+        "a": "Incorrecta. La recuperación en bruto con probabilidad baja corresponde a datos sobrescritos.",
+        "b": "Incorrecta. Tras vaciar la papelera el archivo ya no se ve.",
+        "c": "Correcta. Recuperación básica, probabilidad alta.",
+        "d": "Incorrecta. El bruto con probabilidad media es para cuando se pierde la entrada del índice."
+      }
+    },
+    "forense-t05-e30": {
+      "section": "que-se-recupera",
+      "reasoning": "La tabla 2 del apartado asigna a la entrada sobrescrita la recuperación en bruto con probabilidad media.",
+      "options": {
+        "a": "Correcta. En bruto, con probabilidad media.",
+        "b": "Incorrecta. La básica necesita la entrada del índice, que se ha perdido.",
+        "c": "Incorrecta. La probabilidad baja es para cuando también se sobrescriben los datos.",
+        "d": "Incorrecta. Sí hace falta recuperación."
+      }
+    },
+    "forense-t05-e31": {
+      "section": "que-se-recupera",
+      "reasoning": "El caso práctico del apartado describe qué se recupera según se haya reutilizado la entrada o pisado los datos.",
+      "options": {
+        "a": "Incorrecta. Nombre y fechas se perdieron al reutilizarse la entrada.",
+        "b": "Incorrecta. Si los datos siguen ahí, el contenido puede recuperarse en bruto.",
+        "c": "Incorrecta. Es al revés: se pierde el nombre y puede quedar el contenido.",
+        "d": "Correcta. Contenido sin datos asociados, con un nombre generado."
+      }
+    },
+    "forense-t05-e32": {
+      "section": "basica-bruto",
+      "reasoning": "El término recuperación básica del apartado enumera FTK Imager, Autopsy y Recuva.",
+      "options": {
+        "a": "Incorrecta. PhotoRec y R-Studio se usan en la recuperación en bruto.",
+        "b": "Correcta. Son las herramientas de recuperación básica del tema.",
+        "c": "Incorrecta. ExifTool y FOCA leen metadatos.",
+        "d": "Incorrecta. HxD y xxd muestran el contenido en hexadecimal."
+      }
+    },
+    "forense-t05-e33": {
+      "section": "basica-bruto",
+      "reasoning": "El término falso positivo del apartado lo define como algo interpretado erróneamente como archivo.",
+      "options": {
+        "a": "Incorrecta. La recuperación en bruto no conserva nombres originales.",
+        "b": "Incorrecta. Un archivo en la papelera no es un falso positivo.",
+        "c": "Correcta. Es un supuesto archivo que en realidad no lo es.",
+        "d": "Incorrecta. Los flujos alternativos son una característica de NTFS."
+      }
+    },
+    "forense-t05-e34": {
+      "section": "basica-bruto",
+      "reasoning": "La tabla comparativa y el bloque de examen del apartado destacan que Recuva está en las dos listas.",
+      "options": {
+        "a": "Correcta. Recuva figura en ambas listas.",
+        "b": "Incorrecta. PhotoRec solo aparece en la recuperación en bruto.",
+        "c": "Incorrecta. Autopsy solo aparece en la recuperación básica.",
+        "d": "Incorrecta. R-Studio solo aparece en la recuperación en bruto."
+      }
+    },
+    "forense-t05-e35": {
+      "section": "basica-bruto",
+      "reasoning": "Las notas prácticas de la clase del apartado dan el umbral orientativo del 80–90 %.",
+      "options": {
+        "a": "Incorrecta. Es muy inferior al umbral que dio el profesor.",
+        "b": "Incorrecta. No es la cifra que dio el profesor.",
+        "c": "Incorrecta. El profesor aclaró que no hay ninguna ley que lo fije.",
+        "d": "Correcta. Del 80 al 90 % se acepta sin discusión, según su experiencia."
+      }
+    },
+    "forense-t05-e36": {
+      "section": "basica-bruto",
+      "reasoning": "Las notas prácticas de la clase del apartado describen Recuva como primer intento rápido y laxo.",
+      "options": {
+        "a": "Incorrecta. Para un trabajo serio recomienda FTK Imager y Autopsy.",
+        "b": "Correcta. Es rápida, pero su búsqueda es más laxa.",
+        "c": "Incorrecta. No se presenta como herramienta específica de SSD.",
+        "d": "Incorrecta. Para metadatos se usan ExifTool o FOCA."
+      }
+    },
+    "forense-t05-e37": {
+      "section": "fat-ejemplo",
+      "reasoning": "La tabla del primer byte de una entrada FAT asigna 0xE5 a los archivos eliminados.",
+      "options": {
+        "a": "Incorrecta. 0x00 indica una entrada sin usar.",
+        "b": "Incorrecta. 0x05 indica que el nombre empieza por el carácter 0xE5.",
+        "c": "Correcta. 0xE5 marca un archivo eliminado.",
+        "d": "Incorrecta. No es uno de los valores de la tabla del tema."
+      }
+    },
+    "forense-t05-e38": {
+      "section": "fat-ejemplo",
+      "reasoning": "La tabla del primer byte de una entrada FAT define el significado de 0x00.",
+      "options": {
+        "a": "Correcta. 0x00 es una entrada sin usar.",
+        "b": "Incorrecta. Un archivo eliminado se marca con 0xE5.",
+        "c": "Incorrecta. Ese caso se marca con 0x05.",
+        "d": "Incorrecta. El nombre del volumen es una entrada del directorio raíz, no un valor del primer byte."
+      }
+    },
+    "forense-t05-e39": {
+      "section": "fat-ejemplo",
+      "reasoning": "Los pasos del ejemplo FAT del apartado indican que cada entrada ocupa 32 bytes.",
+      "options": {
+        "a": "Incorrecta. 512 bytes es el tamaño del sector.",
+        "b": "Incorrecta. 11 bytes es solo lo que ocupa el nombre 8.3.",
+        "c": "Incorrecta. 4096 bytes es el tamaño del clúster del ejemplo.",
+        "d": "Correcta. Cada entrada de directorio ocupa 32 bytes."
+      }
+    },
+    "forense-t05-e40": {
+      "section": "fat-ejemplo",
+      "reasoning": "El apartado explica que el borrado en FAT cambia la primera letra por 0xE5, de ahí el «?».",
+      "options": {
+        "a": "Incorrecta. La FAT2 es una copia de la FAT1, no guarda letras de nombres.",
+        "b": "Correcta. La primera letra se sustituye por 0xE5 al borrar.",
+        "c": "Incorrecta. El formato 8.3 admite cualquier letra inicial.",
+        "d": "Incorrecta. El nombre parcial no se debe a sobrescritura de los datos."
+      }
+    },
+    "forense-t05-e41": {
+      "section": "fat-ejemplo",
+      "reasoning": "El cálculo del apartado muestra cómo pasar de bytes a sectores y de sectores a clústeres redondeando hacia arriba.",
+      "options": {
+        "a": "Correcta. 360 sectores entre 8 sectores por clúster dan 45 clústeres.",
+        "b": "Incorrecta. Se queda corto: el archivo no cabría entero.",
+        "c": "Incorrecta. 359 es el número de sectores redondeado hacia abajo, no de clústeres.",
+        "d": "Incorrecta. 360 es el número de sectores, no de clústeres."
+      }
+    },
+    "forense-t05-e42": {
+      "section": "fat-ejemplo",
+      "reasoning": "El término formato 8.3 del apartado lo define con el ejemplo HORMIGA.JPG.",
+      "options": {
+        "a": "Incorrecta. No tiene que ver con sectores ni clústeres.",
+        "b": "Incorrecta. No es una versión de FAT.",
+        "c": "Correcta. Ocho caracteres de nombre y tres de extensión.",
+        "d": "Incorrecta. No describe el formato de las fechas."
+      }
+    },
+    "forense-t05-e43": {
+      "section": "ssd-desgaste",
+      "reasoning": "La tabla disco duro frente a SSD del apartado indica que el SSD no puede sobrescribir directamente.",
+      "options": {
+        "a": "Incorrecta. El SSD no puede sobrescribir directamente.",
+        "b": "Incorrecta. Los platos magnéticos son del disco duro.",
+        "c": "Incorrecta. La memoria flash no pierde los datos al apagar; eso es la RAM.",
+        "d": "Correcta. Debe borrar el bloque antes de escribir."
+      }
+    },
+    "forense-t05-e44": {
+      "section": "ssd-desgaste",
+      "reasoning": "El término nivelación del desgaste del apartado explica el límite de ciclos de cada bloque.",
+      "options": {
+        "a": "Incorrecta. La memoria flash conserva los datos sin corriente.",
+        "b": "Correcta. El límite de ciclos obliga a repartir el uso.",
+        "c": "Incorrecta. Un SSD no tiene piezas que giren.",
+        "d": "Incorrecta. Un SSD no es una cinta."
+      }
+    },
+    "forense-t05-e45": {
+      "section": "ssd-desgaste",
+      "reasoning": "La tabla disco duro frente a SSD del apartado compara cuánto tiempo sobrevive lo borrado.",
+      "options": {
+        "a": "Correcta. El recolector de basura puede eliminarlo en minutos.",
+        "b": "Incorrecta. El recolector de basura sí borra bloques internamente.",
+        "c": "Incorrecta. La memoria flash no se borra al apagar.",
+        "d": "Incorrecta. La desfragmentación no es lo que borra los datos en un SSD."
+      }
+    },
+    "forense-t05-e46": {
+      "section": "ssd-desgaste",
+      "reasoning": "La última fila de la tabla disco duro frente a SSD resume la viabilidad de recuperar borrados.",
+      "options": {
+        "a": "Incorrecta. El SSD es mucho más complejo.",
+        "b": "Incorrecta. La velocidad no facilita la recuperación.",
+        "c": "Correcta. Difícil o imposible en SSD; relativamente viable en HDD.",
+        "d": "Incorrecta. Invierte la situación de cada tipo de disco."
+      }
+    },
+    "forense-t05-e47": {
+      "section": "trim",
+      "reasoning": "El apartado explica la lentitud de los primeros SSD por la doble operación al reutilizar bloques.",
+      "options": {
+        "a": "Incorrecta. TRIM surgió precisamente para resolver el problema.",
+        "b": "Correcta. Borrar y escribir son dos operaciones en vez de una.",
+        "c": "Incorrecta. El recolector solo borra bloques señalados como libres.",
+        "d": "Incorrecta. El límite de ciclos se refiere a la escritura y no explica esta lentitud."
+      }
+    },
+    "forense-t05-e48": {
+      "section": "trim",
+      "reasoning": "El término comando TRIM del apartado indica que lo envía el sistema operativo al SSD.",
+      "options": {
+        "a": "Incorrecta. La dirección es la contraria.",
+        "b": "Incorrecta. TRIM es un comando técnico, no una comunicación judicial.",
+        "c": "Incorrecta. El recolector de basura es un proceso interno del SSD.",
+        "d": "Correcta. El sistema operativo compatible informa al SSD."
+      }
+    },
+    "forense-t05-e49": {
+      "section": "trim",
+      "reasoning": "El término recolector de basura del apartado indica que actúa cuando el disco está inactivo.",
+      "options": {
+        "a": "Incorrecta. No espera al apagado del equipo.",
+        "b": "Incorrecta. Vaciar la papelera no activa directamente el borrado físico.",
+        "c": "Correcta. Actúa en los ratos de inactividad del disco.",
+        "d": "Incorrecta. No necesita que se formatee la unidad."
+      }
+    },
+    "forense-t05-e50": {
+      "section": "trim",
+      "reasoning": "El apartado compara el efecto de TRIM y el recolector de basura con un borrado seguro automático.",
+      "options": {
+        "a": "Correcta. Los bloques borrados se eliminan físicamente sin intervención del usuario.",
+        "b": "Incorrecta. No guarda copias de los bloques borrados.",
+        "c": "Incorrecta. El journaling registra cambios para repararlos, no borra datos.",
+        "d": "Incorrecta. Los flujos alternativos son una característica de NTFS."
+      }
     }
   }
 }

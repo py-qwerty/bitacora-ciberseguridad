@@ -1163,6 +1163,506 @@
         "d": "Incorrecta. La **investigación y análisis** es el cuarto proceso clave: estudiar a fondo el incidente, con técnicas forenses, para extraer lecciones para el futuro."
       },
       "doubt": "La pregunta está mal planteada: «procedimientos de acción» es casi un sinónimo de «procedimientos de respuesta», el nombre que da el temario, así que la diferencia es solo de vocabulario. Se marca la B porque es la única que no coincide literalmente con los cuatro procesos clave, pero el temario no incluye soluciones del test que lo confirmen."
+    },
+    "forense-t01-e01": {
+      "section": "incidente",
+      "reasoning": "El apartado define primero el incidente (espontáneo o provocado) y después el ciberataque como el incidente provocado.",
+      "options": {
+        "a": "Correcta. El ciberataque es el subconjunto de incidentes provocados intencionadamente a través del ciberespacio.",
+        "b": "Incorrecta. Un ciberataque puede dañar la confidencialidad, la integridad o la disponibilidad, no solo esta última.",
+        "c": "Incorrecta. La alta probabilidad de comprometer las operaciones forma parte de la definición de incidente, también del ataque.",
+        "d": "Incorrecta. Lo espontáneo (un fallo, una inundación) es justo lo contrario de un ataque, que es provocado."
+      }
+    },
+    "forense-t01-e02": {
+      "section": "incidente",
+      "reasoning": "La tabla de las tres dimensiones pone como ejemplo de daño a la integridad el cambio del número de cuenta de una factura.",
+      "options": {
+        "a": "Incorrecta. La factura sigue existiendo y se puede usar; el problema es que su contenido es falso.",
+        "b": "Incorrecta. El daño principal no es que alguien la lea, sino que se ha modificado sin autorización.",
+        "c": "Correcta. Modificar datos sin permiso daña la integridad, como en el ejemplo de la factura del temario.",
+        "d": "Incorrecta. La trazabilidad no es una de las tres dimensiones de la seguridad que recoge el apartado."
+      }
+    },
+    "forense-t01-e03": {
+      "section": "incidente",
+      "reasoning": "El apartado presenta MITRE ATT&CK como un gran diccionario de tácticas y técnicas para caracterizar cualquier ciberataque.",
+      "options": {
+        "a": "Incorrecta. No es una norma ISO ni certifica nada; es un catálogo de conocimiento sobre atacantes.",
+        "b": "Correcta. Es el catálogo público de MITRE con las tácticas y técnicas que usan los atacantes.",
+        "c": "Incorrecta. Carnegie Mellon aparece en el tema por ser titular de la marca CERT, no por MITRE ATT&CK.",
+        "d": "Incorrecta. Las cuatro etapas del forense están en la guía NIST SP 800-86, no en MITRE ATT&CK."
+      }
+    },
+    "forense-t01-e04": {
+      "section": "incidente",
+      "reasoning": "La tabla del apartado pone como ejemplo de daño a la confidencialidad que alguien lea datos de clientes sin permiso, aunque no cambie nada.",
+      "options": {
+        "a": "Incorrecta. Leer no es alterar: la integridad se daña cuando los datos se modifican sin permiso.",
+        "b": "Incorrecta. El servicio sigue funcionando y los datos se pueden usar con normalidad.",
+        "c": "Incorrecta. Un acceso no autorizado ya es un daño, aunque no haya cambios ni caída.",
+        "d": "Correcta. Que acceda quien no está autorizado es exactamente lo que protege la confidencialidad."
+      }
+    },
+    "forense-t01-e05": {
+      "section": "tipos-incidente",
+      "reasoning": "La tabla de los cuatro orígenes asigna a cada uno su defensa: al error humano le corresponde la formación corporativa.",
+      "options": {
+        "a": "Correcta. La formación reduce los fallos de personas bienintencionadas, incluidos los inducidos por engaños.",
+        "b": "Incorrecta. El plan de contingencias detallado es la respuesta a los desastres naturales.",
+        "c": "Incorrecta. Las políticas de control de acceso son la defensa frente al ataque interno (insider).",
+        "d": "Incorrecta. Las defensas técnicas de detección y respuesta se asocian a los ataques externos."
+      }
+    },
+    "forense-t01-e06": {
+      "section": "tipos-incidente",
+      "reasoning": "La tabla de orígenes cita expresamente al proveedor con acceso como posible autor de un ataque interno.",
+      "options": {
+        "a": "Incorrecta. Hay intención maliciosa, así que no es un error humano sin mala fe.",
+        "b": "Incorrecta. Aunque no sea empleado, ya está dentro con acceso legítimo, que es lo que define al insider.",
+        "c": "Correcta. Un proveedor con acceso legítimo que actúa a propósito encaja en el ataque interno.",
+        "d": "Incorrecta. Hay una acción deliberada; no es un hecho fortuito aunque no rompa ninguna barrera técnica."
+      }
+    },
+    "forense-t01-e07": {
+      "section": "tipos-incidente",
+      "reasoning": "La tabla describe el ataque interno como muy difícil de detectar pronto y con daño grande cuando se descubre.",
+      "options": {
+        "a": "Incorrecta. Venir de fuera con motivaciones variadas describe el ataque externo.",
+        "b": "Correcta. Es la descripción del temario: detección tardía y daño grande al descubrirlo.",
+        "c": "Incorrecta. Frente al insider se proponen políticas de control de acceso; la formación es para errores humanos.",
+        "d": "Incorrecta. Lo imposible de evitar y predecir son los desastres naturales."
+      }
+    },
+    "forense-t01-e08": {
+      "section": "continuidad-negocio",
+      "reasoning": "El apartado define BC como continuidad de negocio y BCM como su gestión sistematizada.",
+      "options": {
+        "a": "Incorrecta. Las copias de seguridad son una herramienta, pero BCM no se refiere a ellas.",
+        "b": "Incorrecta. La «C» es de Continuity, no de Crisis, y no se trata de vigilar crisis.",
+        "c": "Incorrecta. No tiene que ver con el mantenimiento de equipos informáticos.",
+        "d": "Correcta. BCM es la gestión de la continuidad de negocio."
+      }
+    },
+    "forense-t01-e09": {
+      "section": "continuidad-negocio",
+      "reasoning": "Los pasos del BCM empiezan por los procesos críticos, siguen con la evaluación de riesgos y la planificación, y acaban con el entrenamiento.",
+      "options": {
+        "a": "Incorrecta. Entrenar al personal es el último paso de la lista.",
+        "b": "Correcta. Sin saber qué procesos son críticos no se puede evaluar ni planificar nada.",
+        "c": "Incorrecta. Planificar el intervalo de recuperación es el tercer paso.",
+        "d": "Incorrecta. La evaluación de riesgos se aplica sobre los procesos críticos ya identificados."
+      }
+    },
+    "forense-t01-e10": {
+      "section": "continuidad-negocio",
+      "reasoning": "La definición de BC del apartado incluye expresamente eventualidades no tecnológicas como una huelga de transporte.",
+      "options": {
+        "a": "Incorrecta. Es justo al revés: la continuidad cubre también lo no tecnológico.",
+        "b": "Incorrecta. El DRP se centra en restablecer la infraestructura tecnológica, no en una huelga.",
+        "c": "Incorrecta. No hace falta que haya un fallo informático para activar la continuidad.",
+        "d": "Correcta. La continuidad abarca cualquier eventualidad, como una huelga de transporte."
+      }
+    },
+    "forense-t01-e11": {
+      "section": "continuidad-negocio",
+      "reasoning": "Los pasos del BCM son de negocio; buscar al culpable para un juicio pertenece a otra disciplina, el forense.",
+      "options": {
+        "a": "Incorrecta. Evaluar riesgos y fijar contingencias es el segundo paso del BCM.",
+        "b": "Incorrecta. Entrenar al personal es el último paso del BCM.",
+        "c": "Correcta. Identificar al autor ante un juez es propio del análisis forense, no de la continuidad.",
+        "d": "Incorrecta. Los niveles mínimos de servicio forman parte de la planificación del intervalo de recuperación."
+      }
+    },
+    "forense-t01-e12": {
+      "section": "recuperacion-desastres",
+      "reasoning": "El apartado presenta al INCIBE y a continuación enumera las fases del DRP según este organismo.",
+      "options": {
+        "a": "Incorrecta. El NIST aparece en el tema por la definición de ciberataque y las etapas forenses, no por el DRP.",
+        "b": "Correcta. Las fases del DRP del temario son las que propone el INCIBE.",
+        "c": "Incorrecta. El CCN aparece por su guía CCN-STIC 817 de gestión de ciberincidentes.",
+        "d": "Incorrecta. Carnegie Mellon aparece por ser titular de la marca CERT."
+      }
+    },
+    "forense-t01-e13": {
+      "section": "recuperacion-desastres",
+      "reasoning": "La lista de fases del INCIBE describe el BIA como la forma de saber qué recuperar y en qué plazo.",
+      "options": {
+        "a": "Correcta. El BIA dice qué hay que recuperar y en cuánto tiempo.",
+        "b": "Incorrecta. Identificar al autor y aportar pruebas es propio del análisis forense.",
+        "c": "Incorrecta. Los requisitos al proveedor de nube se fijan en el SLA.",
+        "d": "Incorrecta. Clasificar incidentes por gravedad es parte de la gestión de incidentes de un CSIRT."
+      }
+    },
+    "forense-t01-e14": {
+      "section": "recuperacion-desastres",
+      "reasoning": "Las fases del DRP del apartado justifican las pruebas (ver que funciona) y la mejora (las amenazas cambian).",
+      "options": {
+        "a": "Incorrecta. El temario no menciona ninguna obligación anual ante el INCIBE.",
+        "b": "Correcta. Probar demuestra que el plan funciona y actualizar lo adapta a amenazas nuevas.",
+        "c": "Incorrecta. Alinearlo con la continuidad es otra fase que sigue siendo necesaria.",
+        "d": "Incorrecta. El BIA es una fase propia del DRP; las pruebas no lo sustituyen."
+      }
+    },
+    "forense-t01-e15": {
+      "section": "bia-rto-rpo",
+      "reasoning": "La tabla de los tres tiempos del BIA define el MTD como el tiempo máximo de caída tolerable.",
+      "options": {
+        "a": "Incorrecta. No mide cuánto se tarda en detectar el incidente.",
+        "b": "Incorrecta. No es un tiempo de despliegue de copias.",
+        "c": "Incorrecta. No tiene que ver con transferencias de datos.",
+        "d": "Correcta. MTD es el tiempo máximo de caída tolerable."
+      }
+    },
+    "forense-t01-e16": {
+      "section": "bia-rto-rpo",
+      "reasoning": "El apartado explica que el tiempo real de pérdida es RTO + RPO: lo que se pierde hacia atrás más el tiempo parado hacia delante.",
+      "options": {
+        "a": "Incorrecta. Olvida las 2 horas de datos perdidos desde la última copia.",
+        "b": "Incorrecta. Olvida las 3 horas que el servicio está parado.",
+        "c": "Correcta. 2 horas de RPO más 3 de RTO dan 5 horas de pérdida real.",
+        "d": "Incorrecta. Los tiempos se suman, no se restan."
+      }
+    },
+    "forense-t01-e17": {
+      "section": "bia-rto-rpo",
+      "reasoning": "El caso práctico del apartado concluye que, si el MTD es menor que la caída prevista, el plan no es suficiente.",
+      "options": {
+        "a": "Incorrecta. Comparar solo el RPO no basta: el tiempo parado (RTO) ya supera el MTD.",
+        "b": "Correcta. Cuatro horas de RTO superan las tres horas de MTD tolerables.",
+        "c": "Incorrecta. El MTD es precisamente el límite global con el que se comparan los demás tiempos.",
+        "d": "Incorrecta. Ampliar el RPO solo aumentaría los datos perdidos; no reduce el tiempo de caída."
+      }
+    },
+    "forense-t01-e18": {
+      "section": "bia-rto-rpo",
+      "reasoning": "La definición de BIA del apartado habla de estudiar procesos y fijar tiempos máximos de impacto asumible.",
+      "options": {
+        "a": "Correcta. El BIA fija los tiempos máximos en que la interrupción aún es asumible.",
+        "b": "Incorrecta. Las tácticas y técnicas de los atacantes las describe MITRE ATT&CK.",
+        "c": "Incorrecta. Las cláusulas con el proveedor de nube se recogen en el SLA.",
+        "d": "Incorrecta. El registro de custodios pertenece a la cadena de custodia."
+      }
+    },
+    "forense-t01-e19": {
+      "section": "bia-rto-rpo",
+      "reasoning": "La tabla del BIA indica la dirección de cada tiempo: RTO hacia delante y RPO hacia atrás desde el desastre.",
+      "options": {
+        "a": "Incorrecta. Invierte las direcciones de los dos tiempos.",
+        "b": "Correcta. RTO hacia delante (tiempo parado) y RPO hacia atrás (datos perdidos).",
+        "c": "Incorrecta. Solo el RTO mide tiempo sin funcionar; el RPO mide hasta qué punto se recuperan los datos.",
+        "d": "Incorrecta. El tiempo máximo de caída tolerable es el MTD."
+      }
+    },
+    "forense-t01-e20": {
+      "section": "procesos-clave",
+      "reasoning": "La lista de guías de referencia del apartado cita la CCN-STIC 817 junto a la NIST SP 800-61 r2.",
+      "options": {
+        "a": "Correcta. Es la guía del CCN sobre gestión de ciberincidentes.",
+        "b": "Incorrecta. Es la guía estadounidense del NIST para gestionar incidentes, no del CCN.",
+        "c": "Incorrecta. Es la norma internacional sobre la recolección de evidencias.",
+        "d": "Incorrecta. Es la guía del NIST que divide el forense en cuatro etapas."
+      }
+    },
+    "forense-t01-e21": {
+      "section": "procesos-clave",
+      "reasoning": "El apartado aclara que, al hablar de recolección de eventos y gestión de alertas, el temario describe un SIEM.",
+      "options": {
+        "a": "Incorrecta. El CASB vigila las políticas de acceso a servicios en la nube.",
+        "b": "Incorrecta. El MDM gestiona de forma centralizada los dispositivos móviles.",
+        "c": "Correcta. El SIEM recoge eventos y gestiona alertas de seguridad.",
+        "d": "Incorrecta. DRaaS es la recuperación ante desastres como servicio en la nube."
+      }
+    },
+    "forense-t01-e22": {
+      "section": "procesos-clave",
+      "reasoning": "La tabla de procesos clave asocia el análisis forense a la investigación y análisis del incidente.",
+      "options": {
+        "a": "Incorrecta. La detección busca la alerta temprana, no investigar a fondo.",
+        "b": "Incorrecta. Los procedimientos fijan acciones y responsables por escenario.",
+        "c": "Incorrecta. La comunicación centraliza y difunde la información del incidente.",
+        "d": "Correcta. El forense forma parte de la investigación y el análisis."
+      }
+    },
+    "forense-t01-e23": {
+      "section": "procesos-clave",
+      "reasoning": "Entre las ideas remarcadas por el profesor en el apartado está que la respuesta puede hacerse sin forense.",
+      "options": {
+        "a": "Correcta. La respuesta es posible sin forense, aunque este requiere técnicas especializadas.",
+        "b": "Incorrecta. El informe pericial es la última etapa del forense, no el inicio de toda respuesta.",
+        "c": "Incorrecta. El temario no dice que la ley exija un perito en cualquier incidente.",
+        "d": "Incorrecta. El forense se aplica sobre todo a incidentes provocados, no a desastres naturales."
+      }
+    },
+    "forense-t01-e24": {
+      "section": "csirt",
+      "reasoning": "La definición del apartado aclara que ambos nombres son equivalentes y que CERT es marca registrada.",
+      "options": {
+        "a": "Incorrecta. Hay CERT públicos y privados; no se reserva al ámbito militar.",
+        "b": "Incorrecta. El temario no dice nada de un reconocimiento exclusivo del NIST.",
+        "c": "Correcta. CERT es marca registrada de Carnegie Mellon, por eso se usa CSIRT.",
+        "d": "Incorrecta. Los dos nombres designan equipos con los mismos tipos de servicios."
+      }
+    },
+    "forense-t01-e25": {
+      "section": "csirt",
+      "reasoning": "La tabla de servicios del CSIRT califica la gestión de incidentes como su razón de ser.",
+      "options": {
+        "a": "Incorrecta. Certificar productos es un servicio de control de calidad, no el principal.",
+        "b": "Correcta. Gestionar los incidentes notificados es la razón de ser del CSIRT.",
+        "c": "Incorrecta. Vigilancia y divulgación son servicios proactivos.",
+        "d": "Incorrecta. Desarrollar herramientas propias es un servicio proactivo."
+      }
+    },
+    "forense-t01-e26": {
+      "section": "csirt",
+      "reasoning": "La tabla de servicios del CSIRT incluye el análisis de riesgos y las campañas de sensibilización dentro del control de calidad.",
+      "options": {
+        "a": "Incorrecta. Los reactivos se prestan a demanda cuando el cliente detecta un problema.",
+        "b": "Incorrecta. La gestión de incidentes atiende incidentes notificados, no evalúa el nivel de seguridad.",
+        "c": "Correcta. Análisis de riesgos y sensibilización figuran en el control de calidad.",
+        "d": "Incorrecta. Es un error frecuente: los proactivos son divulgación, vigilancia, auditorías o detección de intrusiones."
+      }
+    },
+    "forense-t01-e27": {
+      "section": "csirt",
+      "reasoning": "El apartado define el término artefacto y lo incluye en los servicios reactivos (tratamiento de artefactos).",
+      "options": {
+        "a": "Incorrecta. Un aviso preventivo es un servicio de divulgación, no un artefacto.",
+        "b": "Correcta. Artefacto es el malware, script o exploit usado para explotar una vulnerabilidad.",
+        "c": "Incorrecta. Clasificar por gravedad es parte de la gestión de incidentes, no un artefacto.",
+        "d": "Incorrecta. Una copia bit a bit es una imagen forense, no un artefacto."
+      }
+    },
+    "forense-t01-e28": {
+      "section": "nuevos-retos",
+      "reasoning": "La lista sobre computación en la nube describe el CASB como software intermedio que vigila políticas de acceso a la nube.",
+      "options": {
+        "a": "Correcta. Es la definición de CASB del temario.",
+        "b": "Incorrecta. Eso es un SLA, el acuerdo de nivel de servicio.",
+        "c": "Incorrecta. Eso es un MDM, la gestión de dispositivos móviles.",
+        "d": "Incorrecta. Eso es DRaaS, la recuperación ante desastres como servicio."
+      }
+    },
+    "forense-t01-e29": {
+      "section": "nuevos-retos",
+      "reasoning": "El apartado presenta el MDM como la forma de compensar el riesgo del terminal móvil, incluido el borrado ante robo.",
+      "options": {
+        "a": "Incorrecta. El CASB vigila el acceso a servicios en la nube, no gestiona el terminal.",
+        "b": "Incorrecta. El SLA es un contrato con un proveedor, no una herramienta sobre el móvil.",
+        "c": "Incorrecta. DRaaS sirve para recuperar la infraestructura en la nube.",
+        "d": "Correcta. El MDM permite, entre otras cosas, borrar los datos de empresa del móvil perdido."
+      }
+    },
+    "forense-t01-e30": {
+      "section": "nuevos-retos",
+      "reasoning": "La lista sobre la nube señala como nuevos puntos de fallo el acceso de terceros y el aislamiento entre clientes en nubes compartidas.",
+      "options": {
+        "a": "Correcta. El aislamiento entre clientes es el riesgo propio de las nubes compartidas.",
+        "b": "Incorrecta. Los SLA no solo se pueden firmar: el temario recomienda gestionarlos y verificarlos.",
+        "c": "Incorrecta. El temario no habla de renunciar a las copias de seguridad.",
+        "d": "Incorrecta. El acceso remoto no desaparece; de hecho es uno de los problemas de la movilidad."
+      }
+    },
+    "forense-t01-e31": {
+      "section": "nuevos-retos",
+      "reasoning": "El apartado define DRaaS como la recuperación ante desastres externalizada en la nube.",
+      "options": {
+        "a": "Incorrecta. El BIA es un análisis, no un servicio de recuperación.",
+        "b": "Incorrecta. Eso es BYOD (Bring Your Own Device).",
+        "c": "Incorrecta. Eso describe un CSIRT privado.",
+        "d": "Correcta. DRaaS usa la nube como sede de respaldo para seguir operando en una crisis."
+      }
+    },
+    "forense-t01-e32": {
+      "section": "nuevos-retos",
+      "reasoning": "Entre las medidas para la nube, el temario cita implicar a legal o compliance para analizar restricciones y consecuencias legales.",
+      "options": {
+        "a": "Correcta. Legal o compliance valora restricciones y consecuencias legales del servicio en la nube.",
+        "b": "Incorrecta. La verificación del cumplimiento del SLA sigue siendo necesaria por separado.",
+        "c": "Incorrecta. El informe pericial lo redacta el perito forense, no el departamento legal.",
+        "d": "Incorrecta. Nadie puede garantizar que no haya brechas; tampoco lo hace un SLA."
+      }
+    },
+    "forense-t01-e33": {
+      "section": "forense-objetivos",
+      "reasoning": "El apartado explica las dos partes de la definición de Brown: ciencia por el método y arte por pensar como el autor.",
+      "options": {
+        "a": "Incorrecta. Sí sigue procedimientos y herramientas: esa es la parte de «ciencia».",
+        "b": "Incorrecta. Las conclusiones deben fundamentarse en resultados, no en gustos personales.",
+        "c": "Correcta. El «arte» es la capacidad de ponerse en la piel del autor.",
+        "d": "Incorrecta. El porqué de la alteración no es un objetivo del análisis forense."
+      }
+    },
+    "forense-t01-e34": {
+      "section": "forense-objetivos",
+      "reasoning": "La tabla de las tres preguntas incluye en el «qué» las lecturas y copias, con el ejemplo del móvil de un famoso.",
+      "options": {
+        "a": "Incorrecta. Leer o copiar también es relevante aunque no se modifique nada.",
+        "b": "Correcta. El «qué» abarca accesos, lecturas y copias no autorizados.",
+        "c": "Incorrecta. Leer y modificar tienen implicaciones legales distintas, pero leer también las tiene.",
+        "d": "Incorrecta. El análisis no depende de que el autor confiese."
+      }
+    },
+    "forense-t01-e35": {
+      "section": "forense-objetivos",
+      "reasoning": "La definición del INCIBE recogida en el apartado tiene dos ideas: es una investigación y sus resultados deben valer como prueba.",
+      "options": {
+        "a": "Incorrecta. Las evidencias se obtienen investigando, no dependen de que las aporte el autor.",
+        "b": "Incorrecta. En España no se exige titulación ni colegiación para ser perito.",
+        "c": "Correcta. Las evidencias deben poder servir como prueba fehaciente en juicio.",
+        "d": "Incorrecta. Restaurar el servicio es tarea de la recuperación, no del forense."
+      }
+    },
+    "forense-t01-e36": {
+      "section": "forense-objetivos",
+      "reasoning": "El término «límite de la atribución» del apartado explica que la persona física exige técnicas de investigación adicionales.",
+      "options": {
+        "a": "Incorrecta. La MAC identifica un equipo, no a la persona que lo usaba.",
+        "b": "Correcta. Se necesitan otras técnicas de investigación para llegar a la persona.",
+        "c": "Incorrecta. Es la trampa típica: alguien pudo usar la sesión o robar la contraseña.",
+        "d": "Incorrecta. Sí es posible, pero combinando el forense con otras técnicas."
+      }
+    },
+    "forense-t01-e37": {
+      "section": "etapas-forense",
+      "reasoning": "Las etapas NIST del apartado describen el examen como extraer lo relevante y descartar el resto.",
+      "options": {
+        "a": "Incorrecta. La recolección identifica y adquiere las evidencias, sin filtrarlas aún.",
+        "b": "Incorrecta. El análisis responde a las preguntas qué, cómo y quién con los datos ya filtrados.",
+        "c": "Incorrecta. El informe recoge análisis, resultados y conclusiones.",
+        "d": "Correcta. El examen extrae lo relevante y descarta lo que no tiene relación."
+      }
+    },
+    "forense-t01-e38": {
+      "section": "etapas-forense",
+      "reasoning": "El término ISO/IEC 27037 del apartado enumera sus tres fases de recolección.",
+      "options": {
+        "a": "Correcta. Son las tres fases de la ISO/IEC 27037.",
+        "b": "Incorrecta. Son las cuatro etapas del NIST para todo el análisis, no las fases de la recolección.",
+        "c": "Incorrecta. Son fases típicas de la gestión de incidentes, no de la ISO/IEC 27037.",
+        "d": "Incorrecta. Mezcla términos y no corresponde a la norma."
+      }
+    },
+    "forense-t01-e39": {
+      "section": "etapas-forense",
+      "reasoning": "La lista de exigencias legales del apartado resume el art. 479 LECrim: guardar una parte para el juez.",
+      "options": {
+        "a": "Incorrecta. La ley no condiciona el análisis al permiso de la parte que contrata.",
+        "b": "Incorrecta. La ley admite el análisis destructivo con la cautela de guardar una parte.",
+        "c": "Incorrecta. Destruirlo entero impediría que otro perito repitiera el análisis.",
+        "d": "Correcta. Hay que conservar, si es posible, una parte a disposición del juez."
+      }
+    },
+    "forense-t01-e40": {
+      "section": "etapas-forense",
+      "reasoning": "El apartado indica que las modificaciones inevitables durante la recolección deben quedar documentadas.",
+      "options": {
+        "a": "Incorrecta. La ley exige precauciones para evitar alteraciones, no prohíbe toda actuación necesaria.",
+        "b": "Incorrecta. Ocultarlo atenta contra la imparcialidad y podría ser falso testimonio impropio.",
+        "c": "Correcta. Lo inevitable se documenta para que se sepa qué cambió y por qué.",
+        "d": "Incorrecta. La responsabilidad de documentar es de quien actúa en el momento."
+      }
+    },
+    "forense-t01-e41": {
+      "section": "cadena-custodia",
+      "reasoning": "El término función hash del apartado explica que cualquier cambio altera la huella, lo que prueba la integridad.",
+      "options": {
+        "a": "Correcta. Esa sensibilidad a cualquier cambio es lo que permite demostrar la integridad.",
+        "b": "Incorrecta. La huella es corta y no sirve para reconstruir el original.",
+        "c": "Incorrecta. El hash no dice quién tuvo la evidencia; eso lo hace la documentación de custodios.",
+        "d": "Incorrecta. Un hash no cifra la información."
+      }
+    },
+    "forense-t01-e42": {
+      "section": "cadena-custodia",
+      "reasoning": "La lista de garantías del apartado no incluye la identificación del autor; el bloque de examen lo señala como trampa.",
+      "options": {
+        "a": "Incorrecta. La integridad es una de las garantías de la cadena de custodia.",
+        "b": "Incorrecta. La localización es una de las garantías.",
+        "c": "Correcta. Identificar al autor no es lo que garantiza la cadena de custodia.",
+        "d": "Incorrecta. La trazabilidad de los accesos es una de las garantías."
+      }
+    },
+    "forense-t01-e43": {
+      "section": "cadena-custodia",
+      "reasoning": "La lista de garantías del apartado define la autenticidad como poder contrastar el origen.",
+      "options": {
+        "a": "Incorrecta. La integridad garantiza que la evidencia no ha cambiado.",
+        "b": "Incorrecta. La preservación se refiere a conservarla a largo plazo.",
+        "c": "Incorrecta. La localización indica dónde está en cada momento.",
+        "d": "Correcta. La autenticidad permite contrastar el origen de la evidencia."
+      }
+    },
+    "forense-t01-e44": {
+      "section": "cadena-custodia",
+      "reasoning": "El bloque de examen del apartado advierte que el hash solo no basta porque no dice quién tuvo la evidencia.",
+      "options": {
+        "a": "Incorrecta. El hash no cambia por consultar la evidencia; solo si se modifica su contenido.",
+        "b": "Correcta. Prueba la integridad, pero no quién ha tenido la evidencia ni qué operaciones se hicieron.",
+        "c": "Incorrecta. Se puede calcular sobre cualquier archivo, también un simple log.",
+        "d": "Incorrecta. El temario presenta el hash como prueba matemática de que no hubo modificación."
+      }
+    },
+    "forense-t01-e45": {
+      "section": "perito-responsabilidad",
+      "reasoning": "Los rasgos jurídicos de la falsa pericia del apartado indican que protege a la Administración de Justicia.",
+      "options": {
+        "a": "Incorrecta. El temario aclara que no protege el interés de las partes.",
+        "b": "Correcta. Protege el correcto funcionamiento de la Administración de Justicia.",
+        "c": "Incorrecta. El prestigio del colegio entra, en su caso, en la responsabilidad disciplinaria.",
+        "d": "Incorrecta. La propiedad intelectual no tiene relación con este delito."
+      }
+    },
+    "forense-t01-e46": {
+      "section": "perito-responsabilidad",
+      "reasoning": "Entre los rasgos jurídicos de la falsa pericia, el apartado destaca que exige dolo directo y que un error no es delito.",
+      "options": {
+        "a": "Incorrecta. La inexactitud sin intención no basta para el delito.",
+        "b": "Incorrecta. Precisamente no exige resultado, y además requiere dolo.",
+        "c": "Incorrecta. Es un delito especial propio: solo puede cometerlo un perito.",
+        "d": "Correcta. Sin dolo directo no hay falsa pericia; un error honesto no es delito."
+      }
+    },
+    "forense-t01-e47": {
+      "section": "perito-responsabilidad",
+      "reasoning": "La tabla de responsabilidades del perito indica que la civil no cambia la sentencia original, por la cosa juzgada.",
+      "options": {
+        "a": "Incorrecta. La condena civil del perito no anula la sentencia firme.",
+        "b": "Incorrecta. La sentencia firme no se modifica parcialmente por esta vía.",
+        "c": "Incorrecta. El colegio solo interviene en la responsabilidad disciplinaria.",
+        "d": "Correcta. La sentencia original no cambia porque la cosa juzgada no se rompe."
+      }
+    },
+    "forense-t01-e48": {
+      "section": "perito-responsabilidad",
+      "reasoning": "El término cohecho del apartado indica que, a estos efectos, el perito se equipara a funcionario público.",
+      "options": {
+        "a": "Incorrecta. La equiparación con el testigo aparece en el falso testimonio, no en el cohecho.",
+        "b": "Incorrecta. Precisamente se le trata como si tuviera un cargo público.",
+        "c": "Incorrecta. El perito no representa a ninguna parte y debe ser imparcial.",
+        "d": "Correcta. A efectos del cohecho, el perito se equipara a funcionario público."
+      }
+    },
+    "forense-t01-e49": {
+      "section": "informe-pericial",
+      "reasoning": "El apartado del informe insiste en que debe redactarse con claridad para el juez, no experto, y con imparcialidad.",
+      "options": {
+        "a": "Correcta. El destinatario principal es el juez, que no domina la materia técnica.",
+        "b": "Incorrecta. Otros peritos deben poder repetirlo, pero la claridad se exige pensando en el juez.",
+        "c": "Incorrecta. El informe debe ser imparcial y no depende de quién lo pague.",
+        "d": "Incorrecta. El informe pericial se dirige al proceso judicial, no al equipo de respuesta."
+      }
+    },
+    "forense-t01-e50": {
+      "section": "informe-pericial",
+      "reasoning": "La lista del apartado contrapone expresamente las conclusiones fundamentadas en resultados a las basadas en la preferencia del cliente.",
+      "options": {
+        "a": "Incorrecta. Entender el procedimiento y las herramientas es uno de los objetivos del informe.",
+        "b": "Incorrecta. La reproducibilidad por otro perito es uno de los objetivos del informe.",
+        "c": "Correcta. Ajustar las conclusiones al cliente rompe la imparcialidad exigida al perito.",
+        "d": "Incorrecta. La fundamentación en los resultados es uno de los objetivos del informe."
+      }
     }
   }
 }
