@@ -1,0 +1,115 @@
+{
+  "course": "sistemas",
+  "number": 2,
+  "sections": {
+    "punto-de-partida": [
+      { "b": 0, "text": "Piensa en una tienda con el escaparate a pie de calle y la puerta abierta las 24 horas. Entra cualquiera: clientes, curiosos y ladrones. Una aplicación web es esa tienda. La usas desde el navegador sin instalar nada, y por eso también está al alcance de quien busca dinero o información ajena." },
+      { "b": 3, "text": "El tema responde a tres preguntas. Cómo está construida la aplicación, que son las arquitecturas. Cómo se comunican navegador y servidor, que es el protocolo HTTP con sus problemas de seguridad. Y cómo se fabrica para que sea segura, que es el ciclo de vida de desarrollo seguro, el SSDLC." },
+      { "b": 5, "text": "La idea que lo atraviesa todo es que la seguridad no se añade al final. Se mete desde las primeras fases: análisis de riesgos, revisión del código, pruebas de seguridad y monitorización continua." },
+      { "b": 6, "text": "Un dato de clase que no cae en el test: las aplicaciones que superan un análisis frente al OWASP Top 10 pasaron del 32 por ciento en 2020 al 52 por ciento en 2025. Mejora, pero casi la mitad sigue sin pasarlo." },
+      { "b": 7, "text": "Idea clave: para defender una aplicación web hay que conocer su arquitectura, su protocolo y construirla con un ciclo de desarrollo seguro." }
+    ],
+    "anatomia-objetivos": [
+      { "b": 1, "text": "Un ciberataque es una cadena de seis piezas. El agente de la amenaza es quien ataca. El vector es el camino por el que entra, como un formulario de login. El payload, o carga útil, es el texto malicioso que escribe. La vulnerabilidad es el fallo que lo deja pasar. El activo impactado es lo que se daña, como la base de datos. Y el impacto es la consecuencia para el negocio. En un robo serían el ladrón, la ventana, la ganzúa, la cerradura defectuosa, la caja fuerte y lo que pierde la empresa." },
+      { "b": 4, "text": "Después están los siete objetivos de seguridad. Autenticación es saber quién eres. Autorización es qué puedes hacer, y se consigue con roles. Confidencialidad es que solo lo vea quien debe. Integridad es que nadie lo altere. Disponibilidad es que el servicio funcione cuando se necesita. No repudio es que nadie pueda negar lo que hizo, con firma digital. Y trazabilidad es saber quién hizo qué y cuándo." },
+      { "b": 6, "text": "Ojo con la trazabilidad, porque necesita dos cosas: registros bien diseñados y monitorización continua. Un registro que nadie mira no sirve." },
+      { "b": 8, "text": "En el test se confunden tres: confidencialidad es que no lo lea quien no debe, integridad es que no lo altere, y no repudio es que no pueda negarlo." }
+    ],
+    "modelo-web": [
+      { "b": 0, "text": "La web funciona como el correo postal. No necesitas conocer al cartero: escribes una dirección, que es la URL, y añades anotaciones en el sobre, que son las cabeceras. Por eso se dice que es un modelo débilmente acoplado: cliente y servidor apenas saben nada el uno del otro, solo intercambian mensajes." },
+      { "b": 7, "text": "Sobre esa base hay varias arquitecturas. La clásica, o MPA, recarga toda la página en cada clic. La SPA carga una sola página y luego solo intercambia datos. La PWA es una web que se comporta como una app del móvil. Los microservicios trocean la aplicación en servicios pequeños que se hablan por API. Y los servicios web, como REST o SOAP, son interfaces para programas, no para personas." },
+      { "b": 11, "text": "Una aplicación móvil con servidor es, para la seguridad, una aplicación web más: usa los mismos protocolos y puertos." },
+      { "b": 13, "text": "En el test, si la pregunta dice que se recarga toda la página tras cada interacción, es la arquitectura clásica, no una SPA. Y si ves Gradle entre los servicios web, no te despistes: en realidad es una herramienta para compilar proyectos." }
+    ],
+    "monolitica-capas": [
+      { "b": 0, "text": "Piensa en un restaurante tradicional: comedor, cocina y despensa en el mismo edificio, que abre y cierra a la vez. Eso es un monolito: una aplicación construida como una sola unidad indivisible. Si cambias una línea, vuelves a desplegarlo todo." },
+      { "b": 3, "text": "Por dentro se organiza en tres capas. La presentación es el comedor: muestra la interfaz y recoge lo que hace el usuario. La lógica de negocio es la cocina, el corazón, con las reglas y las decisiones. Y el acceso a datos es la despensa: lee y escribe en la base de datos. Separar en capas reparte responsabilidades y permite escalar, pero añade complejidad." },
+      { "b": 6, "text": "El patrón típico aquí es MVC, Modelo Vista Controlador. El controlador recibe la petición y decide qué hacer, el modelo accede a la base de datos y la vista es lo que se muestra. En la arquitectura clásica, las tres piezas viven en el servidor." },
+      { "b": 9, "text": "Cuidado en el test: el PDF repite por error, en la capa de datos, el texto de la lógica de negocio. La capa de datos es la que habla con la base de datos; el corazón con las reglas es la lógica de negocio." }
+    ],
+    "spa-ajax": [
+      { "b": 0, "text": "En un restaurante clásico, cada vez que pides algo te cambian la mesa entera. En una SPA, la mesa se queda puesta y el camarero solo trae el plato que cambia. SPA significa aplicación de página única: carga una sola página al principio y después actualiza solo las partes que cambian, sin recargar." },
+      { "b": 2, "text": "Lo hace posible AJAX, una técnica con la que el JavaScript del navegador pide datos al servidor en segundo plano, sin congelar la pantalla. El servidor ya no devuelve una página completa, sino datos ligeros, hoy normalmente en JSON." },
+      { "b": 7, "text": "Eso significa más lógica en el cliente, que es terreno que controla el usuario, y también el atacante. Lo que viaja al navegador se puede ver, así que ahí no va nada secreto." },
+      { "b": 12, "text": "Por eso casi toda la seguridad se implementa en el backend. La autenticación es obligatoria en el servidor; lo que se haga en el cliente es solo un extra." },
+      { "b": 14, "text": "En el test, el rasgo que identifica una SPA es que actualiza partes de la interfaz sin recargar toda la página. Las trampas: decir que recarga toda la página, que es la clásica, o que no se comunica con el servidor. Sí se comunica, pero en segundo plano." }
+    ],
+    "pwa": [
+      { "b": 0, "text": "Imagina un food truck que puedes aparcar en tu calle: tiene su icono en tu pantalla de inicio, te avisa de las novedades y, aunque se corte la luz, sigue sirviendo lo que guardó en la nevera. Eso es una PWA, una aplicación web progresiva. Se abre desde el navegador, pero se puede instalar, funciona sin conexión y envía notificaciones." },
+      { "b": 4, "text": "La pieza principal es el service worker, un script que se ejecuta en segundo plano y actúa como un proxy programable entre el navegador y la red: decide si responde desde la caché o va a Internet. Es lo que permite trabajar sin conexión." },
+      { "b": 6, "text": "El manifiesto es un archivo con el nombre, los iconos y los colores. Es lo que la hace instalable, pero por sí solo no da funcionamiento sin conexión. Y HTTPS es obligatorio para activar los service workers." },
+      { "b": 8, "text": "En el test preguntan qué permite a una PWA trabajar con mala conexión. La respuesta es la caché y las tareas de fondo de los service workers. Las trampas son el manifiesto, que solo la hace instalable, los microservicios, que son otra arquitectura, o un token de sesión." }
+    ],
+    "microservicios": [
+      { "b": 0, "text": "Compara un centro comercial con una sola tienda gigante. En el centro comercial, si la cafetería se llena, solo ella contrata más camareros, y si la zapatería cierra, el resto sigue abierto. Pero coordinar todo el centro es más complicado." },
+      { "b": 1, "text": "Los microservicios son eso: la aplicación se estructura como una colección de servicios pequeños e independientes, cada uno con una única funcionalidad, como productos, carrito o pagos. Se comunican mediante API y cada uno se despliega por su cuenta. Es lo contrario del monolito." },
+      { "b": 3, "text": "Ganas tres cosas: escalabilidad, porque amplías solo el servicio con más demanda; agilidad, porque los equipos entregan más rápido; y resiliencia, porque si uno falla el resto sigue. Y pagas otras tres: complejidad, coste operacional y latencia, porque hablar por red es más lento que una llamada interna." },
+      { "b": 11, "text": "En el test, las trampas describen un monolito disfrazado: un proceso único con módulos que se despliegan juntos, o escalar toda la aplicación como una unidad. Y desconfía si dicen que las llamadas remotas cuestan lo mismo que las internas: es justo al revés." }
+    ],
+    "mvvm": [
+      { "b": 0, "text": "Piensa en un teatro. El escenario es lo que ve el público: la Vista. El director de escena decide qué se muestra y cómo: el ViewModel. Y el guion, guardado en otro edificio, es el material de verdad: el Modelo. Eso es MVVM, un patrón de diseño para interfaces ricas, sobre todo SPA." },
+      { "b": 3, "text": "La Vista y el ViewModel viven en el navegador. El Modelo vive en el backend, con la lógica de negocio y el acceso a la base de datos. En MVC, en cambio, la vista se genera en el servidor." },
+      { "b": 10, "text": "Separar piezas ayuda, pero no protege por sí solo. En cualquier arquitectura hacen falta autenticación, autorización y validación de entrada. Además, los registros deben dar información útil a los auditores, y los errores deben enseñar al usuario solo lo necesario. Rutas, versiones o trazas del programa son pistas para un atacante." },
+      { "b": 15, "text": "La seguridad se aplica en el backend: en MVC se concentra en el controlador y en MVVM, en el modelo." },
+      { "b": 16, "text": "En el test preguntan qué debe evitar un mensaje de error: revelar detalles internos útiles a un atacante. Un mensaje genérico o un identificador de incidencia no sensible sí están bien." }
+    ],
+    "http-metodos": [
+      { "b": 1, "text": "HTTP es el idioma en que el navegador pide recursos al servidor. Y una advertencia del temario: no se diseñó para aplicaciones, ni probablemente para usos seguros." },
+      { "b": 3, "text": "Sus métodos son como verbos. GET pide un recurso, y sus parámetros van en la URL. HEAD hace lo mismo, pero la respuesta trae solo las cabeceras, sin cuerpo. POST envía datos en el cuerpo de la petición. PUT sube un recurso. DELETE lo borra. TRACE pide al servidor que devuelva la propia petición, y origina la vulnerabilidad XST. OPTIONS devuelve los métodos que admite el servidor. Y CONNECT se usa con un proxy para llegar a un host que está detrás." },
+      { "b": 7, "text": "Un servidor debe aceptar solo los métodos que necesita. Según el profesor, para una aplicación normal basta con GET y POST, y el resto se puede deshabilitar. Y las credenciales se envían siempre con POST, nunca con GET." },
+      { "b": 11, "text": "En el test, asocia verbo y acción. Eliminar es DELETE, no PUT. Solo cabeceras es HEAD, que nunca trae cuerpo. Listar los métodos admitidos es OPTIONS. Y un servicio detrás de un proxy es CONNECT." }
+    ],
+    "http-mensajes": [
+      { "b": 1, "text": "HTTP ha tenido varias versiones. En la 1.0, cada petición necesita su propia conexión TCP. En la 1.1, una misma conexión se reutiliza para varias peticiones y la cabecera Host pasa a ser obligatoria. La 2 multiplexa muchas peticiones en una sola conexión. Y la 3 deja TCP y se basa en QUIC, apoyado en UDP." },
+      { "b": 4, "text": "Un mensaje, sea petición o respuesta, tiene cuatro partes: la línea inicial, las cabeceras, una línea vacía que las separa del cuerpo, y el cuerpo con el contenido." },
+      { "b": 6, "text": "En los códigos de estado manda la primera cifra. Los que empiezan por 2 son todo correcto, por 3 redirección, por 4 error del cliente y por 5 error del servidor. Ojo con las páginas de error por defecto: muestran la traza completa y hay que cambiarlas por mensajes genéricos." },
+      { "b": 9, "text": "La trampa del test: 401 y 403 no son lo mismo. El 401 significa que no estás autenticado, aunque su nombre en inglés engañe. El 403 significa que sí lo estás, pero tu rol no tiene permiso. Sin sesión, 401; con sesión pero sin derechos, 403." }
+    ],
+    "http-riesgos": [
+      { "b": 2, "text": "El temario destaca cuatro abusos de HTTP. El primero: GET expone los parámetros. Van en la URL, y esa URL queda en el historial y en los registros de servidores y proxies. Con POST van en el cuerpo. Pero cuidado: POST no cifra. Lo que protege el viaje es TLS, es decir, HTTPS." },
+      { "b": 5, "text": "El segundo es XST. El método TRACE copia las cabeceras de la petición en el cuerpo de la respuesta, y con ellas la cookie. Ahí el JavaScript sí puede leerla, así que se salta HttpOnly, la marca que le impide leer la cookie. La defensa es deshabilitar TRACE, no cifrar." },
+      { "b": 6, "text": "El tercero es CSRF, la falsificación de petición entre sitios. La víctima tiene la sesión abierta y visita la web del atacante, que esconde un formulario. Su navegador envía la petición con su cookie, y la aplicación, que se fía solo de la cookie, la ejecuta. La defensa es un campo secreto e impredecible en el formulario." },
+      { "b": 9, "text": "El cuarto es la división de respuesta, o response splitting. Si la aplicación copia un dato del usuario en una cabecera sin filtrar, el atacante mete retornos de carro y saltos de línea y fabrica una segunda respuesta falsa, con la que inyecta HTML y JavaScript." },
+      { "b": 19, "text": "En el test: response splitting inyecta HTML y JavaScript, no SQL. Y desconfía de la opción que dice que HTTPS evita que la URL quede en el historial: HTTPS cifra el viaje, pero la URL se sigue guardando." }
+    ],
+    "sesiones": [
+      { "b": 0, "text": "HTTP es como un camarero con amnesia: cada vez que se acerca a tu mesa no recuerda lo que pediste. Para arreglarlo te da una pulsera con un número. HTTP es un protocolo sin estado: cada petición es independiente y el servidor no recuerda las anteriores. La pulsera es el identificador de sesión, que asocia cada nueva petición con el contexto de un usuario." },
+      { "b": 4, "text": "Es un punto crítico: quien tenga tu identificador de sesión es tú para la aplicación. Por eso debe ser largo y aleatorio, y revocarse a tiempo. Pero no sustituye a la autenticación inicial ni decide por sí solo los permisos." },
+      { "b": 7, "text": "La alternativa es el JWT, un token firmado que se guarda solo en el cliente. Con identificador de sesión, el servidor guarda la sesión. Con JWT no la guarda: todo viaja en el token. Si te lo roban, el efecto es el mismo." },
+      { "b": 12, "text": "En el test, el identificador de sesión sirve para asociar peticiones distintas al contexto de un usuario. Las trampas: que cifra el contenido, que eso lo hace TLS; que reemplaza la autenticación inicial; o que determina todos los permisos." }
+    ],
+    "mismo-origen": [
+      { "b": 0, "text": "Cada pestaña del navegador es como una oficina distinta de un mismo edificio. La política del mismo origen impide que quien trabaja en una oficina entre en otra a leer sus papeles. La aplican todos los navegadores: el código de una aplicación no puede acceder a un dominio distinto del suyo. Y el origen es el mismo cuando coinciden protocolo, servidor y puerto." },
+      { "b": 3, "text": "CORS es el mecanismo, basado en cabeceras HTTP, con el que el servidor declara qué otros dominios tienen permiso para acceder a sus recursos." },
+      { "b": 4, "text": "El navegador guarda datos en varios almacenes, pero solo las cookies tienen atributos de seguridad, así que lo sensible va en cookies. Son tres atributos. HttpOnly impide que el JavaScript lea la cookie. Secure hace que solo viaje por conexiones cifradas. Y SameSite con valor Strict hace que solo se envíe cuando la petición nace en el propio sitio." },
+      { "b": 7, "text": "En el test, una cookie bien protegida lleva los tres activados. Cuidado con atribuir a HttpOnly el cifrado, que es cosa de Secure, o la protección frente a XST, que no la da." }
+    ],
+    "practica-http-herramientas": [
+      { "b": 0, "text": "Esta parte no cae en el test. Son las demostraciones de clase para ver HTTP por dentro. Hazlas solo en un laboratorio propio, con una aplicación vulnerable a propósito, o donde tengas permiso." },
+      { "b": 2, "text": "La primera herramienta es curl, que lanza peticiones desde la línea de comandos. En modo detallado te enseña la negociación TLS y las cabeceras de la petición y de la respuesta. También permite forzar otro método, como TRACE u OPTIONS." },
+      { "b": 3, "text": "La segunda es netcat, con la que escribes tú mismo la petición: la línea inicial, la cabecera Host, que es la única obligatoria, y dos pulsaciones de Intro para la línea vacía. Te obliga a conocer la gramática exacta de HTTP." },
+      { "b": 4, "text": "La tercera son las herramientas de desarrollador del navegador. En la pestaña de red ves cada petición con sus cabeceras, y en almacenamiento, las cookies con sus atributos. En la consola puedes comprobar si el JavaScript lee la cookie de sesión: si no tiene HttpOnly, la lee, y eso es justo lo que explotaría un XSS." },
+      { "b": 6, "text": "La idea: para entender HTTP, míralo en crudo." }
+    ],
+    "ssdlc": [
+      { "b": 0, "text": "Si construyes una casa y piensas en la alarma cuando ya está terminada, toca romper paredes. Si la pones en el plano, sale más barato. El SSDLC, el ciclo de vida de desarrollo seguro, es el ciclo normal del software, pero con actividades de seguridad en cada fase." },
+      { "b": 5, "text": "En requisitos se definen los requisitos de seguridad. En diseño se hace el modelado de amenazas, que es preguntarse qué podría salir mal antes de programar. En desarrollo, codificación segura y análisis de código. En pruebas, la prueba de penetración. Y en mantenimiento, monitorización, parches y respuesta a incidentes." },
+      { "b": 8, "text": "Los requisitos de seguridad se derivan de dos fuentes: el modelado de amenazas y el análisis de riesgos. La diferencia es el ámbito: el análisis de riesgos mira todos los activos de la organización; el modelado de amenazas mira la aplicación capa por capa." },
+      { "b": 10, "text": "Y la razón de ser: cuanto más tarde se aborda la seguridad, más cara resulta. Según la cita de clase, en producción cuesta hasta unas 60 veces más que en diseño." },
+      { "b": 19, "text": "En el test: el modelo de desarrollo seguro es OpenSAMM. ISO 27001 y el CSF son marcos de gestión de la organización, y OWASP es la organización, no el proceso. El proceso que implanta la seguridad desde el principio es el SSDLC. Y si la aplicación aún está en diseño, toca modelado de amenazas." }
+    ],
+    "ssdlc-normas-madurez": [
+      { "b": 0, "text": "Las normas se organizan en niveles. Arriba están los marcos de gestión de la seguridad de toda la organización: ISO 27001, el NIST CSF 2.0 y, en España, el Esquema Nacional de Seguridad. De ellos nace el proceso de desarrollo seguro, que tiene sus propias normas: OWASP SAMM y NIST SSDF, que son gratuitas, y BSIMM, que es de pago." },
+      { "b": 2, "text": "Los siete puntos de contacto de Gary McGraw son las siete actividades de seguridad que debería incluir todo ciclo de desarrollo seguro. Su idea clave es que se pueden añadir a cualquier ciclo de vida tradicional que no contemple seguridad." },
+      { "b": 5, "text": "OWASP SAMM se organiza en cinco funciones: gobernanza, diseño, implementación, verificación y operaciones. Se implanta paso a paso en tres niveles de madurez, y la herramienta SAMMY te ayuda a medir tu nivel con una encuesta." },
+      { "b": 7, "text": "En el test: BSIMM es de pago; SAMM y SSDF son gratuitos. Idea clave: las normas generales dan el marco y el SSDLC lo concreta para el software." }
+    ],
+    "desarrollo-pruebas": [
+      { "b": 1, "text": "La codificación segura se resume en tres hábitos: validar todas las entradas del usuario, usar consultas parametrizadas para evitar la inyección SQL y codificar las salidas para prevenir XSS." },
+      { "b": 4, "text": "Luego vienen las herramientas. SAST es el análisis estático: examina el código fuente sin ejecutar la aplicación. SCA busca vulnerabilidades conocidas en bibliotecas de terceros. Las dos van en desarrollo. DAST es el análisis dinámico: ataca desde fuera la aplicación en marcha. IAST es el interactivo: la observa desde dentro con un agente. Estas van en la fase de pruebas, igual que la prueba de penetración." },
+      { "b": 10, "text": "Piensa en cajas. SAST e IAST son de caja blanca, porque ven el interior. DAST es de caja negra: solo ve peticiones y respuestas. Y RASP es el mismo agente que IAST, pero en otro modo: IAST informa; RASP bloquea ataques en producción." },
+      { "b": 15, "text": "Ninguna herramienta lo encuentra todo. El problema principal es el falso negativo: la vulnerabilidad existe y la herramienta no la ve. Por eso son complementarias." },
+      { "b": 20, "text": "En el test: contra la inyección SQL, consultas parametrizadas; cambiar GET por POST no la evita, ni validar solo en JavaScript. Contra código inyectado en una página, codificar la salida." }
+    ]
+  }
+}
