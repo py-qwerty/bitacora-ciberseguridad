@@ -1,4 +1,4 @@
-import { DURATION, EXAM_SIZE, generateExam, gradeExam, remaining, formatTime, isValidSession, practiceBlocks, topicQuestions, baseQuestions, campusQuestions, extraBlocks, validPractice, swipeDirection, validateBank, validateTema, ICONS } from './core.js?v=12'; import { setupPracticas, loadPracticasIndex, practicasRoute, isPracticasPath, practicasCard, courseExamLink, simulacroExamLink } from './practicas.js?v=6'; import { setupSiglas, sgStart, sgEnd, sgApply, sgList } from './siglas.js?v=2'; import { setupCamino, loadCamino, caminoPage, caminoBlock } from './camino.js?v=1'; import { BIBLIOTECAS } from './bibliotecas.js?v=1';
+import { DURATION, EXAM_SIZE, generateExam, gradeExam, remaining, formatTime, isValidSession, practiceBlocks, topicQuestions, baseQuestions, campusQuestions, extraBlocks, validPractice, swipeDirection, validateBank, validateTema, ICONS } from './core.js?v=12'; import { setupPracticas, loadPracticasIndex, practicasRoute, isPracticasPath, practicasCard, courseExamLink, simulacroExamLink } from './practicas.js?v=6'; import { setupSiglas, sgStart, sgEnd, sgApply, sgList } from './siglas.js?v=2'; import { setupCamino, loadCamino, caminoPage, caminoBlock } from './camino.js?v=1'; import { BIBLIOTECAS } from './bibliotecas.js?v=2';
 const $ = s => document.querySelector(s);
 const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const number = n => n.toLocaleString('es-ES');
@@ -661,7 +661,7 @@ setupCamino({esc,rich,heading,sectionHref,temaProgress,studiedTotal});
 setupPracticas({get bank(){return bank;},get questionMap(){return questionMap;},read,write,esc,rich,heading,topicTitle,topicInfo,courseTitle,notFound,render,ask,sectionHref});
 async function init() {
   try {
-    const response=await fetch('bank.json?v=12',{signal:AbortSignal.timeout(15000)});
+    const response=await fetch('bank.json?v=13',{signal:AbortSignal.timeout(15000)});
     if(!response.ok)throw Error('HTTP '+response.status);
     const data=await response.json();
     validateBank(data);

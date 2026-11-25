@@ -49,4 +49,5 @@ export const BIBLIOTECAS = {
   sys: 'Módulo estándar con información del **intérprete de Python** (versión, argumentos, orden de bytes).',
   calendar: 'Módulo estándar con utilidades de **calendario** (y `timegm` para pasar fechas a segundos UTC).',
   plistlib: 'Módulo estándar que lee y escribe **archivos Plist** de Apple (iOS y macOS), tanto en XML como en binario (`bplist00`), y los convierte en diccionarios de Python.',
+  difflib: 'Módulo estándar que **compara secuencias** (textos, listas). `SequenceMatcher(...).ratio()` da un parecido entre 0 (nada en común) y 1 (idénticos).',
 };
