@@ -540,3 +540,9 @@ abbr.sg:focus-visible{outline:3px solid var(--color-focus)}
 .py-k{color:#ff9fb1}.py-s{color:#b8e39a}.py-c{color:#7f9ea6;font-style:italic}.py-n{color:#ffc87a}.py-b{color:#8fd3ff}.py-t{color:#ffe08a;font-weight:700}.py-f{color:#9fd7ff}
 .tb-code .lab-out{border-radius:0 0 var(--radius-control) var(--radius-control)}
 .ic{font:0.9em var(--font-mono);background:var(--color-tint);padding:1px 5px;border-radius:4px}
+.lab-libs{margin:0;padding:9px 16px;display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:13px;border-bottom:1px solid var(--color-border)}
+.lab-libs span{font:700 11px/1.4 var(--font-body);letter-spacing:.6px;text-transform:uppercase;color:var(--color-muted);margin-right:2px}
+.lab-libdef{margin:0;padding:10px 16px 12px;display:grid;gap:8px;background:#eef6ee;border-bottom:1px solid var(--color-border)}
+.lab-libdef div{display:grid;grid-template-columns:auto 1fr;gap:4px 10px;align-items:baseline}
+.lab-libdef dt{margin:0}.lab-libdef dd{margin:0;font-size:14px;line-height:1.5}
+@media (max-width:640px){.lab-libdef div{grid-template-columns:1fr}}

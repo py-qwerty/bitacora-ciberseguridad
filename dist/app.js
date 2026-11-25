@@ -1,4 +1,4 @@
-import { DURATION, EXAM_SIZE, generateExam, gradeExam, remaining, formatTime, isValidSession, practiceBlocks, topicQuestions, baseQuestions, campusQuestions, extraBlocks, validPractice, swipeDirection, validateBank, validateTema, ICONS } from './core.js?v=12'; import { setupPracticas, loadPracticasIndex, practicasRoute, isPracticasPath, practicasCard, courseExamLink, simulacroExamLink } from './practicas.js?v=6'; import { setupSiglas, sgStart, sgEnd, sgApply, sgList } from './siglas.js?v=2'; import { setupCamino, loadCamino, caminoPage, caminoBlock } from './camino.js?v=1';
+import { DURATION, EXAM_SIZE, generateExam, gradeExam, remaining, formatTime, isValidSession, practiceBlocks, topicQuestions, baseQuestions, campusQuestions, extraBlocks, validPractice, swipeDirection, validateBank, validateTema, ICONS } from './core.js?v=12'; import { setupPracticas, loadPracticasIndex, practicasRoute, isPracticasPath, practicasCard, courseExamLink, simulacroExamLink } from './practicas.js?v=6'; import { setupSiglas, sgStart, sgEnd, sgApply, sgList } from './siglas.js?v=2'; import { setupCamino, loadCamino, caminoPage, caminoBlock } from './camino.js?v=1'; import { BIBLIOTECAS } from './bibliotecas.js?v=1';
 const $ = s => document.querySelector(s);
 const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const number = n => n.toLocaleString('es-ES');
@@ -158,8 +158,23 @@ function pyHighlight(src){
   }
   return out+esc(src.slice(last));
 }
+let libSeen=new Set();
+function labModules(src){
+  const mods=new Set();
+  for(const m of src.matchAll(/^\s*(?:from\s+([\w.]+)\s+import|import\s+([\w., ]+))/gm)){
+    (m[1]?[m[1]]:m[2].split(',').map(x=>x.trim().split(/\s+/)[0])).forEach(x=>x&&mods.add(x.split('.')[0]));
+  }
+  return [...mods];
+}
+function labLibs(src){
+  const mods=labModules(src);if(!mods.length)return '';
+  const BIB=typeof BIBLIOTECAS==='undefined'?{}:BIBLIOTECAS;const fresh=mods.filter(m=>BIB[m]&&!libSeen.has(m));fresh.forEach(m=>libSeen.add(m));
+  const chips=`<p class="lab-libs"><span>Usa</span>${mods.map(m=>`<code class="ic">${esc(m)}</code>`).join(' ')}</p>`;
+  const expl=fresh.length?`<dl class="lab-libdef">${fresh.map(m=>`<div><dt><code class="ic">${esc(m)}</code></dt><dd>${rich(BIB[m],'inline')}</dd></div>`).join('')}</dl>`:'';
+  return chips+expl;
+}
 function labBlock(b){
-  return `<figure class="tb-lab"><figcaption><span class="lab-badge">Laboratorio Python</span>${b.title?`<b>${rich(b.title)}</b>`:''}</figcaption><pre class="lab-code"><code>${pyHighlight(b.text)}</code></pre>${b.output?`<p class="lab-out-label">Salida al ejecutarlo</p><pre class="lab-out"><code>${esc(b.output)}</code></pre>`:''}${b.note?`<p class="lab-note"><span>Fíjate en</span>${rich(b.note,'inline')}</p>`:''}</figure>`;
+  return `<figure class="tb-lab"><figcaption><span class="lab-badge">Laboratorio Python</span>${b.title?`<b>${rich(b.title)}</b>`:''}</figcaption>${labLibs(b.text)}<pre class="lab-code"><code>${pyHighlight(b.text)}</code></pre>${b.output?`<p class="lab-out-label">Salida al ejecutarlo</p><pre class="lab-out"><code>${esc(b.output)}</code></pre>`:''}${b.note?`<p class="lab-note"><span>Fíjate en</span>${rich(b.note,'inline')}</p>`:''}</figure>`;
 }
 function temaBlock(b){
   const title=b.title?`<h4>${rich(b.title)}</h4>`:'';
@@ -210,7 +225,7 @@ function temaPage(n){
   const entry=loadTema(n);const back=`<a class="back-link" href="#/tema/${n}">← ${esc(topicTitle(n))}</a>`;
   if(entry.status==='loading')return `${back}<div class="loading"><span class="spinner" aria-hidden="true"></span><p>Cargando el tema digital…</p></div>`;
   if(entry.status==='error')return `${back}${heading('No se ha podido cargar el tema digital.','Comprueba tu conexión y vuelve a intentarlo.')}<button class="btn" data-action="tema-retry" data-topic="${n}">Volver a intentarlo</button>`;
-  const t=entry.data;const qs=topicQuestions(bank.questions,n);
+  const t=entry.data;libSeen=new Set();const qs=topicQuestions(bank.questions,n);
   const bySection=new Map(t.sections.map(s=>[s.id,[]]));qs.forEach(q=>bySection.get(t.questions[q.id].section)?.push(q));
   const intro=t.intro;const prog=temaProgress(n);const secIds=t.sections.map(s=>s.id);const doneN=secIds.filter(i=>prog.studied[i]).length;const lastIdx=secIds.indexOf(prog.last);
   const progress=`<div class="tema-progress"><p class="tema-progress-text"><b>${doneN}</b> de ${secIds.length} apartados estudiados</p><progress max="${secIds.length}" value="${doneN}" aria-label="Apartados estudiados"></progress>${lastIdx>=0?`<a class="btn secondary tema-resume" href="${sectionHref(n,prog.last)}" data-resume="${esc(prog.last)}">Continuar donde lo dejaste · apartado ${lastIdx+1}</a>`:''}</div>`;
@@ -646,7 +661,7 @@ setupCamino({esc,rich,heading,sectionHref,temaProgress,studiedTotal});
 setupPracticas({get bank(){return bank;},get questionMap(){return questionMap;},read,write,esc,rich,heading,topicTitle,topicInfo,courseTitle,notFound,render,ask,sectionHref});
 async function init() {
   try {
-    const response=await fetch('bank.json?v=11',{signal:AbortSignal.timeout(15000)});
+    const response=await fetch('bank.json?v=12',{signal:AbortSignal.timeout(15000)});
     if(!response.ok)throw Error('HTTP '+response.status);
     const data=await response.json();
     validateBank(data);
