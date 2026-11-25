@@ -137,6 +137,7 @@ export function validateTema(tema, bank) {
       if (b.type === 'figure') { if (typeof b.src !== 'string' || !/^figuras\/[a-z0-9-]+\/[a-z0-9-]+\.svg$/.test(b.src) || !text(b.title) || !text(b.alt) || (b.caption !== undefined && !text(b.caption))) fail(`figura en ${s.id}`); continue; }
       if (['list','steps'].includes(b.type) ? !texts(b.items) : b.type === 'table' ? !(texts(b.head) && Array.isArray(b.rows) && b.rows.length && b.rows.every(r => texts(r) && r.length === b.head.length)) : !text(b.text)) fail(`contenido de bloque ${b.type} en ${s.id}`);
       if (b.type === 'term' && !text(b.term)) fail(`término vacío en ${s.id}`);
+      if (b.type === 'code' && ((b.lang !== undefined && !['python','bash','text'].includes(b.lang)) || (b.output !== undefined && !text(b.output)) || (b.note !== undefined && !text(b.note)))) fail(`bloque de código en ${s.id}`);
     }
   }
   if (tema.summary && !texts(tema.summary)) fail('resumen');

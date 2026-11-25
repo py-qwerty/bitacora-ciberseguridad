@@ -80,7 +80,7 @@ function practiceMaterial(topic){
   const m=topicMaterial(topic);if(!m)return '';
   return `<p class="practice-material"><a href="${esc(m.url)}" target="_blank" rel="noopener">Consultar tema en PDF <span aria-hidden="true">↗</span><span class="sr-only"> (se abre en otra pestaña)</span></a><span>Se abre aparte; mantienes tu avance en el test.</span></p>`;
 }
-const rich = (value, mode) => sgApply(esc(value).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>'), mode);
+const rich = (value, mode) => sgApply(esc(value).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/`([^`\n]+)`/g, '<code class="ic">$1</code>'), mode);
 function loadTema(n){
   if(!temaIndex.has(n))return null;
   const cached=temaCache.get(n);if(cached)return cached;
@@ -138,6 +138,29 @@ function diagramBlock(b){
   }
   return `<figure class="tb-diagram dg-${b.kind}">${cap}<div class="dg-body">${body}</div></figure>`;
 }
+// «Laboratorio Python»: código con colores, salida real y nota de qué observar.
+const PY_KW=new Set('False None True and as assert async await break class continue def del elif else except finally for from global if import in is lambda nonlocal not or pass raise return try while with yield'.split(' '));
+const PY_BUILTIN=new Set('print len range bytes bytearray int str hex list dict set tuple sorted enumerate zip open isinstance sum min max any all format repr type map filter'.split(' '));
+function pyHighlight(src){
+  const re=/(#[^\n]*)|([rbfRBF]{0,2}(?:"""[\s\S]*?"""|'''[\s\S]*?'''|"(?:\\.|[^"\\\n])*"|'(?:\\.|[^'\\\n])*'))|(\b0[xX][0-9a-fA-F]+\b|\b\d+(?:\.\d+)?\b)|([A-Za-z_][A-Za-z0-9_]*)/g;
+  let out='',last=0,m;
+  while((m=re.exec(src))){
+    out+=esc(src.slice(last,m.index));last=re.lastIndex;
+    const [t,com,str,num,id]=m;
+    if(com)out+=`<span class="py-c">${esc(com)}</span>`;
+    else if(str)out+=`<span class="py-s">${esc(str)}</span>`;
+    else if(num)out+=`<span class="py-n">${esc(num)}</span>`;
+    else if(PY_KW.has(id))out+=`<span class="py-k">${id}</span>`;
+    else if(PY_BUILTIN.has(id))out+=`<span class="py-b">${id}</span>`;
+    else if(/^[A-Z]/.test(id)&&src[re.lastIndex]==='(')out+=`<span class="py-t">${id}</span>`;
+    else if(src[re.lastIndex]==='(')out+=`<span class="py-f">${id}</span>`;
+    else out+=esc(t);
+  }
+  return out+esc(src.slice(last));
+}
+function labBlock(b){
+  return `<figure class="tb-lab"><figcaption><span class="lab-badge">Laboratorio Python</span>${b.title?`<b>${rich(b.title)}</b>`:''}</figcaption><pre class="lab-code"><code>${pyHighlight(b.text)}</code></pre>${b.output?`<p class="lab-out-label">Salida al ejecutarlo</p><pre class="lab-out"><code>${esc(b.output)}</code></pre>`:''}${b.note?`<p class="lab-note"><span>Fíjate en</span>${rich(b.note,'inline')}</p>`:''}</figure>`;
+}
 function temaBlock(b){
   const title=b.title?`<h4>${rich(b.title)}</h4>`:'';
   switch(b.type){
@@ -149,7 +172,7 @@ function temaBlock(b){
     case 'table':return `<div class="tb-table">${title}<div class="table-wrap"><table><thead><tr>${b.head.map(h=>`<th scope="col">${rich(h)}</th>`).join('')}</tr></thead><tbody>${b.rows.map(r=>`<tr>${r.map((c,i)=>i===0?`<th scope="row">${rich(c)}</th>`:`<td>${rich(c)}</td>`).join('')}</tr>`).join('')}</tbody></table></div></div>`;
     case 'example':return `<aside class="tb tb-example"><span class="tb-label">Ejemplo</span>${title}<p>${rich(b.text,'inline')}</p></aside>`;
     case 'exam':return `<aside class="tb tb-exam"><span class="tb-label">Así cae en el test</span>${title}<p>${rich(b.text,'inline')}</p></aside>`;
-    case 'code':return `<figure class="tb-code">${b.title?`<figcaption>${rich(b.title)}</figcaption>`:''}<pre><code>${esc(b.text)}</code></pre></figure>`;
+    case 'code':return b.lang==='python'?labBlock(b):`<figure class="tb-code">${b.title?`<figcaption>${rich(b.title)}</figcaption>`:''}<pre><code>${esc(b.text)}</code></pre>${b.output?`<p class="lab-out-label">Salida</p><pre class="lab-out"><code>${esc(b.output)}</code></pre>`:''}</figure>`;
     case 'diagram':return diagramBlock(b);
     case 'figure':return `<figure class="tb-diagram tb-figure"><figcaption><b>${rich(b.title)}</b>${b.caption?`<span>${rich(b.caption)}</span>`:''}</figcaption><div class="fig-body"><img src="${esc(b.src)}" alt="${esc(b.alt)}" loading="lazy" data-inline-svg></div></figure>`;
     case 'key':return `<aside class="tb tb-key"><span class="tb-label">Idea clave</span><p>${rich(b.text,'inline')}</p></aside>`;
@@ -623,7 +646,7 @@ setupCamino({esc,rich,heading,sectionHref,temaProgress,studiedTotal});
 setupPracticas({get bank(){return bank;},get questionMap(){return questionMap;},read,write,esc,rich,heading,topicTitle,topicInfo,courseTitle,notFound,render,ask,sectionHref});
 async function init() {
   try {
-    const response=await fetch('bank.json?v=9',{signal:AbortSignal.timeout(15000)});
+    const response=await fetch('bank.json?v=10',{signal:AbortSignal.timeout(15000)});
     if(!response.ok)throw Error('HTTP '+response.status);
     const data=await response.json();
     validateBank(data);

@@ -526,3 +526,17 @@ abbr.sg:focus-visible{outline:3px solid var(--color-focus)}
 .fig-body svg .c5{fill:#f5dddc;stroke:#a33331;stroke-width:1.5}
 .fig-body svg .band1{fill:#176447;opacity:.2}.fig-body svg .band2{fill:#5b3f8c;opacity:.2}.fig-body svg .band3{fill:#84531c;opacity:.2}.fig-body svg .band5{fill:#a33331;opacity:.2}
 @media (max-width:640px){.fig-body{padding:10px 6px}}
+/* Laboratorio Python (bloque code con lang:"python") */
+.tb-lab{margin:24px 0;border:2px solid var(--color-primary);border-radius:3px;background:var(--color-surface);overflow:hidden}
+.tb-lab figcaption{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px;padding:10px 14px;border-bottom:2px solid var(--color-primary)}
+.tb-lab figcaption b{font:700 19px/1.15 var(--font-display);color:var(--color-primary)}
+.lab-badge{display:inline-block;padding:2px 8px;border-radius:999px;background:#2b5b2f;color:#fff;font:700 11px/1.5 var(--font-body);letter-spacing:.6px;text-transform:uppercase}
+.lab-code,.lab-out{margin:0;padding:14px 16px;overflow-x:auto;font:13px/1.6 var(--font-mono);white-space:pre;tab-size:4}
+.lab-code{background:#0f2a33;color:#e3eeec}
+.lab-out{background:#f4f7f6;color:#1d3b44;border-top:1px dashed var(--color-border);font-size:12.5px}
+.lab-out-label{margin:0;padding:8px 16px 0;background:#f4f7f6;font:700 11px/1.4 var(--font-body);letter-spacing:.6px;text-transform:uppercase;color:var(--color-muted)}
+.lab-note{margin:0;padding:10px 16px 12px;border-top:1px solid var(--color-border);font-size:14.5px;line-height:1.55}
+.lab-note span{display:block;font:700 11px/1.4 var(--font-body);letter-spacing:.6px;text-transform:uppercase;color:#2b5b2f;margin-bottom:2px}
+.py-k{color:#ff9fb1}.py-s{color:#b8e39a}.py-c{color:#7f9ea6;font-style:italic}.py-n{color:#ffc87a}.py-b{color:#8fd3ff}.py-t{color:#ffe08a;font-weight:700}.py-f{color:#9fd7ff}
+.tb-code .lab-out{border-radius:0 0 var(--radius-control) var(--radius-control)}
+.ic{font:0.9em var(--font-mono);background:var(--color-tint);padding:1px 5px;border-radius:4px}
