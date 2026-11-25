@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 350">
+<defs><marker id="t04pc-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="good" d="M0 0L10 5L0 10z"/></marker></defs>
+<defs><marker id="t04pc-r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="bad" d="M0 0L10 5L0 10z"/></marker></defs>
+<path class="tint" d="M16 193c-20.4 0 -27.6 -22.8 -9.6 -30 -3.6 -20.4 22.8 -28.8 34.8 -15.6 8.4 -16.8 38.4 -15.6 43.2 1.2 9.6 -10.8 34.8 -6 34.8 12 20.4 1.2 22.8 31.2 2.4 32.4z"/><text class="b" x="65.2" y="184" text-anchor="middle" style="fill:var(--color-secondary)">Internet</text>
+<path class="ln" d="M135 170H242"/>
+<g><rect class="box" x="244" y="149" width="32" height="42" rx="3"/><path class="ln" d="M250 159h20M250 167h20M250 175h20"/><circle class="good" cx="268" cy="184" r="2.5"/></g>
+<text class="b" x="260" y="215" text-anchor="middle">Bait and Switch</text>
+<text class="s" x="260" y="233" text-anchor="middle">IDS Snort, 3 tarjetas de red</text>
+<path class="sgood" d="M276 160H380V116H744"/>
+<text class="s" x="440" y="106" text-anchor="middle">tráfico normal</text>
+<rect class="dash" x="500" y="14" width="252" height="90" rx="12"/>
+<text class="b" x="512" y="36">Red local</text>
+<g><rect class="box" x="578" y="55" width="44" height="30" rx="3"/><rect class="tint" x="583" y="60" width="34" height="20"/><rect class="ink" x="596" y="85" width="8" height="6"/><rect class="ink" x="586" y="91" width="28" height="4" rx="2"/></g>
+<path class="ln" d="M600 95V116"/>
+<g><rect class="box" x="678" y="55" width="44" height="30" rx="3"/><rect class="tint" x="683" y="60" width="34" height="20"/><rect class="ink" x="696" y="85" width="8" height="6"/><rect class="ink" x="686" y="91" width="28" height="4" rx="2"/></g>
+<path class="ln" d="M700 95V116"/>
+<path class="sbad" d="M276 182H380V240H600V258" marker-end="url(#t04pc-r)"/>
+<text class="s" x="492" y="230" text-anchor="middle">tráfico malicioso (desviado)</text>
+<rect class="c5" x="540" y="264" width="120" height="70" rx="10" style="fill-opacity:.5;stroke-width:2.5"/>
+<g><rect class="box" x="578" y="277" width="44" height="30" rx="3"/><rect class="tint" x="583" y="282" width="34" height="20"/><rect class="ink" x="596" y="307" width="8" height="6"/><rect class="ink" x="586" y="313" width="28" height="4" rx="2"/></g>
+<text class="b" x="526" y="292" text-anchor="end">Padded cell</text>
+<text class="s" x="526" y="310" text-anchor="end">aislada: el atacante no</text>
+<text class="s" x="526" y="326" text-anchor="end">hace daño y todo se registra</text>
+</svg>

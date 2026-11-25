@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 450">
+<defs><marker id="t5d-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--color-secondary)"/></marker><marker id="t5d-r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="bad" d="M0 0L10 5L0 10z"/></marker><marker id="t5d-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="good" d="M0 0L10 5L0 10z"/></marker></defs>
+<rect class="dash" x="12" y="44" width="528" height="356" rx="14"/>
+<text class="h" x="28" y="32">Red de la organización</text>
+<text class="h" x="670" y="32" text-anchor="middle">Internet</text>
+<g><rect class="box" x="38" y="66" width="44" height="30" rx="3"/><rect class="tint" x="43" y="71" width="34" height="20"/><rect class="ink" x="56" y="96" width="8" height="6"/><rect class="ink" x="46" y="102" width="28" height="4" rx="2"/></g>
+<rect class="c3" x="70" y="54" width="26" height="20" rx="4"/>
+<text class="b" x="83" y="69" text-anchor="middle" style="font-size:13px">A</text>
+<g><rect class="box" x="128" y="66" width="44" height="30" rx="3"/><rect class="tint" x="133" y="71" width="34" height="20"/><rect class="ink" x="146" y="96" width="8" height="6"/><rect class="ink" x="136" y="102" width="28" height="4" rx="2"/></g>
+<rect class="c3" x="160" y="54" width="26" height="20" rx="4"/>
+<text class="b" x="173" y="69" text-anchor="middle" style="font-size:13px">A</text>
+<rect class="box" x="196" y="90" width="28" height="16" rx="3"/>
+<text class="s" x="210" y="124" text-anchor="middle">USB</text>
+<path class="sbad" d="M174 86C186 86 188 96 194 97" marker-end="url(#t5d-r)"/>
+<text class="b" x="110" y="136" text-anchor="middle">Puestos de trabajo</text>
+<text class="s" x="110" y="154" text-anchor="middle">A = agente DLP instalado</text>
+<rect class="c3" x="30" y="170" width="170" height="58" rx="6"/>
+<text x="115" y="194.5" text-anchor="middle">DLP en estación</text>
+<text x="115" y="214.5" text-anchor="middle">datos en uso</text>
+<text class="s" x="115" y="252" text-anchor="middle">Ej.: copiar nóminas</text>
+<text class="s" x="115" y="270" text-anchor="middle">a un USB</text>
+<text class="s b" x="115" y="292" text-anchor="middle" style="fill:var(--color-danger)">✕ bloqueado</text>
+<rect class="box" x="290" y="66" width="92" height="54" rx="4"/>
+<path class="ln" d="M302 80h68"/>
+<path class="ln" d="M302 92h68"/>
+<path class="ln" d="M302 104h68"/>
+<text class="b" x="336" y="136" text-anchor="middle">NAS</text>
+<text class="s" x="336" y="154" text-anchor="middle">(disco compartido)</text>
+<rect class="c2" x="250" y="170" width="172" height="58" rx="6"/>
+<text x="336" y="194.5" text-anchor="middle">DLP en centro</text>
+<text x="336" y="214.5" text-anchor="middle">datos en reposo</text>
+<text class="s" x="336" y="252" text-anchor="middle">Ej.: fichero con tarjetas</text>
+<text class="s" x="336" y="270" text-anchor="middle">olvidado en una carpeta</text>
+<text class="s b" x="336" y="292" text-anchor="middle" style="fill:var(--color-danger)">✕ detectado</text>
+<path class="ln" d="M115 304V350H480"/>
+<path class="ln" d="M336 304V350"/>
+<text class="s" x="250" y="372" text-anchor="middle">red interna</text>
+<rect class="c4" x="480" y="300" width="120" height="100" rx="8"/>
+<text class="b" x="540" y="330" text-anchor="middle">DLP de red</text>
+<text class="s" x="540" y="354" text-anchor="middle">datos en</text>
+<text class="s" x="540" y="372" text-anchor="middle">movimiento</text>
+<path class="tint" transform="translate(668 200) scale(0.55) translate(-620 -240)" d="M560 270c-34 0-46-38-16-50-6-34 38-48 58-26 14-28 64-26 72 2 16-18 58-10 58 20 34 2 38 52 4 54z"/>
+<path class="sbad" d="M570 298C580 260 610 240 632 232" marker-end="url(#t5d-r)"/>
+<text class="b" x="596" y="262" text-anchor="middle" style="fill:var(--color-danger)">✕</text>
+<text class="s" x="670" y="317" text-anchor="middle">Ej.: correo con</text>
+<text class="s" x="670" y="335" text-anchor="middle">la base de</text>
+<text class="s" x="670" y="353" text-anchor="middle">clientes adjunta</text>
+<text class="s b" x="670" y="392" text-anchor="middle" style="fill:var(--color-danger)">✕ bloqueado</text>
+<text class="b" x="370" y="438" text-anchor="middle">Cada tipo de DLP vigila los datos en un estado distinto.</text>
+</svg>

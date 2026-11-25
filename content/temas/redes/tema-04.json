@@ -328,6 +328,7 @@
             ]
           ]
         },
+        {"type":"figure","src":"figuras/redes/t04-ids-ips-despliegue.svg","title":"IDS en modo escucha frente a IPS en línea","caption":"Redibujado de las figuras del tema: el IDS mira una copia del tráfico; el IPS está en medio del camino.","alt":"Arriba, Internet, un router, un network tap y un switch en línea; el tap envía una copia del tráfico a la interfaz de monitorización (sin IP) del IDS, que tiene además una interfaz de gestión hacia el switch. Abajo, Internet, un router, el IPS y un switch en línea: el tráfico entra por la interfaz de entrada del IPS y sale por la de salida; una tercera interfaz, de gestión, va al switch."},
         {
           "type": "p",
           "text": "Al estar en el trayecto, el IPS tiene **control total** sobre el tráfico que atraviesa la red. Igual que el IDS, solo es efectivo si **se actualiza periódicamente**."
@@ -632,11 +633,13 @@
           ],
           "title": "Características"
         },
+        {"type":"figure","src":"figuras/redes/t04-honeypot.svg","title":"Un honeypot dentro de la red local","caption":"Redibujado de la figura del tema: el cebo se coloca detrás del cortafuegos, junto a los equipos reales.","alt":"Internet, un router, un cortafuegos y un switch en línea. Tras el switch, la red local: un equipo marcado en rojo como honeypot, que parece débil y es un cebo, y dos equipos reales."},
         {
           "type": "term",
           "term": "Honeynet (red trampa)",
           "text": "Tipo especial de honeypot: no es un equipo, sino **una red entera** diseñada para ser atacada. A diferencia del honeypot clásico, con servicios emulados, usa **equipos reales** (físicos o virtuales) con sistemas operativos y aplicaciones reales."
         },
+        {"type":"figure","src":"figuras/redes/t04-honeynet.svg","title":"Una honeynet al lado de la red de producción","caption":"Redibujado de la figura del tema: una red trampa entera, separada de la red local por una pasarela.","alt":"Internet, un router, un cortafuegos y un switch. Del switch sale la red local de producción con tres equipos. Del mismo switch baja una línea a una pasarela (honeywall) que controla y aísla la honeynet: una red marcada en rojo con tres equipos, sistemas y aplicaciones reales."},
         {
           "type": "analogy",
           "text": "Si el honeypot es un escaparate falso, la honeynet es una **calle entera de decorado** con tiendas, oficinas y un banco, todo funcional, donde los ladrones se mueven a sus anchas mientras los investigadores toman notas."
@@ -723,6 +726,7 @@
           "term": "Bait and Switch («cebo y cambiazo»)",
           "text": "Forma de montar una padded cell en un entorno real. Usa el IDS **Snort** para detectar ataques y se instala en un equipo con **al menos tres interfaces de red**; al detectar tráfico malicioso, lo redirige a la padded cell sin que el atacante lo note."
         },
+        {"type":"figure","src":"figuras/redes/t04-padded-cell.svg","title":"Bait and Switch: desviar al atacante a la padded cell","caption":"Redibujado de la figura del tema: el tráfico normal va a la red local y el malicioso, a la celda aislada.","alt":"Internet llega a un equipo Bait and Switch (IDS Snort con tres tarjetas de red). De él salen dos líneas: la verde, tráfico normal, va a la red local con dos equipos; la roja, tráfico malicioso desviado, va a la padded cell, un equipo aislado donde el atacante no hace daño y todo se registra."},
         {
           "type": "table",
           "head": [
@@ -1008,6 +1012,7 @@
           "text": "alert tcp any any -> 192.168.1.0/24 80 (msg:\"Intento de acceso a /admin\"; content:\"/admin\"; sid:1000001; rev:2;)",
           "title": "Ejemplo de regla"
         },
+        {"type":"figure","src":"figuras/redes/t04-regla-snort.svg","title":"Las partes de una regla de Snort","caption":"Redibujado de la figura del tema con la regla de ejemplo de este apartado.","alt":"La regla alert tcp any any -> 192.168.1.0/24 80 dividida en piezas de la cabecera: acción (alert), protocolo (tcp), IP origen (any), puerto origen (any), dirección (->), IP destino (192.168.1.0/24) y puerto destino (80). Debajo, en otra caja, las opciones entre paréntesis: msg, content, sid y rev."},
         {
           "type": "table",
           "head": [

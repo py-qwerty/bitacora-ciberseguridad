@@ -172,6 +172,7 @@
             ["Authentication Data", "El código de autenticación, normalmente un **HMAC**: un resumen (hash) calculado con una clave secreta."]
           ]
         },
+        {"type":"figure","src":"figuras/redes/t08-ah.svg","title":"Dónde va AH y qué lleva dentro","caption":"Redibujado de las figuras del tema: paquete con AH y formato de la cabecera AH.","alt":"Arriba, un paquete en modo transporte con cuatro piezas en fila: cabecera IP, AH, TCP y datos; una llave encima indica que todo el paquete queda autenticado salvo los campos que cambian por el camino, como el TTL. Debajo se amplía la cabecera AH: una fila con Next Header, Payload Length y Reservado; luego el SPI, que dice qué SA usar; el número de secuencia, que frena la repetición; y los datos de autenticación (HMAC), el código que se comprueba. Una nota final recuerda que AH no cifra: TCP y los datos se pueden leer, pero si alguien los cambia el código ya no coincide."},
         {
           "type": "term",
           "term": "Ataque de repetición (replay o reenvío)",
@@ -242,6 +243,7 @@
             ["Authentication Data", "Código para comprobar autenticación e integridad.", "No", "No (es el propio código)"]
           ]
         },
+        {"type":"figure","src":"figuras/redes/t08-esp.svg","title":"Qué cifra y qué autentica ESP","caption":"Redibujado de las figuras del tema: paquete con ESP y formato de ESP.","alt":"Un paquete en modo transporte con cinco piezas: cabecera IP, cabecera ESP, TCP/UDP con los datos, tráiler ESP y datos de autenticación. Una llave marca como cifrado el tramo de TCP/UDP con los datos y el tráiler; otra más larga marca como autenticado desde la cabecera ESP hasta el tráiler. Debajo, ESP por dentro de arriba abajo: SPI (dice qué SA usar), número de secuencia (frena la repetición), datos cifrados y parámetros con el vector de inicialización (solo los lee el destino) y datos de autenticación (el código que se comprueba). Nota: la autenticación de ESP no cubre la cabecera IP; la de AH, sí."},
         {
           "type": "p",
           "text": "Fíjate en una diferencia con AH: la autenticación de ESP **no cubre la cabecera IP externa**; AH sí la cubre (salvo campos mutables)."
@@ -400,6 +402,7 @@
             ["Coste", "Mayor: añade una cabecera IP extra.", "Menor."]
           ]
         },
+        {"type":"figure","src":"figuras/redes/t08-modos.svg","title":"El mismo paquete en los cuatro casos de IPsec","caption":"Redibujado de la figura del tema: modo túnel y modo transporte con AH y con ESP.","alt":"Cinco filas de bloques. Original: IP original, TCP, datos. Túnel con AH: IP nueva, AH, IP original, TCP, datos. Túnel con ESP: IP nueva, ESP, IP original, TCP, datos y tráiler ESP, con todo desde la IP original hasta el tráiler marcado como cifrado. Transporte con AH: IP original, AH, TCP, datos. Transporte con ESP: IP original, ESP, TCP, datos y tráiler ESP, con TCP, datos y tráiler marcados como cifrado. Al pie: en túnel hay dos cabeceras IP y la nueva va de pasarela a pasarela; en transporte hay una sola, la original, de extremo a extremo."},
         {
           "type": "term",
           "term": "VPN (Virtual Private Network, red privada virtual)",
@@ -503,6 +506,7 @@
           "type": "p",
           "text": "SSL es un protocolo de **dos niveles** que se apoya en **TCP** y se sitúa **entre la capa de transporte y la de aplicación**, por lo que HTTP, FTP, POP3, IMAP y otros pueden usarlo sin cambiar."
         },
+        {"type":"figure","src":"figuras/redes/t08-ssl-capas.svg","title":"Las capas de SSL/TLS","caption":"Redibujado de la figura del tema: los protocolos de SSL sobre el Record Protocol.","alt":"Una pila de capas. Arriba, cuatro cajas una al lado de otra: Handshake (negocia algoritmos y claves), Change Cipher Spec (desde ya, lo pactado), Alert (avisos y errores) y Aplicación (HTTP, IMAP, FTP). Debajo de las cuatro, una franja ancha: SSL Record Protocol, que fragmenta, añade el MAC, cifra y pasa a TCP. Esas dos filas forman SSL/TLS, de dos niveles. Más abajo, TCP e IP. Al pie: SSL se mete entre TCP y la aplicación, por eso HTTP, IMAP o FTP pueden usarlo sin cambiar."},
         {
           "type": "code",
           "title": "Las capas de SSL",
@@ -550,6 +554,7 @@
             "Lo transmite en un **segmento TCP**."
           ]
         },
+        {"type":"figure","src":"figuras/redes/t08-record.svg","title":"El Record Protocol, paso a paso","caption":"Redibujado de la figura del tema: funcionamiento del SSL Record Protocol.","alt":"Una cadena vertical de pasos. Los datos de la aplicación, una barra larga, se fragmentan en tres trozos. Siguiendo el primero: se comprime (opcional), se le añade un MAC como sello de integridad, se cifra todo con la clave acordada en el Handshake, se le pone delante una cabecera de registro y el resultado se envía dentro de un segmento TCP. Los demás trozos pasan por los mismos pasos."},
         {
           "type": "exam",
           "text": "Si preguntan la finalidad del protocolo de registros: **proteger y transportar los fragmentos de datos de aplicación**. No acuerda algoritmos ni claves (eso es el Handshake), no valida certificados (también Handshake) y no gestiona errores (eso es Alert)."

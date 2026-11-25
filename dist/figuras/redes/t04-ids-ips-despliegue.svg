@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 464">
+<defs><marker id="t04dp-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="ink" d="M0 0L10 5L0 10z"/></marker></defs>
+<text class="h" x="20" y="30">IDS en modo escucha (tap)</text>
+<path class="tint" d="M16 163c-20.4 0 -27.6 -22.8 -9.6 -30 -3.6 -20.4 22.8 -28.8 34.8 -15.6 8.4 -16.8 38.4 -15.6 43.2 1.2 9.6 -10.8 34.8 -6 34.8 12 20.4 1.2 22.8 31.2 2.4 32.4z"/><text class="b" x="65.2" y="154" text-anchor="middle" style="fill:var(--color-secondary)">Internet</text>
+<path class="ln" d="M135 140H740"/>
+<g><ellipse class="c3" cx="220" cy="140" rx="25" ry="14"/><path class="ln" style="stroke:var(--color-primary)" d="M208 136h9M214 132l4 4-4 4M232 144h-9M226 140l-4 4 4 4"/></g>
+<text class="s" x="220" y="174" text-anchor="middle">Router</text>
+<circle class="c4" cx="400" cy="140" r="10"/>
+<text class="s" x="400" y="174" text-anchor="middle">network tap</text>
+<text class="s" x="400" y="190" text-anchor="middle">(saca una copia)</text>
+<path class="ln" d="M400 130V92" marker-end="url(#t04dp-a)"/>
+<text class="s" x="410" y="118">monitorización (sin IP)</text>
+<g><rect class="box" x="378" y="47" width="44" height="30" rx="3"/><rect class="tint" x="383" y="52" width="34" height="20"/><rect class="ink" x="396" y="77" width="8" height="6"/><rect class="ink" x="386" y="83" width="28" height="4" rx="2"/></g>
+<text class="b" x="366" y="67" text-anchor="end">IDS</text>
+<path class="dash" d="M424 62H600V126" style="stroke-width:2" marker-end="url(#t04dp-a)"/>
+<text class="s" x="512" y="54" text-anchor="middle">interfaz de gestión</text>
+<g><rect class="c4" x="565.0" y="128" width="70" height="24" rx="4"/><rect class="ink" x="574" y="138" width="10" height="7" rx="1"/><rect class="ink" x="588" y="138" width="10" height="7" rx="1"/><rect class="ink" x="602" y="138" width="10" height="7" rx="1"/><rect class="ink" x="616" y="138" width="10" height="7" rx="1"/></g>
+<text class="s" x="600" y="174" text-anchor="middle">Switch</text>
+<text class="s" x="700" y="130" text-anchor="middle">red interna</text>
+<text class="s" x="380" y="222" text-anchor="middle">El tráfico no se detiene: el IDS analiza una copia y, si ve algo raro, avisa.</text>
+<text class="h" x="20" y="280">IPS en modo en línea</text>
+<path class="tint" d="M16 383c-20.4 0 -27.6 -22.8 -9.6 -30 -3.6 -20.4 22.8 -28.8 34.8 -15.6 8.4 -16.8 38.4 -15.6 43.2 1.2 9.6 -10.8 34.8 -6 34.8 12 20.4 1.2 22.8 31.2 2.4 32.4z"/><text class="b" x="65.2" y="374" text-anchor="middle" style="fill:var(--color-secondary)">Internet</text>
+<path class="ln" d="M135 360H396M444 360H740"/>
+<g><ellipse class="c3" cx="220" cy="360" rx="25" ry="14"/><path class="ln" style="stroke:var(--color-primary)" d="M208 356h9M214 352l4 4-4 4M232 364h-9M226 360l-4 4 4 4"/></g>
+<text class="s" x="220" y="394" text-anchor="middle">Router</text>
+<g><rect class="box" x="398" y="341" width="44" height="30" rx="3"/><rect class="tint" x="403" y="346" width="34" height="20"/><rect class="ink" x="416" y="371" width="8" height="6"/><rect class="ink" x="406" y="377" width="28" height="4" rx="2"/></g>
+<text class="b" x="420" y="330" text-anchor="middle">IPS</text>
+<text class="s" x="320" y="350" text-anchor="middle">interfaz de entrada</text>
+<text class="s" x="505" y="342" text-anchor="middle">interfaz de salida</text>
+<path class="dash" d="M420 384V406H626V374" style="stroke-width:2" marker-end="url(#t04dp-a)"/>
+<text class="s" x="520" y="424" text-anchor="middle">interfaz de gestión</text>
+<g><rect class="c4" x="565.0" y="348" width="70" height="24" rx="4"/><rect class="ink" x="574" y="358" width="10" height="7" rx="1"/><rect class="ink" x="588" y="358" width="10" height="7" rx="1"/><rect class="ink" x="602" y="358" width="10" height="7" rx="1"/><rect class="ink" x="616" y="358" width="10" height="7" rx="1"/></g>
+<text class="s" x="584" y="394" text-anchor="middle">Switch</text>
+<text class="s" x="700" y="350" text-anchor="middle">red interna</text>
+<text class="s" x="380" y="450" text-anchor="middle">Todo el tráfico lo atraviesa: además de avisar, puede cortar el ataque en el acto.</text>
+</svg>

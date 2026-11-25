@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 470">
+<defs><marker id="t9cap-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="ink" d="M0 0L10 5L0 10z"/></marker></defs>
+<text class="b" x="20" y="63.0">Aplicación</text>
+<text class="s" x="20" y="82.0">(capa 7)</text>
+<path class="dash" d="M20 110H740"/>
+<text class="b" x="20" y="178.0">Transporte</text>
+<text class="s" x="20" y="197.0">y red (3-4)</text>
+<path class="dash" d="M20 250H740"/>
+<text class="b" x="20" y="313.0">Enlace</text>
+<text class="s" x="20" y="332.0">(capa 2)</text>
+<g transform="translate(168 48) scale(1)"><rect class="box" x="0" y="0" width="44" height="30" rx="3"/><rect class="tint" x="5" y="5" width="34" height="20"/><rect class="ink" x="18" y="30" width="8" height="6"/><rect class="ink" x="8" y="36" width="28" height="4" rx="2"/></g>
+<g transform="translate(668 48) scale(1)"><rect class="box" x="0" y="0" width="44" height="30" rx="3"/><rect class="tint" x="5" y="5" width="34" height="20"/><rect class="ink" x="18" y="30" width="8" height="6"/><rect class="ink" x="8" y="36" width="28" height="4" rx="2"/></g>
+<path class="ln" d="M190 88V180H235" style="fill:none;stroke:var(--color-muted);stroke-width:1.5"/>
+<path class="ln" d="M690 88V180H645" style="fill:none;stroke:var(--color-muted);stroke-width:1.5"/>
+<path class="ln" d="M260 194V315H278M322 315H378M422 315H440V194" style="fill:none;stroke:var(--color-muted);stroke-width:1.5"/>
+<rect class="c2" x="278" y="304" width="44" height="22" rx="3"/>
+<rect class="c2" x="378" y="304" width="44" height="22" rx="3"/>
+<path class="ln" d="M440 194V315H458M502 315H558M602 315H620V194" style="fill:none;stroke:var(--color-muted);stroke-width:1.5"/>
+<rect class="c2" x="458" y="304" width="44" height="22" rx="3"/>
+<rect class="c2" x="558" y="304" width="44" height="22" rx="3"/>
+<g><ellipse class="c3" cx="260" cy="180" rx="25" ry="14"/><path class="ln" style="stroke:var(--color-primary)" d="M248 176h9M254 172l4 4-4 4M272 184h-9M266 180l-4 4 4 4"/></g>
+<g><ellipse class="c3" cx="440" cy="180" rx="25" ry="14"/><path class="ln" style="stroke:var(--color-primary)" d="M428 176h9M434 172l4 4-4 4M452 184h-9M446 180l-4 4 4 4"/></g>
+<g><ellipse class="c3" cx="620" cy="180" rx="25" ry="14"/><path class="ln" style="stroke:var(--color-primary)" d="M608 176h9M614 172l4 4-4 4M632 184h-9M626 180l-4 4 4 4"/></g>
+<path class="ln" d="M220 32H660" marker-end="url(#t9cap-a)" style="fill:none;stroke:var(--color-primary);stroke-width:2.5"/>
+<path class="ln" d="M660 32H220" marker-end="url(#t9cap-a)" style="fill:none;stroke:var(--color-primary);stroke-width:2.5"/>
+<text class="s" x="440" y="24" text-anchor="middle" style="fill:var(--color-text)"><tspan class="b">SSH</tspan>: de equipo a equipo, de extremo a extremo</text>
+<path class="ln" d="M260 136H620" marker-end="url(#t9cap-a)" style="fill:none;stroke:var(--color-primary);stroke-width:2.5"/>
+<path class="ln" d="M620 136H260" marker-end="url(#t9cap-a)" style="fill:none;stroke:var(--color-primary);stroke-width:2.5"/>
+<text class="s" x="440" y="128" text-anchor="middle" style="fill:var(--color-text)"><tspan class="b">SSL/TLS</tspan> (transporte) · <tspan class="b">IPsec</tspan> (red)</text>
+<path class="ln" d="M290 352H410" marker-end="url(#t9cap-a)" style="fill:none;stroke:var(--color-primary);stroke-width:2.5"/>
+<path class="ln" d="M410 352H290" marker-end="url(#t9cap-a)" style="fill:none;stroke:var(--color-primary);stroke-width:2.5"/>
+<text class="s" x="350.0" y="372" text-anchor="middle" style="fill:var(--color-text)">solo este enlace</text>
+<path class="ln" d="M470 352H590" marker-end="url(#t9cap-a)" style="fill:none;stroke:var(--color-primary);stroke-width:2.5"/>
+<path class="ln" d="M590 352H470" marker-end="url(#t9cap-a)" style="fill:none;stroke:var(--color-primary);stroke-width:2.5"/>
+<text class="s" x="530.0" y="372" text-anchor="middle" style="fill:var(--color-text)">solo este enlace</text>
+<text class="s" x="350" y="296" text-anchor="middle" style="fill:var(--color-text)"><tspan class="b">PPTP, L2F, L2TP</tspan></text>
+<text x="380" y="412" text-anchor="middle">Cuanto más baja la capa, más corto el tramo protegido. La de enlace protege</text>
+<text x="380" y="434" text-anchor="middle">solo el cable donde se pone, pero, al ir <tspan class="b">por debajo de IP</tspan>, vale para cualquier protocolo.</text>
+</svg>

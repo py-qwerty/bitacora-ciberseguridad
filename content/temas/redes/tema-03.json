@@ -195,6 +195,7 @@
           "type": "p",
           "text": "Quienes manejan estos sistemas necesitan **permisos elevados** (son administradores). Eso los convierte en un **objetivo principal de ataques**: quien controla la zona de gestión controla toda la red. Por eso la zonificación recomienda aislar esos sistemas en una zona de gestión **protegida**, no mezclarlos con servicios públicos ni administrarlos desde cualquier sitio."
         },
+        {"type":"figure","src":"figuras/redes/t03-diana-zona-gestion.svg","title":"La diana de zonas y la zona de gestión","caption":"Redibujado de la figura del tema (esquema de Obregon, SANS): la zona de gestión es una cuña que cruza todos los anillos.","alt":"Círculos concéntricos, de fuera hacia dentro: Internet, DMZ externa, un anillo dividido en zona empresarial (arriba) y extranet (abajo), DMZ interna y, en el centro, la zona restringida. Entre anillos hay cortafuegos. Una cuña, la zona de gestión, va desde la zona restringida hasta el borde exterior atravesando todas las zonas."},
         {
           "type": "exam",
           "text": "Tres trampas habituales. Una: «se usa para desplegar aplicaciones de recursos humanos» (eso es la zona restringida). Dos: «no se debe contemplar nunca en una red segura» (al contrario, es parte del modelo). Tres: «sirve para alojar servicios públicos» (eso es la DMZ). La respuesta buena dice que es **transversal** o que aloja **administración y monitorización**."
@@ -223,6 +224,7 @@
           "term": "Bastión con interfaz dual (dual-homed)",
           "text": "Equipo con **dos tarjetas de red** (dos «interfaces»): una conectada a Internet y otra a la red interna. Todo el tráfico pasa a través de él, así que es **el intermediario y el punto crítico** de la topología."
         },
+        {"type":"figure","src":"figuras/redes/t03-bastion-dual.svg","title":"Arquitectura simple: un bastión con dos tarjetas","caption":"Redibujado de la figura del tema: un único equipo une Internet con la red interna.","alt":"Arriba, Internet. Debajo, un equipo bastión que hace de cortafuegos, con una tarjeta de red hacia Internet y otra hacia la red interna. Abajo, la red interna con varios ordenadores y un servidor. Todo el tráfico pasa por el bastión: si cae, el atacante está dentro."},
         {
           "type": "p",
           "text": "Su gran debilidad: **si el atacante logra engañar al cortafuegos, la red interna queda a su alcance**. Es un punto único de fallo."
@@ -255,6 +257,7 @@
           "type": "p",
           "text": "Así la red de la empresa queda dividida en dos zonas: la **DMZ o Perimeter Network** (red perimetral) y la **Internal Network** (red interior). A la red interior los paquetes llegan **ya filtrados** desde la DMZ. En la figura del tema hay un router exterior (entre Internet y la red perimetral, donde vive el bastión) y un router interior (entre la red perimetral y la red interna)."
         },
+        {"type":"figure","src":"figuras/redes/t03-defensa-profundidad.svg","title":"Defensa en profundidad: dos routers y una DMZ","caption":"Redibujado de la figura del tema: entre Internet y la red interna hay una red perimetral con el bastión.","alt":"Internet se conecta a un router exterior, que da a la DMZ o red perimetral, donde está el equipo bastión con los servidores públicos. De la DMZ sale un router interior que da a la red interna, con varios ordenadores y un servidor. Un atacante que entra en la DMZ aún tiene que superar el router interior."},
         {
           "type": "term",
           "term": "Router (enrutador)",
@@ -489,6 +492,7 @@
           "type": "p",
           "text": "Las siete arquitecturas van explotando cada vez más la idea de **defensa en profundidad**: más barreras, más control del contenido y menos dependencia de un único equipo. La guía CCN-STIC 811 las presenta como **opciones**; el ENS no impone una combinación fija para todos los casos."
         },
+        {"type":"figure","src":"figuras/redes/t03-app1-app7.svg","title":"Las siete arquitecturas APP en miniatura","caption":"Redibujado de las figuras del tema (guía CCN-STIC 811): de la red interior a Internet, cada vez más barreras.","alt":"Siete esquemas entre la red interior e Internet. APP-1: un cortafuegos. APP-2: un proxy. APP-3: un cortafuegos con un proxy en la red interior. APP-4: un cortafuegos con el proxy en una DMZ colgada de él. APP-5: dos cortafuegos de distinto fabricante con el proxy en una DMZ entre ambos. APP-6: cortafuegos, proxy y cortafuegos en serie. APP-7: cortafuegos, pasarela o diodo y cortafuegos."},
         {
           "type": "table",
           "title": "Resumen de APP-1 a APP-7",

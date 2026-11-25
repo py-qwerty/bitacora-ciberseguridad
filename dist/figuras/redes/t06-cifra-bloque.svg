@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 440">
+<defs><marker id="t6b-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--color-secondary)"/></marker><marker id="t6b-r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="bad" d="M0 0L10 5L0 10z"/></marker><marker id="t6b-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="good" d="M0 0L10 5L0 10z"/></marker></defs>
+<text class="h" x="20" y="28">1. Se trocea el mensaje</text>
+<rect class="box" x="16" y="46" width="262" height="36" rx="2"/>
+<text class="b" x="147" y="69.5" text-anchor="middle">Mensaje M</text>
+<rect class="c3" x="278" y="46" width="74" height="36" rx="2"/>
+<text class="s" x="315" y="69" text-anchor="middle">Relleno</text>
+<rect class="c4" x="16" y="118" width="84" height="36" rx="2"/>
+<text x="58" y="141.5" text-anchor="middle">Bloque 1</text>
+<rect class="c2" x="16" y="200" width="84" height="36" rx="2"/>
+<text x="58" y="223.5" text-anchor="middle">Cifrado 1</text>
+<path class="ln" d="M58 82V114" marker-end="url(#t6b-a)"/>
+<path class="ln" d="M58 154V196" marker-end="url(#t6b-a)"/>
+<path class="ln" d="M58 236V276" marker-end="url(#t6b-a)"/>
+<rect class="c4" x="100" y="118" width="84" height="36" rx="2"/>
+<text x="142" y="141.5" text-anchor="middle">Bloque 2</text>
+<rect class="c2" x="100" y="200" width="84" height="36" rx="2"/>
+<text x="142" y="223.5" text-anchor="middle">Cifrado 2</text>
+<path class="ln" d="M142 82V114" marker-end="url(#t6b-a)"/>
+<path class="ln" d="M142 154V196" marker-end="url(#t6b-a)"/>
+<path class="ln" d="M142 236V276" marker-end="url(#t6b-a)"/>
+<rect class="c4" x="184" y="118" width="84" height="36" rx="2"/>
+<text x="226" y="141.5" text-anchor="middle">…</text>
+<rect class="c2" x="184" y="200" width="84" height="36" rx="2"/>
+<text x="226" y="223.5" text-anchor="middle">…</text>
+<rect class="c4" x="268" y="118" width="84" height="36" rx="2"/>
+<text x="310" y="141.5" text-anchor="middle">Bloque n</text>
+<rect class="c2" x="268" y="200" width="84" height="36" rx="2"/>
+<text x="310" y="223.5" text-anchor="middle">Cifrado n</text>
+<path class="ln" d="M310 82V114" marker-end="url(#t6b-a)"/>
+<path class="ln" d="M310 154V196" marker-end="url(#t6b-a)"/>
+<path class="ln" d="M310 236V276" marker-end="url(#t6b-a)"/>
+<rect class="box" x="16" y="280" width="336" height="36" rx="2"/>
+<text class="b" x="184" y="303.5" text-anchor="middle">Texto cifrado C</text>
+<text class="s" x="184" y="348" text-anchor="middle">Todos los bloques miden lo mismo</text>
+<text class="s" x="184" y="366" text-anchor="middle">(hoy, típicamente 128 bits);</text>
+<text class="s" x="184" y="384" text-anchor="middle">el relleno completa el último.</text>
+<text class="s" x="184" y="402" text-anchor="middle">Cada uno se cifra con la clave K.</text>
+<path class="dash" d="M372 20V420"/>
+<text class="h" x="392" y="28">2. Cada bloque pasa por rondas</text>
+<rect class="box" x="390" y="48" width="200" height="44" rx="4"/>
+<text x="490" y="75.5" text-anchor="middle">Entrada (un bloque)</text>
+<rect class="tint" x="390" y="118" width="200" height="44" rx="4"/>
+<text class="b" x="490" y="145.5" text-anchor="middle">Transformación inicial</text>
+<rect class="c2" x="390" y="188" width="200" height="44" rx="4"/>
+<text class="b" x="490" y="215.5" text-anchor="middle">Vueltas o rondas</text>
+<rect class="tint" x="390" y="258" width="200" height="44" rx="4"/>
+<text class="b" x="490" y="285.5" text-anchor="middle">Transformación final</text>
+<rect class="box" x="390" y="328" width="200" height="44" rx="4"/>
+<text x="490" y="355.5" text-anchor="middle">Salida (bloque cifrado)</text>
+<path class="ln" d="M490 92V116" marker-end="url(#t6b-a)"/>
+<path class="ln" d="M490 162V186" marker-end="url(#t6b-a)"/>
+<path class="ln" d="M490 232V256" marker-end="url(#t6b-a)"/>
+<path class="ln" d="M490 302V326" marker-end="url(#t6b-a)"/>
+<rect class="c3" x="612" y="44" width="116" height="32" rx="4"/>
+<text class="b" x="670" y="65.5" text-anchor="middle">Clave K</text>
+<path class="ln" d="M670 76V86" marker-end="url(#t6b-a)"/>
+<rect class="c3" x="612" y="88" width="116" height="42" rx="4"/>
+<text class="s" x="670" y="105.5" text-anchor="middle">Expansión</text>
+<text class="s" x="670" y="122.5" text-anchor="middle">de clave</text>
+<path class="ln" d="M670 130V280"/>
+<path class="ln" d="M670 140H594" marker-end="url(#t6b-a)"/>
+<path class="ln" d="M670 210H594" marker-end="url(#t6b-a)"/>
+<path class="ln" d="M670 280H594" marker-end="url(#t6b-a)"/>
+<text class="s" x="604" y="194">subclave</text>
+<text class="s" x="560" y="391" text-anchor="middle">Cada ronda usa una subclave distinta,</text>
+<text class="s" x="560" y="409" text-anchor="middle">sacada de K. Repetir rondas produce</text>
+<text class="s" x="560" y="427" text-anchor="middle">el efecto avalancha.</text>
+</svg>

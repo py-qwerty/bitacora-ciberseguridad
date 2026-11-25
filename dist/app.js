@@ -623,7 +623,7 @@ setupCamino({esc,rich,heading,sectionHref,temaProgress,studiedTotal});
 setupPracticas({get bank(){return bank;},get questionMap(){return questionMap;},read,write,esc,rich,heading,topicTitle,topicInfo,courseTitle,notFound,render,ask,sectionHref});
 async function init() {
   try {
-    const response=await fetch('bank.json?v=8',{signal:AbortSignal.timeout(15000)});
+    const response=await fetch('bank.json?v=9',{signal:AbortSignal.timeout(15000)});
     if(!response.ok)throw Error('HTTP '+response.status);
     const data=await response.json();
     validateBank(data);

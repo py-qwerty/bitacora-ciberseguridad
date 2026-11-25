@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 500">
+<defs><marker id="t8rec-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="ink" d="M0 0L10 5L0 10z"/></marker></defs>
+<text class="b" x="30" y="43">Datos de la aplicación</text>
+<text class="b" x="30" y="109">1. Fragmentar</text>
+<text class="b" x="30" y="175">2. Comprimir (opcional)</text>
+<text class="b" x="30" y="241">3. Añadir MAC</text>
+<text class="b" x="30" y="307">4. Cifrar</text>
+<text class="b" x="30" y="373">5. Añadir cabecera</text>
+<text class="b" x="30" y="439">6. Enviar en TCP</text>
+<rect class="c1" x="300" y="20" width="400" height="34"/>
+<rect class="c1" x="300" y="86" width="120" height="34"/>
+<rect class="c1" x="440" y="86" width="120" height="34"/>
+<rect class="c1" x="580" y="86" width="120" height="34"/>
+<path class="dash" d="M300 54L300 86M433 54L420 86"/>
+<path class="dash" d="M433 54L440 86M567 54L560 86M567 54L580 86M700 54L700 86"/>
+<rect class="c1" x="300" y="152" width="96" height="34" style="opacity:.55"/>
+<rect class="c1" x="300" y="218" width="96" height="34" style="opacity:.55"/>
+<rect class="c3" x="396" y="218" width="42" height="34"/>
+<text class="s" x="417" y="241" text-anchor="middle" style="fill:var(--color-text)">MAC</text>
+<rect class="ink" x="300" y="284" width="138" height="34"/>
+<text class="b w" x="369" y="307" text-anchor="middle">cifrado</text>
+<rect class="c5" x="266" y="350" width="34" height="34"/>
+<rect class="ink" x="300" y="350" width="138" height="34"/>
+<text class="b w" x="369" y="373" text-anchor="middle">cifrado</text>
+<rect class="box" x="256" y="410" width="192" height="46" rx="4" style="fill:none;stroke-dasharray:6 4"/>
+<rect class="c5" x="266" y="416" width="34" height="34"/>
+<rect class="ink" x="300" y="416" width="138" height="34"/>
+<text class="b w" x="369" y="439" text-anchor="middle">cifrado</text>
+<path class="ln" d="M350 124V146" marker-end="url(#t8rec-a)" style="stroke:var(--color-primary)"/>
+<path class="ln" d="M350 190V212" marker-end="url(#t8rec-a)" style="stroke:var(--color-primary)"/>
+<path class="ln" d="M350 256V278" marker-end="url(#t8rec-a)" style="stroke:var(--color-primary)"/>
+<path class="ln" d="M350 322V344" marker-end="url(#t8rec-a)" style="stroke:var(--color-primary)"/>
+<path class="ln" d="M350 388V404" marker-end="url(#t8rec-a)" style="stroke:var(--color-primary)"/>
+<path class="dash" d="M300 120V152M420 120L396 152"/>
+<text class="s" x="470" y="175">cada trozo, por separado</text>
+<text class="s" x="470" y="241">sello de integridad</text>
+<text class="s" x="470" y="307">con la clave del Handshake</text>
+<text class="s" x="470" y="373">cabecera de registro</text>
+<text class="s" x="470" y="439">dentro de un segmento TCP</text>
+<text class="s" x="380" y="488" text-anchor="middle">Se sigue el primer trozo; los demás pasan por los mismos pasos.</text>
+</svg>

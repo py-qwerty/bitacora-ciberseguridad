@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 480">
+<defs><marker id="t10rv-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="good" d="M0 0L10 5L0 10z"/></marker><marker id="t10rv-r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="bad" d="M0 0L10 5L0 10z"/></marker></defs>
+<g transform="translate(98 196) scale(0.72 0.9)"><path class="tint" d="M-90 46c-30 0-42-34-14-46-6-30 34-44 52-24 12-26 58-24 66 2 14-16 52-10 52 18 30 2 34 46 4 50z" style="opacity:.8"/></g>
+<text class="b" x="85" y="222" text-anchor="middle" style="fill:var(--color-secondary)">Internet</text>
+<rect class="box" x="190" y="30" width="550" height="370" rx="10" style="fill:none;stroke-dasharray:8 5"/>
+<text class="b" x="465" y="56" text-anchor="middle">Red virtual 10.0.0.0/16</text>
+<text class="s" x="465" y="75" text-anchor="middle">(dentro de una región)</text>
+<rect class="c4" x="215" y="92" width="230" height="250" rx="8"/>
+<text class="b" x="330" y="118" text-anchor="middle">Subred pública</text>
+<text class="s" x="330" y="137" text-anchor="middle">10.0.1.0/24</text>
+<g transform="translate(275 168) scale(1)"><rect class="box" x="0" y="0" width="32" height="42" rx="3"/><path class="ln" d="M6 10h20M6 18h20M6 26h20"/><circle class="good" cx="24" cy="35" r="2.5"/></g>
+<g transform="translate(343 168) scale(1)"><rect class="box" x="0" y="0" width="32" height="42" rx="3"/><path class="ln" d="M6 10h20M6 18h20M6 26h20"/><circle class="good" cx="24" cy="35" r="2.5"/></g>
+<text class="s" x="330" y="236" text-anchor="middle">servidores web</text>
+<rect class="c1" x="520" y="92" width="200" height="250" rx="8" style="stroke-width:4;stroke-dasharray:10 5"/>
+<text class="b" x="620" y="118" text-anchor="middle">Subred privada</text>
+<text class="s" x="620" y="137" text-anchor="middle">10.0.2.0/24</text>
+<path class="c1" d="M592.0 172v50a28.0 9 0 0 0 56 0v-50"/><ellipse class="c1" cx="620" cy="172" rx="28.0" ry="9"/>
+<text class="s" x="620" y="248" text-anchor="middle">base de datos</text>
+<text class="s" x="620" y="280" text-anchor="middle" style="fill:var(--color-text);font-weight:700">Grupo de seguridad:</text>
+<text class="s" x="620" y="298" text-anchor="middle">solo TCP 5432</text>
+<text class="s" x="620" y="316" text-anchor="middle">desde 10.0.1.0/24</text>
+<path class="sgood" d="M150 196H262" marker-end="url(#t10rv-g)"/>
+<path class="sgood" d="M384 196H590" marker-end="url(#t10rv-g)"/>
+<text class="s" x="482" y="168" text-anchor="middle" style="fill:var(--color-text)">TCP</text>
+<text class="s" x="482" y="186" text-anchor="middle" style="fill:var(--color-text)">5432</text>
+<path class="sbad" d="M90 248C120 380 440 380 512 318" marker-end="url(#t10rv-r)" style="stroke-dasharray:6 5"/>
+<path class="sbad" d="M507 300l16 16M523 300l-16 16" style="stroke-width:3.5"/>
+<text class="s" x="330" y="382" text-anchor="middle" style="fill:var(--color-text)">Internet → base de datos: <tspan class="b" style="fill:var(--color-danger)">bloqueado</tspan></text>
+<text x="380" y="438" text-anchor="middle">Si un atacante compromete la web, desde Internet sigue sin poder</text>
+<text x="380" y="460" text-anchor="middle">llegar a la base de datos: el grupo de seguridad solo admite la subred web.</text>
+</svg>

@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 440">
+<text class="h" x="380" y="22" text-anchor="middle">Paquete con ESP (modo transporte)</text>
+<rect class="box" x="40" y="44" width="120" height="56"/>
+<text class="b" x="100.0" y="77.5" text-anchor="middle">Cabecera IP</text>
+<rect class="c4" x="160" y="44" width="130" height="56"/>
+<text class="b" x="225.0" y="68.0" text-anchor="middle">Cabecera</text>
+<text class="b" x="225.0" y="87.0" text-anchor="middle">ESP</text>
+<rect class="ink" x="290" y="44" width="180" height="56"/>
+<text class="b w" x="380" y="70" text-anchor="middle">TCP/UDP + datos</text>
+<text class="s w" x="380" y="89" text-anchor="middle" style="fill:#fff">(cifrado)</text>
+<rect class="ink" x="470" y="44" width="120" height="56"/>
+<text class="b w" x="530" y="70" text-anchor="middle">Tráiler ESP</text>
+<text class="s w" x="530" y="89" text-anchor="middle" style="fill:#fff">(cifrado)</text>
+<rect class="box" x="590" y="44" width="130" height="56"/>
+<text x="655.0" y="68.0" text-anchor="middle">Datos de</text>
+<text x="655.0" y="87.0" text-anchor="middle">autenticación</text>
+<path class="ln" d="M290 104V112H590V104"/>
+<text class="b" x="440" y="132" text-anchor="middle">cifrado</text>
+<path class="ln" d="M160 140V148H590V140" style="stroke:var(--color-primary)"/>
+<text class="b" x="375" y="168" text-anchor="middle">autenticado</text>
+<text class="s" x="40" y="210">ESP por dentro, de arriba abajo:</text>
+<rect class="c4" x="160" y="220" width="360" height="40"/>
+<text class="b" x="340.0" y="245.5" text-anchor="middle">SPI</text>
+<rect class="c4" x="160" y="260" width="360" height="40"/>
+<text class="b" x="340.0" y="285.5" text-anchor="middle">Número de secuencia</text>
+<rect class="ink" x="160" y="300" width="360" height="58"/>
+<text class="b w" x="340.0" y="324" text-anchor="middle">Datos cifrados y parámetros</text>
+<text class="s" x="340.0" y="344" text-anchor="middle" style="fill:#fff">(vector de inicialización y datos)</text>
+<rect class="box" x="160" y="358" width="360" height="40"/>
+<text class="b" x="340.0" y="383.5" text-anchor="middle">Datos de autenticación</text>
+<path class="ln" d="M526 240H542"/>
+<text class="s" x="548" y="245">dice qué SA usar</text>
+<path class="ln" d="M526 280H542"/>
+<text class="s" x="548" y="285">frena la repetición</text>
+<path class="ln" d="M526 329H542"/>
+<text class="s" x="548" y="334">solo lo lee el destino</text>
+<path class="ln" d="M526 378H542"/>
+<text class="s" x="548" y="383">el código que se comprueba</text>
+<text x="380" y="428" text-anchor="middle">Ojo: la autenticación de ESP <tspan class="b">no cubre la cabecera IP</tspan>; la de AH, sí.</text>
+</svg>

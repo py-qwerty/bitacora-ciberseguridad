@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 384">
+<defs><marker id="t02ng-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="ink" d="M0 0L10 5L0 10z"/></marker></defs>
+<text class="h" x="360" y="32" text-anchor="middle">NGFW: cortafuegos de estado + capas extra</text>
+<rect class="ink" x="60" y="52" width="600" height="56" rx="6"/>
+<text class="b w" x="360" y="77" text-anchor="middle">Correlaciona toda la información</text>
+<text class="w" x="360" y="97" text-anchor="middle" style="font-size:14px">y decide qué conexiones se permiten</text>
+<rect class="c1" x="60" y="140" width="135" height="96" rx="5"/>
+<text class="b" x="127.5" y="162" text-anchor="middle">Control de</text>
+<text class="b" x="127.5" y="181" text-anchor="middle">aplicaciones</text>
+<text class="s" x="127.5" y="202" text-anchor="middle">(DPI: mira</text>
+<text class="s" x="127.5" y="219" text-anchor="middle">el contenido)</text>
+<path class="ln" d="M127.5 140V114" marker-end="url(#t02ng-a)"/>
+<rect class="c2" x="215" y="140" width="135" height="96" rx="5"/>
+<text class="b" x="282.5" y="162" text-anchor="middle">IDS / IPS</text>
+<text class="s" x="282.5" y="183" text-anchor="middle">detecta y</text>
+<text class="s" x="282.5" y="200" text-anchor="middle">bloquea ataques</text>
+<path class="ln" d="M282.5 140V114" marker-end="url(#t02ng-a)"/>
+<rect class="c3" x="370" y="140" width="135" height="96" rx="5"/>
+<text class="b" x="437.5" y="162" text-anchor="middle">VPN</text>
+<text class="s" x="437.5" y="183" text-anchor="middle">túnel cifrado</text>
+<text class="s" x="437.5" y="200" text-anchor="middle">hacia la red</text>
+<path class="ln" d="M437.5 140V114" marker-end="url(#t02ng-a)"/>
+<rect class="c5" x="525" y="140" width="135" height="96" rx="5"/>
+<text class="b" x="592.5" y="162" text-anchor="middle">Inteligencia</text>
+<text class="b" x="592.5" y="181" text-anchor="middle">de amenazas</text>
+<text class="s" x="592.5" y="202" text-anchor="middle">listas de IP y</text>
+<text class="s" x="592.5" y="219" text-anchor="middle">dominios malos</text>
+<path class="ln" d="M592.5 140V114" marker-end="url(#t02ng-a)"/>
+<rect class="c4" x="60" y="262" width="600" height="58" rx="5"/>
+<text class="b" x="360" y="286" text-anchor="middle">Cortafuegos de estado (la base)</text>
+<text class="s" x="360" y="306" text-anchor="middle">filtra por puertos y protocolos, recuerda las conexiones abiertas y hace NAT</text>
+<path class="ln" d="M360 262V242" marker-end="url(#t02ng-a)"/>
+<text class="s" x="360" y="352" text-anchor="middle">Según Gartner, un NGFW hace inspección profunda (DPI) y añade, como mínimo,</text>
+<text class="s" x="360" y="370" text-anchor="middle">información de nivel de aplicación y prevención de intrusiones.</text>
+</svg>

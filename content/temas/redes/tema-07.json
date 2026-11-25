@@ -258,6 +258,7 @@
             "Añade delante una cabecera de **4 bytes**: 3 bytes del IV y 1 byte para elegir clave (que en la práctica no se usa)."
           ]
         },
+        {"type":"figure","src":"figuras/redes/t07-wep-cifrado.svg","title":"Cómo cifra WEP un paquete","caption":"Redibujado de las figuras del tema sobre el cifrado y la trama WEP.","alt":"El IV de 24 bits y la clave compartida de 40 o 104 bits se juntan como clave de RC4, que produce la secuencia cifrante. A los datos (MPDU) se les calcula el ICV con CRC-32 y se pegan al final. Datos e ICV se combinan con XOR con la secuencia cifrante. El paquete que viaja lleva la cabecera, el IV (3 bytes) y el KeyID (1 byte) en claro, y después los datos y el ICV cifrados con RC4. Un recuadro explica por qué falla: el IV viaja en claro y solo mide 24 bits, y el CRC-32 solo detecta errores accidentales."},
         {
           "type": "code",
           "title": "Esquema de un paquete WEP",
@@ -388,6 +389,7 @@
           "term": "EAP (Extensible Authentication Protocol)",
           "text": "Protocolo de autenticación «extensible»: un marco que permite usar distintos métodos de autenticación. Crea un **túnel EAP** para que quien intercepte la comunicación por el aire no vea la información sensible."
         },
+        {"type":"figure","src":"figuras/redes/t07-8021x.svg","title":"Los tres papeles de 802.1X","caption":"Redibujado de la figura del tema: suplicante, autenticador y servidor RADIUS.","alt":"Un portátil (suplicante), un AP (autenticador) y un servidor RADIUS que comprueba la identidad. Entre portátil y AP, los mensajes EAP viajan por la wifi; entre AP y RADIUS viajan por la red dentro de RADIUS. Hasta que RADIUS no responde aceptado, el AP solo deja pasar mensajes EAP. Cuando llega el aceptado, el portátil obtiene acceso a la red de la empresa. EAP viaja como en un túnel, así que quien escucha por el aire no ve las credenciales."},
         {
           "type": "table",
           "title": "Métodos EAP que cita el tema",
@@ -496,6 +498,7 @@
           "type": "p",
           "text": "**¿Por qué una función de mezcla?** El hardware de WEP solo sabía hacer «IV de 24 bits pegado a la clave → RC4». Alargar el IV y pegarlo sin más habría exigido hardware nuevo. Por eso TKIP usa una **función de mezcla de clave** (key mixing) que combina la PTK con el IV de 48 bits y produce, para cada paquete, una clave diferente con el formato que el hardware antiguo entiende."
         },
+        {"type":"figure","src":"figuras/redes/t07-tkip-mezcla.svg","title":"TKIP: una clave por paquete sobre el motor de WEP","caption":"Redibujado simplificado de la figura del tema sobre el cifrado TKIP.","alt":"Arriba, la PTK, la dirección MAC propia y el IV de 48 bits pasan por dos fases de mezcla que dan una clave distinta para cada paquete, que entra en RC4. Abajo, a los datos se les añade el MIC de Michael, se trocean en paquetes y a cada uno se le añade el ICV con CRC-32; después se combina con XOR con la secuencia de RC4 y sale el paquete cifrado precedido del IV. Un recuadro marca que RC4 y CRC-32 son el mismo motor que WEP, por compatibilidad con el hardware antiguo."},
         {
           "type": "exam",
           "text": "Si te preguntan qué aporta variación entre dos sesiones que parten del mismo material maestro, la respuesta son los **valores aleatorios de un solo uso (nonces)** de los extremos. Trampas: «la clave maestra sola», «el nombre de la red» o «copiar la contraseña a cada sesión»: con esos datos fijos todas las sesiones tendrían la misma clave. Y recuerda: WPA cifra con **RC4** (dentro de TKIP), no con AES ni con Michael."
@@ -589,6 +592,7 @@
           "type": "analogy",
           "text": "AES-CCMP es como enviar un documento en un sobre opaco (CTR: nadie ve el contenido) y, además, firmado y lacrado con un sello que solo tú y el destinatario sabéis hacer (CBC-MAC: si alguien abre o cambia algo, el sello no cuadra)."
         },
+        {"type":"figure","src":"figuras/redes/t07-ccmp.svg","title":"AES-CCMP: CBC-MAC para la integridad y CTR para el cifrado","caption":"Redibujado simplificado de la figura del tema sobre CCMP.","alt":"Arriba, integridad con CBC-MAC: el bloque inicial B0, con el nonce, se cifra con AES; el resultado se combina con XOR con la cabecera y se cifra con AES; ese resultado se combina con el bloque 1 y se vuelve a cifrar, y así hasta el bloque n; la última salida da el MIC. Abajo, confidencialidad con el modo CTR: los contadores 1, 2 hasta n se cifran con AES y cada resultado se combina con XOR con su bloque de datos para dar los bloques cifrados. Resultado: cabecera, datos cifrados y MIC, todo con AES."},
         {
           "type": "table",
           "title": "WPA frente a WPA2",

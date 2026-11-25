@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 460">
+<rect class="band5" x="40" y="96" width="620" height="134" rx="12"/>
+<path class="tint" d="M60 79.5c-23.8 0 -32.2 -26.6 -11.2 -35 -4.2 -23.8 26.6 -33.6 40.6 -18.2 9.8 -19.6 44.8 -18.2 50.4 1.4 11.2 -12.6 40.6 -7 40.6 14 23.8 1.4 26.6 36.4 2.8 37.8z"/><text class="b" x="117.4" y="68" text-anchor="middle" style="fill:var(--color-secondary)">Internet</text>
+<path class="ln" d="M120 80V116"/>
+<g><ellipse class="c3" cx="120" cy="130" rx="25" ry="14"/><path class="ln" style="stroke:var(--color-primary)" d="M108 126h9M114 122l4 4-4 4M132 134h-9M126 130l-4 4 4 4"/></g>
+<text class="b" x="156" y="126">Router exterior</text>
+<text class="s" x="156" y="144">primer filtrado</text>
+<path class="ln" d="M120 144V200"/>
+<path class="ln" d="M60 200H640"/>
+<g><rect class="box" x="384" y="119" width="32" height="42" rx="3"/><path class="ln" d="M390 129h20M390 137h20M390 145h20"/><circle class="good" cx="408" cy="154" r="2.5"/></g>
+<g><rect class="c5" x="421" y="141" width="26" height="22" rx="2"/><path d="M421 146.5h26M421 152h26M421 157.5h26M427.5 141v5.5M440.5 141v5.5M434 146.5v5.5M427.5 152v5.5M440.5 152v5.5M434 157.5v5.5" style="fill:none;stroke:#a33331;stroke-width:1.2"/></g>
+<text class="b" x="458" y="136">Equipo bastión</text>
+<text class="s" x="458" y="154">y servidores públicos</text>
+<path class="ln" d="M400 161V200"/>
+<text class="b" x="60" y="222">DMZ (red perimetral)</text>
+<path class="ln" d="M480 200V248"/>
+<g><ellipse class="c3" cx="480" cy="262" rx="25" ry="14"/><path class="ln" style="stroke:var(--color-primary)" d="M468 258h9M474 254l4 4-4 4M492 266h-9M486 262l-4 4 4 4"/></g>
+<text class="b" x="516" y="258">Router interior</text>
+<text class="s" x="516" y="276">segundo filtrado</text>
+<path class="ln" d="M480 276V330"/>
+<path class="ln" d="M40 330H720"/>
+<text class="b" x="40" y="318">Red interna</text>
+<path class="ln" d="M80 330V360"/>
+<g><rect class="box" x="58" y="360" width="44" height="30" rx="3"/><rect class="tint" x="63" y="365" width="34" height="20"/><rect class="ink" x="76" y="390" width="8" height="6"/><rect class="ink" x="66" y="396" width="28" height="4" rx="2"/></g>
+<path class="ln" d="M180 330V364"/>
+<g><rect class="box" x="164" y="364" width="32" height="42" rx="3"/><path class="ln" d="M170 374h20M170 382h20M170 390h20"/><circle class="good" cx="188" cy="399" r="2.5"/></g>
+<path class="ln" d="M280 330V360"/>
+<g><rect class="box" x="258" y="360" width="44" height="30" rx="3"/><rect class="tint" x="263" y="365" width="34" height="20"/><rect class="ink" x="276" y="390" width="8" height="6"/><rect class="ink" x="266" y="396" width="28" height="4" rx="2"/></g>
+<path class="ln" d="M380 330V360"/>
+<g><rect class="box" x="358" y="360" width="44" height="30" rx="3"/><rect class="tint" x="363" y="365" width="34" height="20"/><rect class="ink" x="376" y="390" width="8" height="6"/><rect class="ink" x="366" y="396" width="28" height="4" rx="2"/></g>
+<path class="ln" d="M580 330V360"/>
+<g><rect class="box" x="558" y="360" width="44" height="30" rx="3"/><rect class="tint" x="563" y="365" width="34" height="20"/><rect class="ink" x="576" y="390" width="8" height="6"/><rect class="ink" x="566" y="396" width="28" height="4" rx="2"/></g>
+<path class="ln" d="M680 330V360"/>
+<g><rect class="box" x="658" y="360" width="44" height="30" rx="3"/><rect class="tint" x="663" y="365" width="34" height="20"/><rect class="ink" x="676" y="390" width="8" height="6"/><rect class="ink" x="666" y="396" width="28" height="4" rx="2"/></g>
+<text class="s" x="380" y="428" text-anchor="middle">Si un atacante entra en la DMZ, todavía tiene que superar el router interior</text>
+<text class="s" x="380" y="446" text-anchor="middle">para llegar a la red interna: a ella los paquetes llegan ya filtrados.</text>
+</svg>

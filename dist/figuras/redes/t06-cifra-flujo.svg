@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 330">
+<defs><marker id="t6f-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--color-secondary)"/></marker><marker id="t6f-r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="bad" d="M0 0L10 5L0 10z"/></marker><marker id="t6f-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="good" d="M0 0L10 5L0 10z"/></marker></defs>
+<rect class="c4" x="60" y="14" width="180" height="36" rx="4"/>
+<text class="b" x="150" y="37.5" text-anchor="middle">CIFRADO</text>
+<rect class="c3" x="500" y="14" width="180" height="36" rx="4"/>
+<text class="b" x="590" y="37.5" text-anchor="middle">DESCIFRADO</text>
+<rect class="ink" x="60" y="96" width="180" height="64" rx="6"/>
+<text class="w b" x="150" y="123.5" text-anchor="middle">Generador de la</text>
+<text class="w b" x="150" y="143.5" text-anchor="middle">secuencia cifrante</text>
+<rect class="ink" x="500" y="96" width="180" height="64" rx="6"/>
+<text class="w b" x="590" y="123.5" text-anchor="middle">Generador de la</text>
+<text class="w b" x="590" y="143.5" text-anchor="middle">secuencia cifrante</text>
+<path class="ln" d="M14 128H58" marker-end="url(#t6f-a)"/>
+<text class="b" x="24" y="118" text-anchor="middle">K</text>
+<path class="ln" d="M726 128H682" marker-end="url(#t6f-a)"/>
+<text class="b" x="716" y="118" text-anchor="middle">K</text>
+<circle class="box" cx="300" cy="128" r="13"/>
+<path class="ln" d="M290 128H310M300 118V138" style="stroke:var(--color-primary)"/>
+<circle class="box" cx="440" cy="128" r="13"/>
+<path class="ln" d="M430 128H450M440 118V138" style="stroke:var(--color-primary)"/>
+<path class="ln" d="M240 128H285" marker-end="url(#t6f-a)"/>
+<text class="b" x="262" y="118" text-anchor="middle">S<tspan dy="5" style="font-size:12px">i</tspan></text>
+<path class="ln" d="M500 128H455" marker-end="url(#t6f-a)"/>
+<text class="b" x="478" y="118" text-anchor="middle">S<tspan dy="5" style="font-size:12px">i</tspan></text>
+<path class="ln" d="M313 128H425" marker-end="url(#t6f-a)" stroke-dasharray="6 5"/>
+<text class="b" x="370" y="118" text-anchor="middle">C<tspan dy="5" style="font-size:12px">i</tspan></text>
+<text class="s" x="370" y="150" text-anchor="middle">texto cifrado</text>
+<text class="s" x="370" y="170" text-anchor="middle">(viaja por la red)</text>
+<path class="ln" d="M40 230H300V143" marker-end="url(#t6f-a)"/>
+<text class="b" x="30" y="236" text-anchor="end">M<tspan dy="5" style="font-size:12px">i</tspan></text>
+<text class="s" x="150" y="252" text-anchor="middle">texto en claro</text>
+<path class="ln" d="M440 143V230H700" marker-end="url(#t6f-a)"/>
+<text class="b" x="710" y="236">M<tspan dy="5" style="font-size:12px">i</tspan></text>
+<text class="s" x="590" y="252" text-anchor="middle">texto en claro recuperado</text>
+<rect class="box" x="270" y="30" width="200" height="44" rx="4" stroke-dasharray="5 4"/>
+<text class="s" x="370" y="48" text-anchor="middle">la misma secuencia</text>
+<text class="s" x="370" y="66" text-anchor="middle">en los dos lados</text>
+<text class="b" x="370" y="298" text-anchor="middle">⊕ = XOR. Cifrar y descifrar es la misma operación:</text>
+<text class="s" x="370" y="320" text-anchor="middle">hacer XOR con la secuencia cifrante, que sale de la clave K.</text>
+</svg>

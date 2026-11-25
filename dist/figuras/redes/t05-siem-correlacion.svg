@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 460">
+<defs><marker id="t5s-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--color-secondary)"/></marker><marker id="t5s-r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="bad" d="M0 0L10 5L0 10z"/></marker><marker id="t5s-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="good" d="M0 0L10 5L0 10z"/></marker></defs>
+<text class="b" x="20" y="30">Fuentes de logs (con agente)</text>
+<rect class="c4" x="16" y="46" width="250" height="118" rx="6"/>
+<text class="b" x="30" y="70">Servidor web</text>
+<text class="s" x="30" y="92">03:10 · IP 203.0.113.7</text>
+<text x="30" y="120">Intento de acceso al</text>
+<text x="30" y="142">panel de administración</text>
+<rect class="c3" x="16" y="180" width="250" height="118" rx="6"/>
+<text class="b" x="30" y="204">Servidor de autenticación</text>
+<text class="s" x="30" y="226">03:12 · IP 203.0.113.7</text>
+<text x="30" y="254">Inicio de sesión</text>
+<text x="30" y="276">correcto de «admin»</text>
+<rect class="box" x="16" y="316" width="250" height="58" rx="6" stroke-dasharray="5 4"/>
+<text class="s" x="30" y="340">Cortafuegos, VPN, antivirus…</text>
+<text class="s" x="30" y="360">(otros logs sin relación)</text>
+<path class="ln" d="M266 105C290 105 290 200 306 200" marker-end="url(#t5s-a)"/>
+<path class="ln" d="M266 239C290 239 290 200 306 200" marker-end="url(#t5s-a)"/>
+<path class="ln" d="M266 345C290 345 290 200 306 200" marker-end="url(#t5s-a)"/>
+<rect class="tint" x="310" y="40" width="230" height="340" rx="10"/>
+<text class="h" x="425" y="66" text-anchor="middle">Servidor SIEM</text>
+<rect class="box" x="326" y="84" width="198" height="74" rx="6"/>
+<text class="b" x="425" y="108" text-anchor="middle">1. Recolección</text>
+<text x="425" y="128" text-anchor="middle">guarda los logs</text>
+<text x="425" y="148" text-anchor="middle">sin que se borren</text>
+<path class="ln" d="M425 158V174" marker-end="url(#t5s-a)"/>
+<rect class="c2" x="326" y="176" width="198" height="128" rx="6"/>
+<text class="b" x="425" y="200" text-anchor="middle">2. Correlación</text>
+<text x="425" y="227.5" text-anchor="middle">misma IP</text>
+<text x="425" y="247.5" text-anchor="middle">2 minutos después</text>
+<text x="425" y="267.5" text-anchor="middle">cuenta privilegiada</text>
+<text x="425" y="287.5" text-anchor="middle">de madrugada</text>
+<path class="ln" d="M425 304V320" marker-end="url(#t5s-a)"/>
+<rect class="c5" x="326" y="322" width="198" height="46" rx="6"/>
+<text class="b" x="425" y="350.5" text-anchor="middle">3. Alerta</text>
+<path class="sbad" d="M524 345H580" marker-end="url(#t5s-r)"/>
+<rect class="c5" x="584" y="300" width="146" height="90" rx="8"/>
+<text class="b" x="657" y="330" text-anchor="middle">¡Posible</text>
+<text class="b" x="657" y="352" text-anchor="middle">intrusión!</text>
+<text class="s" x="657" y="374" text-anchor="middle">avisa al operador</text>
+<g><circle class="c4" cx="657" cy="190" r="12"/><path class="c4" d="M636 228a21 21 0 0 1 42 0z"/></g>
+<rect class="box" x="630" y="240" width="54" height="34" rx="3"/>
+<rect class="tint" x="635" y="245" width="44" height="24" rx="2"/>
+<text class="s" x="657" y="292" text-anchor="middle">Operador</text>
+<text class="s" x="370" y="418" text-anchor="middle">Por separado, un intento y un acceso válido no dicen mucho.</text>
+<text class="b" x="370" y="442" text-anchor="middle">Al unirlos, el SIEM ve un ataque en dos pasos.</text>
+</svg>

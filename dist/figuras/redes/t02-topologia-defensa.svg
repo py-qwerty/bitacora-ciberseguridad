@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 366">
+<path class="tint" d="M32 148c-27.2 0 -36.8 -30.4 -12.8 -40 -4.8 -27.2 30.4 -38.4 46.4 -20.8 11.2 -22.4 51.2 -20.8 57.6 1.6 12.8 -14.4 46.4 -8 46.4 16 27.2 1.6 30.4 41.6 3.2 43.2z"/><text class="b" x="97.6" y="134" text-anchor="middle" style="fill:var(--color-secondary)">Internet</text>
+<path class="ln" d="M191 120H295"/>
+<text class="s" x="248" y="108" text-anchor="middle">Red externa</text>
+<rect class="box" x="260" y="22" width="120" height="50" rx="4"/>
+<text class="b" x="320" y="43" text-anchor="middle">Reglas de</text>
+<text class="b" x="320" y="62" text-anchor="middle">filtrado</text>
+<path class="dash" d="M320 72V104"/>
+<g><ellipse class="c3" cx="320" cy="120" rx="25" ry="14"/><path class="ln" style="stroke:var(--color-primary)" d="M308 116h9M314 112l4 4-4 4M332 124h-9M326 120l-4 4 4 4"/></g>
+<text class="b" x="320" y="160" text-anchor="middle">Filtro de paquetes</text>
+<text class="s" x="320" y="178" text-anchor="middle">mira cabeceras:</text>
+<text class="s" x="320" y="194" text-anchor="middle">IP y puerto</text>
+<path class="ln" d="M345 120H494"/>
+<text class="s" x="420" y="108" text-anchor="middle">Red interna</text>
+<g><rect class="box" x="494" y="99" width="32" height="42" rx="3"/><path class="ln" d="M500 109h20M500 117h20M500 125h20"/><circle class="good" cx="518" cy="134" r="2.5"/></g>
+<rect class="c4" x="466" y="150" width="88" height="26"/>
+<text class="b" x="510" y="168" text-anchor="middle">FTP</text>
+<rect class="tint" x="466" y="176" width="88" height="26"/>
+<text class="b" x="510" y="194" text-anchor="middle">TELNET</text>
+<rect class="c4" x="466" y="202" width="88" height="26"/>
+<text class="b" x="510" y="220" text-anchor="middle">HTTP</text>
+<rect class="tint" x="466" y="228" width="88" height="26"/>
+<text x="510" y="246" text-anchor="middle">…</text>
+<text class="b" x="510" y="276" text-anchor="middle">Pasarela de aplicación (proxy)</text>
+<text class="s" x="510" y="294" text-anchor="middle">entiende cada aplicación que conoce</text>
+<path class="ln" d="M526 120H745"/>
+<text class="s" x="640" y="108" text-anchor="middle">Red interna</text>
+<path class="ln" d="M640 120V157M715 120V157"/>
+<g><rect class="box" x="618" y="157" width="44" height="30" rx="3"/><rect class="tint" x="623" y="162" width="34" height="20"/><rect class="ink" x="636" y="187" width="8" height="6"/><rect class="ink" x="626" y="193" width="28" height="4" rx="2"/></g>
+<g><rect class="box" x="693" y="157" width="44" height="30" rx="3"/><rect class="tint" x="698" y="162" width="34" height="20"/><rect class="ink" x="711" y="187" width="8" height="6"/><rect class="ink" x="701" y="193" width="28" height="4" rx="2"/></g>
+<text class="s" x="380" y="334" text-anchor="middle">Dos barreras distintas: la primera mira de dónde viene y adónde va el paquete;</text>
+<text class="s" x="380" y="352" text-anchor="middle">la segunda entiende los datos de la aplicación (qué se pide).</text>
+</svg>

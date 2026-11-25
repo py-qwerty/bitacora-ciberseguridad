@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 350">
+<defs><marker id="t02cp-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="good" d="M0 0L10 5L0 10z"/></marker></defs>
+<defs><marker id="t02cp-r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="bad" d="M0 0L10 5L0 10z"/></marker></defs>
+<path class="tint" d="M45 175c-34 0 -46 -38 -16 -50 -6 -34 38 -48 58 -26 14 -28 64 -26 72 2 16 -18 58 -10 58 20 34 2 38 52 4 54z"/><text class="b" x="127" y="156" text-anchor="middle" style="fill:var(--color-secondary)">Internet</text>
+<path class="ln" d="M244 150H332"/>
+<rect class="box" x="290" y="28" width="140" height="56" rx="4"/>
+<text class="b" x="360" y="52" text-anchor="middle">Reglas de</text>
+<text class="b" x="360" y="72" text-anchor="middle">filtrado</text>
+<path class="dash" d="M360 84V124"/>
+<g><rect class="c5" x="332" y="126" width="56" height="48" rx="2"/><path d="M332 138h56M332 150h56M332 162h56M346 126v12M374 126v12M360 138v12M346 150v12M374 150v12M360 162v12" style="fill:none;stroke:#a33331;stroke-width:1.2"/></g>
+<text class="b" x="360" y="196" text-anchor="middle">Cortafuegos</text>
+<path class="ln" d="M388 150H690"/>
+<rect class="dash" x="500" y="40" width="210" height="220" rx="12"/>
+<g><rect class="box" x="538" y="80" width="44" height="30" rx="3"/><rect class="tint" x="543" y="85" width="34" height="20"/><rect class="ink" x="556" y="110" width="8" height="6"/><rect class="ink" x="546" y="116" width="28" height="4" rx="2"/></g>
+<path class="ln" d="M560 120V150"/>
+<g><rect class="box" x="633" y="80" width="44" height="30" rx="3"/><rect class="tint" x="638" y="85" width="34" height="20"/><rect class="ink" x="651" y="110" width="8" height="6"/><rect class="ink" x="641" y="116" width="28" height="4" rx="2"/></g>
+<path class="ln" d="M655 120V150"/>
+<g><rect class="box" x="586" y="180" width="44" height="30" rx="3"/><rect class="tint" x="591" y="185" width="34" height="20"/><rect class="ink" x="604" y="210" width="8" height="6"/><rect class="ink" x="594" y="216" width="28" height="4" rx="2"/></g>
+<path class="ln" d="M608 150V180"/>
+<text class="b" x="605" y="248" text-anchor="middle">Red local (LAN)</text>
+<path class="sgood" d="M60 228H470" marker-end="url(#t02cp-g)"/>
+<text class="s" x="150" y="220" text-anchor="middle">Permitido: pasa</text>
+<path class="sbad" d="M60 262H318" marker-end="url(#t02cp-r)"/>
+<path class="sbad" d="M330 252l18 20M348 252l-18 20" style="stroke-width:3"/>
+<text class="s" x="150" y="284" text-anchor="middle">Prohibido: se descarta</text>
+<text class="s" x="360" y="318" text-anchor="middle">Todo el tráfico entre Internet y la red local pasa por el cortafuegos,</text>
+<text class="s" x="360" y="336" text-anchor="middle">que compara cada paquete con sus reglas y lo acepta o lo descarta.</text>
+</svg>

@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 510">
+<defs><marker id="t6m-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--color-secondary)"/></marker><marker id="t6m-r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="bad" d="M0 0L10 5L0 10z"/></marker><marker id="t6m-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="good" d="M0 0L10 5L0 10z"/></marker></defs>
+<text class="h" x="20" y="30">CBC</text>
+<text class="s" x="20" y="49">cada bloque se</text>
+<text class="s" x="20" y="67">mezcla con el</text>
+<text class="s" x="20" y="85">cifrado anterior</text>
+<text class="b" x="250" y="24" text-anchor="middle">P<tspan dy="5" style="font-size:12px">1</tspan></text>
+<path class="ln" d="M250 32V68" marker-end="url(#t6m-a)"/>
+<circle class="box" cx="250" cy="82" r="13"/>
+<path class="ln" d="M240 82H260M250 72V92" style="stroke:var(--color-primary)"/>
+<path class="ln" d="M250 95V112" marker-end="url(#t6m-a)"/>
+<rect class="c3" x="194" y="114" width="112" height="40" rx="4"/>
+<text x="250" y="139.5" text-anchor="middle">Cifrar con K</text>
+<path class="ln" d="M250 154V188" marker-end="url(#t6m-a)"/>
+<text class="b" x="250" y="206" text-anchor="middle">C<tspan dy="5" style="font-size:12px">1</tspan></text>
+<text class="b" x="420" y="24" text-anchor="middle">P<tspan dy="5" style="font-size:12px">2</tspan></text>
+<path class="ln" d="M420 32V68" marker-end="url(#t6m-a)"/>
+<circle class="box" cx="420" cy="82" r="13"/>
+<path class="ln" d="M410 82H430M420 72V92" style="stroke:var(--color-primary)"/>
+<path class="ln" d="M420 95V112" marker-end="url(#t6m-a)"/>
+<rect class="c3" x="364" y="114" width="112" height="40" rx="4"/>
+<text x="420" y="139.5" text-anchor="middle">Cifrar con K</text>
+<path class="ln" d="M420 154V188" marker-end="url(#t6m-a)"/>
+<text class="b" x="420" y="206" text-anchor="middle">C<tspan dy="5" style="font-size:12px">2</tspan></text>
+<text class="b" x="610" y="24" text-anchor="middle">P<tspan dy="5" style="font-size:12px">n</tspan></text>
+<path class="ln" d="M610 32V68" marker-end="url(#t6m-a)"/>
+<circle class="box" cx="610" cy="82" r="13"/>
+<path class="ln" d="M600 82H620M610 72V92" style="stroke:var(--color-primary)"/>
+<path class="ln" d="M610 95V112" marker-end="url(#t6m-a)"/>
+<rect class="c3" x="554" y="114" width="112" height="40" rx="4"/>
+<text x="610" y="139.5" text-anchor="middle">Cifrar con K</text>
+<path class="ln" d="M610 154V188" marker-end="url(#t6m-a)"/>
+<text class="b" x="610" y="206" text-anchor="middle">C<tspan dy="5" style="font-size:12px">n</tspan></text>
+<path class="ln" d="M170 82H235" marker-end="url(#t6m-a)"/>
+<text class="b" x="184" y="74" text-anchor="middle">IV</text>
+<path class="ln" d="M250 170H330V82H405" marker-end="url(#t6m-a)"/>
+<path class="ln" d="M420 170H510V82H595" marker-end="url(#t6m-a)" stroke-dasharray="6 5"/>
+<text class="b" x="515" y="74" text-anchor="middle">…</text>
+<path class="dash" d="M10 236H730"/>
+<text class="h" x="20" y="270">CTR</text>
+<text class="s" x="20" y="289">se cifra un</text>
+<text class="s" x="20" y="307">contador y se</text>
+<text class="s" x="20" y="325">hace XOR</text>
+<rect class="c4" x="194" y="258" width="112" height="34" rx="4"/>
+<text x="250" y="280.5" text-anchor="middle">IV</text>
+<path class="ln" d="M250 292V308" marker-end="url(#t6m-a)"/>
+<rect class="c3" x="194" y="310" width="112" height="40" rx="4"/>
+<text x="250" y="335.5" text-anchor="middle">Cifrar con K</text>
+<path class="ln" d="M250 350V380" marker-end="url(#t6m-a)"/>
+<circle class="box" cx="250" cy="394" r="13"/>
+<path class="ln" d="M240 394H260M250 384V404" style="stroke:var(--color-primary)"/>
+<path class="ln" d="M180 394H235" marker-end="url(#t6m-a)"/>
+<text class="b" x="174" y="400" text-anchor="end">P<tspan dy="5" style="font-size:12px">1</tspan></text>
+<path class="ln" d="M250 407V432" marker-end="url(#t6m-a)"/>
+<text class="b" x="250" y="450" text-anchor="middle">C<tspan dy="5" style="font-size:12px">1</tspan></text>
+<rect class="c4" x="364" y="258" width="112" height="34" rx="4"/>
+<text x="420" y="280.5" text-anchor="middle">IV + 1</text>
+<path class="ln" d="M420 292V308" marker-end="url(#t6m-a)"/>
+<rect class="c3" x="364" y="310" width="112" height="40" rx="4"/>
+<text x="420" y="335.5" text-anchor="middle">Cifrar con K</text>
+<path class="ln" d="M420 350V380" marker-end="url(#t6m-a)"/>
+<circle class="box" cx="420" cy="394" r="13"/>
+<path class="ln" d="M410 394H430M420 384V404" style="stroke:var(--color-primary)"/>
+<path class="ln" d="M350 394H405" marker-end="url(#t6m-a)"/>
+<text class="b" x="344" y="400" text-anchor="end">P<tspan dy="5" style="font-size:12px">2</tspan></text>
+<path class="ln" d="M420 407V432" marker-end="url(#t6m-a)"/>
+<text class="b" x="420" y="450" text-anchor="middle">C<tspan dy="5" style="font-size:12px">2</tspan></text>
+<rect class="c4" x="554" y="258" width="112" height="34" rx="4"/>
+<text x="610" y="280.5" text-anchor="middle">IV + n − 1</text>
+<path class="ln" d="M610 292V308" marker-end="url(#t6m-a)"/>
+<rect class="c3" x="554" y="310" width="112" height="40" rx="4"/>
+<text x="610" y="335.5" text-anchor="middle">Cifrar con K</text>
+<path class="ln" d="M610 350V380" marker-end="url(#t6m-a)"/>
+<circle class="box" cx="610" cy="394" r="13"/>
+<path class="ln" d="M600 394H620M610 384V404" style="stroke:var(--color-primary)"/>
+<path class="ln" d="M540 394H595" marker-end="url(#t6m-a)"/>
+<text class="b" x="534" y="400" text-anchor="end">P<tspan dy="5" style="font-size:12px">n</tspan></text>
+<path class="ln" d="M610 407V432" marker-end="url(#t6m-a)"/>
+<text class="b" x="610" y="450" text-anchor="middle">C<tspan dy="5" style="font-size:12px">n</tspan></text>
+<text class="b" x="515" y="332" text-anchor="middle">…</text>
+<text class="s" x="370" y="484" text-anchor="middle">P = bloque de texto en claro · C = bloque cifrado · ⊕ = XOR</text>
+<text class="b" x="370" y="506" text-anchor="middle">CTR: cada bloque va por su cuenta, así que se puede paralelizar.</text>
+</svg>

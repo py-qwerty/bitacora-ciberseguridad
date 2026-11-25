@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 400">
+<rect class="box" x="20" y="30" width="240" height="270" rx="8" style="fill:none;stroke:var(--color-secondary)"/>
+<g transform="translate(50 60) scale(1)"><rect class="box" x="0" y="0" width="44" height="30" rx="3"/><rect class="tint" x="5" y="5" width="34" height="20"/><rect class="ink" x="18" y="30" width="8" height="6"/><rect class="ink" x="8" y="36" width="28" height="4" rx="2"/></g>
+<path class="ln" d="M94 75H115V140" style="fill:none;stroke:var(--color-muted);stroke-width:1.5"/>
+<g transform="translate(50 200) scale(1)"><rect class="box" x="0" y="0" width="44" height="30" rx="3"/><rect class="tint" x="5" y="5" width="34" height="20"/><rect class="ink" x="18" y="30" width="8" height="6"/><rect class="ink" x="8" y="36" width="28" height="4" rx="2"/></g>
+<path class="ln" d="M94 215H115V140" style="fill:none;stroke:var(--color-muted);stroke-width:1.5"/>
+<g transform="translate(150 116) scale(1)"><rect class="box" x="0" y="0" width="32" height="42" rx="3"/><path class="ln" d="M6 10h20M6 18h20M6 26h20"/><circle class="good" cx="24" cy="35" r="2.5"/></g>
+<text class="s" x="166" y="182" text-anchor="middle">Servidor</text>
+<text class="s" x="166" y="199" text-anchor="middle">interno</text>
+<path class="ln" d="M115 140H150" style="fill:none;stroke:var(--color-muted);stroke-width:1.5"/>
+<g transform="translate(480 118) scale(1.15 1.05)"><path class="tint" d="M-90 46c-30 0-42-34-14-46-6-30 34-44 52-24 12-26 58-24 66 2 14-16 52-10 52 18 30 2 34 46 4 50z" style="opacity:.8"/></g>
+<text class="b" x="480" y="110" text-anchor="middle" style="fill:var(--color-secondary)">Internet</text>
+<g transform="translate(650 118) scale(1)"><rect class="box" x="0" y="0" width="44" height="30" rx="3"/><rect class="tint" x="5" y="5" width="34" height="20"/><rect class="ink" x="18" y="30" width="8" height="6"/><rect class="ink" x="8" y="36" width="28" height="4" rx="2"/></g>
+<text class="b" x="672" y="186" text-anchor="middle">Equipo remoto</text>
+<text class="s" x="672" y="205" text-anchor="middle">con cliente VPN</text>
+<path class="ln" d="M650 138C580 136 470 150 330 140" style="fill:none;stroke:var(--color-success);stroke-width:12;opacity:.35;stroke-linecap:round"/>
+<path class="ln" d="M650 138C580 136 470 150 330 140" style="fill:none;stroke:var(--color-success);stroke-width:2.5"/>
+<path class="ln" d="M290 140H184" style="fill:none;stroke:var(--color-warning);stroke-width:3;stroke-dasharray:7 5"/>
+<g><rect class="c4" x="286" y="122" width="52" height="36" rx="4"/><rect class="ink" x="304" y="137" width="16" height="13" rx="2"/><path d="M307 137v-5a5 5 0 0 1 10 0v5" style="fill:none;stroke:var(--color-primary);stroke-width:2.2"/></g>
+<text class="s" x="312" y="182" text-anchor="middle">Concentrador</text>
+<text class="s" x="312" y="199" text-anchor="middle">VPN</text>
+<g><rect class="ink" x="472" y="157" width="16" height="13" rx="2"/><path d="M475 157v-5a5 5 0 0 1 10 0v5" style="fill:none;stroke:var(--color-primary);stroke-width:2.2"/></g>
+<text class="s" x="222" y="128" text-anchor="middle" style="fill:var(--color-text)">sin VPN</text>
+<text class="h" x="140" y="328" text-anchor="middle">Sede de la organización</text>
+<text x="380" y="360" text-anchor="middle">El túnel va del equipo remoto al <tspan class="b">concentrador</tspan>. De ahí al servidor</text>
+<text x="380" y="382" text-anchor="middle">el tráfico sigue por la red interna sin el cifrado de la VPN.</text>
+</svg>

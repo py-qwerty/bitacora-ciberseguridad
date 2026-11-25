@@ -143,6 +143,7 @@
           "type": "p",
           "text": "En una **VPN de sitio a sitio** se establece el túnel entre los **concentradores VPN de cada sede**. El enrutamiento de cada red se configura para que el tráfico dirigido a la otra sede pase automáticamente por el túnel. Así, todas las sedes trabajan **como si fueran la misma red interna**, con el mismo nivel de conectividad y seguridad."
         },
+        {"type":"figure","src":"figuras/redes/t09-sitio-a-sitio.svg","title":"VPN de sitio a sitio","caption":"Redibujado de la figura del tema: arquitectura de VPN de sitio a sitio.","alt":"A la izquierda, la sede A con tres ordenadores conectados por su red interna a un concentrador VPN; a la derecha, la sede B con dos ordenadores y su propio concentrador. Entre los dos concentradores, un túnel cifrado con un candado que cruza la nube de Internet. Al pie: el túnel une los concentradores y protege el tráfico mientras cruza Internet; los equipos no instalan nada, y dentro de cada sede no hay protección VPN."},
         {
           "type": "list",
           "title": "Características",
@@ -181,6 +182,7 @@
           "type": "p",
           "text": "En la **VPN de acceso remoto** la organización despliega un **concentrador VPN** en su red y cada equipo remoto (el portátil del teletrabajador) instala y configura un **cliente VPN** para conectarse a él. Sirve tanto para conexiones ocasionales como para puestos de teletrabajo permanentes. Es la arquitectura típica del **teletrabajo**."
         },
+        {"type":"figure","src":"figuras/redes/t09-acceso-remoto.svg","title":"VPN de acceso remoto","caption":"Redibujado de la figura del tema: arquitectura de VPN de acceso remoto.","alt":"A la derecha, un equipo remoto con cliente VPN. Un túnel cifrado con candado cruza Internet hasta el concentrador VPN, en el borde de la sede de la organización. Dentro de la sede, del concentrador al servidor interno hay una línea discontinua marcada «sin VPN». Al pie: el túnel va del equipo remoto al concentrador; de ahí al servidor el tráfico sigue por la red interna sin el cifrado de la VPN."},
         {
           "type": "term",
           "term": "Split tunnel (túnel dividido)",
@@ -230,6 +232,7 @@
           "type": "p",
           "text": "En la **VPN de equipo a equipo** el túnel se establece directamente entre **dos equipos finales**: el equipo remoto y el servidor. El propio servidor ejecuta el software VPN y termina el túnel, así que **no hace falta concentrador**. Como el túnel abarca el origen y el destino reales, **sí protege toda la comunicación de extremo a extremo**."
         },
+        {"type":"figure","src":"figuras/redes/t09-equipo-a-equipo.svg","title":"VPN de equipo a equipo","caption":"Redibujado de la figura del tema: arquitectura de VPN de equipo a equipo.","alt":"El mismo escenario que en el acceso remoto, pero sin concentrador: el túnel cifrado sale del equipo remoto con cliente VPN, cruza Internet, entra en la sede y llega hasta el propio servidor interno, que termina el túnel. Al pie: sin concentrador, el túnel llega hasta el servidor y la comunicación va protegida de extremo a extremo."},
         {
           "type": "list",
           "title": "Para qué se usa",
@@ -284,6 +287,7 @@
             ["Aplicación (7)", "SSH (o modificar la aplicación)", "Túneles puntuales, sobre todo para administradores"]
           ]
         },
+        {"type":"figure","src":"figuras/redes/t09-vpn-capas.svg","title":"Qué tramo protege la VPN según la capa","caption":"Redibujado de la figura del tema: tecnologías VPN por capas.","alt":"Tres franjas horizontales: aplicación arriba, transporte y red en medio, enlace abajo. Dos ordenadores en los extremos se conectan a través de tres routers, y entre cada par de routers hay un enlace con dos conmutadores. En aplicación, una flecha de ordenador a ordenador: SSH, de extremo a extremo. En transporte y red, una flecha del primer router al último: SSL/TLS (transporte) e IPsec (red). En enlace, flechas cortas que cubren solo un enlace cada una: PPTP, L2F, L2TP. Al pie: cuanto más baja la capa, más corto el tramo protegido; la de enlace protege solo el cable donde se pone, pero al ir por debajo de IP vale para cualquier protocolo."},
         {
           "type": "analogy",
           "text": "Una VPN de enlace es como blindar **un tramo concreto de cable**, por ejemplo el que une dos edificios del campus. Ese tramo queda protegido, pero el resto del viaje del paquete no."
@@ -637,6 +641,7 @@
           "term": "Onion routing (encaminamiento cebolla)",
           "text": "Técnica de cifrado por capas sucesivas en la que **cada salto solo conoce el anterior y el siguiente**. Ningún nodo por sí solo puede unir origen y destino."
         },
+        {"type":"figure","src":"figuras/redes/t09-tor.svg","title":"Tor: el circuito y las capas de la cebolla","caption":"Redibujado del dibujo de Tor de las diapositivas de clase y de la figura del tema.","alt":"Arriba, en fila: Alice, el nodo de entrada, el nodo intermedio, el nodo de salida y el destino. Los tres nodos están dentro de la nube de la red Tor. Alice tiene tres llaves de colores, una por nodo, y cada nodo tiene la suya. Los tramos de Alice a la entrada, de la entrada al intermedio y del intermedio a la salida están en verde: cifrados dentro de Tor. El tramo de la salida al destino está en rojo: sin el cifrado de Tor; el destino ve la IP del nodo de salida. Debajo se ve lo que viaja en cada tramo: primero los datos dentro de tres capas (la de la salida por dentro, luego la del intermedio y la de la entrada por fuera), después dos capas, después una y al final los datos sin capas de Tor. Al pie: cada nodo quita solo la capa de su clave; ninguno sabe a la vez quién eres y adónde vas."},
         {
           "type": "p",
           "text": "¿Cómo se rompería el anonimato? Una **misma entidad** tendría que controlar a la vez el **nodo de entrada** (que conoce el origen) y el **de salida** (que conoce el destino) para poder correlacionar el tráfico."

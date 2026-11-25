@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 292">
+<rect class="c5" x="40" y="64" width="70" height="36" rx="4"/>
+<text class="b" x="75" y="88" text-anchor="middle">alert</text>
+<rect class="c4" x="118" y="64" width="56" height="36" rx="4"/>
+<text class="b" x="146" y="88" text-anchor="middle">tcp</text>
+<rect class="c1" x="182" y="64" width="56" height="36" rx="4"/>
+<text class="b" x="210" y="88" text-anchor="middle">any</text>
+<rect class="c1" x="246" y="64" width="56" height="36" rx="4"/>
+<text class="b" x="274" y="88" text-anchor="middle">any</text>
+<rect class="tint" x="310" y="64" width="44" height="36" rx="4"/>
+<text class="b" x="332" y="88" text-anchor="middle">-&gt;</text>
+<rect class="c3" x="362" y="64" width="150" height="36" rx="4"/>
+<text class="b" x="437" y="88" text-anchor="middle">192.168.1.0/24</text>
+<rect class="c3" x="520" y="64" width="44" height="36" rx="4"/>
+<text class="b" x="542" y="88" text-anchor="middle">80</text>
+<path class="ln" d="M40 54V48H564V54"/>
+<text class="b" x="302" y="40" text-anchor="middle">Cabecera</text>
+<path class="dash" d="M75.0 102V136"/>
+<text class="s" x="75" y="150" text-anchor="middle">acción</text>
+<path class="dash" d="M146.0 102V172"/>
+<text class="s" x="146" y="186" text-anchor="middle">protocolo</text>
+<path class="dash" d="M210.0 102V136"/>
+<text class="s" x="210" y="150" text-anchor="middle">IP origen</text>
+<path class="dash" d="M274.0 102V172"/>
+<text class="s" x="274" y="186" text-anchor="middle">puerto origen</text>
+<path class="dash" d="M332.0 102V136"/>
+<text class="s" x="332" y="150" text-anchor="middle">dirección</text>
+<path class="dash" d="M437.0 102V172"/>
+<text class="s" x="437" y="186" text-anchor="middle">IP destino</text>
+<path class="dash" d="M542.0 102V136"/>
+<text class="s" x="542" y="150" text-anchor="middle">puerto destino</text>
+<text class="s" x="590" y="70">Si el paquete cumple</text>
+<text class="s" x="590" y="87">la cabecera y las</text>
+<text class="s" x="590" y="104">opciones, Snort aplica</text>
+<text class="s" x="590" y="121">la acción.</text>
+<rect class="c2" x="40" y="212" width="680" height="40" rx="4"/>
+<text x="380" y="238" text-anchor="middle">(msg:"Intento de acceso a /admin"; content:"/admin"; sid:1000001; rev:2;)</text>
+<text x="380" y="278" text-anchor="middle"><tspan class="b">Opciones</tspan><tspan class="s">, entre paréntesis: mensaje de la alerta, qué buscar, sid y rev</tspan></text>
+</svg>

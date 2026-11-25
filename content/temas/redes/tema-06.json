@@ -104,6 +104,7 @@
             "La **misma operación** sirve para cifrar y para descifrar, por el carácter involutivo de XOR."
           ]
         },
+        {"type":"figure","src":"figuras/redes/t06-cifra-flujo.svg","title":"Cifra en flujo: cifrar y descifrar con XOR","caption":"Redibujado de la figura del tema: el mismo generador, con la misma clave K, da la misma secuencia en los dos lados.","alt":"A la izquierda, cifrado: la clave K entra en un generador de secuencia cifrante que produce Si; Si se combina con XOR con el texto en claro Mi y sale el texto cifrado Ci, que viaja por la red. A la derecha, descifrado: otro generador con la misma clave K produce la misma Si, que se combina con XOR con Ci y recupera Mi."},
         {
           "type": "term",
           "term": "RC4 (Ron's Code 4, o Rivest Cipher 4)",
@@ -156,6 +157,7 @@
           "term": "Efecto de avalancha",
           "text": "Propiedad buscada con las rondas: **cambiar un solo bit** de la entrada (o de la clave) debe cambiar **aproximadamente el 50 % de los bits de salida**. Cada bit de salida depende de forma compleja de todos los de entrada, así que no quedan patrones visibles."
         },
+        {"type":"figure","src":"figuras/redes/t06-cifra-bloque.svg","title":"Cifra en bloque: trocear y dar vueltas","caption":"Redibujado de dos figuras del tema: el troceado en bloques y la estructura de rondas con subclaves.","alt":"A la izquierda, el mensaje M más un relleno se divide en bloques 1 a n del mismo tamaño; cada bloque se cifra y da un bloque cifrado, y todos juntos forman el texto cifrado C. A la derecha, un bloque de entrada pasa por una transformación inicial, varias vueltas o rondas y una transformación final hasta la salida; la clave K pasa por la expansión de clave, que da una subclave distinta para cada paso."},
         {
           "type": "example",
           "title": "La avalancha en la práctica",
@@ -209,6 +211,7 @@
           "title": "Esquema de los tres modos (E = cifrar con K)",
           "text": "ECB:  C[i] = E(P[i])\nCBC:  C[1] = E(P[1] ⊕ IV)\n      C[i] = E(P[i] ⊕ C[i-1])\nCTR:  C[i] = P[i] ⊕ E(IV + i - 1)"
         },
+        {"type":"figure","src":"figuras/redes/t06-modos-cbc-ctr.svg","title":"Los modos CBC y CTR dibujados","caption":"Redibujado de las figuras del tema. En CBC cada bloque depende del anterior; en CTR cada bloque usa su propio contador.","alt":"Arriba, CBC: el bloque P1 se combina con XOR con el IV y se cifra con K para dar C1; C1 se combina con XOR con P2 antes de cifrarlo para dar C2, y así hasta Cn. Abajo, CTR: se cifran con K los contadores IV, IV+1 hasta IV+n−1, y cada resultado se combina con XOR con su bloque P para dar su bloque C, sin depender de los demás."},
         {
           "type": "table",
           "title": "Comparativa de modos",
@@ -269,6 +272,7 @@
             "**MixColumns**: multiplica cada columna por una matriz polinómica, mezclando los bytes de la columna."
           ]
         },
+        {"type":"figure","src":"figuras/redes/t06-aes-rondas.svg","title":"AES por dentro: rondas y matriz de estado","caption":"Redibujado de la figura del tema. La vuelta final no lleva MixColumns.","alt":"El texto en claro pasa por una transformación inicial (AddRoundKey con la subclave K0), luego por una vuelta regular con SubBytes, ShiftRows, MixColumns y AddRoundKey que se repite Nr−1 veces con las subclaves K1 a K(Nr−1), y por una vuelta final con SubBytes, ShiftRows y AddRoundKey con la subclave Kr, hasta el texto cifrado. A la derecha, la clave pasa por la expansión y da la clave expandida de la que salen las subclaves. Abajo a la derecha, la matriz de estado de 4 por 4 bytes, S0,0 a S3,3, que suma 128 bits."},
         {
           "type": "p",
           "text": "Aunque estas operaciones se dibujan como tablas y flechas, por debajo hay **aritmética polinómica** en un cuerpo finito: AES tiene un fondo matemático importante. El tema incluye un vídeo con un software educativo que cifra y descifra con AES."
@@ -356,6 +360,7 @@
             "Los ABCD resultantes son la entrada del siguiente bloque. Al acabar el último bloque, ABCD es el resumen h(M) de 128 bits."
           ]
         },
+        {"type":"figure","src":"figuras/redes/t06-md5.svg","title":"Cómo trabaja MD5","caption":"Redibujado de la figura del tema: relleno, bloques de 512 bits y una cadena que acaba en el resumen de 128 bits.","alt":"Arriba, el mensaje original se completa con un relleno (un 1 y ceros) y 64 bits con la longitud, hasta un múltiplo exacto de 512 bits. Abajo, el mensaje se procesa en bloques de 512 bits: los valores iniciales ABCD (4 por 32 bits) entran en la función H junto con el bloque 1; la salida entra en la siguiente H con el bloque 2, y así hasta el último bloque, cuya salida es el resumen de 128 bits."},
         {
           "type": "term",
           "term": "SHA-1 (Secure Hash Algorithm 1)",

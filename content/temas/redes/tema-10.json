@@ -145,6 +145,7 @@
           "title": "Caso práctico",
           "text": "Una tienda online crea la red 10.0.0.0/16. Reserva 10.0.1.0/24 como subred **pública** para los servidores web y 10.0.2.0/24 como subred **privada** para la base de datos. El grupo de seguridad de la subred privada solo admite conexiones al puerto de la base de datos que lleguen desde la subred web. Si un atacante compromete la web, no puede llegar a la base de datos desde Internet directamente."
         },
+        {"type":"figure","src":"figuras/redes/t10-red-virtual.svg","title":"La tienda online del ejemplo, dibujada","caption":"El caso práctico del apartado: una red virtual con subred pública para la web y subred privada para la base de datos.","alt":"Un recuadro discontinuo representa la red virtual 10.0.0.0/16, dentro de una región. Dentro hay dos subredes: la pública 10.0.1.0/24, con dos servidores web, y la privada 10.0.2.0/24, con la base de datos y un borde grueso que representa su grupo de seguridad: solo TCP 5432 desde 10.0.1.0/24. Una flecha verde va de Internet a los servidores web y otra de los servidores web a la base de datos por el puerto 5432. Una flecha roja discontinua intenta ir de Internet directamente a la base de datos y queda bloqueada con una cruz en el borde de la subred privada."},
         {
           "type": "code",
           "text": "Red virtual: 10.0.0.0/16   (65.536 direcciones)\n├─ Subred web:   10.0.1.0/24  (256)  -> servidores web\n└─ Subred datos: 10.0.2.0/24  (256)  -> base de datos\n   Grupo de seguridad: permitir TCP 5432 solo desde 10.0.1.0/24",
@@ -359,6 +360,7 @@
           "type": "p",
           "text": "Fíjate en los ejemplos: en el usuario de IAM la región está vacía («iam::») porque IAM es global; en el bucket de S3 faltan región y cuenta («s3:::»)."
         },
+        {"type":"figure","src":"figuras/redes/t10-arn.svg","title":"Las piezas de un ARN","caption":"Con el ejemplo del tema: una instancia EC2 en la región eu-west-1.","alt":"El ARN arn:aws:ec2:eu-west-1:123456789012:instance/i-0abc1234 partido en seis cajas de colores separadas por dos puntos, cada una con su etiqueta: arn (prefijo fijo), aws (partición, grupo de regiones), ec2 (servicio), eu-west-1 (región, dónde está), 123456789012 (cuenta, quién es el dueño) e instance/i-0abc1234 (tipo y recurso, qué objeto). Debajo, dos ejemplos con campos vacíos resaltados en rojo: arn:aws:iam::123456789012:user/ana, sin región porque IAM es global, y arn:aws:s3:::mi-bucket/fotos/logo.png, sin región ni cuenta."},
         {
           "type": "exam",
           "text": "El ARN **identifica recursos**: no es una credencial secreta, ni una dirección IP pública, ni la política en sí. Pregunta clásica: «¿con qué formato se indican los **recursos** a los que aplica una directiva?» → **ARN**. No confundir con «¿con qué formato se escriben las **directivas**?» → JSON."
@@ -553,6 +555,7 @@
           ],
           "title": "Rotar una clave sin cortar el servicio"
         },
+        {"type":"figure","src":"figuras/redes/t10-usuarios-grupos.svg","title":"Usuarios, grupos y usuarios de servicio","caption":"Personas en un grupo que entran por la consola, y un programa que entra por la API con dos claves.","alt":"A la izquierda, una directiva en JSON con una flecha hacia el grupo «Contabilidad», cuyos miembros heredan sus directivas. Dentro del grupo hay tres usuarios, A, B y C, cada uno con su propio usuario y contraseña; de ahí una flecha baja a la consola web. A la derecha, un usuario de servicio, que es un programa y no una persona, con dos claves: la 1, activa, y la 2, nueva; cada clave es una clave de acceso más un secreto. De ahí una flecha baja a la API (SDK o awscli). Al pie: hasta dos claves activas por usuario, para rotarlas sin cortar el servicio."},
         {
           "type": "exam",
           "text": "«¿Cómo se gestiona en AWS el acceso a las API?» → con **una clave y un secreto adicionales**; no «únicamente usuario y contraseña» ni «únicamente certificados digitales». «¿Qué función tiene un grupo?» → aplicar permisos comunes a un conjunto de usuarios; no es una clave compartida ni define rutas de red."

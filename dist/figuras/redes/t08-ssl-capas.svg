@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 370">
+<rect class="c5" x="170.0" y="20" width="140.0" height="110"/>
+<text class="b" x="240.0" y="50" text-anchor="middle">Handshake</text>
+<text class="s" x="240.0" y="92" text-anchor="middle">negocia algoritmos</text>
+<text class="s" x="240.0" y="110" text-anchor="middle">y claves</text>
+<rect class="c4" x="310.0" y="20" width="140.0" height="110"/>
+<text class="b" x="380.0" y="42" text-anchor="middle">Change Cipher</text>
+<text class="b" x="380.0" y="61" text-anchor="middle">Spec</text>
+<text class="s" x="380.0" y="92" text-anchor="middle">«desde ya,</text>
+<text class="s" x="380.0" y="110" text-anchor="middle">lo pactado»</text>
+<rect class="c3" x="450.0" y="20" width="140.0" height="110"/>
+<text class="b" x="520.0" y="50" text-anchor="middle">Alert</text>
+<text class="s" x="520.0" y="92" text-anchor="middle">avisos y</text>
+<text class="s" x="520.0" y="110" text-anchor="middle">errores</text>
+<rect class="box" x="590.0" y="20" width="140.0" height="110"/>
+<text class="b" x="660.0" y="50" text-anchor="middle">Aplicación</text>
+<text class="s" x="660.0" y="92" text-anchor="middle">HTTP, IMAP,</text>
+<text class="s" x="660.0" y="110" text-anchor="middle">FTP…</text>
+<rect class="c1" x="170" y="130" width="560" height="70"/>
+<text class="b" x="450.0" y="160" text-anchor="middle">SSL Record Protocol</text>
+<text class="s" x="450.0" y="182" text-anchor="middle">fragmenta, añade el MAC, cifra y pasa a TCP</text>
+<rect class="tint" x="170" y="200" width="560" height="44"/>
+<text class="b" x="450.0" y="227.5" text-anchor="middle">TCP</text>
+<rect class="tint" x="170" y="244" width="560" height="44"/>
+<text class="b" x="450.0" y="271.5" text-anchor="middle">IP</text>
+<path class="ln" d="M150 22H140V198H150" style="stroke:var(--color-primary);stroke-width:2.5"/>
+<text class="h" x="130" y="100" text-anchor="end">SSL/TLS</text>
+<text class="s" x="130" y="122" text-anchor="end">dos niveles</text>
+<text class="s" x="130" y="250" text-anchor="end">Transporte</text>
+<text class="s" x="130" y="271" text-anchor="end">y red</text>
+<text x="380" y="330" text-anchor="middle">SSL se mete <tspan class="b">entre TCP y la aplicación</tspan>: por eso HTTP, IMAP o FTP</text>
+<text x="380" y="352" text-anchor="middle">pueden usarlo sin cambiar. El Record transporta todo lo de arriba.</text>
+</svg>

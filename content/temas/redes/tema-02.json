@@ -75,6 +75,7 @@
           "type": "p",
           "text": "La definición clásica: un cortafuegos es un **sistema confiable y seguro situado entre dos redes**, por el que pasa **todo** el tráfico que se intercambian, y que sirve para **prevenir accesos no autorizados** a una red local."
         },
+        {"type":"figure","src":"figuras/redes/t02-cortafuegos-perimetral.svg","title":"El cortafuegos, entre Internet y tu red","caption":"Redibujado de la figura del tema: todo el tráfico entre las dos redes pasa por el cortafuegos y sus **reglas de filtrado**.","alt":"A la izquierda, la nube de Internet; en el centro, un cortafuegos unido a un cuadro de reglas de filtrado; a la derecha, una red local con tres ordenadores. Debajo, una flecha verde atraviesa el cortafuegos hasta la red local (tráfico permitido) y una flecha roja se detiene en el cortafuegos con una cruz (tráfico descartado)."},
         {
           "type": "table",
           "title": "Dos ubicaciones posibles",
@@ -349,6 +350,7 @@
           "type": "p",
           "text": "En la práctica se combinan: es habitual una **topología de defensa** con una pasarela de aplicación **y** un cortafuegos de filtrado de paquetes, para sumar las ventajas de ambos."
         },
+        {"type":"figure","src":"figuras/redes/t02-topologia-defensa.svg","title":"Topología de defensa: filtro de paquetes y proxy","caption":"Redibujado de la figura del tema: primero un filtro de paquetes y, detrás, una pasarela de aplicación.","alt":"De izquierda a derecha: Internet, la red externa, un router con reglas de filtrado (filtro de paquetes que mira cabeceras: IP y puerto), la red interna, un servidor proxy (pasarela de aplicación) con una pila de aplicaciones que conoce: FTP, TELNET, HTTP y otras, y por último la red interna con dos ordenadores."},
         {
           "type": "p",
           "text": "Fíjate en que la pasarela de aplicación no «pierde» la información de red: la conexión le llega desde una IP concreta y la reenvía a otra, así que puede tenerla en cuenta y registrarla. Lo que **añade** es la capacidad de entender los datos de aplicación."
@@ -447,6 +449,7 @@
             "Correlación de toda esa información para decidir el control de acceso."
           ]
         },
+        {"type":"figure","src":"figuras/redes/t02-ngfw-componentes.svg","title":"Las piezas de un NGFW","caption":"Un NGFW parte de un cortafuegos de estado y le suma capas que se combinan para decidir el acceso.","alt":"Abajo, una base: cortafuegos de estado, que filtra por puertos y protocolos, recuerda las conexiones y hace NAT. Encima, cuatro bloques: control de aplicaciones (DPI), IDS/IPS, VPN e inteligencia de amenazas. Todos envían su información a una franja superior que la correlaciona y decide qué conexiones se permiten."},
         {
           "type": "p",
           "text": "Una red puede tener o no un NGFW, pero siempre tendrá sus piezas principales por separado: cortafuegos de estado, de aplicación, IDS/IPS y VPN. Fabricantes destacados por Gartner (2021): Palo Alto Networks, Fortinet, Check Point y Cisco Secure Firewall."
@@ -576,6 +579,7 @@
             "Antes de salir por la interfaz: **POSTROUTING** (mangle y nat), donde todavía se puede, por ejemplo, cambiar la dirección de origen."
           ]
         },
+        {"type":"figure","src":"figuras/redes/t02-cadenas-iptables.svg","title":"El viaje de un paquete por las cadenas","caption":"Las cadenas en verde (INPUT, FORWARD y OUTPUT) son las únicas donde se filtra.","alt":"El paquete llega por la tarjeta de red y entra en PREROUTING (tablas raw, mangle y nat). En la decisión de enrutado, si es para el equipo va a INPUT (mangle, filter) y de ahí a un proceso local; si solo pasa por el equipo va a FORWARD (mangle, filter). Lo que genera un proceso local va a OUTPUT (raw, mangle, nat, filter). FORWARD y OUTPUT terminan en POSTROUTING (mangle, nat), y el paquete sale por la tarjeta de red."},
         {
           "type": "p",
           "text": "**Regla para recordarlo:** el orden de las tablas dentro de un mismo punto es siempre **raw, mangle, nat, filter**. Y la pregunta clave antes de escribir una regla es: **¿cuál es el origen y el destino del paquete?** Si el destino es el propio cortafuegos usa INPUT; si el origen es el cortafuegos, OUTPUT; si ninguno de los dos es el cortafuegos (solo lo atraviesa), FORWARD."

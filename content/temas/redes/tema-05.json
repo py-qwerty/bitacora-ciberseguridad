@@ -45,6 +45,7 @@
             ["SIEM (Security Information and Event Management, gestión de información y eventos de seguridad)", "¿Qué está pasando en conjunto si junto los logs de todos los sistemas?", "Une un intento de acceso en la web con un fallo de autenticación posterior y lanza una alerta."]
           ]
         },
+        {"type":"figure","src":"figuras/redes/t05-mapa-herramientas.svg","title":"Mapa del tema: DLP, proxy, SIEM y Squid","caption":"Redibujado del esquema del tema: qué hace cada herramienta y cuál se configura en la práctica.","alt":"Mapa en cuatro columnas. DLP: que la información sensible no salga sin permiso; vigila la red, el puesto o el centro de datos y usa varios métodos para reconocer datos sensibles. Proxy: intermediario obligatorio entre dos redes; mira, filtra, registra o guarda lo que pasa y cada tipo se orienta a una aplicación. SIEM: une los logs de toda la red en tres pasos: recoge logs de muchas fuentes, los correlaciona y genera alertas. Squid: proxy web caché de software libre que se configura en /etc/squid/squid.conf y filtra por usuario, dominio u horario."},
         {
           "type": "p",
           "text": "La última parte del tema es práctica: configura **Squid**, un proxy libre muy usado en Linux, y **SARG**, una herramienta que convierte sus logs en informes."
@@ -121,6 +122,7 @@
             ["DLP en centro de datos", "En el **centro de datos**, vigilando equipos de almacenamiento como un NAS (Network Attached Storage, almacenamiento conectado a la red: un «disco duro» compartido por red).", "Información guardada que no debería estar ahí según la política.", "En reposo"]
           ]
         },
+        {"type":"figure","src":"figuras/redes/t05-dlp-ubicacion.svg","title":"Dónde se coloca cada tipo de DLP","caption":"Cada tipo vigila los datos en un estado distinto: **en uso**, **en reposo** o **en movimiento**.","alt":"Dibujo de la red de una organización. En los puestos de trabajo hay un agente DLP (DLP en estación, datos en uso) que bloquea copiar nóminas a un USB. Junto a un NAS está el DLP en centro de datos (datos en reposo), que detecta un fichero con tarjetas olvidado en una carpeta. En la salida a Internet está el DLP de red (datos en movimiento), que bloquea un correo con la base de clientes adjunta."},
         {
           "type": "analogy",
           "text": "El DLP de red es el control de la puerta de salida del edificio: ve lo que sale, pero no lo que haces dentro de tu despacho. El DLP de estación es una cámara dentro de cada despacho: ve cómo usas los documentos aunque no salgan del edificio. El DLP de centro de datos es el inspector que revisa los archivadores del sótano buscando papeles que no deberían estar ahí."
@@ -204,6 +206,7 @@
           "term": "Proxy (servidor intermediario)",
           "text": "Punto de conexión entre los ordenadores de una red y los sitios remotos de Internet. Se coloca **entre dos redes**, de forma que todo el tráfico que se intercambian tiene que circular a través de él, y actúa como un filtro de esas conexiones."
         },
+        {"type":"figure","src":"figuras/redes/t05-proxy-intermediario.svg","title":"Sin proxy y con proxy","caption":"Con proxy, tu equipo no habla con la web: se lo pide al proxy y él la pide en tu nombre.","alt":"Arriba, sin proxy: tu equipo se conecta directamente con el servidor web. Abajo, con proxy: los equipos de la red interna envían sus peticiones al proxy, que mira y filtra, registra quién y cuándo y guarda copias en caché, y él pide la página al servidor de Internet en su nombre. Desde fuera solo se ve el proxy."},
         {
           "type": "list",
           "title": "Para qué se instala un proxy",
@@ -331,6 +334,7 @@
           "title": "Caso práctico: un ataque en dos pasos",
           "text": "A las 03:10 el servidor web registra un intento de acceso al panel de administración desde la IP 203.0.113.7. A las 03:12 el servidor de autenticación registra un inicio de sesión correcto del usuario «admin» desde esa misma IP. Mirados por separado, uno es un intento y otro un acceso válido. El SIEM los **correlaciona** (misma IP, dos minutos de diferencia, cuenta privilegiada, de madrugada) y lanza una alerta de posible intrusión."
         },
+        {"type":"figure","src":"figuras/redes/t05-siem-correlacion.svg","title":"Cómo correlaciona un SIEM el ataque en dos pasos","caption":"El caso práctico de arriba, dibujado: recolección, correlación y alerta.","alt":"A la izquierda, dos logs: el servidor web registra a las 03:10 un intento de acceso al panel de administración desde la IP 203.0.113.7, y el servidor de autenticación registra a las 03:12 un inicio de sesión correcto de admin desde la misma IP; abajo, otros logs sin relación. Todos llegan al servidor SIEM, que primero los recoge y guarda sin que se puedan borrar, después los correlaciona (misma IP, dos minutos después, cuenta privilegiada, de madrugada) y por último lanza una alerta de posible intrusión al operador."},
         {
           "type": "exam",
           "text": "Definición segura: un SIEM **recibe logs de diferentes fuentes, los correlaciona y presenta los resultados al usuario** en forma de alertas. Trampas: «evita fugas de información» (DLP), «analiza el tráfico entrante para permitir solo ciertos protocolos» (cortafuegos), «elimina duplicados antes de almacenar» (eso no es correlación). El componente que se instala **en las fuentes** es el **agente**; el que correlaciona es el **servidor**."
