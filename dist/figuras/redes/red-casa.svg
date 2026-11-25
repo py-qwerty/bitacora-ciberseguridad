@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 420">
+<rect class="dash" x="14" y="40" width="500" height="350" rx="14"/>
+<text class="h" x="32" y="30">Tu red local (LAN)</text>
+<text class="h" x="640" y="30" text-anchor="middle">Internet</text>
+<g><rect class="box" x="56" y="70" width="48" height="30" rx="2"/><rect class="tint" x="61" y="74" width="38" height="22"/><rect class="ink" x="50" y="100" width="60" height="5" rx="2"/><text class="b" x="80" y="124" text-anchor="middle">Portátil</text><text class="s" x="80" y="140" text-anchor="middle">MAC …:3C</text></g>
+<g><rect class="box" x="188" y="70" width="24" height="42" rx="4"/><rect class="tint" x="192" y="76" width="16" height="28"/><text class="b" x="200" y="130" text-anchor="middle">Móvil</text><text class="s" x="200" y="146" text-anchor="middle">MAC …:7A</text></g>
+<g><rect class="box" x="292" y="74" width="56" height="30" rx="3"/><rect class="tint" x="302" y="64" width="36" height="12"/><rect class="w" x="302" y="96" width="36" height="12" style="stroke:var(--color-primary)"/><text class="b" x="320" y="124" text-anchor="middle">Impresora</text><text class="s" x="320" y="140" text-anchor="middle">MAC …:E1</text></g>
+<rect class="c4" x="110" y="220" width="180" height="40" rx="5"/>
+<rect class="ink" x="130" y="244" width="14" height="9" rx="1"/>
+<rect class="ink" x="154" y="244" width="14" height="9" rx="1"/>
+<rect class="ink" x="178" y="244" width="14" height="9" rx="1"/>
+<rect class="ink" x="202" y="244" width="14" height="9" rx="1"/>
+<rect class="ink" x="226" y="244" width="14" height="9" rx="1"/>
+<rect class="ink" x="250" y="244" width="14" height="9" rx="1"/>
+<text class="b" x="200" y="237" text-anchor="middle">SWITCH</text>
+<path class="ln" d="M80 150V220"/>
+<path class="ln" d="M320 146V220"/>
+<text class="s" x="200" y="280" text-anchor="middle">Reparte <tspan class="b" style="fill:var(--color-text)">dentro de la red</tspan> mirando la MAC</text>
+<text class="s" x="200" y="296" text-anchor="middle">(capa de enlace, nivel 2)</text>
+<path class="ln" d="M290 240H366"/>
+<ellipse class="c3" cx="400" cy="240" rx="36" ry="24"/>
+<path class="ln" d="M384 235h12M392 230l5 5-5 5M416 245h-12M408 240l-5 5 5 5" style="stroke:var(--color-primary)"/>
+<text class="b" x="400" y="284" text-anchor="middle">ROUTER</text>
+<text class="s" x="400" y="300" text-anchor="middle">Une tu red con otras</text>
+<text class="s" x="400" y="316" text-anchor="middle">mirando la <tspan class="b" style="fill:var(--color-text)">IP</tspan> (capa de red, nivel 3)</text>
+<path class="dash" d="M214 92C252 96 252 200 372 228"/>
+<text class="s" x="262" y="178">wifi</text>
+<path class="tint" d="M560 270c-34 0-46-38-16-50-6-34 38-48 58-26 14-28 64-26 72 2 16-18 58-10 58 20 34 2 38 52 4 54z"/>
+<text class="b" x="620" y="250" text-anchor="middle" style="fill:var(--color-secondary)">Otras redes</text>
+<text class="s" x="620" y="268" text-anchor="middle">(tu operador, la web…)</text>
+<path class="ln" d="M436 240H540" style="stroke-width:3"/>
+<text class="s" x="478" y="230" text-anchor="middle">IP pública</text>
+<text x="380" y="412" text-anchor="middle" class="s">El «router» de casa suele traer las tres piezas en una caja: router, switch (los puertos de atrás) y wifi.</text>
+</svg>

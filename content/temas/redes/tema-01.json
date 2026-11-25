@@ -2,7 +2,7 @@
   "course": "redes",
   "number": 1,
   "title": "Introducción a la seguridad en redes",
-  "minutes": 50,
+  "minutes": 65,
   "intro": {
     "why": "Cada vez que pagas con el móvil, envías un correo o entras en la web del banco, tus datos viajan por redes que no controlas: la wifi de una cafetería, el router de tu operador, cables submarinos. Por el camino alguien podría leerlos, cambiarlos, repetirlos o impedir que lleguen. Este tema da el vocabulario básico para hablar de todo eso con precisión: qué capas tiene una red, qué tipos de ataque existen, qué servicios de seguridad necesitamos y con qué mecanismos se consiguen. Es la base de todo el resto de la asignatura.",
     "before": [
@@ -24,6 +24,29 @@
     ]
   },
   "sections": [
+    {
+      "id": "lo-basico",
+      "title": "Antes de empezar: lo básico de redes desde cero",
+      "blocks": [
+        {"type":"p","text":"Este apartado **no está en el PDF del tema**: es la «base de la base» que el temario da por sabida. Si nunca has estudiado redes, empieza aquí; si ya te suena, salta al apartado 2. En el examen pesa poco, pero sin estas piezas los temas 2 a 4 (cortafuegos, arquitecturas, IDS) se entienden a medias."},
+        {"type":"analogy","text":"Piensa en Internet como el correo de una ciudad enorme. Cada edificio tiene una **dirección** (la IP) y, dentro, cada oficina tiene un **número de puerta** (el puerto). Las cartas son los **paquetes**; los carteros que deciden por qué calle seguir son los **routers**; y la guía que te dice en qué dirección vive alguien a partir de su nombre es el **DNS**."},
+        {"type":"term","term":"Dirección IP","text":"Número que identifica a un equipo en una red, como la dirección de un edificio. En IPv4 son cuatro números del 0 al 255 separados por puntos (por ejemplo, 192.168.1.10). Todo paquete lleva una **IP de origen** (quién lo envía) y una **IP de destino** (a quién va). Pertenece a la **capa de red**."},
+        {"type":"term","term":"Puerto","text":"Número (del 0 al 65535) que indica **a qué programa o servicio** del equipo va el paquete, como el número de puerta dentro de un edificio. Un mismo servidor puede atender la web en el 443 y el SSH en el 22 a la vez. Pertenece a la **capa de transporte** (TCP o UDP). La pareja **IP + puerto** señala exactamente el destino."},
+        {"type":"figure","src":"figuras/redes/ip-puerto.svg","title":"La IP es el edificio; el puerto, la puerta","caption":"Un paquete lleva escritas las dos cosas: a qué equipo va y a qué servicio dentro de él.","alt":"Un edificio con la dirección IP 192.168.1.10 y cuatro puertas numeradas 22 (SSH), 53 (DNS), 80 (HTTP) y 443 (HTTPS). Un paquete dirigido a 192.168.1.10, puerta 443, entra por la puerta 443."},
+        {"type":"table","title":"Puertos que conviene reconocer","head":["Puerto","Protocolo","Para qué sirve"],"rows":[["22","SSH (Secure Shell)","Administrar un equipo a distancia, con cifrado"],["23","Telnet","Lo mismo que SSH pero **sin cifrar**: inseguro"],["25","SMTP","Enviar correo electrónico"],["53","DNS","Traducir nombres a direcciones IP (normalmente por UDP)"],["80","HTTP","Web sin cifrar"],["443","HTTPS","Web cifrada con TLS"]]},
+        {"type":"term","term":"Dirección MAC (Media Access Control)","text":"Identificador físico de la tarjeta de red, grabado de fábrica (por ejemplo, 3C:22:FB:1A:2B:3C). Solo sirve **dentro de la red local**: es la que usa el switch para repartir. Para llegar de una red a otra se usa la IP. El protocolo ARP, que verás en el apartado 2, averigua qué MAC corresponde a una IP."},
+        {"type":"list","title":"Switch y router: no son lo mismo","items":["**Switch (conmutador)**: conecta los equipos **de una misma red local** (LAN, Local Area Network: tu casa, una planta de la oficina). Reparte mirando la **dirección MAC**. Trabaja en la capa de enlace (nivel 2 de OSI).","**Router (encaminador)**: conecta **redes distintas** (tu red con la de tu operador, y esta con el resto de Internet). Decide el siguiente salto mirando la **IP de destino**. Trabaja en la capa de red (nivel 3).","El «router» que tienes en casa son en realidad varios aparatos en una caja: router, switch (los puertos de atrás), punto de acceso wifi y, a menudo, un cortafuegos básico."]},
+        {"type":"figure","src":"figuras/redes/red-casa.svg","title":"Tu red de casa por dentro","caption":"El switch reparte dentro de tu red; el router la une con las demás.","alt":"Una red local con un portátil, un móvil y una impresora. El portátil y la impresora van por cable a un switch, que reparte mirando la MAC; el móvil va por wifi. El switch se conecta a un router, que une la red local con otras redes de Internet mirando la IP."},
+        {"type":"term","term":"DNS (Domain Name System, sistema de nombres de dominio)","text":"La «guía telefónica» de Internet: traduce un nombre fácil de recordar (unir.net) a la dirección IP que necesitan los equipos. Tu navegador le pregunta antes de conectarse a cualquier web. Usa el puerto 53."},
+        {"type":"term","term":"Saludo de tres vías (three-way handshake)","text":"Cómo abre TCP una conexión antes de enviar datos: 1) el cliente envía **SYN** («¿hablamos?»); 2) el servidor responde **SYN-ACK** («vale, ¿me oyes?»); 3) el cliente confirma con **ACK** («te oigo»). A partir de ahí viajan los datos, numerados y confirmados. UDP no hace este saludo: envía directamente."},
+        {"type":"figure","src":"figuras/redes/tcp-udp.svg","title":"TCP frente a UDP en un dibujo","caption":"Se pierde el paquete 3: TCP se da cuenta y lo reenvía; UDP sigue como si nada.","alt":"Arriba, TCP: tras el saludo SYN, SYN-ACK, ACK, el emisor envía los paquetes 1 a 4, el 3 se pierde, el receptor avisa de que le falta y el emisor lo reenvía. Abajo, UDP: el emisor envía los paquetes 1 a 4, el 3 se pierde y nadie lo reenvía."},
+        {"type":"p","text":"Ahora todo junto. Esto es lo que ocurre, en orden, cada vez que escribes una dirección en el navegador: primero pregunta al DNS, después abre la conexión TCP con el saludo y, por último, pide la página."},
+        {"type":"diagram","kind":"sequence","title":"Qué pasa cuando abres una web","caption":"DNS para encontrar la IP, saludo TCP para abrir la conexión y HTTP para pedir la página.","actors":[{"icon":"browser","title":"Tu navegador"},{"icon":"server-2","title":"Servidor DNS","text":"puerto 53"},{"icon":"server","title":"Servidor web","text":"puerto 443"}],"steps":[{"from":0,"to":1,"text":"¿Qué IP tiene unir.net?","tone":"warn"},{"from":1,"to":0,"text":"Su IP es esta","reply":true,"tone":"warn"},{"note":"Ya sabe adónde ir","at":0},{"from":0,"to":2,"text":"SYN: ¿hablamos?","tone":"accent"},{"from":2,"to":0,"text":"SYN-ACK: vale","reply":true,"tone":"accent"},{"from":0,"to":2,"text":"ACK: conexión abierta","tone":"accent"},{"note":"Con HTTPS, aquí se negocia el cifrado TLS","at":2},{"from":0,"to":2,"text":"GET: dame la página","tone":"good"},{"from":2,"to":0,"text":"200 OK + la página","reply":true,"tone":"good"},{"note":"Pinta la web","at":0}]},
+        {"type":"p","text":"**¿Por qué importa todo esto en seguridad?** Porque las defensas y los ataques se describen con estas piezas. Un cortafuegos (tema 2) trabaja con reglas como «deja pasar hacia el puerto 443 de este servidor y bloquea el 23». Una inundación SYN abre miles de saludos sin terminarlos para agotar al servidor (ataca la disponibilidad). Un atacante dentro de tu red local puede engañar a ARP para que tus paquetes pasen por él (hombre en el medio). Y un DNS falseado puede mandarte a una web falsa."},
+        {"type":"exam","text":"Lo que más se confunde: **la IP identifica al equipo (capa de red) y el puerto al servicio (capa de transporte)**. El switch trabaja con MAC dentro de la red local; el router, con IP entre redes. Y el saludo SYN → SYN-ACK → ACK es de **TCP**, no de UDP ni de IP."},
+        {"type":"key","text":"IP = qué equipo; puerto = qué servicio; MAC = qué tarjeta dentro de la red local. El switch reparte dentro de tu red, el router une redes, el DNS traduce nombres a IP y TCP abre la conexión con tres mensajes antes de enviar datos; UDP envía sin saludar."}
+      ]
+    },
     {
       "id": "capas",
       "title": "Por qué las redes se organizan en capas: OSI y TCP/IP",
@@ -47,6 +70,7 @@
           "term": "TCP/IP",
           "text": "Arquitectura de red real, inspirada en las capas de OSI, que toma su nombre de sus dos protocolos estrella: TCP (Transmission Control Protocol) e IP (Internet Protocol). Proporciona conectividad **de extremo a extremo**: define cómo se formatean, direccionan, transmiten, encaminan y reciben los datos, y permite conectar ordenadores de cualquier tamaño, fabricante o sistema operativo."
         },
+        {"type":"figure","src":"figuras/redes/osi-tcpip.svg","title":"OSI y TCP/IP, capa a capa","caption":"Redibujado de la diapositiva de clase: las 7 capas de OSI y cómo se agrupan en las 4 de TCP/IP.","alt":"Dos columnas. A la izquierda, OSI con siete capas de arriba abajo: aplicación, presentación, sesión, transporte, red, enlace de datos y física. A la derecha, TCP/IP con cuatro: aplicación (agrupa aplicación, presentación y sesión), transporte, internet y acceso a red (agrupa enlace y física)."},
         {
           "type": "table",
           "title": "Correspondencia entre las 4 capas de TCP/IP y las 7 de OSI",
@@ -123,6 +147,7 @@
           "type": "p",
           "text": "**¿Cómo viaja de verdad un paquete por Internet?** El profesor lo explicó con un dibujo sencillo. Tu equipo se conecta a tu router; el router a un **ISP** (Internet Service Provider, el proveedor de Internet que te da el servicio); ese ISP, a su vez, se conecta a otro más grande, y así sucesivamente, como las ramas de un árbol. El tráfico **salta** de un ISP a otro, por enlaces físicos (fibra, ADSL…), hasta llegar al ISP del destino y, por fin, al equipo de la otra persona."
         },
+        {"type":"figure","src":"figuras/redes/viaje-paquete.svg","title":"El viaje de un paquete, capa a capa","caption":"Redibujado del esquema de clase: la línea roja sube y baja por las capas en cada aparato del camino.","alt":"Arriba, el camino: tu equipo, el router de tu casa, los routers del proveedor, el router del destino y el servidor web. Abajo, la pila de capas de cada uno: los extremos tienen HTTP, TCP, IP y Ethernet; los routers solo IP y la capa física. Una línea roja baja por la pila de tu equipo, sube hasta IP en cada router y vuelve a subir hasta HTTP en el servidor."},
         {
           "type": "analogy",
           "text": "Es una carta que pasa por varias oficinas de correos: cada una solo sabe a qué oficina entregársela a continuación, y todas pueden ver el sobre (la cabecera). Cada paquete que sale de tu equipo lleva, de fuera adentro: la dirección física (capa de red/enlace), las IP de origen y destino, el segmento TCP y, dentro, el mensaje de la aplicación (por ejemplo, una petición web)."
@@ -210,6 +235,7 @@
             ["Ataque", "Asalto deliberado derivado de una amenaza inteligente que intenta evadir los servicios de seguridad y violar las políticas del sistema", "Acto deliberado"]
           ]
         },
+        {"type":"figure","src":"figuras/redes/vulnerabilidad-amenaza-ataque.svg","title":"Vulnerabilidad, amenaza y ataque","caption":"Redibujado del triángulo de clase: de la debilidad a la posibilidad y de la posibilidad al acto.","alt":"Triángulo con tres círculos. Vulnerabilidad: debilidad del sistema. Amenaza: posibilidad de que alguien explote la debilidad. Ataque: acto deliberado que intenta explotarla. Flechas de vulnerabilidad a amenaza, de amenaza a ataque y de vulnerabilidad a ataque."},
         {
           "type": "example",
           "title": "Caso práctico",
@@ -256,6 +282,7 @@
           "type": "analogy",
           "text": "Un ataque pasivo es como alguien que se sienta en la mesa de al lado en una cafetería y escucha tu conversación. No te interrumpe ni cambia lo que dices, por eso es tan difícil darte cuenta."
         },
+        {"type":"figure","src":"figuras/redes/ataque-pasivo.svg","title":"Ataque pasivo: David solo escucha","caption":"Redibujado de la imagen de clase: Bob escribe a Alice y David observa sin tocar nada.","alt":"Bob envía a Alice el mensaje Quedamos a las 9 por Internet. Una flecha discontinua sale hacia David, que copia el mensaje o mira el patrón de los mensajes. El mensaje llega intacto a Alice."},
         {
           "type": "table",
           "title": "Los dos tipos de ataque pasivo",
@@ -302,6 +329,7 @@
           "type": "analogy",
           "text": "Si el ataque pasivo era escuchar la conversación de la mesa de al lado, el activo es sentarse en tu mesa haciéndose pasar por tu amigo, repetir lo que dijiste ayer, cambiar las palabras de una nota que le pasas a alguien o ponerse a gritar para que nadie pueda hablar."
         },
+        {"type":"figure","src":"figuras/redes/ataque-activo.svg","title":"Ataque activo: David cambia el mensaje","caption":"Redibujado de la imagen de clase: el mensaje pasa por David, que lo modifica antes de que llegue a Alice.","alt":"Bob envía Paga 100 euros a Ana. El mensaje va a David, que lo cambia por Paga 900 euros a David y se lo reenvía a Alice."},
         {
           "type": "table",
           "title": "Los cuatro tipos de ataque activo",

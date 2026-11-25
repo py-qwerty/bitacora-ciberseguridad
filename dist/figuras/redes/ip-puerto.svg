@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 400">
+<defs><marker id="ip-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="ink" d="M0 0L10 5L0 10z"/></marker></defs>
+<path class="tint" d="M320 80L510.0 20L700 80Z"/>
+<rect class="box" x="330" y="80" width="360" height="270"/>
+<rect class="ink" x="415.0" y="94" width="190" height="40" rx="4"/>
+<text class="w b" x="510.0" y="112" text-anchor="middle" style="font-size:12px">DIRECCIÓN IP DEL EQUIPO</text>
+<text class="w b" x="510.0" y="128" text-anchor="middle" style="font-size:15px">192.168.1.10</text>
+<rect class="c4" x="352.4" y="210" width="62" height="140" rx="4"/>
+<circle class="ink" cx="404.4" cy="280" r="3"/>
+<text class="h" x="383.4" y="240" text-anchor="middle">22</text>
+<text class="s b" x="383.4" y="258" text-anchor="middle">SSH</text>
+<rect class="c3" x="436.79999999999995" y="210" width="62" height="140" rx="4"/>
+<circle class="ink" cx="488.79999999999995" cy="280" r="3"/>
+<text class="h" x="467.79999999999995" y="240" text-anchor="middle">53</text>
+<text class="s b" x="467.79999999999995" y="258" text-anchor="middle">DNS</text>
+<rect class="c2" x="521.2" y="210" width="62" height="140" rx="4"/>
+<circle class="ink" cx="573.2" cy="280" r="3"/>
+<text class="h" x="552.2" y="240" text-anchor="middle">80</text>
+<text class="s b" x="552.2" y="258" text-anchor="middle">HTTP</text>
+<rect class="c1" x="605.6" y="210" width="62" height="140" rx="4"/>
+<circle class="ink" cx="657.6" cy="280" r="3"/>
+<text class="h" x="636.6" y="240" text-anchor="middle">443</text>
+<text class="s b" x="636.6" y="258" text-anchor="middle">HTTPS</text>
+<text class="b" x="510.0" y="188" text-anchor="middle">Cada puerta es un puerto (un servicio)</text>
+<rect class="box" x="40" y="210" width="190" height="80" rx="4"/>
+<path class="ln" d="M40 210L135 250L230 210" style="stroke-width:1.2"/>
+<text class="h" x="135" y="194" text-anchor="middle">Un paquete</text>
+<text class="s" x="135" y="310" text-anchor="middle">Para: <tspan class="b" style="fill:var(--color-text)">192.168.1.10</tspan> · puerta <tspan class="b" style="fill:var(--color-text)">443</tspan></text>
+<text class="s" x="135" y="328" text-anchor="middle">De: 85.10.20.30 · puerta 51000</text>
+<path class="ln" d="M232 250C300 250 300 380 576.6 380 L636.6 380 L636.6 354" marker-end="url(#ip-a)" style="stroke-width:2.5"/>
+<text class="s" x="360" y="396" text-anchor="middle">La IP lleva el paquete al edificio correcto; el puerto, a la puerta (el programa) correcta.</text>
+</svg>

@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 470">
+<defs><marker id="tu-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path class="ink" d="M0 0L10 5L0 10z"/></marker><marker id="tu-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path class="good" d="M0 0L10 5L0 10z"/></marker></defs>
+<rect class="c2" x="10" y="10" width="700" height="200" rx="10" style="opacity:.55"/>
+<text class="h" x="28" y="40">TCP: como una carta certificada</text>
+<text class="s" x="28" y="58">Fiable y con conexión: saluda, numera, confirma y reenvía lo perdido</text>
+<rect class="box" x="20" y="90" width="88" height="70" rx="6"/><text class="b" x="64" y="130" text-anchor="middle">Emisor</text>
+<rect class="box" x="612" y="90" width="88" height="70" rx="6"/><text class="b" x="656" y="130" text-anchor="middle">Receptor</text>
+<text class="s b" x="360" y="86" text-anchor="middle" style="fill:var(--color-text)">① Saludo: SYN → SYN-ACK → ACK</text>
+<path class="ln" d="M110 110H608" marker-end="url(#tu-a)"/>
+<rect class="c2" x="185" y="97" width="30" height="26" rx="3"/>
+<text class="b" x="200" y="115" text-anchor="middle">1</text>
+<rect class="c2" x="265" y="97" width="30" height="26" rx="3"/>
+<text class="b" x="280" y="115" text-anchor="middle">2</text>
+<rect class="c2" x="345" y="97" width="30" height="26" rx="3"/>
+<text class="b" x="360" y="115" text-anchor="middle">3</text>
+<path class="sbad" d="M346 96l28 28M374 96l-28 28" style="stroke-width:3"/>
+<rect class="c2" x="425" y="97" width="30" height="26" rx="3"/>
+<text class="b" x="440" y="115" text-anchor="middle">4</text>
+<path class="sgood" d="M610 150H110" marker-end="url(#tu-g)" stroke-dasharray="6 4"/>
+<text class="s" x="360" y="144" text-anchor="middle">② «Recibí 1, 2 y 4; me falta el 3» (ACK)</text>
+<rect class="c1" x="505" y="169" width="30" height="26" rx="3"/>
+<text class="b" x="520" y="187" text-anchor="middle">3</text>
+<path class="ln" d="M110 182H500" marker-end="url(#tu-a)" style="stroke-dasharray:3 4"/>
+<text class="s" x="300" y="176" text-anchor="middle">③ Reenvía el 3 y lo ordena todo</text>
+<rect class="c3" x="10" y="250" width="700" height="200" rx="10" style="opacity:.55"/>
+<text class="h" x="28" y="280">UDP: como lanzar postales</text>
+<text class="s" x="28" y="298">Sin conexión ni confirmaciones: más rápido, pero lo perdido se pierde</text>
+<rect class="box" x="20" y="330" width="88" height="70" rx="6"/><text class="b" x="64" y="370" text-anchor="middle">Emisor</text>
+<rect class="box" x="612" y="330" width="88" height="70" rx="6"/><text class="b" x="656" y="370" text-anchor="middle">Receptor</text>
+<path class="ln" d="M110 365H608" marker-end="url(#tu-a)"/>
+<rect class="c3" x="185" y="352" width="30" height="26" rx="3"/>
+<text class="b" x="200" y="370" text-anchor="middle">1</text>
+<rect class="c3" x="265" y="352" width="30" height="26" rx="3"/>
+<text class="b" x="280" y="370" text-anchor="middle">2</text>
+<rect class="c3" x="345" y="352" width="30" height="26" rx="3"/>
+<text class="b" x="360" y="370" text-anchor="middle">3</text>
+<path class="sbad" d="M346 351l28 28M374 351l-28 28" style="stroke-width:3"/>
+<rect class="c3" x="425" y="352" width="30" height="26" rx="3"/>
+<text class="b" x="440" y="370" text-anchor="middle">4</text>
+<text class="s" x="360" y="410" text-anchor="middle">Nadie avisa de que falta el 3: la aplicación decide si le importa.</text>
+<text class="s" x="360" y="428" text-anchor="middle">Se usa en DNS, vídeo en directo, juegos o llamadas por Internet.</text>
+</svg>

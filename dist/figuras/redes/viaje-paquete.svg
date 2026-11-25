@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 420">
+<defs><marker id="vp-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="bad" d="M0 0L10 5L0 10z"/></marker></defs>
+<path class="ln" d="M104 40H662"/>
+<ellipse class="dash" cx="380" cy="38" rx="62" ry="32"/>
+<g><rect class="box" x="58" y="18" width="44" height="30" rx="3"/><rect class="tint" x="63" y="23" width="34" height="20"/><rect class="ink" x="76" y="48" width="8" height="6"/><rect class="ink" x="66" y="54" width="28" height="4" rx="2"/></g>
+<g><ellipse class="c3" cx="240" cy="38" rx="25" ry="14"/><path class="ln" style="stroke:var(--color-primary)" d="M228 34h9M234 30l4 4-4 4M252 42h-9M246 38l-4 4 4 4"/></g>
+<g><ellipse class="c3" cx="380" cy="41" rx="28" ry="17"/><path class="ln" style="stroke:var(--color-primary)" d="M368 37h9M374 33l4 4-4 4M392 45h-9M386 41l-4 4 4 4"/></g>
+<g><ellipse class="c3" cx="520" cy="38" rx="25" ry="14"/><path class="ln" style="stroke:var(--color-primary)" d="M508 34h9M514 30l4 4-4 4M532 42h-9M526 38l-4 4 4 4"/></g>
+<g><rect class="box" x="664" y="17" width="32" height="42" rx="3"/><path class="ln" d="M670 27h20M670 35h20M670 43h20"/><circle class="good" cx="688" cy="52" r="2.5"/></g>
+<text class="b" x="80" y="92" text-anchor="middle">Tu equipo</text>
+<text class="s" x="80" y="110" text-anchor="middle">(navegador)</text>
+<text class="b" x="240" y="92" text-anchor="middle">Router casa</text>
+<text class="s" x="240" y="110" text-anchor="middle">(el tuyo)</text>
+<text class="b" x="380" y="92" text-anchor="middle">ISP</text>
+<text class="s" x="380" y="110" text-anchor="middle">(tu proveedor)</text>
+<text class="b" x="520" y="92" text-anchor="middle">Router destino</text>
+<text class="s" x="520" y="110" text-anchor="middle">(el del servidor)</text>
+<text class="b" x="680" y="92" text-anchor="middle">Servidor web</text>
+<text class="s" x="680" y="110" text-anchor="middle">(la web que pides)</text>
+<rect class="c1" x="30" y="136" width="100" height="40"/>
+<text class="b" x="88" y="162" text-anchor="middle">HTTP</text>
+<rect class="c2" x="30" y="176" width="100" height="40"/>
+<text class="b" x="88" y="202" text-anchor="middle">TCP</text>
+<rect class="c3" x="30" y="216" width="100" height="40"/>
+<text class="b" x="88" y="242" text-anchor="middle">IP</text>
+<rect class="c5" x="30" y="256" width="100" height="40"/>
+<text class="b" x="88" y="282" text-anchor="middle">Ethernet</text>
+<rect class="c1" x="630" y="136" width="100" height="40"/>
+<text class="b" x="688" y="162" text-anchor="middle">HTTP</text>
+<rect class="c2" x="630" y="176" width="100" height="40"/>
+<text class="b" x="688" y="202" text-anchor="middle">TCP</text>
+<rect class="c3" x="630" y="216" width="100" height="40"/>
+<text class="b" x="688" y="242" text-anchor="middle">IP</text>
+<rect class="c5" x="630" y="256" width="100" height="40"/>
+<text class="b" x="688" y="282" text-anchor="middle">Ethernet</text>
+<rect class="c3" x="185" y="216" width="110" height="40"/>
+<text class="b" x="240" y="244" text-anchor="middle">IP</text>
+<rect class="c5" x="185" y="256" width="55" height="40"/>
+<rect class="c5" x="240" y="256" width="55" height="40"/>
+<text class="s" x="217" y="281" text-anchor="middle">Cable</text>
+<text class="s" x="263" y="281" text-anchor="middle">Fibra</text>
+<rect class="c3" x="325" y="216" width="110" height="40"/>
+<text class="b" x="380" y="244" text-anchor="middle">IP</text>
+<rect class="c5" x="325" y="256" width="55" height="40"/>
+<rect class="c5" x="380" y="256" width="55" height="40"/>
+<text class="s" x="357" y="281" text-anchor="middle">Fibra</text>
+<text class="s" x="403" y="281" text-anchor="middle">Fibra</text>
+<rect class="c3" x="465" y="216" width="110" height="40"/>
+<text class="b" x="520" y="244" text-anchor="middle">IP</text>
+<rect class="c5" x="465" y="256" width="55" height="40"/>
+<rect class="c5" x="520" y="256" width="55" height="40"/>
+<text class="s" x="497" y="281" text-anchor="middle">Fibra</text>
+<text class="s" x="543" y="281" text-anchor="middle">Cable</text>
+<path class="dash" d="M80 118V132"/>
+<path class="dash" d="M240 118V132"/>
+<path class="dash" d="M380 118V132"/>
+<path class="dash" d="M520 118V132"/>
+<path class="dash" d="M680 118V132"/>
+<path class="path" d="M44 150V316H190V224H290V316H330V224H430V316H470V224H570V316H644V148" marker-end="url(#vp-a)"/>
+<text x="380" y="352" text-anchor="middle"><tspan class="b">Los routers solo suben hasta la capa IP:</tspan> leen la IP de destino</text>
+<text x="380" y="373" text-anchor="middle">y pasan el paquete al siguiente salto. Solo los extremos abren TCP y HTTP.</text>
+<text class="s" x="380" y="396" text-anchor="middle">En cada salto cambia el «sobre» físico (cable, fibra…); el paquete IP sigue siendo el mismo.</text>
+</svg>

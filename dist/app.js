@@ -1,4 +1,4 @@
-import { DURATION, EXAM_SIZE, generateExam, gradeExam, remaining, formatTime, isValidSession, practiceBlocks, topicQuestions, baseQuestions, campusQuestions, extraBlocks, validPractice, swipeDirection, validateBank, validateTema, ICONS } from './core.js?v=11'; import { setupPracticas, loadPracticasIndex, practicasRoute, isPracticasPath, practicasCard, courseExamLink, simulacroExamLink } from './practicas.js?v=5'; import { setupSiglas, sgStart, sgEnd, sgApply, sgList } from './siglas.js?v=2'; import { setupCamino, loadCamino, caminoPage, caminoBlock } from './camino.js?v=1';
+import { DURATION, EXAM_SIZE, generateExam, gradeExam, remaining, formatTime, isValidSession, practiceBlocks, topicQuestions, baseQuestions, campusQuestions, extraBlocks, validPractice, swipeDirection, validateBank, validateTema, ICONS } from './core.js?v=12'; import { setupPracticas, loadPracticasIndex, practicasRoute, isPracticasPath, practicasCard, courseExamLink, simulacroExamLink } from './practicas.js?v=6'; import { setupSiglas, sgStart, sgEnd, sgApply, sgList } from './siglas.js?v=2'; import { setupCamino, loadCamino, caminoPage, caminoBlock } from './camino.js?v=1';
 const $ = s => document.querySelector(s);
 const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const number = n => n.toLocaleString('es-ES');
@@ -151,6 +151,7 @@ function temaBlock(b){
     case 'exam':return `<aside class="tb tb-exam"><span class="tb-label">Así cae en el test</span>${title}<p>${rich(b.text,'inline')}</p></aside>`;
     case 'code':return `<figure class="tb-code">${b.title?`<figcaption>${rich(b.title)}</figcaption>`:''}<pre><code>${esc(b.text)}</code></pre></figure>`;
     case 'diagram':return diagramBlock(b);
+    case 'figure':return `<figure class="tb-diagram tb-figure"><figcaption><b>${rich(b.title)}</b>${b.caption?`<span>${rich(b.caption)}</span>`:''}</figcaption><div class="fig-body"><img src="${esc(b.src)}" alt="${esc(b.alt)}" loading="lazy" data-inline-svg></div></figure>`;
     case 'key':return `<aside class="tb tb-key"><span class="tb-label">Idea clave</span><p>${rich(b.text,'inline')}</p></aside>`;
     default:return '';
   }
@@ -392,6 +393,15 @@ function render(focus=true) {
   if(focus){main.style?.removeProperty('min-height');window.scrollTo(0,0);main.focus({preventScroll:true});}
   const target=params.get('apartado');if(wide&&target)scrollToSection(target,false);
   markCurrentSection();
+  inlineFigures();
+}
+// Las figuras SVG propias se insertan en línea para que usen las fuentes y colores de la app.
+const figureCache=new Map();
+function inlineFigures(){
+  document.querySelectorAll?.('img[data-inline-svg]').forEach(img=>{
+    const src=img.getAttribute('src');if(!figureCache.has(src))figureCache.set(src,fetch(src).then(r=>r.ok?r.text():Promise.reject()).catch(()=>{figureCache.delete(src);return null;}));
+    figureCache.get(src).then(svg=>{if(!svg||!img.isConnected||!/^\s*<svg[\s>]/.test(svg))return;const box=document.createElement('div');box.innerHTML=svg;const el=box.firstElementChild;el.setAttribute('role','img');el.setAttribute('aria-label',img.alt);img.replaceWith(el);});
+  });
 }
 function markCurrentSection(save=false){
   const index=document.querySelector?.('.tema-index');if(!index)return;
@@ -613,7 +623,7 @@ setupCamino({esc,rich,heading,sectionHref,temaProgress,studiedTotal});
 setupPracticas({get bank(){return bank;},get questionMap(){return questionMap;},read,write,esc,rich,heading,topicTitle,topicInfo,courseTitle,notFound,render,ask,sectionHref});
 async function init() {
   try {
-    const response=await fetch('bank.json?v=7',{signal:AbortSignal.timeout(15000)});
+    const response=await fetch('bank.json?v=8',{signal:AbortSignal.timeout(15000)});
     if(!response.ok)throw Error('HTTP '+response.status);
     const data=await response.json();
     validateBank(data);
