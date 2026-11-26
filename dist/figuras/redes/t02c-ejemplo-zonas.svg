@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 500">
+<rect class="band1" x="250" y="22" width="490" height="166" rx="12"/>
+<text class="b" x="262" y="44">DMZ (zona desmilitarizada)</text>
+<rect class="band3" x="250" y="202" width="270" height="290" rx="12"/>
+<text class="b" x="262" y="482">Red LAN</text>
+<rect class="band2" x="560" y="202" width="190" height="290" rx="12"/>
+<text class="b" x="572" y="224">Intranet</text>
+<path class="ln" d="M150 240H660"/>
+<g transform="translate(-2 92) scale(0.6)"><path class="tint" d="M45 175c-34 0 -46 -38 -16 -50 -6 -34 38 -48 58 -26 14 -28 64 -26 72 2 16 -18 58 -10 58 20 34 2 38 52 4 54z"/></g><text class="b" x="74.2" y="185.6" text-anchor="middle" style="fill:var(--color-secondary)"></text>
+<text class="b" x="74" y="186" text-anchor="middle" style="fill:var(--color-secondary)">Internet</text>
+<path class="ln" d="M110 187L162 228"/>
+<g><rect class="c5" x="156" y="228" width="28" height="22" rx="2"/><path d="M156 235.3h28M156 242.7h28M165.3 228.0v7.3M174.7 228.0v7.3M170.0 235.3v7.3M165.3 242.7v7.3M174.7 242.7v7.3" style="fill:none;stroke:#a33331;stroke-width:1.2"/></g>
+<text class="b" x="170" y="270" text-anchor="middle">Cortafuegos</text>
+<text class="b" x="170" y="288" text-anchor="middle">externo</text>
+<path class="ln" d="M170 228V140H380"/>
+<path class="ln" d="M440 140H680"/>
+<g><ellipse class="c3" cx="300" cy="140" rx="25" ry="14"/><path class="ln" style="stroke:var(--color-primary)" d="M288 136h9M294 132l4 4-4 4M312 144h-9M306 140l-4 4 4 4"/></g>
+<text class="s" x="300" y="174" text-anchor="middle">Router DMZ</text>
+<g><rect class="c4" x="380.0" y="130" width="60" height="20" rx="3"/><path class="ln" style="stroke:var(--color-primary)" d="M390.0 137h40M390.0 143h40"/></g>
+<text class="s" x="410" y="168" text-anchor="middle">Switch DMZ</text>
+<path class="ln" d="M540 112V140"/>
+<g><rect class="box" x="524" y="70" width="32" height="42" rx="3"/><path class="ln" d="M530 80h20M530 88h20M530 96h20"/><circle class="good" cx="548" cy="105" r="2.5"/></g>
+<text class="s" x="540" y="46" text-anchor="middle">Web</text>
+<text class="s" x="540" y="62" text-anchor="middle">HTTP</text>
+<path class="ln" d="M610 112V140"/>
+<g><rect class="box" x="594" y="70" width="32" height="42" rx="3"/><path class="ln" d="M600 80h20M600 88h20M600 96h20"/><circle class="good" cx="618" cy="105" r="2.5"/></g>
+<text class="s" x="610" y="46" text-anchor="middle">Web</text>
+<text class="s" x="610" y="62" text-anchor="middle">HTTPS</text>
+<path class="ln" d="M680 112V140"/>
+<g><rect class="box" x="664" y="70" width="32" height="42" rx="3"/><path class="ln" d="M670 80h20M670 88h20M670 96h20"/><circle class="good" cx="688" cy="105" r="2.5"/></g>
+<text class="s" x="680" y="62" text-anchor="middle">Correo</text>
+<g><rect class="c4" x="330.0" y="230" width="60" height="20" rx="3"/><path class="ln" style="stroke:var(--color-primary)" d="M340.0 237h40M340.0 243h40"/></g>
+<text class="s" x="360" y="222" text-anchor="middle">Switch LAN</text>
+<path class="ln" d="M345 250L300 320"/>
+<g><path class="ln" d="M286 324a20 20 0 0 1 28 0M292 330a11 11 0 0 1 16 0" style="stroke-width:2"/><rect class="c4" x="284" y="334" width="32" height="12" rx="3"/></g>
+<text class="s" x="300" y="362" text-anchor="middle">Router wifi</text>
+<g><rect class="box" x="272" y="378" width="36" height="24" rx="2"/><rect class="tint" x="276" y="382" width="28" height="16"/><path class="ink" d="M266 404h48l-4 5h-40z"/></g>
+<g><rect class="box" x="324" y="378" width="36" height="24" rx="2"/><rect class="tint" x="328" y="382" width="28" height="16"/><path class="ink" d="M318 404h48l-4 5h-40z"/></g>
+<text class="s" x="300" y="428" text-anchor="middle">portátiles, tablet, móvil</text>
+<path class="ln" d="M375 250L440 300"/>
+<g><rect class="box" x="424" y="300" width="32" height="42" rx="3"/><path class="ln" d="M430 310h20M430 318h20M430 326h20"/><circle class="good" cx="448" cy="335" r="2.5"/></g>
+<text class="s" x="440" y="358" text-anchor="middle">Servidor web</text>
+<text class="s" x="440" y="374" text-anchor="middle">sin acceso</text>
+<text class="s" x="440" y="390" text-anchor="middle">desde fuera</text>
+<g><rect class="c5" x="526" y="228" width="28" height="22" rx="2"/><path d="M526 235.3h28M526 242.7h28M535.3 228.0v7.3M544.7 228.0v7.3M540.0 235.3v7.3M535.3 242.7v7.3M544.7 242.7v7.3" style="fill:none;stroke:#a33331;stroke-width:1.2"/></g>
+<text class="b" x="540" y="276" text-anchor="middle">Cortafuegos</text>
+<text class="b" x="540" y="294" text-anchor="middle">interno</text>
+<g><rect class="c4" x="650.0" y="230" width="60" height="20" rx="3"/><path class="ln" style="stroke:var(--color-primary)" d="M660.0 237h40M660.0 243h40"/></g>
+<path class="ln" d="M660 240V439"/>
+<path class="ln" d="M624 315H660"/>
+<g><rect class="box" x="580" y="300" width="44" height="30" rx="3"/><rect class="tint" x="585" y="305" width="34" height="20"/><rect class="ink" x="598" y="330" width="8" height="6"/><rect class="ink" x="588" y="336" width="28" height="4" rx="2"/></g>
+<text class="s" x="602" y="356" text-anchor="middle">Empleado 1</text>
+<path class="ln" d="M624 377H660"/>
+<g><rect class="box" x="580" y="362" width="44" height="30" rx="3"/><rect class="tint" x="585" y="367" width="34" height="20"/><rect class="ink" x="598" y="392" width="8" height="6"/><rect class="ink" x="588" y="398" width="28" height="4" rx="2"/></g>
+<text class="s" x="602" y="418" text-anchor="middle">Empleado 2</text>
+<path class="ln" d="M624 439H660"/>
+<g><rect class="box" x="580" y="424" width="44" height="30" rx="3"/><rect class="tint" x="585" y="429" width="34" height="20"/><rect class="ink" x="598" y="454" width="8" height="6"/><rect class="ink" x="588" y="460" width="28" height="4" rx="2"/></g>
+<text class="s" x="602" y="480" text-anchor="middle">Admin.</text>
+<path class="ln" d="M660 321H690"/>
+<g><rect class="box" x="690" y="300" width="32" height="42" rx="3"/><path class="ln" d="M696 310h20M696 318h20M696 326h20"/><circle class="good" cx="714" cy="335" r="2.5"/></g>
+<text class="s" x="706" y="358" text-anchor="middle">DNS</text>
+<text class="s" x="706" y="374" text-anchor="middle">intranet</text>
+<path class="ln" d="M660 421H690"/>
+<g><rect class="box" x="690" y="400" width="32" height="42" rx="3"/><path class="ln" d="M696 410h20M696 418h20M696 426h20"/><circle class="good" cx="714" cy="435" r="2.5"/></g>
+<text class="s" x="706" y="458" text-anchor="middle">Servidor</text>
+<text class="s" x="706" y="474" text-anchor="middle">intranet</text>
+<text class="s" x="130" y="340" text-anchor="middle">Dos cortafuegos</text>
+<text class="s" x="130" y="358" text-anchor="middle">en cadena: para</text>
+<text class="s" x="130" y="376" text-anchor="middle">llegar a la intranet</text>
+<text class="s" x="130" y="394" text-anchor="middle">hay que pasar los dos</text>
+</svg>

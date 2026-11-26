@@ -584,6 +584,7 @@
             ]
           ]
         },
+        {"type":"figure","src":"figuras/redes/t04c-honeypot-niveles.svg","title":"Baja, media y alta interacción: más información, más riesgo","caption":"Redibujado de las diapositivas de clase: tipos de honeypots.","alt":"Tres tarjetas en fila. Verde: baja interacción, emula servicios que no son de verdad, riesgo bajo; su icono es una pequeña red de nodos. Naranja: media interacción, virtualiza a nivel de aplicación, riesgo medio; su icono es un monitor con la palabra virtual. Roja: alta interacción, sistemas reales con datos falsos, riesgo alto; su icono es un armario de servidores. Debajo, dos flechas que van de izquierda a derecha: más información sobre el atacante y más riesgo si el atacante logra salir del cebo. Al pie: hay que buscar el equilibrio entre cuánto se deja hacer al atacante y cuánto riesgo se asume."},
         {
           "type": "term",
           "term": "Emular",
@@ -844,6 +845,7 @@
             "**Ventaja y límite de las reglas.** Son fáciles de implementar y hay muchas reglas públicas ya hechas; pero si no puedes describir el ataque con una regla, no lo detectarás. Para ataques avanzados hace falta un IDS por anomalías (en la clase se citó Bro, hoy Zeek)."
           ]
         },
+        {"type":"figure","src":"figuras/redes/t04c-snort-ubicacion.svg","title":"Dónde colocar Snort: delante o detrás del cortafuegos","caption":"Redibujado de las diapositivas de clase: ubicación de Snort.","alt":"Una línea de red va de Internet a un router, después a un cortafuegos, a un switch y a la red interna. Hay dos puntos de escucha sobre la línea, cada uno conectado a un equipo con Snort. El primero, entre el router y el cortafuegos, está en una caja naranja: Snort delante, recibe todo el ruido de Internet y da alertas sin parar. El segundo, entre el cortafuegos y el switch, está en una caja verde: Snort detrás, es el consejo, solo ve lo que dejó pasar el cortafuegos. Al pie: puede ir delante, detrás o en los dos sitios; un IDS solo detecta y para bloquear necesita un cortafuegos (IDS más cortafuegos es un IPS)."},
         {
           "type": "p",
           "text": "**Una pieza más en la arquitectura.** El profesor describió la arquitectura con cinco pasos: el módulo de **captura** de tráfico (un sniffer), un **decodificador** (interpreta el tráfico en bruto según el protocolo: HTTP, FTP, incluso protocolos industriales), los **preprocesadores** (reorganizan lo decodificado en campos, como hace Wireshark para que puedas filtrar), el **motor de detección** (el cerebro: reglas y plugins de detección) y los **plugins de salida** (informes, ficheros de log para enviar a un syslog u otras herramientas). Es la misma cadena del tema, con el decodificador explícito."
@@ -1202,6 +1204,7 @@
             ]
           ]
         },
+        {"type":"figure","src":"figuras/redes/t04c-content-posiciones.svg","title":"offset/depth frente a distance/within, byte a byte","caption":"Redibujado de las diapositivas de clase: ejemplo con **depth:3**, **distance:10** y **within:9**.","alt":"Arriba, la regla: content GET; depth 3; content downloads; distance 10; within 9. Debajo, una fila de 26 casillas numeradas del byte 0 al 25 con el texto GET /archivo/downloads.zip, una letra por casilla. Las casillas 0 a 2 (GET) están en verde, con una llave encima: depth 3 busca GET solo en los bytes 0 a 2; es absoluta, sin offset se empieza en el byte 0. Las casillas 3 a 12 están en blanco con una llave discontinua debajo: distance 10 se salta 10 bytes contados desde el final de GET. Las casillas 13 a 21 (downloads) están en morado con una llave debajo: within 9 busca downloads solo en esos 9 bytes. Una leyenda final dice que offset y depth son absolutas, cuentan desde el byte 0 del contenido, y que distance y within son relativas, cuentan desde la coincidencia anterior."},
         {
           "type": "example",
           "title": "Ejemplos de combinar content con posiciones",
@@ -1298,6 +1301,8 @@
             "Las dudas van al foro de la actividad 2; no se publican soluciones."
           ]
         },
+        {"type":"p","text":"En la clase se mostró la **red del laboratorio** de la actividad. Un cortafuegos (FW) con **tres interfaces** separa tres zonas: la red externa, por donde llega Internet y donde está el equipo **EXTA**; la **DMZ** (la zona intermedia para servidores que se publican hacia fuera), con el servidor web **DMZA**; y la **red interna**, con equipos como **INTA**. Las variables de red que te piden (red local, servidor web, red externa) se definen sobre estas direcciones."},
+        {"type":"figure","src":"figuras/redes/t04c-act2-topologia.svg","title":"La red del laboratorio de la ACT2","caption":"Redibujado de las diapositivas de clase: esquema de red de la actividad 2.","alt":"Arriba, la nube de Internet (0.0.0.0/0). De ella baja una línea hasta el cortafuegos FW; en esa línea se conecta también el equipo EXTA, con dirección 10.5.0.10. La interfaz eth0 del cortafuegos tiene la 10.5.0.254. A la izquierda, por la interfaz eth1 (10.5.1.254), se conecta la DMZ 10.5.1.0/24, donde está el servidor web DMZA con la 10.5.1.10. Abajo, por la interfaz eth2 (10.5.2.254), se conecta la red interna 10.5.2.0/24, con tres equipos; el del centro es INTA, con la 10.5.2.10."},
         {
           "type": "key",
           "text": "La ACT2 trata de definir variables y escribir reglas correctas de Snort 2, entregando únicamente el fichero .rules. Practica sobre todo la diferencia entre posiciones absolutas (offset/depth) y relativas (distance/within)."

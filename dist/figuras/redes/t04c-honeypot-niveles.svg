@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 400">
+<defs><marker id="t04cn-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--color-primary)"/></marker><marker id="t04cn-r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--color-danger)"/></marker></defs>
+<text class="h" x="380" y="34" text-anchor="middle">Tres niveles de honeypot</text>
+<rect class="c1" x="30" y="56" width="220" height="226" rx="12"/>
+<path class="ln" d="M106 92L140 80" style="stroke-width:2"/>
+<path class="ln" d="M140 80L172 96" style="stroke-width:2"/>
+<path class="ln" d="M106 92L118 130" style="stroke-width:2"/>
+<path class="ln" d="M140 80L154 124" style="stroke-width:2"/>
+<path class="ln" d="M118 130L154 124" style="stroke-width:2"/>
+<path class="ln" d="M172 96L154 124" style="stroke-width:2"/>
+<path class="ln" d="M154 124L176 140" style="stroke-width:2"/>
+<circle class="box" cx="106" cy="92" r="7"/>
+<circle class="box" cx="140" cy="80" r="7"/>
+<circle class="box" cx="172" cy="96" r="7"/>
+<circle class="box" cx="118" cy="130" r="7"/>
+<circle class="box" cx="154" cy="124" r="7"/>
+<circle class="box" cx="176" cy="140" r="7"/>
+<text class="b" x="140" y="180" text-anchor="middle">Baja interacción</text>
+<text class="s" x="140" y="204" text-anchor="middle">emula servicios</text>
+<text class="s" x="140" y="222" text-anchor="middle">(no son de verdad)</text>
+<text class="b" x="140" y="262" text-anchor="middle">riesgo bajo</text>
+<rect class="c3" x="270" y="56" width="220" height="226" rx="12"/>
+<rect class="box" x="338" y="78" width="84" height="54" rx="4"/><rect class="tint" x="345" y="85" width="70" height="40"/><rect class="ink" x="374" y="132" width="12" height="8"/><rect class="ink" x="356" y="140" width="48" height="5" rx="2"/>
+<text class="s" x="380" y="110" text-anchor="middle" style="fill:var(--color-text)">virtual</text>
+<text class="b" x="380" y="180" text-anchor="middle">Media interacción</text>
+<text class="s" x="380" y="204" text-anchor="middle">virtualiza a nivel</text>
+<text class="s" x="380" y="222" text-anchor="middle">de aplicación</text>
+<text class="b" x="380" y="262" text-anchor="middle">riesgo medio</text>
+<rect class="c5" x="510" y="56" width="220" height="226" rx="12"/>
+<rect class="box" x="592" y="74" width="56" height="74" rx="4"/>
+<rect class="tint" x="600" y="82" width="40" height="8" rx="1"/><circle class="ink" cx="634" cy="86" r="1.6"/>
+<rect class="tint" x="600" y="94" width="40" height="8" rx="1"/><circle class="ink" cx="634" cy="98" r="1.6"/>
+<rect class="tint" x="600" y="106" width="40" height="8" rx="1"/><circle class="ink" cx="634" cy="110" r="1.6"/>
+<rect class="tint" x="600" y="118" width="40" height="8" rx="1"/><circle class="ink" cx="634" cy="122" r="1.6"/>
+<rect class="tint" x="600" y="130" width="40" height="8" rx="1"/><circle class="ink" cx="634" cy="134" r="1.6"/>
+<text class="b" x="620" y="180" text-anchor="middle">Alta interacción</text>
+<text class="s" x="620" y="204" text-anchor="middle">sistemas reales</text>
+<text class="s" x="620" y="222" text-anchor="middle">con datos falsos</text>
+<text class="b" x="620" y="262" text-anchor="middle">riesgo alto</text>
+<path class="ln" d="M40 318H716" style="stroke-width:3;stroke:var(--color-primary)" marker-end="url(#t04cn-a)"/>
+<text class="s" x="380" y="308" text-anchor="middle">más información sobre el atacante</text>
+<path d="M40 356H716" style="fill:none;stroke-width:3;stroke:var(--color-danger)" marker-end="url(#t04cn-r)"/>
+<text class="s" x="380" y="346" text-anchor="middle">más riesgo si el atacante logra salir del cebo</text>
+<text class="s" x="380" y="388" text-anchor="middle">Hay que buscar el equilibrio entre cuánto deja hacer al atacante y cuánto riesgo asumes.</text>
+</svg>

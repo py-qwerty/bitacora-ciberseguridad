@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 490">
+<defs><marker id="t01cnat-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path class="ink" d="M0 0L10 5L0 10z"/></marker><marker id="t01cnat-r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path class="bad" d="M0 0L10 5L0 10z"/></marker><marker id="t01cnat-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path class="good" d="M0 0L10 5L0 10z"/></marker></defs>
+<text class="h" x="20" y="32">NAT: muchas IP privadas salen por una sola IP pública</text>
+<text class="s" x="20" y="54">El router cambia la IP y el puerto de origen, y lo apunta en una tabla (NAPT)</text>
+<rect class="box" x="14" y="70" width="300" height="162" rx="12" style="fill:none;stroke-dasharray:5 5;stroke:var(--color-muted)"/>
+<text class="s b" x="26" y="90" style="fill:var(--color-text)">Tu red: IP privadas</text>
+<rect class="box" x="58" y="100" width="44" height="30" rx="2"/>
+<rect class="tint" x="62" y="104" width="36" height="22" rx="1"/>
+<rect class="ink" x="76" y="130" width="8" height="6" rx="0"/>
+<rect class="ink" x="68" y="135" width="24" height="4" rx="1"/>
+<text class="b" x="80" y="162" text-anchor="middle">Equipo A</text>
+<text class="s" x="80" y="180" text-anchor="middle">192.168.1.10</text>
+<rect class="box" x="188" y="100" width="44" height="30" rx="2"/>
+<rect class="tint" x="192" y="104" width="36" height="22" rx="1"/>
+<rect class="ink" x="206" y="130" width="8" height="6" rx="0"/>
+<rect class="ink" x="198" y="135" width="24" height="4" rx="1"/>
+<text class="b" x="210" y="162" text-anchor="middle">Equipo B</text>
+<text class="s" x="210" y="180" text-anchor="middle">192.168.1.11</text>
+<path class="ln" d="M80 192V212H296V150H326"/>
+<path class="ln" d="M210 192V212"/>
+<ellipse class="c3" cx="360" cy="150" rx="34" ry="22"/>
+<path class="ln" d="M344 145h12M352 140l5 5-5 5M376 155h-12M368 150l-5 5 5 5" style="stroke:var(--color-primary)"/>
+<text class="b" x="360" y="118" text-anchor="middle">Router NAT</text>
+<text class="s" x="360" y="192" text-anchor="middle">IP pública</text>
+<text class="s b" x="360" y="210" text-anchor="middle">203.0.113.1</text>
+<path class="tint" d="M455 170c-30 0-40-34-12-44-4-30 34-42 52-22 12-24 56-22 62 2 14-14 50-8 50 18 30 2 32 46 2 46z"/>
+<text class="b" x="525" y="152" text-anchor="middle">Internet</text>
+<path class="ln" d="M394 150H455" style="stroke-width:3"/>
+<path class="ln" d="M600 150H660" style="stroke-width:3"/>
+<rect class="box" x="672" y="118" width="36" height="46" rx="3"/>
+<path class="ln" d="M679 128H701"/>
+<path class="ln" d="M679 136H701"/>
+<path class="ln" d="M679 144H701"/>
+<circle class="ink" cx="698" cy="156" r="2.5"/>
+<text class="b" x="690" y="186" text-anchor="middle">Servidor web</text>
+<text class="s" x="690" y="204" text-anchor="middle">198.51.100.20</text>
+<rect class="c4" x="20" y="248" width="300" height="74" rx="6"/>
+<text class="s b" x="34" y="268" style="fill:var(--color-text)">Al salir de A (dentro de tu red)</text>
+<text x="34" y="290">Origen  192.168.1.10 : 1108</text>
+<text x="34" y="310">Destino 198.51.100.20 : 80</text>
+<rect class="c3" x="440" y="248" width="300" height="74" rx="6"/>
+<text class="s b" x="454" y="268" style="fill:var(--color-text)">El mismo paquete en Internet</text>
+<text x="454" y="290">Origen  203.0.113.1 : 61001</text>
+<text x="454" y="310">Destino 198.51.100.20 : 80</text>
+<path class="path" d="M326 285H432" marker-end="url(#t01cnat-r)"/>
+<text class="s" x="380" y="276" text-anchor="middle">cambia</text>
+<text class="s" x="380" y="308" text-anchor="middle">origen</text>
+<rect class="ink" x="20" y="344" width="440" height="30" rx="0"/>
+<text class="w b" x="240" y="364" text-anchor="middle">Tabla NAPT del router</text>
+<rect class="tint" x="20" y="374" width="220" height="28" rx="0"/>
+<rect class="tint" x="240" y="374" width="220" height="28" rx="0"/>
+<text class="s b" x="130" y="393" text-anchor="middle">Dentro (privada)</text>
+<text class="s b" x="350" y="393" text-anchor="middle">Fuera (pública)</text>
+<rect class="box" x="20" y="402" width="220" height="30" rx="0"/>
+<rect class="box" x="240" y="402" width="220" height="30" rx="0"/>
+<text x="130" y="422" text-anchor="middle">192.168.1.10 : 1108</text>
+<text x="350" y="422" text-anchor="middle">203.0.113.1 : 61001</text>
+<rect class="box" x="20" y="432" width="220" height="30" rx="0"/>
+<rect class="box" x="240" y="432" width="220" height="30" rx="0"/>
+<text x="130" y="452" text-anchor="middle">192.168.1.11 : 1108</text>
+<text x="350" y="452" text-anchor="middle">203.0.113.1 : 61002</text>
+<text class="s b" x="484" y="364" style="fill:var(--color-text)">A la vuelta, al revés:</text>
+<text class="s" x="484" y="384">la respuesta llega a</text>
+<text class="s" x="484" y="402">203.0.113.1 : 61001 y el</text>
+<text class="s" x="484" y="420">router la entrega a</text>
+<text class="s" x="484" y="438">192.168.1.10 : 1108</text>
+<text class="s" x="20" y="480">Desde Internet solo se ve la IP pública del router, no las de tu red.</text>
+</svg>

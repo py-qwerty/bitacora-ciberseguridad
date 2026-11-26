@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 484">
+<defs><marker id="t01ceth-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path class="ink" d="M0 0L10 5L0 10z"/></marker><marker id="t01ceth-r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path class="bad" d="M0 0L10 5L0 10z"/></marker><marker id="t01ceth-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path class="good" d="M0 0L10 5L0 10z"/></marker></defs>
+<text class="h" x="20" y="32">La trama Ethernet: el «sobre» de la red local</text>
+<text class="s" x="20" y="54">Lo que viaja por el cable dentro de tu LAN (norma IEEE 802.3)</text>
+<rect class="box" x="30" y="96" width="84" height="46" rx="0" style="stroke-dasharray:4 4;opacity:.8"/>
+<text class="s" x="72.0" y="124" text-anchor="middle">Preámbulo</text>
+<text class="s" x="72.0" y="88" text-anchor="middle">8 bytes</text>
+<rect class="c4" x="114" y="96" width="130" height="46" rx="0"/>
+<text class="b" x="179.0" y="125" text-anchor="middle">MAC destino</text>
+<text class="s" x="179.0" y="88" text-anchor="middle">6 bytes</text>
+<rect class="c4" x="244" y="96" width="130" height="46" rx="0"/>
+<text class="b" x="309.0" y="125" text-anchor="middle">MAC origen</text>
+<text class="s" x="309.0" y="88" text-anchor="middle">6 bytes</text>
+<rect class="c3" x="374" y="96" width="70" height="46" rx="0"/>
+<text class="b" x="409.0" y="125" text-anchor="middle">Tipo</text>
+<text class="s" x="409.0" y="88" text-anchor="middle">2 bytes</text>
+<rect class="c1" x="444" y="96" width="196" height="46" rx="0"/>
+<text class="b" x="542.0" y="125" text-anchor="middle">Datos</text>
+<text class="s" x="542.0" y="88" text-anchor="middle">46 a 1500 bytes</text>
+<rect class="box" x="640" y="96" width="70" height="46" rx="0"/>
+<text class="b" x="675.0" y="125" text-anchor="middle">CRC</text>
+<text class="s" x="675.0" y="88" text-anchor="middle">4 bytes</text>
+<path class="dash" d="M72.0 144V158"/>
+<text class="s" x="72.0" y="174" text-anchor="middle">sincroniza;</text>
+<text class="s" x="72.0" y="192" text-anchor="middle">lo pone la</text>
+<text class="s" x="72.0" y="210" text-anchor="middle">capa física</text>
+<path class="ln" d="M118 152v6H370v-6"/>
+<text class="b" x="244.0" y="176" text-anchor="middle">A quién va y quién lo envía</text>
+<text class="s" x="244.0" y="194" text-anchor="middle">el switch mira la de destino</text>
+<path class="dash" d="M409.0 144V202"/>
+<text class="s" x="409.0" y="218" text-anchor="middle">0x0800 = IP</text>
+<text class="s" x="409.0" y="236" text-anchor="middle">0x0806 = ARP</text>
+<path class="dash" d="M542.0 144V158"/>
+<text class="s" x="542.0" y="174" text-anchor="middle">aquí va el paquete IP</text>
+<path class="dash" d="M675.0 144V158"/>
+<text class="s" x="675.0" y="174" text-anchor="middle">detecta</text>
+<text class="s" x="675.0" y="192" text-anchor="middle">errores</text>
+<text class="s" x="30" y="268">Sin contar el preámbulo, una trama mide entre 64 y 1518 bytes.</text>
+<rect class="tint" x="20" y="294" width="720" height="176" rx="8" style="opacity:.5"/>
+<text class="b" x="36" y="322">La dirección MAC: 48 bits (6 bytes) escritos en hexadecimal</text>
+<rect class="c4" x="150" y="344" width="200" height="46" rx="4"/>
+<text class="b" x="250" y="374" text-anchor="middle">3C:22:FB</text>
+<rect class="box" x="360" y="344" width="200" height="46" rx="4"/>
+<text class="b" x="460" y="374" text-anchor="middle">1A:2B:3C</text>
+<text class="b" x="250" y="412" text-anchor="middle">Fabricante (24 bits)</text>
+<text class="s" x="250" y="430" text-anchor="middle">rango que le da el IEEE</text>
+<text class="b" x="460" y="412" text-anchor="middle">Número de serie (24 bits)</text>
+<text class="s" x="460" y="430" text-anchor="middle">lo pone el fabricante</text>
+<text class="s" x="36" y="456">FF:FF:FF:FF:FF:FF = difusión (broadcast): la trama la reciben todos los equipos de la LAN.</text>
+</svg>

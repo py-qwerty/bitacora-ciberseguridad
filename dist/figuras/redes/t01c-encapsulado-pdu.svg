@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 470">
+<defs><marker id="t01cpdu-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path class="ink" d="M0 0L10 5L0 10z"/></marker><marker id="t01cpdu-r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path class="bad" d="M0 0L10 5L0 10z"/></marker><marker id="t01cpdu-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path class="good" d="M0 0L10 5L0 10z"/></marker></defs>
+<text class="h" x="20" y="32">Al bajar, cada capa añade su cabecera (y cambia el nombre)</text>
+<text class="s" x="20" y="54">Encapsulado de una petición web, de la aplicación al cable</text>
+<text class="b" x="20" y="110">Aplicación</text>
+<rect class="c1" x="320" y="84" width="170" height="42" rx="0"/>
+<text x="405.0" y="111" text-anchor="middle">Datos</text>
+<text class="b" x="552" y="103">Datos (mensaje)</text>
+<text class="s" x="552" y="121">p. ej., la petición HTTP</text>
+<text class="b" x="20" y="182">Transporte</text>
+<rect class="c2" x="270" y="156" width="50" height="42" rx="0"/>
+<text class="b" x="295.0" y="183" text-anchor="middle">TCP</text>
+<rect class="c1" x="320" y="156" width="170" height="42" rx="0"/>
+<text x="405.0" y="183" text-anchor="middle">Datos</text>
+<text class="b" x="552" y="175">Segmento TCP</text>
+<text class="s" x="552" y="193">con UDP: «datagrama UDP»</text>
+<path class="dash" d="M320 126V156"/>
+<path class="dash" d="M490 126V156"/>
+<text class="b" x="20" y="254">Red</text>
+<rect class="c3" x="220" y="228" width="50" height="42" rx="0"/>
+<text class="b" x="245.0" y="255" text-anchor="middle">IP</text>
+<rect class="c2" x="270" y="228" width="50" height="42" rx="0"/>
+<text class="b" x="295.0" y="255" text-anchor="middle">TCP</text>
+<rect class="c1" x="320" y="228" width="170" height="42" rx="0"/>
+<text x="405.0" y="255" text-anchor="middle">Datos</text>
+<text class="b" x="552" y="247">Paquete IP</text>
+<text class="s" x="552" y="265">también «datagrama IP»</text>
+<path class="dash" d="M270 198V228"/>
+<path class="dash" d="M490 198V228"/>
+<text class="b" x="20" y="319">Física</text>
+<text class="s" x="20" y="336">(enlace + física)</text>
+<rect class="c4" x="170" y="300" width="50" height="42" rx="0"/>
+<text class="b" x="195.0" y="327" text-anchor="middle">Eth</text>
+<rect class="c3" x="220" y="300" width="50" height="42" rx="0"/>
+<text class="b" x="245.0" y="327" text-anchor="middle">IP</text>
+<rect class="c2" x="270" y="300" width="50" height="42" rx="0"/>
+<text class="b" x="295.0" y="327" text-anchor="middle">TCP</text>
+<rect class="c1" x="320" y="300" width="170" height="42" rx="0"/>
+<text x="405.0" y="327" text-anchor="middle">Datos</text>
+<rect class="c4" x="490" y="300" width="40" height="42" rx="0"/>
+<text class="b" x="510.0" y="327" text-anchor="middle">CRC</text>
+<text class="b" x="552" y="319">Trama Ethernet</text>
+<text class="s" x="552" y="337">la cola CRC detecta errores</text>
+<path class="dash" d="M220 270V300"/>
+<path class="dash" d="M490 270V300"/>
+<path class="ln" d="M150 88V338" marker-end="url(#t01cpdu-a)" style="stroke-width:2.5"/>
+<path class="ln" d="M540 338V88" marker-end="url(#t01cpdu-a)" style="stroke-width:2.5"/>
+<rect class="tint" x="20" y="380" width="345" height="70" rx="8"/>
+<text class="b" x="36" y="402">Al enviar (bajando)</text>
+<text class="s" x="36" y="422">cada capa mete lo de arriba en su</text>
+<text class="s" x="36" y="440">parte de datos y le pone su cabecera</text>
+<rect class="tint" x="395" y="380" width="345" height="70" rx="8"/>
+<text class="b" x="411" y="402">Al recibir (subiendo)</text>
+<text class="s" x="411" y="422">cada capa lee y quita su cabecera y</text>
+<text class="s" x="411" y="440">entrega el resto a la capa de arriba</text>
+</svg>

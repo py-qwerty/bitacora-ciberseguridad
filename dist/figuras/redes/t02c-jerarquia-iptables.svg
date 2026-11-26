@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 405">
+<defs><marker id="t02cj-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path style="fill:var(--color-danger)" d="M0 0L10 5L0 10z"/></marker></defs>
+<text class="h" x="380" y="28" text-anchor="middle">Tablas → cadenas → reglas</text>
+<rect class="c1" x="20" y="46" width="486" height="300" rx="10"/>
+<text class="b" x="36" y="72">Tabla filter</text>
+<text class="s" x="150" y="72">(filtrar: aceptar o descartar)</text>
+<rect class="box" x="36" y="86" width="142" height="246" rx="6"/>
+<text class="b" x="107" y="110" text-anchor="middle">INPUT</text>
+<rect class="tint" x="48" y="124" width="118" height="30" rx="4"/>
+<text class="s" x="107" y="144" text-anchor="middle">regla 1</text>
+<rect class="tint" x="48" y="164" width="118" height="30" rx="4"/>
+<text class="s" x="107" y="184" text-anchor="middle">regla 2</text>
+<rect class="tint" x="48" y="204" width="118" height="30" rx="4"/>
+<text class="s" x="107" y="224" text-anchor="middle">regla 3</text>
+<rect class="c5" x="48" y="286" width="118" height="34" rx="4"/>
+<text class="s" x="107" y="300" text-anchor="middle">política por</text>
+<text class="s" x="107" y="315" text-anchor="middle">defecto</text>
+<rect class="box" x="192" y="86" width="142" height="246" rx="6"/>
+<text class="b" x="263" y="110" text-anchor="middle">FORWARD</text>
+<rect class="tint" x="204" y="124" width="118" height="30" rx="4"/>
+<text class="s" x="263" y="144" text-anchor="middle">regla 1</text>
+<rect class="tint" x="204" y="164" width="118" height="30" rx="4"/>
+<text class="s" x="263" y="184" text-anchor="middle">regla 2</text>
+<rect class="tint" x="204" y="204" width="118" height="30" rx="4"/>
+<text class="s" x="263" y="224" text-anchor="middle">regla 3</text>
+<rect class="c5" x="204" y="286" width="118" height="34" rx="4"/>
+<text class="s" x="263" y="300" text-anchor="middle">política por</text>
+<text class="s" x="263" y="315" text-anchor="middle">defecto</text>
+<rect class="box" x="348" y="86" width="142" height="246" rx="6"/>
+<text class="b" x="419" y="110" text-anchor="middle">OUTPUT</text>
+<rect class="tint" x="360" y="124" width="118" height="30" rx="4"/>
+<text class="s" x="419" y="144" text-anchor="middle">regla 1</text>
+<rect class="tint" x="360" y="164" width="118" height="30" rx="4"/>
+<text class="s" x="419" y="184" text-anchor="middle">regla 2</text>
+<rect class="tint" x="360" y="204" width="118" height="30" rx="4"/>
+<text class="s" x="419" y="224" text-anchor="middle">regla 3</text>
+<rect class="c5" x="360" y="286" width="118" height="34" rx="4"/>
+<text class="s" x="419" y="300" text-anchor="middle">política por</text>
+<text class="s" x="419" y="315" text-anchor="middle">defecto</text>
+<path class="path" d="M44 126V312" marker-end="url(#t02cj-a)" style="stroke-width:2.5"/>
+<rect class="c3" x="526" y="46" width="214" height="300" rx="10"/>
+<text class="b" x="542" y="72">Tabla nat</text>
+<text class="s" x="542" y="90">(traducir direcciones)</text>
+<rect class="box" x="542" y="104" width="182" height="108" rx="6"/>
+<text class="b" x="633" y="128" text-anchor="middle">PREROUTING</text>
+<rect class="tint" x="554" y="140" width="158" height="26" rx="4"/>
+<text class="s" x="633" y="158" text-anchor="middle">regla 1</text>
+<rect class="c5" x="554" y="172" width="158" height="28" rx="4"/>
+<text class="s" x="633" y="191" text-anchor="middle">política por defecto</text>
+<rect class="box" x="542" y="222" width="182" height="108" rx="6"/>
+<text class="b" x="633" y="246" text-anchor="middle">POSTROUTING</text>
+<rect class="tint" x="554" y="258" width="158" height="26" rx="4"/>
+<text class="s" x="633" y="276" text-anchor="middle">regla 1</text>
+<rect class="c5" x="554" y="290" width="158" height="28" rx="4"/>
+<text class="s" x="633" y="309" text-anchor="middle">política por defecto</text>
+<text class="s" x="380" y="374" text-anchor="middle">La flecha roja: las reglas de una cadena se leen en orden hasta la primera que coincide;</text>
+<text class="s" x="380" y="392" text-anchor="middle">si no coincide ninguna, se aplica la política por defecto. (También hay mangle, raw…)</text>
+</svg>

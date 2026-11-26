@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 500">
+<defs><marker id="t01ctcpac-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path class="ink" d="M0 0L10 5L0 10z"/></marker><marker id="t01ctcpac-r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path class="bad" d="M0 0L10 5L0 10z"/></marker><marker id="t01ctcpac-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path class="good" d="M0 0L10 5L0 10z"/></marker></defs>
+<text class="h" x="20" y="32">Cómo abre y cierra TCP una conexión</text>
+<text class="s" x="20" y="54">El tiempo corre hacia abajo. seq = número de secuencia; ack = lo siguiente que espero</text>
+<rect class="c1" x="14" y="70" width="360" height="330" rx="10" style="opacity:.35"/>
+<text class="b" x="30" y="96">Abrir: saludo de tres vías</text>
+<text class="b" x="64" y="122" text-anchor="middle">A (cliente)</text>
+<path class="ln" d="M64 130V370" style="stroke:var(--color-primary)"/>
+<text class="b" x="324" y="122" text-anchor="middle">B (servidor)</text>
+<path class="ln" d="M324 130V370" style="stroke:var(--color-primary)"/>
+<path class="ln" d="M64 146L318 196" marker-end="url(#t01ctcpac-a)"/>
+<rect class="box" x="129.0" y="163.0" width="130" height="26" rx="6"/>
+<text class="s b" x="194.0" y="181.0" text-anchor="middle" style="fill:var(--color-text)">SYN · seq=x</text>
+<path class="ln" d="M324 212L70 262" marker-end="url(#t01ctcpac-a)"/>
+<rect class="box" x="94.0" y="229.0" width="200" height="26" rx="6"/>
+<text class="s b" x="194.0" y="247.0" text-anchor="middle" style="fill:var(--color-text)">SYN+ACK · seq=y, ack=x+1</text>
+<path class="ln" d="M64 278L318 328" marker-end="url(#t01ctcpac-a)"/>
+<rect class="box" x="99.0" y="295.0" width="190" height="26" rx="6"/>
+<text class="s b" x="194.0" y="313.0" text-anchor="middle" style="fill:var(--color-text)">ACK · seq=x+1, ack=y+1</text>
+<text class="b" x="194.0" y="362" text-anchor="middle">Conexión establecida</text>
+<text class="s" x="194.0" y="386" text-anchor="middle">ya pueden viajar datos</text>
+<rect class="c3" x="386" y="70" width="360" height="330" rx="10" style="opacity:.35"/>
+<text class="b" x="402" y="96">Cerrar: cuatro mensajes</text>
+<text class="b" x="436" y="122" text-anchor="middle">A (cliente)</text>
+<path class="ln" d="M436 130V370" style="stroke:var(--color-primary)"/>
+<text class="b" x="696" y="122" text-anchor="middle">B (servidor)</text>
+<path class="ln" d="M696 130V370" style="stroke:var(--color-primary)"/>
+<path class="ln" d="M436 140L690 176" marker-end="url(#t01ctcpac-a)"/>
+<rect class="box" x="486.0" y="150.0" width="160" height="26" rx="6"/>
+<text class="s b" x="566.0" y="168.0" text-anchor="middle" style="fill:var(--color-text)">FIN · seq=x, ack=y</text>
+<path class="ln" d="M696 188L442 224" marker-end="url(#t01ctcpac-a)"/>
+<rect class="box" x="480.0" y="198.0" width="172" height="26" rx="6"/>
+<text class="s b" x="566.0" y="216.0" text-anchor="middle" style="fill:var(--color-text)">ACK · seq=y, ack=x+1</text>
+<text class="s" x="688" y="252" text-anchor="end">B avisa a su</text>
+<text class="s" x="688" y="268" text-anchor="end">aplicación</text>
+<path class="ln" d="M696 280L442 316" marker-end="url(#t01ctcpac-a)"/>
+<rect class="box" x="480.0" y="290.0" width="172" height="26" rx="6"/>
+<text class="s b" x="566.0" y="308.0" text-anchor="middle" style="fill:var(--color-text)">FIN · seq=y, ack=x+1</text>
+<path class="ln" d="M436 328L690 364" marker-end="url(#t01ctcpac-a)"/>
+<rect class="box" x="471.0" y="338.0" width="190" height="26" rx="6"/>
+<text class="s b" x="566.0" y="356.0" text-anchor="middle" style="fill:var(--color-text)">ACK · seq=x+1, ack=y+1</text>
+<text class="b" x="566.0" y="390" text-anchor="middle">Conexión cerrada</text>
+<rect class="c5" x="20" y="414" width="720" height="74" rx="8" style="opacity:.55"/>
+<text class="b" x="36" y="438">Escáner de puertos (SYN): manda solo el primer SYN y mira qué vuelve</text>
+<text class="s" x="36" y="460" style="fill:var(--color-text)">Vuelve SYN+ACK → el puerto está abierto (el escáner corta con RST, sin terminar).</text>
+<text class="s" x="36" y="478" style="fill:var(--color-text)">Vuelve RST → el puerto está cerrado. RST sirve para rechazar o cortar una conexión.</text>
+</svg>

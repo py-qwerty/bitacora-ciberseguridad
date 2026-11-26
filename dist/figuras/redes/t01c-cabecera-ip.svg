@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 450">
+<text class="h" x="20" y="32">Qué lleva escrito un paquete IP (cabecera IPv4)</text>
+<text class="s" x="20" y="54">Cada fila son 32 bits (4 bytes). En color, lo que más usarás en seguridad.</text>
+<text class="s" x="92" y="92" text-anchor="middle">0</text>
+<text class="s" x="204" y="92" text-anchor="middle">8</text>
+<text class="s" x="316" y="92" text-anchor="middle">16</text>
+<text class="s" x="540" y="92" text-anchor="middle">31</text>
+<rect class="box" x="92" y="100" width="56" height="36" rx="0"/>
+<text x="120.0" y="123.0" text-anchor="middle" style="font-size:14px">Versión</text>
+<rect class="box" x="148" y="100" width="56" height="36" rx="0"/>
+<text x="176.0" y="123.0" text-anchor="middle">IHL</text>
+<rect class="box" x="204" y="100" width="112" height="36" rx="0"/>
+<text x="260.0" y="123.0" text-anchor="middle">Servicio</text>
+<rect class="box" x="316" y="100" width="224" height="36" rx="0"/>
+<text x="428.0" y="123.0" text-anchor="middle">Longitud total</text>
+<rect class="c4" x="92" y="136" width="224" height="36" rx="0"/>
+<text class="b" x="204.0" y="159.0" text-anchor="middle">Identificación</text>
+<rect class="c4" x="316" y="136" width="42" height="36" rx="0"/>
+<text x="337.0" y="159.0" text-anchor="middle" style="font-size:14px">Flags</text>
+<rect class="c4" x="358" y="136" width="182" height="36" rx="0"/>
+<text class="b" x="438.0" y="159.0" text-anchor="middle">Desplazamiento</text>
+<circle class="ink" cx="526" cy="154.0" r="11"/>
+<text class="w b" x="526" y="159.0" text-anchor="middle" style="font-size:13px">1</text>
+<rect class="c3" x="92" y="172" width="112" height="36" rx="0"/>
+<text class="b" x="137.0" y="195.0" text-anchor="middle">TTL</text>
+<circle class="ink" cx="190" cy="190.0" r="11"/>
+<text class="w b" x="190" y="195.0" text-anchor="middle" style="font-size:13px">2</text>
+<rect class="c3" x="204" y="172" width="112" height="36" rx="0"/>
+<text class="b" x="249.0" y="195.0" text-anchor="middle">Protocolo</text>
+<circle class="ink" cx="302" cy="190.0" r="11"/>
+<text class="w b" x="302" y="195.0" text-anchor="middle" style="font-size:13px">3</text>
+<rect class="box" x="316" y="172" width="224" height="36" rx="0"/>
+<text x="428.0" y="195.0" text-anchor="middle">Suma de comprobación</text>
+<rect class="c5" x="92" y="208" width="448" height="36" rx="0"/>
+<text class="b" x="305.0" y="231.0" text-anchor="middle">Dirección IP de origen</text>
+<circle class="ink" cx="526" cy="226.0" r="11"/>
+<text class="w b" x="526" y="231.0" text-anchor="middle" style="font-size:13px">4</text>
+<rect class="c5" x="92" y="244" width="448" height="36" rx="0"/>
+<text class="b" x="305.0" y="267.0" text-anchor="middle">Dirección IP de destino</text>
+<circle class="ink" cx="526" cy="262.0" r="11"/>
+<text class="w b" x="526" y="267.0" text-anchor="middle" style="font-size:13px">4</text>
+<rect class="box" x="92" y="280" width="336" height="36" rx="0"/>
+<text x="260.0" y="303.0" text-anchor="middle">Opciones (si hay)</text>
+<rect class="box" x="428" y="280" width="112" height="36" rx="0"/>
+<text x="484.0" y="303.0" text-anchor="middle">Relleno</text>
+<rect class="tint" x="92" y="316" width="448" height="44" rx="0" style="stroke-dasharray:5 4"/>
+<text x="316" y="336" text-anchor="middle">Datos: el segmento TCP</text>
+<text class="s" x="316" y="354" text-anchor="middle">o el datagrama UDP</text>
+<path class="ln" d="M82 102h-6V278h6"/>
+<text class="s b" x="70" y="188.0" text-anchor="end" style="fill:var(--color-text)">20 bytes</text>
+<text class="s" x="70" y="206.0" text-anchor="end">fijos</text>
+<circle class="ink" cx="573" cy="101" r="11"/>
+<text class="w b" x="573" y="106" text-anchor="middle" style="font-size:13px">1</text>
+<text class="s b" x="592" y="106" style="fill:var(--color-text)">Trocear el paquete</text>
+<text class="s" x="592" y="124">(fragmentar) si no</text>
+<text class="s" x="592" y="142">cabe en una red</text>
+<circle class="ink" cx="573" cy="167" r="11"/>
+<text class="w b" x="573" y="172" text-anchor="middle" style="font-size:13px">2</text>
+<text class="s b" x="592" y="172" style="fill:var(--color-text)">Tiempo de vida</text>
+<text class="s" x="592" y="190">cada router resta 1;</text>
+<text class="s" x="592" y="208">a 0, se descarta</text>
+<text class="s" x="592" y="226">(lo usa traceroute)</text>
+<circle class="ink" cx="573" cy="251" r="11"/>
+<text class="w b" x="573" y="256" text-anchor="middle" style="font-size:13px">3</text>
+<text class="s b" x="592" y="256" style="fill:var(--color-text)">Protocolo</text>
+<text class="s" x="592" y="274">qué va dentro:</text>
+<text class="s" x="592" y="292">1 ICMP, 6 TCP, 17 UDP</text>
+<circle class="ink" cx="573" cy="317" r="11"/>
+<text class="w b" x="573" y="322" text-anchor="middle" style="font-size:13px">4</text>
+<text class="s b" x="592" y="322" style="fill:var(--color-text)">Origen y destino</text>
+<text class="s" x="592" y="340">quién envía y a quién</text>
+<text class="s" x="592" y="358">va; el origen se puede</text>
+<text class="s" x="592" y="376">falsear (ataque Land)</text>
+<text class="s" x="20" y="436">Versión = 4 en IPv4. IHL = largo de la cabecera. Longitud total = cabecera + datos.</text>
+</svg>

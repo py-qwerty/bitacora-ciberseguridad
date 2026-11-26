@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 500">
+<defs><marker id="t01cdes-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path class="ink" d="M0 0L10 5L0 10z"/></marker><marker id="t01cdes-r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path class="bad" d="M0 0L10 5L0 10z"/></marker><marker id="t01cdes-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path class="good" d="M0 0L10 5L0 10z"/></marker></defs>
+<text class="h" x="20" y="32">Al recibir: cada cabecera dice a quién entregar el contenido</text>
+<text class="s" x="20" y="54">Un datagrama UDP con una consulta de hora (NTP) llega por Ethernet</text>
+<rect class="box" x="60" y="76" width="110" height="50" rx="6"/>
+<text class="b" x="115" y="98" text-anchor="middle">DNS</text>
+<text class="s" x="115" y="116" text-anchor="middle">puerto 53</text>
+<rect class="box" x="190" y="76" width="110" height="50" rx="6"/>
+<text class="b" x="245" y="98" text-anchor="middle">TFTP</text>
+<text class="s" x="245" y="116" text-anchor="middle">puerto 69</text>
+<rect class="c1" x="320" y="76" width="110" height="50" rx="6"/>
+<text class="b" x="375" y="98" text-anchor="middle">NTP</text>
+<text class="s" x="375" y="116" text-anchor="middle">puerto 123</text>
+<text class="b" x="500" y="98">Aplicación</text>
+<text class="s" x="500" y="116">programas que esperan datos</text>
+<rect class="c2" x="40" y="190" width="225" height="44" rx="0"/>
+<text class="b" x="152.5" y="218" text-anchor="middle">UDP · puerto destino 123</text>
+<rect class="c1" x="265" y="190" width="205" height="44" rx="0"/>
+<text x="367.5" y="218" text-anchor="middle">Datos: la consulta NTP</text>
+<text class="b" x="500" y="204">Transporte (UDP)</text>
+<text class="s b" x="500" y="224" style="fill:var(--color-text)">123 → es para el programa NTP</text>
+<rect class="c3" x="40" y="290" width="225" height="44" rx="0"/>
+<text class="b" x="152.5" y="318" text-anchor="middle">IP · protocolo 17</text>
+<rect class="c2" x="265" y="290" width="205" height="44" rx="0"/>
+<text x="367.5" y="318" text-anchor="middle">Datos: el datagrama UDP</text>
+<text class="b" x="500" y="304">Red (IP)</text>
+<text class="s b" x="500" y="324" style="fill:var(--color-text)">17 → dentro va UDP</text>
+<text class="s" x="500" y="342">(6 sería TCP; 1, ICMP)</text>
+<rect class="c4" x="40" y="390" width="225" height="44" rx="0"/>
+<text class="b" x="152.5" y="418" text-anchor="middle">Ethernet · tipo 0x0800</text>
+<rect class="c3" x="265" y="390" width="205" height="44" rx="0"/>
+<text x="367.5" y="418" text-anchor="middle">Datos: el paquete IP</text>
+<text class="b" x="500" y="404">Física (Ethernet)</text>
+<text class="s b" x="500" y="424" style="fill:var(--color-text)">0x0800 → dentro va IP</text>
+<text class="s" x="500" y="442">(0x0806 sería ARP)</text>
+<path class="path" d="M355 390V336" marker-end="url(#t01cdes-r)"/>
+<path class="path" d="M355 290V236" marker-end="url(#t01cdes-r)"/>
+<path class="path" d="M375 190V128" marker-end="url(#t01cdes-r)"/>
+<text class="s" x="20" y="486">Leyendo estos tres números, el receptor sube capa a capa hasta el programa correcto.</text>
+</svg>

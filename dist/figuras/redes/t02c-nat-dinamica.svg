@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 545">
+<defs><marker id="t02cn-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path style="fill:var(--color-danger)" d="M0 0L10 5L0 10z"/></marker></defs>
+<path class="ln" d="M170 130V390"/>
+<g><rect class="box" x="48" y="136" width="44" height="30" rx="3"/><rect class="tint" x="53" y="141" width="34" height="20"/><rect class="ink" x="66" y="166" width="8" height="6"/><rect class="ink" x="56" y="172" width="28" height="4" rx="2"/></g>
+<path class="ln" d="M92 151H170"/>
+<text class="b" x="70" y="194" text-anchor="middle">Cliente</text>
+<text class="s" x="70" y="212" text-anchor="middle">192.168.0.2</text>
+<g><rect class="box" x="48" y="300" width="44" height="30" rx="3"/><rect class="tint" x="53" y="305" width="34" height="20"/><rect class="ink" x="66" y="330" width="8" height="6"/><rect class="ink" x="56" y="336" width="28" height="4" rx="2"/></g>
+<path class="ln" d="M92 315H170"/>
+<text class="b" x="70" y="358" text-anchor="middle">Cliente</text>
+<text class="s" x="70" y="376" text-anchor="middle">192.168.0.3</text>
+<path class="ln" d="M170 240H305"/>
+<g><ellipse class="c3" cx="330" cy="240" rx="25" ry="14"/><path class="ln" style="stroke:var(--color-primary)" d="M318 236h9M324 232l4 4-4 4M342 244h-9M336 240l-4 4 4 4"/></g>
+<path class="ln" d="M355 240H462"/>
+<text class="s" x="240" y="230" text-anchor="middle">192.168.0.1</text>
+<text class="s" x="400" y="230" text-anchor="middle">206.245.160.1</text>
+<text class="b" x="330" y="272" text-anchor="middle">Router NAT</text>
+<g transform="translate(450 120) scale(0.62)"><path class="tint" d="M45 175c-34 0 -46 -38 -16 -50 -6 -34 38 -48 58 -26 14 -28 64 -26 72 2 16 -18 58 -10 58 20 34 2 38 52 4 54z"/></g><text class="b" x="528.74" y="216.72" text-anchor="middle" style="fill:var(--color-secondary)"></text>
+<text class="b" x="529" y="220" text-anchor="middle" style="fill:var(--color-secondary)">Internet</text>
+<path class="ln" d="M590 190L660 135"/>
+<path class="ln" d="M590 238L660 335"/>
+<g><rect class="box" x="662" y="108" width="44" height="30" rx="3"/><rect class="tint" x="667" y="113" width="34" height="20"/><rect class="ink" x="680" y="138" width="8" height="6"/><rect class="ink" x="670" y="144" width="28" height="4" rx="2"/></g>
+<text class="b" x="684" y="172" text-anchor="middle">Servidor web</text>
+<text class="s" x="684" y="190" text-anchor="middle">207.29.194.84</text>
+<g><rect class="box" x="662" y="320" width="44" height="30" rx="3"/><rect class="tint" x="667" y="325" width="34" height="20"/><rect class="ink" x="680" y="350" width="8" height="6"/><rect class="ink" x="670" y="356" width="28" height="4" rx="2"/></g>
+<text class="b" x="684" y="384" text-anchor="middle">Servidor FTP</text>
+<text class="s" x="684" y="402" text-anchor="middle">205.197.101.111</text>
+<rect class="c3" x="250" y="290" width="200" height="108" rx="6"/>
+<text class="s" x="350" y="310" text-anchor="middle">Rango: 206.245.160.5–10</text>
+<text class="b" x="350" y="330" text-anchor="middle" style="font-size:15px">Tabla NAT dinámica</text>
+<text class="b" x="300" y="350" text-anchor="middle" style="font-size:14px">Dentro</text>
+<text class="b" x="400" y="350" text-anchor="middle" style="font-size:14px">Fuera</text>
+<path class="dash" d="M262 356H438"/>
+<text class="s" x="300" y="372" text-anchor="middle">192.168.0.2</text>
+<text class="s" x="400" y="372" text-anchor="middle">206.245.160.5</text>
+<text class="s" x="300" y="390" text-anchor="middle">192.168.0.3</text>
+<text class="s" x="400" y="390" text-anchor="middle">206.245.160.6</text>
+<path class="dash" d="M330 255V288"/>
+<path class="path" d="M70 134V96H650" marker-end="url(#t02cn-a)"/>
+<rect class="box" x="110" y="36" width="200" height="44" rx="4"/>
+<text class="s" x="210" y="54" text-anchor="middle">Origen 192.168.0.2:1108</text>
+<text class="s" x="210" y="72" text-anchor="middle">Destino 207.29.194.84:80</text>
+<rect class="box" x="400" y="36" width="216" height="44" rx="4"/>
+<text class="b" x="508" y="54" text-anchor="middle" style="font-size:14px">Origen 206.245.160.5:1108</text>
+<text class="s" x="508" y="72" text-anchor="middle">Destino 207.29.194.84:80</text>
+<path class="path" d="M70 384V430H684V418" marker-end="url(#t02cn-a)"/>
+<rect class="box" x="110" y="440" width="210" height="44" rx="4"/>
+<text class="s" x="215" y="458" text-anchor="middle">Origen 192.168.0.3:1108</text>
+<text class="s" x="215" y="476" text-anchor="middle">Destino 205.197.101.111:21</text>
+<rect class="box" x="400" y="440" width="226" height="44" rx="4"/>
+<text class="b" x="513" y="458" text-anchor="middle" style="font-size:14px">Origen 206.245.160.6:1108</text>
+<text class="s" x="513" y="476" text-anchor="middle">Destino 205.197.101.111:21</text>
+<text class="s" x="360" y="512" text-anchor="middle">Al salir, el router cambia la IP de origen privada por una pública libre del rango</text>
+<text class="s" x="360" y="530" text-anchor="middle">y lo apunta en la tabla; con esa tabla devuelve cada respuesta a su equipo.</text>
+</svg>

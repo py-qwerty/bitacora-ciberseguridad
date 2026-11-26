@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 330">
+<path class="tint" d="M21 213c-20.4 0 -27.6 -22.8 -9.6 -30 -3.6 -20.4 22.8 -28.8 34.8 -15.6 8.4 -16.8 38.4 -15.6 43.2 1.2 9.6 -10.8 34.8 -6 34.8 12 20.4 1.2 22.8 31.2 2.4 32.4z"/><text class="b" x="70" y="204" text-anchor="middle" style="fill:var(--color-secondary)">Internet</text>
+<path class="ln" d="M135 200H745"/>
+<g><ellipse class="c3" cx="190" cy="200" rx="25" ry="14"/><path class="ln" style="stroke:var(--color-primary)" d="M178 196h9M184 192l4 4-4 4M202 204h-9M196 200l-4 4 4 4"/></g>
+<text class="s" x="190" y="232" text-anchor="middle">Router</text>
+<g><rect class="c5" x="387" y="180" width="46" height="40" rx="2"/><path d="M387 190h46M387 200h46M387 210h46M398.5 180v10M421.5 180v10M410 190v10M398.5 200v10M421.5 200v10M410 210v10" style="fill:none;stroke:#a33331;stroke-width:1.2"/></g>
+<text class="s" x="410" y="240" text-anchor="middle">Cortafuegos</text>
+<g><rect class="c4" x="595" y="188" width="70" height="24" rx="4"/><rect class="ink" x="604" y="198" width="10" height="7" rx="1"/><rect class="ink" x="618" y="198" width="10" height="7" rx="1"/><rect class="ink" x="632" y="198" width="10" height="7" rx="1"/><rect class="ink" x="646" y="198" width="10" height="7" rx="1"/></g>
+<text class="s" x="630" y="232" text-anchor="middle">Switch</text>
+<text class="s" x="745" y="232" text-anchor="end">red interna</text>
+<rect class="c3" x="165" y="24" width="230" height="110" rx="10"/>
+<g><rect class="box" x="177" y="40" width="44" height="30" rx="3"/><rect class="tint" x="182" y="45" width="34" height="20"/><rect class="ink" x="195" y="70" width="8" height="6"/><rect class="ink" x="185" y="76" width="28" height="4" rx="2"/></g>
+<text class="b" x="231" y="54">Snort</text>
+<text class="b" x="231" y="74">delante</text>
+<text class="s" x="280" y="104" text-anchor="middle">recibe todo el ruido</text>
+<text class="s" x="280" y="122" text-anchor="middle">de Internet: alertas sin parar</text>
+<path class="dash" d="M280 134V192" style="stroke-width:2"/>
+<circle class="c4" cx="280" cy="200" r="8"/>
+<rect class="c1" x="430" y="24" width="230" height="110" rx="10"/>
+<g><rect class="box" x="442" y="40" width="44" height="30" rx="3"/><rect class="tint" x="447" y="45" width="34" height="20"/><rect class="ink" x="460" y="70" width="8" height="6"/><rect class="ink" x="450" y="76" width="28" height="4" rx="2"/></g>
+<text class="b" x="496" y="54">Snort</text>
+<text class="b" x="496" y="74">detrás (consejo)</text>
+<text class="s" x="545" y="104" text-anchor="middle">solo ve lo que dejó</text>
+<text class="s" x="545" y="122" text-anchor="middle">pasar el cortafuegos</text>
+<path class="dash" d="M545 134V192" style="stroke-width:2"/>
+<circle class="c4" cx="545" cy="200" r="8"/>
+<text class="s" x="380" y="280" text-anchor="middle">Puede ir delante, detrás o en los dos sitios. Un IDS solo detecta:</text>
+<text class="s" x="380" y="298" text-anchor="middle">para bloquear necesita un cortafuegos (IDS + cortafuegos = IPS).</text>
+</svg>

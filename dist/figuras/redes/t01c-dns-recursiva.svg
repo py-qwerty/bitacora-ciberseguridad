@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 470">
+<defs><marker id="t01cdns-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path class="ink" d="M0 0L10 5L0 10z"/></marker><marker id="t01cdns-r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path class="bad" d="M0 0L10 5L0 10z"/></marker><marker id="t01cdns-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path class="good" d="M0 0L10 5L0 10z"/></marker></defs>
+<text class="h" x="20" y="32">Cómo encuentra el DNS una dirección: pregunta de servidor en servidor</text>
+<text class="s" x="20" y="54">Tu equipo pregunta una sola vez; el servidor DNS local hace el resto del trabajo</text>
+<rect class="box" x="48" y="214" width="44" height="30" rx="2"/>
+<rect class="tint" x="52" y="218" width="36" height="22" rx="1"/>
+<rect class="ink" x="66" y="244" width="8" height="6" rx="0"/>
+<rect class="ink" x="58" y="249" width="24" height="4" rx="1"/>
+<text class="b" x="70" y="276" text-anchor="middle">Tu equipo</text>
+<text class="s" x="70" y="294" text-anchor="middle">(el resolver)</text>
+<rect class="box" x="240" y="130" width="120" height="170" rx="8"/>
+<rect class="box" x="282" y="150" width="36" height="46" rx="3"/>
+<path class="ln" d="M289 160H311"/>
+<path class="ln" d="M289 168H311"/>
+<path class="ln" d="M289 176H311"/>
+<circle class="ink" cx="308" cy="188" r="2.5"/>
+<text class="b" x="300" y="228" text-anchor="middle">Servidor DNS</text>
+<text class="b" x="300" y="248" text-anchor="middle">local</text>
+<text class="s" x="300" y="270" text-anchor="middle">(de tu red o</text>
+<text class="s" x="300" y="288" text-anchor="middle">tu operador)</text>
+<path class="ln" d="M100 222H236" marker-end="url(#t01cdns-a)"/>
+<path class="sgood" d="M240 250H104" marker-end="url(#t01cdns-g)"/>
+<circle class="ink" cx="170" cy="222" r="11"/>
+<text class="w b" x="170" y="227" text-anchor="middle" style="font-size:13px">1</text>
+<text class="s" x="170" y="190" text-anchor="middle">¿IP de</text>
+<text class="s" x="170" y="206" text-anchor="middle">www.ejemplo.net?</text>
+<text class="s" x="170" y="190" text-anchor="middle"></text>
+<text class="s b" x="170" y="278" text-anchor="middle" style="fill:var(--color-text)">203.0.113.10</text>
+<circle class="good" cx="170" cy="250" r="11"/>
+<text class="w b" x="170" y="255" text-anchor="middle" style="font-size:13px">8</text>
+<text class="s" x="70" y="190" text-anchor="middle"></text>
+<rect class="c4" x="520" y="82" width="220" height="52" rx="6"/>
+<text class="b" x="630" y="102" text-anchor="middle">Servidor raíz «.»</text>
+<text class="s" x="630" y="122" text-anchor="middle">«pregunta al de .net»</text>
+<path class="ln" d="M360 146L516 98" marker-end="url(#t01cdns-a)"/>
+<path class="sgood" d="M520 118L364 168" marker-end="url(#t01cdns-g)"/>
+<circle class="ink" cx="448.0" cy="109.6" r="11"/>
+<text class="w b" x="448.0" y="114.6" text-anchor="middle" style="font-size:13px">2</text>
+<circle class="good" cx="448.0" cy="150.5" r="11"/>
+<text class="w b" x="448.0" y="155.5" text-anchor="middle" style="font-size:13px">3</text>
+<rect class="c4" x="520" y="200" width="220" height="52" rx="6"/>
+<text class="b" x="630" y="220" text-anchor="middle">Servidor de .net</text>
+<text class="s" x="630" y="240" text-anchor="middle">«pregunta al de ejemplo.net»</text>
+<path class="ln" d="M360 202L516 216" marker-end="url(#t01cdns-a)"/>
+<path class="sgood" d="M520 236L364 224" marker-end="url(#t01cdns-g)"/>
+<circle class="ink" cx="448.0" cy="199.7" r="11"/>
+<text class="w b" x="448.0" y="204.7" text-anchor="middle" style="font-size:13px">4</text>
+<circle class="good" cx="448.0" cy="240.6" r="11"/>
+<text class="w b" x="448.0" y="245.6" text-anchor="middle" style="font-size:13px">5</text>
+<rect class="c4" x="520" y="318" width="220" height="52" rx="6"/>
+<text class="b" x="630" y="338" text-anchor="middle">Servidor de ejemplo.net</text>
+<text class="s" x="630" y="358" text-anchor="middle">«es la 203.0.113.10»</text>
+<path class="ln" d="M360 258L516 334" marker-end="url(#t01cdns-a)"/>
+<path class="sgood" d="M520 354L364 280" marker-end="url(#t01cdns-g)"/>
+<circle class="ink" cx="448.0" cy="289.8" r="11"/>
+<text class="w b" x="448.0" y="294.8" text-anchor="middle" style="font-size:13px">6</text>
+<circle class="good" cx="448.0" cy="330.7" r="11"/>
+<text class="w b" x="448.0" y="335.7" text-anchor="middle" style="font-size:13px">7</text>
+<rect class="tint" x="20" y="400" width="720" height="56" rx="8" style="opacity:.6"/>
+<text class="s b" x="36" y="422" style="fill:var(--color-text)">Números oscuros: preguntas. Verdes: respuestas. Del 2 al 7 solo trabaja el local.</text>
+<text class="s" x="36" y="442">Después guarda la respuesta en su caché un tiempo (TTL) y la próxima vez contesta al momento.</text>
+</svg>

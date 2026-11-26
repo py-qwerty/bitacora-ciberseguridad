@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 430">
+<defs><marker id="t03cfr-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="ink" d="M0 0L10 5L0 10z"/></marker><marker id="t03cfr-r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--color-danger)"/></marker><marker id="t03cfr-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--color-success)"/></marker></defs>
+<text class="h" x="380" y="30" text-anchor="middle">Qué se coloca en la frontera (entre los dos cortafuegos)</text>
+<path class="tint" transform="translate(-575 -25)" d="M627 166.5c-18.7 0 -25.3 -20.9 -8.8 -27.5 -3.3 -18.7 20.9 -26.4 31.9 -14.3 7.7 -15.4 35.2 -14.3 39.6 1.1 8.8 -9.9 31.9 -5.5 31.9 11 18.7 1.1 20.9 28.6 2.2 29.7z"/><text class="b" x="85" y="130" text-anchor="middle" style="fill:var(--color-secondary)">Interior</text>
+<path class="ln" d="M140 124H232" style="stroke-width:3"/>
+<g><rect class="c5" x="232" y="106" width="36" height="36" rx="2"/><path d="M232 115h36M232 124h36M232 133h36M241 106v9M259 106v9M250 115v9M241 124v9M259 124v9M250 133v9" style="fill:none;stroke:#a33331;stroke-width:1.2"/></g>
+<path class="ln" d="M268 124H492" style="stroke-width:3"/>
+<g><rect class="c4" x="492" y="106" width="36" height="36" rx="2"/><path d="M492 115h36M492 124h36M492 133h36M501 106v9M519 106v9M510 115v9M501 124v9M519 124v9M510 133v9" style="fill:none;stroke:#a33331;stroke-width:1.2"/></g>
+<path class="ln" d="M528 124H620" style="stroke-width:3"/>
+<path class="tint" transform="translate(15 -25)" d="M627 166.5c-18.7 0 -25.3 -20.9 -8.8 -27.5 -3.3 -18.7 20.9 -26.4 31.9 -14.3 7.7 -15.4 35.2 -14.3 39.6 1.1 8.8 -9.9 31.9 -5.5 31.9 11 18.7 1.1 20.9 28.6 2.2 29.7z"/><text class="b" x="675" y="130" text-anchor="middle" style="fill:var(--color-secondary)">Exterior</text>
+<text class="b" x="250" y="164" text-anchor="middle">cortafuegos</text>
+<text class="s" x="250" y="182" text-anchor="middle">interno</text>
+<text class="b" x="510" y="164" text-anchor="middle">cortafuegos</text>
+<text class="s" x="510" y="182" text-anchor="middle">externo</text>
+<rect class="band3" x="170" y="200" width="430" height="140" rx="10"/>
+<text class="b" x="380" y="222" text-anchor="middle">frontera (DMZ)</text>
+<path class="ln" d="M380 124V236" style="stroke-width:2"/>
+<path class="ln" d="M230 236H530" style="stroke-width:2"/>
+<path class="ln" d="M230 236V250" style="stroke-width:2"/>
+<g><rect class="box" x="214" y="250" width="32" height="42" rx="3"/><path class="ln" d="M220 260h20M220 268h20M220 276h20"/><circle class="good" cx="238" cy="285" r="2.5"/></g>
+<text class="s" x="230" y="312" text-anchor="middle">servidor</text>
+<text class="s" x="230" y="330" text-anchor="middle">web (HTTP)</text>
+<path class="ln" d="M330 236V250" style="stroke-width:2"/>
+<g><rect class="box" x="314" y="250" width="32" height="42" rx="3"/><path class="ln" d="M320 260h20M320 268h20M320 276h20"/><circle class="good" cx="338" cy="285" r="2.5"/></g>
+<text class="s" x="330" y="312" text-anchor="middle">servidor</text>
+<text class="s" x="330" y="330" text-anchor="middle">DNS</text>
+<path class="ln" d="M430 236V250" style="stroke-width:2"/>
+<g><rect class="box" x="414" y="250" width="32" height="42" rx="3"/><path class="ln" d="M420 260h20M420 268h20M420 276h20"/><circle class="good" cx="438" cy="285" r="2.5"/></g>
+<text class="s" x="430" y="312" text-anchor="middle">proxy</text>
+<text class="s" x="430" y="330" text-anchor="middle">(intermediario)</text>
+<path class="ln" d="M530 236V250" style="stroke-width:2"/>
+<g><rect class="box" x="514" y="250" width="32" height="42" rx="3"/><path class="ln" d="M520 260h20M520 268h20M520 276h20"/><circle class="good" cx="538" cy="285" r="2.5"/></g>
+<text class="s" x="530" y="312" text-anchor="middle">concentrador</text>
+<text class="s" x="530" y="330" text-anchor="middle">VPN</text>
+<text class="s" x="380" y="372" text-anchor="middle">Web y DNS: los de fuera los usan sin entrar en la red interior.</text>
+<text class="s" x="380" y="394" text-anchor="middle">VPN: el túnel termina aquí y su tráfico pasa después por el proxy.</text>
+<text class="b" x="380" y="416" text-anchor="middle" style="font-size:15px">Los equipos de la frontera se administran solo desde dentro, nunca desde fuera.</text>
+</svg>

@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 480">
+<rect class="band2" x="20" y="14" width="680" height="92" rx="10"/>
+<text class="b" x="36" y="38">Plano de control: gestionar el equipo</text>
+<rect class="c2" x="36" y="50" width="440" height="44" rx="6"/>
+<text class="b" x="256" y="70" text-anchor="middle" style="font-size:15px">Gestión</text>
+<text class="s" x="256" y="87" text-anchor="middle">configuración · registros (logs) · informes</text>
+<rect class="box" x="492" y="50" width="192" height="44" rx="6"/>
+<text class="s" x="588" y="70" text-anchor="middle">hardware propio</text>
+<text class="s" x="588" y="87" text-anchor="middle">CPU · RAM · disco</text>
+<rect class="band1" x="20" y="120" width="680" height="304" rx="10"/>
+<text class="b" x="36" y="144">Plano de datos: procesar el tráfico que pasa</text>
+<rect class="ink" x="36" y="156" width="470" height="68" rx="6"/>
+<text class="b w" x="271" y="178" text-anchor="middle" style="font-size:15px">Búsqueda de firmas</text>
+<text class="s" x="271" y="198" text-anchor="middle" style="fill:#fff">exploits (IPS) · virus · spyware</text>
+<text class="s" x="271" y="216" text-anchor="middle" style="fill:#fff">datos sensibles: tarjetas, nº de identidad</text>
+<rect class="box" x="520" y="156" width="164" height="68" rx="6"/>
+<text class="s" x="602" y="186" text-anchor="middle">chips FPGA</text>
+<text class="s" x="602" y="204" text-anchor="middle">+ RAM</text>
+<rect class="ink" x="36" y="236" width="470" height="68" rx="6"/>
+<text class="b w" x="271" y="258" text-anchor="middle" style="font-size:15px">Procesado de seguridad</text>
+<text class="s" x="271" y="278" text-anchor="middle" style="fill:#fff">qué aplicación y qué usuario · filtro de URL</text>
+<text class="s" x="271" y="296" text-anchor="middle" style="fill:#fff">aplica la política · descifra SSL/IPSec · descomprime</text>
+<rect class="box" x="520" y="236" width="164" height="68" rx="6"/>
+<text class="s" x="602" y="266" text-anchor="middle">CPU de muchos núcleos</text>
+<text class="s" x="602" y="284" text-anchor="middle">+ RAM</text>
+<rect class="ink" x="36" y="316" width="470" height="68" rx="6"/>
+<text class="b w" x="271" y="338" text-anchor="middle" style="font-size:15px">Procesado de red</text>
+<text class="s" x="271" y="358" text-anchor="middle" style="fill:#fff">control de flujos · rutas · direcciones MAC</text>
+<text class="s" x="271" y="376" text-anchor="middle" style="fill:#fff">calidad de servicio (QoS) · NAT</text>
+<rect class="box" x="520" y="316" width="164" height="68" rx="6"/>
+<text class="s" x="602" y="346" text-anchor="middle">chips FPGA</text>
+<text class="s" x="602" y="364" text-anchor="middle">+ RAM</text>
+<path class="ln" d="M36 412H684" style="stroke-width:3"/>
+<path class="ln" d="M60 406V418"/>
+<path class="ln" d="M100 406V418"/>
+<path class="ln" d="M140 406V418"/>
+<path class="ln" d="M180 406V418"/>
+<path class="ln" d="M220 406V418"/>
+<path class="ln" d="M260 406V418"/>
+<path class="ln" d="M300 406V418"/>
+<path class="ln" d="M340 406V418"/>
+<path class="ln" d="M380 406V418"/>
+<path class="ln" d="M420 406V418"/>
+<path class="ln" d="M460 406V418"/>
+<path class="ln" d="M500 406V418"/>
+<path class="ln" d="M540 406V418"/>
+<path class="ln" d="M580 406V418"/>
+<path class="ln" d="M620 406V418"/>
+<path class="ln" d="M660 406V418"/>
+<rect class="box" x="250" y="400" width="220" height="22" rx="4"/>
+<text class="s" x="360" y="416" text-anchor="middle">interfaces de red (tráfico)</text>
+<text class="s" x="360" y="448" text-anchor="middle">La gestión va separada del tráfico, y cada tarea pesada tiene su propio hardware.</text>
+<text class="s" x="360" y="466" text-anchor="middle">FPGA = chip programable, muy rápido para una tarea fija.</text>
+</svg>

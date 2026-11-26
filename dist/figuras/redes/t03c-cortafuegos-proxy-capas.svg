@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 420">
+<defs><marker id="t03ccp-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="ink" d="M0 0L10 5L0 10z"/></marker><marker id="t03ccp-r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--color-danger)"/></marker><marker id="t03ccp-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--color-success)"/></marker></defs>
+<text class="h" x="380" y="30" text-anchor="middle">Cortafuegos y proxy: en qué capas trabajan</text>
+<rect class="box" x="20" y="50" width="350" height="300" rx="10" style="fill:none"/>
+<text class="b" x="195" y="76" text-anchor="middle">Cortafuegos: capas de red y transporte (3–4)</text>
+<rect class="box" x="140" y="92" width="110" height="22"/>
+<text class="s" x="195" y="108" text-anchor="middle">aplicación</text>
+<rect class="box" x="140" y="114" width="110" height="22"/>
+<text class="s" x="195" y="130" text-anchor="middle">presentación</text>
+<rect class="box" x="140" y="136" width="110" height="22"/>
+<text class="s" x="195" y="152" text-anchor="middle">sesión</text>
+<rect class="c5" x="140" y="158" width="110" height="22"/>
+<text class="b" x="195" y="174" text-anchor="middle" style="font-size:13px">transporte</text>
+<rect class="c5" x="140" y="180" width="110" height="22"/>
+<text class="b" x="195" y="196" text-anchor="middle" style="font-size:13px">red</text>
+<rect class="box" x="140" y="202" width="110" height="22"/>
+<text class="s" x="195" y="218" text-anchor="middle">enlace</text>
+<rect class="box" x="140" y="224" width="110" height="22"/>
+<text class="s" x="195" y="240" text-anchor="middle">físico</text>
+<g><rect class="box" x="42" y="161" width="32" height="42" rx="3"/><path class="ln" d="M48 171h20M48 179h20M48 187h20"/><circle class="good" cx="66" cy="196" r="2.5"/></g>
+<text class="s" x="58" y="221" text-anchor="middle">red</text>
+<text class="s" x="58" y="237" text-anchor="middle">interior</text>
+<g><rect class="box" x="310" y="169" width="44" height="30" rx="3"/><rect class="tint" x="315" y="174" width="34" height="20"/><rect class="ink" x="328" y="199" width="8" height="6"/><rect class="ink" x="318" y="205" width="28" height="4" rx="2"/></g>
+<text class="s" x="332" y="227" text-anchor="middle">red</text>
+<text class="s" x="332" y="243" text-anchor="middle">exterior</text>
+<path class="ln" d="M74 191H140" style="stroke-width:2"/>
+<path class="ln" d="M250 191H310" style="stroke-width:2"/>
+<path d="M340 280H54" marker-end="url(#t03ccp-a)" style="fill:none;stroke:var(--color-primary);stroke-width:2.5"/>
+<text class="s" x="195" y="272" text-anchor="middle">una sola conexión: el mismo paquete IP</text>
+<text class="s" x="195" y="310" text-anchor="middle">Mira IP, puerto y protocolo</text>
+<text class="s" x="195" y="330" text-anchor="middle">y deja pasar o bloquea el paquete.</text>
+<rect class="box" x="390" y="50" width="350" height="300" rx="10" style="fill:none"/>
+<text class="b" x="565" y="76" text-anchor="middle">Proxy (intermediario): capa de aplicación (7)</text>
+<rect class="c5" x="510" y="92" width="110" height="22"/>
+<text class="b" x="565" y="108" text-anchor="middle" style="font-size:13px">aplicación</text>
+<rect class="box" x="510" y="114" width="110" height="22"/>
+<text class="s" x="565" y="130" text-anchor="middle">presentación</text>
+<rect class="box" x="510" y="136" width="110" height="22"/>
+<text class="s" x="565" y="152" text-anchor="middle">sesión</text>
+<rect class="box" x="510" y="158" width="110" height="22"/>
+<text class="s" x="565" y="174" text-anchor="middle">transporte</text>
+<rect class="box" x="510" y="180" width="110" height="22"/>
+<text class="s" x="565" y="196" text-anchor="middle">red</text>
+<rect class="box" x="510" y="202" width="110" height="22"/>
+<text class="s" x="565" y="218" text-anchor="middle">enlace</text>
+<rect class="box" x="510" y="224" width="110" height="22"/>
+<text class="s" x="565" y="240" text-anchor="middle">físico</text>
+<g><rect class="box" x="412" y="161" width="32" height="42" rx="3"/><path class="ln" d="M418 171h20M418 179h20M418 187h20"/><circle class="good" cx="436" cy="196" r="2.5"/></g>
+<text class="s" x="428" y="221" text-anchor="middle">red</text>
+<text class="s" x="428" y="237" text-anchor="middle">interior</text>
+<g><rect class="box" x="680" y="169" width="44" height="30" rx="3"/><rect class="tint" x="685" y="174" width="34" height="20"/><rect class="ink" x="698" y="199" width="8" height="6"/><rect class="ink" x="688" y="205" width="28" height="4" rx="2"/></g>
+<text class="s" x="702" y="227" text-anchor="middle">red</text>
+<text class="s" x="702" y="243" text-anchor="middle">exterior</text>
+<path class="ln" d="M444 191H510" style="stroke-width:2"/>
+<path class="ln" d="M620 191H680" style="stroke-width:2"/>
+<path d="M710 280H576" marker-end="url(#t03ccp-a)" style="fill:none;stroke:var(--color-primary);stroke-width:2.5"/>
+<path d="M554 280H424" marker-end="url(#t03ccp-a)" style="fill:none;stroke:var(--color-primary);stroke-width:2.5"/>
+<text class="s" x="490" y="272" text-anchor="middle">conexión interna</text>
+<text class="s" x="642" y="272" text-anchor="middle">conexión externa</text>
+<text class="s" x="565" y="310" text-anchor="middle">Recibe la petición, lee el contenido</text>
+<text class="s" x="565" y="330" text-anchor="middle">y crea paquetes nuevos hacia el otro lado.</text>
+<text class="b" x="195" y="380" text-anchor="middle" style="font-size:15px">¿Modifica el tráfico? No</text>
+<text class="s" x="195" y="402" text-anchor="middle">Ejemplo: bloquear puertos inseguros</text>
+<text class="b" x="565" y="380" text-anchor="middle" style="font-size:15px">¿Modifica el tráfico? Sí, en la aplicación</text>
+<text class="s" x="565" y="402" text-anchor="middle">Ejemplo: restringir webs, anonimato, caché</text>
+</svg>

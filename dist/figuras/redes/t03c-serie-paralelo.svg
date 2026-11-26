@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 510">
+<defs><marker id="t03csp-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="ink" d="M0 0L10 5L0 10z"/></marker><marker id="t03csp-r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--color-danger)"/></marker><marker id="t03csp-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--color-success)"/></marker></defs>
+<text class="h" x="380" y="30" text-anchor="middle">Dos cortafuegos: en serie o en paralelo</text>
+<text class="b" x="20" y="66" text-anchor="start">En serie (apilados): el tráfico atraviesa los dos</text>
+<rect class="band1" x="20" y="84" width="140" height="80" rx="10"/>
+<g><rect class="box" x="36" y="98" width="44" height="30" rx="3"/><rect class="tint" x="41" y="103" width="34" height="20"/><rect class="ink" x="54" y="128" width="8" height="6"/><rect class="ink" x="44" y="134" width="28" height="4" rx="2"/></g>
+<g><rect class="box" x="98" y="98" width="44" height="30" rx="3"/><rect class="tint" x="103" y="103" width="34" height="20"/><rect class="ink" x="116" y="128" width="8" height="6"/><rect class="ink" x="106" y="134" width="28" height="4" rx="2"/></g>
+<text class="s" x="90" y="156" text-anchor="middle">red interior</text>
+<path class="ln" d="M160 124H272" style="stroke-width:3"/>
+<g><rect class="c5" x="272" y="106" width="36" height="36" rx="2"/><path d="M272 115h36M272 124h36M272 133h36M281 106v9M299 106v9M290 115v9M281 124v9M299 124v9M290 133v9" style="fill:none;stroke:#a33331;stroke-width:1.2"/></g>
+<path class="ln" d="M308 124H442" style="stroke-width:3"/>
+<g><rect class="c4" x="442" y="106" width="36" height="36" rx="2"/><path d="M442 115h36M442 124h36M442 133h36M451 106v9M469 106v9M460 115v9M451 124v9M469 124v9M460 133v9" style="fill:none;stroke:#a33331;stroke-width:1.2"/></g>
+<path class="ln" d="M478 124H580" style="stroke-width:3"/>
+<path class="tint" transform="translate(-20 -17)" d="M627 166.5c-18.7 0 -25.3 -20.9 -8.8 -27.5 -3.3 -18.7 20.9 -26.4 31.9 -14.3 7.7 -15.4 35.2 -14.3 39.6 1.1 8.8 -9.9 31.9 -5.5 31.9 11 18.7 1.1 20.9 28.6 2.2 29.7z"/><text class="b" x="640" y="138" text-anchor="middle" style="fill:var(--color-secondary)">Internet</text>
+<path class="ln" d="M375 124V150" style="stroke-width:3"/>
+<g><rect class="box" x="359" y="150" width="32" height="42" rx="3"/><path class="ln" d="M365 160h20M365 168h20M365 176h20"/><circle class="good" cx="383" cy="185" r="2.5"/></g>
+<text class="s" x="350" y="178" text-anchor="end">DMZ</text>
+<text class="b" x="290" y="160" text-anchor="middle">FW2</text>
+<text class="s" x="290" y="178" text-anchor="middle">interno</text>
+<text class="b" x="460" y="160" text-anchor="middle">FW1</text>
+<text class="s" x="460" y="178" text-anchor="middle">externo, de estado</text>
+<text class="s" x="380" y="222" text-anchor="middle">Para entrar hay que romper los dos. Conviene que sean distintos (otro fabricante):</text>
+<text class="s" x="380" y="242" text-anchor="middle">así un mismo fallo no abre ambos. El externo puede ser de estado: más barato y rápido.</text>
+<path class="dash" d="M20 262H740"/>
+<text class="b" x="20" y="292" text-anchor="start">En paralelo (alta disponibilidad): dos accesos a Internet</text>
+<rect class="band1" x="20" y="338" width="140" height="80" rx="10"/>
+<g><rect class="box" x="36" y="352" width="44" height="30" rx="3"/><rect class="tint" x="41" y="357" width="34" height="20"/><rect class="ink" x="54" y="382" width="8" height="6"/><rect class="ink" x="44" y="388" width="28" height="4" rx="2"/></g>
+<g><rect class="box" x="98" y="352" width="44" height="30" rx="3"/><rect class="tint" x="103" y="357" width="34" height="20"/><rect class="ink" x="116" y="382" width="8" height="6"/><rect class="ink" x="106" y="388" width="28" height="4" rx="2"/></g>
+<text class="s" x="90" y="410" text-anchor="middle">red interior</text>
+<path class="ln" d="M160 378H250" style="stroke-width:3"/>
+<path class="ln" d="M250 330V426" style="stroke-width:3"/>
+<path class="ln" d="M250 330H442" style="stroke-width:3"/>
+<path class="ln" d="M250 426H442" style="stroke-width:3"/>
+<g><rect class="c5" x="442" y="312" width="36" height="36" rx="2"/><path d="M442 321h36M442 330h36M442 339h36M451 312v9M469 312v9M460 321v9M451 330v9M469 330v9M460 339v9" style="fill:none;stroke:#a33331;stroke-width:1.2"/></g>
+<g><rect class="c5" x="442" y="408" width="36" height="36" rx="2"/><path d="M442 417h36M442 426h36M442 435h36M451 408v9M469 408v9M460 417v9M451 426v9M469 426v9M460 435v9" style="fill:none;stroke:#a33331;stroke-width:1.2"/></g>
+<text class="b" x="430" y="318" text-anchor="end" style="font-size:14px">FW2 · proveedor 2</text>
+<text class="b" x="430" y="414" text-anchor="end" style="font-size:14px">FW1 · proveedor 1</text>
+<path class="ln" d="M478 330H580" style="stroke-width:3"/>
+<path class="ln" d="M478 426H580" style="stroke-width:3"/>
+<path class="tint" transform="translate(-20 189)" d="M627 166.5c-18.7 0 -25.3 -20.9 -8.8 -27.5 -3.3 -18.7 20.9 -26.4 31.9 -14.3 7.7 -15.4 35.2 -14.3 39.6 1.1 8.8 -9.9 31.9 -5.5 31.9 11 18.7 1.1 20.9 28.6 2.2 29.7z"/><text class="b" x="640" y="344" text-anchor="middle" style="fill:var(--color-secondary)">Internet</text>
+<path class="tint" transform="translate(-20 285)" d="M627 166.5c-18.7 0 -25.3 -20.9 -8.8 -27.5 -3.3 -18.7 20.9 -26.4 31.9 -14.3 7.7 -15.4 35.2 -14.3 39.6 1.1 8.8 -9.9 31.9 -5.5 31.9 11 18.7 1.1 20.9 28.6 2.2 29.7z"/><text class="b" x="640" y="440" text-anchor="middle" style="fill:var(--color-secondary)">Internet</text>
+<text class="s" x="360" y="382" text-anchor="middle">un camino u otro</text>
+<text class="s" x="380" y="476" text-anchor="middle">Cada paquete pasa por uno solo; si un acceso cae, sigue el otro. Ambos deben aplicar</text>
+<text class="s" x="380" y="496" text-anchor="middle">las mismas reglas: aquí no hace falta que sean distintos.</text>
+</svg>

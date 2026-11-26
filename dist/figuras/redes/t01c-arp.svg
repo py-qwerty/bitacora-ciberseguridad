@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 500">
+<defs><marker id="t01carp-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path class="ink" d="M0 0L10 5L0 10z"/></marker><marker id="t01carp-r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path class="bad" d="M0 0L10 5L0 10z"/></marker><marker id="t01carp-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path class="good" d="M0 0L10 5L0 10z"/></marker></defs>
+<text class="h" x="20" y="32">ARP: de la IP a la MAC (y cómo se envenena)</text>
+<text class="s" x="20" y="54">A (192.168.1.10) quiere hablar con B (192.168.1.20), que está en su misma red</text>
+<rect class="c1" x="14" y="70" width="360" height="400" rx="10" style="opacity:.35"/>
+<text class="b" x="30" y="96">1. Funcionamiento normal</text>
+<rect class="box" x="26" y="110" width="92" height="44" rx="6"/>
+<text class="b" x="72" y="130" text-anchor="middle">A</text>
+<text class="s" x="72" y="147" text-anchor="middle">MAC …:AA</text>
+<path class="dash" d="M72 156V396" style="opacity:.6"/>
+<rect class="box" x="148" y="110" width="92" height="44" rx="6"/>
+<text class="b" x="194" y="130" text-anchor="middle">Otro</text>
+<text class="s" x="194" y="147" text-anchor="middle">MAC …:CC</text>
+<path class="dash" d="M194 156V396" style="opacity:.6"/>
+<rect class="box" x="270" y="110" width="92" height="44" rx="6"/>
+<text class="b" x="316" y="130" text-anchor="middle">B</text>
+<text class="s" x="316" y="147" text-anchor="middle">MAC …:BB</text>
+<path class="dash" d="M316 156V396" style="opacity:.6"/>
+<rect class="box" x="59.0" y="166" width="270" height="44" rx="6"/>
+<text class="s b" x="194.0" y="184" text-anchor="middle" style="fill:var(--color-text)">① A todos (MAC FF:FF:…:FF):</text>
+<text class="s" x="194.0" y="202" text-anchor="middle">«¿Quién tiene la 192.168.1.20?»</text>
+<path class="ln" d="M72 222H190" marker-end="url(#t01carp-a)"/>
+<path class="ln" d="M72 228H312" marker-end="url(#t01carp-a)"/>
+<text class="s" x="202" y="250">Otro la ignora</text>
+<rect class="box" x="79.0" y="270" width="230" height="26" rx="6"/>
+<text class="s b" x="194.0" y="288" text-anchor="middle" style="fill:var(--color-text)">② Solo a A: «soy yo, …:BB»</text>
+<path class="sgood" d="M316 310H76" marker-end="url(#t01carp-g)"/>
+<text class="s b" x="82" y="360" style="fill:var(--color-text)">③ A lo apunta</text>
+<path class="ln" d="M72 316V402" marker-end="url(#t01carp-a)"/>
+<rect class="box" x="28" y="406" width="290" height="52" rx="6"/>
+<text class="s b" x="40" y="427" style="fill:var(--color-text)">Caché ARP de A (unos 15 minutos)</text>
+<text x="40" y="448">192.168.1.20 → …:BB  ✓</text>
+<rect class="c5" x="386" y="70" width="360" height="400" rx="10" style="opacity:.35"/>
+<text class="b" x="402" y="96">2. Envenenamiento ARP</text>
+<rect class="box" x="398" y="110" width="92" height="44" rx="6"/>
+<text class="b" x="444" y="130" text-anchor="middle">A</text>
+<text class="s" x="444" y="147" text-anchor="middle">MAC …:AA</text>
+<path class="dash" d="M444 156V396" style="opacity:.6"/>
+<rect class="c5" x="520" y="110" width="92" height="44" rx="6"/>
+<text class="b" x="566" y="130" text-anchor="middle">Atacante</text>
+<text class="s" x="566" y="147" text-anchor="middle">MAC …:EE</text>
+<path class="dash" d="M566 156V396" style="opacity:.6"/>
+<rect class="box" x="642" y="110" width="92" height="44" rx="6"/>
+<text class="b" x="688" y="130" text-anchor="middle">B</text>
+<text class="s" x="688" y="147" text-anchor="middle">MAC …:BB</text>
+<path class="dash" d="M688 156V396" style="opacity:.6"/>
+<rect class="c5" x="415.0" y="166" width="220" height="44" rx="6"/>
+<text class="s b" x="525.0" y="184" text-anchor="middle" style="fill:var(--color-text)">① Mentira a A: «la .20</text>
+<text class="s" x="525.0" y="202" text-anchor="middle">soy yo, …:EE» (y la repite)</text>
+<path class="sbad" d="M566 228H448" marker-end="url(#t01carp-r)"/>
+<rect class="box" x="440.0" y="244" width="170" height="44" rx="6"/>
+<text class="s b" x="525.0" y="262" text-anchor="middle" style="fill:var(--color-text)">② A envía «a B»…</text>
+<text class="s" x="525.0" y="280" text-anchor="middle">pero va a …:EE</text>
+<path class="path" d="M444 300H562" marker-end="url(#t01carp-r)"/>
+<rect class="box" x="524.0" y="316" width="190" height="44" rx="6"/>
+<text class="s b" x="619.0" y="334" text-anchor="middle" style="fill:var(--color-text)">③ …el atacante lo lee</text>
+<text class="s" x="619.0" y="352" text-anchor="middle">y se lo pasa a B</text>
+<path class="path" d="M566 372H684" marker-end="url(#t01carp-r)"/>
+<rect class="c5" x="400" y="406" width="290" height="52" rx="6"/>
+<text class="s b" x="412" y="427" style="fill:var(--color-text)">Caché ARP de A, envenenada</text>
+<text x="412" y="448">192.168.1.20 → …:EE  ✗</text>
+<text class="s" x="20" y="494">Defensa: puertos del switch configurados como seguros (cada puerto solo acepta su MAC).</text>
+</svg>

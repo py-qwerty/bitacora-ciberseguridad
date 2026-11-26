@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 500">
+<text class="h" x="20" y="32">Cabecera TCP frente a cabecera UDP</text>
+<text class="s" x="20" y="54">Cada fila son 32 bits. Las dos empiezan igual: puerto de origen y de destino.</text>
+<text class="b" x="92" y="74">TCP</text>
+<text class="s" x="92" y="92" text-anchor="middle">0</text>
+<text class="s" x="316" y="92" text-anchor="middle">16</text>
+<text class="s" x="540" y="92" text-anchor="middle">31</text>
+<rect class="c2" x="92" y="100" width="224" height="32" rx="0"/>
+<text class="b" x="204.0" y="121.0" text-anchor="middle">Puerto de origen</text>
+<rect class="c2" x="316" y="100" width="224" height="32" rx="0"/>
+<text class="b" x="417.0" y="121.0" text-anchor="middle">Puerto de destino</text>
+<circle class="ink" cx="526" cy="116.0" r="11"/>
+<text class="w b" x="526" y="121.0" text-anchor="middle" style="font-size:13px">1</text>
+<rect class="c4" x="92" y="132" width="448" height="32" rx="0"/>
+<text class="b" x="305.0" y="153.0" text-anchor="middle">Número de secuencia</text>
+<circle class="ink" cx="526" cy="148.0" r="11"/>
+<text class="w b" x="526" y="153.0" text-anchor="middle" style="font-size:13px">2</text>
+<rect class="c4" x="92" y="164" width="448" height="32" rx="0"/>
+<text class="b" x="305.0" y="185.0" text-anchor="middle">Número de reconocimiento (ACK)</text>
+<circle class="ink" cx="526" cy="180.0" r="11"/>
+<text class="w b" x="526" y="185.0" text-anchor="middle" style="font-size:13px">2</text>
+<rect class="box" x="92" y="196" width="56" height="32" rx="0"/>
+<text x="120.0" y="217.0" text-anchor="middle">HLEN</text>
+<rect class="box" x="148" y="196" width="56" height="32" rx="0"/>
+<text x="176.0" y="217.0" text-anchor="middle">Res.</text>
+<rect class="c5" x="204" y="196" width="112" height="32" rx="0"/>
+<text class="b" x="249.0" y="217.0" text-anchor="middle">Flags</text>
+<circle class="ink" cx="302" cy="212.0" r="11"/>
+<text class="w b" x="302" y="217.0" text-anchor="middle" style="font-size:13px">3</text>
+<rect class="c1" x="316" y="196" width="224" height="32" rx="0"/>
+<text class="b" x="417.0" y="217.0" text-anchor="middle">Ventana</text>
+<circle class="ink" cx="526" cy="212.0" r="11"/>
+<text class="w b" x="526" y="217.0" text-anchor="middle" style="font-size:13px">4</text>
+<rect class="box" x="92" y="228" width="224" height="32" rx="0"/>
+<text x="204.0" y="249.0" text-anchor="middle">Suma de verificación</text>
+<rect class="box" x="316" y="228" width="224" height="32" rx="0"/>
+<text x="428.0" y="249.0" text-anchor="middle">Puntero de urgencia</text>
+<rect class="box" x="92" y="260" width="448" height="32" rx="0"/>
+<text x="316.0" y="281.0" text-anchor="middle">Opciones (si hay)</text>
+<rect class="tint" x="92" y="292" width="448" height="30" rx="0" style="stroke-dasharray:5 4"/>
+<text x="316" y="312" text-anchor="middle">Datos</text>
+<path class="ln" d="M82 102h-6V258h6"/>
+<text class="s b" x="70" y="178.0" text-anchor="end" style="fill:var(--color-text)">20 bytes</text>
+<text class="s" x="70" y="196.0" text-anchor="end">fijos</text>
+<circle class="ink" cx="573" cy="97" r="11"/>
+<text class="w b" x="573" y="102" text-anchor="middle" style="font-size:13px">1</text>
+<text class="s b" x="592" y="102" style="fill:var(--color-text)">Puertos</text>
+<text class="s" x="592" y="120">qué programa habla</text>
+<text class="s" x="592" y="138">en cada extremo</text>
+<circle class="ink" cx="573" cy="161" r="11"/>
+<text class="w b" x="573" y="166" text-anchor="middle" style="font-size:13px">2</text>
+<text class="s b" x="592" y="166" style="fill:var(--color-text)">Secuencia y ACK</text>
+<text class="s" x="592" y="184">numeran los bytes y</text>
+<text class="s" x="592" y="202">confirman lo recibido</text>
+<circle class="ink" cx="573" cy="225" r="11"/>
+<text class="w b" x="573" y="230" text-anchor="middle" style="font-size:13px">3</text>
+<text class="s b" x="592" y="230" style="fill:var(--color-text)">Flags</text>
+<text class="s" x="592" y="248">SYN abre, FIN cierra,</text>
+<text class="s" x="592" y="266">ACK confirma, RST corta</text>
+<circle class="ink" cx="573" cy="289" r="11"/>
+<text class="w b" x="573" y="294" text-anchor="middle" style="font-size:13px">4</text>
+<text class="s b" x="592" y="294" style="fill:var(--color-text)">Ventana</text>
+<text class="s" x="592" y="312">cuántos bytes acepta</text>
+<text class="s" x="592" y="330">aún el receptor</text>
+<text class="b" x="92" y="366">UDP</text>
+<rect class="c2" x="92" y="376" width="224" height="32" rx="0"/>
+<text class="b" x="204.0" y="397.0" text-anchor="middle">Puerto de origen</text>
+<rect class="c2" x="316" y="376" width="224" height="32" rx="0"/>
+<text class="b" x="417.0" y="397.0" text-anchor="middle">Puerto de destino</text>
+<circle class="ink" cx="526" cy="392.0" r="11"/>
+<text class="w b" x="526" y="397.0" text-anchor="middle" style="font-size:13px">1</text>
+<rect class="box" x="92" y="408" width="224" height="32" rx="0"/>
+<text x="204.0" y="429.0" text-anchor="middle">Longitud</text>
+<rect class="box" x="316" y="408" width="224" height="32" rx="0"/>
+<text x="428.0" y="429.0" text-anchor="middle">Suma de verificación</text>
+<rect class="tint" x="92" y="440" width="448" height="30" rx="0" style="stroke-dasharray:5 4"/>
+<text x="316" y="460" text-anchor="middle">Datos</text>
+<path class="ln" d="M82 378h-6V438h6"/>
+<text class="s b" x="70" y="406.0" text-anchor="end" style="fill:var(--color-text)">8 bytes</text>
+<text class="s" x="70" y="424.0" text-anchor="end"></text>
+<text class="s b" x="562" y="394" style="fill:var(--color-text)">UDP no tiene secuencia,</text>
+<text class="s" x="562" y="412">ni ACK, ni flags: no abre</text>
+<text class="s" x="562" y="430">conexión ni confirma nada</text>
+</svg>

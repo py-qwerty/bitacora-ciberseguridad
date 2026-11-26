@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 500">
+<defs><marker id="t01cmask-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path class="ink" d="M0 0L10 5L0 10z"/></marker><marker id="t01cmask-r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path class="bad" d="M0 0L10 5L0 10z"/></marker><marker id="t01cmask-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path class="good" d="M0 0L10 5L0 10z"/></marker></defs>
+<text class="h" x="20" y="32">Una IP tiene dos partes: la red y el equipo</text>
+<text class="s" x="20" y="54">La máscara las separa: sus bits a 1 marcan la red; los bits a 0, el equipo.</text>
+<text class="b" x="20" y="112">Dirección IP</text>
+<text class="b" x="20" y="172">Máscara</text>
+<text class="s" x="20" y="190">(o «/24»)</text>
+<rect class="c3" x="150" y="84" width="120" height="44" rx="4"/>
+<text class="b" x="210.0" y="113" text-anchor="middle">192</text>
+<rect class="box" x="150" y="150" width="120" height="50" rx="4"/>
+<text class="b" x="210.0" y="172" text-anchor="middle">255</text>
+<text class="s" x="210.0" y="191" text-anchor="middle">11111111</text>
+<text class="s" x="210.0" y="78" text-anchor="middle">8 bits</text>
+<text class="b" x="281.0" y="114" text-anchor="middle">.</text>
+<rect class="c3" x="292" y="84" width="120" height="44" rx="4"/>
+<text class="b" x="352.0" y="113" text-anchor="middle">168</text>
+<rect class="box" x="292" y="150" width="120" height="50" rx="4"/>
+<text class="b" x="352.0" y="172" text-anchor="middle">255</text>
+<text class="s" x="352.0" y="191" text-anchor="middle">11111111</text>
+<text class="s" x="352.0" y="78" text-anchor="middle">8 bits</text>
+<text class="b" x="423.0" y="114" text-anchor="middle">.</text>
+<rect class="c3" x="434" y="84" width="120" height="44" rx="4"/>
+<text class="b" x="494.0" y="113" text-anchor="middle">1</text>
+<rect class="box" x="434" y="150" width="120" height="50" rx="4"/>
+<text class="b" x="494.0" y="172" text-anchor="middle">255</text>
+<text class="s" x="494.0" y="191" text-anchor="middle">11111111</text>
+<text class="s" x="494.0" y="78" text-anchor="middle">8 bits</text>
+<text class="b" x="565.0" y="114" text-anchor="middle">.</text>
+<rect class="c1" x="576" y="84" width="120" height="44" rx="4"/>
+<text class="b" x="636.0" y="113" text-anchor="middle">10</text>
+<rect class="box" x="576" y="150" width="120" height="50" rx="4"/>
+<text class="b" x="636.0" y="172" text-anchor="middle">0</text>
+<text class="s" x="636.0" y="191" text-anchor="middle">00000000</text>
+<text class="s" x="636.0" y="78" text-anchor="middle">8 bits</text>
+<path class="ln" d="M150 214v8H554v-8"/>
+<path class="ln" d="M576 214v8H696v-8"/>
+<text class="b" x="352.0" y="242" text-anchor="middle">RED: 192.168.1 (24 bits)</text>
+<text class="s" x="352.0" y="260" text-anchor="middle">la calle: igual para todos los de tu red</text>
+<text class="b" x="636.0" y="242" text-anchor="middle">EQUIPO: 10</text>
+<text class="s" x="636.0" y="260" text-anchor="middle">el portal</text>
+<rect class="tint" x="20" y="288" width="720" height="112" rx="8" style="opacity:.6"/>
+<text class="b" x="36" y="312">¿El destino está en mi red? Se aplica la máscara (operación AND) y se compara la red</text>
+<circle class="good" cx="48" cy="340" r="11"/>
+<text class="w b" x="48" y="345" text-anchor="middle" style="font-size:13px">✓</text>
+<text x="68" y="345">Destino 192.168.1.20 → red 192.168.1.0: la mía → se lo envío directamente</text>
+<circle class="warn" cx="48" cy="376" r="11"/>
+<text class="b" x="48" y="381" text-anchor="middle" style="font-size:13px">→</text>
+<text x="68" y="374">Destino 192.168.2.30 → red 192.168.2.0: otra red → se lo doy al router</text>
+<text class="s" x="68" y="392">(la «puerta de enlace» o gateway de mi red)</text>
+<rect class="box" x="20" y="420" width="230" height="48" rx="6"/>
+<text class="b" x="135" y="440" text-anchor="middle">192.168.1.0</text>
+<text class="s" x="135" y="459" text-anchor="middle">la red en sí (equipo a 0)</text>
+<rect class="box" x="265" y="420" width="230" height="48" rx="6"/>
+<text class="b" x="380" y="440" text-anchor="middle">192.168.1.255</text>
+<text class="s" x="380" y="459" text-anchor="middle">difusión: a todos (a 1)</text>
+<rect class="box" x="510" y="420" width="230" height="48" rx="6"/>
+<text class="b" x="625" y="440" text-anchor="middle">127.0.0.1</text>
+<text class="s" x="625" y="459" text-anchor="middle">el propio equipo</text>
+<text class="s" x="20" y="490">Privadas (solo dentro de una red): 10.x.x.x · 172.16.x.x a 172.31.x.x · 192.168.x.x</text>
+</svg>

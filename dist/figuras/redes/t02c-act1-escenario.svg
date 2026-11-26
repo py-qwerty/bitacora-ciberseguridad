@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 490">
+<g transform="translate(240 -40) scale(0.62)"><path class="tint" d="M45 175c-34 0 -46 -38 -16 -50 -6 -34 38 -48 58 -26 14 -28 64 -26 72 2 16 -18 58 -10 58 20 34 2 38 52 4 54z"/></g><text class="b" x="318.74" y="56.72" text-anchor="middle" style="fill:var(--color-secondary)"></text>
+<text class="b" x="319" y="58" text-anchor="middle" style="fill:var(--color-secondary)">Internet</text>
+<text class="s" x="372" y="98">0.0.0.0/0 (cualquier IP)</text>
+<path class="ln" d="M360 66V200"/>
+<path class="ln" d="M360 130H580"/>
+<g><rect class="box" x="580" y="108" width="44" height="30" rx="3"/><rect class="tint" x="585" y="113" width="34" height="20"/><rect class="ink" x="598" y="138" width="8" height="6"/><rect class="ink" x="588" y="144" width="28" height="4" rx="2"/></g>
+<text class="b" x="602" y="168" text-anchor="middle">EXTA</text>
+<text class="s" x="602" y="186" text-anchor="middle">10.5.0.10</text>
+<text class="s" x="372" y="150">eth0  10.5.0.254</text>
+<g><rect class="c5" x="340" y="200" width="40" height="32" rx="2"/><path d="M340 210.7h40M340 221.3h40M353.3 200.0v10.7M366.7 200.0v10.7M360.0 210.7v10.7M353.3 221.3v10.7M366.7 221.3v10.7" style="fill:none;stroke:#a33331;stroke-width:1.2"/></g>
+<text class="b" x="400" y="222">FW</text>
+<rect class="band1" x="30" y="150" width="200" height="160" rx="10"/>
+<text class="b" x="130" y="174" text-anchor="middle">DMZ  10.5.1.0/24</text>
+<g><rect class="box" x="86" y="200" width="32" height="42" rx="3"/><path class="ln" d="M92 210h20M92 218h20M92 226h20"/><circle class="good" cx="110" cy="235" r="2.5"/></g>
+<path class="ln" d="M118 221H340"/>
+<text class="s" x="102" y="266" text-anchor="middle">Servidor web</text>
+<text class="s" x="102" y="284" text-anchor="middle">DMZA 10.5.1.10</text>
+<text class="s" x="290" y="246" text-anchor="middle">eth1  10.5.1.254</text>
+<path class="ln" d="M360 232V330"/>
+<text class="s" x="372" y="280">eth2  10.5.2.254</text>
+<rect class="band3" x="130" y="330" width="460" height="150" rx="10"/>
+<text class="b" x="146" y="354">Red interna  10.5.2.0/24</text>
+<path class="ln" d="M170 370H560" style="stroke-width:3"/>
+<path class="ln" d="M220 370V392"/>
+<g><rect class="box" x="198" y="392" width="44" height="30" rx="3"/><rect class="tint" x="203" y="397" width="34" height="20"/><rect class="ink" x="216" y="422" width="8" height="6"/><rect class="ink" x="206" y="428" width="28" height="4" rx="2"/></g>
+<path class="ln" d="M360 370V392"/>
+<g><rect class="box" x="338" y="392" width="44" height="30" rx="3"/><rect class="tint" x="343" y="397" width="34" height="20"/><rect class="ink" x="356" y="422" width="8" height="6"/><rect class="ink" x="346" y="428" width="28" height="4" rx="2"/></g>
+<path class="ln" d="M500 370V392"/>
+<g><rect class="box" x="478" y="392" width="44" height="30" rx="3"/><rect class="tint" x="483" y="397" width="34" height="20"/><rect class="ink" x="496" y="422" width="8" height="6"/><rect class="ink" x="486" y="428" width="28" height="4" rx="2"/></g>
+<text class="s" x="360" y="458" text-anchor="middle">INTA 10.5.2.10</text>
+<text class="s" x="660" y="280" text-anchor="middle">Un solo</text>
+<text class="s" x="660" y="298" text-anchor="middle">cortafuegos,</text>
+<text class="s" x="660" y="316" text-anchor="middle">tres interfaces</text>
+</svg>
