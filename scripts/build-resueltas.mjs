@@ -3,7 +3,7 @@
 //  · Experimentos (laboratorios): content/experimentos/<id>.json → dist/experimentos/<id>.json + index.json
 // Se comprueba lo básico y que las figuras existan.
 import { readFileSync, writeFileSync, readdirSync, mkdirSync, existsSync } from 'node:fs';
-import { TEMA_BLOCKS, validateDiagram } from '../dist/core.js';
+import { TEMA_BLOCKS, validateDiagram, validFigure } from '../dist/core.js';
 const KINDS = [
   { src: 'content/resueltas', out: 'dist/resueltas', name: 'actividad resuelta', required: ['course', 'title', 'intro'] },
   { src: 'content/experimentos', out: 'dist/experimentos', name: 'experimento', required: ['title', 'intro'] },
@@ -25,6 +25,7 @@ for (const K of KINDS) {
       if (!s.title || !Array.isArray(s.blocks) || !s.blocks.length) fail(a.id, `apartado vacío: ${s.id}`);
       for (const b of s.blocks) {
         if (!TEMA_BLOCKS.includes(b.type)) fail(a.id, `bloque desconocido ${b.type} en ${s.id}`);
+        if (b.type === 'figure' && !validFigure(b)) fail(a.id, `figura no válida en ${s.id} (ruta, textos o créditos de la foto)`);
         if (b.type === 'figure' && !existsSync(`dist/${b.src}`)) fail(a.id, `no existe ${b.src}`);
         if (b.type === 'code' && typeof b.text !== 'string') fail(a.id, `código sin texto en ${s.id}`);
         if (b.type === 'diagram') validateDiagram(b, s.id, msg => fail(a.id, `esquema: ${msg}`));

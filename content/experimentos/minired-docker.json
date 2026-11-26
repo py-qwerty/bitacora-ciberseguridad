@@ -203,6 +203,23 @@
      "text": "Empezamos el `docker-compose.yml` por el final: las **redes**. Cada una es un switch virtual (lo vimos en el experimento 1). Necesitamos dos: una para el lado «de fuera» y otra para el lado «de dentro»."
     },
     {
+     "type": "figure",
+     "src": "fotos/switch-empresa-dlink.jpg",
+     "title": "Switches de empresa",
+     "alt": "Dos switches D-Link grises de 24 puertos, uno encima del otro, con casi todos los puertos ocupados por cables de red azules que salen en manojo hacia la derecha.",
+     "credit": {
+      "author": "Mvdiogo",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "url": "https://commons.wikimedia.org/wiki/File:Switch_fastethernet_dlink.jpg"
+     },
+     "caption": "Dos switches de 24 puertos llenos de cables, como los de un armario de red."
+    },
+    {
+     "type": "p",
+     "text": "En una empresa, cada red es uno o varios switches como estos, en un armario, con un cable por equipo. Montar nuestra mini-red de verdad supondría dos switches, tres ordenadores y su cableado. Con Docker cada switch es una línea de texto:"
+    },
+    {
      "type": "code",
      "lang": "yaml",
      "text": "networks:\n  red_externa:\n    ipam: { config: [ { subnet: 10.10.1.0/24 } ] }\n  red_interna:\n    ipam: { config: [ { subnet: 10.10.2.0/24 } ] }",

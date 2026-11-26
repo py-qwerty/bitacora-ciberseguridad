@@ -440,6 +440,23 @@
      "text": "Este es el apartado que más importa para la asignatura de Redes. Docker puede crear **redes virtuales** y enchufar contenedores a ellas. Cada red de Docker funciona como un **switch**: los equipos conectados al mismo switch se ven entre sí directamente."
     },
     {
+     "type": "figure",
+     "src": "fotos/switch-casa-netgear.jpg",
+     "title": "Así es un switch de verdad",
+     "alt": "Un switch Netgear pequeño, de color azul oscuro, con cinco conectores de red en el frontal. En dos de ellos hay enchufados cables de red, uno amarillo y otro rojo; sobre cada conector ocupado se enciende una lucecita verde.",
+     "credit": {
+      "author": "Simon A. Eugster",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "url": "https://commons.wikimedia.org/wiki/File:Netgear_Gigabit_Switch_5-port.jpg"
+     },
+     "caption": "Un switch de casa de 5 puertos con dos cables enchufados."
+    },
+    {
+     "type": "p",
+     "text": "Un switch es una caja con **puertos** (los agujeros donde se enchufa el cable de red). Cada equipo se conecta con un cable a un puerto, y el switch se encarga de pasar cada mensaje solo al puerto donde está su destinatario. La **lucecita** encima de cada puerto se enciende cuando hay un equipo conectado al otro lado del cable y parpadea cuando pasan datos. Una red de Docker es exactamente esto, pero de mentira: no hay caja, ni cables, ni luces; Docker lo simula todo dentro de tu Mac."
+    },
+    {
      "type": "p",
      "text": "Al crear una red se le asigna un rango de direcciones (una subred, por ejemplo `10.99.0.0/24`) y Docker reparte una IP a cada contenedor que se conecta. La primera dirección, la **.1**, se la queda Docker para sí: es la **puerta de enlace** (*gateway*), la salida de esa red hacia tu Mac e internet. Gracias a ella los contenedores pueden descargar programas."
     },

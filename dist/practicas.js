@@ -1,7 +1,7 @@
 // Prácticas de redacción: preguntas de desarrollo, casos prácticos, ejercicios de ordenar y emparejar,
 // y el simulacro con la estructura real del examen (10 de test + redacción).
 // app.js llama a setupPracticas(ctx) y delega en practicasRoute / practicasClick / practicasInput.
-import { shuffle, formatTime } from './core.js?v=13';
+import { shuffle, formatTime } from './core.js?v=14';
 import { hasKey, MODELS, currentModel, maskedKey, saveSettings, clearKey, gradeWithClaude, verifyKey } from './corrector.js?v=3';
 
 let ctx, index = new Map(), cache = new Map(), temaData = new Map(), ticker = null;
