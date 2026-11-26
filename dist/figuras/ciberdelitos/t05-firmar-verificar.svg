@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 500">
+<defs><marker id="t05firmarv-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="good" d="M0 0L10 5L0 10z"/></marker><marker id="t05firmarv-k" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path style="fill:var(--color-text)" d="M0 0L10 5L0 10z"/></marker><marker id="t05firmarv-r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="bad" d="M0 0L10 5L0 10z"/></marker></defs>
+<rect class="band1" x="8" y="8" width="704" height="196" rx="10"/>
+<text class="h" x="24" y="36">1. Firmar (lo hace Lucía)</text>
+<path class="box" d="M34 88h22l10 10v34h-32z"/><path class="dash" d="M40 104h20"/><path class="dash" d="M40 112h20"/><path class="dash" d="M40 120h20"/>
+<text class="s" x="50" y="160" text-anchor="middle">Documento</text>
+<path style="fill:none;stroke:var(--color-text);stroke-width:1.6" d="M76 110H104" marker-end="url(#t05firmarv-k)"/>
+<rect class="box" x="108" y="80" width="140" height="60" rx="6"/>
+<text class="b" x="178" y="105" text-anchor="middle">Calcular</text>
+<text class="b" x="178" y="125" text-anchor="middle">resumen (hash)</text>
+<path style="fill:none;stroke:var(--color-text);stroke-width:1.6" d="M248 110H276" marker-end="url(#t05firmarv-k)"/>
+<rect class="c4" x="280" y="80" width="100" height="60" rx="6"/>
+<text class="b" x="330" y="105" text-anchor="middle">Resumen</text>
+<text class="s" x="330" y="125" text-anchor="middle">8A4F…</text>
+<path style="fill:none;stroke:var(--color-text);stroke-width:1.6" d="M380 110H408" marker-end="url(#t05firmarv-k)"/>
+<rect class="c3" x="412" y="80" width="150" height="60" rx="6"/>
+<text class="b" x="487" y="105" text-anchor="middle">Cifrar con su</text>
+<text class="b" x="487" y="125" text-anchor="middle">clave privada</text>
+<g transform="rotate(0 500 62)"><circle class="c3" cx="486" cy="62" r="9"/><circle cx="486" cy="62" r="3" style="fill:var(--color-surface)"/><path class="c3" d="M495 59h24v6h-4v5h-4v-5h-16z"/></g>
+<path style="fill:none;stroke:var(--color-text);stroke-width:1.6" d="M562 110H590" marker-end="url(#t05firmarv-k)"/>
+<rect class="c1" x="594" y="80" width="110" height="60" rx="6"/>
+<text class="b" x="649" y="115" text-anchor="middle">Firma</text>
+<text class="s" x="360" y="184" text-anchor="middle">Documento y firma viajan juntos al cliente.</text>
+<rect class="band2" x="8" y="216" width="704" height="276" rx="10"/>
+<text class="h" x="24" y="244">2. Verificar (lo hace el cliente)</text>
+<rect class="c1" x="24" y="270" width="96" height="52" rx="6"/>
+<text class="b" x="72" y="301" text-anchor="middle">Firma</text>
+<path style="fill:none;stroke:var(--color-text);stroke-width:1.6" d="M120 296H146" marker-end="url(#t05firmarv-k)"/>
+<rect class="c4" x="150" y="263" width="170" height="66" rx="6"/>
+<text class="b" x="235" y="282" text-anchor="middle">Descifrar con la</text>
+<text class="b" x="235" y="301" text-anchor="middle">clave pública</text>
+<text class="b" x="235" y="320" text-anchor="middle">de Lucía</text>
+<path style="fill:none;stroke:var(--color-text);stroke-width:1.6" d="M320 296H346" marker-end="url(#t05firmarv-k)"/>
+<rect class="box" x="350" y="272" width="96" height="48" rx="6"/>
+<text class="b" x="398" y="301" text-anchor="middle">Resumen A</text>
+<path class="box" d="M56 362h22l10 10v34h-32z"/><path class="dash" d="M62 378h20"/><path class="dash" d="M62 386h20"/><path class="dash" d="M62 394h20"/>
+<text class="s" x="72" y="432" text-anchor="middle">Documento</text>
+<path style="fill:none;stroke:var(--color-text);stroke-width:1.6" d="M98 384H146" marker-end="url(#t05firmarv-k)"/>
+<rect class="box" x="150" y="354" width="170" height="60" rx="6"/>
+<text class="b" x="235" y="379" text-anchor="middle">Calcular</text>
+<text class="b" x="235" y="399" text-anchor="middle">resumen (hash)</text>
+<path style="fill:none;stroke:var(--color-text);stroke-width:1.6" d="M320 384H346" marker-end="url(#t05firmarv-k)"/>
+<rect class="box" x="350" y="360" width="96" height="48" rx="6"/>
+<text class="b" x="398" y="389" text-anchor="middle">Resumen B</text>
+<path style="fill:none;stroke:var(--color-text);stroke-width:1.6" d="M446 296C470 296 472 330 488 336" marker-end="url(#t05firmarv-k)"/>
+<path style="fill:none;stroke:var(--color-text);stroke-width:1.6" d="M446 384C470 384 472 350 488 344" marker-end="url(#t05firmarv-k)"/>
+<rect class="tint" x="492" y="312" width="86" height="56" rx="6"/>
+<text class="b" x="535" y="345" text-anchor="middle">¿A = B?</text>
+<path class="sgood" d="M578 330L606 300" marker-end="url(#t05firmarv-g)"/>
+<path class="sbad" d="M578 350L606 380" marker-end="url(#t05firmarv-r)"/>
+<rect class="c1" x="610" y="268" width="96" height="56" rx="6"/>
+<text class="s" x="658" y="291" text-anchor="middle">Sí</text>
+<text class="b" x="658" y="311" text-anchor="middle">Válida</text>
+<rect class="c5" x="610" y="356" width="96" height="56" rx="6"/>
+<text class="s" x="658" y="379" text-anchor="middle">No</text>
+<text class="b" x="658" y="399" text-anchor="middle">Alterado</text>
+<text class="s" x="360" y="458" text-anchor="middle">La clave pública va en el certificado de Lucía. La privada nunca sale de</text>
+<text class="s" x="360" y="476" text-anchor="middle">sus manos: quien verifica no la necesita.</text>
+</svg>

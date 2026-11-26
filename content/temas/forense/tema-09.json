@@ -93,6 +93,7 @@
             ["Opinión pública", "En crisis importa la discreción, pero los afectados tienen derecho a ser informados. La información debe ser medida y útil; hay que evitar «sobreinformar» solo para aparentar transparencia.", "Un comunicado claro a los clientes afectados, sin detalles técnicos que ayuden al atacante."]
           ]
         },
+        {"type":"figure","src":"figuras/forense/t09-factores.svg","title":"Los siete factores del plan","caption":"Redibujado de la figura 1 del tema. Todos influyen en que la recuperación salga bien.","alt":"En el centro, un círculo con el texto éxito de la recuperación. A su alrededor, siete cajas con flechas hacia el centro: severidad (relativa al negocio), tecnología, presupuesto, apoyo de la organización, tiempo de recuperación, equipo de respuesta y opinión pública."},
         {
           "type": "term",
           "term": "IT (Information Technology)",
@@ -141,6 +142,7 @@
             "**Responsables de negocio**."
           ]
         },
+        {"type":"figure","src":"figuras/forense/t09-equipo-dfir.svg","title":"El equipo de DFIR en el centro","caption":"Durante el incidente se altera la estructura de la empresa: el equipo de DFIR coordina al resto.","alt":"En el centro, un círculo oscuro con el texto equipo de DFIR. De él salen flechas hacia cinco áreas: legal y cumplimiento (resaltada), RRHH, infraestructura de red, soporte IT y responsables de negocio. Nota: legal marca qué se puede examinar y cómo."},
         {
           "type": "table",
           "title": "Miembros clave",
@@ -321,6 +323,7 @@
           "title": "Una fila rellenada",
           "text": "Movimiento lateral → Prevenir: segmentar la red y limitar cuentas de administrador. Detectar: alertas de inicios de sesión entre equipos de usuario. Responder: aislar los anillos afectados y cambiar credenciales."
         },
+        {"type":"figure","src":"figuras/forense/t09-matriz-estado-accion.svg","title":"La matriz estado-acción","caption":"Con la fila de **movimiento lateral** rellenada como en el ejemplo.","alt":"Una tabla con siete filas, los estados de la amenaza en orden de avance (intrusión inicial, explotación de vulnerabilidad, escalado de privilegios, reconocimiento interno, movimiento lateral, mantenimiento de presencia y brecha completada), y tres columnas: prevenir, detectar y responder. La fila de movimiento lateral está rellena: prevenir, segmentar la red y limitar administradores; detectar, alertas de inicios de sesión entre equipos; responder, aislar anillos y cambiar claves. Las demás casillas están vacías para rellenar con una lluvia de ideas."},
         {
           "type": "exam",
           "text": "«Un plan de contingencia debe contener»: **tareas de defensa ante el ataque y tareas de refuerzo de la seguridad desde un punto de vista estratégico**. Sobran el «presupuesto detallado» y el «plan de seguimiento a tres años» (no son lo que define el plan en el tema) y falta la mitad si dicen «solo las tareas de defensa». Si preguntan qué documento recoge la estrategia prevista para actuar, es el **plan de contingencia**, no el informe pericial ni el historial de incidentes."
@@ -441,6 +444,7 @@
             "Al recuperar, según ese riesgo, hacer un análisis forense más o menos profundo: el **análisis forense por capas**."
           ]
         },
+        {"type":"figure","src":"figuras/forense/t09-tiers.svg","title":"Las tres capas del análisis forense","caption":"Redibujado de la figura del tema: a más riesgo del activo, más profundo el análisis.","alt":"Una pirámide con tres franjas. Abajo, tier 1: triage, logs y monitorización, rápido y para muchos equipos. En medio, tier 2: análisis de artefactos, profundidad media. Arriba, tier 3: ingeniería inversa y descifrado, máxima profundidad y solo para los activos más importantes. Una flecha hacia arriba indica más riesgo del activo."},
         {
           "type": "table",
           "title": "Análisis forense por capas (tiers)",
@@ -541,6 +545,7 @@
           "type": "p",
           "text": "**Herramientas de adquisición rápida**: por ejemplo, memorias USB preconfiguradas que, al ejecutarse en una máquina, hacen la adquisición forense automáticamente, incluso varias a la vez; u otras más complejas que se conectan a la unidad con un cable y extraen la información que elija el usuario. Permiten que personal con poca formación adquiera evidencias, y hacerlo rápido."
         },
+        {"type":"figure","src":"figuras/forense/t09-superlinea-tiempo.svg","title":"Una superlínea de tiempo","caption":"Los datos del ejemplo de código de este apartado: tres relojes distintos, corregidos a UTC.","alt":"Tres carriles, uno por fuente: el cortafuegos, con reloj en UTC, registra una conexión entrante a las 02:13:55; PC-RECEPCION, en hora local UTC+1, registra un login a las 03:14:07 y la ejecución de cargador.exe a las 03:20:30; SRV-BD, con el reloj adelantado 7 minutos, registra una lectura masiva a las 02:23:02. Abajo, la superlínea corregida a UTC los ordena: 02:13:55 conexión, 02:14:07 login de admin.backup, 02:16:02 lectura de 1.250.000 filas y 02:20:30 ejecución de cargador.exe. Sin corregir, el login parecería una hora posterior a la lectura."},
         {
           "type": "term",
           "term": "Superlínea de tiempo (supertimeline)",

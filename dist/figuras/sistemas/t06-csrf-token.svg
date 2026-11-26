@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 430">
+<defs><marker id="t06ct-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="ink" d="M0 0L10 5L0 10z"/></marker><marker id="t06ct-t" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--color-secondary)"/></marker><marker id="t06ct-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="good" d="M0 0L10 5L0 10z"/></marker><marker id="t06ct-r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="bad" d="M0 0L10 5L0 10z"/></marker></defs>
+<rect class="c5" x="20" y="40" width="190" height="120" rx="10"/>
+<text class="b" x="115" y="66" text-anchor="middle">Página de Bob</text>
+<text class="s" x="115" y="86" text-anchor="middle">sitio-malicioso.example.com</text>
+<g><path class="box" d="M100 98h20l10 10v28h-30z"/><path class="ln" style="stroke-width:1.2" d="M105 114h20M105 121h20M105 128h14"/></g>
+<text class="s" x="115" y="152" text-anchor="middle">formulario oculto</text>
+<rect class="box" x="275" y="40" width="190" height="120" rx="10"/>
+<g><rect class="box" x="340" y="54" width="60" height="44" rx="4"/><path class="ln" d="M340 64h60"/><circle class="bad" cx="346" cy="59" r="2"/><circle class="warn" cx="353" cy="59" r="2"/><circle class="good" cx="360" cy="59" r="2"/></g>
+<text class="b" x="370" y="120" text-anchor="middle">Navegador de Alice</text>
+<text class="s" x="370" y="140" text-anchor="middle">guarda la cookie del banco</text>
+<rect class="c4" x="530" y="40" width="190" height="120" rx="10"/>
+<g><rect class="box" x="609" y="54" width="32" height="42" rx="3"/><path class="ln" d="M615 64h20M615 72h20M615 80h20"/><circle class="good" cx="633" cy="89" r="2.5"/></g>
+<text class="b" x="625" y="120" text-anchor="middle">banco.com</text>
+<text class="s" x="625" y="140" text-anchor="middle">EliminarCuentaServlet</text>
+<path class="ln" d="M212 80H272" marker-end="url(#t06ct-a)"/>
+<text class="b" x="242" y="72" text-anchor="middle">1</text>
+<path class="path" d="M467 80H527" marker-end="url(#t06ct-r)"/>
+<text class="b" x="497" y="72" text-anchor="middle">2</text>
+<text class="s" x="20" y="190">1  Alice, con la sesión del banco abierta, visita la página de Bob.</text>
+<text class="s" x="20" y="210">2  El formulario oculto hace un POST al banco y el navegador añade la cookie solo.</text>
+<rect class="c5" x="20" y="246" width="340" height="92" rx="6"/>
+<text class="b" x="190.0" y="278.4" text-anchor="middle">Sin token anti-CSRF</text>
+<text class="s" x="190.0" y="297.0" text-anchor="middle">la cookie es válida, la petición parece de Alice:</text>
+<text class="s" x="190.0" y="315.0" text-anchor="middle">se borra la cuenta</text>
+<rect class="c1" x="380" y="246" width="340" height="92" rx="6"/>
+<text class="b" x="550.0" y="278.4" text-anchor="middle">Con token anti-CSRF</text>
+<text class="s" x="550.0" y="297.0" text-anchor="middle">el POST de Bob no lleva el token secreto:</text>
+<text class="s" x="550.0" y="315.0" text-anchor="middle">petición rechazada</text>
+<g><path class="ln" style="stroke:var(--color-primary)" d="M691 270v-5a6 6 0 0 1 12 0v5"/><rect class="c1" x="686" y="269" width="22" height="16" rx="3"/></g>
+<text class="s" x="370" y="370" text-anchor="middle">El token solo aparece en las páginas del banco. Por la política de mismo origen,</text>
+<text class="s" x="370" y="389" text-anchor="middle">la página de Bob no puede leerlas, así que no puede copiar el token.</text>
+</svg>

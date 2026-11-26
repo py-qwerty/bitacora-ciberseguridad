@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 330">
+<defs><marker id="t01bd-ink" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="ink" d="M0 0L10 5L0 10z"/></marker><marker id="t01bd-red" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="bad" d="M0 0L10 5L0 10z"/></marker><marker id="t01bd-grn" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="good" d="M0 0L10 5L0 10z"/></marker></defs>
+<text class="h" x="360" y="28" text-anchor="middle">Un incidente: dos equipos trabajan a la vez</text>
+<rect class="bad" x="20" y="130" width="100" height="70" rx="8" style="opacity:.85"/>
+<text class="b w" x="70" y="160" text-anchor="middle">Incidente</text>
+<text class="s" x="70" y="180" text-anchor="middle" style="fill:#fff">(cae el sistema)</text>
+<path class="ln" d="M120 165L150 105" marker-end="url(#t01bd-ink)"/>
+<path class="ln" d="M120 165L150 225" marker-end="url(#t01bd-ink)"/>
+<rect class="c2" x="150" y="62" width="550" height="86" rx="10"/>
+<text class="b" x="166" y="88">Continuidad de negocio (BC)  ·  perspectiva de negocio</text>
+<text x="166" y="110">¿Cómo seguimos trabajando mientras dura el problema?</text>
+<text class="s" x="166" y="132">Ej.: tomar los pedidos urgentes en papel y por teléfono</text>
+<rect class="c4" x="150" y="182" width="550" height="86" rx="10"/>
+<text class="b" x="166" y="208">Recuperación ante desastres (DR)  ·  perspectiva tecnológica</text>
+<text x="166" y="230">¿Cómo volvemos a poner en marcha los sistemas?</text>
+<text class="s" x="166" y="252">Ej.: restaurar el servidor de pedidos desde la copia</text>
+<path class="dash" d="M600 148V182"/>
+<text class="s" x="612" y="170">alineados</text>
+<text class="s" x="360" y="300" text-anchor="middle">Analogía de clase: BC desvía el tráfico para que la ciudad siga moviéndose;</text>
+<text class="s" x="360" y="318" text-anchor="middle">DR son los bomberos apagando el fuego. El DRP debe encajar dentro del BCM.</text>
+</svg>

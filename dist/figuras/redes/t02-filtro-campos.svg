@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 410">
+<defs><marker id="t02fc-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="ink" d="M0 0L10 5L0 10z"/></marker><marker id="t02fc-r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--color-danger)"/></marker><marker id="t02fc-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--color-success)"/></marker></defs>
+<text class="h" x="380" y="30" text-anchor="middle">Qué mira una regla del filtro de paquetes</text>
+<text class="s" x="380" y="52" text-anchor="middle">Un paquete que llega a tu servidor web, troceado por capas</text>
+<rect class="c4" x="20" y="86" width="150" height="96" rx="4"/>
+<text class="b" x="95" y="112" text-anchor="middle">Enlace</text>
+<text class="s" x="95" y="136" text-anchor="middle">llega por la interfaz</text>
+<text class="s" x="95" y="154" text-anchor="middle">conectada a Internet</text>
+<rect class="c3" x="170" y="86" width="200" height="96" rx="4"/>
+<text class="b" x="270" y="112" text-anchor="middle">Cabecera IP</text>
+<text class="s" x="270" y="136" text-anchor="middle">origen 203.0.113.7</text>
+<text class="s" x="270" y="154" text-anchor="middle">destino 192.168.1.10</text>
+<rect class="c2" x="370" y="86" width="160" height="96" rx="4"/>
+<text class="b" x="450" y="112" text-anchor="middle">Cabecera TCP</text>
+<text class="s" x="450" y="136" text-anchor="middle">puerto origen 51000</text>
+<text class="s" x="450" y="154" text-anchor="middle">puerto destino 443</text>
+<rect class="c1" x="530" y="86" width="210" height="96" rx="4" style="opacity:.45"/>
+<text class="b" x="635" y="112" text-anchor="middle">Datos (aplicación)</text>
+<text class="s" x="635" y="136" text-anchor="middle">qué web se pide,</text>
+<text class="s" x="635" y="154" text-anchor="middle">qué usuario, qué archivo</text>
+<text class="s" x="270" y="172" text-anchor="middle">+ protocolo (TCP) y tamaño</text>
+<path d="M89 74L93 78.2L101 69.8" style="fill:none;stroke:var(--color-success);stroke-width:4;stroke-linecap:round;stroke-linejoin:round"/>
+<path d="M264 74L268 78.2L276 69.8" style="fill:none;stroke:var(--color-success);stroke-width:4;stroke-linecap:round;stroke-linejoin:round"/>
+<path d="M444 74L448 78.2L456 69.8" style="fill:none;stroke:var(--color-success);stroke-width:4;stroke-linecap:round;stroke-linejoin:round"/>
+<path d="M629 68L641 80M641 68L629 80" style="fill:none;stroke:var(--color-danger);stroke-width:4;stroke-linecap:round"/>
+<path class="ln" d="M20 204V214H530V204" style="fill:none;stroke-width:3"/>
+<text class="b" x="275" y="236" text-anchor="middle">Sobre todo la capa de red (IP),</text>
+<text class="s" x="275" y="256" text-anchor="middle">con algo de transporte (puertos) y de enlace (interfaz)</text>
+<path class="ln" d="M530 204V214H740V204" style="fill:none;stroke-width:3"/>
+<text class="b" x="635" y="236" text-anchor="middle" style="fill:var(--color-danger)">No lo mira</text>
+<text class="s" x="635" y="256" text-anchor="middle">contenido de aplicación</text>
+<rect class="tint" x="60" y="286" width="640" height="104" rx="8"/>
+<text class="b" x="380" y="314" text-anchor="middle">Regla: «aceptar TCP con destino 192.168.1.10, puerto 443»</text>
+<text class="s" x="380" y="340" text-anchor="middle">Puede: dejar llegar el tráfico a tu web HTTPS (sale todo en la cabecera).</text>
+<text class="s" x="380" y="362" text-anchor="middle">No puede: «deja pasar a Ana pero no a Luis» ni «bloquea las apuestas»:</text>
+<text class="s" x="380" y="380" text-anchor="middle">el usuario y la web pedida van en los datos, que no mira.</text>
+</svg>

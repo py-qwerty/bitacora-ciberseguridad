@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 410">
+<defs><marker id="t10hashcop-k" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path style="fill:var(--color-text)" d="M0 0L10 5L0 10z"/></marker></defs>
+<rect class="c3" x="44" y="42" width="52" height="36" rx="4"/><circle class="tint" cx="64" cy="60" r="11"/><circle class="ink" cx="64" cy="60" r="3"/><path d="M80 52h10M80 68h10" style="stroke:var(--color-text);stroke-width:2"/>
+<text class="s" x="70" y="98" text-anchor="middle">original</text>
+<path style="fill:none;stroke:var(--color-text);stroke-width:1.6" d="M100 60H146" marker-end="url(#t10hashcop-k)"/>
+<rect class="ink" x="150" y="38" width="120" height="44" rx="6"/>
+<text class="w b" x="210" y="65" text-anchor="middle">SHA-256</text>
+<path style="fill:none;stroke:var(--color-text);stroke-width:1.6" d="M270 60H306" marker-end="url(#t10hashcop-k)"/>
+<rect class="box" x="310" y="38" width="224" height="44" rx="6"/>
+<text class="b" x="422" y="65" text-anchor="middle">3b7f9c0e2a41…e4f5a</text>
+<rect class="c4" x="44" y="132" width="52" height="36" rx="4"/><circle class="tint" cx="64" cy="150" r="11"/><circle class="ink" cx="64" cy="150" r="3"/><path d="M80 142h10M80 158h10" style="stroke:var(--color-text);stroke-width:2"/>
+<text class="s" x="70" y="188" text-anchor="middle">imagen forense</text>
+<path style="fill:none;stroke:var(--color-text);stroke-width:1.6" d="M100 150H146" marker-end="url(#t10hashcop-k)"/>
+<rect class="ink" x="150" y="128" width="120" height="44" rx="6"/>
+<text class="w b" x="210" y="155" text-anchor="middle">SHA-256</text>
+<path style="fill:none;stroke:var(--color-text);stroke-width:1.6" d="M270 150H306" marker-end="url(#t10hashcop-k)"/>
+<rect class="box" x="310" y="128" width="224" height="44" rx="6"/>
+<text class="b" x="422" y="155" text-anchor="middle">3b7f9c0e2a41…e4f5a</text>
+<circle class="good" cx="568" cy="150" r="16"/><path d="M560 150l6 6l10 -12" style="fill:none;stroke:#fff;stroke-width:3"/>
+<text class="s" x="594" y="146">coincide:</text>
+<text class="s" x="594" y="163">copia fiel</text>
+<rect class="c5" x="44" y="222" width="52" height="36" rx="4"/><circle class="tint" cx="64" cy="240" r="11"/><circle class="ink" cx="64" cy="240" r="3"/><path d="M80 232h10M80 248h10" style="stroke:var(--color-text);stroke-width:2"/>
+<text class="s" x="70" y="278" text-anchor="middle">copia con 1 bit</text>
+<path style="fill:none;stroke:var(--color-text);stroke-width:1.6" d="M100 240H146" marker-end="url(#t10hashcop-k)"/>
+<rect class="ink" x="150" y="218" width="120" height="44" rx="6"/>
+<text class="w b" x="210" y="245" text-anchor="middle">SHA-256</text>
+<path style="fill:none;stroke:var(--color-text);stroke-width:1.6" d="M270 240H306" marker-end="url(#t10hashcop-k)"/>
+<rect class="box" x="310" y="218" width="224" height="44" rx="6"/>
+<text class="b" x="422" y="245" text-anchor="middle">91d04a7be3c8…0b62e</text>
+<circle class="bad" cx="568" cy="240" r="16"/><path d="M561 233l14 14M575 233l-14 14" style="fill:none;stroke:#fff;stroke-width:3"/>
+<text class="s" x="594" y="236">no coincide:</text>
+<text class="s" x="594" y="253">algo cambió</text>
+<text class="s" x="422" y="30" text-anchor="middle">huella del contenido</text>
+<rect class="tint" x="40" y="300" width="640" height="92" rx="10"/>
+<text class="b" x="360" y="324" text-anchor="middle">Qué demuestra que los hashes coincidan</text>
+<text x="360" y="348" text-anchor="middle" style="font-size:15px">Que la copia corresponde bit a bit al original en ese momento y condiciones.</text>
+<text x="360" y="368" text-anchor="middle" style="font-size:15px">No dice quién cometió el delito ni que el contenido sea «verdadero».</text>
+</svg>

@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 380">
+<defs><marker id="t03a5-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="ink" d="M0 0L10 5L0 10z"/></marker><marker id="t03a5-r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--color-danger)"/></marker><marker id="t03a5-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--color-success)"/></marker></defs>
+<text class="h" x="380" y="30" text-anchor="middle">APP-5: la DMZ entre dos cortafuegos de fabricantes distintos</text>
+<rect class="band1" x="20" y="90" width="170" height="120" rx="10"/>
+<text class="s" x="105" y="200" text-anchor="middle">red interior</text>
+<g><rect class="box" x="36" y="110" width="44" height="30" rx="3"/><rect class="tint" x="41" y="115" width="34" height="20"/><rect class="ink" x="54" y="140" width="8" height="6"/><rect class="ink" x="44" y="146" width="28" height="4" rx="2"/></g>
+<g><rect class="box" x="100" y="110" width="44" height="30" rx="3"/><rect class="tint" x="105" y="115" width="34" height="20"/><rect class="ink" x="118" y="140" width="8" height="6"/><rect class="ink" x="108" y="146" width="28" height="4" rx="2"/></g>
+<path class="ln" d="M190 150H246" style="stroke-width:3"/>
+<g><rect class="c5" x="250" y="132" width="36" height="36" rx="2"/><path d="M250 141h36M250 150h36M250 159h36M259 132v9M277 132v9M268 141v9M259 150v9M277 150v9M268 159v9" style="fill:none;stroke:#a33331;stroke-width:1.2"/></g>
+<text class="b" x="268" y="190" text-anchor="middle">cortafuegos</text>
+<text class="s" x="268" y="208" text-anchor="middle">interno</text>
+<text class="s" x="268" y="226" text-anchor="middle" style="fill:var(--color-danger)">fabricante A</text>
+<path class="ln" d="M290 150H470" style="stroke-width:3"/>
+<path class="ln" d="M380 150V180" style="stroke-width:3"/>
+<path class="" d="M300 88H462" marker-end="url(#t03a5-r)" style="stroke:var(--color-danger);stroke-width:2;fill:none;stroke-dasharray:6 4"/>
+<path d="M374 82L386 94M386 82L374 94" style="fill:none;stroke:var(--color-danger);stroke-width:4;stroke-linecap:round"/>
+<text class="s" x="380" y="76" text-anchor="middle"></text>
+<rect class="band3" x="330" y="100" width="100" height="170" rx="10"/>
+<text class="b" x="380" y="124" text-anchor="middle">DMZ</text>
+<text class="s" x="380" y="124" text-anchor="middle"></text>
+<g><rect class="box" x="364" y="180" width="32" height="42" rx="3"/><path class="ln" d="M370 190h20M370 198h20M370 206h20"/><circle class="good" cx="388" cy="215" r="2.5"/></g>
+<text class="s" x="380" y="244" text-anchor="middle">proxy</text>
+<g><rect class="c4" x="474" y="132" width="36" height="36" rx="2"/><path d="M474 141h36M474 150h36M474 159h36M483 132v9M501 132v9M492 141v9M483 150v9M501 150v9M492 159v9" style="fill:none;stroke:#a33331;stroke-width:1.2"/></g>
+<text class="b" x="492" y="190" text-anchor="middle">cortafuegos</text>
+<text class="s" x="492" y="208" text-anchor="middle">externo</text>
+<text class="s" x="492" y="226" text-anchor="middle" style="fill:var(--color-primary)">fabricante B</text>
+<path class="ln" d="M514 150H600" style="stroke-width:3"/>
+<path class="tint" d="M627 166.5c-18.7 0 -25.3 -20.9 -8.8 -27.5 -3.3 -18.7 20.9 -26.4 31.9 -14.3 7.7 -15.4 35.2 -14.3 39.6 1.1 8.8 -9.9 31.9 -5.5 31.9 11 18.7 1.1 20.9 28.6 2.2 29.7z"/>
+<text class="b" x="660" y="155" text-anchor="middle" style="fill:var(--color-secondary)">Internet</text>
+<text class="s" x="380" y="300" text-anchor="middle">Prohibido ir directo de un cortafuegos al otro (✗): todo pasa por el proxy de la DMZ.</text>
+<text class="s" x="380" y="324" text-anchor="middle">Para llegar dentro, el atacante tiene que romper los dos cortafuegos.</text>
+<text class="b" x="380" y="348" text-anchor="middle" style="font-size:15px">Si fueran de la misma marca, un mismo fallo abriría los dos: por eso, marcas distintas.</text>
+</svg>

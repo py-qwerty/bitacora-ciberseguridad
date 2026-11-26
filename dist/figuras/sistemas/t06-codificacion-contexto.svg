@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 380">
+<defs><marker id="t06cc-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="ink" d="M0 0L10 5L0 10z"/></marker><marker id="t06cc-t" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--color-secondary)"/></marker><marker id="t06cc-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="good" d="M0 0L10 5L0 10z"/></marker><marker id="t06cc-r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="bad" d="M0 0L10 5L0 10z"/></marker></defs>
+<rect class="c5" x="20" y="150" width="150" height="70" rx="6"/>
+<text class="b" x="95.0" y="180.4" text-anchor="middle">Dato no fiable</text>
+<text class="s" x="95.0" y="199.0" text-anchor="middle">&lt;script&gt;…&lt;/script&gt;</text>
+<path class="ln" d="M172 185 C 200 185, 200 75, 228 75"/>
+<rect class="c4" x="232" y="40" width="220" height="70" rx="6"/>
+<text class="b" x="342.0" y="70.4" text-anchor="middle">Cuerpo HTML</text>
+<text class="s" x="342.0" y="89.0" text-anchor="middle">&lt;div&gt;…&lt;/div&gt;, &lt;h1&gt;…&lt;/h1&gt;</text>
+<path class="ln" d="M454 75H486" marker-end="url(#t06cc-a)"/>
+<rect class="c1" x="490" y="40" width="210" height="70" rx="6"/>
+<text class="b" x="595.0" y="70.4" text-anchor="middle">Encode.forHtml</text>
+<text class="s" x="595.0" y="89.0" text-anchor="middle">de OWASP Java Encoder</text>
+<path class="ln" d="M172 185 C 200 185, 200 179, 228 179"/>
+<rect class="c4" x="232" y="144" width="220" height="70" rx="6"/>
+<text class="b" x="342.0" y="174.4" text-anchor="middle">Atributo HTML</text>
+<text class="s" x="342.0" y="193.0" text-anchor="middle">&lt;input value="…"&gt;</text>
+<path class="ln" d="M454 179H486" marker-end="url(#t06cc-a)"/>
+<rect class="c1" x="490" y="144" width="210" height="70" rx="6"/>
+<text class="b" x="595.0" y="174.4" text-anchor="middle">Encode.forHtmlAttribute</text>
+<text class="s" x="595.0" y="193.0" text-anchor="middle">de OWASP Java Encoder</text>
+<path class="ln" d="M172 185 C 200 185, 200 283, 228 283"/>
+<rect class="c4" x="232" y="248" width="220" height="70" rx="6"/>
+<text class="b" x="342.0" y="278.4" text-anchor="middle">Dentro de JavaScript</text>
+<text class="s" x="342.0" y="297.0" text-anchor="middle">&lt;script&gt;var a='…'&lt;/script&gt;</text>
+<path class="ln" d="M454 283H486" marker-end="url(#t06cc-a)"/>
+<rect class="c1" x="490" y="248" width="210" height="70" rx="6"/>
+<text class="b" x="595.0" y="278.4" text-anchor="middle">Encode.forJavaScript</text>
+<text class="s" x="595.0" y="297.0" text-anchor="middle">de OWASP Java Encoder</text>
+<text class="s" x="360" y="348" text-anchor="middle">¿Dónde acaba el dato? Cada contexto tiene sus caracteres peligrosos y su codificador.</text>
+<text class="s" x="360" y="368" text-anchor="middle">En HTML, &lt; pasa a &amp;lt;: el navegador lo pinta como texto y no lo ejecuta.</text>
+</svg>

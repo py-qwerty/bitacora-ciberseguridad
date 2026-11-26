@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 440">
+<defs><marker id="t03-inyeccion-comandos-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="ink" d="M0 0L10 5L0 10z"/></marker><marker id="t03-inyeccion-comandos-r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="bad" d="M0 0L10 5L0 10z"/></marker><marker id="t03-inyeccion-comandos-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="good" d="M0 0L10 5L0 10z"/></marker></defs>
+<text class="h" x="370" y="26" text-anchor="middle">Inyección de comandos: el ; encadena una segunda orden</text>
+<g><circle class="c5" cx="60" cy="92.0" r="9.6"/><path class="c5" d="M43.2 123.2a16.8 16.8 0 0 1 33.6 0z"/></g>
+<text class="b" x="60" y="146" text-anchor="middle">Atacante</text>
+<rect class="box" x="100" y="74" width="276" height="40" rx="5"/>
+<text class="s" x="108" y="99">Comprobar servidor:</text>
+<text x="254" y="100" font-family="Menlo,Consolas,monospace" style="font-size:15px;fill:var(--color-danger);font-weight:700">8.8.8.8; ls</text>
+<path class="path" d="M378 94H410" marker-end="url(#t03-inyeccion-comandos-r)"/>
+<rect class="c3" x="414" y="56" width="310" height="92" rx="8"/>
+<text class="b" x="569" y="80" text-anchor="middle">Aplicación web</text>
+<text class="s" x="569" y="98" text-anchor="middle">construye el comando:</text>
+<text x="569" y="128" text-anchor="middle" font-family="Menlo,Consolas,monospace" style="font-size:15px" xml:space="preserve"><tspan>"ping " + </tspan><tspan style="fill:var(--color-danger);font-weight:700">entrada</tspan></text>
+<path class="path" d="M569 150V184" marker-end="url(#t03-inyeccion-comandos-r)"/>
+<rect class="ink" x="330" y="188" width="394" height="120" rx="8"/>
+<text class="s w" x="346" y="212">Shell del sistema operativo del servidor</text>
+<text class="w" x="346" y="240" font-family="Menlo,Consolas,monospace" style="font-size:15px" xml:space="preserve"><tspan>$ ping 8.8.8.8</tspan><tspan style="fill:#ffb4b0;font-weight:700">; ls</tspan></text>
+<text class="s w" x="346" y="266">→ 1.ª orden: ping (lo esperado)</text>
+<text class="s w" x="346" y="290" style="fill:#ffb4b0">→ 2.ª orden: ls, lista los archivos</text>
+<path class="path" d="M330 270H170" marker-end="url(#t03-inyeccion-comandos-r)"/>
+<text class="s" x="250" y="260" text-anchor="middle">devuelve el listado</text>
+<rect class="box" x="20" y="232" width="146" height="110" rx="6"/>
+<text x="32" y="256" font-family="Menlo,Consolas,monospace" style="font-size:14px">index.php</text>
+<text x="32" y="278" font-family="Menlo,Consolas,monospace" style="font-size:14px">config.php</text>
+<text x="32" y="300" font-family="Menlo,Consolas,monospace" style="font-size:14px">uploads/</text>
+<text x="32" y="322" font-family="Menlo,Consolas,monospace" style="font-size:14px">backup.sql</text>
+<text class="s" x="370" y="374" text-anchor="middle">Después puede cambiar ls por cat /etc/passwd y explorar todo el disco,</text>
+<text class="s" x="370" y="394" text-anchor="middle">con los permisos del usuario con el que corre la aplicación.</text>
+<text class="s" x="370" y="424" text-anchor="middle">Defensa: no ejecutar comandos externos; si no hay más remedio, lista blanca (solo IP válidas).</text>
+</svg>

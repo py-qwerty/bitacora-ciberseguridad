@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 400">
+<text class="h" x="380" y="30" text-anchor="middle">Qué parte del paquete lee cada cortafuegos</text>
+<text class="s" x="380" y="52" text-anchor="middle">Una petición web vista por dentro: cada capa añade su cabecera delante de los datos</text>
+<rect class="c4" x="20" y="80" width="150" height="92" rx="4"/>
+<text class="b" x="95.0" y="106" text-anchor="middle">Ethernet</text>
+<text class="s" x="95.0" y="130" text-anchor="middle">MAC de origen</text>
+<text class="s" x="95.0" y="148" text-anchor="middle">y de destino</text>
+<rect class="c3" x="170" y="80" width="160" height="92" rx="4"/>
+<text class="b" x="250.0" y="106" text-anchor="middle">Cabecera IP</text>
+<text class="s" x="250.0" y="130" text-anchor="middle">IP 192.168.1.20 →</text>
+<text class="s" x="250.0" y="148" text-anchor="middle">203.0.113.10</text>
+<rect class="c2" x="330" y="80" width="150" height="92" rx="4"/>
+<text class="b" x="405.0" y="106" text-anchor="middle">Cabecera TCP</text>
+<text class="s" x="405.0" y="130" text-anchor="middle">puerto 51000 → 80</text>
+<text class="s" x="405.0" y="148" text-anchor="middle">flags SYN/ACK</text>
+<rect class="c1" x="480" y="80" width="260" height="92" rx="4"/>
+<text class="b" x="610.0" y="106" text-anchor="middle">Datos (HTTP)</text>
+<text class="s" x="610.0" y="130" text-anchor="middle">GET /login.php</text>
+<text class="s" x="610.0" y="148" text-anchor="middle">Host: tienda.example</text>
+<path class="ln" d="M170 195V205H480V195" style="fill:none;stroke-width:3"/>
+<text class="b" x="325.0" y="227" text-anchor="middle">Filtrado de paquetes (y de estado)</text>
+<text class="s" x="325.0" y="245" text-anchor="middle">solo cabeceras IP y TCP/UDP</text>
+<path class="ln" d="M330 265V275H480V265" style="fill:none;stroke-width:3"/>
+<text class="b" x="405.0" y="297" text-anchor="middle">Pasarela de circuito</text>
+<text class="s" x="405.0" y="315" text-anchor="middle">la conexión TCP al abrirse</text>
+<path class="ln" d="M170 335V345H740V335" style="fill:none;stroke-width:3"/>
+<text class="b" x="455.0" y="367" text-anchor="middle">Pasarela de aplicación (proxy)</text>
+<text class="s" x="455.0" y="385" text-anchor="middle">también los datos: ve «GET /login.php»</text>
+</svg>

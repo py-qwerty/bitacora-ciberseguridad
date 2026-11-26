@@ -39,6 +39,7 @@
           "type": "p",
           "text": "De todos los ciberdelitos de la asignatura, los de este bloque son los **más puramente informáticos**: no son un delito clásico hecho con ordenador (como una estafa por correo), sino ataques directos contra la información y los sistemas. El temario los describe como ataques contra los principios de **confidencialidad, integridad y disponibilidad**."
         },
+        {"type":"figure","src":"figuras/ciberdelitos/t09-mapa-tipos.svg","title":"Mapa del tema: tres familias de delitos","caption":"Redibujado del esquema inicial del tema.","alt":"Árbol con la raíz Tipos delictivos (III) y tres ramas. Daños informáticos: malware, APT (amenaza persistente avanzada), botnet y ransomware. Distribución de contenidos: relacionados con abusos a menores y relacionados con el terrorismo. Otros ciberdelitos: ciberacoso y ciberbullying, y grooming."},
         {
           "type": "table",
           "title": "La tríada CIA aplicada a los ataques del tema",
@@ -90,6 +91,7 @@
           "type": "p",
           "text": "Esa decisión marco define **dato** como toda representación de hechos, informaciones o conceptos que un sistema puede tratar, **incluidos los programas**. Es decir: un programa también es un dato, y destruirlo también es daño informático."
         },
+        {"type":"figure","src":"figuras/ciberdelitos/t09-triada-cia.svg","title":"La tríada CIA: tres formas de atacar la información","alt":"Tres columnas. Confidencialidad (que solo accedan los autorizados): un ojo; en el diario, leerlo sin permiso; en un sistema, entrar en ficheros o espiar correos; Código Penal art. 197 y 197 bis. Integridad (que los datos no se alteren sin permiso): una hoja rota; arrancar o reescribir páginas; borrar, modificar o corromper ficheros; art. 264. Disponibilidad (que el sistema funcione cuando se necesita): un candado; cerrar el cajón con candado; dejar un sistema fuera de servicio (DoS); art. 264 bis."},
         {
           "type": "exam",
           "text": "Si el test pregunta contra qué principio atentan los daños informáticos y solo una opción es un pilar real de la tríada, elige ese: **integridad** (o confidencialidad, o disponibilidad). Trampas: «indisponibilidad» (suena parecido pero no es un principio, es el efecto del ataque), «lealtad», «funcionalidad», «productividad» o «correo electrónico». Y si pregunta por «dejar fuera de servicio un sistema», la respuesta es **disponibilidad**, no confidencialidad."
@@ -142,6 +144,7 @@
             ]
           ]
         },
+        {"type":"figure","src":"figuras/ciberdelitos/t09-articulos-264.svg","title":"264, 264 bis y 264 ter: la información, el sistema y las herramientas","caption":"Las tres penas son las básicas; los agravantes las suben.","alt":"Tres paneles. Art. 264, la información: borrar, dañar, alterar, suprimir o hacer inaccesibles datos, programas o documentos; pena básica de 6 meses a 3 años. Art. 264 bis, el sistema: obstaculizar o interrumpir gravemente su funcionamiento (típico DoS); 6 meses a 3 años. Art. 264 ter, las herramientas: producir, adquirir, importar o facilitar programas, contraseñas o códigos de acceso; 6 meses a 2 años o multa de 3 a 18 meses. Una línea discontinua une el 264 ter con los otros dos: castiga a quien suministra las herramientas."},
         {
           "type": "list",
           "title": "Agravantes del 264 bis que conviene recordar",
@@ -444,6 +447,7 @@
             "**Mantener la persistencia**: mutar el malware, abrir nuevos accesos remotos e infectar más equipos para no ser detectados por antivirus ni por sistemas de detección de intrusiones."
           ]
         },
+        {"type":"figure","src":"figuras/ciberdelitos/t09-apt-ciclo.svg","title":"Las siete fases de una APT, en ciclo","caption":"Fases descritas por Mandiant; la flecha discontinua indica que el ciclo se repite.","alt":"Siete cajas en circuito: 1 reconocimiento (elige a sus víctimas), 2 intrusión inicial (spear phishing), 3 puerta trasera (conecta con el C&C), 4 roba credenciales (identidades legítimas), 5 instala utilidades (sniffers, keyloggers), 6 se extiende y extrae los datos, 7 persistencia (muta y abre accesos). Una flecha discontinua vuelve de la 7 a la 1: no es una lista que se recorre una vez, sino un ciclo."},
         {
           "type": "term",
           "term": "Spear phishing",
@@ -527,6 +531,7 @@
             ]
           ]
         },
+        {"type":"figure","src":"figuras/ciberdelitos/t09-botnet-cc.svg","title":"Anatomía de una botnet","alt":"El botmaster da órdenes al servidor de mando y control (C&C), que las reenvía por puerta trasera, web HTTP (la más usada) o tuits a un grupo de ordenadores zombis cuyos dueños no saben que están infectados. Los zombis se usan para spam y phishing, ataques DDoS, distribuir malware, robar información, alojar webs falsas, guardar material ilícito y clics en publicidad. Hay que distinguir el dispositivo utilizado del operador que lo dirige."},
         {
           "type": "list",
           "title": "Para qué se usa una botnet",

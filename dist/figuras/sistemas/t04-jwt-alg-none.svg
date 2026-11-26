@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 420">
+<defs><marker id="t04-jwt-alg-none-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="ink" d="M0 0L10 5L0 10z"/></marker><marker id="t04-jwt-alg-none-r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="bad" d="M0 0L10 5L0 10z"/></marker><marker id="t04-jwt-alg-none-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="good" d="M0 0L10 5L0 10z"/></marker></defs>
+<text class="h" x="370" y="26" text-anchor="middle">Ataque «alg: none»: un token sin firma que se cuela</text>
+<rect class="c2" x="16" y="48" width="330" height="150" rx="8"/>
+<text class="b" x="181" y="72" text-anchor="middle">Token de ana, decodificado</text>
+<text x="32" y="104" font-family="Menlo,Consolas,monospace" style="font-size:13px" xml:space="preserve"><tspan>header:  {"alg":"</tspan><tspan>HS256</tspan><tspan>"}</tspan></text>
+<text x="32" y="132" font-family="Menlo,Consolas,monospace" style="font-size:13px" xml:space="preserve"><tspan>payload: {"user_name":"ana",</tspan></text>
+<text x="32" y="152" font-family="Menlo,Consolas,monospace" style="font-size:13px" xml:space="preserve"><tspan>          "roles":["</tspan><tspan>user</tspan><tspan>"]}</tspan></text>
+<text x="32" y="182" font-family="Menlo,Consolas,monospace" style="font-size:13px" xml:space="preserve"><tspan>firma:   </tspan><tspan style="fill:var(--color-muted)">Apc3oswzCHN0…</tspan></text>
+<rect class="c5" x="394" y="48" width="330" height="150" rx="8"/>
+<text class="b" x="559" y="72" text-anchor="middle">Token manipulado</text>
+<text x="410" y="104" font-family="Menlo,Consolas,monospace" style="font-size:13px" xml:space="preserve"><tspan>header:  {"alg":"</tspan><tspan style="fill:var(--color-danger);font-weight:700">none</tspan><tspan>"}</tspan></text>
+<text x="410" y="132" font-family="Menlo,Consolas,monospace" style="font-size:13px" xml:space="preserve"><tspan>payload: {"user_name":"ana",</tspan></text>
+<text x="410" y="152" font-family="Menlo,Consolas,monospace" style="font-size:13px" xml:space="preserve"><tspan>          "roles":["</tspan><tspan style="fill:var(--color-danger);font-weight:700">admin</tspan><tspan>"]}</tspan></text>
+<text x="410" y="182" font-family="Menlo,Consolas,monospace" style="font-size:13px" xml:space="preserve"><tspan>firma:   </tspan><tspan style="fill:var(--color-danger);font-weight:700">(vacía)</tspan></text>
+<path class="path" d="M348 122H390" marker-end="url(#t04-jwt-alg-none-r)"/>
+<text class="s" x="350" y="222" text-anchor="middle">Leer y editar no necesita ninguna clave: es solo Base64</text>
+<path class="ln" d="M559 200V240H200V260" marker-end="url(#t04-jwt-alg-none-a)"/>
+<path class="ln" d="M559 240V260" marker-end="url(#t04-jwt-alg-none-a)"/>
+<rect class="c5" x="16" y="264" width="360" height="106" rx="8"/>
+<text class="b" x="196" y="284" text-anchor="middle">Servidor MAL: obedece al «alg» del token</text>
+<text class="s" x="196" y="310" text-anchor="middle">alg = none → no comprueba la firma</text>
+<text class="b" x="196" y="340" text-anchor="middle" style="fill:var(--color-danger);font-size:18px">ACEPTA: ana es admin</text>
+<rect class="c1" x="394" y="264" width="330" height="106" rx="8"/>
+<text class="b" x="559" y="284" text-anchor="middle">Servidor BIEN: HS256 fijado</text>
+<text class="s" x="559" y="310" text-anchor="middle">calcula la firma con su secreto: no cuadra</text>
+<text class="b" x="559" y="340" text-anchor="middle" style="fill:var(--color-success);font-size:18px">RECHAZA el token</text>
+<text class="s" x="370" y="400" text-anchor="middle">Defensa: deshabilitar none, fijar en el servidor los algoritmos permitidos y validar siempre la firma.</text>
+</svg>

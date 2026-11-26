@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 370">
+<defs><marker id="t04sd-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="ink" d="M0 0L10 5L0 10z"/></marker><marker id="t04sd-r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--color-danger)"/></marker><marker id="t04sd-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--color-success)"/></marker></defs>
+<text class="h" x="380" y="30" text-anchor="middle">snort -dev: qué parte del paquete enseña cada letra</text>
+<text class="s" x="380" y="52" text-anchor="middle">Según el manual de Snort (el tema tiene una errata en estas opciones)</text>
+<rect class="c4" x="20" y="74" width="170" height="90" rx="4"/>
+<text class="b" x="105" y="102" text-anchor="middle">Ethernet</text>
+<text class="s" x="105" y="126" text-anchor="middle">cabecera de enlace</text>
+<text class="s" x="105" y="144" text-anchor="middle">MAC origen y destino</text>
+<rect class="c3" x="190" y="74" width="180" height="90" rx="4"/>
+<text class="b" x="280" y="102" text-anchor="middle">Cabecera IP</text>
+<text class="s" x="280" y="126" text-anchor="middle">IP origen y destino</text>
+<rect class="c2" x="370" y="74" width="170" height="90" rx="4"/>
+<text class="b" x="455" y="102" text-anchor="middle">TCP / UDP / ICMP</text>
+<text class="s" x="455" y="126" text-anchor="middle">puertos, flags…</text>
+<rect class="c1" x="540" y="74" width="200" height="90" rx="4"/>
+<text class="b" x="640" y="102" text-anchor="middle">Datos</text>
+<text class="s" x="640" y="126" text-anchor="middle">contenido de</text>
+<text class="s" x="640" y="144" text-anchor="middle">la aplicación</text>
+<path class="ln" d="M20 186V196H190V186" style="fill:none;stroke-width:3"/>
+<rect class="ink" x="79" y="202" width="52" height="30" rx="6"/>
+<text class="b w" x="105" y="223" text-anchor="middle" style="font-family:monospace;font-size:18px">-e</text>
+<text class="s" x="105" y="254" text-anchor="middle">añade el enlace</text>
+<path class="ln" d="M190 186V196H540V186" style="fill:none;stroke-width:3"/>
+<rect class="ink" x="339" y="202" width="52" height="30" rx="6"/>
+<text class="b w" x="365" y="223" text-anchor="middle" style="font-family:monospace;font-size:18px">-v</text>
+<text class="s" x="365" y="254" text-anchor="middle">muestra las cabeceras</text>
+<path class="ln" d="M540 186V196H740V186" style="fill:none;stroke-width:3"/>
+<rect class="ink" x="614" y="202" width="52" height="30" rx="6"/>
+<text class="b w" x="640" y="223" text-anchor="middle" style="font-family:monospace;font-size:18px">-d</text>
+<text class="s" x="640" y="254" text-anchor="middle">añade los datos</text>
+<rect class="tint" x="120" y="288" width="520" height="58" rx="8"/>
+<text class="s" x="380" y="312" text-anchor="middle" style="fill:var(--color-text)">snort -dev = las tres juntas: el paquete entero por consola.</text>
+<text class="s" x="380" y="332" text-anchor="middle">Las tres solo sirven para ver; -l, -b y -c cambian de modo.</text>
+</svg>

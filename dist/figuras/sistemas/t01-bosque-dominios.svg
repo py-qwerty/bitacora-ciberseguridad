@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 470">
+<defs><marker id="t01-bosque-dominios-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="ink" d="M0 0L10 5L0 10z"/></marker><marker id="t01-bosque-dominios-r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="bad" d="M0 0L10 5L0 10z"/></marker><marker id="t01-bosque-dominios-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="good" d="M0 0L10 5L0 10z"/></marker></defs>
+<text class="h" x="370" y="26" text-anchor="middle">Bosque, dominios, confianzas y sitios</text>
+<rect class="dash" x="16" y="46" width="460" height="290" rx="14"/>
+<text class="b" x="30" y="70">Bosque de la organización</text>
+<path class="c1" d="M246 80L308 168H184z"/>
+<text class="s" x="246" y="152" text-anchor="middle">dominio</text>
+<text class="b" x="176" y="132" text-anchor="end">central.com</text>
+<text class="s" x="176" y="150" text-anchor="end">dominio principal</text>
+<path class="c4" d="M116 212L178 300H54z"/>
+<text class="s" x="116" y="284" text-anchor="middle">dominio</text>
+<text class="b" x="116" y="322" text-anchor="middle">sevilla.central.com</text>
+<path class="c4" d="M376 212L438 300H314z"/>
+<text class="s" x="376" y="284" text-anchor="middle">dominio</text>
+<text class="b" x="376" y="322" text-anchor="middle">madrid.central.com</text>
+<path class="ln" d="M206 172L134 214" marker-end="url(#t01-bosque-dominios-a)" marker-start="url(#t01-bosque-dominios-a)"/>
+<path class="ln" d="M286 172L358 214" marker-end="url(#t01-bosque-dominios-a)" marker-start="url(#t01-bosque-dominios-a)"/>
+<text class="s" x="150" y="184" text-anchor="end">confianza</text>
+<text class="s" x="342" y="184">confianza</text>
+<path class="c3" d="M640 80L702 168H578z"/>
+<text class="s" x="640" y="152" text-anchor="middle">dominio</text>
+<text class="b" x="640" y="192" text-anchor="middle">socio.com</text>
+<text class="s" x="640" y="210" text-anchor="middle">otro bosque</text>
+<path class="ln" d="M582 124H296" marker-end="url(#t01-bosque-dominios-a)"/>
+<text class="s" x="530" y="114" text-anchor="middle">unidireccional</text>
+<text class="s" x="640" y="240" text-anchor="middle">socio.com acepta a los</text>
+<text class="s" x="640" y="256" text-anchor="middle">usuarios de central.com,</text>
+<text class="s" x="640" y="272" text-anchor="middle">pero no al revés</text>
+<rect class="band1" x="500" y="300" width="224" height="132" rx="10"/>
+<rect class="sgood" x="500" y="300" width="224" height="132" rx="10" stroke-dasharray="6 4"/>
+<text class="b" x="612" y="324" text-anchor="middle">Sitio «Madrid»</text>
+<text class="s" x="612" y="342" text-anchor="middle">un lugar físico (red local)</text>
+<g><rect class="box" x="522" y="360" width="32.0" height="42.0" rx="3"/><path class="ln" d="M528.0 370.0h20.0M528.0 378.0h20.0M528.0 386.0h20.0"/><circle class="good" cx="546.0" cy="395.0" r="2.5"/></g>
+<g><rect class="box" x="564" y="360" width="32.0" height="42.0" rx="3"/><path class="ln" d="M570.0 370.0h20.0M570.0 378.0h20.0M570.0 386.0h20.0"/><circle class="good" cx="588.0" cy="395.0" r="2.5"/></g>
+<text class="s" x="606" y="378">réplica del DC</text>
+<text class="s" x="606" y="396">de madrid.</text>
+<text class="s" x="606" y="412">central.com</text>
+<path class="dash" d="M430 290Q470 330 500 360"/>
+<text class="s" x="370" y="460" text-anchor="middle">Dominio = agrupación lógica (cuentas y reglas) · sitio = agrupación física (red, ciudad)</text>
+</svg>

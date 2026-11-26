@@ -255,6 +255,7 @@
             ["Proxy inverso", "Se pone **delante de los servidores** web. Ofrece un punto común para todas las peticiones y las **reparte entre varios servidores según su carga y disponibilidad**.", "Balanceo de carga en granjas de servidores."]
           ]
         },
+        {"type":"figure","src":"figuras/redes/t05-proxy-tipos-capas.svg","title":"Los tipos de proxy sobre la **pila TCP/IP**","caption":"Cada barra cubre las capas que ese proxy entiende. Simplificado: caché, transparente e inverso no se dibujan como barra.","alt":"A la izquierda, la pila TCP/IP: aplicación (OSI 5 a 7), transporte (OSI 4), internet o red (OSI 3) y acceso a la red (OSI 1 y 2). A la derecha, tres barras: el proxy NAT cubre red y transporte (traduce direcciones IP y puertos y oculta la red); el de circuito cubre solo transporte (reenvía TCP y UDP sin mirar dentro); el de aplicación cubre desde la red hasta la aplicación (entiende un protocolo concreto, por ejemplo HTTP, y lo filtra). Abajo, una nota: caché, transparente e inverso trabajan con la web y no se distinguen por la capa, sino por a quién sirven."},
         {
           "type": "term",
           "term": "NAT (Network Address Translation, traducción de direcciones de red)",
@@ -521,6 +522,7 @@
           "type": "p",
           "text": "Fíjate en la última línea: se permite navegar si vienes de la red local **y** te has autenticado **y no** coincides con las palabras prohibidas **y no** vas a un dominio prohibido **y no** descargas una extensión prohibida."
         },
+        {"type":"figure","src":"figuras/redes/t05-squid-acl-capas.svg","title":"Qué compara cada tipo de **acl** de Squid","caption":"Los tipos de acl de la tabla, colocados sobre la petición que reciben.","alt":"Una petición web troceada: enlace (MAC 00:14:22:…), IP (192.168.1.25 hacia el servidor), TCP (puertos) y petición HTTP de aplicación con tres partes: dominio www.juegos.com, ruta /setup.exe y usuario ana. Debajo, corchetes con el tipo de acl que compara cada parte: arp la MAC, src/dst la IP, dstdomain el dominio, urlpath_regex la ruta, url_regex la URL completa con palabras clave y proxy_auth si el usuario se ha autenticado. Dos recuadros: arp solo funciona en la misma VLAN porque la MAC no atraviesa routers; time no mira el paquete, sino la hora."},
         {
           "type": "term",
           "term": "Restricción por horario (acl de tipo time)",

@@ -228,6 +228,7 @@
           "type": "p",
           "text": "El PDF describe SameSite como «solo acceso desde scripts del mismo dominio». Es más preciso decir que SameSite decide si el navegador **adjunta la cookie a peticiones que se originan en otro sitio**; quien impide la lectura desde scripts es HttpOnly. Fíjate en esta diferencia porque el test la explota."
         },
+        {"type":"figure","src":"figuras/sistemas/t05-cookie-atributos.svg","title":"Una cookie de sesión blindada, atributo a atributo","caption":"La cookie del ejemplo de este apartado. Fíjate en la diferencia entre **SameSite** y **HttpOnly**: el test la explota.","alt":"Arriba, la cabecera Set-Cookie troceada en fichas: SESSIONID=8f3kq…, Secure, HttpOnly, SameSite=Strict y Max-Age=1800. De cada atributo baja una línea a una tarjeta con qué hace y qué frena. Secure: solo viaja por HTTPS; frena la captura en la red (wifi pública). HttpOnly: JavaScript no puede leerla; frena el robo de la cookie con XSS. SameSite=Strict: no se envía desde otra web; frena el CSRF. Max-Age=1800: caduca a los 30 minutos; frena el uso largo de una cookie robada. Al pie: SameSite decide si la cookie se adjunta a peticiones que vienen de otro sitio; quien impide que un script la lea es HttpOnly."},
         {
           "type": "list",
           "title": "Otras medidas de la lista de defensa del tema",
@@ -673,6 +674,7 @@
             "Con el ID de sesión de la petición se consulta la **ACL** para ver si ese usuario tiene los roles o perfiles necesarios para la operación pedida (leer, actualizar, borrar). Si los tiene, se permite; si no, se deniega."
           ]
         },
+        {"type":"figure","src":"figuras/sistemas/t05-flujo-autorizacion.svg","title":"Flujo de control de la autorización y la ACL","caption":"Redibujado de la figura del tema sobre el flujo de control de la autorización; la ACL es un ejemplo.","alt":"Una fila de pasos: 1, petición de un usuario ya autenticado con su ID de sesión; 2, se determina a qué recurso quiere acceder; 3, se consulta la ACL con el ID de sesión; después, un rombo: ¿tiene permiso? Si sí, acceso permitido (verde); si no, acceso denegado (rojo). Debajo, una tabla de ejemplo de ACL con tres columnas (usuario o rol, recurso, operaciones): ana puede leer /nominas/ana.pdf; el rol Editor puede leer y actualizar /articulos/*; el Administrador puede leer, actualizar y borrar /admin/*. Al pie: basada en la necesidad de conocer y en los mínimos privilegios."},
         {
           "type": "table",
           "title": "Dos formas de mirar dónde aplicar autorización",
@@ -691,6 +693,7 @@
             ]
           ]
         },
+        {"type":"figure","src":"figuras/sistemas/t05-autorizacion-capas.svg","title":"Dónde aplicar autorización: las capas horizontales y verticales","caption":"Redibujado de la figura del tema sobre las capas de una aplicación web, con las dos vistas de la tabla.","alt":"Arriba, la vista horizontal: cuatro máquinas en fila unidas por flechas, cada una dibujada como una pila de capas. Navegador: navegador, sistema operativo y hardware. Servidor web: IIS o Apache, sistema operativo y hardware. Servidor de aplicaciones: Tomcat o .NET, middleware, sistema operativo y hardware. Base de datos: MySQL u Oracle, ODBC o JDBC, sistema operativo y hardware. Un candado en la capa superior de cada máquina marca un punto de control de autorización, y una flecha vertical a la derecha indica que también se recorre de arriba abajo. Abajo, la vista vertical dentro de cada máquina: usuario, aplicación, middleware, sistema operativo y hardware."},
         {
           "type": "term",
           "term": "Middleware",
@@ -746,6 +749,7 @@
           "term": "RBAC (Role-Based Access Control, control de acceso basado en roles)",
           "text": "El enfoque más común: a cada usuario se le asignan uno o varios roles, y a cada rol, permisos sobre recursos o acciones. Ejemplo en un CMS (Content Management System, gestor de contenidos): el Administrador crea, edita, borra y gestiona usuarios; el Editor edita pero no borra ni crea usuarios; el Visor solo lee."
         },
+        {"type":"figure","src":"figuras/sistemas/t05-rbac.svg","title":"RBAC: usuarios, roles y permisos","caption":"El ejemplo del CMS de este apartado; los nombres de usuario son inventados.","alt":"A la izquierda, cuatro usuarios con flechas a su rol: Marta al rol Administrador, Juan y Luis al rol Editor, y Sara al rol Visor. A la derecha, una cuadrícula de permisos por rol con columnas leer, crear, editar, borrar y gestionar usuarios. Administrador tiene todas las marcas verdes. Editor solo puede leer y editar. Visor solo puede leer. Al pie: a quien llega se le asigna un rol y hereda sus permisos; el servidor comprueba el rol en cada petición y, si un Visor pide /admin, responde 403."},
         {
           "type": "steps",
           "title": "Pasos clave de la autorización (según McDonald, 2024)",
@@ -802,6 +806,7 @@
           "term": "Operación atómica",
           "text": "Operación que se ejecuta **de una sola vez y sin interrupciones**: o se hace entera o no se hace, y nadie puede meterse a mitad."
         },
+        {"type":"figure","src":"figuras/sistemas/t05-toctou.svg","title":"TOCTOU: el hueco entre comprobar y usar","caption":"El caso práctico del permiso retirado, en el tiempo.","alt":"Dos líneas de tiempo. Sin protección: primero se comprueba si Ana puede editar (sí); luego hay un hueco sombreado en rojo en el que nadie vuelve a mirar, y en ese momento el administrador le retira el permiso; después se usa el recurso y se guardan los cambios: se guarda igualmente. Con operación atómica y bloqueo: comprobar y usar se hacen de una vez con el recurso bloqueado, el cambio de permiso espera su turno y el resultado es coherente. Al pie, otro caso: dos peticiones a la vez comprueban que hay saldo y las dos retiran dinero."},
         {
           "type": "list",
           "title": "Cómo se combate según el tema",
@@ -854,6 +859,7 @@
             ]
           ]
         },
+        {"type":"figure","src":"figuras/sistemas/t05-mac-dac.svg","title":"MAC frente a DAC","alt":"Dos recuadros. MAC (obligatorio), típico de entornos militares o con información clasificada: el administrador, con control total, asigna los permisos de todos los ficheros (informe.pdf, planes.doc, datos.db), y el usuario no puede cambiarlos, marcado con un aspa. DAC (discrecional), como en Linux y Unix: el administrador delega en Ana, propietaria de notas.txt, que con la orden chmod o+r notas.txt decide quién lee su fichero. Al pie: sea quien sea quien reparta los permisos, mínimos privilegios y comprobación en el servidor."},
         {
           "type": "term",
           "term": "Principio de mínimos privilegios",

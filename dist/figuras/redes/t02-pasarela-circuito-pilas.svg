@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 470">
+<defs><marker id="t02pc-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="ink" d="M0 0L10 5L0 10z"/></marker><marker id="t02pc-r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--color-danger)"/></marker><marker id="t02pc-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--color-success)"/></marker></defs>
+<text class="h" x="380" y="30" text-anchor="middle">La pasarela de circuito se queda en la conexión</text>
+<text class="s" x="380" y="52" text-anchor="middle">Recorrido del tráfico (línea roja): en la pasarela no llega a la capa de aplicación</text>
+<text class="b" x="120" y="84" text-anchor="middle">Usuario</text>
+<rect class="c1" x="20" y="110" width="200" height="44" rx="5"/>
+<text class="b" x="120" y="137" text-anchor="middle">Aplicación</text>
+<rect class="c2" x="20" y="162" width="200" height="44" rx="5"/>
+<text class="b" x="120" y="189" text-anchor="middle">Transporte</text>
+<rect class="c3" x="20" y="214" width="200" height="44" rx="5"/>
+<text class="b" x="120" y="241" text-anchor="middle">Internet (red)</text>
+<rect class="c4" x="20" y="266" width="200" height="44" rx="5"/>
+<text class="b" x="120" y="293" text-anchor="middle">Acceso a la red</text>
+<text class="b" x="380" y="84" text-anchor="middle">Pasarela de circuito</text>
+<g style="opacity:.4">
+<rect class="c1" x="280" y="110" width="200" height="44" rx="5"/>
+<text class="b" x="380" y="137" text-anchor="middle">Aplicación</text>
+</g>
+<rect class="c2" x="280" y="162" width="200" height="44" rx="5"/>
+<text class="b" x="380" y="189" text-anchor="middle">Transporte</text>
+<rect class="c3" x="280" y="214" width="200" height="44" rx="5"/>
+<text class="b" x="380" y="241" text-anchor="middle">Internet (red)</text>
+<rect class="c4" x="280" y="266" width="200" height="44" rx="5"/>
+<text class="b" x="380" y="293" text-anchor="middle">Acceso a la red</text>
+<text class="b" x="640" y="84" text-anchor="middle">Servidor de destino</text>
+<rect class="c1" x="540" y="110" width="200" height="44" rx="5"/>
+<text class="b" x="640" y="137" text-anchor="middle">Aplicación</text>
+<rect class="c2" x="540" y="162" width="200" height="44" rx="5"/>
+<text class="b" x="640" y="189" text-anchor="middle">Transporte</text>
+<rect class="c3" x="540" y="214" width="200" height="44" rx="5"/>
+<text class="b" x="640" y="241" text-anchor="middle">Internet (red)</text>
+<rect class="c4" x="540" y="266" width="200" height="44" rx="5"/>
+<text class="b" x="640" y="293" text-anchor="middle">Acceso a la red</text>
+<path class="path" d="M206 98V332H294V158.0H466V332H554V102" style="stroke-width:3.5;fill:none"/>
+<path d="M547 106L554 94L561 106z" style="fill:var(--color-danger)"/>
+<circle cx="380" cy="158.0" r="6" style="fill:var(--color-danger)"/>
+<text class="s" x="380" y="156" text-anchor="middle"></text>
+<text class="s" x="150" y="354" text-anchor="middle">cable</text>
+<text class="s" x="410" y="354" text-anchor="middle">cable</text>
+<rect class="tint" x="150" y="372" width="460" height="96" rx="8"/>
+<text class="b" x="380" y="398" text-anchor="middle">Se da la vuelta en la conexión (transporte):</text>
+<text class="s" x="380" y="422" text-anchor="middle">al principio el usuario abre la conexión con ella (y se autentica);</text>
+<text class="s" x="380" y="442" text-anchor="middle">después solo reenvía mirando cabeceras.</text>
+<text class="s" x="380" y="460" text-anchor="middle">Los datos de aplicación pasan sin abrirse.</text>
+</svg>

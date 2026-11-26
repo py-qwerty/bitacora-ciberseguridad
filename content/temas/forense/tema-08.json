@@ -150,6 +150,7 @@
           "type": "p",
           "text": "Por dentro, la SIM se organiza de forma parecida a un disco con carpetas y archivos. La raíz es el **MF** (Master File, archivo maestro), como el directorio raíz de un sistema FAT. De ella cuelgan los **DF** (Dedicated File, archivos dedicados), que son como subcarpetas especializadas, y dentro están los **EF** (Elementary File, archivos elementales), que guardan los datos."
         },
+        {"type":"figure","src":"figuras/forense/t08-sim-ficheros.svg","title":"El sistema de ficheros de una SIM","caption":"Redibujado de la figura del tema **Typical SIM Card File System**.","alt":"Un árbol. En la raíz, MF, el archivo maestro. De él cuelgan DF (GSM), DF (Telecom), DF (DCS 1800) y EF (ICCID). Bajo DF (GSM) están EF (IMSI) y EF (LOCI). Bajo DF (Telecom) están EF (ADN), la agenda, EF (SMS), EF (MSISDN) y EF (LND). Una leyenda recuerda: ICCID identifica la tarjeta, IMSI la línea, ADN es la agenda y LND los últimos números marcados."},
         {
           "type": "table",
           "title": "Archivos importantes de la SIM",
@@ -264,6 +265,7 @@
             ["6. Métodos avanzados (JTAG, Direct eMMC, Chip Off)", "Cualquiera", "Microsoldadura, autorización judicial", "Volcado directo del chip, con riesgo de destruirlo."]
           ]
         },
+        {"type":"figure","src":"figuras/forense/t08-vias-escalera.svg","title":"Las seis vías como una escalera","caption":"Cada peldaño da acceso a más información, pero exige más y arriesga más.","alt":"Una escalera de seis peldaños, de abajo arriba: 1, backup del fabricante (teléfono desbloqueado); 2, Magnet ACQUIRE (desbloqueado y depuración USB); 3, adquisición lógica de iOS (desbloqueado y confianza con el PC); 4, ADB (depuración USB y root); 5, Custom Recovery (bootloader desbloqueado y autorización); 6, JTAG, Direct eMMC y Chip Off (microsoldadura y auto judicial). Una flecha hacia arriba indica más agresiva y más riesgo. Las vías 1 a 3 necesitan el código; la 4 y la 5 son solo de Android y necesitan acceso privilegiado."},
         {
           "type": "analogy",
           "text": "Es como entrar en una casa: con las llaves (el código) entras por la puerta (backup o Magnet). Sin llaves puedes cambiar la cerradura (Custom Recovery) o pedir un pasadizo de servicio (ADB con root). Y si todo falla, te llevas la caja fuerte al taller y la abres con soplete (Chip Off)."
@@ -528,6 +530,7 @@
           "term": "PCB (Printed Circuit Board) y eMMC",
           "text": "La PCB es la placa de circuito impreso donde van soldados los componentes. eMMC (embedded MultiMediaCard) es el chip de memoria soldado a la placa que hace de «disco» del teléfono; eMCP combina memoria y RAM en un solo chip."
         },
+        {"type":"figure","src":"figuras/forense/t08-placa-metodos.svg","title":"JTAG, Direct eMMC y Chip Off sobre la placa","caption":"Por dónde entra cada método avanzado al chip de memoria.","alt":"Una placa de móvil con la CPU, el chip de memoria eMMC, unos contactos de prueba (TAGs) y unos conectores auxiliares. Desde los TAGs sale una flecha a JTAG: por los contactos de prueba, lenta (32 GB en unas 24 horas), la menos lesiva. Desde los conectores auxiliares, a Direct eMMC o ISP: sin pasar por la CPU, más rápida que JTAG, con riesgo de dañar la placa. Desde el propio chip, a Chip Off: se desuelda y se lee fuera, cuando nada más funciona, la más destructiva. Las tres son invasivas y necesitan auto judicial."},
         {
           "type": "table",
           "title": "Comparativa de los tres métodos",
@@ -579,6 +582,7 @@
             ["data / userdata", "Aplicaciones y archivos del usuario: la de **mayor interés forense**."]
           ]
         },
+        {"type":"figure","src":"figuras/forense/t08-android-particiones.svg","title":"Particiones de Android y tipos de adquisición","caption":"La partición data es la que más interesa; la copia lógica solo trae parte de ella.","alt":"Una barra con las particiones de Android: boot (kernel), system (sistema operativo), recovery (mini sistema), cache (temporales) y data o userdata (apps y archivos del usuario), resaltada como la de mayor interés forense. Un marco discontinuo rodea la barra entera: la adquisición física copia todas las particiones. Debajo, la adquisición lógica solo trae un conjunto limitado de carpetas de data: multimedia, ajustes de apps y algunas bases .db. Que algo no esté en una copia lógica no significa que nunca existiera."},
         {
           "type": "p",
           "text": "Si la adquisición fue **lógica**, solo se tiene un conjunto limitado de carpetas: multimedia, configuraciones de aplicaciones y algunas bases de datos. Por eso, **que algo no esté en la copia no significa que nunca existiera**: puede que simplemente no se haya adquirido."
@@ -654,6 +658,7 @@
           "type": "analogy",
           "text": "Es como un hotel: cada huésped (app) tiene la llave de su habitación y no puede entrar en la de al lado. Si quieres ver todas las habitaciones, no te sirve la llave de un huésped: necesitas que recepción (el propio iPhone, mediante su copia de seguridad) te dé lo que guarda."
         },
+        {"type":"figure","src":"figuras/forense/t08-ios-capas.svg","title":"Las capas de protección de un iPhone","caption":"Redibujado de la figura del tema sobre la arquitectura de seguridad de iOS.","alt":"Una pila de capas de arriba abajo: App Sandbox y clase de protección de datos (cada app en su cajón), partición de usuario cifrada, partición del sistema cifrada, sistema de ficheros cifrado y kernel, agrupadas como software; debajo, motor criptográfico y las claves del dispositivo, de grupo y el certificado raíz de Apple, agrupados como hardware y firmware. Por eso la vía viable es la copia de seguridad o la adquisición lógica."},
         {
           "type": "p",
           "text": "Por el cifrado y la sandbox, la vía más viable en iOS es **una copia de seguridad o adquisición lógica** de la información del usuario. Se analiza con herramientas como **Dr. Fone** o **iBackup Viewer**: se selecciona el backup de iTunes o de Magnet ACQUIRE y la herramienta lo procesa sola. Muestra contactos, mensajes, llamadas, aplicaciones… y también el sistema de ficheros, con archivos Plist y bases SQLite. También se puede analizar «a mano»."

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 400">
+<defs><marker id="t08sa-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="ink" d="M0 0L10 5L0 10z"/></marker></defs>
+<text class="h" x="380" y="30" text-anchor="middle">Dos SA para una conversación: una por sentido</text>
+<g transform="translate(48 120) scale(1.3)"><rect class="box" x="0" y="0" width="44" height="30" rx="3"/><rect class="tint" x="5" y="5" width="34" height="20"/><rect class="ink" x="18" y="30" width="8" height="6"/><rect class="ink" x="8" y="36" width="28" height="4" rx="2"/></g>
+<text class="b" x="77" y="200" text-anchor="middle">Equipo A</text>
+<text class="s" x="77" y="220" text-anchor="middle">192.168.10.5</text>
+<g transform="translate(655 120) scale(1.3)"><rect class="box" x="0" y="0" width="44" height="30" rx="3"/><rect class="tint" x="5" y="5" width="34" height="20"/><rect class="ink" x="18" y="30" width="8" height="6"/><rect class="ink" x="8" y="36" width="28" height="4" rx="2"/></g>
+<text class="b" x="684" y="200" text-anchor="middle">Equipo B</text>
+<text class="s" x="684" y="220" text-anchor="middle">192.168.20.7</text>
+<path class="ln" d="M130 112L630 112" marker-end="url(#t08sa-a)" style="stroke-width:3"/>
+<path class="ln" d="M630 178L130 178" marker-end="url(#t08sa-a)" style="stroke-width:3"/>
+<rect class="c4" x="215" y="62" width="330" height="38" rx="8"/>
+<text x="380" y="87" text-anchor="middle"><tspan class="b">SA 1</tspan>: de A hacia B</text>
+<rect class="c3" x="215" y="190" width="330" height="38" rx="8"/>
+<text x="380" y="215" text-anchor="middle"><tspan class="b">SA 2</tspan>: de B hacia A</text>
+<text class="s" x="380" y="150" text-anchor="middle">cada paquete lleva el SPI de su SA</text>
+<rect class="tint" x="130" y="252" width="500" height="104" rx="8"/>
+<text class="b" x="380" y="276" text-anchor="middle">Cómo se identifica la SA 1 (ejemplo)</text>
+<text x="380" y="300" text-anchor="middle">SPI 0x1001  +  IP de destino 192.168.20.7  +  protocolo ESP</text>
+<text class="s" x="380" y="324" text-anchor="middle">Dentro guarda lo pactado: algoritmo de cifrado, claves,</text>
+<text class="s" x="380" y="342" text-anchor="middle">método de autenticación y duración (se puede renovar).</text>
+<text x="380" y="384" text-anchor="middle">Las SA se pueden configurar a mano o negociar solas con <tspan class="b">IKE</tspan>.</text>
+</svg>

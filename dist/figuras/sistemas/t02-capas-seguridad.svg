@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 430">
+<defs><marker id="t02-capas-seguridad-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="ink" d="M0 0L10 5L0 10z"/></marker><marker id="t02-capas-seguridad-r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="bad" d="M0 0L10 5L0 10z"/></marker><marker id="t02-capas-seguridad-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="good" d="M0 0L10 5L0 10z"/></marker></defs>
+<text class="h" x="370" y="26" text-anchor="middle">Las tres capas del monolito y dónde va cada control</text>
+<g><rect class="box" x="28" y="190" width="44.0" height="30.0" rx="3"/><rect class="tint" x="33.0" y="195.0" width="34.0" height="20.0"/><rect class="ink" x="46.0" y="220.0" width="8.0" height="6.0"/><rect class="ink" x="36.0" y="226.0" width="28.0" height="4.0" rx="2"/></g>
+<text class="b" x="50" y="256" text-anchor="middle">Navegador</text>
+<path class="ln" d="M78 205H150" marker-end="url(#t02-capas-seguridad-a)" marker-start="url(#t02-capas-seguridad-a)"/>
+<text class="b" x="114" y="195" text-anchor="middle">TLS</text>
+<text class="s" x="114" y="226" text-anchor="middle">cifrado</text>
+<rect class="c5" x="154" y="90" width="48" height="250" rx="6"/>
+<text class="b" x="183" y="215" text-anchor="middle" transform="rotate(-90 183 215)">Firewall de aplicaciones web</text>
+<path class="ln" d="M202 205H246" marker-end="url(#t02-capas-seguridad-a)" marker-start="url(#t02-capas-seguridad-a)"/>
+<rect class="dash" x="250" y="50" width="250" height="330" rx="12"/>
+<text class="s" x="375" y="72" text-anchor="middle">Servidor (un solo despliegue)</text>
+<rect class="c4" x="270" y="86" width="210" height="72" rx="6"/>
+<text class="b" x="375.0" y="118.0" text-anchor="middle">Presentación</text>
+<text class="s" x="375.0" y="136.0" text-anchor="middle">interfaz: HTML, CSS, JS</text>
+<path class="ln" d="M375 160V184" marker-end="url(#t02-capas-seguridad-a)" marker-start="url(#t02-capas-seguridad-a)"/>
+<rect class="c1" x="270" y="186" width="210" height="72" rx="6"/>
+<text class="b" x="375.0" y="218.0" text-anchor="middle">Lógica de negocio</text>
+<text class="s" x="375.0" y="236.0" text-anchor="middle">reglas, validaciones, cálculos</text>
+<path class="ln" d="M375 260V284" marker-end="url(#t02-capas-seguridad-a)" marker-start="url(#t02-capas-seguridad-a)"/>
+<rect class="c3" x="270" y="286" width="210" height="72" rx="6"/>
+<text class="b" x="375.0" y="318.0" text-anchor="middle">Acceso a datos</text>
+<text class="s" x="375.0" y="336.0" text-anchor="middle">lee y escribe en la BD</text>
+<path class="ln" d="M482 322H530" marker-end="url(#t02-capas-seguridad-a)" marker-start="url(#t02-capas-seguridad-a)"/>
+<g><path class="tint" d="M548.0 300v40.8a24.0 8.4 0 0 0 48.0 0v-40.8"/><ellipse class="tint" cx="572" cy="300" rx="24.0" ry="8.4"/><path class="ln" d="M548.0 320.4a24.0 8.4 0 0 0 48.0 0" style="stroke-width:1.2"/></g>
+<text class="b" x="572" y="368" text-anchor="middle">Base de datos</text>
+<rect class="tint" x="512" y="66" width="222" height="200" rx="8"/>
+<text class="b" x="623" y="90" text-anchor="middle">Controles en el servidor</text>
+<text class="s" x="524" y="116">• validación de entrada y salida</text>
+<text class="s" x="524" y="140">• errores y excepciones</text>
+<text class="s" x="524" y="164">• registro (logging)</text>
+<text class="s" x="524" y="188">• cifrado de datos</text>
+<text class="s" x="524" y="212">• gestión de sesiones</text>
+<text class="s" x="524" y="236">• autenticación y autorización</text>
+<text class="s" x="370" y="414" text-anchor="middle">Separar en capas ayuda, pero obliga a controlar el acceso y la comunicación entre ellas.</text>
+</svg>

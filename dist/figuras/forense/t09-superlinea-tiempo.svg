@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 440">
+<defs><marker id="t09st-ink" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="ink" d="M0 0L10 5L0 10z"/></marker><marker id="t09st-red" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="bad" d="M0 0L10 5L0 10z"/></marker><marker id="t09st-grn" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="good" d="M0 0L10 5L0 10z"/></marker></defs>
+<text class="h" x="360" y="24" text-anchor="middle">Superlínea de tiempo: tres fuentes, un solo reloj (UTC)</text>
+<text class="b" x="20" y="80">cortafuegos</text>
+<text class="s" x="20" y="98">reloj en UTC</text>
+<path class="dash" d="M200 76H700"/>
+<text class="b" x="20" y="150">PC-RECEPCION</text>
+<text class="s" x="20" y="168">hora local (UTC+1)</text>
+<path class="dash" d="M200 146H700"/>
+<text class="b" x="20" y="220">SRV-BD</text>
+<text class="s" x="20" y="238">reloj adelantado 7 min</text>
+<path class="dash" d="M200 216H700"/>
+<text class="s" x="450" y="52" text-anchor="middle" font-style="italic">hora que marca cada equipo</text>
+<circle class="c4" cx="250" cy="76" r="9"/>
+<text class="s" x="264" y="66">02:13:55</text>
+<path class="ln" d="M250 86V320" style="stroke-dasharray:2 4"/>
+<circle class="c2" cx="380" cy="146" r="9"/>
+<text class="s" x="394" y="136">03:14:07</text>
+<path class="ln" d="M380 156V320" style="stroke-dasharray:2 4"/>
+<circle class="c3" cx="510" cy="216" r="9"/>
+<text class="s" x="524" y="206">02:23:02</text>
+<path class="ln" d="M510 226V320" style="stroke-dasharray:2 4"/>
+<circle class="c2" cx="640" cy="146" r="9"/>
+<text class="s" x="654" y="136">03:20:30</text>
+<path class="ln" d="M640 156V320" style="stroke-dasharray:2 4"/>
+<text class="b" x="20" y="334">Superlínea</text>
+<text class="s" x="20" y="352">(corregida a UTC)</text>
+<path class="ln" d="M200 330L710 330" style="stroke:var(--color-primary)" marker-end="url(#t09st-ink)"/>
+<circle class="c4" cx="250" cy="330" r="9"/>
+<text class="b" x="250" y="360" text-anchor="middle" style="font-size:14px">02:13:55</text>
+<text class="s" x="250" y="378" text-anchor="middle" style="font-size:13px">conexión entrante</text>
+<text class="s" x="250" y="394" text-anchor="middle" style="font-size:13px">203.0.113.50</text>
+<circle class="c2" cx="380" cy="330" r="9"/>
+<text class="b" x="380" y="360" text-anchor="middle" style="font-size:14px">02:14:07</text>
+<text class="s" x="380" y="378" text-anchor="middle" style="font-size:13px">LOGIN OK</text>
+<text class="s" x="380" y="394" text-anchor="middle" style="font-size:13px">admin.backup</text>
+<circle class="c3" cx="510" cy="330" r="9"/>
+<text class="b" x="510" y="360" text-anchor="middle" style="font-size:14px">02:16:02</text>
+<text class="s" x="510" y="378" text-anchor="middle" style="font-size:13px">DB READ</text>
+<text class="s" x="510" y="394" text-anchor="middle" style="font-size:13px">1.250.000 filas</text>
+<circle class="c2" cx="640" cy="330" r="9"/>
+<text class="b" x="640" y="360" text-anchor="middle" style="font-size:14px">02:20:30</text>
+<text class="s" x="640" y="378" text-anchor="middle" style="font-size:13px">ejecuta</text>
+<text class="s" x="640" y="394" text-anchor="middle" style="font-size:13px">cargador.exe</text>
+<text class="s" x="360" y="428" text-anchor="middle">Sin corregir, el login (03:14) parecería una hora posterior a la lectura de la base de datos.</text>
+</svg>

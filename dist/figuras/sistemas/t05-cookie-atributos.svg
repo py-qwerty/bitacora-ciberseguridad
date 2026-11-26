@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 430">
+<defs><marker id="t05-cookie-atributos-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="ink" d="M0 0L10 5L0 10z"/></marker><marker id="t05-cookie-atributos-r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="bad" d="M0 0L10 5L0 10z"/></marker><marker id="t05-cookie-atributos-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="good" d="M0 0L10 5L0 10z"/></marker></defs>
+<text class="h" x="370" y="26" text-anchor="middle">Una cookie de sesión blindada, atributo a atributo</text>
+<text x="16" y="72" font-family="Menlo,Consolas,monospace" xml:space="preserve" style="font-size:14px;font-weight:700">Set-Cookie:</text>
+<rect class="tint" x="118" y="50" width="148.88" height="34" rx="5"/>
+<text x="192.44" y="72" text-anchor="middle" font-family="Menlo,Consolas,monospace" xml:space="preserve" style="font-size:14px;font-weight:700">SESSIONID=8f3kq…</text>
+<rect class="c4" x="274.88" y="50" width="64.58" height="34" rx="5"/>
+<text x="307.17" y="72" text-anchor="middle" font-family="Menlo,Consolas,monospace" xml:space="preserve" style="font-size:14px;font-weight:700">Secure</text>
+<rect class="c2" x="347.46" y="50" width="81.44" height="34" rx="5"/>
+<text x="388.17999999999995" y="72" text-anchor="middle" font-family="Menlo,Consolas,monospace" xml:space="preserve" style="font-size:14px;font-weight:700">HttpOnly</text>
+<rect class="c3" x="436.9" y="50" width="140.45" height="34" rx="5"/>
+<text x="507.125" y="72" text-anchor="middle" font-family="Menlo,Consolas,monospace" xml:space="preserve" style="font-size:14px;font-weight:700">SameSite=Strict</text>
+<rect class="c1" x="585.3499999999999" y="50" width="115.16" height="34" rx="5"/>
+<text x="642.93" y="72" text-anchor="middle" font-family="Menlo,Consolas,monospace" xml:space="preserve" style="font-size:14px;font-weight:700">Max-Age=1800</text>
+<path class="ln" d="M307.17 86V104H101.0V140"/>
+<rect class="c4" x="16" y="144" width="170" height="190" rx="8"/>
+<text class="s" x="101.0" y="170" text-anchor="middle">Qué hace</text>
+<text class="b" x="101.0" y="194" text-anchor="middle">Solo viaja</text>
+<text class="b" x="101.0" y="214" text-anchor="middle">por HTTPS</text>
+<path class="dash" d="M32 234H170"/>
+<text class="s" x="101.0" y="258" text-anchor="middle">Qué frena</text>
+<text class="b" x="101.0" y="282" text-anchor="middle" style="fill:var(--color-danger)">Captura en la red</text>
+<text class="b" x="101.0" y="302" text-anchor="middle" style="fill:var(--color-danger)">(wifi pública)</text>
+<path class="ln" d="M388.17999999999995 86V120H279.0V140"/>
+<rect class="c2" x="194" y="144" width="170" height="190" rx="8"/>
+<text class="s" x="279.0" y="170" text-anchor="middle">Qué hace</text>
+<text class="b" x="279.0" y="194" text-anchor="middle">JavaScript</text>
+<text class="b" x="279.0" y="214" text-anchor="middle">no puede leerla</text>
+<path class="dash" d="M210 234H348"/>
+<text class="s" x="279.0" y="258" text-anchor="middle">Qué frena</text>
+<text class="b" x="279.0" y="282" text-anchor="middle" style="fill:var(--color-danger)">Robo de la cookie</text>
+<text class="b" x="279.0" y="302" text-anchor="middle" style="fill:var(--color-danger)">con XSS</text>
+<path class="ln" d="M507.125 86V120H457.0V140"/>
+<rect class="c3" x="372" y="144" width="170" height="190" rx="8"/>
+<text class="s" x="457.0" y="170" text-anchor="middle">Qué hace</text>
+<text class="b" x="457.0" y="194" text-anchor="middle">No se envía</text>
+<text class="b" x="457.0" y="214" text-anchor="middle">desde otra web</text>
+<path class="dash" d="M388 234H526"/>
+<text class="s" x="457.0" y="258" text-anchor="middle">Qué frena</text>
+<text class="b" x="457.0" y="282" text-anchor="middle" style="fill:var(--color-danger)">CSRF</text>
+<path class="ln" d="M642.93 86V120H635.0V140"/>
+<rect class="c1" x="550" y="144" width="170" height="190" rx="8"/>
+<text class="s" x="635.0" y="170" text-anchor="middle">Qué hace</text>
+<text class="b" x="635.0" y="194" text-anchor="middle">Caduca a los</text>
+<text class="b" x="635.0" y="214" text-anchor="middle">30 minutos</text>
+<path class="dash" d="M566 234H704"/>
+<text class="s" x="635.0" y="258" text-anchor="middle">Qué frena</text>
+<text class="b" x="635.0" y="282" text-anchor="middle" style="fill:var(--color-danger)">Uso largo de una</text>
+<text class="b" x="635.0" y="302" text-anchor="middle" style="fill:var(--color-danger)">cookie robada</text>
+<rect class="box" x="16" y="350" width="708" height="60" rx="8"/>
+<text class="s" x="370" y="374" text-anchor="middle">Ojo: SameSite decide si la cookie se adjunta a peticiones que vienen de otro sitio;</text>
+<text class="s" x="370" y="394" text-anchor="middle">quien impide que un script la lea es HttpOnly.</text>
+</svg>

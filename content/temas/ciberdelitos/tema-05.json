@@ -107,6 +107,7 @@
           "title": "Caso práctico",
           "text": "Lucía firma electrónicamente un presupuesto de 1.200 € y se lo envía a su cliente. La firma permite al cliente saber que viene de Lucía (autenticidad), que nadie ha cambiado el importe por el camino (integridad) y que Lucía no podrá negar luego haberlo emitido (no repudio). Lo que no hace es impedir que un tercero que intercepte el correo lea el presupuesto."
         },
+        {"type":"figure","src":"figuras/ciberdelitos/t05-garantias.svg","title":"Qué garantiza (y qué no) una firma electrónica","caption":"Firmar no es cifrar: un documento firmado lo puede leer cualquiera.","alt":"En el centro, un documento firmado. A la izquierda, tres cajas verdes con lo que sí garantiza: integridad (¿lo han tocado después?), autenticidad (¿quién lo ha firmado?) y no repudio (¿puede decir «yo no fui»?). A la derecha, dos cajas rojas con lo que no garantiza: confidencialidad (no oculta el contenido, eso es cifrar) y veracidad (no prueba que lo escrito sea cierto)."},
         {
           "type": "exam",
           "text": "Trampas típicas: «la firma hace ilegible el contenido» (eso es cifrar), «garantiza que todas las afirmaciones son verdaderas» o «evita que caduquen los certificados». La respuesta correcta siempre gira en torno a **vincular el documento con el firmante y detectar alteraciones**."
@@ -136,6 +137,7 @@
           "term": "Resumen o hash",
           "text": "Una «huella dactilar» del documento: un número corto calculado a partir de todo su contenido. Si cambia una sola letra, la huella cambia por completo. En la práctica se firma esta huella, no el documento entero."
         },
+        {"type":"figure","src":"figuras/ciberdelitos/t05-firmar-verificar.svg","title":"Firmar con la privada, verificar con la pública","caption":"Redibujado de las figuras del tema sobre firma y verificación. Si cambia una sola letra del documento, los resúmenes ya no coinciden.","alt":"Dos franjas. Arriba, firmar (lo hace Lucía): el documento pasa por el cálculo del resumen (hash), sale un resumen, se cifra con la clave privada de Lucía y el resultado es la firma; documento y firma viajan juntos al cliente. Abajo, verificar (lo hace el cliente): la firma se descifra con la clave pública de Lucía y sale el resumen A; el documento recibido pasa por el cálculo del resumen y sale el resumen B. Si A es igual a B, la firma es válida; si no, el documento se ha alterado. La clave pública va en el certificado de Lucía y la privada nunca sale de sus manos."},
         {
           "type": "steps",
           "title": "Firmar y verificar, paso a paso",
@@ -215,6 +217,7 @@
           "title": "Caso real",
           "text": "En España, el prestador que más certificados había emitido antes del DNI electrónico es **CERES**, de la FNMT-RCM (Fábrica Nacional de Moneda y Timbre - Real Casa de la Moneda). Su certificado se ha usado sobre todo para la declaración de la renta, pero sirve también para muchos trámites con la Administración y en varios bancos."
         },
+        {"type":"figure","src":"figuras/ciberdelitos/t05-cadena-confianza.svg","title":"La cadena de confianza","caption":"Validar una firma implica recorrer la cadena hasta una raíz en la que ya se confía.","alt":"Tres tarjetas de izquierda a derecha unidas por flechas con el texto «firmado por». Certificado de Lucía: titular Lucía, su clave pública, emisor el prestador y fechas de validez. Certificado del prestador: titular el prestador, su clave pública, emisor una autoridad superior o raíz. Autoridad raíz: está en la lista de confianza y el verificador ya confía en ella. Debajo, una flecha indica que para validar una firma se recorre la cadena hasta la raíz. Cada certificado une una identidad con su clave pública y nunca contiene la clave privada. Ejemplo español de prestador: CERES, de la FNMT-RCM."},
         {
           "type": "exam",
           "text": "Si te dicen que una firma «valida matemáticamente» pero nadie ha comprobado si se confía en quien emitió el certificado, falta **validar la cadena de confianza** y las condiciones de la política aplicable. Que las cuentas cuadren solo prueba que se usó la clave privada asociada a esa clave pública; no prueba de quién es. Trampa: tratar cualquier clave pública como identidad certificada por el Estado. Y recuerda: la función del certificado es **vincular clave pública e identidad**, nunca publicar la clave privada."
@@ -319,6 +322,7 @@
           "type": "p",
           "text": "Por eso, antes de fiarse de una firma no basta con mirar la fecha: hay que preguntar al prestador si el certificado está revocado. La ley obliga a los prestadores a mantener un **servicio de consulta del estado de los certificados**, actualizado y accesible."
         },
+        {"type":"figure","src":"figuras/ciberdelitos/t05-vigencia.svg","title":"Caducidad frente a revocación","caption":"Un certificado revocado puede tener aún fecha de vigencia por delante.","alt":"Dos líneas de tiempo desde que se emite el certificado hasta su fin de vigencia. En la de caducidad, el certificado es válido todo el tiempo y caduca al llegar la fecha de fin que figura en él. En la de revocación, el certificado es válido solo hasta un punto marcado con una cruz, donde el prestador lo anula antes de tiempo; desde ahí ya no vale aunque no haya llegado la fecha de fin. Debajo: mirar la fecha no basta, hay que preguntar al prestador si está revocado, por ejemplo porque perdiste el DNIe, te lo robaron o copiaron tu clave privada."},
         {
           "type": "term",
           "term": "CRL (Certificate Revocation List, lista de certificados revocados)",
@@ -355,6 +359,7 @@
             ["De autenticación de sitio web", "Titulares de una web", "Acreditar que el sitio es seguro y de quién es."]
           ]
         },
+        {"type":"figure","src":"figuras/ciberdelitos/t05-tipos-certificado.svg","title":"Tres clases de certificado","caption":"Las personas físicas **firman**; las personas jurídicas **sellan**.","alt":"Tres tarjetas. Certificado de firma, con el dibujo de una persona: lo tienen las personas físicas para firmar. Certificado de sello, con el dibujo de un edificio: lo tienen las personas jurídicas para sellar, es decir, garantizar el origen y la integridad de lo que emiten. Certificado de sitio web, con el dibujo de una pantalla: lo tienen los titulares de una web para acreditar el sitio y de quién es. Debajo: todos pueden ser cualificados o no cualificados y todos tienen validez; una empresa no firma, sella, y quien firma siempre es una persona física."},
         {
           "type": "p",
           "text": "Todos pueden ser **cualificados o no cualificados**. Eso afecta al nivel de seguridad, pero **todos tienen validez**. Pregunta típica de caso práctico: si el enunciado dice que «una empresa ha firmado con firma cualificada», hay que corregirlo: una empresa **sella**."

@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 410">
+<defs><marker id="t04-jwt-partes-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="ink" d="M0 0L10 5L0 10z"/></marker><marker id="t04-jwt-partes-r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="bad" d="M0 0L10 5L0 10z"/></marker><marker id="t04-jwt-partes-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="good" d="M0 0L10 5L0 10z"/></marker></defs>
+<text class="h" x="370" y="26" text-anchor="middle">Un JWT por dentro: tres partes separadas por puntos</text>
+<rect class="box" x="16" y="44" width="708" height="96" rx="8"/>
+<text x="30" y="72" font-family="Menlo,Consolas,monospace" style="font-size:14px" xml:space="preserve"><tspan style="fill:#84531c;font-weight:700">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9</tspan><tspan style="font-weight:700">.</tspan><tspan style="fill:#5b3f8c;font-weight:700">eyJ1c2VyX25hbWUiOiJhbmEiLCJyb2xlcy</tspan></text>
+<text x="30" y="96" font-family="Menlo,Consolas,monospace" style="font-size:14px" xml:space="preserve"><tspan style="fill:#5b3f8c;font-weight:700">I6WyJ1c2VyIl0sImV4cCI6MTc2NzIyNTYwMH0</tspan><tspan style="font-weight:700">.</tspan><tspan style="fill:#176b9f;font-weight:700">Apc3oswzCHN0fmmF_Z_S_JOneE7Yn7biLVJIsO9KPv0</tspan></text>
+<text class="s" x="30" y="124">Esto es lo que viaja en la cabecera Authorization: Bearer … (todo en Base64URL)</text>
+<path class="ln" d="M130.0 144V170" marker-end="url(#t04-jwt-partes-a)"/>
+<rect class="c3" x="16" y="174" width="228" height="176" rx="8"/>
+<text class="b" x="130.0" y="198" text-anchor="middle">Header (cabecera)</text>
+<text x="30" y="226" font-family="Menlo,Consolas,monospace" xml:space="preserve" style="font-size:13px">{</text>
+<text x="30" y="248" font-family="Menlo,Consolas,monospace" xml:space="preserve" style="font-size:13px">  "alg": "HS256",</text>
+<text x="30" y="270" font-family="Menlo,Consolas,monospace" xml:space="preserve" style="font-size:13px">  "typ": "JWT"</text>
+<text x="30" y="292" font-family="Menlo,Consolas,monospace" xml:space="preserve" style="font-size:13px">}</text>
+<text class="s" x="130.0" y="338" text-anchor="middle">tipo y algoritmo de firma</text>
+<path class="ln" d="M370.0 144V170" marker-end="url(#t04-jwt-partes-a)"/>
+<rect class="c2" x="256" y="174" width="228" height="176" rx="8"/>
+<text class="b" x="370.0" y="198" text-anchor="middle">Payload (claims)</text>
+<text x="270" y="226" font-family="Menlo,Consolas,monospace" xml:space="preserve" style="font-size:13px">{</text>
+<text x="270" y="248" font-family="Menlo,Consolas,monospace" xml:space="preserve" style="font-size:13px">  "user_name": "ana",</text>
+<text x="270" y="270" font-family="Menlo,Consolas,monospace" xml:space="preserve" style="font-size:13px">  "roles": ["user"],</text>
+<text x="270" y="292" font-family="Menlo,Consolas,monospace" xml:space="preserve" style="font-size:13px">  "exp": 1767225600</text>
+<text x="270" y="314" font-family="Menlo,Consolas,monospace" xml:space="preserve" style="font-size:13px">}</text>
+<text class="s" x="370.0" y="338" text-anchor="middle">cualquiera puede leerlo</text>
+<path class="ln" d="M610.0 144V170" marker-end="url(#t04-jwt-partes-a)"/>
+<rect class="c4" x="496" y="174" width="228" height="176" rx="8"/>
+<text class="b" x="610.0" y="198" text-anchor="middle">Signature (firma)</text>
+<text x="510" y="226" font-family="Menlo,Consolas,monospace" xml:space="preserve" style="font-size:13px">HMAC-SHA256(</text>
+<text x="510" y="248" font-family="Menlo,Consolas,monospace" xml:space="preserve" style="font-size:13px">  header + "." +</text>
+<text x="510" y="270" font-family="Menlo,Consolas,monospace" xml:space="preserve" style="font-size:13px">  payload,</text>
+<text x="510" y="292" font-family="Menlo,Consolas,monospace" xml:space="preserve" style="font-size:13px">  secreto</text>
+<text x="510" y="314" font-family="Menlo,Consolas,monospace" xml:space="preserve" style="font-size:13px">)</text>
+<text class="s" x="610.0" y="338" text-anchor="middle">solo el backend la calcula</text>
+<text class="s" x="370" y="378" text-anchor="middle">Base64 no cifra: la firma solo impide que alguien cambie el header o el payload</text>
+<text class="s" x="370" y="398" text-anchor="middle">sin que el servidor lo note (integridad, no confidencialidad).</text>
+</svg>

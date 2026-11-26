@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 470">
+<defs><marker id="t03-sqli-consulta-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="ink" d="M0 0L10 5L0 10z"/></marker><marker id="t03-sqli-consulta-r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="bad" d="M0 0L10 5L0 10z"/></marker><marker id="t03-sqli-consulta-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="good" d="M0 0L10 5L0 10z"/></marker></defs>
+<text class="h" x="370" y="26" text-anchor="middle">Inyección SQL: el texto del usuario cambia la forma de la consulta</text>
+<rect class="c1" x="16" y="44" width="708" height="170" rx="10" style="fill-opacity:.35"/>
+<text class="b" x="32" y="68">Uso normal</text>
+<text class="s" x="32" y="102">Usuario</text>
+<rect class="box" x="128" y="82" width="230" height="30" rx="4"/>
+<text x="136" y="102" font-family="Menlo,Consolas,monospace" style="font-size:15px;font-weight:700">ana</text>
+<text class="s" x="32" y="140">Contraseña</text>
+<rect class="box" x="128" y="120" width="230" height="30" rx="4"/>
+<text x="136" y="140" font-family="Menlo,Consolas,monospace" style="font-size:15px;font-weight:700">s3cr3t0</text>
+<text class="s" x="400" y="100">La aplicación pega lo escrito</text>
+<text class="s" x="400" y="118">entre las comillas de su plantilla</text>
+<path class="ln" d="M370 156V172" marker-end="url(#t03-sqli-consulta-a)"/>
+<rect class="box" x="28" y="176" width="684" height="30" rx="4"/>
+<text x="38" y="196" font-family="Menlo,Consolas,monospace" style="font-size:14px" xml:space="preserve"><tspan>SELECT * FROM users WHERE username = '</tspan><tspan style="fill:var(--color-success);font-weight:700">ana</tspan><tspan>' AND password = '</tspan><tspan style="fill:var(--color-success);font-weight:700">s3cr3t0</tspan><tspan>';</tspan></text>
+<rect class="c5" x="16" y="230" width="708" height="200" rx="10" style="fill-opacity:.35"/>
+<text class="b" x="32" y="254">Ataque</text>
+<text class="s" x="32" y="288">Usuario</text>
+<rect class="c5" x="128" y="268" width="230" height="30" rx="4"/>
+<text x="136" y="288" font-family="Menlo,Consolas,monospace" style="font-size:15px;fill:var(--color-danger);font-weight:700">admin' OR '1'='1</text>
+<text class="s" x="32" y="326">Contraseña</text>
+<rect class="box" x="128" y="306" width="230" height="30" rx="4"/>
+<text class="s" x="400" y="286">Su primera comilla cierra el texto</text>
+<text class="s" x="400" y="304">y el resto se lee como SQL</text>
+<path class="ln" d="M370 342V358" marker-end="url(#t03-sqli-consulta-a)"/>
+<rect class="box" x="28" y="362" width="684" height="30" rx="4"/>
+<text x="38" y="382" font-family="Menlo,Consolas,monospace" style="font-size:14px" xml:space="preserve"><tspan>SELECT * FROM users WHERE username = '</tspan><tspan style="fill:var(--color-success);font-weight:700">admin</tspan><tspan style="fill:var(--color-danger);font-weight:700">' OR '1'='1</tspan><tspan>' AND password = '</tspan><tspan>';</tspan></text>
+<text class="b" x="370" y="418" text-anchor="middle">'1'='1' siempre es verdadero: entra como admin sin saber la contraseña</text>
+<text class="s" x="212" y="458" text-anchor="middle">En verde, lo que queda como dato.</text>
+<text class="s" x="530" y="458" text-anchor="middle">En rojo, lo que se convierte en orden SQL.</text>
+</svg>

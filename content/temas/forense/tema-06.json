@@ -230,6 +230,7 @@
             "Cada vez hay más elementos cifrados. Si alguien se molestó en cifrar, suele interesar dedicarle tiempo."
           ]
         },
+        {"type":"figure","src":"figuras/forense/t06-cifrado-paralelo.svg","title":"El cifrado se ataca pronto y en paralelo","caption":"Por eso los cifrados se buscan en el pre-análisis: romper la clave puede tardar días.","alt":"Una línea de trabajo del perito con tres fases: pre-análisis, análisis e informe. En el pre-análisis se detecta un elemento cifrado (un candado) y desde ahí arranca una barra de fuerza bruta o diccionario, acelerada con GPU, que corre en paralelo hasta el final. Hay dos salidas: se obtiene la clave y se analiza el contenido, o no se consigue y se documenta la limitación, con la frase: se localizó un volumen cifrado de 20 GB en la ruta X; no ha sido posible acceder a su contenido."},
         {
           "type": "exam",
           "text": "Ante «¿qué hacer si no se puede descifrar?», la respuesta es **documentar esa limitación**. Las trampas tientan con suposiciones: que no guarda relación con el caso, que todo lo cifrado prueba algo ilícito, o presentar como examinado lo que no se abrió. Las tres son conclusiones sin base."
@@ -284,6 +285,7 @@
           "title": "Caso práctico",
           "text": "Buscas el logotipo de una empresa competidora en el equipo de un empleado sospechoso de espionaje industrial. Una búsqueda de archivos .png o .jpg no lo encuentra. Al extraer los elementos embebidos de los informes .docx, aparece como word/media/image3.png dentro de tres documentos."
         },
+        {"type":"figure","src":"figuras/forense/t06-docx-zip.svg","title":"Un DOCX es un ZIP con carpetas","caption":"El caso práctico del logotipo: la imagen está en **word/media** dentro del documento.","alt":"El archivo informe.docx, que en realidad es un ZIP, se abre y muestra un árbol: [Content_Types].xml, la carpeta word con document.xml (el texto) y la carpeta media con image1.png e image3.png, resaltada como el logotipo buscado. Si no se extrae lo embebido, la búsqueda de imágenes no la ve; extraída, se le aplican hashes, firmas y palabras clave."},
         {
           "type": "exam",
           "text": "Pregunta típica: no encuentras una imagen que sospechas que está en informes ofimáticos. La respuesta es **extraer los elementos embebidos**. Trampas: repetir la misma búsqueda, buscar solo por nombres de fotografías o descartar los documentos porque «su extensión no es de imagen»."
@@ -369,6 +371,7 @@
           "type": "p",
           "text": "Los hipervisores más comunes son VirtualBox y VMware, y en servidores hay muchos más (como Proxmox). Los discos virtuales suelen estar **entre los archivos más pesados** del equipo (de varios a cientos de gigas) y casi nadie les cambia la extensión, así que son fáciles de localizar por tamaño."
         },
+        {"type":"figure","src":"figuras/forense/t06-vm-anidada.svg","title":"Una máquina virtual dentro de la evidencia","caption":"La casa de muñecas de la analogía: un equipo entero dentro de un archivo.","alt":"Tres recuadros anidados. El exterior es la imagen del equipo anfitrión Windows, con su carpeta de usuario, programas, registro y eventos. Dentro, un disco virtual ana-kali.vmdk, un archivo de 60 GB que se localiza por la aplicación instalada, su configuración y la firma del archivo. Dentro de este, otro sistema operativo completo con sus propios usuarios, programas, archivos e historial: evidencias distintas. Debajo, los formatos VDI, VMDK, VHD o VHDX, HDD y QCOW."},
         {
           "type": "exam",
           "text": "La pregunta del test enumera tres afirmaciones: es un paso del pre-análisis, lo ideal es empezar por las aplicaciones de virtualización y también se localizan por sus discos. Las tres son ciertas, así que la respuesta es **«todas las anteriores»**. En otra variante, el indicio correcto son los **archivos de disco virtual y los registros del software de virtualización**, no las cuentas de usuario, los apagados o el cortafuegos."
@@ -511,6 +514,7 @@
           ],
           "title": "Convencional frente a borroso"
         },
+        {"type":"figure","src":"figuras/forense/t06-hash-borroso.svg","title":"Cómo compara el hash borroso","caption":"El caso de **plan_comercial.docx** editado: el hash normal falla y el borroso da un 92 %.","alt":"Dos filas de doce trozos: el documento original plan_comercial y la copia editada. Once trozos coinciden, unidos por líneas; uno, el octavo, es distinto y está marcado en rojo. Debajo, el hash convencional SHA-256 no coincide y no encuentra la copia; el hash borroso, por ejemplo ssdeep, cuenta 11 de 12 trozos iguales, alrededor de un 92 %. Es una pista que luego se confirma comparando los documentos."},
         {
           "type": "p",
           "text": "Hay varios algoritmos (por ejemplo, ssdeep para archivos en general o dHash para imágenes) y se eligen según lo que se busque. Suelen venir como scripts sueltos o como complementos de las suites forenses."
@@ -616,6 +620,7 @@
           "term": "Expresión regular (regex)",
           "text": "Una secuencia de caracteres que forma un **patrón de búsqueda**. Se compara con un texto más amplio para localizar todas las coincidencias. Mezcla caracteres normales (que se buscan tal cual) con **metacaracteres**, que tienen un significado especial."
         },
+        {"type":"figure","src":"figuras/forense/t06-regex-matricula.svg","title":"Una expresión regular, pieza a pieza","caption":"El patrón del ejemplo del tema: dos mayúsculas, guion y cuatro dígitos.","alt":"La expresión \\b[A-Z]{2}-[0-9]{4}\\b dividida en cinco piezas: límite de palabra, dos letras mayúsculas, guion, cuatro dígitos y límite de palabra. Encajan AB-1234 y CD-5678. No encajan AB-12 (pocos dígitos), A-1234 (una letra) ni ab-1234 (minúsculas). La herramienta busca el patrón en todo el disco, incluido el espacio libre."},
         {
           "type": "table",
           "head": [

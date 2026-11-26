@@ -348,6 +348,7 @@
           ],
           "title": "Claves raíz y sus archivos («colmenas» o hives)"
         },
+        {"type":"figure","src":"figuras/forense/t07-registro-colmenas.svg","title":"De las colmenas en disco a las claves raíz","caption":"Lo que RegEdit enseña como un árbol son, en la imagen de disco, unos pocos archivos.","alt":"A la izquierda, dos carpetas del disco. En C:\\Windows\\System32\\Config están las colmenas SAM, SECURITY, SOFTWARE y SYSTEM, con la configuración del equipo (SAM guarda las cuentas locales); una flecha las une con HKLM, HKEY_LOCAL_MACHINE. En C:\\Users\\marta está NTUSER.DAT, la configuración de marta, que se une con HKCU, HKEY_CURRENT_USER. A la derecha también aparecen HKU, que apunta a los NTUSER.DAT, y HKCC, que apunta a SYSTEM. En frío se copian las colmenas de la imagen y se analizan."},
         {
           "type": "term",
           "term": "Colmena (hive)",
@@ -683,6 +684,7 @@
           "title": "Caso práctico",
           "text": "Un empleado jura que nunca usó un borrador seguro de archivos. En Windows\\Prefetch aparece ERASER.EXE-1A2B3C4D.pf; en UserAssist, la entrada ROT-13 «renfre.rkr» (eraser.exe) con 3 ejecuciones; y en RunMRU, la orden «eraser». Tres fuentes independientes apuntan en la misma dirección. Aun así, demuestran que **la cuenta** ejecutó el programa, no quién estaba sentado delante."
         },
+        {"type":"figure","src":"figuras/forense/t07-tres-fuentes-ejecucion.svg","title":"Tres artefactos que cuentan lo mismo","caption":"El caso práctico de **eraser.exe**, con la ubicación de cada artefacto.","alt":"Tres tarjetas. Prefetch, en C:\\Windows\\Prefetch, contiene ERASER.EXE-1A2B….pf: su existencia indica que se ejecutó. UserAssist, en NTUSER.DAT, contiene renfre.rkr en ROT-13, es decir eraser.exe, con 3 ejecuciones. RunMRU, en NTUSER.DAT, guarda la orden eraser escrita en Ejecutar. Las tres flechas convergen en una conclusión: la cuenta del empleado ejecutó el programa, sin probar quién estaba sentado delante."},
         {
           "type": "exam",
           "text": "Si preguntan qué son las listas MRU: listas de **elementos o acciones recientes** que conserva el sistema. No son una copia de todos los documentos usados, ni una lista de procesos activos, ni garantizan que el titular de la cuenta hizo personalmente cada acción."
@@ -833,6 +835,7 @@
           "type": "p",
           "text": "Si en el campo de contraseña aparece una **x**, significa que la contraseña está **cifrada («encriptada», dice el temario) y guardada en /etc/shadow**, un archivo de acceso restringido. Técnicamente lo que se guarda en shadow es un **hash** (huella irreversible) de la contraseña, no la contraseña en claro."
         },
+        {"type":"figure","src":"figuras/forense/t07-etc-passwd.svg","title":"Los siete campos de /etc/passwd","caption":"Redibujado de la figura del tema, con la línea de ejemplo de Ana.","alt":"La línea ana:x:1001:1001:Ana García:/home/ana:/bin/bash, con los dos puntos en rojo. Cada campo tiene una línea que lo une con su nombre: ana es el nombre, x la contraseña (el hash está en /etc/shadow), 1001 el UID, 1001 el GID, Ana García la descripción, /home/ana la carpeta personal y /bin/bash la shell."},
         {
           "type": "term",
           "term": "Hash",
@@ -1003,6 +1006,7 @@
           "type": "p",
           "text": "Advertencia importante: **todas las fechas pueden alterarse** (hay herramientas para cambiarlas a voluntad), así que cualquier incoherencia merece investigación."
         },
+        {"type":"figure","src":"figuras/forense/t07-linea-temporal.svg","title":"Una línea temporal con fechas de archivos","caption":"Ejemplo ilustrativo que encadena el caso de cron del temario; los comandos find del apartado son los que dan estas fechas.","alt":"Una línea de tiempo con cuatro sucesos. A las 02:11 se crea /var/tmp/xxcrFWrZMH. A las 02:12 se modifica el crontab de root. A las 03:10 hay un acceso: perl ejecuta el script. A las 04:10, otro acceso, cada hora. Abajo se recuerda que find con %T o %C y sort -nr ordena los archivos por fecha y que todas las fechas pueden alterarse."},
         {
           "type": "exam",
           "text": "Si quieres los **parámetros** con que se lanzó un proceso, el artefacto es **/proc/[PID]/cmdline**; no basta con el nombre del ejecutable. Si preguntan por /proc en macOS, recuerda que **no existe** (lo verás más adelante)."
@@ -1109,6 +1113,7 @@
           "type": "p",
           "text": "Lectura: **en el minuto 10 de cada hora** (00:10, 01:10, 02:10…), de cualquier día y mes, ejecuta un script Perl de nombre aleatorio en /var/tmp, y manda toda su salida a /dev/null (el «agujero negro» de Linux) para que no quede rastro. Todo huele a malware."
         },
+        {"type":"figure","src":"figuras/forense/t07-crontab.svg","title":"Los cinco campos de una línea de crontab","caption":"Redibujado de la figura del tema con el ejemplo sospechoso del temario.","alt":"Cinco casillas: 10, asterisco, asterisco, asterisco, asterisco, seguidas de la orden perl /var/tmp/xxcrFWrZMH >/dev/null 2>&1. Unas líneas unen cada casilla con su significado: minuto (0-59), hora (0-23), día del mes (1-31), mes (1-12) y día de la semana (0-7). Abajo: 10 * * * * significa en el minuto 10 de cada hora; un script de nombre aleatorio en /var/tmp con la salida tirada a /dev/null huele a malware."},
         {
           "type": "table",
           "head": [

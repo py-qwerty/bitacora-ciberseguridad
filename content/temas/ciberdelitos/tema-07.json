@@ -221,6 +221,7 @@
           "type": "p",
           "text": "Ojo: no todos están mal escritos. El tema muestra un correo que suplanta a VISA con **redacción correcta**, que asusta con un uso de la tarjeta «fuera del patrón típico de compra» y añade un **número de caso** para parecer creíble."
         },
+        {"type":"figure","src":"figuras/ciberdelitos/t07-anatomia-correo.svg","title":"Anatomía de un correo de **phishing**","caption":"Correo inventado que reúne las señales de los ejemplos del tema. Lo que delata el engaño es el destino real del enlace, no el envoltorio.","alt":"Un correo que dice venir de «Mibanco Seguridad» con el asunto «URGENTE: su cuenta será bloqueada», un logotipo MIBANCO, un texto mal redactado que pide introducir los detalles completos de la cuenta por su seguridad y un botón «Acceso seguro a tu banco». Al pasar el puntero, el destino real es http://70.103.198.51/mibanco/login.php. Cinco llamadas numeradas explican: 1 logotipo y nombre copiados, que no prueban quién lo envía; 2 urgencia y amenaza para decidir sin pensar; 3 excusa «por su seguridad», apariencia protectora; 4 redacción deficiente propia de la traducción automática, aunque no siempre está; 5 enlace trampa: el texto dice tu banco y el destino es una IP ajena."},
         {
           "type": "p",
           "text": "La comprobación más útil es **situar el puntero sobre el enlace** (sin pulsar): el navegador o el programa de correo muestra la dirección real. En los correos más trabajados, el texto visible es incluso la URL auténtica del banco, pero el destino real es otro."
@@ -399,6 +400,7 @@
           "type": "p",
           "text": "Hoy los autores de malware estudian a fondo cada entidad (diseño web, tecnología, código HTML o Java) y fabrican ataques a medida, con un porcentaje de éxito muy alto."
         },
+        {"type":"figure","src":"figuras/ciberdelitos/t07-carrera-banco-malware.svg","title":"La carrera entre el banco y el malware","caption":"Cada nueva protección del banco recibe una respuesta del delincuente.","alt":"Tres filas. A la izquierda, lo que hace el banco; a la derecha, la respuesta del delincuente. Usuario y contraseña tecleados frente al keylogger, que graba cada tecla pulsada. Teclado virtual pulsado con el ratón frente al screenlogger, que fotografía la zona de la pantalla del clic. Teclado que muestra asteriscos frente a un malware que graba vídeo del puntero y deduce en qué tecla se detiene."},
         {
           "type": "exam",
           "text": "«Programas que recogen en un fichero las pulsaciones del teclado» = **keyloggers** (no troyanos en general, ni cracks, que son programas para saltarse licencias, ni el genérico «capturadores»). Otra pregunta típica: un teclado virtual evita las pulsaciones físicas, pero **no impide observar la pantalla o el puntero**, así que como medida aislada es insuficiente."
@@ -445,6 +447,7 @@
           "type": "p",
           "text": "Ejemplo célebre: **ZeuS**, uno de los troyanos bancarios más exitosos en propagación y resultados. Siguiendo una lógica empresarial, los desarrolladores ya fabrican malware para **smartphones y tabletas**, porque el acceso a la banca se está desplazando a esos dispositivos."
         },
+        {"type":"figure","src":"figuras/ciberdelitos/t07-inyeccion-web.svg","title":"El troyano añade campos a la web auténtica","caption":"La dirección y el candado son los del banco: el engaño ocurre dentro del equipo infectado.","alt":"Un navegador muestra https://www.mibanco.es, la web auténtica del banco, con los campos Usuario y Clave de acceso. Debajo de una línea discontinua aparecen, en rojo, dos campos añadidos por el troyano: Clave de firma y Coordenadas A1-E8 (todas). A la derecha, el troyano bancario del equipo de la víctima tiene una lista de webs objetivo en la que está marcada www.mibanco.es; duerme hasta que se visita una web de su lista y entonces añade campos que piden datos extra."},
         {
           "type": "exam",
           "text": "Si aparecen campos extra solo al visitar una entidad concreta, la explicación es un troyano que se activa al reconocer una web objetivo (no «no hay malware» ni «el banco lo ha autorizado»). Si el usuario escribió la dirección correcta, la conclusión es que **un destino auténtico no excluye la manipulación local** de lo que ve."
@@ -483,6 +486,7 @@
             ["En local", "El archivo del sistema operativo que asocia nombres de dominio con IP (en Windows, el archivo hosts)", "Solo al equipo infectado"]
           ]
         },
+        {"type":"figure","src":"figuras/ciberdelitos/t07-pharming-alcances.svg","title":"Los dos alcances del **pharming**","caption":"En los dos casos la víctima escribe bien la dirección y acaba en la web falsa.","alt":"Dos columnas. Pharming en servidor: tres equipos escriben bien mibanco.es y preguntan a un servidor DNS con las tablas alteradas, que los manda a la web falsa; afecta a todos los usuarios que usan ese servidor DNS. Pharming local: un equipo infectado escribe bien mibanco.es; primero consulta su archivo hosts, que tiene una línea añadida por el malware, y ni siquiera pregunta al servidor DNS; acaba en la web falsa; afecta solo al equipo infectado."},
         {
           "type": "p",
           "text": "El ataque local funciona porque el sistema operativo consulta **primero** ese archivo; si encuentra el nombre, usa la IP que ahí figura y **ni siquiera pregunta al servidor DNS**. Un malware solo tiene que añadir una línea."

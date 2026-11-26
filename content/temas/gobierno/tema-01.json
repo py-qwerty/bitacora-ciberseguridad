@@ -71,6 +71,7 @@
           "term": "Sistema de información",
           "text": "Conjunto de componentes relacionados que recogen, guardan, procesan y distribuyen información para tomar decisiones y controlar una organización. Incluye hardware y software, pero también **procedimientos, estructuras organizativas y personas**. No es lo mismo que el sistema informático (solo las máquinas y programas). Por eso se estudia con un enfoque **sociotécnico**: lo social y lo técnico a la vez."
         },
+        {"type":"figure","src":"figuras/gobierno/t01-sistema-informacion.svg","title":"Un sistema de información es socio-técnico","caption":"Redibujado de la figura del tema: el sistema de información y su entorno.","alt":"Un recuadro discontinuo llamado Entorno contiene, a la izquierda, clientes, socios, competidores y marco regulatorio. Dentro, la organización tiene un sistema social (estructura y personas) y un sistema técnico (tecnología y tareas), que se relacionan entre sí. Una llave inferior indica que la gestión de la seguridad de los sistemas de información cubre todos estos elementos, no solo la tecnología."},
         {
           "type": "list",
           "title": "Ideas que el tema repite desde el principio",
@@ -139,6 +140,7 @@
             ]
           ]
         },
+        {"type":"figure","src":"figuras/gobierno/t01-cadena-negocio.svg","title":"Del negocio a los controles","caption":"Las tres preguntas del profesor: qué protegemos, de qué y con qué medios.","alt":"Cadena de cuatro cajas: líneas de negocio, que se apoyan en sistemas de información, que están hechos de activos (servidor, programa, dato, usuario), a los que protegen los controles para mantener confidencialidad, integridad y disponibilidad. Debajo, amenazas externas (hackers, activistas, competencia, aficionados) y amenazas internas (empleado descontento, fraude, negligencias y errores) apuntan con flechas rojas a los activos. Una caja aparte recuerda que los recursos son limitados y que el análisis de riesgos dice qué control va primero."},
         {
           "type": "example",
           "text": "**No todos los activos valen lo mismo.** Si la aplicación de fichajes de los empleados se cae un día, se ficha al día siguiente y no pasa nada grave (aunque sea necesaria para cumplir la ley). Si se cae una hora la plataforma de venta online, se pierden ventas. Y si un atacante accede a los datos de los clientes (cuenta bancaria, correo…) el problema es mayor que si accede a un número de empleado y un nombre. No es que los empleados importen menos: es que el daño posible es distinto. Por eso el nivel de protección de la confidencialidad, la integridad y la disponibilidad se ajusta a la **criticidad** de cada activo."
@@ -492,6 +494,7 @@
             ["Confidencial", "Lo más sensible.", "Fórmulas, productos nuevos, fusiones en curso."]
           ]
         },
+        {"type":"figure","src":"figuras/gobierno/t01-niveles-clasificacion.svg","title":"Niveles de clasificación: una escalera","caption":"Cada escalón pide más protección que el anterior.","alt":"Dos escaleras de barras. A la izquierda, sector público con cinco niveles de menor a mayor: sin clasificar, sensible pero no clasificada, confidencial, secreta y alto secreto; cuanto más alto, más daño si se difunde. A la derecha, empresa con tres niveles: uso público (folleto comercial), uso interno (datos de proveedores) y confidencial (fórmulas, productos nuevos, fusiones). Nota: la información personal va aparte porque la protege la ley."},
         {
           "type": "list",
           "title": "Otros criterios",
@@ -598,6 +601,7 @@
           "type": "p",
           "text": "Pero **no elimina el riesgo**: la ingeniería social o el phishing pueden conseguir que el propio usuario entregue la contraseña, por robusta que sea. Lo que queda tras aplicar los controles es el **riesgo residual**, y hay que evaluarlo (no ignorarlo ni darlo por transferido al fabricante)."
         },
+        {"type":"figure","src":"figuras/gobierno/t01-control-riesgo-residual.svg","title":"Un control reduce el riesgo, pero no a cero","alt":"A la izquierda, una barra alta de riesgo inicial. En el centro, las dos formas de actuar de un control: bajar la probabilidad (como los frenos ABS) o limitar el impacto (como el cinturón). A la derecha, una barra baja de riesgo residual, que nunca llega a cero por el phishing o la ingeniería social. Ejemplo: contraseñas robustas reducen los accesos no autorizados. El control se justifica si reduce un riesgo concreto y el residual se evalúa, no se ignora."},
         {
           "type": "list",
           "title": "¿Es un control de seguridad?",
@@ -641,6 +645,7 @@
             ["Transferir (compartir)", "No actúa sobre el riesgo en sí: alguien compensa económicamente si ocurre.", "Contratar un ciberseguro que cubre parte de las pérdidas."]
           ]
         },
+        {"type":"figure","src":"figuras/gobierno/t01-cuatro-vias.svg","title":"Las cuatro vías ante un riesgo","caption":"El ejemplo de la moto y el de la empresa, lado a lado.","alt":"Cuadrícula de cuatro casillas. Aceptar: convivir con el riesgo porque cuesta poco; moto: vas y ya; empresa: web informativa sin datos sensibles. Mitigar: controles que bajan probabilidad o impacto; moto: casco y curso; empresa: cambiar contraseñas cada cierto tiempo. Evitar: dejar la actividad; moto: ir en metro; empresa: no guardar números de tarjeta. Transferir: alguien compensa si ocurre; moto: un seguro; empresa: ciberseguro. Nota: transferir no elimina la amenaza."},
         {
           "type": "p",
           "text": "La transferencia tiene un matiz importante: el seguro **no elimina la amenaza** ni traslada todas las responsabilidades; solo comparte determinadas consecuencias económicas. Aceptar un riesgo tampoco significa que ya no hagan falta controles en general."

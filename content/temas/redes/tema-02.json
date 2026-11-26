@@ -151,6 +151,7 @@
             ["Dispositivos portátiles", "Un portátil o un móvil se infecta fuera de la empresa (en casa, en un hotel) y luego se conecta a la red interna, ya dentro del perímetro."]
           ]
         },
+        {"type":"figure","src":"figuras/redes/t02-limitaciones-rodeos.svg","title":"Cinco formas de **rodear** el cortafuegos perimetral","caption":"Las limitaciones de la tabla, dibujadas: nada de esto pasa por el cortafuegos.","alt":"Internet a la izquierda, unido por un cortafuegos a una red local dibujada como un recuadro discontinuo. Cinco flechas rojas: 1, un equipo infectado ataca a un compañero dentro de la red (movimiento lateral); 2, una flecha va de Internet directamente a un equipo con módem 4G propio, sin cruzar el cortafuegos; 3, un empleado abre una conexión autorizada hacia fuera que aprovecha el atacante (amenaza interna); 4, una persona en el aparcamiento se conecta a la wifi de la LAN; 5, un portátil infectado en un hotel vuelve a la oficina y se conecta dentro."},
         {
           "type": "example",
           "title": "El portátil del comercial",
@@ -179,6 +180,7 @@
           "type": "analogy",
           "text": "Piensa en el control de correo de una empresa. Un empleado solo mira el **sobre** (remitente y destinatario): es rápido, pero no sabe qué hay dentro. Otro **abre la carta y la lee**: puede detectar contenido peligroso, pero tarda mucho más. El primero es el filtrado de paquetes; el segundo, la pasarela de aplicación."
         },
+        {"type":"figure","src":"figuras/redes/t02-paquete-que-lee.svg","title":"Qué parte del paquete **lee** cada cortafuegos","caption":"El sobre (cabeceras) frente a la carta (datos) de la analogía.","alt":"Un paquete de una petición web dividido en cuatro trozos seguidos: Ethernet (MAC de origen y destino), cabecera IP (de 192.168.1.20 a 203.0.113.10), cabecera TCP (puerto 51000 a 80, flags SYN y ACK) y datos HTTP (GET /login.php, Host: tienda.example). Debajo, tres corchetes: el filtrado de paquetes, también el de estado, abarca solo las cabeceras IP y TCP; la pasarela de circuito abarca la cabecera TCP cuando se abre la conexión; la pasarela de aplicación o proxy abarca desde la cabecera IP hasta los datos, así que ve «GET /login.php»."},
         {
           "type": "table",
           "title": "Los tres tipos clásicos",
@@ -189,6 +191,7 @@
             ["Pasarela a nivel de circuito", "La conexión inicial; después solo cabeceras", "Hace de proxy al establecer la conexión y luego reenvía **sin** filtrar a nivel de aplicación."]
           ]
         },
+        {"type":"figure","src":"figuras/redes/t02-tipos-por-capa.svg","title":"Los tres tipos de cortafuegos sobre la **pila TCP/IP**","caption":"Cada barra cubre las capas que ese cortafuegos es capaz de examinar.","alt":"A la izquierda, la pila TCP/IP con sus cuatro capas de arriba abajo: aplicación (HTTP, SMTP, DNS, FTP; capas 5 a 7 de OSI), transporte (TCP, UDP y puertos; capa 4), internet o red (IP y direcciones; capa 3) y acceso a la red (Ethernet, wifi, MAC; capas 1 y 2). A la derecha, tres barras: el filtrado de paquetes cubre red y transporte (mira IP y puertos; el de estado además recuerda las conexiones); la pasarela de circuito cubre transporte (valida la conexión TCP); la pasarela de aplicación cubre de red a aplicación (como proxy lee la petición completa: URL, comandos y contenido). Una flecha indica que de izquierda a derecha entienden más del tráfico pero trabajan más y son más lentos."},
         {
           "type": "term",
           "term": "Proxy",
@@ -243,6 +246,7 @@
           "type": "p",
           "text": "Filtra sobre todo en la **capa de red**, con algo de enlace y transporte. Lo que **no** mira es el contenido de aplicación: no sabe qué página web se pide, qué usuario hay detrás ni qué hay dentro de un archivo."
         },
+        {"type":"figure","src":"figuras/redes/t02-filtro-campos.svg","title":"Los campos que mira el filtro, **capa por capa**","caption":"Lo que dice el párrafo de arriba: sobre todo red, algo de enlace y transporte, nada de aplicación.","alt":"Un paquete que llega a un servidor web troceado en cuatro piezas: enlace (llega por la interfaz conectada a Internet), cabecera IP (origen 203.0.113.7, destino 192.168.1.10, más el protocolo TCP y el tamaño), cabecera TCP (puerto origen 51000, puerto destino 443) y datos de aplicación (qué web se pide, qué usuario, qué archivo). Las tres primeras llevan una marca verde y un corchete: el filtro mira sobre todo la capa de red, con algo de transporte y de enlace. Los datos llevan una cruz roja: no los mira. Abajo, la regla «aceptar TCP con destino 192.168.1.10, puerto 443»: puede dejar llegar el tráfico a la web HTTPS, pero no puede distinguir a Ana de Luis ni bloquear las apuestas, porque eso va en los datos."},
         {
           "type": "example",
           "title": "Una regla de verdad",
@@ -257,6 +261,7 @@
           "type": "analogy",
           "text": "El portero sin estado mira cada carné como si fuera la primera vez. El portero con estado recuerda: «a este lo dejé salir hace un minuto, así que su vuelta es legítima»."
         },
+        {"type":"figure","src":"figuras/redes/t02-tabla-estado.svg","title":"La **tabla de estado** en acción","caption":"Los tres paquetes del código de abajo; el filtro sin estado del código acepta todo lo que venga del puerto 80.","alt":"Tu equipo 192.168.1.10 a la izquierda, un cortafuegos en el centro y, a la derecha, un servidor web 203.0.113.10 y un atacante 198.51.100.66. Paquete 1: petición que sale de tu equipo, puerto 51000, hacia 203.0.113.10 puerto 80; se acepta y se anota. Paquete 2: la respuesta de 203.0.113.10 puerto 80 a tu puerto 51000; está en la tabla y pasa. Paquete 3: un paquete del atacante desde su puerto 80 hacia tu puerto 3389; no está en la tabla y se descarta. Abajo, la tabla de estado con una sola conexión abierta: 192.168.1.10:51000 con 203.0.113.10:80. Nota: un filtro sin estado habría dejado pasar el 3 porque viene del puerto 80."},
         {
           "type": "table",
           "title": "Balance del filtrado de paquetes",
@@ -357,6 +362,7 @@
           "type": "p",
           "text": "Fíjate en que la pasarela de aplicación no «pierde» la información de red: la conexión le llega desde una IP concreta y la reenvía a otra, así que puede tenerla en cuenta y registrarla. Lo que **añade** es la capacidad de entender los datos de aplicación."
         },
+        {"type":"figure","src":"figuras/redes/t02-pasarela-aplicacion-pilas.svg","title":"La pasarela de aplicación, **capa por capa**","caption":"Esquema simplificado con la pila TCP/IP en los tres equipos.","alt":"Tres pilas TCP/IP de cuatro capas (aplicación, transporte, internet y acceso a la red): usuario, pasarela (proxy) y servidor de destino. Una línea roja muestra el recorrido de una petición: baja por la pila del usuario, viaja por el cable, sube por la pila de la pasarela hasta la capa de aplicación (marcada con un punto), vuelve a bajar, viaja por el cable y sube por la pila del servidor. Abajo: en la pasarela la petición llega a la aplicación, que la entiende (HTTP, FTP, Telnet), decide, autentica y registra, y luego la repite hacia el servidor; hay dos conversaciones, usuario con pasarela y pasarela con servidor."},
         {
           "type": "exam",
           "text": "Dos preguntas típicas. Primera: el gran inconveniente de la pasarela de aplicación es que **necesita muchos recursos** (y la afirmación de que «no permite controles con información de red (IP)» es falsa). Segunda: si un proxy de aplicación se satura con mucha demanda, la explicación es el **procesamiento adicional por cada conexión**, no el ancho de banda ni la lectura de cabeceras."
@@ -390,6 +396,7 @@
           "type": "analogy",
           "text": "Como el control de acceso de un edificio: en la entrada te identificas y te dan un pase; después, nadie abre tu maletín en cada pasillo."
         },
+        {"type":"figure","src":"figuras/redes/t02-pasarela-circuito-pilas.svg","title":"La pasarela de circuito, **capa por capa**","caption":"Compárala con la de la pasarela de aplicación: aquí la línea roja no llega arriba. Esquema simplificado.","alt":"Tres pilas TCP/IP de cuatro capas: usuario, pasarela de circuito y servidor de destino. En la pasarela la capa de aplicación aparece atenuada. La línea roja baja por la pila del usuario, viaja por el cable, sube por la pasarela solo hasta la capa de transporte, donde se da la vuelta, baja y sube por la pila del servidor. Abajo: al principio el usuario abre la conexión con la pasarela y se autentica; después solo reenvía mirando cabeceras y los datos de aplicación pasan sin abrirse."},
         {
           "type": "table",
           "title": "Comparación rápida de los tres tipos",
@@ -429,6 +436,7 @@
           "term": "DPI (Deep Packet Inspection, inspección profunda de paquetes)",
           "text": "Revisar no solo la cabecera, sino también el contenido del paquete, para ir más allá de bloquear por puerto y protocolo. Según la definición de Gartner (consultora tecnológica), un NGFW hace DPI y añade, como mínimo, **información de nivel de aplicación** y **prevención de intrusiones**."
         },
+        {"type":"figure","src":"figuras/redes/t02-ngfw-capas.svg","title":"Cortafuegos de estado frente a NGFW sobre la **pila TCP/IP**","caption":"Cada barra cubre las capas que es capaz de examinar.","alt":"A la izquierda, la pila TCP/IP con aplicación (OSI 5 a 7), transporte (OSI 4), internet o red (OSI 3) y acceso a la red (OSI 1 y 2). A la derecha, dos barras: el cortafuegos de estado cubre red y transporte (puertos y protocolos, recuerda las conexiones y hace NAT); el NGFW cubre desde la red hasta la aplicación, la capa 7: todo lo del de estado más DPI, que mira el contenido, conocimiento de aplicaciones (sabe que es una red social aunque use el puerto 443), IDS/IPS e inteligencia de amenazas. Abajo: el NGFW no sustituye al cortafuegos de estado, lo incluye."},
         {
           "type": "term",
           "term": "IDS / IPS",

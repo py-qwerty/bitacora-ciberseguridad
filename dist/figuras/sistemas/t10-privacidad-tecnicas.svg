@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 400">
+<defs><marker id="t10pt-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="ink" d="M0 0L10 5L0 10z"/></marker><marker id="t10pt-t" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--color-secondary)"/></marker><marker id="t10pt-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="good" d="M0 0L10 5L0 10z"/></marker><marker id="t10pt-r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="bad" d="M0 0L10 5L0 10z"/></marker></defs>
+<text class="h" x="20" y="30">Un mismo registro antes y después</text>
+<rect class="tint" x="100" y="50" width="100" height="34" rx="0"/>
+<text class="b" x="150.0" y="73" text-anchor="middle">nombre</text>
+<rect class="box" x="100" y="84" width="100" height="40" rx="0"/>
+<text x="150.0" y="110" text-anchor="middle">Lucía</text>
+<path class="ln" d="M150.0 126V176" marker-end="url(#t10pt-a)"/>
+<rect class="c5" x="104" y="136" width="92" height="30" rx="15"/>
+<text class="s" x="150.0" y="156" text-anchor="middle" style="fill:var(--color-text)">Supresión</text>
+<rect class="box" x="100" y="180" width="100" height="40" rx="0"/>
+<text class="b" x="150.0" y="206" text-anchor="middle">(borrado)</text>
+<rect class="tint" x="200" y="50" width="130" height="34" rx="0"/>
+<text class="b" x="265.0" y="73" text-anchor="middle">DNI</text>
+<rect class="box" x="200" y="84" width="130" height="40" rx="0"/>
+<text x="265.0" y="110" text-anchor="middle">11111111H</text>
+<path class="ln" d="M265.0 126V176" marker-end="url(#t10pt-a)"/>
+<rect class="c2" x="204" y="136" width="122" height="30" rx="15"/>
+<text class="s" x="265.0" y="156" text-anchor="middle" style="fill:var(--color-text)">Seudonimización</text>
+<rect class="box" x="200" y="180" width="130" height="40" rx="0"/>
+<text class="b" x="265.0" y="206" text-anchor="middle">df88589813</text>
+<rect class="tint" x="330" y="50" width="110" height="34" rx="0"/>
+<text class="b" x="385.0" y="73" text-anchor="middle">cód. postal</text>
+<rect class="box" x="330" y="84" width="110" height="40" rx="0"/>
+<text x="385.0" y="110" text-anchor="middle">28013</text>
+<path class="ln" d="M385.0 126V176" marker-end="url(#t10pt-a)"/>
+<rect class="c3" x="334" y="136" width="202" height="30" rx="15"/>
+<text class="s" x="440" y="156" text-anchor="middle" style="fill:var(--color-text)">Generalización</text>
+<rect class="box" x="330" y="180" width="110" height="40" rx="0"/>
+<text class="b" x="385.0" y="206" text-anchor="middle">280**</text>
+<rect class="tint" x="440" y="50" width="100" height="34" rx="0"/>
+<text class="b" x="490.0" y="73" text-anchor="middle">año nac.</text>
+<rect class="box" x="440" y="84" width="100" height="40" rx="0"/>
+<text x="490.0" y="110" text-anchor="middle">1985</text>
+<path class="ln" d="M490.0 126V136"/>
+<path class="ln" d="M490.0 166V176" marker-end="url(#t10pt-a)"/>
+<rect class="box" x="440" y="180" width="100" height="40" rx="0"/>
+<text class="b" x="490.0" y="206" text-anchor="middle">1980s</text>
+<rect class="tint" x="540" y="50" width="70" height="34" rx="0"/>
+<text class="b" x="575.0" y="73" text-anchor="middle">sexo</text>
+<rect class="box" x="540" y="84" width="70" height="40" rx="0"/>
+<text x="575.0" y="110" text-anchor="middle">M</text>
+<path class="dash" d="M575.0 126V176" marker-end="url(#t10pt-a)"/>
+<rect class="c1" x="540" y="180" width="70" height="40" rx="0"/>
+<text x="575.0" y="206" text-anchor="middle">M</text>
+<rect class="tint" x="610" y="50" width="120" height="34" rx="0"/>
+<text class="b" x="670.0" y="73" text-anchor="middle">diagnóstico</text>
+<rect class="box" x="610" y="84" width="120" height="40" rx="0"/>
+<text x="670.0" y="110" text-anchor="middle">diabetes</text>
+<path class="dash" d="M670.0 126V176" marker-end="url(#t10pt-a)"/>
+<rect class="c1" x="610" y="180" width="120" height="40" rx="0"/>
+<text x="670.0" y="206" text-anchor="middle">diabetes</text>
+<text class="s" x="20" y="112">antes</text>
+<text class="s" x="20" y="206">después</text>
+<rect class="c2" x="20" y="244" width="340" height="116" rx="10"/>
+<text class="b" x="36" y="268">Seudonimización (HMAC con clave)</text>
+<text class="s" x="36" y="292">mismo DNI → mismo seudónimo: se pueden</text>
+<text class="s" x="36" y="312">cruzar tablas, pero sin la clave</text>
+<text class="s" x="36" y="332">no se puede recalcular.</text>
+<rect class="c3" x="380" y="244" width="360" height="116" rx="10"/>
+<text class="b" x="396" y="268">Anonimización (supresión + generalización)</text>
+<text class="s" x="396" y="292">quita o difumina lo que identifica: cada</text>
+<text class="s" x="396" y="312">persona se confunde con otras (k-anonimato:</text>
+<text class="s" x="396" y="332">de k = 1 a k = 3 en el ejemplo del tema).</text>
+<text class="s" x="380" y="390" text-anchor="middle">Ojo: el diagnóstico sigue a la vista; por eso existen mejoras como la privacidad diferencial.</text>
+</svg>

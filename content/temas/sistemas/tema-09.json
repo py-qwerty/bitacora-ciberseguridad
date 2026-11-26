@@ -42,6 +42,7 @@
             ["Nube híbrida", "**Combina** una nube pública y una privada y permite compartir datos y aplicaciones entre ellas.", "Un hospital que guarda los historiales en su nube privada y usa la pública para la web de citas."]
           ]
         },
+        {"type":"figure","src":"figuras/sistemas/t09-modelos-nube.svg","title":"Nube pública, privada e híbrida","caption":"Esquema nuevo a partir de la tabla del tema y de la analogía del coche.","alt":"Tres paneles. Nube pública: servidores del proveedor que usan muchos clientes distintos. Nube privada: servidores en el centro de datos de la organización o alojados, que usa en exclusiva una sola organización. Nube híbrida: una parte pública y otra privada que intercambian datos y aplicaciones, usadas por la misma organización, por ejemplo un hospital. Debajo, la analogía: taxi compartido, coche propio, o el tuyo a diario y uno de alquiler para viajes largos."},
         {
           "type": "term",
           "term": "Microsoft Azure",
@@ -178,6 +179,7 @@
             "Como todo pasa por la misma API, el resultado es coherente uses la herramienta que uses."
           ]
         },
+        {"type":"figure","src":"figuras/sistemas/t09-arm.svg","title":"Azure Resource Manager: el mostrador único","caption":"Redibujado de la figura del tema sobre Azure Resource Manager.","alt":"Arriba, cinco herramientas: Portal, PowerShell, CLI de Azure, API REST y SDK; todas envían su petición a Azure Resource Manager (ARM), el mostrador único. ARM consulta a la autenticación para autenticar y autorizar al solicitante. Después reenvía la orden al servicio correspondiente: máquina virtual, base de datos, aplicación web u otros servicios. Como todo pasa por la misma API, el resultado es el mismo con cualquier herramienta."},
         {
           "type": "p",
           "text": "Curiosidad del temario: las funciones nuevas suelen aparecer antes en las API y llegan al portal web unos seis meses después."
@@ -240,6 +242,7 @@
           "title": "Una directiva regional para 40 suscripciones",
           "text": "Por motivos legales, una empresa quiere que sus máquinas virtuales solo se creen en regiones europeas. Tiene 40 suscripciones. En vez de configurar 40 veces (o, peor, cada grupo de recursos), crea un grupo de administración «UE» que contiene esas suscripciones y le aplica la directiva. Todas las suscripciones, sus grupos de recursos y sus recursos la heredan."
         },
+        {"type":"figure","src":"figuras/sistemas/t09-herencia-ue.svg","title":"Una directiva arriba, heredada por toda la rama","caption":"Esquema nuevo con el ejemplo del apartado; recuerda la jerarquía de grupos de administración del tema.","alt":"Árbol. Arriba, el grupo de administración «UE» con la directiva «solo regiones europeas». Debajo, sus suscripciones (1, 2… hasta la 40). Bajo cada suscripción, grupos de recursos como rg-web, rg-datos y rg-pruebas, y bajo ellos los recursos (máquinas virtuales, una base de datos). Una flecha verde indica que la directiva baja sola por toda la rama: se aplica una vez y la heredan las 40 suscripciones. Orden de herencia: grupo de administración, suscripción, grupo de recursos, recurso."},
         {
           "type": "exam",
           "text": "«Gobernanza en varias suscripciones» o «política común para muchas suscripciones» = **grupo de administración**. «Unidad lógica de servicios asociada a una cuenta» = **suscripción**. Trampas: «el uso de Azure no requiere suscripción» o «puede requerirse o no» son falsas; y un grupo de recursos no agrupa suscripciones."
@@ -465,6 +468,7 @@
           "type": "p",
           "text": "Fíjate en Colaborador: tiene todo (*) y **se le restan** las acciones de Microsoft.Authorization, que son las que crean o borran asignaciones de roles. Por eso administra recursos pero no puede dar acceso a otros. NotActions **no es una prohibición absoluta**: si la misma persona recibe otro rol que sí incluye esa operación, la podrá hacer. Es una resta dentro de esa definición, no una «lista negra» que se consulta después."
         },
+        {"type":"figure","src":"figuras/sistemas/t09-colaborador-resta.svg","title":"Colaborador = todo menos dar acceso","caption":"Esquema nuevo a partir de la tabla de los roles básicos por dentro.","alt":"Una resta con tres cajas: Actions: * (todas las operaciones de administración), menos NotActions (Microsoft.Authorization: crear o borrar asignaciones de roles), igual a Colaborador (administra recursos, pero no puede dar acceso a otros). Notas: NotActions resta dentro de esa definición y no es una prohibición absoluta; Propietario es * sin restas y Lector es */read."},
         {
           "type": "term",
           "term": "Plano de administración frente a plano de datos",
@@ -524,6 +528,7 @@
           "title": "Marketing solo en ventas",
           "text": "El grupo de Marketing debe poder trabajar con los recursos de la campaña de ventas, pero no con nada más. Se asigna el rol **Colaborador** al **grupo Marketing** en el ámbito del **grupo de recursos de ventas**. Si se hiciera en toda la suscripción, podrían tocar recursos de otros departamentos; si se diera Propietario, además podrían dar acceso a otros."
         },
+        {"type":"figure","src":"figuras/sistemas/t09-ambito-marketing.svg","title":"Elegir el ámbito más pequeño que sirva","caption":"Esquema nuevo con el ejemplo «Marketing solo en ventas».","alt":"Una suscripción contiene dos grupos de recursos: el de ventas y el de otro departamento. El grupo Marketing recibe el rol Colaborador solo en el grupo de recursos de ventas (flecha verde) y no tiene acceso al otro grupo de recursos (flecha roja tachada). Resumen: quién (grupo Marketing), qué (Colaborador) y dónde (solo el grupo de recursos de ventas)."},
         {
           "type": "example",
           "title": "El rol que nadie tiene",
@@ -554,6 +559,7 @@
           "term": "Azure AD Connect",
           "text": "Herramienta **gratuita** que se instala en la organización para **sincronizar** el Active Directory local con Entra ID. Así los usuarios tienen una identidad única y común para Microsoft 365, Azure y aplicaciones SaaS en un entorno de **identidad híbrida** (parte local, parte nube)."
         },
+        {"type":"figure","src":"figuras/sistemas/t09-identidad-hibrida.svg","title":"Identidad híbrida con Azure AD Connect","caption":"Redibujado y simplificado de la figura del tema sobre la integración del AD local con la nube.","alt":"A la izquierda, en la organización, el Active Directory local y Azure AD Connect, que sincroniza y copia las identidades a Microsoft Entra ID, en la nube. Desde Entra ID se accede a Microsoft 365, a los recursos de Azure y a aplicaciones SaaS. Un empleado inicia sesión en Entra ID. Identidad híbrida: una sola cuenta y contraseña para lo local y para la nube."},
         {
           "type": "table",
           "title": "Componentes de Azure AD Connect",

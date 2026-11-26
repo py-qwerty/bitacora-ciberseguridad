@@ -93,6 +93,7 @@
           "type": "p",
           "text": "La figura 2 (adaptada de la versión de 2009) muestra lo mismo como diagrama de flujo: tras evaluar se pregunta «¿apreciación satisfactoria?» y, si no lo es, se vuelve atrás; tras tratar se pregunta «¿tratamiento satisfactorio?» y, si no, se repite; solo al final se llega a la **aceptación del riesgo**. En esa versión, la caja grande se llama «apreciación del riesgo» y su último paso «evaluación del riesgo»: los nombres bailan entre traducciones, pero la idea es la misma."
         },
+        {"type":"figure","src":"figuras/gobierno/t09-flujo-iso.svg","title":"El proceso como diagrama de flujo","caption":"Redibujado de la figura 2 del tema (adaptada de la ISO 31000:2009).","alt":"Flujo vertical entre dos columnas, comunicación y consulta a la izquierda y seguimiento y revisión a la derecha, unidas a cada etapa con líneas discontinuas. Establecimiento del contexto; después, dentro de un recuadro de apreciación del riesgo, identificación, análisis y evaluación. Un rombo pregunta si la apreciación es satisfactoria: si no, se vuelve al contexto; si sí, se pasa al tratamiento del riesgo. Otro rombo pregunta si el tratamiento es satisfactorio: si no, se repite el tratamiento; si sí, se llega a la aceptación del riesgo."},
         {
           "type": "table",
           "title": "Los tres procesos de la evaluación del riesgo",
@@ -194,6 +195,7 @@
             ["Desconocido-Desconocido", "Lo desconocemos todo, incluso que el riesgo pueda existir.", "Un tipo de ataque que nadie había imaginado hasta que ocurre."]
           ]
         },
+        {"type":"figure","src":"figuras/gobierno/t09-conocido-desconocido.svg","title":"Conocido y desconocido: tres categorías","alt":"Tres tarjetas cada vez más oscuras. Conocido-conocido, con una marca verde: lo conocemos bien; ejemplo, perder un portátil, que pasa cada año y sabemos lo que cuesta. Conocido-desconocido, con una interrogación: sabemos que puede existir; ejemplo, habrá vulnerabilidades aún no descubiertas. Desconocido-desconocido, con dos interrogaciones sobre fondo oscuro: ni sabemos que existe; ejemplo, un ataque que nadie había imaginado. Al identificar hay que contar también con lo desconocido."},
         {
           "type": "analogy",
           "text": "Conocido-desconocido es saber que en el examen caerá una pregunta sorpresa, aunque no sepas cuál. Desconocido-desconocido es que el examen cambie de asignatura sin avisar: ni se te había pasado por la cabeza."
@@ -307,6 +309,7 @@
             "**Intercambio de información** con otras organizaciones y partes interesadas, imprescindible para detectarlos pronto y responder con eficacia."
           ]
         },
+        {"type":"figure","src":"figuras/gobierno/t09-emergentes.svg","title":"Cómo se detectan los riesgos emergentes","alt":"A la izquierda, seis fuentes de datos: literatura científica, medios de comunicación, reguladores, datos de negocio, vigilancia de redes y opinión de expertos. Todas entran en un embudo con los pasos 1, recopilar, y 2, analizar para filtrar señales. Del embudo sale un riesgo emergente detectado pronto. A la derecha, el paso 3, intercambiar información con otras organizaciones y partes interesadas, conectado con el embudo en ambos sentidos. Nota: el riesgo crece si aumentan el número de amenazas, la probabilidad o el impacto."},
         {
           "type": "example",
           "title": "Caso práctico",
@@ -455,6 +458,7 @@
           "title": "Error típico",
           "text": "Un analista calcula el riesgo residual suponiendo que todos los controles funcionan perfectamente porque el fabricante lo asegura en su folleto. El cálculo está mal planteado: el riesgo real exige valorar la **eficacia y madurez reales** de cada control (¿está bien configurado?, ¿se revisa?, ¿se ha probado?). Añadir decimales o cambiar de escala no lo arregla."
         },
+        {"type":"figure","src":"figuras/gobierno/t09-inherente-real.svg","title":"Del riesgo inherente al riesgo real, en el plano","alt":"Una cuadrícula con la probabilidad en vertical y el impacto en horizontal. Arriba a la derecha, en la zona sombreada de riesgo alto, un punto rojo I: el riesgo inherente, sin contar los controles. Una flecha hacia abajo indica que las salvaguardas preventivas reducen la probabilidad; otra hacia la izquierda, que las reactivas reducen el impacto. El resultado es un punto verde R, el riesgo real o residual, con los controles según su eficacia y madurez. Comparar los dos dice cuánto aportan las salvaguardas. Ejemplos: parchear (preventiva) y copias de seguridad (reactiva)."},
         {
           "type": "p",
           "text": "Según **cómo actúan**, las salvaguardas se suelen dividir en dos grandes grupos: las **preventivas**, que actúan **antes** del incidente y **reducen la probabilidad** de que la amenaza se materialice (reforzar la autenticación, parchear), y las que actúan **después** para **limitar el impacto** y recuperar (copias de seguridad, planes de restauración)."
@@ -577,6 +581,7 @@
           "type": "p",
           "text": "Los niveles de riesgo deben **comunicarse en el lenguaje del negocio**, para que sirvan de verdad a quien decide. Una forma es expresar la magnitud de un riesgo como una **distribución de probabilidad sobre un conjunto de impactos**: un gráfico con la probabilidad en un eje y el impacto en el otro, dividido en cuadrantes, donde cada riesgo es un punto (figura 4 del tema)."
         },
+        {"type":"figure","src":"figuras/gobierno/t09-cuadrantes.svg","title":"Comunicar el riesgo: cada riesgo, un punto","caption":"Inspirado en la figura 4 del tema; los puntos son ejemplos.","alt":"Plano dividido en cuatro cuadrantes, con la probabilidad en vertical y el impacto en horizontal: frecuente con poco daño, frecuente y grave (en rojo), raro y leve (en verde) y raro pero grave. Tres puntos de ejemplo: 1, perder un portátil, muy frecuente y de coste bajo; 2, phishing, frecuente y dañino; 3, terremoto en el CPD, muy raro pero de daño enorme. Así se habla el lenguaje del negocio."},
         {
           "type": "example",
           "title": "Cómo leer el mapa de cuadrantes",

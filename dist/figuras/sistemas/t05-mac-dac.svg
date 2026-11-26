@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 400">
+<defs><marker id="t05-mac-dac-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="ink" d="M0 0L10 5L0 10z"/></marker><marker id="t05-mac-dac-r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="bad" d="M0 0L10 5L0 10z"/></marker><marker id="t05-mac-dac-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="good" d="M0 0L10 5L0 10z"/></marker></defs>
+<text class="h" x="370" y="26" text-anchor="middle">MAC frente a DAC: quién reparte los permisos</text>
+<rect class="c5" x="16" y="48" width="340" height="300" rx="10" style="fill-opacity:.3"/>
+<text class="b" x="186" y="74" text-anchor="middle">MAC (obligatorio)</text>
+<text class="s" x="186" y="94" text-anchor="middle">entornos militares, información clasificada</text>
+<rect class="c4" x="384" y="48" width="340" height="300" rx="10" style="fill-opacity:.3"/>
+<text class="b" x="554" y="74" text-anchor="middle">DAC (discrecional)</text>
+<text class="s" x="554" y="94" text-anchor="middle">Linux y Unix: chmod</text>
+<g><circle class="c5" cx="186" cy="126.0" r="9.6"/><path class="c5" d="M169.2 157.2a16.8 16.8 0 0 1 33.6 0z"/></g>
+<text class="b" x="186" y="180" text-anchor="middle">Administrador</text>
+<text class="s" x="186" y="198" text-anchor="middle">control total</text>
+<path class="ln" d="M186 206L84 244" marker-end="url(#t05-mac-dac-a)"/>
+<rect class="box" x="40" y="248" width="88" height="36" rx="4"/>
+<text x="84" y="271" text-anchor="middle" font-family="Menlo,Consolas,monospace" xml:space="preserve" style="font-size:12px">informe.pdf</text>
+<path class="ln" d="M186 206L186 244" marker-end="url(#t05-mac-dac-a)"/>
+<rect class="box" x="142" y="248" width="88" height="36" rx="4"/>
+<text x="186" y="271" text-anchor="middle" font-family="Menlo,Consolas,monospace" xml:space="preserve" style="font-size:12px">planes.doc</text>
+<path class="ln" d="M186 206L288 244" marker-end="url(#t05-mac-dac-a)"/>
+<rect class="box" x="244" y="248" width="88" height="36" rx="4"/>
+<text x="288" y="271" text-anchor="middle" font-family="Menlo,Consolas,monospace" xml:space="preserve" style="font-size:12px">datos.db</text>
+<g><circle class="ink" cx="70" cy="312.0" r="6.4"/><path class="ink" d="M58.8 332.8a11.200000000000001 11.200000000000001 0 0 1 22.400000000000002 0z"/></g>
+<text class="s" x="90" y="326">Usuario: no puede cambiar permisos</text>
+<path class="sbad" d="M324 314l12 12M336 314l-12 12" style="stroke-width:2.5"/>
+<g><circle class="c4" cx="470" cy="126.0" r="9.6"/><path class="c4" d="M453.2 157.2a16.8 16.8 0 0 1 33.6 0z"/></g>
+<text class="b" x="470" y="180" text-anchor="middle">Administrador</text>
+<text class="s" x="470" y="198" text-anchor="middle">delega</text>
+<path class="ln" d="M500 140H580" marker-end="url(#t05-mac-dac-a)"/>
+<g><circle class="c1" cx="620" cy="126.0" r="9.6"/><path class="c1" d="M603.2 157.2a16.8 16.8 0 0 1 33.6 0z"/></g>
+<text class="b" x="620" y="180" text-anchor="middle">Ana, propietaria</text>
+<text class="s" x="620" y="198" text-anchor="middle">de su fichero</text>
+<path class="ln" d="M620 206V244" marker-end="url(#t05-mac-dac-a)"/>
+<rect class="box" x="560" y="248" width="120" height="36" rx="4"/>
+<text x="620" y="271" text-anchor="middle" font-family="Menlo,Consolas,monospace" xml:space="preserve" style="font-size:13px">notas.txt</text>
+<text x="410" y="312" font-family="Menlo,Consolas,monospace" xml:space="preserve" style="font-size:14px;font-weight:700">$ chmod o+r notas.txt</text>
+<text class="s" x="410" y="334">Ana decide quién lee su fichero</text>
+<text class="s" x="370" y="380" text-anchor="middle">Haya quien haya repartido los permisos: mínimos privilegios y comprobación en el servidor.</text>
+</svg>

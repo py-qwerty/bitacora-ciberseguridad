@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 480">
+<defs><marker id="t04-http-basic-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="ink" d="M0 0L10 5L0 10z"/></marker><marker id="t04-http-basic-r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="bad" d="M0 0L10 5L0 10z"/></marker><marker id="t04-http-basic-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="good" d="M0 0L10 5L0 10z"/></marker></defs>
+<text class="h" x="370" y="26" text-anchor="middle">HTTP basic: la contraseña viaja solo codificada</text>
+<g><rect class="box" x="108" y="56" width="44.0" height="30.0" rx="3"/><rect class="tint" x="113.0" y="61.0" width="34.0" height="20.0"/><rect class="ink" x="126.0" y="86.0" width="8.0" height="6.0"/><rect class="ink" x="116.0" y="92.0" width="28.0" height="4.0" rx="2"/></g>
+<text class="b" x="130" y="112" text-anchor="middle">Navegador</text>
+<g><rect class="box" x="594" y="50" width="32.0" height="42.0" rx="3"/><path class="ln" d="M600.0 60.0h20.0M600.0 68.0h20.0M600.0 76.0h20.0"/><circle class="good" cx="618.0" cy="85.0" r="2.5"/></g>
+<text class="b" x="610" y="112" text-anchor="middle">Servidor</text>
+<path class="dash" d="M130 116V372"/>
+<path class="dash" d="M610 116V372"/>
+<path class="ln" d="M136 146H604" marker-end="url(#t04-http-basic-a)"/>
+<text class="b" x="370.0" y="138" text-anchor="middle">1. GET /admin</text>
+<text x="370.0" y="166" text-anchor="middle" font-family="Menlo,Consolas,monospace" xml:space="preserve" style="font-size:13px">sin credenciales</text>
+<path class="ln" d="M604 206H136" marker-end="url(#t04-http-basic-a)"/>
+<text class="b" x="370.0" y="198" text-anchor="middle">2. 401 Unauthorized</text>
+<text x="370.0" y="226" text-anchor="middle" font-family="Menlo,Consolas,monospace" xml:space="preserve" style="font-size:13px">WWW-Authenticate: Basic realm="Panel"</text>
+<rect class="tint" x="20" y="232" width="220" height="44" rx="6"/>
+<text class="s" x="130" y="252" text-anchor="middle">3. Pide usuario</text>
+<text class="s" x="130" y="268" text-anchor="middle">y contraseña</text>
+<path class="ln" d="M136 306H604" marker-end="url(#t04-http-basic-a)"/>
+<text class="b" x="370.0" y="298" text-anchor="middle">4. GET /admin</text>
+<text x="370.0" y="326" text-anchor="middle" font-family="Menlo,Consolas,monospace" style="font-size:13px" xml:space="preserve"><tspan>Authorization: Basic </tspan><tspan style="fill:var(--color-danger);font-weight:700">YWRtaW46MTIzNA==</tspan></text>
+<path class="ln" d="M604 366H136" marker-end="url(#t04-http-basic-a)"/>
+<text class="b" x="370.0" y="358" text-anchor="middle">5. 200 OK</text>
+<rect class="c5" x="16" y="396" width="708" height="64" rx="8"/>
+<text class="s" x="30" y="418">Quien capture la cabecera la decodifica al instante, sin ninguna clave:</text>
+<text x="30" y="446" font-family="Menlo,Consolas,monospace" style="font-size:15px" xml:space="preserve"><tspan>YWRtaW46MTIzNA==</tspan><tspan style="fill:var(--color-muted)">  → Base64 →  </tspan><tspan style="fill:var(--color-danger);font-weight:700">admin:1234</tspan></text>
+<text class="b" x="470" y="446">por eso: solo con HTTPS</text>
+</svg>

@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 430">
+<defs><marker id="t08dc-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="ink" d="M0 0L10 5L0 10z"/></marker><marker id="t08dc-t" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--color-secondary)"/></marker><marker id="t08dc-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="good" d="M0 0L10 5L0 10z"/></marker><marker id="t08dc-r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="bad" d="M0 0L10 5L0 10z"/></marker></defs>
+<path class="tint" d="M30 205c-23.8 0 -32.2 -26.6 -11.2 -35 -4.2 -23.8 26.6 -33.6 40.6 -18.2 9.8 -19.6 44.8 -18.2 50.4 1.4 11.2 -12.6 40.6 -7 40.6 14 23.8 1.4 26.6 36.4 2.8 37.8z"/>
+<text class="b" x="87.0" y="192.0" text-anchor="middle" style="fill:var(--color-secondary)">Internet</text>
+<path class="path" d="M200 180H236" marker-end="url(#t08dc-r)"/>
+<text class="s" x="40" y="250">peticiones</text>
+<text class="s" x="40" y="268">(legítimas y del ataque)</text>
+<rect class="c4" x="240" y="40" width="220" height="300" rx="12"/>
+<text class="b" x="350" y="66" text-anchor="middle">Capa de arquitectura</text>
+<rect class="box" x="256" y="84" width="188" height="82" rx="6"/>
+<text class="b" x="350.0" y="111.4" text-anchor="middle">Balanceador</text>
+<text class="s" x="350.0" y="130.0" text-anchor="middle">delayed binding: espera</text>
+<text class="s" x="350.0" y="148.0" text-anchor="middle">la cabecera completa</text>
+<text class="s" x="262" y="192">· frena Slowloris</text>
+<text class="s" x="262" y="211">· limita tamaño y tiempo</text>
+<text class="s" x="262" y="230">  de las conexiones</text>
+<text class="s" x="262" y="249">· deniega métodos HTTP</text>
+<text class="s" x="262" y="268">  que no se usan</text>
+<path class="ln" d="M462 190H498" marker-end="url(#t08dc-a)"/>
+<rect class="c1" x="500" y="40" width="230" height="300" rx="12"/>
+<text class="b" x="615" y="66" text-anchor="middle">Clúster de servidores</text>
+<g><rect class="box" x="541" y="86" width="32" height="42" rx="3"/><path class="ln" d="M547 96h20M547 104h20M547 112h20"/><circle class="good" cx="565" cy="121" r="2.5"/></g>
+<g><rect class="box" x="593" y="86" width="32" height="42" rx="3"/><path class="ln" d="M599 96h20M599 104h20M599 112h20"/><circle class="good" cx="617" cy="121" r="2.5"/></g>
+<g><rect class="box" x="645" y="86" width="32" height="42" rx="3"/><path class="ln" d="M651 96h20M651 104h20M651 112h20"/><circle class="good" cx="669" cy="121" r="2.5"/></g>
+<rect class="box" x="512" y="150" width="206" height="176" rx="8"/>
+<text class="b" x="615" y="174" text-anchor="middle">Capa del SO</text>
+<text class="s" x="615" y="192" text-anchor="middle">(sistema operativo)</text>
+<text class="s" x="524" y="222">· SYN cache: guarda menos</text>
+<text class="s" x="524" y="241">  datos por cada SYN</text>
+<text class="s" x="524" y="260">· SYN cookies: no crea el</text>
+<text class="s" x="524" y="279">  TCB hasta acabar el saludo</text>
+<text class="s" x="370" y="380" text-anchor="middle">Las defensas contra la denegación de servicio se reparten en dos capas:</text>
+<text class="s" x="370" y="400" text-anchor="middle">cómo se reparten y limitan las peticiones, y cómo maneja el SO las conexiones TCP.</text>
+</svg>

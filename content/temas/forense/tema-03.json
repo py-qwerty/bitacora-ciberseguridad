@@ -104,6 +104,7 @@
             ["Relacionados sin estar infectados", "El servidor de correo por el que entró el mensaje y los equipos de seguridad que lo analizaron: antivirus, cortafuegos de aplicaciones, IDS."]
           ]
         },
+        {"type":"figure","src":"figuras/forense/t03-escena-acotada.svg","title":"Acotar la escena en anillos","caption":"Redibujado y ampliado de las figuras del tema sobre las **dos preguntas** para acotar la escena, con el ejemplo del malware.","alt":"Tres óvalos concéntricos. En el centro, los afectados directamente: el ordenador infectado, un pendrive y un disco externo. En el anillo intermedio, los relacionados sin infectar: servidor de correo, cortafuegos, IDS y antivirus. Fuera, un óvalo discontinuo: lo que queda fuera de la escena y no se adquiere. La pregunta 1 (qué equipos sufrieron el incidente) apunta al centro; la pregunta 2 (qué otros equipos están relacionados) apunta al anillo intermedio."},
         {
           "type": "term",
           "term": "Malware",
@@ -191,6 +192,7 @@
             ["Resistencia a colisiones", "Una colisión es que dos entradas distintas den el mismo hash. En teoría existen; lo que exige la propiedad es que encontrarlas a propósito sea computacionalmente carísimo o, de momento, inalcanzable.", "Nadie puede fabricar un archivo falso con la misma huella que la evidencia."]
           ]
         },
+        {"type":"figure","src":"figuras/forense/t03-funcion-hash.svg","title":"Cómo se comporta una función hash","caption":"Redibujado de las figuras del tema (entrada + función hash = salida, y la tabla de hashes de la palabra forense). Los valores MD5 son reales.","alt":"Arriba, tres cajas: entrada de longitud arbitraria, más función hash (MD5, SHA-1, SHA-256), igual a salida de longitud fija. Debajo, una tabla: la palabra forense da el MD5 e1576f172c3b126ae7a6026e8995da85; la palabra Forense, con mayúscula, da f0128cf087fa49732bf066306d5f4a6f, completamente distinto; un disco de 2 TB da otros 32 caracteres hexadecimales. Conclusión: una letra distinta cambia toda la huella y la misma entrada da siempre el mismo hash."},
         {
           "type": "term",
           "term": "Colisión",
@@ -402,6 +404,7 @@
           "type": "analogy",
           "text": "¿Por qué se prefiere a veces rellenar con datos **aleatorios**? Si borras con ceros, queda un hueco de ceros del tamaño exacto del archivo: es como quitar un libro de una estantería llena, ves el hueco y sabes que ahí había algo de ese tamaño. Con datos aleatorios, ese hueco se mezcla con lo que hay alrededor y no sabes dónde empieza ni acaba lo borrado."
         },
+        {"type":"figure","src":"figuras/forense/t03-ceros-aleatorio.svg","title":"Ceros frente a datos aleatorios","caption":"La analogía de la estantería, dibujada.","alt":"Dos tiras de casillas con caracteres hexadecimales. En la primera, una zona central está sobrescrita con ceros y destaca: se ve el tamaño exacto de lo borrado. En la segunda, la misma zona está sobrescrita con caracteres aleatorios y no se distingue del resto: no se sabe dónde empieza ni acaba lo borrado."},
         {
           "type": "example",
           "title": "Cuando el borrado es un indicio",
@@ -454,6 +457,7 @@
           "type": "p",
           "text": "Aunque en la calle se usen como sinónimos, el tema insiste en que son conceptos distintos (incluso dice «antagónicos»). Lo que los distingue no es la exactitud, porque ambos pueden ser copias exactas, sino **cómo se almacenan**."
         },
+        {"type":"figure","src":"figuras/forense/t03-imagen-clonado.svg","title":"Imagen forense frente a clonado","caption":"Lo que cambia no es la exactitud, sino **dónde** queda la copia.","alt":"Dos columnas. En la de imagen forense, el disco original se copia como archivos (caso1.E01, caso2.dd, caso3.E01) dentro de cualquier soporte con espacio; lleva metadatos y compresión y es fácil de copiar y enviar. En la de clonado, el disco original se copia en un disco gemelo del mismo tamaño o mayor; hace falta un disco entero por copia y un borrado seguro previo."},
         {
           "type": "exam",
           "text": "Ventajas de la imagen: **varias imágenes en un mismo dispositivo** y **compresión, metadatos y redundancia** → «la B y la C». La trampa es «no hace falta ningún programa para trabajar con imágenes»: esa es la ventaja del **clonado**. En un caso práctico de guardar varias adquisiciones en un único disco del laboratorio, la respuesta es imágenes como archivos separados; clonar varios orígenes en el mismo disco no es posible."
@@ -557,6 +561,7 @@
             ["Alcance", "Física o lógica", "¿Copio todo el dispositivo o solo una parte?"]
           ]
         },
+        {"type":"figure","src":"figuras/forense/t03-fisica-logica-disco.svg","title":"Qué abarca la adquisición física y la lógica","caption":"Redibujado de la figura del tema: dispositivo físico con MBR y dos volúmenes lógicos.","alt":"Dos barras iguales que representan un disco: MBR, volumen C:, volumen D: y espacio sin asignar. En la adquisición física, un marco rojo rodea la barra entera, del primer al último sector. En la adquisición lógica, el marco rojo rodea solo el volumen C:. Abajo: la física incluye tabla de particiones, espacio libre y restos borrados; la lógica solo puede guardarse como imagen."},
         {
           "type": "p",
           "text": "Los ejes son independientes: puede haber una adquisición física en caliente (el disco entero de un servidor encendido) o lógica en frío (unas carpetas de un pendrive desconectado). El tema incluye vídeos sobre adquisición remota de un servidor Linux y sobre las herramientas EFW Tools."

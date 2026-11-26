@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 345">
+<defs><marker id="t09st-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="ink" d="M0 0L10 5L0 10z"/></marker></defs>
+<text class="b" x="380" y="30" text-anchor="middle">ssh -L 15432:bd.interna.empresa.es:5432 admin@bastion.empresa.es</text>
+<rect class="box" x="420" y="60" width="320" height="210" rx="8" style="fill:none;stroke:var(--color-secondary)"/>
+<text class="s" x="580" y="260" text-anchor="middle">Red interna de la empresa</text>
+<g transform="translate(52 120) scale(1.2)"><rect class="box" x="0" y="0" width="44" height="30" rx="3"/><rect class="tint" x="5" y="5" width="34" height="20"/><rect class="ink" x="18" y="30" width="8" height="6"/><rect class="ink" x="8" y="36" width="28" height="4" rx="2"/></g>
+<text class="b" x="79" y="190" text-anchor="middle">Portátil del</text>
+<text class="b" x="79" y="208" text-anchor="middle">administrador</text>
+<rect class="c1" x="14" y="64" width="128" height="40" rx="8"/>
+<text class="s" x="78" y="82" text-anchor="middle" style="fill:var(--color-text)">psql conecta a</text>
+<text class="b" x="78" y="98" text-anchor="middle" style="font-size:14px">localhost:15432</text>
+<g transform="translate(270 116) scale(0.8 0.65)"><path class="tint" d="M-90 46c-30 0-42-34-14-46-6-30 34-44 52-24 12-26 58-24 66 2 14-16 52-10 52 18 30 2 34 46 4 50z" style="opacity:0.8"/></g>
+<text class="b" x="264" y="116" text-anchor="middle" style="fill:var(--color-secondary)">Internet</text>
+<path class="ln" d="M116 146H470" style="fill:none;stroke:var(--color-success);stroke-width:14;opacity:.35;stroke-linecap:round"/><path class="ln" d="M116 146H470" style="fill:none;stroke:var(--color-success);stroke-width:2.5"/>
+<g><rect class="ink" x="262" y="158" width="16" height="13" rx="2"/><path d="M265 158v-5a5 5 0 0 1 10 0v5" style="fill:none;stroke:var(--color-primary);stroke-width:2.2"/></g>
+<text class="b" x="270" y="200" text-anchor="middle">túnel SSH cifrado</text>
+<g transform="translate(470 122) scale(1)"><rect class="box" x="0" y="0" width="32" height="42" rx="3"/><path class="ln" d="M6 10h20M6 18h20M6 26h20"/><circle class="good" cx="24" cy="35" r="2.5"/></g>
+<text class="b" x="486" y="186" text-anchor="middle">bastion</text>
+<text class="s" x="486" y="204" text-anchor="middle">servidor SSH</text>
+<path class="ln" d="M504 146H640" style="fill:none;stroke:var(--color-warning);stroke-width:3;stroke-dasharray:7 5"/>
+<text class="s" x="572" y="132" text-anchor="middle" style="fill:var(--color-text)">sin el túnel</text>
+<g transform="translate(644 122) scale(1)"><rect class="box" x="0" y="0" width="32" height="42" rx="3"/><path class="ln" d="M6 10h20M6 18h20M6 26h20"/><circle class="good" cx="24" cy="35" r="2.5"/></g>
+<text class="b" x="660" y="186" text-anchor="middle">base de datos</text>
+<text class="s" x="660" y="204" text-anchor="middle">bd.interna</text>
+<text class="s" x="660" y="222" text-anchor="middle">puerto 5432</text>
+<text x="380" y="306" text-anchor="middle">Lo que entra por el puerto local 15432 viaja cifrado hasta bastion,</text>
+<text x="380" y="328" text-anchor="middle">y bastion lo entrega a la base de datos, que solo acepta conexiones desde él.</text>
+</svg>

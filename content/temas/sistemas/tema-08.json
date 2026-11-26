@@ -90,6 +90,7 @@
           "term": "DDoS (Distributed Denial of Service, denegación de servicio distribuida)",
           "text": "La misma idea, pero lanzada desde **muchas máquinas a la vez y de forma coordinada** contra un mismo objetivo. El atacante controla un sistema distribuido con máquinas **master** (dan las órdenes), **slaves** (esclavas, lanzan el ataque) y **reflectors** (reflectores, terceros que rebotan y amplifican el tráfico)."
         },
+        {"type":"figure","src":"figuras/sistemas/t08-ddos.svg","title":"Cómo se organiza un DDoS","caption":"Esquema nuevo con los papeles que describe el tema: master, slaves y reflectors.","alt":"El atacante controla una máquina master que da las órdenes. El master manda a cuatro slaves, que lanzan tráfico. Algunos slaves atacan directamente a la víctima y otros envían su tráfico a reflectores, terceros que lo rebotan y amplifican hacia la víctima. La víctima, un servidor, queda saturada por muchas máquinas coordinadas a la vez."},
         {
           "type": "steps",
           "title": "El saludo TCP en tres pasos (three-way handshake) y la conexión «a medio hacer»",
@@ -178,6 +179,7 @@
           "term": "Balanceador de carga",
           "text": "Equipo que recibe todas las peticiones y las reparte entre varios servidores, como el recepcionista que manda a cada cliente a la ventanilla más libre."
         },
+        {"type":"figure","src":"figuras/sistemas/t08-defensas-dos-capas.svg","title":"Las dos capas de defensa contra la denegación de servicio","caption":"Esquema nuevo a partir de las dos tablas del apartado.","alt":"Las peticiones llegan desde Internet, legítimas y del ataque. Primero atraviesan la capa de arquitectura: un balanceador en modo delayed binding, que espera la cabecera completa, frena Slowloris, limita tamaño y tiempo de las conexiones y deniega métodos HTTP que no se usan. Después llegan a un clúster de servidores, donde actúa la capa del sistema operativo: SYN cache guarda menos datos por cada SYN y SYN cookies no crea el TCB hasta acabar el saludo."},
         {
           "type": "p",
           "text": "El **WAF** también contribuye: por ejemplo, ModSecurity admite el módulo **Evasive**, pensado para la protección frente a denegación de servicio (lo verás más adelante). Y en el esquema global de defensa se añaden servicios anti-DDoS específicos."
@@ -300,6 +302,7 @@
           "term": "Switch de nivel 2 y LAN",
           "text": "Una LAN (Local Area Network) es la red local de la organización. Un switch de nivel 2 conecta equipos usando las direcciones físicas de las tarjetas, sin dirección IP propia. Un WAF en modo bridge se mete en el cable así, de forma invisible, y por eso no hay que renumerar nada."
         },
+        {"type":"figure","src":"figuras/sistemas/t08-waf-modos.svg","title":"Los cuatro modos de instalación del WAF","caption":"Redibujado de la figura del tema sobre arquitecturas de despliegue del WAF, con los datos de la tabla.","alt":"Cuatro paneles, cada uno con un cliente y un servidor. Proxy inverso: el WAF, con dirección IP, está en medio y el cliente cree hablar con la web; bloquea y es el más habitual. Pasivo: el tráfico va directo al servidor y un tap saca una copia hacia el WAF; no bloquea, solo avisa. Bridge: el WAF está en medio como un switch sin dirección IP; bloquea y no obliga a cambiar las IP. Embebido: el WAF es un plugin dentro del servidor web; bloquea, pero hay que vigilar el rendimiento."},
         {
           "type": "list",
           "title": "Recomendaciones del tema para desplegar un WAF",
@@ -352,6 +355,7 @@
             "Registro en bitácora (logging)."
           ]
         },
+        {"type":"figure","src":"figuras/sistemas/t08-modsecurity-fases.svg","title":"Las cinco fases de ModSecurity dentro de Apache","caption":"Esquema nuevo a partir de la lista de fases del tema.","alt":"Un servidor Apache contiene el módulo ModSecurity, en modo embebido, y la aplicación web. La petición del cliente pasa por la fase 1 (cabeceras de la petición) y la fase 2 (cuerpo de la petición) antes de llegar a la aplicación. La respuesta de la aplicación pasa por la fase 3 (cabeceras de la respuesta) y la fase 4 (cuerpo de la respuesta) antes de volver al cliente. La fase 5 es el registro en bitácora. ModSecurity normaliza los datos y los compara con sus reglas (OWASP CRS)."},
         {
           "type": "term",
           "term": "Técnica de evasión",
@@ -686,6 +690,7 @@
             ["WAF en alta disponibilidad", "La **protección principal online** de las aplicaciones web; antes de producción se prueban su eficacia y rendimiento."]
           ]
         },
+        {"type":"figure","src":"figuras/sistemas/t08-defensa-profundidad.svg","title":"Defensa en profundidad para una aplicación web","caption":"Redibujado y simplificado de los esquemas de protección del tema.","alt":"Desde Internet el tráfico atraviesa capas apiladas, una tras otra: protección anti-DDoS (híbrida: operador y equipo propio), dos cortafuegos de red (filtran puertos, no contenido), IDS (detecta ataques en la red), balanceadores de carga (reparten las peticiones) y dos WAF (protección principal de la web), hasta llegar a los servidores de aplicaciones en clúster. A la derecha, el SIEM recibe los registros de todas las capas y los correlaciona."},
         {
           "type": "term",
           "term": "SIEM (Security Information and Event Management)",

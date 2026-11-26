@@ -132,6 +132,7 @@
           "title": "Caso práctico",
           "text": "Un empleado copia una base de datos de clientes a un pendrive antes de irse a la competencia. En el ordenador de la empresa queda constancia de que se conectó un USB y a qué hora; en el pendrive quedan los archivos copiados con sus fechas. Ninguno de los dos rastros, por sí solo, dice «fue Juan», pero ambos son indicios de la acción."
         },
+        {"type":"figure","src":"figuras/forense/t02-locard.svg","title":"El intercambio de Locard en lo digital","caption":"El intruso deja señales en el servidor y se lleva indicios en su propio equipo.","alt":"A la izquierda, el equipo del intruso; a la derecha, el servidor atacado. Una flecha roja de izquierda a derecha indica que se conecta y otra discontinua de vuelta, que se lleva rastros. En el equipo del intruso quedan historial, cookies e IP del servidor (se lleva indicios). En el servidor quedan logs, temporales, conexiones y claves del Registro (deja señales). Abajo, el caso del pendrive: USB conectado en el PC de la empresa y archivos copiados en el pendrive, dos rastros de la misma acción."},
         {
           "type": "exam",
           "text": "Las opciones trampa suelen exagerar o deformar el principio: «en **algunas ocasiones** hay intercambio» (no: siempre queda algo), «atacante y víctima intercambian papeles» (no tiene nada que ver) o «**siempre** es posible identificar al atacante» (no: que haya indicios no garantiza saber quién fue). La correcta dice que **cuando se actúa sobre un objeto, siempre se puede encontrar algún indicio de esa acción**."
@@ -268,6 +269,7 @@
             ]
           ]
         },
+        {"type":"figure","src":"figuras/forense/t02-evidencia-contenedor.svg","title":"Contenedor frente a evidencia","caption":"Como en la analogía de la carta: el disco es el sobre y el documento es la prueba.","alt":"Un recuadro discontinuo agrupa los contenedores, que son dispositivos físicos: disco duro, pendrive, móvil y tarjeta de memoria. Una flecha con la palabra dentro lleva a una caja verde con un documento: la evidencia digital, la información, por ejemplo una hoja de cálculo. Abajo se aclara que se analiza el contenido y que el dispositivo solo sirve para llegar a él."},
         {
           "type": "exam",
           "text": "Cuidado con definiciones parecidas: «información que **admite el juez** como válida» (demasiado estricta: la evidencia lo es antes de ser admitida), «información que queda en custodia de un **fedatario público**» (un notario o secretario judicial que da fe; no forma parte de la definición) o «cualquier rastro, **objeto o dispositivo**» (mezcla evidencia con contenedor y no es digital). La buena es la de la ISO/IEC 27037."
@@ -642,6 +644,7 @@
           "type": "p",
           "text": "Conclusión práctica: hay que **empezar por las volátiles**, porque cambian antes y se pierden si se interrumpe la corriente. Por eso también conviene **evitar cortes de alimentación** durante la adquisición."
         },
+        {"type":"figure","src":"figuras/forense/t02-ram-disco-apagar.svg","title":"Qué queda cuando se va la luz","caption":"La RAM es la pizarra que se borra; el disco, el cuaderno que sigue ahí.","alt":"Dos equipos. El encendido tiene la RAM llena (procesos, llamada, archivos abiertos) y el disco con documentos y sistema. Una flecha roja de corte lleva al equipo apagado, donde la RAM está vacía y el disco sigue igual. Abajo: volátil significa que se pierde sin corriente, por eso se recoge primero y se evita cortar la alimentación."},
         {
           "type": "exam",
           "text": "Si una pregunta enumera «cambian con más facilidad», «desaparecen al cortar la corriente» y «deben adquirirse antes», la respuesta es **todas las anteriores**. Y recuerda: con la RAM, al cortar la corriente, **se pierde su contenido**; no se guarda en el disco ni en la caché «por defecto»."
@@ -715,6 +718,7 @@
             ]
           ]
         },
+        {"type":"figure","src":"figuras/forense/t02-piramide-volatilidad.svg","title":"La pirámide del orden de volatilidad","caption":"Redibujado de la figura del tema. Arriba lo más efímero, abajo lo más estable.","alt":"Una pirámide con siete franjas de arriba abajo: registros y caché del procesador; RAM con rutas, procesos y archivos abiertos; archivos temporales; disco duro; datos almacenados en remoto; configuración física y de red; dispositivos extraíbles. Unas llaves a la derecha agrupan la primera como no adquirible (cambia con cualquier acción), las dos siguientes como volátiles (se pierden al apagar) y las cuatro últimas como no volátiles (sobreviven al apagado). Se recoge de arriba abajo."},
         {
           "type": "term",
           "term": "Tabla de enrutamiento",

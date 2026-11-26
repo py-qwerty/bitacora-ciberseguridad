@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 420">
+<defs><marker id="t10ck-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="ink" d="M0 0L10 5L0 10z"/></marker><marker id="t10ck-t" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--color-secondary)"/></marker><marker id="t10ck-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="good" d="M0 0L10 5L0 10z"/></marker><marker id="t10ck-r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="bad" d="M0 0L10 5L0 10z"/></marker></defs>
+<text class="h" x="20" y="30">En tránsito: TLS en cada conexión</text>
+<g><rect class="box" x="40" y="66" width="44" height="30" rx="3"/><rect class="tint" x="45" y="71" width="34" height="20"/><rect class="ink" x="58" y="96" width="8" height="6"/><rect class="ink" x="48" y="102" width="28" height="4" rx="2"/></g>
+<text class="s" x="62" y="130" text-anchor="middle">cliente</text>
+<g><rect class="box" x="210" y="62" width="32" height="42" rx="3"/><path class="ln" d="M216 72h20M216 80h20M216 88h20"/><circle class="good" cx="234" cy="97" r="2.5"/></g>
+<text class="s" x="226" y="130" text-anchor="middle">nodo 1</text>
+<g><rect class="box" x="370" y="62" width="32" height="42" rx="3"/><path class="ln" d="M376 72h20M376 80h20M376 88h20"/><circle class="good" cx="394" cy="97" r="2.5"/></g>
+<text class="s" x="386" y="130" text-anchor="middle">nodo 2</text>
+<path class="ln" d="M88 84H206" style="stroke-width:4"/>
+<g><path class="ln" style="stroke:var(--color-primary)" d="M141.0 78v-5a6 6 0 0 1 12 0v5"/><rect class="c1" x="136.0" y="77" width="22" height="16" rx="3"/></g>
+<path class="ln" d="M246 84H366" style="stroke-width:4"/>
+<g><path class="ln" style="stroke:var(--color-primary)" d="M300.0 78v-5a6 6 0 0 1 12 0v5"/><rect class="c1" x="295.0" y="77" width="22" height="16" rx="3"/></g>
+<text class="s" x="226" y="160" text-anchor="middle">RPC, HTTP/REST: todo cifrado (sin versiones</text>
+<text class="s" x="226" y="178" text-anchor="middle">ni algoritmos débiles: evita el downgrade)</text>
+<text class="h" x="20" y="228">En reposo: datos guardados cifrados</text>
+<g><path class="c4" d="M55.0 254v40a25.0 6 0 0 0 50 0v-40"/><ellipse class="c4" cx="80" cy="254" rx="25.0" ry="6"/><path class="ln" style="stroke-width:1.2" d="M55.0 274.0a25.0 6 0 0 0 50 0"/></g>
+<g><path class="ln" style="stroke:var(--color-primary)" d="M74 282v-5a6 6 0 0 1 12 0v5"/><rect class="c1" x="69" y="281" width="22" height="16" rx="3"/></g>
+<text class="s" x="80" y="326" text-anchor="middle">disco</text>
+<g><path class="c4" d="M195.0 254v40a25.0 6 0 0 0 50 0v-40"/><ellipse class="c4" cx="220" cy="254" rx="25.0" ry="6"/><path class="ln" style="stroke-width:1.2" d="M195.0 274.0a25.0 6 0 0 0 50 0"/></g>
+<g><path class="ln" style="stroke:var(--color-primary)" d="M214 282v-5a6 6 0 0 1 12 0v5"/><rect class="c1" x="209" y="281" width="22" height="16" rx="3"/></g>
+<text class="s" x="220" y="326" text-anchor="middle">columna</text>
+<g><path class="c4" d="M335.0 254v40a25.0 6 0 0 0 50 0v-40"/><ellipse class="c4" cx="360" cy="254" rx="25.0" ry="6"/><path class="ln" style="stroke-width:1.2" d="M335.0 274.0a25.0 6 0 0 0 50 0"/></g>
+<g><path class="ln" style="stroke:var(--color-primary)" d="M354 282v-5a6 6 0 0 1 12 0v5"/><rect class="c1" x="349" y="281" width="22" height="16" rx="3"/></g>
+<text class="s" x="360" y="326" text-anchor="middle">zona de cifrado</text>
+<rect class="c3" x="480" y="40" width="240" height="300" rx="12"/>
+<text class="b" x="600" y="66" text-anchor="middle">KMS</text>
+<text class="s" x="600" y="86" text-anchor="middle">gestor de claves</text>
+<g><circle class="box" cx="560" cy="130" r="14"/><path class="ln" style="stroke:var(--color-primary);stroke-width:4" d="M574 130H640M626 130v12M612 130v8"/></g>
+<text class="s" x="500" y="186">· claves separadas de los datos</text>
+<text class="s" x="500" y="206">· versiones y rotación</text>
+<text class="s" x="500" y="226">· decide quién usa cada clave</text>
+<text class="s" x="500" y="246">· audita cada uso</text>
+<path class="dash" d="M478 290 C 440 290, 440 280, 420 278" marker-end="url(#t10ck-a)"/>
+<text class="s" x="370" y="380" text-anchor="middle">Cifrar en tránsito protege frente a quien escucha la red; en reposo, frente a quien</text>
+<text class="s" x="370" y="400" text-anchor="middle">se lleva el disco. Y las claves se guardan aparte, en el KMS.</text>
+</svg>

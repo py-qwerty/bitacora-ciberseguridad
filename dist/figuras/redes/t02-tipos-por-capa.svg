@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 430">
+<defs><marker id="t02tc-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="ink" d="M0 0L10 5L0 10z"/></marker></defs>
+<text class="h" x="150" y="30" text-anchor="middle">Pila TCP/IP</text>
+<text class="h" x="540" y="30" text-anchor="middle">Hasta qué capa mira cada uno</text>
+<rect class="c1" x="30" y="60" width="240" height="80" rx="6"/>
+<text class="b" x="150" y="92" text-anchor="middle">Aplicación</text>
+<text class="s" x="150" y="112" text-anchor="middle">HTTP, SMTP, DNS, FTP</text>
+<text class="s" x="150" y="130" text-anchor="middle" font-style="italic">OSI 5-7</text>
+<path class="dash" d="M272 100.0H310"/>
+<rect class="c2" x="30" y="148" width="240" height="80" rx="6"/>
+<text class="b" x="150" y="180" text-anchor="middle">Transporte</text>
+<text class="s" x="150" y="200" text-anchor="middle">TCP, UDP · puertos</text>
+<text class="s" x="150" y="218" text-anchor="middle" font-style="italic">OSI 4</text>
+<path class="dash" d="M272 188.0H310"/>
+<rect class="c3" x="30" y="236" width="240" height="80" rx="6"/>
+<text class="b" x="150" y="268" text-anchor="middle">Internet (red)</text>
+<text class="s" x="150" y="288" text-anchor="middle">IP · direcciones</text>
+<text class="s" x="150" y="306" text-anchor="middle" font-style="italic">OSI 3</text>
+<path class="dash" d="M272 276.0H310"/>
+<rect class="c4" x="30" y="324" width="240" height="80" rx="6"/>
+<text class="b" x="150" y="356" text-anchor="middle">Acceso a la red</text>
+<text class="s" x="150" y="376" text-anchor="middle">Ethernet, wifi · MAC</text>
+<text class="s" x="150" y="394" text-anchor="middle" font-style="italic">OSI 1-2</text>
+<path class="dash" d="M272 364.0H310"/>
+<rect class="tint" x="300" y="148" width="140" height="168" rx="8"/>
+<text class="b" x="370" y="190.0" text-anchor="middle">Filtrado de</text>
+<text class="b" x="370" y="209.0" text-anchor="middle">paquetes</text>
+<text class="s" x="370" y="234.0" text-anchor="middle">IP y puertos</text>
+<text class="s" x="370" y="251.0" text-anchor="middle">(de estado:</text>
+<text class="s" x="370" y="268.0" text-anchor="middle">recuerda las</text>
+<text class="s" x="370" y="285.0" text-anchor="middle">conexiones)</text>
+<rect class="c2" x="450" y="148" width="140" height="80" rx="8"/>
+<text class="b" x="520" y="171.5" text-anchor="middle">Pasarela de</text>
+<text class="b" x="520" y="190.5" text-anchor="middle">circuito</text>
+<text class="s" x="520" y="215.5" text-anchor="middle">valida la conexión</text>
+<rect class="c1" x="600" y="60" width="140" height="256" rx="8"/>
+<text class="b" x="670" y="137.5" text-anchor="middle">Pasarela de</text>
+<text class="b" x="670" y="156.5" text-anchor="middle">aplicación</text>
+<text class="s" x="670" y="181.5" text-anchor="middle">proxy: lee la</text>
+<text class="s" x="670" y="198.5" text-anchor="middle">petición</text>
+<text class="s" x="670" y="215.5" text-anchor="middle">completa</text>
+<text class="s" x="670" y="232.5" text-anchor="middle">(URL, comandos,</text>
+<text class="s" x="670" y="249.5" text-anchor="middle">contenido)</text>
+<path class="ln" d="M310 374.0H740" marker-end="url(#t02tc-a)" style="stroke-width:2"/>
+<text class="s" x="525" y="356" text-anchor="middle">De izquierda a derecha: entiende más del tráfico,</text>
+<text class="s" x="525" y="394" text-anchor="middle">pero trabaja más y es más lento</text>
+</svg>

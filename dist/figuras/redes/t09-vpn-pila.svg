@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 520">
+<text class="h" x="125" y="32" text-anchor="middle">Capas (OSI)</text>
+<text class="h" x="505" y="32" text-anchor="middle">Dónde trabaja cada VPN y qué protege</text>
+<rect class="c1" x="20" y="64" width="210" height="70" rx="6"/>
+<text class="b" x="125" y="95" text-anchor="middle">Aplicación</text>
+<text class="s" x="125" y="115" text-anchor="middle">capa 7</text>
+<rect class="c2" x="20" y="142" width="210" height="70" rx="6"/>
+<text class="b" x="125" y="173" text-anchor="middle">Transporte</text>
+<text class="s" x="125" y="193" text-anchor="middle">capa 4</text>
+<rect class="c3" x="20" y="220" width="210" height="70" rx="6"/>
+<text class="b" x="125" y="251" text-anchor="middle">Red</text>
+<text class="s" x="125" y="271" text-anchor="middle">capa 3 · IP</text>
+<rect class="c4" x="20" y="298" width="210" height="70" rx="6"/>
+<text class="b" x="125" y="329" text-anchor="middle">Enlace</text>
+<text class="s" x="125" y="349" text-anchor="middle">capa 2</text>
+<rect class="band1" x="252" y="64" width="118" height="226" rx="8"/>
+<text class="s" x="311" y="175" text-anchor="middle" style="fill:var(--color-text)">protege</text>
+<text class="s" x="311" y="193" text-anchor="middle" style="fill:var(--color-text)">lo de encima</text>
+<rect class="ink" x="252" y="298" width="118" height="70" rx="8"/>
+<text class="b w" x="311" y="328" text-anchor="middle">PPTP · L2F</text>
+<text class="w" x="311" y="350" text-anchor="middle" style="font-size:14px">L2TP</text>
+<text class="s" x="311" y="400" text-anchor="middle">solo el enlace</text>
+<text class="s" x="311" y="418" text-anchor="middle">donde se pone</text>
+<rect class="band1" x="382" y="64" width="118" height="148" rx="8"/>
+<text class="s" x="441" y="136" text-anchor="middle" style="fill:var(--color-text)">protege</text>
+<text class="s" x="441" y="154" text-anchor="middle" style="fill:var(--color-text)">lo de encima</text>
+<rect class="ink" x="382" y="220" width="118" height="70" rx="8"/>
+<text class="b w" x="441" y="250" text-anchor="middle">IPsec</text>
+<text class="w" x="441" y="272" text-anchor="middle" style="font-size:14px">AH · ESP · IKE</text>
+<text class="s" x="441" y="400" text-anchor="middle">entre equipos</text>
+<text class="s" x="441" y="418" text-anchor="middle">o entre redes</text>
+<rect class="band1" x="512" y="64" width="118" height="70" rx="8"/>
+<text class="s" x="571" y="97" text-anchor="middle" style="fill:var(--color-text)">protege</text>
+<text class="s" x="571" y="115" text-anchor="middle" style="fill:var(--color-text)">lo de encima</text>
+<rect class="ink" x="512" y="142" width="118" height="70" rx="8"/>
+<text class="b w" x="571" y="172" text-anchor="middle">SSL/TLS</text>
+<text class="w" x="571" y="194" text-anchor="middle" style="font-size:14px">portal web</text>
+<text class="s" x="571" y="400" text-anchor="middle">una conexión</text>
+<text class="s" x="571" y="418" text-anchor="middle">con el navegador</text>
+<rect class="ink" x="642" y="64" width="118" height="70" rx="8"/>
+<text class="b w" x="701" y="94" text-anchor="middle">SSH</text>
+<text class="w" x="701" y="116" text-anchor="middle" style="font-size:14px">ssh -L</text>
+<text class="s" x="701" y="400" text-anchor="middle">un puerto:</text>
+<text class="s" x="701" y="418" text-anchor="middle">túnel puntual</text>
+<rect class="c1" x="386" y="428" width="110" height="26" rx="13"/>
+<text class="s" x="441" y="446" text-anchor="middle" style="fill:var(--color-text);font-weight:bold">la recomendada</text>
+<text x="380" y="484" text-anchor="middle">Cuanto más abajo trabaja, más capas protege; pero la de enlace solo cubre un cable</text>
+<text x="380" y="506" text-anchor="middle">y las de capas superiores dependen siempre de IP.</text>
+</svg>

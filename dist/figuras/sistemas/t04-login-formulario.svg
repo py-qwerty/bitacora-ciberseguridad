@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 500">
+<defs><marker id="t04-login-formulario-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="ink" d="M0 0L10 5L0 10z"/></marker><marker id="t04-login-formulario-r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="bad" d="M0 0L10 5L0 10z"/></marker><marker id="t04-login-formulario-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="good" d="M0 0L10 5L0 10z"/></marker></defs>
+<text class="h" x="370" y="26" text-anchor="middle">Login con formulario: del usuario y contraseña al ID de sesión</text>
+<g><rect class="box" x="128" y="58" width="44.0" height="30.0" rx="3"/><rect class="tint" x="133.0" y="63.0" width="34.0" height="20.0"/><rect class="ink" x="146.0" y="88.0" width="8.0" height="6.0"/><rect class="ink" x="136.0" y="94.0" width="28.0" height="4.0" rx="2"/></g>
+<text class="b" x="150" y="116" text-anchor="middle">Navegador</text>
+<g><rect class="box" x="504" y="52" width="32.0" height="42.0" rx="3"/><path class="ln" d="M510.0 62.0h20.0M510.0 70.0h20.0M510.0 78.0h20.0"/><circle class="good" cx="528.0" cy="87.0" r="2.5"/></g>
+<text class="b" x="520" y="116" text-anchor="middle">Aplicación web</text>
+<g><path class="tint" d="M638.0 64v37.400000000000006a22.0 7.700000000000001 0 0 0 44.0 0v-37.400000000000006"/><ellipse class="tint" cx="660" cy="64" rx="22.0" ry="7.700000000000001"/><path class="ln" d="M638.0 82.7a22.0 7.700000000000001 0 0 0 44.0 0" style="stroke-width:1.2"/></g>
+<text class="b" x="660" y="124" text-anchor="middle">Base de datos</text>
+<path class="dash" d="M150 126V440"/>
+<path class="dash" d="M520 126V440"/>
+<path class="dash" d="M660 130V440"/>
+<path class="ln" d="M156 160H514" marker-end="url(#t04-login-formulario-a)"/>
+<text class="b" x="335.0" y="152" text-anchor="middle">1. Pide la página de login</text>
+<path class="ln" d="M514 210H156" marker-end="url(#t04-login-formulario-a)"/>
+<text class="b" x="335.0" y="202" text-anchor="middle">2. Devuelve el formulario</text>
+<path class="ln" d="M156 262H514" marker-end="url(#t04-login-formulario-a)"/>
+<text class="b" x="335.0" y="254" text-anchor="middle">3. Envía usuario y contraseña</text>
+<text class="s" x="335.0" y="278" text-anchor="middle">por HTTPS</text>
+<path class="ln" d="M526 310H654" marker-end="url(#t04-login-formulario-a)"/>
+<text class="s" x="590.0" y="302" text-anchor="middle">4. ¿Coinciden?</text>
+<text class="s" x="590.0" y="326" text-anchor="middle">hash + sal</text>
+<rect class="c5" x="16" y="330" width="124" height="60" rx="6"/>
+<text class="b" x="78" y="354" text-anchor="middle">5a. Error:</text>
+<text class="s" x="78" y="372" text-anchor="middle">inténtalo de nuevo</text>
+<path class="sbad" d="M514 360H156" marker-end="url(#t04-login-formulario-r)"/>
+<text class="s" x="335.0" y="352" text-anchor="middle">5a. Credenciales incorrectas</text>
+<path class="sgood" d="M514 420H156" marker-end="url(#t04-login-formulario-g)"/>
+<text class="b" x="335.0" y="412" text-anchor="middle">5b. Correcto: crea la sesión</text>
+<text x="335.0" y="442" text-anchor="middle" font-family="Menlo,Consolas,monospace" xml:space="preserve" style="font-size:13px">Set-Cookie: SESSIONID=…; HttpOnly; Secure</text>
+<rect class="tint" x="550" y="400" width="176" height="52" rx="6"/>
+<text class="s" x="638" y="422" text-anchor="middle">guarda la sesión y</text>
+<text class="s" x="638" y="440" text-anchor="middle">renueva el ID</text>
+<text class="s" x="370" y="486" text-anchor="middle">Desde ahí, el navegador envía la cookie en cada petición y el servidor sabe quién eres.</text>
+</svg>

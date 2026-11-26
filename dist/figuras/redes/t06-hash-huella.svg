@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 465">
+<defs><marker id="t06hh-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="ink" d="M0 0L10 5L0 10z"/></marker></defs>
+<text class="h" x="380" y="30" text-anchor="middle">SHA-256: siempre una huella de 256 bits</text>
+<rect class="box" x="20" y="64" width="250" height="58" rx="6"/>
+<text class="b" x="145" y="89" text-anchor="middle">«Transferir 10 euros»</text>
+<text class="s" x="145" y="109" text-anchor="middle">19 bytes</text>
+<path class="ln" d="M272 93L318 93" marker-end="url(#t06hh-a)" style="stroke-width:2"/>
+<rect class="ink" x="320" y="70" width="100" height="46" rx="6"/>
+<text class="b w" x="370" y="99" text-anchor="middle">SHA-256</text>
+<path class="ln" d="M422 93L468 93" marker-end="url(#t06hh-a)" style="stroke-width:2"/>
+<rect class="tint" x="470" y="70" width="270" height="46" rx="6"/>
+<text class="b" x="605" y="99" text-anchor="middle">4965045f8d3dd68ade7f…</text>
+<rect class="box" x="20" y="148" width="250" height="58" rx="6"/>
+<text class="b" x="145" y="173" text-anchor="middle">«Transferir 1<tspan style="fill:var(--color-danger);font-weight:bold">9</tspan> euros»</text>
+<text class="s" x="145" y="193" text-anchor="middle">cambia una cifra</text>
+<path class="ln" d="M272 177L318 177" marker-end="url(#t06hh-a)" style="stroke-width:2"/>
+<rect class="ink" x="320" y="154" width="100" height="46" rx="6"/>
+<text class="b w" x="370" y="183" text-anchor="middle">SHA-256</text>
+<path class="ln" d="M422 177L468 177" marker-end="url(#t06hh-a)" style="stroke-width:2"/>
+<rect class="tint" x="470" y="154" width="270" height="46" rx="6"/>
+<text class="b" x="605" y="183" text-anchor="middle">64b1f6f46ab2ccbbcc69…</text>
+<rect class="box" x="20" y="232" width="250" height="58" rx="6"/>
+<text class="b" x="145" y="257" text-anchor="middle">Imagen ISO de 4 GB</text>
+<text class="s" x="145" y="277" text-anchor="middle">archivo enorme</text>
+<path class="ln" d="M272 261L318 261" marker-end="url(#t06hh-a)" style="stroke-width:2"/>
+<rect class="ink" x="320" y="238" width="100" height="46" rx="6"/>
+<text class="b w" x="370" y="267" text-anchor="middle">SHA-256</text>
+<path class="ln" d="M422 261L468 261" marker-end="url(#t06hh-a)" style="stroke-width:2"/>
+<rect class="tint" x="470" y="238" width="270" height="46" rx="6"/>
+<text class="s" x="605" y="267" text-anchor="middle" style="fill:var(--color-text)">también 64 cifras hex</text>
+<text class="s" x="605" y="320" text-anchor="middle">mismo tamaño siempre (256 bits)</text>
+<text class="s" x="605" y="338" text-anchor="middle">y nada parecido entre 10 y 19</text>
+<path class="dash" d="M605 350C605 400 160 400 145 330" style="fill:none;stroke-width:2" marker-end="url(#t06hh-a)"/>
+<g style="stroke:var(--color-danger);stroke-width:4"><path d="M362 380l20 20M382 380l-20 20"/></g>
+<text x="380" y="428" text-anchor="middle">No hay vuelta atrás: del resumen no se recupera el mensaje.</text>
+<text x="380" y="450" text-anchor="middle">Y no usa clave: no es cifrar, es sacar una huella para comparar.</text>
+</svg>

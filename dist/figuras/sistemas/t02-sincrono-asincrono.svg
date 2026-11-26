@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 470">
+<defs><marker id="t02-sincrono-asincrono-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="ink" d="M0 0L10 5L0 10z"/></marker><marker id="t02-sincrono-asincrono-r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="bad" d="M0 0L10 5L0 10z"/></marker><marker id="t02-sincrono-asincrono-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="good" d="M0 0L10 5L0 10z"/></marker></defs>
+<text class="h" x="370" y="26" text-anchor="middle">Clásico síncrono frente a AJAX asíncrono</text>
+<text class="b" x="20" y="60">Clásico</text>
+<text class="s" x="97.2" y="60">(start-stop-start-stop)</text>
+<text class="s" x="20" y="100">Usuario</text>
+<text class="s" x="20" y="210">Servidor</text>
+<path class="dash" d="M96 96H720"/>
+<path class="dash" d="M96 206H720"/>
+<rect class="c1" x="100" y="84" width="90" height="24" rx="4"/>
+<text class="s" x="145" y="101" text-anchor="middle">usa la web</text>
+<path class="ln" d="M190 108L220 194" marker-end="url(#t02-sincrono-asincrono-a)"/>
+<rect class="c3" x="220" y="194" width="90" height="24" rx="4"/>
+<text class="s" x="265" y="211" text-anchor="middle">procesa</text>
+<path class="ln" d="M310 194L340 110" marker-end="url(#t02-sincrono-asincrono-a)"/>
+<rect class="c5" x="194" y="84" width="200" height="24" rx="4"/>
+<text class="s" x="294" y="101" text-anchor="middle">espera: pantalla en blanco</text>
+<text class="s" x="340" y="76" text-anchor="middle">página nueva</text>
+<rect class="c1" x="400" y="84" width="90" height="24" rx="4"/>
+<text class="s" x="445" y="101" text-anchor="middle">usa la web</text>
+<path class="ln" d="M490 108L520 194" marker-end="url(#t02-sincrono-asincrono-a)"/>
+<rect class="c3" x="520" y="194" width="90" height="24" rx="4"/>
+<text class="s" x="565" y="211" text-anchor="middle">procesa</text>
+<path class="ln" d="M610 194L640 110" marker-end="url(#t02-sincrono-asincrono-a)"/>
+<rect class="c5" x="494" y="84" width="200" height="24" rx="4"/>
+<text class="s" x="594" y="101" text-anchor="middle">espera: pantalla en blanco</text>
+<text class="s" x="640" y="76" text-anchor="middle">página nueva</text>
+<text class="b" x="20" y="270">AJAX</text>
+<text class="s" x="68.4" y="270">(motor AJAX en el navegador)</text>
+<text class="s" x="20" y="310">Usuario</text>
+<text class="s" x="20" y="420">Servidor</text>
+<path class="dash" d="M96 306H720"/>
+<path class="dash" d="M96 416H720"/>
+<rect class="c1" x="100" y="294" width="620" height="24" rx="4"/>
+<text class="s" x="410" y="311" text-anchor="middle">el usuario sigue usando la página sin esperar</text>
+<rect class="c4" x="100" y="336" width="620" height="24" rx="4"/>
+<text class="s" x="410" y="353" text-anchor="middle">motor AJAX (JavaScript): pide datos en segundo plano</text>
+<path class="ln" d="M160 360L200 404" marker-end="url(#t02-sincrono-asincrono-a)"/>
+<rect class="c3" x="200" y="404" width="90" height="24" rx="4"/>
+<text class="s" x="245" y="421" text-anchor="middle">procesa</text>
+<path class="ln" d="M290 404L330 362" marker-end="url(#t02-sincrono-asincrono-a)"/>
+<text class="s" x="180" y="390" text-anchor="end">petición</text>
+<text class="s" x="312" y="390">JSON</text>
+<path class="ln" d="M420 360L460 404" marker-end="url(#t02-sincrono-asincrono-a)"/>
+<rect class="c3" x="460" y="404" width="90" height="24" rx="4"/>
+<text class="s" x="505" y="421" text-anchor="middle">procesa</text>
+<path class="ln" d="M550 404L590 362" marker-end="url(#t02-sincrono-asincrono-a)"/>
+<text class="s" x="440" y="390" text-anchor="end">petición</text>
+<text class="s" x="572" y="390">JSON</text>
+<text class="s" x="370" y="460" text-anchor="middle">Arriba, cada acción recarga la página entera; abajo solo viajan datos ligeros.</text>
+</svg>

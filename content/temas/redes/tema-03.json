@@ -95,6 +95,7 @@
           "type": "p",
           "text": "Fíjate en que la DMZ es una zona **puente**: recibe conexiones **desde Internet** (los clientes que visitan la web) y también **desde la intranet** (los empleados que salen a Internet a través del proxy situado en la DMZ, o los administradores que actualizan la web). Lo que no debe ocurrir es que alguien de Internet llegue directamente a la intranet."
         },
+        {"type":"figure","src":"figuras/redes/t03-zonas-flujos.svg","title":"Internet, DMZ e intranet: quién puede hablar con quién","caption":"La DMZ es la zona puente: recibe conexiones de los dos lados.","alt":"Tres zonas de izquierda a derecha. Internet, pública y no confiable, usada por todo el mundo. DMZ, con los servicios publicados: web, correo y proxy. Intranet, la red interna privada, con los equipos de los empleados y una base de datos. Dos flechas verdes llegan a la DMZ: desde Internet (los clientes visitan la web) y desde la intranet (los empleados la actualizan o salen por el proxy). Una flecha roja discontinua que va de Internet directamente a la intranet está tachada: eso nunca debe ocurrir."},
         {
           "type": "table",
           "title": "Las tres zonas comparadas",
@@ -323,6 +324,7 @@
           "type": "p",
           "text": "**APP-2** sustituye el cortafuegos por un **proxy**. El proxy permite **monitorizar** la información intercambiada y establecer **reglas de autorización y registro**. Pero sigue estando **directamente expuesto a Internet**: una vulnerabilidad en él expone igualmente toda la infraestructura."
         },
+        {"type":"figure","src":"figuras/redes/t03-app1-app2.svg","title":"APP-1 y APP-2: un único control expuesto","caption":"Redibujado de las figuras del tema (guía CCN-STIC 811).","alt":"Dos esquemas. APP-1: la red interior con tres equipos, un único cortafuegos e Internet; una flecha roja de Internet al cortafuegos indica que un fallo en él deja toda la red expuesta. APP-2: la misma red con un único proxy, que monitoriza, autoriza y registra, en lugar del cortafuegos; la flecha roja indica lo mismo: un fallo en el proxy expone toda la red."},
         {
           "type": "analogy",
           "text": "APP-1 es un portero que mira el DNI; APP-2 es un recepcionista que recoge el encargo, lo revisa, lo anota en un libro y lo entrega él mismo. El recepcionista controla mejor, pero si alguien lo soborna, la puerta queda igual de abierta."
@@ -396,6 +398,7 @@
           "type": "p",
           "text": "Para comprometer la infraestructura, el atacante tiene que comprometer **los dos cortafuegos**. Por eso en APP-5 se pide que sean de **fabricantes diferentes**: si fueran iguales, una misma vulnerabilidad descubierta en uno serviría para atravesar también el otro."
         },
+        {"type":"figure","src":"figuras/redes/t03-app5.svg","title":"APP-5: dos cortafuegos de fabricantes distintos","caption":"Redibujado de la figura del tema (guía CCN-STIC 811).","alt":"De izquierda a derecha: red interior, cortafuegos interno del fabricante A, la DMZ con el proxy colgado de ella, cortafuegos externo del fabricante B e Internet. Sobre la DMZ, una flecha roja discontinua tachada indica que el tráfico no puede ir directamente de un cortafuegos al otro: todo pasa por el proxy. Abajo: para llegar dentro el atacante tiene que romper los dos cortafuegos; si fueran de la misma marca, un mismo fallo abriría los dos."},
         {
           "type": "analogy",
           "text": "Si pones dos cerraduras en tu puerta, no tiene sentido que sean del mismo modelo: con la misma ganzúa el ladrón abriría las dos. Dos marcas distintas obligan a tener dos trucos distintos."
@@ -456,6 +459,7 @@
           "term": "Diodo de datos",
           "text": "Dispositivo que **garantiza por hardware que la información fluye en un solo sentido**, porque **no existe canal físico de retorno**. No es una regla de software que se pueda saltar: físicamente no hay cable de vuelta. Bien orientado, impide que la información salga por el canal inverso, por lo que ayuda a **evitar fugas**."
         },
+        {"type":"figure","src":"figuras/redes/t03-pasarela-diodo.svg","title":"Pasarela de intercambio seguro y diodo de datos","caption":"Esquema simplificado: «romper los protocolos» dibujado sobre la pila TCP/IP.","alt":"Arriba, la red A y la red B, cada una con su pila de cuatro capas, y en medio la pasarela, que analiza el contenido para evitar fugas. En la capa de aplicación, una flecha verde va de la red A a un soporte intermedio (escribe) y otra del soporte a la red B (lee). En las capas de transporte, red y acceso hay líneas rojas discontinuas tachadas: no hay conexión de red continua y las capas de abajo no pasan de un lado a otro. Abajo, el diodo de datos: una flecha verde va de la red de origen, a través del diodo, a la red de destino; la flecha de vuelta está tachada porque no existe cable de retorno."},
         {
           "type": "analogy",
           "text": "La pasarela es una aduana: no deja pasar el camión entero, descarga la mercancía, la revisa y la carga en otro camión al otro lado. El diodo es una tubería con válvula antirretorno: el agua solo puede ir hacia un lado, por mucho que empujes desde el otro."

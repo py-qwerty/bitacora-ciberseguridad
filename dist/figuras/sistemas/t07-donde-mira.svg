@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 430">
+<defs><marker id="t07dm-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="ink" d="M0 0L10 5L0 10z"/></marker><marker id="t07dm-t" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--color-secondary)"/></marker><marker id="t07dm-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="good" d="M0 0L10 5L0 10z"/></marker><marker id="t07dm-r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="bad" d="M0 0L10 5L0 10z"/></marker></defs>
+<text class="h" x="20" y="32">Sin ejecutar la aplicación</text>
+<text class="h" x="400" y="32">Con la aplicación en marcha</text>
+<rect class="dash" x="14" y="46" width="300" height="300" rx="12"/>
+<rect class="dash" x="394" y="46" width="332" height="300" rx="12"/>
+<rect class="c4" x="36" y="80" width="256" height="106" rx="8"/>
+<rect class="ink" x="50" y="67" width="64" height="26" rx="13"/>
+<text class="b" x="82.0" y="85" text-anchor="middle" style="fill:#fff">SAST</text>
+<g><path class="box" d="M52 110h20l10 10v28h-30z"/><path class="ln" style="stroke-width:1.2" d="M57 126h20M57 133h20M57 140h14"/></g>
+<text class="b" x="98" y="122">Tu código fuente</text>
+<text class="b" x="98" y="142">(o binario / bytecode)</text>
+<text class="s" x="98" y="166">lo lee sin ejecutarlo</text>
+<rect class="c3" x="36" y="222" width="256" height="106" rx="8"/>
+<rect class="ink" x="50" y="209" width="64" height="26" rx="13"/>
+<text class="b" x="82.0" y="227" text-anchor="middle" style="fill:#fff">SCA</text>
+<rect class="box" x="52" y="250" width="30" height="30" rx="3"/>
+<rect class="box" x="66" y="258" width="30" height="30" rx="3"/>
+<rect class="box" x="80" y="266" width="30" height="30" rx="3"/>
+<text class="b" x="112" y="264">Librerías de terceros</text>
+<text class="b" x="112" y="284">(dependencias)</text>
+<text class="s" x="112" y="308">busca CVE y licencias</text>
+<path class="ln" d="M316 196H390" marker-end="url(#t07dm-a)"/>
+<text class="s" x="353" y="186" text-anchor="middle">despliegue</text>
+<rect class="box" x="414" y="80" width="186" height="248" rx="8"/>
+<g><rect class="box" x="426" y="92" width="32" height="42" rx="3"/><path class="ln" d="M432 102h20M432 110h20M432 118h20"/><circle class="good" cx="450" cy="127" r="2.5"/></g>
+<text class="b" x="468" y="108">Servidor</text>
+<text class="b" x="468" y="128">con la app</text>
+<rect class="c1" x="428" y="214" width="158" height="100" rx="8"/>
+<rect class="ink" x="442" y="201" width="64" height="26" rx="13"/>
+<text class="b" x="474.0" y="219" text-anchor="middle" style="fill:#fff">IAST</text>
+<text class="s" x="507" y="246" text-anchor="middle">agente dentro:</text>
+<text class="s" x="507" y="265" text-anchor="middle">ve código, memoria</text>
+<text class="s" x="507" y="284" text-anchor="middle">y flujo de datos</text>
+<g><rect class="box" x="650" y="110" width="44" height="30" rx="3"/><rect class="tint" x="655" y="115" width="34" height="20"/><rect class="ink" x="668" y="140" width="8" height="6"/><rect class="ink" x="658" y="146" width="28" height="4" rx="2"/></g>
+<rect class="ink" x="640" y="72" width="64" height="26" rx="13"/>
+<text class="b" x="672.0" y="90" text-anchor="middle" style="fill:#fff">DAST</text>
+<text class="s" x="672" y="176" text-anchor="middle">escáner</text>
+<text class="s" x="672" y="194" text-anchor="middle">externo</text>
+<path class="path" d="M646 132H604" marker-end="url(#t07dm-r)"/>
+<path class="ln" d="M604 158H646" marker-end="url(#t07dm-a)"/>
+<text class="s" x="625" y="226" text-anchor="middle">ataca</text>
+<text class="s" x="625" y="244" text-anchor="middle">desde</text>
+<text class="s" x="625" y="262" text-anchor="middle">fuera</text>
+<text class="s" x="20" y="380">Caja blanca: ve el interior (SAST, IAST).   Caja negra: solo entradas y salidas (DAST).</text>
+<text class="s" x="20" y="402">Ninguna lo ve todo: por eso se combinan.</text>
+</svg>

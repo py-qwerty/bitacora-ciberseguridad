@@ -207,6 +207,7 @@
             ["Tipo de arranque", "BIOS", "UEFI"]
           ]
         },
+        {"type":"figure","src":"figuras/forense/t04-mbr-gpt.svg","title":"Un disco MBR y un disco GPT por dentro","caption":"Redibujado de la figura del tema **Basic MBR Disk / Basic GPT Disk**, con las etiquetas traducidas.","alt":"Dos columnas. Disco MBR: los primeros 512 bytes son el MBR, con código de arranque, cuatro entradas de partición (la tabla, máximo cuatro) y la firma 0x55AA; después, tres particiones primarias (C:, E:, F:) y una extendida que contiene las lógicas G:, H: y n. Disco GPT: primero un MBR de protección para herramientas antiguas, luego la cabecera GPT y las entradas GUID de la 1 a la 128, después las particiones y, al final, una copia de seguridad de las entradas y de la cabecera. Abajo: MBR llega a unos 2 TB y 4 primarias; GPT, a 128 particiones y unos 8 ZB."},
         {
           "type": "p",
           "text": "La BIOS (el programa de arranque de la placa) también tiene memoria propia. Según la clase, hay pocos casos, pero existen, de malware alojado en ella, con un nivel de persistencia enorme."
@@ -422,6 +423,7 @@
           "type": "analogy",
           "text": "FAT2 es como la fotocopia del libro de reservas de un hotel guardada en otro cajón: si alguien derrama café sobre el original, todavía sabes qué habitaciones están ocupadas."
         },
+        {"type":"figure","src":"figuras/forense/t04-fat-cadena.svg","title":"La cadena de clústeres en la FAT","caption":"La entrada de directorio da el primer clúster; la FAT encadena el resto.","alt":"Una entrada de directorio para nominas.xlsx indica tamaño 10 KB y primer clúster 5. Una flecha baja a la tabla FAT1, una fila de casillas numeradas del 2 al 11. La casilla 5 contiene 6, la 6 contiene 9 y la 9 contiene FIN; unas flechas rojas recorren 5, 6 y 9. Otras casillas dicen libre o pertenecen a otros archivos. Resultado: el archivo está en los clústeres 5, 6 y 9, fragmentado. Nota: FAT2 es copia de FAT1; al borrar, la entrada se marca como disponible y los clústeres quedan libres, pero los bytes siguen en el disco."},
         {
           "type": "example",
           "title": "Qué pasa al borrar en FAT",
@@ -489,6 +491,7 @@
             ["$Volume", "Información sobre el volumen."]
           ]
         },
+        {"type":"figure","src":"figuras/forense/t04-ntfs-mft.svg","title":"La $MFT de NTFS","caption":"Una entrada por archivo; los primeros registros son del propio sistema de ficheros.","alt":"Una tabla de entradas de la $MFT: 0 $MFT, 1 $MFTMirr, 2 $LogFile y 3 $Volume (una llave indica que $MFTMirr solo copia estas cuatro), después otros archivos del sistema como $Bitmap, y entradas de usuario: carta.txt de 300 bytes, cuyo contenido va dentro de la ficha (residente, menos de 512 bytes); video.mp4 de 2 GB, que apunta a clústeres del disco; y clientes.csv, borrado, con su entrada libre pero metadatos aún legibles. A la derecha, $Bitmap marca cada clúster como libre u ocupado, ayudado por $BadClus para los dañados."},
         {
           "type": "example",
           "title": "La $MFT como evidencia",
@@ -552,6 +555,7 @@
             "El inodo indica los **bloques de datos** donde está el contenido."
           ]
         },
+        {"type":"figure","src":"figuras/forense/t04-ext4-inodo.svg","title":"Grupos de bloques e inodos en Ext4","caption":"Del nombre al inodo y del inodo a los bloques.","alt":"Arriba, un grupo de bloques de Ext4 con sus piezas: descriptores, Block Bitmap, Inode Bitmap, Inode Table y bloques de datos; el volumen se compone de varios grupos así. Debajo, la ruta /home/ana/informe.odt: la entrada de directorio relaciona el nombre con el inodo 1834; el inodo guarda permisos, fechas, tamaño y referencias a los bloques 7001, 7002 y 9050. El nombre está en el directorio, no en el inodo. Al borrar se rompen los enlaces del inodo a los bloques y para recuperar se suele recurrir al carving."},
         {
           "type": "example",
           "title": "Qué pasa al borrar en Ext4",
@@ -595,6 +599,7 @@
           "title": "El clon en acción",
           "text": "En un Mac duplicas un vídeo de 2 GB. El duplicado aparece al instante y el espacio libre del disco apenas cambia: ambos archivos **comparten los mismos bloques**. Si recortas el principio del duplicado, APFS escribe aparte solo los bloques modificados. Ojo: no tiene nada que ver con el «clonado forense», que es la copia bit a bit de un disco entero."
         },
+        {"type":"figure","src":"figuras/forense/t04-apfs-clon.svg","title":"El clon de APFS frente a una copia clásica","caption":"Redibujado de la figura del tema que compara **HFS+** y **Apple File System**.","alt":"Dos filas de bloques de disco. En HFS+, el original ocupa tres bloques y la copia ocupa otros tres bloques distintos: la copia vuelve a ocupar todo el espacio. En APFS, el original y el clon comparten los mismos tres bloques; cuando se cambia uno, solo ese bloque nuevo se escribe aparte. Conclusión: solo se guardan los cambios; no tiene que ver con el clonado forense."},
         {
           "type": "table",
           "title": "Estructuras básicas de APFS",

@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 460">
+<defs><marker id="t04sc-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="ink" d="M0 0L10 5L0 10z"/></marker><marker id="t04sc-r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--color-danger)"/></marker><marker id="t04sc-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--color-success)"/></marker></defs>
+<text class="h" x="380" y="28" text-anchor="middle">La cadena de Snort, con el decodificador de la clase</text>
+<rect class="box" x="20" y="52" width="128" height="70" rx="8"/>
+<text class="b" x="84" y="82" text-anchor="middle">Captura</text>
+<text class="s" x="84" y="104" text-anchor="middle">(sniffer)</text>
+<rect class="c2" x="168" y="52" width="128" height="70" rx="8"/>
+<text class="b" x="232" y="82" text-anchor="middle" style="font-size:15px">Decodificador</text>
+<text class="s" x="232" y="104" text-anchor="middle">separa capas</text>
+<rect class="box" x="316" y="52" width="128" height="70" rx="8"/>
+<text class="b" x="380" y="82" text-anchor="middle" style="font-size:15px">Preprocesador</text>
+<text class="s" x="380" y="104" text-anchor="middle">ordena campos</text>
+<rect class="c5" x="464" y="52" width="128" height="70" rx="8"/>
+<text class="b" x="528" y="82" text-anchor="middle">Motor de</text>
+<text class="s" x="528" y="104" text-anchor="middle">detección</text>
+<rect class="box" x="612" y="52" width="128" height="70" rx="8"/>
+<text class="b" x="676" y="82" text-anchor="middle">Salida</text>
+<text class="s" x="676" y="104" text-anchor="middle">alerta o log</text>
+<path class="ln" d="M150 87L166 87" marker-end="url(#t04sc-a)"/>
+<path class="ln" d="M298 87L314 87" marker-end="url(#t04sc-a)"/>
+<path class="ln" d="M446 87L462 87" marker-end="url(#t04sc-a)"/>
+<path class="ln" d="M594 87L610 87" marker-end="url(#t04sc-a)"/>
+<rect class="ink" x="476" y="150" width="104" height="36" rx="6"/>
+<text class="b w" x="528" y="174" text-anchor="middle">reglas</text>
+<path class="ln" d="M528 150L528 126" marker-end="url(#t04sc-a)"/>
+<path class="dash" d="M232 122V196"/>
+<rect class="" x="20" y="196" width="720" height="250" rx="10" style="fill:none;stroke:var(--color-secondary);stroke-width:1.5;stroke-dasharray:6 4"/>
+<text class="b" x="40" y="234">Qué hace el decodificador:</text>
+<text class="s" x="40" y="254">interpreta el tráfico en bruto según cada protocolo</text>
+<rect class="box" x="40" y="268" width="680" height="36" rx="4"/>
+<text x="380" y="292" text-anchor="middle" style="font-family:monospace;font-size:15px">0011 1010 0101 1100 1110 0001 0110 1001 1100 0011 0101 …</text>
+<path class="ln" d="M380 308L380 330" marker-end="url(#t04sc-a)"/>
+<rect class="c4" x="40" y="334" width="160" height="40" rx="4"/>
+<text class="b" x="120" y="360" text-anchor="middle">Ethernet</text>
+<rect class="c3" x="200" y="334" width="160" height="40" rx="4"/>
+<text class="b" x="280" y="360" text-anchor="middle">IP</text>
+<rect class="c2" x="360" y="334" width="160" height="40" rx="4"/>
+<text class="b" x="440" y="360" text-anchor="middle">TCP</text>
+<rect class="c1" x="520" y="334" width="200" height="40" rx="4"/>
+<text class="b" x="620" y="360" text-anchor="middle">HTTP, FTP…</text>
+<text class="s" x="380" y="404" text-anchor="middle">Los preprocesadores lo ordenan en campos (como Wireshark) y el motor</text>
+<text class="s" x="380" y="424" text-anchor="middle">compara esos campos con las reglas.</text>
+</svg>

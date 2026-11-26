@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 470">
+<defs><marker id="t07sn-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="ink" d="M0 0L10 5L0 10z"/></marker><marker id="t07sn-t" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--color-secondary)"/></marker><marker id="t07sn-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="good" d="M0 0L10 5L0 10z"/></marker><marker id="t07sn-r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="bad" d="M0 0L10 5L0 10z"/></marker></defs>
+<text class="h" x="20" y="30">Cómo trabaja una herramienta SAST</text>
+<rect class="box" x="20" y="48" width="150" height="56" rx="6"/>
+<text class="b" x="95.0" y="71.4" text-anchor="middle">Código fuente</text>
+<text class="s" x="95.0" y="90.0" text-anchor="middle">entrada</text>
+<path class="ln" d="M172 76H196" marker-end="url(#t07sn-a)"/>
+<rect class="c4" x="200" y="48" width="150" height="56" rx="6"/>
+<text class="b" x="275.0" y="71.4" text-anchor="middle">Modelo</text>
+<text class="s" x="275.0" y="90.0" text-anchor="middle">árbol sintáctico</text>
+<path class="ln" d="M352 76H376" marker-end="url(#t07sn-a)"/>
+<rect class="c3" x="380" y="48" width="150" height="56" rx="6"/>
+<text class="b" x="455.0" y="71.4" text-anchor="middle">Reglas</text>
+<text class="s" x="455.0" y="90.0" text-anchor="middle">patrones de fallo</text>
+<path class="ln" d="M532 76H556" marker-end="url(#t07sn-a)"/>
+<rect class="c1" x="560" y="48" width="150" height="56" rx="6"/>
+<text class="b" x="635.0" y="71.4" text-anchor="middle">Informe</text>
+<text class="s" x="635.0" y="90.0" text-anchor="middle">posibles errores</text>
+<text class="h" x="20" y="150">Tres niveles de análisis, de más cerca a más lejos</text>
+<rect class="c2" x="20" y="168" width="700" height="286" rx="12"/>
+<text class="b" x="36" y="194">Interprocedural (global): entre funciones, clases o módulos</text>
+<rect class="c4" x="36" y="208" width="300" height="230" rx="10"/>
+<text class="b" x="50" y="232">Intraprocedural (local)</text>
+<text class="s" x="50" y="252">dentro de una función</text>
+<rect class="box" x="50" y="266" width="272" height="156" rx="8"/>
+<text class="b" x="64" y="290">Léxico, sintáctico</text>
+<text class="b" x="64" y="310">y semántico</text>
+<text class="s" x="64" y="336">palabras, estructura y</text>
+<text class="s" x="64" y="355">significado, como un</text>
+<text class="s" x="64" y="374">compilador: «¿se llama</text>
+<text class="s" x="64" y="393">a eval()?»</text>
+<rect class="box" x="380" y="214" width="200" height="46" rx="6"/>
+<text class="b" x="480.0" y="241.4" text-anchor="middle">leerFormulario()</text>
+<path class="path" d="M480 262V288" marker-end="url(#t07sn-r)"/>
+<rect class="box" x="380" y="292" width="200" height="46" rx="6"/>
+<text class="b" x="480.0" y="319.4" text-anchor="middle">guardar()</text>
+<path class="path" d="M480 340V366" marker-end="url(#t07sn-r)"/>
+<rect class="c5" x="380" y="370" width="200" height="46" rx="6"/>
+<text class="b" x="480.0" y="397.4" text-anchor="middle">ejecutarSQL()</text>
+<text class="s" x="596" y="232">entra el</text>
+<text class="s" x="596" y="250">dato del</text>
+<text class="s" x="596" y="268">usuario</text>
+<text class="s" x="596" y="388">acaba en</text>
+<text class="s" x="596" y="406">una consulta</text>
+<text class="s" x="596" y="424">sin filtrar</text>
+</svg>

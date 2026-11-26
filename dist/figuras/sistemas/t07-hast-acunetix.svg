@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 380">
+<defs><marker id="t07ha-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="ink" d="M0 0L10 5L0 10z"/></marker><marker id="t07ha-t" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--color-secondary)"/></marker><marker id="t07ha-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="good" d="M0 0L10 5L0 10z"/></marker><marker id="t07ha-r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="bad" d="M0 0L10 5L0 10z"/></marker></defs>
+<rect class="c4" x="20" y="60" width="200" height="100" rx="6"/>
+<text class="b" x="120.0" y="96.4" text-anchor="middle">Acunetix</text>
+<text class="s" x="120.0" y="115.0" text-anchor="middle">escáner DAST</text>
+<text class="s" x="120.0" y="133.0" text-anchor="middle">(desde fuera)</text>
+<rect class="c5" x="430" y="60" width="270" height="100" rx="6"/>
+<text class="b" x="565.0" y="105.4" text-anchor="middle">Aplicación web</text>
+<text class="s" x="565.0" y="124.0" text-anchor="middle">en marcha en el servidor</text>
+<rect class="c1" x="430" y="236" width="270" height="100" rx="6"/>
+<text class="b" x="565.0" y="272.4" text-anchor="middle">AcuSensor</text>
+<text class="s" x="565.0" y="291.0" text-anchor="middle">agente IAST instalado</text>
+<text class="s" x="565.0" y="309.0" text-anchor="middle">junto a la aplicación</text>
+<path class="ln" d="M222 110H426" marker-end="url(#t07ha-a)"/>
+<text class="s" x="324" y="100" text-anchor="middle">escanea (peticiones)</text>
+<path class="ln" d="M565 164V232" marker-end="url(#t07ha-a)"/>
+<path class="ln" d="M565 232V164" marker-end="url(#t07ha-a)"/>
+<text class="s" x="575" y="204">vigila por dentro</text>
+<path class="ln" d="M428 286H120V164" marker-end="url(#t07ha-a)"/>
+<text class="s" x="140" y="306">le devuelve: cómo se comporta la app</text>
+<text class="s" x="140" y="325">y en qué línea de código está el fallo</text>
+<text class="b" x="360" y="22" text-anchor="middle">Herramienta híbrida (HAST) = DAST + IAST que se pasan resultados</text>
+<text class="s" x="360" y="370" text-anchor="middle">El escáner descubre rutas; el sensor confirma o descarta lo que el escáner sospecha.</text>
+</svg>

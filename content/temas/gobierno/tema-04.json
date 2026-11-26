@@ -148,6 +148,7 @@
           "type": "p",
           "text": "El temario enumera explícitamente las cuatro primeras piezas y, al definir la política, aclara que **las políticas no son directrices, ni estándares, ni procedimientos**. La directriz se entiende como el escalón **orientativo**: no es de cumplimiento obligatorio, pero quien decide debe considerarla. Fíjate en que en un sentido amplio a veces se llama «política» a todo el conjunto de documentos; en este tema, «política» es solo el nivel general."
         },
+        {"type":"figure","src":"figuras/gobierno/t04-escalera-documentos.svg","title":"Los documentos de seguridad, escalón a escalón","alt":"Cuatro escalones que bajan de izquierda a derecha, cada uno más concreto que el anterior, todos obligatorios. Política: objetivos de alto nivel, por ejemplo proteger los datos de clientes. Estándar: qué herramienta o tecnología, por ejemplo cifrado de disco completo. Línea base: qué parámetros mínimos, por ejemplo contraseña de 12 caracteres. Procedimiento: paso a paso en el día a día, por ejemplo el alta de un empleado. Aparte, en un recuadro discontinuo, la directriz: recomendación o buena práctica, no obligatoria pero que debe tenerse en cuenta, por ejemplo no repetir la contraseña en servicios personales."},
         {
           "type": "example",
           "title": "Caso práctico",
@@ -253,6 +254,7 @@
             "**¿Es rentable?** **Análisis coste-beneficio**."
           ]
         },
+        {"type":"figure","src":"figuras/gobierno/t04-preguntas-riesgo.svg","title":"Las preguntas del análisis y de la gestión del riesgo","alt":"Dos bloques unidos por una flecha. Bloque 1, analizar y evaluar, con cuatro preguntas: qué podría suceder (amenazas), si sucede cuán malo es (impacto), con qué frecuencia (frecuencia) y cuán seguros estamos (incertidumbre). Bloque 2, gestionar, con tres preguntas: qué se puede hacer (mitigación), cuánto cuesta (al año) y si es rentable (coste-beneficio)."},
         {
           "type": "analogy",
           "text": "Es como el parte meteorológico: «mañana lloverá (qué), con tormenta fuerte (impacto), probabilidad del 70 % (frecuencia)». Un buen meteorólogo añade «con confianza media», porque sus modelos tienen margen de error. Un informe de riesgos que da una cifra exacta sin datos suficientes es como un parte que asegura «lloverá a las 17:03»: transmite una precisión falsa."
@@ -338,6 +340,7 @@
             ["Contramedida", "Control correctivo o reactivo: actúa cuando el incidente ya ocurre.", "Restaurar desde la copia de seguridad tras un ransomware."]
           ]
         },
+        {"type":"figure","src":"figuras/gobierno/t04-salvaguarda-contramedida.svg","title":"Salvaguarda y contramedida en la línea del tiempo","alt":"Una línea de tiempo con un triángulo de alerta en el centro que marca el incidente. A la izquierda, antes del incidente, la salvaguarda: control preventivo y proactivo, por ejemplo parchear el servidor antes de que se explote el fallo. A la derecha, después, la contramedida: control correctivo o reactivo, por ejemplo restaurar desde la copia tras un ransomware. Los dos son controles elegidos porque se ha identificado un riesgo."},
         {
           "type": "p",
           "text": "Sobre los procesos, hay distintos modelos. El temario cita el estándar del **NIST** (National Institute of Standards and Technology, el instituto de normalización de EE. UU.) **SP 800-30** (en el PDF aparece como «SP-830», una errata), que agrupa la gestión del riesgo en tres fases:"
@@ -457,6 +460,7 @@
             ]
           ]
         },
+        {"type":"figure","src":"figuras/gobierno/t04-tres-clasificaciones.svg","title":"Tres formas de clasificar un mismo control","alt":"Tres columnas. Por tipología: técnico, físico y administrativo. Por objetivo: preventivo, disuasorio, detectivo, correctivo y compensatorio. Por naturaleza: obligatorio o voluntario, y manual o automático. En cada columna aparece resaltada la opción que corresponde a un antivirus: técnico, preventivo y automático. Un recuadro inferior lo resume: un antivirus encaja en las tres clasificaciones a la vez."},
         {
           "type": "example",
           "text": "**Una oficina con cartel «zona vigilada», cámara y puerta con tarjeta.** El cartel es **disuasorio** (avisa y desanima). La cámara es **detectiva** (registra lo que ocurre). La puerta con tarjeta es **preventiva** (impide el paso). Los tres son además controles **físicos**. Si hubiera una intrusión y se restaurase el sistema, ese paso sería **correctivo**."
@@ -639,6 +643,7 @@
             ["Control de versiones", "Historial de revisiones y fechas.", "Necesario porque la gestión es un ciclo de mejora continua."]
           ]
         },
+        {"type":"figure","src":"figuras/gobierno/t04-anatomia-politica.svg","title":"Las seis partes de una política","caption":"Redibujado de la figura del tema: la estructura de la política de SANS.","alt":"Una hoja con el título Política de seguridad y seis apartados apilados: propósito (por qué existe y qué riesgo mitiga), ámbito (a qué procesos y personas se aplica), descripción (qué se exige, cuándo y cómo), responsabilidades (quién la cumple, expresado en roles), definiciones y referencias (términos y documentos de apoyo) y control de versiones (historial de revisiones y fechas). Al lado, una nota: la política fija el objetivo, no el producto; el detalle va en estándares y procedimientos."},
         {
           "type": "term",
           "term": "OWASP (Open Worldwide Application Security Project)",

@@ -147,6 +147,7 @@
             "**Management fabric** (tejido de gestión): coordina la gestión, la gobernanza, la monitorización y la orquestación."
           ]
         },
+        {"type":"figure","src":"figuras/sistemas/t10-nbdra.svg","title":"La arquitectura de referencia del NIST (NBDRA)","caption":"Redibujado y simplificado de la figura del tema (NIST SP 1500-6), con las etiquetas traducidas.","alt":"Arriba, el orquestador del sistema, que define requisitos y coordina. A la izquierda, el proveedor de datos, que aporta los datos; a la derecha, el consumidor de datos, que usa los resultados. En el centro, el proveedor de aplicaciones big data con sus funciones (ingesta, preparación, análisis, presentación y acceso), apoyado sobre el proveedor de la plataforma big data con tres niveles: procesamiento (lotes, interactivo, streaming), plataformas de organización y reparto de datos, e infraestructura de red, cómputo y almacenamiento. Debajo, dos franjas que lo atraviesan todo: el tejido de seguridad y privacidad y el tejido de gestión."},
         {
           "type": "p",
           "text": "La idea central es que la seguridad **no es un añadido al final** ni una capa separada: debe **permear cada capa y cada función**. El volumen 4 del NIST concreta este tejido con una taxonomía de casos de uso, amenazas y controles, y clasifica las amenazas según afecten a la confidencialidad, la integridad, la disponibilidad o la privacidad. Un caso de uso típico: un proveedor quiere compartir datos con consumidores, pero solo bajo ciertas políticas, con control de acceso y con registro histórico de quién accedió."
@@ -320,6 +321,7 @@
           "term": "Control de acceso granular",
           "text": "Autorizar con mucho detalle, no solo a la plataforma entera: por **tabla**, por **columna**, por **fila** (row-level filtering, filtrado por filas) e incluso por **celda** (cell-level). También se aplica a los metadatos."
         },
+        {"type":"figure","src":"figuras/sistemas/t10-autorizacion-granular.svg","title":"Autorización granular: tabla, columna, fila y celda","caption":"Esquema nuevo con el ejemplo «Ventas sin datos personales» del tema.","alt":"Una tabla de ventas con columnas nombre, DNI, teléfono, provincia e importe. Las tres columnas personales aparecen tapadas en rojo; provincia e importe se ven. Una fila está resaltada (filtrado por filas) y una celda también (control por celda). A la derecha, los niveles de grueso a fino: tabla, columna, fila y celda. Nota: el analista lee provincia e importe y el motor de datos le niega las columnas personales; ocultarlas solo en pantalla no basta."},
         {
           "type": "list",
           "title": "Lo que debe ofrecer la autorización en big data",
@@ -385,6 +387,7 @@
           "term": "Zonas de cifrado (encryption zones)",
           "text": "Carpetas o conjuntos de datos concretos cuyo contenido se cifra al escribir y se descifra al leer de forma **transparente**: la aplicación no tiene que cambiar nada. Usan claves guardadas en un gestor de claves."
         },
+        {"type":"figure","src":"figuras/sistemas/t10-cifrado-claves.svg","title":"Cifrado en tránsito, en reposo y el KMS","caption":"Esquema nuevo a partir de la tabla y los términos del apartado.","alt":"Arriba, en tránsito: un cliente y dos nodos del clúster unidos por conexiones con candado (TLS en RPC y HTTP/REST, sin versiones ni algoritmos débiles para evitar el downgrade). Abajo, en reposo: tres almacenes con candado que representan cifrado de disco, de columna y por zona de cifrado. A la derecha, el KMS o gestor de claves, que guarda las claves separadas de los datos, lleva versiones y rotación, decide quién usa cada clave y audita cada uso."},
         {
           "type": "list",
           "title": "Técnicas avanzadas de cifrado en reposo que menciona el tema",
@@ -473,6 +476,7 @@
           "type": "p",
           "text": "**Privacidad.** Según el tipo de dato se aplican distintas técnicas: **anonimización** y **desidentificación** (quitar o transformar lo que identifica a una persona), **generalización** (edad 37 → «30-40»), **supresión** (borrar el campo), **perturbación** (añadir ruido) y **privacidad diferencial** en consultas agregadas. Se completan con etiquetas de sensibilidad (data labeling), evaluación del riesgo de reidentificación y el principio de **privacidad desde el diseño** (privacy by design). Cuando colaboran varias organizaciones, se usan protocolos de compartición segura y cifrado funcional o basado en atributos."
         },
+        {"type":"figure","src":"figuras/sistemas/t10-privacidad-tecnicas.svg","title":"Seudonimización frente a anonimización","caption":"Esquema nuevo con el primer registro del ejemplo de código del apartado.","alt":"Un registro antes y después. Antes: nombre Lucía, DNI 11111111H, código postal 28013, año 1985, sexo M, diagnóstico diabetes. El nombre se suprime (borrado); el DNI se seudonimiza y queda df88589813; el código postal y el año se generalizan a 280** y 1980s; sexo y diagnóstico no cambian. Dos cajas explican: la seudonimización con HMAC da siempre el mismo seudónimo para el mismo DNI, permite cruzar tablas y sin la clave no se puede recalcular; la anonimización por supresión y generalización hace que cada persona se confunda con otras (k-anonimato de 1 a 3). Ojo: el diagnóstico sigue a la vista."},
         {
           "type": "term",
           "term": "Privacidad diferencial (differential privacy)",
@@ -602,6 +606,7 @@
           "type": "p",
           "text": "Esa misma arquitectura que lo hace potente lo expone: es **distribuido**, sus nodos son **heterogéneos**, ofrece **muchos servicios y API** y por dentro circulan datos sensibles, metadatos y flujos internos."
         },
+        {"type":"figure","src":"figuras/sistemas/t10-hadoop-capas.svg","title":"Hadoop por capas","caption":"Redibujado y simplificado de la figura del ecosistema Hadoop del tema.","alt":"Cuatro capas apiladas, cada una apoyada en la de abajo. Abajo, almacenamiento HDFS con un NameNode (catálogo) y varios DataNodes (bloques). Encima, gestión de recursos YARN con el ResourceManager, que reparte CPU y memoria. Encima, procesamiento: MapReduce, Spark (en memoria) y otros motores. Arriba, acceso y consulta: Hive (tipo SQL), Pig (scripts) y HBase (base de datos). Nota: distribuido, heterogéneo y con muchas API, potente pero con mucha superficie de ataque."},
         {
           "type": "list",
           "title": "Amenazas frecuentes en Hadoop",

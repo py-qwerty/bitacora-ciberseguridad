@@ -442,6 +442,7 @@
             "El servidor se separa de Internet por un firewall de aplicaciones web."
           ]
         },
+        {"type":"figure","src":"figuras/sistemas/t02-capas-seguridad.svg","title":"Las tres capas del monolito y sus controles de seguridad","caption":"Redibujado de la figura de capas del tema, con los conceptos de seguridad que el profesor situó en esta arquitectura.","alt":"A la izquierda, el navegador. Una flecha doble rotulada TLS (cifrado) lo une a una franja roja vertical, el firewall de aplicaciones web, y de ahí al servidor, un recuadro discontinuo con tres capas apiladas unidas por flechas: presentación (interfaz con HTML, CSS y JavaScript), lógica de negocio (reglas, validaciones y cálculos) y acceso a datos (lee y escribe en la base de datos). La capa de acceso a datos conecta con un cilindro, la base de datos. A la derecha, un recuadro enumera los controles que van en el servidor: validación de entrada y salida, errores y excepciones, registro, cifrado de datos, gestión de sesiones, y autenticación y autorización."},
         {
           "type": "exam",
           "text": "En el PDF, la descripción de la capa de acceso a datos repite por error el texto de la capa de lógica de negocio. Quédate con la idea correcta: la capa de datos es la que habla con la base de datos; el «corazón» con las reglas del negocio es la capa de lógica de negocio."
@@ -521,6 +522,7 @@
             ]
           ]
         },
+        {"type":"figure","src":"figuras/sistemas/t02-sincrono-asincrono.svg","title":"Modelo síncrono clásico frente a modelo asíncrono AJAX","caption":"Redibujado de las dos figuras del tema (modelo clásico y modelo AJAX).","alt":"Dos cronogramas con una fila para el usuario y otra para el servidor. Arriba, el modelo clásico: el usuario usa la web, envía la petición y queda una franja roja «espera: pantalla en blanco» mientras el servidor procesa; al volver llega una página nueva, y el ciclo se repite (start-stop-start-stop). Abajo, AJAX: una franja verde continua indica que el usuario sigue usando la página sin esperar; debajo, el motor AJAX (JavaScript) lanza peticiones al servidor en segundo plano y recibe JSON, dos veces, sin cortar la franja del usuario."},
         {
           "type": "p",
           "text": "Lo más característico de AJAX es ese **motor AJAX** en el navegador, a veces escondido en un marco oculto. Atiende por sí solo lo que no necesita al servidor (validaciones simples, editar datos en memoria, algo de navegación) y lanza peticiones al servidor cuando hace falta. El temario avisa de que este elemento adicional en el cliente **tendrá algún inconveniente de seguridad**: hay más lógica, y más superficie, en un lugar que controla el usuario."
@@ -659,6 +661,7 @@
           "term": "Proxy",
           "text": "Intermediario que recibe las peticiones de alguien y las reenvía en su nombre, pudiendo filtrarlas, guardarlas o responderlas él mismo."
         },
+        {"type":"figure","src":"figuras/sistemas/t02-pwa-service-worker.svg","title":"El service worker, un proxy dentro del navegador","caption":"Redibujado de la figura del tema (aplicación web estándar frente a mejora progresiva).","alt":"Un navegador dividido en dos mitades. En la izquierda, una web estándar: la página pide directamente al servidor web, con una flecha que baja hasta él. En la derecha, una PWA: la página habla con el service worker (un script en segundo plano), que a su vez habla con la caché y, solo si hace falta, con el servidor web; él decide si responde desde la caché o va a la red. Abajo, el servidor web, siempre por HTTPS. Al pie: sin conexión, el service worker responde con lo que guardó en la caché."},
         {
           "type": "term",
           "term": "Manifiesto de la aplicación (web app manifest)",
@@ -917,6 +920,7 @@
           "type": "p",
           "text": "**¿Dónde se aplica la seguridad?** En el backend. En una arquitectura MVC se concentra en el **controlador** (valida, autentica y autoriza antes de que se genere nada), y en MVVM, en el **modelo**. La vista solo muestra datos que ya han pasado por esos controles. El profesor subirá un documento y un pequeño proyecto de ejemplo en TypeScript para profundizar en este patrón."
         },
+        {"type":"figure","src":"figuras/sistemas/t02-mvc-mvvm.svg","title":"MVC frente a MVVM: dónde vive cada pieza","caption":"En los dos casos la seguridad se aplica en el **backend**: lo que corre en el navegador lo controla el usuario.","alt":"Dos esquemas lado a lado, cada uno con una franja superior (navegador) y otra inferior (servidor). En MVC, el navegador solo muestra la página HTML; la petición baja al controlador (un servlet) en el servidor, que consulta al modelo (JavaBeans) y elige la vista (página JSP), que devuelve el HTML al navegador. En MVVM, la vista y el ViewModel están en el navegador, unidos por data binding; el ViewModel llama por una API con JSON al modelo, en el servidor, que contiene la lógica de negocio y accede a la base de datos. Un borde verde y un candado marcan dónde se concentra la seguridad: el controlador en MVC y el modelo en MVVM."},
         {
           "type": "exam",
           "text": "«¿Qué debe evitar un mensaje de error?» → revelar detalles internos útiles a un atacante. Las otras opciones (un mensaje genérico, un identificador no sensible de incidencia, avisar de que la petición falló) son justamente lo que **sí** está bien mostrar."
@@ -1133,6 +1137,7 @@
             "**Cuerpo.** El contenido: HTML, una imagen, JSON, XML… o, en un POST, los parámetros enviados."
           ]
         },
+        {"type":"figure","src":"figuras/sistemas/t02-mensaje-http.svg","title":"Las cuatro partes de un mensaje HTTP","caption":"Los mismos mensajes que el ejemplo de código de este apartado. Inspirado en la figura del tema sobre la estructura de la petición.","alt":"Dos mensajes en texto de máquina de escribir, cada uno troceado en cuatro franjas de color. Petición: línea inicial «POST /login HTTP/1.1», con método, URL y versión señalados; cabeceras Host, Content-Type y Content-Length; una línea vacía (CR LF) que separa cabeceras y cuerpo; y el cuerpo con usuario=ana&clave=s3cr3t0. Respuesta: línea inicial «HTTP/1.1 403 Forbidden», con versión, código y texto señalados; la cabecera Content-Type: text/html; la línea vacía; y el cuerpo con un título HTML «Sin permiso»."},
         {
           "type": "table",
           "title": "Cabeceras que conviene reconocer",
@@ -1786,6 +1791,7 @@
             ]
           ]
         },
+        {"type":"figure","src":"figuras/sistemas/t02-ssdlc-fases.svg","title":"SSDLC: actividad de seguridad por fase y coste de llegar tarde","caption":"Cifras orientativas de la tabla que enseñó el profesor.","alt":"Arriba, cinco flechas encadenadas con las fases: requisitos, diseño, desarrollo, pruebas y producción. Debajo de cada una, su actividad de seguridad: requisitos de seguridad; modelado de amenazas; código seguro, SAST y SCA; DAST, IAST y pentest; monitorizar y aplicar parches. Abajo, un gráfico de barras con el coste relativo de corregir un fallo según cuándo se detecta: por 1 en análisis y diseño, por 6,5 en implementación, por 15 en pruebas y por 60 en producción."},
         {
           "type": "p",
           "text": "Es una cifra orientativa, no exacta, pero el mensaje es la razón de ser del SSDLC: **cuanto más tarde se aborda la seguridad, más cara resulta**, por el esfuerzo y por los ataques que se pueden sufrir mientras tanto."

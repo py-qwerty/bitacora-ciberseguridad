@@ -65,6 +65,7 @@
             ["DTLS", "Entre transporte (UDP) y aplicación", "Lo mismo que TLS, pero para aplicaciones que usan datagramas."]
           ]
         },
+        {"type":"figure","src":"figuras/redes/t08-protocolos-capas.svg","title":"En qué capa se mete cada protocolo del tema","caption":"Cada protocolo protege lo que va por encima de él: cuanto más abajo, más tráfico cubre.","alt":"A la izquierda, la pila TCP/IP: aplicación (HTTP, FTP, POP3, IMAP), transporte (TCP y UDP), red (IP) y acceso a la red (Ethernet, wifi). A la derecha, tres columnas. IPsec (AH, ESP, IKE) es una caja oscura a la altura de la capa de red, con una franja verde encima que cubre transporte y aplicación: protege todo lo de encima, TCP/UDP y datos de todas las aplicaciones. SSL/TLS es una caja oscura entre transporte y aplicación, apoyada sobre TCP, con una franja encima que cubre solo la aplicación: protege los datos de una conexión. DTLS está igual pero apoyado sobre UDP. Al pie: IPsec trabaja en la capa de red, con todos los paquetes IP y sin que las aplicaciones se enteren; TLS y DTLS se meten entre transporte y aplicación y protegen una conexión concreta."},
         {
           "type": "exam",
           "text": "Trampas típicas: «asegura la disponibilidad» (nunca), «siempre asegura la confidencialidad» (depende de la configuración), «autenticar implica cifrar» (falso) y «proporciona no repudio» (los protocolos de canal seguro usan claves compartidas, así que no dan no repudio)."
@@ -112,6 +113,7 @@
             "Pueden configurarse a mano o negociarse automáticamente con **IKE**."
           ]
         },
+        {"type":"figure","src":"figuras/redes/t08-sa-unidireccional.svg","title":"Una SA por cada sentido de la comunicación","caption":"El SPI 0x1001 es un valor de ejemplo.","alt":"El equipo A (192.168.10.5) a la izquierda y el equipo B (192.168.20.7) a la derecha. Una flecha de A a B etiquetada SA 1, de A hacia B, y otra de B a A etiquetada SA 2, de B hacia A. Entre ellas: cada paquete lleva el SPI de su SA. Debajo, una ficha: la SA 1 se identifica por SPI 0x1001 más IP de destino 192.168.20.7 más protocolo ESP, y guarda lo pactado: algoritmo de cifrado, claves, método de autenticación y duración, que se puede renovar. Al pie: las SA se configuran a mano o se negocian con IKE."},
         {
           "type": "table",
           "title": "Las tres piezas de la arquitectura IPsec",
@@ -418,6 +420,7 @@
           "type": "p",
           "text": "AH y ESP pueden usarse en cualquiera de los dos modos e incluso combinarse (por ejemplo, ESP en túnel entre pasarelas y AH en transporte entre hosts)."
         },
+        {"type":"figure","src":"figuras/redes/t08-ah-esp-cobertura.svg","title":"Qué va cifrado y qué va autenticado con AH y con ESP","caption":"Lo oscuro va cifrado; el corchete verde marca lo que queda autenticado. Combina lo que el tema dice de AH, de ESP y de los dos modos.","alt":"Cuatro paquetes uno debajo de otro. Transporte con AH: IP, AH, TCP, datos; nada cifrado y un corchete de autenticado sobre todo el paquete, salvo los campos que cambian por el camino como el TTL. Transporte con ESP: IP, cabecera ESP, TCP, datos, tráiler ESP y autenticación ESP; TCP, datos y tráiler en oscuro (cifrados) y el corchete de autenticado desde la cabecera ESP hasta el tráiler. Túnel con AH: IP nueva, AH, IP original, TCP, datos; nada cifrado y autenticado todo salvo campos que cambian. Túnel con ESP: IP nueva, ESP, IP original, TCP, datos, tráiler y autenticación ESP; cifrado desde la IP original hasta el tráiler y autenticado desde la cabecera ESP hasta el tráiler. Al pie: AH no cifra pero protege también la cabecera IP; la autenticación de ESP no cubre la cabecera IP de fuera, aunque en túnel la interna va cifrada dentro."},
         {
           "type": "example",
           "title": "Caso práctico: dos sedes unidas",
@@ -746,6 +749,7 @@
             "Tiene en cuenta las **limitaciones de tamaño** de los mensajes."
           ]
         },
+        {"type":"figure","src":"figuras/redes/t08-dtls-pila.svg","title":"TLS sobre TCP, DTLS sobre UDP","caption":"La misma idea en dos pilas: lo único que cambia es el transporte de debajo.","alt":"Dos pilas lado a lado. TLS: aplicación (web HTTPS, correo, FTP), TLS (cifra, autentica, comprueba integridad), TCP (entrega todo, completo y en orden) e IP. DTLS: aplicación (videollamada, juegos, voz sobre IP), DTLS (lo mismo más numeración y retransmisión), UDP (datagramas sueltos, sin garantías) e IP. Al pie: DTLS da los mismos servicios que TLS pero sobre UDP; como UDP no garantiza nada, DTLS añade numeración, ventana antirrepetición y retransmisiones."},
         {
           "type": "table",
           "title": "Qué cambia respecto a TLS",

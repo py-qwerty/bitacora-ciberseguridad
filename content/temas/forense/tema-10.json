@@ -66,6 +66,7 @@
           "title": "Caso práctico",
           "text": "El informe dice: «Se verificó el hash SHA-256 de la imagen». Un juez no sabe qué es eso. Mejor: «Se calculó el hash SHA-256 de la copia, que funciona como una huella dactilar del contenido: si se hubiera cambiado un solo carácter, la huella sería distinta. La huella de la copia coincide con la del disco original, lo que demuestra que la copia es idéntica». Se mantiene el dato técnico (rigor) y se explica para qué sirve (didáctica)."
         },
+        {"type":"figure","src":"figuras/forense/t10-audiencia.svg","title":"Para quién se escribe el informe","caption":"El mismo texto tiene que servir al juez y al perito de la otra parte.","alt":"Un documento, el informe pericial, con flechas hacia dos grupos de lectores. Uno reúne al juez, el fiscal, los abogados y el jurado, sin conocimientos técnicos, que necesitan didáctica. El otro es otro perito, experto, que exige rigor. Debajo, la frase del ejemplo: se calculó el hash SHA-256 de la copia, que funciona como una huella dactilar; coincide con la del original, así que la copia es idéntica. Dato técnico más para qué sirve; el juez valora con sana crítica."},
         {
           "type": "exam",
           "text": "La fórmula ganadora es **«riguroso, pero a la vez didáctico»**. Trampas: «solo lenguaje científico» (olvida al lector profano), «ante todo didáctico aunque no sea totalmente riguroso» (sacrifica la exactitud) y «terminología legal por encima del hecho tecnológico» (el perito es experto en tecnología, no en derecho). Si preguntan a quién debe ayudar el informe, la respuesta incluye a lectores sin conocimientos técnicos."
@@ -541,6 +542,7 @@
             ]
           ]
         },
+        {"type":"figure","src":"figuras/forense/t10-analisis-reproducible.svg","title":"Del dato al resultado, paso a paso","caption":"La buena redacción del caso práctico, convertida en cadena.","alt":"Cinco cajas encadenadas: evidencia (copia E1-C con hash verificado), entorno (estación del laboratorio), herramienta (X, versión 4.2), paso (recuperar borrados de la partición 2) y resultado (clientes.xlsx, borrado el 12/03 a las 18:15, anexo III). Debajo, en rojo, la mala redacción: con la herramienta X se encontró el archivo, que no dice sobre qué, dónde ni cómo. Se recuerda que los resultados son lo observado y las conclusiones su interpretación experta."},
         {
           "type": "example",
           "title": "Caso práctico",
@@ -577,6 +579,7 @@
           "type": "p",
           "text": "Es habitual cerrar con una **conclusión final** que resume no solo los resultados sino todo el procedimiento, e indica, solo si procede, lo siguiente."
         },
+        {"type":"figure","src":"figuras/forense/t10-preguntas-conclusiones.svg","title":"Cada pregunta, su conclusión","caption":"Ejemplo con los casos del tema: el USB conectado a E1 y el equipo E2 cifrado.","alt":"Dos columnas emparejadas con flechas. Objeto del encargo: 1, se conectó un USB a E1; 2, se accedió a las carpetas; 3, llegaron los archivos a E2. Conclusiones con la misma numeración: 1, sí, el 12/03 a las 18:02; 2, sí, se accedió el 12/03; 3, no se puede determinar porque E2 está cifrado y sin clave. Abajo: mismo orden y numeración; si una no se puede contestar se explica por qué y nunca se supone lo que probablemente habría."},
         {
           "type": "list",
           "title": "Qué puede señalar la conclusión final",
@@ -746,6 +749,7 @@
           "title": "Caso práctico",
           "text": "En una vista, un abogado presenta una hoja suelta. Gracias al pie de página «PER-2026-014 · Página 12 de 40», todos saben a qué informe pertenece y que no falta ninguna. Si solo hubiera fecha, o solo una portada identificada, no habría forma de saberlo."
         },
+        {"type":"figure","src":"figuras/forense/t10-pagina-identificada.svg","title":"Cada hoja lleva el código del informe","caption":"El pie del caso práctico: «PER-2026-014 · Página 12 de 40».","alt":"Dos hojas de un informe superpuestas. Cada una tiene una cabecera con el código PER-2026-014 y un pie con el código y la numeración: página 11 de 40 y página 12 de 40. Unas notas explican que cabecera y pie llevan el código único, que con el total de páginas se sabe que no falta ninguna y que el informe se entrega en soporte no alterable, PDF o DVD, con firma digital y, si se quiere, su hash."},
         {
           "type": "p",
           "text": "Los **recursos visuales** (tablas, esquemas, gráficos) ayudan a sintetizar y a que el lector comprenda. **No son obligatorios** ni los impone la norma UNE 197010: el temario los propone como recursos útiles cuando aportan claridad."

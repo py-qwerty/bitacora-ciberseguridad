@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 400">
+<defs><marker id="t05-flujo-autorizacion-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="ink" d="M0 0L10 5L0 10z"/></marker><marker id="t05-flujo-autorizacion-r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="bad" d="M0 0L10 5L0 10z"/></marker><marker id="t05-flujo-autorizacion-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="good" d="M0 0L10 5L0 10z"/></marker></defs>
+<text class="h" x="370" y="26" text-anchor="middle">Flujo de control de la autorización</text>
+<rect class="c4" x="16" y="60" width="150" height="96" rx="6"/>
+<text class="b" x="91.0" y="86.0" text-anchor="middle">1. Petición</text>
+<text class="s" x="91.0" y="104.0" text-anchor="middle">de un usuario ya</text>
+<text class="s" x="91.0" y="122.0" text-anchor="middle">autenticado, con</text>
+<text class="s" x="91.0" y="140.0" text-anchor="middle">su ID de sesión</text>
+<path class="ln" d="M168 108H190" marker-end="url(#t05-flujo-autorizacion-a)"/>
+<rect class="c4" x="194" y="60" width="140" height="96" rx="6"/>
+<text class="b" x="264.0" y="95.0" text-anchor="middle">2. Recurso</text>
+<text class="s" x="264.0" y="113.0" text-anchor="middle">¿a qué objeto</text>
+<text class="s" x="264.0" y="131.0" text-anchor="middle">quiere acceder?</text>
+<path class="ln" d="M336 108H358" marker-end="url(#t05-flujo-autorizacion-a)"/>
+<rect class="c2" x="362" y="60" width="140" height="96" rx="6"/>
+<text class="b" x="432.0" y="95.0" text-anchor="middle">3. Consulta</text>
+<text class="s" x="432.0" y="113.0" text-anchor="middle">la ACL con el ID</text>
+<text class="s" x="432.0" y="131.0" text-anchor="middle">de sesión</text>
+<path class="ln" d="M504 108H528" marker-end="url(#t05-flujo-autorizacion-a)"/>
+<path class="c3" d="M600 50L668 108L600 166L532 108z"/>
+<text class="b" x="600" y="100" text-anchor="middle">¿Tiene</text>
+<text class="b" x="600" y="120" text-anchor="middle">permiso?</text>
+<path class="sgood" d="M668 108H700V196" marker-end="url(#t05-flujo-autorizacion-g)"/>
+<text class="b" x="690" y="96" text-anchor="middle" style="fill:var(--color-success)">sí</text>
+<rect class="good" x="630" y="200" width="100" height="50" rx="6"/>
+<text class="b w" x="680" y="222" text-anchor="middle">ACCESO</text>
+<text class="b w" x="680" y="240" text-anchor="middle">PERMITIDO</text>
+<path class="sbad" d="M600 166V262" marker-end="url(#t05-flujo-autorizacion-r)"/>
+<text class="b" x="590" y="214" text-anchor="end" style="fill:var(--color-danger)">no</text>
+<rect class="bad" x="540" y="266" width="130" height="50" rx="6"/>
+<text class="b w" x="605" y="288" text-anchor="middle">ACCESO</text>
+<text class="b w" x="605" y="306" text-anchor="middle">DENEGADO</text>
+<path class="dash" d="M432 158V196"/>
+<rect class="box" x="16" y="200" width="500" height="170" rx="8"/>
+<text class="b" x="266" y="224" text-anchor="middle">La ACL: quién puede hacer qué sobre cada recurso</text>
+<rect class="ink" x="28" y="236" width="476" height="28" rx="3"/>
+<text class="b w" x="40" y="255">Usuario o rol</text>
+<text class="b w" x="180" y="255">Recurso</text>
+<text class="b w" x="340" y="255">Operaciones</text>
+<rect class="tint" x="28" y="268" width="476" height="28" rx="3"/>
+<text x="40" y="287">ana</text>
+<text x="180" y="287">/nominas/ana.pdf</text>
+<text x="340" y="287">leer</text>
+<rect class="box" x="28" y="300" width="476" height="28" rx="3"/>
+<text x="40" y="319">Editor</text>
+<text x="180" y="319">/articulos/*</text>
+<text x="340" y="319">leer, actualizar</text>
+<rect class="tint" x="28" y="332" width="476" height="28" rx="3"/>
+<text x="40" y="351">Administrador</text>
+<text x="180" y="351">/admin/*</text>
+<text x="340" y="351">leer, actualizar, borrar</text>
+<text class="s" x="370" y="392" text-anchor="middle">Basada en la necesidad de conocer y en el principio de mínimos privilegios.</text>
+</svg>

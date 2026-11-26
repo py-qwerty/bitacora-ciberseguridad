@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 360">
+<defs><marker id="t04ac-ink" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="ink" d="M0 0L10 5L0 10z"/></marker><marker id="t04ac-red" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="bad" d="M0 0L10 5L0 10z"/></marker><marker id="t04ac-grn" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="good" d="M0 0L10 5L0 10z"/></marker></defs>
+<text class="h" x="360" y="24" text-anchor="middle">Duplicar un archivo: copia clásica frente a clon de APFS</text>
+<text class="b" x="20" y="94">HFS+ (copia)</text>
+<rect class="box" x="170" y="70" width="34" height="34" rx="3"/>
+<rect class="box" x="208" y="70" width="34" height="34" rx="3"/>
+<rect class="c1" x="246" y="70" width="34" height="34" rx="3"/>
+<rect class="c1" x="284" y="70" width="34" height="34" rx="3"/>
+<rect class="c1" x="322" y="70" width="34" height="34" rx="3"/>
+<rect class="box" x="360" y="70" width="34" height="34" rx="3"/>
+<rect class="box" x="398" y="70" width="34" height="34" rx="3"/>
+<rect class="box" x="436" y="70" width="34" height="34" rx="3"/>
+<rect class="c4" x="474" y="70" width="34" height="34" rx="3"/>
+<rect class="c4" x="512" y="70" width="34" height="34" rx="3"/>
+<rect class="c4" x="550" y="70" width="34" height="34" rx="3"/>
+<rect class="box" x="588" y="70" width="34" height="34" rx="3"/>
+<rect class="box" x="626" y="70" width="34" height="34" rx="3"/>
+<rect class="box" x="664" y="70" width="34" height="34" rx="3"/>
+<path class="ln" d="M246 64v-10h110v10"/>
+<text class="s" x="301" y="48" text-anchor="middle">original</text>
+<path class="ln" d="M474 64v-10h110v10"/>
+<text class="s" x="529" y="48" text-anchor="middle">copia completa</text>
+<text class="s" x="360" y="130" text-anchor="middle">La copia ocupa otra vez todo el espacio.</text>
+<text class="b" x="20" y="214">APFS (clon)</text>
+<rect class="box" x="170" y="190" width="34" height="34" rx="3"/>
+<rect class="box" x="208" y="190" width="34" height="34" rx="3"/>
+<rect class="c1" x="246" y="190" width="34" height="34" rx="3"/>
+<rect class="c1" x="284" y="190" width="34" height="34" rx="3"/>
+<rect class="c1" x="322" y="190" width="34" height="34" rx="3"/>
+<rect class="box" x="360" y="190" width="34" height="34" rx="3"/>
+<rect class="box" x="398" y="190" width="34" height="34" rx="3"/>
+<rect class="box" x="436" y="190" width="34" height="34" rx="3"/>
+<rect class="c4" x="474" y="190" width="34" height="34" rx="3"/>
+<rect class="box" x="512" y="190" width="34" height="34" rx="3"/>
+<rect class="box" x="550" y="190" width="34" height="34" rx="3"/>
+<rect class="box" x="588" y="190" width="34" height="34" rx="3"/>
+<rect class="box" x="626" y="190" width="34" height="34" rx="3"/>
+<rect class="box" x="664" y="190" width="34" height="34" rx="3"/>
+<rect class="c4" x="290" y="196" width="22" height="22" rx="2"/>
+<path class="ln" d="M246 184v-10h110v10"/>
+<text class="s" x="301" y="168" text-anchor="middle">compartidos por los dos</text>
+<path class="ln" d="M318 232L318 262" marker-end="url(#t04ac-ink)"/>
+<text class="s" x="318" y="280" text-anchor="middle">bloque cambiado</text>
+<path class="ln" d="M492 232L492 262" marker-end="url(#t04ac-ink)"/>
+<text class="s" x="492" y="280" text-anchor="middle">escrito aparte</text>
+<text class="b" x="360" y="318" text-anchor="middle">Original y clon comparten bloques; solo se guardan los cambios.</text>
+<text class="s" x="360" y="338" text-anchor="middle">(Nada que ver con el clonado forense de un disco.)</text>
+</svg>

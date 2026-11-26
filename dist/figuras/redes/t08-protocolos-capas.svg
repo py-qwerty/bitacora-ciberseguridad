@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 510">
+<text class="h" x="135" y="32" text-anchor="middle">Pila TCP/IP</text>
+<text class="h" x="510" y="32" text-anchor="middle">Dónde se mete cada protocolo</text>
+<rect class="c1" x="20" y="60" width="230" height="100" rx="6"/>
+<text class="b" x="135" y="107" text-anchor="middle">Aplicación</text>
+<text class="s" x="135" y="127" text-anchor="middle">HTTP, FTP, POP3, IMAP</text>
+<rect class="c2" x="20" y="168" width="230" height="80" rx="6"/>
+<text class="b" x="135" y="205" text-anchor="middle">Transporte</text>
+<text class="s" x="135" y="225" text-anchor="middle">TCP · UDP</text>
+<rect class="c3" x="20" y="256" width="230" height="80" rx="6"/>
+<text class="b" x="135" y="293" text-anchor="middle">Red</text>
+<text class="s" x="135" y="313" text-anchor="middle">IP</text>
+<rect class="c4" x="20" y="344" width="230" height="70" rx="6"/>
+<text class="b" x="135" y="376" text-anchor="middle">Acceso a la red</text>
+<text class="s" x="135" y="396" text-anchor="middle">Ethernet, wifi</text>
+<rect class="band1" x="275" y="60" width="150" height="186" rx="8"/>
+<text class="s" x="350" y="120" text-anchor="middle" style="fill:var(--color-text)">protege todo</text>
+<text class="s" x="350" y="139" text-anchor="middle" style="fill:var(--color-text)">lo de encima:</text>
+<text class="s" x="350" y="158" text-anchor="middle" style="fill:var(--color-text)">TCP/UDP y datos</text>
+<text class="s" x="350" y="177" text-anchor="middle" style="fill:var(--color-text)">de todas las apps</text>
+<rect class="ink" x="275" y="266" width="150" height="60" rx="8"/>
+<text class="b w" x="350" y="291" text-anchor="middle">IPsec</text>
+<text class="w" x="350" y="312" text-anchor="middle" style="font-size:14px">AH · ESP · IKE</text>
+<rect class="band1" x="440" y="60" width="150" height="80" rx="8"/>
+<text class="s" x="515" y="92" text-anchor="middle" style="fill:var(--color-text)">protege los datos</text>
+<text class="s" x="515" y="111" text-anchor="middle" style="fill:var(--color-text)">de una conexión</text>
+<rect class="ink" x="440" y="144" width="150" height="42" rx="8"/>
+<text class="b w" x="515" y="171" text-anchor="middle">SSL/TLS</text>
+<rect class="c2" x="465" y="198" width="100" height="34" rx="6"/>
+<text class="b" x="515" y="220" text-anchor="middle">sobre TCP</text>
+<rect class="band1" x="605" y="60" width="150" height="80" rx="8"/>
+<text class="s" x="680" y="92" text-anchor="middle" style="fill:var(--color-text)">protege los datos</text>
+<text class="s" x="680" y="111" text-anchor="middle" style="fill:var(--color-text)">de una conexión</text>
+<rect class="ink" x="605" y="144" width="150" height="42" rx="8"/>
+<text class="b w" x="680" y="171" text-anchor="middle">DTLS</text>
+<rect class="c2" x="630" y="198" width="100" height="34" rx="6"/>
+<text class="b" x="680" y="220" text-anchor="middle">sobre UDP</text>
+<text x="380" y="446" text-anchor="middle"><tspan class="b">IPsec</tspan> trabaja en la capa de red: todos los paquetes IP, sin que</text>
+<text x="380" y="468" text-anchor="middle">las aplicaciones se enteren. <tspan class="b">TLS</tspan> y <tspan class="b">DTLS</tspan> se meten entre transporte</text>
+<text x="380" y="490" text-anchor="middle">y aplicación: protegen una conexión concreta de una aplicación.</text>
+</svg>

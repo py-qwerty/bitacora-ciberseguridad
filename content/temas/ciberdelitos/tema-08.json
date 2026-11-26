@@ -53,6 +53,7 @@
           "title": "Lectura crítica de una estadística",
           "text": "Un informe dice: «Este año ha habido 1.000 denuncias por fraude online». Eso no significa que haya habido 1.000 fraudes: son los que **llegaron a denunciarse**. Si sube el número de denuncias, puede que haya más fraudes… o simplemente que la gente denuncie más. Una estadística basada solo en denuncias deja fuera los hechos no denunciados y puede estar sesgada (por ejemplo, infrarrepresentar los fraudes pequeños o los que sufren empresas)."
         },
+        {"type":"figure","src":"figuras/ciberdelitos/t08-cifra-negra.svg","title":"La cifra negra, como un iceberg","caption":"Las estadísticas solo ven la punta: lo denunciado.","alt":"Un iceberg. La punta sobre el agua son los delitos denunciados, lo que ven las estadísticas oficiales. La parte sumergida, mucho mayor, es la cifra negra: fraudes que ocurren pero nadie denuncia. A los lados, por qué no se denuncian: los particulares, por importes bajos que no compensan todo el proceso judicial; las empresas, por miedo a la mala imagen. Una nota indica que los fraudes online y los delitos contra el honor son los de mayor cifra negra."},
         {
           "type": "exam",
           "text": "Pregunta típica: «el mayor índice de delitos no denunciados se debe principalmente a…». La respuesta del temario es que **los importes suelen ser bajos**. Las trampas («falta información sobre dónde denunciar», «desconfianza policial») suenan razonables, pero no son las razones que da el tema. Otra variante pide la limitación de una estadística hecha solo con denuncias: quedan fuera los hechos no denunciados. Ojo con frases absolutas como «cada denuncia equivale a una condena» o «más denuncias mide por sí solo el total real»."
@@ -136,6 +137,7 @@
           "type": "p",
           "text": "Todas las estafas de este tema comparten un ingrediente: la **ingeniería social**. El delincuente no rompe ninguna cerradura; consigue un engaño suficiente para que la víctima pague por voluntad propia. Las técnicas solo están limitadas por la imaginación del estafador."
         },
+        {"type":"figure","src":"figuras/ciberdelitos/t08-mapa-fraudes.svg","title":"Mapa de los fraudes del tema","caption":"Redibujado del esquema inicial del tema: «Tipos delictivos II. Fraudes en la red».","alt":"Un árbol con la raíz «Fraudes en la red» y dos ramas. Fraudes en medios de pago físicos: carding (tarjeta no presente, solo sus datos) y skimming (clonar la banda magnética); van a por la tarjeta o sus datos, artículos 248 y 399 bis en el temario. Otros tipos de fraude en la red: carta nigeriana, premio de lotería, venta de vehículos, romancescam y falsos antivirus."},
         {
           "type": "term",
           "term": "Carta nigeriana (estafa nigeriana, scam 419)",
@@ -283,6 +285,7 @@
           "type": "analogy",
           "text": "Un escrow es como el amigo de confianza que sujeta la apuesta: ninguno de los dos se fía del otro, así que el dinero lo guarda un tercero hasta ver quién cumple. El fraude consiste en que el «amigo» lo ha puesto el propio tramposo."
         },
+        {"type":"figure","src":"figuras/ciberdelitos/t08-escrow.svg","title":"Escrow legítimo frente a falsa empresa escrow","caption":"En el fraude, el «tercero de confianza» lo ha puesto el propio estafador.","alt":"Dos columnas. Escrow legítimo: 1 el comprador paga a la empresa escrow, un tercero neutral que retiene el dinero; 2 el vendedor envía el coche al comprador; 3 el comprador lo revisa y lo acepta o lo rechaza; 4 solo entonces el vendedor cobra. Falsa empresa escrow: el comprador víctima paga a un «escrow» que es solo una web falsa; tanto el falso vendedor como esa web los controla el estafador; se piden impuesto de frontera, aduanas, seguro…; el coche no existe y viven de los pagos sucesivos de muchas víctimas."},
         {
           "type": "steps",
           "title": "La estafa con la falsa empresa escrow",
@@ -533,6 +536,7 @@
           "type": "p",
           "text": "Y lo más importante para el test: **el PIN no está en ninguna de las pistas**. Por eso los delincuentes necesitan capturarlo por otra vía (cámaras, teclados falsos, alguien mirando)."
         },
+        {"type":"figure","src":"figuras/ciberdelitos/t08-banda-magnetica.svg","title":"La banda magnética y sus tres pistas","caption":"Lo que se copia en el skimming está en la banda; el PIN hay que robarlo aparte.","alt":"El reverso de una tarjeta con la banda magnética dividida en pistas 1, 2 y 3, la zona de firma y el CVV; normas ISO 7810, 7811 y 7813. A la derecha, las pistas: la 1 tiene 79 caracteres alfanuméricos (país, titular, caducidad, código de servicio) y es de solo lectura; la 2 tiene 40 caracteres numéricos (número de cuenta principal, entre otros) y es de solo lectura; la 3 tiene 107 caracteres numéricos para datos que cambian con frecuencia. Debajo, en rojo: el PIN no está en ninguna pista; por eso el delincuente lo captura aparte con cámara, teclado falso o alguien mirando."},
         {
           "type": "exam",
           "text": "«¿En qué pista está grabado el PIN?» → **en ninguna** («Ninguna de las anteriores»). «Copiar la información de una tarjeta que no aparece a simple vista» → **skimming**. Distráctores: **pharming** (alterar la resolución de nombres de dominio, el DNS o Domain Name System, para llevarte a una web falsa aunque escribas bien la dirección) y **vishing** (phishing por llamada de voz)."
@@ -566,6 +570,7 @@
             "**Falso teclado**: finísimo, se pega sobre el original; guarda los números pulsados mientras el teclado real los recibe sin errores. También puede transmitir el PIN a un ordenador cercano."
           ]
         },
+        {"type":"figure","src":"figuras/ciberdelitos/t08-cajero-trucado.svg","title":"Un cajero trucado para **skimming**","caption":"La boca lectora copia la banda; la cámara o el teclado falso, el PIN.","alt":"Un cajero automático con cuatro piezas añadidas, marcadas en rojo. Una minicámara en un falso embellecedor sobre el teclado, que graba el PIN. Un falso teclado finísimo pegado encima del real, que guarda cada número. Una falsa boca lectora encima de la ranura, que copia la banda mientras el cajero funciona con normalidad. Y el envío inalámbrico de los datos por Bluetooth, SMS o GSM, cuando antes se guardaban en una memoria que había que recoger."},
         {
           "type": "term",
           "term": "GSM (Global System for Mobile communications)",

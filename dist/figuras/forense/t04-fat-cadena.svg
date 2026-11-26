@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 440">
+<defs><marker id="t04fc-ink" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="ink" d="M0 0L10 5L0 10z"/></marker><marker id="t04fc-red" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="bad" d="M0 0L10 5L0 10z"/></marker><marker id="t04fc-grn" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="good" d="M0 0L10 5L0 10z"/></marker></defs>
+<text class="h" x="360" y="24" text-anchor="middle">Cómo encuentra FAT las piezas de un archivo</text>
+<text class="b" x="20" y="62">1. Entrada de directorio</text>
+<rect class="c4" x="20" y="72" width="300" height="62" rx="6"/>
+<text class="b" x="32" y="96">nominas.xlsx</text>
+<text class="s" x="32" y="120">tamaño: 10 KB · primer clúster: 5</text>
+<text class="b" x="20" y="172">2. Tabla FAT1</text>
+<text class="s" x="350" y="98">Cada casilla de la FAT es un clúster</text>
+<text class="s" x="350" y="116">y apunta al siguiente clúster del archivo.</text>
+<rect class="tint" x="20" y="200" width="62" height="46" rx="4"/>
+<text class="s" x="51" y="228" text-anchor="middle">3</text>
+<text class="s" x="51" y="264" text-anchor="middle">n.º 2</text>
+<rect class="tint" x="88" y="200" width="62" height="46" rx="4"/>
+<text class="s" x="119" y="228" text-anchor="middle">FIN</text>
+<text class="s" x="119" y="264" text-anchor="middle">n.º 3</text>
+<rect class="box" x="156" y="200" width="62" height="46" rx="4"/>
+<text class="s" x="187" y="228" text-anchor="middle">libre</text>
+<text class="s" x="187" y="264" text-anchor="middle">n.º 4</text>
+<rect class="c1" x="224" y="200" width="62" height="46" rx="4"/>
+<text class="b" x="255" y="228" text-anchor="middle">6</text>
+<text class="s" x="255" y="264" text-anchor="middle">n.º 5</text>
+<rect class="c1" x="292" y="200" width="62" height="46" rx="4"/>
+<text class="b" x="323" y="228" text-anchor="middle">9</text>
+<text class="s" x="323" y="264" text-anchor="middle">n.º 6</text>
+<rect class="box" x="360" y="200" width="62" height="46" rx="4"/>
+<text class="s" x="391" y="228" text-anchor="middle">libre</text>
+<text class="s" x="391" y="264" text-anchor="middle">n.º 7</text>
+<rect class="tint" x="428" y="200" width="62" height="46" rx="4"/>
+<text class="s" x="459" y="228" text-anchor="middle">FIN</text>
+<text class="s" x="459" y="264" text-anchor="middle">n.º 8</text>
+<rect class="c1" x="496" y="200" width="62" height="46" rx="4"/>
+<text class="b" x="527" y="228" text-anchor="middle">FIN</text>
+<text class="s" x="527" y="264" text-anchor="middle">n.º 9</text>
+<rect class="box" x="564" y="200" width="62" height="46" rx="4"/>
+<text class="s" x="595" y="228" text-anchor="middle">libre</text>
+<text class="s" x="595" y="264" text-anchor="middle">n.º 10</text>
+<rect class="box" x="632" y="200" width="62" height="46" rx="4"/>
+<text class="s" x="663" y="228" text-anchor="middle">libre</text>
+<text class="s" x="663" y="264" text-anchor="middle">n.º 11</text>
+<path class="path" d="M255 136L255 196" marker-end="url(#t04fc-red)"/>
+<path class="path" d="M274 200c10 -22 40 -22 56 0" marker-end="url(#t04fc-red)"/>
+<path class="path" d="M342 200c30 -40 170 -40 192 0" marker-end="url(#t04fc-red)"/>
+<text class="b" x="20" y="306">3. Resultado: el archivo está en los clústeres 5 → 6 → 9 (fragmentado)</text>
+<rect class="c1" x="40" y="320" width="96" height="40" rx="4"/>
+<text class="b" x="88" y="345" text-anchor="middle">clúster 5</text>
+<rect class="c1" x="150" y="320" width="96" height="40" rx="4"/>
+<text class="b" x="198" y="345" text-anchor="middle">clúster 6</text>
+<rect class="c1" x="260" y="320" width="96" height="40" rx="4"/>
+<text class="b" x="308" y="345" text-anchor="middle">clúster 9</text>
+<text class="s" x="380" y="346">FIN = último clúster del archivo</text>
+<rect class="tint" x="20" y="382" width="680" height="44" rx="6"/>
+<text class="s" x="360" y="402" text-anchor="middle">FAT2 es una copia exacta de FAT1. Al borrar, la entrada se marca como disponible</text>
+<text class="s" x="360" y="419" text-anchor="middle">y los clústeres quedan libres, pero los bytes siguen en el disco.</text>
+</svg>

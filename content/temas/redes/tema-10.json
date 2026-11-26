@@ -281,6 +281,7 @@
           ],
           "title": "Autenticación frente a autorización"
         },
+        {"type":"figure","src":"figuras/redes/t10-iam-flujo.svg","title":"IAM en dos pasos: quién eres y qué puedes hacer","caption":"Ana y las acciones son un ejemplo, el mismo de la tabla.","alt":"Una persona, Ana, quiere entrar. Flecha a una caja azul: 1, autenticación, ¿quién eres?, con usuario y contraseña, que la identifican como usuario de IAM y miembro de un grupo. Flecha a una caja morada: 2, autorización, ¿qué puedes hacer?, lo decide la política o directiva asignada. De ahí salen dos flechas: reiniciar servidor, sí (en verde) y borrar servidor, no (en rojo). Al pie: IAM comprueba quién eres y luego decide qué acción puedes hacer sobre qué recurso, de forma granular."},
         {
           "type": "p",
           "text": "Una política de IAM **bien planificada** es una pieza clave de la seguridad en la nube: muchas fugas reales de datos en la nube no se deben a fallos del proveedor, sino a permisos demasiado amplios configurados por el cliente."
@@ -707,6 +708,7 @@
           "type": "p",
           "text": "El matiz importante: la seguridad de la organización **queda delegada en un tercero**. Por eso hay que **acotar muy bien los acuerdos del servicio**, es decir, el SLA (Service Level Agreement, acuerdo de nivel de servicio): disponibilidad comprometida, tiempos de respuesta, qué datos ve el proveedor, qué responsabilidades conserva el cliente. La disponibilidad real depende del diseño del servicio y de lo que diga ese acuerdo."
         },
+        {"type":"figure","src":"figuras/redes/t10-secaas.svg","title":"De instalar la seguridad en casa a contratarla en la nube","alt":"Dos recuadros. A la izquierda, antes, todo en casa: dentro de la red de la empresa, cortafuegos, SIEM, filtro de correo y VPN; la empresa los compra, instala, mantiene y actualiza. A la derecha, SECaaS desde la nube: un recuadro del proveedor con IAM, DLP, seguridad web, correo, SIEM, VPN y seguridad perimetral, que mantiene él; debajo, la empresa conectada, que usa el servicio por Internet. Abajo, tres etiquetas verdes con las ventajas, disponibilidad, gestión simple y escalabilidad, y una naranja: dependes de un tercero. Al pie: por eso el contrato o SLA debe dejar claro qué hace el proveedor, qué pasa si falla y qué sigue siendo tuyo, como decidir quién tiene acceso a qué."},
         {
           "type": "example",
           "title": "Caso práctico",

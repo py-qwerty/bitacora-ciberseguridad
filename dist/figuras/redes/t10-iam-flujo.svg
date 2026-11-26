@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 245">
+<defs><marker id="t10iam-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="ink" d="M0 0L10 5L0 10z"/></marker></defs>
+<g><circle class="c4" cx="60" cy="80" r="10"/><path class="c4" d="M42 114a18 18 0 0 1 36 0z"/></g>
+<text class="b" x="60" y="140" text-anchor="middle">Ana</text>
+<text class="s" x="60" y="158" text-anchor="middle">quiere entrar</text>
+<path class="ln" d="M92 100L140 100" marker-end="url(#t10iam-a)" style="stroke-width:2"/>
+<rect class="c4" x="142" y="40" width="220" height="120" rx="8"/>
+<text class="b" x="252" y="66" text-anchor="middle">1. Autenticación</text>
+<text x="252" y="88" text-anchor="middle">¿Quién eres?</text>
+<text class="s" x="252" y="112" text-anchor="middle" style="fill:var(--color-text)">usuario y contraseña</text>
+<text class="s" x="252" y="130" text-anchor="middle" style="fill:var(--color-text)">→ usuario de IAM (y grupo)</text>
+<path class="ln" d="M364 100L412 100" marker-end="url(#t10iam-a)" style="stroke-width:2"/>
+<rect class="c2" x="414" y="40" width="200" height="120" rx="8"/>
+<text class="b" x="514" y="66" text-anchor="middle">2. Autorización</text>
+<text x="514" y="88" text-anchor="middle">¿Qué puedes hacer?</text>
+<text class="s" x="514" y="112" text-anchor="middle" style="fill:var(--color-text)">lo decide la política</text>
+<text class="s" x="514" y="130" text-anchor="middle" style="fill:var(--color-text)">(directiva) asignada</text>
+<path class="ln" d="M616 80L650 66" marker-end="url(#t10iam-a)" style="stroke-width:2"/>
+<path class="ln" d="M616 120L650 136" marker-end="url(#t10iam-a)" style="stroke-width:2"/>
+<rect class="c1" x="652" y="40" width="96" height="48" rx="8"/>
+<text class="s" x="700" y="61" text-anchor="middle" style="fill:var(--color-text)">reiniciar</text>
+<text class="b" x="700" y="78" text-anchor="middle" style="font-size:14px">servidor: sí</text>
+<rect class="c5" x="652" y="112" width="96" height="48" rx="8"/>
+<text class="s" x="700" y="133" text-anchor="middle" style="fill:var(--color-text)">borrar</text>
+<text class="b" x="700" y="150" text-anchor="middle" style="font-size:14px">servidor: no</text>
+<text x="380" y="206" text-anchor="middle">IAM hace las dos cosas: comprueba <tspan class="b">quién</tspan> eres y luego decide</text>
+<text x="380" y="228" text-anchor="middle"><tspan class="b">qué acción</tspan> puedes hacer sobre <tspan class="b">qué recurso</tspan> (de forma granular).</text>
+</svg>

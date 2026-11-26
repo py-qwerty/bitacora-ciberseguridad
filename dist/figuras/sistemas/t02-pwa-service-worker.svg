@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 450">
+<defs><marker id="t02-pwa-service-worker-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="ink" d="M0 0L10 5L0 10z"/></marker><marker id="t02-pwa-service-worker-r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="bad" d="M0 0L10 5L0 10z"/></marker><marker id="t02-pwa-service-worker-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="good" d="M0 0L10 5L0 10z"/></marker></defs>
+<text class="h" x="370" y="26" text-anchor="middle">El service worker: un proxy dentro del navegador</text>
+<rect class="box" x="20" y="46" width="700" height="262" rx="12"/>
+<rect class="ink" x="20" y="46" width="700" height="30" rx="12"/>
+<rect class="ink" x="20" y="62" width="700" height="14" rx="0"/>
+<text class="b w" x="370" y="67" text-anchor="middle">Navegador</text>
+<path class="dash" d="M286 86V300"/>
+<text class="b" x="153" y="104" text-anchor="middle">Web estándar</text>
+<rect class="box" x="93" y="120" width="120" height="90" rx="4"/>
+<rect class="tint" x="101" y="128" width="104" height="12" rx="2"/>
+<path class="ln" d="M103 154H203" style="stroke-width:3;opacity:.5"/>
+<path class="ln" d="M103 168H185" style="stroke-width:3;opacity:.5"/>
+<path class="ln" d="M103 182H167" style="stroke-width:3;opacity:.5"/>
+<text class="s" x="153" y="234" text-anchor="middle">la página pide</text>
+<text class="s" x="153" y="252" text-anchor="middle">directamente al servidor</text>
+<path class="ln" d="M153 262V352" marker-end="url(#t02-pwa-service-worker-a)" marker-start="url(#t02-pwa-service-worker-a)"/>
+<text class="b" x="503" y="104" text-anchor="middle">PWA (mejora progresiva)</text>
+<rect class="box" x="304" y="130" width="112" height="84" rx="4"/>
+<rect class="tint" x="312" y="138" width="96" height="12" rx="2"/>
+<path class="ln" d="M314 164H406" style="stroke-width:3;opacity:.5"/>
+<path class="ln" d="M314 178H388" style="stroke-width:3;opacity:.5"/>
+<path class="ln" d="M314 192H370" style="stroke-width:3;opacity:.5"/>
+<text class="b" x="360" y="238" text-anchor="middle">Página</text>
+<path class="ln" d="M418 172H466" marker-end="url(#t02-pwa-service-worker-a)" marker-start="url(#t02-pwa-service-worker-a)"/>
+<rect class="c2" x="470" y="128" width="130" height="88" rx="6"/>
+<text class="b" x="535.0" y="159.0" text-anchor="middle">Service worker</text>
+<text class="s" x="535.0" y="177.0" text-anchor="middle">script en</text>
+<text class="s" x="535.0" y="195.0" text-anchor="middle">segundo plano</text>
+<path class="ln" d="M602 172H648" marker-end="url(#t02-pwa-service-worker-a)" marker-start="url(#t02-pwa-service-worker-a)"/>
+<g><path class="c3" d="M656.0 150v40.8a24.0 8.4 0 0 0 48.0 0v-40.8"/><ellipse class="c3" cx="680" cy="150" rx="24.0" ry="8.4"/><path class="ln" d="M656.0 170.4a24.0 8.4 0 0 0 48.0 0" style="stroke-width:1.2"/></g>
+<text class="b" x="680" y="212" text-anchor="middle">Caché</text>
+<path class="ln" d="M538 218V352" marker-end="url(#t02-pwa-service-worker-a)" marker-start="url(#t02-pwa-service-worker-a)"/>
+<text class="s" x="548" y="262">solo si hace falta:</text>
+<text class="s" x="548" y="280">decide caché o red</text>
+<rect class="tint" x="20" y="356" width="700" height="46" rx="8"/>
+<text class="b" x="370" y="385" text-anchor="middle">Servidor web (siempre por HTTPS)</text>
+<text class="s" x="370" y="432" text-anchor="middle">Sin conexión, el service worker responde con lo que guardó en la caché.</text>
+</svg>

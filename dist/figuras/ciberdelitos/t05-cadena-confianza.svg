@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 400">
+<defs><marker id="t05cadenac-k" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path style="fill:var(--color-text)" d="M0 0L10 5L0 10z"/></marker><marker id="t05cadenac-p" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path style="fill:var(--color-primary)" d="M0 0L10 5L0 10z"/></marker></defs>
+<text class="h" x="360" y="30" text-anchor="middle">La cadena de confianza de un certificado</text>
+<rect class="box" x="20" y="58" width="180" height="206" rx="8"/>
+<rect class="c4" x="20" y="58" width="180" height="54" rx="8"/>
+<text class="b" x="110" y="80" text-anchor="middle">Certificado</text>
+<text class="b" x="110" y="100" text-anchor="middle">de Lucía</text>
+<text x="34" y="140">Titular: Lucía</text>
+<text x="34" y="168">Su clave pública</text>
+<text x="34" y="196">Emisor: prestador</text>
+<text x="34" y="224">Validez: fechas</text>
+<path style="fill:none;stroke:var(--color-text);stroke-width:1.6" d="M206 170H264" marker-end="url(#t05cadenac-k)"/>
+<text class="s" x="235" y="158" text-anchor="middle">firmado</text>
+<text class="s" x="235" y="192" text-anchor="middle">por</text>
+<rect class="box" x="270" y="58" width="180" height="206" rx="8"/>
+<rect class="c2" x="270" y="58" width="180" height="54" rx="8"/>
+<text class="b" x="360" y="80" text-anchor="middle">Certificado</text>
+<text class="b" x="360" y="100" text-anchor="middle">del prestador</text>
+<text x="284" y="140">Titular: prestador</text>
+<text x="284" y="168">Su clave pública</text>
+<text x="284" y="196">Emisor: autoridad</text>
+<text x="284" y="224">superior o raíz</text>
+<path style="fill:none;stroke:var(--color-text);stroke-width:1.6" d="M456 170H514" marker-end="url(#t05cadenac-k)"/>
+<text class="s" x="485" y="158" text-anchor="middle">firmado</text>
+<text class="s" x="485" y="192" text-anchor="middle">por</text>
+<rect class="box" x="520" y="58" width="180" height="206" rx="8"/>
+<rect class="c1" x="520" y="58" width="180" height="54" rx="8"/>
+<text class="b" x="610" y="80" text-anchor="middle">Autoridad</text>
+<text class="b" x="610" y="100" text-anchor="middle">raíz</text>
+<text x="534" y="140">Está en la lista</text>
+<text x="534" y="168">de confianza:</text>
+<text x="534" y="196">el verificador ya</text>
+<text x="534" y="224">confía en ella</text>
+<path style="fill:none;stroke:var(--color-primary);stroke-width:2" d="M40 300H680" marker-end="url(#t05cadenac-p)"/>
+<text class="b" x="360" y="290" text-anchor="middle">Para validar una firma se recorre la cadena hasta la raíz</text>
+<text class="s" x="360" y="330" text-anchor="middle">Cada certificado une una identidad con su clave pública y lo firma alguien</text>
+<text class="s" x="360" y="350" text-anchor="middle">de más arriba. Nunca contiene la clave privada.</text>
+<text class="s" x="360" y="380" text-anchor="middle">Ejemplo español de prestador: CERES, de la FNMT-RCM.</text>
+</svg>

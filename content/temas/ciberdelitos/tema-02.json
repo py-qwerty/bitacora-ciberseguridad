@@ -263,6 +263,7 @@
             "**Lógica**: contraseñas, cortafuegos (firewalls), cifrado, antivirus."
           ]
         },
+        {"type":"figure","src":"figuras/ciberdelitos/t02-capas-defensa.svg","title":"Líneas de defensa: tres capas alrededor de lo que se protege","caption":"Como en el castillo: si el atacante cruza una muralla, todavía le quedan otras.","alt":"Tres rectángulos concéntricos alrededor de un núcleo «Datos y servicios»: la capa exterior es organizativa, la intermedia física y la interior lógica. Una flecha roja de ataque cruza la capa organizativa y se detiene, con una cruz, en la física. A la derecha, ejemplos de cada capa: organizativa (normas, procedimientos, formación, reparto de responsabilidades), física (puertas con control de acceso, salas de servidores cerradas, cámaras) y lógica (contraseñas, cortafuegos, cifrado, antivirus)."},
         {
           "type": "term",
           "term": "Vigilancia continua y reevaluación periódica (art. 10)",
@@ -515,6 +516,7 @@
           "type": "analogy",
           "text": "Piensa en una carta certificada. **Confidencialidad**: va en sobre cerrado. **Integridad**: nadie ha cambiado el texto por el camino. **Autenticidad**: la firma demuestra quién la envía. **Trazabilidad**: el acuse de recibo registra quién la entregó y quién la recogió. **Disponibilidad**: Correos está abierto cuando vas a buscarla."
         },
+        {"type":"figure","src":"figuras/ciberdelitos/t02-dimensiones.svg","title":"Las cinco dimensiones, en una carta certificada","caption":"Cada dimensión responde a una pregunta distinta sobre la información.","alt":"Un sobre en el centro rodeado de cinco cajas. C, confidencialidad: va en sobre cerrado (¿quién puede verla?). I, integridad: nadie cambia el texto (¿está tal como debe?). A, autenticidad: la firma dice quién la envía (¿es quien dice ser?). T, trazabilidad: el acuse registra quién hizo qué (¿quién hizo qué?). D, disponibilidad: Correos abre cuando vas (¿está cuando la necesito?)."},
         {
           "type": "term",
           "term": "Categoría de seguridad",
@@ -558,6 +560,7 @@
             ["El sistema entero", "Categoría: básica, media, alta", "Femenino: «la categoría»."]
           ]
         },
+        {"type":"figure","src":"figuras/ciberdelitos/t02-nivel-categoria.svg","title":"Del nivel de cada dimensión a la categoría del sistema","caption":"Regla del valor más alto: la categoría la marca la dimensión **peor valorada**.","alt":"A la izquierda, las cinco dimensiones (confidencialidad, integridad, trazabilidad, autenticidad y disponibilidad), cada una con una escala de nivel bajo, medio o alto. Las cuatro primeras están en nivel bajo y la disponibilidad en nivel medio. Una flecha, «manda el más alto», lleva a la derecha, donde de las tres categorías (básica, media, alta) se marca la media. Abajo: basta una dimensión en nivel medio para que todo el sistema sea de categoría media; «el nivel» es de cada dimensión y «la categoría», del sistema."},
         {
           "type": "example",
           "title": "Aplicando la regla",
@@ -601,6 +604,7 @@
           "type": "p",
           "text": "Las medidas se desarrollan en acciones de implantación en la guía **CCN-STIC-804** y se verifican con la **CCN-STIC-808**. En el ENS de 2022, las **73 medidas** se desglosan en **más de 400 acciones**, lo que facilita planificar, presupuestar y acreditar el cumplimiento."
         },
+        {"type":"figure","src":"figuras/ciberdelitos/t02-73-medidas.svg","title":"Las 73 medidas del ENS en tres grupos","caption":"Redibujado de la figura del tema sobre las medidas de seguridad del RD 311/2022.","alt":"Un círculo con «73 medidas» se divide en tres columnas. Marco organizativo (org), 4 medidas: política de seguridad, normativa de seguridad, procedimientos y proceso de autorización. Marco operacional (op), 33 medidas: planificación, control de acceso, explotación, recursos externos, servicios en la nube, continuidad del servicio y monitorización. Medidas de protección (mp), 36 medidas: protección de instalaciones e infraestructuras, gestión del personal, equipos, comunicaciones, soportes de información, aplicaciones informáticas, información y servicios. Abajo: cada medida tiene un requisito base y refuerzos que se suman según el nivel, y las 73 medidas se desglosan en más de 400 acciones (guía CCN-STIC-804)."},
         {
           "type": "term",
           "term": "Requisitos base y refuerzos",

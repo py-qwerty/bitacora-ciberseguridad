@@ -360,6 +360,7 @@
             "**Grabación de comunicaciones orales** (micrófonos que graban conversaciones en un lugar)."
           ]
         },
+        {"type":"figure","src":"figuras/ciberdelitos/t10-medidas-lo13.svg","title":"Del juez a las tres medidas de investigación tecnológica","caption":"Redibujado de las cuatro figuras del tema (págs. 11-13), resumidas.","alt":"A la izquierda, la solicitud del Fiscal o la Policía Judicial, que debe contener hecho investigado, identidad del investigado, razones que la justifican, extensión, duración, forma de ejecución y unidad que la hará. Va al juez, que dicta una resolución motivada respetando especialidad, idoneidad, excepcionalidad y necesidad. De ella salen tres medidas: interceptar comunicaciones (terminales del investigado o de quien colabora con él; 3 meses prorrogables hasta un máximo de 18), registro remoto de equipos (solo para ciertos delitos como organización criminal, terrorismo o contra menores; indica equipos y software) y grabar conversaciones (delitos dolosos con pena máxima de al menos 3 años, organización criminal o terrorismo; lugar concreto)."},
         {
           "type": "p",
           "text": "El elemento común es que todas exigen una **resolución judicial** que las autorice. Y esa resolución debe respetar cuatro principios:"
@@ -435,6 +436,7 @@
           "type": "p",
           "text": "Ojo al matiz: **evidencia** es la información potencialmente relevante; que llegue a ser **prueba** depende de que el juez la admita y la valore en el proceso. El objetivo de la **salvaguarda** es tener esas evidencias en las mejores condiciones para entregarlas a la autoridad judicial."
         },
+        {"type":"figure","src":"figuras/ciberdelitos/t10-evidencia-prueba.svg","title":"De la información a la prueba, y por qué es frágil","alt":"Cuatro cajas en fila: información en un sistema, evidencia digital (la información y su soporte relevante), salvaguarda (identificar, recoger y preservar) y prueba (si el juez la admite y la valora); se entrega a la autoridad judicial. Debajo, un recuadro rojo: es frágil, se puede manipular, alterar o destruir a propósito (alguien borra rastros) o por error (al recogerla, trasladarla, guardarla o examinarla). Mal manipulada queda inservible."},
         {
           "type": "list",
           "title": "Por qué es frágil",
@@ -522,6 +524,7 @@
           "term": "Volatilidad",
           "text": "Facilidad con la que una evidencia se pierde por cambios automáticos mientras el sistema sigue funcionando. La memoria RAM (memoria de trabajo que se borra al apagar) es más volátil que un disco. El criterio de volatilidad sirve para **priorizar** qué asegurar primero, teniendo en cuenta los medios humanos y técnicos disponibles."
         },
+        {"type":"figure","src":"figuras/ciberdelitos/t10-fisica-logica.svg","title":"Evidencia física, evidencia lógica y volatilidad","alt":"Dos recuadros: evidencia física (disco duro, pendrive, móvil) y evidencia lógica (correo en la nube, base de datos, máquina virtual). Debajo, una barra de volatilidad que va de la memoria RAM, que se borra al apagar y es más volátil, al disco, menos volátil. Se asegura primero lo más volátil según los medios disponibles."},
         {
           "type": "p",
           "text": "Identificar no siempre es fácil. La información puede estar repartida en entornos donde **no hay un único disco** que lo contenga todo:"
@@ -604,6 +607,7 @@
           "type": "p",
           "text": "Que los hashes coincidan **verifica la correspondencia** entre lo adquirido y su origen en ese momento y en esas condiciones. **No** dice quién cometió el delito ni que el contenido de los archivos sea «verdadero», ni sustituye la documentación de herramientas e incidencias."
         },
+        {"type":"figure","src":"figuras/ciberdelitos/t10-hash-copia.svg","title":"El hash verifica la copia forense","alt":"Tres filas. El disco original pasa por SHA-256 y da 3b7f9c0e2a41…e4f5a. La imagen forense da el mismo valor: coincide, copia fiel. Una copia con un bit cambiado da 91d04a7be3c8…0b62e: no coincide, algo cambió. Abajo: que los hashes coincidan demuestra que la copia corresponde bit a bit al original en ese momento y condiciones; no dice quién cometió el delito ni que el contenido sea verdadero."},
         {
           "type": "table",
           "title": "Cuando la verificación ideal no es posible",
@@ -730,6 +734,7 @@
           "type": "p",
           "text": "Si la empresa quiere hacer **análisis internos** antes o a la vez que la denuncia, se hace una **copia** de cada evidencia con las mismas precauciones (incluido el hash) y se trabaja **siempre sobre la copia, nunca sobre el original**, que queda protegido para el proceso judicial."
         },
+        {"type":"figure","src":"figuras/ciberdelitos/t10-cadena-custodia.svg","title":"La cadena de custodia, eslabón a eslabón","alt":"Seis eslabones encadenados: hallazgo (lugar, fecha, hora), recogida (número único EV-007), traslado (salida, motivo, destino, regreso), almacén (lugar y responsable), acceso (quién, cuándo y qué hace) y juzgado (el original, intacto). Debajo, la ficha de la evidencia: número de identificación único, lugar del hallazgo, fecha y hora, descripción, custodia, accesos y traslados. A la derecha, el original precintado y una copia con hash sobre la que se analiza. Si falta un tramo, nadie puede asegurar que no la tocaron."},
         {
           "type": "example",
           "title": "Dos pendrives gemelos",

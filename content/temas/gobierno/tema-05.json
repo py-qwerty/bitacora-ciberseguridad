@@ -67,6 +67,7 @@
           ],
           "title": "Los cinco criterios aplicados a la seguridad"
         },
+        {"type":"figure","src":"figuras/gobierno/t05-cinco-criterios.svg","title":"Los cinco criterios de una profesión","alt":"Lista numerada de cinco criterios, cada uno con una marca verde de cumplido: 1, cuerpo de conocimientos (el BOK o CBK de (ISC)2); 2, reconocimiento de los clientes (contratan a especialistas); 3, aprobación de la comunidad (puestos y departamentos propios); 4, código ético (obligatorio en (ISC)2 e ISACA); 5, cultura profesional (congresos, revistas, cursos, certificaciones). Nota: la seguridad los cumple, aunque no hay un grado universitario específico ni un colegio profesional aceptado por todos."},
         {
           "type": "term",
           "term": "(ISC)2",
@@ -256,6 +257,7 @@
           "type": "p",
           "text": "Antes, la empresa tenía un **perímetro** bien delimitado (su red, su edificio) y controlaba los flujos de información. Ahora aparecen escenarios nuevos con riesgos que antes no existían: la **nube**, la **movilidad** (BYOD, Bring Your Own Device: usar el móvil o portátil personal para trabajar), el **teletrabajo** y el uso de **redes sociales** por los empleados."
         },
+        {"type":"figure","src":"figuras/gobierno/t05-perimetro.svg","title":"Del perímetro cerrado a los nuevos entornos","alt":"A la izquierda, Antes: un recuadro de borde grueso con un edificio dentro; la empresa tenía un perímetro bien delimitado, su red y su edificio, y controlaba los flujos. A la derecha, Ahora: la empresa en el centro, dentro de un perímetro discontinuo que se difumina, conectada a cuatro escenarios nuevos: nube, movilidad (BYOD), teletrabajo y redes sociales. Cada uno trae riesgos que antes no existían."},
         {
           "type": "table",
           "head": [
@@ -282,6 +284,7 @@
           ],
           "title": "Los modelos de servicio en la nube"
         },
+        {"type":"figure","src":"figuras/gobierno/t05-modelos-nube.svg","title":"IaaS, PaaS y SaaS: quién gestiona cada capa","alt":"Tres pilas de tres capas: aplicación arriba, plataforma (sistema y entorno) en medio e infraestructura (máquinas y red) abajo. En IaaS el proveedor gestiona solo la infraestructura y tú el resto; ejemplo, una máquina virtual. En PaaS el proveedor gestiona infraestructura y plataforma y tú la aplicación; ejemplo, publicar una web sin servidores. En SaaS el proveedor lo gestiona todo; ejemplo, correo o CRM en la web. Cuanto más «as a Service», más depende la seguridad del proveedor."},
         {
           "type": "list",
           "items": [
@@ -361,6 +364,7 @@
           ],
           "title": "Qué controla ese software"
         },
+        {"type":"figure","src":"figuras/gobierno/t05-mdm.svg","title":"Qué hace un MDM en el móvil","alt":"Un teléfono en el centro con la etiqueta MDM y un contenedor corporativo en la pantalla. A los lados, seis funciones unidas al móvil: autenticación robusta, bloqueo de aplicaciones no fiables, cifrado, geolocalización si lo roban, bloqueo y borrado remoto, y datos de empresa aislados de los personales. Abajo: acceso a la información corporativa solo desde dispositivos controlados; si no se puede, cláusulas de buen uso y configuración mínima exigida."},
         {
           "type": "p",
           "text": "Si no es posible controlar el dispositivo, **como mínimo** hay que garantizar que es apto combinando **medidas normativas** (cláusulas de buen uso firmadas) y **medidas técnicas** (catálogo de modelos admitidos, configuración mínima exigible)."
@@ -641,6 +645,7 @@
           ],
           "title": "BCP frente a DRP"
         },
+        {"type":"figure","src":"figuras/gobierno/t05-bcp-drp.svg","title":"El BCP es el paraguas; el DRP va dentro","alt":"Un recuadro grande, el BCP o plan de continuidad de negocio, el paraguas que asegura que los procesos críticos de negocio sigan en un tiempo asumible. Dentro, dos piezas: el DRP o plan de recuperación ante desastres, centrado en servicios y aplicaciones con soporte tecnológico (ejemplo, levantar servidores en el CPD secundario y restaurar la base de datos replicada), y la gestión de crisis, que define quién decide y cómo se comunica y forma a la Dirección. Ejemplo de BCP: si cae el sistema, las cajas cobran en papel y la venta online vuelve en 4 horas."},
         {
           "type": "example",
           "title": "Caso práctico",

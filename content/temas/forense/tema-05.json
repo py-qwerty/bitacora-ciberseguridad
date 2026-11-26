@@ -118,6 +118,7 @@
           "type": "p",
           "text": "Curiosidad que ayuda a razonar: un DOCX y un ZIP comparten firma porque un documento de Office moderno **es** un ZIP con ficheros XML dentro. La firma dice el formato del contenedor."
         },
+        {"type":"figure","src":"figuras/forense/t05-firma-extension.svg","title":"La firma manda, no la extensión","caption":"El caso práctico de **lista_compra.txt**, visto en el editor hexadecimal. Las firmas de abajo son las de la figura 4 del temario.","alt":"Un archivo llamado lista_compra.txt se abre en un editor hexadecimal. Sus primeros bytes son 25 50 44 46, resaltados, seguidos de 2D 31 2E 36 y otros. Como texto ASCII se lee %PDF-1.6. Conclusión: 25 50 44 46 es la firma %PDF, así que es un PDF. Debajo, seis firmas del temario: FF D8 FF E0 JPG, 89 50 4E 47 PNG, 47 49 46 38 GIF, 50 4B 03 04 ZIP o DOCX, 4D 5A EXE y 49 44 33 MP3. Cambiar la extensión no cambia ni un byte."},
         {
           "type": "list",
           "title": "Cómo averiguar la firma de un archivo",
@@ -276,6 +277,7 @@
           "title": "Cómo se vería",
           "text": "Con «dir /r» en una carpeta aparece el archivo «informe.pdf» con su tamaño normal y, justo debajo, una línea como «informe.pdf:oculto.txt:$DATA» con el tamaño de ese flujo escondido. Sin la opción /r, esa segunda línea no se ve."
         },
+        {"type":"figure","src":"figuras/forense/t05-ads.svg","title":"Un archivo con dos flujos","caption":"El ejemplo de «informe.pdf:oculto.txt:$DATA», dibujado.","alt":"El archivo informe.pdf, una sola referencia que el Explorador muestra con 1 MB, apunta a dos flujos. El flujo principal es el PDF que se ve al abrirlo y cuenta en el tamaño. El flujo alternativo, informe.pdf:oculto.txt, con borde discontinuo, no se ve ni cuenta en el tamaño y podría ser un ejecutable. Para verlo se usa dir /r o AlternateStreamView; los antivirus antiguos solo leían el flujo principal."},
         {
           "type": "exam",
           "text": "Según el profesor, esto no se pregunta con detalle, pero sí conviene entenderlo: es una característica de NTFS, el flujo principal es el que se ve, y los alternativos no se muestran por defecto ni cuentan en el tamaño. Si lo quieres ampliar, investiga usos legítimos y maliciosos por tu cuenta."
@@ -347,6 +349,7 @@
           "term": "Sobrescritura",
           "text": "Cuando una escritura posterior ocupa parte del espacio liberado y reemplaza los bytes antiguos. Puede dejar el archivo inicial **parcial o totalmente irrecuperable**."
         },
+        {"type":"figure","src":"figuras/forense/t05-borrado-sobrescritura.svg","title":"Borrar frente a sobrescribir","caption":"Redibujado de las figuras del tema con **video.mkv** y **video2.avi**.","alt":"Tres filas. En la primera, la entrada video.mkv apunta a sus partes: parte 1, parte 2, parte n y FIN. En la segunda, la entrada está tachada (borrado lógico) pero las partes siguen ahí y el espacio queda marcado como disponible. En la tercera, un nuevo archivo video2.avi ocupa el hueco de la parte 2. Se recupera la parte 1, la n y el FIN, pero la parte 2 se ha perdido; una foto así saldría cortada o con zonas grises."},
         {
           "type": "p",
           "text": "Si una foto JPG se sobrescribe a medias, al recuperarla puede salir solo la parte de arriba y el resto gris o con colores aleatorios. En un caso cotidiano no es grave, pero si es la **única prueba** de una falsificación y está muy dañada, quizá no haya nada que presentar en el informe."
@@ -542,6 +545,7 @@
             ["0x05", "El nombre empieza realmente por el carácter cuyo código es 0xE5 (se guarda como 0x05 para no confundirlo con un borrado)"]
           ]
         },
+        {"type":"figure","src":"figuras/forense/t05-fat-entrada.svg","title":"La entrada borrada de ?ORMIGA.JPG","caption":"Los datos del ejemplo del temario: primer clúster 2 y 183.857 bytes.","alt":"Una entrada FAT de 32 bytes dividida en campos: primer byte E5, nombre ORMIGA, extensión JPG, atributos, fechas de creación, acceso y modificación, primer clúster 2 y tamaño 183.857 bytes. Un recuadro explica que 0xE5 marca el archivo como eliminado y que solo se pierde la primera letra. Debajo, el cálculo: 183.857 entre 512 da 360 sectores, entre 8 da 45 clústeres, del 2 al 46. Una fila de clústeres verdes del 2 al 46, el último lleno solo en parte, y el 47, donde empieza ?EADOW."},
         {
           "type": "p",
           "text": "Al borrar, FAT solo sustituye la **primera letra** del nombre por 0xE5. Por eso se pierde esa letra (de ahí el «?ORMIGA», que seguramente era HORMIGA) pero se conservan fechas, clúster inicial y tamaño: es el escenario de «marcado como borrado» en el que se recupera todo, salvo adivinar la primera letra."
@@ -593,6 +597,7 @@
           "type": "p",
           "text": "Consecuencia forense: esa distribución uniforme provoca una **alta fragmentación**. Los trozos de un archivo quedan dispersos por bloques no contiguos, y la **recuperación en bruto** (que busca una firma y lee a continuación) tiene mucho más difícil reconstruir el archivo."
         },
+        {"type":"figure","src":"figuras/forense/t05-wear-leveling.svg","title":"Nivelación del desgaste en un SSD","caption":"Redibujado de la figura del tema **Device without / with Wear Leveling**.","alt":"Dos filas de rejillas de bloques flash. Sin nivelación, las escrituras van siempre a los mismos tres bloques, que acaban gastados (en rojo) y fallan antes de tiempo. Con nivelación, las escrituras se reparten por bloques dispersos de toda la rejilla; por eso los trozos de un archivo quedan en bloques no contiguos y el carving lo tiene mucho más difícil."},
         {
           "type": "table",
           "title": "Disco duro frente a SSD desde el punto de vista forense",

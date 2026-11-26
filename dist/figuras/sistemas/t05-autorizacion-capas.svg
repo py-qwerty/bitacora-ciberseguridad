@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 480">
+<defs><marker id="t05-autorizacion-capas-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="ink" d="M0 0L10 5L0 10z"/></marker><marker id="t05-autorizacion-capas-r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="bad" d="M0 0L10 5L0 10z"/></marker><marker id="t05-autorizacion-capas-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="good" d="M0 0L10 5L0 10z"/></marker></defs>
+<text class="h" x="370" y="26" text-anchor="middle">Dónde aplicar autorización: capa por capa</text>
+<text class="b" x="95.0" y="112" text-anchor="middle">Navegador</text>
+<rect class="c4" x="20" y="124" width="150" height="40" rx="5"/>
+<text class="b" x="85.0" y="150" text-anchor="middle">Navegador</text>
+<rect class="box" x="20" y="168" width="150" height="40" rx="5"/>
+<text class="s" x="95.0" y="194" text-anchor="middle">Sistema operativo</text>
+<rect class="box" x="20" y="212" width="150" height="40" rx="5"/>
+<text class="s" x="95.0" y="238" text-anchor="middle">Hardware</text>
+<g><path class="ln" d="M150 142v-4a6 6 0 0 1 12 0v4" style="stroke:var(--color-text)"/><rect class="warn" x="146" y="142" width="20" height="15" rx="2"/></g>
+<path class="ln" d="M173 144H193" marker-end="url(#t05-autorizacion-capas-a)" marker-start="url(#t05-autorizacion-capas-a)"/>
+<text class="b" x="271.0" y="94" text-anchor="middle">Servidor</text>
+<text class="b" x="271.0" y="112" text-anchor="middle">web</text>
+<rect class="c1" x="196" y="124" width="150" height="40" rx="5"/>
+<text class="b" x="261.0" y="150" text-anchor="middle">IIS, Apache</text>
+<rect class="box" x="196" y="168" width="150" height="40" rx="5"/>
+<text class="s" x="271.0" y="194" text-anchor="middle">Sistema operativo</text>
+<rect class="box" x="196" y="212" width="150" height="40" rx="5"/>
+<text class="s" x="271.0" y="238" text-anchor="middle">Hardware</text>
+<g><path class="ln" d="M326 142v-4a6 6 0 0 1 12 0v4" style="stroke:var(--color-text)"/><rect class="warn" x="322" y="142" width="20" height="15" rx="2"/></g>
+<path class="ln" d="M349 144H369" marker-end="url(#t05-autorizacion-capas-a)" marker-start="url(#t05-autorizacion-capas-a)"/>
+<text class="b" x="447.0" y="94" text-anchor="middle">Servidor de</text>
+<text class="b" x="447.0" y="112" text-anchor="middle">aplicaciones</text>
+<rect class="c2" x="372" y="124" width="150" height="40" rx="5"/>
+<text class="b" x="437.0" y="150" text-anchor="middle">Tomcat, .NET</text>
+<rect class="tint" x="372" y="168" width="150" height="40" rx="5"/>
+<text class="s" x="447.0" y="194" text-anchor="middle">Middleware</text>
+<rect class="box" x="372" y="212" width="150" height="40" rx="5"/>
+<text class="s" x="447.0" y="238" text-anchor="middle">Sistema operativo</text>
+<rect class="box" x="372" y="256" width="150" height="40" rx="5"/>
+<text class="s" x="447.0" y="282" text-anchor="middle">Hardware</text>
+<g><path class="ln" d="M502 142v-4a6 6 0 0 1 12 0v4" style="stroke:var(--color-text)"/><rect class="warn" x="498" y="142" width="20" height="15" rx="2"/></g>
+<path class="ln" d="M525 144H545" marker-end="url(#t05-autorizacion-capas-a)" marker-start="url(#t05-autorizacion-capas-a)"/>
+<text class="b" x="623.0" y="94" text-anchor="middle">Base de datos</text>
+<text class="b" x="623.0" y="112" text-anchor="middle">(SGBD)</text>
+<rect class="c3" x="548" y="124" width="150" height="40" rx="5"/>
+<text class="b" x="613.0" y="150" text-anchor="middle">MySQL, Oracle</text>
+<rect class="tint" x="548" y="168" width="150" height="40" rx="5"/>
+<text class="s" x="623.0" y="194" text-anchor="middle">ODBC, JDBC</text>
+<rect class="box" x="548" y="212" width="150" height="40" rx="5"/>
+<text class="s" x="623.0" y="238" text-anchor="middle">Sistema operativo</text>
+<rect class="box" x="548" y="256" width="150" height="40" rx="5"/>
+<text class="s" x="623.0" y="282" text-anchor="middle">Hardware</text>
+<g><path class="ln" d="M678 142v-4a6 6 0 0 1 12 0v4" style="stroke:var(--color-text)"/><rect class="warn" x="674" y="142" width="20" height="15" rx="2"/></g>
+<text class="b" x="370" y="58" text-anchor="middle">Vista horizontal: el recorrido de una petición, de máquina en máquina</text>
+<path class="ln" d="M706 132V292" marker-end="url(#t05-autorizacion-capas-a)"/>
+<rect class="tint" x="16" y="334" width="708" height="130" rx="8"/>
+<text class="b" x="30" y="358">Vista vertical: de arriba abajo dentro de cada máquina</text>
+<rect class="box" x="30" y="372" width="79.0" height="34" rx="5"/>
+<text class="b" x="69.5" y="394" text-anchor="middle">Usuario</text>
+<path class="ln" d="M111.0 389H129.0" marker-end="url(#t05-autorizacion-capas-a)"/>
+<rect class="box" x="131.0" y="372" width="106.0" height="34" rx="5"/>
+<text class="b" x="184.0" y="394" text-anchor="middle">Aplicación</text>
+<path class="ln" d="M239.0 389H257.0" marker-end="url(#t05-autorizacion-capas-a)"/>
+<rect class="box" x="259.0" y="372" width="106.0" height="34" rx="5"/>
+<text class="b" x="312.0" y="394" text-anchor="middle">Middleware</text>
+<path class="ln" d="M367.0 389H385.0" marker-end="url(#t05-autorizacion-capas-a)"/>
+<rect class="box" x="387.0" y="372" width="169.0" height="34" rx="5"/>
+<text class="b" x="471.5" y="394" text-anchor="middle">Sistema operativo</text>
+<path class="ln" d="M558.0 389H576.0" marker-end="url(#t05-autorizacion-capas-a)"/>
+<rect class="box" x="578.0" y="372" width="88.0" height="34" rx="5"/>
+<text class="b" x="622.0" y="394" text-anchor="middle">Hardware</text>
+<text class="s" x="30" y="430">Candado = punto donde se comprueba la autorización. En el servidor: filtrar por subred</text>
+<text class="s" x="30" y="450">con lista blanca, exigir autenticación y autorizar por URL; en el SGBD, permisos por objeto.</text>
+</svg>

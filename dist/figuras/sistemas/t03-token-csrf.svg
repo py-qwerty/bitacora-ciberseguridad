@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 450">
+<defs><marker id="t03-token-csrf-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="ink" d="M0 0L10 5L0 10z"/></marker><marker id="t03-token-csrf-r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="bad" d="M0 0L10 5L0 10z"/></marker><marker id="t03-token-csrf-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="good" d="M0 0L10 5L0 10z"/></marker></defs>
+<text class="h" x="370" y="26" text-anchor="middle">El token anti-CSRF: la petición falsa llega sin él</text>
+<g><rect class="box" x="600" y="60" width="44.8" height="58.8" rx="3"/><path class="ln" d="M608.4 74.0h28.0M608.4 85.2h28.0M608.4 96.4h28.0"/><circle class="good" cx="633.6" cy="109.0" r="2.5"/></g>
+<text class="b" x="622" y="140" text-anchor="middle">Banco</text>
+<rect class="tint" x="500" y="150" width="224" height="64" rx="8"/>
+<text class="s" x="612" y="172" text-anchor="middle">Sesión de la víctima</text>
+<text x="612" y="198" text-anchor="middle" font-family="Menlo,Consolas,monospace" xml:space="preserve" style="font-size:15px;font-weight:700">token = 7f3a9c…</text>
+<rect class="c1" x="16" y="52" width="440" height="170" rx="10" style="fill-opacity:.35"/>
+<text class="b" x="30" y="76">Formulario legítimo del banco</text>
+<rect class="box" x="30" y="88" width="412" height="100" rx="6"/>
+<text x="42" y="108" font-family="Menlo,Consolas,monospace" xml:space="preserve" style="font-size:13px">&lt;form action="/transferir" method="POST"&gt;</text>
+<text x="42" y="130" font-family="Menlo,Consolas,monospace" xml:space="preserve" style="font-size:13px">  &lt;input type="hidden" name="token"</text>
+<text x="42" y="152" font-family="Menlo,Consolas,monospace" style="font-size:13px" xml:space="preserve"><tspan>         value="</tspan><tspan style="fill:var(--color-success);font-weight:700">7f3a9c…</tspan><tspan>"&gt;</tspan></text>
+<text x="42" y="174" font-family="Menlo,Consolas,monospace" xml:space="preserve" style="font-size:13px;fill:var(--color-muted)">  … importe, destino, botón Enviar …</text>
+<path class="sgood" d="M456 120H592" marker-end="url(#t03-token-csrf-g)"/>
+<text class="s" x="524" y="108" text-anchor="middle">con token</text>
+<text class="b" x="236" y="210" text-anchor="middle" style="fill:var(--color-success)">El token coincide → se procesa</text>
+<rect class="c5" x="16" y="244" width="440" height="170" rx="10" style="fill-opacity:.35"/>
+<text class="b" x="30" y="268">Petición que dispara la web del atacante</text>
+<rect class="box" x="30" y="282" width="412" height="66" rx="6"/>
+<text x="42" y="306" font-family="Menlo,Consolas,monospace" xml:space="preserve" style="font-size:13px">&lt;img src="banco.example/transferir?</text>
+<text x="42" y="330" font-family="Menlo,Consolas,monospace" xml:space="preserve" style="font-size:13px">      importe=1000&amp;destino=X"&gt;</text>
+<path class="sbad" d="M456 316Q560 316 610 220" marker-end="url(#t03-token-csrf-r)"/>
+<text class="s" x="500" y="350">cookie sí, token no</text>
+<text class="s" x="236" y="370" text-anchor="middle">El atacante no puede adivinar el token</text>
+<text class="b" x="236" y="396" text-anchor="middle" style="fill:var(--color-danger)">Falta o no coincide → se rechaza</text>
+<text class="s" x="370" y="440" text-anchor="middle">El navegador añade la cookie solo, pero el token va dentro de la página del banco.</text>
+</svg>

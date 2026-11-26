@@ -48,6 +48,7 @@
           "type": "p",
           "text": "El tema insiste en una idea económica: **encontrar los bugs pronto reduce el coste en varios órdenes de magnitud** respecto a descubrirlos en fases posteriores. Por eso las organizaciones deben integrar la revisión de código en sus procesos habituales de desarrollo."
         },
+        {"type":"figure","src":"figuras/sistemas/t06-ciclo-seguro.svg","title":"Seguridad en todas las fases y coste de arreglar un fallo","caption":"Esquema nuevo a partir del texto: el mismo fallo cuesta poco en el diseño y muchísimo con la aplicación en uso.","alt":"Arriba, una franja verde dice «Security by Design: actividades de seguridad en todas las fases». Debajo, cuatro fases en fila unidas por flechas: Diseño (pensar la seguridad en el plano), Programación (codificación segura y revisión estática), Pruebas (buscar fallos antes de publicar) y En producción (parches de urgencia, daño a la reputación). Bajo cada fase, una barra con el coste de arreglar el mismo fallo: muy bajo, bajo, alto y muy alto; la barra crece mucho en producción."},
         {
           "type": "term",
           "term": "CWE (Common Weakness Enumeration, enumeración de debilidades comunes)",
@@ -116,6 +117,7 @@
           "term": "Canonicalización o canonización",
           "text": "Convertir un dato a su **forma única y estándar** (la «canónica») deshaciendo codificaciones, antes de validarlo. Así, varias formas de escribir lo mismo se reducen a una sola y el validador ve lo que realmente se está pidiendo."
         },
+        {"type":"figure","src":"figuras/sistemas/t06-canonicalizacion.svg","title":"Canonicalizar antes de validar","caption":"Esquema nuevo con el caso práctico del tema: el disfraz %2E%2E%2F.","alt":"Dos filas. Arriba, filtro ingenuo: la entrada %2E%2E%2Fetc/passwd llega a un filtro que pregunta si contiene ../; no lo ve porque está disfrazado, y el ataque pasa y lee /etc/passwd. Abajo, la misma entrada pasa primero por Canonicalizar, que deshace el disfraz (%2E es punto, %2F es barra) y da la forma canónica ../etc/passwd; después Validar con lista de permitidos la rechaza."},
         {
           "type": "example",
           "title": "Caso práctico: el disfraz %2E%2E%2F",
@@ -167,6 +169,7 @@
             "Limpiar según el contexto los datos no fiables que se envían a consultas **SQL, XML y LDAP** (LDAP, Lightweight Directory Access Protocol: protocolo para consultar directorios de usuarios) y a **comandos del sistema operativo**."
           ]
         },
+        {"type":"figure","src":"figuras/sistemas/t06-codificacion-contexto.svg","title":"Codificar según el contexto","caption":"Redibujado de la tabla del tema sobre tipos de XSS y su codificador OWASP.","alt":"A la izquierda, un dato no fiable con un script. Se ramifica a tres contextos posibles: cuerpo HTML (por ejemplo dentro de div o h1), atributo HTML (input value) y dentro de JavaScript (var a = ...). Cada contexto apunta a su codificador de OWASP Java Encoder: Encode.forHtml, Encode.forHtmlAttribute y Encode.forJavaScript. Nota: en HTML el símbolo menor que pasa a &lt; y el navegador lo pinta como texto."},
         {
           "type": "list",
           "title": "Prácticas criptográficas",
@@ -277,6 +280,7 @@
           "type": "p",
           "text": "Un Servlet es vulnerable a **SQLi** (SQL injection) cuando construye la consulta **concatenando** (pegando como texto) lo que escribe el usuario, sin validarlo ni separarlo del código."
         },
+        {"type":"figure","src":"figuras/sistemas/t06-sqli-dato-codigo.svg","title":"Inyección SQL: el dato que se convierte en orden","caption":"Esquema nuevo con la consulta del tema.","alt":"Plantilla de la consulta SELECT * FROM users WHERE id = 'hueco', donde el hueco es para el user_id. Uso normal: el hueco se rellena con 5 y devuelve un usuario. Ataque: el hueco se rellena con ' OR '1'='1, marcado en rojo; la comilla cierra el dato antes de tiempo y OR '1'='1' se ejecuta como parte de la orden, que siempre es cierta y devuelve todos los usuarios."},
         {
           "type": "example",
           "title": "Explotación: ' OR '1'='1",
@@ -430,6 +434,7 @@
           "term": "Política de mismo origen (same-origin policy)",
           "text": "Regla del navegador que impide que una página de un sitio lea el contenido de otro sitio. Por eso Bob no puede leer el token de la página del banco de Alice, no puede ponerlo en su formulario falso y su petición se rechaza."
         },
+        {"type":"figure","src":"figuras/sistemas/t06-csrf-token.svg","title":"CSRF: el ataque y por qué lo frena el token","caption":"Esquema nuevo con el ejemplo de Alice y Bob del tema.","alt":"Tres cajas en fila: la página de Bob (sitio-malicioso.example.com, con un formulario oculto), el navegador de Alice (guarda la cookie del banco) y banco.com (EliminarCuentaServlet). Flecha 1: Alice visita la página de Bob. Flecha roja 2: el formulario oculto hace un POST al banco y el navegador añade la cookie solo. Debajo, dos resultados: sin token anti-CSRF la petición parece de Alice y se borra la cuenta; con token anti-CSRF el POST de Bob no lleva el token secreto y se rechaza. Nota: por la política de mismo origen la página de Bob no puede leer las páginas del banco ni copiar el token."},
         {
           "type": "list",
           "title": "Alternativas y refuerzos",
@@ -463,6 +468,7 @@
           "term": "Path traversal o directory traversal (CWE-22, recorrido de directorios)",
           "text": "El Servlet construye una ruta de archivo con un nombre que da el usuario, sin validarlo. Usando `../` («sube a la carpeta de arriba»), el atacante sale del directorio permitido y **lee archivos del sistema** a los que no debería acceder."
         },
+        {"type":"figure","src":"figuras/sistemas/t06-path-traversal.svg","title":"Path traversal: subir carpetas con ../","caption":"Esquema nuevo con las rutas del ejemplo del tema.","alt":"A la izquierda, un árbol de carpetas: la raíz / tiene etc (con el fichero passwd) y var, que contiene www, data y docs; docs es la carpeta permitida. Flechas rojas suben desde docs: cada ../ sube un nivel (data, www, var y la raíz) y luego bajan a etc/passwd. A la derecha: la petición filename=../../../../etc/passwd, la ruta construida /var/www/data/docs/../../../../etc/passwd y la ruta resuelta /etc/passwd. Abajo, la defensa: lista blanca de nombres, normalizar la ruta y comprobar que empieza por /var/www/data/docs/; si no, bloquear."},
         {
           "type": "example",
           "title": "Explotación de la descarga de archivos",

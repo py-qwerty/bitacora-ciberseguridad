@@ -181,6 +181,7 @@
             ["Riesgo", "¿Cuánto daño espero, sabiendo lo probable que es?", "Sí"]
           ]
         },
+        {"type":"figure","src":"figuras/gobierno/t08-elementos-magerit.svg","title":"Los elementos del análisis en Magerit","caption":"Redibujado de la figura del tema: activos, amenazas, impacto y riesgo.","alt":"Los activos están expuestos a amenazas e interesan por su valor. Las amenazas causan una cierta degradación y ocurren con una cierta probabilidad. Valor y degradación llevan al impacto (si pasa, cuánto duele). Impacto y probabilidad llevan al riesgo (impacto por frecuencia). Magerit empieza por el activo."},
         {
           "type": "p",
           "text": "Magerit distingue también el **análisis de riesgos** (proceso sistemático para estimar la magnitud de los riesgos, es decir, saber qué podría pasar) del **tratamiento de riesgos** (proceso para modificar el riesgo: evitar lo que lo provoca, reducir su probabilidad, acotar sus consecuencias o compartirlo, por ejemplo con un seguro). Ambas actividades juntas forman la **gestión de riesgos**."
@@ -363,6 +364,7 @@
           "type": "p",
           "text": "Con todo esto se **califican los riesgos significativos** y se decide la acción (en Magerit, por ejemplo, de crítico, que exige atención urgente, a asumible, que no requiere actuar). Las decisiones de tratamiento típicas son **eliminar** el riesgo (evitar la actividad), **mitigarlo** (reducir probabilidad o impacto), **compartirlo** (un seguro, un proveedor) o **aceptarlo**. La calificación fija la **prioridad** de las actuaciones."
         },
+        {"type":"figure","src":"figuras/gobierno/t08-decisiones-magerit.svg","title":"El punto de decisión ante un riesgo","caption":"Redibujado de la figura del tema sobre la toma de decisiones.","alt":"Del estudio de los riesgos se llega a un punto de decisión con tres salidas. Se acepta: pasa a monitorización continua, que alimenta una revisión periódica. Se estudia mejor: pasa a un estudio coste/beneficio que vuelve al estudio de los riesgos. Se trata: se elige entre opciones, que son evitar (eliminar la actividad), mitigar (reducir la probabilidad o acotar el impacto) o compartir (un seguro o un proveedor)."},
         {
           "type": "list",
           "title": "Cuándo se puede aceptar un riesgo (siempre con prudencia y justificación)",
@@ -496,6 +498,7 @@
           "type": "p",
           "text": "La **apreciación detallada** identifica y valora **en profundidad los activos**, evalúa sus **amenazas** y sus **vulnerabilidades**, y con ello evalúa los riesgos y elige el tratamiento. Exige mucho tiempo, esfuerzo y experiencia, así que se reserva para **sistemas de alto riesgo**. Las consecuencias se pueden valorar con métodos cuantitativos, cualitativos o combinados."
         },
+        {"type":"figure","src":"figuras/gobierno/t08-alto-nivel-detallada.svg","title":"Primero alto nivel, después detalle donde importa","caption":"Los activos A1 a A12 son un ejemplo.","alt":"A la izquierda, primera pasada de alto nivel sobre doce activos: todos los activos, visión de negocio, pocas amenazas y poco detalle. Tres activos críticos, en rojo, pasan a la derecha, a la segunda pasada detallada, donde se estudian a fondo sus activos, amenazas y vulnerabilidades, con mucho tiempo, esfuerzo y experiencia. Regla: si un activo puede causar consecuencias graves o sostiene objetivos críticos, se le hace una segunda iteración detallada."},
         {
           "type": "table",
           "title": "Comparación",
@@ -556,6 +559,7 @@
             "**Seguimiento (supervisión) del riesgo**: valorar de forma continua la eficacia de las respuestas, detectar cambios en los sistemas y su entorno y verificar que las respuestas se han implantado y se cumplen las obligaciones legales y contractuales."
           ]
         },
+        {"type":"figure","src":"figuras/gobierno/t08-nist-componentes.svg","title":"Los cuatro componentes de NIST SP 800-39","alt":"Arriba, el marco de referencia (framing): contexto, estrategia y criterios, que guía a los demás. Debajo, un ciclo de tres componentes unidos por flechas: evaluación (amenaza, daño y probabilidad), respuesta (alternativas según la tolerancia al riesgo) y seguimiento (eficacia, cambios y cumplimiento), que vuelve a la evaluación."},
         {
           "type": "table",
           "title": "Mismo proceso, distinto vocabulario",
@@ -640,6 +644,7 @@
           "type": "p",
           "text": "También propone análisis basados en **gráficos** para representar relaciones de **muchos a muchos**: una fuente puede causar varios eventos y un evento puede venir de varias fuentes; un evento puede explotar varias vulnerabilidades y una vulnerabilidad puede ser explotada por varios eventos; un evento puede afectar a varios activos y un activo puede sufrir varios eventos."
         },
+        {"type":"figure","src":"figuras/gobierno/t08-aproximaciones-nist.svg","title":"Muchos a muchos y tres puntos de partida","caption":"Fuentes, eventos y activos de ejemplo.","alt":"Cuatro columnas unidas por líneas discontinuas que se cruzan: fuentes (grupo de ransomware, empleado, inundación), eventos (cifrar datos, borrado, agua en el CPD), vulnerabilidades (sin parchear, sin copias, sala en sótano) y activos o impacto (facturación, web de clientes). Una fuente causa varios eventos, un evento explota varias vulnerabilidades y afecta a varios activos. Debajo, tres recuadros marcan dónde empieza cada aproximación de NIST: en las amenazas, en la vulnerabilidad o en el impacto. NIST aconseja repetir desde una segunda aproximación."},
         {
           "type": "example",
           "title": "Caso práctico",

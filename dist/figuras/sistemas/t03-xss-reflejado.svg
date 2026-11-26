@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 410">
+<defs><marker id="t03-xss-reflejado-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="ink" d="M0 0L10 5L0 10z"/></marker><marker id="t03-xss-reflejado-r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="bad" d="M0 0L10 5L0 10z"/></marker><marker id="t03-xss-reflejado-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="good" d="M0 0L10 5L0 10z"/></marker></defs>
+<text class="h" x="370" y="26" text-anchor="middle">XSS reflejado, paso a paso</text>
+<g><circle class="c5" cx="80" cy="97.0" r="10.4"/><path class="c5" d="M61.8 130.8a18.2 18.2 0 0 1 36.4 0z"/></g>
+<text class="b" x="80" y="150" text-anchor="middle">Atacante</text>
+<g><rect class="box" x="338" y="86" width="61.599999999999994" height="42.0" rx="3"/><rect class="tint" x="345.0" y="93.0" width="47.599999999999994" height="28.0"/><rect class="ink" x="363.2" y="128.0" width="11.2" height="8.399999999999999"/><rect class="ink" x="349.2" y="136.4" width="39.199999999999996" height="5.6" rx="2"/></g>
+<text class="b" x="370" y="164" text-anchor="middle">Navegador</text>
+<text class="s" x="370" y="182" text-anchor="middle">de la víctima</text>
+<g><rect class="box" x="640" y="80" width="44.8" height="58.8" rx="3"/><path class="ln" d="M648.4 94.0h28.0M648.4 105.2h28.0M648.4 116.4h28.0"/><circle class="good" cx="673.6" cy="129.0" r="2.5"/></g>
+<text class="b" x="662" y="164" text-anchor="middle">Web vulnerable</text>
+<text class="s" x="662" y="182" text-anchor="middle">refleja q sin codificar</text>
+<path class="path" d="M110 96H326" marker-end="url(#t03-xss-reflejado-r)"/>
+<text class="s" x="218" y="84" text-anchor="middle">1. Envía el enlace trampa</text>
+<path class="ln" d="M414 96H630" marker-end="url(#t03-xss-reflejado-a)"/>
+<text class="s" x="522" y="84" text-anchor="middle">2. La víctima hace clic</text>
+<path class="ln" d="M630 124H414" marker-end="url(#t03-xss-reflejado-a)"/>
+<text class="s" x="522" y="116" text-anchor="middle">3. La respuesta trae el script</text>
+<path class="path" d="M326 124H110" marker-end="url(#t03-xss-reflejado-r)"/>
+<text class="s" x="218" y="116" text-anchor="middle">4. El script le envía la cookie</text>
+<rect class="tint" x="16" y="206" width="708" height="62" rx="6"/>
+<text class="s" x="28" y="226">Enlace del paso 1 (con método GET, el código va en la dirección):</text>
+<text x="28" y="252" font-family="Menlo,Consolas,monospace" style="font-size:14px" xml:space="preserve"><tspan>https://example.com/buscar?q=</tspan><tspan style="fill:var(--color-danger);font-weight:700">&lt;script&gt;alert('XSS')&lt;/script&gt;</tspan></text>
+<rect class="tint" x="16" y="280" width="708" height="62" rx="6"/>
+<text class="s" x="28" y="300">Página que devuelve el servidor en el paso 3:</text>
+<text x="28" y="326" font-family="Menlo,Consolas,monospace" style="font-size:14px" xml:space="preserve"><tspan>&lt;p&gt;Resultados para: </tspan><tspan style="fill:var(--color-danger);font-weight:700">&lt;script&gt;alert('XSS')&lt;/script&gt;</tspan><tspan>&lt;/p&gt;</tspan></text>
+<text class="s" x="370" y="374" text-anchor="middle">El servidor no guarda nada: refleja el script solo para quien pulsa el enlace.</text>
+<text class="s" x="370" y="394" text-anchor="middle">Por eso hay que engañar a cada víctima, una a una.</text>
+</svg>

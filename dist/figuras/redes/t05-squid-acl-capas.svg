@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 470">
+<defs><marker id="t05sa-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="ink" d="M0 0L10 5L0 10z"/></marker><marker id="t05sa-r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--color-danger)"/></marker><marker id="t05sa-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--color-success)"/></marker></defs>
+<text class="h" x="380" y="28" text-anchor="middle">Qué parte de la petición compara cada tipo de acl</text>
+<text class="s" x="380" y="50" text-anchor="middle">Una petición web que llega a Squid, troceada por capas</text>
+<rect class="c4" x="20" y="70" width="120" height="96" rx="4"/>
+<text class="b" x="80" y="96" text-anchor="middle">Enlace</text>
+<text class="s" x="80" y="120" text-anchor="middle">MAC</text>
+<text class="s" x="80" y="138" text-anchor="middle">00:14:22:…</text>
+<rect class="c3" x="140" y="70" width="140" height="96" rx="4"/>
+<text class="b" x="210" y="96" text-anchor="middle">IP</text>
+<text class="s" x="210" y="120" text-anchor="middle">192.168.1.25</text>
+<text class="s" x="210" y="138" text-anchor="middle">→ servidor</text>
+<rect class="c2" x="280" y="70" width="80" height="96" rx="4"/>
+<text class="b" x="320" y="96" text-anchor="middle">TCP</text>
+<text class="s" x="320" y="120" text-anchor="middle">puertos</text>
+<rect class="c1" x="360" y="70" width="380" height="96" rx="4"/>
+<text class="b" x="550" y="92" text-anchor="middle">Petición HTTP (aplicación)</text>
+<rect class="box" x="370" y="104" width="146" height="54" rx="4"/>
+<text class="s" x="443" y="126" text-anchor="middle">dominio</text>
+<text x="443" y="146" text-anchor="middle" style="font-family:monospace;font-size:14px">www.juegos.com</text>
+<rect class="box" x="520" y="104" width="116" height="54" rx="4"/>
+<text class="s" x="578" y="126" text-anchor="middle">ruta</text>
+<text x="578" y="146" text-anchor="middle" style="font-family:monospace;font-size:14px">/setup.exe</text>
+<rect class="box" x="640" y="104" width="86" height="54" rx="4"/>
+<text class="s" x="683" y="126" text-anchor="middle">usuario</text>
+<text x="683" y="146" text-anchor="middle" style="font-family:monospace;font-size:14px">ana</text>
+<path class="ln" d="M20 180V190H140V180" style="fill:none;stroke-width:3"/>
+<text x="80" y="210" text-anchor="middle" style="font-family:monospace;font-weight:700;font-size:15px">arp</text>
+<text class="s" x="80" y="228" text-anchor="middle">la MAC</text>
+<path class="ln" d="M140 180V190H280V180" style="fill:none;stroke-width:3"/>
+<text x="210" y="210" text-anchor="middle" style="font-family:monospace;font-weight:700;font-size:15px">src / dst</text>
+<text class="s" x="210" y="228" text-anchor="middle">la IP</text>
+<path class="ln" d="M370 180V190H516V180" style="fill:none;stroke-width:3"/>
+<text x="443" y="210" text-anchor="middle" style="font-family:monospace;font-weight:700;font-size:15px">dstdomain</text>
+<text class="s" x="443" y="228" text-anchor="middle">el dominio</text>
+<path class="ln" d="M520 180V190H636V180" style="fill:none;stroke-width:3"/>
+<text x="578" y="210" text-anchor="middle" style="font-family:monospace;font-weight:700;font-size:15px">urlpath_regex</text>
+<text class="s" x="578" y="228" text-anchor="middle">la ruta</text>
+<path class="ln" d="M640 256V266H726V256" style="fill:none;stroke-width:3"/>
+<text x="683" y="286" text-anchor="middle" style="font-family:monospace;font-weight:700;font-size:15px">proxy_auth</text>
+<text class="s" x="683" y="304" text-anchor="middle">¿autenticado?</text>
+<path class="ln" d="M370 256V266H636V256" style="fill:none;stroke-width:3"/>
+<text x="503" y="286" text-anchor="middle" style="font-family:monospace;font-weight:700;font-size:15px">url_regex</text>
+<text class="s" x="503" y="304" text-anchor="middle">la URL completa (palabras clave)</text>
+<rect class="tint" x="20" y="316" width="330" height="80" rx="8"/>
+<text class="s" x="185" y="342" text-anchor="middle" style="fill:var(--color-text)">arp solo funciona en la misma VLAN:</text>
+<text class="s" x="185" y="362" text-anchor="middle">la MAC no atraviesa routers.</text>
+<rect class="box" x="370" y="316" width="370" height="80" rx="8"/>
+<circle class="c5" cx="404" cy="356" r="20"/><path d="M404 344V356H414" style="fill:none;stroke:var(--color-text);stroke-width:2.5;stroke-linecap:round"/>
+<text x="574" y="348" text-anchor="middle" style="font-family:monospace;font-weight:700;font-size:15px">time</text>
+<text class="s" x="574" y="368" text-anchor="middle">no mira el paquete: mira la hora</text>
+</svg>

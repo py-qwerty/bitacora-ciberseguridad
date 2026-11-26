@@ -159,6 +159,7 @@
           ],
           "title": "Comparativa"
         },
+        {"type":"figure","src":"figuras/redes/t04-hids-nids.svg","title":"Dónde mira un HIDS y dónde un NIDS","caption":"Los ejemplos de alerta son los de la tabla.","alt":"Un segmento de red que sale de Internet con paquetes circulando y tres equipos colgados de él: un servidor, un equipo y otro servidor. Encima, el NIDS, un sniffer en modo promiscuo conectado al segmento, lee una copia de todos los paquetes y lanza la alerta «alguien barre todos los puertos de la red». Debajo del primer servidor, el HIDS instalado en él mira dentro del equipo (archivos, registros, actividad local) y avisa «ha cambiado el archivo de contraseñas». Un recuadro resume: el HIDS ve un solo equipo en profundidad; el NIDS ve todo el tráfico del segmento, no solo el dirigido a él, pero no lo que pasa dentro de cada equipo."},
         {
           "type": "p",
           "text": "Al analizar el tráfico, el NIDS encuentra anomalías que pueden ser **ataques reales o falsas alarmas**. Ningún detector es perfecto."
@@ -467,6 +468,7 @@
           "type": "p",
           "text": "Fíjate en que el IPS de host a nivel de aplicación no se limita a leer el contenido HTTP o DNS: también mira memoria, llamadas al sistema e intentos de conexión. Un detector de aplicación tiene información de capa 7, pero **nada le impide** cruzarla con datos de capas inferiores (como la IP de origen de una conexión)."
         },
+        {"type":"figure","src":"figuras/redes/t04-dispositivos-capas.svg","title":"Cada dispositivo sobre el **modelo OSI**","caption":"Cada barra llega hasta la capa más alta que mira el dispositivo; las capas 2, 3 y 7 son las que importan aquí.","alt":"A la izquierda, el modelo OSI con sus siete capas; las capas 7 (aplicación), 3 (red) y 2 (enlace) están resaltadas. A la derecha, cinco columnas: el switch clásico llega hasta la capa 2 (MAC); el router, hasta la 3 (IP y rutas); el switch de aplicación, hasta la 7 (lee DNS, HTTP y FTP para repartir la carga entre servidores y frenar DoS); el conmutador híbrido, hasta la 7 (se instala en la red como un switch, pero decide con políticas de seguridad); y el IPS de host de aplicación ocupa la capa 7 y, debajo, en lugar de las capas de red, un recuadro discontinuo: trabaja dentro del propio equipo mirando memoria, llamadas al sistema y conexiones de cada aplicación."},
         {
           "type": "exam",
           "text": "Tres trampas frecuentes. 1) Switch de aplicación: es cierto que nace para manejar grandes volúmenes **y** que sirve para balancear carga, así que «A y B son correctas». 2) IDS/IPS de aplicación: las frases absolutas «no pueden operar con información de red» o «solo pueden operar con información de nivel 7» son falsas; la respuesta es «ninguna de las anteriores». 3) Conmutador híbrido: lo que facilita su configuración es importar los resultados de un escáner de vulnerabilidades, no «olvidar» el servidor ni desactivar reglas."
@@ -846,6 +848,7 @@
           "type": "p",
           "text": "**Una pieza más en la arquitectura.** El profesor describió la arquitectura con cinco pasos: el módulo de **captura** de tráfico (un sniffer), un **decodificador** (interpreta el tráfico en bruto según el protocolo: HTTP, FTP, incluso protocolos industriales), los **preprocesadores** (reorganizan lo decodificado en campos, como hace Wireshark para que puedas filtrar), el **motor de detección** (el cerebro: reglas y plugins de detección) y los **plugins de salida** (informes, ficheros de log para enviar a un syslog u otras herramientas). Es la misma cadena del tema, con el decodificador explícito."
         },
+        {"type":"figure","src":"figuras/redes/t04-snort-cadena-capas.svg","title":"La cadena de Snort con el **decodificador**","caption":"Redibujado de la figura del tema, con el decodificador que se añadió en clase.","alt":"Cinco cajas en fila unidas por flechas: captura (sniffer), decodificador (separa capas), preprocesador (ordena campos), motor de detección, al que llegan las reglas desde abajo, y salida (alerta o log). Debajo, un recuadro amplía el decodificador: una ristra de bits en bruto se convierte, tras una flecha, en un paquete troceado en Ethernet, IP, TCP y HTTP o FTP. Los preprocesadores lo ordenan en campos, como Wireshark, y el motor compara esos campos con las reglas."},
         {
           "type": "exam",
           "text": "¿Quién decide según las reglas? El **motor de detección**, no el preprocesador. ¿Quién captura? El sniffer. ¿Quién prepara los paquetes para el motor? El preprocesador. Y si preguntan qué hace el modo logger: **guardar paquetes para un análisis posterior** (no aplicar reglas, no filtrar en línea, no limitarse a mostrar). En «Snort es un IDS / un IPS / puede usarse para construir una padded cell», todas son ciertas."
@@ -939,6 +942,7 @@
           "type": "p",
           "text": "El tema describe -v como «solo cabeceras TCP» y da la misma explicación para -e y -d («cabeceras de TCP, UDP e ICMP»), lo que parece una errata. Según el manual oficial, -v muestra las cabeceras de los paquetes (IP, TCP, UDP, ICMP), -d añade el contenido de aplicación y -e añade las cabeceras de enlace. Para el test basta con saber que las tres sirven para **ver** tráfico y que -l, -b y -c son las que cambian de modo."
         },
+        {"type":"figure","src":"figuras/redes/t04-snort-dev-capas.svg","title":"snort -dev: qué capa enseña cada letra","caption":"Según el manual oficial de Snort, como explica el párrafo de arriba.","alt":"Un paquete troceado en cuatro piezas: Ethernet (cabecera de enlace, MAC de origen y destino), cabecera IP (IP de origen y destino), TCP, UDP o ICMP (puertos, flags) y datos (contenido de la aplicación). Debajo, tres corchetes: -e abarca Ethernet y añade el enlace; -v abarca IP y TCP/UDP/ICMP y muestra las cabeceras; -d abarca los datos y los añade. Abajo: snort -dev junta las tres y muestra el paquete entero por consola; las tres solo sirven para ver, mientras que -l, -b y -c cambian de modo."},
         {
           "type": "p",
           "text": "Cada fichero de log lleva en el nombre un **sello temporal** (timestamp, la fecha y hora de creación). Al terminar una captura, Snort muestra unas **estadísticas** (paquetes recibidos, analizados, por protocolo…)."

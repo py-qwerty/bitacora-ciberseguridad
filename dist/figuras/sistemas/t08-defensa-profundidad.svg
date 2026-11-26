@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 516">
+<defs><marker id="t08dp-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="ink" d="M0 0L10 5L0 10z"/></marker><marker id="t08dp-t" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--color-secondary)"/></marker><marker id="t08dp-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="good" d="M0 0L10 5L0 10z"/></marker><marker id="t08dp-r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="bad" d="M0 0L10 5L0 10z"/></marker></defs>
+<g transform="translate(20 30) scale(0.85) translate(-20 -30)"><path class="tint" d="M20 105c-23.8 0 -32.2 -26.6 -11.2 -35 -4.2 -23.8 26.6 -33.6 40.6 -18.2 9.8 -19.6 44.8 -18.2 50.4 1.4 11.2 -12.6 40.6 -7 40.6 14 23.8 1.4 26.6 36.4 2.8 37.8z"/></g>
+<text class="b" x="68.44999999999999" y="82.69999999999999" text-anchor="middle" style="fill:var(--color-secondary)">Internet</text>
+<rect class="c5" x="20" y="112" width="560" height="50" rx="8"/>
+<text class="b" x="36" y="143">Protección anti-DDoS</text>
+<text class="s" x="270" y="143">operador + equipo propio (híbrido)</text>
+<path class="ln" d="M300.0 162V176" marker-end="url(#t08dp-a)"/>
+<rect class="c3" x="20" y="178" width="560" height="50" rx="8"/>
+<text class="b" x="36" y="209">Cortafuegos de red ×2</text>
+<text class="s" x="270" y="209">perímetro: filtra puertos, no contenido</text>
+<path class="ln" d="M300.0 228V242" marker-end="url(#t08dp-a)"/>
+<rect class="c2" x="20" y="244" width="560" height="50" rx="8"/>
+<text class="b" x="36" y="275">IDS</text>
+<text class="s" x="270" y="275">detecta ataques en la red</text>
+<path class="ln" d="M300.0 294V308" marker-end="url(#t08dp-a)"/>
+<rect class="c4" x="20" y="310" width="560" height="50" rx="8"/>
+<text class="b" x="36" y="341">Balanceadores de carga</text>
+<text class="s" x="270" y="341">reparten las peticiones</text>
+<path class="ln" d="M300.0 360V374" marker-end="url(#t08dp-a)"/>
+<rect class="c1" x="20" y="376" width="560" height="50" rx="8"/>
+<text class="b" x="36" y="407">WAF ×2</text>
+<text class="s" x="270" y="407">protección principal de la web</text>
+<path class="ln" d="M300.0 426V440" marker-end="url(#t08dp-a)"/>
+<rect class="tint" x="20" y="442" width="560" height="64" rx="8"/>
+<text class="b" x="36" y="468">Servidores de aplicaciones</text>
+<text class="s" x="36" y="488">en clúster, con la aplicación web</text>
+<g><rect class="box" x="420" y="453" width="32" height="42" rx="3"/><path class="ln" d="M426 463h20M426 471h20M426 479h20"/><circle class="good" cx="444" cy="488" r="2.5"/></g>
+<g><rect class="box" x="466" y="453" width="32" height="42" rx="3"/><path class="ln" d="M472 463h20M472 471h20M472 479h20"/><circle class="good" cx="490" cy="488" r="2.5"/></g>
+<g><rect class="box" x="512" y="453" width="32" height="42" rx="3"/><path class="ln" d="M518 463h20M518 471h20M518 479h20"/><circle class="good" cx="536" cy="488" r="2.5"/></g>
+<path class="ln" d="M300.0 100V108" marker-end="url(#t08dp-a)"/>
+<path class="ln" d="M300.0 92V100"/>
+<rect class="ink" x="620" y="112" width="120" height="394" rx="10"/>
+<text class="b" x="680" y="150" text-anchor="middle" style="fill:#fff">SIEM</text>
+<text class="s" x="680" y="176" text-anchor="middle" style="fill:#fff">reúne los</text>
+<text class="s" x="680" y="195" text-anchor="middle" style="fill:#fff">logs de</text>
+<text class="s" x="680" y="214" text-anchor="middle" style="fill:#fff">todas las</text>
+<text class="s" x="680" y="233" text-anchor="middle" style="fill:#fff">capas y los</text>
+<text class="s" x="680" y="252" text-anchor="middle" style="fill:#fff">correlaciona</text>
+<path class="dash" d="M582 137H616" marker-end="url(#t08dp-a)"/>
+<path class="dash" d="M582 203H616" marker-end="url(#t08dp-a)"/>
+<path class="dash" d="M582 269H616" marker-end="url(#t08dp-a)"/>
+<path class="dash" d="M582 335H616" marker-end="url(#t08dp-a)"/>
+<path class="dash" d="M582 401H616" marker-end="url(#t08dp-a)"/>
+<path class="dash" d="M582 467H616" marker-end="url(#t08dp-a)"/>
+<text class="s" x="390" y="62" text-anchor="middle">Varias capas (profundidad) de tipos distintos (diversidad):</text>
+<text class="s" x="390" y="80" text-anchor="middle">si una falla, actúa la siguiente.</text>
+</svg>

@@ -117,6 +117,7 @@
           "title": "Caso práctico",
           "text": "Una administrativa, con toda su buena fe, envía la hoja de nóminas a una dirección equivocada. No hay malicia: es un **error humano**. Si, en cambio, un empleado despechado copia la base de clientes antes de irse, es un **ataque interno**. Las dos cosas son incidentes, pero se previenen distinto: la primera con formación, la segunda con control de accesos."
         },
+        {"type":"figure","src":"figuras/forense/t01-origenes-incidente.svg","title":"Los cuatro orígenes de un incidente","caption":"Redibujado y adaptado de la figura del tema **Tipología de riesgos**: dos orígenes vienen de fuera y dos de dentro.","alt":"Un recuadro discontinuo representa la organización. Fuera, a la izquierda, el desastre natural (incendio, inundación, terremoto), que se combate con un plan de contingencias; a la derecha, el ataque externo (dinero, espionaje, activismo), que se combate con defensas y detección. Dentro del recuadro, el insider (empleado, ex empleado o proveedor), que se limita con control de acceso, y el error humano (sin mala intención, a veces por engaño), que se previene con formación."},
         {
           "type": "exam",
           "text": "Si la pregunta enumera desastres naturales, ataques (internos y/o externos) y errores humanos y ofrece «todas las anteriores», esa es la respuesta: los tres son incidentes. Si pregunta qué origen obliga a pensar en **empleados bienintencionados**, la respuesta es el **error humano**, no el ataque interno (que es malicioso)."
@@ -223,6 +224,7 @@
             ["Relación", "Marco general", "Debe estar alineado con el BCM"]
           ]
         },
+        {"type":"figure","src":"figuras/forense/t01-bc-dr-paralelo.svg","title":"Continuidad y recuperación trabajan a la vez","caption":"BC mira el negocio; DR mira la tecnología. Las dos arrancan con el incidente y deben estar alineadas.","alt":"Un incidente (cae el sistema) abre dos caminos en paralelo. Arriba, la continuidad de negocio, de perspectiva de negocio, pregunta cómo seguir trabajando mientras dura el problema, por ejemplo tomando pedidos en papel y por teléfono. Abajo, la recuperación ante desastres, de perspectiva tecnológica, pregunta cómo volver a poner en marcha los sistemas, por ejemplo restaurando el servidor desde la copia. Una línea discontinua indica que ambos están alineados."},
         {
           "type": "exam",
           "text": "Los dos planes parecen solaparse, pero el test pregunta por la **perspectiva**. «Restablecer infraestructura y servicios informáticos» = DRP (tecnológico). «Mantener cualquier proceso comercial, incluidos los no tecnológicos» = continuidad. Identificar judicialmente al culpable no es ninguno de los dos: eso es forense."
@@ -261,6 +263,7 @@
           "type": "p",
           "text": "Casi nunca se puede recuperar el sistema justo en el instante del desastre: se vuelve a un punto anterior (las transacciones ya consolidadas, la última copia). Por eso el temario indica que el **tiempo real de pérdida** de un incidente es la suma **RTO + RPO**: el trabajo que se pierde hacia atrás más el tiempo que se está parado hacia delante."
         },
+        {"type":"figure","src":"figuras/forense/t01-rpo-rto-linea.svg","title":"RPO, RTO y MTD sobre el reloj","caption":"Son los números del **caso práctico** que viene a continuación: el RPO mira hacia atrás y el RTO hacia delante.","alt":"Línea de tiempo de 8:00 a 15:00. La última copia es a las 9:00, el desastre a las 10:00 y la tienda vuelve a vender a las 14:00. Entre 9:00 y 10:00 hay una franja RPO de 1 hora (datos perdidos); entre 10:00 y 14:00, una franja RTO de 4 horas (tiempo parado). Una línea roja discontinua a las 13:00 marca un MTD de 3 horas, que el plan sobrepasa. Abajo: pérdida real igual a RPO más RTO, 5 horas."},
         {
           "type": "example",
           "title": "Caso práctico con números",
@@ -298,6 +301,7 @@
             ["Investigación y análisis", "Estudiar a fondo el incidente para aprender lecciones; aquí entra el análisis forense para recoger la máxima información"]
           ]
         },
+        {"type":"figure","src":"figuras/forense/t01-procesos-clave.svg","title":"Los cuatro procesos clave","caption":"Redibujado de la figura del tema **Procesos clave en el mecanismo de respuesta ante incidentes**.","alt":"En el centro, un círculo con el texto gestión de incidentes. A su alrededor, cuatro cajas numeradas: 1, detección (alerta temprana con SIEM y eventos); 2, respuesta (qué hacer y quién en cada escenario); 3, comunicación (un único punto que informa a terceros); 4, investigación (aprender lecciones con el análisis forense)."},
         {
           "type": "term",
           "term": "SIEM (Security Information and Event Management)",
@@ -490,6 +494,7 @@
           "term": "Límite de la atribución",
           "text": "En una huella dactilar o un ADN se identifica a la persona. En lo digital, lo más concreto a lo que se llega es al **usuario** del sistema (local o remoto) y a la **dirección IP o MAC** del equipo usado. Para llegar a la **persona física** hacen falta otras técnicas de investigación (cámaras, testigos, horarios, registros de acceso al edificio…)."
         },
+        {"type":"figure","src":"figuras/forense/t01-atribucion.svg","title":"Hasta dónde llega la huella digital","caption":"El forense llega hasta la cuenta y el equipo; para llegar a la persona hacen falta otras pruebas.","alt":"Cuatro cajas encadenadas: acción (qué y cómo, en logs y archivos), cuenta (usuario local o remoto), equipo (IP o MAC) y persona (quién estaba delante). Una franja verde bajo las tres primeras dice lo que puede probar el análisis forense. Bajo la persona, una franja roja indica otras pruebas: cámaras, testigos, fichajes y horarios. Se recuerda el caso de Ana: se puede afirmar la cuenta y el equipo de Ana, no que lo hiciera ella. El motivo no deja huella digital."},
         {
           "type": "example",
           "title": "Caso práctico",

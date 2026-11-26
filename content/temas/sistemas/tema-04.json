@@ -113,6 +113,7 @@
             "El servidor decodifica, compara con su base de datos y responde **200 OK** si coinciden o de nuevo 401 si no."
           ]
         },
+        {"type":"figure","src":"figuras/sistemas/t04-http-basic.svg","title":"HTTP basic paso a paso","caption":"Redibujado de las cabeceras de la figura del tema, con la cadena del caso práctico.","alt":"Diagrama de secuencia entre navegador y servidor. 1, GET /admin sin credenciales. 2, el servidor responde 401 Unauthorized con la cabecera WWW-Authenticate: Basic realm=Panel. 3, el navegador pide usuario y contraseña. 4, repite GET /admin con la cabecera Authorization: Basic YWRtaW46MTIzNA== (en rojo). 5, 200 OK. Debajo, un recuadro rojo: quien capture la cabecera la decodifica al instante sin ninguna clave, YWRtaW46MTIzNA== pasa por Base64 y sale admin:1234; por eso basic solo debe usarse con HTTPS."},
         {
           "type": "list",
           "title": "Riesgos",
@@ -383,6 +384,7 @@
             ["Signature (firma)", "Header y payload firmados con una clave", "HMAC-SHA256 con un secreto del backend"]
           ]
         },
+        {"type":"figure","src":"figuras/sistemas/t04-jwt-partes.svg","title":"Un JWT por dentro: header, payload y firma","caption":"Redibujado de la figura del tema (header, claims y signature), con un token generado para el ejemplo.","alt":"Arriba, un token JWT real en dos líneas, con tres tramos de color separados por puntos: naranja (header), morado (payload) y azul (firma); es lo que viaja en la cabecera Authorization: Bearer. Debajo, tres recuadros con cada parte decodificada. Header: alg HS256 y typ JWT, el tipo y el algoritmo de firma. Payload: user_name ana, roles user y exp, que cualquiera puede leer. Firma: HMAC-SHA256 de header punto payload con un secreto, que solo el backend puede calcular. Al pie: Base64 no cifra; la firma solo garantiza integridad, no confidencialidad."},
         {
           "type": "list",
           "title": "Claims habituales",
@@ -454,6 +456,7 @@
             ["Manipulación de claims", "Se cambian roles o permisos.", "Verificar los claims en el servidor; mínimo privilegio."]
           ]
         },
+        {"type":"figure","src":"figuras/sistemas/t04-jwt-alg-none.svg","title":"El ataque «alg: none» y por qué falla en un servidor bien hecho","caption":"Lo mismo que hace el ejemplo de código de este apartado, en un dibujo.","alt":"Arriba, dos recuadros. Token de ana decodificado: header con alg HS256, payload con user_name ana y roles user, y una firma. Una flecha roja lleva al token manipulado: alg none, roles admin (en rojo) y la firma vacía; leer y editar no necesita ninguna clave porque es solo Base64. Abajo, el token manipulado llega a dos servidores. El servidor mal hecho obedece al alg del token, no comprueba la firma y acepta: ana es admin. El servidor bien hecho tiene HS256 fijado, calcula la firma con su secreto, no cuadra y rechaza el token."},
         {
           "type": "term",
           "term": "HSM (Hardware Security Module)",
@@ -525,6 +528,7 @@
             "El servidor valida certificado y firma; se completa el handshake con una conexión cifrada y mutuamente autenticada."
           ]
         },
+        {"type":"figure","src":"figuras/sistemas/t04-mtls-handshake.svg","title":"El handshake de mTLS","caption":"Simplificado de la figura del tema sobre las fases del handshake TLS.","alt":"Diagrama de secuencia entre cliente y servidor. 1, ClientHello con los cifrados que soporta. 2, ServerHello y el certificado del servidor, más un CertificateRequest («enséñame el tuyo»), resaltado en naranja. El cliente verifica el certificado del servidor. 3, en naranja, el cliente envía su certificado y una firma que prueba que tiene la clave privada. El servidor valida certificado y firma. 4, una barra oscura: conexión cifrada y autenticada en los dos sentidos. Al pie: en naranja, lo que mTLS añade al TLS normal."},
         {
           "type": "p",
           "text": "Un error clásico es cifrar **solo el inicio de sesión** y volver a HTTP después. El identificador de sesión (la cookie) queda entonces expuesto y cualquiera en la misma red puede copiarlo y suplantar al usuario: es el **secuestro de sesión** (session hijacking). Firesheep, una extensión de Firefox de 2010, lo hacía con un clic en wifis públicas; BlackSheep servía para detectarla. Conclusión: **se cifra toda la sesión**."
@@ -581,6 +585,7 @@
             "El servidor busca el ID y sabe quién eres."
           ]
         },
+        {"type":"figure","src":"figuras/sistemas/t04-login-formulario.svg","title":"Login con formulario, paso a paso","caption":"Redibujado de la figura del tema sobre la autenticación con formulario.","alt":"Diagrama de secuencia con tres columnas: navegador, aplicación web y base de datos. 1, el navegador pide la página de login; 2, la aplicación devuelve el formulario; 3, el navegador envía usuario y contraseña por HTTPS; 4, la aplicación comprueba en la base de datos si coinciden (hash más sal). 5a, si no coinciden, una flecha roja devuelve «credenciales incorrectas» y el navegador muestra «inténtalo de nuevo». 5b, si coinciden, una flecha verde devuelve la sesión creada con la cabecera Set-Cookie: SESSIONID=…; HttpOnly; Secure; la aplicación guarda la sesión y renueva el ID. Al pie: desde ahí el navegador envía la cookie en cada petición."},
         {
           "type": "term",
           "term": "Cookie",

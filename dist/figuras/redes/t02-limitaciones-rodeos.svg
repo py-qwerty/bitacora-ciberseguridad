@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 500">
+<defs><marker id="t02lr-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="ink" d="M0 0L10 5L0 10z"/></marker><marker id="t02lr-r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--color-danger)"/></marker><marker id="t02lr-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--color-success)"/></marker></defs>
+<rect class="dash" x="250" y="70" width="494" height="290" rx="14"/>
+<text class="b" x="730" y="346" text-anchor="end">Red local (LAN)</text>
+<path class="tint" d="M65 215c-17 0 -23 -19 -8 -25 -3 -17 19 -24 29 -13 7 -14 32 -13 36 1 8 -9 29 -5 29 10 17 1 19 26 2 27z"/>
+<text class="b" x="95" y="205" text-anchor="middle" style="fill:var(--color-secondary)">Internet</text>
+<g><rect class="c5" x="236" y="186" width="28" height="28" rx="2"/><path d="M236 193h28M236 200h28M236 207h28M243 186v7M257 186v7M250 193v7M243 200v7M257 200v7M250 207v7" style="fill:none;stroke:#a33331;stroke-width:1.2"/></g>
+<text class="s" x="228" y="236" text-anchor="end">Cortafuegos</text>
+<path class="ln" d="M150 200H236" style="stroke-width:3"/>
+<path class="ln" d="M264 200H300" style="stroke-width:3"/>
+<text class="s" x="196" y="190" text-anchor="middle">tráfico</text>
+<g><rect class="box" x="300" y="120" width="44" height="30" rx="3"/><rect class="tint" x="305" y="125" width="34" height="20"/><rect class="ink" x="318" y="150" width="8" height="6"/><rect class="ink" x="308" y="156" width="28" height="4" rx="2"/></g>
+<text class="s" x="322" y="178" text-anchor="middle">infectado</text>
+<g><rect class="box" x="470" y="120" width="44" height="30" rx="3"/><rect class="tint" x="475" y="125" width="34" height="20"/><rect class="ink" x="488" y="150" width="8" height="6"/><rect class="ink" x="478" y="156" width="28" height="4" rx="2"/></g>
+<text class="s" x="492" y="178" text-anchor="middle">compañero</text>
+<g><rect class="box" x="640" y="120" width="44" height="30" rx="3"/><rect class="tint" x="645" y="125" width="34" height="20"/><rect class="ink" x="658" y="150" width="8" height="6"/><rect class="ink" x="648" y="156" width="28" height="4" rx="2"/></g>
+<text class="s" x="662" y="178" text-anchor="middle">con 4G</text>
+<circle cx="338" cy="124" r="7" style="fill:var(--color-danger)"/>
+<path class="" d="M346 135H462" marker-end="url(#t02lr-r)" style="stroke:var(--color-danger);stroke-width:2.5;fill:none"/>
+<text class="s" x="404" y="110" text-anchor="middle">① Movimiento lateral</text>
+<path class="" d="M95 175C120 20 560 10 655 112" marker-end="url(#t02lr-r)" style="stroke:var(--color-danger);stroke-width:2.5;fill:none;stroke-dasharray:7 5"/>
+<text class="s" x="400" y="40" text-anchor="middle">② Módem 4G propio: entra sin cruzar el cortafuegos</text>
+<circle class="c2" cx="330" cy="262" r="11"/><path class="c2" d="M312 294a18 18 0 0 1 36 0z"/>
+<text class="s" x="330" y="314" text-anchor="middle">empleado</text>
+<path class="" d="M312 270C290 262 280 230 266 212" marker-end="url(#t02lr-r)" style="stroke:var(--color-danger);stroke-width:2.5;fill:none;stroke-dasharray:7 5"/>
+<text class="s" x="356" y="262">③ Amenaza interna: abre una</text>
+<text class="s" x="356" y="280">conexión autorizada al atacante</text>
+<rect class="c4" x="620" y="250" width="44" height="20" rx="4"/><path class="ln" d="M632 250V236M652 250V236"/><path d="M628 226a14 14 0 0 1 28 0M622 220a20 20 0 0 1 40 0" style="fill:none;stroke:var(--color-primary);stroke-width:2"/>
+<text class="s" x="642" y="290" text-anchor="middle">wifi de la LAN</text>
+<circle class="c5" cx="690" cy="404" r="10"/><path class="c5" d="M674 434a16 16 0 0 1 32 0z"/>
+<text class="s" x="690" y="454" text-anchor="middle">aparcamiento</text>
+<path class="" d="M684 392L656 300" marker-end="url(#t02lr-r)" style="stroke:var(--color-danger);stroke-width:2.5;fill:none;stroke-dasharray:7 5"/>
+<text class="s" x="600" y="404" text-anchor="end">④ Se conecta</text>
+<text class="s" x="600" y="422" text-anchor="end">a la wifi desde fuera</text>
+<rect class="box" x="402" y="410" width="48" height="30" rx="2"/><rect class="tint" x="407" y="414" width="38" height="22"/><rect class="ink" x="396" y="440" width="60" height="5" rx="2"/><circle cx="444" cy="414" r="6" style="fill:var(--color-danger)"/>
+<text class="s" x="426" y="468" text-anchor="middle">portátil infectado</text>
+<text class="s" x="426" y="486" text-anchor="middle">en un hotel</text>
+<path class="" d="M426 404V330" marker-end="url(#t02lr-r)" style="stroke:var(--color-danger);stroke-width:2.5;fill:none"/>
+<text class="s" x="300" y="390" text-anchor="middle">⑤ Vuelve a la oficina</text>
+<text class="s" x="300" y="408" text-anchor="middle">y se conecta dentro</text>
+</svg>

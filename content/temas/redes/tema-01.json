@@ -212,6 +212,7 @@
             ["Mecanismo de seguridad", "Técnica implementada para reforzar la seguridad: prevenir ataques, detectarlos o recuperarse de ellos", "¿Con qué herramienta lo consigo?"]
           ]
         },
+        {"type":"figure","src":"figuras/redes/t01-x800-pilares.svg","title":"Los tres pilares de X.800 y el **modelo OSI**","caption":"Cadena ataque → servicio → mecanismo. X.800 indica en qué capa OSI puede aplicarse cada servicio; el tema no detalla cuál va en cada capa.","alt":"A la izquierda, el modelo OSI con sus siete capas de arriba abajo: 7 aplicación, 6 presentación, 5 sesión, 4 transporte, 3 red, 2 enlace y 1 física. A la derecha, tres tarjetas unidas por flechas: ataque (¿qué me pueden hacer?, por ejemplo escuchar el tráfico), que lo frena un servicio de seguridad (¿qué propiedad quiero garantizar?, por ejemplo confidencialidad), que se ofrece con un mecanismo de seguridad (¿con qué herramienta lo consigo?, por ejemplo cifrado). Una flecha discontinua va del servicio a la pila OSI con la pregunta «¿en qué capa?». Abajo: X.800 no dice cómo programarlo; describe los servicios, en qué capa OSI puede aplicarse cada uno y qué mecanismos pueden ofrecerlos."},
         {
           "type": "key",
           "text": "X.800 es un marco descriptivo (no un manual de implementación) que organiza la seguridad en tres ideas: ataques, servicios y mecanismos."
@@ -407,6 +408,7 @@
             ["Aplicación", "Contenido del paquete (payload) y, si se desea, un protocolo como HTTP por encima."]
           ]
         },
+        {"type":"figure","src":"figuras/redes/t01-scapy-land-capas.svg","title":"El paquete Land **capa a capa**","caption":"Lo que fabrica el código de abajo, con la capa Ethernet que la demo de clase crea primero (en el código se omite y Scapy la pone por defecto).","alt":"Arriba, la línea de Scapy Ether() / IP(src=v, dst=v) / TCP(sport=80, dport=80, flags=\"S\"). Debajo, el paquete troceado en cuatro piezas: 1, Ethernet con valores por defecto; 2, IP con origen 10.0.0.5 y destino 10.0.0.5; 3, TCP con puerto 80 a 80 y flag SYN; 4, contenido o payload, encima del cual iría por ejemplo HTTP. La barra de Scapy encapsula cada capa dentro de la anterior. Dos corchetes rojos señalan lo que delata el ataque: en IP, origen igual a destino, la propia víctima; en TCP, el mismo puerto en origen y destino. Abajo: parece que el equipo se habla a sí mismo y, si no está preparado, entra en bucle; la función es_land mira justo esas dos cabeceras."},
         {
           "type": "term",
           "term": "Ataque Land (ataque «Tierra»)",
@@ -629,6 +631,7 @@
             ["Recuperación segura", "Acciones previamente establecidas para recuperarse tras un fallo de seguridad"]
           ]
         },
+        {"type":"figure","src":"figuras/redes/t01-mecanismos-capas.svg","title":"Mecanismos **específicos** (dentro de una capa) y **generales** (sin capa)","caption":"Esquema simplificado: el tema dice que los específicos se incorporan en una capa concreta del protocolo, pero no en cuál.","alt":"A la izquierda, tres franjas apiladas: capa de encima, una capa concreta del protocolo (resaltada) y capa de debajo. Dentro de la capa resaltada están los ocho mecanismos específicos: cifrado, firma digital, control de acceso, integridad de datos, intercambio de autentificación, relleno de tráfico, control de enrutamiento y notarización. A la derecha, una columna aparte con los cinco mecanismos generales, que no están ligados a ninguna capa: funcionalidad fiable, etiquetas de seguridad, detección de eventos, informe para auditoría y recuperación segura."},
         {
           "type": "table",
           "title": "Qué mecanismos sirven a cada servicio (Tabla 2 del tema)",

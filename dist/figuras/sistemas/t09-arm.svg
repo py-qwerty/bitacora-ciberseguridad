@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 440">
+<defs><marker id="t09ar-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="ink" d="M0 0L10 5L0 10z"/></marker><marker id="t09ar-t" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--color-secondary)"/></marker><marker id="t09ar-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="good" d="M0 0L10 5L0 10z"/></marker><marker id="t09ar-r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="bad" d="M0 0L10 5L0 10z"/></marker></defs>
+<rect class="box" x="20" y="36" width="128" height="44" rx="6"/>
+<text class="b" x="84.0" y="62.4" text-anchor="middle">Portal</text>
+<path class="ln" d="M84 82V126" marker-end="url(#t09ar-a)"/>
+<rect class="box" x="162" y="36" width="128" height="44" rx="6"/>
+<text class="b" x="226.0" y="62.4" text-anchor="middle">PowerShell</text>
+<path class="ln" d="M226 82V126" marker-end="url(#t09ar-a)"/>
+<rect class="box" x="304" y="36" width="128" height="44" rx="6"/>
+<text class="b" x="368.0" y="62.4" text-anchor="middle">CLI de Azure</text>
+<path class="ln" d="M368 82V126" marker-end="url(#t09ar-a)"/>
+<rect class="box" x="446" y="36" width="128" height="44" rx="6"/>
+<text class="b" x="510.0" y="62.4" text-anchor="middle">API REST</text>
+<path class="ln" d="M510 82V126" marker-end="url(#t09ar-a)"/>
+<rect class="box" x="588" y="36" width="128" height="44" rx="6"/>
+<text class="b" x="652.0" y="62.4" text-anchor="middle">SDK</text>
+<path class="ln" d="M652 82V126" marker-end="url(#t09ar-a)"/>
+<text class="s" x="20" y="22">1  Envías la petición con la herramienta que quieras</text>
+<rect class="ink" x="20" y="130" width="520" height="90" rx="10"/>
+<text class="b" x="280" y="166" text-anchor="middle" style="fill:#fff">Azure Resource Manager (ARM)</text>
+<text class="s" x="280" y="192" text-anchor="middle" style="fill:#fff">el «mostrador único» de todas las peticiones</text>
+<rect class="c1" x="580" y="130" width="140" height="90" rx="6"/>
+<text class="b" x="650.0" y="170.4" text-anchor="middle">2  Autentica</text>
+<text class="s" x="650.0" y="189.0" text-anchor="middle">y autoriza</text>
+<path class="ln" d="M542 175H576" marker-end="url(#t09ar-a)"/>
+<path class="ln" d="M576 175H542" marker-end="url(#t09ar-a)"/>
+<path class="ln" d="M80 222V266" marker-end="url(#t09ar-a)"/>
+<rect class="c4" x="20" y="270" width="120" height="56" rx="6"/>
+<text class="b" x="80.0" y="292.4" text-anchor="middle">Máquina</text>
+<text class="b" x="80.0" y="312.4" text-anchor="middle">virtual</text>
+<path class="ln" d="M212 222V266" marker-end="url(#t09ar-a)"/>
+<rect class="c4" x="152" y="270" width="120" height="56" rx="6"/>
+<text class="b" x="212.0" y="292.4" text-anchor="middle">Base de</text>
+<text class="b" x="212.0" y="312.4" text-anchor="middle">datos</text>
+<path class="ln" d="M344 222V266" marker-end="url(#t09ar-a)"/>
+<rect class="c4" x="284" y="270" width="120" height="56" rx="6"/>
+<text class="b" x="344.0" y="292.4" text-anchor="middle">Aplicación</text>
+<text class="b" x="344.0" y="312.4" text-anchor="middle">web</text>
+<path class="ln" d="M476 222V266" marker-end="url(#t09ar-a)"/>
+<rect class="c4" x="416" y="270" width="120" height="56" rx="6"/>
+<text class="b" x="476.0" y="292.4" text-anchor="middle">Otros</text>
+<text class="b" x="476.0" y="312.4" text-anchor="middle">servicios</text>
+<text class="s" x="560" y="296">3  ARM reenvía la orden</text>
+<text class="s" x="560" y="314">al servicio, que la ejecuta</text>
+<text class="s" x="370" y="370" text-anchor="middle">Como todo pasa por la misma API, el resultado es el mismo uses la herramienta que uses.</text>
+<text class="s" x="370" y="390" text-anchor="middle">ARM gestiona también el control de acceso, los bloqueos y las etiquetas.</text>
+</svg>

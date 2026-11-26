@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 450">
+<defs><marker id="t01mc-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="ink" d="M0 0L10 5L0 10z"/></marker><marker id="t01mc-r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--color-danger)"/></marker><marker id="t01mc-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--color-success)"/></marker></defs>
+<text class="h" x="250" y="30" text-anchor="middle">Específicos: dentro de una capa</text>
+<text class="h" x="625" y="30" text-anchor="middle">Generales: sin capa</text>
+<rect class="box" x="20" y="56" width="460" height="46" rx="6" style="opacity:.6"/>
+<text class="s" x="250" y="85" text-anchor="middle">capa de encima</text>
+<rect class="tint" x="20" y="110" width="460" height="240" rx="8" style="stroke:var(--color-primary);stroke-width:2.5"/>
+<text class="b" x="250" y="136" text-anchor="middle">Una capa concreta del protocolo</text>
+<rect class="c3" x="36" y="152" width="206" height="38" rx="6"/>
+<text class="s" x="139" y="176" text-anchor="middle" style="fill:var(--color-text)">Cifrado</text>
+<rect class="c3" x="258" y="152" width="206" height="38" rx="6"/>
+<text class="s" x="361" y="176" text-anchor="middle" style="fill:var(--color-text)">Firma digital</text>
+<rect class="c3" x="36" y="200" width="206" height="38" rx="6"/>
+<text class="s" x="139" y="224" text-anchor="middle" style="fill:var(--color-text)">Control de acceso</text>
+<rect class="c3" x="258" y="200" width="206" height="38" rx="6"/>
+<text class="s" x="361" y="224" text-anchor="middle" style="fill:var(--color-text)">Integridad de datos</text>
+<rect class="c3" x="36" y="248" width="206" height="38" rx="6"/>
+<text class="s" x="139" y="272" text-anchor="middle" style="fill:var(--color-text)">Intercambio de autentificación</text>
+<rect class="c3" x="258" y="248" width="206" height="38" rx="6"/>
+<text class="s" x="361" y="272" text-anchor="middle" style="fill:var(--color-text)">Relleno de tráfico</text>
+<rect class="c3" x="36" y="296" width="206" height="38" rx="6"/>
+<text class="s" x="139" y="320" text-anchor="middle" style="fill:var(--color-text)">Control de enrutamiento</text>
+<rect class="c3" x="258" y="296" width="206" height="38" rx="6"/>
+<text class="s" x="361" y="320" text-anchor="middle" style="fill:var(--color-text)">Notarización</text>
+<rect class="box" x="20" y="358" width="460" height="46" rx="6" style="opacity:.6"/>
+<text class="s" x="250" y="387" text-anchor="middle">capa de debajo</text>
+<rect class="c4" x="510" y="56" width="230" height="348" rx="10"/>
+<rect class="box" x="526" y="76" width="198" height="44" rx="6"/>
+<text class="s" x="625" y="104" text-anchor="middle" style="fill:var(--color-text)">Funcionalidad fiable</text>
+<rect class="box" x="526" y="134" width="198" height="44" rx="6"/>
+<text class="s" x="625" y="162" text-anchor="middle" style="fill:var(--color-text)">Etiquetas de seguridad</text>
+<rect class="box" x="526" y="192" width="198" height="44" rx="6"/>
+<text class="s" x="625" y="220" text-anchor="middle" style="fill:var(--color-text)">Detección de eventos</text>
+<rect class="box" x="526" y="250" width="198" height="44" rx="6"/>
+<text class="s" x="625" y="278" text-anchor="middle" style="fill:var(--color-text)">Informe para auditoría</text>
+<rect class="box" x="526" y="308" width="198" height="44" rx="6"/>
+<text class="s" x="625" y="336" text-anchor="middle" style="fill:var(--color-text)">Recuperación segura</text>
+<text class="s" x="625" y="376" text-anchor="middle">no están ligados</text>
+<text class="s" x="625" y="393" text-anchor="middle">a ninguna capa</text>
+<text class="s" x="380" y="436" text-anchor="middle">Dos familias de mecanismos; las dos sirven para ofrecer los servicios de seguridad.</text>
+</svg>

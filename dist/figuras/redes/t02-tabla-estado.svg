@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 500">
+<defs><marker id="t02te-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="ink" d="M0 0L10 5L0 10z"/></marker><marker id="t02te-r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--color-danger)"/></marker><marker id="t02te-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--color-success)"/></marker></defs>
+<text class="h" x="380" y="30" text-anchor="middle">El cortafuegos de estado recuerda las conexiones</text>
+<g><rect class="box" x="40" y="92" width="44" height="30" rx="3"/><rect class="tint" x="45" y="97" width="34" height="20"/><rect class="ink" x="58" y="122" width="8" height="6"/><rect class="ink" x="48" y="128" width="28" height="4" rx="2"/></g>
+<text class="b" x="62" y="150" text-anchor="middle">Tu equipo</text>
+<text class="s" x="62" y="168" text-anchor="middle">192.168.1.10</text>
+<g><rect class="box" x="684" y="74" width="32" height="42" rx="3"/><path class="ln" d="M690 84h20M690 92h20M690 100h20"/><circle class="good" cx="708" cy="109" r="2.5"/></g>
+<text class="b" x="700" y="136" text-anchor="middle">Web</text>
+<text class="s" x="700" y="154" text-anchor="middle">203.0.113.10</text>
+<circle class="c5" cx="700" cy="262" r="12"/><path class="c5" d="M680 296a20 20 0 0 1 40 0z"/>
+<text class="b" x="700" y="316" text-anchor="middle">Atacante</text>
+<text class="s" x="700" y="334" text-anchor="middle">198.51.100.66</text>
+<rect class="c5" x="362" y="64" width="36" height="290" rx="4"/>
+<g><rect class="c5" x="366" y="70" width="28" height="26" rx="2"/><path d="M366 76.5h28M366 83h28M366 89.5h28M373 70v6.5M387 70v6.5M380 76.5v6.5M373 83v6.5M387 83v6.5M380 89.5v6.5" style="fill:none;stroke:#a33331;stroke-width:1.2"/></g>
+<text class="b" x="380" y="372" text-anchor="middle">Cortafuegos</text>
+<path class="ln" d="M110 112L672 112" marker-end="url(#t02te-g)" style="stroke:var(--color-success);stroke-width:2.5"/>
+<text class="b" x="236" y="102" text-anchor="middle">1 · Petición que sale</text>
+<text class="s" x="236" y="132" text-anchor="middle">.10:51000 → 203.0.113.10:80</text>
+<text class="s" x="530" y="102" text-anchor="middle">aceptada y anotada</text>
+<path d="M610 97L614 101.2L622 92.8" style="fill:none;stroke:var(--color-success);stroke-width:4;stroke-linecap:round;stroke-linejoin:round"/>
+<path class="ln" d="M672 196L112 196" marker-end="url(#t02te-g)" style="stroke:var(--color-success);stroke-width:2.5"/>
+<text class="b" x="530" y="186" text-anchor="middle">2 · Respuesta que entra</text>
+<text class="s" x="530" y="216" text-anchor="middle">203.0.113.10:80 → .10:51000</text>
+<text class="s" x="236" y="186" text-anchor="middle">está en la tabla: pasa</text>
+<path d="M324 181L328 185.2L336 176.8" style="fill:none;stroke:var(--color-success);stroke-width:4;stroke-linecap:round;stroke-linejoin:round"/>
+<path class="ln" d="M672 276L406 276" marker-end="url(#t02te-r)" style="stroke:var(--color-danger);stroke-width:2.5"/>
+<text class="b" x="530" y="266" text-anchor="middle">3 · Paquete de fuera</text>
+<text class="s" x="530" y="296" text-anchor="middle">198.51.100.66:80 → .10:3389</text>
+<path d="M332 268L348 284M348 268L332 284" style="fill:none;stroke:var(--color-danger);stroke-width:4;stroke-linecap:round"/>
+<text class="s" x="236" y="270" text-anchor="middle">no está en la tabla:</text>
+<text class="b" x="236" y="288" text-anchor="middle" style="fill:var(--color-danger)">descartado</text>
+<rect class="box" x="150" y="392" width="460" height="66" rx="6"/>
+<text class="b" x="380" y="414" text-anchor="middle">Tabla de estado (conexiones abiertas)</text>
+<text x="380" y="440" text-anchor="middle" style="font-family:monospace">192.168.1.10 : 51000  ⇄  203.0.113.10 : 80</text>
+<path class="dash" d="M380 380V392"/>
+<text class="s" x="380" y="486" text-anchor="middle">Un filtro sin estado (sin memoria) habría dejado pasar el 3: viene del puerto 80.</text>
+</svg>

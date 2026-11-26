@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 420">
+<defs><marker id="t08ms-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="ink" d="M0 0L10 5L0 10z"/></marker><marker id="t08ms-t" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--color-secondary)"/></marker><marker id="t08ms-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="good" d="M0 0L10 5L0 10z"/></marker><marker id="t08ms-r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="bad" d="M0 0L10 5L0 10z"/></marker></defs>
+<g><rect class="box" x="20" y="150" width="44" height="30" rx="3"/><rect class="tint" x="25" y="155" width="34" height="20"/><rect class="ink" x="38" y="180" width="8" height="6"/><rect class="ink" x="28" y="186" width="28" height="4" rx="2"/></g>
+<text class="s" x="42" y="220" text-anchor="middle">cliente</text>
+<rect class="c4" x="110" y="40" width="610" height="300" rx="12"/>
+<text class="b" x="124" y="64">Servidor Apache</text>
+<rect class="c1" x="130" y="80" width="400" height="244" rx="10"/>
+<text class="b" x="330" y="104" text-anchor="middle">ModSecurity (embebido)</text>
+<rect class="box" x="150" y="120" width="170" height="52" rx="6"/>
+<text class="b" x="235.0" y="141.4" text-anchor="middle">1  Cabeceras</text>
+<text class="s" x="235.0" y="160.0" text-anchor="middle">de la petición</text>
+<rect class="box" x="340" y="120" width="170" height="52" rx="6"/>
+<text class="b" x="425.0" y="141.4" text-anchor="middle">2  Cuerpo</text>
+<text class="s" x="425.0" y="160.0" text-anchor="middle">de la petición</text>
+<rect class="box" x="340" y="200" width="170" height="52" rx="6"/>
+<text class="b" x="425.0" y="221.4" text-anchor="middle">3  Cabeceras</text>
+<text class="s" x="425.0" y="240.0" text-anchor="middle">de la respuesta</text>
+<rect class="box" x="150" y="200" width="170" height="52" rx="6"/>
+<text class="b" x="235.0" y="221.4" text-anchor="middle">4  Cuerpo</text>
+<text class="s" x="235.0" y="240.0" text-anchor="middle">de la respuesta</text>
+<rect class="c3" x="150" y="268" width="360" height="42" rx="6"/>
+<text class="b" x="330.0" y="293.4" text-anchor="middle">5  Registro en bitácora (log)</text>
+<rect class="box" x="560" y="140" width="140" height="90" rx="6"/>
+<text class="b" x="630.0" y="180.4" text-anchor="middle">Aplicación</text>
+<text class="s" x="630.0" y="199.0" text-anchor="middle">web</text>
+<path class="ln" d="M66 160 C 100 160, 110 146, 146 146" marker-end="url(#t08ms-a)"/>
+<path class="ln" d="M322 146H336" marker-end="url(#t08ms-a)"/>
+<path class="ln" d="M512 146H556" marker-end="url(#t08ms-a)"/>
+<path class="ln" d="M556 226H512" marker-end="url(#t08ms-a)"/>
+<path class="ln" d="M338 226H324" marker-end="url(#t08ms-a)"/>
+<path class="ln" d="M148 226 C 110 226, 100 184, 70 184" marker-end="url(#t08ms-a)"/>
+<text class="s" x="370" y="372" text-anchor="middle">Antes de pasar la petición a la aplicación (y la respuesta al cliente), ModSecurity</text>
+<text class="s" x="370" y="392" text-anchor="middle">la normaliza para deshacer disfraces y la compara con sus reglas (OWASP CRS).</text>
+</svg>

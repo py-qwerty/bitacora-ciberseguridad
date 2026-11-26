@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 460">
+<defs><marker id="t04hn-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="ink" d="M0 0L10 5L0 10z"/></marker><marker id="t04hn-r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--color-danger)"/></marker><marker id="t04hn-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--color-success)"/></marker></defs>
+<path class="tint" d="M40 215c-17 0 -23 -19 -8 -25 -3 -17 19 -24 29 -13 7 -14 32 -13 36 1 8 -9 29 -5 29 10 17 1 19 26 2 27z"/>
+<text class="b" x="70" y="205" text-anchor="middle" style="fill:var(--color-secondary)">Internet</text>
+<path class="ln" d="M122 200H740" style="stroke-width:4"/>
+<text class="s" x="735" y="224" text-anchor="end">segmento de red</text>
+<rect class="c3" x="230" y="191" width="26" height="18" rx="3"/>
+<path class="" d="M230 191L243 201L256 191" style="fill:none;stroke:#8a5a1c;stroke-width:1.2"/>
+<rect class="c3" x="300" y="191" width="26" height="18" rx="3"/>
+<path class="" d="M300 191L313 201L326 191" style="fill:none;stroke:#8a5a1c;stroke-width:1.2"/>
+<rect class="c3" x="480" y="191" width="26" height="18" rx="3"/>
+<path class="" d="M480 191L493 201L506 191" style="fill:none;stroke:#8a5a1c;stroke-width:1.2"/>
+<rect class="c3" x="540" y="191" width="26" height="18" rx="3"/>
+<path class="" d="M540 191L553 201L566 191" style="fill:none;stroke:#8a5a1c;stroke-width:1.2"/>
+<rect class="c2" x="275" y="34" width="230" height="92" rx="10"/>
+<text class="b" x="390" y="58" text-anchor="middle">NIDS</text>
+<text class="s" x="390" y="80" text-anchor="middle">sniffer en modo promiscuo:</text>
+<text class="s" x="390" y="97" text-anchor="middle">lee una copia de todos</text>
+<text class="s" x="390" y="114" text-anchor="middle">los paquetes del segmento</text>
+<path class="" d="M390 126V194" style="stroke:var(--color-secondary);stroke-width:2.5;stroke-dasharray:6 4;fill:none"/>
+<rect class="box" x="520" y="44" width="220" height="58" rx="8"/>
+<text class="s" x="630" y="68" text-anchor="middle">«Alguien barre todos</text>
+<text class="s" x="630" y="86" text-anchor="middle">los puertos de la red»</text>
+<path class="dash" d="M505 74H520"/>
+<path class="ln" d="M180 200V240" style="stroke-width:2.5"/>
+<path class="ln" d="M400 200V240" style="stroke-width:2.5"/>
+<path class="ln" d="M620 200V240" style="stroke-width:2.5"/>
+<g><rect class="box" x="164" y="240" width="32" height="42" rx="3"/><path class="ln" d="M170 250h20M170 258h20M170 266h20"/><circle class="good" cx="188" cy="275" r="2.5"/></g>
+<g><rect class="box" x="378" y="246" width="44" height="30" rx="3"/><rect class="tint" x="383" y="251" width="34" height="20"/><rect class="ink" x="396" y="276" width="8" height="6"/><rect class="ink" x="386" y="282" width="28" height="4" rx="2"/></g>
+<g><rect class="box" x="604" y="240" width="32" height="42" rx="3"/><path class="ln" d="M610 250h20M610 258h20M610 266h20"/><circle class="good" cx="628" cy="275" r="2.5"/></g>
+<text class="s" x="180" y="300" text-anchor="middle">servidor</text>
+<text class="s" x="400" y="300" text-anchor="middle">equipo</text>
+<text class="s" x="620" y="300" text-anchor="middle">servidor</text>
+<rect class="c1" x="40" y="316" width="290" height="124" rx="10"/>
+<text class="b" x="185" y="340" text-anchor="middle">HIDS (instalado en el servidor)</text>
+<text class="s" x="185" y="364" text-anchor="middle">mira dentro del equipo: archivos,</text>
+<text class="s" x="185" y="382" text-anchor="middle">registros, actividad local</text>
+<text class="s" x="185" y="418" text-anchor="middle" style="fill:var(--color-text)">«Ha cambiado el archivo de contraseñas»</text>
+<path class="dash" d="M180 306V316"/>
+<rect class="tint" x="420" y="316" width="320" height="124" rx="8"/>
+<text class="s" x="580" y="342" text-anchor="middle">HIDS: un solo equipo, en profundidad.</text>
+<text class="s" x="580" y="364" text-anchor="middle">NIDS: todo el tráfico del segmento,</text>
+<text class="s" x="580" y="386" text-anchor="middle">no solo el dirigido a él, pero no ve</text>
+<text class="s" x="580" y="408" text-anchor="middle">lo que pasa dentro de cada equipo.</text>
+</svg>

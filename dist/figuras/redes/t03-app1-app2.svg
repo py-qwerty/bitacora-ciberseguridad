@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 400">
+<defs><marker id="t03a12-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="ink" d="M0 0L10 5L0 10z"/></marker><marker id="t03a12-r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--color-danger)"/></marker><marker id="t03a12-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--color-success)"/></marker></defs>
+<rect class="" x="10" y="10" width="740" height="170" rx="10" style="fill:none;stroke:var(--color-muted)"/>
+<text x="28" y="40"><tspan class="b">APP-1</tspan><tspan class="s" dx="8">un único cortafuegos</tspan></text>
+<rect class="band1" x="30" y="60" width="200" height="100" rx="10"/>
+<text class="s" x="130" y="150" text-anchor="middle">red interior</text>
+<g><rect class="box" x="50" y="76" width="44" height="30" rx="3"/><rect class="tint" x="55" y="81" width="34" height="20"/><rect class="ink" x="68" y="106" width="8" height="6"/><rect class="ink" x="58" y="112" width="28" height="4" rx="2"/></g>
+<g><rect class="box" x="108" y="76" width="44" height="30" rx="3"/><rect class="tint" x="113" y="81" width="34" height="20"/><rect class="ink" x="126" y="106" width="8" height="6"/><rect class="ink" x="116" y="112" width="28" height="4" rx="2"/></g>
+<g><rect class="box" x="166" y="76" width="44" height="30" rx="3"/><rect class="tint" x="171" y="81" width="34" height="20"/><rect class="ink" x="184" y="106" width="8" height="6"/><rect class="ink" x="174" y="112" width="28" height="4" rx="2"/></g>
+<path class="ln" d="M230 110H340" style="stroke-width:3"/>
+<path class="ln" d="M396 110H560" style="stroke-width:3"/>
+<g><rect class="c5" x="352" y="94" width="32" height="32" rx="2"/><path d="M352 102h32M352 110h32M352 118h32M360 94v8M376 94v8M368 102v8M360 110v8M376 110v8M368 118v8" style="fill:none;stroke:#a33331;stroke-width:1.2"/></g>
+<text class="b" x="368" y="156" text-anchor="middle">cortafuegos</text>
+<path class="tint" d="M607 126.5c-18.7 0 -25.3 -20.9 -8.8 -27.5 -3.3 -18.7 20.9 -26.4 31.9 -14.3 7.7 -15.4 35.2 -14.3 39.6 1.1 8.8 -9.9 31.9 -5.5 31.9 11 18.7 1.1 20.9 28.6 2.2 29.7z"/>
+<text class="b" x="640" y="115" text-anchor="middle" style="fill:var(--color-secondary)">Internet</text>
+<path class="" d="M600 80C560 62 450 62 404 86" marker-end="url(#t03a12-r)" style="stroke:var(--color-danger);stroke-width:2.5;fill:none;stroke-dasharray:7 5"/>
+<text class="s" x="500" y="46" text-anchor="middle"></text>
+<text class="s" x="500" y="50" text-anchor="middle" style="fill:var(--color-danger)">un fallo aquí = toda la red expuesta</text>
+<rect class="" x="10" y="210" width="740" height="170" rx="10" style="fill:none;stroke:var(--color-muted)"/>
+<text x="28" y="240"><tspan class="b">APP-2</tspan><tspan class="s" dx="8">un único proxy (monitoriza, autoriza y registra)</tspan></text>
+<rect class="band1" x="30" y="260" width="200" height="100" rx="10"/>
+<text class="s" x="130" y="350" text-anchor="middle">red interior</text>
+<g><rect class="box" x="50" y="276" width="44" height="30" rx="3"/><rect class="tint" x="55" y="281" width="34" height="20"/><rect class="ink" x="68" y="306" width="8" height="6"/><rect class="ink" x="58" y="312" width="28" height="4" rx="2"/></g>
+<g><rect class="box" x="108" y="276" width="44" height="30" rx="3"/><rect class="tint" x="113" y="281" width="34" height="20"/><rect class="ink" x="126" y="306" width="8" height="6"/><rect class="ink" x="116" y="312" width="28" height="4" rx="2"/></g>
+<g><rect class="box" x="166" y="276" width="44" height="30" rx="3"/><rect class="tint" x="171" y="281" width="34" height="20"/><rect class="ink" x="184" y="306" width="8" height="6"/><rect class="ink" x="174" y="312" width="28" height="4" rx="2"/></g>
+<path class="ln" d="M230 310H340" style="stroke-width:3"/>
+<path class="ln" d="M396 310H560" style="stroke-width:3"/>
+<g><rect class="box" x="352" y="288" width="32" height="42" rx="3"/><path class="ln" d="M358 298h20M358 306h20M358 314h20"/><circle class="good" cx="376" cy="323" r="2.5"/></g>
+<text class="b" x="368" y="356" text-anchor="middle">proxy</text>
+<path class="tint" d="M607 326.5c-18.7 0 -25.3 -20.9 -8.8 -27.5 -3.3 -18.7 20.9 -26.4 31.9 -14.3 7.7 -15.4 35.2 -14.3 39.6 1.1 8.8 -9.9 31.9 -5.5 31.9 11 18.7 1.1 20.9 28.6 2.2 29.7z"/>
+<text class="b" x="640" y="315" text-anchor="middle" style="fill:var(--color-secondary)">Internet</text>
+<path class="" d="M600 280C560 262 450 262 404 286" marker-end="url(#t03a12-r)" style="stroke:var(--color-danger);stroke-width:2.5;fill:none;stroke-dasharray:7 5"/>
+<text class="s" x="500" y="246" text-anchor="middle"></text>
+<text class="s" x="500" y="250" text-anchor="middle" style="fill:var(--color-danger)">un fallo aquí = toda la red expuesta</text>
+<text class="s" x="368" y="166" text-anchor="middle"></text>
+</svg>

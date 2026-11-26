@@ -160,6 +160,7 @@
           "term": "CVE (Common Vulnerabilities and Exposures)",
           "text": "Catálogo público de vulnerabilidades conocidas. Cada una tiene un identificador del tipo CVE-2021-44228 (la famosa Log4Shell de la librería Log4j)."
         },
+        {"type":"figure","src":"figuras/sistemas/t07-donde-mira.svg","title":"Dónde mira cada análisis","caption":"Esquema nuevo a partir de la tabla del apartado.","alt":"Dos zonas. A la izquierda, sin ejecutar la aplicación: una caja con el código fuente propio (o binario o bytecode), etiquetada SAST, que lo lee sin ejecutarlo; y otra con las librerías de terceros, etiquetada SCA, que busca CVE y licencias. Una flecha de despliegue lleva a la derecha, con la aplicación en marcha: un servidor con la aplicación que contiene un agente etiquetado IAST, que ve el código, la memoria y el flujo de datos por dentro; y fuera, un escáner etiquetado DAST que ataca la aplicación desde fuera con peticiones. Nota: caja blanca ve el interior (SAST, IAST), caja negra solo entradas y salidas (DAST); ninguna lo ve todo."},
         {
           "type": "list",
           "items": [
@@ -278,6 +279,7 @@
           ],
           "title": "Ventajas de combinar"
         },
+        {"type":"figure","src":"figuras/sistemas/t07-cobertura.svg","title":"Ningún análisis cubre todas las vulnerabilidades","caption":"Redibujado de la figura del tema sobre el análisis híbrido; los tamaños son orientativos.","alt":"Un gran círculo representa el total de vulnerabilidades. Dentro hay círculos más pequeños que se solapan: SAST (el mayor), IAST, DAST, SCA y el análisis funcional de requisitos en el centro. Ninguno llena el círculo grande y quedan zonas sin cubrir. A la derecha, tres ideas: cada técnica cubre un trozo distinto del riesgo, se solapan y se confirman entre sí, y quedan huecos que exigen revisión manual."},
         {
           "type": "p",
           "text": "El tema incluye una «metodología sugerida para un análisis combinado» (Tabla 1), pero está en imagen y no se puede leer en el texto; su idea es organizar por fases lo que acabas de ver en el apartado anterior."
@@ -450,6 +452,7 @@
           ],
           "title": "Los tres niveles de análisis"
         },
+        {"type":"figure","src":"figuras/sistemas/t07-sast-niveles.svg","title":"SAST: del código al informe, en tres niveles","caption":"Redibujado y simplificado del esquema de análisis estático del tema, con la tabla de niveles.","alt":"Arriba, una cadena de cuatro cajas: código fuente (entrada), modelo (árbol sintáctico), reglas (patrones de fallo) e informe (posibles errores). Abajo, tres niveles anidados: el más interior es léxico, sintáctico y semántico (como un compilador, por ejemplo detectar una llamada a eval); lo envuelve el intraprocedural o local (dentro de una función); y todo queda dentro del interprocedural o global (entre funciones, clases o módulos), ilustrado con un dato que entra en leerFormulario(), pasa por guardar() y acaba sin filtrar en ejecutarSQL()."},
         {
           "type": "list",
           "items": [
@@ -703,6 +706,7 @@
           ],
           "title": "Las fases de un análisis DAST"
         },
+        {"type":"figure","src":"figuras/sistemas/t07-dast-fases.svg","title":"Las fases de un análisis DAST","caption":"Redibujado del esquema de análisis dinámico del tema, ajustado a las fases del texto.","alt":"Flujo de izquierda a derecha: Reconocimiento (tecnologías, puertos), Descubrimiento (crawling manual y automático, y escaneo pasivo que observa sin atacar), Ataque (escaneo activo que inyecta payloads, y fuzzing con entradas raras) y Auditoría manual e informe. Desde Ataque una flecha vuelve a Descubrimiento: los descubrimientos adicionales obligan a recorrer de nuevo. Nota: el escáner trabaja en modo proxy contra la aplicación en marcha y el analista repite cada ataque para confirmarlo."},
         {
           "type": "table",
           "head": [
@@ -905,6 +909,7 @@
           "title": "Ejemplo del tema",
           "text": "**Acunetix + AcuSensor**: Acunetix hace un análisis dinámico (DAST) y AcuSensor, un agente instalado en el servidor, hace un análisis en tiempo real desde dentro (IAST). Se pasan los resultados entre sí: el escáner descubre rutas que el sensor vigila, y el sensor confirma o descarta lo que el escáner sospecha. Resultado: más detecciones y mejor rendimiento."
         },
+        {"type":"figure","src":"figuras/sistemas/t07-hast-acunetix.svg","title":"Una herramienta híbrida: Acunetix + AcuSensor","caption":"Redibujado de la figura del tema (Acunetix con AcuSensor).","alt":"Acunetix, el escáner DAST, envía peticiones de escaneo a la aplicación web en marcha en el servidor. Junto a la aplicación está AcuSensor, el agente IAST, que la vigila por dentro. AcuSensor devuelve al escáner cómo se comporta la aplicación y en qué línea de código está el fallo. El escáner descubre rutas y el sensor confirma o descarta lo que el escáner sospecha."},
         {
           "type": "list",
           "items": [

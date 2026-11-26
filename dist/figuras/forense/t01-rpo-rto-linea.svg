@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 340">
+<defs><marker id="t01rr-ink" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="ink" d="M0 0L10 5L0 10z"/></marker><marker id="t01rr-red" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="bad" d="M0 0L10 5L0 10z"/></marker><marker id="t01rr-grn" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="good" d="M0 0L10 5L0 10z"/></marker></defs>
+<text class="h" x="360" y="28" text-anchor="middle">Caso de la tienda online: copia cada hora, cae a las 10:00</text>
+<path class="ln" d="M40 170L700 170" style="stroke:var(--color-primary)" marker-end="url(#t01rr-ink)"/>
+<path class="ln" d="M60 164V176" style="stroke:var(--color-primary)"/>
+<text class="s" x="60" y="196" text-anchor="middle">8:00</text>
+<path class="ln" d="M148.571 164V176" style="stroke:var(--color-primary)"/>
+<text class="s" x="148.571" y="196" text-anchor="middle">9:00</text>
+<path class="ln" d="M237.143 164V176" style="stroke:var(--color-primary)"/>
+<text class="s" x="237.143" y="196" text-anchor="middle">10:00</text>
+<path class="ln" d="M325.714 164V176" style="stroke:var(--color-primary)"/>
+<text class="s" x="325.714" y="196" text-anchor="middle">11:00</text>
+<path class="ln" d="M414.286 164V176" style="stroke:var(--color-primary)"/>
+<text class="s" x="414.286" y="196" text-anchor="middle">12:00</text>
+<path class="ln" d="M502.857 164V176" style="stroke:var(--color-primary)"/>
+<text class="s" x="502.857" y="196" text-anchor="middle">13:00</text>
+<path class="ln" d="M591.429 164V176" style="stroke:var(--color-primary)"/>
+<text class="s" x="591.429" y="196" text-anchor="middle">14:00</text>
+<path class="ln" d="M680 164V176" style="stroke:var(--color-primary)"/>
+<text class="s" x="680" y="196" text-anchor="middle">15:00</text>
+<rect class="c1" x="136.571" y="120" width="24" height="30" rx="3"/>
+<text class="b" x="148.571" y="110" text-anchor="middle">Última copia</text>
+<path class="bad" d="M223.143 122l14 -14 14 14 -14 14z"/>
+<text class="b" x="237.143" y="98" text-anchor="middle" style="fill:var(--color-danger)">Desastre</text>
+<rect class="good" x="579.429" y="120" width="24" height="30" rx="3"/>
+<text class="b" x="591.429" y="110" text-anchor="middle">Vuelve a vender</text>
+<rect class="c3" x="148.571" y="210" width="88.5714" height="34" rx="4"/>
+<text class="b" x="192.857" y="232" text-anchor="middle">RPO 1 h</text>
+<rect class="c4" x="237.143" y="210" width="354.286" height="34" rx="4"/>
+<text class="b" x="370" y="232" text-anchor="middle">RTO 4 h</text>
+<text class="s" x="370" y="262" text-anchor="middle">tiempo parado</text>
+<text class="s" x="192.857" y="262" text-anchor="middle">datos perdidos</text>
+<path class="sbad" d="M502.857 130V180M502.857 204V280" style="stroke-dasharray:6 4"/>
+<text class="s" x="508.857" y="296" style="fill:var(--color-danger)">MTD = 3 h: el plan se pasa</text>
+<text class="b" x="360" y="326" text-anchor="middle">Pérdida real = RPO + RTO = 1 h hacia atrás + 4 h hacia delante = 5 horas.</text>
+</svg>

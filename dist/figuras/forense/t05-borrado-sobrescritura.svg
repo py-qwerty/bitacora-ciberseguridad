@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 420">
+<defs><marker id="t05bs-ink" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="ink" d="M0 0L10 5L0 10z"/></marker><marker id="t05bs-red" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="bad" d="M0 0L10 5L0 10z"/></marker><marker id="t05bs-grn" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="good" d="M0 0L10 5L0 10z"/></marker></defs>
+<text class="h" x="360" y="24" text-anchor="middle">Borrar no destruye: sobrescribir, sí</text>
+<text class="b" x="20" y="58">1. Archivo normal: el índice apunta a sus partes</text>
+<rect class="c4" x="20" y="66" width="130" height="40" rx="6"/>
+<text class="b" x="85" y="92" text-anchor="middle">video.mkv</text>
+<rect class="c4" x="180" y="66" width="110" height="40" rx="6"/>
+<text class="b" x="235" y="91" text-anchor="middle">Parte 1</text>
+<rect class="c4" x="304" y="66" width="110" height="40" rx="6"/>
+<text class="b" x="359" y="91" text-anchor="middle">Parte 2</text>
+<rect class="c4" x="428" y="66" width="110" height="40" rx="6"/>
+<text class="b" x="483" y="91" text-anchor="middle">Parte n</text>
+<rect class="c4" x="552" y="66" width="110" height="40" rx="6"/>
+<text class="b" x="607" y="91" text-anchor="middle">FIN</text>
+<path class="ln" d="M152 86L176 86" marker-end="url(#t05bs-ink)"/>
+<text class="b" x="20" y="152">2. Borrado lógico: se tacha la entrada; las partes siguen ahí</text>
+<rect class="c5" x="20" y="160" width="130" height="40" rx="6"/>
+<text class="b" x="85" y="186" text-anchor="middle">video.mkv</text>
+<path class="sbad" d="M28 166L142 194M28 194L142 166"/>
+<rect class="c4" x="180" y="160" width="110" height="40" rx="6"/>
+<text class="b" x="235" y="185" text-anchor="middle">Parte 1</text>
+<rect class="c4" x="304" y="160" width="110" height="40" rx="6"/>
+<text class="b" x="359" y="185" text-anchor="middle">Parte 2</text>
+<rect class="c4" x="428" y="160" width="110" height="40" rx="6"/>
+<text class="b" x="483" y="185" text-anchor="middle">Parte n</text>
+<rect class="c4" x="552" y="160" width="110" height="40" rx="6"/>
+<text class="b" x="607" y="185" text-anchor="middle">FIN</text>
+<path class="dash" d="M152 180H176"/>
+<text class="s" x="400" y="224" text-anchor="middle">espacio marcado como «disponible»</text>
+<text class="b" x="20" y="250">3. Otro archivo ocupa parte del hueco</text>
+<rect class="c5" x="20" y="258" width="130" height="40" rx="6"/>
+<text class="b" x="85" y="284" text-anchor="middle">video.mkv</text>
+<path class="sbad" d="M28 264L142 292M28 292L142 264"/>
+<rect class="c4" x="180" y="258" width="110" height="40" rx="6"/>
+<text class="b" x="235" y="283" text-anchor="middle">Parte 1</text>
+<rect class="c3" x="304" y="258" width="110" height="40" rx="6"/>
+<text class="b" x="359" y="283" text-anchor="middle">video2.avi</text>
+<rect class="c4" x="428" y="258" width="110" height="40" rx="6"/>
+<text class="b" x="483" y="283" text-anchor="middle">Parte n</text>
+<rect class="c4" x="552" y="258" width="110" height="40" rx="6"/>
+<text class="b" x="607" y="283" text-anchor="middle">FIN</text>
+<path class="dash" d="M152 278H176"/>
+<rect class="c3" x="20" y="320" width="130" height="34" rx="6"/>
+<text class="b" x="85" y="342" text-anchor="middle">video2.avi</text>
+<path class="ln" d="M152 337L300 302" marker-end="url(#t05bs-ink)"/>
+<text class="b" x="360" y="386" text-anchor="middle">Se recupera la parte 1, la n y el FIN; la parte 2 se ha perdido.</text>
+<text class="s" x="360" y="406" text-anchor="middle">Una foto así sale cortada o con zonas grises.</text>
+</svg>

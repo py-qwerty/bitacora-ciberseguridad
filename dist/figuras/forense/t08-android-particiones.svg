@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 330">
+<defs><marker id="t08ap-ink" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="ink" d="M0 0L10 5L0 10z"/></marker><marker id="t08ap-red" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="bad" d="M0 0L10 5L0 10z"/></marker><marker id="t08ap-grn" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="good" d="M0 0L10 5L0 10z"/></marker></defs>
+<text class="h" x="360" y="24" text-anchor="middle">La memoria de un Android, partición a partición</text>
+<rect class="tint" x="20" y="60" width="90" height="60" rx="6"/>
+<text class="b" x="65" y="86" text-anchor="middle">boot</text>
+<text class="s" x="65" y="106" text-anchor="middle" style="font-size:12px">kernel</text>
+<rect class="tint" x="110" y="60" width="140" height="60" rx="6"/>
+<text class="b" x="180" y="86" text-anchor="middle">system</text>
+<text class="s" x="180" y="106" text-anchor="middle">sistema operativo</text>
+<rect class="tint" x="250" y="60" width="110" height="60" rx="6"/>
+<text class="b" x="305" y="86" text-anchor="middle">recovery</text>
+<text class="s" x="305" y="106" text-anchor="middle" style="font-size:12px">mini sistema</text>
+<rect class="tint" x="360" y="60" width="90" height="60" rx="6"/>
+<text class="b" x="405" y="86" text-anchor="middle">cache</text>
+<text class="s" x="405" y="106" text-anchor="middle" style="font-size:12px">temporales</text>
+<rect class="c5" x="450" y="60" width="250" height="60" rx="6"/>
+<text class="b" x="575" y="86" text-anchor="middle">data / userdata</text>
+<text class="s" x="575" y="106" text-anchor="middle">apps y archivos del usuario</text>
+<text class="b" x="560" y="142" text-anchor="middle" style="fill:var(--color-danger)">mayor interés forense</text>
+<text class="b" x="20" y="176">Adquisición física: se copian todas las particiones</text>
+<rect x="16" y="56" width="688" height="68" rx="10" style="fill:none;stroke:var(--color-danger);stroke-width:2.5;stroke-dasharray:7 4"/>
+<text class="b" x="20" y="214">Adquisición lógica: solo un conjunto limitado de carpetas de data</text>
+<rect class="c4" x="20" y="228" width="168" height="36" rx="6"/>
+<text class="s" x="104" y="251" text-anchor="middle">multimedia</text>
+<rect class="c4" x="200" y="228" width="168" height="36" rx="6"/>
+<text class="s" x="284" y="251" text-anchor="middle">ajustes de apps</text>
+<rect class="c4" x="380" y="228" width="168" height="36" rx="6"/>
+<text class="s" x="464" y="251" text-anchor="middle">algunas bases .db</text>
+<text class="b" x="360" y="300" text-anchor="middle">Que algo no esté en una copia lógica no significa que nunca existiera.</text>
+</svg>

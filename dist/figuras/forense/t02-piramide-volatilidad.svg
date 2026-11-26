@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 470">
+<defs><marker id="t02pv-ink" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="ink" d="M0 0L10 5L0 10z"/></marker><marker id="t02pv-red" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="bad" d="M0 0L10 5L0 10z"/></marker><marker id="t02pv-grn" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="good" d="M0 0L10 5L0 10z"/></marker></defs>
+<text class="h" x="360" y="26" text-anchor="middle">Orden de volatilidad (RFC 3227)</text>
+<path class="c5" style="fill-opacity:.35" d="M260 50L500 440H20z"/>
+<text class="s" x="360" y="48" text-anchor="middle">de arriba (se recoge primero) a abajo (último)</text>
+<rect class="c5" x="110" y="100" width="300" height="42" rx="6"/>
+<text x="260" y="126" text-anchor="middle">Registros y caché del procesador</text>
+<rect class="c5" x="95" y="148" width="330" height="42" rx="6"/>
+<text x="260" y="174" text-anchor="middle">RAM: rutas, procesos, archivos abiertos</text>
+<rect class="c3" x="80" y="196" width="360" height="42" rx="6"/>
+<text x="260" y="222" text-anchor="middle">Archivos temporales</text>
+<rect class="c1" x="65" y="244" width="390" height="42" rx="6"/>
+<text x="260" y="270" text-anchor="middle">Disco duro</text>
+<rect class="c1" x="50" y="292" width="420" height="42" rx="6"/>
+<text x="260" y="318" text-anchor="middle">Datos almacenados en remoto</text>
+<rect class="c1" x="35" y="340" width="450" height="42" rx="6"/>
+<text x="260" y="366" text-anchor="middle">Configuración física y de red</text>
+<rect class="c1" x="20" y="388" width="480" height="42" rx="6"/>
+<text x="260" y="414" text-anchor="middle">Dispositivos extraíbles</text>
+<path class="ln" d="M512 100h8V142h-8"/>
+<text class="b" x="532" y="121" style="fill:var(--color-danger)">No se puede adquirir</text>
+<text class="s" x="532" y="141">cambia con cualquier acción</text>
+<path class="ln" d="M512 148h8V238h-8"/>
+<text class="b" x="532" y="193">Volátiles</text>
+<text class="s" x="532" y="213">se pierden al apagar</text>
+<path class="ln" d="M512 244h8V430h-8"/>
+<text class="b" x="532" y="337">No volátiles</text>
+<text class="s" x="532" y="357">sobreviven al apagado</text>
+</svg>

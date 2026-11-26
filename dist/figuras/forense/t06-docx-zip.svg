@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 350">
+<defs><marker id="t06dz-ink" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="ink" d="M0 0L10 5L0 10z"/></marker><marker id="t06dz-red" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="bad" d="M0 0L10 5L0 10z"/></marker><marker id="t06dz-grn" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="good" d="M0 0L10 5L0 10z"/></marker></defs>
+<text class="h" x="360" y="24" text-anchor="middle">Un .docx por dentro: carpetas y archivos</text>
+<g><path class="c4" d="M53 75.8h37.8l16.2 16.2v52.2h-54z"/><path class="ln" d="M63.8 104.6h32.4M63.8 117.2h32.4M63.8 129.8h21.6"/></g>
+<text class="b" x="80" y="170" text-anchor="middle">informe.docx</text>
+<text class="s" x="80" y="190" text-anchor="middle">(en realidad, un ZIP)</text>
+<path class="ln" d="M130 110L196 110" marker-end="url(#t06dz-ink)"/>
+<text class="s" x="163" y="98" text-anchor="middle">abrir</text>
+<rect class="box" x="200" y="52" width="500" height="216" rx="10"/>
+<text class="b" x="220" y="80">informe.docx (ZIP)</text>
+<path class="dash" d="M232 88V103h10"/>
+<text x="248" y="108" style="font-family:Menlo,Consolas,monospace;font-size:14px">[Content_Types].xml</text>
+<path class="dash" d="M232 116V131h10"/>
+<text x="248" y="136" style="font-family:Menlo,Consolas,monospace;font-size:14px">word/</text>
+<path class="dash" d="M260 144V159h10"/>
+<text x="276" y="164" style="font-family:Menlo,Consolas,monospace;font-size:14px">document.xml  ← el texto</text>
+<path class="dash" d="M260 172V187h10"/>
+<text x="276" y="192" style="font-family:Menlo,Consolas,monospace;font-size:14px">media/</text>
+<path class="dash" d="M288 200V215h10"/>
+<text x="304" y="220" style="font-family:Menlo,Consolas,monospace;font-size:14px">image1.png</text>
+<path class="dash" d="M288 228V243h10"/>
+<text x="304" y="248" style="font-family:Menlo,Consolas,monospace;font-size:14px;font-weight:700">image3.png ← el logotipo buscado</text>
+<rect class="c5" x="300" y="228" width="390" height="30" rx="6" style="fill-opacity:0;stroke-width:2.5"/>
+<text class="s" x="360" y="304" text-anchor="middle">Si no se extrae lo embebido, la búsqueda de .png o .jpg no ve la imagen.</text>
+<text class="s" x="360" y="324" text-anchor="middle">Extraído, se le aplican hashes, firmas y palabras clave como a cualquier archivo.</text>
+</svg>

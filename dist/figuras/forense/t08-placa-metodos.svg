@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 420">
+<defs><marker id="t08pm-ink" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="ink" d="M0 0L10 5L0 10z"/></marker><marker id="t08pm-red" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="bad" d="M0 0L10 5L0 10z"/></marker><marker id="t08pm-grn" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="good" d="M0 0L10 5L0 10z"/></marker></defs>
+<text class="h" x="360" y="24" text-anchor="middle">Tres formas de llegar al chip de memoria</text>
+<rect class="c1" x="40" y="60" width="370" height="250" rx="14" style="fill-opacity:.6"/>
+<text class="b" x="220" y="84" text-anchor="middle">Placa (PCB) del móvil</text>
+<rect class="ink" x="70" y="150" width="90" height="70" rx="6"/>
+<text class="b w" x="115" y="190" text-anchor="middle">CPU</text>
+<rect class="c3" x="210" y="150" width="110" height="80" rx="6"/>
+<text class="b" x="265" y="186" text-anchor="middle">eMMC</text>
+<text class="s" x="265" y="206" text-anchor="middle">(memoria)</text>
+<path class="ln" d="M160 185H210" style="stroke-width:3"/>
+<circle class="c4" cx="80" cy="110" r="6"/>
+<circle class="c4" cx="98" cy="110" r="6"/>
+<circle class="c4" cx="116" cy="110" r="6"/>
+<circle class="c4" cx="134" cy="110" r="6"/>
+<text class="s" x="107" y="138" text-anchor="middle">TAGs de prueba</text>
+<circle class="c2" cx="342" cy="190" r="5"/>
+<circle class="c2" cx="358" cy="190" r="5"/>
+<circle class="c2" cx="374" cy="190" r="5"/>
+<text class="s" x="358" y="216" text-anchor="middle">conectores</text>
+<text class="s" x="358" y="234" text-anchor="middle">auxiliares</text>
+<rect class="c4" x="430" y="60" width="270" height="96" rx="10"/>
+<text class="b" x="446" y="84">JTAG</text>
+<text class="s" x="446" y="104">por los contactos de prueba</text>
+<text class="s" x="446" y="122">lenta (32 GB ≈ 24 h)</text>
+<text class="s" x="446" y="140">la menos lesiva</text>
+<rect class="c2" x="430" y="170" width="270" height="96" rx="10"/>
+<text class="b" x="446" y="194">Direct eMMC (ISP)</text>
+<text class="s" x="446" y="214">conectores auxiliares, sin CPU</text>
+<text class="s" x="446" y="232">más rápida que JTAG</text>
+<text class="s" x="446" y="250">riesgo de dañar la placa</text>
+<rect class="c5" x="430" y="280" width="270" height="96" rx="10"/>
+<text class="b" x="446" y="304">Chip Off</text>
+<text class="s" x="446" y="324">se desuelda el chip y se lee fuera</text>
+<text class="s" x="446" y="342">cuando nada más funciona</text>
+<text class="s" x="446" y="360">la más destructiva</text>
+<path class="ln" d="M140 110L426 108" style="stroke:#176b9f" marker-end="url(#t08pm-ink)"/>
+<path class="ln" d="M380 190L426 206" style="stroke:#5b3f8c" marker-end="url(#t08pm-ink)"/>
+<path class="ln" d="M300 232L426 326" style="stroke:#a33331" marker-end="url(#t08pm-ink)"/>
+<text class="b" x="220" y="346" text-anchor="middle">Las tres son invasivas:</text>
+<text class="s" x="220" y="366" text-anchor="middle">necesitan auto judicial que</text>
+<text class="s" x="220" y="384" text-anchor="middle">avise del riesgo de perderlo todo.</text>
+</svg>

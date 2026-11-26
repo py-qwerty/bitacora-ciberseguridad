@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 360">
+<defs><marker id="t07ct-ink" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="ink" d="M0 0L10 5L0 10z"/></marker><marker id="t07ct-red" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="bad" d="M0 0L10 5L0 10z"/></marker><marker id="t07ct-grn" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="good" d="M0 0L10 5L0 10z"/></marker></defs>
+<text class="h" x="360" y="24" text-anchor="middle">Los cinco campos de tiempo de cron</text>
+<rect class="c4" x="60" y="60" width="52" height="52" rx="6"/>
+<text x="86" y="95" text-anchor="middle" style="font-family:Menlo,Consolas,monospace;font-size:22px;font-weight:700">10</text>
+<path class="ln" d="M86 114V165H400"/>
+<text class="s" x="408" y="170">minuto (0-59)</text>
+<rect class="tint" x="124" y="60" width="52" height="52" rx="6"/>
+<text x="150" y="95" text-anchor="middle" style="font-family:Menlo,Consolas,monospace;font-size:22px;font-weight:700">*</text>
+<path class="ln" d="M150 114V193H400"/>
+<text class="s" x="408" y="198">hora (0-23)</text>
+<rect class="tint" x="188" y="60" width="52" height="52" rx="6"/>
+<text x="214" y="95" text-anchor="middle" style="font-family:Menlo,Consolas,monospace;font-size:22px;font-weight:700">*</text>
+<path class="ln" d="M214 114V221H400"/>
+<text class="s" x="408" y="226">día del mes (1-31)</text>
+<rect class="tint" x="252" y="60" width="52" height="52" rx="6"/>
+<text x="278" y="95" text-anchor="middle" style="font-family:Menlo,Consolas,monospace;font-size:22px;font-weight:700">*</text>
+<path class="ln" d="M278 114V249H400"/>
+<text class="s" x="408" y="254">mes (1-12)</text>
+<rect class="tint" x="316" y="60" width="52" height="52" rx="6"/>
+<text x="342" y="95" text-anchor="middle" style="font-family:Menlo,Consolas,monospace;font-size:22px;font-weight:700">*</text>
+<path class="ln" d="M342 114V277H400"/>
+<text class="s" x="408" y="282">día semana (0-7)</text>
+<rect class="c5" x="400" y="60" width="300" height="52" rx="6"/>
+<text x="412" y="84" style="font-family:Menlo,Consolas,monospace;font-size:14px">perl /var/tmp/xxcrFWrZMH</text>
+<text x="412" y="104" style="font-family:Menlo,Consolas,monospace;font-size:14px">&gt;/dev/null 2&gt;&amp;1</text>
+<text class="s" x="550" y="134" text-anchor="middle">la orden que se ejecuta</text>
+<text class="b" x="360" y="322" text-anchor="middle">«10 * * * *» = en el minuto 10 de cada hora (00:10, 01:10, 02:10…).</text>
+<text class="s" x="360" y="344" text-anchor="middle">Script de nombre aleatorio en /var/tmp y salida tirada a /dev/null: huele a malware.</text>
+</svg>

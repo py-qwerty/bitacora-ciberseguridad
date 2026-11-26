@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 500">
+<defs><marker id="t08wm-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="ink" d="M0 0L10 5L0 10z"/></marker><marker id="t08wm-t" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--color-secondary)"/></marker><marker id="t08wm-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="good" d="M0 0L10 5L0 10z"/></marker><marker id="t08wm-r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="bad" d="M0 0L10 5L0 10z"/></marker></defs>
+<rect class="box" x="10" y="10" width="355" height="235" rx="10"/>
+<text class="h" x="26" y="40">Proxy inverso</text>
+<g><rect class="box" x="28" y="100" width="44" height="30" rx="3"/><rect class="tint" x="33" y="105" width="34" height="20"/><rect class="ink" x="46" y="130" width="8" height="6"/><rect class="ink" x="36" y="136" width="28" height="4" rx="2"/></g>
+<text class="s" x="50" y="170" text-anchor="middle">cliente</text>
+<g><rect class="box" x="310" y="94" width="32" height="42" rx="3"/><path class="ln" d="M316 104h20M316 112h20M316 120h20"/><circle class="good" cx="334" cy="129" r="2.5"/></g>
+<text class="s" x="326" y="170" text-anchor="middle">servidor</text>
+<path class="ln" d="M74 115H150"/>
+<path class="ln" d="M228 115H306" marker-end="url(#t08wm-a)"/>
+<rect class="c1" x="150" y="90" width="78" height="50" rx="6"/>
+<text class="b" x="189.0" y="110.4" text-anchor="middle">WAF</text>
+<text class="s" x="189.0" y="129.0" text-anchor="middle">con IP</text>
+<text class="s" x="189" y="164" text-anchor="middle">el cliente cree hablar</text>
+<text class="s" x="189" y="182" text-anchor="middle">con la web</text>
+<text class="s" x="26" y="228">Bloquea: sí. El más habitual (se ponen dos).</text>
+<rect class="box" x="375" y="10" width="355" height="235" rx="10"/>
+<text class="h" x="391" y="40">Pasivo (fuera de línea)</text>
+<g><rect class="box" x="393" y="100" width="44" height="30" rx="3"/><rect class="tint" x="398" y="105" width="34" height="20"/><rect class="ink" x="411" y="130" width="8" height="6"/><rect class="ink" x="401" y="136" width="28" height="4" rx="2"/></g>
+<text class="s" x="415" y="170" text-anchor="middle">cliente</text>
+<g><rect class="box" x="675" y="94" width="32" height="42" rx="3"/><path class="ln" d="M681 104h20M681 112h20M681 120h20"/><circle class="good" cx="699" cy="129" r="2.5"/></g>
+<text class="s" x="691" y="170" text-anchor="middle">servidor</text>
+<path class="ln" d="M439 115H671" marker-end="url(#t08wm-a)"/>
+<circle class="c4" cx="545" cy="115" r="8"/>
+<path class="dash" d="M545 124V156" marker-end="url(#t08wm-a)"/>
+<rect class="c1" x="503" y="160" width="84" height="40" rx="6"/>
+<text class="b" x="545.0" y="184.4" text-anchor="middle">WAF</text>
+<text class="s" x="557" y="106">tap: copia</text>
+<text class="s" x="391" y="228">Bloquea: no. Solo ve una copia y avisa.</text>
+<rect class="box" x="10" y="255" width="355" height="235" rx="10"/>
+<text class="h" x="26" y="285">Bridge (transparente)</text>
+<g><rect class="box" x="28" y="345" width="44" height="30" rx="3"/><rect class="tint" x="33" y="350" width="34" height="20"/><rect class="ink" x="46" y="375" width="8" height="6"/><rect class="ink" x="36" y="381" width="28" height="4" rx="2"/></g>
+<text class="s" x="50" y="415" text-anchor="middle">cliente</text>
+<g><rect class="box" x="310" y="339" width="32" height="42" rx="3"/><path class="ln" d="M316 349h20M316 357h20M316 365h20"/><circle class="good" cx="334" cy="374" r="2.5"/></g>
+<text class="s" x="326" y="415" text-anchor="middle">servidor</text>
+<path class="ln" d="M74 360H156"/>
+<path class="ln" d="M216 360H306" marker-end="url(#t08wm-a)"/>
+<rect class="c1" x="156" y="340" width="60" height="40" rx="6"/>
+<text class="b" x="186.0" y="364.4" text-anchor="middle">WAF</text>
+<text class="s" x="186" y="407" text-anchor="middle">como un switch</text>
+<text class="s" x="186" y="425" text-anchor="middle">sin dirección IP</text>
+<text class="s" x="26" y="473">Bloquea: sí. No hay que cambiar las IP.</text>
+<rect class="box" x="375" y="255" width="355" height="235" rx="10"/>
+<text class="h" x="391" y="285">Embebido</text>
+<g><rect class="box" x="393" y="345" width="44" height="30" rx="3"/><rect class="tint" x="398" y="350" width="34" height="20"/><rect class="ink" x="411" y="375" width="8" height="6"/><rect class="ink" x="401" y="381" width="28" height="4" rx="2"/></g>
+<text class="s" x="415" y="415" text-anchor="middle">cliente</text>
+<rect class="c4" x="565" y="313" width="150" height="120" rx="8"/>
+<text class="b" x="640" y="335" text-anchor="middle">servidor web</text>
+<rect class="c1" x="581" y="349" width="118" height="36" rx="6"/>
+<text class="b" x="640.0" y="371.4" text-anchor="middle">WAF</text>
+<text class="s" x="640" y="415" text-anchor="middle">plugin del servidor</text>
+<path class="ln" d="M439 367H577" marker-end="url(#t08wm-a)"/>
+<text class="s" x="391" y="473">Bloquea: sí. Ojo al rendimiento del servidor.</text>
+</svg>

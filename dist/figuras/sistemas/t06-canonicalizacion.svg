@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 330">
+<defs><marker id="t06cn-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="ink" d="M0 0L10 5L0 10z"/></marker><marker id="t06cn-t" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--color-secondary)"/></marker><marker id="t06cn-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="good" d="M0 0L10 5L0 10z"/></marker><marker id="t06cn-r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="bad" d="M0 0L10 5L0 10z"/></marker></defs>
+<text class="h" x="20" y="30">Filtro ingenuo (sin canonicalizar)</text>
+<rect class="c5" x="14" y="50" width="204" height="50" rx="6"/>
+<text class="b" x="116.0" y="70.4" text-anchor="middle">%2E%2E%2Fetc/passwd</text>
+<text class="s" x="116.0" y="89.0" text-anchor="middle">lo que envía el atacante</text>
+<path class="ln" d="M220 75H258" marker-end="url(#t06cn-a)"/>
+<rect class="box" x="262" y="50" width="210" height="50" rx="6"/>
+<text class="b" x="367.0" y="70.4" text-anchor="middle">¿Contiene «../»?</text>
+<text class="s" x="367.0" y="89.0" text-anchor="middle">no lo ve: está disfrazado</text>
+<path class="sbad" d="M474 75H520" marker-end="url(#t06cn-r)"/>
+<rect class="bad" x="524" y="50" width="176" height="50" rx="6"/>
+<text class="w" x="612.0" y="70.4" text-anchor="middle" style="fill:#fff">Pasa el ataque</text>
+<text class="s" x="612.0" y="89.0" text-anchor="middle" style="fill:#fff">lee /etc/passwd</text>
+<text class="h" x="20" y="158">Canonicalizar primero, validar después</text>
+<rect class="c5" x="14" y="178" width="204" height="50" rx="6"/>
+<text class="b" x="116.0" y="198.4" text-anchor="middle">%2E%2E%2Fetc/passwd</text>
+<text class="s" x="116.0" y="217.0" text-anchor="middle">%2E = punto, %2F = barra</text>
+<path class="ln" d="M220 203H236" marker-end="url(#t06cn-a)"/>
+<rect class="c4" x="240" y="178" width="140" height="50" rx="6"/>
+<text class="b" x="310.0" y="198.4" text-anchor="middle">Canonicalizar</text>
+<text class="s" x="310.0" y="217.0" text-anchor="middle">deshace el disfraz</text>
+<path class="ln" d="M382 203H406" marker-end="url(#t06cn-a)"/>
+<rect class="box" x="410" y="178" width="130" height="50" rx="6"/>
+<text class="b" x="475.0" y="198.4" text-anchor="middle">../etc/passwd</text>
+<text class="s" x="475.0" y="217.0" text-anchor="middle">forma canónica</text>
+<path class="ln" d="M542 203H566" marker-end="url(#t06cn-a)"/>
+<rect class="c4" x="570" y="178" width="130" height="50" rx="6"/>
+<text class="b" x="635.0" y="198.4" text-anchor="middle">Validar</text>
+<text class="s" x="635.0" y="217.0" text-anchor="middle">lista de permitidos</text>
+<path class="sgood" d="M635 230V256" marker-end="url(#t06cn-g)"/>
+<rect class="good" x="540" y="260" width="160" height="40" rx="6"/>
+<text class="w" x="620.0" y="284.4" text-anchor="middle" style="fill:#fff">Rechazado</text>
+<text class="s" x="20" y="270">El validador ve lo que de verdad se pide.</text>
+<text class="s" x="20" y="289">Si no está permitido, se rechaza (no se «arregla»).</text>
+</svg>

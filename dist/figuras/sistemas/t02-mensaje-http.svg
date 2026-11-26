@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 416">
+<defs><marker id="t02-mensaje-http-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="ink" d="M0 0L10 5L0 10z"/></marker><marker id="t02-mensaje-http-r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="bad" d="M0 0L10 5L0 10z"/></marker><marker id="t02-mensaje-http-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="good" d="M0 0L10 5L0 10z"/></marker></defs>
+<text class="h" x="370" y="26" text-anchor="middle">Las cuatro partes de un mensaje HTTP</text>
+<text class="b" x="20" y="56">Petición</text>
+<rect class="c1" x="20" y="82" width="700" height="32" rx="4"/>
+<text class="b" x="30" y="103.0">1 Línea inicial</text>
+<text x="214" y="103" font-family="Menlo,Consolas,monospace" xml:space="preserve" style="font-size:15px">POST /login HTTP/1.1</text>
+<rect class="c4" x="20" y="118" width="700" height="80" rx="4"/>
+<text class="b" x="30" y="163.0">2 Cabeceras</text>
+<text x="214" y="139" font-family="Menlo,Consolas,monospace" xml:space="preserve" style="font-size:15px">Host: tienda.example</text>
+<text x="214" y="163" font-family="Menlo,Consolas,monospace" xml:space="preserve" style="font-size:15px">Content-Type: application/x-www-form-urlencoded</text>
+<text x="214" y="187" font-family="Menlo,Consolas,monospace" xml:space="preserve" style="font-size:15px">Content-Length: 25</text>
+<rect class="box" x="20" y="202" width="700" height="32" rx="4"/>
+<text class="b" x="30" y="223.0">3 Línea vacía</text>
+<text class="s" x="214" y="223" font-family="Menlo,Consolas,monospace" xml:space="preserve" style="font-size:15px">\r\n   ← CR LF: separa cabeceras y cuerpo</text>
+<rect class="c3" x="20" y="238" width="700" height="32" rx="4"/>
+<text class="b" x="30" y="259.0">4 Cuerpo</text>
+<text x="214" y="259" font-family="Menlo,Consolas,monospace" xml:space="preserve" style="font-size:15px">usuario=ana&amp;clave=s3cr3t0</text>
+<path class="ln" d="M214.0 76v-5H250.12v5" style="stroke-width:1.5"/>
+<text class="s" x="232.06" y="66" text-anchor="middle">método</text>
+<path class="ln" d="M259.15 76v-5H313.33v5" style="stroke-width:1.5"/>
+<text class="s" x="286.24" y="66" text-anchor="middle">URL</text>
+<path class="ln" d="M322.36 76v-5H394.6v5" style="stroke-width:1.5"/>
+<text class="s" x="358.48" y="66" text-anchor="middle">versión</text>
+<text class="b" x="20" y="332">Respuesta</text>
+<rect class="c1" x="20" y="358" width="700" height="32" rx="4"/>
+<text class="b" x="30" y="379.0">1 Línea inicial</text>
+<text x="214" y="379" font-family="Menlo,Consolas,monospace" xml:space="preserve" style="font-size:15px">HTTP/1.1 403 Forbidden</text>
+<rect class="c4" x="20" y="394" width="700" height="32" rx="4"/>
+<text class="b" x="30" y="415.0">2 Cabeceras</text>
+<text x="214" y="415" font-family="Menlo,Consolas,monospace" xml:space="preserve" style="font-size:15px">Content-Type: text/html</text>
+<rect class="box" x="20" y="430" width="700" height="32" rx="4"/>
+<text class="b" x="30" y="451.0">3 Línea vacía</text>
+<text class="s" x="214" y="451" font-family="Menlo,Consolas,monospace" xml:space="preserve" style="font-size:15px">\r\n   ← CR LF: separa cabeceras y cuerpo</text>
+<rect class="c3" x="20" y="466" width="700" height="32" rx="4"/>
+<text class="b" x="30" y="487.0">4 Cuerpo</text>
+<text x="214" y="487" font-family="Menlo,Consolas,monospace" xml:space="preserve" style="font-size:15px">&lt;h1&gt;Sin permiso&lt;/h1&gt;</text>
+<path class="ln" d="M214.0 352v-5H286.24v5" style="stroke-width:1.5"/>
+<text class="s" x="250.12" y="342" text-anchor="middle">versión</text>
+<path class="ln" d="M295.27 352v-5H322.36v5" style="stroke-width:1.5"/>
+<text class="s" x="308.815" y="342" text-anchor="middle">código</text>
+<path class="ln" d="M331.39 352v-5H412.65999999999997v5" style="stroke-width:1.5"/>
+<text class="s" x="372.025" y="342" text-anchor="middle">texto</text>
+</svg>

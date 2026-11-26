@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 500">
+<defs><marker id="t01-ou-niveles-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="ink" d="M0 0L10 5L0 10z"/></marker><marker id="t01-ou-niveles-r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="bad" d="M0 0L10 5L0 10z"/></marker><marker id="t01-ou-niveles-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="good" d="M0 0L10 5L0 10z"/></marker></defs>
+<text class="h" x="250" y="28" text-anchor="middle">La estructura de OU y la GPO de cada nivel</text>
+<path class="ln" d="M37 84V148H70M37 148V228H70"/>
+<path class="ln" d="M87 244V308H120M87 308V378H120M87 378V448H120"/>
+<path class="c1" d="M20 58h12l4 5h18v23h-34z"/>
+<text class="b" x="62" y="72">empresa.local</text>
+<text class="s" x="62" y="90">el dominio</text>
+<rect class="c1" x="330" y="50" width="210" height="50" rx="5"/>
+<text class="b" x="435" y="71" text-anchor="middle">GPO del dominio</text>
+<text class="s" x="435" y="90" text-anchor="middle">contraseñas, bloqueo, Kerberos</text>
+<path class="ln" d="M328 75H194.8" marker-end="url(#t01-ou-niveles-a)"/>
+<path class="c4" d="M70 138h12l4 5h18v23h-34z"/>
+<text class="b" x="112" y="152">Domain Controllers</text>
+<text class="s" x="112" y="170">OU de los DC</text>
+<rect class="c4" x="330" y="130" width="210" height="50" rx="5"/>
+<text class="b" x="435" y="151" text-anchor="middle">GPO Incremental DC</text>
+<text class="s" x="435" y="170" text-anchor="middle">solo los controladores</text>
+<path class="ln" d="M328 155H292.79999999999995" marker-end="url(#t01-ou-niveles-a)"/>
+<path class="c2" d="M70 218h12l4 5h18v23h-34z"/>
+<text class="b" x="112" y="232">Servidores Miembro</text>
+<text class="s" x="112" y="250">nivel de referencia</text>
+<rect class="c2" x="330" y="210" width="210" height="50" rx="5"/>
+<text class="b" x="435" y="231" text-anchor="middle">GPO de referencia</text>
+<text class="s" x="435" y="250" text-anchor="middle">«Incremental servidores»</text>
+<path class="ln" d="M328 235H292.79999999999995" marker-end="url(#t01-ou-niveles-a)"/>
+<path class="c3" d="M120 298h12l4 5h18v23h-34z"/>
+<text class="b" x="162" y="312">Archivos</text>
+<text class="s" x="162" y="330">OU de rol</text>
+<rect class="c3" x="330" y="290" width="210" height="50" rx="5"/>
+<text class="b" x="435" y="311" text-anchor="middle">GPO rol archivos</text>
+<text class="s" x="435" y="330" text-anchor="middle">incremental servidores + rol</text>
+<path class="ln" d="M328 315H246.8" marker-end="url(#t01-ou-niveles-a)"/>
+<path class="c3" d="M120 368h12l4 5h18v23h-34z"/>
+<text class="b" x="162" y="382">Web (IIS)</text>
+<text class="s" x="162" y="400">OU de rol</text>
+<rect class="c3" x="330" y="360" width="210" height="50" rx="5"/>
+<text class="b" x="435" y="381" text-anchor="middle">GPO rol web</text>
+<text class="s" x="435" y="400" text-anchor="middle">incremental servidores + rol</text>
+<path class="ln" d="M328 385H256.4" marker-end="url(#t01-ou-niveles-a)"/>
+<path class="c3" d="M120 438h12l4 5h18v23h-34z"/>
+<text class="b" x="162" y="452">Impresión</text>
+<text class="s" x="162" y="470">OU de rol</text>
+<rect class="c3" x="330" y="430" width="210" height="50" rx="5"/>
+<text class="b" x="435" y="451" text-anchor="middle">GPO rol impresión</text>
+<text class="s" x="435" y="470" text-anchor="middle">incremental servidores + rol</text>
+<path class="ln" d="M328 455H256.4" marker-end="url(#t01-ou-niveles-a)"/>
+<rect class="dash" x="560" y="212" width="186" height="270" rx="10"/>
+<text class="b" x="653" y="238" text-anchor="middle">Un servidor web</text>
+<text class="s" x="653" y="256" text-anchor="middle">de la OU Web recibe:</text>
+<rect class="c3" x="578" y="274" width="150" height="42" rx="5"/>
+<text class="b" x="653" y="301" text-anchor="middle">Rol (web)</text>
+<text class="b" x="653" y="328" text-anchor="middle">+</text>
+<rect class="c2" x="578" y="332" width="150" height="42" rx="5"/>
+<text class="b" x="653" y="359" text-anchor="middle">Referencia</text>
+<text class="b" x="653" y="386" text-anchor="middle">+</text>
+<rect class="c1" x="578" y="390" width="150" height="42" rx="5"/>
+<text class="b" x="653" y="417" text-anchor="middle">Dominio</text>
+<text class="s" x="653" y="458" text-anchor="middle">Las tres capas</text>
+<text class="s" x="653" y="474" text-anchor="middle">se suman</text>
+</svg>

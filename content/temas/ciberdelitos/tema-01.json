@@ -75,6 +75,7 @@
             ]
           ]
         },
+        {"type":"figure","src":"figuras/ciberdelitos/t01-intimidad-datos.svg","title":"La protección de datos es más amplia que la intimidad","caption":"Lo íntimo es solo una parte de tus datos personales; la protección de datos los cubre **todos**.","alt":"Un óvalo grande, «Todos tus datos personales, aunque no sean íntimos o sean públicos», con ejemplos como tu correo, tu nombre, tu matrícula o tu foto. Dentro, un círculo pequeño: «Datos íntimos, vida privada y familiar». A la derecha, dos cajas: la intimidad (art. 18.1 CE) protege solo lo íntimo y es reactiva; la protección de datos (art. 18.4 CE) protege cualquier dato personal, es proactiva, da el mando sobre qué datos, quién y para qué, y es un derecho autónomo según la STC 292/2000."},
         {
           "type": "table",
           "title": "Contenido: qué herramientas da cada derecho",
@@ -219,6 +220,7 @@
           "type": "p",
           "text": "**Un detalle curioso.** El RGPD empezó a aplicarse en mayo de 2018 y la LOPDGDD se aprobó en diciembre del mismo año. Durante unos meses España no tuvo ley nueva y no pasó nada grave, porque el reglamento europeo **se aplica solo, sin necesitar ley nacional**. La ley española existe únicamente para completar lo que el reglamento deja a cada país. Un ejemplo, según la clase: el RGPD obliga a nombrar delegado de protección de datos en tres supuestos y permite a los Estados ampliarlos; España los amplió mucho."
         },
+        {"type":"figure","src":"figuras/ciberdelitos/t01-marco-normativo.svg","title":"Quién pone las reglas de la protección de datos","caption":"El RGPD manda por sí mismo; la LOPDGDD solo concreta lo que el reglamento deja a cada país.","alt":"Arriba, la Unión Europea con el RGPD (Reglamento UE 2016/679), que se aplica directamente en todos los Estados desde el 25 de mayo de 2018. Una flecha baja hacia España: el RGPD deja huecos que cada país puede completar sin contradecirlo. En España, la LOPDGDD (Ley Orgánica 3/2018) amplía los casos de DPD obligatorio, regula tratamientos concretos como la videovigilancia o las listas Robinson y añade los derechos digitales. Abajo, la base constitucional (art. 18.4 CE) y la AEPD con sus instrucciones, que vigila el cumplimiento."},
         {
           "type": "list",
           "title": "Tratamientos concretos que regula la LOPDGDD (según la clase)",
@@ -471,6 +473,7 @@
           "title": "Caso práctico",
           "text": "Una clínica dental contrata a una gestoría para calcular las nóminas de su plantilla. La clínica decide qué datos de sus empleados se usan y para qué: es la **responsable**. La gestoría los trata solo siguiendo esas instrucciones: es la **encargada**, y ambas deben firmar un contrato de encargo. Si la gestoría empezara a usar esos datos para venderles seguros a los empleados, estaría decidiendo un fin propio y dejaría de actuar como mera encargada."
         },
+        {"type":"figure","src":"figuras/ciberdelitos/t01-actores.svg","title":"Los actores de la protección de datos y cómo se relacionan","caption":"El responsable decide; el encargado ejecuta por contrato; el DPD asesora; la AEPD vigila.","alt":"Cinco cajas. El interesado ejerce sus derechos ante el responsable, y el responsable le informa. El responsable, que decide fines y medios, da instrucciones al encargado, con quien firma un contrato (art. 28); el encargado trata los datos por cuenta del responsable. Debajo del responsable, el DPD, que le asesora y supervisa y coopera con la AEPD. El responsable notifica las brechas a la AEPD, la autoridad de control, y el interesado puede reclamar ante ella. Arriba se recuerda la analogía de la boda: novios responsable, catering encargado, invitados interesados."},
         {
           "type": "table",
           "title": "¿Es dato personal? Ejemplos de la clase",
@@ -951,6 +954,7 @@
           "type": "p",
           "text": "**Obligatoriedad en el caso práctico.** Un hospital que va a implantar algo nuevo trata datos de salud (categoría especial) a gran escala, y por eso la EIPD es obligatoria. Fíjate siempre en la frase del enunciado: categorías especiales, tecnología especialmente invasiva (como el reconocimiento facial) o grandes volúmenes de datos son las pistas."
         },
+        {"type":"figure","src":"figuras/ciberdelitos/t01-eipd.svg","title":"La EIPD, de principio a fin","caption":"Si la medida no es necesaria y proporcional, la EIPD termina en el paso 1.","alt":"Cuatro pasos en fila: 1, ¿necesaria y proporcional? (¿hay forma menos invasiva?); 2, identificar los riesgos para los derechos y libertades; 3, aplicar medidas técnicas y organizativas; 4, medir el riesgo residual. Si el paso 1 dice que no, la medida no se puede hacer y ni se analizan los riesgos. Tras el paso 4, ¿es aceptable el riesgo? Si sí, se puede tratar documentando la decisión; si sigue alto, consulta previa a la AEPD antes de empezar (art. 36)."},
         {
           "type": "exam",
           "text": "Varias preguntas salen de aquí. **Medidas de seguridad**: técnicas y organizativas (no solo una de las dos, ni «automatizadas»). **EIPD**: hay supuestos obligatorios y además puede hacerse voluntariamente; es falso que no haya supuestos, que solo se haga con categorías especiales o que el RGPD no los defina. **Tras la EIPD**: el riesgo puede o no bajar a un nivel aceptable; si no baja, consulta a la autoridad de control, nunca «asumir el exceso de riesgo». **Tratar el riesgo**: medidas apropiadas y evaluación del riesgo residual, no aceptarlo automáticamente ni confiar en un seguro. **Responsabilidad proactiva**: poder demostrar el cumplimiento. **Controles antiguos por niveles**: hoy se exige análisis de riesgos. **Privacidad desde el diseño**: todo el ciclo de vida."
@@ -1250,6 +1254,7 @@
             ]
           ]
         },
+        {"type":"figure","src":"figuras/ciberdelitos/t01-brecha-72h.svg","title":"El reloj de una brecha: 72 horas desde la constancia","caption":"Con el caso del tema: la brecha se detecta el lunes a las 9:00, así que el límite es el jueves a las 9:00.","alt":"Una línea de tiempo de lunes 9:00 a jueves 9:00. Al principio, la constancia: empieza a correr el reloj. Una franja marca el plazo para notificar a la AEPD: sin dilación y, si es posible, en 72 horas. Debajo, tres momentos: el lunes se avisa al DPD y se documenta; el martes, primera notificación con lo que se sabe; el miércoles se completa la información. Al final, el límite: si se pasa, hay que justificar el retraso. Dos franjas recuerdan que, si es probable un alto riesgo, también se comunica a los afectados sin dilación y en lenguaje claro, y que todas las brechas se documentan."},
         {
           "type": "list",
           "title": "Reglas útiles del artículo 33",

@@ -96,6 +96,7 @@
           "type": "p",
           "text": "Una VPN aporta confidencialidad, integridad y autenticación, pero **no anonimato**. El concentrador VPN sabe quién está en el otro extremo del túnel (te ha autenticado) y a qué servidores te estás conectando. Si alguien obliga al gestor de la VPN a entregar sus datos, tu identidad queda al descubierto."
         },
+        {"type":"figure","src":"figuras/redes/t09-vpn-anonimato.svg","title":"Quién sabe qué: VPN frente a Tor","caption":"La fila de Tor resume lo que verás en su apartado.","alt":"Dos filas. Fila VPN: tú, un túnel hasta el concentrador VPN y de ahí al servidor; bajo el concentrador, una caja roja: sabe quién eres y a qué servidor vas. Fila Tor: tú, nodo de entrada, nodo intermedio, nodo de salida y servidor. La entrada ve tu IP pero no el destino; el intermedio no sabe ni lo uno ni lo otro; la salida ve el destino pero no tu IP. Al pie: la VPN oculta el contenido, pero su gestor sabe quién habla con quién; en Tor ningún nodo conoce a la vez quién eres y adónde vas."},
         {
           "type": "term",
           "term": "Anonimato",
@@ -298,6 +299,7 @@
           "type": "p",
           "text": "Las VPN de enlace protegen **enlaces físicos concretos** (por ejemplo, entre dos departamentos en edificios distintos). Protegen la capa de enlace y las superiores, pero **solo en el enlace donde se implementan**, no de extremo a extremo. Al estar por **debajo de IP**, sirven para cualquier protocolo de red; las VPN de capas superiores dependen siempre de IP."
         },
+        {"type":"figure","src":"figuras/redes/t09-vpn-pila.svg","title":"Cada VPN en su capa y lo que protege","caption":"Cada tecnología trabaja en una capa y protege esa capa y las de encima.","alt":"A la izquierda, cuatro capas OSI de arriba abajo: aplicación (7), transporte (4), red (3, IP) y enlace (2). A la derecha, cuatro columnas con una caja oscura a la altura de la capa donde trabaja cada VPN y una franja verde encima que dice protege lo de encima. PPTP, L2F y L2TP en enlace, con franja hasta aplicación: protegen solo el enlace donde se ponen. IPsec (AH, ESP, IKE) en red, con franja sobre transporte y aplicación: entre equipos o entre redes, marcada como la recomendada. SSL/TLS en transporte, con franja sobre aplicación: una conexión con el navegador, portal web. SSH en aplicación, sin franja: un puerto, túnel puntual con ssh -L. Al pie: cuanto más abajo trabaja, más capas protege; pero la de enlace solo cubre un cable y las de capas superiores dependen siempre de IP."},
         {
           "type": "term",
           "term": "PPP (Point-to-Point Protocol, protocolo punto a punto)",
@@ -419,6 +421,7 @@
             "Para aplicaciones que no son web, el cliente instala un pequeño software que tuneliza la conexión, normalmente sobre HTTPS."
           ]
         },
+        {"type":"figure","src":"figuras/redes/t09-vpn-tls-portal.svg","title":"Una VPN SSL/TLS: el portal web como puerta de entrada","caption":"Simplificado: los nombres de las aplicaciones internas son de ejemplo.","alt":"A la izquierda, el equipo del usuario remoto, que solo tiene navegador. Un tubo verde con un candado cruza Internet: HTTPS (TLS). Llega al portal web VPN (el concentrador) dentro de la red de la organización. Del portal sale una flecha a un proxy, y del proxy, tres líneas a tres servidores: las aplicaciones web internas. Debajo, cuatro pasos numerados: abre el portal en el navegador; se identifica con usuario y contraseña; elige la aplicación interna; el proxy se conecta por HTTPS al servidor en su nombre. Nota: TLS casi siempre autentica solo al servidor; al usuario lo identifica después el portal."},
         {
           "type": "exam",
           "text": "SSL/TLS es la tecnología VPN de **capa de transporte**, no de aplicación: si la pregunta pide el protocolo más común en VPN de **aplicación**, SSL/TLS es la trampa y la respuesta es SSH. Pero SSL/TLS **sí** puede usarse para una conexión de equipo a equipo."
@@ -443,6 +446,7 @@
           "term": "SSH (Secure Shell, intérprete de órdenes seguro)",
           "text": "Protocolo de aplicación (RFC 4253) para abrir de forma segura una terminal en un equipo remoto que tenga un servidor SSH. Además permite crear un **túnel cifrado** desde el cliente SSH hasta el servidor SSH. Lo usan sobre todo los **administradores** de sistemas, porque configurarlo para cada cliente es costoso."
         },
+        {"type":"figure","src":"figuras/redes/t09-ssh-tunel.svg","title":"El túnel SSH del caso práctico, dibujado","caption":"Es el mismo ejemplo del caso práctico de este apartado: ssh -L hacia la base de datos interna.","alt":"Arriba, la orden ssh -L 15432:bd.interna.empresa.es:5432 admin@bastion.empresa.es. A la izquierda, el portátil del administrador, donde psql se conecta a localhost:15432. Un tubo verde con un candado, el túnel SSH cifrado, cruza Internet hasta bastion, el servidor SSH, dentro de la red interna de la empresa. De bastion a la base de datos (bd.interna, puerto 5432) sigue una línea naranja discontinua: ese tramo va sin el túnel. Al pie: lo que entra por el puerto local 15432 viaja cifrado hasta bastion, y bastion lo entrega a la base de datos, que solo acepta conexiones desde él."},
         {
           "type": "term",
           "term": "Redirección local de puertos (local forwarding)",

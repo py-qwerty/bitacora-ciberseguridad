@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 360">
+<defs><marker id="t09cr-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="ink" d="M0 0L10 5L0 10z"/></marker><marker id="t09cr-t" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--color-secondary)"/></marker><marker id="t09cr-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="good" d="M0 0L10 5L0 10z"/></marker><marker id="t09cr-r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="bad" d="M0 0L10 5L0 10z"/></marker></defs>
+<rect class="c4" x="20" y="60" width="200" height="150" rx="6"/>
+<text class="b" x="120.0" y="121.4" text-anchor="middle">Actions: *</text>
+<text class="s" x="120.0" y="140.0" text-anchor="middle">todas las operaciones</text>
+<text class="s" x="120.0" y="158.0" text-anchor="middle">de administración</text>
+<text class="h" x="244" y="146" text-anchor="middle">−</text>
+<rect class="c5" x="268" y="60" width="210" height="150" rx="6"/>
+<text class="b" x="373.0" y="112.4" text-anchor="middle">NotActions</text>
+<text class="s" x="373.0" y="131.0" text-anchor="middle">Microsoft.Authorization:</text>
+<text class="s" x="373.0" y="149.0" text-anchor="middle">crear o borrar</text>
+<text class="s" x="373.0" y="167.0" text-anchor="middle">asignaciones de roles</text>
+<text class="h" x="502" y="146" text-anchor="middle">=</text>
+<rect class="c1" x="526" y="60" width="194" height="150" rx="6"/>
+<text class="b" x="623.0" y="112.4" text-anchor="middle">Colaborador</text>
+<text class="s" x="623.0" y="131.0" text-anchor="middle">administra recursos,</text>
+<text class="s" x="623.0" y="149.0" text-anchor="middle">pero no puede dar</text>
+<text class="s" x="623.0" y="167.0" text-anchor="middle">acceso a otros</text>
+<text class="b" x="370" y="36" text-anchor="middle">La definición de un rol es una resta</text>
+<text class="s" x="370" y="260" text-anchor="middle">NotActions resta dentro de esa definición: no es una prohibición absoluta.</text>
+<text class="s" x="370" y="282" text-anchor="middle">Si la misma persona recibe otro rol que sí incluye la operación, podrá hacerla.</text>
+<text class="s" x="370" y="304" text-anchor="middle">Propietario = * sin restas.   Lector = */read (solo leer).</text>
+</svg>

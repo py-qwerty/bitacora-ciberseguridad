@@ -327,6 +327,7 @@
             ["Almacenar contraseñas", "El servidor guarda el hash de la contraseña, no la contraseña. Si roban la base de datos, no ven las contraseñas en claro (aunque pueden intentar romperlas por fuerza bruta)."]
           ]
         },
+        {"type":"figure","src":"figuras/redes/t06-hash-huella.svg","title":"Una huella de tamaño fijo que no tiene vuelta atrás","caption":"Los dos resúmenes son SHA-256 reales de esas frases (recortados). Basta cambiar una cifra para que no se parezcan en nada.","alt":"Tres filas. A la izquierda, la entrada: «Transferir 10 euros», «Transferir 19 euros» (con el 9 resaltado en rojo) y una imagen ISO de 4 GB. Cada una pasa por una caja oscura SHA-256 y sale un resumen a la derecha: 4965045f8d3dd68ade7f…, 64b1f6f46ab2ccbbcc69… y, para la ISO, también 64 cifras hexadecimales. Nota: siempre el mismo tamaño, 256 bits, y nada parecido entre 10 y 19. Debajo, una flecha discontinua que intenta volver del resumen a la entrada está tachada con una cruz roja: no hay vuelta atrás, y el hash no usa clave."},
         {
           "type": "example",
           "title": "Comprobar una descarga",

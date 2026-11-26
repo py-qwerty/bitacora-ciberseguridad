@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 360">
+<defs><marker id="t06sq-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="ink" d="M0 0L10 5L0 10z"/></marker><marker id="t06sq-t" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--color-secondary)"/></marker><marker id="t06sq-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="good" d="M0 0L10 5L0 10z"/></marker><marker id="t06sq-r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="bad" d="M0 0L10 5L0 10z"/></marker></defs>
+<text class="b" x="20" y="30">El Servlet pega lo que escribe el usuario dentro de la consulta</text>
+<text class="s" x="20" y="76">Plantilla en el código: el hueco es para un dato (el user_id)</text>
+<text x="20" y="118">SELECT * FROM users WHERE id = '</text>
+<rect class="box" x="296" y="99" width="61.5" height="28" rx="4"/>
+<text class="b" x="326.75" y="118" text-anchor="middle">hueco</text>
+<text x="361.5" y="118">'</text>
+<text class="h" x="20" y="170">Uso normal: user_id = 5</text>
+<text x="20" y="206">SELECT * FROM users WHERE id = '</text>
+<rect class="c1" x="296" y="187" width="23.5" height="28" rx="4"/>
+<text class="b" x="307.75" y="206" text-anchor="middle">5</text>
+<text x="323.5" y="206">'</text>
+<text class="s" x="343.5" y="206">→ un usuario (el 5)</text>
+<text class="h" x="20" y="258">Ataque: user_id = ' OR '1'='1</text>
+<text x="20" y="296">SELECT * FROM users WHERE id = '</text>
+<rect class="c5" x="296" y="277" width="140" height="28" rx="4"/>
+<text class="b" x="366" y="296" text-anchor="middle">' OR '1'='1</text>
+<text x="440" y="296">'</text>
+<text class="s" x="462" y="296">→ ¡todos los usuarios!</text>
+<text class="s" x="20" y="336">La comilla cierra el dato antes de tiempo y «OR '1'='1'» se ejecuta como orden: siempre es cierto.</text>
+</svg>

@@ -56,6 +56,7 @@
             "Tanto lo tratado como lo monitorizado **vuelve a la evaluación del riesgo**: se comprueba el efecto y se recalcula lo que queda."
           ]
         },
+        {"type":"figure","src":"figuras/gobierno/t10-ciclo-tratamiento.svg","title":"El ciclo de tratamiento del riesgo","caption":"Redibujado de la figura 1 del tema.","alt":"Arriba, la evaluación del riesgo. Debajo, dentro de un recuadro discontinuo de tratamiento del riesgo, el estudio de las opciones de tratamiento, apoyado en un estudio coste/beneficio. Si el riesgo se acepta, pasa a monitorización continua; si se trata, se elige una opción: se evita, se comparte, se elimina o se mitiga reduciendo el impacto o la probabilidad. Tanto la monitorización como el tratamiento vuelven a la evaluación del riesgo."},
         {
           "type": "p",
           "text": "Lo que queda después de aplicar las medidas se llama **riesgo residual**. Si sigue por encima del nivel que la dirección está dispuesta a tolerar, el ciclo obliga a **revisar el tratamiento y mejorar las salvaguardas**. Haber invertido dinero no convierte un riesgo en aceptable."
@@ -135,6 +136,7 @@
             "Reducir las **consecuencias para la organización**: que, aunque el servidor se pierda, el negocio siga (un servidor de respaldo en otra sede)."
           ]
         },
+        {"type":"figure","src":"figuras/gobierno/t10-mitigar.svg","title":"Mitigar: menos probabilidad o menos impacto","alt":"Mitigar el riesgo se divide en dos ramas. Reducir la probabilidad, que ocurra menos veces, con salvaguardas preventivas como parchear o reforzar la autenticación. Reducir el impacto, que haga menos daño, con salvaguardas reactivas; esta rama se divide en menos degradación del activo (extinción de incendios en segundos) y menos consecuencias para la organización (un servidor de respaldo). En los dos casos, la herramienta es ampliar o mejorar las salvaguardas."},
         {
           "type": "p",
           "text": "En los dos casos, la herramienta es la misma: **ampliar o mejorar el conjunto de controles, salvaguardas y medidas de seguridad**. Si hablamos en términos de madurez, mitigar es **subir el nivel de madurez** de las salvaguardas (lo verás en el apartado de eficacia)."
@@ -201,6 +203,7 @@
           "term": "Defensa en profundidad",
           "text": "Poner varias capas de protección sucesivas (valla, puerta, tarjeta, contraseña) para que, si una falla, las demás sigan protegiendo."
         },
+        {"type":"figure","src":"figuras/gobierno/t10-defensa-profundidad.svg","title":"Defensa en profundidad: capas sucesivas","alt":"Cuatro círculos concéntricos alrededor del activo, de fuera adentro: valla, puerta, tarjeta y contraseña. Una flecha roja de un atacante atraviesa solo la capa exterior; las demás siguen protegiendo. Varias capas sucesivas: si una falla, no cae todo."},
         {
           "type": "term",
           "term": "DNS (Domain Name System, sistema de nombres de dominio)",
@@ -294,6 +297,7 @@
             ["5", "Completamente desplegada, implantada y **probada**; todas las personas implicadas están informadas y no depende de medidas de menor nivel."]
           ]
         },
+        {"type":"figure","src":"figuras/gobierno/t10-matriz-eficacia.svg","title":"Madurez por eficacia intrínseca","caption":"Simplificado de la tabla 3 del tema: solo se colorean las reglas que el tema explica.","alt":"Cuadrícula con el nivel de madurez de 0 a 5 en vertical y la eficacia intrínseca de 1 a 5 en horizontal. Toda la fila 0 está en rojo: una medida no implantada no protege nada. Toda la fila 1 en naranja: graves deficiencias. Solo la casilla de madurez 5 y eficacia 5 es verde oscuro: eficacia real máxima. El resto, en verdes muy claros que se intensifican hacia arriba a la derecha. La eficacia real combina implantación y eficacia intrínseca: una medida excelente mal implantada rinde poco."},
         {
           "type": "p",
           "text": "La tabla 3 del temario es una **matriz** que cruza el nivel de madurez (filas, de 0 a 5) con la eficacia intrínseca (columnas, de 1 a 5) y colorea la eficacia real: rojo en toda la fila 0 (una medida no implantada no protege nada, por buena que sea), naranja en la fila 1, y verde oscuro solo cuando madurez y eficacia intrínseca son ambas 5. Una salvaguarda excelente mal implantada rinde poco; una mediocre perfectamente implantada tampoco llega al máximo."
@@ -412,6 +416,7 @@
           "type": "p",
           "text": "Con los KRI se monta un **cuadro de mando de riesgos** escrito en **lenguaje de negocio** (no técnico), integrado en el modelo de gestión de riesgos, para que las métricas estén alineadas con el negocio, aporten valor y ayuden a controlar los riesgos. Los indicadores de **impacto y riesgo potenciales** ayudan a decidir qué vigilar, y los indicadores **predictivos** alimentan un **sistema de alerta temprana** que, junto con un sistema de respuesta a incidentes, permite detectar pronto y comunicar la situación a las partes interesadas."
         },
+        {"type":"figure","src":"figuras/gobierno/t10-kri-cuadro-mando.svg","title":"De la medida al cuadro de mando","caption":"Con el ejemplo de parcheo del tema.","alt":"Arriba, una cadena: medidas (12 de 340 equipos sin parche), métrica (96,5 % de equipos parcheados), KRI (con algoritmo, periodicidad y umbrales) y dirección, que decide. Debajo, un cuadro de mando de riesgos en lenguaje de negocio con una barra del porcentaje de equipos parcheados entre el 90 y el 100 %: por debajo del 95 %, zona roja de alerta; por encima, zona verde en orden; un marcador señala el 96,5 %. Si baja del 95 %, alerta: el riesgo de explotación sube."},
         {
           "type": "list",
           "title": "Objetivos de realizar mediciones",

@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 520">
+<text class="h" x="380" y="30" text-anchor="middle">Qué cubre AH y qué cubre ESP en cada modo</text>
+<rect class="ink" x="150" y="46" width="26" height="18" rx="3"/>
+<text class="s" x="184" y="60">cifrado (nadie lo lee)</text>
+<path class="ln" d="M390 72V62H420V72" style="fill:none;stroke-width:3;stroke:var(--color-success)"/>
+<text class="s" x="430" y="60">autenticado (si lo tocan, se nota)</text>
+<text class="b" x="130" y="136" text-anchor="end">Transporte</text>
+<text class="s" x="130" y="155" text-anchor="end">con AH</text>
+<rect class="c3" x="150" y="118" width="74" height="46" rx="0"/>
+<text class="b" x="187" y="147" text-anchor="middle">IP</text>
+<rect class="tint" x="224" y="118" width="52" height="46" rx="0"/>
+<text class="b" x="250" y="147" text-anchor="middle">AH</text>
+<rect class="c2" x="276" y="118" width="58" height="46" rx="0"/>
+<text class="b" x="305" y="147" text-anchor="middle">TCP</text>
+<rect class="c1" x="334" y="118" width="106" height="46" rx="0"/>
+<text class="b" x="387" y="147" text-anchor="middle">Datos</text>
+<path class="ln" d="M152 120V110H438V120" style="fill:none;stroke-width:3;stroke:var(--color-success)"/>
+<text class="s" x="295" y="104" text-anchor="middle" style="fill:var(--color-text)">todo, salvo campos que cambian (TTL)</text>
+<text class="b" x="130" y="234" text-anchor="end">Transporte</text>
+<text class="s" x="130" y="253" text-anchor="end">con ESP</text>
+<rect class="c3" x="150" y="216" width="74" height="46" rx="0"/>
+<text class="b" x="187" y="245" text-anchor="middle">IP</text>
+<rect class="tint" x="224" y="216" width="56" height="46" rx="0"/>
+<text class="b" x="252" y="245" text-anchor="middle">ESP</text>
+<rect class="ink" x="280" y="216" width="58" height="46" rx="0"/>
+<text class="b w" x="309" y="245" text-anchor="middle">TCP</text>
+<rect class="ink" x="338" y="216" width="106" height="46" rx="0"/>
+<text class="b w" x="391" y="245" text-anchor="middle">Datos</text>
+<rect class="ink" x="444" y="216" width="82" height="46" rx="0"/>
+<text class="b w" x="485" y="236" text-anchor="middle">Tráiler</text>
+<text class="w" x="485" y="254" text-anchor="middle" style="font-size:14px">ESP</text>
+<rect class="box" x="526" y="216" width="74" height="46" rx="0"/>
+<text class="b" x="563" y="236" text-anchor="middle">Autent.</text>
+<text class="s" x="563" y="254" text-anchor="middle">ESP</text>
+<path class="ln" d="M226 218V208H524V218" style="fill:none;stroke-width:3;stroke:var(--color-success)"/>
+<text class="s" x="375" y="202" text-anchor="middle" style="fill:var(--color-text)">de la cabecera ESP al tráiler</text>
+<text class="b" x="130" y="332" text-anchor="end">Túnel</text>
+<text class="s" x="130" y="351" text-anchor="end">con AH</text>
+<rect class="c3" x="150" y="314" width="74" height="46" rx="0"/>
+<text class="b" x="187" y="334" text-anchor="middle">IP</text>
+<text class="s" x="187" y="352" text-anchor="middle">nueva</text>
+<rect class="tint" x="224" y="314" width="52" height="46" rx="0"/>
+<text class="b" x="250" y="343" text-anchor="middle">AH</text>
+<rect class="c3" x="276" y="314" width="80" height="46" rx="0"/>
+<text class="b" x="316" y="334" text-anchor="middle">IP</text>
+<text class="s" x="316" y="352" text-anchor="middle">original</text>
+<rect class="c2" x="356" y="314" width="58" height="46" rx="0"/>
+<text class="b" x="385" y="343" text-anchor="middle">TCP</text>
+<rect class="c1" x="414" y="314" width="106" height="46" rx="0"/>
+<text class="b" x="467" y="343" text-anchor="middle">Datos</text>
+<path class="ln" d="M152 316V306H518V316" style="fill:none;stroke-width:3;stroke:var(--color-success)"/>
+<text class="s" x="335" y="300" text-anchor="middle" style="fill:var(--color-text)">todo, salvo campos que cambian (TTL)</text>
+<text class="b" x="130" y="430" text-anchor="end">Túnel</text>
+<text class="s" x="130" y="449" text-anchor="end">con ESP</text>
+<rect class="c3" x="150" y="412" width="74" height="46" rx="0"/>
+<text class="b" x="187" y="432" text-anchor="middle">IP</text>
+<text class="s" x="187" y="450" text-anchor="middle">nueva</text>
+<rect class="tint" x="224" y="412" width="56" height="46" rx="0"/>
+<text class="b" x="252" y="441" text-anchor="middle">ESP</text>
+<rect class="ink" x="280" y="412" width="80" height="46" rx="0"/>
+<text class="b w" x="320" y="432" text-anchor="middle">IP</text>
+<text class="w" x="320" y="450" text-anchor="middle" style="font-size:14px">original</text>
+<rect class="ink" x="360" y="412" width="58" height="46" rx="0"/>
+<text class="b w" x="389" y="441" text-anchor="middle">TCP</text>
+<rect class="ink" x="418" y="412" width="106" height="46" rx="0"/>
+<text class="b w" x="471" y="441" text-anchor="middle">Datos</text>
+<rect class="ink" x="524" y="412" width="82" height="46" rx="0"/>
+<text class="b w" x="565" y="432" text-anchor="middle">Tráiler</text>
+<text class="w" x="565" y="450" text-anchor="middle" style="font-size:14px">ESP</text>
+<rect class="box" x="606" y="412" width="74" height="46" rx="0"/>
+<text class="b" x="643" y="432" text-anchor="middle">Autent.</text>
+<text class="s" x="643" y="450" text-anchor="middle">ESP</text>
+<path class="ln" d="M226 414V404H604V414" style="fill:none;stroke-width:3;stroke:var(--color-success)"/>
+<text class="s" x="415" y="398" text-anchor="middle" style="fill:var(--color-text)">de la cabecera ESP al tráiler</text>
+<text x="380" y="490" text-anchor="middle">AH no cifra pero protege también la cabecera IP. ESP cifra, pero su autenticación</text>
+<text x="380" y="512" text-anchor="middle"><tspan class="b">no cubre la cabecera IP</tspan> de fuera (en túnel, la interna sí va cifrada dentro).</text>
+</svg>

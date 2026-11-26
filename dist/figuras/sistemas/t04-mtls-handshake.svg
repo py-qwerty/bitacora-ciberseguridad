@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 490">
+<defs><marker id="t04-mtls-handshake-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="ink" d="M0 0L10 5L0 10z"/></marker><marker id="t04-mtls-handshake-r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="bad" d="M0 0L10 5L0 10z"/></marker><marker id="t04-mtls-handshake-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="good" d="M0 0L10 5L0 10z"/></marker></defs>
+<text class="h" x="370" y="26" text-anchor="middle">El handshake de mTLS: los dos enseñan su certificado</text>
+<g><rect class="box" x="88" y="52" width="44.0" height="30.0" rx="3"/><rect class="tint" x="93.0" y="57.0" width="34.0" height="20.0"/><rect class="ink" x="106.0" y="82.0" width="8.0" height="6.0"/><rect class="ink" x="96.0" y="88.0" width="28.0" height="4.0" rx="2"/></g>
+<text class="b" x="110" y="108" text-anchor="middle">Cliente</text>
+<g><rect class="box" x="614" y="46" width="32.0" height="42.0" rx="3"/><path class="ln" d="M620.0 56.0h20.0M620.0 64.0h20.0M620.0 72.0h20.0"/><circle class="good" cx="638.0" cy="81.0" r="2.5"/></g>
+<text class="b" x="630" y="108" text-anchor="middle">Servidor</text>
+<path class="dash" d="M110 118V410"/>
+<path class="dash" d="M630 118V410"/>
+<path class="ln" d="M116 146H624" marker-end="url(#t04-mtls-handshake-a)"/>
+<text class="b" x="370.0" y="138" text-anchor="middle">1. ClientHello</text>
+<text class="s" x="370.0" y="160" text-anchor="middle">cifrados que soporta</text>
+<path class="ln" d="M624 204H116" marker-end="url(#t04-mtls-handshake-a)"/>
+<text class="b" x="370.0" y="196" text-anchor="middle">2. ServerHello + certificado del servidor</text>
+<path class="ln" d="M624 256H116" marker-end="url(#t04-mtls-handshake-a)" style="stroke:#84531c;stroke-width:3"/>
+<text class="b" x="370.0" y="248" text-anchor="middle" style="fill:#84531c">+ CertificateRequest</text>
+<text class="s" x="370.0" y="270" text-anchor="middle">«enséñame el tuyo»</text>
+<rect class="tint" x="14" y="276" width="192" height="40" rx="6"/>
+<text class="s" x="110" y="301" text-anchor="middle">verifica el del servidor</text>
+<path class="ln" d="M116 352H624" marker-end="url(#t04-mtls-handshake-a)" style="stroke:#84531c;stroke-width:3"/>
+<text class="b" x="370.0" y="344" text-anchor="middle" style="fill:#84531c">3. Certificado del cliente + firma</text>
+<text class="s" x="370.0" y="366" text-anchor="middle">prueba que tiene la clave privada</text>
+<rect class="tint" x="534" y="372" width="192" height="40" rx="6"/>
+<text class="s" x="630" y="397" text-anchor="middle">valida certificado y firma</text>
+<rect class="ink" x="110" y="420" width="520" height="30" rx="6"/>
+<text class="b w" x="370.0" y="441" text-anchor="middle">4. Conexión cifrada y autenticada en los dos sentidos</text>
+<text class="s" x="370.0" y="476" text-anchor="middle">En naranja, lo que mTLS añade al TLS normal: el cliente también se identifica.</text>
+</svg>

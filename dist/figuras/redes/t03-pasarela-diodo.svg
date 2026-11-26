@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 520">
+<defs><marker id="t03pd-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="ink" d="M0 0L10 5L0 10z"/></marker><marker id="t03pd-r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--color-danger)"/></marker><marker id="t03pd-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--color-success)"/></marker></defs>
+<text class="h" x="380" y="28" text-anchor="middle">Pasarela de intercambio seguro: rompe los protocolos</text>
+<text class="b" x="100" y="96" text-anchor="middle">Red A</text>
+<text class="b" x="660" y="96" text-anchor="middle">Red B</text>
+<rect class="c1" x="20" y="106" width="160" height="40" rx="5"/>
+<text class="b" x="100" y="131" text-anchor="middle">Aplicación</text>
+<rect class="c2" x="20" y="152" width="160" height="40" rx="5"/>
+<text class="b" x="100" y="177" text-anchor="middle">Transporte</text>
+<rect class="c3" x="20" y="198" width="160" height="40" rx="5"/>
+<text class="b" x="100" y="223" text-anchor="middle">Internet (red)</text>
+<rect class="c4" x="20" y="244" width="160" height="40" rx="5"/>
+<text class="b" x="100" y="269" text-anchor="middle">Acceso a la red</text>
+<rect class="c1" x="580" y="106" width="160" height="40" rx="5"/>
+<text class="b" x="660" y="131" text-anchor="middle">Aplicación</text>
+<rect class="c2" x="580" y="152" width="160" height="40" rx="5"/>
+<text class="b" x="660" y="177" text-anchor="middle">Transporte</text>
+<rect class="c3" x="580" y="198" width="160" height="40" rx="5"/>
+<text class="b" x="660" y="223" text-anchor="middle">Internet (red)</text>
+<rect class="c4" x="580" y="244" width="160" height="40" rx="5"/>
+<text class="b" x="660" y="269" text-anchor="middle">Acceso a la red</text>
+<rect class="tint" x="214" y="54" width="332" height="242" rx="10" style="stroke:var(--color-primary);stroke-width:2"/>
+<text class="b" x="380" y="76" text-anchor="middle">Pasarela</text>
+<text class="s" x="380" y="96" text-anchor="middle">analiza el contenido para evitar fugas</text>
+<rect class="box" x="318" y="108" width="124" height="40" rx="6"/>
+<text class="s" x="380" y="133" text-anchor="middle">soporte</text>
+<path class="ln" d="M182 126L312 126" marker-end="url(#t03pd-g)" style="stroke:var(--color-success);stroke-width:2.5"/>
+<path class="ln" d="M448 126L574 126" marker-end="url(#t03pd-g)" style="stroke:var(--color-success);stroke-width:2.5"/>
+<text class="s" x="250" y="118" text-anchor="middle">escribe</text>
+<text class="s" x="510" y="118" text-anchor="middle">lee</text>
+<path class="" d="M184 172.0H576" style="stroke:var(--color-danger);stroke-width:2;stroke-dasharray:6 5;fill:none"/>
+<path d="M373 165L387 179M387 165L373 179" style="fill:none;stroke:var(--color-danger);stroke-width:4;stroke-linecap:round"/>
+<path class="" d="M184 218.0H576" style="stroke:var(--color-danger);stroke-width:2;stroke-dasharray:6 5;fill:none"/>
+<path d="M373 211L387 225M387 211L373 225" style="fill:none;stroke:var(--color-danger);stroke-width:4;stroke-linecap:round"/>
+<path class="" d="M184 264.0H576" style="stroke:var(--color-danger);stroke-width:2;stroke-dasharray:6 5;fill:none"/>
+<path d="M373 257L387 271M387 257L373 271" style="fill:none;stroke:var(--color-danger);stroke-width:4;stroke-linecap:round"/>
+<text class="s" x="380" y="314" text-anchor="middle">sin conexión de red continua: las capas de abajo no pasan de un lado a otro</text>
+<text class="h" x="380" y="366" text-anchor="middle">Diodo de datos: un solo sentido, por hardware</text>
+<rect class="band1" x="20" y="390" width="160" height="60" rx="10"/>
+<text class="b" x="100" y="426" text-anchor="middle">red de origen</text>
+<rect class="band3" x="580" y="390" width="160" height="60" rx="10"/>
+<text class="b" x="660" y="426" text-anchor="middle">red de destino</text>
+<rect class="ink" x="330" y="396" width="100" height="48" rx="8"/>
+<path d="M362 406L392 420L362 434z" style="fill:#fff"/><path d="M396 404V436" style="stroke:#fff;stroke-width:4"/>
+<path class="ln" d="M180 420L326 420" marker-end="url(#t03pd-g)" style="stroke:var(--color-success);stroke-width:3"/>
+<path class="ln" d="M434 420L576 420" marker-end="url(#t03pd-g)" style="stroke:var(--color-success);stroke-width:3"/>
+<path class="" d="M576 478H184" marker-end="url(#t03pd-r)" style="stroke:var(--color-danger);stroke-width:2;stroke-dasharray:6 5;fill:none"/>
+<path d="M372 470L388 486M388 470L372 486" style="fill:none;stroke:var(--color-danger);stroke-width:4;stroke-linecap:round"/>
+<text class="s" x="380" y="466" text-anchor="middle"></text>
+<text class="s" x="380" y="508" text-anchor="middle">no existe cable de vuelta: nada puede volver (ni salir por el canal inverso)</text>
+</svg>

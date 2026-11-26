@@ -118,6 +118,7 @@
           "type": "p",
           "text": "**Un matiz de madurez.** Las empresas que empiezan o tienen pocos recursos suelen preocuparse primero de implantar controles, y está bien; el gobierno llega después para hacerlos más eficaces y eficientes. Además, **no hay un estándar único** que diga cuántos comités o indicadores hacen falta ni cada cuánto medirlos: depende del tamaño de la organización, de su alcance y de sus recursos. Hay buenas prácticas y modelos de madurez que orientan."
         },
+        {"type":"figure","src":"figuras/gobierno/t02-gobierno-gestion.svg","title":"Gobierno frente a gestión","caption":"La Dirección dirige y supervisa; la gestión implanta y opera.","alt":"Dos franjas. Arriba, Gobierno (la Dirección: consejo, CEO, directivos) con tres cajas: dirige (estrategia y apetito de riesgo), gestiona riesgos hasta un nivel aceptable (no cero) y supervisa recursos (eficacia y eficiencia de los controles). Abajo, Gestión y operación (el día a día) con controles, proyectos y operación diaria. Una flecha baja de gobierno a gestión: dirige y pone recursos. Otra sube de gestión a gobierno: informa con indicadores. Nota: el gobierno no implanta controles, pero comprueba que funcionan; se delega la ejecución, no la responsabilidad."},
         {
           "type": "term",
           "term": "ISO/IEC 38500",
@@ -247,6 +248,7 @@
             "**Cómo llegamos**: el plan de proyectos que describe cómo se alcanzarán esos objetivos."
           ]
         },
+        {"type":"figure","src":"figuras/gobierno/t02-pds-tres-preguntas.svg","title":"Las tres preguntas del Plan Director","alt":"Tres cajas en fila: ¿dónde estamos? (estado actual de la seguridad y los riesgos), ¿cómo llegamos? (plan de proyectos priorizado) y ¿dónde queremos llegar? (objetivos coherentes, medibles y alcanzables). Encima: el Plan Director dura de 2 a 5 años como máximo. Una llave une la primera y la última caja: la distancia entre ambas es el GAP, que rellenan los proyectos. Lo aprueba la Dirección y se revisa al menos una vez al año."},
         {
           "type": "example",
           "title": "Caso práctico",
@@ -278,6 +280,7 @@
             ]
           ]
         },
+        {"type":"figure","src":"figuras/gobierno/t02-niveles-decision.svg","title":"La pirámide de decisión: estratégico, táctico y operativo","alt":"Pirámide de tres pisos. Arriba, estratégico: a dónde queremos ir, por ejemplo «vamos a operar en tal mercado»; aquí está el Plan Director de Seguridad. En medio, táctico: qué hay que montar primero, por ejemplo abrir una línea de negocio y contactar con socios. Abajo, operativo: tareas del día a día, por ejemplo sacar una plataforma nueva y conseguir clientes. Se va de lo general (arriba) a lo concreto (abajo)."},
         {
           "type": "list",
           "title": "Lo que remarcó el profesor sobre el PDS",
@@ -332,6 +335,7 @@
           "term": "Análisis GAP (análisis de brecha)",
           "text": "«Gap» es «hueco» en inglés. Se compara la madurez de seguridad actual con la deseada y se identifica lo que falta. Ese hueco es lo que deben rellenar los proyectos."
         },
+        {"type":"figure","src":"figuras/gobierno/t02-gap-radar.svg","title":"El análisis GAP en un diagrama de araña","caption":"Los dominios son solo un ejemplo; cada empresa elige los suyos.","alt":"Gráfico de radar hexagonal con seis ejes de ejemplo: políticas, control de acceso, continuidad, personas, seguridad física y proveedores. Un polígono rojo pequeño marca la situación actual y otro verde más grande la situación deseada. La franja verde entre los dos es el GAP, lo que deben cubrir los proyectos del plan. Cuanto más cerca del borde, más madurez."},
         {
           "type": "list",
           "title": "Qué debe tener en cuenta el modelo de seguridad",
@@ -719,6 +723,7 @@
           "type": "p",
           "text": "Los tres caminos alimentan el **gobierno de la ciberseguridad**: el gobierno se apoya en guías, modelos y estándares, sin confundirlos."
         },
+        {"type":"figure","src":"figuras/gobierno/t02-guias-modelos-estandares.svg","title":"Guías, modelos y estándares alimentan el gobierno","alt":"Tres cajas arriba: guía de buenas prácticas (ITIL, no certifica empresas sino personas), modelo de madurez (O-ISM3, certificar no es su finalidad) y estándar (ISO/IEC 27001, sí certifica empresas). Las tres flechas bajan a una caja oscura: gobierno de la ciberseguridad, que se apoya en los tres caminos sin confundirlos."},
         {
           "type": "exam",
           "text": "Trampas: «ITIL impone la misma herramienta a todos», «exige aplicar todas las prácticas sin adaptarlas» o «son **siempre** las mejores prácticas posibles» son falsas. No prescriptivo = **propone sin imponer tecnología**. Y el proceso de seguridad de ITIL **no prescribe** requisitos de un SGSI para ser «compatible con ITIL»."

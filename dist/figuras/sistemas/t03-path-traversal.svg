@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 446">
+<defs><marker id="t03-path-traversal-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="ink" d="M0 0L10 5L0 10z"/></marker><marker id="t03-path-traversal-r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="bad" d="M0 0L10 5L0 10z"/></marker><marker id="t03-path-traversal-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="good" d="M0 0L10 5L0 10z"/></marker></defs>
+<text class="h" x="370" y="26" text-anchor="middle">Path traversal: cada ../ sube una carpeta</text>
+<path class="c4" d="M60 64h11l4 5h17v19h-32z"/>
+<text x="100" y="82" font-family="Menlo,Consolas,monospace" style="font-size:15px;font-weight:700">/</text>
+<path class="c4" d="M86 104h11l4 5h17v19h-32z"/>
+<text x="126" y="122" font-family="Menlo,Consolas,monospace" style="font-size:15px;font-weight:700">etc/</text>
+<rect class="c5" x="116" y="142" width="24" height="28" rx="3"/>
+<path class="ln" d="M121 152h14M121 159h14" style="stroke-width:1.5"/>
+<text x="152" y="162" font-family="Menlo,Consolas,monospace" style="font-size:15px;fill:var(--color-danger);font-weight:700">passwd</text>
+<path class="c4" d="M86 184h11l4 5h17v19h-32z"/>
+<text x="126" y="202" font-family="Menlo,Consolas,monospace" style="font-size:15px;font-weight:700">var/</text>
+<path class="c4" d="M112 224h11l4 5h17v19h-32z"/>
+<text x="152" y="242" font-family="Menlo,Consolas,monospace" style="font-size:15px;font-weight:700">www/</text>
+<path class="c4" d="M138 264h11l4 5h17v19h-32z"/>
+<text x="178" y="282" font-family="Menlo,Consolas,monospace" style="font-size:15px;font-weight:700">html/</text>
+<path class="c1" d="M164 304h11l4 5h17v19h-32z"/>
+<text x="204" y="322" font-family="Menlo,Consolas,monospace" style="font-size:15px;font-weight:700">app/</text>
+<path class="c1" d="M190 344h11l4 5h17v19h-32z"/>
+<text x="230" y="362" font-family="Menlo,Consolas,monospace" style="font-size:15px;font-weight:700">documentos/</text>
+<rect class="box" x="220" y="382" width="24" height="28" rx="3"/>
+<path class="ln" d="M225 392h14M225 399h14" style="stroke-width:1.5"/>
+<text x="256" y="402" font-family="Menlo,Consolas,monospace" style="font-size:15px;font-weight:700">reporte.pdf</text>
+<path class="ln" d="M72 88V116H86" style="stroke-width:1.5"/>
+<path class="ln" d="M98 128V156H112" style="stroke-width:1.5"/>
+<path class="ln" d="M72 88V196H86" style="stroke-width:1.5"/>
+<path class="ln" d="M98 208V236H112" style="stroke-width:1.5"/>
+<path class="ln" d="M124 248V276H138" style="stroke-width:1.5"/>
+<path class="ln" d="M150 288V316H164" style="stroke-width:1.5"/>
+<path class="ln" d="M176 328V356H190" style="stroke-width:1.5"/>
+<path class="ln" d="M202 368V396H216" style="stroke-width:1.5"/>
+<rect class="sgood" x="156" y="294" width="214" height="120" rx="8" stroke-dasharray="6 4"/>
+<text class="s" x="156" y="434">carpeta base de la aplicación</text>
+<path class="path" d="M162 318C130 314 108 288 134 280" marker-end="url(#t03-path-traversal-r)" style="stroke-width:2.5"/>
+<circle class="c5" cx="108" cy="298.0" r="10"/>
+<text class="b" x="108" y="303.0" text-anchor="middle" style="font-size:13px">1</text>
+<path class="path" d="M136 278C104 274 82 248 108 240" marker-end="url(#t03-path-traversal-r)" style="stroke-width:2.5"/>
+<circle class="c5" cx="82" cy="258.0" r="10"/>
+<text class="b" x="82" y="263.0" text-anchor="middle" style="font-size:13px">2</text>
+<path class="path" d="M110 238C78 234 56 208 82 200" marker-end="url(#t03-path-traversal-r)" style="stroke-width:2.5"/>
+<circle class="c5" cx="56" cy="218.0" r="10"/>
+<text class="b" x="56" y="223.0" text-anchor="middle" style="font-size:13px">3</text>
+<path class="path" d="M84 198C52 194 30 88 56 80" marker-end="url(#t03-path-traversal-r)" style="stroke-width:2.5"/>
+<circle class="c5" cx="30" cy="138.0" r="10"/>
+<text class="b" x="30" y="143.0" text-anchor="middle" style="font-size:13px">4</text>
+<path class="path" d="M122 76Q250 90 220 152" marker-end="url(#t03-path-traversal-r)" style="stroke-width:2.5"/>
+<rect class="c1" x="380" y="60" width="344" height="108" rx="8"/>
+<text class="b" x="394" y="84">Uso normal</text>
+<text x="394" y="110" font-family="Menlo,Consolas,monospace" style="font-size:14px">?archivo=documentos/reporte.pdf</text>
+<text class="s" x="394" y="136">→ /var/www/html/app/</text>
+<text class="s" x="394" y="154">   documentos/reporte.pdf</text>
+<rect class="c5" x="380" y="182" width="344" height="108" rx="8"/>
+<text class="b" x="394" y="206">Ataque</text>
+<text x="394" y="232" font-family="Menlo,Consolas,monospace" style="font-size:14px" xml:space="preserve"><tspan>?archivo=</tspan><tspan style="fill:var(--color-danger);font-weight:700">../../../../</tspan><tspan>etc/passwd</tspan></text>
+<text class="s" x="394" y="258">4 subidas: app → html → www → var → /</text>
+<text class="s" x="394" y="276">→ /etc/passwd, las cuentas de Linux</text>
+<rect class="tint" x="380" y="304" width="344" height="124" rx="8"/>
+<text class="b" x="394" y="328">Defensa: ruta canónica</text>
+<text class="s" x="394" y="352">1. Resolver los ../ → /etc/passwd</text>
+<text class="s" x="394" y="374">2. ¿Empieza por /var/www/html/app/?</text>
+<text class="s" x="394" y="396">3. No → rechazar la petición</text>
+<text class="s" x="394" y="418">Mejor aún: lista blanca de archivos.</text>
+</svg>

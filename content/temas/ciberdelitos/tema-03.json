@@ -112,6 +112,7 @@
           "term": "«Act» no significa «ley» en la Unión Europea",
           "text": "En inglés, los nombres Cyber Resilience **Act** o AI **Act** se suelen traducir por «ley», pero en el derecho de la Unión son **reglamentos** (en inglés, regulation). Al ver las siglas CRA o la expresión «ley de inteligencia artificial», recuerda que no son leyes nacionales: son reglamentos europeos directamente aplicables."
         },
+        {"type":"figure","src":"figuras/ciberdelitos/t03-directiva-reglamento.svg","title":"Directiva frente a reglamento: cómo llega la norma a la empresa","caption":"La directiva necesita una ley de cada país (transposición); el reglamento se aplica tal cual.","alt":"Dos columnas. Izquierda, Directiva: la Unión Europea fija un resultado; con flechas de transposición llega a España, Francia e Italia, que aprueban su propia ley, y cada ley se aplica a las empresas de ese país. Nota: cada país elige la forma y los medios dentro de un plazo; ejemplos, NIS y NIS 2. Derecha, Reglamento: la Unión Europea aprueba un texto único que llega directamente a las empresas, sin ley nacional. Nota: igual en todos los países; ejemplos, RGPD, Reglamento 2019/881 y DORA."},
         {
           "type": "exam",
           "text": "Si una opción dice «Real Decreto 12/2018» o «Ley 12/2018», está mal: es **Real Decreto-ley** 12/2018. Y si dice que NIS 2 es «un reglamento», también está mal: es una **directiva**."
@@ -454,6 +455,7 @@
           "type": "p",
           "text": "Segunda gran novedad: **desaparece la distinción entre operadores de servicios esenciales y proveedores de servicios digitales**. El considerando 6 la califica de **obsoleta**, porque no reflejaba la importancia real de los sectores. Ahora la clasificación se hace según la **importancia** (criticidad del sector o servicio y tamaño), en dos categorías: **esenciales** e **importantes**. Entran sectores que antes no estaban, como el postal, el alimentario o los proveedores de servicios digitales en general."
         },
+        {"type":"figure","src":"figuras/ciberdelitos/t03-nis2-matriz.svg","title":"NIS 2: el sector y el tamaño deciden","caption":"Simplificado: el tema no pide las cifras de tamaño. La lista completa de esenciales está en el art. 3.1.","alt":"Tabla de dos filas y tres columnas. Filas: anexo I, sectores de alta criticidad (energía, transporte, banca, sanidad, agua…) y anexo II, otros sectores críticos (postal, residuos, química, alimentos…). Columnas: empresa pequeña, mediana y grande (supera la mediana). Anexo I: pequeña, el Estado valora si es de alto riesgo; mediana, importante; grande, esencial. Anexo II: pequeña, el Estado valora; mediana, importante; grande, importante. Debajo, un recuadro rojo: son esenciales siempre, sea cual sea su tamaño, los proveedores de DNS, los registros de dominios de primer nivel (.es) y los prestadores cualificados de servicios de confianza; también la Administración pública central y las entidades críticas."},
         {
           "type": "example",
           "title": "Caso práctico",
@@ -591,6 +593,7 @@
           "type": "p",
           "text": "Los plazos NIS 2 se parecen a los del RGPD (la cuenta empieza cuando **tienes constancia** del incidente, no cuando ocurre), pero no se sustituyen. Recuerda: **24 horas alerta, 72 horas notificación, un mes informe final**."
         },
+        {"type":"figure","src":"figuras/ciberdelitos/t03-plazos-notificacion.svg","title":"Un mismo incidente, tres relojes: NIS 2, RGPD y Directiva CER","caption":"Todos los relojes arrancan cuando se tiene **constancia** del incidente; el mes de NIS 2 cuenta desde la notificación de 72 h.","alt":"Tres líneas de tiempo que empiezan en la constancia del incidente. NIS 2: a las 24 horas alerta temprana, a las 72 horas notificación y un mes después el informe final, contado desde la notificación de 72 horas. RGPD, si hay datos personales: aviso a la AEPD a las 72 horas. Directiva CER, para entidades críticas: notificación inicial en 24 horas e informe detallado en un mes. Nota: las normas se suman; notificar a NIS 2 no exime de avisar a la AEPD."},
         {
           "type": "exam",
           "text": "Memoriza el orden **24 → 72 → 1 mes**. Las trampas invierten los plazos (72 h la alerta y 24 h la notificación), usan 36 o 96 horas o dicen «cualquier incidente que tenga un impacto». La palabra clave es **significativo**."
@@ -758,6 +761,7 @@
             "Se crea el **GECC** (Grupo Europeo de Certificación de la Ciberseguridad), formado por las autoridades nacionales (art. 62)."
           ]
         },
+        {"type":"figure","src":"figuras/ciberdelitos/t03-niveles-garantia.svg","title":"Los tres niveles de garantía del Reglamento 2019/881","caption":"Cada nivel se prueba contra un atacante más capaz. Solo el **básico** admite autoevaluación.","alt":"Pirámide de tres pisos con una flecha hacia arriba que indica más exigencia. Abajo, Básico: protege frente a riesgos básicos conocidos de ciberincidentes y ciberataques. En medio, Sustancial: riesgos conocidos y agentes con capacidades y recursos limitados. Arriba, Elevado: ataques sofisticados de agentes con capacidades y recursos considerables. Nota: la autoevaluación del fabricante solo cabe en el nivel básico y para productos de bajo riesgo."},
         {
           "type": "exam",
           "text": "El nivel **elevado** no garantiza que nunca haya incidentes: significa que se ha evaluado frente a atacantes sofisticados con muchos recursos. La autoevaluación solo cabe en el nivel **básico** y para bajo riesgo, nunca en el elevado."
@@ -895,6 +899,7 @@
             ["Modelos de propósito general", "Normas específicas; reforzadas si tienen riesgo sistémico.", "Los grandes modelos que se han extendido por toda la Unión en pocas horas."]
           ]
         },
+        {"type":"figure","src":"figuras/ciberdelitos/t03-ia-piramide.svg","title":"El semáforo del Reglamento de IA, en pirámide","caption":"Cuanto más arriba, más grave el uso. Esquema nuevo hecho a partir de la tabla del apartado.","alt":"Pirámide de tres pisos. Arriba, en rojo, Prohibido: no se puede utilizar (manipular, puntuación social, predecir delitos individuales). En medio, en naranja, Alto riesgo: permitido con requisitos estrictos (admitir alumnos, despedir, subvenciones, fronteras). Abajo, en verde, Transparencia: obligación de informar (chatbots, contenido sintético, deepfakes). Debajo, una nota: aparte están los modelos de propósito general, con normas reforzadas si hay riesgo sistémico, y aunque el RIA permita un uso hay que cumplir el RGPD."},
         {
           "type": "list",
           "title": "Prácticas prohibidas (según la clase)",

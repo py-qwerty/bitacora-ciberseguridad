@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 360">
+<defs><marker id="t07lt-ink" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="ink" d="M0 0L10 5L0 10z"/></marker><marker id="t07lt-red" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="bad" d="M0 0L10 5L0 10z"/></marker><marker id="t07lt-grn" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="good" d="M0 0L10 5L0 10z"/></marker></defs>
+<text class="h" x="360" y="24" text-anchor="middle">Ordenar fechas de archivos para ver los pasos</text>
+<text class="s" x="360" y="48" text-anchor="middle">Ejemplo ilustrativo construido con el caso de cron del temario</text>
+<path class="ln" d="M30 170L700 170" style="stroke:var(--color-primary)" marker-end="url(#t07lt-ink)"/>
+<circle class="c5" cx="90" cy="170" r="8"/>
+<rect class="c5" x="10" y="70" width="160" height="70" rx="8"/>
+<text class="b" x="90" y="92" text-anchor="middle">02:11</text>
+<text class="s" x="90" y="112" text-anchor="middle">creado</text>
+<text class="s" x="90" y="130" text-anchor="middle" style="font-size:12px">/var/tmp/xxcrFWrZMH</text>
+<path class="ln" d="M90 162V140"/>
+<circle class="c5" cx="260" cy="170" r="8"/>
+<rect class="c5" x="180" y="194" width="160" height="70" rx="8"/>
+<text class="b" x="260" y="216" text-anchor="middle">02:12</text>
+<text class="s" x="260" y="236" text-anchor="middle">modificado</text>
+<text class="s" x="260" y="254" text-anchor="middle" style="font-size:12px">crontab de root</text>
+<path class="ln" d="M260 178V194"/>
+<circle class="c3" cx="430" cy="170" r="8"/>
+<rect class="c3" x="350" y="70" width="160" height="70" rx="8"/>
+<text class="b" x="430" y="92" text-anchor="middle">03:10</text>
+<text class="s" x="430" y="112" text-anchor="middle">acceso</text>
+<text class="s" x="430" y="130" text-anchor="middle" style="font-size:12px">perl ejecuta el script</text>
+<path class="ln" d="M430 162V140"/>
+<circle class="c3" cx="600" cy="170" r="8"/>
+<rect class="c3" x="520" y="194" width="160" height="70" rx="8"/>
+<text class="b" x="600" y="216" text-anchor="middle">04:10</text>
+<text class="s" x="600" y="236" text-anchor="middle">acceso</text>
+<text class="s" x="600" y="254" text-anchor="middle" style="font-size:12px">otra vez (cada hora)</text>
+<path class="ln" d="M600 178V194"/>
+<text class="s" x="360" y="298" text-anchor="middle">find … -printf con %T (modificación) o %C (cambio) y sort -nr ordena los archivos.</text>
+<text class="b" x="360" y="322" text-anchor="middle">Ojo: todas las fechas pueden alterarse; una incoherencia merece investigación.</text>
+</svg>
