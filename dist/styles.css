@@ -546,3 +546,9 @@ abbr.sg:focus-visible{outline:3px solid var(--color-focus)}
 .lab-libdef div{display:grid;grid-template-columns:auto 1fr;gap:4px 10px;align-items:baseline}
 .lab-libdef dt{margin:0}.lab-libdef dd{margin:0;font-size:14px;line-height:1.5}
 @media (max-width:640px){.lab-libdef div{grid-template-columns:1fr}}
+
+.tb-code.has-note pre{border-radius:var(--radius-control) var(--radius-control) 0 0}
+.cmd-note{border:1px solid var(--color-border);border-top:0;border-radius:0 0 var(--radius-control) var(--radius-control);background:color-mix(in srgb,var(--color-warning) 9%,var(--color-surface,#fff))}
+.cmd-note span{color:#8a5a00}
+.tb-code .sh-c{color:#9cc9bf;font-style:italic}
+.tb-code .sh-o{color:#ffd58a}

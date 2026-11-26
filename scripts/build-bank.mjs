@@ -105,7 +105,7 @@ for (const [courseIndex, course] of courses.entries()) {
     }
   }
 }
-const bank = { version: '2026-11-26.2', title: 'Bitácora Ciber', context: 'Práctica personal a partir del material docente. Solo la categoría campus-confirmed incorpora corrección observada en el campus; las demás claves están razonadas para estudiar. Las preguntas del test del campus sin corrección observada (campus-reasoned) llevan una clave razonada con el temario. Los simulacros no reproducen reglas oficiales. Las referencias de versiones y normativa pertenecen al material citado.', courses, topics, campus: campusTests, questions };
+const bank = { version: '2026-11-26.3', title: 'Bitácora Ciber', context: 'Práctica personal a partir del material docente. Solo la categoría campus-confirmed incorpora corrección observada en el campus; las demás claves están razonadas para estudiar. Las preguntas del test del campus sin corrección observada (campus-reasoned) llevan una clave razonada con el temario. Los simulacros no reproducen reglas oficiales. Las referencias de versiones y normativa pertenecen al material citado.', courses, topics, campus: campusTests, questions };
 validateBank(bank);
 if (questions.filter(q => !q.fromClass && !q.fromCampus && !q.fromExtra).length !== 1500) throw Error('Cobertura incompleta');
 if (questions.filter(q => q.source.kind === 'campus-confirmed').some(q => q.course !== 'sistemas' || q.topic !== 1)) throw Error('Confirmación campus fuera de su alcance');

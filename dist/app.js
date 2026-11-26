@@ -173,6 +173,7 @@ function labLibs(src){
   const expl=fresh.length?`<dl class="lab-libdef">${fresh.map(m=>`<div><dt><code class="ic">${esc(m)}</code></dt><dd>${rich(BIB[m],'inline')}</dd></div>`).join('')}</dl>`:'';
   return chips+expl;
 }
+function shHighlight(t){return t.split('\n').map(l=>/^\s*#/.test(l)?`<span class="sh-c">${esc(l)}</span>`:esc(l).replace(/(^|\s)(-[A-Za-z]|--[a-z-]+)(?=\s|$)/g,'$1<span class="sh-o">$2</span>')).join('\n')}
 function labBlock(b){
   return `<figure class="tb-lab"><figcaption><span class="lab-badge">Laboratorio Python</span>${b.title?`<b>${rich(b.title)}</b>`:''}</figcaption>${labLibs(b.text)}<pre class="lab-code"><code>${pyHighlight(b.text)}</code></pre>${b.output?`<p class="lab-out-label">Salida al ejecutarlo</p><pre class="lab-out"><code>${esc(b.output)}</code></pre>`:''}${b.note?`<p class="lab-note"><span>Fíjate en</span>${rich(b.note,'inline')}</p>`:''}</figure>`;
 }
@@ -187,7 +188,7 @@ function temaBlock(b){
     case 'table':return `<div class="tb-table">${title}<div class="table-wrap"><table><thead><tr>${b.head.map(h=>`<th scope="col">${rich(h)}</th>`).join('')}</tr></thead><tbody>${b.rows.map(r=>`<tr>${r.map((c,i)=>i===0?`<th scope="row">${rich(c)}</th>`:`<td>${rich(c)}</td>`).join('')}</tr>`).join('')}</tbody></table></div></div>`;
     case 'example':return `<aside class="tb tb-example"><span class="tb-label">Ejemplo</span>${title}<p>${rich(b.text,'inline')}</p></aside>`;
     case 'exam':return `<aside class="tb tb-exam"><span class="tb-label">Así cae en el test</span>${title}<p>${rich(b.text,'inline')}</p></aside>`;
-    case 'code':return b.lang==='python'?labBlock(b):`<figure class="tb-code">${b.title?`<figcaption>${rich(b.title)}</figcaption>`:''}<pre><code>${esc(b.text)}</code></pre>${b.output?`<p class="lab-out-label">Salida</p><pre class="lab-out"><code>${esc(b.output)}</code></pre>`:''}</figure>`;
+    case 'code':return b.lang==='python'?labBlock(b):`<figure class="tb-code${b.note?' has-note':''}">${b.title?`<figcaption>${rich(b.title)}</figcaption>`:''}<pre><code>${b.lang==='bash'?shHighlight(b.text):esc(b.text)}</code></pre>${b.output?`<p class="lab-out-label">Salida</p><pre class="lab-out"><code>${esc(b.output)}</code></pre>`:''}${b.note?`<p class="lab-note cmd-note"><span>Ojo</span>${rich(b.note,'inline')}</p>`:''}</figure>`;
     case 'diagram':return diagramBlock(b);
     case 'figure':return `<figure class="tb-diagram tb-figure"><figcaption><b>${rich(b.title)}</b>${b.caption?`<span>${rich(b.caption)}</span>`:''}</figcaption><div class="fig-body"><img src="${esc(b.src)}" alt="${esc(b.alt)}" loading="lazy" data-inline-svg></div></figure>`;
     case 'key':return `<aside class="tb tb-key"><span class="tb-label">Idea clave</span><p>${rich(b.text,'inline')}</p></aside>`;
