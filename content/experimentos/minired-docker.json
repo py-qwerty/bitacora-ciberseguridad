@@ -1,0 +1,835 @@
+{
+ "id": "minired-docker",
+ "order": 2,
+ "course": "experimentos",
+ "title": "Montar la mini-red cable a cable",
+ "subtitle": "Atacante, cortafuegos y servidor en Docker",
+ "time": "1 hora",
+ "intro": "Construimos el laboratorio de la asignatura de Redes pieza a pieza: dos redes, tres equipos, un cortafuegos con un cable a cada lado y las rutas que obligan a todo el tráfico a pasar por él. Cada conexión con su dibujo, cada línea del archivo explicada y cada comprobación con su salida real.",
+ "sections": [
+  {
+   "id": "el-plan",
+   "title": "El plano: qué vamos a construir",
+   "blocks": [
+    {
+     "type": "p",
+     "text": "Vamos a montar en tu Mac la red típica de una empresa, en pequeño. Tres equipos y dos redes:"
+    },
+    {
+     "type": "figure",
+     "src": "figuras/experimentos/lab-mapa.svg",
+     "title": "La mini-red terminada",
+     "alt": "A la izquierda, la zona roja red_externa (10.10.1.0/24) con el atacante, 10.10.1.10, que hace de «internet». A la derecha, la zona verde red_interna (10.10.2.0/24) con el servidor, 10.10.2.20, que ofrece web en el puerto 80 y SSH en el 22. En medio, el cortafuegos (router y filtro) unido al atacante por su tarjeta eth0 con la IP 10.10.1.2 y al servidor por eth1 con la IP 10.10.2.2. Todo lo que va del atacante al servidor cruza el cortafuegos.",
+     "caption": "Al final de este experimento tendrás exactamente esto funcionando."
+    },
+    {
+     "type": "table",
+     "head": [
+      "Equipo",
+      "Dirección IP",
+      "Papel",
+      "En una empresa real sería…"
+     ],
+     "rows": [
+      [
+       "**atacante**",
+       "10.10.1.10",
+       "Desde aquí lanzaremos pings, escaneos y ataques",
+       "Alguien en internet"
+      ],
+      [
+       "**cortafuegos**",
+       "10.10.1.2 y 10.10.2.2",
+       "Une las dos redes, filtra el tráfico y lo vigila",
+       "El firewall de la entrada"
+      ],
+      [
+       "**servidor**",
+       "10.10.2.20",
+       "Ofrece una web y SSH: lo que queremos proteger",
+       "Los servidores de la empresa"
+      ]
+     ],
+     "title": "Los tres equipos"
+    },
+    {
+     "type": "p",
+     "text": "La idea clave es la **segmentación de red** del tema 3: el atacante y el servidor están en **redes distintas**, y la única forma de pasar de una a otra es atravesar el cortafuegos. Así, el cortafuegos puede decidir qué pasa (con `iptables`), vigilarlo (con Suricata) y grabarlo (con `tcpdump`)."
+    },
+    {
+     "type": "p",
+     "text": "Lo construiremos por partes, como si cableáramos una red de verdad: primero los switches, luego enchufamos los equipos, después el cortafuegos con sus dos cables, y por último las rutas, que les dicen a los equipos por dónde ir. Cada paso tiene su dibujo."
+    },
+    {
+     "type": "key",
+     "text": "Si entiendes por qué cada cable y cada ruta están donde están, entiendes la segmentación de red. Es lo que se pregunta en el examen, pero aquí lo vas a ver funcionar."
+    }
+   ]
+  },
+  {
+   "id": "carpeta",
+   "title": "Paso 0: la carpeta del laboratorio",
+   "blocks": [
+    {
+     "type": "p",
+     "text": "Todo el laboratorio vive en una carpeta. Ábrela donde quieras (en el ejemplo, dentro de Documentos) y crea las subcarpetas desde la Terminal:"
+    },
+    {
+     "type": "code",
+     "lang": "bash",
+     "text": "cd ~/Documents\nmkdir -p Laboratorio/imagen Laboratorio/capturas Laboratorio/scripts Laboratorio/suricata\ncd Laboratorio",
+     "title": "Crear la estructura de carpetas",
+     "note": "`cd` (change directory) entra en una carpeta; `~` es tu carpeta personal. `mkdir -p` crea carpetas, incluidas las intermedias que falten. A partir de aquí, **todos los comandos se escriben dentro de `Laboratorio`**."
+    },
+    {
+     "type": "code",
+     "lang": "text",
+     "text": "Laboratorio/\n├── docker-compose.yml   ← el plano de la red (pasos 2 a 7)\n├── lab.sh               ← atajos para no escribir tanto (paso 10)\n├── imagen/\n│   └── Dockerfile       ← la receta de la imagen (paso 1)\n├── capturas/            ← aquí aparecerán las grabaciones de tráfico\n├── scripts/             ← tus programas (Scapy, reglas de cortafuegos…)\n└── suricata/            ← reglas del detector de intrusos (experimento del IDS)",
+     "title": "Cómo quedará la carpeta al terminar"
+    },
+    {
+     "type": "p",
+     "text": "Los archivos los crearás con cualquier editor de texto plano: **TextEdit** en modo texto (*Formato → Convertir en texto normal*), Visual Studio Code o `nano` en la Terminal. Lo importante es que se guarden **sin formato** y con el nombre exacto."
+    }
+   ]
+  },
+  {
+   "id": "imagen",
+   "title": "Paso 1: la imagen con las herramientas de redes",
+   "blocks": [
+    {
+     "type": "p",
+     "text": "Los tres equipos usarán la **misma imagen**: un Debian con todas las herramientas que necesitaremos a lo largo de los experimentos. Cada contenedor usará solo las suyas. Guarda esto como `imagen/Dockerfile`:"
+    },
+    {
+     "type": "code",
+     "lang": "dockerfile",
+     "text": "# Una sola imagen con todas las herramientas; cada contenedor usa lo que necesita.\nFROM debian:bookworm-slim\nRUN echo \"deb http://deb.debian.org/debian bookworm-backports main\" > /etc/apt/sources.list.d/backports.list \\\n && apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \\\n      iproute2 iputils-ping iptables tcpdump nmap hping3 curl netcat-openbsd \\\n      python3 python3-scapy nginx openssh-server procps less nano dnsutils \\\n && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends -t bookworm-backports suricata \\\n && rm -rf /var/lib/apt/lists/*\n# iptables \"clásico\" (el que se explica en clase) en vez de nftables\nRUN update-alternatives --set iptables /usr/sbin/iptables-legacy\nWORKDIR /root",
+     "title": "imagen/Dockerfile",
+     "note": "En el experimento 1 se explica cada instrucción (`FROM`, `RUN`, `WORKDIR`). Aquí nos fijamos en **qué programas** se instalan."
+    },
+    {
+     "type": "table",
+     "head": [
+      "Paquete",
+      "Qué te da",
+      "Lo usará"
+     ],
+     "rows": [
+      [
+       "`iproute2`",
+       "El comando `ip`: ver IPs, tarjetas de red y rutas",
+       "Todos"
+      ],
+      [
+       "`iputils-ping`",
+       "El comando `ping`, para ver si otro equipo responde",
+       "Todos"
+      ],
+      [
+       "`iptables`",
+       "El cortafuegos de Linux (tema 2)",
+       "cortafuegos"
+      ],
+      [
+       "`tcpdump`",
+       "Captura y graba los paquetes que pasan por una tarjeta",
+       "cortafuegos"
+      ],
+      [
+       "`nmap`",
+       "Escáner de puertos: qué puertas tiene abiertas un equipo",
+       "atacante"
+      ],
+      [
+       "`hping3`",
+       "Fabrica paquetes TCP/UDP/ICMP a medida desde la terminal",
+       "atacante"
+      ],
+      [
+       "`curl`",
+       "Pide páginas web desde la terminal",
+       "atacante"
+      ],
+      [
+       "`netcat-openbsd`",
+       "El comando `nc`: abre conexiones a un puerto a mano",
+       "atacante"
+      ],
+      [
+       "`python3`, `python3-scapy`",
+       "Python y Scapy, para crear y leer paquetes programando",
+       "atacante"
+      ],
+      [
+       "`suricata`",
+       "Detector de intrusos (IDS, tema 4)",
+       "cortafuegos"
+      ],
+      [
+       "`nginx`",
+       "Servidor web: responde en el puerto 80",
+       "servidor"
+      ],
+      [
+       "`openssh-server`",
+       "Servidor SSH: acceso remoto en el puerto 22",
+       "servidor"
+      ],
+      [
+       "`procps`, `less`, `nano`, `dnsutils`",
+       "Utilidades: ver procesos, leer y editar archivos, consultar DNS",
+       "Todos"
+      ]
+     ],
+     "title": "Qué se instala y para qué"
+    },
+    {
+     "type": "p",
+     "text": "La última línea, `update-alternatives --set iptables /usr/sbin/iptables-legacy`, elige la versión **clásica** de iptables. Debian trae por defecto una versión moderna que traduce las reglas a otro sistema (*nftables*); la clásica es la que se ve en clase y en la actividad 1, y así las salidas coinciden."
+    },
+    {
+     "type": "key",
+     "text": "Una imagen para todos simplifica mucho: se construye una vez (unos minutos) y los tres contenedores arrancan de ella al instante."
+    }
+   ]
+  },
+  {
+   "id": "redes",
+   "title": "Paso 2: los dos switches (las redes)",
+   "blocks": [
+    {
+     "type": "p",
+     "text": "Empezamos el `docker-compose.yml` por el final: las **redes**. Cada una es un switch virtual (lo vimos en el experimento 1). Necesitamos dos: una para el lado «de fuera» y otra para el lado «de dentro»."
+    },
+    {
+     "type": "code",
+     "lang": "yaml",
+     "text": "networks:\n  red_externa:\n    ipam: { config: [ { subnet: 10.10.1.0/24 } ] }\n  red_interna:\n    ipam: { config: [ { subnet: 10.10.2.0/24 } ] }",
+     "title": "docker-compose.yml · bloque networks",
+     "note": "**ipam** (*IP Address Management*, gestión de direcciones IP) es donde se le dice a Docker qué rango de direcciones repartir en esa red."
+    },
+    {
+     "type": "figure",
+     "src": "figuras/experimentos/lab-paso-redes.svg",
+     "title": "Dos switches vacíos",
+     "alt": "Dos switches: red_externa, 10.10.1.0/24, de la .1 a la .254; y red_interna, 10.10.2.0/24, de la .1 a la .254. Debajo de cada uno, un recuadro discontinuo: la .1 ya está ocupada por la puerta de Docker.",
+     "caption": "Todavía no hay nadie enchufado."
+    },
+    {
+     "type": "term",
+     "term": "10.10.1.0/24",
+     "text": "Se lee «la red 10.10.1, con 24 bits de máscara». Los tres primeros números (24 bits = 3 × 8) son fijos y dicen **qué red es**; el último número identifica a cada equipo dentro de ella, del 1 al 254. Así, 10.10.1.10 y 10.10.1.2 están en la misma red; 10.10.2.20 está en otra."
+    },
+    {
+     "type": "p",
+     "text": "Usamos direcciones **10.x.x.x** porque son **privadas**: están reservadas para redes internas y nunca existen en internet, así que no chocan con nada. Y recuerda: Docker se queda la **.1** de cada red como su puerta de salida. Por eso nuestros equipos usan otras (.2, .10, .20)."
+    }
+   ]
+  },
+  {
+   "id": "base-comun",
+   "title": "Paso 3: lo que comparten los tres equipos",
+   "blocks": [
+    {
+     "type": "p",
+     "text": "Los tres contenedores tienen varias opciones idénticas. Para no escribirlas tres veces, YAML permite definirlas una vez con un **ancla** (`&base`) y pegarlas donde haga falta (`<<: *base`). Va al principio del archivo:"
+    },
+    {
+     "type": "code",
+     "lang": "yaml",
+     "text": "name: labredes\n\nx-base: &base\n  image: labredes-imagen\n  pull_policy: never\n  cap_add: [NET_ADMIN, NET_RAW]\n  tty: true\n  stdin_open: true",
+     "title": "docker-compose.yml · cabecera y opciones comunes"
+    },
+    {
+     "type": "table",
+     "head": [
+      "Línea",
+      "Qué significa"
+     ],
+     "rows": [
+      [
+       "`name: labredes`",
+       "Nombre del proyecto. Docker lo pone delante de todo lo que crea: `labredes-atacante-1`, `labredes_red_externa`…"
+      ],
+      [
+       "`x-base: &base`",
+       "Un bloque de opciones con el ancla `base`. Las claves que empiezan por `x-` Docker las ignora: solo existen para reutilizarlas."
+      ],
+      [
+       "`image: labredes-imagen`",
+       "Todos usan la imagen del paso 1 (la construye el cortafuegos, en el paso 6)."
+      ],
+      [
+       "`pull_policy: never`",
+       "No intentes descargar esa imagen de internet: es nuestra y se construye aquí."
+      ],
+      [
+       "`cap_add: [NET_ADMIN, NET_RAW]`",
+       "Permisos extra de red (ver abajo)."
+      ],
+      [
+       "`tty: true` y `stdin_open: true`",
+       "Equivalen a `-t` y `-i`: dejan el contenedor listo para que entres con una terminal."
+      ]
+     ],
+     "title": "Línea a línea"
+    },
+    {
+     "type": "p",
+     "text": "Lo de `cap_add` merece explicación. Por seguridad, Docker les quita a los contenedores los permisos para tocar la red a fondo. Pero nuestro laboratorio va justo de eso, así que le devolvemos dos **capacidades** (*capabilities*, permisos concretos de Linux):"
+    },
+    {
+     "type": "list",
+     "items": [
+      "**NET_ADMIN**: administrar la red: poner reglas de `iptables`, cambiar rutas con `ip route`.",
+      "**NET_RAW**: crear paquetes «en crudo», como hacen `ping`, `nmap`, `hping3` o Scapy, y escuchar todo el tráfico como hacen `tcpdump` y Suricata."
+     ]
+    },
+    {
+     "type": "key",
+     "text": "Damos solo los dos permisos necesarios, no todos (`privileged`). Es el principio de **mínimo privilegio** que aparece en todas las asignaturas."
+    }
+   ]
+  },
+  {
+   "id": "atacante-servidor",
+   "title": "Paso 4: enchufar el atacante y el servidor",
+   "blocks": [
+    {
+     "type": "p",
+     "text": "Ahora los **servicios** (`services:`), es decir, los contenedores. Empezamos por los dos de los extremos. Cada uno se enchufa a **una sola red** con una IP fija:"
+    },
+    {
+     "type": "code",
+     "lang": "yaml",
+     "text": "services:\n  atacante:\n    <<: *base\n    depends_on: [cortafuegos]\n    hostname: atacante\n    networks:\n      red_externa: { ipv4_address: 10.10.1.10 }\n\n  servidor:\n    <<: *base\n    depends_on: [cortafuegos]\n    hostname: servidor\n    networks:\n      red_interna: { ipv4_address: 10.10.2.20 }",
+     "title": "docker-compose.yml · atacante y servidor (versión provisional, sin rutas)",
+     "note": "**<<: *base** pega aquí las opciones comunes del paso 3. **hostname** es el nombre del equipo que verás dentro (`root@atacante`). **ipv4_address** fija la IP; si no, Docker daría una cualquiera del rango. **depends_on** hace que se creen después del cortafuegos, que es quien construye la imagen."
+    },
+    {
+     "type": "figure",
+     "src": "figuras/experimentos/lab-paso-equipos.svg",
+     "title": "Cada uno en su red",
+     "alt": "El atacante, 10.10.1.10, enchufado al switch red_externa; el servidor, 10.10.2.20, enchufado al switch red_interna. Entre ambos, una X roja: no se ven.",
+     "caption": "Dos redes distintas sin nada que las una: el atacante no puede llegar al servidor."
+    },
+    {
+     "type": "p",
+     "text": "Con solo esto, el atacante y el servidor **no pueden hablar**: están en switches diferentes y no hay nada que los conecte. Es lo que queremos: la única puerta será el cortafuegos."
+    }
+   ]
+  },
+  {
+   "id": "cortafuegos",
+   "title": "Paso 5: el cortafuegos, con un cable a cada red",
+   "blocks": [
+    {
+     "type": "p",
+     "text": "El cortafuegos es el único equipo enchufado a **las dos redes** a la vez. Tendrá dos tarjetas de red, una en cada switch, con una IP en cada una:"
+    },
+    {
+     "type": "code",
+     "lang": "yaml",
+     "text": "  cortafuegos:\n    <<: *base\n    build: ./imagen      # la imagen se construye una vez y la reutilizan los tres\n    hostname: cortafuegos\n    sysctls:\n      net.ipv4.ip_forward: \"1\"   # actúa como router: reenvía paquetes de una red a otra\n    networks:\n      red_externa: { ipv4_address: 10.10.1.2 }\n      red_interna: { ipv4_address: 10.10.2.2 }",
+     "title": "docker-compose.yml · cortafuegos",
+     "note": "**build: ./imagen** le dice a Compose que, si la imagen no existe, la fabrique con el Dockerfile de esa carpeta. Como los tres usan la misma imagen, basta con ponerlo en uno."
+    },
+    {
+     "type": "figure",
+     "src": "figuras/experimentos/lab-paso-cortafuegos.svg",
+     "title": "Un pie en cada red",
+     "alt": "El cortafuegos arriba, en el centro, con dos cables: eth0, con la IP 10.10.1.2, baja al switch red_externa, donde también está el atacante (10.10.1.10); eth1, con la IP 10.10.2.2, baja al switch red_interna, donde está el servidor (10.10.2.20).",
+     "caption": "Dentro del cortafuegos, cada cable es una tarjeta de red: eth0 y eth1."
+    },
+    {
+     "type": "p",
+     "text": "Pero tener dos cables **no basta**. Por defecto, un equipo Linux que recibe un paquete que no es para él (por ejemplo, uno del atacante dirigido al servidor) **lo tira**. Para que lo pase de una tarjeta a la otra hay que convertirlo en **router** activando el *reenvío de IP*:"
+    },
+    {
+     "type": "term",
+     "term": "net.ipv4.ip_forward = 1",
+     "text": "Un ajuste del núcleo de Linux (un *sysctl*). Con **0** (lo normal en un ordenador) el equipo solo acepta lo que va para él. Con **1** reenvía los paquetes de una red a otra: se comporta como un router. En Docker se fija al crear el contenedor con `sysctls:`; desde dentro no se puede cambiar (lo probamos: sale `permission denied`)."
+    },
+    {
+     "type": "key",
+     "text": "Router = equipo con un pie en cada red **y** el reenvío activado. Nuestro cortafuegos es las dos cosas, y además filtrará con iptables lo que reenvía."
+    }
+   ]
+  },
+  {
+   "id": "rutas",
+   "title": "Paso 6: las rutas, o cómo saber por dónde ir",
+   "blocks": [
+    {
+     "type": "p",
+     "text": "Ya hay un camino físico: atacante → cortafuegos → servidor. Pero el atacante **no lo sabe**. Cuando quiere enviar algo a 10.10.2.20, mira su **tabla de rutas** (la lista de «para ir a tal red, ve por aquí») y no encuentra esa red. Hay que decírselo."
+    },
+    {
+     "type": "analogy",
+     "text": "Las rutas son los carteles de una rotonda. El atacante solo tiene uno que dice «todo lo demás: salida de Docker». Le añadimos otro: «hacia la red 10.10.2: tome la salida del cortafuegos». Y al servidor le ponemos el cartel de vuelta.",
+     "title": "Carteles de carretera"
+    },
+    {
+     "type": "code",
+     "lang": "yaml",
+     "text": "  atacante:\n    # ... (lo del paso 4)\n    command: sh -c \"ip route replace 10.10.2.0/24 via 10.10.1.2 && sleep infinity\"\n\n  servidor:\n    # ... (lo del paso 4)\n    command: sh -c \"ip route replace 10.10.1.0/24 via 10.10.2.2 && service nginx start && mkdir -p /run/sshd && /usr/sbin/sshd && sleep infinity\"\n\n  cortafuegos:\n    # ... (lo del paso 5)\n    command: sleep infinity",
+     "title": "docker-compose.yml · lo que hace cada equipo al arrancar",
+     "note": "**command** es lo que ejecuta el contenedor al encenderse. `&&` encadena órdenes: la siguiente solo se ejecuta si la anterior ha ido bien."
+    },
+    {
+     "type": "table",
+     "head": [
+      "Orden",
+      "Qué hace"
+     ],
+     "rows": [
+      [
+       "`ip route replace 10.10.2.0/24 via 10.10.1.2`",
+       "En el atacante: «para llegar a la red 10.10.2.x, entrégaselo al cortafuegos (10.10.1.2)». `replace` la crea o la sustituye si ya existía."
+      ],
+      [
+       "`ip route replace 10.10.1.0/24 via 10.10.2.2`",
+       "En el servidor: «para contestar a la red 10.10.1.x, devuélveselo al cortafuegos (10.10.2.2)»."
+      ],
+      [
+       "`service nginx start`",
+       "Arranca el servidor web (puerto 80)."
+      ],
+      [
+       "`mkdir -p /run/sshd && /usr/sbin/sshd`",
+       "Crea la carpeta que necesita SSH y arranca el servidor SSH (puerto 22)."
+      ],
+      [
+       "`sleep infinity`",
+       "Un contenedor se apaga cuando termina su orden. `sleep infinity` no termina nunca, así que el equipo se queda encendido esperándote."
+      ]
+     ],
+     "title": "Orden a orden"
+    },
+    {
+     "type": "p",
+     "text": "El cortafuegos no necesita rutas extra: como está enchufado a las dos redes, Linux ya sabe que la 10.10.1.x está por eth0 y la 10.10.2.x por eth1."
+    },
+    {
+     "type": "figure",
+     "src": "figuras/experimentos/lab-rutas.svg",
+     "title": "Las tres tablas de rutas",
+     "alt": "Arriba, el atacante, el cortafuegos y el servidor; flechas rojas de ida del atacante al cortafuegos y del cortafuegos al servidor, y flechas verdes de vuelta en sentido contrario. Debajo, tres tablas. Rutas del atacante: 10.10.1.0/24 directa; 10.10.2.0/24 via 10.10.1.2 (resaltada); default via 10.10.1.1. Para ir al servidor, pásaselo al cortafuegos. Rutas del cortafuegos: 10.10.1.0/24 por eth0; 10.10.2.0/24 por eth1; ip_forward = 1 (resaltado). Conoce las dos redes y reenvía de una a otra. Rutas del servidor: 10.10.2.0/24 directa; 10.10.1.0/24 via 10.10.2.2 (resaltada); default via 10.10.2.1. Para contestar, devuélveselo al cortafuegos.",
+     "caption": "En rojo, lo que hemos añadido nosotros. Las demás líneas las pone Docker solo."
+    },
+    {
+     "type": "key",
+     "text": "Hacen falta rutas **en los dos sentidos**: la de ida en el atacante y la de vuelta en el servidor. Una red solo funciona si las respuestas también saben volver."
+    }
+   ]
+  },
+  {
+   "id": "ruta-de-vuelta",
+   "title": "Por qué la ruta de vuelta es tan importante",
+   "blocks": [
+    {
+     "type": "p",
+     "text": "Aquí hay una trampa que vale la pena ver con tus propios ojos. Si quitas la ruta de vuelta del servidor, **el ping sigue funcionando**. ¿Entonces sobra? No: lo que pasa es que la respuesta encuentra **otro camino**."
+    },
+    {
+     "type": "p",
+     "text": "El servidor tiene una ruta por defecto, `default via 10.10.2.1`, que apunta a la **puerta de Docker**. Sin la ruta de vuelta, la respuesta sale por ahí, cruza por dentro de Docker y llega al atacante **sin pasar por el cortafuegos**. Lo comprobamos grabando el tráfico en el cortafuegos con `tcpdump` mientras el atacante hace dos pings:"
+    },
+    {
+     "type": "code",
+     "lang": "bash",
+     "text": "tcpdump -i any -n icmp",
+     "title": "En el cortafuegos, CON ruta de vuelta",
+     "output": "eth0  In  IP 10.10.1.10 > 10.10.2.20: ICMP echo request, id 6, seq 1, length 64\neth1  Out IP 10.10.1.10 > 10.10.2.20: ICMP echo request, id 6, seq 1, length 64\neth1  In  IP 10.10.2.20 > 10.10.1.10: ICMP echo reply, id 6, seq 1, length 64\neth0  Out IP 10.10.2.20 > 10.10.1.10: ICMP echo reply, id 6, seq 1, length 64",
+     "note": "**-i any** escucha en todas las tarjetas; **-n** enseña IPs en número; **icmp** filtra solo los pings. Se ve el viaje completo: la petición (*echo request*) entra por eth0 y sale por eth1; la respuesta (*echo reply*) entra por eth1 y sale por eth0. Se muestra el primer ping; el segundo es igual."
+    },
+    {
+     "type": "code",
+     "lang": "bash",
+     "text": "tcpdump -i any -n icmp",
+     "title": "En el cortafuegos, SIN ruta de vuelta",
+     "output": "eth0  In  IP 10.10.1.10 > 10.10.2.20: ICMP echo request, id 7, seq 1, length 64\neth1  Out IP 10.10.1.10 > 10.10.2.20: ICMP echo request, id 7, seq 1, length 64\neth0  In  IP 10.10.1.10 > 10.10.2.20: ICMP echo request, id 7, seq 2, length 64\neth1  Out IP 10.10.1.10 > 10.10.2.20: ICMP echo request, id 7, seq 2, length 64",
+     "note": "Solo pasan las peticiones. Las respuestas **no aparecen**: han vuelto por la puerta de Docker. El atacante recibe su respuesta y no nota nada, pero el cortafuegos se la ha perdido."
+    },
+    {
+     "type": "figure",
+     "src": "figuras/experimentos/lab-ruta-vuelta.svg",
+     "title": "La respuesta que se salta el cortafuegos",
+     "alt": "Atacante, cortafuegos y servidor en fila. La ida, en rojo, pasa del atacante al cortafuegos y del cortafuegos al servidor. La vuelta, en rojo discontinuo, baja del servidor a la puerta de Docker (10.10.2.1) y de ahí sube directamente al atacante, sin tocar el cortafuegos. El cortafuegos solo ve la ida: no puede filtrar ni registrar la respuesta.",
+     "caption": "Esto se llama **enrutamiento asimétrico**: la ida y la vuelta van por caminos distintos."
+    },
+    {
+     "type": "p",
+     "text": "¿Por qué es grave? Un cortafuegos **con estado** (tema 2) recuerda las conexiones: necesita ver la ida y la vuelta para saber que una respuesta es legítima. Si solo ve la mitad, las reglas del tipo `ESTABLISHED` no funcionan bien, y el detector de intrusos se pierde la mitad de cada conversación. Con la ruta de vuelta, todo pasa por el cortafuegos."
+    },
+    {
+     "type": "key",
+     "text": "Un cortafuegos solo protege lo que pasa por él. Hay que asegurarse de que es el **único camino** en los dos sentidos: cualquier «puerta trasera» (aquí, la de Docker) lo deja ciego."
+    }
+   ]
+  },
+  {
+   "id": "volumenes",
+   "title": "Paso 7: las carpetas compartidas",
+   "blocks": [
+    {
+     "type": "p",
+     "text": "Último ingrediente: los **volúmenes**, para que algunas carpetas del Mac aparezcan dentro de los contenedores (lo vimos en el experimento 1)."
+    },
+    {
+     "type": "code",
+     "lang": "yaml",
+     "text": "  cortafuegos:\n    volumes:\n      - ./suricata:/lab/suricata\n      - ./capturas:/lab/capturas\n      - ./scripts:/lab/scripts\n\n  servidor:\n    volumes:\n      - ./scripts:/lab/scripts\n\n  atacante:\n    volumes:\n      - ./scripts:/lab/scripts\n      - ./capturas:/lab/capturas",
+     "title": "docker-compose.yml · volúmenes de cada equipo",
+     "note": "Formato **carpeta del Mac : carpeta del contenedor**. `./` significa «dentro de la carpeta donde está el docker-compose.yml», es decir, `Laboratorio`."
+    },
+    {
+     "type": "figure",
+     "src": "figuras/experimentos/lab-volumenes.svg",
+     "title": "Qué carpeta va a dónde",
+     "alt": "A la izquierda, la carpeta Laboratorio del Mac con capturas/ (grabaciones .pcap), scripts/ (tus programas) y suricata/ (reglas del IDS). A la derecha, dentro de los contenedores, /lab/capturas, /lab/scripts y /lab/suricata, unidas con flechas dobles.",
+     "caption": "Lo que guardas a un lado aparece al otro al instante."
+    },
+    {
+     "type": "table",
+     "head": [
+      "Carpeta",
+      "Quién la usa",
+      "Para qué"
+     ],
+     "rows": [
+      [
+       "`capturas/`",
+       "cortafuegos y atacante",
+       "Guardar grabaciones de tráfico (`.pcap`) y abrirlas en Wireshark desde el Mac"
+      ],
+      [
+       "`scripts/`",
+       "los tres",
+       "Tus programas: escáner con Scapy, reglas del cortafuegos… Los editas en el Mac y los ejecutas dentro"
+      ],
+      [
+       "`suricata/`",
+       "cortafuegos",
+       "Configuración, reglas y alertas del detector de intrusos"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "fichero-completo",
+   "title": "El docker-compose.yml completo",
+   "blocks": [
+    {
+     "type": "p",
+     "text": "Juntando los pasos 2 a 7 queda el archivo entero. Cópialo tal cual en `Laboratorio/docker-compose.yml`; cuidado con los espacios de la izquierda:"
+    },
+    {
+     "type": "code",
+     "lang": "yaml",
+     "text": "# Mini-red del laboratorio de Redes\n#\n#   [atacante] 10.10.1.10 ──red_externa── 10.10.1.2 [cortafuegos] 10.10.2.2 ──red_interna── 10.10.2.20 [servidor]\n#\n# Todo el tráfico entre atacante y servidor pasa OBLIGATORIAMENTE por el cortafuegos.\nname: labredes\n\nx-base: &base\n  image: labredes-imagen\n  pull_policy: never\n  cap_add: [NET_ADMIN, NET_RAW]\n  tty: true\n  stdin_open: true\n\nservices:\n  cortafuegos:\n    <<: *base\n    build: ./imagen      # la imagen se construye una vez y la reutilizan los tres\n    hostname: cortafuegos\n    sysctls:\n      net.ipv4.ip_forward: \"1\"   # actúa como router: reenvía paquetes de una red a otra\n    networks:\n      red_externa: { ipv4_address: 10.10.1.2 }\n      red_interna: { ipv4_address: 10.10.2.2 }\n    volumes:\n      - ./suricata:/lab/suricata\n      - ./capturas:/lab/capturas\n      - ./scripts:/lab/scripts\n    command: sleep infinity\n\n  servidor:\n    <<: *base\n    depends_on: [cortafuegos]\n    hostname: servidor\n    networks:\n      red_interna: { ipv4_address: 10.10.2.20 }\n    volumes:\n      - ./scripts:/lab/scripts\n    # ruta: para volver a la red externa, pasar por el cortafuegos; luego arrancar web (80) y SSH (22)\n    command: sh -c \"ip route replace 10.10.1.0/24 via 10.10.2.2 && service nginx start && mkdir -p /run/sshd && /usr/sbin/sshd && sleep infinity\"\n\n  atacante:\n    <<: *base\n    depends_on: [cortafuegos]\n    hostname: atacante\n    networks:\n      red_externa: { ipv4_address: 10.10.1.10 }\n    volumes:\n      - ./scripts:/lab/scripts\n      - ./capturas:/lab/capturas\n    command: sh -c \"ip route replace 10.10.2.0/24 via 10.10.1.2 && sleep infinity\"\n\nnetworks:\n  red_externa:\n    ipam: { config: [ { subnet: 10.10.1.0/24 } ] }\n  red_interna:\n    ipam: { config: [ { subnet: 10.10.2.0/24 } ] }",
+     "title": "docker-compose.yml",
+     "note": "El dibujo del principio del archivo es un comentario (líneas con **#**): no hace nada, solo recuerda la forma de la red al que lo lea."
+    },
+    {
+     "type": "list",
+     "items": [
+      "**¿Qué es cada bloque?** `x-base` (paso 3), `services` con cortafuegos (pasos 5, 6 y 7), servidor y atacante (pasos 4, 6 y 7), y `networks` (paso 2).",
+      "**¿Dónde están los «cables»?** En cada `networks:` de cada servicio: el atacante tiene uno, el servidor uno y el cortafuegos dos.",
+      "**¿Dónde está el router?** En `sysctls: net.ipv4.ip_forward` del cortafuegos.",
+      "**¿Dónde están los carteles?** En los `command:` del atacante y del servidor (`ip route replace …`)."
+     ],
+     "title": "Repaso rápido: localiza cada pieza"
+    }
+   ]
+  },
+  {
+   "id": "arrancar",
+   "title": "Paso 8: encender el laboratorio",
+   "blocks": [
+    {
+     "type": "p",
+     "text": "Con Docker Desktop abierto, desde la carpeta `Laboratorio`:"
+    },
+    {
+     "type": "code",
+     "lang": "bash",
+     "text": "docker compose up -d",
+     "title": "Levantar la red",
+     "output": " Network labredes_red_externa Creating\n Network labredes_red_externa Created\n Network labredes_red_interna Creating\n Network labredes_red_interna Created\n Container labredes-cortafuegos-1 Creating\n Container labredes-cortafuegos-1 Created\n Container labredes-servidor-1 Creating\n Container labredes-atacante-1 Creating\n Container labredes-atacante-1 Created\n Container labredes-servidor-1 Created\n Container labredes-cortafuegos-1 Starting\n Container labredes-cortafuegos-1 Started\n Container labredes-servidor-1 Starting\n Container labredes-atacante-1 Starting\n Container labredes-atacante-1 Started\n Container labredes-servidor-1 Started",
+     "note": "La **primera vez** verás antes muchas líneas de construcción de la imagen (descarga Debian e instala los programas): tarda unos minutos. Las siguientes, unos segundos. Fíjate en el orden: primero los dos switches, luego el cortafuegos y después los demás (por el `depends_on`)."
+    },
+    {
+     "type": "code",
+     "lang": "bash",
+     "text": "docker compose ps",
+     "title": "¿Están los tres encendidos?",
+     "output": "NAME                     STATUS\nlabredes-atacante-1      Up 5 minutes\nlabredes-cortafuegos-1   Up 5 minutes\nlabredes-servidor-1      Up 5 minutes",
+     "note": "**Up** = encendido. Si alguno sale como *Exited*, mira qué ha pasado con `docker compose logs NOMBRE` (por ejemplo, `docker compose logs servidor`)."
+    },
+    {
+     "type": "code",
+     "lang": "bash",
+     "text": "docker network ls --filter name=labredes",
+     "title": "Los dos switches creados",
+     "output": "NETWORK ID     NAME                   DRIVER    SCOPE\n5d2eb94e5592   labredes_red_externa   bridge    local\nef363e56dce8   labredes_red_interna   bridge    local",
+     "note": "**bridge** (puente) es el tipo de red de Docker que funciona como un switch. Docker les pone delante el nombre del proyecto, `labredes_`."
+    }
+   ]
+  },
+  {
+   "id": "comprobar",
+   "title": "Paso 9: comprobar cada cable y cada ruta",
+   "blocks": [
+    {
+     "type": "p",
+     "text": "Ahora verificamos que la red es exactamente la del plano. Para lanzar una orden dentro de un contenedor sin entrar en él se usa `docker compose exec NOMBRE orden`:"
+    },
+    {
+     "type": "code",
+     "lang": "bash",
+     "text": "docker compose exec atacante ip -br -4 addr\ndocker compose exec atacante ip route",
+     "title": "El atacante: un cable y la ruta hacia el servidor",
+     "output": "lo               UNKNOWN        127.0.0.1/8\neth0@if57        UP             10.10.1.10/24\ndefault via 10.10.1.1 dev eth0\n10.10.1.0/24 dev eth0 proto kernel scope link src 10.10.1.10\n10.10.2.0/24 via 10.10.1.2 dev eth0",
+     "note": "Una tarjeta, **eth0**, con 10.10.1.10. La última ruta es la nuestra: hacia 10.10.2.0/24 por el cortafuegos. El número tras `@if` es interno de Docker y en tu ordenador será otro."
+    },
+    {
+     "type": "code",
+     "lang": "bash",
+     "text": "docker compose exec cortafuegos ip -br -4 addr\ndocker compose exec cortafuegos sysctl net.ipv4.ip_forward",
+     "title": "El cortafuegos: dos cables y el reenvío activado",
+     "output": "lo               UNKNOWN        127.0.0.1/8\neth0@if54        UP             10.10.1.2/24\neth1@if55        UP             10.10.2.2/24\nnet.ipv4.ip_forward = 1",
+     "note": "Dos tarjetas, una en cada red. Ojo: Docker no garantiza qué red será eth0 y cuál eth1; por eso los scripts del laboratorio buscan la tarjeta por su IP y no por su nombre."
+    },
+    {
+     "type": "code",
+     "lang": "bash",
+     "text": "docker compose exec servidor ip route",
+     "title": "El servidor: la ruta de vuelta",
+     "output": "default via 10.10.2.1 dev eth0\n10.10.1.0/24 via 10.10.2.2 dev eth0\n10.10.2.0/24 dev eth0 proto kernel scope link src 10.10.2.20"
+    },
+    {
+     "type": "p",
+     "text": "Y ahora la prueba de fuego: el atacante llama al servidor."
+    },
+    {
+     "type": "code",
+     "lang": "bash",
+     "text": "docker compose exec atacante ping -c 3 10.10.2.20",
+     "title": "Ping del atacante al servidor",
+     "output": "PING 10.10.2.20 (10.10.2.20) 56(84) bytes of data.\n64 bytes from 10.10.2.20: icmp_seq=1 ttl=63 time=0.052 ms\n64 bytes from 10.10.2.20: icmp_seq=2 ttl=63 time=0.170 ms\n64 bytes from 10.10.2.20: icmp_seq=3 ttl=63 time=0.224 ms\n\n--- 10.10.2.20 ping statistics ---\n3 packets transmitted, 3 received, 0% packet loss, time 2087ms",
+     "note": "**ttl=63**. El TTL (*Time To Live*) es un contador que cada router resta en 1 al reenviar un paquete. Sale con 64 y llega con 63: ha pasado exactamente **por un router**, el cortafuegos. En el experimento 1, entre dos equipos del mismo switch, llegaba con 64."
+    },
+    {
+     "type": "diagram",
+     "kind": "sequence",
+     "title": "El viaje de un ping por la mini-red",
+     "actors": [
+      {
+       "icon": "device-desktop",
+       "title": "atacante",
+       "text": "10.10.1.10"
+      },
+      {
+       "icon": "shield",
+       "title": "cortafuegos",
+       "text": "10.10.1.2 · 10.10.2.2"
+      },
+      {
+       "icon": "server",
+       "title": "servidor",
+       "text": "10.10.2.20"
+      }
+     ],
+     "steps": [
+      {
+       "note": "Ruta: 10.10.2.0/24 via cortafuegos",
+       "at": 0
+      },
+      {
+       "from": 0,
+       "to": 1,
+       "text": "echo request (entra por eth0)",
+       "tone": "warn"
+      },
+      {
+       "note": "ip_forward = 1: lo reenvía, TTL 64 → 63",
+       "at": 1
+      },
+      {
+       "from": 1,
+       "to": 2,
+       "text": "echo request (sale por eth1)",
+       "tone": "warn"
+      },
+      {
+       "from": 2,
+       "to": 1,
+       "text": "echo reply, por la ruta de vuelta",
+       "reply": true,
+       "tone": "good"
+      },
+      {
+       "from": 1,
+       "to": 0,
+       "text": "echo reply (sale por eth0)",
+       "reply": true,
+       "tone": "good"
+      }
+     ],
+     "caption": "Lo mismo que muestra tcpdump en el apartado de la ruta de vuelta."
+    },
+    {
+     "type": "code",
+     "lang": "bash",
+     "text": "docker compose exec atacante nmap -sn --traceroute 10.10.2.20",
+     "title": "¿Por dónde pasa? (traceroute)",
+     "output": "TRACEROUTE (using proto 1/icmp)\nHOP RTT     ADDRESS\n1   0.07 ms labredes-cortafuegos-1.labredes_red_externa (10.10.1.2)\n2   0.02 ms 10.10.2.20",
+     "note": "Un **traceroute** enseña cada salto del camino: primero el cortafuegos, luego el servidor. `nmap -sn` comprueba si el equipo está vivo sin escanear puertos, y `--traceroute` añade el camino."
+    },
+    {
+     "type": "code",
+     "lang": "bash",
+     "text": "docker compose exec atacante curl -sI http://10.10.2.20/\ndocker compose exec atacante nc -zv -w 2 10.10.2.20 22",
+     "title": "Los servicios del servidor responden",
+     "output": "HTTP/1.1 200 OK\nServer: nginx/1.22.1\nConnection to 10.10.2.20 22 port [tcp/ssh] succeeded!",
+     "note": "`curl -sI` pide solo las cabeceras de la web: **200 OK**, la web funciona. `nc -zv` comprueba si el puerto 22 (SSH) acepta conexiones, sin enviar datos. La salida de curl está recortada a las líneas útiles."
+    },
+    {
+     "type": "key",
+     "text": "Si ves ttl=63, el traceroute por 10.10.1.2 y la web respondiendo, la mini-red es exactamente la del plano. Enhorabuena: acabas de construir una red segmentada."
+    }
+   ]
+  },
+  {
+   "id": "atajos",
+   "title": "Paso 10: atajos para el día a día",
+   "blocks": [
+    {
+     "type": "p",
+     "text": "Escribir `docker compose exec …` cada vez cansa. El laboratorio trae un pequeño script, `lab.sh`, con atajos. Guárdalo en `Laboratorio/lab.sh`:"
+    },
+    {
+     "type": "code",
+     "lang": "bash",
+     "text": "#!/bin/sh\n# Atajos del laboratorio. Uso: ./lab.sh arrancar | parar | atacante | cortafuegos | servidor | alertas\ncd \"$(dirname \"$0\")\"\ncase \"$1\" in\n  arrancar)    docker compose up -d\n               # si ya tienes Suricata preparado (experimento del IDS), lo arranca también\n               [ -x scripts/ids-arrancar.sh ] && docker compose exec -T cortafuegos /lab/scripts/ids-arrancar.sh ;;\n  parar)       docker compose down ;;\n  atacante|cortafuegos|servidor) docker compose exec \"$1\" bash ;;\n  alertas)     docker compose exec cortafuegos /lab/scripts/ids-alertas.sh ;;\n  *) echo \"Uso: ./lab.sh arrancar | parar | atacante | cortafuegos | servidor | alertas\" ;;\nesac",
+     "title": "lab.sh",
+     "note": "`case \"$1\" in … esac` mira la primera palabra que escribes después de `./lab.sh` y ejecuta la línea que coincide. La línea de Suricata solo hace algo cuando prepares el detector de intrusos en un experimento posterior."
+    },
+    {
+     "type": "p",
+     "text": "La primera vez hay que darle permiso de ejecución. Después, se usa así:"
+    },
+    {
+     "type": "code",
+     "lang": "bash",
+     "text": "chmod +x lab.sh\n./lab.sh arrancar\n./lab.sh atacante",
+     "title": "Dar permiso y usarlo",
+     "note": "**chmod +x** marca el archivo como programa ejecutable. `./` delante significa «el que está en esta carpeta»."
+    },
+    {
+     "type": "table",
+     "head": [
+      "Atajo",
+      "Equivale a",
+      "Para qué"
+     ],
+     "rows": [
+      [
+       "`./lab.sh arrancar`",
+       "`docker compose up -d`",
+       "Encender la red"
+      ],
+      [
+       "`./lab.sh atacante`",
+       "`docker compose exec atacante bash`",
+       "Entrar en el atacante (`exit` para salir)"
+      ],
+      [
+       "`./lab.sh cortafuegos`",
+       "`docker compose exec cortafuegos bash`",
+       "Entrar en el cortafuegos"
+      ],
+      [
+       "`./lab.sh servidor`",
+       "`docker compose exec servidor bash`",
+       "Entrar en el servidor"
+      ],
+      [
+       "`./lab.sh parar`",
+       "`docker compose down`",
+       "Apagar y borrar contenedores y redes"
+      ]
+     ],
+     "title": "Los atajos"
+    },
+    {
+     "type": "p",
+     "text": "**Apaga el laboratorio cuando termines** (`./lab.sh parar`): los contenedores consumen memoria. No pierdes nada: la imagen y las carpetas compartidas se quedan, y `./lab.sh arrancar` lo levanta todo idéntico en segundos."
+    }
+   ]
+  },
+  {
+   "id": "problemas",
+   "title": "Si algo falla",
+   "blocks": [
+    {
+     "type": "table",
+     "head": [
+      "Síntoma",
+      "Causa probable",
+      "Qué hacer"
+     ],
+     "rows": [
+      [
+       "`Cannot connect to the Docker daemon`",
+       "Docker Desktop cerrado",
+       "Ábrelo y espera a la ballena"
+      ],
+      [
+       "`Pool overlaps with other one on this address space`",
+       "Otra red de Docker ya usa 10.10.1.0/24 o 10.10.2.0/24",
+       "Borra la otra (`docker network ls`, `docker network rm NOMBRE`) o cambia los rangos en el archivo y en las rutas"
+      ],
+      [
+       "`No such image: labredes-imagen`",
+       "La imagen no se ha construido",
+       "`docker compose build` y luego `docker compose up -d`"
+      ],
+      [
+       "Un contenedor sale como *Exited*",
+       "Ha fallado su `command`",
+       "`docker compose logs NOMBRE` para ver el error"
+      ],
+      [
+       "`RTNETLINK answers: Operation not permitted`",
+       "Falta `cap_add: NET_ADMIN`",
+       "Revisa el bloque `x-base`"
+      ],
+      [
+       "El ping al servidor no responde",
+       "Falta una ruta o el reenvío",
+       "Repite las comprobaciones del paso 9, una a una"
+      ],
+      [
+       "Todo raro",
+       "—",
+       "`./lab.sh parar` y `./lab.sh arrancar`: se recrea limpio"
+      ]
+     ],
+     "title": "Problemas y soluciones"
+    },
+    {
+     "type": "p",
+     "text": "**Qué viene después.** Con la red funcionando, los próximos experimentos la usan para lo que importa en la asignatura: **leer paquetes** con tcpdump y Wireshark (el saludo TCP, una petición web en claro), **escanear** con nmap y con un escáner propio en Scapy, **filtrar** con iptables y **detectar** ataques con Suricata."
+    },
+    {
+     "type": "key",
+     "text": "Has construido, cable a cable, una red con dos segmentos, un router-cortafuegos que es el único camino entre ellos y rutas de ida y vuelta. Es la base de todos los experimentos que siguen."
+    }
+   ]
+  }
+ ]
+}

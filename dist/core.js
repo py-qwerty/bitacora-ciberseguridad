@@ -78,7 +78,7 @@ const TONES = ['accent','good','bad','warn'];
 // Text is always escaped when rendered, so code samples such as <script> are allowed.
 const text = v => typeof v === 'string' && v.trim().length > 0;
 const texts = v => Array.isArray(v) && v.length > 0 && v.every(text);
-function validateDiagram(b, where, fail) {
+export function validateDiagram(b, where, fail) {
   const bad = what => fail(`esquema ${what} en ${where}`);
   const icon = i => typeof i === 'string' && Object.hasOwn(ICONS, i);
   const node = n => n && typeof n === 'object' && icon(n.icon) && text(n.title) && (n.text === undefined || text(n.text)) && (n.tone === undefined || TONES.includes(n.tone));

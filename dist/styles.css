@@ -563,3 +563,6 @@ abbr.sg:focus-visible{outline:3px solid var(--color-focus)}
 .res-card b{font-size:18px;color:var(--color-primary)}
 .res-card p{margin:4px 0 0;font-size:14.5px;line-height:1.5}
 .res-kicker{font:700 11px/1.4 var(--font-body);letter-spacing:.6px;text-transform:uppercase;color:var(--color-muted)}
+.exp-list{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(320px,1fr))}
+.exp-meta{margin-top:auto;padding-top:8px;font-weight:700;font-size:14px;color:var(--color-secondary)}
+.exp-pager{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;margin:28px 0 8px}

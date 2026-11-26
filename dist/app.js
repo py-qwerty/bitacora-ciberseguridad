@@ -1,4 +1,4 @@
-import { DURATION, EXAM_SIZE, generateExam, gradeExam, remaining, formatTime, isValidSession, practiceBlocks, topicQuestions, baseQuestions, campusQuestions, extraBlocks, validPractice, swipeDirection, validateBank, validateTema, ICONS } from './core.js?v=12'; import { setupPracticas, loadPracticasIndex, practicasRoute, isPracticasPath, practicasCard, courseExamLink, simulacroExamLink } from './practicas.js?v=6'; import { setupSiglas, sgStart, sgEnd, sgApply, sgList } from './siglas.js?v=2'; import { setupCamino, loadCamino, caminoPage, caminoBlock } from './camino.js?v=1'; import { BIBLIOTECAS } from './bibliotecas.js?v=2';
+import { DURATION, EXAM_SIZE, generateExam, gradeExam, remaining, formatTime, isValidSession, practiceBlocks, topicQuestions, baseQuestions, campusQuestions, extraBlocks, validPractice, swipeDirection, validateBank, validateTema, ICONS } from './core.js?v=13'; import { setupPracticas, loadPracticasIndex, practicasRoute, isPracticasPath, practicasCard, courseExamLink, simulacroExamLink } from './practicas.js?v=7'; import { setupSiglas, sgStart, sgEnd, sgApply, sgList } from './siglas.js?v=2'; import { setupCamino, loadCamino, caminoPage, caminoBlock } from './camino.js?v=1'; import { BIBLIOTECAS } from './bibliotecas.js?v=2';
 const $ = s => document.querySelector(s);
 const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const number = n => n.toLocaleString('es-ES');
@@ -232,7 +232,7 @@ function loadRes(key,url){
     .then(r=>{if(!r.ok)throw Error('HTTP '+r.status);return r.json();})
     .then(data=>{entry.status='ready';entry.data=data;})
     .catch(()=>{entry.status='error';})
-    .finally(()=>{const {path}=currentRoute();if(path.startsWith('/resuelta')||path.startsWith('/asignatura')||/^\/tema\/\d+/.test(path))render(false);});
+    .finally(()=>{const {path}=currentRoute();if(path==='/temas'||path==='/'||path.startsWith('/resuelta')||path.startsWith('/experiment')||path.startsWith('/asignatura')||/^\/tema\/\d+/.test(path))render(false);});
   return entry;
 }
 const resIndex=()=>{const e=loadRes('index','resueltas/index.json');return e.status==='ready'?e.data:[];};
@@ -255,6 +255,28 @@ function resueltaPage(id){
 <div class="tema-layout"><nav class="tema-index" aria-label="Apartados de la actividad"><details open><summary>Apartados</summary><ol>${a.sections.map((s,i)=>`<li><a href="${href(s.id)}"><span class="tema-index-number">${i+1}</span><span>${esc(s.title)}</span></a></li>`).join('')}</ol></details></nav>
 <article class="tema-body">${a.sections.map((s,i)=>`<section class="tema-section" id="apartado-${esc(s.id)}" aria-labelledby="titulo-${esc(s.id)}"><div class="tema-section-content"><header class="tema-section-head"><span class="tema-section-number" aria-hidden="true">${i+1}</span><div><h2 id="titulo-${esc(s.id)}">${esc(s.title)}</h2></div></header>${s.blocks.map(temaBlock).join('')}</div></section>`).join('')}
 <p class="local-note">Resolución propia comentada para estudiar. Las salidas son las del laboratorio en el que se probaron las reglas.</p></article></div>`;
+}
+// «Experimentos» (content/experimentos → dist/experimentos, scripts/build-resueltas.mjs): laboratorios guiados
+// en tu propio ordenador, explicados desde cero, con los mismos bloques que los temas.
+const expIndex=()=>{const e=loadRes('exp-index','experimentos/index.json');return e.status==='ready'?e.data:[];};
+function experimentosPage(){
+  const e=loadRes('exp-index','experimentos/index.json');
+  if(e.status==='loading')return `<div class="loading"><span class="spinner" aria-hidden="true"></span><p>Cargando experimentos…</p></div>`;
+  const list=e.data||[];
+  return `<a class="back-link" href="#/temas">← Asignaturas</a>${heading('Experimentos','Laboratorios en tu propio ordenador, paso a paso y sin dar nada por sabido: montas, pruebas y entiendes por qué funciona.')}${list.length?`<section class="exp-list">${list.map((a,i)=>`<a class="res-card exp-card" href="#/experimento/${esc(a.id)}"><span class="res-kicker">Experimento ${i+1}${a.time?' · '+esc(a.time):''}</span><b>${esc(a.title)}</b><small>${esc(a.subtitle||'')}</small><p>${rich(a.intro||'','inline')}</p><span class="exp-meta">${a.sections} pasos ›</span></a>`).join('')}</section>`:'<p>Todavía no hay experimentos.</p>'}<p class="local-note">Todo se hace en tu ordenador, dentro de contenedores: no sale nada a internet ni tocas redes ajenas.</p>`;
+}
+function experimentoPage(id){
+  const e=loadRes('exp-'+id,`experimentos/${id}.json`);const list=expIndex();
+  const back=`<a class="back-link" href="#/experimentos">← Experimentos</a>`;
+  if(e.status==='loading')return `${back}<div class="loading"><span class="spinner" aria-hidden="true"></span><p>Cargando el experimento…</p></div>`;
+  if(e.status==='error')return `${back}${heading('No se ha podido cargar el experimento.','Comprueba tu conexión y vuelve a intentarlo.')}`;
+  const a=e.data;libSeen=new Set();const href=s=>`#/experimento/${esc(id)}?apartado=${encodeURIComponent(s)}`;
+  const pos=list.findIndex(x=>x.id===id);const prev=pos>0?list[pos-1]:null,next=pos>=0&&pos<list.length-1?list[pos+1]:null;
+  const pager=(prev||next)?`<nav class="exp-pager" aria-label="Otros experimentos">${prev?`<a class="btn secondary" href="#/experimento/${esc(prev.id)}">← ${esc(prev.title)}</a>`:'<span></span>'}${next?`<a class="btn" href="#/experimento/${esc(next.id)}">Siguiente: ${esc(next.title)} →</a>`:''}</nav>`:'';
+  return `${back}<header class="tema-hero"><div class="tema-hero-main"><p class="tema-kicker">Experimento${pos>=0?' '+(pos+1):''}${a.time?' · '+esc(a.time):''}</p><h1>${esc(a.title)}</h1><ul class="tema-facts"><li><b>${a.sections.length}</b> pasos</li><li>${esc(a.subtitle||'')}</li></ul><p class="tema-why">${rich(a.intro,'inline')}</p></div></header>
+<div class="tema-layout"><nav class="tema-index" aria-label="Pasos del experimento"><details open><summary>Pasos</summary><ol>${a.sections.map((s,i)=>`<li><a href="${href(s.id)}"><span class="tema-index-number">${i+1}</span><span>${esc(s.title)}</span></a></li>`).join('')}</ol></details></nav>
+<article class="tema-body">${a.sections.map((s,i)=>`<section class="tema-section" id="apartado-${esc(s.id)}" aria-labelledby="titulo-${esc(s.id)}"><div class="tema-section-content"><header class="tema-section-head"><span class="tema-section-number" aria-hidden="true">${i+1}</span><div><h2 id="titulo-${esc(s.id)}">${esc(s.title)}</h2></div></header>${s.blocks.map(temaBlock).join('')}</div></section>`).join('')}
+${pager}<p class="local-note">Las salidas que ves son las reales del laboratorio, copiadas tal cual al probar cada comando.</p></article></div>`;
 }
 function temaPage(n){
   const topic=topicInfo(n);if(!topic||!temaIndex.has(n))return notFound();
@@ -342,7 +364,7 @@ function practicePage(topic,block) {
 }
 function home() {
   const active=activeSession();
-  return `${heading('Asignaturas','Tu máster, una pregunta cada vez.')}<div class="progress-summary"><span><b>${number(bank.questions.length)}</b> preguntas con explicación</span><span>${bank.courses.length} asignaturas</span></div>${active?`<a class="resume-link" href="#/examen"><span><b>Simulacro en curso</b><small>${Object.keys(active.answers).length} de ${active.ids.length} respondidas · El reloj sigue corriendo</small></span><span aria-hidden="true">→</span></a>`:''}<section class="topic-list" aria-label="Asignaturas">${bank.courses.map((c,i)=>{const topics=bank.topics.filter(t=>t.course===c.id);const done=topics.reduce((n,t)=>n+practiceMap.get(t.id).filter((_,j)=>getPractice(t.id,j+1).finishedAt).length,0);return `<a class="topic-card" href="#/asignatura/${esc(c.id)}"><span class="unit-number">${String(i+1).padStart(2,'0')}</span><div><h2>${esc(c.shortTitle||c.title)}</h2><p>${topics.length} temas · ${number(bank.questions.filter(q=>q.course===c.id).length)} preguntas${done?' · '+done+' tests terminados':''}</p></div><span class="row-arrow" aria-hidden="true">›</span></a>`;}).join('')}</section><p class="local-note">30 preguntas base por tema y hasta 50 de ampliación. Tu progreso se guarda solo en este navegador.</p><a class="rules-link" href="#/reglas">Cómo estudiar y procedencia de las preguntas ↗</a>`;
+  return `${heading('Asignaturas','Tu máster, una pregunta cada vez.')}<div class="progress-summary"><span><b>${number(bank.questions.length)}</b> preguntas con explicación</span><span>${bank.courses.length} asignaturas</span></div>${active?`<a class="resume-link" href="#/examen"><span><b>Simulacro en curso</b><small>${Object.keys(active.answers).length} de ${active.ids.length} respondidas · El reloj sigue corriendo</small></span><span aria-hidden="true">→</span></a>`:''}<section class="topic-list" aria-label="Asignaturas">${bank.courses.map((c,i)=>{const topics=bank.topics.filter(t=>t.course===c.id);const done=topics.reduce((n,t)=>n+practiceMap.get(t.id).filter((_,j)=>getPractice(t.id,j+1).finishedAt).length,0);return `<a class="topic-card" href="#/asignatura/${esc(c.id)}"><span class="unit-number">${String(i+1).padStart(2,'0')}</span><div><h2>${esc(c.shortTitle||c.title)}</h2><p>${topics.length} temas · ${number(bank.questions.filter(q=>q.course===c.id).length)} preguntas${done?' · '+done+' tests terminados':''}</p></div><span class="row-arrow" aria-hidden="true">›</span></a>`;}).join('')}<a class="topic-card exp-topic" href="#/experimentos"><span class="unit-number">${String(bank.courses.length+1).padStart(2,'0')}</span><div><h2>Experimentos</h2><p>Laboratorios guiados en tu ordenador${expIndex().length?' · '+expIndex().length+' experimentos':''}</p></div><span class="row-arrow" aria-hidden="true">›</span></a></section><p class="local-note">30 preguntas base por tema y hasta 50 de ampliación. Tu progreso se guarda solo en este navegador.</p><a class="rules-link" href="#/reglas">Cómo estudiar y procedencia de las preguntas ↗</a>`;
 }
 function coursePage(id){
   const course=bank.courses.find(c=>c.id===id);if(!course)return notFound();
@@ -443,9 +465,9 @@ function render(focus=true) {
   cancelQuestionTransition();
   clearInterval(timer);timer=null;
   const {path,params}=currentRoute();
-  const nav=path.startsWith('/tema')||path.startsWith('/resuelta')||path.startsWith('/asignatura')||path.startsWith('/practica')||path.startsWith('/redaccion')?'temas':path.startsWith('/simulacro')||path==='/examen'||path.startsWith('/examen-real')?'simulacro':path.startsWith('/historial')||path.startsWith('/resultado')?'historial':path==='/tfm'?'tfm':path==='/camino'?'camino':'';
+  const nav=path.startsWith('/tema')||path.startsWith('/resuelta')||path.startsWith('/experiment')||path.startsWith('/asignatura')||path.startsWith('/practica')||path.startsWith('/redaccion')?'temas':path.startsWith('/simulacro')||path==='/examen'||path.startsWith('/examen-real')?'simulacro':path.startsWith('/historial')||path.startsWith('/resultado')?'historial':path==='/tfm'?'tfm':path==='/camino'?'camino':'';
   document.querySelectorAll('[data-nav]').forEach(a=>{if(a.dataset.nav===nav)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});
-  const wide=/^\/tema\/\d+\/estudio$/.test(path)||/^\/resuelta\/[a-z0-9-]+$/.test(path)||path==='/tfm'||path==='/camino';
+  const wide=/^\/tema\/\d+\/estudio$/.test(path)||/^\/(resuelta|experimento)\/[a-z0-9-]+$/.test(path)||path==='/tfm'||path==='/camino';
   main.className=path==='/examen'?'exam-main':wide?'wide-main':'';
   document.body.classList.toggle('route-wide',wide);
   document.body.classList.toggle('in-exam',path==='/examen'||path==='/examen-real/en-curso');
@@ -463,6 +485,8 @@ function render(focus=true) {
   else if(path==='/reglas')main.innerHTML=rulesPage();
   else if(path==='/resueltas')main.innerHTML=resueltasPage(params.get('asignatura'));
   else if(/^\/resuelta\/[a-z0-9-]+$/.test(path))main.innerHTML=resueltaPage(path.split('/')[2]);
+  else if(path==='/experimentos')main.innerHTML=experimentosPage();
+  else if(/^\/experimento\/[a-z0-9-]+$/.test(path))main.innerHTML=experimentoPage(path.split('/')[2]);
   else if(isPracticasPath(path))main.innerHTML=practicasRoute(path,params)??notFound();
   else main.innerHTML=notFound();
   document.title=(main.querySelector('h1')?.innerText.replace(/\s+/g,' ')||'Estudiar')+' · Bitácora Ciber';
